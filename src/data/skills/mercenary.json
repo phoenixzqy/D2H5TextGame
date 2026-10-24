@@ -364,6 +364,7 @@
     "name": "skills.mercenary.holy-freeze.name",
     "description": "skills.mercenary.holy-freeze.desc",
     "icon": "skills/merc/aura-holy-freeze.png",
+    "holyFreeze": { "coldDamagePct": 20 },
     "trigger": "passive",
     "target": "all-enemies",
     "cooldown": 0,

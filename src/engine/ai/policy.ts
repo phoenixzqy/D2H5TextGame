@@ -32,7 +32,7 @@ export function chooseSkill(
 ): string | undefined {
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
-    if (!skill) continue;
+    if (!skill || skill.trigger === 'passive') continue;
     const governed = governedActiveId(skill.id);
     if (governed && (unit.governedActiveRanks?.[governed] === 0 ||
       (governed === 'item.redemption' && !unit.governedActiveRanks))) continue;

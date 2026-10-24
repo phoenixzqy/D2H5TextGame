@@ -88,11 +88,15 @@ describe('Cold Mastery through production hero composition and damage', () => {
       .toEqual([expect.objectContaining({ amount: damage })]);
   });
 
-  it('does not share personal penetration with a cold-hitting native mercenary', () => {
+  it.each([
+    { mercId: 'mercs/act3-iron-wolf-cold', heroDamage: 131, mercDamage: 40 },
+    { mercId: 'mercs/act2-holy-freeze', heroDamage: 159, mercDamage: 50 }
+  ])('keeps penetration personal alongside $mercId', ({ mercId, heroDamage, mercDamage }) => {
     const source = input({ [MASTERY]: 20 });
     // Seed1 lands both actors' hits; seed7's second actor legitimately misses.
     source.seed = 1;
-    const def = loadMercPool().pool[0]; if (!def) throw new Error('Missing native mercenary definition');
+    const def = loadMercPool().pool.find(def => def.id === mercId);
+    if (!def) throw new Error('Missing native mercenary definition');
     const merc = mercToCombatUnit(createMercFromDef(def, 'cold-control'));
     expect(merc.coldResistanceReductionPct).toBeUndefined();
     source.playerTeam.push({ ...merc, stats, life: 1000, mana: 200,
@@ -100,8 +104,10 @@ describe('Cold Mastery through production hero composition and damage', () => {
     const result = runBattleRecorded(source);
     expect(result.events.filter(e => e.kind === 'damage')).toHaveLength(2);
     expect(result.events.filter(e => e.kind === 'damage')).toEqual(expect.arrayContaining([
-      expect.objectContaining({ source: source.playerTeam[0]?.id, amount: 131 }),
-      expect.objectContaining({ source: merc.id, amount: 40 })]));
+      // Holy Freeze adds20% cold to both actors, but only the hero penetrates91 points.
+      // Hero: floor(100*1.2*1.41-10)=159; merc: floor(100*1.2*.5-10)=50.
+      expect.objectContaining({ source: source.playerTeam[0]?.id, amount: heroDamage }),
+      expect.objectContaining({ source: merc.id, amount: mercDamage })]));
     expect(result.result.enemyTeam[0]?.stats.resistances.cold).toBe(50);
   });
 

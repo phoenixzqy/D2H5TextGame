@@ -180,6 +180,8 @@ export interface SkillDef {
   readonly staticField?: StaticFieldTuning;
   /** JSON-owned personal cold penetration; exact player Cold Mastery only. */
   readonly coldMastery?: ColdMasteryTuning;
+  /** Native mercenary aura party cold increase, in percentage points. */
+  readonly holyFreeze?: { readonly coldDamagePct: number };
   readonly id: string;
   readonly name: string;
   readonly description: string;

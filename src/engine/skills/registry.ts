@@ -18,6 +18,7 @@ import { PLAYABLE_CLASS_DATA_SKILLS } from './dataCatalog';
 import { MINOR_HEAL_SKILL } from './minor-heal';
 import { MERC_INNER_SIGHT_SKILL } from './inner-sight';
 import { MERC_ARROW_SKILLS } from './merc-arrows';
+import { MERC_HOLY_FREEZE_SKILL } from './merc-holy-freeze';
 import { ACT1_LIGHTNING_AFFIX_SKILL } from './act1-lightning';
 import { BLOOD_RAVEN_SKILLS } from './blood-raven';
 import { ITEM_REDEMPTION_SKILL } from './item-redemption';
@@ -90,6 +91,7 @@ export function loadDefaultSkills(): void {
   registry.set(MINOR_HEAL_SKILL.id, MINOR_HEAL_SKILL);
   registry.set(ITEM_REDEMPTION_SKILL.id, ITEM_REDEMPTION_SKILL);
   registry.set(MERC_INNER_SIGHT_SKILL.id, MERC_INNER_SIGHT_SKILL);
+  registry.set(MERC_HOLY_FREEZE_SKILL.id, MERC_HOLY_FREEZE_SKILL);
   for (const skill of MERC_ARROW_SKILLS) registry.set(skill.id, skill);
   for (const s of MONSTER_STUB_SKILLS) {
     registry.set(s.id, s);

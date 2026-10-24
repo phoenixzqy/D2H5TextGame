@@ -64,6 +64,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Native mercenary factory-owned Holy Freeze presence; wave-local, never persisted. */
+  readonly holyFreezeAura?: true;
   /** Eligible learned Static Field rank captured per wave; explicit zero disables legacy fallback. */
   readonly staticFieldRank?: number;
   /** Frozen equipment/learned active availability captured at the wave boundary; never persisted. */

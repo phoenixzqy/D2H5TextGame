@@ -33,6 +33,7 @@ import {
 } from './status';
 import { CHILL_DEFINITION } from './chill-definition';
 import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
+import { isMercHolyFreezeSource, MERC_HOLY_FREEZE_DEFINITION } from '../skills/merc-holy-freeze';
 import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { activeMightAura, type MightAuraProjection } from '../skills/might';
 import { activeMeditationAura, type MeditationAuraProjection } from '../skills/meditation';
@@ -160,6 +161,8 @@ export interface CombatResult {
 }
 
 interface State {
+  /** Factory-marked source IDs captured at registration; live eligibility is checked at use. */
+  readonly holyFreezeSources: string[];
   readonly difficulty: 'normal' | 'nightmare';
   /** Valid copied player authority and FIFO primary enemy-monster death IDs; wave-local only. */
   readonly corpseExplosion: Map<string, number>;
@@ -235,11 +238,27 @@ function sameStatusView(previous: readonly ActiveStatus[], next: readonly Active
   });
 }
 
+function holyFreezeSourceId(state: State): string | undefined {
+  return state.holyFreezeSources.find(id => {
+    const source = state.units.get(id);
+    return source !== undefined && isMercHolyFreezeSource(source);
+  });
+}
+
+/** Shared derived view for presentation and direct-hit combos, never written to raw statuses. */
+function combatStatusView(state: State, unit: CombatUnit): CombatUnit {
+  const active = activeStatusView(unit, state.simClockMs);
+  if (unit.side !== 'enemy' || !alive(unit) || hasStatus(active, 'chill')) return active;
+  const sourceId = holyFreezeSourceId(state);
+  return sourceId === undefined ? active : { ...active, statuses: [...active.statuses,
+    { id: 'chill', stacks: 1, remaining: -1, sourceId, tags: ['cold', 'chill'] }] };
+}
+
 /** Observe committed state only; clocks, raw statuses and RNG remain authoritative. */
 function observeStatuses(state: State, target: string, initial = false): void {
   const unit = state.units.get(target);
   if (!unit) return;
-  const active = alive(unit) ? unit.statuses.filter(s => statusActiveAt(s, state.simClockMs)) : [];
+  const active = alive(unit) ? combatStatusView(state, unit).statuses : [];
   const previous = state.observedStatuses.get(target);
   if (!initial && previous !== undefined && sameStatusView(previous, active)) return;
   const statuses = active.map(s => ({ ...s, ...(s.tags !== undefined ? { tags: [...s.tags] } : {}) }));
@@ -248,15 +267,16 @@ function observeStatuses(state: State, target: string, initial = false): void {
 }
 
 /** Keep base stats intact; active Chill changes the stat before cadence/clamps. */
-function effectiveActionPeriod(unit: CombatUnit, at: number): number {
-  const chilled = unit.statuses.some(s => s.id === 'chill' && statusActiveAt(s, at));
+function effectiveActionPeriod(state: State, unit: CombatUnit): number {
+  const chilled = unit.statuses.some(s => s.id === 'chill' && statusActiveAt(s, state.simClockMs)) ||
+    (unit.side === 'enemy' && holyFreezeSourceId(state) !== undefined);
   const enrage = unit.enraged ? unit.enrage?.attackSpeedMultiplier ?? 1 : 1;
   return actionPeriodMs(unit.stats.attackSpeed * enrage * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
 }
 
 /** All new attempts start one full effective period after the current clock. */
 function scheduleNextAction(state: State, unit: CombatUnit): void {
-  const period = effectiveActionPeriod(unit, state.simClockMs);
+  const period = effectiveActionPeriod(state, unit);
   state.actionSchedule.set(unit.id, { at: state.simClockMs + period, period });
 }
 
@@ -270,7 +290,8 @@ function reconcileActionPeriods(state: State): void {
       state.actionSchedule.delete(id);
       continue;
     }
-    const period = effectiveActionPeriod(unit, state.simClockMs);
+    if (state.holyFreezeSources.length > 0) observeStatuses(state, id);
+    const period = effectiveActionPeriod(state, unit);
     if (period === scheduled.period) continue;
     const remaining = Math.max(0, scheduled.at - state.simClockMs);
     state.actionSchedule.set(id, {
@@ -392,6 +413,7 @@ function pickDefender(
 
 function registerUnit(state: State, u: CombatUnit): void {
   state.units.set(u.id, u);
+  if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
   if (!state.insertionIdx.has(u.id)) {
     state.insertionIdx.set(u.id, state.insertionCounter++);
     state.tiePriority.set(u.id, state.tieRng.next());
@@ -425,7 +447,7 @@ function buildDamageInput(
   skillLevel = 1,
   baseFlatBonus = 0
 ): DamageInput {
-  const combo = comboMultiplier(defender, effect.damageType);
+  const combo = comboMultiplier(combatStatusView(state, defender), effect.damageType);
   const stats = attacker.stats;
   const baseMin = scalePerRank(effect.base[0], effect.perRank?.[0], skillLevel);
   const baseMax = scalePerRank(effect.base[1], effect.perRank?.[1], skillLevel);
@@ -447,7 +469,9 @@ function buildDamageInput(
     baseMax,
     flatBonus: baseFlatBonus + (effect.attackDamagePct ? stats.attack * effect.attackDamagePct / 100 : 0),
     increasedPct: (attacker.increasedDamagePct?.[effect.damageType] ?? 0) +
-      (effect.damageType === 'physical' ? activeMightAura(state.mightAura, attacker.id, state.units)?.physicalDamagePct ?? 0 : 0),
+      (effect.damageType === 'physical' ? activeMightAura(state.mightAura, attacker.id, state.units)?.physicalDamagePct ?? 0 : 0) +
+      (effect.damageType === 'cold' && attacker.side === 'player' && alive(attacker) && holyFreezeSourceId(state) !== undefined
+        ? MERC_HOLY_FREEZE_DEFINITION.coldDamagePct : 0),
     comboMult: combo,
     type: effect.damageType,
     critChance: stats.critChance,
@@ -1509,6 +1533,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const golemMastery = snapshot.golemMastery;
   const iron = snapshot.ironGolem;
   const state: State = {
+    holyFreezeSources: [],
     difficulty: snapshot.difficulty ?? 'normal',
     corpseExplosion: new Map(copyCorpseExplosionProjections(snapshot.corpseExplosion).map(p => [p.sourceHeroId, p.rank])),
     poisonExplosion: new Map(copyPoisonExplosionProjections(snapshot.poisonExplosion).map(p => [p.sourceHeroId, p.rank])),

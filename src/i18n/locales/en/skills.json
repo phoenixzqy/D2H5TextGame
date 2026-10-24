@@ -1313,7 +1313,7 @@
     },
     "holy-freeze": {
       "name": "Holy Freeze Aura",
-      "desc": "An aura of cold that slows nearby enemies."
+      "desc": "While the mercenary lives, Chill reduces every enemy's Attack Speed by 50% and the party gains +20% increased cold damage."
     },
     "might": {
       "name": "Might Aura",

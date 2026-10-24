@@ -17,8 +17,8 @@
  *  2. An explicit alias registry `registerSkillAlias(alias, canonical)`
  *     for the cases where the data id has no straightforward shape.
  *  3. Auto-registration of stub skills for merc/aura ids that have no
- *     engine equivalent (so a Desert-Merc-Holy-Freeze does *something*
- *     instead of basic-attacking forever). Tuning lives in JSON; these
+ *     engine equivalent. Authored implementations register separately;
+ *     these
  *     are minimal stubs to keep combat moving.
  *
  * @module engine/skills/aliases
@@ -152,8 +152,7 @@ export const MERC_STUB_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   stub({ id: 'mskill-frozen-armor', target: 'self', cooldown: 0, manaCost: 0, buffId: 'frozen_armor' }),
   stub({ id: 'mskill-telekinesis', target: 'single-enemy', cooldown: 2, manaCost: 0, damageType: 'arcane', base: [20, 30] }),
 
-  // Auras (always-on self buffs).
-  stub({ id: 'aura-holy-freeze', target: 'self', cooldown: 0, manaCost: 0, buffId: 'holy_freeze' }),
+  // Unimplemented aura placeholders; native Holy Freeze registers its authored passive separately.
   stub({ id: 'aura-might', target: 'self', cooldown: 0, manaCost: 0, buffId: 'might' }),
   stub({ id: 'aura-thorns', target: 'self', cooldown: 0, manaCost: 0, buffId: 'thorns' }),
   stub({ id: 'aura-prayer', target: 'self', cooldown: 0, manaCost: 0, buffId: 'prayer' }),

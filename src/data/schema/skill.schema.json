@@ -7,6 +7,23 @@
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
   "allOf": [{
+      "if": { "properties": { "id": { "const": "aura-holy-freeze" } }, "required": ["id"] },
+      "then": {
+        "required": ["holyFreeze", "appliesStatus", "appliesTags"],
+        "properties": {
+          "holyFreeze": { "$ref": "#/properties/holyFreeze" },
+          "trigger": { "const": "passive" }, "target": { "const": "all-enemies" },
+          "cooldown": { "const": 0 },
+          "appliesStatus": { "const": ["chill"] }, "appliesTags": { "const": ["cold", "chill"] },
+          "cost": false, "damage": false, "damageType": false, "attackDamagePct": false,
+          "statusEffect": false, "additionalStatusEffects": false, "scaling": false,
+          "heal": false, "summonId": false, "monsterSummon": false, "summonBasicAttackElements": false,
+          "aoeShape": false, "requires": false, "passive": false, "aura": false,
+          "summon": false, "synergies": false, "prerequisites": false
+        }
+      },
+      "else": { "properties": { "holyFreeze": false } }
+    }, {
       "if": {
         "properties": {
           "id": {
@@ -873,6 +890,15 @@
           "minimum": 0,
           "exclusiveMaximum": 1
         }
+      }
+    },
+    "holyFreeze": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Native mercenary Holy Freeze party direct cold increase in percentage points; slowing uses the shared Chill definition.",
+      "required": ["coldDamagePct"],
+      "properties": {
+        "coldDamagePct": { "type": "number", "minimum": 0, "description": "Additive increased direct cold damage in percentage points." }
       }
     },
     "coldMastery": {
