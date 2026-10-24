@@ -337,7 +337,8 @@ const IRON_METAL_IDS = [
   'belt-plated', 'belt-mithril-coil', 'sh-aegis', 'sh-monarch'
 ].map(suffix => `items/base/${suffix}`).sort();
 // D10 source-backed addition; the D06 historical acceptance set above stays literal.
-const CURRENT_IRON_METAL_IDS = [...IRON_METAL_IDS, 'items/base/wp2h-battle-scythe'].sort();
+const CURRENT_IRON_METAL_IDS = [...IRON_METAL_IDS, 'items/base/wp2h-battle-scythe',
+  'items/base/weapon-spear', 'items/base/weapon-throwing-knife'].sort();
 
 const BASE_KINDS: readonly ItemBaseType[] = [
   'weapon', 'armor', 'jewelry', 'charm', 'rune', 'gem', 'material'
@@ -352,15 +353,16 @@ function metalSchemaCandidate(type: ItemBaseType): ItemBase {
 }
 
 describe('reviewed socket maximum metadata', () => {
-  it('covers all 74 historical bases plus the staff and scythe without changing historical ceilings', () => {
-    expect(rawItemBases.filter(base => !['items/base/weapon-staff', 'items/base/wp2h-battle-scythe'].includes(base.id))).toHaveLength(74);
+  it('preserves 74 historical bases and the explicit staff, scythe and mastery additions', () => {
+    expect(rawItemBases.filter(base => !['items/base/weapon-staff', 'items/base/wp2h-battle-scythe',
+      'items/base/weapon-spear', 'items/base/weapon-throwing-knife'].includes(base.id))).toHaveLength(74);
     expect(rawItemBases.filter(base => base.id === 'items/base/weapon-staff')).toEqual([
       expect.objectContaining({ sockets: 2, maxSockets: 2 })
     ]);
     expect(rawItemBases.filter(base => base.id === 'items/base/wp2h-battle-scythe')).toEqual([
       expect.objectContaining({ sockets: 5, maxSockets: 5 })
     ]);
-    expect(rawItemBases).toHaveLength(76);
+    expect(rawItemBases).toHaveLength(78);
     for (const base of rawItemBases) {
       expect(base.maxSockets, base.id).toBe('sockets' in base ? base.sockets : 0);
     }
@@ -373,10 +375,10 @@ describe('reviewed socket maximum metadata', () => {
 });
 
 describe('Iron Golem authored metal metadata', () => {
-  it('preserves the 31 historical metal bases and explicitly adds only the new scythe', () => {
+  it('preserves the 31 historical metal bases and explicitly adds scythe, spear and throwing knife', () => {
     const catalog = rawItemBases as readonly ItemBase[];
     expect(new Set(IRON_METAL_IDS).size).toBe(31);
-    expect(new Set(CURRENT_IRON_METAL_IDS).size).toBe(32);
+    expect(new Set(CURRENT_IRON_METAL_IDS).size).toBe(34);
     for (const id of IRON_METAL_IDS) {
       expect(catalog.filter(base => base.id === id), id).toHaveLength(1);
     }

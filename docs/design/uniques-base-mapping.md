@@ -65,7 +65,8 @@ dataset because no reasonable base exists yet:
 - **All charm uniques** — no charm base (no inventory grid yet).
 - **All jewel uniques** — no jewel base.
 - **Throwing weapon uniques** (Deathbit, Lacerator-thrown, Demon's Arch,
-  Gimmershred, etc.) — no throwing base.
+  Gimmershred, etc.) — not yet authored. D05 adds an ordinary Throwing Knife
+  base; unique-template authoring/availability remains follow-up work.
 
 When `bases.json` grows to include any of the above, add the
 corresponding uniques in a follow-up commit and remove that line from

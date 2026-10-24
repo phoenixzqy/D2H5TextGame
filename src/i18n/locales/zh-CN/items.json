@@ -40,6 +40,8 @@
     "noModifiers": "无特殊属性"
   },
   "base": {
+    "weapon-spear": "长矛",
+    "weapon-throwing-knife": "飞刀",
     "helm-cap": "帽子",
     "helm-skull-cap": "头盖骨",
     "helm-war-hat": "战帽",

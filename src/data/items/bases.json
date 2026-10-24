@@ -1020,5 +1020,45 @@
     "canHaveAffixes": true,
     "weaponType": "bow",
     "handedness": "twoHanded"
+  },
+  {
+    "id": "items/base/weapon-spear",
+    "name": "items.base.weapon-spear",
+    "type": "weapon",
+    "slot": "weapon",
+    "weaponType": "spear",
+    "handedness": "twoHanded",
+    "baseDamage": {
+      "min": 8,
+      "max": 18,
+      "breakdown": {
+        "physical": 18
+      }
+    },
+    "reqLevel": 1,
+    "sockets": 2,
+    "maxSockets": 2,
+    "metal": true,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/weapon-throwing-knife",
+    "name": "items.base.weapon-throwing-knife",
+    "type": "weapon",
+    "slot": "weapon",
+    "weaponType": "throwing",
+    "handedness": "oneHanded",
+    "baseDamage": {
+      "min": 4,
+      "max": 8,
+      "breakdown": {
+        "physical": 8
+      }
+    },
+    "reqLevel": 1,
+    "sockets": 0,
+    "maxSockets": 0,
+    "metal": true,
+    "canHaveAffixes": true
   }
 ]

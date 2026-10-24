@@ -5,6 +5,22 @@
     "entries": [
       {
         "type": "item",
+        "itemBase": "items/base/weapon-spear",
+        "rarity": "normal",
+        "weight": 100,
+        "minLevel": 1,
+        "maxLevel": 38
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-throwing-knife",
+        "rarity": "normal",
+        "weight": 150,
+        "minLevel": 1,
+        "maxLevel": 38
+      },
+      {
+        "type": "item",
         "itemBase": "items/base/helm-cap",
         "rarity": "normal",
         "weight": 200,

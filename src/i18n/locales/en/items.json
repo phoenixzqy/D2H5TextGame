@@ -40,6 +40,8 @@
     "noModifiers": "No special modifiers"
   },
   "base": {
+    "weapon-spear": "Spear",
+    "weapon-throwing-knife": "Throwing Knife",
     "helm-cap": "Cap",
     "helm-skull-cap": "Skull Cap",
     "helm-war-hat": "War Hat",

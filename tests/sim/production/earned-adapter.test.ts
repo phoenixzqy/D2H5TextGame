@@ -543,9 +543,12 @@ describe('synthetic pure item selection contracts — not earned gameplay eviden
 });
 
 
-describe('tiny-derived positive earned equipment — same clock, seed and single farm', () => {
+describe('tiny-derived positive earned equipment — fixed clock, seed and single farm', () => {
   it('equips original earned glove and boots on their declared owners before the target', () => {
+    // D05 expands the TC pool. Retained discovery offset17 earns both original
+    // glove5/boots3 in one real farm; the original tiny clock remains unchanged.
     const variant: EarnedFixture = { ...structuredClone(tiny), id: 'earned-adapter-tiny-equipped',
+      clockEpochMs: CLOCK + 17,
       actions: [...structuredClone(tiny.actions),
         { kind: 'equip-earned', owner: 'hero', slot: 'gloves', selector: {
           baseId: 'items/base/glove-leather', rarity: 'normal', defense: 5, selection: 'first-acquired' } },
@@ -557,6 +560,7 @@ describe('tiny-derived positive earned equipment — same clock, seed and single
     const now = Date.now;
     const methods = stores.map(store => store.getState().reset);
     const result = runEarnedRecipeOnce(variant, options);
+    expect(result.actions[3]?.farms[0]?.handle).toMatchObject({ runSeed: 2330410292, challengeOrdinal: 0 });
     const hero = required(result.actions[tiny.actions.length]);
     expect(hero.result.ok).toBe(true);
     expect(hero.result.productionResult).toEqual({ ok: true });
