@@ -1,6 +1,6 @@
 # BUG-178 — Apply and expire paid Burst of Speed effects
 
-Severity: High. Status: reproduced; implementation in progress.
+Severity: High. Status: fixed and locally verified; independent acceptance open.
 Owner: root (engine/frontend/content). Baseline `f2de6a0`.
 Environment: Vitest Node, no browser/viewport/locale required for engine repro.
 Seed: 7. Evidence: retained `red-native.log` and `red-native.test.ts` in task
@@ -28,3 +28,9 @@ when the new engine status expires. Finite buff events now explicitly declare
 status-owned presentation; the playback consumer retains the FX but delegates
 visible lifetime to complete status observations. This transient event field
 changes no persisted save format. Both original failures are retained.
+
+Final implementation: e29a248 / 96e8bae / 837f837. Verification and retained raw
+failures: [D05 evidence](../../docs/plans/evidence/d05-burst-of-speed.md). Final
+12111 full tests / 504 files,5994 engine tests, types/standard+explicit lint/clean
+production build/bridge, four bilingual desktop/mobile browser cases and four
+exact Continue pairs pass. No earned campaign action or full-skill-roster claim.

@@ -1,0 +1,1071 @@
+{
+  "baselineHead": "f2de6a0",
+  "archive": "raw.tar.gz",
+  "archiveSha256": "9a124ffad1e5a4659ef172c1193647e00b4b33bbee9d9655de276506c9c2b122",
+  "archiveBytes": 2926680,
+  "rawCount": 137,
+  "rawFiles": {
+    "archive-and-clean.py": {
+      "sha256": "e6ebb7e382388ab5670c4b65e9db73c497c3649f94c41de94173d84fd85ad95c",
+      "size": 3833
+    },
+    "baseline-assassin.json": {
+      "sha256": "b6eb29878cf62c2ab9fcceca7c141dd76fc4e83cdcd230d50fb105b4c2c2d74d",
+      "size": 21458
+    },
+    "baseline-skill-schema.json": {
+      "sha256": "42506169017eb424946a08e3c72efd2d12d917e9c8ceab33b32d69de81b3b239",
+      "size": 78978
+    },
+    "behavior-expanded.log": {
+      "sha256": "a37dbf4983923e178ac38aa49ed6a3e004124532978e4c5b1e80c80beaa76a0b",
+      "size": 353
+    },
+    "behavior-expanded.process.json": {
+      "sha256": "7e1621c713e45d80717bf039eccf8f6a5c934e6ccb5f112e9affd69ee7051eec",
+      "size": 157
+    },
+    "behavior-expanded.result.json": {
+      "sha256": "59df112fdcc92c294dcc4d09e05a4f11d49765a3cc905ccb78b7e7662521dd6c",
+      "size": 215
+    },
+    "bridge.json": {
+      "sha256": "385c24b8910264e7e4eac1c0a55801fe7365dfefcfb0110e0c4cb1ad745c6f06",
+      "size": 341
+    },
+    "browser-audit.json": {
+      "sha256": "75631813b5bb0d909bdaaaccd96bf17a32f68c5aef91aecf772bc5102ae4653c",
+      "size": 3178
+    },
+    "browser-inspection/burst-of-speed-desktop-en-allocated-burst.png": {
+      "sha256": "25db05f8512b832acf26dbec927c06b34b0f513e58764a1a75d015fdf5329936",
+      "size": 125026
+    },
+    "browser-inspection/burst-of-speed-desktop-en-burst-after-Continue.png": {
+      "sha256": "1dbe1de1c080281fd9b12adac7e8f20a972b13934fb9bc7802c51ed397bd6aee",
+      "size": 123079
+    },
+    "browser-inspection/burst-of-speed-desktop-en-exact-Continue.json": {
+      "sha256": "fb4ac5fd64a76e0979d8542a6a400f8745d0e2f32691a5f3c34f6e52233dd710",
+      "size": 7200
+    },
+    "browser-inspection/burst-of-speed-desktop-zh-allocated-burst.png": {
+      "sha256": "6829da35ba7f73c1dbc4c834e632df335a9e9880c3435a43f0d0828bbba96a73",
+      "size": 127012
+    },
+    "browser-inspection/burst-of-speed-desktop-zh-burst-after-Continue.png": {
+      "sha256": "6c1a6c44469ae7eb77d5da195f0ed2c39d87d058e6a9cf29edc9a9b8b35909c8",
+      "size": 124726
+    },
+    "browser-inspection/burst-of-speed-desktop-zh-exact-Continue.json": {
+      "sha256": "3e33e5b0dcc447cf17949c9d612c9bfdfb4f924a7a06b46dddfe2ae337e54a91",
+      "size": 7206
+    },
+    "browser-inspection/burst-of-speed-mobile-en-allocated-burst.png": {
+      "sha256": "1e488aa296f13b4f388db3d3160feb923c54bcd4b7a7042abc11f201b3560fed",
+      "size": 192059
+    },
+    "browser-inspection/burst-of-speed-mobile-en-burst-after-Continue.png": {
+      "sha256": "d009445df626610c2e34c397389a4d9fc0a7c2726d13e3c2f6ba911a62a4b495",
+      "size": 203728
+    },
+    "browser-inspection/burst-of-speed-mobile-en-exact-Continue.json": {
+      "sha256": "78f001adef35d9ae6176ff27f3b901f21a31347534f945a14a1bfdd57fc39439",
+      "size": 7200
+    },
+    "browser-inspection/burst-of-speed-mobile-zh-allocated-burst.png": {
+      "sha256": "c3b61d497183e0588b86441adc4f18f52be2fab7c68e83f699114c3af5c00935",
+      "size": 230548
+    },
+    "browser-inspection/burst-of-speed-mobile-zh-burst-after-Continue.png": {
+      "sha256": "626c0cf94e07c85e2f34bb283342cd5ccc4ac5ac366474153b1de6107f1b9961",
+      "size": 211335
+    },
+    "browser-inspection/burst-of-speed-mobile-zh-exact-Continue.json": {
+      "sha256": "772f7a5c4a8b326627fd5c53c268bbf94292aaa0435bbc61e8259f7f2ee6fe72",
+      "size": 7206
+    },
+    "browser-output/.last-run.json": {
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "size": 45
+    },
+    "browser-report.json": {
+      "sha256": "beab9231767d82a8709748d4aab0906e9f535080900af779c730d7c8abe9d9b8",
+      "size": 1831336
+    },
+    "browser-source-before.json": {
+      "sha256": "19b8395302e2dcd3285d94445f2a68a912ee51587ef3c907cbcabeb39fb79ac3",
+      "size": 130895
+    },
+    "browser.log": {
+      "sha256": "376057ebecb8350419588b11f19b3dd5daa70e501084f767bb73474a42233c40",
+      "size": 1580
+    },
+    "browser.process.json": {
+      "sha256": "dc161f9a6e5c196a5f0b93109310a59e29e1e00f1c673b059e6a43d24a6ea5c9",
+      "size": 521
+    },
+    "browser.result.json": {
+      "sha256": "ff1b9b0781d28510c8ddb21aaa38eba770c184e59d377bd90da4f4deff2f26dc",
+      "size": 590
+    },
+    "build-clean.log": {
+      "sha256": "7953bd7e905e19441e73c9c41e1b587025188cf3333137e4c7b842625ac55319",
+      "size": 1872
+    },
+    "build-clean.process.json": {
+      "sha256": "3348893957c405e0946129af5378217664f03958928811c2e2ddbfaea6edaf97",
+      "size": 232
+    },
+    "build-clean.result.json": {
+      "sha256": "7a7670ba54832c0636a13136df5285211ae80655cf0e018c1b500c60ff1cb46d",
+      "size": 297
+    },
+    "build-cleanliness-correction.json": {
+      "sha256": "78d4172ffc105e9e433571f7b28e490766a42a5a0d7aff7b7db986e177c6cd11",
+      "size": 426
+    },
+    "build-files.json": {
+      "sha256": "2736b95b902798d683e72c1990bb1da2bf497cd56f9a800cbde9126e85aef532",
+      "size": 131308
+    },
+    "build-final.log": {
+      "sha256": "433f918b1a6d35940df3372ae81897399384ff46b91c93fc10d67d7f909f82fb",
+      "size": 2048
+    },
+    "build-final.process.json": {
+      "sha256": "c9e468f1dc7fb346527a57dcdbfd0659f23aee1ceee50219c0e8764769d88067",
+      "size": 214
+    },
+    "build-final.result.json": {
+      "sha256": "d7c2d3d986ba9d09d037df235bbe073bbf953fd980c3ea42029ddd6a2f47eeac",
+      "size": 276
+    },
+    "build.log": {
+      "sha256": "0fb10a76de08cab7e8b90db981dbf069c37ca994fa0b0a04172e3ed6d6cdb175",
+      "size": 2048
+    },
+    "build.process.json": {
+      "sha256": "006e79e6a7ba35147ab04bcddfee1938ffb6f6d28295afcfa1de89ade9c0742e",
+      "size": 214
+    },
+    "build.result.json": {
+      "sha256": "359c17ae910d16a4c9830137ecc837cf927bbafff74bc234805e7662f6ee8d53",
+      "size": 270
+    },
+    "commit-plan.json": {
+      "sha256": "fa46df6d0ac7925e6fb29e0b04d277007b0fcf9624052e4a3acec1eac134b97d",
+      "size": 1567
+    },
+    "engine-after-integration.log": {
+      "sha256": "4a70f25c5f269ae63b324080fca47a8d7b11789a86f32c4a73ee1e270413bdff",
+      "size": 61469
+    },
+    "engine-after-integration.process.json": {
+      "sha256": "aecea2a8bad5fd54159cc29fc316bcf9eca494ca131f108d3f417b938b5ea022",
+      "size": 113
+    },
+    "engine-after-integration.result.json": {
+      "sha256": "839cfc56b60d433f9c3eb5e899c0491d4908b1bea24a2a34e54089b5c9eece3e",
+      "size": 183
+    },
+    "engine-final.log": {
+      "sha256": "27eaa092999dcb12f3d6588cedc79aa68fae0c67a945fceba2229d4a9b65a610",
+      "size": 61512
+    },
+    "engine-final.process.json": {
+      "sha256": "154a79b42a3b14195c124d1b87f95f710ba50294bbf7d4f329701c6570fc5c02",
+      "size": 112
+    },
+    "engine-final.result.json": {
+      "sha256": "c450dabc124ab7810706a950434ba76a5977cca27b7ded24e11b79d95496816b",
+      "size": 172
+    },
+    "evidence-draft.md": {
+      "sha256": "270d8f07d59a7761e00a87d1600665d41a2f8048c9b1918898154870f740b9b2",
+      "size": 4121
+    },
+    "first-integrated.log": {
+      "sha256": "576843216f938a62f4442b454cb57586bc78f78ceadf577fdaf9d7395e7b239d",
+      "size": 426
+    },
+    "first-integrated.process.json": {
+      "sha256": "ced225104bb63451c91fb03ce36890da6433c22c5b45ccbc2936dc2064302dcc",
+      "size": 207
+    },
+    "first-integrated.result.json": {
+      "sha256": "9698433d2add51fbe4879b3e5e90086cd1e81cd9f1612752da19f0a6111aaa74",
+      "size": 269
+    },
+    "focused-after-type-fix.log": {
+      "sha256": "585518037e57f740e2dd1fca7fe415dc4bdbe5d5970d16e7b36cd2cc1310aa86",
+      "size": 497
+    },
+    "focused-after-type-fix.process.json": {
+      "sha256": "bfa6661e53699c658f0af08794aa409dedc27692972e435e3020219c89279d03",
+      "size": 251
+    },
+    "focused-after-type-fix.result.json": {
+      "sha256": "99e4a91c68788befeb6723cbdd9942cf189bfc0d7a9b5a04996f0891d195e348",
+      "size": 323
+    },
+    "focused-final.log": {
+      "sha256": "ff72c3adf242c16fa59138e557c37d79e9b023170e155d3e064051ec64698d9f",
+      "size": 744
+    },
+    "focused-final.process.json": {
+      "sha256": "43819634624949870553314b083a0e9915042e64ec31d1aef65b53cdfde3a493",
+      "size": 416
+    },
+    "focused-final.result.json": {
+      "sha256": "08501b84321fd3c46a9e27b1a1f456a655d5e681235bf99af1dbba0f55ef96b0",
+      "size": 490
+    },
+    "focused-handoff.log": {
+      "sha256": "a46dc916f911213dfe610a6bfec0e67f03efdf59fd360384b612fc29d0fcdaba",
+      "size": 498
+    },
+    "focused-handoff.process.json": {
+      "sha256": "7f22300cc03039882e52bcd2720dd7af40da87e4dc395f3b25da467843b69c14",
+      "size": 252
+    },
+    "focused-handoff.result.json": {
+      "sha256": "cef1a3e49458626adf8bb53ac14827c6fc9642df8b6d84ce073aedeabe8911c5",
+      "size": 316
+    },
+    "fractional-boundary.log": {
+      "sha256": "4a19be5819f5ef89da06e041603413949722927a5035592b175cb6e0b0b3b6d9",
+      "size": 176
+    },
+    "fractional-boundary.process.json": {
+      "sha256": "0719e54319136ae66e18ac1b20858b45763c36dba7b4476b93e6a4384d1b5ebc",
+      "size": 201
+    },
+    "fractional-boundary.result.json": {
+      "sha256": "29b08036a55fcfd324118c080925ab413e9cbab3a3b6d62f94f4174fbc6da7fc",
+      "size": 256
+    },
+    "fractional-check.ts": {
+      "sha256": "3452aae0dd5892a19b4645ce918352c28d613dd156777c4a37451c1b58969ecf",
+      "size": 1605
+    },
+    "full-after.json": {
+      "sha256": "83d46bc5dd68d13ea606a15750ff6e5d0348978df2f2e0953f389117b6bf42f7",
+      "size": 212987
+    },
+    "full-before.json": {
+      "sha256": "83d46bc5dd68d13ea606a15750ff6e5d0348978df2f2e0953f389117b6bf42f7",
+      "size": 212987
+    },
+    "full-check.py": {
+      "sha256": "b52773c57e0d2215d5f35001bc07b041747d5954372be6f09397c893de7a868c",
+      "size": 1788
+    },
+    "full-frozen.log": {
+      "sha256": "df38b90d79bb9e0336a1d0d1ded5566737e602f5255691b81e2cce9227fc687f",
+      "size": 146848
+    },
+    "full-frozen.process.json": {
+      "sha256": "5e88bced140459afdd2ad79a5190eb89754b22f0ab7016c14b63a1bc405c951c",
+      "size": 163
+    },
+    "full-frozen.result.json": {
+      "sha256": "406d778199db05b774cb702222047ee0ec06556c09a35f13fa4e05d191d410af",
+      "size": 209
+    },
+    "full-npm.process.json": {
+      "sha256": "416f482b06394df4839c49089266ae4666c726b2945b43cc2de7753a2993025b",
+      "size": 99
+    },
+    "full-verification.json": {
+      "sha256": "53518dea0f89bf0f3c919dee31e26a07f2b519e7b94fc157c579b8b0af99fe76",
+      "size": 138
+    },
+    "implementation-commits.json": {
+      "sha256": "885d8465febbf52ec5d79753248b5f501349028ceffb2062bd6ce172b2810aa6",
+      "size": 3073
+    },
+    "inventory-reconciliation-candidates.json": {
+      "sha256": "7664cb22322baa99682516e325b6541ddc3e1485c0fbb872783784c0fb28834b",
+      "size": 5340
+    },
+    "lint-explicit.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "lint-explicit.process.json": {
+      "sha256": "3e44e3bc7c07e25a89ae11349509b2786f17b67f3c13b2362a61a3c67ee18bea",
+      "size": 887
+    },
+    "lint-explicit.result.json": {
+      "sha256": "d7430ec6628fb9db4c2a85cc14d17e188f4aa6e30a411b66da566535a6a2ca3f",
+      "size": 1014
+    },
+    "lint-final.log": {
+      "sha256": "def336c8d12eb0c192733d0386e42f94eb22efba3868e423350d0d6c8623a531",
+      "size": 197
+    },
+    "lint-final.process.json": {
+      "sha256": "a4a19ad3dd5574ba28dfba69061ec512ce1302b4d144d2480a4af26f16d369ea",
+      "size": 81
+    },
+    "lint-final.result.json": {
+      "sha256": "ad8c674b9b8342ababca248cb676da1fe7b0c28982d80ef2b38cef7009059a74",
+      "size": 131
+    },
+    "lint-handoff.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "lint-handoff.process.json": {
+      "sha256": "cc3c67deeb4518cec2b7a1653bef65182a313d91a0ed41c3daa5ea343270430c",
+      "size": 476
+    },
+    "lint-handoff.result.json": {
+      "sha256": "03d4d4c89b3477944c62470661348fe4e7559e39fcb8be7ed65e802fad0c3371",
+      "size": 562
+    },
+    "lint-integration.log": {
+      "sha256": "7952422e97e85ae4af088d004e15f691b1295403c9e8cf08e5c60290fcec3650",
+      "size": 820
+    },
+    "lint-integration.process.json": {
+      "sha256": "899ee2c599246093961fef9298ef1c1029649407f50847c9b4be0fda4b5d7687",
+      "size": 475
+    },
+    "lint-integration.result.json": {
+      "sha256": "6821f1a69de3a9113ee7c4c3c80e9a1e13821f43b611736f3287336bc749ba61",
+      "size": 565
+    },
+    "lint.log": {
+      "sha256": "da01d68b1a0dc26ba261c52ddc711d41147d4628dce6acb0e91fe66900301027",
+      "size": 576
+    },
+    "lint.process.json": {
+      "sha256": "816f450b5df31727c4c47e67d587ef3eefafbe4a8956d1a4dd3420ca00d7eee2",
+      "size": 82
+    },
+    "lint.result.json": {
+      "sha256": "d2f6177f1a3b18ab9741a8c699ed96be304c06e1268e9a739fdc5a0c04612b89",
+      "size": 124
+    },
+    "native-first.log": {
+      "sha256": "9d9cd643e9c3226ccfc08d61a0f6912eaa7216cf9fb7bd8381f1cf9cd569e40a",
+      "size": 351
+    },
+    "native-first.process.json": {
+      "sha256": "87789b4fd67ff5efa789d4f43a2a796db122949489664a4b2098dff6c44dcbac",
+      "size": 157
+    },
+    "native-first.result.json": {
+      "sha256": "fcfe8b3dc807be306ab5c33d2b50d7248c8d4182a8a45ad87fbd6f505e2ca549",
+      "size": 210
+    },
+    "playback-green.log": {
+      "sha256": "05800430ec02b992a342f7c8bc6b5ab1fa4c38a84bad6ebab12a69eaffb51d70",
+      "size": 488
+    },
+    "playback-green.process.json": {
+      "sha256": "543c56c4ecacbc967a2ab0316afbc4255284e59b1dd95f30db700502319a5044",
+      "size": 239
+    },
+    "playback-green.result.json": {
+      "sha256": "a06febb2e487d7dffed98fd7c608749f30377c65d27f0009f95afeb746a34d90",
+      "size": 303
+    },
+    "playback-red.log": {
+      "sha256": "90a8b3a4ff1e2453f8eec597d7721fca95d7753ad7626d720f62e466d038f631",
+      "size": 2205
+    },
+    "playback-red.process.json": {
+      "sha256": "1e39de56228cafdcdd425abc146547a0f0d5321a7ce60e0c1029c5f12f4398a1",
+      "size": 159
+    },
+    "playback-red.result.json": {
+      "sha256": "d1005c8160c185ce1712d71c1bb00deb18b72a276c769c5ad8aea299d9665cbe",
+      "size": 212
+    },
+    "post-commit-source-check.json": {
+      "sha256": "1ae112da4793ed46b91b7db0b8707d40606f639d9712b1c83c61d28e3298060c",
+      "size": 178
+    },
+    "red-native.log": {
+      "sha256": "1af2339a95ddc00411d733c9571f6f18a1224435d6b72a377efc03283b574308",
+      "size": 3405
+    },
+    "red-native.process.json": {
+      "sha256": "478f9421a8478cfb7fb203985dc23d44d4642ccdf1aeb42fa5e0829aaf107dec",
+      "size": 157
+    },
+    "red-native.result.json": {
+      "sha256": "724b88435d4746a047ef0d4d84bdca433a4989de1f00516aa47a5cd8be5812cb",
+      "size": 208
+    },
+    "red-native.test.ts": {
+      "sha256": "1044a28e4cf66f6d64c76e97f1e656be166468ae8024994d74ebe923a7504ed2",
+      "size": 3047
+    },
+    "red-schema.log": {
+      "sha256": "624b8d8a6695ec3cbbecced180747823b996108ee2b2bed17b40f15d178050a8",
+      "size": 1408
+    },
+    "red-schema.process.json": {
+      "sha256": "b0932a6993ff52b69db38803a223bdcc1fc86f15a993233c91c6047e1f5f3251",
+      "size": 164
+    },
+    "red-schema.result.json": {
+      "sha256": "67956f13fc0d0872ff7f6f6b79c87f4b86b59efc3966c8941defed6ec74ae23a",
+      "size": 215
+    },
+    "registry-red.log": {
+      "sha256": "feb522afe3f8d4f95af9a69930aab4e17306d66367a4b5c76094ed7e94ea44e9",
+      "size": 1366
+    },
+    "registry-red.process.json": {
+      "sha256": "55d96ea6157b51854973e73d28fecde354917067c1b5f6f161dffb1f5ca5ce4b",
+      "size": 156
+    },
+    "registry-red.result.json": {
+      "sha256": "08f9d0a09b05aa3e6550a855d3fb66057f622d99934feff02903aacfc962f29d",
+      "size": 210
+    },
+    "run.py": {
+      "sha256": "66b5f7b931b94f937105c366b3e3d0a722ae688d62330d3e3cde24fb7313a9e4",
+      "size": 749
+    },
+    "schema-causal-audit.log": {
+      "sha256": "1fa20f4cfb12678bc61c64918fe5fd05d5cc2a553ab33772fc0122c0e2add5ed",
+      "size": 275
+    },
+    "schema-causal-audit.process.json": {
+      "sha256": "3dfec5bcf2bd2514155edc2292d7b9bde45bfa5eba9dc7b9dbd804dcb7cedcea",
+      "size": 163
+    },
+    "schema-causal-audit.result.json": {
+      "sha256": "42dc9937d7f3b3531c67e168686bcc68a6f230cc059fe0b45983fa4326b85ecf",
+      "size": 216
+    },
+    "schema-causal.cjs": {
+      "sha256": "3801f944cc234115fb22f1e960c76987cd3ba8aa6f85367572aab74c4b273b10",
+      "size": 1016
+    },
+    "schema-causal.json": {
+      "sha256": "726c2b801d379007dc2896a198e4dbf4f992b92c90dcbf9fe58b4f851b191715",
+      "size": 365
+    },
+    "self-review.json": {
+      "sha256": "b6219f709976ea70bab380ecc8da02d77c0da5ccc8251c33f94f26d88cd42f1b",
+      "size": 2091
+    },
+    "status-continuation.json": {
+      "sha256": "f88a1c17036807f03909f43aa4ce91bdda285a0439a57a26a2494b4467d584af",
+      "size": 1762
+    },
+    "task.json": {
+      "sha256": "b396d0cb18e4a5d97d5d66cbbef80b85110ab9466ce1fdfba07dbb52ec8ce9f9",
+      "size": 619
+    },
+    "typecheck-final.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "size": 50
+    },
+    "typecheck-final.process.json": {
+      "sha256": "4b9e56192d6cbabafc54afe526b4c23ec8cd1d3c1ddb2517bc9ffa7629290b61",
+      "size": 87
+    },
+    "typecheck-final.result.json": {
+      "sha256": "75b90173c561439bec9836044e109cc607d19360eaea3425b4e15ebd6487623c",
+      "size": 140
+    },
+    "types-corrected.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "size": 50
+    },
+    "types-corrected.process.json": {
+      "sha256": "7f41412ac3daf9168f05165936afaaf59b8e22a602ed6cf86796faabe09181f7",
+      "size": 87
+    },
+    "types-corrected.result.json": {
+      "sha256": "06c95d49945c11f7887459be4ba0d967caf30da061191fb26350f9a6c549700c",
+      "size": 140
+    },
+    "types-final-with-playback.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "size": 50
+    },
+    "types-final-with-playback.process.json": {
+      "sha256": "19df385c54ac50417ee5174dd933ce0ecfaf5e10b37984e43826b237917e05f3",
+      "size": 87
+    },
+    "types-final-with-playback.result.json": {
+      "sha256": "0ea9eed72b48633bb590979cd6d3a32ae6641a80216dd5a41c9cdb87ae50c087",
+      "size": 150
+    },
+    "types-handoff.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "size": 50
+    },
+    "types-handoff.process.json": {
+      "sha256": "700e59e83abdc4cde309d91ee4c3036ee02d1bf9ad617a6ee7933512e104627f",
+      "size": 87
+    },
+    "types-handoff.result.json": {
+      "sha256": "f44167a1e782025d100ae8c116e92ab83db6fe5ad5444636b055e4daa5d4b8f1",
+      "size": 138
+    },
+    "types-integration.log": {
+      "sha256": "f487c02cc156e2605cfade998862b4485dd2604242d65ce94b30d2caf324c36e",
+      "size": 6251
+    },
+    "types-integration.process.json": {
+      "sha256": "35435786f0fc26728f847b6e18cdb29aee9c4cbb446cefe5274c45dfcb250efa",
+      "size": 85
+    },
+    "types-integration.result.json": {
+      "sha256": "4685c810dd9f894f255175549bda77cccbde301c09266526b5cf11341452a1eb",
+      "size": 142
+    },
+    "ui-green.log": {
+      "sha256": "17b142e1013a88d682b977c4007690ae2dde534c2c7cabd547febed11658b8b9",
+      "size": 451
+    },
+    "ui-green.process.json": {
+      "sha256": "5b3ebc94ad0ac1e9d2631a3fb5ef832991b6afd5ab8eae877ba00dfeb68d60c9",
+      "size": 232
+    },
+    "ui-green.result.json": {
+      "sha256": "537977d3f315101c7c72b8d1595bdbb3385b32eb69a4cf1578a81078d97c3175",
+      "size": 285
+    },
+    "ui-red.log": {
+      "sha256": "f10a17f31ba7e87bd7460bc9bab1328ba2365a258e01e077a7fc8f36d588c913",
+      "size": 19906
+    },
+    "ui-red.process.json": {
+      "sha256": "b3c3099e4e0bbb8532452551bb49f3f7394262c17214490ee2ddd37c84e17f7b",
+      "size": 233
+    },
+    "ui-red.result.json": {
+      "sha256": "943c410ceaac97ed1e02a8f572d6695f3a4d649f790fa321ef5b47b3fa85fb2e",
+      "size": 284
+    },
+    "visual-and-save-audit.json": {
+      "sha256": "58e50f10860337be5143142625d8353c0ee40ef5e54068631823e94326a48df5",
+      "size": 630
+    }
+  },
+  "terminalProcesses": [
+    {
+      "process": "behavior-expanded.process.json",
+      "terminal": "behavior-expanded.result.json",
+      "name": "behavior-expanded",
+      "pid": 2332077,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/burst-of-speed.test.ts",
+        "--reporter=dot"
+      ],
+      "exit": 0,
+      "seconds": 2.42
+    },
+    {
+      "process": "browser.process.json",
+      "terminal": "browser.result.json",
+      "name": "browser",
+      "pid": 2355978,
+      "command": [
+        "env",
+        "PWA_PORT=4460",
+        "BURST_OF_SPEED_BUILD_DIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-burst-speed-9gsu8yoe/dist",
+        "BURST_OF_SPEED_OUTPUT_DIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-burst-speed-9gsu8yoe/browser-output",
+        "BURST_OF_SPEED_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-burst-speed-9gsu8yoe/browser-report.json",
+        "node_modules/.bin/playwright",
+        "test",
+        "--config",
+        "tests/pwa/burst-of-speed.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 70.68
+    },
+    {
+      "process": "build-clean.process.json",
+      "terminal": "build-clean.result.json",
+      "name": "build-clean",
+      "pid": 2350443,
+      "command": [
+        "env",
+        "VITE_E2E=false",
+        "node_modules/.bin/vite",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-burst-speed-9gsu8yoe/dist",
+        "--emptyOutDir"
+      ],
+      "exit": 0,
+      "seconds": 21.51
+    },
+    {
+      "process": "build-final.process.json",
+      "terminal": "build-final.result.json",
+      "name": "build-final",
+      "pid": 2342912,
+      "command": [
+        "env",
+        "VITE_E2E=false",
+        "node_modules/.bin/vite",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-burst-speed-9gsu8yoe/dist"
+      ],
+      "exit": 0,
+      "seconds": 19.71
+    },
+    {
+      "process": "build.process.json",
+      "terminal": "build.result.json",
+      "name": "build",
+      "pid": 2337090,
+      "command": [
+        "env",
+        "VITE_E2E=false",
+        "node_modules/.bin/vite",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-burst-speed-9gsu8yoe/dist"
+      ],
+      "exit": 0,
+      "seconds": 15.47
+    },
+    {
+      "process": "engine-after-integration.process.json",
+      "terminal": "engine-after-integration.result.json",
+      "name": "engine-after-integration",
+      "pid": 2311803,
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=dot"
+      ],
+      "exit": 0,
+      "seconds": 67.73
+    },
+    {
+      "process": "engine-final.process.json",
+      "terminal": "engine-final.result.json",
+      "name": "engine-final",
+      "pid": 2342915,
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=dot"
+      ],
+      "exit": 0,
+      "seconds": 111.74
+    },
+    {
+      "process": "first-integrated.process.json",
+      "terminal": "first-integrated.result.json",
+      "name": "first-integrated",
+      "pid": 2309785,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/burst-of-speed.test.ts",
+        "src/engine/skills/burst-of-speed-schema.test.ts",
+        "--reporter=dot"
+      ],
+      "exit": 0,
+      "seconds": 2.28
+    },
+    {
+      "process": "focused-after-type-fix.process.json",
+      "terminal": "focused-after-type-fix.result.json",
+      "name": "focused-after-type-fix",
+      "pid": 2317714,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/burst-of-speed.test.ts",
+        "src/engine/skills/burst-of-speed.test.ts",
+        "src/engine/skills/burst-of-speed-schema.test.ts",
+        "--reporter=dot"
+      ],
+      "exit": 0,
+      "seconds": 2.95
+    },
+    {
+      "process": "focused-final.process.json",
+      "terminal": "focused-final.result.json",
+      "name": "focused-final",
+      "pid": 2337089,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/burst-of-speed.test.ts",
+        "src/engine/skills/burst-of-speed.test.ts",
+        "src/engine/skills/burst-of-speed-schema.test.ts",
+        "src/stores/burst-of-speed-native.test.ts",
+        "src/features/skills/SkillsScreen.burst-of-speed.test.tsx",
+        "src/features/combat/CombatScreen.burst-of-speed.test.tsx",
+        "--reporter=dot"
+      ],
+      "exit": 0,
+      "seconds": 14.2
+    },
+    {
+      "process": "focused-handoff.process.json",
+      "terminal": "focused-handoff.result.json",
+      "name": "focused-handoff",
+      "pid": 2319504,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/burst-of-speed.test.ts",
+        "src/engine/skills/burst-of-speed.test.ts",
+        "src/engine/skills/burst-of-speed-schema.test.ts",
+        "--reporter=dot"
+      ],
+      "exit": 0,
+      "seconds": 2.94
+    },
+    {
+      "process": "fractional-boundary.process.json",
+      "terminal": "fractional-boundary.result.json",
+      "name": "fractional-boundary",
+      "pid": 2385404,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-burst-speed-9gsu8yoe/fractional-check.ts"
+      ],
+      "exit": 0,
+      "seconds": 2.6
+    },
+    {
+      "process": "full-frozen.process.json",
+      "terminal": "full-frozen.result.json",
+      "name": "full-frozen",
+      "pid": 2369941,
+      "command": [
+        "python3",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-burst-speed-9gsu8yoe/full-check.py"
+      ],
+      "exit": 0,
+      "seconds": 423.69
+    },
+    {
+      "process": "full-npm.process.json",
+      "terminal": "full-verification.json",
+      "exit": 0,
+      "pid": 2369951,
+      "seconds": 423.51,
+      "files": 1350,
+      "drift": [],
+      "headUnchanged": true,
+      "statusUnchanged": true
+    },
+    {
+      "process": "lint-explicit.process.json",
+      "terminal": "lint-explicit.result.json",
+      "name": "lint-explicit",
+      "pid": 2342914,
+      "command": [
+        "node_modules/.bin/eslint",
+        "--no-ignore",
+        "src/engine/combat/combat.ts",
+        "src/engine/combat/types.ts",
+        "src/engine/combat/burst-of-speed.test.ts",
+        "src/engine/skills/burst-of-speed.ts",
+        "src/engine/skills/burst-of-speed.test.ts",
+        "src/engine/skills/burst-of-speed-schema.test.ts",
+        "src/engine/skills/dataCatalog.ts",
+        "src/engine/skills/effects.ts",
+        "src/engine/types/skills.ts",
+        "src/stores/combatHelpers.ts",
+        "src/stores/combatPlayback.ts",
+        "src/stores/burst-of-speed-native.test.ts",
+        "src/stores/burst-of-speed-playback.test.ts",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/combat/CombatScreen.tsx",
+        "src/features/skills/SkillsScreen.burst-of-speed.test.tsx",
+        "src/features/combat/CombatScreen.burst-of-speed.test.tsx",
+        "tests/pwa/burst-of-speed.config.ts",
+        "tests/pwa/burst-of-speed.spec.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 20.28
+    },
+    {
+      "process": "lint-final.process.json",
+      "terminal": "lint-final.result.json",
+      "name": "lint-final",
+      "pid": 2370066,
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 106.87
+    },
+    {
+      "process": "lint-handoff.process.json",
+      "terminal": "lint-handoff.result.json",
+      "name": "lint-handoff",
+      "pid": 2319503,
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/combat/combat.ts",
+        "src/engine/combat/types.ts",
+        "src/engine/skills/burst-of-speed.ts",
+        "src/engine/skills/burst-of-speed.test.ts",
+        "src/engine/combat/burst-of-speed.test.ts",
+        "src/engine/skills/burst-of-speed-schema.test.ts",
+        "src/engine/skills/effects.ts",
+        "src/engine/skills/dataCatalog.ts",
+        "src/engine/types/skills.ts",
+        "src/stores/combatHelpers.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 10.11
+    },
+    {
+      "process": "lint-integration.process.json",
+      "terminal": "lint-integration.result.json",
+      "name": "lint-integration",
+      "pid": 2317715,
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/combat/combat.ts",
+        "src/engine/combat/types.ts",
+        "src/engine/skills/burst-of-speed.ts",
+        "src/engine/skills/burst-of-speed.test.ts",
+        "src/engine/combat/burst-of-speed.test.ts",
+        "src/engine/skills/burst-of-speed-schema.test.ts",
+        "src/engine/skills/effects.ts",
+        "src/engine/skills/dataCatalog.ts",
+        "src/engine/types/skills.ts",
+        "src/stores/combatHelpers.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 1,
+      "seconds": 9.71
+    },
+    {
+      "process": "lint.process.json",
+      "terminal": "lint.result.json",
+      "name": "lint",
+      "pid": 2337091,
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 1,
+      "seconds": 92.24
+    },
+    {
+      "process": "native-first.process.json",
+      "terminal": "native-first.result.json",
+      "name": "native-first",
+      "pid": 2336148,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/burst-of-speed-native.test.ts",
+        "--reporter=dot"
+      ],
+      "exit": 0,
+      "seconds": 6.41
+    },
+    {
+      "process": "playback-green.process.json",
+      "terminal": "playback-green.result.json",
+      "name": "playback-green",
+      "pid": 2341616,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/burst-of-speed-playback.test.ts",
+        "src/stores/combatPlayback.test.ts",
+        "src/engine/combat/burst-of-speed.test.ts",
+        "--reporter=dot"
+      ],
+      "exit": 0,
+      "seconds": 6.01
+    },
+    {
+      "process": "playback-red.process.json",
+      "terminal": "playback-red.result.json",
+      "name": "playback-red",
+      "pid": 2340634,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/burst-of-speed-playback.test.ts",
+        "--reporter=dot"
+      ],
+      "exit": 1,
+      "seconds": 6.41
+    },
+    {
+      "process": "red-native.process.json",
+      "terminal": "red-native.result.json",
+      "name": "red-native",
+      "pid": 2269292,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/burst-of-speed.test.ts",
+        "--reporter=dot"
+      ],
+      "exit": 1,
+      "seconds": 2.51
+    },
+    {
+      "process": "red-schema.process.json",
+      "terminal": "red-schema.result.json",
+      "name": "red-schema",
+      "pid": 2279843,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/burst-of-speed-schema.test.ts",
+        "--reporter=dot"
+      ],
+      "exit": 1,
+      "seconds": 2.68
+    },
+    {
+      "process": "registry-red.process.json",
+      "terminal": "registry-red.result.json",
+      "name": "registry-red",
+      "pid": 2336860,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/burst-of-speed.test.ts",
+        "--reporter=dot"
+      ],
+      "exit": 1,
+      "seconds": 2.31
+    },
+    {
+      "process": "schema-causal-audit.process.json",
+      "terminal": "schema-causal-audit.result.json",
+      "name": "schema-causal-audit",
+      "pid": 2342902,
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-burst-speed-9gsu8yoe/schema-causal.cjs"
+      ],
+      "exit": 0,
+      "seconds": 0.69
+    },
+    {
+      "process": "typecheck-final.process.json",
+      "terminal": "typecheck-final.result.json",
+      "name": "typecheck-final",
+      "pid": 2337092,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 38.04
+    },
+    {
+      "process": "types-corrected.process.json",
+      "terminal": "types-corrected.result.json",
+      "name": "types-corrected",
+      "pid": 2317479,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 35.25
+    },
+    {
+      "process": "types-final-with-playback.process.json",
+      "terminal": "types-final-with-playback.result.json",
+      "name": "types-final-with-playback",
+      "pid": 2356496,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 68.15
+    },
+    {
+      "process": "types-handoff.process.json",
+      "terminal": "types-handoff.result.json",
+      "name": "types-handoff",
+      "pid": 2319502,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 37.19
+    },
+    {
+      "process": "types-integration.process.json",
+      "terminal": "types-integration.result.json",
+      "name": "types-integration",
+      "pid": 2313311,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 2,
+      "seconds": 49.02
+    },
+    {
+      "process": "ui-green.process.json",
+      "terminal": "ui-green.result.json",
+      "name": "ui-green",
+      "pid": 2336480,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/features/skills/SkillsScreen.burst-of-speed.test.tsx",
+        "src/features/combat/CombatScreen.burst-of-speed.test.tsx",
+        "--reporter=dot"
+      ],
+      "exit": 0,
+      "seconds": 6.7
+    },
+    {
+      "process": "ui-red.process.json",
+      "terminal": "ui-red.result.json",
+      "name": "ui-red",
+      "pid": 2334156,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/features/skills/SkillsScreen.burst-of-speed.test.tsx",
+        "src/features/combat/CombatScreen.burst-of-speed.test.tsx",
+        "--reporter=dot"
+      ],
+      "exit": 1,
+      "seconds": 7.36
+    }
+  ],
+  "buildRetained": "All generated build-file hashes retained in raw/build-files.json; built assets are disposable",
+  "genuineCampaignActions": 0,
+  "cleanupOwner": "root"
+}
