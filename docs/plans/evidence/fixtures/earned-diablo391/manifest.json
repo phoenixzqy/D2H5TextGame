@@ -1,0 +1,656 @@
+{
+  "kind": "raw genuine preparation/Diablo391/Claim evidence plus diagnostic and failed-tool attempts; diagnostic saves never resume",
+  "owner": "root",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/cold391",
+  "retention": "campaign/full-v1 consumers finish; root removes exact raw evidence directory then",
+  "files": {
+    "audit-initial-failure.json": {
+      "sha256": "02e939e8394daac40ba6697bbcbec2d6112e34b21ce5985f352e430ff3fe5ccc",
+      "bytes": 163
+    },
+    "audit-initial.py": {
+      "sha256": "4c9a50942ef7a7ca069a3cb5bb43dad8560f09bc6bdc322b4c8099497c23dfe9",
+      "bytes": 6822
+    },
+    "audit.json": {
+      "sha256": "bdd2dc0795d50c14e1dbb23de2f5adae2ed71cac30a6a82e10a98535957ccac8",
+      "bytes": 1550
+    },
+    "audit.py": {
+      "sha256": "a152a18dcafab17791011c9a2fe771ac7706f238e603464c73db2927087e0c5b",
+      "bytes": 6848
+    },
+    "bridge-scan.json": {
+      "sha256": "4616a3bac135d337e751ffed74e1ad82d24123231d77e3ef5fb5ae7c2f42be93",
+      "bytes": 1205
+    },
+    "build-hashes.json": {
+      "sha256": "c57c83eb6995546de05f2435343d806421647319878297baaa5e5794691d0575",
+      "bytes": 101673
+    },
+    "build.log": {
+      "sha256": "dbc119a7ad49f42efea478c5a33ab44522a1d876554d0dc04648ec5e7257439b",
+      "bytes": 2146
+    },
+    "canonical-difference-diagnosis.log": {
+      "sha256": "e7289de176e2a4c735829219695ebd8df35bd9bb211d817cd1774ca37024feee",
+      "bytes": 569
+    },
+    "canonical-difference-diagnosis.mjs": {
+      "sha256": "ef0da6edfdebb6be203dd8b2b0b78243a33deab168b7e744388adac6dcca0ee6",
+      "bytes": 4618
+    },
+    "canonical-difference-fullrun-report-metadata-error.json": {
+      "sha256": "64e89e23f23dae5398f7265dd825c3aaf77a67f02b53469142e00e0fa868fa60",
+      "bytes": 458
+    },
+    "canonical-difference-fullrun.log": {
+      "sha256": "25154f23ef985525f3710134a3d682f6788500d202ab3ef891b4e7bb4936c67d",
+      "bytes": 9980
+    },
+    "canonical-difference-fullrun.mjs": {
+      "sha256": "32aec87630b5258928be148cc4bc0925eed649275bdeaaa9a4cb91fe2517b9f3",
+      "bytes": 4629
+    },
+    "canonical-equivalence-initial.log": {
+      "sha256": "96c5ad518c878e2cb07b4e8e7114bd8ffc56837ae70cd62b991c405771c73d40",
+      "bytes": 908
+    },
+    "canonical-equivalence-initial.mjs": {
+      "sha256": "f1f6006717b314a64793be833e7921464075e95a17924334c0acad195fc92677",
+      "bytes": 3489
+    },
+    "canonical-equivalence-isolated.log": {
+      "sha256": "d26d84e918e91352c941dd4eba2b459b4dd94b2971da744f9f474f1081dffd6e",
+      "bytes": 8913
+    },
+    "canonical-equivalence-isolated.mjs": {
+      "sha256": "c1af0821497fd5fa4d47b5b0c63386a90f86d8ac70df3fd5212c870a8f5d5d3d",
+      "bytes": 4045
+    },
+    "canonical-equivalence-retaining.log": {
+      "sha256": "701a486ed5190c2b5f93116dfdf6faf6e803efdfe4adfe8ce45f718fdf6ee205",
+      "bytes": 61578
+    },
+    "canonical-equivalence-retaining.mjs": {
+      "sha256": "73c636049a5b535873ad69eaf4a2374b90d1da11cd28504df77d2cc7679a46e2",
+      "bytes": 3501
+    },
+    "canonical-equivalence.json": {
+      "sha256": "1b862a50453084c1ef4b977ec4bd3e76b38807d2241fe83a78459a476012ee57",
+      "bytes": 11031
+    },
+    "canonical-equivalence.log": {
+      "sha256": "49c66a71365fb9a5284f55b56a00997b83616cd8b1fd45c975c345c7b550f8a4",
+      "bytes": 7700
+    },
+    "canonical-equivalence.mjs": {
+      "sha256": "135853b71495f66440a48f5abc282a2ced0d26f4909cbe4940edeeee23d665d8",
+      "bytes": 3794
+    },
+    "canonical-export.diagnostic-only.json.gz": {
+      "sha256": "928616a7985ed408af0602343d0f4cd8b6170a3fe1294761338ac39e5e7482ab",
+      "bytes": 232563
+    },
+    "canonical-memory-stop.json": {
+      "sha256": "87f312250fb4bdb0688d7baa1f87ef1a4c261476c55491882af87bbbe7aa6db8",
+      "bytes": 405
+    },
+    "canonical-save-differences.json": {
+      "sha256": "66c608251beb4faf1f23ed0cdf818e14f97103c610ff918409a7d0fe412d3c21",
+      "bytes": 14373
+    },
+    "cleanup.json": {
+      "sha256": "f15e7373b475577ecb2bd28c5232a7fdf94c2af3a1d710ea9f4af5ee65df94e3",
+      "bytes": 672
+    },
+    "combat-current.json": {
+      "sha256": "8ca9dd7ba3bb6c2a0417d494afbc1edaf174b310ee50eeab1643431e24dcce0b",
+      "bytes": 270
+    },
+    "diablo-claim/act5-available-mobile.png": {
+      "sha256": "6c396649d1abdcea29b0be4cce921e9cc83ca0a55f60909d57c6c41f3ee9c754",
+      "bytes": 64002
+    },
+    "diablo-claim/act5-available-no-entry.json.gz": {
+      "sha256": "51e9441b4d7bd8ede94cd83dad9d30ff720e42f8deafcbb1ea8f758c5e36f528",
+      "bytes": 234601
+    },
+    "diablo-claim/diablo-claimed-continued.json.gz": {
+      "sha256": "51e9441b4d7bd8ede94cd83dad9d30ff720e42f8deafcbb1ea8f758c5e36f528",
+      "bytes": 234601
+    },
+    "diablo-claim/diablo-claimed-saved.json.gz": {
+      "sha256": "51e9441b4d7bd8ede94cd83dad9d30ff720e42f8deafcbb1ea8f758c5e36f528",
+      "bytes": 234601
+    },
+    "diablo-claim/diablo-claimed.json.gz": {
+      "sha256": "51e9441b4d7bd8ede94cd83dad9d30ff720e42f8deafcbb1ea8f758c5e36f528",
+      "bytes": 234601
+    },
+    "diablo-claim/diablo-unclaimed-continued.json.gz": {
+      "sha256": "ac2f01325bec5db2c35949a07b000b70470746c907886717794f6f7fef03c084",
+      "bytes": 234504
+    },
+    "diablo-claim/diablo-unclaimed-saved.json.gz": {
+      "sha256": "ac2f01325bec5db2c35949a07b000b70470746c907886717794f6f7fef03c084",
+      "bytes": 234504
+    },
+    "diablo-claim/final.json.gz": {
+      "sha256": "51e9441b4d7bd8ede94cd83dad9d30ff720e42f8deafcbb1ea8f758c5e36f528",
+      "bytes": 234601
+    },
+    "diablo-claim/imported.json.gz": {
+      "sha256": "ac2f01325bec5db2c35949a07b000b70470746c907886717794f6f7fef03c084",
+      "bytes": 234504
+    },
+    "diablo-claim/report.json": {
+      "sha256": "6ef8efc5c3da6f7af4770a3911a233c326f60de3d886ccb301321decbfbd2924",
+      "bytes": 737
+    },
+    "diablo-claim.log": {
+      "sha256": "892cd45a50b91273133311af73f710a519c2e47c0a2c0b6623f5c17bbe3bf945",
+      "bytes": 58
+    },
+    "diablo-claim.mjs": {
+      "sha256": "394d9d8e6d83c76f2ec930dff7097be5afbecdeaba3ecf348c5c5018daaf2148",
+      "bytes": 7493
+    },
+    "diablo391-native.log": {
+      "sha256": "d6638817cea0778e644880d92a6efefc63091f0d3320b20973cad5177c77a099",
+      "bytes": 522
+    },
+    "diablo391-native.mjs": {
+      "sha256": "83a08792c03b4e241ce8104b60f8cad7a53797f0048897c253ad91e8ffa2552e",
+      "bytes": 14427
+    },
+    "diablo391-plan.json": {
+      "sha256": "29c1e2eb6037ebfbbc3de7ba57fbb3f4b0ba573692efb06ea423ee87c5d78cda",
+      "bytes": 1484
+    },
+    "diagnostic-outcomes.json": {
+      "sha256": "9d4c43bb65d920f2ac1acbc6ee95a9c1f52bc0f652818ea8164c71f17ed8bd89",
+      "bytes": 1507
+    },
+    "earned-diablo391/001-imported.json.gz": {
+      "sha256": "928616a7985ed408af0602343d0f4cd8b6170a3fe1294761338ac39e5e7482ab",
+      "bytes": 232563
+    },
+    "earned-diablo391/002-precombat-saved.json.gz": {
+      "sha256": "928616a7985ed408af0602343d0f4cd8b6170a3fe1294761338ac39e5e7482ab",
+      "bytes": 232563
+    },
+    "earned-diablo391/003-precombat-continued.json.gz": {
+      "sha256": "928616a7985ed408af0602343d0f4cd8b6170a3fe1294761338ac39e5e7482ab",
+      "bytes": 232563
+    },
+    "earned-diablo391/004-391-w1-settled.json.gz": {
+      "sha256": "dd166bc5b611c1957384d2cf0419d109fa89dcbcb408819e5ca96f2a4e0b6839",
+      "bytes": 232640
+    },
+    "earned-diablo391/005-391-w2-settled.json.gz": {
+      "sha256": "46104d1f4c181b5a3b0592c725ccdf6debac258eadafa055d7216a9dc9b89ce2",
+      "bytes": 232736
+    },
+    "earned-diablo391/006-391-w3-settled.json.gz": {
+      "sha256": "c05553dd5f3cbb890cff7267c3ae4c452a10b4bd570ff4752ec8fd24f9bd7570",
+      "bytes": 232769
+    },
+    "earned-diablo391/007-391-w4-settled.json.gz": {
+      "sha256": "006cd02e99ae2c0263147c8b15f821d6a4f0b141e2a0ddcc7d55d690bf0ec428",
+      "bytes": 233058
+    },
+    "earned-diablo391/008-391-w5-settled.json.gz": {
+      "sha256": "cae98a57ca3b3e4f1fb1d7075fb0b6496cd6af7413259925a89e05f7d2a0a557",
+      "bytes": 233972
+    },
+    "earned-diablo391/009-391-w6-settled.json.gz": {
+      "sha256": "112823f94226719650078e8b8fdfebb8fd89c0ae1af8fdb197f851e48891cdc9",
+      "bytes": 234398
+    },
+    "earned-diablo391/010-391-w7-settled.json.gz": {
+      "sha256": "ac2f01325bec5db2c35949a07b000b70470746c907886717794f6f7fef03c084",
+      "bytes": 234504
+    },
+    "earned-diablo391/011-391-won-saved.json.gz": {
+      "sha256": "ac2f01325bec5db2c35949a07b000b70470746c907886717794f6f7fef03c084",
+      "bytes": 234504
+    },
+    "earned-diablo391/012-391-won-continued.json.gz": {
+      "sha256": "ac2f01325bec5db2c35949a07b000b70470746c907886717794f6f7fef03c084",
+      "bytes": 234504
+    },
+    "earned-diablo391/391-victory.png": {
+      "sha256": "4730328c3b352ad454bd395bf8660593e735bdc5cc4748cb2bd3d9517b9d7be5",
+      "bytes": 39770
+    },
+    "earned-diablo391/391-w1-initial.json.gz": {
+      "sha256": "ab903b7e1c89d9e442f10d9e140e3dca9605e5438d75d56becd57c3357145b97",
+      "bytes": 421
+    },
+    "earned-diablo391/391-w1-terminal.json.gz": {
+      "sha256": "c0e92b6cf44d2cd7e12a908af8199bb3b7e6c4876e1e009435a1f69c2bc9d3c1",
+      "bytes": 1329
+    },
+    "earned-diablo391/391-w2-initial.json.gz": {
+      "sha256": "e2257ceb308f9ecf3f2b23f9df9b46ee6086778cc215b479b7fba34aeb983489",
+      "bytes": 434
+    },
+    "earned-diablo391/391-w2-terminal.json.gz": {
+      "sha256": "68bb89fe75e1fe0d9526023f61bcbcf4350e5c63626f2204e8e12e27465e4ac6",
+      "bytes": 1365
+    },
+    "earned-diablo391/391-w3-initial.json.gz": {
+      "sha256": "c42ba92f34d47fd39b15b4d3bfb83b00bceda49d4052d5bf29b63b0cd02c73b9",
+      "bytes": 445
+    },
+    "earned-diablo391/391-w3-terminal.json.gz": {
+      "sha256": "d3358edcd82d704ca35ff5b39b2f93ce62f050cf440c8949d64ddaa2971cc25d",
+      "bytes": 1361
+    },
+    "earned-diablo391/391-w4-initial.json.gz": {
+      "sha256": "d36fe40671af7c8554691ad3f1b3ddd74c30647873d04387a7da5db7ee63f6e5",
+      "bytes": 446
+    },
+    "earned-diablo391/391-w4-terminal.json.gz": {
+      "sha256": "65b086ce46e915ebaca6b187cd3624b7d70dc4a3464d440186ddb26d7fdff30e",
+      "bytes": 1364
+    },
+    "earned-diablo391/391-w5-initial.json.gz": {
+      "sha256": "09918e7254ba2c33a7ac73db82dff7523801875c0fb9ecb7cee78dc74ef07cdc",
+      "bytes": 444
+    },
+    "earned-diablo391/391-w5-terminal.json.gz": {
+      "sha256": "0bc5b62fd6b09d6e58d08bf1d786b821601f38d9547db5c8bb36cd2b6753d2ab",
+      "bytes": 1299
+    },
+    "earned-diablo391/391-w6-initial.json.gz": {
+      "sha256": "7b114af866893114f753d824642a65f839a174d87770387c27b3f5ad172c6bf5",
+      "bytes": 455
+    },
+    "earned-diablo391/391-w6-terminal.json.gz": {
+      "sha256": "cab0cdfbc3f08b2f146b852f5590343d15b26fcd17c36041d0ac8f39ce8d5add",
+      "bytes": 1372
+    },
+    "earned-diablo391/391-w7-initial.json.gz": {
+      "sha256": "2b2f18cc66c8a075403ea7db24a2bbbdc0c7113f527af97188abd989f4291feb",
+      "bytes": 291
+    },
+    "earned-diablo391/391-w7-terminal.json.gz": {
+      "sha256": "6cf17b90847d54a51cdad4fd939523bd4117341baad1c0912afe6dd3ca41d132",
+      "bytes": 948
+    },
+    "earned-diablo391/final.json.gz": {
+      "sha256": "ac2f01325bec5db2c35949a07b000b70470746c907886717794f6f7fef03c084",
+      "bytes": 234504
+    },
+    "earned-diablo391/launch-391.json": {
+      "sha256": "8d56628d6a9ae6cd0a06b79015ae59148acb959af02aa6968f616007575d109b",
+      "bytes": 131
+    },
+    "earned-diablo391/prelaunch-391.json.gz": {
+      "sha256": "928616a7985ed408af0602343d0f4cd8b6170a3fe1294761338ac39e5e7482ab",
+      "bytes": 232563
+    },
+    "earned-diablo391/report.json": {
+      "sha256": "be286d32d05a7f230fe4e32b73dd6366c3baabbb873727c32e63fa522bf658e5",
+      "bytes": 7606
+    },
+    "finalize-native.log": {
+      "sha256": "49e5584abdde97d6f4e243d4b9702d6de61a7258877e964cf36ae79f5a753728",
+      "bytes": 70
+    },
+    "finalize-native.mjs": {
+      "sha256": "59acd6d060eac2ff4dff24ac9959db23b48883214813e28dbcb6f45727e2e97f",
+      "bytes": 7308
+    },
+    "hero-proposals380.json": {
+      "sha256": "7c22689dfac1e025afcd2d46bc940647934ddf4f11c7dafa5e92f694f18d885c",
+      "bytes": 3945
+    },
+    "iceblast20-mastery20-warmth1.diagnostic-only.json.gz": {
+      "sha256": "62733003dedddd146fb461eeb7be8940588c777d5c4cec0227d5d679e5cc4f9e",
+      "bytes": 232382
+    },
+    "initial-failure-receipt.json": {
+      "sha256": "64bab87b4c5a4fa2787f926c612b418b98343e024c88881af9b3ea3a989619db",
+      "bytes": 482
+    },
+    "merc-proposals380.json": {
+      "sha256": "3d77800dde371bcf7e10d33deff6fa586572c6643e2aa321c8c282a005d3fdf5",
+      "bytes": 3465
+    },
+    "native-initial-failure-receipt.json": {
+      "sha256": "aefab2e78ab1ae2f822ab4f4e1bdcadfc97661b21235b8ae7ee67a9d4007a06c",
+      "bytes": 586
+    },
+    "native-mismatch-analysis.json": {
+      "sha256": "973cc7d8afa29a5c6747cb4ea5804cbb07ab030763ede7fcdcfb1e88ceece449",
+      "bytes": 226
+    },
+    "native-preparation/001-imported.json.gz": {
+      "sha256": "b4637362e8cf494e3547851723add2e5bdf4fb8c05936f780523444a3e00ca1b",
+      "bytes": 232165
+    },
+    "native-preparation/002-preparation-before-saved.json.gz": {
+      "sha256": "b4637362e8cf494e3547851723add2e5bdf4fb8c05936f780523444a3e00ca1b",
+      "bytes": 232165
+    },
+    "native-preparation/003-preparation-before-continued.json.gz": {
+      "sha256": "b4637362e8cf494e3547851723add2e5bdf4fb8c05936f780523444a3e00ca1b",
+      "bytes": 232165
+    },
+    "native-preparation/004-paid-skill-reset.json.gz": {
+      "sha256": "b67975929449a4cd75fef65e8cb11a8e48db0e0dc0cef9aa8defeb5091d69e21",
+      "bytes": 232040
+    },
+    "native-preparation/005-allocated-ice-bolt.json.gz": {
+      "sha256": "05982dab3dd987b6f4579c99c455cb408cc7010f6d7c76e51b7ea9e7de66ea7e",
+      "bytes": 232049
+    },
+    "native-preparation/006-allocated-ice-blast.json.gz": {
+      "sha256": "96cf384b6b2eccd20d7a446614b7195f738c0b8c9c18fc60c4484d889b9e4efe",
+      "bytes": 232058
+    },
+    "native-preparation/007-allocated-cold-mastery.json.gz": {
+      "sha256": "5cb4665a99376ef6d52d8e44d07cdb0e2df688de1ca67105d272a58ade1e84fa",
+      "bytes": 232077
+    },
+    "native-preparation/008-allocated-static-field.json.gz": {
+      "sha256": "c4b993799f80da0a8b05b8d7b14097ea75fee94cb507b5b1caca2e8ec5968d82",
+      "bytes": 232092
+    },
+    "native-preparation/009-allocated-warmth.json.gz": {
+      "sha256": "efce853c28fdd8a82571aeaea0dbf0a98bc5840637864bf2fa125c61c0b3ad6d",
+      "bytes": 232101
+    },
+    "native-preparation/010-dexterity-applied.json.gz": {
+      "sha256": "866899a88f600752d2d5422a12a42eea879f7f942dc691bf65d9ddfad4be9c4a",
+      "bytes": 232099
+    },
+    "native-preparation/011-priority.json.gz": {
+      "sha256": "ed4ed4d13018654daecb94c073e442178d8aab9a8f04f4fd02f51192f6048b04",
+      "bytes": 232131
+    },
+    "native-preparation/012-hero-craft-0.json.gz": {
+      "sha256": "b646c6a3ca9273f67c5d88173a474658ef4588785662b12606ec6c5f142e5cbd",
+      "bytes": 232167
+    },
+    "native-preparation/013-stopped-native.json.gz": {
+      "sha256": "b646c6a3ca9273f67c5d88173a474658ef4588785662b12606ec6c5f142e5cbd",
+      "bytes": 232167
+    },
+    "native-preparation/failure-dom.html": {
+      "sha256": "af758abd747b93c157631a5901f2eea427499ad31847d68fd128ef18927159a9",
+      "bytes": 12449
+    },
+    "native-preparation/failure.png": {
+      "sha256": "1bda50e66c8d5ee20f4809a345f596759ad25929e23ed8f3ed6cc52879f5e2dd",
+      "bytes": 35324
+    },
+    "native-preparation/report.json": {
+      "sha256": "c4e6da2dd6283cd95a0bbde45663319cebf4be91b3662fb64f9ba4b5865d9fea",
+      "bytes": 2843
+    },
+    "native-preparation-current.json": {
+      "sha256": "767df402a89122f27941431df2c7099fcbb95f1d438dd901ccae42d37202921e",
+      "bytes": 300
+    },
+    "native-preparation-finalized/001-imported.json.gz": {
+      "sha256": "928616a7985ed408af0602343d0f4cd8b6170a3fe1294761338ac39e5e7482ab",
+      "bytes": 232563
+    },
+    "native-preparation-finalized/002-prepared-finalized-saved.json.gz": {
+      "sha256": "928616a7985ed408af0602343d0f4cd8b6170a3fe1294761338ac39e5e7482ab",
+      "bytes": 232563
+    },
+    "native-preparation-finalized/003-prepared-finalized-continued.json.gz": {
+      "sha256": "928616a7985ed408af0602343d0f4cd8b6170a3fe1294761338ac39e5e7482ab",
+      "bytes": 232563
+    },
+    "native-preparation-finalized/final.json.gz": {
+      "sha256": "928616a7985ed408af0602343d0f4cd8b6170a3fe1294761338ac39e5e7482ab",
+      "bytes": 232563
+    },
+    "native-preparation-finalized/report.json": {
+      "sha256": "67dd63e26eb45bc9bf00a3f05db407b84864ecc012a1258074e6373d8fa80401",
+      "bytes": 1585
+    },
+    "native-preparation-resume/001-imported.json.gz": {
+      "sha256": "b646c6a3ca9273f67c5d88173a474658ef4588785662b12606ec6c5f142e5cbd",
+      "bytes": 232167
+    },
+    "native-preparation-resume/002-preparation-before-saved.json.gz": {
+      "sha256": "b646c6a3ca9273f67c5d88173a474658ef4588785662b12606ec6c5f142e5cbd",
+      "bytes": 232167
+    },
+    "native-preparation-resume/003-preparation-before-continued.json.gz": {
+      "sha256": "b646c6a3ca9273f67c5d88173a474658ef4588785662b12606ec6c5f142e5cbd",
+      "bytes": 232167
+    },
+    "native-preparation-resume/004-hero-craft-0.json.gz": {
+      "sha256": "2bae3d796d12a954b1c8b8d1b068fa1020575935ef4500bda39e52a05986052d",
+      "bytes": 232208
+    },
+    "native-preparation-resume/005-hero-craft-1.json.gz": {
+      "sha256": "9c1a2dc8be8f5e7a572ebf2dd087d315c364211b364f060f4f36f08471685bc1",
+      "bytes": 232249
+    },
+    "native-preparation-resume/006-hero-craft-2.json.gz": {
+      "sha256": "5da4df24eb7715e5cee964f8d0c3837aeabbc0275b3a37315367d94db9d7caae",
+      "bytes": 232282
+    },
+    "native-preparation-resume/007-hero-equip-weapon.json.gz": {
+      "sha256": "5c41f831f412311539ea5f09ae5b715da15278a1ddee61c1ed349169bd514ba9",
+      "bytes": 232317
+    },
+    "native-preparation-resume/008-hero-equip-head.json.gz": {
+      "sha256": "128a71d04ee5da2917af3d7adccecd70fff49290694b677bf25182d170a56a6e",
+      "bytes": 232307
+    },
+    "native-preparation-resume/009-hero-equip-chest.json.gz": {
+      "sha256": "5d90410fb86dfbb89842d7c6ca28122562e6e5e2d0ba9bee7fe38257885dd3bd",
+      "bytes": 232333
+    },
+    "native-preparation-resume/010-hero-equip-belt.json.gz": {
+      "sha256": "88d236ee85c1fa1b070995c8fbc9b4dda6599c1b15853e2529218b22329d1cd5",
+      "bytes": 232321
+    },
+    "native-preparation-resume/011-hero-equip-offhand.json.gz": {
+      "sha256": "3c7048684ffdc1b268f6014ece6bcfb0bd89781a287e82875076fc9203c4dad9",
+      "bytes": 232310
+    },
+    "native-preparation-resume/012-hero-equip-amulet.json.gz": {
+      "sha256": "356c5a4f7934d372386e9e322ddd3b9afeacbb94dc04c4a72633a2a70cac5446",
+      "bytes": 232299
+    },
+    "native-preparation-resume/013-hero-equip-ring-left.json.gz": {
+      "sha256": "622af868feb6bc06a513b040e39e617fa68f93f790c69ad4cd94588d863cda8f",
+      "bytes": 232321
+    },
+    "native-preparation-resume/014-hero-equip-ring-right.json.gz": {
+      "sha256": "fcce81e8962f0483f3482ed9a7c54560c3c4a326d7dd41b4cac1a2de037d9ac7",
+      "bytes": 232308
+    },
+    "native-preparation-resume/015-holy-freeze-hired.json.gz": {
+      "sha256": "0c3bb06c8cdda1649660db522638d29403d99ba8468bb2f92d9c740a33ef360a",
+      "bytes": 232374
+    },
+    "native-preparation-resume/016-merc-craft-0.json.gz": {
+      "sha256": "7a0b2d5de5fd36356e830b3482556423ca8737b0ef4d56d277d2d7c4c2e03f7a",
+      "bytes": 232380
+    },
+    "native-preparation-resume/017-merc-craft-1.json.gz": {
+      "sha256": "f7cda88c5fad1ae17d317ea445b1683369a6b98cc52eb7dceec044dd3d892ff3",
+      "bytes": 232415
+    },
+    "native-preparation-resume/018-merc-craft-2.json.gz": {
+      "sha256": "4c103b5d6749312bd6625f8309069514f89b047853e650110a3f87606a8a0756",
+      "bytes": 232418
+    },
+    "native-preparation-resume/019-merc-craft-3.json.gz": {
+      "sha256": "3acfbfc2a76633cb957a70fda59e248d4863985a15df7106375fa97e62a904ae",
+      "bytes": 232418
+    },
+    "native-preparation-resume/020-merc-craft-4.json.gz": {
+      "sha256": "272ea7aa90d2fb923b89073c0abe28e3f89056e6bf09a714210befbdaa243f66",
+      "bytes": 232419
+    },
+    "native-preparation-resume/021-merc-craft-5.json.gz": {
+      "sha256": "321fddedc995e5e11051d1352f1400364dcfcbb61fbd4e6a19be0e8b60c2eee7",
+      "bytes": 232451
+    },
+    "native-preparation-resume/022-merc-equip-head.json.gz": {
+      "sha256": "5a2a03a9fef06a0ed41b2f095d79b159705040112382394d4d3ad2e19c098b16",
+      "bytes": 232469
+    },
+    "native-preparation-resume/023-merc-equip-chest.json.gz": {
+      "sha256": "80b79f92be2646928ed875e547f4b19fe8d71869edbafd4c624b97eded28cfd0",
+      "bytes": 232491
+    },
+    "native-preparation-resume/024-merc-equip-gloves.json.gz": {
+      "sha256": "ce002359d1585588c065cd41272294d36d37fb59516c2e634625f26d59c2b2bb",
+      "bytes": 232503
+    },
+    "native-preparation-resume/025-merc-equip-boots.json.gz": {
+      "sha256": "35ca37896cd57db3857e31695d5bdb29612f61b14306eca1b5c0e872d7339cde",
+      "bytes": 232520
+    },
+    "native-preparation-resume/026-merc-equip-belt.json.gz": {
+      "sha256": "3ad31aea4dd5923b82394ca70ff50dc853ca372d01ca285cc2a84632e13fd92c",
+      "bytes": 232502
+    },
+    "native-preparation-resume/027-merc-equip-offhand.json.gz": {
+      "sha256": "695e74895b666b81a8667fe716f530ca79f9c993700eaf13c39a99d5d60bbbda",
+      "bytes": 232488
+    },
+    "native-preparation-resume/028-merc-equip-amulet.json.gz": {
+      "sha256": "1c2126b20efd1d3405a220393b59b97df8a7950327a97bbb58a3a23a3508df68",
+      "bytes": 232503
+    },
+    "native-preparation-resume/029-merc-equip-ring-left.json.gz": {
+      "sha256": "3f7cee1e177488fb3676d4b84c62274b1e085db491fbcef2eb45d797c3e42934",
+      "bytes": 232529
+    },
+    "native-preparation-resume/030-merc-equip-ring-right.json.gz": {
+      "sha256": "0feb81facb46363a13e641f18e67928cd4587589f461336bcc8e62c5ff322fe7",
+      "bytes": 232535
+    },
+    "native-preparation-resume/031-merc-equip-weapon.json.gz": {
+      "sha256": "928616a7985ed408af0602343d0f4cd8b6170a3fe1294761338ac39e5e7482ab",
+      "bytes": 232563
+    },
+    "native-preparation-resume/032-prepared.json.gz": {
+      "sha256": "928616a7985ed408af0602343d0f4cd8b6170a3fe1294761338ac39e5e7482ab",
+      "bytes": 232563
+    },
+    "native-preparation-resume/033-stopped-native.json.gz": {
+      "sha256": "928616a7985ed408af0602343d0f4cd8b6170a3fe1294761338ac39e5e7482ab",
+      "bytes": 232563
+    },
+    "native-preparation-resume/failure-dom.html": {
+      "sha256": "5be6b705eb5f036845540ff21f6b23ee2351548cb6bfa682459e8aecb13f538a",
+      "bytes": 12449
+    },
+    "native-preparation-resume/failure.png": {
+      "sha256": "94136f0f6a840ad83bec6748850be486a144a9d112d6b6d3e181f913616528b2",
+      "bytes": 35326
+    },
+    "native-preparation-resume/report.json": {
+      "sha256": "53bca815f3ce94f790d17b9223a9d612e8f948a9114fb5ab7df2fd3c7335aa9e",
+      "bytes": 28778
+    },
+    "orb20-mastery17-warmth1.diagnostic-only.json.gz": {
+      "sha256": "01d7f56f3061dcab60f7851f39759168642bff53e6d2f932cd6c598438257254",
+      "bytes": 232416
+    },
+    "ownership-receipt.json": {
+      "sha256": "5c08f834bb224b931a450eca3c38b2b62f6977b863217f06860e86e169704130",
+      "bytes": 21776
+    },
+    "partial.json": {
+      "sha256": "09f34b655fc799dde5f06bbeea792b95631b431d12d606ef4896592975c5b8a4",
+      "bytes": 488856
+    },
+    "policy.json": {
+      "sha256": "85c8952ce4ad525b507d9b585a6fa8caf0e5033b0f730fd03a7e94192e5a286a",
+      "bytes": 3082
+    },
+    "preparations.json": {
+      "sha256": "f14c5223a8ccdde79953d0bd480cc21748466eb3d68ded4ba8fd8f417d5ad08c",
+      "bytes": 4553
+    },
+    "prepare-native-resume.log": {
+      "sha256": "72f357c2c2dc8143e5953b9a146f0ee605afc944b6c14f4f9e7042333f328084",
+      "bytes": 23367
+    },
+    "prepare-native-resume.mjs": {
+      "sha256": "8e41d49e8592109e3ab2920c414ddd31383edb2a0f47e0e2059ce10582114756",
+      "bytes": 9850
+    },
+    "prepare-native.log": {
+      "sha256": "a80fd95a913fcf29580776e123c961ca494ad1ac534a628ab02fc566afc6389b",
+      "bytes": 445
+    },
+    "prepare-native.mjs": {
+      "sha256": "1805f1af3f343aff75362393c4acf68b908039c925ed7890d03099244c16daa5",
+      "bytes": 11275
+    },
+    "preview-stop.json": {
+      "sha256": "d6d30a503e77519a55566bf962a404fa16e0b2440d6416b68837a8831a91aa9d",
+      "bytes": 327
+    },
+    "screen-failure.json": {
+      "sha256": "89b3e537c71d2f147cb4defb88a039788f6fb4726699ba1004281d156b0aa304",
+      "bytes": 8172
+    },
+    "screen-initial.log": {
+      "sha256": "84c73a4b0a2adf53a854ff174121f0335e66a3d810753d413a408b561ab422be",
+      "bytes": 1836
+    },
+    "screen-initial.mjs": {
+      "sha256": "2126a2d2c25eb6038b7f63a42b1bd2921338615ea9df6ea5fa916d6d74d0b068",
+      "bytes": 9255
+    },
+    "screen.json": {
+      "sha256": "785d2f85c391f1bc1cc1125fbf597b65770a41a19d6f88f96c35d482e837d80b",
+      "bytes": 489250
+    },
+    "screen.log": {
+      "sha256": "84cbf75f3717db2f29cb0d2f1d7a498580a9b5bad056d51d8684e47bce665bef",
+      "bytes": 3271
+    },
+    "screen.mjs": {
+      "sha256": "556ed9b01295f4a06d6ffdf8af25f0e45d4ea6cbdfd0c64c69c4cb12597bb570",
+      "bytes": 9419
+    },
+    "seeds.json": {
+      "sha256": "42831b9585e3f6dfdf115c2e9fc66fb43ab3949d640d853e62674d3ed26e3faf",
+      "bytes": 334
+    },
+    "served-hashes.json": {
+      "sha256": "52da51907fd91f2f4854361d2c3beddd08681fff37618cfa7340c95bbb1ab71a",
+      "bytes": 666
+    },
+    "source-freeze.json": {
+      "sha256": "4214500182fc894a6b13ddcf71b4fe9e1299bba70fadf31196c63f369958c962",
+      "bytes": 123877
+    }
+  },
+  "archiveSHA256": "2f9edc65d28e51531b6421ceeff06ac216a0053da473671e6e58ae2fe57100b7",
+  "archiveBytes": 16692109,
+  "finalRawSHA256": "98376d8d827d2b337a2b9e3317ac937a6a59ed7ff13b0ae23596d6c649e9cd14",
+  "cleanup": {
+    "consumers": "all terminal including exact preview33232/PID1218026 exit130",
+    "removed": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/cold391/dist",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/cold391/vite-cache",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/cold391/canonical-vite-cache"
+    ],
+    "remaining": [],
+    "failures": [],
+    "retainedRaw": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/cold391",
+    "owner": "root",
+    "removeWhen": "campaign/full-v1 consumers finish; root removes exact raw evidence directory then"
+  }
+}

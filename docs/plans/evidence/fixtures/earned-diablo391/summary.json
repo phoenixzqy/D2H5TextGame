@@ -1,0 +1,58 @@
+{
+  "status": "pass",
+  "kind": "root self-audit; independent acceptance pending",
+  "diabloAttempt": 391,
+  "nextNormal": 392,
+  "newGenuineChallenges": 1,
+  "nativeWaveVictories": 7,
+  "nativeNonwins": 0,
+  "preparedItemPayloadsPreserved": 22003,
+  "newCombatGear": 128,
+  "newQuestGear": 2,
+  "earnedHeroCombatXP": 40900,
+  "earnedHeroQuestXP": 25000,
+  "act5EntryEnabled": true,
+  "act5CombatEntries": 0,
+  "heroLevel": 32,
+  "heroXP": 149192,
+  "ownedItems": 22133,
+  "statPoints": 5,
+  "skillPoints": 0,
+  "nativeSavedStateSnapshots": 26,
+  "saveCloseContinuePairs": [
+    [
+      "native-preparation-finalized",
+      "prepared-finalized-saved",
+      "prepared-finalized-continued"
+    ],
+    [
+      "earned-diablo391",
+      "precombat-saved",
+      "precombat-continued"
+    ],
+    [
+      "earned-diablo391",
+      "391-won-saved",
+      "391-won-continued"
+    ],
+    [
+      "diablo-claim",
+      "diablo-claimed-saved",
+      "diablo-claimed-continued"
+    ],
+    [
+      "diablo-claim",
+      "diablo-unclaimed-saved",
+      "diablo-unclaimed-continued"
+    ]
+  ],
+  "sourceHashCount": 1128,
+  "sourceDrift": [],
+  "buildHashCount": 760,
+  "buildDrift": [],
+  "bridgeFreeServedJS": 7,
+  "diagnosticRuns": 96,
+  "canonicalPairedFullRuns": 8,
+  "finalRawSHA256": "98376d8d827d2b337a2b9e3317ac937a6a59ed7ff13b0ae23596d6c649e9cd14",
+  "limitations": "single genuine English mobile360x640 pilot; historical fixed Date and accelerated100ms playback transport; no30-50h pacing, ActV combat, full-idle matrix or C2-C4/fullG0-G7 acceptance"
+}

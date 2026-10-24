@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D11 earned Diablo391 / Act V unlocked | genuine seven-wave clear and separate Claim verified locally; next392 retained | Qualified IceBlast20/Mastery20 Chaos29/32+River32/32; actual native paid reset/43skill/5Dex/ten crafts/hire/equipment consumed once, all22003prepared full item payloads conserved.391 wins7/7waves,+40900XP/+128gear; separate Claim+25000XP/+2gear, ActV Enter enabled. FinalL32/XP149192/22133gear, stat5/skill0/HolyFreeze, nextNormal392/Nightmare0; five exact Continue pairs/26native snapshots, zero browser errors/warnings. [Authoritative final/evidence](evidence/d11-earned-diablo391.md). Eight paired diagnostic/native full runs exact after documented tooling-only corrections; no source change/replay/diagnostic promotion.1128source/760build/7served hashes exact; prior11678unit passes/types/lint remain applicable. Exact preview4443 stopped, three disposable dirs absent, cleanup[]/failures[]. ActVcombat, pacing, fullidle, C2–C4/G0–G7 and independent acceptance remain open. |
 | D11 earned River idle389–390 | two genuine idle clears; automatic repeat and Stop verified locally; next391 retained | 12native wave victories,+62570XP/+264gear; finalL32/XP83292/22003unique gear, stat10/skill4 unchanged. All21739ancestral full payloads preserved;20native export downloads/23retained snapshots/two exact Continue pairs, zero errors/retries. Native repeat follows temporary Settings inspection; no Enter/Next Run click. Stop prevents391 and120s clock advance grants nothing.1128prior source hashes/760rebuilt files/7served JS exact. [Authoritative final/evidence](evidence/d11-earned-river-idle-through390.md). Auditor nonexistent-key failure corrected without replay. All consumers terminal;4442closed/exactdist absent. Uninterrupted/background/weak-build/matrix idle, Diablo/ActV, pacing and C2–C4/fullG remain open. |
 | D11 earned Travincal363–368 |five full clears, then actual368W5draw; next369 authoritative |34native wave victories,+146060XP/+723gear; finalL30/XP227964/18957unique gear, stat0/skill0, original preparation retained. All18234ancestral full payloads exact; zero failed-wave income/quest changes. Seven exact Continue pairs, zero captured errors/retries;902source/760dist/4served hashes exact. [Authoritative final/evidence](evidence/d11-earned-act3-through368.md). Initial overlay-timing auditor failure retained/corrected without gameplay replay. All consumers terminal; preview31020/4434closed/exactdist removed. C2–C4/fullG gates open. |
 | D11 L30 Mephisto preparation screen | terminal; real next363 unchanged |Retained Orb reaches boss32/32 but0wins (29draws/3defeats); two legal IceBlast20/Mastery alternatives0/32 each, all guard-wave draws; fixed owned-offense gear0/32 with32boss draws. No actual reset/transfer/challenge, no source tuning.128new projections,902source hashes/input exact. [Evidence](evidence/d11-mephisto-level30-screen.md). Next bounded genuine farming toL31/max12runs/firstnonwin; C2–C4/fullG gates open. |
@@ -11184,3 +11185,19 @@ full-v1, then removes task-owned paths. C0/C1 retain narrow historical acceptanc
 C2–C4,213skills,pacing, independent acceptance/fullG0–G7 remain incomplete.
 Next: inspect new earned level32 resources/points and qualify the next legal
 preparation or bounded earned progression from389. Local only; goal/worktree active.
+
+
+## D11 — Genuine Diablo391 and Terror's End unlock Act V
+
+[Earned checkpoint](evidence/d11-earned-diablo391.md): native preparation, seven
+actual victories and separate25000XP Claim complete. Retained final level32,
+XP149192,22133owned gear, stat5/skill0, HolyFreeze fielded, nextNormal392.
+Decompressed SHA `98376d8d827d2b337a2b9e3317ac937a6a59ed7ff13b0ae23596d6c649e9cd14`.
+Five exact Continue pairs and all22003prepared full item payloads pass root audit.
+Never replay preparation,391 or Claim. ActVentry enabled; no ActVcombat yet.
+All diagnostic/tooling failures remain evidence, not earned outcomes. Source
+unchanged; prior11678unit passes/two skips/types/lint apply, build hashes exact.
+Preview and exact three disposables cleaned; raw evidence retained by root through
+full-v1 consumers. C0/C1 retain narrow historical acceptance; C2–C4,213skills,
+pacing/endgame/fullG0–G7 incomplete. Next inspect earned ActVroute from392.
+Local only, umbrella goal and claimed worktree remain active.
