@@ -1,0 +1,141 @@
+{
+  "kind": "diagnostic copies only; all actual next363 state unchanged",
+  "sourceCommit": "bee76a4",
+  "sourceFiles": 902,
+  "inputRawSHA256": "6c094440dedbe276f9280815c26a90d4926034b834c725d151151b67456d408c",
+  "summary": {
+    "retained": {
+      "n": 32,
+      "wins": 0,
+      "terminalWaves": {
+        "6": 32
+      },
+      "bossDraws": 29
+    },
+    "ice-blast-mastery": {
+      "n": 32,
+      "wins": 0,
+      "terminalWaves": {
+        "4": 25,
+        "3": 5,
+        "2": 2
+      },
+      "bossDraws": 0
+    },
+    "ice-blast-glacial": {
+      "n": 32,
+      "wins": 0,
+      "terminalWaves": {
+        "4": 23,
+        "3": 7,
+        "2": 2
+      },
+      "bossDraws": 0
+    },
+    "owned-offense": {
+      "n": 32,
+      "wins": 0,
+      "terminalWaves": {
+        "6": 32
+      },
+      "bossDraws": 32
+    }
+  },
+  "archiveSHA256": "d50098d09de83b78e513238fab3ec2005bfccb1298bf069a68ce2bf13d1314b8",
+  "fileCount": 23,
+  "files": {
+    "inventory-pagination/freeze.json": {
+      "sha256": "c3cf925cec888d5cb05cf5c8893b523891e0ddb9fa70d9f3793f182015b1bcdc",
+      "bytes": 203898
+    },
+    "level30-travincal/armor-mephisto-screen.json": {
+      "sha256": "2011d8e26a633b73bb5305d261d8aa828b5d8ffe29cffd0ddadfc29828dee5a3",
+      "bytes": 530610
+    },
+    "level30-travincal/armor-mephisto-screen.log": {
+      "sha256": "da053370aaf5bd1b98cea4fcc905c039b490dfcbbe111ba4cf14aa157ebf3eb4",
+      "bytes": 1598
+    },
+    "level30-travincal/armor-mephisto-screen.mjs": {
+      "sha256": "6afe2580169f3133553341cabafae6e9f4ed16893482cc5c64e031cbb1046fdf",
+      "bytes": 4437
+    },
+    "level30-travincal/control-mephisto-screen.json": {
+      "sha256": "55bb58d1fbae5be7b965c24843019d5cf4ba08acfd1098fd6e641e44ea9b43d5",
+      "bytes": 604493
+    },
+    "level30-travincal/control-mephisto-screen.log": {
+      "sha256": "93d925b3697f2e596d7149b8dfba7f371a8aa5718f13cfa659bec7148801a4ef",
+      "bytes": 1982
+    },
+    "level30-travincal/control-mephisto-screen.mjs": {
+      "sha256": "c523ce40446bd0f6ec40ad5fd537f28388b59c7410616bcc9fac8b04b64ee8fa",
+      "bytes": 5140
+    },
+    "level30-travincal/owned-mephisto-screen-v2.json": {
+      "sha256": "4de2f68d477a4e3b559e0dbd955152f7002dbf29539f41cb7278b56e2749a020",
+      "bytes": 42271
+    },
+    "level30-travincal/owned-mephisto-screen-v2.log": {
+      "sha256": "892209914a174e9c1197e3c43d535d5abe22f6424970969287875550ce93154e",
+      "bytes": 1953
+    },
+    "level30-travincal/owned-mephisto-screen-v2.mjs": {
+      "sha256": "49243ba407151339578078b229400a5367676d861d0038b3a22b0bd5509bfff1",
+      "bytes": 6401
+    },
+    "level30-travincal/owned-mephisto-screen.json": {
+      "sha256": "46fa5c5c61b7904c331d100e5331b82b44a8eb3745d9f05a37fa8dde3942d5d5",
+      "bytes": 42016
+    },
+    "level30-travincal/owned-mephisto-screen.log": {
+      "sha256": "629c151e6ce0836c2ef9faa103d82b252fb96353521b5fe9c9054792114c467e",
+      "bytes": 1831
+    },
+    "level30-travincal/owned-mephisto-screen.mjs": {
+      "sha256": "e5ea66575436ee2af2ebf59c6feb3e8ed8146414c400c0516e828bd61317bc21",
+      "bytes": 6327
+    },
+    "level30-travincal/static-mephisto-screen.json": {
+      "sha256": "61c3fc9f381da30d18974d660ae349991a6b6bcffe33043686bcb70f468670d9",
+      "bytes": 409407
+    },
+    "level30-travincal/static-mephisto-screen.log": {
+      "sha256": "e8cfa222df6d1350750b4ee343333bd967b5dc0268a760c8a51eb626d45526a6",
+      "bytes": 1147
+    },
+    "level30-travincal/static-mephisto-screen.mjs": {
+      "sha256": "a08a2e4e1526573c93e74ff03c300d4c03437593bcc390b719988349001a2c03",
+      "bytes": 4413
+    },
+    "mephisto-owned-offense/screen.json": {
+      "sha256": "789494c2690eed3a2454b29f3772dbb76ea0b11ace56d72c838daa5faeee0046",
+      "bytes": 82360
+    },
+    "mephisto-owned-offense/screen.log": {
+      "sha256": "f0dc275eb4b150f2e261ef7c21b30f424a7253b8076ac6a5bb29e29371312dc0",
+      "bytes": 3337
+    },
+    "mephisto-owned-offense/screen.mjs": {
+      "sha256": "086e2ccd8f5de8761f20c2e3af9685d58b08289db299557dcb370bebba133a9b",
+      "bytes": 6812
+    },
+    "mephisto-single-target/audit.json": {
+      "sha256": "7ec1b98cd57887f3e7b51d6967c04543ae17db2069890860ea71c4958059ac7b",
+      "bytes": 908
+    },
+    "mephisto-single-target/screen.json": {
+      "sha256": "0def23e339a09f870d74775c6eff80c8118497e7f6d8bfeaf3d97833b4e86d90",
+      "bytes": 1081032
+    },
+    "mephisto-single-target/screen.log": {
+      "sha256": "58335e72dd29767a7f7adec6d0f1e2c7af1e6dedc7a4b931923be11889acad8c",
+      "bytes": 3683
+    },
+    "mephisto-single-target/screen.mjs": {
+      "sha256": "0f14a4cf52a22ed5b65381b6fb0f28c82763d4d79d08f02363768e238c77f033",
+      "bytes": 4606
+    }
+  },
+  "rawRetentionOwner": "root through campaign/full-v1 consumers; remove raw diagnostics afterward"
+}
