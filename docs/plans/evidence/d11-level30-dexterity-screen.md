@@ -47,6 +47,18 @@ The [selected-slot fix](p03-selected-equipment-slot.md) adds the missing
 validated destination contract. Future preparation must pass each destination
 and assert the complete actual equipment map before projecting combat.
 
+### Follow-up correction after explicit-slot preflight
+
+The historical paragraph above overstates the final proposal's ambiguity.
+The final `owned-damage369` proposal contains three swaps: weapon, amulet and
+**left** ring, without a right-ring swap. A later explicit-slot preflight proves
+the complete actual gear maps and derived stats match that final proposal.
+Preserve the original reports and failed screen; BUG160 remains independently
+reproduced and fixed. The [new preparation and earned continuation](d11-earned-mephisto-and-act4-through375.md)
+records the corrected interpretation, a separately qualified priority policy,
+actual Mephisto victory and retained Diablo defeat through375. This follow-up
+does not change the256-projection stat-only result above.
+
 ## Retention and cleanup
 
 The shared [archive manifest](fixtures/ring-slot-and-stat-preparation/manifest.json)

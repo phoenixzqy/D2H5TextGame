@@ -1,0 +1,260 @@
+{
+  "sourceFiles": 903,
+  "buildFiles": 760,
+  "servedBridgeFreeChunks": 4,
+  "exportsAudited": 135,
+  "allAncestralPayloads": 18957,
+  "legallyChangedEquippedFlags": [
+    "it-1asp1-30z",
+    "it-2whwr-540",
+    "it-4iwhi-3gb",
+    "it-70ybu-34o",
+    "it-jds0-3gd",
+    "it-jwgi-544"
+  ],
+  "exactDurablePairs": 22,
+  "pairs": [
+    [
+      "native-priority-resume/saved.json.gz",
+      "native-priority-resume/continued.json.gz"
+    ],
+    [
+      "attempt369/002-precombat-saved.json.gz",
+      "attempt369/003-precombat-continued.json.gz"
+    ],
+    [
+      "attempt369/010-369-won-saved.json.gz",
+      "attempt369/011-369-won-continued.json.gz"
+    ],
+    [
+      "guardian-claim/guardian-claimed-saved.json.gz",
+      "guardian-claim/guardian-claimed-continued.json.gz"
+    ],
+    [
+      "guardian-claim/guardian-unclaimed-saved.json.gz",
+      "guardian-claim/guardian-unclaimed-continued.json.gz"
+    ],
+    [
+      "act4-370/002-precombat-saved.json.gz",
+      "act4-370/003-precombat-continued.json.gz"
+    ],
+    [
+      "act4-370/016-371-won-saved.json.gz",
+      "act4-370/017-371-won-continued.json.gz"
+    ],
+    [
+      "act4-370/009-370-won-saved.json.gz",
+      "act4-370/010-370-won-continued.json.gz"
+    ],
+    [
+      "izual372/009-372-won-saved.json.gz",
+      "izual372/010-372-won-continued.json.gz"
+    ],
+    [
+      "izual372/002-precombat-saved.json.gz",
+      "izual372/003-precombat-continued.json.gz"
+    ],
+    [
+      "izual-claim-warmth/izual-unclaimed-saved.json.gz",
+      "izual-claim-warmth/izual-unclaimed-continued.json.gz"
+    ],
+    [
+      "izual-claim-warmth/warmth3-saved.json.gz",
+      "izual-claim-warmth/warmth3-continued.json.gz"
+    ],
+    [
+      "city-river373/002-precombat-saved.json.gz",
+      "city-river373/003-precombat-continued.json.gz"
+    ],
+    [
+      "city-river373/010-373-won-saved.json.gz",
+      "city-river373/011-373-won-continued.json.gz"
+    ],
+    [
+      "city-river373/018-374-won-saved.json.gz",
+      "city-river373/019-374-won-continued.json.gz"
+    ],
+    [
+      "forge-seals-resume/forge-claimed-saved.json.gz",
+      "forge-seals-resume/forge-claimed-continued.json.gz"
+    ],
+    [
+      "forge-seals-resume/inputs-owned-saved.json.gz",
+      "forge-seals-resume/inputs-owned-continued.json.gz"
+    ],
+    [
+      "forge-seals-resume/forge-consumed-unclaimed-saved.json.gz",
+      "forge-seals-resume/forge-consumed-unclaimed-continued.json.gz"
+    ],
+    [
+      "forge-seals-resume/three-seals-saved.json.gz",
+      "forge-seals-resume/three-seals-continued.json.gz"
+    ],
+    [
+      "diablo375/002-precombat-saved.json.gz",
+      "diablo375/003-precombat-continued.json.gz"
+    ],
+    [
+      "diablo375/011-375-nonwin-saved.json.gz",
+      "diablo375/012-375-nonwin-continued.json.gz"
+    ],
+    [
+      "act4-quest-start/saved.json.gz",
+      "act4-quest-start/continued.json.gz"
+    ]
+  ],
+  "screenProjections": 256,
+  "selected": {
+    "id": "owned-gear-dex120-priority",
+    "gear": true,
+    "moved": 120
+  },
+  "combat": [
+    {
+      "directory": "attempt369",
+      "launches": [
+        {
+          "ordinal": 369,
+          "alias": "durance-of-hate"
+        }
+      ],
+      "outcomes": [
+        "victory"
+      ],
+      "winningWaves": 6,
+      "heroXP": 33570,
+      "gear": 158,
+      "executionWallMs": 47865.609431,
+      "requestedClockAdvanceMs": 118400
+    },
+    {
+      "directory": "act4-370",
+      "launches": [
+        {
+          "ordinal": 370,
+          "alias": "outer-steppes"
+        },
+        {
+          "ordinal": 371,
+          "alias": "plains-of-despair"
+        }
+      ],
+      "outcomes": [
+        "victory",
+        "victory"
+      ],
+      "winningWaves": 10,
+      "heroXP": 67860,
+      "gear": 287,
+      "executionWallMs": 80879.92724500001,
+      "requestedClockAdvanceMs": 212800
+    },
+    {
+      "directory": "izual372",
+      "launches": [
+        {
+          "ordinal": 372,
+          "alias": "plains-of-despair"
+        }
+      ],
+      "outcomes": [
+        "victory"
+      ],
+      "winningWaves": 5,
+      "nonwins": 0,
+      "heroXP": 34440,
+      "gear": 151,
+      "executionWallMs": 50887.491633,
+      "requestedClockAdvanceMs": 128200
+    },
+    {
+      "directory": "city-river373",
+      "launches": [
+        {
+          "ordinal": 373,
+          "alias": "city-of-the-damned"
+        },
+        {
+          "ordinal": 374,
+          "alias": "river-of-flame"
+        }
+      ],
+      "outcomes": [
+        "victory",
+        "victory"
+      ],
+      "winningWaves": 12,
+      "nonwins": 0,
+      "heroXP": 87690,
+      "gear": 229,
+      "executionWallMs": 89228.54518700001,
+      "requestedClockAdvanceMs": 250100
+    },
+    {
+      "directory": "diablo375",
+      "launches": [
+        {
+          "ordinal": 375,
+          "alias": "chaos-sanctuary"
+        }
+      ],
+      "outcomes": [
+        "nonwin"
+      ],
+      "winningWaves": 6,
+      "nonwins": 1,
+      "heroXP": 44510,
+      "gear": 107,
+      "executionWallMs": 56787.884586,
+      "requestedClockAdvanceMs": 161900
+    }
+  ],
+  "guardianHeroXP": 18000,
+  "guardianMercXP": 13500,
+  "guardianCacheItems": 4,
+  "guardianCacheRuneShards": 35937,
+  "finalLevel": 31,
+  "finalExperience": 37084,
+  "nextNormal": 376,
+  "finalOwnedGear": 19893,
+  "heroXPEarned": 302070,
+  "finalRawSHA256": "f16814259c3ac7bf7ba70752521cc792212ddf97ab9447dcbc233fa2cd57639c",
+  "scope": "genuine historical campaign continuation, Mephisto victory/Guardian claimed and actual ActIV attempts; full C2-C4 and G0-G7 remain incomplete",
+  "allLaunches": [
+    {
+      "ordinal": 369,
+      "alias": "durance-of-hate"
+    },
+    {
+      "ordinal": 370,
+      "alias": "outer-steppes"
+    },
+    {
+      "ordinal": 371,
+      "alias": "plains-of-despair"
+    },
+    {
+      "ordinal": 372,
+      "alias": "plains-of-despair"
+    },
+    {
+      "ordinal": 373,
+      "alias": "city-of-the-damned"
+    },
+    {
+      "ordinal": 374,
+      "alias": "river-of-flame"
+    },
+    {
+      "ordinal": 375,
+      "alias": "chaos-sanctuary"
+    }
+  ],
+  "winningWaves": 39,
+  "failedWaves": 1,
+  "finalStatPoints": 5,
+  "finalSkillPoints": 1,
+  "finalWarmth": 3,
+  "sourceDrift": [],
+  "finalScope": "Genuine historical Mephisto369 victory and claimedGuardian; allfiveActIVareasentered, Izual/Hellforgeclaimed, actualDiablo375defeat retained. C2-C4/fullG0-G7 incomplete."
+}

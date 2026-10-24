@@ -38,3 +38,9 @@ destination; no diagnostic save or gear transfer is promoted.
 Validation:52 focused tests pass; full11670/451 pass with two existing skips;
 typecheck/lint/production build pass. Four browser cases and12 exact durable
 pairs pass. See [evidence](../../docs/plans/evidence/p03-selected-equipment-slot.md).
+
+Follow-up: the blanket diagnostic limitation above was too broad. A later
+explicit-slot preflight proves the final owned-damage proposal has only weapon,
+amulet and left-ring swaps, with complete actual gear maps/derived stats matching
+that final proposal. Original reports remain retained. The product bug and its
+causal regressions remain valid; see the [correction and continuation](../../docs/plans/evidence/d11-earned-mephisto-and-act4-through375.md).

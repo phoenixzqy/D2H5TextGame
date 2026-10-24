@@ -10998,3 +10998,41 @@ archive is verified. Root retains raw diagnostic evidence in the three named
 subdirectories under `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop`
 through campaign/full-v1 consumers, then removes it. Local only; goal and claimed
 worktree remain active.
+
+
+## D11 — Earned Mephisto and Act IV continuation through375
+
+[Earned evidence](evidence/d11-earned-mephisto-and-act4-through375.md) records
+actual Mephisto369 victory and Guardian Claim, then six further launches through
+Chaos375. Izual and Hellforge are completed/claimed with actual source-bound
+Hammer/Soulstone consumption; all three seals open. Diablo375 defeats the party
+in wave7 after six winning waves. Preserve that loss: no Terror's End Claim,
+Diablo credit or Act V unlock. Seven launches total39 winning waves, one failed
+wave,302070 earned hero XP and936 gear including the Guardian cache.
+
+The separately qualified preparation uses three exact owned swaps, one free stat
+reset and Static Field/Frozen Orb priority, with no paid skill reset or projected
+save promotion. New explicit-slot preflight corrects the earlier blanket claim
+that the final three-swap gear proposal was inconclusive; original reports and
+BUG160 regressions remain retained. BUG161 records four corrected task-local
+harness assumptions and exact consumed-state resumes, without gameplay replay.
+
+Final genuine save is L31/XP37084/next376 with19893 unique owned gear, five stat
+and one skill point unspent, Warmth3 and the original Rogue. The135-export audit
+passes22 exact Save-close-Continue pairs and all18957 ancestral full item
+payloads;903source/760build hashes match, seven built JS files are bridge-free
+and four served chunks are exact. Production source remains59f2590; prior
+11670/451 unit/typecheck/lint/build results remain applicable, with two existing
+skips. Fresh build passes8.5s. Existing timing/bundle/PWA limits remain open;
+transport timings do not establish30–50-hour campaign pacing.
+
+The116-entry versioned archive and standalone genuine final save are verified;
+complete exports remain in the310-file raw manifest. Root retains both exact
+hybrid-preparation369 and priority-preparation369 raw directories under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop`
+through campaign/full-v1 consumers, then removes them. All task processes are
+terminal;4437closed; exact disposable paths absent, cleanup remaining[]/failures[].
+C0/C1 retain historical acceptance; C2 is unfinished at Diablo; C3/C4,213-skill,
+pacing, independent acceptance and fullG0–G7 remain incomplete. Next is owned
+physical mitigation and legal earned-point preparation for new actual376.
+Local only; the umbrella goal and claimed worktree remain active.
