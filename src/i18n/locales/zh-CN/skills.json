@@ -852,7 +852,7 @@
     },
     "conviction": {
       "name": "信念",
-      "desc": "光环：所有敌人全抗性 -25%。"
+      "desc": "选择后于下一波生效：来源英雄存活时，使敌人全部六种抗性各降低{{enemyResistReductionPct}}个百分点，可降至零以下。友方召唤物也受益于敌人减抗。每级使英雄和原本上阵且存活的佣兵获得元素伤害+{{elementalDamagePct}}%、奥术伤害+{{arcaneDamagePct}}%。需要角色等级{{level}}及庇护所，最高{{cap}}级。"
     },
     "meditation": {
       "name": "冥想",
@@ -884,7 +884,7 @@
     },
     "holy-freeze": {
       "name": "神圣冰冻",
-      "desc": "光环：冰冷所有附近敌人。"
+      "desc": "选择后于下一波生效：来源英雄存活时，冰冷全部敌人，使攻击速度降低{{chillSlowPct}}%。普通冰冷与佣兵神圣冰冻只产生一次减速。每级使英雄和原本上阵且存活的佣兵获得冰冷伤害+{{coldDamagePct}}%、物理闪避+{{physDodgePct}}个百分点。需要角色等级{{level}}，最高{{cap}}级。佣兵光环另有独立的全队冰冷伤害加成。"
     },
     "holy-shock": {
       "name": "神圣冲击",

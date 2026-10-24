@@ -2420,6 +2420,16 @@
         "requires": false
       }
     }
+  }, {
+    "if": {
+      "properties": { "id": { "const": "skills-paladin-conviction" } },
+      "required": ["id"]
+    },
+    "then": {
+      "required": ["conviction"],
+      "properties": { "conviction": { "$ref": "#/properties/conviction" } }
+    },
+    "else": { "properties": { "conviction": false } }
   }],
   "if": {
     "properties": { "id": { "const": "skills-necromancer-amplify-damage" } },
@@ -2439,6 +2449,18 @@
     }
   },
   "properties": {
+    "conviction": {
+      "type": "object",
+      "description": "Exact selected player Conviction enemy resistance reduction, applied before existing resistance penalties and clamps.",
+      "additionalProperties": false,
+      "required": ["enemyResistReductionPct"],
+      "properties": {
+        "enemyResistReductionPct": {
+          "type": "number", "minimum": 0, "maximum": 100,
+          "description": "Finite percentage points subtracted from each enemy resistance while the selected source hero lives."
+        }
+      }
+    },
     "timedBuff": {
       "type": "object",
       "additionalProperties": false,

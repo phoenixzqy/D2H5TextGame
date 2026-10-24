@@ -146,6 +146,37 @@ beforeEach(() => {
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('native selected Might wave composition', () => {
+  it.each(['paladin.holy-freeze', 'paladin.conviction'] as const)('applies %s through native allocation, replay and persistence without income', selectedAuraId => {
+    arrange(0);
+    const dataId = selectedAuraId.replace('paladin.', 'skills-paladin-');
+    configure({ skillLevels: Object.fromEntries((paladinSkills.find(row => row.id === dataId)?.prerequisites ?? []).map(id => [id, 1])) });
+    expect(usePlayerStore.getState().allocateSkillPoint(dataId)).toBe('ok');
+    expect(usePlayerStore.getState().selectAura(selectedAuraId)).toBe('ok');
+    start();
+    const original = structuredClone(latest()), first = recording();
+    if (selectedAuraId === 'paladin.holy-freeze') {
+      expect(first.events).toContainEqual(expect.objectContaining({ kind: 'status-state', initial: true,
+        statuses: [expect.objectContaining({ id: 'chill', sourceId: player().id })] }));
+    } else {
+      const { statAura: _projection, ...none } = original;
+      const control = runControl(none);
+      const actual = first.events.find(e => e.kind === 'damage' && e.source === player().id && e.amount > 0);
+      const baseline = control.events.find(e => e.kind === 'damage' && e.source === player().id && e.amount > 0);
+      if (actual?.kind !== 'damage' || baseline?.kind !== 'damage') throw new Error('Missing native Conviction damage pair');
+      expect(actual.amount).toBeGreaterThan(baseline.amount);
+    }
+    const saved = snapshotStores();
+    expect(saved?.player.selectedAuraId).toBe(selectedAuraId);
+    expect(saved?.player).not.toHaveProperty('statAura');
+    const income = structuredClone({ items: useInventoryStore.getState().backpack,
+      currencies: useInventoryStore.getState().currencies, xp: player().experience });
+    replay();
+    expect(latest().playerTeam).toEqual(original.playerTeam);
+    expect(latest().statAura).toEqual(original.statAura);
+    expect(useCombatStore.getState().recordedEvents).toEqual(first.events);
+    expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies,
+      xp: player().experience }).toEqual(income);
+  });
   it.each(STAT_AURA_IDS)('captures %s at the native wave boundary and persists selection without transient effects', selectedAuraId => {
     arrange(0);
     const dataId = selectedAuraId.replace('paladin.', 'skills-paladin-');

@@ -39,6 +39,7 @@ import { resolveEquippedRunewordGrants } from '@/engine/items/runeword-grants';
 import { governedActiveId, projectGovernedActives } from '@/engine/skills/runeword-actives';
 import { AMPLIFY_DAMAGE_DEFINITION } from '@/engine/combat/amplify-damage-definition';
 import { STATUS_DEFAULTS } from '@/engine/combat/status';
+import { CHILL_DEFINITION } from '@/engine/combat/chill-definition';
 import { METEOR_ARMOR_MELT_DEFINITION } from '@/engine/skills/armor-melt';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { AMAZON_PASSIVE_DEFINITIONS, AMAZON_PASSIVE_IDENTITIES, AMAZON_PASSIVE_KEYS } from '@/engine/skills/amazon-passives';
@@ -1185,7 +1186,9 @@ function dynamicDescription(
     const definition = STAT_AURA_DEFINITIONS[statAuraId];
     return t(`${statAuraId}.desc`, { ...Object.fromEntries(Object.entries(definition.perRank)
       .map(([key, value]) => [key, Number((value * 100).toFixed(4))])),
-      level: definition.requiredLevel, cap: definition.maxRank });
+      level: definition.requiredLevel, cap: definition.maxRank,
+      chillSlowPct: (1 - CHILL_DEFINITION.attackSpeedMultiplier) * 100,
+      enemyResistReductionPct: definition.enemyResistReductionPct });
   }
   if (skill.id === BONE_ARMOR_IDS[0]) {
     const d = BONE_ARMOR_DEFINITION;

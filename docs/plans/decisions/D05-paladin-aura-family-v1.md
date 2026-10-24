@@ -38,16 +38,47 @@ Damage increases add to existing increases. Attack and Defense scale a fresh
 baseline view. Resistances enter existing penalties/clamps. No aura multiplies
 prior aura-modified state.
 
+## Enemy-effect batch: Holy Freeze and Conviction
+
+Local implementation decision; independent design/QA/balance acceptance open.
+These implement existing advertised effects through the selected wave projection.
+
+Holy Freeze uses the shared JSON-owned Chill multiplier for every living enemy
+while the eligible source hero lives. It derives observable Chill with the hero's
+source ID, without persisting enemy statuses or impersonating a mercenary source.
+Ordinary Chill and native mercenary Holy Freeze share one slowdown, never stack.
+Pending action progress is preserved when a source disappears. The mercenary's
+separate party-wide cold bonus remains mercenary-only. Preserve authored unlock18,
+Holy Fire prerequisite, +3% cold damage and +0.5 percentage point physical dodge
+per allocated rank for hero/original living fielded merc; cap20. Crowd control
+does not extinguish a living hero's aura.
+
+Conviction subtracts a JSON-owned25 percentage points from all six resistances
+of living enemy defenders while the source hero lives (zero becomes-25). It adds
+to existing attacker penetration/curses before ordinary act penalties and clamps.
+This enemy debuff also benefits damage from allied summons, whereas its authored
++2% fire/cold/lightning and +1% arcane increased damage per rank apply only to the
+hero/original living fielded merc. Preserve authored unlock30, Sanctuary prerequisite
+and cap20; this resolves the old spec's contradictory unlock24 and mislabeled
+Chinese name. The resistance reduction is fixed across ranks; the damage bonuses
+scale. Add strict `conviction.enemyResistReductionPct` data/schema metadata, not
+an engine constant. No new RNG, raw resistance mutation or saved transient state.
+
+Acceptance requires actual cadence/status provenance and six-type mitigated damage,
+source death/CC/forgery controls, additive Cold Mastery/Amplify Damage, native public
+allocation/selection/next-wave/replay, and bilingual production persistence/layout.
+
 ## Remaining required effects
 
-Holy Fire/Shock require actual damage pulses; Holy Freeze requires enemy Chill;
-Conviction requires enemy resistance reduction; Sanctuary requires undead damage
+Holy Fire/Shock require actual damage pulses; Sanctuary requires undead damage
 and explicit no-movement repulsion adaptation. Cleansing requires poison/curse
 duration reduction; Redemption consumes authoritative corpses for life/mana;
 Prayer heals; Vigor requires a truthful no-movement/stamina adaptation;
 Concentration requires an explicit interruption-prevention rule. Existing JSON
 and older descriptions disagree for these ten: resolve their affected rules and
-data explicitly before implementation. Do not expose or count stat-only
+data explicitly before implementation. Holy Freeze/Conviction follow the resolved
+contract above but remain unverified until their implementation/evidence is complete.
+Do not expose or count stat-only
 substitutes as completion of those effects.
 
 Save v22 follows [ADR-011](../../decisions/ADR-011-version-player-aura-selection.md).

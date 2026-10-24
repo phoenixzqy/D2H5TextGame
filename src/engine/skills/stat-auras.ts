@@ -5,23 +5,26 @@ import type { Player } from '../types/entities';
 import type { SkillDef } from '../types/skills';
 import { createSkillValidator } from './skill-validator';
 
-/** Auras whose complete authored effects use existing combat stat consumers. */
+/** Selected stat auras, including their derived enemy Chill and resistance effects. */
 export const STAT_AURA_IDS = Object.freeze(['paladin.thorns', 'paladin.blessed-aim', 'paladin.fanaticism',
-  'paladin.defiance', 'paladin.resist-fire', 'paladin.resist-cold', 'paladin.resist-lightning', 'paladin.salvation'] as const);
+  'paladin.defiance', 'paladin.resist-fire', 'paladin.resist-cold', 'paladin.resist-lightning', 'paladin.salvation',
+  'paladin.holy-freeze', 'paladin.conviction'] as const);
 export type StatAuraId = typeof STAT_AURA_IDS[number];
 type BonusKey = 'thornsPct' | 'attackPct' | 'physicalDamagePct' | 'attackSpeedPct' | 'defensePct'
-  | 'resistAllPct' | 'fireDamagePct' | 'coldDamagePct' | 'lightningDamagePct' | 'elementalDamagePct';
+  | 'resistAllPct' | 'fireDamagePct' | 'coldDamagePct' | 'lightningDamagePct' | 'elementalDamagePct' | 'physDodgePct' | 'arcaneDamagePct';
 type Bonuses = Readonly<Partial<Record<BonusKey, number>>>;
 const keys: Readonly<Record<StatAuraId, readonly BonusKey[]>> = {
   'paladin.thorns': ['thornsPct'], 'paladin.blessed-aim': ['attackPct'],
   'paladin.fanaticism': ['physicalDamagePct', 'attackSpeedPct'], 'paladin.defiance': ['defensePct'],
   'paladin.resist-fire': ['resistAllPct', 'fireDamagePct'], 'paladin.resist-cold': ['resistAllPct', 'coldDamagePct'],
-  'paladin.resist-lightning': ['resistAllPct', 'lightningDamagePct'], 'paladin.salvation': ['resistAllPct', 'elementalDamagePct']
+  'paladin.resist-lightning': ['resistAllPct', 'lightningDamagePct'], 'paladin.salvation': ['resistAllPct', 'elementalDamagePct'],
+  'paladin.holy-freeze': ['coldDamagePct', 'physDodgePct'], 'paladin.conviction': ['elementalDamagePct', 'arcaneDamagePct']
 };
 export interface StatAuraDefinition {
   readonly requiredLevel: number;
   readonly maxRank: number;
   readonly perRank: Bonuses;
+  readonly enemyResistReductionPct?: number;
 }
 export interface StatAuraProjection {
   readonly selectedAuraId: StatAuraId;
@@ -30,6 +33,7 @@ export interface StatAuraProjection {
   readonly rank: number;
   readonly maxRank: number;
   readonly bonuses: Bonuses;
+  readonly enemyResistReductionPct?: number;
 }
 const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number; readonly aura?: boolean; readonly effects?: unknown }>();
 
@@ -54,6 +58,7 @@ export function resolveStatAuraDefinitions(rows: readonly unknown[]): Readonly<R
       throw new Error(`Invalid authored stat aura coefficients ${id}`);
     }
     return [id, Object.freeze({ requiredLevel: row.requiredLevel, maxRank: row.maxLevel,
+      ...(row.conviction ? { enemyResistReductionPct: row.conviction.enemyResistReductionPct } : {}),
       perRank: Object.freeze(Object.fromEntries(keys[id].map(key => [key, perRank[key]]))) })];
   })) as Record<StatAuraId, StatAuraDefinition>);
 }
@@ -80,6 +85,7 @@ export function composeStatAura(player: Pick<Player, 'id' | 'class' | 'level' | 
   if (rank === 0) return undefined;
   const definition = STAT_AURA_DEFINITIONS[id];
   return Object.freeze({ selectedAuraId: id, sourceHeroId: player.id, rank, maxRank: definition.maxRank,
+    ...(definition.enemyResistReductionPct !== undefined ? { enemyResistReductionPct: definition.enemyResistReductionPct } : {}),
     bonuses: Object.freeze(Object.fromEntries(keys[id].map(key => [key, (definition.perRank[key] ?? 0) * rank]))),
     ...(fieldedMercCombatId && fieldedMercCombatId !== player.id ? { fieldedMercCombatId } : {}) });
 }
@@ -87,6 +93,10 @@ export function composeStatAura(player: Pick<Player, 'id' | 'class' | 'level' | 
 function valid(aura: StatAuraProjection): boolean {
   const bonuses: unknown = aura.bonuses;
   return isStatAuraId(aura.selectedAuraId) && typeof aura.sourceHeroId === 'string' && aura.sourceHeroId.length > 0 &&
+    (aura.selectedAuraId === 'paladin.conviction'
+      ? typeof aura.enemyResistReductionPct === 'number' && Number.isFinite(aura.enemyResistReductionPct) &&
+        aura.enemyResistReductionPct >= 0 && aura.enemyResistReductionPct <= 100
+      : aura.enemyResistReductionPct === undefined) &&
     Number.isInteger(aura.rank) && aura.rank > 0 && Number.isInteger(aura.maxRank) && aura.rank <= aura.maxRank &&
     aura.maxRank <= STAT_AURA_DEFINITIONS[aura.selectedAuraId].maxRank &&
     typeof bonuses === 'object' && bonuses !== null &&
@@ -98,6 +108,7 @@ function valid(aura: StatAuraProjection): boolean {
 export function copyStatAuraProjection(aura: StatAuraProjection | undefined): StatAuraProjection | undefined {
   if (!aura || !valid(aura)) return undefined;
   return Object.freeze({ selectedAuraId: aura.selectedAuraId, sourceHeroId: aura.sourceHeroId,
+    ...(aura.enemyResistReductionPct !== undefined ? { enemyResistReductionPct: aura.enemyResistReductionPct } : {}),
     rank: aura.rank, maxRank: aura.maxRank, bonuses: Object.freeze({ ...aura.bonuses }),
     ...(typeof aura.fieldedMercCombatId === 'string' && aura.fieldedMercCombatId !== aura.sourceHeroId
       ? { fieldedMercCombatId: aura.fieldedMercCombatId } : {}) });
@@ -126,5 +137,6 @@ export function statAuraDamageBonus(aura: StatAuraProjection | undefined, type: 
   if (type === 'fire') return (bonus.fireDamagePct ?? 0) + (bonus.elementalDamagePct ?? 0);
   if (type === 'cold') return (bonus.coldDamagePct ?? 0) + (bonus.elementalDamagePct ?? 0);
   if (type === 'lightning') return (bonus.lightningDamagePct ?? 0) + (bonus.elementalDamagePct ?? 0);
+  if (type === 'arcane') return bonus.arcaneDamagePct ?? 0;
   return 0;
 }

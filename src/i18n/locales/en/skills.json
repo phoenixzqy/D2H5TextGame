@@ -852,7 +852,7 @@
     },
     "conviction": {
       "name": "Conviction",
-      "desc": "Aura: reduces all resistances of all enemies by 25%."
+      "desc": "Select for the next wave: while the source hero lives, reduces all six enemy resistances by {{enemyResistReductionPct}} percentage points, including below zero. Allied summons also benefit from the enemy debuff. Per rank, the hero and originally fielded living mercenary gain elemental damage +{{elementalDamagePct}}% and arcane damage +{{arcaneDamagePct}}%. Requires level {{level}} and Sanctuary; maximum {{cap}} ranks."
     },
     "meditation": {
       "name": "Meditation",
@@ -884,7 +884,7 @@
     },
     "holy-freeze": {
       "name": "Holy Freeze",
-      "desc": "Aura: chills all nearby enemies."
+      "desc": "Select for the next wave: while the source hero lives, chills every enemy, reducing Attack Speed by {{chillSlowPct}}%. Ordinary Chill and mercenary Holy Freeze share one slowdown. Per rank, the hero and originally fielded living mercenary gain cold damage +{{coldDamagePct}}% and Physical Dodge +{{physDodgePct}} percentage points. Requires level {{level}}; maximum {{cap}} ranks. A mercenary aura grants its separate party cold bonus."
     },
     "holy-shock": {
       "name": "Holy Shock",

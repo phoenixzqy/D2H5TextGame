@@ -265,11 +265,20 @@ function holyFreezeSourceId(state: State): string | undefined {
   });
 }
 
+/** Mercenary and selected hero Freeze supply one ambient Chill, with actual source provenance. */
+function ambientChillSourceId(state: State): string | undefined {
+  const merc = holyFreezeSourceId(state);
+  if (merc !== undefined) return merc;
+  const aura = state.statAura;
+  return aura?.selectedAuraId === 'paladin.holy-freeze' && activeStatAura(aura, aura.sourceHeroId, state.units)
+    ? aura.sourceHeroId : undefined;
+}
+
 /** Shared derived view for presentation and direct-hit combos, never written to raw statuses. */
 function combatStatusView(state: State, unit: CombatUnit): CombatUnit {
   const active = activeStatusView(unit, state.simClockMs);
   if (unit.side !== 'enemy' || !alive(unit) || hasStatus(active, 'chill')) return active;
-  const sourceId = holyFreezeSourceId(state);
+  const sourceId = ambientChillSourceId(state);
   return sourceId === undefined ? active : { ...active, statuses: [...active.statuses,
     { id: 'chill', stacks: 1, remaining: -1, sourceId, tags: ['cold', 'chill'] }] };
 }
@@ -289,7 +298,7 @@ function observeStatuses(state: State, target: string, initial = false): void {
 /** Keep base stats intact; active Chill changes the stat before cadence/clamps. */
 function effectiveActionPeriod(state: State, unit: CombatUnit): number {
   const chilled = unit.statuses.some(s => s.id === 'chill' && statusActiveAt(s, state.simClockMs)) ||
-    (unit.side === 'enemy' && holyFreezeSourceId(state) !== undefined);
+    (unit.side === 'enemy' && ambientChillSourceId(state) !== undefined);
   const enrage = unit.enraged ? unit.enrage?.attackSpeedMultiplier ?? 1 : 1;
   const speedBonus = (activeBurstOfSpeed(unit, state.simClockMs)?.attackSpeedPct ?? 0) +
     (activeStatAura(state.statAura, unit.id, state.units)?.bonuses.attackSpeedPct ?? 0);
@@ -312,7 +321,7 @@ function reconcileActionPeriods(state: State): void {
       state.actionSchedule.delete(id);
       continue;
     }
-    if (state.holyFreezeSources.length > 0) observeStatuses(state, id);
+    if (state.holyFreezeSources.length > 0 || state.statAura?.selectedAuraId === 'paladin.holy-freeze') observeStatuses(state, id);
     const period = effectiveActionPeriod(state, unit);
     if (period === scheduled.period) continue;
     const remaining = Math.max(0, scheduled.at - state.simClockMs);
@@ -473,7 +482,9 @@ function buildDamageInput(
   const stats = attacker.stats;
   const attackerAura = activeStatAura(state.statAura, attacker.id, state.units);
   const defenderAura = activeStatAura(state.statAura, defender.id, state.units);
-  const resistBonus = (defenderAura?.bonuses.resistAllPct ?? 0) * 100;
+  const enemyAura = state.statAura && defender.side === 'enemy'
+    ? activeStatAura(state.statAura, state.statAura.sourceHeroId, state.units) : undefined;
+  const resistBonus = (defenderAura?.bonuses.resistAllPct ?? 0) * 100 - (enemyAura?.enemyResistReductionPct ?? 0);
   const resistances = resistBonus === 0 ? defender.stats.resistances : {
     physical: defender.stats.resistances.physical + resistBonus,
     fire: defender.stats.resistances.fire + resistBonus, cold: defender.stats.resistances.cold + resistBonus,
@@ -514,7 +525,8 @@ function buildDamageInput(
     defenderMagicResist: defender.stats.magicResist,
     defenderDodge:
       effect.damageType === 'physical' || effect.damageType === 'thorns'
-        ? defender.stats.physDodge + (activeBurstOfSpeed(defender, state.simClockMs)?.physDodgePct ?? 0)
+        ? defender.stats.physDodge + (activeBurstOfSpeed(defender, state.simClockMs)?.physDodgePct ?? 0) +
+          (defenderAura?.bonuses.physDodgePct ?? 0)
         : defender.stats.magicDodge,
     ...(defender.resistPenalty !== undefined ? { resistPenalty: defender.resistPenalty } : {})
   };

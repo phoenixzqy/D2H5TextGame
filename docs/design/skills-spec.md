@@ -112,7 +112,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 |---|---|---|---|
 | `paladin.might` | Might / 力量 | Per allocated rank: +3% physical damage and +1% Attack; cap20 (+60% / +20%) | Explicit selection; living self + fielded living merc, any position; unlock L1 |
 | `paladin.holy_fire` | Holy Fire / 圣火 | 20 fire damage/turn to all enemies | AOE burn aura |
-| `paladin.conviction` | Conviction / 救赎 | -25% enemy all resists | Unlocks L24 |
+| `paladin.conviction` | Conviction / 信念 | Selected: -25 percentage points to all six enemy resistances; +2% elemental and +1% arcane damage per rank for hero/fielded merc | Unlocks L30, Sanctuary prerequisite; cap20; D05 aura-family contract |
 | `paladin.meditation` | Meditation / 冥想 | Per allocated rank: adds 3% of source hero normal mana regeneration per second; cap20 (+60%) | Explicit selection; living self + original living fielded merc, each retains own baseline; unlock L24 |
 
 ---

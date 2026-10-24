@@ -182,6 +182,8 @@ export interface SkillDef {
   readonly coldMastery?: ColdMasteryTuning;
   /** Native mercenary aura party cold increase, in percentage points. */
   readonly holyFreeze?: { readonly coldDamagePct: number };
+  /** JSON-owned enemy resistance reduction in percentage points; exact player Conviction only. */
+  readonly conviction?: { readonly enemyResistReductionPct: number };
   readonly id: string;
   readonly name: string;
   readonly description: string;

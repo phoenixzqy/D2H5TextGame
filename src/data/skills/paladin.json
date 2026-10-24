@@ -266,6 +266,7 @@
   },
   {
     "id": "skills-paladin-conviction",
+    "conviction": { "enemyResistReductionPct": 25 },
     "name": "skills.paladin.conviction.name",
     "description": "skills.paladin.conviction.desc",
     "icon": "skills/paladin/conviction.png",
