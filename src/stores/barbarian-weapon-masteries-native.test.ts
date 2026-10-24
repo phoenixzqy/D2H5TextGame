@@ -22,7 +22,9 @@ import { useHydrationStore } from './hydrationStore';
 const FINISHER = 'fixture.weapon-mastery-finisher';
 const stores = [useCombatStore, usePlayerStore, useInventoryStore, useMapStore,
   useMercStore, useFormationStore, useMetaStore] as const;
-const weapons = ['wp1h-short-sword', 'weapon-axe', 'weapon-mace'];
+const weapons = ['wp1h-short-sword', 'weapon-axe', 'weapon-mace',
+  'wp2h-war-pike', 'weapon-spear', 'weapon-throwing-knife'];
+const masterySlugs = ['sword', 'axe', 'mace', 'pole-arm', 'spear', 'throwing'];
 function reset() {
   __resetPersistenceForTests(); abortSubAreaRun();
   for (const store of stores) store.getState().reset();
@@ -50,8 +52,9 @@ function equip(index: number) {
 /** Constructed eligibility and a synthetic battle finisher, never an earned campaign proof. */
 function arrange(allocated = false) {
   const fresh = createMockPlayer('Native weapon-mastery fixture', 'barbarian');
-  usePlayerStore.getState().setPlayer({ ...fresh, level: 30, skillPoints: 3, comboOrder: [FINISHER],
-    skillLevels: allocated ? { 'barbarian.sword_mastery': 2, 'barbarian.axe_mastery': 3, 'barbarian.mace_mastery': 4 } : {} });
+  usePlayerStore.getState().setPlayer({ ...fresh, level: 30, skillPoints: 6, comboOrder: [FINISHER],
+    skillLevels: allocated ? { 'barbarian.sword_mastery': 2, 'barbarian.axe_mastery': 3, 'barbarian.mace_mastery': 4,
+      'barbarian.pole_arm_mastery': 5, 'barbarian.spear_mastery': 6, 'barbarian.throwing_mastery': 7 } : {} });
   for (const [index, base] of weapons.entries()) {
     const item: Item = { id: 'fixture-weapon-' + String(index), baseId: 'items/base/' + base,
       rarity: 'normal', level: 1, socketCapacity: 0, identified: true, equipped: false, affixes: [] };
@@ -87,10 +90,10 @@ afterEach(() => {
 });
 
 describe('native weapon-mastery lifecycle', () => {
-  it('learns all three while unarmed; native sword/axe swaps affect only subsequent waves and carry original resources', () => {
+  it('learns all six while unarmed; native sword/axe swaps affect only subsequent waves and carry original resources', () => {
     arrange(); start();
     const before = recording(), baseline = structuredClone(currentHero());
-    for (const key of ['sword', 'axe', 'mace']) {
+    for (const key of masterySlugs) {
       expect(usePlayerStore.getState().allocateSkillPoint('skills-barbarian-' + key + '-mastery')).toBe('ok');
       expect(recording()).toEqual(before);
     }
@@ -118,10 +121,34 @@ describe('native weapon-mastery lifecycle', () => {
     expect(recording()).toEqual(replayed);
   });
 
-  it.each([0, 1, 2])('roundtrips real equipped weapon %s and allocation without persisting combat bonuses', async index => {
+  it.each([3, 4, 5])('native mastery %s applies next wave and resets on replay without healing or income', index => {
+    arrange(); start();
+    const first = recording(), baseline = structuredClone(currentHero());
+    const slug = masterySlugs[index]; if (!slug) throw new Error('Missing mastery fixture identity');
+    expect(usePlayerStore.getState().allocateSkillPoint('skills-barbarian-' + slug + '-mastery')).toBe('ok');
+    equip(index); expect(recording()).toEqual(first);
+    nextWave();
+    const learned = structuredClone(currentHero());
+    expect(learned.increasedDamagePct?.physical).toBe(index === 5 ? 0.025 : 0.03);
+    expect(learned.stats.critChance).toBeCloseTo(baseline.stats.critChance + (index === 5 ? 0 : 0.005), 12);
+    expect(learned.stats.attackSpeed).toBeCloseTo(baseline.stats.attackSpeed * (index === 5 ? 1.01 : 1), 12);
+    const second = recording();
+    expect(resetSkillsForCompositionTest()).toBe('ok'); expect(recording()).toEqual(second);
+    refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+    expect(currentHero().increasedDamagePct?.physical).toBeUndefined();
+    expect(currentHero().stats.attackSpeed).toBe(baseline.stats.attackSpeed);
+    expect(currentHero().stats.critChance).toBe(baseline.stats.critChance);
+    expect([currentHero().life, currentHero().mana]).toEqual([learned.life, learned.mana]);
+    expect(useCombatStore.getState().runRewards).toEqual(second.rewards);
+    const replay = recording(); refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+    expect(recording()).toEqual(replay);
+  });
+
+  it.each([0, 1, 2, 3, 4, 5])('roundtrips real equipped weapon %s and allocation without persisting combat bonuses', async index => {
     arrange(true); equip(index);
     const expected = playerToCombatUnit(player());
-    expect(player().derivedStats.critChance).toBeLessThan(expected.stats.critChance);
+    if (index === 5) expect(player().derivedStats.attackSpeed).toBeLessThan(expected.stats.attackSpeed);
+    else expect(player().derivedStats.critChance).toBeLessThan(expected.stats.critChance);
     const save = snapshotStores(); if (!save) throw new Error('Missing snapshot');
     const persisted = structuredClone(save.player);
     await importIntoStores(JSON.stringify(toJsonSafe(save)));

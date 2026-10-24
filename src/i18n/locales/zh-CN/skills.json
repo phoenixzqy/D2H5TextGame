@@ -503,15 +503,15 @@
     },
     "pole-arm-mastery": {
       "name": "长杆武器精通",
-      "desc": "增加长杆武器伤害和命中率。"
+      "desc": "武器栏装备长柄武器时自动生效：每级增加{{physical}}%物理伤害和{{critical}}个百分点暴击率。角色{{level}}级解锁，最高{{cap}}级。变更从下一波开始生效。"
     },
     "throwing-mastery": {
       "name": "投掷精通",
-      "desc": "增加投掷武器伤害和命中率。"
+      "desc": "武器栏装备投掷武器时自动生效：每级增加{{physical}}%物理伤害和{{speed}}%攻击速度。角色{{level}}级解锁，最高{{cap}}级。变更从下一波开始生效。"
     },
     "spear-mastery": {
       "name": "矛类精通",
-      "desc": "增加矛类武器伤害和命中率。"
+      "desc": "武器栏装备矛类武器时自动生效：每级增加{{physical}}%物理伤害和{{critical}}个百分点暴击率。角色{{level}}级解锁，最高{{cap}}级。变更从下一波开始生效。"
     },
     "increased-stamina": {
       "name": "提升耐力",

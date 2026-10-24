@@ -365,6 +365,7 @@
     "cooldown": 0,
     "minLevel": 1,
     "maxLevel": 20,
+    "requires": { "weaponType": ["polearm"] },
     "scaling": {
       "passiveStatsPerLevel": {
         "physicalDamagePct": 0.03,
@@ -385,6 +386,7 @@
     "cooldown": 0,
     "minLevel": 1,
     "maxLevel": 20,
+    "requires": { "weaponType": ["throwing"] },
     "scaling": {
       "passiveStatsPerLevel": {
         "physicalDamagePct": 0.025,
@@ -405,6 +407,7 @@
     "cooldown": 0,
     "minLevel": 1,
     "maxLevel": 20,
+    "requires": { "weaponType": ["spear"] },
     "scaling": {
       "passiveStatsPerLevel": {
         "physicalDamagePct": 0.03,

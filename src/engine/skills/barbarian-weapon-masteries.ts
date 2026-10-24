@@ -9,8 +9,12 @@ export const BARBARIAN_WEAPON_MASTERY_IDENTITIES = {
   sword: ['skills-barbarian-sword-mastery', 'barbarian.sword_mastery'],
   axe: ['skills-barbarian-axe-mastery', 'barbarian.axe_mastery'],
   mace: ['skills-barbarian-mace-mastery', 'barbarian.mace_mastery'],
+  polearm: ['skills-barbarian-pole-arm-mastery', 'barbarian.pole_arm_mastery'],
+  spear: ['skills-barbarian-spear-mastery', 'barbarian.spear_mastery'],
+  throwing: ['skills-barbarian-throwing-mastery', 'barbarian.throwing_mastery'],
 } as const;
 type MasteryKey = keyof typeof BARBARIAN_WEAPON_MASTERY_IDENTITIES;
+export const BARBARIAN_WEAPON_MASTERY_KEYS = ['sword', 'axe', 'mace', 'polearm', 'spear', 'throwing'] as const;
 
 /** Immutable authored unlock, cap, required weapon and fractional per-rank tuning. */
 export interface BarbarianWeaponMasteryDefinition {
@@ -19,6 +23,7 @@ export interface BarbarianWeaponMasteryDefinition {
   readonly weaponType: WeaponType;
   readonly physicalDamagePctPerRank: number;
   readonly critChancePctPerRank: number;
+  readonly attackSpeedPctPerRank: number;
 }
 export type BarbarianWeaponMasteryDefinitions = Readonly<Record<MasteryKey, BarbarianWeaponMasteryDefinition>>;
 const validate = new Ajv2020({ strict: true, allErrors: true })
@@ -34,14 +39,16 @@ export function resolveBarbarianWeaponMasteryDefinitions(rows: readonly unknown[
     if (!validate(row)) throw new Error('Invalid authored ' + id);
     const weaponType = row.requires?.weaponType?.[0];
     const physicalDamagePctPerRank = row.scaling?.passiveStatsPerLevel?.physicalDamagePct;
-    const critChancePctPerRank = row.scaling?.passiveStatsPerLevel?.critChancePct;
-    if (weaponType === undefined || physicalDamagePctPerRank === undefined || critChancePctPerRank === undefined) {
+    const critChancePctPerRank = row.scaling?.passiveStatsPerLevel?.critChancePct ?? 0;
+    const attackSpeedPctPerRank = row.scaling?.passiveStatsPerLevel?.attackSpeedPct ?? 0;
+    if (weaponType === undefined || physicalDamagePctPerRank === undefined) {
       throw new Error('Missing authored weapon-mastery metadata');
     }
     return Object.freeze({ requiredLevel: row.requiredLevel, maxRank: row.maxLevel,
-      weaponType, physicalDamagePctPerRank, critChancePctPerRank });
+      weaponType, physicalDamagePctPerRank, critChancePctPerRank, attackSpeedPctPerRank });
   };
-  return Object.freeze({ sword: read('sword'), axe: read('axe'), mace: read('mace') });
+  return Object.freeze({ sword: read('sword'), axe: read('axe'), mace: read('mace'),
+    polearm: read('polearm'), spear: read('spear'), throwing: read('throwing') });
 }
 
 /** Tuning independent of subsequent mutable catalog/registry changes. */
@@ -64,15 +71,16 @@ export function resolveBarbarianWeaponMasteryRank(key: MasteryKey, levels?: Read
 export function composeBarbarianWeaponMasteries(input: { readonly classId: string; readonly level: number;
   readonly weaponType?: WeaponType; readonly skillLevels?: Readonly<Record<string, number>> },
   definitions: BarbarianWeaponMasteryDefinitions = BARBARIAN_WEAPON_MASTERY_DEFINITIONS
-): { readonly physicalDamagePct: number; readonly critChanceBonus: number } {
+): { readonly physicalDamagePct: number; readonly critChanceBonus: number; readonly attackSpeedMultiplier: number } {
   if (input.classId === 'barbarian' && Number.isFinite(input.level)) {
-    for (const key of ['sword', 'axe', 'mace'] as const) {
+    for (const key of BARBARIAN_WEAPON_MASTERY_KEYS) {
       const definition = definitions[key];
       if (input.weaponType !== definition.weaponType || input.level < definition.requiredLevel) continue;
       const rank = resolveBarbarianWeaponMasteryRank(key, input.skillLevels, definitions);
       return Object.freeze({ physicalDamagePct: rank * definition.physicalDamagePctPerRank,
-        critChanceBonus: rank * definition.critChancePctPerRank });
+        critChanceBonus: rank * definition.critChancePctPerRank,
+        attackSpeedMultiplier: 1 + rank * definition.attackSpeedPctPerRank });
     }
   }
-  return Object.freeze({ physicalDamagePct: 0, critChanceBonus: 0 });
+  return Object.freeze({ physicalDamagePct: 0, critChanceBonus: 0, attackSpeedMultiplier: 1 });
 }

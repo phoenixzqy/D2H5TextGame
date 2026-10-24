@@ -14,7 +14,9 @@
             "enum": [
               "skills-barbarian-sword-mastery",
               "skills-barbarian-axe-mastery",
-              "skills-barbarian-mace-mastery"
+              "skills-barbarian-mace-mastery",
+              "skills-barbarian-pole-arm-mastery",
+              "skills-barbarian-spear-mastery"
             ]
           }
         },
@@ -30,7 +32,9 @@
           "passive"
         ],
         "properties": {
-          "requiredLevel": { "$ref": "#/properties/requiredLevel" },
+          "requiredLevel": {
+            "$ref": "#/properties/requiredLevel"
+          },
           "trigger": {
             "const": "passive"
           },
@@ -177,6 +181,186 @@
                     "weaponType": {
                       "const": [
                         "mace"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-barbarian-pole-arm-mastery"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "then": {
+              "properties": {
+                "requires": {
+                  "type": "object",
+                  "properties": {
+                    "weaponType": {
+                      "const": [
+                        "polearm"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-barbarian-spear-mastery"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "then": {
+              "properties": {
+                "requires": {
+                  "type": "object",
+                  "properties": {
+                    "weaponType": {
+                      "const": [
+                        "spear"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "enum": [
+              "skills-barbarian-throwing-mastery"
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "scaling",
+          "requires",
+          "passive"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "$ref": "#/properties/requiredLevel"
+          },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "passive": {
+            "const": true
+          },
+          "aura": {
+            "const": false
+          },
+          "summon": {
+            "const": false
+          },
+          "requires": {
+            "type": "object",
+            "required": [
+              "weaponType"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "weaponType": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 1,
+                "items": {
+                  "$ref": "#/$defs/weaponType"
+                }
+              }
+            }
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "required": [
+                  "physicalDamagePct",
+                  "attackSpeedPct"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "physicalDamagePct": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "attackSpeedPct": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "cost": false,
+          "damage": false,
+          "damageType": false,
+          "appliesStatus": false,
+          "statusEffect": false,
+          "additionalStatusEffects": false,
+          "appliesTags": false,
+          "synergies": false,
+          "heal": false,
+          "summonId": false,
+          "aoeShape": false
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-barbarian-throwing-mastery"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "then": {
+              "properties": {
+                "requires": {
+                  "type": "object",
+                  "properties": {
+                    "weaponType": {
+                      "const": [
+                        "throwing"
                       ]
                     }
                   }

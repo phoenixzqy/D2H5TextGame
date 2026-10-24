@@ -44,7 +44,7 @@ import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-
 import { AMAZON_PASSIVE_DEFINITIONS } from '@/engine/skills/amazon-passives';
 import { BARBARIAN_ENDURANCE_DEFINITIONS, BARBARIAN_ENDURANCE_IDENTITIES,
   resolveBarbarianEnduranceRank } from '@/engine/skills/barbarian-endurance';
-import { BARBARIAN_WEAPON_MASTERY_DEFINITIONS, BARBARIAN_WEAPON_MASTERY_IDENTITIES,
+import { BARBARIAN_WEAPON_MASTERY_DEFINITIONS, BARBARIAN_WEAPON_MASTERY_IDENTITIES, BARBARIAN_WEAPON_MASTERY_KEYS,
   resolveBarbarianWeaponMasteryRank } from '@/engine/skills/barbarian-weapon-masteries';
 import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
 import { GOLEM_MASTERY_DEFINITION, composeGolemMastery, resolveGolemMasteryRank } from '@/engine/skills/golem-mastery';
@@ -168,7 +168,7 @@ export function SkillsScreen() {
         else map.delete(alias);
       }
     }
-    for (const key of ['sword', 'axe', 'mace'] as const) {
+    for (const key of BARBARIAN_WEAPON_MASTERY_KEYS) {
       const rank = resolveBarbarianWeaponMasteryRank(key, levels);
       for (const alias of BARBARIAN_WEAPON_MASTERY_IDENTITIES[key]) {
         if (rank > 0) map.set(alias, rank);
@@ -1150,12 +1150,13 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
-  for (const key of ['sword', 'axe', 'mace'] as const) {
+  for (const key of BARBARIAN_WEAPON_MASTERY_KEYS) {
     if (skill.id === BARBARIAN_WEAPON_MASTERY_IDENTITIES[key][0]) {
-      const { requiredLevel, maxRank, physicalDamagePctPerRank, critChancePctPerRank }
+      const { requiredLevel, maxRank, physicalDamagePctPerRank, critChancePctPerRank, attackSpeedPctPerRank }
         = BARBARIAN_WEAPON_MASTERY_DEFINITIONS[key];
-      return t('barbarian.' + key + '-mastery.desc', { physical: physicalDamagePctPerRank * 100,
-        critical: critChancePctPerRank * 100, cap: maxRank, level: requiredLevel });
+      const slug = BARBARIAN_WEAPON_MASTERY_IDENTITIES[key][0].replace('skills-barbarian-', '');
+      return t('barbarian.' + slug + '.desc', { physical: physicalDamagePctPerRank * 100,
+        critical: critChancePctPerRank * 100, speed: attackSpeedPctPerRank * 100, cap: maxRank, level: requiredLevel });
     }
   }
   for (const key of ['stamina', 'speed', 'resistance'] as const) {

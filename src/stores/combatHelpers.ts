@@ -178,7 +178,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
   const lifeMax = freshStats.lifeMax * endurance.lifeMultiplier;
   const stats = { ...freshStats,
     lifeMax,
-    attackSpeed: freshStats.attackSpeed * endurance.attackSpeedMultiplier,
+    attackSpeed: freshStats.attackSpeed * endurance.attackSpeedMultiplier * mastery.attackSpeedMultiplier,
     attack: freshStats.attack * amazon.attackMultiplier,
     critChance: freshStats.critChance + amazon.critChanceBonus + mastery.critChanceBonus,
     physDodge: freshStats.physDodge + amazon.physDodgeBonus + endurance.physDodgeBonus,

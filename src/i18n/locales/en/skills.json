@@ -503,15 +503,15 @@
     },
     "pole-arm-mastery": {
       "name": "Pole Arm Mastery",
-      "desc": "Increases damage and attack rating with polearms."
+      "desc": "Automatically adds {{physical}}% physical damage and {{critical}} percentage points of critical chance per rank while a polearm is equipped in the weapon slot. Unlocks at level {{level}}, maximum {{cap}} ranks. Changes apply from the next wave."
     },
     "throwing-mastery": {
       "name": "Throwing Mastery",
-      "desc": "Increases damage and attack rating with throwing weapons."
+      "desc": "Automatically adds {{physical}}% physical damage and {{speed}}% attack speed per rank while a throwing weapon is equipped in the weapon slot. Unlocks at level {{level}}, maximum {{cap}} ranks. Changes apply from the next wave."
     },
     "spear-mastery": {
       "name": "Spear Mastery",
-      "desc": "Increases damage and attack rating with spears."
+      "desc": "Automatically adds {{physical}}% physical damage and {{critical}} percentage points of critical chance per rank while a spear is equipped in the weapon slot. Unlocks at level {{level}}, maximum {{cap}} ranks. Changes apply from the next wave."
     },
     "increased-stamina": {
       "name": "Increased Stamina",

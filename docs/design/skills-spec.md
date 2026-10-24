@@ -157,6 +157,9 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 | `barbarian.sword_mastery` | Sword Mastery / 剑类精通 | +3% direct physical damage and +0.5pp critical chance per rank | L1, cap20; canonical weapon slot must hold a sword, either handedness; [D05 contract](../plans/decisions/D05-barbarian-weapon-masteries-v1.md) |
 | `barbarian.axe_mastery` | Axe Mastery / 斧类精通 | +3% direct physical damage and +0.5pp critical chance per rank | L1, cap20; canonical weapon slot must hold an axe; other learned masteries do not stack |
 | `barbarian.mace_mastery` | Mace Mastery / 钝器精通 | +3% direct physical damage and +0.5pp critical chance per rank | L1, cap20; canonical weapon slot must hold a mace; automatic from next wave |
+| `barbarian.pole_arm_mastery` | Pole Arm Mastery / 长杆武器精通 | Per allocated rank: +3% direct physical damage and +0.5pp direct-hit critical chance; cap20 | Automatic with canonical weapon-slot polearm; unlock L6; War Pike remains polearm |
+| `barbarian.spear_mastery` | Spear Mastery / 矛类精通 | Per allocated rank: +3% direct physical damage and +0.5pp direct-hit critical chance; cap20 | Automatic with canonical weapon-slot spear; unlock L6 |
+| `barbarian.throwing_mastery` | Throwing Mastery / 投掷精通 | Per allocated rank: +2.5% direct physical damage and +1% attack speed; cap20 | Automatic with canonical weapon-slot throwing weapon; unlock L6; no critical bonus |
 | `barbarian.iron_skin` | Iron Skin / 钢铁之肤 | +4% ordinary defense per allocated rank; cap20/+80% | L18; [D05 controlling contract](../plans/decisions/D05-iron-skin-v1.md) |
 | `barbarian.natural_resistance` | Natural Resistance / 自然抗性 | +2pp each of six resistances and +0.5pp magical dodge per rank | L30; Iron Skin prerequisite; cap20; [D05 contract](../plans/decisions/D05-barbarian-endurance-v1.md) |
 | `barbarian.increased_stamina` | Increased Stamina / 提升耐力 | +3% equipment-derived combat max life per rank | L12; cap20; automatic, no healing on learning |

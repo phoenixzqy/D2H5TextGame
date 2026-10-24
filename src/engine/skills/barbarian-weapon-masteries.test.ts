@@ -4,13 +4,13 @@ import { BARBARIAN_WEAPON_MASTERY_DEFINITIONS as definitions,
   BARBARIAN_WEAPON_MASTERY_IDENTITIES as identities, composeBarbarianWeaponMasteries,
   resolveBarbarianWeaponMasteryDefinitions, resolveBarbarianWeaponMasteryRank } from './barbarian-weapon-masteries';
 
-const neutral = { physicalDamagePct: 0, critChanceBonus: 0 };
+const neutral = { physicalDamagePct: 0, critChanceBonus: 0, attackSpeedMultiplier: 1 };
 describe('authored weapon-mastery definitions and composition', () => {
   it.each(['sword', 'axe', 'mace'] as const)('copies/freeze-validates %s metadata, aliases, ranks, cap and eligibility', key => {
     const rows = structuredClone(skills), before = structuredClone(rows);
     const copy = resolveBarbarianWeaponMasteryDefinitions(rows);
     expect(copy[key]).toEqual({ requiredLevel: 1, maxRank: 20, weaponType: key,
-      physicalDamagePctPerRank: 0.03, critChancePctPerRank: 0.005 });
+      physicalDamagePctPerRank: 0.03, critChancePctPerRank: 0.005, attackSpeedPctPerRank: 0 });
     expect(Object.isFrozen(copy)).toBe(true); expect(Object.isFrozen(copy[key])).toBe(true);
     expect(rows).toEqual(before); expect(Object.isFrozen(rows)).toBe(false);
     rows.splice(0, rows.length); expect(copy).toEqual(definitions);
@@ -19,9 +19,9 @@ describe('authored weapon-mastery definitions and composition', () => {
     expect(resolveBarbarianWeaponMasteryRank(key, { [authored]: 20, [canonical]: 2 })).toBe(20);
     const input = { classId: 'barbarian', level: 1, weaponType: key };
     expect(composeBarbarianWeaponMasteries({ ...input, skillLevels: { [authored]: 1 } }))
-      .toEqual({ physicalDamagePct: 0.03, critChanceBonus: 0.005 });
+      .toEqual({ physicalDamagePct: 0.03, critChanceBonus: 0.005, attackSpeedMultiplier: 1 });
     expect(composeBarbarianWeaponMasteries({ ...input, skillLevels: { [canonical]: 20 } }))
-      .toEqual({ physicalDamagePct: 0.6, critChanceBonus: 0.1 });
+      .toEqual({ physicalDamagePct: 0.6, critChanceBonus: 0.1, attackSpeedMultiplier: 1 });
     expect(composeBarbarianWeaponMasteries({ ...input, skillLevels: { [canonical + '-lookalike']: 20 } })).toEqual(neutral);
     for (const allocated of [0, -1, 1.5, NaN, Infinity, null, '20', true]) {
       const bad = { [authored]: allocated } as unknown as Record<string, number>;
@@ -50,6 +50,6 @@ describe('authored weapon-mastery definitions and composition', () => {
     const input = { classId: 'barbarian', weaponType: 'sword' as const, skillLevels: { 'barbarian.sword_mastery': 99 } };
     expect(composeBarbarianWeaponMasteries({ ...input, level: 8 }, copy)).toEqual(neutral);
     expect(composeBarbarianWeaponMasteries({ ...input, level: 9 }, copy))
-      .toEqual({ physicalDamagePct: 3.875, critChanceBonus: 0.31 });
+      .toEqual({ physicalDamagePct: 3.875, critChanceBonus: 0.31, attackSpeedMultiplier: 1 });
   });
 });
