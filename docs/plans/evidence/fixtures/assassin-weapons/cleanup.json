@@ -1,0 +1,18 @@
+{
+  "removedRoot": "/tmp/d2h5-assassin-weapons-b3rh1x0t",
+  "rootAbsent": true,
+  "disposableDirectories": [
+    "/tmp/d2h5-assassin-weapons-b3rh1x0t/browser-complete-output",
+    "/tmp/d2h5-assassin-weapons-b3rh1x0t/browser-final-output",
+    "/tmp/d2h5-assassin-weapons-b3rh1x0t/browser-output",
+    "/tmp/d2h5-assassin-weapons-b3rh1x0t/build",
+    "/tmp/d2h5-assassin-weapons-b3rh1x0t/build-complete",
+    "/tmp/d2h5-assassin-weapons-b3rh1x0t/build-final",
+    "/tmp/d2h5-assassin-weapons-b3rh1x0t/build-integrated"
+  ],
+  "port4458Closed": true,
+  "archiveByteVerifiedBeforeRemoval": true,
+  "failures": [],
+  "remainingTaskScratchPaths": [],
+  "claim": "preserved for active full-v1 goal"
+}

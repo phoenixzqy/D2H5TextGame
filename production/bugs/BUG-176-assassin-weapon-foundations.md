@@ -1,6 +1,6 @@
 # BUG-176 — Enable Assassin weapon equipment and passives
 
-Severity: High. Status: reproduced; implementation in progress.
+Severity: High. Status: fixed locally in `a673b47`; independent acceptance and earned balance open.
 Owner: root (engine/frontend/content). Baseline c5a20f7.
 Reproduction: native Vitest store/adapter, no browser/viewport/locale required;
 seed7 for later combat controls.
@@ -40,3 +40,5 @@ resolver's duplicated baseSlot===slot check. Reuse the canonical base-aware
 slot predicate, preserving exact socket validation, duplicate reduction, invalid
 container/two-handed exclusions and the separate mercenary equip refusal.
 Security check: pass; no external content, dependencies, credentials or policies.
+
+Final verification and retained causal regressions: [D05 evidence](../../docs/plans/evidence/d05-assassin-weapons.md).

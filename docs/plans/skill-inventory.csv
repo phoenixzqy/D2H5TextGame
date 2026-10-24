@@ -35,8 +35,8 @@ assassin,skills-assassin-blade-fury,assassin.blade_fury,active,damage,,src/data/
 assassin,skills-assassin-mind-blast,assassin.mind_blast,active,damage,mana-burn|stun,src/data/skills/assassin.json,additional-statuses-truncated-by-adapter,unverified,
 assassin,skills-assassin-dragon-claw,assassin.dragon_claw,active,damage,,src/data/skills/assassin.json,,unverified,
 assassin,skills-assassin-phoenix-strike,assassin.phoenix_strike,active,damage,burn|chill|paralyze,src/data/skills/assassin.json,additional-statuses-truncated-by-adapter|dot-strength-metadata-missing|burn-ignite-vocabulary-mismatch,unverified,
-assassin,skills-assassin-claw-mastery,assassin.claw_mastery,passive,buff,,src/data/skills/assassin.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
-assassin,skills-assassin-weapon-block,assassin.weapon_block,passive,buff,,src/data/skills/assassin.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+assassin,skills-assassin-claw-mastery,assassin.claw_mastery,passive,buff-metadata+weapon-gated-fresh-player-composition,,src/data/skills/assassin.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-assassin-weapons.md
+assassin,skills-assassin-weapon-block,assassin.weapon_block,passive,buff-metadata+weapon-gated-fresh-player-composition,,src/data/skills/assassin.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-assassin-weapons.md
 assassin,skills-assassin-fade,assassin.fade,passive,buff,,src/data/skills/assassin.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 assassin,skills-assassin-venom,assassin.venom,passive,buff,,src/data/skills/assassin.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 assassin,skills-assassin-tiger-strike,assassin.tiger_strike,active,damage,,src/data/skills/assassin.json,,unverified,

@@ -1,0 +1,291 @@
+{
+  "stats": {
+    "startTime": "2026-10-24T20:13:18.444Z",
+    "duration": 142160.399,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": [],
+  "cases": [
+    {
+      "title": "assassin.claw_mastery native allocation and exact Continue en",
+      "project": "assassin-weapon-desktop",
+      "status": "passed",
+      "retry": 0,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "title": "assassin.weapon_block native allocation and exact Continue en",
+      "project": "assassin-weapon-desktop",
+      "status": "passed",
+      "retry": 0,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "title": "assassin.claw_mastery native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-desktop",
+      "status": "passed",
+      "retry": 0,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "title": "assassin.weapon_block native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-desktop",
+      "status": "passed",
+      "retry": 0,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "title": "assassin.claw_mastery native allocation and exact Continue en",
+      "project": "assassin-weapon-mobile",
+      "status": "passed",
+      "retry": 0,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "title": "assassin.weapon_block native allocation and exact Continue en",
+      "project": "assassin-weapon-mobile",
+      "status": "passed",
+      "retry": 0,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "title": "assassin.claw_mastery native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-mobile",
+      "status": "passed",
+      "retry": 0,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "title": "assassin.weapon_block native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-mobile",
+      "status": "passed",
+      "retry": 0,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    }
+  ],
+  "attachments": [
+    {
+      "case": "assassin.claw_mastery native allocation and exact Continue en",
+      "project": "assassin-weapon-desktop",
+      "name": "allocated-mastery",
+      "bytes": 114302,
+      "sha256": "4f6a79f2e5d991e6b259e04f7bf826e17bb5342b5acae60faa36dfdf970e89d5"
+    },
+    {
+      "case": "assassin.claw_mastery native allocation and exact Continue en",
+      "project": "assassin-weapon-desktop",
+      "name": "mastery-after-Continue",
+      "bytes": 112551,
+      "sha256": "d71ee6a0dd3bac809e6fe148c52186f6470332f19f676c5b75244408ce51c897"
+    },
+    {
+      "case": "assassin.claw_mastery native allocation and exact Continue en",
+      "project": "assassin-weapon-desktop",
+      "name": "exact-Continue",
+      "bytes": 9258,
+      "sha256": "f1d4724220319d57fd24dbea9380ba90de00a99e10e410d16f542b728e61a897"
+    },
+    {
+      "case": "assassin.weapon_block native allocation and exact Continue en",
+      "project": "assassin-weapon-desktop",
+      "name": "allocated-mastery",
+      "bytes": 117497,
+      "sha256": "2a9bb9142e44f2b7c9652a634806f4e2e722eb8bbf576571ae0c769d2d0f737f"
+    },
+    {
+      "case": "assassin.weapon_block native allocation and exact Continue en",
+      "project": "assassin-weapon-desktop",
+      "name": "mastery-after-Continue",
+      "bytes": 115578,
+      "sha256": "a9cdcb001a5a36902f773c8028a90751028936c473d9b635e2485b27cfc0aa35"
+    },
+    {
+      "case": "assassin.weapon_block native allocation and exact Continue en",
+      "project": "assassin-weapon-desktop",
+      "name": "exact-Continue",
+      "bytes": 9330,
+      "sha256": "f7c223e8cac6b307ad7827dab41246c7934e4df0788ea44f3da1733d4c990ce0"
+    },
+    {
+      "case": "assassin.claw_mastery native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-desktop",
+      "name": "allocated-mastery",
+      "bytes": 111834,
+      "sha256": "833d9d90843a44806e0f57edb0910aa4cbd0a2c0b5fecc98963cddf53e6fdbab"
+    },
+    {
+      "case": "assassin.claw_mastery native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-desktop",
+      "name": "mastery-after-Continue",
+      "bytes": 109842,
+      "sha256": "fde205b11e355ea3402da6f4d708a02b4e44b8a74a4d10f077d374d50ea67ca4"
+    },
+    {
+      "case": "assassin.claw_mastery native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-desktop",
+      "name": "exact-Continue",
+      "bytes": 9264,
+      "sha256": "4a7c978906379e8c23a19cb18c82b5fef5cd5a32362a7b773d50cf605e4d6258"
+    },
+    {
+      "case": "assassin.weapon_block native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-desktop",
+      "name": "allocated-mastery",
+      "bytes": 112789,
+      "sha256": "4421cecd7ce0423cd85178f989d3d4bf73ad9ee57ad59c51da529454a7eae741"
+    },
+    {
+      "case": "assassin.weapon_block native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-desktop",
+      "name": "mastery-after-Continue",
+      "bytes": 111016,
+      "sha256": "7b4f279d6906c93b7f89a6d60b5965d60f6a5855a5481c5e1981b54a454d05b0"
+    },
+    {
+      "case": "assassin.weapon_block native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-desktop",
+      "name": "exact-Continue",
+      "bytes": 9336,
+      "sha256": "2604df901d28a82bb2190330013a6759aa6807d93b4d1c855d1b60657d4eeb66"
+    },
+    {
+      "case": "assassin.claw_mastery native allocation and exact Continue en",
+      "project": "assassin-weapon-mobile",
+      "name": "allocated-mastery",
+      "bytes": 164355,
+      "sha256": "3082c18ad4716ac7b075367bba6fa4cdc594ecf312ab8736b7abf498af1034aa"
+    },
+    {
+      "case": "assassin.claw_mastery native allocation and exact Continue en",
+      "project": "assassin-weapon-mobile",
+      "name": "mastery-after-Continue",
+      "bytes": 176552,
+      "sha256": "01a906208ab6fc2700cb8a5a1f507f5e42cda13cdadfa71eb7fe2a8e1349033c"
+    },
+    {
+      "case": "assassin.claw_mastery native allocation and exact Continue en",
+      "project": "assassin-weapon-mobile",
+      "name": "exact-Continue",
+      "bytes": 9258,
+      "sha256": "19e6d5de72b28b2ebe8e7a8220452062bd815e2d13831f3b148b5402e3245edf"
+    },
+    {
+      "case": "assassin.weapon_block native allocation and exact Continue en",
+      "project": "assassin-weapon-mobile",
+      "name": "allocated-mastery",
+      "bytes": 175126,
+      "sha256": "3d64c6a296f9dfc94d9707501127ffb02a09734633f5d23ad027c57e59b2860a"
+    },
+    {
+      "case": "assassin.weapon_block native allocation and exact Continue en",
+      "project": "assassin-weapon-mobile",
+      "name": "mastery-after-Continue",
+      "bytes": 190623,
+      "sha256": "20222ec5c69e06469e1c5a1820458835de3a3608840b04fe4d36ac568b09beda"
+    },
+    {
+      "case": "assassin.weapon_block native allocation and exact Continue en",
+      "project": "assassin-weapon-mobile",
+      "name": "exact-Continue",
+      "bytes": 9330,
+      "sha256": "114df6bd130a87afb156e5c53ad8e9986847f6eb3118fef16285ed81c9062eed"
+    },
+    {
+      "case": "assassin.claw_mastery native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-mobile",
+      "name": "allocated-mastery",
+      "bytes": 195860,
+      "sha256": "4a79bde7aa468c26bbb9066571906502e95c71cd9a06913ef15a1f7502ace461"
+    },
+    {
+      "case": "assassin.claw_mastery native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-mobile",
+      "name": "mastery-after-Continue",
+      "bytes": 167458,
+      "sha256": "d7600186d1f4bdfbea0bd44b6a845f9319adbec923f53b1f5301d458b4a78d71"
+    },
+    {
+      "case": "assassin.claw_mastery native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-mobile",
+      "name": "exact-Continue",
+      "bytes": 9264,
+      "sha256": "0535de312ea41fda9442f1ff04359bd594cc3d42d19029e207bb65397ec27ff0"
+    },
+    {
+      "case": "assassin.weapon_block native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-mobile",
+      "name": "allocated-mastery",
+      "bytes": 206824,
+      "sha256": "739fc9c2f41bc40c1d3464ebcae070bea9bddfff377dc193a2ff5695e589b924"
+    },
+    {
+      "case": "assassin.weapon_block native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-mobile",
+      "name": "mastery-after-Continue",
+      "bytes": 182240,
+      "sha256": "3fe02d9cd951baa27224e5845626b0d991e10f59f1b069fc30942652a3e69222"
+    },
+    {
+      "case": "assassin.weapon_block native allocation and exact Continue zh-CN",
+      "project": "assassin-weapon-mobile",
+      "name": "exact-Continue",
+      "bytes": 9336,
+      "sha256": "173984571afca4a44bbbbdc136ecccc175b66321ad42edbd21e8b6f70ddd31c6"
+    }
+  ],
+  "representativeImagesEqualToInspectedFinal": {
+    "0": false,
+    "15": true
+  }
+}
