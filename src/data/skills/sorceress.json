@@ -258,10 +258,10 @@
     "cooldown": 0,
     "minLevel": 12,
     "maxLevel": 20,
-    "scaling": {
-      "passiveStatsPerLevel": {
-        "coldDamagePct": 0.04
-      }
+    "scaling": {},
+    "coldMastery": {
+      "resistanceReductionPct": 15,
+      "resistanceReductionPerRankPct": 4
     }
   },
   {

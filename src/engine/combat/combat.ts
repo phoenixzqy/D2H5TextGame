@@ -425,11 +425,14 @@ function buildDamageInput(
   const stats = attacker.stats;
   const baseMin = scalePerRank(effect.base[0], effect.perRank?.[0], skillLevel);
   const baseMax = scalePerRank(effect.base[1], effect.perRank?.[1], skillLevel);
-  // Project the curse before the existing act penalty, resistance clamp and defense.
+  // Project source-owned penetration/curse before the existing act penalty and clamp.
   const defenderResistances = effect.damageType === 'physical'
     ? { ...defender.stats.resistances,
         physical: defender.stats.resistances.physical - amplifyDamageReduction(defender) }
-    : defender.stats.resistances;
+    : effect.damageType === 'cold' && attacker.coldResistanceReductionPct
+      ? { ...defender.stats.resistances,
+          cold: defender.stats.resistances.cold - attacker.coldResistanceReductionPct }
+      : defender.stats.resistances;
   const meltFactor = hasStatus(defender, METEOR_ARMOR_MELT_DEFINITION.statusId)
     ? 1 - METEOR_ARMOR_MELT_DEFINITION.defenseReductionPct / 100 : 1;
   const innerSightFactor = hasStatus(defender, MERC_INNER_SIGHT_DEFINITION.statusId)

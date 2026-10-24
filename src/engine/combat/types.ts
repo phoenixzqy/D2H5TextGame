@@ -87,6 +87,8 @@ export interface CombatUnit {
   readonly manaRegenExactCarry?: string;
   /** Per-type increased direct damage, composed once for a frozen wave; absent means zero. */
   readonly increasedDamagePct?: Readonly<Partial<Record<DamageType, number>>>;
+  /** Bearer-only direct cold resistance penetration in percentage points; never persisted. */
+  readonly coldResistanceReductionPct?: number;
   /** Bearer-only fraction of actual HP lost reflected after a surviving hostile physical hit. */
   readonly physicalReflectionPct?: number;
   readonly statuses: readonly ActiveStatus[];

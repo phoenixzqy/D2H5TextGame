@@ -123,6 +123,7 @@
       "summonResistAllPct": "Summon All Resist",
       "fireDamagePct": "Fire Damage",
       "coldDamagePct": "Cold Damage",
+      "coldResistanceReductionPct": "Cold Resistance Ignored",
       "lightningDamagePct": "Lightning Damage",
       "poisonDamagePct": "Poison Damage",
       "arcaneDamagePct": "Arcane Damage",
@@ -939,7 +940,7 @@
     },
     "cold-mastery": {
       "name": "Cold Mastery",
-      "desc": "Reduces enemy cold resistance by 15%."
+      "desc": "Passive: Your direct cold hits ignore {{base}} percentage points of enemy cold resistance at rank 1, plus {{growth}} per additional rank ({{max}} at rank {{cap}}). Unlocks at character level {{level}}. Applies only to you."
     },
     "lightning-mastery": {
       "name": "Lightning Mastery",

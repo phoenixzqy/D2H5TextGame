@@ -7,6 +7,25 @@
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
   "allOf": [{
+    "if": { "properties": { "id": { "const": "skills-sorceress-cold-mastery" } }, "required": ["id"] },
+    "then": {
+      "required": ["requiredLevel", "coldMastery"],
+      "properties": {
+        "requiredLevel": { "$ref": "#/properties/requiredLevel" },
+        "coldMastery": { "$ref": "#/properties/coldMastery" },
+        "trigger": { "const": "passive" }, "target": { "const": "self" },
+        "cooldown": { "const": 0 }, "passive": { "const": true },
+        "aura": { "const": false }, "summon": { "const": false },
+        "scaling": { "type": "object", "additionalProperties": false, "maxProperties": 0 },
+        "cost": false, "damage": false, "damageType": false,
+        "attackDamagePct": false, "appliesStatus": false, "statusEffect": false,
+        "additionalStatusEffects": false, "appliesTags": false, "synergies": false,
+        "heal": false, "summonId": false, "monsterSummon": false,
+        "summonBasicAttackElements": false, "aoeShape": false, "requires": false
+      }
+    },
+    "else": { "properties": { "coldMastery": false } }
+  }, {
     "if": { "properties": { "id": { "const": "item-redemption" } }, "required": ["id"] },
     "then": {
       "required": ["heal", "cost"],
@@ -742,6 +761,16 @@
       "type": "number",
       "minimum": 0,
       "description": "Cooldown in turns"
+    },
+    "coldMastery": {
+      "type": "object",
+      "description": "Bearer-only direct cold resistance penetration for the exact player Cold Mastery passive, in percentage points.",
+      "additionalProperties": false,
+      "required": ["resistanceReductionPct", "resistanceReductionPerRankPct"],
+      "properties": {
+        "resistanceReductionPct": { "type": "number", "minimum": 0, "description": "Resistance percentage points ignored at allocated rank one." },
+        "resistanceReductionPerRankPct": { "type": "number", "minimum": 0, "description": "Additional resistance percentage points ignored per allocated rank above one." }
+      }
     },
     "cost": {
       "type": "object",

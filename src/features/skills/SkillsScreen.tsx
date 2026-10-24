@@ -44,6 +44,7 @@ import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-
 import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
 import { GOLEM_MASTERY_DEFINITION, composeGolemMastery, resolveGolemMasteryRank } from '@/engine/skills/golem-mastery';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
+import { COLD_MASTERY_DEFINITION, coldMasteryReductionAtRank, resolveColdMasteryRank } from '@/engine/skills/cold-mastery';
 import { MIGHT_DEFINITION, resolveEligibleMightRank, resolveMightRank } from '@/engine/skills/might';
 import { MEDITATION_DEFINITION, resolveEligibleMeditationRank, resolveMeditationRank } from '@/engine/skills/meditation';
 import {
@@ -140,6 +141,11 @@ export function SkillsScreen() {
       else map.delete(alias);
     }
     const ironSkinRank = resolveIronSkinRank(levels);
+    const coldRank = resolveColdMasteryRank(levels);
+    for (const alias of ['sorceress.cold_mastery', 'skills-sorceress-cold-mastery']) {
+      if (coldRank > 0) map.set(alias, coldRank);
+      else map.delete(alias);
+    }
     for (const alias of ['barbarian.iron_skin', 'skills-barbarian-iron-skin']) {
       if (ironSkinRank > 0) map.set(alias, ironSkinRank);
       else map.delete(alias);
@@ -1139,6 +1145,12 @@ function dynamicDescription(
     const { lightningDamagePctPerRank, maxRank, requiredLevel } = LIGHTNING_MASTERY_DEFINITION;
     return t('sorceress.lightning-mastery.desc', { bonus: Math.round(lightningDamagePctPerRank * 100),
       maxBonus: Math.round(lightningDamagePctPerRank * maxRank * 100), cap: maxRank, level: requiredLevel });
+  }
+  if (skill.id === 'skills-sorceress-cold-mastery') {
+    const { resistanceReductionPct, resistanceReductionPerRankPct, maxRank, requiredLevel } = COLD_MASTERY_DEFINITION;
+    return t('sorceress.cold-mastery.desc', { base: resistanceReductionPct,
+      growth: resistanceReductionPerRankPct, max: coldMasteryReductionAtRank(maxRank),
+      cap: maxRank, level: requiredLevel });
   }
   if (skill.id === 'skills-barbarian-iron-skin') {
     const { defensePctPerRank, maxRank, requiredLevel } = IRON_SKIN_DEFINITION;

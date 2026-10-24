@@ -7,6 +7,12 @@ import type { DamageType, DamageInfo } from './attributes';
 import type { WeaponType, Handedness } from './items';
 import type { AoeShape } from '../combat/grid';
 
+/** Personal cold-resistance reduction in percentage points, with rank-one base. */
+export interface ColdMasteryTuning {
+  readonly resistanceReductionPct: number;
+  readonly resistanceReductionPerRankPct: number;
+}
+
 /**
  * Skill target type
  */
@@ -163,6 +169,8 @@ export interface SkillArmorMeltMetadata {
  * This is the immutable template for a skill
  */
 export interface SkillDef {
+  /** JSON-owned personal cold penetration; exact player Cold Mastery only. */
+  readonly coldMastery?: ColdMasteryTuning;
   readonly id: string;
   readonly name: string;
   readonly description: string;

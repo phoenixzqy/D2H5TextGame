@@ -123,6 +123,7 @@
       "summonResistAllPct": "召唤物全抗",
       "fireDamagePct": "火焰伤害",
       "coldDamagePct": "冰冷伤害",
+      "coldResistanceReductionPct": "无视冰冷抗性",
       "lightningDamagePct": "闪电伤害",
       "poisonDamagePct": "毒素伤害",
       "arcaneDamagePct": "奥术伤害",
@@ -939,7 +940,7 @@
     },
     "cold-mastery": {
       "name": "冰冷精通",
-      "desc": "降低敌人冰冷抗性 15%。"
+      "desc": "被动：自身直接冰冷伤害在1级时无视敌人{{base}}个百分点的冰冷抗性，之后每级增加{{growth}}个百分点（{{cap}}级时共{{max}}个百分点）。角色{{level}}级解锁，仅对自身生效。"
     },
     "lightning-mastery": {
       "name": "闪电精通",

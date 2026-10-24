@@ -9,6 +9,8 @@
  */
 
 import type { DamageType } from '../types/attributes';
+import type { ColdMasteryTuning } from '../types/skills';
+import { coldMasteryReductionAtRank } from './cold-mastery';
 import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
 import { getSummonStats } from './summons';
 import { applySkeletonMasteryStats, type SkeletonMasteryProjection } from './skeleton-mastery';
@@ -16,6 +18,7 @@ import { applyIronGolemItemStats, isIronGolemSkill, type IronGolemInput } from '
 import { applyGolemMasteryStats, type GolemMasteryProjection } from './golem-mastery';
 
 export interface DisplaySkillSource {
+  readonly coldMastery?: ColdMasteryTuning;
   readonly id: string;
   readonly trigger: string;
   readonly target: string;
@@ -246,6 +249,12 @@ function summonUnit(
 }
 
 function passiveUtilityRows(skill: DisplaySkillSource, rank: number): readonly SkillUtilityDisplayRow[] {
+  if (skill.id === 'skills-sorceress-cold-mastery' && skill.coldMastery) {
+    return [{ id: 'coldResistanceReductionPct',
+      labelKey: 'details.passiveStat.coldResistanceReductionPct',
+      value: coldMasteryReductionAtRank(rank, { ...skill.coldMastery, maxRank: skill.maxLevel }) / 100,
+      valueKind: 'percent' }];
+  }
   const scaling = skill.scaling?.passiveStatsPerLevel;
   if (!scaling) return [];
   const multiplier = Math.max(1, rank);
