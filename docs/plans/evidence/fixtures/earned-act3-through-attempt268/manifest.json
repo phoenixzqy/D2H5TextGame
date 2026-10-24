@@ -1,0 +1,22 @@
+{
+  "runtime": "7441227 plus BUG152 authored equipment bands",
+  "sourceTreasureClassesSHA256": "f73ebe9a09a2a5ba5a11adf0b90aa6801f17eec11434cd94504f426b1a61a2d7",
+  "parent": "earned-act3-through-attempt265/retained-final.json.gz",
+  "actualOrdinals": [
+    266,
+    267,
+    268
+  ],
+  "nextNormal": 269,
+  "outcome": "Flayer/Heart/Gidbinn and Bazaar/Eye/Tome complete; Travincal3 wins then wave4 defeat",
+  "heroLevel": 25,
+  "heroXP": 59741,
+  "statPoints": 10,
+  "skillPoints": 1,
+  "uniqueGear": 7316,
+  "addedXP": 94800,
+  "addedGear": 410,
+  "retainedFinalRawSHA256": "f6a306049ee4710c0e613c16c92f182d8b4d00d54c1595e8925f29bab4d262a0",
+  "rootEvidence": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop",
+  "independentAcceptance": "pending"
+}
