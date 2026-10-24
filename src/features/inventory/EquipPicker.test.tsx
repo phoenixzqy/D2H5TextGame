@@ -22,6 +22,7 @@ import { EquipPicker } from './EquipPicker';
 import { useInventoryStore, usePlayerStore } from '@/stores';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import type { Item } from '@/engine/types/items';
+import { compareEquip } from './compareEquip';
 
 function shortSword(id: string, rarity: 'normal' | 'magic'): Item {
   const affixes =
@@ -231,6 +232,37 @@ describe('<EquipPicker> — Esc / auto-select / candidate change (mirrors equip-
     expect(onEquipped).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(useInventoryStore.getState().equipped.weapon?.id).toBe('only');
+  });
+
+  it.each([
+    { slot: 'ring-right' as const, otherOccupied: true },
+    { slot: 'ring-right' as const, otherOccupied: false },
+    { slot: 'ring-left' as const, otherOccupied: false },
+  ])('replaces the previewed $slot with otherOccupied=$otherOccupied', ({ slot, otherOccupied }) => {
+    seedPlayer();
+    const ring = (id: string, life: number): Item => ({
+      id, baseId: 'items/base/ring-iron', rarity: 'magic', level: 1,
+      identified: true, equipped: false,
+      affixes: [{ id: 'affix.vital.life.flat', tier: 0, rolledValue: life }],
+    });
+    const current = { ...ring('current-ring', 7), equipped: true };
+    const other = { ...ring('other-ring', 19), equipped: true };
+    const candidate = ring('new-ring', 31);
+    const otherSlot = slot === 'ring-right' ? 'ring-left' : 'ring-right';
+    seedBackpack([candidate]);
+    act(() => {
+      useInventoryStore.setState({ equipped: { [slot]: current, [otherSlot]: otherOccupied ? other : null } });
+      usePlayerStore.getState().recomputeDerived(useInventoryStore.getState().equipped);
+    });
+    const preview = compareEquip(currentPlayer(), candidate, slot, useInventoryStore.getState().equipped);
+    render(wrap(<EquipPicker slot={slot} onClose={() => undefined} />));
+    expect(preview.current?.id).toBe(current.id);
+    fireEvent.click(screen.getByTestId('equip-picker-confirm'));
+    const after = useInventoryStore.getState();
+    expect(after.equipped[slot]?.id).toBe(candidate.id);
+    expect(after.equipped[otherSlot]).toEqual(otherOccupied ? other : null);
+    expect(after.backpack).toEqual([{ ...current, equipped: false }]);
+    expect(currentPlayer().derivedStats.lifeMax).toBe(preview.stats.lifeMax.candidate);
   });
 
   it.each([

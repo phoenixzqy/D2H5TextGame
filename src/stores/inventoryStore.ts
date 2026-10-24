@@ -15,6 +15,7 @@ import { isTwoHanded } from '@/engine/inventory/equipValidator';
 import {
   checkEligibility,
   resolveAutoEquipSlot,
+  slotMatches,
   slotCandidates,
   type PlayerLike
 } from '@/features/inventory/compareEquip';
@@ -70,7 +71,8 @@ interface InventoryState {
   discardItem: (itemId: string) => void;
   /** Bulk variant of {@link discardItem}. Removes any matching ids in either container. */
   bulkDiscard: (itemIds: readonly string[]) => void;
-  equipItem: (item: Item) => EquipResult;
+  /** Equip the owned item in a compatible explicit slot, or use the automatic slot when omitted. */
+  equipItem: (item: Item, targetSlot?: EquipmentSlot) => EquipResult;
   unequipItem: (slot: string) => UnequipResult;
   /** Move one backpack item if stash has room; refusal leaves all state unchanged. */
   moveToStash: (itemId: string) => TransferResult;
@@ -154,7 +156,7 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     };
   }); },
   
-  equipItem: (requestedItem) => {
+  equipItem: (requestedItem, requestedSlot) => {
     assertIronGolemOwnershipMutationAllowed();
     const state = get();
     const sourceIndex = state.backpack.findIndex((item) => item.id === requestedItem.id);
@@ -164,6 +166,9 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     const bases = loadItemBases();
     const base = bases.get(item.baseId);
     if (!base?.slot) return { ok: false, reason: 'no_slot' };
+    if (requestedSlot !== undefined && !slotMatches(base.slot, requestedSlot)) {
+      return { ok: false, reason: 'no_slot' };
+    }
 
     const player = usePlayerStore.getState().player;
     if (player) {
@@ -175,7 +180,7 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
       if (!eligibility.eligible) return { ok: false, reason: 'requirements_not_met' };
     }
 
-    const targetSlot = targetSlotFor(base.slot, state.equipped);
+    const targetSlot = requestedSlot ?? targetSlotFor(base.slot, state.equipped);
     const nextEquipped: Record<string, Item | null> = { ...state.equipped };
     const nextBackpack = state.backpack.filter((_, index) => index !== sourceIndex);
     const displaced: Item[] = [];

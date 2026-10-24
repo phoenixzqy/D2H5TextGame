@@ -370,8 +370,8 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
   }, [compare, equipped, selected]);
 
   const handleEquip = (): void => {
-    if (!selected) return;
-    const result = equipItem(selected);
+    if (!selected || !slot) return;
+    const result = equipItem(selected, slot);
     if (result.ok) {
       setFailureReason(null);
       onEquipped?.(selected);
