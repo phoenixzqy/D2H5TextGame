@@ -1,0 +1,16 @@
+{
+  "runtime": "eca8549c07c24d7589c4b415c97cd768799cddd3",
+  "parent": "earned-duriel-attempt260/retained-final.json.gz",
+  "actualOrdinal": 261,
+  "nextNormal": 262,
+  "outcome": "five guard victories; Duriel draw at60000ms; no boss awards/clear/Claim/ActIII unlock",
+  "heroLevel": 24,
+  "heroXP": 159042,
+  "uniqueGear": 6497,
+  "addedXP": 15950,
+  "addedGear": 115,
+  "retainedFinalRawSHA256": "8faa4d8ce782c82a935d6483c43aa0c10e635f61cf50edfa5b10b71d85147486",
+  "preparedAudit": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/armor-preparation-audit.json",
+  "rootEvidence": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop",
+  "independentAcceptance": "pending"
+}
