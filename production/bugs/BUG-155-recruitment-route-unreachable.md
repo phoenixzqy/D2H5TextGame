@@ -1,6 +1,6 @@
 # BUG-155 — Make wishstone recruitment reachable
 
-Severity: High. Status: reproduced before correction.
+Severity: High. Status: Fixed in `b2ed62b` locally; independent acceptance pending.
 Owner: frontend-dev. Runtime baseline `a0d7c7f` plus local BUG154 wallet fix.
 
 ## Reproduction
@@ -28,3 +28,12 @@ existing character-guarded screen. This implements F07's promised access.
 Security check: pass; local navigation only. Plan review: ready; production
 route tests plus bilingual/five-viewport browser proof cover the integration.
 Full rarity/pity/duplicates and merc mechanics remain separately unaccepted.
+
+## Verified correction
+
+Implementation `b2ed62b`; full11550 tests/441 files pass with2 existing skips,
+types/lint/build pass, production en/zh×five viewport sizes10/10 and two exact
+Save-close-Continue pairs pass. [Earned evidence](../../docs/plans/evidence/d10-earned-recruitment.md).
+Regression coverage: `src/stores/gachaActions.test.ts`,
+`src/features/gacha/GachaScreen.test.tsx`, `src/app/gacha-route.test.tsx`;
+BUG156 also has the measured production touch-target matrix.

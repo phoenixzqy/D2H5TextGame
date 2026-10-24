@@ -39,6 +39,14 @@ uses stat packages. `equipment-mods.ts` currently omits rune/runeword packages.
 | `wishstone` | Existing kill/quest faucets | Mercenary recruitment only | Existing `inventory.currencies` |
 | Charms | Concrete earned item drops when that catalog/family ships | Equipped/carried build effect per its own reviewed capacity contract | Item ownership, never a numeric anonymous charm balance |
 
+Local recruitment integration (BUG154; independent acceptance pending) uses the
+inventory wishstone wallet for the existing10/90 banner. A successful ordinary
+payment conserves validated legacy `meta.gachaState.currency` by adding it once
+to inventory spendable value, debiting cost, and setting legacy currency0 under
+the same transaction as roster/pity publication. Load/import/read alone leave
+both raw balances unchanged. New grants use inventory; no saved shape change.
+[Earned proof and compatibility/rollback evidence](../evidence/d10-earned-recruitment.md).
+
 Materials do not occupy backpack100/stash500 gear slots. One visible Materials
 panel lists catalog names, quantities, acquisition and uses in zh-CN/en; no
 second balance or hidden material queue. Preserve existing currency keys and

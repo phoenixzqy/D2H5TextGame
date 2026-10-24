@@ -1,0 +1,62 @@
+{
+  "status": "pass",
+  "kind": "root whole-save/conservation audit; independent acceptance pending",
+  "inputSHA256": "331c8bcb4df3f24709b5d8e7c94bfc05d9c789105106d82d3ea1193d0a0ea6fc",
+  "finalSHA256": "7d311ad83afb2162a5b8ea880260dde1bcc1d9ab8ffbb60893b77c3a2805fc92",
+  "level": 25,
+  "xp": 122811,
+  "nextOrdinals": {
+    "normal": 272,
+    "nightmare": 0
+  },
+  "wishstonesBefore": 8790,
+  "wishstonesAfter": 8700,
+  "cost": 90,
+  "pulls": 1,
+  "reveals": [
+    "Desert Merc — PrayerSR · NEW",
+    "Desert Merc — MightSSR · NEW",
+    "Rogue Scout — Cold ArrowSR · NEW",
+    "Iron Wolf — LightningSR · NEW",
+    "Desert Merc — ThornsSR · NEW",
+    "Barbarian RecruitR · NEW",
+    "Iron Wolf — Frozen ArmorR · NEW",
+    "Desert Merc — Blessed AimR · NEW",
+    "Rogue Scout — Fire ArrowSR · NEW",
+    "Iron Wolf — FireSSR · NEW"
+  ],
+  "newMercIds": [
+    "mercs/act2-prayer",
+    "mercs/act2-might",
+    "mercs/act1-rogue-cold",
+    "mercs/act3-iron-wolf-lightning",
+    "mercs/act2-thorns",
+    "mercs/act5-barbarian-recruit",
+    "mercs/act3-iron-wolf-frozen-armor",
+    "mercs/act2-blessed-aim",
+    "mercs/act1-rogue-fire",
+    "mercs/act3-iron-wolf-fire"
+  ],
+  "preservedOriginalMercs": 1,
+  "inventoryOnlyChange": "wishstone -90; all gear/materials/quest items/pools exact",
+  "allOtherSavedDomainsExact": true,
+  "roundTrips": 2,
+  "matrixCases": 10,
+  "errors": [],
+  "console": [],
+  "sourceSHA256": {
+    "src/app/routes.tsx": "882d3e892eaecf6ccc58a9fbd70f3c73d21f82b790c51d3dc189d1af81d025f9",
+    "src/features/mercs/MercsScreen.tsx": "f5ea2410ef202f14df89753b35eab3bee6a1f779d3004297494a9ebe2991f946",
+    "src/stores/metaStore.ts": "3dd34e0e8f7b99e0a4d13e0b29bfd5b7ae835f08d53713aaf45dfac51c2d8286",
+    "src/stores/gachaActions.ts": "ee762ca625d606acb9ee8bf003cb6d853d84a84fc20ec9c4802708497080ba7c",
+    "src/features/gacha/GachaScreen.tsx": "ae7f8a0618f6dcd2323eb044833c9ddad42e172bf217dafc43cef73615406982",
+    "src/i18n/locales/en/gacha.json": "975d05df1d49cc83083b2b9460ac0aa09d7b181e73d71e19dcda954be5c85b96",
+    "src/i18n/locales/zh-CN/gacha.json": "31cb9ab91a0e75fef71d38876d0b19dd6fb31dff83d56f6146c982ed49f18400"
+  },
+  "buildChunksSHA256": {
+    "react-vendor-dRBhy6jq.js": "d023b474fbe60dec77510b20d3560e8a8c6b796e6d623cf648bf12800af453fb",
+    "game-engine-CqIzUXqx.js": "1fa97c84cee8074c2e55d99513c68c552e06b85906d088e0014d0d2f29fe3506",
+    "index-DGGyJ-sd.js": "12290ed93771edc2949b08a599daf4e4b29178dacdd97f11d0f7e824a24a3437",
+    "i18n-Bxr3rY09.js": "cb3cefca3bda4b6da700c1dcd65dae18a27f3a44e5c831c09cacb7652a2505f8"
+  }
+}

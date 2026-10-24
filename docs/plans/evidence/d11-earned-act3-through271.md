@@ -41,7 +41,9 @@ audit is root-owned verification of the runner, not independent QA sign-off.
 L25/current XP122811, nextNormal272/Nightmare0, stat10/skill1 unspent.
 Raw SHA256 `331c8bcb4df3f24709b5d8e7c94bfc05d9c789105106d82d3ea1193d0a0ea6fc`.
 [Exact audit](fixtures/earned-act3-through-attempt271/retained-farm-audit.json).
-Resume this final; never replay269–271 or resume the268 parent. Travincal,
+This final is historical after the later [earned recruitment](d10-earned-recruitment.md),
+which spends90 wishstones and preserves the same next272 campaign boundary.
+Resume that newer retained final; never replay269–271 or resume the268 parent. Travincal,
 Council/Flail/Will/Orb/Guardian remain unfulfilled. Additional legitimate
 preparation and earned progression remain required; no balance acceptance.
 
