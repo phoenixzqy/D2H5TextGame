@@ -1,10 +1,9 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import rows from '../../data/skills/item.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 import type { RegisteredSkill, HealEffect } from './effects';
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<SkillDef>(skillSchema);
+const validate = createSkillValidator<SkillDef>();
 
 /** Validate the single item-specific row and copy its values into a frozen runtime skill. */
 export function resolveItemRedemption(source: readonly unknown[]): RegisteredSkill {

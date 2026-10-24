@@ -1,16 +1,15 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import necromancerSkills from '../../data/skills/necromancer.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 import type { Player } from '../types/entities';
 import { inferKind, type CombatUnit } from '../combat/types';
 
 const AUTHORED = 'skills-necromancer-golem-mastery';
 const CLAY = 'skills-necromancer-clay-golem';
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<SkillDef & {
+const validate = createSkillValidator<SkillDef & {
   readonly requiredLevel: number; readonly prerequisites?: readonly string[];
   readonly passive?: boolean; readonly aura?: boolean; readonly summon?: boolean;
-}>(skillSchema);
+}>();
 const positiveInteger = (value: number) => Number.isInteger(value) && value > 0;
 const nonnegative = (value: unknown): value is number =>
   typeof value === 'number' && Number.isFinite(value) && value >= 0;

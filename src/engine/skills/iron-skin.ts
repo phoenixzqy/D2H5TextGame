@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import barbarianSkills from '../../data/skills/barbarian.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 
 /** Independent authored unlock and potency for the player Iron Skin passive. */
@@ -10,7 +9,7 @@ export interface IronSkinDefinition {
   readonly defensePctPerRank: number;
 }
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<SkillDef & { readonly requiredLevel: number }>(skillSchema);
+const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number }>();
 
 /** Validate exactly one authored Iron Skin row and copy its primitive tuning. */
 export function resolveIronSkinDefinition(rows: readonly unknown[]): IronSkinDefinition {

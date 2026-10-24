@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import sorceressSkills from '../../data/skills/sorceress.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 
 /** Independent authored unlock and potency for the player Lightning Mastery passive. */
@@ -10,7 +9,7 @@ export interface LightningMasteryDefinition {
   readonly lightningDamagePctPerRank: number;
 }
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<SkillDef & { readonly requiredLevel: number }>(skillSchema);
+const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number }>();
 
 /** Validate exactly one authored Lightning Mastery row and copy its primitive tuning. */
 export function resolveLightningMasteryDefinition(rows: readonly unknown[]): LightningMasteryDefinition {

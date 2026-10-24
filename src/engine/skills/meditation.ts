@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import paladinSkills from '../../data/skills/paladin.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 import type { Player } from '../types/entities';
 import { inferKind, type CombatUnit } from '../combat/types';
@@ -12,7 +11,7 @@ export interface MeditationDefinition {
   readonly manaRegenPctPerRank: number;
 }
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<SkillDef & { readonly requiredLevel: number }>(skillSchema);
+const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number }>();
 
 /** Validate exactly one authored player Meditation row and copy only primitive tuning. */
 export function resolveMeditationDefinition(rows: readonly unknown[]): MeditationDefinition {

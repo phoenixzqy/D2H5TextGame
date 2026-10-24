@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import sorceressSkills from '../../data/skills/sorceress.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 
 /** Independent authored potency for the paid player Frozen Armor buff. */
@@ -9,7 +8,7 @@ export interface FrozenArmorDefinition {
   readonly defensePctPerRank: number;
 }
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<SkillDef>(skillSchema);
+const validate = createSkillValidator<SkillDef>();
 
 /** Validate exactly one authored player Frozen Armor row and copy its primitive tuning. */
 export function resolveFrozenArmorDefinition(rows: readonly unknown[]): FrozenArmorDefinition {

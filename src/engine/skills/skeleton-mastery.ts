@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import necromancerSkills from '../../data/skills/necromancer.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 import type { Player } from '../types/entities';
 import type { DerivedStats } from '../types/attributes';
@@ -15,7 +14,7 @@ export interface SkeletonMasteryDefinition {
   readonly summonDefensePctPerRank: number;
 }
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<SkillDef & { readonly requiredLevel: number }>(skillSchema);
+const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number }>();
 
 /** Validate exactly one authored row and copy its primitive Skeleton Mastery tuning. */
 export function resolveSkeletonMasteryDefinition(rows: readonly unknown[]): SkeletonMasteryDefinition {

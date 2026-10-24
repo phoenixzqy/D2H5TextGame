@@ -1,11 +1,10 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import rows from '../../data/skills/mercenary.json';
-import schema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 import type { CombatUnit } from '../combat/types';
 import type { RegisteredSkill } from './effects';
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<SkillDef>(schema);
+const validate = createSkillValidator<SkillDef>();
 
 /** Validate the unique native aura and copy immutable runtime tuning without retaining caller data. */
 export function resolveMercHolyFreeze(source: readonly unknown[]): {

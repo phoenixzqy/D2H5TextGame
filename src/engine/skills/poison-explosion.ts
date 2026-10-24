@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import necromancerSkills from '../../data/skills/necromancer.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { Player } from '../types/entities';
 import type { SkillDef } from '../types/skills';
 import type { RegisteredSkill } from './effects';
@@ -9,7 +8,7 @@ import { inferKind, type CombatUnit } from '../combat/types';
 const PE = 'necromancer.poison_explosion', AUTHORED = 'skills-necromancer-poison-explosion';
 const DAGGER = 'skills-necromancer-poison-dagger';
 type Source = SkillDef & { readonly requiredLevel: number; readonly prerequisites?: readonly string[]; readonly tree?: string };
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<Source>(skillSchema);
+const validate = createSkillValidator<Source>();
 
 /** Exact structural semantics; additional fields must receive their own mechanic review. */
 function same(value: unknown, expected: unknown): boolean {

@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import amazonSkills from '../../data/skills/amazon.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 
 const statKeys = ['critChancePct', 'attackPct', 'physDodgePct', 'magicDodgePct', 'physicalDamagePct'] as const;
@@ -29,8 +28,7 @@ export const AMAZON_PASSIVE_KEYS = ['criticalStrike', 'penetrate', 'dodge', 'avo
 export const AMAZON_PASSIVE_IDENTITIES = identities;
 export type AmazonPassiveDefinitions = Readonly<Record<PassiveKey, AmazonPassiveDefinition>>;
 
-const validate = new Ajv2020({ strict: true, allErrors: true })
-  .compile<SkillDef & { readonly requiredLevel: number }>(skillSchema);
+const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number }>();
 
 /** Validate exactly one authored row per passive and copy/freeze primitive tuning. */
 export function resolveAmazonPassiveDefinitions(rows: readonly unknown[]): AmazonPassiveDefinitions {

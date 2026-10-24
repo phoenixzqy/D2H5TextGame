@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import sorceressSkills from '../../data/skills/sorceress.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { ColdMasteryTuning, SkillDef } from '../types/skills';
 import type { Player } from '../types/entities';
 
@@ -9,8 +8,7 @@ export interface ColdMasteryDefinition extends ColdMasteryTuning {
   readonly requiredLevel: number;
   readonly maxRank: number;
 }
-const validate = new Ajv2020({ strict: true, allErrors: true })
-  .compile<SkillDef & { readonly requiredLevel: number; readonly coldMastery: ColdMasteryTuning }>(skillSchema);
+const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number; readonly coldMastery: ColdMasteryTuning }>();
 
 /** Validate exactly one authored identity and copy primitives without retaining caller state. */
 export function resolveColdMasteryDefinition(rows: readonly unknown[]): ColdMasteryDefinition {

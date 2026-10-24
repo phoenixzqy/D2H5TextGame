@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import necromancerSkills from '../../data/skills/necromancer.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 
 /** Direct basic-bolt type, drawn only from the authored Mage cycle. */
@@ -17,7 +16,7 @@ export interface SkeletalMageDefinition {
 
 type AuthoredMage = SkillDef & { readonly summon?: boolean };
 const AUTHORED_ID = 'skills-necromancer-raise-skeletal-mage';
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<AuthoredMage>(skillSchema);
+const validate = createSkillValidator<AuthoredMage>();
 
 /**
  * Validate exactly one authored Mage and copy its cycle without retaining data or registry references.

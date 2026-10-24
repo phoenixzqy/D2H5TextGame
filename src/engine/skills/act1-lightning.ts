@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import monsterSkills from '../../data/skills/monsters.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 import type { DamageEffect, RegisteredSkill } from './effects';
 
@@ -8,7 +7,7 @@ import type { DamageEffect, RegisteredSkill } from './effects';
 export const ACT1_LIGHTNING_AFFIX_ID = 'monster-act1-lightning-affix';
 /** Registered identity used by the existing effective-rank damage pipeline. */
 export const ACT1_LIGHTNING_AFFIX_CANONICAL_ID = 'monster.act1_lightning_affix';
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<SkillDef>(skillSchema);
+const validate = createSkillValidator<SkillDef>();
 
 /** Validate one authored leaf and copy its tuning into an independent immutable skill. */
 export function resolveAct1LightningAffix(rows: readonly unknown[]): RegisteredSkill {

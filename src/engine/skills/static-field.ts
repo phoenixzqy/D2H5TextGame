@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import sorceressSkills from '../../data/skills/sorceress.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef, StaticFieldTuning } from '../types/skills';
 import type { Player } from '../types/entities';
 import { inferKind, type CombatUnit } from '../combat/types';
@@ -14,8 +13,7 @@ export interface StaticFieldDefinition extends StaticFieldTuning {
   readonly requiredLevel: number;
   readonly maxRank: number;
 }
-const validate = new Ajv2020({ strict: true, allErrors: true })
-  .compile<SkillDef & { readonly requiredLevel: number; readonly staticField: StaticFieldTuning }>(skillSchema);
+const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number; readonly staticField: StaticFieldTuning }>();
 
 /** Validate exactly one source row and copy primitives without retaining mutable input. */
 export function resolveStaticFieldDefinition(rows: readonly unknown[]): StaticFieldDefinition {

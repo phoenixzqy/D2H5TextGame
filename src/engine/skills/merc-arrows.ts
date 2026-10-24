@@ -1,10 +1,9 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import mercenarySkills from '../../data/skills/mercenary.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 import type { DamageEffect, RegisteredSkill } from './effects';
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<SkillDef>(skillSchema);
+const validate = createSkillValidator<SkillDef>();
 const ids = ['mskill-basic-arrow', 'mskill-pierce-arrow'] as const;
 
 /** Resolve exactly the reviewed authored arrows into independent immutable runtime skills. */

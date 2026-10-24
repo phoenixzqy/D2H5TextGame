@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import skills from '../../data/skills/barbarian.json';
-import schema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 
 /** The only supported authored/canonical identities for this passive group. */
@@ -19,8 +18,7 @@ export interface BarbarianEnduranceDefinition {
   readonly perRank: Readonly<Record<typeof statKeys[number], number>>;
 }
 export type BarbarianEnduranceDefinitions = Readonly<Record<PassiveKey, BarbarianEnduranceDefinition>>;
-const validate = new Ajv2020({ strict: true, allErrors: true })
-  .compile<SkillDef & { readonly requiredLevel: number }>(schema);
+const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number }>();
 
 /** Validate exact identities and copy/freeze primitives without retaining caller rows. */
 export function resolveBarbarianEnduranceDefinitions(rows: readonly unknown[]): BarbarianEnduranceDefinitions {

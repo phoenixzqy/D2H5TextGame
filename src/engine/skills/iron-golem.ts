@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import necromancerSkills from '../../data/skills/necromancer.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 import type { DerivedStats } from '../types/attributes';
 import { inferKind, type CombatUnit } from '../combat/types';
@@ -12,7 +11,7 @@ const IRON_ALIAS = 'skills-necromancer-iron-golem';
 const BLOOD = 'necromancer.blood_golem';
 const BLOOD_ALIAS = 'skills-necromancer-blood-golem';
 type AuthoredSource = SkillDef & { readonly requiredLevel: number; readonly prerequisites?: readonly string[] };
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<AuthoredSource>(skillSchema);
+const validate = createSkillValidator<AuthoredSource>();
 
 function authored(id: string): AuthoredSource {
   const rows = necromancerSkills.filter(row => row.id === id);

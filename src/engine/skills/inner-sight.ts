@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import mercenarySkills from '../../data/skills/mercenary.json';
-import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 import type { DebuffEffect, RegisteredSkill } from './effects';
 
@@ -11,7 +10,7 @@ export interface MercInnerSightDefinition {
   readonly durationMs: number;
 }
 
-const validate = new Ajv2020({ strict: true, allErrors: true }).compile<SkillDef>(skillSchema);
+const validate = createSkillValidator<SkillDef>();
 
 /** Validate one exact authored row and return independent immutable runtime values. */
 export function resolveMercInnerSight(rows: readonly unknown[]): {

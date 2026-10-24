@@ -1,6 +1,5 @@
-import Ajv2020 from 'ajv/dist/2020';
+import { createSkillValidator } from './skill-validator';
 import skills from '../../data/skills/barbarian.json';
-import schema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 import type { WeaponType } from '../types/items';
 
@@ -26,8 +25,7 @@ export interface BarbarianWeaponMasteryDefinition {
   readonly attackSpeedPctPerRank: number;
 }
 export type BarbarianWeaponMasteryDefinitions = Readonly<Record<MasteryKey, BarbarianWeaponMasteryDefinition>>;
-const validate = new Ajv2020({ strict: true, allErrors: true })
-  .compile<SkillDef & { readonly requiredLevel: number }>(schema);
+const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number }>();
 
 /** Validate one exact authored row per mastery and copy/freeze primitive tuning. */
 export function resolveBarbarianWeaponMasteryDefinitions(rows: readonly unknown[]): BarbarianWeaponMasteryDefinitions {
