@@ -8,6 +8,8 @@ vi.mock('./save-adapter', () => ({ hasSave: vi.fn(), loadSave: vi.fn(),
 import * as combatEngine from '@/engine/combat/combat';
 import type { CombatSnapshot } from '@/engine/combat/combat';
 import { activeMightAura } from '@/engine/skills/might';
+import { composeStatAura, STAT_AURA_IDS } from '@/engine/skills/stat-auras';
+import paladinSkills from '@/data/skills/paladin.json';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
 import { deriveStats } from '@/engine/progression/stats';
 import { toJsonSafe } from '@/engine/save';
@@ -144,6 +146,32 @@ beforeEach(() => {
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('native selected Might wave composition', () => {
+  it.each(STAT_AURA_IDS)('captures %s at the native wave boundary and persists selection without transient effects', selectedAuraId => {
+    arrange(0);
+    const dataId = selectedAuraId.replace('paladin.', 'skills-paladin-');
+    const prerequisites = Object.fromEntries((paladinSkills.find(row => row.id === dataId)?.prerequisites ?? [])
+      .map(id => [id, 1]));
+    configure({ skillLevels: prerequisites });
+    expect(usePlayerStore.getState().allocateSkillPoint(dataId)).toBe('ok');
+    expect(usePlayerStore.getState().allocateSkillPoint(dataId)).toBe('ok');
+    expect(player().skillLevels).toEqual({ ...prerequisites, [selectedAuraId.replace(/-/g, '_')]: 2 });
+    const before = structuredClone(player());
+    expect(usePlayerStore.getState().selectAura(selectedAuraId)).toBe('ok');
+    expect(player()).toEqual({ ...before, selectedAuraId });
+    start();
+    expect(latest().statAura).toEqual(composeStatAura(player()));
+    expect(latest().mightAura).toBeUndefined();
+    expect(latest().meditationAura).toBeUndefined();
+    const saved = snapshotStores();
+    expect(saved?.player.selectedAuraId).toBe(selectedAuraId);
+    expect(saved?.player).not.toHaveProperty('statAura');
+    expect(saved).not.toHaveProperty('statAura');
+    const recorded = recording();
+    expect(usePlayerStore.getState().selectAura(null)).toBe('ok');
+    expect(recording()).toEqual(recorded);
+    advance();
+    expect(latest().statAura).toBeUndefined();
+  });
   it('keeps learning/combo unselected, freezes ordinary changes and activates only on next real wave', () => {
     arrange(0); start(); const before = recording();
     expect(usePlayerStore.getState().allocateSkillPoint(AUTHORED)).toBe('ok');

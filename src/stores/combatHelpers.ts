@@ -74,6 +74,7 @@ import { composeStaticField } from '@/engine/skills/static-field';
 import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeMightAura } from '@/engine/skills/might';
 import { composeMeditationAura } from '@/engine/skills/meditation';
+import { composeStatAura } from '@/engine/skills/stat-auras';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeBoneArmor } from '@/engine/skills/bone-armor';
 import { composeBarbarianEndurance } from '@/engine/skills/barbarian-endurance';
@@ -1112,6 +1113,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     : run.fieldedMercBareUnit;
   const mightAura = currentPlayer?.id === run.playerUnit.id
     ? composeMightAura(currentPlayer, run.fieldedMercCombatId) : undefined;
+  const statAura = currentPlayer?.id === run.playerUnit.id
+    ? composeStatAura(currentPlayer, run.fieldedMercCombatId) : undefined;
   const meditationAura = fresh && currentPlayer?.id === run.playerUnit.id
     ? composeMeditationAura(currentPlayer, fresh.manaRegenBaselinePerSecond ?? fresh.manaRegenPerSecond ?? 0,
       run.fieldedMercCombatId) : undefined;
@@ -1202,6 +1205,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       ...(ironGolem ? { ironGolem } : {}),
       ...(mightAura ? { mightAura } : {}),
       ...(meditationAura ? { meditationAura } : {}),
+      ...(statAura ? { statAura } : {}),
       ...(skeletonMastery ? { skeletonMastery } : {}),
       ...(golemMastery ? { golemMastery } : {}),
       ...(summonPassives ? { summonPassives } : {}),

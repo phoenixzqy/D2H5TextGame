@@ -39,6 +39,7 @@ import { isMercHolyFreezeSource, MERC_HOLY_FREEZE_DEFINITION } from '../skills/m
 import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { activeMightAura, type MightAuraProjection } from '../skills/might';
 import { activeMeditationAura, type MeditationAuraProjection } from '../skills/meditation';
+import { activeStatAura, copyStatAuraProjection, statAuraDamageBonus, type StatAuraProjection } from '../skills/stat-auras';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
 import { absorbBoneArmor, boneArmorPool, copyBoneArmorStatuses } from '../skills/bone-armor';
 import { activeBurstOfSpeed, burstOfSpeedRank, copyBurstOfSpeedStatuses, matchesBurstOfSpeed,
@@ -150,6 +151,8 @@ export interface CombatSnapshot {
   readonly mightAura?: MightAuraProjection;
   /** Frozen explicit Meditation selection; eligibility is captured at each interval start. */
   readonly meditationAura?: MeditationAuraProjection;
+  /** Copied selected stat aura; mutually exclusive with Might and Meditation. */
+  readonly statAura?: StatAuraProjection;
   /** Eligible player Mastery copied at wave entry; applies only at fresh summon creation. */
   readonly skeletonMastery?: SkeletonMasteryProjection;
   /** Copied authoritative Golem Mastery for fresh summons in this wave. */
@@ -187,6 +190,7 @@ interface State {
   ironGolemPreparation?: IronGolemPreparationAttestation;
   readonly mightAura?: MightAuraProjection;
   readonly meditationAura?: MeditationAuraProjection;
+  readonly statAura?: StatAuraProjection;
   readonly skeletonMastery?: SkeletonMasteryProjection;
   readonly golemMastery?: GolemMasteryProjection;
   readonly summonPassives?: SummonPassiveProjection;
@@ -287,7 +291,8 @@ function effectiveActionPeriod(state: State, unit: CombatUnit): number {
   const chilled = unit.statuses.some(s => s.id === 'chill' && statusActiveAt(s, state.simClockMs)) ||
     (unit.side === 'enemy' && holyFreezeSourceId(state) !== undefined);
   const enrage = unit.enraged ? unit.enrage?.attackSpeedMultiplier ?? 1 : 1;
-  const speedBonus = activeBurstOfSpeed(unit, state.simClockMs)?.attackSpeedPct ?? 0;
+  const speedBonus = (activeBurstOfSpeed(unit, state.simClockMs)?.attackSpeedPct ?? 0) +
+    (activeStatAura(state.statAura, unit.id, state.units)?.bonuses.attackSpeedPct ?? 0);
   return actionPeriodMs(unit.stats.attackSpeed * (1 + speedBonus) * enrage * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
 }
 
@@ -466,16 +471,25 @@ function buildDamageInput(
 ): DamageInput {
   const combo = comboMultiplier(combatStatusView(state, defender), effect.damageType);
   const stats = attacker.stats;
+  const attackerAura = activeStatAura(state.statAura, attacker.id, state.units);
+  const defenderAura = activeStatAura(state.statAura, defender.id, state.units);
+  const resistBonus = (defenderAura?.bonuses.resistAllPct ?? 0) * 100;
+  const resistances = resistBonus === 0 ? defender.stats.resistances : {
+    physical: defender.stats.resistances.physical + resistBonus,
+    fire: defender.stats.resistances.fire + resistBonus, cold: defender.stats.resistances.cold + resistBonus,
+    lightning: defender.stats.resistances.lightning + resistBonus,
+    arcane: defender.stats.resistances.arcane + resistBonus, poison: defender.stats.resistances.poison + resistBonus
+  };
   const baseMin = scalePerRank(effect.base[0], effect.perRank?.[0], skillLevel);
   const baseMax = scalePerRank(effect.base[1], effect.perRank?.[1], skillLevel);
   // Project source-owned penetration/curse before the existing act penalty and clamp.
   const defenderResistances = effect.damageType === 'physical'
-    ? { ...defender.stats.resistances,
-        physical: defender.stats.resistances.physical - amplifyDamageReduction(defender) }
+    ? { ...resistances,
+        physical: resistances.physical - amplifyDamageReduction(defender) }
     : effect.damageType === 'cold' && attacker.coldResistanceReductionPct
-      ? { ...defender.stats.resistances,
-          cold: defender.stats.resistances.cold - attacker.coldResistanceReductionPct }
-      : defender.stats.resistances;
+      ? { ...resistances,
+          cold: resistances.cold - attacker.coldResistanceReductionPct }
+      : resistances;
   const meltFactor = hasStatus(defender, METEOR_ARMOR_MELT_DEFINITION.statusId)
     ? 1 - METEOR_ARMOR_MELT_DEFINITION.defenseReductionPct / 100 : 1;
   const innerSightFactor = hasStatus(defender, MERC_INNER_SIGHT_DEFINITION.statusId)
@@ -484,8 +498,10 @@ function buildDamageInput(
   return {
     baseMin,
     baseMax,
-    flatBonus: baseFlatBonus + (effect.attackDamagePct ? stats.attack * effect.attackDamagePct / 100 : 0),
+    flatBonus: baseFlatBonus + (effect.attackDamagePct
+      ? stats.attack * (1 + (attackerAura?.bonuses.attackPct ?? 0)) * effect.attackDamagePct / 100 : 0),
     increasedPct: (attacker.increasedDamagePct?.[effect.damageType] ?? 0) +
+      statAuraDamageBonus(attackerAura, effect.damageType) +
       (effect.damageType === 'physical' ? activeMightAura(state.mightAura, attacker.id, state.units)?.physicalDamagePct ?? 0 : 0) +
       (effect.damageType === 'cold' && attacker.side === 'player' && alive(attacker) && holyFreezeSourceId(state) !== undefined
         ? MERC_HOLY_FREEZE_DEFINITION.coldDamagePct : 0),
@@ -494,7 +510,7 @@ function buildDamageInput(
     critChance: stats.critChance,
     critMult: stats.critDamage,
     defenderResistances,
-    defenderArmor: Math.max(0, defender.stats.defense * (1 + armorBonus) * meltFactor * innerSightFactor),
+    defenderArmor: Math.max(0, defender.stats.defense * (1 + armorBonus + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor),
     defenderMagicResist: defender.stats.magicResist,
     defenderDodge:
       effect.damageType === 'physical' || effect.damageType === 'thorns'
@@ -598,13 +614,15 @@ function applyDamageToUnit(
   }
 
   const after = state.units.get(defenderId);
+  const reflectionPct = (after?.physicalReflectionPct ?? 0) +
+    (activeStatAura(state.statAura, defenderId, state.units)?.bonuses.thornsPct ?? 0);
   if (after && !alive(after)) {
     finishDeaths(state, [activeStatusView(after, state.simClockMs)]);
   } else if (after && attacker.side !== defender.side && effect.damageType === 'physical' &&
-    defender.life > newLife && (after.physicalReflectionPct ?? 0) > 0) {
+    defender.life > newLife && reflectionPct > 0) {
     const target = state.units.get(attackerId);
     if (!target || !alive(target)) return;
-    const raw = Math.max(1, Math.floor((defender.life - newLife) * (after.physicalReflectionPct ?? 0)));
+    const raw = Math.max(1, Math.floor((defender.life - newLife) * reflectionPct));
     const thorns: DamageEffect = { kind: 'damage', damageType: 'thorns', base: [raw, raw] };
     const reflected = mitigateDamage(raw,
       buildDamageInput(state, after, activeStatusView(target, state.simClockMs), thorns));
@@ -1124,7 +1142,8 @@ function basicAttack(state: State, actorId: string): void {
   if (!target) return;
 
   emit(state, { kind: 'action', actor: actorId, skillId: null });
-  const attackPct = activeMightAura(state.mightAura, actorId, state.units)?.attackPct ?? 0;
+  const attackPct = (activeMightAura(state.mightAura, actorId, state.units)?.attackPct ?? 0) +
+    (activeStatAura(state.statAura, actorId, state.units)?.bonuses.attackPct ?? 0);
   const ordinaryRange = actor.attackRange ?? [actor.stats.attack, actor.stats.attack];
   const projectAttack = (value: number): number => Math.max(1, Math.floor(value * (1 + attackPct)));
   const effect: DamageEffect = {
@@ -1590,12 +1609,13 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     (snapshot.difficulty as unknown) !== 'nightmare') {
     throw new Error('Invalid combat difficulty');
   }
-  if (snapshot.mightAura !== undefined && snapshot.meditationAura !== undefined) {
+  if ([snapshot.mightAura, snapshot.meditationAura, snapshot.statAura].filter(aura => aura !== undefined).length > 1) {
     throw new Error('Only one player aura projection');
   }
   const rng = createRng(snapshot.seed);
   const aura = snapshot.mightAura;
   const meditation = snapshot.meditationAura;
+  const statAura = copyStatAuraProjection(snapshot.statAura);
   const mastery = snapshot.skeletonMastery;
   const golemMastery = snapshot.golemMastery;
   const iron = snapshot.ironGolem;
@@ -1603,6 +1623,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const assassinVenom = copyAssassinVenomProjection(snapshot.assassinVenom);
   const state: State = {
     holyFreezeSources: [],
+    ...(statAura ? { statAura } : {}),
     ...(assassinVenom ? { assassinVenom } : {}),
     ...(global ? { summonPassives: Object.freeze({ sourceHeroId: global.sourceHeroId,
       masteryRank: global.masteryRank, resistRank: global.resistRank,

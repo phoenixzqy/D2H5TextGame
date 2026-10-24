@@ -11,6 +11,7 @@ import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import { CORE_STAT_HARD_CAP } from '@/engine/progression/stats';
 import { resolveEligibleMightRank } from '@/engine/skills/might';
 import { resolveEligibleMeditationRank } from '@/engine/skills/meditation';
+import { isStatAuraId, resolveEligibleStatAuraRank } from '@/engine/skills/stat-auras';
 import { awardXp, xpRequired, xpTotal, LEVEL_CAP } from '@/engine/progression/xp';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
@@ -259,14 +260,15 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   selectAura: (request) => {
     const player = get().player;
     if (!player) return 'no-player';
-    if (request !== null && request !== 'paladin.might' && request !== 'paladin.meditation') return 'unsupported-aura';
+    if (request !== null && request !== 'paladin.might' && request !== 'paladin.meditation' && !isStatAuraId(request)) return 'unsupported-aura';
     if (request === null) {
       if (!Object.hasOwn(player, 'selectedAuraId')) return 'ok';
       const { selectedAuraId: _selected, ...withoutAura } = player;
       set({ player: withoutAura });
       return 'ok';
     }
-    const rank = request === 'paladin.might' ? resolveEligibleMightRank(player) : resolveEligibleMeditationRank(player);
+    const rank = request === 'paladin.might' ? resolveEligibleMightRank(player)
+      : request === 'paladin.meditation' ? resolveEligibleMeditationRank(player) : resolveEligibleStatAuraRank(player, request);
     if (rank === 0) return 'ineligible';
     if (player.selectedAuraId !== request) set({ player: { ...player, selectedAuraId: request } });
     return 'ok';
