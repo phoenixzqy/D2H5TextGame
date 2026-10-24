@@ -306,8 +306,8 @@
   {
     "id": "monsters/act2.radament",
     "name": "monsters.radament",
-    "life": [820, 1020],
-    "lifeGrowth": [82, 102],
+    "life": [500, 620],
+    "lifeGrowth": [50, 62],
     "skills": ["monster-strong-melee", "monster-poison-cloud", "monster-summon-adds", "monster-fire-breath"],
     "attackSpeed": 100,
     "defense": 130,
