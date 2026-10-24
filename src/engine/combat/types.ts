@@ -62,6 +62,8 @@ export interface ActiveStatus {
   readonly tags?: readonly ComboTag[];
   /** Immutable paid stat potency; only its exact skill/status consumer may use it. */
   readonly statBuff?: { readonly rank: number; readonly attackSpeedPct: number; readonly physDodgePct: number };
+  /** Finite personal Bone Armor pool, captured once at fresh run entry; never persisted. */
+  readonly boneArmor?: { readonly rank: number; readonly remaining: number };
 }
 
 /** Combat-time unit. Immutable; updates produce new instances. */

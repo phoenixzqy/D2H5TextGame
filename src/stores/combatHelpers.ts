@@ -75,6 +75,7 @@ import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeMightAura } from '@/engine/skills/might';
 import { composeMeditationAura } from '@/engine/skills/meditation';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
+import { composeBoneArmor } from '@/engine/skills/bone-armor';
 import { composeBarbarianEndurance } from '@/engine/skills/barbarian-endurance';
 import { composeBarbarianWeaponMasteries } from '@/engine/skills/barbarian-weapon-masteries';
 import { composeDamageMasteries } from '@/engine/skills/damage-masteries';
@@ -239,7 +240,9 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     manaRegenCarry: 0,
     manaRegenCompensation: 0,
     manaRegenExactCarry: '0',
-    statuses: [],
+    // Fresh challenge entry may restore a zero-HP hero after this projection.
+    // Engine registration grants potency only to a living owner.
+    statuses: composeBoneArmor(player),
     cooldowns: {},
     ...configuration,
     skillOrder: actives.combatOrder,

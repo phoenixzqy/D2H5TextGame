@@ -40,6 +40,7 @@ import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { activeMightAura, type MightAuraProjection } from '../skills/might';
 import { activeMeditationAura, type MeditationAuraProjection } from '../skills/meditation';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
+import { absorbBoneArmor, boneArmorPool, copyBoneArmorStatuses } from '../skills/bone-armor';
 import { activeBurstOfSpeed, burstOfSpeedRank, copyBurstOfSpeedStatuses, matchesBurstOfSpeed,
   paidBurstOfSpeed, BURST_OF_SPEED_IDS, BURST_OF_SPEED_DEFINITION } from '../skills/burst-of-speed';
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
@@ -102,6 +103,8 @@ export type BattleEvent =
       readonly target: string;
       readonly damageType: string;
       readonly amount: number;
+      /** Already-mitigated damage paid by Bone Armor instead of HP. */
+      readonly absorbed?: number;
       readonly crit: boolean;
       readonly dodged: boolean;
     }
@@ -125,7 +128,7 @@ export type BattleEvent =
   | { readonly kind: 'enrage'; readonly target: string }
   | { readonly kind: 'orb'; readonly target: string; readonly orb: Orb }
   | { readonly kind: 'stunned'; readonly target: string }
-  | { readonly kind: 'dot'; readonly target: string; readonly amount: number }
+  | { readonly kind: 'dot'; readonly target: string; readonly amount: number; readonly absorbed?: number }
   | { readonly kind: 'end'; readonly winner: CombatSide | null };
 
 /** Initial combat snapshot. */
@@ -426,7 +429,7 @@ function pickDefender(
 }
 
 function registerUnit(state: State, u: CombatUnit): void {
-  state.units.set(u.id, copyBurstOfSpeedStatuses(u));
+  state.units.set(u.id, copyBoneArmorStatuses(copyBurstOfSpeedStatuses(u)));
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
   if (!state.insertionIdx.has(u.id)) {
     state.insertionIdx.set(u.id, state.insertionCounter++);
@@ -518,21 +521,24 @@ function applyDamageToUnit(
   const input = buildDamageInput(state, attacker, activeDefender, effect, skillLevel);
   const outcome = resolveDamage(input, state.rng);
   const amount = outcome.hit && outcome.final > 0 && shouldShatter(activeDefender, effect.damageType)
-    ? Math.max(outcome.final, defender.life)
+    ? Math.max(outcome.final, defender.life + (boneArmorPool(defender)?.boneArmor?.remaining ?? 0))
     : outcome.final;
+  const absorption = absorbBoneArmor(defender, amount);
   emit(state, {
     kind: 'damage',
     source: attackerId,
     target: defenderId,
     damageType: effect.damageType,
-    amount,
+    amount: absorption.damage,
+    ...(absorption.absorbed > 0 ? { absorbed: absorption.absorbed } : {}),
     crit: outcome.crit,
     dodged: outcome.dodged
   });
 
   if (outcome.dodged) return;
-  const newLife = Math.max(0, defender.life - amount);
-  state.units.set(defenderId, { ...defender, life: newLife });
+  const newLife = Math.max(0, defender.life - absorption.damage);
+  state.units.set(defenderId, { ...absorption.unit, life: newLife });
+  if (absorption.absorbed > 0) observeStatuses(state, defenderId);
 
   const statuses = effect.applyStatuses ?? (effect.applyStatus ? [effect.applyStatus] : []);
   for (const status of statuses) {
@@ -602,10 +608,14 @@ function applyDamageToUnit(
     const thorns: DamageEffect = { kind: 'damage', damageType: 'thorns', base: [raw, raw] };
     const reflected = mitigateDamage(raw,
       buildDamageInput(state, after, activeStatusView(target, state.simClockMs), thorns));
+    const reflectionAbsorption = absorbBoneArmor(target, reflected.final);
     emit(state, { kind: 'damage', source: defenderId, target: attackerId,
-      damageType: 'thorns', amount: reflected.final, crit: false, dodged: false });
-    const damaged = { ...target, life: Math.max(0, target.life - reflected.final) };
+      damageType: 'thorns', amount: reflectionAbsorption.damage,
+      ...(reflectionAbsorption.absorbed > 0 ? { absorbed: reflectionAbsorption.absorbed } : {}),
+      crit: false, dodged: false });
+    const damaged = { ...reflectionAbsorption.unit, life: Math.max(0, target.life - reflectionAbsorption.damage) };
     state.units.set(attackerId, damaged);
+    if (reflectionAbsorption.absorbed > 0) observeStatuses(state, attackerId);
     if (!alive(damaged)) finishDeaths(state, [activeStatusView(damaged, state.simClockMs)]);
   }
 }
@@ -915,9 +925,13 @@ function applyEffect(
         if (!target) continue;
         const amount = staticFieldDamage(target, state.difficulty);
         if (amount <= 0) continue;
-        state.units.set(target.id, { ...target, life: target.life - amount });
+        const absorption = absorbBoneArmor(target, amount);
+        state.units.set(target.id, { ...absorption.unit, life: target.life - absorption.damage });
         emit(state, { kind: 'damage', source: actorId, target: target.id,
-          damageType: 'lightning', amount, crit: false, dodged: false });
+          damageType: 'lightning', amount: absorption.damage,
+          ...(absorption.absorbed > 0 ? { absorbed: absorption.absorbed } : {}),
+          crit: false, dodged: false });
+        if (absorption.absorbed > 0) observeStatuses(state, target.id);
       }
       break;
     }
@@ -1145,7 +1159,7 @@ function integratePeriodic(
 /** Every HP write precedes events/deaths; sources freeze the just-integrated interval. */
 function settlePeriodic(state: State, to: number): void {
   const from = state.simClockMs;
-  const damages: { unit: CombatUnit; amount: number }[] = [];
+  const damages: { unit: CombatUnit; amount: number; absorbed: number }[] = [];
   const dead: CombatUnit[] = [];
   for (const before of state.units.values()) {
     if (!alive(before)) continue;
@@ -1154,14 +1168,16 @@ function settlePeriodic(state: State, to: number): void {
     const amount = next.dealt - (previous?.dealt ?? 0);
     state.periodic.set(before.id, next);
     if (amount <= 0) continue;
-    const after = { ...before, life: Math.max(0, before.life - amount) };
+    const absorption = absorbBoneArmor(before, amount);
+    const after = { ...absorption.unit, life: Math.max(0, before.life - absorption.damage) };
     state.units.set(before.id, after);
-    damages.push({ unit: after, amount });
+    damages.push({ unit: after, amount: absorption.damage, absorbed: absorption.absorbed });
     if (!alive(after)) dead.push(activeStatusView(after, from));
   }
   state.simClockMs = to;
   emitTurnBoundaries(state);
-  for (const { unit, amount } of damages) emit(state, { kind: 'dot', target: unit.id, amount });
+  for (const { unit, amount, absorbed } of damages) emit(state, { kind: 'dot', target: unit.id, amount,
+    ...(absorbed > 0 ? { absorbed } : {}) });
   finishDeaths(state, dead);
   for (const u of state.units.values()) {
     if (alive(u)) state.units.set(u.id, expireStatuses(u, to));
@@ -1238,10 +1254,11 @@ function nextPeriodicBoundary(state: State, nextActionAt: number): number {
     const minimum = Math.floor(state.simClockMs) + 1;
     const maximum = Math.floor(boundary);
     if (minimum > maximum) continue;
+    const effectiveLife = unit.life + (boneArmorPool(unit)?.boneArmor?.remaining ?? 0);
     const lethalAt = (at: number): boolean => integratePeriodic(unit, state.simClockMs, at, previous).dealt -
-      (previous?.dealt ?? 0) >= unit.life;
+      (previous?.dealt ?? 0) >= effectiveLife;
     let candidate = Math.max(minimum, Math.min(maximum,
-      Math.ceil(state.simClockMs + SECONDS * (unit.life - carry) / rate)));
+      Math.ceil(state.simClockMs + SECONDS * (effectiveLife - carry) / rate)));
     // Verify both candidate and predecessor; floating arithmetic may put the
     // analytic estimate on either side. A bounded binary correction never polls.
     if (!lethalAt(candidate) || (candidate > minimum && lethalAt(candidate - 1))) {
