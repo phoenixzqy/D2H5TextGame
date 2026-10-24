@@ -5,9 +5,9 @@ amazon,skills-amazon-freezing-arrow,amazon.freezing_arrow,active,damage,chill|fr
 amazon,skills-amazon-lightning-fury,amazon.lightning_fury,active,damage,paralyze,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-plague-javelin,amazon.plague_javelin,active,damage,poison|plague,src/data/skills/amazon.json,additional-statuses-truncated-by-adapter,unverified,
 amazon,skills-amazon-strafe,amazon.strafe,active,damage,,src/data/skills/amazon.json,,unverified,
-amazon,skills-amazon-critical-strike,amazon.critical_strike,passive,buff,,src/data/skills/amazon.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
-amazon,skills-amazon-penetrate,amazon.penetrate,passive,buff,,src/data/skills/amazon.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
-amazon,skills-amazon-dodge,amazon.dodge,passive,buff,,src/data/skills/amazon.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+amazon,skills-amazon-critical-strike,amazon.critical_strike,passive,buff-metadata+fresh-player-stat-composition,,src/data/skills/amazon.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-amazon-passives.md
+amazon,skills-amazon-penetrate,amazon.penetrate,passive,buff-metadata+fresh-player-stat-composition,,src/data/skills/amazon.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-amazon-passives.md
+amazon,skills-amazon-dodge,amazon.dodge,passive,buff-metadata+fresh-player-stat-composition,,src/data/skills/amazon.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-amazon-passives.md
 amazon,skills-amazon-valkyrie,amazon.valkyrie,active,summon,,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-jab,amazon.jab,active,damage,,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-power-strike,amazon.power_strike,active,damage,,src/data/skills/amazon.json,,unverified,
