@@ -39,7 +39,7 @@ describe('explicit single player aura selection', () => {
     } finally { observed.unsubscribe(); }
   });
   it.each([undefined, '', 'skills-paladin-might', 'aura-might', 'paladin.Might',
-    'paladin.holy-fire', 0, true, [], {}, ['paladin.might']])('refuses unsupported request %# without mutation/publication', request => {
+    'paladin.sanctuary', 0, true, [], {}, ['paladin.might']])('refuses unsupported request %# without mutation/publication', request => {
     const input = player(); usePlayerStore.getState().setPlayer(input);
     const basis = usePlayerStore.getState(); const original = structuredClone(input); const observed = observe();
     try {
@@ -47,6 +47,17 @@ describe('explicit single player aura selection', () => {
       expect(usePlayerStore.getState()).toBe(basis);
       expect(input).toEqual(original); expect(observed.publications).toEqual([]);
     } finally { observed.unsubscribe(); }
+  });
+  it.each(['paladin.holy-fire', 'paladin.holy-shock'] as const)('refuses ineligible pulse aura %s without mutation/publication', request => {
+    for (const patch of [{ level: 30, skillLevels: {} }, { level: 1, skillLevels: { [request]: 1 } }]) {
+      const input = player(patch); usePlayerStore.getState().setPlayer(input);
+      const basis = usePlayerStore.getState(); const original = structuredClone(input); const observed = observe();
+      try {
+        expect(basis.selectAura(request)).toBe('ineligible');
+        expect(usePlayerStore.getState()).toBe(basis);
+        expect(input).toEqual(original); expect(observed.publications).toEqual([]);
+      } finally { observed.unsubscribe(); }
+    }
   });
   const ineligiblePatches: readonly Partial<Player>[] = [
     { class: 'sorceress' }, { level: 0 }, { level: NaN }, { level: Infinity }, { level: -Infinity },

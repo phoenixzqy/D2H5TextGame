@@ -191,6 +191,8 @@ interface State {
   readonly mightAura?: MightAuraProjection;
   readonly meditationAura?: MeditationAuraProjection;
   readonly statAura?: StatAuraProjection;
+  /** Next wave-local ambient pulse; never an action, cast or persisted timer. */
+  nextAuraPulseAtMs?: number;
   readonly skeletonMastery?: SkeletonMasteryProjection;
   readonly golemMastery?: GolemMasteryProjection;
   readonly summonPassives?: SummonPassiveProjection;
@@ -538,7 +540,8 @@ function applyDamageToUnit(
   defenderId: string,
   effect: DamageEffect,
   skillLevel = 1,
-  basicHit = false
+  basicHit = false,
+  auraPulse = false
 ): void {
   const attacker = state.units.get(attackerId);
   const defender = state.units.get(defenderId);
@@ -547,7 +550,10 @@ function applyDamageToUnit(
   const activeDefender = activeStatusView(defender, state.simClockMs);
   const retaliates = hasPaidFrozenArmor(activeDefender);
   const input = buildDamageInput(state, attacker, activeDefender, effect, skillLevel);
-  const outcome = resolveDamage(input, state.rng);
+  const outcome = auraPulse
+    ? { hit: true, crit: false, dodged: false,
+      ...mitigateDamage((input.baseMin + input.flatBonus) * (1 + input.increasedPct) * input.comboMult, input) }
+    : resolveDamage(input, state.rng);
   const amount = outcome.hit && outcome.final > 0 && shouldShatter(activeDefender, effect.damageType)
     ? Math.max(outcome.final, defender.life + (boneArmorPool(defender)?.boneArmor?.remaining ?? 0))
     : outcome.final;
@@ -571,7 +577,7 @@ function applyDamageToUnit(
   const statuses = effect.applyStatuses ?? (effect.applyStatus ? [effect.applyStatus] : []);
   for (const status of statuses) {
     const chance = status.chance ?? 1;
-    if (state.rng.chance(chance)) {
+    if ((auraPulse && chance === 1) || state.rng.chance(chance)) {
       const stacks = status.stacksOnApply ?? 1;
       const dotPerStack =
         status.dotPctOfDamage !== undefined
@@ -1262,9 +1268,31 @@ function settleManaRecovery(state: State, fromMs: number, toMs: number,
   }
 }
 
+/** Ambient pulses share normal mitigation, status and exact-once death settlement. */
+function settleAuraPulse(state: State): void {
+  const aura = state.statAura;
+  if (!aura || state.nextAuraPulseAtMs !== state.simClockMs ||
+    !activeStatAura(aura, aura.sourceHeroId, state.units) || !aura.pulse) return;
+  const pulse = aura.pulse;
+  state.nextAuraPulseAtMs += pulse.intervalMs;
+  const effect: DamageEffect = { kind: 'damage', damageType: pulse.damageType,
+    base: [pulse.damage, pulse.damage],
+    ...(pulse.burn ? { applyStatus: { id: 'burn', durationMs: pulse.burn.durationMs,
+      dotPctOfDamage: pulse.burn.dotPctOfDamage } } : {}) };
+  for (const target of state.units.values()) {
+    if (target.side === 'enemy' && alive(target)) {
+      applyDamageToUnit(state, aura.sourceHeroId, target.id, effect, 1, false, true);
+    }
+  }
+}
+
 /** Next action/status/deadline boundary; starts include non-DoT pending controls. */
 function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   let boundary = Math.min(MAX_SIM_MS, nextActionAt);
+  if (state.nextAuraPulseAtMs !== undefined && state.statAura &&
+    activeStatAura(state.statAura, state.statAura.sourceHeroId, state.units)) {
+    boundary = Math.min(boundary, state.nextAuraPulseAtMs);
+  }
   for (const unit of state.units.values()) {
     if (!alive(unit)) continue;
     for (const status of unit.statuses) {
@@ -1636,6 +1664,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const state: State = {
     holyFreezeSources: [],
     ...(statAura ? { statAura } : {}),
+    ...(statAura?.pulse ? { nextAuraPulseAtMs: statAura.pulse.intervalMs } : {}),
     ...(assassinVenom ? { assassinVenom } : {}),
     ...(global ? { summonPassives: Object.freeze({ sourceHeroId: global.sourceHeroId,
       masteryRank: global.masteryRank, resistRank: global.resistRank,
@@ -1725,6 +1754,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     const meditationRecipients = captureMeditationRecipients(state);
     settlePeriodic(state, boundary);
     settleManaRecovery(state, from, boundary, meditationRecipients);
+    if (winnerOf(state) !== null) break;
+    settleAuraPulse(state);
     if (winnerOf(state) !== null) break;
     reconcileActionPeriods(state);
     // Status settlement may change the next actor or its pending timestamp.

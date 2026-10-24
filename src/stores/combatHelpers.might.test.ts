@@ -146,6 +146,26 @@ beforeEach(() => {
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('native selected Might wave composition', () => {
+  it.each(['paladin.holy-fire', 'paladin.holy-shock'] as const)('runs real selected %s pulses after public allocation and replays without income', selectedAuraId => {
+    arrange(0);
+    const dataId = selectedAuraId.replace('paladin.', 'skills-paladin-');
+    configure({ skillLevels: Object.fromEntries((paladinSkills.find(row => row.id === dataId)?.prerequisites ?? []).map(id => [id, 1])) });
+    expect(usePlayerStore.getState().allocateSkillPoint(dataId)).toBe('ok');
+    expect(usePlayerStore.getState().selectAura(selectedAuraId)).toBe('ok');
+    start();
+    const original = structuredClone(latest()), first = recording();
+    expect(first.events).toContainEqual(expect.objectContaining({ kind: 'damage', source: player().id,
+      damageType: selectedAuraId === 'paladin.holy-fire' ? 'fire' : 'lightning', simClockMs: 1000, crit: false, dodged: false }));
+    expect(first.events.some(e => e.kind === 'damage' && e.source === player().id && e.simClockMs < 1000)).toBe(false);
+    const income = structuredClone({ items: useInventoryStore.getState().backpack,
+      currencies: useInventoryStore.getState().currencies, xp: player().experience });
+    replay();
+    expect(latest().playerTeam).toEqual(original.playerTeam);
+    expect(latest().statAura).toEqual(original.statAura);
+    expect(useCombatStore.getState().recordedEvents).toEqual(first.events);
+    expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies,
+      xp: player().experience }).toEqual(income);
+  });
   it.each(['paladin.holy-freeze', 'paladin.conviction'] as const)('applies %s through native allocation, replay and persistence without income', selectedAuraId => {
     arrange(0);
     const dataId = selectedAuraId.replace('paladin.', 'skills-paladin-');

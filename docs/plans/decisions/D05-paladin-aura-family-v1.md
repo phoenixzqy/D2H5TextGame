@@ -68,6 +68,44 @@ Acceptance requires actual cadence/status provenance and six-type mitigated dama
 source death/CC/forgery controls, additive Cold Mastery/Amplify Damage, native public
 allocation/selection/next-wave/replay, and bilingual production persistence/layout.
 
+## Pulse batch: Holy Fire and Holy Shock
+
+Local implementation decision; independent design/QA and earned balance open.
+The old Holy Fire text specifies20 fire damage/turn and burn, but neither skill
+has a pulse consumer or pulse tuning. D04 makes simulation seconds authoritative;
+legacy five-second turn markers do not define an aura interval. Use an explicit
+JSON-owned1000ms interval, first pulse one full interval after each wave entry.
+Holy Fire preserves the advertised20 base fire damage and authors burn as10% of
+the mitigated pulse damage per second for3000ms. Canonical Ignite stacking,
+original-potency refresh, max-five cap, finite expiry and periodic settlement
+remain authoritative. Holy Shock receives a provisional20 base lightning damage
+on the same interval; this newly specified tuning requires earned balance review.
+Preserve each aura's authored +3% matching-element increased damage per rank,
+unlock6/24, existing prerequisites and cap20 for hero/original fielded merc only.
+
+Each selected living hero emits one automatic pulse against every living enemy
+in registration order. It persists through source crowd control, uses no mana,
+cast, cooldown or action-budget slot, and cannot occur before its first interval.
+Pulse damage uses the source's matching increased damage, existing combos,
+resistance penalties/clamps, flat mitigation, minimum damage and Bone Armor.
+It has no dodge or critical roll. Pulse and guaranteed Burn application consume
+no damage/proc RNG; normal deaths retain their existing seeded side effects.
+Source death during periodic settlement prevents a pulse at that same boundary.
+Settle existing periodic effects and deaths before pulses, then reconcile cadence
+and permit surviving tied actions. The60000ms deadline includes a due pulse;
+the action cap must never fabricate a future pulse. Never catch up after battle
+end. Every pulse retains actual hero provenance and normal exact-once death,
+corpse, reward and summon consequences. Learning never selects an aura.
+
+Copy strict `auraPulse` JSON metadata into the shared selected wave projection;
+only these two exact skill IDs may own it. Fixed positive damage, integer interval
+1000–60000ms, matching fire/lightning type, exact Fire-only finite Burn tuning
+and rejection of unknown keys are required. Deep-copy nested tuning and reject
+forged/missing/foreign direct-engine potency. No new save version or transient
+payload; savev22 already permits both canonical selection IDs. Native edits apply
+next wave and explicit replay starts from original inputs with no duplicate income.
+Dream's item-granted Holy Shock remains governed by its separate D10 contract.
+
 ## Remaining required effects
 
 Holy Fire/Shock require actual damage pulses; Sanctuary requires undead damage

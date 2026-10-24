@@ -171,11 +171,18 @@ export interface SkillArmorMeltMetadata {
   readonly durationMs: number;
 }
 
-/**
- * Skill definition
- * This is the immutable template for a skill
- */
+/** JSON-owned automatic player aura pulse; exact identity/element/Burn ownership is schema guarded. */
+export interface AuraPulseTuning {
+  readonly intervalMs: number;
+  readonly damage: number;
+  readonly damageType: 'fire' | 'lightning';
+  readonly burn?: { readonly durationMs: number; readonly dotPctOfDamage: number };
+}
+
+/** Immutable template for a skill. */
 export interface SkillDef {
+  /** Frozen selected player pulse timing and damage, independent of action cadence. */
+  readonly auraPulse?: AuraPulseTuning;
   /** JSON-owned nonlethal current-health damage; exact player Static Field only. */
   readonly staticField?: StaticFieldTuning;
   /** JSON-owned personal cold penetration; exact player Cold Mastery only. */

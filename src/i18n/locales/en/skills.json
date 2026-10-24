@@ -848,7 +848,7 @@
     },
     "holy-fire": {
       "name": "Holy Fire",
-      "desc": "Aura: deals 20 fire damage per turn to all enemies and applies burn."
+      "desc": "Select for the next wave: while the hero lives, pulses every {{pulseSeconds}} second for {{pulseDamage}} base fire damage to all enemies. The first pulse waits a full interval. Pulses continue during stun or freeze, cost no mana and cannot miss or critically hit. Burn deals {{burnPct}}% of mitigated pulse damage per second per stack (rounded down, minimum 1) for {{burnSeconds}} seconds, up to {{burnMaxStacks}} stacks. Per rank, the hero and originally fielded living mercenary gain fire damage +{{fireDamagePct}}%. Requires level {{level}}; maximum {{cap}} ranks."
     },
     "conviction": {
       "name": "Conviction",
@@ -888,7 +888,7 @@
     },
     "holy-shock": {
       "name": "Holy Shock",
-      "desc": "Aura: damages nearby enemies with lightning."
+      "desc": "Select for the next wave: while the hero lives, pulses every {{pulseSeconds}} second for {{pulseDamage}} base lightning damage to all enemies. The first pulse waits a full interval. Pulses continue during stun or freeze, cost no mana and cannot miss or critically hit. Per rank, the hero and originally fielded living mercenary gain lightning damage +{{lightningDamagePct}}%. Requires level {{level}}; maximum {{cap}} ranks."
     },
     "sanctuary": {
       "name": "Sanctuary",

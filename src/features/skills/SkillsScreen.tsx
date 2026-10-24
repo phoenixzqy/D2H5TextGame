@@ -1187,6 +1187,11 @@ function dynamicDescription(
     return t(`${statAuraId}.desc`, { ...Object.fromEntries(Object.entries(definition.perRank)
       .map(([key, value]) => [key, Number((value * 100).toFixed(4))])),
       level: definition.requiredLevel, cap: definition.maxRank,
+      pulseSeconds: definition.pulse ? definition.pulse.intervalMs / 1000 : undefined,
+      pulseDamage: definition.pulse?.damage,
+      burnSeconds: definition.pulse?.burn ? definition.pulse.burn.durationMs / 1000 : undefined,
+      burnPct: definition.pulse?.burn ? definition.pulse.burn.dotPctOfDamage * 100 : undefined,
+      burnMaxStacks: STATUS_DEFAULTS.ignite.maxStacks,
       chillSlowPct: (1 - CHILL_DEFINITION.attackSpeedMultiplier) * 100,
       enemyResistReductionPct: definition.enemyResistReductionPct });
   }

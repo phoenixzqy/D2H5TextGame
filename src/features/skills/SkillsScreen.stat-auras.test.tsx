@@ -75,5 +75,20 @@ for (const locale of ['en', 'zh-CN'] as const) {
       expect(detail).toHaveTextContent(locale === 'en' ? 'arcane damage +1%' : '奥术伤害+1%');
       expect(detail).not.toHaveTextContent('{{');
     });
+    it('explains actual Fire and Shock pulse timing, base damage, Burn and rank bonuses', () => {
+      mount(true);
+      for (const slug of ['holy-fire', 'holy-shock']) {
+        fireEvent.click(screen.getByTestId('skill-node-skills-paladin-' + slug));
+        const detail = screen.getByTestId('skill-detail-panel');
+        expect(detail).toHaveTextContent(locale === 'en' ? 'every 1 second' : '每1秒');
+        expect(detail).toHaveTextContent(locale === 'en' ? '20 base' : '20点基础');
+        expect(detail).toHaveTextContent(locale === 'en' ? 'damage +3%' : '伤害+3%');
+        if (slug === 'holy-fire') {
+          expect(detail).toHaveTextContent(locale === 'en' ? '10% of mitigated pulse damage per second' : '每秒造成脉冲减伤后伤害的10%');
+          expect(detail).toHaveTextContent(locale === 'en' ? '3 seconds' : '3秒');
+        }
+        expect(detail).not.toHaveTextContent('{{');
+      }
+    });
   });
 }

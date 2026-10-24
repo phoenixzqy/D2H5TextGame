@@ -2,13 +2,13 @@ import paladinSkills from '../../data/skills/paladin.json';
 import { inferKind, type CombatUnit } from '../combat/types';
 import type { DamageType } from '../types/attributes';
 import type { Player } from '../types/entities';
-import type { SkillDef } from '../types/skills';
+import type { AuraPulseTuning, SkillDef } from '../types/skills';
 import { createSkillValidator } from './skill-validator';
 
 /** Selected stat auras, including their derived enemy Chill and resistance effects. */
 export const STAT_AURA_IDS = Object.freeze(['paladin.thorns', 'paladin.blessed-aim', 'paladin.fanaticism',
   'paladin.defiance', 'paladin.resist-fire', 'paladin.resist-cold', 'paladin.resist-lightning', 'paladin.salvation',
-  'paladin.holy-freeze', 'paladin.conviction'] as const);
+  'paladin.holy-freeze', 'paladin.conviction', 'paladin.holy-fire', 'paladin.holy-shock'] as const);
 export type StatAuraId = typeof STAT_AURA_IDS[number];
 type BonusKey = 'thornsPct' | 'attackPct' | 'physicalDamagePct' | 'attackSpeedPct' | 'defensePct'
   | 'resistAllPct' | 'fireDamagePct' | 'coldDamagePct' | 'lightningDamagePct' | 'elementalDamagePct' | 'physDodgePct' | 'arcaneDamagePct';
@@ -18,13 +18,15 @@ const keys: Readonly<Record<StatAuraId, readonly BonusKey[]>> = {
   'paladin.fanaticism': ['physicalDamagePct', 'attackSpeedPct'], 'paladin.defiance': ['defensePct'],
   'paladin.resist-fire': ['resistAllPct', 'fireDamagePct'], 'paladin.resist-cold': ['resistAllPct', 'coldDamagePct'],
   'paladin.resist-lightning': ['resistAllPct', 'lightningDamagePct'], 'paladin.salvation': ['resistAllPct', 'elementalDamagePct'],
-  'paladin.holy-freeze': ['coldDamagePct', 'physDodgePct'], 'paladin.conviction': ['elementalDamagePct', 'arcaneDamagePct']
+  'paladin.holy-freeze': ['coldDamagePct', 'physDodgePct'], 'paladin.conviction': ['elementalDamagePct', 'arcaneDamagePct'],
+  'paladin.holy-fire': ['fireDamagePct'], 'paladin.holy-shock': ['lightningDamagePct']
 };
 export interface StatAuraDefinition {
   readonly requiredLevel: number;
   readonly maxRank: number;
   readonly perRank: Bonuses;
   readonly enemyResistReductionPct?: number;
+  readonly pulse?: AuraPulseTuning;
 }
 export interface StatAuraProjection {
   readonly selectedAuraId: StatAuraId;
@@ -34,8 +36,31 @@ export interface StatAuraProjection {
   readonly maxRank: number;
   readonly bonuses: Bonuses;
   readonly enemyResistReductionPct?: number;
+  readonly pulse?: AuraPulseTuning;
 }
 const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number; readonly aura?: boolean; readonly effects?: unknown }>();
+
+function validPulse(id: StatAuraId, input: unknown): boolean {
+  if (id !== 'paladin.holy-fire' && id !== 'paladin.holy-shock') return input === undefined;
+  if (typeof input !== 'object' || input === null) return false;
+  const pulse = input as AuraPulseTuning;
+  if (!Number.isInteger(pulse.intervalMs) ||
+    pulse.intervalMs < 1000 || pulse.intervalMs > 60000 || !Number.isFinite(pulse.damage) || pulse.damage <= 0 ||
+    pulse.damageType !== (id === 'paladin.holy-fire' ? 'fire' : 'lightning')) return false;
+  const fields = ['intervalMs', 'damage', 'damageType', ...(id === 'paladin.holy-fire' ? ['burn'] : [])];
+  if (Object.keys(pulse).length !== fields.length || fields.some(key => !Object.hasOwn(pulse, key))) return false;
+  const burn: unknown = pulse.burn;
+  if (id === 'paladin.holy-shock') return burn === undefined;
+  if (typeof burn !== 'object' || burn === null) return false;
+  const tuning = burn as NonNullable<AuraPulseTuning['burn']>;
+  return Object.keys(tuning).length === 2 && Number.isInteger(tuning.durationMs) && tuning.durationMs >= 1 && tuning.durationMs <= 60000 &&
+    Number.isFinite(tuning.dotPctOfDamage) && tuning.dotPctOfDamage > 0 && tuning.dotPctOfDamage <= 1;
+}
+
+function copyPulse(pulse: AuraPulseTuning): AuraPulseTuning {
+  return Object.freeze({ intervalMs: pulse.intervalMs, damage: pulse.damage, damageType: pulse.damageType,
+    ...(pulse.burn ? { burn: Object.freeze({ durationMs: pulse.burn.durationMs, dotPctOfDamage: pulse.burn.dotPctOfDamage }) } : {}) });
+}
 
 /** Distinguish complete stat effects from the canonical domain's still-unimplemented mechanics. */
 export function isStatAuraId(value: unknown): value is StatAuraId {
@@ -59,6 +84,7 @@ export function resolveStatAuraDefinitions(rows: readonly unknown[]): Readonly<R
     }
     return [id, Object.freeze({ requiredLevel: row.requiredLevel, maxRank: row.maxLevel,
       ...(row.conviction ? { enemyResistReductionPct: row.conviction.enemyResistReductionPct } : {}),
+      ...(row.auraPulse ? { pulse: copyPulse(row.auraPulse) } : {}),
       perRank: Object.freeze(Object.fromEntries(keys[id].map(key => [key, perRank[key]]))) })];
   })) as Record<StatAuraId, StatAuraDefinition>);
 }
@@ -86,6 +112,7 @@ export function composeStatAura(player: Pick<Player, 'id' | 'class' | 'level' | 
   const definition = STAT_AURA_DEFINITIONS[id];
   return Object.freeze({ selectedAuraId: id, sourceHeroId: player.id, rank, maxRank: definition.maxRank,
     ...(definition.enemyResistReductionPct !== undefined ? { enemyResistReductionPct: definition.enemyResistReductionPct } : {}),
+    ...(definition.pulse ? { pulse: copyPulse(definition.pulse) } : {}),
     bonuses: Object.freeze(Object.fromEntries(keys[id].map(key => [key, (definition.perRank[key] ?? 0) * rank]))),
     ...(fieldedMercCombatId && fieldedMercCombatId !== player.id ? { fieldedMercCombatId } : {}) });
 }
@@ -93,6 +120,7 @@ export function composeStatAura(player: Pick<Player, 'id' | 'class' | 'level' | 
 function valid(aura: StatAuraProjection): boolean {
   const bonuses: unknown = aura.bonuses;
   return isStatAuraId(aura.selectedAuraId) && typeof aura.sourceHeroId === 'string' && aura.sourceHeroId.length > 0 &&
+    validPulse(aura.selectedAuraId, aura.pulse) &&
     (aura.selectedAuraId === 'paladin.conviction'
       ? typeof aura.enemyResistReductionPct === 'number' && Number.isFinite(aura.enemyResistReductionPct) &&
         aura.enemyResistReductionPct >= 0 && aura.enemyResistReductionPct <= 100
@@ -109,6 +137,7 @@ export function copyStatAuraProjection(aura: StatAuraProjection | undefined): St
   if (!aura || !valid(aura)) return undefined;
   return Object.freeze({ selectedAuraId: aura.selectedAuraId, sourceHeroId: aura.sourceHeroId,
     ...(aura.enemyResistReductionPct !== undefined ? { enemyResistReductionPct: aura.enemyResistReductionPct } : {}),
+    ...(aura.pulse ? { pulse: copyPulse(aura.pulse) } : {}),
     rank: aura.rank, maxRank: aura.maxRank, bonuses: Object.freeze({ ...aura.bonuses }),
     ...(typeof aura.fieldedMercCombatId === 'string' && aura.fieldedMercCombatId !== aura.sourceHeroId
       ? { fieldedMercCombatId: aura.fieldedMercCombatId } : {}) });

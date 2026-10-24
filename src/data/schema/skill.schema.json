@@ -2430,6 +2430,31 @@
       "properties": { "conviction": { "$ref": "#/properties/conviction" } }
     },
     "else": { "properties": { "conviction": false } }
+  }, {
+    "if": {
+      "properties": { "id": { "enum": ["skills-paladin-holy-fire", "skills-paladin-holy-shock"] } },
+      "required": ["id"]
+    },
+    "then": {
+      "required": ["aura", "auraPulse"],
+      "properties": {
+        "aura": { "const": true }, "trigger": { "const": "passive" },
+        "target": { "const": "self" }, "cooldown": { "const": 0 },
+        "damage": false, "appliesStatus": false,
+        "auraPulse": { "$ref": "#/properties/auraPulse" }
+      },
+      "allOf": [{
+        "if": { "properties": { "id": { "const": "skills-paladin-holy-fire" } }, "required": ["id"] },
+        "then": { "properties": { "auraPulse": {
+          "type": "object", "required": ["burn"],
+          "properties": { "damageType": { "const": "fire" }, "burn": { "$ref": "#/properties/auraPulse/properties/burn" } }
+        } } },
+        "else": { "properties": { "auraPulse": {
+          "type": "object", "properties": { "damageType": { "const": "lightning" }, "burn": false }
+        } } }
+      }]
+    },
+    "else": { "properties": { "auraPulse": false } }
   }],
   "if": {
     "properties": { "id": { "const": "skills-necromancer-amplify-damage" } },
@@ -2449,6 +2474,24 @@
     }
   },
   "properties": {
+    "auraPulse": {
+      "type": "object",
+      "description": "Exact selected player Holy Fire/Shock deterministic pulse; copied at the wave boundary.",
+      "additionalProperties": false,
+      "required": ["intervalMs", "damage", "damageType"],
+      "properties": {
+        "intervalMs": { "type": "integer", "minimum": 1000, "maximum": 60000, "description": "Simulation milliseconds between pulses, including the first pulse after wave entry." },
+        "damage": { "type": "number", "exclusiveMinimum": 0, "description": "Finite positive base damage before source increases, combos and ordinary mitigation." },
+        "damageType": { "enum": ["fire", "lightning"] },
+        "burn": {
+          "type": "object", "additionalProperties": false, "required": ["durationMs", "dotPctOfDamage"],
+          "properties": {
+            "durationMs": { "type": "integer", "minimum": 1, "maximum": 60000, "description": "Canonical Burn base duration in simulation milliseconds." },
+            "dotPctOfDamage": { "type": "number", "exclusiveMinimum": 0, "maximum": 1, "description": "Finite fraction of mitigated pulse damage per second per Burn stack." }
+          }
+        }
+      }
+    },
     "conviction": {
       "type": "object",
       "description": "Exact selected player Conviction enemy resistance reduction, applied before existing resistance penalties and clamps.",

@@ -243,6 +243,7 @@
   },
   {
     "id": "skills-paladin-holy-fire",
+    "auraPulse": { "intervalMs": 1000, "damage": 20, "damageType": "fire", "burn": { "durationMs": 3000, "dotPctOfDamage": 0.1 } },
     "name": "skills.paladin.holy-fire.name",
     "description": "skills.paladin.holy-fire.desc",
     "icon": "skills/paladin/holy-fire.png",
@@ -540,6 +541,7 @@
   },
   {
     "id": "skills-paladin-holy-shock",
+    "auraPulse": { "intervalMs": 1000, "damage": 20, "damageType": "lightning" },
     "name": "skills.paladin.holy-shock.name",
     "description": "skills.paladin.holy-shock.desc",
     "icon": "skills/paladin/holy-shock.png",
