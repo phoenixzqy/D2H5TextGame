@@ -11,6 +11,141 @@
       "if": {
         "properties": {
           "id": {
+            "const": "skills-assassin-burst-of-speed"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "cost",
+          "scaling",
+          "appliesStatus",
+          "prerequisites",
+          "timedBuff"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "$ref": "#/properties/requiredLevel"
+          },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "type": "number",
+            "minimum": 1
+          },
+          "passive": {
+            "const": false
+          },
+          "aura": {
+            "const": false
+          },
+          "summon": {
+            "const": false
+          },
+          "cost": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "mana"
+            ],
+            "properties": {
+              "mana": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          },
+          "appliesStatus": {
+            "const": [
+              "burst-of-speed"
+            ]
+          },
+          "prerequisites": {
+            "const": [
+              "skills-assassin-claw-mastery"
+            ]
+          },
+          "timedBuff": {
+            "$ref": "#/properties/timedBuff"
+          },
+          "scaling": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "passiveStatsPerLevel",
+              "cooldownPerLevel",
+              "costPerLevel"
+            ],
+            "properties": {
+              "cooldownPerLevel": {
+                "type": "number"
+              },
+              "costPerLevel": {
+                "type": "number"
+              },
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "attackSpeedPct",
+                  "physDodgePct"
+                ],
+                "properties": {
+                  "attackSpeedPct": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "physDodgePct": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "damage": false,
+          "damageType": false,
+          "statusEffect": false,
+          "additionalStatusEffects": false,
+          "synergies": false,
+          "heal": false,
+          "summonId": false,
+          "aoeShape": false,
+          "requires": false,
+          "appliesTags": false,
+          "venomOnBasicHit": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "timedBuff": {}
+        },
+        "required": [
+          "timedBuff"
+        ]
+      },
+      "then": {
+        "properties": {
+          "id": {
+            "const": "skills-assassin-burst-of-speed"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
             "const": "skills-assassin-fade"
           }
         },
@@ -2228,6 +2363,20 @@
     }
   },
   "properties": {
+    "timedBuff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+            "durationMs"
+      ],
+      "properties": {
+            "durationMs": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 60000
+            }
+      }
+},
     "venomOnBasicHit": {
       "type": "object",
       "additionalProperties": false,

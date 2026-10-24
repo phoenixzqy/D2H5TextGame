@@ -60,6 +60,8 @@ export interface ActiveStatus {
   readonly sourceId: string;
   /** Tags relevant to combo lookup. */
   readonly tags?: readonly ComboTag[];
+  /** Immutable paid stat potency; only its exact skill/status consumer may use it. */
+  readonly statBuff?: { readonly rank: number; readonly attackSpeedPct: number; readonly physDodgePct: number };
 }
 
 /** Combat-time unit. Immutable; updates produce new instances. */
@@ -68,6 +70,8 @@ export interface CombatUnit {
   readonly holyFreezeAura?: true;
   /** Eligible learned Static Field rank captured per wave; explicit zero disables legacy fallback. */
   readonly staticFieldRank?: number;
+  /** Current Player-composed paid Burst eligibility; no implicit active-skill rank. */
+  readonly burstOfSpeedRank?: number;
   /** Frozen equipment/learned active availability captured at the wave boundary; never persisted. */
   readonly governedActiveRanks?: GovernedActiveRanks;
   readonly id: string;

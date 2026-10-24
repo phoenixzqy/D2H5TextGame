@@ -663,6 +663,9 @@
         "attackSpeedPct": 0.02,
         "physDodgePct": 0.005
       }
+    },
+    "timedBuff": {
+      "durationMs": 10000
     }
   },
   {

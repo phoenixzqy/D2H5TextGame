@@ -30,6 +30,7 @@ export type PlayableSkillClass =
 
 interface JsonSkill {
   readonly staticField?: StaticFieldTuning;
+  readonly timedBuff?: { readonly durationMs: number };
   readonly id: string;
   readonly name: string;
   readonly icon?: string;
@@ -184,7 +185,9 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       effects.push({
         kind: 'buff',
         id: skill.appliesStatus[0],
-        duration: -1,
+        duration: skill.timedBuff ? skill.timedBuff.durationMs / 1000 : -1,
+        ...(skill.id === 'skills-assassin-burst-of-speed' && skill.timedBuff
+          ? { timedStatBuff: 'burst-of-speed' as const } : {}),
         ...(skill.id === 'skills-sorceress-frozen-armor' && skill.trigger === 'active' &&
           skill.appliesStatus.length === 1 && skill.appliesStatus[0] === 'frozen-armor'
           ? { frozenArmor: true as const } : {})

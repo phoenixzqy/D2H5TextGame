@@ -212,6 +212,9 @@ export interface SkillDef {
   /** Damage type (primary) */
   readonly damageType?: DamageType;
   
+  /** Explicit finite paid stat-buff timing; exact skill ownership is schema guarded. */
+  readonly timedBuff?: { readonly durationMs: number };
+
   /** Exact Venom-only basic-hit coating; strict JSON schema guards its owner and tuning. */
   readonly venomOnBasicHit?: { readonly attackPct: number; readonly durationMs: number };
 

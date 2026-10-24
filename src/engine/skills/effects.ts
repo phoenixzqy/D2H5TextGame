@@ -66,6 +66,8 @@ export interface BuffEffect {
   readonly statMods?: Record<string, number>;
   /** Exact player Frozen Armor opts into an independently tuned paid combat snapshot. */
   readonly frozenArmor?: true;
+  /** Exact paid finite stat-buff consumer; bare markers never establish potency. */
+  readonly timedStatBuff?: 'burst-of-speed';
 }
 
 /** Debuff primitive (applies a status to enemies, no damage). */
