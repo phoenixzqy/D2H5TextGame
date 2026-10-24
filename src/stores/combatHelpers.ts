@@ -78,6 +78,7 @@ import { composeBarbarianEndurance } from '@/engine/skills/barbarian-endurance';
 import { composeBarbarianWeaponMasteries } from '@/engine/skills/barbarian-weapon-masteries';
 import { composeDamageMasteries } from '@/engine/skills/damage-masteries';
 import { isDualWielding } from '@/engine/items/equipped-weapon';
+import { composeAssassinShadowPassives, composeAssassinVenom } from '@/engine/skills/assassin-shadow';
 import { composeAssassinWeaponPassives } from '@/engine/skills/assassin-weapon-passives';
 import { composeAmazonPassives } from '@/engine/skills/amazon-passives';
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
@@ -185,6 +186,8 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
   const physicalDamagePct = mastery.physicalDamagePct + amazon.physicalDamagePct;
   const damageMasteries = composeDamageMasteries({ classId: player.class, level: player.level,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
+  const shadow = composeAssassinShadowPassives(player);
+  const allResistanceBonus = endurance.resistAllBonus + shadow.resistAllBonus;
   const lifeMax = freshStats.lifeMax * endurance.lifeMultiplier;
   const stats = { ...freshStats,
     lifeMax,
@@ -192,13 +195,13 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     attack: freshStats.attack * amazon.attackMultiplier * assassin.attackMultiplier,
     critChance: freshStats.critChance + amazon.critChanceBonus + mastery.critChanceBonus + assassin.critChanceBonus,
     physDodge: freshStats.physDodge + amazon.physDodgeBonus + endurance.physDodgeBonus + assassin.physDodgeBonus,
-    magicDodge: freshStats.magicDodge + amazon.magicDodgeBonus + endurance.magicDodgeBonus + damageMasteries.magicDodgeBonus + assassin.magicDodgeBonus,
-    resistances: { physical: freshStats.resistances.physical + endurance.resistAllBonus,
-      fire: freshStats.resistances.fire + endurance.resistAllBonus,
-      cold: freshStats.resistances.cold + endurance.resistAllBonus,
-      lightning: freshStats.resistances.lightning + endurance.resistAllBonus,
-      arcane: freshStats.resistances.arcane + endurance.resistAllBonus,
-      poison: freshStats.resistances.poison + endurance.resistAllBonus },
+    magicDodge: freshStats.magicDodge + amazon.magicDodgeBonus + endurance.magicDodgeBonus + damageMasteries.magicDodgeBonus + assassin.magicDodgeBonus + shadow.magicDodgeBonus,
+    resistances: { physical: freshStats.resistances.physical + allResistanceBonus,
+      fire: freshStats.resistances.fire + allResistanceBonus,
+      cold: freshStats.resistances.cold + allResistanceBonus,
+      lightning: freshStats.resistances.lightning + allResistanceBonus,
+      arcane: freshStats.resistances.arcane + allResistanceBonus,
+      poison: freshStats.resistances.poison + allResistanceBonus },
     defense: freshStats.defense * (1 + IRON_SKIN_DEFINITION.defensePctPerRank * ironSkinRank),
     life: Math.min(player.derivedStats.life, lifeMax),
     mana: Math.min(player.derivedStats.mana, freshStats.manaMax) };
@@ -211,6 +214,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
       increasedDamagePct[type] = (increasedDamagePct[type] ?? 0) + (damageMasteries.increasedDamagePct[type] ?? 0);
     }
   }
+  if (shadow.poisonDamagePct > 0) increasedDamagePct.poison = (increasedDamagePct.poison ?? 0) + shadow.poisonDamagePct;
   if (physicalDamagePct > 0) increasedDamagePct.physical = (increasedDamagePct.physical ?? 0) + physicalDamagePct;
   const formation = useFormationStore.getState();
   const grants = resolveEquippedRunewordGrants(equipped);
@@ -1114,6 +1118,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     ? composeGolemMastery(currentPlayer) : undefined;
   const corpseExplosion = currentPlayer?.id === run.playerUnit.id
     ? composeCorpseExplosion(currentPlayer) : undefined;
+  const assassinVenom = currentPlayer?.id === run.playerUnit.id
+    ? composeAssassinVenom(currentPlayer) : undefined;
   const poisonExplosion = currentPlayer?.id === run.playerUnit.id
     ? composePoisonExplosion(currentPlayer) : undefined;
   const playerTeam = carryPlayerTeam.map(unit => {
@@ -1194,6 +1200,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       ...(golemMastery ? { golemMastery } : {}),
       ...(summonPassives ? { summonPassives } : {}),
       ...(corpseExplosion ? { corpseExplosion: [corpseExplosion] } : {}),
+      ...(assassinVenom ? { assassinVenom } : {}),
       ...(poisonExplosion ? { poisonExplosion: [poisonExplosion] } : {})
     },
     waveIdx,

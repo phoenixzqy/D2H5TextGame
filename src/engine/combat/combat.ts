@@ -1,3 +1,5 @@
+import { assassinVenomRawDps, copyAssassinVenomProjection, ASSASSIN_SHADOW_DEFINITIONS,
+  type AssassinVenomProjection } from '../skills/assassin-shadow';
 /**
  * Deterministic battle runner — timeline scheduler.
  *
@@ -135,6 +137,8 @@ export interface CombatSnapshot {
   readonly corpseExplosion?: readonly CorpseExplosionProjection[];
   /** Independent Player-composed PE eligibility; both consumers share one empty wave-local FIFO. */
   readonly poisonExplosion?: readonly PoisonExplosionProjection[];
+  /** Copied learned Assassin coating, bound to the exact player hero for this wave. */
+  readonly assassinVenom?: AssassinVenomProjection;
   /** Frozen explicit player Might selection for this wave, active from simulation entry. */
   readonly mightAura?: MightAuraProjection;
   /** Frozen explicit Meditation selection; eligibility is captured at each interval start. */
@@ -170,6 +174,7 @@ interface State {
   /** Valid copied player authority and FIFO primary enemy-monster death IDs; wave-local only. */
   readonly corpseExplosion: Map<string, number>;
   readonly poisonExplosion: Map<string, number>;
+  readonly assassinVenom?: AssassinVenomProjection;
   readonly corpses: string[];
   readonly ironGolem?: IronGolemInput;
   ironGolemPreparation?: IronGolemPreparationAttestation;
@@ -496,7 +501,8 @@ function applyDamageToUnit(
   attackerId: string,
   defenderId: string,
   effect: DamageEffect,
-  skillLevel = 1
+  skillLevel = 1,
+  basicHit = false
 ): void {
   const attacker = state.units.get(attackerId);
   const defender = state.units.get(defenderId);
@@ -553,6 +559,21 @@ function applyDamageToUnit(
         emit(state, { kind: 'status', target: defenderId, statusId: status.id });
         observeStatuses(state, defenderId);
       }
+    }
+  }
+
+  // Coating is a deterministic poison payload, independent of the physical hit's mitigation/crit.
+  const rawPoison = basicHit ? assassinVenomRawDps(attacker, state.assassinVenom) : undefined;
+  if (rawPoison !== undefined) {
+    const poison: DamageEffect = { kind: 'damage', damageType: 'poison', base: [0, 0] };
+    const dotPerStack = mitigateDamage(rawPoison, buildDamageInput(state, attacker, activeDefender, poison)).final;
+    const current = state.units.get(defenderId);
+    if (current) {
+      state.units.set(defenderId, applyStatus(current, { id: 'poison', sourceId: attackerId,
+        simClockMs: state.simClockMs, durationMs: ASSASSIN_SHADOW_DEFINITIONS.venom.coatingDurationMs,
+        dotPerStack, damageType: 'poison' }, state.rng));
+      emit(state, { kind: 'status', target: defenderId, statusId: 'poison' });
+      observeStatuses(state, defenderId);
     }
   }
 
@@ -1071,7 +1092,7 @@ function basicAttack(state: State, actorId: string): void {
     damageType: actor.basicAttack?.damageType ?? state.skeletalMageElements.get(actorId) ?? 'physical',
     base: actor.basicAttack?.damage ?? [projectAttack(ordinaryRange[0]), projectAttack(ordinaryRange[1])]
   };
-  applyDamageToUnit(state, actorId, target.id, effect);
+  applyDamageToUnit(state, actorId, target.id, effect, 1, true);
 }
 
 /** Integrate exactly the overlap; compensated HP-ms avoids repeated fractional-HP loss. */
@@ -1536,8 +1557,10 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const golemMastery = snapshot.golemMastery;
   const iron = snapshot.ironGolem;
   const global = snapshot.summonPassives;
+  const assassinVenom = copyAssassinVenomProjection(snapshot.assassinVenom);
   const state: State = {
     holyFreezeSources: [],
+    ...(assassinVenom ? { assassinVenom } : {}),
     ...(global ? { summonPassives: Object.freeze({ sourceHeroId: global.sourceHeroId,
       masteryRank: global.masteryRank, resistRank: global.resistRank,
       masteryMaxRank: global.masteryMaxRank, resistMaxRank: global.resistMaxRank,

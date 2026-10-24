@@ -7,6 +7,194 @@
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
   "allOf": [
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-assassin-fade"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "scaling",
+          "prerequisites"
+        ],
+        "properties": {
+          "requiredLevel": { "$ref": "#/properties/requiredLevel" },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "passive": {
+            "const": true
+          },
+          "aura": {
+            "const": false
+          },
+          "summon": {
+            "const": false
+          },
+          "prerequisites": {
+            "const": [
+              "skills-assassin-burst-of-speed"
+            ]
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "required": [
+                  "resistAllPct",
+                  "magicDodgePct"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "resistAllPct": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "magicDodgePct": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "cost": false,
+          "damage": false,
+          "damageType": false,
+          "appliesStatus": false,
+          "statusEffect": false,
+          "additionalStatusEffects": false,
+          "synergies": false,
+          "heal": false,
+          "summonId": false,
+          "aoeShape": false,
+          "requires": false,
+          "appliesTags": false,
+          "venomOnBasicHit": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-assassin-venom"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "scaling",
+          "prerequisites",
+          "appliesTags",
+          "venomOnBasicHit"
+        ],
+        "properties": {
+          "requiredLevel": { "$ref": "#/properties/requiredLevel" },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "passive": {
+            "const": true
+          },
+          "aura": {
+            "const": false
+          },
+          "summon": {
+            "const": false
+          },
+          "prerequisites": {
+            "const": [
+              "skills-assassin-fade"
+            ]
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "required": [
+                  "poisonDamagePct"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "poisonDamagePct": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "cost": false,
+          "damage": false,
+          "damageType": false,
+          "appliesStatus": false,
+          "statusEffect": false,
+          "additionalStatusEffects": false,
+          "synergies": false,
+          "heal": false,
+          "summonId": false,
+          "aoeShape": false,
+          "requires": false,
+          "appliesTags": {
+            "const": [
+              "poison"
+            ]
+          },
+          "venomOnBasicHit": {
+            "$ref": "#/properties/venomOnBasicHit"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "venomOnBasicHit": {} },
+        "required": [
+          "venomOnBasicHit"
+        ]
+      },
+      "then": {
+        "properties": {
+          "id": {
+            "const": "skills-assassin-venom"
+          }
+        }
+      }
+    },
       {
         "if": {
           "properties": {
@@ -2040,6 +2228,27 @@
     }
   },
   "properties": {
+    "venomOnBasicHit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attackPct",
+        "durationMs"
+      ],
+      "properties": {
+        "attackPct": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "durationMs": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 60000
+        }
+      },
+      "description": "Exact Assassin Venom basic-hit coating: fraction of snapshot Attack per second, then poison mitigation once."
+    },
     "monsterSummon": {
       "type": "object", "additionalProperties": false,
       "description": "Reviewed Blood Raven monster-archetype summon batch and death policy.",

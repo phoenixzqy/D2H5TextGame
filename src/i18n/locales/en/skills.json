@@ -348,11 +348,11 @@
     },
     "fade": {
       "name": "Fade",
-      "desc": "At combat start, gain +30% all resistances and +15% physical dodge."
+      "desc": "Automatically active for the Assassin. Each rank adds {{resist}} resistance points to all six damage types and {{magicDodge}} percentage points of magical dodge; maximum {{cap}} ranks, unlocked at level {{level}}. Changes apply next wave."
     },
     "venom": {
       "name": "Venom",
-      "desc": "Basic attacks apply 1 stack of poison to the target."
+      "desc": "Automatically active for the Assassin. Each rank adds {{poison}}% poison damage. Each successful basic hit applies one poison stack for {{seconds}} seconds: {{coating}}% Attack per second, increased by poison damage bonuses, then reduced by poison resistance and armor; maximum {{cap}} ranks, unlocked at level {{level}}. Changes apply next wave."
     },
     "tiger-strike": {
       "name": "Tiger Strike",

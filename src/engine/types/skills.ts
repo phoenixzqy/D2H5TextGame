@@ -212,6 +212,9 @@ export interface SkillDef {
   /** Damage type (primary) */
   readonly damageType?: DamageType;
   
+  /** Exact Venom-only basic-hit coating; strict JSON schema guards its owner and tuning. */
+  readonly venomOnBasicHit?: { readonly attackPct: number; readonly durationMs: number };
+
   /** Status effects applied by this skill */
   readonly appliesStatus?: readonly string[]; // status IDs
   /** Runtime metadata for the first applied status, such as DoT strength or stacks. */

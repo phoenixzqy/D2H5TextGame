@@ -317,6 +317,10 @@
       "passiveStatsPerLevel": {
         "poisonDamagePct": 0.03
       }
+    },
+    "venomOnBasicHit": {
+      "attackPct": 0.05,
+      "durationMs": 5000
     }
   },
   {

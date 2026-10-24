@@ -51,6 +51,7 @@ import { GOLEM_MASTERY_DEFINITION, composeGolemMastery, resolveGolemMasteryRank 
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
 import { composeSummonPassives, SUMMON_PASSIVE_IDENTITIES, SUMMON_PASSIVE_DEFINITIONS } from '@/engine/skills/summon-passives';
 import { ASSASSIN_WEAPON_PASSIVE_DEFINITIONS, ASSASSIN_WEAPON_PASSIVE_IDENTITIES } from '@/engine/skills/assassin-weapon-passives';
+import { ASSASSIN_SHADOW_DEFINITIONS, ASSASSIN_SHADOW_IDENTITIES } from '@/engine/skills/assassin-shadow';
 import { DAMAGE_MASTERY_DEFINITIONS, DAMAGE_MASTERY_IDENTITIES } from '@/engine/skills/damage-masteries';
 import { COLD_MASTERY_DEFINITION, coldMasteryReductionAtRank, resolveColdMasteryRank } from '@/engine/skills/cold-mastery';
 import { resolveStaticFieldRank } from '@/engine/skills/static-field';
@@ -1154,6 +1155,16 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
+  for (const key of ['fade', 'venom'] as const) {
+    if (skill.id === ASSASSIN_SHADOW_IDENTITIES[key][0]) {
+      const definition = ASSASSIN_SHADOW_DEFINITIONS[key];
+      return t('assassin.' + key + '.desc', {
+        resist: definition.resistPerRank * 100, magicDodge: definition.magicDodgePerRank * 100,
+        poison: definition.poisonPerRank * 100, coating: definition.coatingAttackPct * 100,
+        seconds: definition.coatingDurationMs / 1000, cap: definition.maxRank, level: definition.requiredLevel,
+      });
+    }
+  }
   for (const key of ['claw', 'block'] as const) {
     const [authored] = ASSASSIN_WEAPON_PASSIVE_IDENTITIES[key];
     if (skill.id === authored) {
