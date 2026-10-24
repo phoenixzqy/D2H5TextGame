@@ -83,6 +83,12 @@ ancient barbarians, generic kills, imported true flags and matching archetype
 counts cannot satisfy source requirements. Preserve authored areas/levels,
 monster archetypes, base/growth stats, skills and ordinary loot.
 
+BUG142 is a narrow behavior correction to the preserved skill lists: Blood
+Lords prioritize existing Fire Breath and Frozen Terrors prioritize existing
+Frost Aura before Strong Melee. The previous order starved both elemental
+skills. This applies to canonical campaign appearances as well as D14 trials;
+it authorizes no broader tuning and requires updated pacing evidence separately.
+
 ## Actions, items and source receipts
 
 For the following table, `Q` means the full exact owning quest ID from the

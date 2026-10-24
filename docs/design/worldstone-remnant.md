@@ -59,8 +59,15 @@ ordinary `boss` tier. Maximum four enemies simultaneously; fifteen originals.
 Every monster ID has prefix `monsters/act5.`. `ashen` uses blood-lord: actual
 75 fire resistance and existing fire breath/ignite. `glacial` uses
 frozen-terror: actual75 cold resistance and existing frost aura/chill. Both
-skills already resolve through `DEFAULT_SKILLS`/aliases; no skill repair is
-needed. These are resistance and incoming-threat checks, not new immunities.
+skills resolve through `DEFAULT_SKILLS`/aliases. BUG142 corrects the earlier
+assumption that this alone made them usable: canonical one-second melee first
+starved both elemental actions at their1620ms cadence. Prioritize the existing
+elemental skill in exactly these two canonical monster rows, preserving AI,
+stats, cooldowns, memberships and the endgame factory. This also changes their
+Act V appearances; prior melee-only recordings do not validate updated pacing.
+Require native elemental damage, Ignite/Chill, melee cooldown fallback and
+current production-browser logs for both trials. These are resistance and
+incoming-threat checks, not new immunities; balance acceptance remains separate.
 
 ### Rewards and achievement
 

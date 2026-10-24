@@ -122,8 +122,8 @@
       70
     ],
     "skills": [
-      "monster-strong-melee",
-      "monster-fire-breath"
+      "monster-fire-breath",
+      "monster-strong-melee"
     ],
     "attackSpeed": 110,
     "defense": 90,
@@ -230,8 +230,8 @@
       80
     ],
     "skills": [
-      "monster-strong-melee",
-      "monster-frost-aura"
+      "monster-frost-aura",
+      "monster-strong-melee"
     ],
     "attackSpeed": 110,
     "defense": 95,
