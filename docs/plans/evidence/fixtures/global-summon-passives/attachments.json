@@ -1,0 +1,218 @@
+[
+  {
+    "case": 1,
+    "project": "summon-passive-desktop",
+    "title": "necromancer.summon_mastery native allocation and exact Continue en",
+    "name": "allocated-mastery",
+    "path": "attachments/1-allocated-mastery.png",
+    "bytes": 162463,
+    "sha256": "5e4d1d36436ed67a5b36aeb1201a7dec8e06a9c2a48f6f205a1fa1a672d2ba54"
+  },
+  {
+    "case": 1,
+    "project": "summon-passive-desktop",
+    "title": "necromancer.summon_mastery native allocation and exact Continue en",
+    "name": "mastery-after-Continue",
+    "path": "attachments/1-mastery-after-Continue.png",
+    "bytes": 151185,
+    "sha256": "5cb5e1e6b2a0c53967678c267a2c7955e75937818dd29f8bea378eb77338d0e8"
+  },
+  {
+    "case": 1,
+    "project": "summon-passive-desktop",
+    "title": "necromancer.summon_mastery native allocation and exact Continue en",
+    "name": "exact-Continue",
+    "path": "attachments/1-exact-Continue.json",
+    "bytes": 7196,
+    "sha256": "6f95a176da337c432b033a54e6bafda0dfd75491ac226ddf6083129269d4f425"
+  },
+  {
+    "case": 2,
+    "project": "summon-passive-desktop",
+    "title": "necromancer.summon_resist native allocation and exact Continue en",
+    "name": "allocated-mastery",
+    "path": "attachments/2-allocated-mastery.png",
+    "bytes": 146736,
+    "sha256": "73fdce4c15926a2c6e11d66bd3d45e941e93bd853138922e37f26371f143c887"
+  },
+  {
+    "case": 2,
+    "project": "summon-passive-desktop",
+    "title": "necromancer.summon_resist native allocation and exact Continue en",
+    "name": "mastery-after-Continue",
+    "path": "attachments/2-mastery-after-Continue.png",
+    "bytes": 144918,
+    "sha256": "97fd3d62e24d07f1e7d44f5e99e1c49c36e233a7e7d454703bbcc338a6caaefc"
+  },
+  {
+    "case": 2,
+    "project": "summon-passive-desktop",
+    "title": "necromancer.summon_resist native allocation and exact Continue en",
+    "name": "exact-Continue",
+    "path": "attachments/2-exact-Continue.json",
+    "bytes": 7194,
+    "sha256": "3d8aad3981b49e8098f38a7018dd860fbb681ef4d089d679224ed9fb8865ad28"
+  },
+  {
+    "case": 3,
+    "project": "summon-passive-desktop",
+    "title": "necromancer.summon_mastery native allocation and exact Continue zh-CN",
+    "name": "allocated-mastery",
+    "path": "attachments/3-allocated-mastery.png",
+    "bytes": 162288,
+    "sha256": "a1c4b43aa5c95be432a2e0acacb8471591dd9c4ff9843bb4bd254b3e6d20bbc0"
+  },
+  {
+    "case": 3,
+    "project": "summon-passive-desktop",
+    "title": "necromancer.summon_mastery native allocation and exact Continue zh-CN",
+    "name": "mastery-after-Continue",
+    "path": "attachments/3-mastery-after-Continue.png",
+    "bytes": 151370,
+    "sha256": "7f36a937d209232236e4541c37483e70e9b211087747541e0570c9b02505d745"
+  },
+  {
+    "case": 3,
+    "project": "summon-passive-desktop",
+    "title": "necromancer.summon_mastery native allocation and exact Continue zh-CN",
+    "name": "exact-Continue",
+    "path": "attachments/3-exact-Continue.json",
+    "bytes": 7202,
+    "sha256": "135323afd05d86022d16bf1830910f01e46b38c527293627c7adba4c6575f058"
+  },
+  {
+    "case": 4,
+    "project": "summon-passive-desktop",
+    "title": "necromancer.summon_resist native allocation and exact Continue zh-CN",
+    "name": "allocated-mastery",
+    "path": "attachments/4-allocated-mastery.png",
+    "bytes": 147110,
+    "sha256": "cfcd0adaa65efd5741e096e2dcef25b9bfcccc368d013eea84ba45c5093a4110"
+  },
+  {
+    "case": 4,
+    "project": "summon-passive-desktop",
+    "title": "necromancer.summon_resist native allocation and exact Continue zh-CN",
+    "name": "mastery-after-Continue",
+    "path": "attachments/4-mastery-after-Continue.png",
+    "bytes": 145305,
+    "sha256": "12c15cead3b2e48ec672bffd487f1731cee8bba95314d580886668bb9ba22e59"
+  },
+  {
+    "case": 4,
+    "project": "summon-passive-desktop",
+    "title": "necromancer.summon_resist native allocation and exact Continue zh-CN",
+    "name": "exact-Continue",
+    "path": "attachments/4-exact-Continue.json",
+    "bytes": 7200,
+    "sha256": "ffc87eac3b18f7a87fa41a15cbe839b1789943ff4b5a94f7644f93d854fdc3d8"
+  },
+  {
+    "case": 5,
+    "project": "summon-passive-mobile",
+    "title": "necromancer.summon_mastery native allocation and exact Continue en",
+    "name": "allocated-mastery",
+    "path": "attachments/5-allocated-mastery.png",
+    "bytes": 189479,
+    "sha256": "3873712de7a4410099d4b168b38e49f05058eec6adb64c3b342198ce8bb1c271"
+  },
+  {
+    "case": 5,
+    "project": "summon-passive-mobile",
+    "title": "necromancer.summon_mastery native allocation and exact Continue en",
+    "name": "mastery-after-Continue",
+    "path": "attachments/5-mastery-after-Continue.png",
+    "bytes": 192687,
+    "sha256": "8b99abc70169ae5b97d448c766799b51f9b72f85fc6792811c64f0935d6f2025"
+  },
+  {
+    "case": 5,
+    "project": "summon-passive-mobile",
+    "title": "necromancer.summon_mastery native allocation and exact Continue en",
+    "name": "exact-Continue",
+    "path": "attachments/5-exact-Continue.json",
+    "bytes": 7196,
+    "sha256": "703963cb6e7176be3c83cca26e8119946940f5b8f9a2526e1de28f42ef7d7184"
+  },
+  {
+    "case": 6,
+    "project": "summon-passive-mobile",
+    "title": "necromancer.summon_resist native allocation and exact Continue en",
+    "name": "allocated-mastery",
+    "path": "attachments/6-allocated-mastery.png",
+    "bytes": 197115,
+    "sha256": "55ffeed12af1510561e1fbc4e08d266e65f9564570f9ddaecb043468ee1481ba"
+  },
+  {
+    "case": 6,
+    "project": "summon-passive-mobile",
+    "title": "necromancer.summon_resist native allocation and exact Continue en",
+    "name": "mastery-after-Continue",
+    "path": "attachments/6-mastery-after-Continue.png",
+    "bytes": 200075,
+    "sha256": "ea6eb194a4fd1438175a5f759d0a76c230976839756d2dac8ba990659be566c9"
+  },
+  {
+    "case": 6,
+    "project": "summon-passive-mobile",
+    "title": "necromancer.summon_resist native allocation and exact Continue en",
+    "name": "exact-Continue",
+    "path": "attachments/6-exact-Continue.json",
+    "bytes": 7194,
+    "sha256": "7c1c6f5897465d8f8b7d09146df2ab2e54d1e2b5382e7ead963204871265a145"
+  },
+  {
+    "case": 7,
+    "project": "summon-passive-mobile",
+    "title": "necromancer.summon_mastery native allocation and exact Continue zh-CN",
+    "name": "allocated-mastery",
+    "path": "attachments/7-allocated-mastery.png",
+    "bytes": 217158,
+    "sha256": "f0d498eb8309a566d93140e1826b239af5f23f1cdafb61dc4a77074ccba6a488"
+  },
+  {
+    "case": 7,
+    "project": "summon-passive-mobile",
+    "title": "necromancer.summon_mastery native allocation and exact Continue zh-CN",
+    "name": "mastery-after-Continue",
+    "path": "attachments/7-mastery-after-Continue.png",
+    "bytes": 194296,
+    "sha256": "c04ca506d9d94deffac8997a2f99070436db236b824a8f0d62ce904e6e0c1083"
+  },
+  {
+    "case": 7,
+    "project": "summon-passive-mobile",
+    "title": "necromancer.summon_mastery native allocation and exact Continue zh-CN",
+    "name": "exact-Continue",
+    "path": "attachments/7-exact-Continue.json",
+    "bytes": 7202,
+    "sha256": "5f0d902aac612126ec27bcb23a2937b3aeb9bc8acc37a2a071eb356420f25bac"
+  },
+  {
+    "case": 8,
+    "project": "summon-passive-mobile",
+    "title": "necromancer.summon_resist native allocation and exact Continue zh-CN",
+    "name": "allocated-mastery",
+    "path": "attachments/8-allocated-mastery.png",
+    "bytes": 223950,
+    "sha256": "b9c7fb759ea44c5ef386cc5772e5ca0fb1c0abd7b7ca265edb10b369b53668f6"
+  },
+  {
+    "case": 8,
+    "project": "summon-passive-mobile",
+    "title": "necromancer.summon_resist native allocation and exact Continue zh-CN",
+    "name": "mastery-after-Continue",
+    "path": "attachments/8-mastery-after-Continue.png",
+    "bytes": 200261,
+    "sha256": "d73938e870d609e9aaa59407472dc79a581c37e6df2f488c3d4a2945423c07e0"
+  },
+  {
+    "case": 8,
+    "project": "summon-passive-mobile",
+    "title": "necromancer.summon_resist native allocation and exact Continue zh-CN",
+    "name": "exact-Continue",
+    "path": "attachments/8-exact-Continue.json",
+    "bytes": 7200,
+    "sha256": "94bb9d59590003b555263b54abd67d426e30f3bc96fe970cd2005f5ed024b242"
+  }
+]

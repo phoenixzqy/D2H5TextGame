@@ -126,7 +126,7 @@ necromancer,skills-necromancer-poison-nova,necromancer.poison_nova,active,damage
 necromancer,skills-necromancer-bone-spear,necromancer.bone_spear,active,damage,,src/data/skills/necromancer.json,,unverified,
 necromancer,skills-necromancer-amplify-damage,necromancer.amplify_damage,active,debuff,amplify-damage,src/data/skills/necromancer.json,pure-debuff-consumer-not-found-in-audit,unverified,
 necromancer,skills-necromancer-decrepify,necromancer.decrepify,active,debuff,decrepify,src/data/skills/necromancer.json,pure-debuff-consumer-not-found-in-audit,unverified,
-necromancer,skills-necromancer-summon-mastery,necromancer.summon_mastery,passive,buff,,src/data/skills/necromancer.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+necromancer,skills-necromancer-summon-mastery,necromancer.summon_mastery,passive,buff-metadata+fresh-owned-summon-composition,,src/data/skills/necromancer.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-global-summon-passives.md
 necromancer,skills-necromancer-poison-mastery,necromancer.poison_mastery,passive,buff,,src/data/skills/necromancer.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,bounded-functional;independent-acceptance-open,decisions/D05-poison-elemental-masteries-v1.md; evidence/d05-poison-elemental-masteries.md
 necromancer,skills-necromancer-blood-golem,necromancer.blood_golem,active,summon,,src/data/skills/necromancer.json,,unverified,
 necromancer,skills-necromancer-bone-armor,necromancer.bone_armor,passive,buff,,src/data/skills/necromancer.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
@@ -148,7 +148,7 @@ necromancer,skills-necromancer-skeleton-mastery,necromancer.skeleton_mastery,pas
 necromancer,skills-necromancer-clay-golem,necromancer.clay_golem,active,summon,,src/data/skills/necromancer.json,,unverified,
 necromancer,skills-necromancer-golem-mastery,necromancer.golem_mastery,passive,buff,,src/data/skills/necromancer.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 necromancer,skills-necromancer-raise-skeletal-mage,necromancer.raise_skeletal_mage,active,summon,,src/data/skills/necromancer.json,,unverified,
-necromancer,skills-necromancer-summon-resist,necromancer.summon_resist,passive,buff,,src/data/skills/necromancer.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+necromancer,skills-necromancer-summon-resist,necromancer.summon_resist,passive,buff-metadata+fresh-owned-summon-composition,,src/data/skills/necromancer.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-global-summon-passives.md
 necromancer,skills-necromancer-iron-golem,necromancer.iron_golem,active,summon,,src/data/skills/necromancer.json,,unverified,
 necromancer,skills-necromancer-fire-golem,necromancer.fire_golem,active,summon,,src/data/skills/necromancer.json,,unverified,
 necromancer,skills-necromancer-revive,necromancer.revive,active,summon,,src/data/skills/necromancer.json,,unverified,

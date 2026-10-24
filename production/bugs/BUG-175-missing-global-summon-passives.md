@@ -1,6 +1,6 @@
 # BUG-175 — Activate global summon passives
 
-Severity: High. Status: reproduced, implementation in progress.
+Severity: High. Status: Fixed in 0b5e202 (runtime), fe636fb (display). Independent acceptance open.
 Owner: engine-dev/frontend-dev (root sole writer).
 
 Reproduction: baseline 5b6d549, Vitest native store/production wave adapter,
@@ -19,3 +19,7 @@ raw red-native.log retained for the implementation evidence.
 Root cause: authored global passive metadata has no wave projection or consumer
 at fresh summon creation. Existing local Skeleton/Golem Mastery works.
 Workaround: none for the missing effects.
+
+Validation: native reproduction GREEN; full11966PASS/484files/two existing skips,
+engine5910PASS, types/lint/build PASS, production browser8/8.
+Evidence: docs/plans/evidence/d05-global-summon-passives.md.

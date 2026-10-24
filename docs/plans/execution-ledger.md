@@ -11348,3 +11348,19 @@ Source remains d352c44; prior full11722/types/lint/build apply, no repeated suit
 for evidence-only edits. C0/C1 retain narrow historical acceptance; C2–C4,
 all213skill/build/economy/pacing/PWA/performance and fullG0–G7 remain open.
 Goal and human worktree stay active; all work local, no remote publication.
+
+## D05 — Global Necromancer summon passives / BUG175
+
+Runtime0b5e202/displayfe636fb activate Summon Mastery/Summon Resist from copied
+eligible allocations at all fresh summon creation paths. Same-stat global/local
+bonuses add over the fresh baseline after Iron inheritance; existing summons,
+resources, costs/IDs/RNG and Iron debit/replay policy remain intact. Both locales
+and fresh previews show actual scaling, including six resistances.
+[Evidence](evidence/d05-global-summon-passives.md): causal native/schema/UI RED→GREEN,
+focused147PASS; engine5910PASS; full11966PASS/484files/two existing skips;
+types/lint/build PASS; production browser8/8 with eight exact Continue pairs.
+Full-run1173source/test/config hashes and Git state stayed unchanged. Raw67files /
+18terminal process records retained; exact task cleanup receipt is beside evidence.
+213skill IDs remain,189unverified; only two bounded functional dispositions added.
+Earned Ancients401 save/next402 unchanged. C2–C4/fullG0–G7 and independent QA remain
+open. Local only; preserved umbrella worktree/goal remain active.

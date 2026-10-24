@@ -1,0 +1,14 @@
+{
+  "src/engine/combat/combat.ts": "24fcefcb832f7f14153a7f0d5e92f7687b53602891a317b6f7172be6b86e9bc9",
+  "src/engine/combat/summon-passives.test.ts": "086d65fe97aa42069ece6a67cd49f6776122e78ed79b275e8a87e443d5951163",
+  "src/engine/skills/displayStats.ts": "222f0b558542ec06068e35386e9d8f2765ca5356aa20813478522300677b8111",
+  "src/engine/skills/summon-passives-schema.test.ts": "a0f63660b3cf0200125d7c35d84c5415b69a054504b277c3192d53dca2dafac6",
+  "src/engine/skills/summon-passives.test.ts": "9bf429b45ee8fff101370f4f3081b51c1833f7fd7d7f7cb7f011053b2a4ab60b",
+  "src/engine/skills/summon-passives.ts": "6fcb5de47d358b34baa344326dd1563ace28acee93a10c814bc9598fca731be4",
+  "src/features/skills/SkillsScreen.summon-passives.test.tsx": "b178b5665dfabbdf90a46840bbca1af10f384a6ea1fa1b737a4c74976663a796",
+  "src/features/skills/SkillsScreen.tsx": "4909b54b5f7a733c2ad93f4e4efb5f5d19bec3836c5263d66b815873704d1f24",
+  "src/stores/combatHelpers.ts": "ad9fc69f27dcba6dbf1a92db533b1c682de90b82cc45fc3ab58a6dd5da843721",
+  "src/stores/summon-passives-native.test.ts": "09d3ddebcbd56cf070d1c31fc0d1a6e1a59be3a389d3c9d97ca3c6ad3207facb",
+  "tests/pwa/summon-passives.config.ts": "96a544c723b17642ac89b0611de9e66898201c8633221552e99fb99e941291e3",
+  "tests/pwa/summon-passives.spec.ts": "604e3e7a21e1bfd2e6525ebab1b5ab0ad6b8e0ea2f83ed497f45e1a1a3620e7d"
+}

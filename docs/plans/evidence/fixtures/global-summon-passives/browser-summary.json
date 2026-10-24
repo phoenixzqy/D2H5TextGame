@@ -1,0 +1,172 @@
+{
+  "stats": {
+    "startTime": "2026-10-24T19:27:20.533Z",
+    "duration": 94268.12999999999,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "records": [
+    {
+      "project": "summon-passive-desktop",
+      "title": "necromancer.summon_mastery native allocation and exact Continue en",
+      "status": "passed",
+      "attachments": [
+        {
+          "name": "allocated-mastery",
+          "contentType": "image/png"
+        },
+        {
+          "name": "mastery-after-Continue",
+          "contentType": "image/png"
+        },
+        {
+          "name": "exact-Continue",
+          "contentType": "application/json"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "project": "summon-passive-desktop",
+      "title": "necromancer.summon_resist native allocation and exact Continue en",
+      "status": "passed",
+      "attachments": [
+        {
+          "name": "allocated-mastery",
+          "contentType": "image/png"
+        },
+        {
+          "name": "mastery-after-Continue",
+          "contentType": "image/png"
+        },
+        {
+          "name": "exact-Continue",
+          "contentType": "application/json"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "project": "summon-passive-desktop",
+      "title": "necromancer.summon_mastery native allocation and exact Continue zh-CN",
+      "status": "passed",
+      "attachments": [
+        {
+          "name": "allocated-mastery",
+          "contentType": "image/png"
+        },
+        {
+          "name": "mastery-after-Continue",
+          "contentType": "image/png"
+        },
+        {
+          "name": "exact-Continue",
+          "contentType": "application/json"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "project": "summon-passive-desktop",
+      "title": "necromancer.summon_resist native allocation and exact Continue zh-CN",
+      "status": "passed",
+      "attachments": [
+        {
+          "name": "allocated-mastery",
+          "contentType": "image/png"
+        },
+        {
+          "name": "mastery-after-Continue",
+          "contentType": "image/png"
+        },
+        {
+          "name": "exact-Continue",
+          "contentType": "application/json"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "project": "summon-passive-mobile",
+      "title": "necromancer.summon_mastery native allocation and exact Continue en",
+      "status": "passed",
+      "attachments": [
+        {
+          "name": "allocated-mastery",
+          "contentType": "image/png"
+        },
+        {
+          "name": "mastery-after-Continue",
+          "contentType": "image/png"
+        },
+        {
+          "name": "exact-Continue",
+          "contentType": "application/json"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "project": "summon-passive-mobile",
+      "title": "necromancer.summon_resist native allocation and exact Continue en",
+      "status": "passed",
+      "attachments": [
+        {
+          "name": "allocated-mastery",
+          "contentType": "image/png"
+        },
+        {
+          "name": "mastery-after-Continue",
+          "contentType": "image/png"
+        },
+        {
+          "name": "exact-Continue",
+          "contentType": "application/json"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "project": "summon-passive-mobile",
+      "title": "necromancer.summon_mastery native allocation and exact Continue zh-CN",
+      "status": "passed",
+      "attachments": [
+        {
+          "name": "allocated-mastery",
+          "contentType": "image/png"
+        },
+        {
+          "name": "mastery-after-Continue",
+          "contentType": "image/png"
+        },
+        {
+          "name": "exact-Continue",
+          "contentType": "application/json"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "project": "summon-passive-mobile",
+      "title": "necromancer.summon_resist native allocation and exact Continue zh-CN",
+      "status": "passed",
+      "attachments": [
+        {
+          "name": "allocated-mastery",
+          "contentType": "image/png"
+        },
+        {
+          "name": "mastery-after-Continue",
+          "contentType": "image/png"
+        },
+        {
+          "name": "exact-Continue",
+          "contentType": "application/json"
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "removed": "/tmp/d2h5-summon-passives-03k7vtaj",
+  "taskFilesRemoved": 852,
+  "remaining": [],
+  "failures": [],
+  "port4457Closed": true,
+  "terminalProcesses": [
+    {
+      "name": "changed-lint",
+      "pid": 1826053,
+      "exit": 0
+    },
+    {
+      "name": "full",
+      "pid": 1809384,
+      "exit": 0
+    },
+    {
+      "name": "browser-lint",
+      "pid": 1808740,
+      "exit": 0
+    },
+    {
+      "name": "browser",
+      "pid": 1807588,
+      "exit": 0
+    },
+    {
+      "name": "types-corrected",
+      "pid": 1806063,
+      "exit": 0
+    },
+    {
+      "name": "build",
+      "pid": 1803604,
+      "exit": 0
+    },
+    {
+      "name": "lint",
+      "pid": 1803603,
+      "exit": 0
+    },
+    {
+      "name": "engine",
+      "pid": 1803602,
+      "exit": 0
+    },
+    {
+      "name": "types-final",
+      "pid": 1803524,
+      "exit": 2
+    },
+    {
+      "name": "focused-final",
+      "pid": 1802900,
+      "exit": 0
+    },
+    {
+      "name": "focused-expanded",
+      "pid": 1801835,
+      "exit": 1
+    },
+    {
+      "name": "types",
+      "pid": 1801596,
+      "exit": 2
+    },
+    {
+      "name": "focused-ui",
+      "pid": 1801382,
+      "exit": 0
+    },
+    {
+      "name": "focused-core",
+      "pid": 1801204,
+      "exit": 1
+    },
+    {
+      "name": "red-ui",
+      "pid": 1798667,
+      "exit": 1
+    },
+    {
+      "name": "first-green",
+      "pid": 1798530,
+      "exit": 0
+    },
+    {
+      "name": "red-schema",
+      "pid": 1788720,
+      "exit": 1
+    },
+    {
+      "name": "red-native",
+      "pid": 1788649,
+      "exit": 1
+    }
+  ],
+  "preserved": [
+    "shared caches",
+    "claimed umbrella worktree",
+    "earned campaign save",
+    "versioned evidence"
+  ]
+}
