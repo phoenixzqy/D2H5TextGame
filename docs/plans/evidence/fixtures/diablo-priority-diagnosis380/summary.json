@@ -1,0 +1,66 @@
+{
+  "kind": "root diagnostic artifact audit; no gameplay or independent acceptance",
+  "inputRawSHA256": "b0972bad81133bba925939ed6c412307e2338df2e65795a2f6b48fa70735a64f",
+  "seedCount": 16,
+  "projectionCount": 48,
+  "summary": [
+    {
+      "policy": "retained-static-orb",
+      "runs": 16,
+      "wins": 0,
+      "diabloReached": 16,
+      "lastWaveResults": {
+        "enemy": 15,
+        "None": 1
+      },
+      "lastWaveCounts": {
+        "7": 16
+      }
+    },
+    {
+      "policy": "orb-static",
+      "runs": 16,
+      "wins": 0,
+      "diabloReached": 16,
+      "lastWaveResults": {
+        "enemy": 13,
+        "None": 3
+      },
+      "lastWaveCounts": {
+        "7": 16
+      }
+    },
+    {
+      "policy": "orb-only",
+      "runs": 16,
+      "wins": 0,
+      "diabloReached": 0,
+      "lastWaveResults": {
+        "None": 16
+      },
+      "lastWaveCounts": {
+        "5": 14,
+        "6": 2
+      }
+    }
+  ],
+  "example": {
+    "heroLifeMax": 530,
+    "openingLife": 530,
+    "openingMana": 392,
+    "manaAtDeath": 341,
+    "lastIncoming": {
+      "kind": "damage",
+      "source": "enemy-act4.diablo-0-4b81",
+      "target": "player-1792497600000",
+      "damageType": "physical",
+      "amount": 573,
+      "crit": true,
+      "dodged": false,
+      "simClockMs": 11161.159420289856,
+      "uiDelayMs": 50
+    },
+    "remainingDiabloLife": 31476
+  },
+  "finding": "Priority-only changes do not qualify. Static Field skips zero-effect targets. Inspected defeat has sufficient mana and lethal physical critical; survival/damage investigation next. No confirmed code defect, genuine action or source tuning."
+}

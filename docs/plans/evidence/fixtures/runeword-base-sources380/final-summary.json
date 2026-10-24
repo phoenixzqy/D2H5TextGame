@@ -1,0 +1,156 @@
+{
+  "kind": "root implementation and artifact self-review; no independent acceptance",
+  "sourceCommit": "18db5d3d991235c5ef53208cef85063c3e83c5eb",
+  "sourceFiles": 911,
+  "builtFiles": 760,
+  "bridgeFreeJS": 7,
+  "genuineSaveSHA256": "b0972bad81133bba925939ed6c412307e2338df2e65795a2f6b48fa70735a64f",
+  "genuineNextNormal": 380,
+  "earnedActions": 0,
+  "checks": [
+    {
+      "name": "catalog-red",
+      "session": 15601,
+      "exit": 1
+    },
+    {
+      "name": "obedience-red",
+      "session": 47976,
+      "exit": 1
+    },
+    {
+      "name": "focused-first",
+      "session": 83689,
+      "exit": 1
+    },
+    {
+      "name": "focused-v2",
+      "session": 39397,
+      "exit": 0
+    },
+    {
+      "name": "typecheck",
+      "session": 56965,
+      "exit": 0
+    },
+    {
+      "name": "lint-first",
+      "session": 57002,
+      "exit": 1
+    },
+    {
+      "name": "build",
+      "session": 80987,
+      "exit": 0
+    },
+    {
+      "name": "browser-import-failure",
+      "session": 19352,
+      "exit": 1
+    },
+    {
+      "name": "unit-full",
+      "session": 91999,
+      "status": "terminal",
+      "exit": 1,
+      "passed": 11666,
+      "failed": 8,
+      "skipped": 2,
+      "seconds": 486.81
+    },
+    {
+      "name": "browser-v2",
+      "session": 81820,
+      "status": "terminal",
+      "runnerPid": 1172084,
+      "previewPid": 1172098,
+      "port": 4440,
+      "exit": 130
+    },
+    {
+      "name": "native-audit",
+      "session": 91105,
+      "exit": 0
+    },
+    {
+      "name": "browser-v2-interrupted-after-real-failures",
+      "session": 81820,
+      "exit": 130,
+      "stop": "SIGINT exact verified owned runner1172084; original2failure/1pass/1interrupted report retained",
+      "status": "terminal"
+    },
+    {
+      "name": "browser-v3",
+      "session": 45746,
+      "exit": 0,
+      "tests": 4,
+      "retries": 0,
+      "previewPortClosed": true
+    },
+    {
+      "name": "native-audit-v2",
+      "session": 24263,
+      "exit": 0
+    },
+    {
+      "name": "typecheck-v2",
+      "session": 24126,
+      "exit": 0
+    },
+    {
+      "name": "lint-v2",
+      "session": 23840,
+      "status": "terminal",
+      "exit": 0
+    },
+    {
+      "name": "engine-final",
+      "session": 82595,
+      "status": "terminal",
+      "exit": 0,
+      "passed": 5748,
+      "files": 177,
+      "seconds": 74.02
+    },
+    {
+      "name": "typecheck-final",
+      "session": 31840,
+      "status": "terminal",
+      "exit": 0
+    },
+    {
+      "name": "lint-final",
+      "session": 76780,
+      "status": "terminal",
+      "exit": 0
+    },
+    {
+      "name": "unit-full-final",
+      "session": 84736,
+      "status": "terminal",
+      "exit": 0,
+      "passed": 11674,
+      "skipped": 2,
+      "files": 453,
+      "seconds": 457.15
+    }
+  ],
+  "cleanup": {
+    "removed": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/obedience-base380/dist",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/obedience-base380/vite-ssr-cache",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/obedience-base380/audit-vite-cache"
+    ],
+    "alreadyAbsent": [],
+    "remaining": [],
+    "failures": [],
+    "port4440Closed": true,
+    "buildFilesVerifiedBeforeRemoval": 760
+  },
+  "limits": [
+    "constructed acquisition/browser fixtures; no earned Obedience",
+    "no acquisition balance or pacing acceptance",
+    "C2-C4 and full G0-G7 incomplete",
+    "existing bundle/PWA/test-time warnings unresolved"
+  ]
+}

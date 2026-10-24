@@ -1,7 +1,8 @@
 # BUG-162 — Supply a legal base for the shipped Obedience recipe
 
-Severity: High. Status: open. Affected systems: content-designer / engine-dev /
-QA, F06/P12 and G4. No fix, balance or campaign acceptance is claimed here.
+Severity: High. Status: fixed locally in `18db5d3`; independent/integration
+acceptance pending. Affected systems: content-designer / engine-dev / QA,
+F06/P12 and G4. Original reproduction follows; no earned/balance acceptance.
 
 Build: production source `59f2590`, runtime `22bc93c`. Deterministic Node/Vite
 SSR use of the actual public `matchRuneword`/`recipeFromData` functions; browser,
@@ -38,3 +39,13 @@ There is no ordinary player workaround for this recipe in the current catalog.
 Separate correction: Insight is **not** missing a target. It is legal on the
 level35 four-socket Giant Thresher. The genuine level31 hero cannot equip that
 base yet; this progression restriction must remain distinct from BUG162.
+
+Resolution: a new level41 Battle Scythe supplies the unchanged five-socket
+polearm recipe, with an actual normal Act IV acquisition source. Existing
+bases/capacities, all35 recipes, ordered runes and effects remain unchanged.
+The companion BUG163 fixes other missing normal sources. Regression RED,
+native all35 source audit, legal materialization/crafting, equip40 refusal/41
+success, exact native continuation and final11674-test PASS are retained in
+[D10 evidence](../../docs/plans/evidence/d10-runeword-base-sources.md).
+The browser item is a diagnostic native drop in a constructed input; it does
+not establish an earned Obedience or Diablo clear. Genuine next380 is unchanged.

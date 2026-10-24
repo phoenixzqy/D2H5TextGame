@@ -1,0 +1,88 @@
+{
+  "kind": "root artifact self-audit; constructed browser proof only",
+  "browserStats": {
+    "startTime": "2026-10-24T13:56:27.059Z",
+    "duration": 66337.908,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "case": "en-360x640",
+      "result": "pass",
+      "retries": 0,
+      "dropSeed": 299,
+      "baseAttack": 52,
+      "equippedAttack": 437,
+      "unequippedAttack": 115,
+      "nativeExports": 4,
+      "files": {
+        "constructed-input-and-native-drop": "extracted-browser-evidence/en-360x640-constructed-input-and-native-drop.json",
+        "completed-word-preview": "extracted-browser-evidence/en-360x640-completed-word-preview.png",
+        "crafted-native-save": "extracted-browser-evidence/en-360x640-crafted-native-save.json",
+        "level40-equip-refused": "extracted-browser-evidence/en-360x640-level40-equip-refused.json",
+        "equipped-native-continued": "extracted-browser-evidence/en-360x640-equipped-native-continued.json",
+        "removed-native-save": "extracted-browser-evidence/en-360x640-removed-native-save.json"
+      }
+    },
+    {
+      "case": "en-1280x800",
+      "result": "pass",
+      "retries": 0,
+      "dropSeed": 299,
+      "baseAttack": 52,
+      "equippedAttack": 437,
+      "unequippedAttack": 115,
+      "nativeExports": 4,
+      "files": {
+        "constructed-input-and-native-drop": "extracted-browser-evidence/en-1280x800-constructed-input-and-native-drop.json",
+        "completed-word-preview": "extracted-browser-evidence/en-1280x800-completed-word-preview.png",
+        "crafted-native-save": "extracted-browser-evidence/en-1280x800-crafted-native-save.json",
+        "level40-equip-refused": "extracted-browser-evidence/en-1280x800-level40-equip-refused.json",
+        "equipped-native-continued": "extracted-browser-evidence/en-1280x800-equipped-native-continued.json",
+        "removed-native-save": "extracted-browser-evidence/en-1280x800-removed-native-save.json"
+      }
+    },
+    {
+      "case": "zh-CN-360x640",
+      "result": "pass",
+      "retries": 0,
+      "dropSeed": 299,
+      "baseAttack": 52,
+      "equippedAttack": 437,
+      "unequippedAttack": 115,
+      "nativeExports": 4,
+      "files": {
+        "constructed-input-and-native-drop": "extracted-browser-evidence/zh-CN-360x640-constructed-input-and-native-drop.json",
+        "completed-word-preview": "extracted-browser-evidence/zh-CN-360x640-completed-word-preview.png",
+        "crafted-native-save": "extracted-browser-evidence/zh-CN-360x640-crafted-native-save.json",
+        "level40-equip-refused": "extracted-browser-evidence/zh-CN-360x640-level40-equip-refused.json",
+        "equipped-native-continued": "extracted-browser-evidence/zh-CN-360x640-equipped-native-continued.json",
+        "removed-native-save": "extracted-browser-evidence/zh-CN-360x640-removed-native-save.json"
+      }
+    },
+    {
+      "case": "zh-CN-1280x800",
+      "result": "pass",
+      "retries": 0,
+      "dropSeed": 299,
+      "baseAttack": 52,
+      "equippedAttack": 437,
+      "unequippedAttack": 115,
+      "nativeExports": 4,
+      "files": {
+        "constructed-input-and-native-drop": "extracted-browser-evidence/zh-CN-1280x800-constructed-input-and-native-drop.json",
+        "completed-word-preview": "extracted-browser-evidence/zh-CN-1280x800-completed-word-preview.png",
+        "crafted-native-save": "extracted-browser-evidence/zh-CN-1280x800-crafted-native-save.json",
+        "level40-equip-refused": "extracted-browser-evidence/zh-CN-1280x800-level40-equip-refused.json",
+        "equipped-native-continued": "extracted-browser-evidence/zh-CN-1280x800-equipped-native-continued.json",
+        "removed-native-save": "extracted-browser-evidence/zh-CN-1280x800-removed-native-save.json"
+      }
+    }
+  ],
+  "earnedFinalUnchanged": "b0972bad81133bba925939ed6c412307e2338df2e65795a2f6b48fa70735a64f",
+  "earnedNextNormal": 380,
+  "earnedCampaignProgressThisSlice": false
+}

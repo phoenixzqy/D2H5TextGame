@@ -1,0 +1,36 @@
+{
+  "owner": "root",
+  "kind": "diagnostic only, no earned campaign advancement",
+  "baseHead": "b596c880e1d279d9ab26e7d418ce5b9164a92e64",
+  "sourceManifest": "source-manifest.json within archive; uncommitted runeword base changes present",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/diablo-diagnosis380",
+  "archive": "diagnostic-evidence.tar.gz",
+  "archiveSHA256": "c38b1fa4f3da1a54dc9122893103cc79d3079e0a5c44aac10c7eb89d53618b2b",
+  "archiveBytes": 86034,
+  "files": {
+    "frozen-policy.json": {
+      "sha256": "0c00bc75a41ad82b3b862b4392cf97b720e41ec6db4c2ec61b99c81307ba1be2",
+      "bytes": 898
+    },
+    "priority-screen.json": {
+      "sha256": "d901828b8a3d7f6e71b4430b6433f156b5756ce9aecdd426bf652027b6866bce",
+      "bytes": 1496100
+    },
+    "priority-screen.log": {
+      "sha256": "2f6223106834faf5d401b5685bb8f3ecbe9587c2211f5c43c2333bb9b295cd2e",
+      "bytes": 513
+    },
+    "priority-screen.mjs": {
+      "sha256": "8a37e157898214f6ca73e4b401ff3a12e84b4006ca84f199532427f4f3ee4134",
+      "bytes": 4163
+    },
+    "source-manifest.json": {
+      "sha256": "f8762abc42447136ed72d808a25b09a9f2901aa9eefd1f3245b9554333bee176",
+      "bytes": 99781
+    },
+    "summary.json": {
+      "sha256": "c7a1eb0b0299a0cb8236830207829d90e903e73c412c2717720ac2be0f4c4877",
+      "bytes": 1629
+    }
+  }
+}

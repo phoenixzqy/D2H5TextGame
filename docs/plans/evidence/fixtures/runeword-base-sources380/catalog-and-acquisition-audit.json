@@ -1,0 +1,3497 @@
+{
+  "kind": "root self-audit; native diagnostic acquisition, no earned fight/material spending or campaign acceptance",
+  "baseline": "b596c88",
+  "baseCount": 76,
+  "unchangedHistoricalBases": 75,
+  "unchangedRecipes": 35,
+  "added": [
+    {
+      "table": "loot/trash-act4",
+      "pick": {
+        "type": "item",
+        "itemBase": "items/base/wp2h-battle-scythe",
+        "rarity": "normal",
+        "weight": 120,
+        "minLevel": 41,
+        "maxLevel": 81
+      }
+    },
+    {
+      "table": "loot/trash-act5",
+      "pick": {
+        "type": "item",
+        "itemBase": "items/base/wp2h-thunder-maul",
+        "rarity": "normal",
+        "weight": 180,
+        "minLevel": 62,
+        "maxLevel": 102
+      }
+    }
+  ],
+  "plans": 377,
+  "areas": 29,
+  "all35HaveReachableNormalSource": true,
+  "words": [
+    {
+      "word": "runewords/steel",
+      "sockets": 2,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-short-sword",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w1",
+            "table": "loot/trash-act1",
+            "monsterLevel": 2,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-short-sword",
+              "rarity": "normal",
+              "weight": 250,
+              "qlvlMin": 1,
+              "qlvlMax": 10
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-scimitar",
+          "baseRequiredLevel": 8,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-den-of-evil",
+            "ordinal": 0,
+            "wave": "areas/act1-den-of-evil-challenge-w3",
+            "table": "loot/trash-act1",
+            "monsterLevel": 7,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-scimitar",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 7,
+              "qlvlMax": 38
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-long-sword",
+          "baseRequiredLevel": 22,
+          "wordRequiredLevel": 13,
+          "equipLevel": 22,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-long-sword",
+              "rarity": "normal",
+              "weight": 70,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-war-sword",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 13,
+          "equipLevel": 32,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 13,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-phase-blade",
+              "rarity": "normal",
+              "weight": 30,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 13,
+          "equipLevel": 60,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-two-handed-sword",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w1",
+            "table": "loot/trash-act1",
+            "monsterLevel": 2,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-two-handed-sword",
+              "rarity": "normal",
+              "weight": 100,
+              "qlvlMin": 1,
+              "qlvlMax": 10
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-great-axe",
+          "baseRequiredLevel": 8,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-den-of-evil",
+            "ordinal": 0,
+            "wave": "areas/act1-den-of-evil-challenge-w3",
+            "table": "loot/trash-act1",
+            "monsterLevel": 7,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-great-axe",
+              "rarity": "normal",
+              "weight": 70,
+              "qlvlMin": 7,
+              "qlvlMax": 38
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-war-pike",
+          "baseRequiredLevel": 24,
+          "wordRequiredLevel": 13,
+          "equipLevel": 24,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 13,
+          "equipLevel": 35,
+          "maxSockets": 4,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 13,
+          "equipLevel": 41,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 13,
+          "equipLevel": 52,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-colossus-blade",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 40,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 13,
+          "equipLevel": 62,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/weapon-bow",
+          "baseRequiredLevel": 10,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/weapon-crossbow",
+          "baseRequiredLevel": 15,
+          "wordRequiredLevel": 13,
+          "equipLevel": 15,
+          "maxSockets": 2,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/weapon-polearm",
+          "baseRequiredLevel": 20,
+          "wordRequiredLevel": 13,
+          "equipLevel": 20,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/weapon-staff",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w1",
+            "table": "loot/trash-act1",
+            "monsterLevel": 2,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/weapon-staff",
+              "rarity": "normal",
+              "weight": 100,
+              "qlvlMin": 1,
+              "qlvlMax": 10
+            }
+          }
+        },
+        {
+          "base": "items/base/weapon-scepter",
+          "baseRequiredLevel": 15,
+          "wordRequiredLevel": 13,
+          "equipLevel": 15,
+          "maxSockets": 2,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/weapon-mace",
+          "baseRequiredLevel": 10,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/weapon-axe",
+          "baseRequiredLevel": 12,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2,
+          "normalSource": null
+        }
+      ]
+    },
+    {
+      "word": "runewords/stealth",
+      "sockets": 2,
+      "witnesses": [
+        {
+          "base": "items/base/armor-quilted",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 17,
+          "equipLevel": 17,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w1",
+            "table": "loot/trash-act1",
+            "monsterLevel": 2,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-quilted",
+              "rarity": "normal",
+              "weight": 200,
+              "qlvlMin": 1,
+              "qlvlMax": 10
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-leather",
+          "baseRequiredLevel": 6,
+          "wordRequiredLevel": 17,
+          "equipLevel": 17,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w3",
+            "table": "loot/trash-act1",
+            "monsterLevel": 6,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-leather",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 5,
+              "qlvlMax": 38
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 17,
+          "equipLevel": 25,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-chain-mail",
+              "rarity": "normal",
+              "weight": 80,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 17,
+          "equipLevel": 32,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 17,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-dusk-shroud",
+              "rarity": "normal",
+              "weight": 40,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 17,
+          "equipLevel": 60,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-archon-plate",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-light",
+          "baseRequiredLevel": 10,
+          "wordRequiredLevel": 17,
+          "equipLevel": 17,
+          "maxSockets": 2,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 17,
+          "equipLevel": 40,
+          "maxSockets": 3,
+          "normalSource": null
+        }
+      ]
+    },
+    {
+      "word": "runewords/leaf",
+      "sockets": 2,
+      "witnesses": [
+        {
+          "base": "items/base/weapon-staff",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 19,
+          "equipLevel": 19,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w1",
+            "table": "loot/trash-act1",
+            "monsterLevel": 2,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/weapon-staff",
+              "rarity": "normal",
+              "weight": 100,
+              "qlvlMin": 1,
+              "qlvlMax": 10
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/malice",
+      "sockets": 3,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-long-sword",
+          "baseRequiredLevel": 22,
+          "wordRequiredLevel": 15,
+          "equipLevel": 22,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-long-sword",
+              "rarity": "normal",
+              "weight": 70,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-war-sword",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 15,
+          "equipLevel": 32,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 15,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-phase-blade",
+              "rarity": "normal",
+              "weight": 30,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 15,
+          "equipLevel": 60,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-war-pike",
+          "baseRequiredLevel": 24,
+          "wordRequiredLevel": 15,
+          "equipLevel": 24,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 15,
+          "equipLevel": 35,
+          "maxSockets": 4,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 15,
+          "equipLevel": 41,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 15,
+          "equipLevel": 52,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-colossus-blade",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 40,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 15,
+          "equipLevel": 62,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/weapon-polearm",
+          "baseRequiredLevel": 20,
+          "wordRequiredLevel": 15,
+          "equipLevel": 20,
+          "maxSockets": 3,
+          "normalSource": null
+        }
+      ]
+    },
+    {
+      "word": "runewords/strength",
+      "sockets": 2,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-short-sword",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w1",
+            "table": "loot/trash-act1",
+            "monsterLevel": 2,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-short-sword",
+              "rarity": "normal",
+              "weight": 250,
+              "qlvlMin": 1,
+              "qlvlMax": 10
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-scimitar",
+          "baseRequiredLevel": 8,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-den-of-evil",
+            "ordinal": 0,
+            "wave": "areas/act1-den-of-evil-challenge-w3",
+            "table": "loot/trash-act1",
+            "monsterLevel": 7,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-scimitar",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 7,
+              "qlvlMax": 38
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-long-sword",
+          "baseRequiredLevel": 22,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-long-sword",
+              "rarity": "normal",
+              "weight": 70,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-war-sword",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 25,
+          "equipLevel": 32,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 25,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-phase-blade",
+              "rarity": "normal",
+              "weight": 30,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 25,
+          "equipLevel": 60,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-two-handed-sword",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w1",
+            "table": "loot/trash-act1",
+            "monsterLevel": 2,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-two-handed-sword",
+              "rarity": "normal",
+              "weight": 100,
+              "qlvlMin": 1,
+              "qlvlMax": 10
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-great-axe",
+          "baseRequiredLevel": 8,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-den-of-evil",
+            "ordinal": 0,
+            "wave": "areas/act1-den-of-evil-challenge-w3",
+            "table": "loot/trash-act1",
+            "monsterLevel": 7,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-great-axe",
+              "rarity": "normal",
+              "weight": 70,
+              "qlvlMin": 7,
+              "qlvlMax": 38
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-war-pike",
+          "baseRequiredLevel": 24,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 25,
+          "equipLevel": 35,
+          "maxSockets": 4,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 25,
+          "equipLevel": 41,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 25,
+          "equipLevel": 52,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-colossus-blade",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 40,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 25,
+          "equipLevel": 62,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/weapon-bow",
+          "baseRequiredLevel": 10,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/weapon-crossbow",
+          "baseRequiredLevel": 15,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/weapon-polearm",
+          "baseRequiredLevel": 20,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/weapon-staff",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w1",
+            "table": "loot/trash-act1",
+            "monsterLevel": 2,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/weapon-staff",
+              "rarity": "normal",
+              "weight": 100,
+              "qlvlMin": 1,
+              "qlvlMax": 10
+            }
+          }
+        },
+        {
+          "base": "items/base/weapon-scepter",
+          "baseRequiredLevel": 15,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/weapon-mace",
+          "baseRequiredLevel": 10,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/weapon-axe",
+          "baseRequiredLevel": 12,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2,
+          "normalSource": null
+        }
+      ]
+    },
+    {
+      "word": "runewords/ancients-pledge",
+      "sockets": 3,
+      "witnesses": [
+        {
+          "base": "items/base/sh-aegis",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 21,
+          "equipLevel": 25,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-aegis",
+              "rarity": "normal",
+              "weight": 60,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-dragon-shield",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 21,
+          "equipLevel": 35,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 21,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-monarch",
+              "rarity": "normal",
+              "weight": 50,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 21,
+          "equipLevel": 60,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-sacred-targe",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/lore",
+      "sockets": 2,
+      "witnesses": [
+        {
+          "base": "items/base/helm-cap",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 27,
+          "equipLevel": 27,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w1",
+            "table": "loot/trash-act1",
+            "monsterLevel": 2,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/helm-cap",
+              "rarity": "normal",
+              "weight": 200,
+              "qlvlMin": 1,
+              "qlvlMax": 10
+            }
+          }
+        },
+        {
+          "base": "items/base/helm-skull-cap",
+          "baseRequiredLevel": 5,
+          "wordRequiredLevel": 27,
+          "equipLevel": 27,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w3",
+            "table": "loot/trash-act1",
+            "monsterLevel": 6,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/helm-skull-cap",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 4,
+              "qlvlMax": 38
+            }
+          }
+        },
+        {
+          "base": "items/base/helm-war-hat",
+          "baseRequiredLevel": 22,
+          "wordRequiredLevel": 27,
+          "equipLevel": 27,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/helm-war-hat",
+              "rarity": "normal",
+              "weight": 80,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/helm-casque",
+          "baseRequiredLevel": 28,
+          "wordRequiredLevel": 27,
+          "equipLevel": 28,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/helm-armet",
+          "baseRequiredLevel": 45,
+          "wordRequiredLevel": 27,
+          "equipLevel": 45,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/helm-armet",
+              "rarity": "normal",
+              "weight": 50,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/helm-giant-conch",
+          "baseRequiredLevel": 55,
+          "wordRequiredLevel": 27,
+          "equipLevel": 55,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/helm-giant-conch",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/wealth",
+      "sockets": 3,
+      "witnesses": [
+        {
+          "base": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-chain-mail",
+              "rarity": "normal",
+              "weight": 80,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 43,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-dusk-shroud",
+              "rarity": "normal",
+              "weight": 40,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 43,
+          "equipLevel": 60,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-archon-plate",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 3,
+          "normalSource": null
+        }
+      ]
+    },
+    {
+      "word": "runewords/steelclash",
+      "sockets": 3,
+      "witnesses": [
+        {
+          "base": "items/base/sh-aegis",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 29,
+          "equipLevel": 29,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-aegis",
+              "rarity": "normal",
+              "weight": 60,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-dragon-shield",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 29,
+          "equipLevel": 35,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 29,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-monarch",
+              "rarity": "normal",
+              "weight": 50,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 29,
+          "equipLevel": 60,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-sacred-targe",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/smoke",
+      "sockets": 2,
+      "witnesses": [
+        {
+          "base": "items/base/armor-quilted",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 37,
+          "equipLevel": 37,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w1",
+            "table": "loot/trash-act1",
+            "monsterLevel": 2,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-quilted",
+              "rarity": "normal",
+              "weight": 200,
+              "qlvlMin": 1,
+              "qlvlMax": 10
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-leather",
+          "baseRequiredLevel": 6,
+          "wordRequiredLevel": 37,
+          "equipLevel": 37,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-blood-moor",
+            "ordinal": 0,
+            "wave": "areas/act1-blood-moor-challenge-w3",
+            "table": "loot/trash-act1",
+            "monsterLevel": 6,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-leather",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 5,
+              "qlvlMax": 38
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 37,
+          "equipLevel": 37,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-chain-mail",
+              "rarity": "normal",
+              "weight": 80,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 37,
+          "equipLevel": 37,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 37,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-dusk-shroud",
+              "rarity": "normal",
+              "weight": 40,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 37,
+          "equipLevel": 60,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-archon-plate",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-light",
+          "baseRequiredLevel": 10,
+          "wordRequiredLevel": 37,
+          "equipLevel": 37,
+          "maxSockets": 2,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 37,
+          "equipLevel": 40,
+          "maxSockets": 3,
+          "normalSource": null
+        }
+      ]
+    },
+    {
+      "word": "runewords/rhyme",
+      "sockets": 2,
+      "witnesses": [
+        {
+          "base": "items/base/sh-kite",
+          "baseRequiredLevel": 8,
+          "wordRequiredLevel": 29,
+          "equipLevel": 29,
+          "maxSockets": 2,
+          "normalSource": {
+            "area": "areas/act1-den-of-evil",
+            "ordinal": 0,
+            "wave": "areas/act1-den-of-evil-challenge-w3",
+            "table": "loot/trash-act1",
+            "monsterLevel": 7,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-kite",
+              "rarity": "normal",
+              "weight": 100,
+              "qlvlMin": 7,
+              "qlvlMax": 38
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-aegis",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 29,
+          "equipLevel": 29,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-aegis",
+              "rarity": "normal",
+              "weight": 60,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-dragon-shield",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 29,
+          "equipLevel": 35,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 29,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-monarch",
+              "rarity": "normal",
+              "weight": 50,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 29,
+          "equipLevel": 60,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-sacred-targe",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/insight",
+      "sockets": 4,
+      "witnesses": [
+        {
+          "base": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 27,
+          "equipLevel": 35,
+          "maxSockets": 4,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 27,
+          "equipLevel": 41,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/treachery",
+      "sockets": 3,
+      "witnesses": [
+        {
+          "base": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-chain-mail",
+              "rarity": "normal",
+              "weight": 80,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 43,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-dusk-shroud",
+              "rarity": "normal",
+              "weight": 40,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 43,
+          "equipLevel": 60,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-archon-plate",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 3,
+          "normalSource": null
+        }
+      ]
+    },
+    {
+      "word": "runewords/duress",
+      "sockets": 3,
+      "witnesses": [
+        {
+          "base": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 47,
+          "equipLevel": 47,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-chain-mail",
+              "rarity": "normal",
+              "weight": 80,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 47,
+          "equipLevel": 47,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 47,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-dusk-shroud",
+              "rarity": "normal",
+              "weight": 40,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 47,
+          "equipLevel": 60,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-archon-plate",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 47,
+          "equipLevel": 47,
+          "maxSockets": 3,
+          "normalSource": null
+        }
+      ]
+    },
+    {
+      "word": "runewords/spirit",
+      "sockets": 4,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 25,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-phase-blade",
+              "rarity": "normal",
+              "weight": 30,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 25,
+          "equipLevel": 60,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 25,
+          "equipLevel": 52,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-colossus-blade",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 40,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 25,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-monarch",
+              "rarity": "normal",
+              "weight": 50,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 25,
+          "equipLevel": 60,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-sacred-targe",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/lionheart",
+      "sockets": 3,
+      "witnesses": [
+        {
+          "base": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 41,
+          "equipLevel": 41,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-chain-mail",
+              "rarity": "normal",
+              "weight": 80,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 41,
+          "equipLevel": 41,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 41,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-dusk-shroud",
+              "rarity": "normal",
+              "weight": 40,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 41,
+          "equipLevel": 60,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-archon-plate",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 41,
+          "equipLevel": 41,
+          "maxSockets": 3,
+          "normalSource": null
+        }
+      ]
+    },
+    {
+      "word": "runewords/obedience",
+      "sockets": 5,
+      "witnesses": [
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 41,
+          "equipLevel": 41,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/passion",
+      "sockets": 4,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 43,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-phase-blade",
+              "rarity": "normal",
+              "weight": 30,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 43,
+          "equipLevel": 60,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 4,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 43,
+          "equipLevel": 52,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-colossus-blade",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 40,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 43,
+          "equipLevel": 62,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/oath",
+      "sockets": 4,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 49,
+          "equipLevel": 50,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-phase-blade",
+              "rarity": "normal",
+              "weight": 30,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 49,
+          "equipLevel": 60,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 49,
+          "equipLevel": 49,
+          "maxSockets": 4,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 49,
+          "equipLevel": 49,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 49,
+          "equipLevel": 52,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-colossus-blade",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 40,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 49,
+          "equipLevel": 62,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/fortitude",
+      "sockets": 4,
+      "witnesses": [
+        {
+          "base": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 59,
+          "equipLevel": 59,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-dusk-shroud",
+              "rarity": "normal",
+              "weight": 40,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 59,
+          "equipLevel": 60,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-archon-plate",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 59,
+          "equipLevel": 59,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-phase-blade",
+              "rarity": "normal",
+              "weight": 30,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 59,
+          "equipLevel": 60,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 59,
+          "equipLevel": 59,
+          "maxSockets": 4,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 59,
+          "equipLevel": 59,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 59,
+          "equipLevel": 59,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-colossus-blade",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 40,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 59,
+          "equipLevel": 62,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/call-to-arms",
+      "sockets": 5,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 57,
+          "equipLevel": 60,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 57,
+          "equipLevel": 57,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 57,
+          "equipLevel": 57,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-colossus-blade",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 40,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 57,
+          "equipLevel": 62,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/heart-of-the-oak",
+      "sockets": 4,
+      "witnesses": [
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 55,
+          "equipLevel": 62,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/enigma",
+      "sockets": 3,
+      "witnesses": [
+        {
+          "base": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-chain-mail",
+              "rarity": "normal",
+              "weight": 80,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-dusk-shroud",
+              "rarity": "normal",
+              "weight": 40,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-archon-plate",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3,
+          "normalSource": null
+        }
+      ]
+    },
+    {
+      "word": "runewords/breath-of-the-dying",
+      "sockets": 6,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 69,
+          "equipLevel": 69,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 69,
+          "equipLevel": 69,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/grief",
+      "sockets": 5,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 59,
+          "equipLevel": 60,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 59,
+          "equipLevel": 59,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-colossus-blade",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 40,
+              "qlvlMax": 81
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/infinity",
+      "sockets": 4,
+      "witnesses": [
+        {
+          "base": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 63,
+          "equipLevel": 63,
+          "maxSockets": 4,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 63,
+          "equipLevel": 63,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/beast",
+      "sockets": 5,
+      "witnesses": [
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 63,
+          "equipLevel": 63,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/chains-of-honor",
+      "sockets": 4,
+      "witnesses": [
+        {
+          "base": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 63,
+          "equipLevel": 63,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-dusk-shroud",
+              "rarity": "normal",
+              "weight": 40,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 63,
+          "equipLevel": 63,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-archon-plate",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/bramble",
+      "sockets": 4,
+      "witnesses": [
+        {
+          "base": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 61,
+          "equipLevel": 61,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-dusk-shroud",
+              "rarity": "normal",
+              "weight": 40,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 61,
+          "equipLevel": 61,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/armor-archon-plate",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/last-wish",
+      "sockets": 6,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/phoenix",
+      "sockets": 4,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-phase-blade",
+              "rarity": "normal",
+              "weight": 30,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-colossus-blade",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 40,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-monarch",
+              "rarity": "normal",
+              "weight": 50,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-sacred-targe",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/dream",
+      "sockets": 3,
+      "witnesses": [
+        {
+          "base": "items/base/helm-war-hat",
+          "baseRequiredLevel": 22,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/helm-war-hat",
+              "rarity": "normal",
+              "weight": 80,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/helm-casque",
+          "baseRequiredLevel": 28,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/helm-armet",
+          "baseRequiredLevel": 45,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/helm-armet",
+              "rarity": "normal",
+              "weight": 50,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/helm-giant-conch",
+          "baseRequiredLevel": 55,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/helm-giant-conch",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-aegis",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3,
+          "normalSource": {
+            "area": "areas/act2-far-oasis",
+            "ordinal": 0,
+            "wave": "areas/act2-far-oasis-challenge-w4",
+            "table": "loot/trash-act2",
+            "monsterLevel": 22,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-aegis",
+              "rarity": "normal",
+              "weight": 60,
+              "qlvlMin": 22,
+              "qlvlMax": 51
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-dragon-shield",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-monarch",
+              "rarity": "normal",
+              "weight": 50,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-sacred-targe",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/hand-of-justice",
+      "sockets": 4,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 67,
+          "equipLevel": 67,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp1h-phase-blade",
+              "rarity": "normal",
+              "weight": 30,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 67,
+          "equipLevel": 67,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 67,
+          "equipLevel": 67,
+          "maxSockets": 4,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 67,
+          "equipLevel": 67,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 67,
+          "equipLevel": 67,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-colossus-blade",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 40,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 67,
+          "equipLevel": 67,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/exile",
+      "sockets": 4,
+      "witnesses": [
+        {
+          "base": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 57,
+          "equipLevel": 57,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act3-kurast-bazaar",
+            "ordinal": 0,
+            "wave": "areas/act3-kurast-bazaar-challenge-w3",
+            "table": "loot/trash-act3",
+            "monsterLevel": 38,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-monarch",
+              "rarity": "normal",
+              "weight": 50,
+              "qlvlMin": 38,
+              "qlvlMax": 66
+            }
+          }
+        },
+        {
+          "base": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 57,
+          "equipLevel": 60,
+          "maxSockets": 4,
+          "normalSource": {
+            "area": "areas/act5-bloody-foothills",
+            "ordinal": 0,
+            "wave": "areas/act5-bloody-foothills-challenge-w5",
+            "table": "loot/trash-act5",
+            "monsterLevel": 60,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/sh-sacred-targe",
+              "rarity": "normal",
+              "weight": 150,
+              "qlvlMin": 60,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    },
+    {
+      "word": "runewords/death",
+      "sockets": 5,
+      "witnesses": [
+        {
+          "base": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 55,
+          "equipLevel": 60,
+          "maxSockets": 6,
+          "normalSource": null
+        },
+        {
+          "base": "items/base/wp2h-battle-scythe",
+          "baseRequiredLevel": 41,
+          "wordRequiredLevel": 55,
+          "equipLevel": 55,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-battle-scythe",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 41,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 55,
+          "equipLevel": 55,
+          "maxSockets": 5,
+          "normalSource": {
+            "area": "areas/act4-outer-steppes",
+            "ordinal": 0,
+            "wave": "areas/act4-outer-steppes-challenge-w1",
+            "table": "loot/trash-act4",
+            "monsterLevel": 42,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-colossus-blade",
+              "rarity": "normal",
+              "weight": 120,
+              "qlvlMin": 40,
+              "qlvlMax": 81
+            }
+          }
+        },
+        {
+          "base": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 55,
+          "equipLevel": 62,
+          "maxSockets": 6,
+          "normalSource": {
+            "area": "areas/act5-frigid-highlands",
+            "ordinal": 0,
+            "wave": "areas/act5-frigid-highlands-challenge-w4",
+            "table": "loot/trash-act5",
+            "monsterLevel": 62,
+            "pick": {
+              "type": "item",
+              "baseId": "items/base/wp2h-thunder-maul",
+              "rarity": "normal",
+              "weight": 180,
+              "qlvlMin": 62,
+              "qlvlMax": 102
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "base": "items/base/wp2h-battle-scythe",
+      "table": "loot/trash-act4",
+      "level": 41,
+      "seeds": 4096,
+      "equipment": 1633,
+      "acquired": 101,
+      "capacityCounts": {
+        "0": 28,
+        "1": 19,
+        "2": 11,
+        "3": 17,
+        "4": 14,
+        "5": 12
+      },
+      "eligibleWeightTotal": 1720,
+      "addedPickWeight": 120,
+      "selectionShare": 0.06976744186046512,
+      "existingPickProbabilityMultiplier": 0.9302325581395349
+    },
+    {
+      "base": "items/base/wp2h-battle-scythe",
+      "table": "loot/trash-act4",
+      "level": 81,
+      "seeds": 4096,
+      "equipment": 1633,
+      "acquired": 98,
+      "capacityCounts": {
+        "0": 19,
+        "1": 18,
+        "2": 13,
+        "3": 21,
+        "4": 14,
+        "5": 13
+      },
+      "eligibleWeightTotal": 1870,
+      "addedPickWeight": 120,
+      "selectionShare": 0.06417112299465241,
+      "existingPickProbabilityMultiplier": 0.9358288770053476
+    },
+    {
+      "base": "items/base/wp2h-thunder-maul",
+      "table": "loot/trash-act5",
+      "level": 62,
+      "seeds": 4096,
+      "equipment": 1633,
+      "acquired": 112,
+      "capacityCounts": {
+        "0": 15,
+        "1": 19,
+        "2": 15,
+        "3": 13,
+        "4": 13,
+        "5": 17,
+        "6": 20
+      },
+      "eligibleWeightTotal": 2870,
+      "addedPickWeight": 180,
+      "selectionShare": 0.0627177700348432,
+      "existingPickProbabilityMultiplier": 0.9372822299651568
+    },
+    {
+      "base": "items/base/wp2h-thunder-maul",
+      "table": "loot/trash-act5",
+      "level": 102,
+      "seeds": 4096,
+      "equipment": 1633,
+      "acquired": 112,
+      "capacityCounts": {
+        "0": 16,
+        "1": 15,
+        "2": 17,
+        "3": 18,
+        "4": 14,
+        "5": 17,
+        "6": 15
+      },
+      "eligibleWeightTotal": 2870,
+      "addedPickWeight": 180,
+      "selectionShare": 0.0627177700348432,
+      "existingPickProbabilityMultiplier": 0.9372822299651568
+    }
+  ],
+  "hashes": {
+    "src/data/items/bases.json": "3723057c4758f7542363777cb08c84d1dc7d6a2df67e859cfb149003babf0831",
+    "src/data/loot/treasure-classes.json": "82d2978ba863457f95269bfb7b7a8e073ef3ed38d59292e89bea196d152414a8",
+    "src/data/items/runewords.json": "0f4d518f79f76032b7d8bbc7bed1678fd5ac5654a8b53117d07d8631ab766e0d",
+    "src/i18n/locales/en/items.json": "adb44138a38e4820cc5fff19cfe19498ccbe44c1ea24b615aa85b7b42275a5bf",
+    "src/i18n/locales/zh-CN/items.json": "e13fd109e3dbdf314539a936d30c216f8fc0e906679beeb6b53abdbe6d695fba"
+  }
+}

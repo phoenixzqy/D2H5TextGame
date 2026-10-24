@@ -1,6 +1,7 @@
 # BUG-163 — Compatible runeword bases lack ordinary acquisition sources
 
-Severity: High. Status: open. Found before the content fix on `b596c88` /
+Severity: High. Status: fixed locally in `18db5d3`; independent/integration
+acceptance pending. Found before the content fix on `b596c88` /
 production source `59f2590`. Affects D10/F06/P12 and G4.
 Owners: content-designer / engine-dev / QA. Reproduction is a Node/Vitest
 data/engine check; browser, viewport and locale do not affect the mismatch.
@@ -42,3 +43,12 @@ addition makes76. Update only that count, retaining the per-base magic/rare
 affix, level99–102 and nonempty-bonus assertions. This is a stale test fixture,
 not evidence of an affix generation defect. Original full output remains in
 the task's `unit-full.log`; do not replace or suppress its failures.
+
+Resolution: one source-backed Battle Scythe and one normal existing Thunder
+Maul pick supply all seven missing paths. Final native audit retains matching
+normal-source witnesses for all35 words, with all previous catalog/recipe/TC
+content unchanged. Final full unit11674 pass/2 existing skips,453 files,exit0;
+engine5748 pass, typecheck/lint/build and four production browser cases pass.
+See [D10 evidence](../../docs/plans/evidence/d10-runeword-base-sources.md) for
+exact results, preserved original failures, source hashes and cleanup. Source
+availability does not certify earned acquisition balance or full-v1 acceptance.

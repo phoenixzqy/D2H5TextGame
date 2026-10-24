@@ -11070,3 +11070,55 @@ through campaign/full-v1 consumers, then removes it. C0/C1 retain historical
 acceptance; C2–C4,213skills, pacing and fullG0–G7 remain incomplete. Resume from
 versioned through379, never replay369–379 or TyraelClaim. Local only; goal and
 claimed worktree stay active.
+
+## D10 — All shipped runewords have reachable normal bases
+
+Local source `18db5d3` fixes BUG162/163: add the level41 five-socket Battle
+Scythe with its normal Act IV source and one normal existing Thunder Maul
+source in Act V. [Evidence](evidence/d10-runeword-base-sources.md) preserves
+genuine pre-fix RED, all35 actual matcher/normal-source witnesses from377 real
+plans/29areas, four4096seed native capacity samples, and deep conservation of
+all75 historical bases/35 recipes/previous TC entries and metadata. Added
+selection weights change future eligible probabilities explicitly; no earned
+acquisition/economy balance is accepted.
+
+Production browser4/4 en/zh-CN×360×640/1280×800 PASS66.34s, zero retries or
+browser errors/warnings. Native diagnostic drops in constructed inputs exercise
+all five ordered inserts, exact one-time costs, level40 refusal/41 equip,
+derived effects, Save-close-Continue and removal. Sixteen native exports remain
+distinct from the genuine campaign. Engine5748/177files PASS74.02s; final
+full11674/453files PASS457.15s, two existing skips; typecheck/lint/build PASS.
+The initial full11666pass/8 stale75-base-count failures and original harness/
+lint failures remain retained. No assertion, skip or budget is weakened.
+911source/config and760build hashes verified; seven JS files bridge-free.
+Bundle/PWA/test-time budgets and independent acceptance remain open.
+
+All consumers terminal; preview4440closed, exact owned build/two caches absent,
+cleanup remaining[]/failures[]. Root retains65 raw evidence files under the
+exact `obedience-base380` directory identified in the report through campaign/
+full-v1 consumers, then removes it. Versioned checksum-verified archive retained.
+No genuine action occurs; level31/next380 save SHA remains
+`b0972bad81133bba925939ed6c412307e2338df2e65795a2f6b48fa70735a64f`.
+C0/C1 retain historical acceptance; C2–C4,213skills,pacing/fullG0–G7 incomplete.
+Work remains local; goal and claimed worktree active.
+
+## D11 — Priority-only Diablo diagnosis, no earned action
+
+[Evidence](evidence/d11-diablo-priority-diagnosis380.md) freezes three native
+priority policies and16 paired independent seeds at the unchanged through379
+save. Static→Orb and Orb→Static each reach Diablo16/16 and clear0/16; Orb-only
+times out before Diablo16/16. All48 projections, original results and first-
+seed boss recordings remain diagnostic, never promoted or replayed as earned
+progress. Combat selection already refuses zero-effect Static Field; no patch
+is justified by that hypothesis. One inspected defeat has530maxHP, a lethal
+573physical critical and341MP remaining. Priority alone does not solve the
+observed survival/damage deficit; no general balance or code-defect claim follows.
+
+Session40695 terminal exit0; no browser listener, own Vite cache absent, cleanup
+remaining[]/failures[]. Root retains six diagnostic files at exact
+`diablo-diagnosis380` path in the report through campaign/full-v1 consumers and
+then removes it; checksum-verified versioned archive retained. Next: investigate
+survival-oriented earned build policies and actual boss damage/time limits,
+then ordinary-UI preparation/continuation only after unchanged qualification.
+Diablo375 remains a loss. Never replay369–379 or Tyrael Claim; genuine next380
+is untouched. C2–C4/fullG0–G7 remain incomplete; local only, goal/worktree active.
