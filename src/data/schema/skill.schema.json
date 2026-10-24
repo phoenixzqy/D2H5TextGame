@@ -11,6 +11,170 @@
       "if": {
         "properties": {
           "id": {
+            "const": "skills-necromancer-poison-mastery"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "scaling"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "$ref": "#/properties/requiredLevel"
+          },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "passive": {
+            "const": true
+          },
+          "aura": {
+            "const": false
+          },
+          "summon": {
+            "const": false
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "required": [
+                  "poisonDamagePct",
+                  "arcaneDamagePct"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "poisonDamagePct": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Finite nonnegative per-allocated-rank fraction."
+                  },
+                  "arcaneDamagePct": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Finite nonnegative per-allocated-rank fraction."
+                  }
+                }
+              }
+            }
+          },
+          "cost": false,
+          "damage": false,
+          "damageType": false,
+          "appliesStatus": false,
+          "statusEffect": false,
+          "additionalStatusEffects": false,
+          "appliesTags": false,
+          "synergies": false,
+          "heal": false,
+          "summonId": false,
+          "aoeShape": false,
+          "requires": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-druid-elemental-mastery"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "scaling"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "$ref": "#/properties/requiredLevel"
+          },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "passive": {
+            "const": true
+          },
+          "aura": {
+            "const": false
+          },
+          "summon": {
+            "const": false
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "required": [
+                  "elementalDamagePct",
+                  "magicDodgePct"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "elementalDamagePct": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Finite nonnegative per-allocated-rank fraction; elementalDamagePct applies only to fire and cold."
+                  },
+                  "magicDodgePct": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Finite nonnegative per-allocated-rank fraction."
+                  }
+                }
+              }
+            }
+          },
+          "cost": false,
+          "damage": false,
+          "damageType": false,
+          "appliesStatus": false,
+          "statusEffect": false,
+          "additionalStatusEffects": false,
+          "appliesTags": false,
+          "synergies": false,
+          "heal": false,
+          "summonId": false,
+          "aoeShape": false,
+          "requires": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
             "enum": [
               "skills-barbarian-sword-mastery",
               "skills-barbarian-axe-mastery",

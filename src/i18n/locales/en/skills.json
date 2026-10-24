@@ -577,7 +577,7 @@
     },
     "elemental-mastery": {
       "name": "Elemental Mastery",
-      "desc": "Increases fire and cold damage by 30%."
+      "desc": "Automatically increases fire and cold damage by {{elemental}}% and adds {{dodge}} percentage point to magical dodge per allocated rank. Druid only, level {{level}}; maximum {{cap}} ranks. Applies from the next wave."
     },
     "lycanthropy": {
       "name": "Lycanthropy",
@@ -711,7 +711,7 @@
     },
     "poison-mastery": {
       "name": "Poison and Bone Mastery",
-      "desc": "Increases poison and arcane damage by 30%."
+      "desc": "Automatically increases poison damage by {{poison}}% and arcane damage by {{arcane}}% per allocated rank. Necromancer only, level {{level}}; maximum {{cap}} ranks. Applies from the next wave. Existing hit-derived poison damage over time includes the bonus once."
     },
     "blood-golem": {
       "name": "Blood Golem",

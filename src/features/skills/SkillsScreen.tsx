@@ -49,6 +49,7 @@ import { BARBARIAN_WEAPON_MASTERY_DEFINITIONS, BARBARIAN_WEAPON_MASTERY_IDENTITI
 import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
 import { GOLEM_MASTERY_DEFINITION, composeGolemMastery, resolveGolemMasteryRank } from '@/engine/skills/golem-mastery';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
+import { DAMAGE_MASTERY_DEFINITIONS, DAMAGE_MASTERY_IDENTITIES } from '@/engine/skills/damage-masteries';
 import { COLD_MASTERY_DEFINITION, coldMasteryReductionAtRank, resolveColdMasteryRank } from '@/engine/skills/cold-mastery';
 import { resolveStaticFieldRank } from '@/engine/skills/static-field';
 import { MIGHT_DEFINITION, resolveEligibleMightRank, resolveMightRank } from '@/engine/skills/might';
@@ -1150,6 +1151,17 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
+  for (const key of ['poison', 'elemental'] as const) {
+    const { authored, classId } = DAMAGE_MASTERY_IDENTITIES[key];
+    if (skill.id === authored) {
+      const { perRank, requiredLevel, maxRank } = DAMAGE_MASTERY_DEFINITIONS[key];
+      return t(classId + '.' + authored.slice(('skills-' + classId + '-').length) + '.desc', {
+        poison: perRank.poisonDamagePct * 100, arcane: perRank.arcaneDamagePct * 100,
+        elemental: perRank.elementalDamagePct * 100, dodge: perRank.magicDodgePct * 100,
+        level: requiredLevel, cap: maxRank,
+      });
+    }
+  }
   for (const key of BARBARIAN_WEAPON_MASTERY_KEYS) {
     if (skill.id === BARBARIAN_WEAPON_MASTERY_IDENTITIES[key][0]) {
       const { requiredLevel, maxRank, physicalDamagePctPerRank, critChancePctPerRank, attackSpeedPctPerRank }

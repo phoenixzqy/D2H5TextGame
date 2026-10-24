@@ -288,7 +288,12 @@ function passiveUtilityRows(skill: DisplaySkillSource, rank: number): readonly S
   push('poisonDamagePct', 'percent');
   push('arcaneDamagePct', 'percent');
   push('physicalDamagePct', 'percent');
-  push('elementalDamagePct', 'percent');
+  if (skill.id === 'skills-druid-elemental-mastery' && scaling.elementalDamagePct !== undefined) {
+    for (const type of ['fire', 'cold'] as const) {
+      rows.push({ id: type + 'DamagePct', labelKey: `details.passiveStat.${type}DamagePct`,
+        value: Number((scaling.elementalDamagePct * multiplier).toFixed(4)), valueKind: 'percent' });
+    }
+  } else push('elementalDamagePct', 'percent');
   push('attackPct', 'percent');
   push('attackSpeedPct', 'percent');
   push('critChancePct', 'percent');
