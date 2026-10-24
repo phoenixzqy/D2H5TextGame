@@ -1,0 +1,893 @@
+{
+  "kind": "genuine earned River continuation380-388; resume only retained-final.json.gz, next389",
+  "files": {
+    "earned-river-through391/001-imported.json.gz": {
+      "sha256": "f657b9b5d450e0f1b0fed73ac99da4656efcb25a6a962abbad104b55a2759682",
+      "bytes": 209197
+    },
+    "earned-river-through391/002-precombat-saved.json.gz": {
+      "sha256": "f657b9b5d450e0f1b0fed73ac99da4656efcb25a6a962abbad104b55a2759682",
+      "bytes": 209197
+    },
+    "earned-river-through391/003-precombat-continued.json.gz": {
+      "sha256": "f657b9b5d450e0f1b0fed73ac99da4656efcb25a6a962abbad104b55a2759682",
+      "bytes": 209197
+    },
+    "earned-river-through391/004-380-w1-settled.json.gz": {
+      "sha256": "633d0d37b37e453dfff3b761e6a6902731a058fd401006fbdbc433c7a6125e61",
+      "bytes": 209249
+    },
+    "earned-river-through391/005-380-w2-settled.json.gz": {
+      "sha256": "b8b7ec186fbdd8dce059846b042cc3b1b1afd864176b5b253f1640983d0d260c",
+      "bytes": 209293
+    },
+    "earned-river-through391/006-380-w3-settled.json.gz": {
+      "sha256": "00b86d0ce6575d62cba3708553b2c07f24eec83f2d5fb1920cb963904961a128",
+      "bytes": 209445
+    },
+    "earned-river-through391/007-380-w4-settled.json.gz": {
+      "sha256": "7ea4cd40d853c95b12b7777031711eddef20dd7e6931c5a6d996cae5536b90f6",
+      "bytes": 210041
+    },
+    "earned-river-through391/008-380-w5-settled.json.gz": {
+      "sha256": "8c816927ea1bd4458c961c0044b65953b369613ea2328a817e90de92cc79a0db",
+      "bytes": 210313
+    },
+    "earned-river-through391/009-380-w6-settled.json.gz": {
+      "sha256": "6acdeb9c7e03a8031579158bf37ed6c14925b029a3964c2a312b444011b35ec9",
+      "bytes": 210394
+    },
+    "earned-river-through391/010-380-won-saved.json.gz": {
+      "sha256": "6acdeb9c7e03a8031579158bf37ed6c14925b029a3964c2a312b444011b35ec9",
+      "bytes": 210394
+    },
+    "earned-river-through391/011-380-won-continued.json.gz": {
+      "sha256": "6acdeb9c7e03a8031579158bf37ed6c14925b029a3964c2a312b444011b35ec9",
+      "bytes": 210394
+    },
+    "earned-river-through391/012-381-w1-settled.json.gz": {
+      "sha256": "2cf6212c445bd99ab9650022275a2982d9b571e248f12e69383cb2a6b88285de",
+      "bytes": 210421
+    },
+    "earned-river-through391/013-381-w2-settled.json.gz": {
+      "sha256": "b465c18d1936b2e7e63cd562e30fbef08a005b481a2c7ba03d9999c30e4d140d",
+      "bytes": 210454
+    },
+    "earned-river-through391/014-381-w3-settled.json.gz": {
+      "sha256": "5e748fcaa123f6e368ec0dc2d954d41483729bd6c074412a4f6b2c2dd534a972",
+      "bytes": 210598
+    },
+    "earned-river-through391/015-381-w4-settled.json.gz": {
+      "sha256": "718930759bf60657f0966924a765772e32917e460d4b806877b01897d1b8d1bd",
+      "bytes": 211159
+    },
+    "earned-river-through391/016-381-w5-settled.json.gz": {
+      "sha256": "6cd8d0cc0950e1267f7e9c1edea470019de2130b89a7c77280b6811b0b1e5d3a",
+      "bytes": 211699
+    },
+    "earned-river-through391/017-381-w6-settled.json.gz": {
+      "sha256": "4f6a8ddb0b6aa63359af6a47095198e5dde5622001ffd6951c3824676b97962c",
+      "bytes": 212014
+    },
+    "earned-river-through391/018-381-won-saved.json.gz": {
+      "sha256": "4f6a8ddb0b6aa63359af6a47095198e5dde5622001ffd6951c3824676b97962c",
+      "bytes": 212014
+    },
+    "earned-river-through391/019-381-won-continued.json.gz": {
+      "sha256": "4f6a8ddb0b6aa63359af6a47095198e5dde5622001ffd6951c3824676b97962c",
+      "bytes": 212014
+    },
+    "earned-river-through391/020-382-w1-settled.json.gz": {
+      "sha256": "4c319c68065c781c5a46e5d2caa35e51d2ec4ad8f8b983fca4903b0033796882",
+      "bytes": 212113
+    },
+    "earned-river-through391/021-382-w2-settled.json.gz": {
+      "sha256": "260b85b56318f355a8f54b6b0d56ee280bb8224ae7334b410989a8b55338f1bd",
+      "bytes": 212193
+    },
+    "earned-river-through391/022-382-w3-settled.json.gz": {
+      "sha256": "b46f5f0ac4cb2b200892971689e67e1efc7d83c93996d795a209929a80981786",
+      "bytes": 212591
+    },
+    "earned-river-through391/023-382-w4-settled.json.gz": {
+      "sha256": "04888bcde5e57cfdfe861c6a145981fddb3baaac31e49af8981ac70ba37d9700",
+      "bytes": 213745
+    },
+    "earned-river-through391/024-382-w5-settled.json.gz": {
+      "sha256": "510ca1286c4aba2180ceaa055c9ed19c2c5b812434fc9db108d845fc46675ae0",
+      "bytes": 214341
+    },
+    "earned-river-through391/025-382-w6-settled.json.gz": {
+      "sha256": "1d42017c9942e1a41aa36080579d6e8da703b7b87f41c189cb18422f2e3665ed",
+      "bytes": 214732
+    },
+    "earned-river-through391/026-382-won-saved.json.gz": {
+      "sha256": "1d42017c9942e1a41aa36080579d6e8da703b7b87f41c189cb18422f2e3665ed",
+      "bytes": 214732
+    },
+    "earned-river-through391/027-382-won-continued.json.gz": {
+      "sha256": "1d42017c9942e1a41aa36080579d6e8da703b7b87f41c189cb18422f2e3665ed",
+      "bytes": 214732
+    },
+    "earned-river-through391/028-383-w1-settled.json.gz": {
+      "sha256": "b8155e0718a1b243a414fbb61397029dec04e77cb8695e0945f9c2b35816827c",
+      "bytes": 214839
+    },
+    "earned-river-through391/029-383-w2-settled.json.gz": {
+      "sha256": "8eafe3f2acb27a62c38428315c2238ca1fb73ba3959a1036321d70613a2885b1",
+      "bytes": 214916
+    },
+    "earned-river-through391/030-383-w3-settled.json.gz": {
+      "sha256": "79feebdb2884dccf72f0f202059fe4cdea969348b5283dc649cbc16156dcace0",
+      "bytes": 215336
+    },
+    "earned-river-through391/031-383-w4-settled.json.gz": {
+      "sha256": "9c2d83dea04c326953241fdc21e07a2407868c99e89caef429cd4878868c45b1",
+      "bytes": 216517
+    },
+    "earned-river-through391/032-383-w5-settled.json.gz": {
+      "sha256": "b26002c36158c198d1e68833fd22942b2e619d73ef13c2f9b9b6563abd1bc3f7",
+      "bytes": 217190
+    },
+    "earned-river-through391/033-383-w6-settled.json.gz": {
+      "sha256": "d5a2099e1c57ac1cb3b6677e310c388383545f0ac780e582b08d36596e939302",
+      "bytes": 217575
+    },
+    "earned-river-through391/034-383-won-saved.json.gz": {
+      "sha256": "d5a2099e1c57ac1cb3b6677e310c388383545f0ac780e582b08d36596e939302",
+      "bytes": 217575
+    },
+    "earned-river-through391/035-383-won-continued.json.gz": {
+      "sha256": "d5a2099e1c57ac1cb3b6677e310c388383545f0ac780e582b08d36596e939302",
+      "bytes": 217575
+    },
+    "earned-river-through391/036-384-w1-settled.json.gz": {
+      "sha256": "51dcc08c5d6ebeaae1b6a60eafa451812a7b297b122c41a710ee0166d49248c0",
+      "bytes": 217681
+    },
+    "earned-river-through391/037-384-w2-settled.json.gz": {
+      "sha256": "71157631cb040c2dc2c99b4bfe0c8c8a215b6f1075a3a0cab0506d7cbcdff081",
+      "bytes": 217756
+    },
+    "earned-river-through391/038-384-w3-settled.json.gz": {
+      "sha256": "e3ea1f7297ceb2e4d8e9161166c57b90265c29055f1a11e92369f2d6da95a9b6",
+      "bytes": 218199
+    },
+    "earned-river-through391/039-384-w4-settled.json.gz": {
+      "sha256": "56cd9b5ffcc4873db8a6fb78e5b44b9f898172432004c163fcc37f9a43f76c91",
+      "bytes": 219445
+    },
+    "earned-river-through391/040-384-w5-settled.json.gz": {
+      "sha256": "5a7caf09f76701b5fbe5210b576807e8a5d4c54b93064c15061c39460806da38",
+      "bytes": 220144
+    },
+    "earned-river-through391/041-384-w6-settled.json.gz": {
+      "sha256": "44eaedc425327b9666d61d4df63af3ff5ece83a20e1df7038f71d9c8111cc613",
+      "bytes": 220522
+    },
+    "earned-river-through391/042-384-won-saved.json.gz": {
+      "sha256": "44eaedc425327b9666d61d4df63af3ff5ece83a20e1df7038f71d9c8111cc613",
+      "bytes": 220522
+    },
+    "earned-river-through391/043-384-won-continued.json.gz": {
+      "sha256": "44eaedc425327b9666d61d4df63af3ff5ece83a20e1df7038f71d9c8111cc613",
+      "bytes": 220522
+    },
+    "earned-river-through391/044-385-w1-settled.json.gz": {
+      "sha256": "bfa7cb516018e1f6b70d92d766fb7b6fbea96a7d6ec772663b3a9a88fec0d7aa",
+      "bytes": 220629
+    },
+    "earned-river-through391/045-385-w2-settled.json.gz": {
+      "sha256": "595a36ed63bbe3a4f790dae4a292c81277ecededf609211dbcb1e170bde1c5af",
+      "bytes": 220706
+    },
+    "earned-river-through391/046-385-w3-settled.json.gz": {
+      "sha256": "25a7b7a106b5e63548dbb207dc45e8dbcf07b643d0861bfa6af17d426ea567b2",
+      "bytes": 221178
+    },
+    "earned-river-through391/047-385-w4-settled.json.gz": {
+      "sha256": "f88fd2ddc54c3bc2472847b70d3f3bd50c8cc87f2383ff700ab94629d8d086a6",
+      "bytes": 222493
+    },
+    "earned-river-through391/048-385-w5-settled.json.gz": {
+      "sha256": "de4629bf28700cc1d150ba556acb75477e6251a64fb6450ae194c65645cba515",
+      "bytes": 223215
+    },
+    "earned-river-through391/049-385-w6-settled.json.gz": {
+      "sha256": "f3d43dc5073afecfcf99720babef345ed14bbda324ea5fbf7c93e6e9ac3c4fdf",
+      "bytes": 223589
+    },
+    "earned-river-through391/050-385-won-saved.json.gz": {
+      "sha256": "f3d43dc5073afecfcf99720babef345ed14bbda324ea5fbf7c93e6e9ac3c4fdf",
+      "bytes": 223589
+    },
+    "earned-river-through391/051-385-won-continued.json.gz": {
+      "sha256": "f3d43dc5073afecfcf99720babef345ed14bbda324ea5fbf7c93e6e9ac3c4fdf",
+      "bytes": 223589
+    },
+    "earned-river-through391/052-386-w1-settled.json.gz": {
+      "sha256": "cb9fb326261615b0f59d0d131b8d2844eb59d34d78acb507b0bfe75adf559691",
+      "bytes": 223691
+    },
+    "earned-river-through391/053-386-w2-settled.json.gz": {
+      "sha256": "f54521bf73c366c3251d24995b7e2e08d12e99f55fbfde0ed5c43efbf37a8ba1",
+      "bytes": 223765
+    },
+    "earned-river-through391/054-386-w3-settled.json.gz": {
+      "sha256": "6d842ad4089ed2733cbb822bb60168e92477ff10baa9339cd043b8f13c2a6cec",
+      "bytes": 224261
+    },
+    "earned-river-through391/055-386-w4-settled.json.gz": {
+      "sha256": "393cbc461719579dc281202a5e6fb0a3a07ee808bf02235221ee414d84fe3a67",
+      "bytes": 225674
+    },
+    "earned-river-through391/056-386-w5-settled.json.gz": {
+      "sha256": "3f08a0962c97054501f112c750ca9964946412c2afd9f5f2ffd399f4647f0ad6",
+      "bytes": 226042
+    },
+    "earned-river-through391/057-386-w6-settled.json.gz": {
+      "sha256": "fddcf6dfcf72113f56745bb5d9cd8b290237edd736411cf21edc71f56cd28de1",
+      "bytes": 226416
+    },
+    "earned-river-through391/058-386-won-saved.json.gz": {
+      "sha256": "fddcf6dfcf72113f56745bb5d9cd8b290237edd736411cf21edc71f56cd28de1",
+      "bytes": 226416
+    },
+    "earned-river-through391/059-386-won-continued.json.gz": {
+      "sha256": "fddcf6dfcf72113f56745bb5d9cd8b290237edd736411cf21edc71f56cd28de1",
+      "bytes": 226416
+    },
+    "earned-river-through391/060-387-w1-settled.json.gz": {
+      "sha256": "3eae039cfdbd00279eadd97f08bbf912166cb826d1e6297949a24cd69d84cc6e",
+      "bytes": 226509
+    },
+    "earned-river-through391/061-387-w2-settled.json.gz": {
+      "sha256": "11db0d65792fac8c9c6dcc9220b8cddc3abb19e6181b00940719aa8c78f5a2bb",
+      "bytes": 226582
+    },
+    "earned-river-through391/062-387-w3-settled.json.gz": {
+      "sha256": "1d4c3aaeeb7918351c47a82008be00b2f068235f55a836243681807fb8d3b3a1",
+      "bytes": 227107
+    },
+    "earned-river-through391/063-387-w4-settled.json.gz": {
+      "sha256": "8e94aedb2a40115a6f4f42fbf5c6cc419334a153da3040c6f126312fe5607133",
+      "bytes": 227660
+    },
+    "earned-river-through391/064-387-w5-settled.json.gz": {
+      "sha256": "31c50d4759649a5edbea3f59cddd435408df49244853a8ee55157f993c4bf272",
+      "bytes": 227826
+    },
+    "earned-river-through391/065-387-w6-settled.json.gz": {
+      "sha256": "6bcdb646decf70f37c3f2d949cff53b4b6d6d2856b3a5d7de271ae13416f788a",
+      "bytes": 227920
+    },
+    "earned-river-through391/066-387-won-saved.json.gz": {
+      "sha256": "6bcdb646decf70f37c3f2d949cff53b4b6d6d2856b3a5d7de271ae13416f788a",
+      "bytes": 227920
+    },
+    "earned-river-through391/067-387-won-continued.json.gz": {
+      "sha256": "6bcdb646decf70f37c3f2d949cff53b4b6d6d2856b3a5d7de271ae13416f788a",
+      "bytes": 227920
+    },
+    "earned-river-through391/068-388-w1-settled.json.gz": {
+      "sha256": "0c486c88ba071acde8cd684b457273fecc07835e43f59a4cc57f2b4a5535bf45",
+      "bytes": 227965
+    },
+    "earned-river-through391/069-388-w2-settled.json.gz": {
+      "sha256": "a2eb1c1db13976620145898cc4e579f7c0d6308ae55844083a1a1ec6982449d2",
+      "bytes": 228007
+    },
+    "earned-river-through391/070-388-w3-settled.json.gz": {
+      "sha256": "97bb58422b176c54ae752fe341242247a4299b1af70de755846f829096c346e5",
+      "bytes": 228119
+    },
+    "earned-river-through391/071-388-w4-settled.json.gz": {
+      "sha256": "271bf6721c58552e778f8720b470b219e4161f665831faf32f6aae9f7a1fdc9d",
+      "bytes": 228501
+    },
+    "earned-river-through391/072-388-w5-settled.json.gz": {
+      "sha256": "dffbee124c6e9f702a1b13e2c8fac311d884fe01a78764f7e131eebeada08d50",
+      "bytes": 228676
+    },
+    "earned-river-through391/073-388-w6-settled.json.gz": {
+      "sha256": "85afed0111129258c68281985efbb717e9e5ee807f71895b390ce6fe12db62a7",
+      "bytes": 228766
+    },
+    "earned-river-through391/074-388-won-saved.json.gz": {
+      "sha256": "85afed0111129258c68281985efbb717e9e5ee807f71895b390ce6fe12db62a7",
+      "bytes": 228766
+    },
+    "earned-river-through391/075-388-won-continued.json.gz": {
+      "sha256": "85afed0111129258c68281985efbb717e9e5ee807f71895b390ce6fe12db62a7",
+      "bytes": 228766
+    },
+    "earned-river-through391/380-victory.png": {
+      "sha256": "64a2512f61f64cc8fc95f5b09df1242af903686a6affe435de66165054a7bb6a",
+      "bytes": 39972
+    },
+    "earned-river-through391/380-w1-initial.json.gz": {
+      "sha256": "cc2921617e54bb4d953c87e9e77aaa135ba418ea7ed53e3b0ee2778d2368b55b",
+      "bytes": 430
+    },
+    "earned-river-through391/380-w1-terminal.json.gz": {
+      "sha256": "a999d4b54c6376be73025e362b1d8c02509f458ead20deff58ac691351f8bc6d",
+      "bytes": 1506
+    },
+    "earned-river-through391/380-w2-initial.json.gz": {
+      "sha256": "fd75342589f7fed55acd51046c0c0f1f0373df8b9a38bea74c86d386447f15c6",
+      "bytes": 446
+    },
+    "earned-river-through391/380-w2-terminal.json.gz": {
+      "sha256": "2666aa6b22f682c7feaefdc51c4ff82aa2fd44c7ee8087c4a9704a874caa7d0e",
+      "bytes": 1503
+    },
+    "earned-river-through391/380-w3-initial.json.gz": {
+      "sha256": "df285211c29e9b5704e439f590a45c2cfa13fe6b3b0ff18a1f33cc09577d6142",
+      "bytes": 482
+    },
+    "earned-river-through391/380-w3-terminal.json.gz": {
+      "sha256": "652019f6e6c8fea9be41b013e612a4de60cc8938205976e7e441241c677879b6",
+      "bytes": 1456
+    },
+    "earned-river-through391/380-w4-initial.json.gz": {
+      "sha256": "8a7ca1d737c67c9a8fb45381eee7df859855681f4060fefc6bc996ff2a013482",
+      "bytes": 476
+    },
+    "earned-river-through391/380-w4-terminal.json.gz": {
+      "sha256": "9c1fbe99845b5cadb81f17faf6b21f439e261fd8e23d317e1ac2b9a329e8e4c6",
+      "bytes": 1483
+    },
+    "earned-river-through391/380-w5-initial.json.gz": {
+      "sha256": "615954ebd26890235c70b79e8ffbcf9f72b03c47c7efce1df6c22e5b91b1b25f",
+      "bytes": 458
+    },
+    "earned-river-through391/380-w5-terminal.json.gz": {
+      "sha256": "f4a85afeb23822bbfd1668c18bea753acb146dbc57d4bb71f1d9beeb42b26335",
+      "bytes": 1396
+    },
+    "earned-river-through391/380-w6-initial.json.gz": {
+      "sha256": "ac6915a1e3ddd1718565131b838d0d6da817e3669ddbc6fd10cf83075a837696",
+      "bytes": 344
+    },
+    "earned-river-through391/380-w6-terminal.json.gz": {
+      "sha256": "b582c0257dc7d326da48cfe74982175b5e7e35f6e8cd4ef3ba2cca43bc966e17",
+      "bytes": 1264
+    },
+    "earned-river-through391/381-victory.png": {
+      "sha256": "da9667c20964b56923024dce1eb9bfa9e2ecbf9f791ee1684720745ece28dfb9",
+      "bytes": 40022
+    },
+    "earned-river-through391/381-w1-initial.json.gz": {
+      "sha256": "dde8675820e70988dffd6275d347cd22bb710b5e08c4eca107be75e99cce25d1",
+      "bytes": 440
+    },
+    "earned-river-through391/381-w1-terminal.json.gz": {
+      "sha256": "221014f4d9cdead7fea26ab513b9b466f94358906f9a3dd21f1956993963f0f7",
+      "bytes": 1525
+    },
+    "earned-river-through391/381-w2-initial.json.gz": {
+      "sha256": "64edcaeffaafb191483b7f1905c26170b38ff64b0dcec3f8d30f976e9dd1c0bb",
+      "bytes": 462
+    },
+    "earned-river-through391/381-w2-terminal.json.gz": {
+      "sha256": "d62a404290cc5d1ad4cd1a4ad26cd5ee156d51526b6c9e32304ad9e4ffe52ddc",
+      "bytes": 1562
+    },
+    "earned-river-through391/381-w3-initial.json.gz": {
+      "sha256": "c7d1d1041836f0661c2afa621dfa99e28dc1d778fd22a671c9f657cb7c69b55f",
+      "bytes": 485
+    },
+    "earned-river-through391/381-w3-terminal.json.gz": {
+      "sha256": "a16df83ba0f4d7f63d0d8fe0b241d1e02a8f7426cfd6fff86ee5907e8fc6f337",
+      "bytes": 1404
+    },
+    "earned-river-through391/381-w4-initial.json.gz": {
+      "sha256": "5627bb682b1e9ec6333acefd35f9a1f3dcaa2f06e1dd4c8a33fb70f308bf54a6",
+      "bytes": 487
+    },
+    "earned-river-through391/381-w4-terminal.json.gz": {
+      "sha256": "3c9608979e1582b9510c4ffcfbd1182e62970276c45c4f118180c0d197809503",
+      "bytes": 1508
+    },
+    "earned-river-through391/381-w5-initial.json.gz": {
+      "sha256": "14f770418b509e38e601a7cbcc3186c31cb8fc7e389cead4d8119813ec3f6f16",
+      "bytes": 467
+    },
+    "earned-river-through391/381-w5-terminal.json.gz": {
+      "sha256": "9c447314ce43b93a6016e6014bc85f3bd3963920dd1a8590c044df0cad025b17",
+      "bytes": 1515
+    },
+    "earned-river-through391/381-w6-initial.json.gz": {
+      "sha256": "ac6915a1e3ddd1718565131b838d0d6da817e3669ddbc6fd10cf83075a837696",
+      "bytes": 344
+    },
+    "earned-river-through391/381-w6-terminal.json.gz": {
+      "sha256": "83e892c3cc43c1a82bb082180747a738f339511758e659c6ca666eca3f8808ea",
+      "bytes": 1266
+    },
+    "earned-river-through391/382-victory.png": {
+      "sha256": "e208145f4271a002c86cd5ad5cde0e2fb25eca3ce68d2d391743e3e85ab2215c",
+      "bytes": 40046
+    },
+    "earned-river-through391/382-w1-initial.json.gz": {
+      "sha256": "8c656ab74885a663c40048a6f32a777a57973ce5591795035207e379bcae9b35",
+      "bytes": 451
+    },
+    "earned-river-through391/382-w1-terminal.json.gz": {
+      "sha256": "a294e8b18391c94c63d6cc1243bb2dad0870f68e0a6481ac6978d668b832357b",
+      "bytes": 1528
+    },
+    "earned-river-through391/382-w2-initial.json.gz": {
+      "sha256": "4ed52d635d43fdcac735a146fa32d60ea78ef7d1b9b9061d61e62c31a6e9fde6",
+      "bytes": 473
+    },
+    "earned-river-through391/382-w2-terminal.json.gz": {
+      "sha256": "5df0a9ac5fc8ef14d5f14e19d377475a6f192f57cc76e9f30c2e63409a91d875",
+      "bytes": 1501
+    },
+    "earned-river-through391/382-w3-initial.json.gz": {
+      "sha256": "df8f2e1e40a2b0b21dcf3d6e7aa485d7ce3a5b6b869bad2bcbb7bb184e7eebe7",
+      "bytes": 502
+    },
+    "earned-river-through391/382-w3-terminal.json.gz": {
+      "sha256": "d637c90d148883abfb7d208f0beaf1bf46aef94b5d08810d95f13e5a2aa1b70c",
+      "bytes": 1494
+    },
+    "earned-river-through391/382-w4-initial.json.gz": {
+      "sha256": "afad98d9c848c0632eeafc7bd875fd67460b9239716a438f7ff4be8e24746b24",
+      "bytes": 499
+    },
+    "earned-river-through391/382-w4-terminal.json.gz": {
+      "sha256": "f3e194de6c75be3d1c29b80a7ed3f4b7173ae4e77be98520716009d8a38057f8",
+      "bytes": 1515
+    },
+    "earned-river-through391/382-w5-initial.json.gz": {
+      "sha256": "6c903aaad621fc25ae1ab80d5679a9229adbf95e264a6a31b204c71422976d76",
+      "bytes": 479
+    },
+    "earned-river-through391/382-w5-terminal.json.gz": {
+      "sha256": "d415b0a9ae77d299418f5748a119ffdeb8849bb35ab80d724cd92d3b0caa35c5",
+      "bytes": 1471
+    },
+    "earned-river-through391/382-w6-initial.json.gz": {
+      "sha256": "ac6915a1e3ddd1718565131b838d0d6da817e3669ddbc6fd10cf83075a837696",
+      "bytes": 344
+    },
+    "earned-river-through391/382-w6-terminal.json.gz": {
+      "sha256": "ffc9f73a3571ec07455e51bae10ac3e34d54bea58f58ca7804137fafd044c4b1",
+      "bytes": 1263
+    },
+    "earned-river-through391/383-victory.png": {
+      "sha256": "e208145f4271a002c86cd5ad5cde0e2fb25eca3ce68d2d391743e3e85ab2215c",
+      "bytes": 40046
+    },
+    "earned-river-through391/383-w1-initial.json.gz": {
+      "sha256": "1d39fa6de0646c2ed3e170fd8f6085e0402a9af4f2cdbd64967990db85a3fd52",
+      "bytes": 465
+    },
+    "earned-river-through391/383-w1-terminal.json.gz": {
+      "sha256": "cf23b56f24a72cf4d42c4584ea31535518a27a86b24b8e837c4845fba0804980",
+      "bytes": 1503
+    },
+    "earned-river-through391/383-w2-initial.json.gz": {
+      "sha256": "3608455810660a85eee3ca7a14ab08ed7eb34d891d684f3c56655feda57b6c5d",
+      "bytes": 486
+    },
+    "earned-river-through391/383-w2-terminal.json.gz": {
+      "sha256": "b474bff2b5d2cdbe8246a04c505fcd21189b8460bcb150997de6933e38de513c",
+      "bytes": 1534
+    },
+    "earned-river-through391/383-w3-initial.json.gz": {
+      "sha256": "7b8ae7e4793e033257391fbda0c97e6147cf9e225d1166ed6e1ec5d2e032ea60",
+      "bytes": 511
+    },
+    "earned-river-through391/383-w3-terminal.json.gz": {
+      "sha256": "d98454ca4c8d376a90fc8dc26ac16afc071cbe6431f9d8776ab5f41b5db682d5",
+      "bytes": 1471
+    },
+    "earned-river-through391/383-w4-initial.json.gz": {
+      "sha256": "eb319db5f0d2ab645f596fde9aafd3b6322e83c25490f159d6a4af60d56db62e",
+      "bytes": 512
+    },
+    "earned-river-through391/383-w4-terminal.json.gz": {
+      "sha256": "df31b5dea90445b1e32448aa31dad7342582e5d52da73c47a37fe2550268cf4e",
+      "bytes": 1615
+    },
+    "earned-river-through391/383-w5-initial.json.gz": {
+      "sha256": "2d72760e499dd95e9889654dccbce875397cc962d6981eebe19fc2f6538c4efb",
+      "bytes": 491
+    },
+    "earned-river-through391/383-w5-terminal.json.gz": {
+      "sha256": "8994c3aea25aeb8ffda7c6f35ae31a451b8a9d24b196c4f02a60f681030298c0",
+      "bytes": 1442
+    },
+    "earned-river-through391/383-w6-initial.json.gz": {
+      "sha256": "ac6915a1e3ddd1718565131b838d0d6da817e3669ddbc6fd10cf83075a837696",
+      "bytes": 344
+    },
+    "earned-river-through391/383-w6-terminal.json.gz": {
+      "sha256": "8a8a35d3da67d63ecb936b9424c856b1a9a0d0aa22cf7637f91f7daadf3639eb",
+      "bytes": 1250
+    },
+    "earned-river-through391/384-victory.png": {
+      "sha256": "6689ab2f98849ca4409f6610e9de016ae9b8aa64e1ea55047d7bfcf8e44c93b3",
+      "bytes": 40112
+    },
+    "earned-river-through391/384-w1-initial.json.gz": {
+      "sha256": "13c7eb5748e669501e1fd3ab63ab1f0259e02f13325935bda87aab9c9a29a61b",
+      "bytes": 478
+    },
+    "earned-river-through391/384-w1-terminal.json.gz": {
+      "sha256": "7f5cdfffd57a89eabefcfb6bfde91b90d7a927bfb497b0f77b0520cd341c8a4f",
+      "bytes": 1567
+    },
+    "earned-river-through391/384-w2-initial.json.gz": {
+      "sha256": "ef6d4352fb182ebfe05ecedb8ef29afd009df09f3753f80c06bd9d01829e0499",
+      "bytes": 497
+    },
+    "earned-river-through391/384-w2-terminal.json.gz": {
+      "sha256": "d187291a3ad796d5290624d121ae403fb23712137a23bc37fa042d9de1821291",
+      "bytes": 1550
+    },
+    "earned-river-through391/384-w3-initial.json.gz": {
+      "sha256": "e2cda8667daa64c377ef61e20593d3bc74777377dd15c2a921d4698fab217394",
+      "bytes": 535
+    },
+    "earned-river-through391/384-w3-terminal.json.gz": {
+      "sha256": "f1a5601aa3a3f7f93e8e4aa3c5280313a1a0511bb5367519817b4688355abc27",
+      "bytes": 1476
+    },
+    "earned-river-through391/384-w4-initial.json.gz": {
+      "sha256": "daf1c0b9faaa6cd595a9e00256a0a6a10dbbbc69ecfecc411902c4e4b5192325",
+      "bytes": 534
+    },
+    "earned-river-through391/384-w4-terminal.json.gz": {
+      "sha256": "ec03e0d19c9441beebff0112aa883bec9aaccf1040be4eb75a008d6770e1acb9",
+      "bytes": 1593
+    },
+    "earned-river-through391/384-w5-initial.json.gz": {
+      "sha256": "ddb1860a3d4d4ecf5b009d70b5efd72597eb49131c5aa10041f663f573431705",
+      "bytes": 500
+    },
+    "earned-river-through391/384-w5-terminal.json.gz": {
+      "sha256": "18764aca65b29dd0e79f362a177b47f55c5b6717c92b3b24f4838cc8a87fd7c4",
+      "bytes": 1449
+    },
+    "earned-river-through391/384-w6-initial.json.gz": {
+      "sha256": "ac6915a1e3ddd1718565131b838d0d6da817e3669ddbc6fd10cf83075a837696",
+      "bytes": 344
+    },
+    "earned-river-through391/384-w6-terminal.json.gz": {
+      "sha256": "8fc12518947c01cf1660f49defc459f4c5c4ad31e9fbb0cd90d62d8b2e120679",
+      "bytes": 1211
+    },
+    "earned-river-through391/385-victory.png": {
+      "sha256": "dc4d5ecb9ea421dbc99bd4069d3f52fba892801daa6aa19975d28934d308f9fe",
+      "bytes": 40039
+    },
+    "earned-river-through391/385-w1-initial.json.gz": {
+      "sha256": "92cdbf4dea79ebf18430eefaada248b0f6a0183171e4910dd020f3ee0b032201",
+      "bytes": 491
+    },
+    "earned-river-through391/385-w1-terminal.json.gz": {
+      "sha256": "936d1ab5612a9328fd9b1a4786976ed637ab6ee2563a65534d0bdfed4d9308b4",
+      "bytes": 1544
+    },
+    "earned-river-through391/385-w2-initial.json.gz": {
+      "sha256": "05c2c85255cd9ea2663bafe50c60c6d2964865469c221820d7101aa5cfe03017",
+      "bytes": 511
+    },
+    "earned-river-through391/385-w2-terminal.json.gz": {
+      "sha256": "9254ef35dc9aae8d4b8fa2a25dc3bab0431ec91f31339fd69d43e52e8ef8d00c",
+      "bytes": 1578
+    },
+    "earned-river-through391/385-w3-initial.json.gz": {
+      "sha256": "c8e5a15ba34aa93e03434396239d10066746942fc842bcf199cb5e6ed7fad4d8",
+      "bytes": 536
+    },
+    "earned-river-through391/385-w3-terminal.json.gz": {
+      "sha256": "8043ca2828636628254e5b1859dc6c1559790faa6a49c7a9e06cc89302801879",
+      "bytes": 1581
+    },
+    "earned-river-through391/385-w4-initial.json.gz": {
+      "sha256": "3a6c1ee7eaf5e684c385059ba7403738422dfa949f0b0c1deb340cb3e461b68f",
+      "bytes": 538
+    },
+    "earned-river-through391/385-w4-terminal.json.gz": {
+      "sha256": "f167bbfe0a1a5aa18a6e99c253ce49ecff70d73ee8faa74f878fc4f3bd374a20",
+      "bytes": 1633
+    },
+    "earned-river-through391/385-w5-initial.json.gz": {
+      "sha256": "4e6e1834db85800968fdd6649bc46f2e0f38966fce29e9bcae5848eed163023c",
+      "bytes": 512
+    },
+    "earned-river-through391/385-w5-terminal.json.gz": {
+      "sha256": "db490e35a5f07705b1f8ed12605f00c4c2cd960564bb462a2629d0c67225709b",
+      "bytes": 1433
+    },
+    "earned-river-through391/385-w6-initial.json.gz": {
+      "sha256": "ac6915a1e3ddd1718565131b838d0d6da817e3669ddbc6fd10cf83075a837696",
+      "bytes": 344
+    },
+    "earned-river-through391/385-w6-terminal.json.gz": {
+      "sha256": "807ead17060d1bcfc49c1342988ceb87d1a6bfbbd5b72c966ea3ed743276a0c2",
+      "bytes": 1284
+    },
+    "earned-river-through391/386-victory.png": {
+      "sha256": "298cc4372df325de1e2686bfd4f7386dffbc6d9bf32d86fcf33aa4d1fa4717a8",
+      "bytes": 40060
+    },
+    "earned-river-through391/386-w1-initial.json.gz": {
+      "sha256": "8c96faaab019fb5f337701985f9a0350244b3f95a8b20a093dbe1ede28c57d2d",
+      "bytes": 505
+    },
+    "earned-river-through391/386-w1-terminal.json.gz": {
+      "sha256": "9854b10d88562533ad8d636a805a680570f15afff96496448462c007397df11a",
+      "bytes": 1544
+    },
+    "earned-river-through391/386-w2-initial.json.gz": {
+      "sha256": "d057440eadd3521ec5ea31c35a04ebffcd5572f30e81b82efd2426175dd3cb90",
+      "bytes": 524
+    },
+    "earned-river-through391/386-w2-terminal.json.gz": {
+      "sha256": "65922ac03ba642adde7142ce96f374a06e08acbc654cbd530a83afc058542405",
+      "bytes": 1539
+    },
+    "earned-river-through391/386-w3-initial.json.gz": {
+      "sha256": "beb1f255ffa43552c2c6b3aa9c53869684bb1d228ad7ab46b575c41f6b68e0ac",
+      "bytes": 548
+    },
+    "earned-river-through391/386-w3-terminal.json.gz": {
+      "sha256": "2d70cee2e6ec6065d1ff7931444e1e684cfe6d70ebb17faa388dc0aa705d2b75",
+      "bytes": 1528
+    },
+    "earned-river-through391/386-w4-initial.json.gz": {
+      "sha256": "da396d7e61aed19652a6133c8b48e73563732c801833de08dc2812b06952c612",
+      "bytes": 553
+    },
+    "earned-river-through391/386-w4-terminal.json.gz": {
+      "sha256": "84957f3408614a26f7b2ff4f462fa7de609e9a5c387b519f974666a95c767aea",
+      "bytes": 1610
+    },
+    "earned-river-through391/386-w5-initial.json.gz": {
+      "sha256": "ad94d3e763ad2e2aba908eb8894acebdd9b7cf3226b73bfc7384a883bbbee960",
+      "bytes": 382
+    },
+    "earned-river-through391/386-w5-terminal.json.gz": {
+      "sha256": "784213996acd4b96a188a836a6bfbfdc492c4c4c195e209b5e8f6211e2ff2e95",
+      "bytes": 1313
+    },
+    "earned-river-through391/386-w6-initial.json.gz": {
+      "sha256": "f5064f0926fedc045113453939798301630d78fd3a111c00cb6e73f2c59dfff8",
+      "bytes": 355
+    },
+    "earned-river-through391/386-w6-terminal.json.gz": {
+      "sha256": "50b527d25ff2785f831c8b11bc00daf4263fe82ef41cf9b506d904100eab02d3",
+      "bytes": 1237
+    },
+    "earned-river-through391/387-victory.png": {
+      "sha256": "20d12c9d92a507c6de49afdcdee9476e95c2b24526102dc4d0030ab4eddc9aef",
+      "bytes": 40015
+    },
+    "earned-river-through391/387-w1-initial.json.gz": {
+      "sha256": "e9b9c01ea0976e75df4875bb5cf8edebb53c9c50ecf6de64031a9d2e0347dfac",
+      "bytes": 518
+    },
+    "earned-river-through391/387-w1-terminal.json.gz": {
+      "sha256": "70fe5bdabc13ddcc393233d3dc621ff5311370f6e6213c31481cbd136318713b",
+      "bytes": 1578
+    },
+    "earned-river-through391/387-w2-initial.json.gz": {
+      "sha256": "f5f5c1f4084c108678af55f6c4482b614bfb1bef9c0206011a2f544daec12378",
+      "bytes": 536
+    },
+    "earned-river-through391/387-w2-terminal.json.gz": {
+      "sha256": "207046991fedb3e063c7c265282d4f821d9620bcf7d771c8978e5e9f60791434",
+      "bytes": 1673
+    },
+    "earned-river-through391/387-w3-initial.json.gz": {
+      "sha256": "30d25fe0823cccd8738dfec2502339285fa5a3fc5e422680d09a701c2e7ed12e",
+      "bytes": 571
+    },
+    "earned-river-through391/387-w3-terminal.json.gz": {
+      "sha256": "e2c37c30a04e46eb888eff603163879c794843d43cdb03c4ab409a13f89db3ce",
+      "bytes": 1609
+    },
+    "earned-river-through391/387-w4-initial.json.gz": {
+      "sha256": "2ee22383282f3a51a8d3a35ec1f34ac6663cbff79c8fbecf5ff03b8ea1e91b1a",
+      "bytes": 393
+    },
+    "earned-river-through391/387-w4-terminal.json.gz": {
+      "sha256": "97231c16ef6a9b99f70d7cb68b35b4fbbcdd4144477da4db611e5fe42a1be283",
+      "bytes": 1412
+    },
+    "earned-river-through391/387-w5-initial.json.gz": {
+      "sha256": "7b8874ff3924b794d9866fc682fab4548d168ed7e16189ac327b12360c847881",
+      "bytes": 383
+    },
+    "earned-river-through391/387-w5-terminal.json.gz": {
+      "sha256": "92ad1b17af564f5444063c72a0f9b92933795deba1602499357f162cb448efff",
+      "bytes": 1357
+    },
+    "earned-river-through391/387-w6-initial.json.gz": {
+      "sha256": "ac6915a1e3ddd1718565131b838d0d6da817e3669ddbc6fd10cf83075a837696",
+      "bytes": 344
+    },
+    "earned-river-through391/387-w6-terminal.json.gz": {
+      "sha256": "a2f2a8f6016d1a82aac2a1c33c911d6604d87e03cf433149ead6ddcde762ec87",
+      "bytes": 1251
+    },
+    "earned-river-through391/388-victory.png": {
+      "sha256": "1caa7b6ac505b7dd1205d88c78fb3e510c9ff3beb83b7107ad2da28bebcbc7f4",
+      "bytes": 40012
+    },
+    "earned-river-through391/388-w1-initial.json.gz": {
+      "sha256": "6f81a9d56e37c52ccf10b9abd6c9363db212ba39f72f0f948c619c6ee08d343c",
+      "bytes": 532
+    },
+    "earned-river-through391/388-w1-terminal.json.gz": {
+      "sha256": "5cd4be77dcc17a6837138b57f669dd2c7c8adc579941141ba2bf7b6285dae86f",
+      "bytes": 1626
+    },
+    "earned-river-through391/388-w2-initial.json.gz": {
+      "sha256": "a38a52236d1a131971977573f8692c6cdce5a019d96df81de1a174160ab1c867",
+      "bytes": 550
+    },
+    "earned-river-through391/388-w2-terminal.json.gz": {
+      "sha256": "540ac4908e81ad4d73f112091a24178fe6b9269a7713e97a63c0e06f1348c766",
+      "bytes": 1625
+    },
+    "earned-river-through391/388-w3-initial.json.gz": {
+      "sha256": "af8be14b49b1d00aee700474b11d364e3682e0e9bdc64bd75c37f93d81cebc9b",
+      "bytes": 418
+    },
+    "earned-river-through391/388-w3-terminal.json.gz": {
+      "sha256": "14572d4fad40f46821c61861e2562dae065b2b2db757ed3ce37a86b85da5530a",
+      "bytes": 1397
+    },
+    "earned-river-through391/388-w4-initial.json.gz": {
+      "sha256": "db98178e001adee6a0e17295d55aba47c1ca650840ccc477094eb90d30bda035",
+      "bytes": 416
+    },
+    "earned-river-through391/388-w4-terminal.json.gz": {
+      "sha256": "60a6584806feff6dc0291ba1a0d37b5fa60ea63d4ddb9bd3f2783f95c75d125b",
+      "bytes": 1431
+    },
+    "earned-river-through391/388-w5-initial.json.gz": {
+      "sha256": "fa909de47592895229369e413ae1f21f26f7de37be3bf223f58eefaaec44b350",
+      "bytes": 394
+    },
+    "earned-river-through391/388-w5-terminal.json.gz": {
+      "sha256": "afbe921c7204cb8217b7d327489970631459617066787f85f17d29bf0b7a2add",
+      "bytes": 1351
+    },
+    "earned-river-through391/388-w6-initial.json.gz": {
+      "sha256": "f5064f0926fedc045113453939798301630d78fd3a111c00cb6e73f2c59dfff8",
+      "bytes": 355
+    },
+    "earned-river-through391/388-w6-terminal.json.gz": {
+      "sha256": "a6f488501513912e0917f53273be6dc20eae6b22c6ec4ff52e282c1863c76542",
+      "bytes": 1271
+    },
+    "earned-river-through391/final.json.gz": {
+      "sha256": "85afed0111129258c68281985efbb717e9e5ee807f71895b390ce6fe12db62a7",
+      "bytes": 228766
+    },
+    "earned-river-through391/launch-380.json": {
+      "sha256": "b6c2ee01db9e202faf4debd753298101d43f8be30f06c2d397394120c9aff78d",
+      "bytes": 130
+    },
+    "earned-river-through391/launch-381.json": {
+      "sha256": "7ac822d06da9cc56365619e5ea301023d8ccd57a17f600f97e5422ddc44481d5",
+      "bytes": 130
+    },
+    "earned-river-through391/launch-382.json": {
+      "sha256": "c7029ec2702078d8f722cd66f8bf853e9b6f2aa62d252a5969fd1e4dd8463b87",
+      "bytes": 130
+    },
+    "earned-river-through391/launch-383.json": {
+      "sha256": "5a93a0b3fcb7a9d21b126303ad4d5ea78bd38afef478b436603ef667869df7f9",
+      "bytes": 130
+    },
+    "earned-river-through391/launch-384.json": {
+      "sha256": "ef7e3ba84c2ba9bbc40f57bab2a86f8f06777d109eb5828759f7aecf723703c9",
+      "bytes": 130
+    },
+    "earned-river-through391/launch-385.json": {
+      "sha256": "f2327c71963e183652876a80de0b9a316e055060c515ec8c173052898fe2d472",
+      "bytes": 130
+    },
+    "earned-river-through391/launch-386.json": {
+      "sha256": "1bc4ed34ad5ac7442872867dde369ff0bdbc627ce391544591098a30aafa4700",
+      "bytes": 130
+    },
+    "earned-river-through391/launch-387.json": {
+      "sha256": "ecd17dca6b77d88f91ec3f7a0c54553defb2a0958378f2c50e5b178ab3d84138",
+      "bytes": 130
+    },
+    "earned-river-through391/launch-388.json": {
+      "sha256": "5b46ca88e810319694e856cb45277dc3777c0b2bc0dbb171c596f699da438e8e",
+      "bytes": 130
+    },
+    "earned-river-through391/prelaunch-380.json.gz": {
+      "sha256": "f657b9b5d450e0f1b0fed73ac99da4656efcb25a6a962abbad104b55a2759682",
+      "bytes": 209197
+    },
+    "earned-river-through391/prelaunch-381.json.gz": {
+      "sha256": "6acdeb9c7e03a8031579158bf37ed6c14925b029a3964c2a312b444011b35ec9",
+      "bytes": 210394
+    },
+    "earned-river-through391/prelaunch-382.json.gz": {
+      "sha256": "4f6a8ddb0b6aa63359af6a47095198e5dde5622001ffd6951c3824676b97962c",
+      "bytes": 212014
+    },
+    "earned-river-through391/prelaunch-383.json.gz": {
+      "sha256": "1d42017c9942e1a41aa36080579d6e8da703b7b87f41c189cb18422f2e3665ed",
+      "bytes": 214732
+    },
+    "earned-river-through391/prelaunch-384.json.gz": {
+      "sha256": "d5a2099e1c57ac1cb3b6677e310c388383545f0ac780e582b08d36596e939302",
+      "bytes": 217575
+    },
+    "earned-river-through391/prelaunch-385.json.gz": {
+      "sha256": "44eaedc425327b9666d61d4df63af3ff5ece83a20e1df7038f71d9c8111cc613",
+      "bytes": 220522
+    },
+    "earned-river-through391/prelaunch-386.json.gz": {
+      "sha256": "f3d43dc5073afecfcf99720babef345ed14bbda324ea5fbf7c93e6e9ac3c4fdf",
+      "bytes": 223589
+    },
+    "earned-river-through391/prelaunch-387.json.gz": {
+      "sha256": "fddcf6dfcf72113f56745bb5d9cd8b290237edd736411cf21edc71f56cd28de1",
+      "bytes": 226416
+    },
+    "earned-river-through391/prelaunch-388.json.gz": {
+      "sha256": "6bcdb646decf70f37c3f2d949cff53b4b6d6d2856b3a5d7de271ae13416f788a",
+      "bytes": 227920
+    },
+    "earned-river-through391/report.json": {
+      "sha256": "67015eaa4c0255bb875c466af888ee34374983cd1f7d74e1312d4726c357d848",
+      "bytes": 59216
+    },
+    "river-plan.json": {
+      "sha256": "2dcd41f288bf45710e3599eb959712f4fcbb90b8400c38ec46112a3aa1df9ab7",
+      "bytes": 1727
+    },
+    "river-farm380-native.mjs": {
+      "sha256": "354862ff5e9f81d551fa16b7b1f1556f03315da92ed7a95c7a37e8d58b93dfb8",
+      "bytes": 13948
+    },
+    "river-farm.log": {
+      "sha256": "e3769fb7f10a22e17aee62b0ed2e6daef365aa2360fe1f1cc45fe5b3e525f6de",
+      "bytes": 3650
+    },
+    "river-audit.py": {
+      "sha256": "0983d4fdeae144f1d1b2c4d30d9882c608348230ec7d75ee427def5cbfa63fc9",
+      "bytes": 5971
+    },
+    "river-audit.json": {
+      "sha256": "b3a5d5456e6548f3e429a7f1cef92c3d43928786ad8b0a412e58e25cc9f727e7",
+      "bytes": 1310
+    },
+    "river-audit.log": {
+      "sha256": "b3a5d5456e6548f3e429a7f1cef92c3d43928786ad8b0a412e58e25cc9f727e7",
+      "bytes": 1310
+    },
+    "source-freeze.json": {
+      "sha256": "4214500182fc894a6b13ddcf71b4fe9e1299bba70fadf31196c63f369958c962",
+      "bytes": 123877
+    },
+    "build-hash-comparison.json": {
+      "sha256": "c72a34630b79d5c99955307644b8d15c3bc75dffa974e0211abde796dfd0e98f",
+      "bytes": 206440
+    }
+  },
+  "archive": {
+    "path": "native-evidence.tar.gz",
+    "bytes": 17953060,
+    "sha256": "0719581e5c5472982cc3a9cfd2651ffa0c92847fc41ae2adb1b114f733b1951d"
+  },
+  "finalRawSHA256": "5f835bccb6715367ff92cd23b6245f1784a6a537460ac591da05a18c307dcae8",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/merc-picker380/earned-river-through391",
+  "owner": "root retains through campaign/full-v1 consumers then removes exact raw paths; source/history/genuine saves retained"
+}

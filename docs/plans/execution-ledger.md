@@ -11122,3 +11122,64 @@ survival-oriented earned build policies and actual boss damage/time limits,
 then ordinary-UI preparation/continuation only after unchanged qualification.
 Diablo375 remains a loss. Never replay369–379 or Tyrael Claim; genuine next380
 is untouched. C2–C4/fullG0–G7 remain incomplete; local only, goal/worktree active.
+
+
+## D11 — Survival/crafting/support diagnostics stop without spending
+
+[Diagnosis](evidence/d11-diablo-survival-support380.md) retains six frozen
+32-seed policies: two survival builds, two native Strength/socket builds and
+those two builds with legally hired/equipped Holy Freeze. All192 reach Diablo
+and draw at60seconds; all0/32, so no River qualification or genuine preparation
+follows. This narrows the next action to earned leveling rather than more
+variants of those failed level31 builds; it does not establish a global balance
+or code defect. The actual save owns eleven mercenaries, correcting the handoff
+summary's one-owned-merc claim; the original Rogue remains fielded. All29 raw
+files and911 historical source/config hashes are archived. All diagnostic
+processes terminal; exact old build/caches absent, cleanup remaining[]/failures[].
+Root retains raw evidence under exact survival-preparation380 directory through
+campaign/full-v1 consumers, then removes it. No genuine resources are spent.
+
+## P16 — Searchable, bounded mercenary equipment
+
+Local source `6c6628e` fixes BUG164. [Evidence](evidence/p16-merc-equipment-browsing.md)
+records100-row shared inventory pages, visible IDs and localized-name/ID search,
+reset/clamp behavior and unchanged native transfer/refusal authority. Four causal
+RED regressions now pass; all23mercUI/6files pass. Final full11678/454files
+PASS510.92s, two existing skips; typecheck/lint/build PASS. Production browser
+10/10 en/zh-CN at allfive target sizes PASS: exact diagnostic item transfers,
+full payload conservation and ten exactSave-close-Continue pairs, keyboard,
+44pxcontrols, no overflow/errors/warnings/retries. All1128 frozen source/test/
+config and760 build hashes match; all7builtJS bridge-free and served exact.
+Original wrong test namespace/lint failures and gracefully interrupted exact
+pre-correction Vitest PID remain retained; final full suite uses final source.
+78raw UI evidence files archived. Existing timing/bundle/PWA limits and independent
+acceptance remain open. Root retains raw merc-picker380 evidence through campaign/
+full-v1 consumers; all consumers now terminal,4441closed, exact bothbuild/cache
+paths absent, cleanup remaining[]/failures[]. No remote publication.
+
+## D11 — Genuine River continuation reaches level32 through388
+
+[Earned continuation](evidence/d11-earned-river-through388.md) records actual
+380–388:54winningwaves,389560heroXP,1368newgear, zero nonwins/retries/browser
+errors/warnings. The unchanged actual hero/Rogue build uses no new points,
+resets, hire, crafts or equipment. All85native saves preserve20371 ancestral
+full item payloads; ten exactSave-close-Continue pairs pass. Quest graphs,
+allocated core/skills, equipped maps, formation/endgame and unfielded mercs
+remain unchanged. Diablo375 remains a loss; ActV remains locked.
+
+Resume only versioned through388/retained-final.json.gz: level32/XP20722,
+nextNormal389/Nightmare0,21739owned gear,10stat/4skill unspent. Decompressed SHA
+`5f835bccb6715367ff92cd23b6245f1784a6a537460ac591da05a18c307dcae8`.
+Never replay380–388 or promote any diagnostic-only save. Original runner/report
+retain one stale descriptive through375/next376 string; exact guards, input SHA,
+launches and artifact audit prove actual through379→380–388. BUG161 records the
+metadata correction without replay. All220raw files archived; final exactly equals
+lastContinue. Same validated frozen source6c6628e; transport442.786s/1134.4s
+requested clock do not establish30–50active-hour pacing. All task processes
+terminal,4441closed, exact disposable builds/caches absent, cleanup[]/failures[].
+Root retains raw exact merc-picker380/earned-river-through391 directory (maximum
+batch-name, actual terminal388) and supporting parent evidence through campaign/
+full-v1, then removes task-owned paths. C0/C1 retain narrow historical acceptance;
+C2–C4,213skills,pacing, independent acceptance/fullG0–G7 remain incomplete.
+Next: inspect new earned level32 resources/points and qualify the next legal
+preparation or bounded earned progression from389. Local only; goal/worktree active.

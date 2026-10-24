@@ -1,0 +1,128 @@
+{
+  "kind": "diagnostic only; never resume these prepared copies as earned campaign saves",
+  "files": {
+    "build.log": {
+      "sha256": "baa46eaee9012918213bbe8169cc87279440e981d4bee2d16071d2633c1f528b",
+      "bytes": 2293
+    },
+    "crafted-ehp160-holy-freeze.diagnostic-only.json.gz": {
+      "sha256": "8f7cfed06a879f10cea8be974c8cef0b5e0918ae10c00ede8780cfbf6defb494",
+      "bytes": 209494
+    },
+    "crafted-ehp160.diagnostic-only.json.gz": {
+      "sha256": "0503c62a5434256db21467f3df39871b77f39de6245bdd0ce84c5b0f4f4e85d5",
+      "bytes": 209301
+    },
+    "crafted-ehp80-holy-freeze.diagnostic-only.json.gz": {
+      "sha256": "dc09a1ef8105e217318dff330d63a966d6297973d3362f6474ab3a9b921a84a0",
+      "bytes": 209478
+    },
+    "crafted-ehp80.diagnostic-only.json.gz": {
+      "sha256": "3bba8236d9ec545bbdccf04bfa04126a4685fe35bf4f7a080b2d44ceea8fa9c2",
+      "bytes": 209287
+    },
+    "crafted-partial.json": {
+      "sha256": "a40d42ce9a1d65963d71a0fb2459c8bf8331c84162067174bc66106486f92e25",
+      "bytes": 271229
+    },
+    "crafted-policy.json": {
+      "sha256": "70b3af0c7daea5d58aea7e5a80b3a98a3d469eb8df83e5506c39578c87596416",
+      "bytes": 1708
+    },
+    "crafted-proposals.json": {
+      "sha256": "7c22689dfac1e025afcd2d46bc940647934ddf4f11c7dafa5e92f694f18d885c",
+      "bytes": 3945
+    },
+    "crafted-screen.json": {
+      "sha256": "a40d42ce9a1d65963d71a0fb2459c8bf8331c84162067174bc66106486f92e25",
+      "bytes": 271229
+    },
+    "crafted-screen.log": {
+      "sha256": "b6078737a48d79fe51f4e62c2af7bdab88f9c8fc35ecec0091b2cbf5713a0baa",
+      "bytes": 2597
+    },
+    "crafted-screen.mjs": {
+      "sha256": "9ca2a730421cfe4663b5c1a9458b8ddf3bc15e3231d872f4b052b10903c1ac5f",
+      "bytes": 12153
+    },
+    "crafted-seeds.json": {
+      "sha256": "312eeebd2ae69e45ccf73dcd233e10adc03778c7c9de72695629cd006ae55608",
+      "bytes": 332
+    },
+    "diagnostic-audit.json": {
+      "sha256": "19665707676248f5e977acc542a0f42c2927ef76d1e8962c9f0133774267fa16",
+      "bytes": 4911
+    },
+    "diagnostic-source-check.json": {
+      "sha256": "0d140265c8e6e4657e99b2cb098584a9132304463db87bdfc63cccb2a99330ce",
+      "bytes": 205
+    },
+    "frozen-policy.json": {
+      "sha256": "62b83469d494009c8a45e91601de80e15b0480902f3ebbdb49c014ba9b60dcf0",
+      "bytes": 1178
+    },
+    "partial.json": {
+      "sha256": "0f8b4328e7cc7da351a7d0e040103f56455a8c714cd04d7cd4d7f81ef48e2118",
+      "bytes": 215248
+    },
+    "proposals.json": {
+      "sha256": "0ef8a90b143fdec3b154ec562d3158b22418cb935caf347f3f740a00eb28cead",
+      "bytes": 3081
+    },
+    "screen.json": {
+      "sha256": "0f8b4328e7cc7da351a7d0e040103f56455a8c714cd04d7cd4d7f81ef48e2118",
+      "bytes": 215248
+    },
+    "screen.log": {
+      "sha256": "dce9faf018cdacb827d88b8976138ada5701340243508d30fc03de10a8f21239",
+      "bytes": 2120
+    },
+    "screen.mjs": {
+      "sha256": "ef829bba3007643430c3a9d905911c6487045027b427afbfe2816c0d2605f588",
+      "bytes": 9196
+    },
+    "seeds.json": {
+      "sha256": "67c14ba13c422a16bfe8cc847dd3afb1739faabbf4a4d277a373af0883f05b7d",
+      "bytes": 354
+    },
+    "source-manifest.json": {
+      "sha256": "f8762abc42447136ed72d808a25b09a9f2901aa9eefd1f3245b9554333bee176",
+      "bytes": 99781
+    },
+    "support-partial.json": {
+      "sha256": "e831d3d3b671afe23167d611b0b289a89638e68f55c54a1db02ec92e67c3bcd0",
+      "bytes": 382513
+    },
+    "support-policy.json": {
+      "sha256": "3f5447e8df71fbf8c138a0ab62e2a90ea4d0639e06f32dc41b22358c7a4a0c64",
+      "bytes": 815
+    },
+    "support-proposals.json": {
+      "sha256": "3d77800dde371bcf7e10d33deff6fa586572c6643e2aa321c8c282a005d3fdf5",
+      "bytes": 3465
+    },
+    "support-screen.json": {
+      "sha256": "e831d3d3b671afe23167d611b0b289a89638e68f55c54a1db02ec92e67c3bcd0",
+      "bytes": 382513
+    },
+    "support-screen.log": {
+      "sha256": "a0b352368ab4f3de3b8bad1f2051bb571b70f40254fe1ddc069b4d8251705ba9",
+      "bytes": 2287
+    },
+    "support-screen.mjs": {
+      "sha256": "4d9d25db91500ea58753210d13e3d5183099bd0b97b1cd6627d75121ad4ec254",
+      "bytes": 8997
+    },
+    "support-seeds.json": {
+      "sha256": "56b687906af9417fd6fe71810265324f3e51ad2fba9764cb26323c789c73da03",
+      "bytes": 354
+    }
+  },
+  "archive": {
+    "path": "diagnostics.tar.gz",
+    "sha256": "064f4441f3c00bac9dc7d1e236735118d58d6fca2b0da5fd1395aa40a194a923",
+    "bytes": 896097
+  },
+  "rootOwner": "root retains raw through campaign/full-v1 then removes exact raw directory",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/survival-preparation380"
+}

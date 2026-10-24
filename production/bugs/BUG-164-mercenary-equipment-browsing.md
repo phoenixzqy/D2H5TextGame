@@ -1,6 +1,6 @@
 # BUG-164 — Bound and search mercenary equipment candidates
 
-Status: Implemented locally; full-suite validation in progress.
+Status: Fixed locally in `6c6628e`; independent acceptance remains pending.
 Severity: Medium. Scrolling remains possible, but earned collections render
 thousands of duplicate names without an exact-instance search.
 Owner: root, frontend responsibility; no delegation.
@@ -53,4 +53,11 @@ earned save, proves exact item transfer with full payload conservation and
 exact Save-close-Continue, checks keyboard actions,44px controls and no
 horizontal overflow. These copies never become campaign resume saves.
 No browser console/page errors occur. Typecheck, final lint and build pass.
-Full-unit final results and evidence publication follow separately.
+Final full-unit11678/454files PASS510.92s, two existing skips. All1128 frozen
+source/test/config hashes remain unchanged. All760 build files are identical
+before/after the lint-only no-op syntax correction; all7 emitted JS files are
+bridge-free and served exactly. Original RED, wrong test namespace, initial
+lint failure and gracefully interrupted pre-correction suite remain retained.
+No test assertion, skip or budget is weakened. Existing full-suite timing,
+bundle/PWA limits and full-v1 acceptance remain open. See
+[complete evidence](../../docs/plans/evidence/p16-merc-equipment-browsing.md).

@@ -1,0 +1,22 @@
+{
+  "sourceCommit": "6c6628e145aa0b6c3b2d6cc366c7cee40b50ca4d",
+  "typecheckFinalExit": 0,
+  "typecheckFinalOutput": "\n> d2h5-text-game@0.1.0 typecheck\n> tsc --noEmit\n\n",
+  "frozenFilesUnchanged": 1128,
+  "unitFinal": {
+    "files": 454,
+    "passed": 11678,
+    "existingSkips": 2,
+    "durationSeconds": 510.92
+  },
+  "lintFinalExit": 0,
+  "buildFinalExit": 0,
+  "browserCasesPassed": 10,
+  "actualRiverChallengesWon": 9,
+  "actualRiverWavesWon": 54,
+  "genuineNextOrdinal": 389,
+  "genuineRawSHA256": "5f835bccb6715367ff92cd23b6245f1784a6a537460ac591da05a18c307dcae8",
+  "taskProcesses": "all terminal",
+  "disposablePathsAbsent": true,
+  "goal": "active; C2-C4/fullG0-G7 remain incomplete"
+}

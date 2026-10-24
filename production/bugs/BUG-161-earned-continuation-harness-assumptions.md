@@ -62,3 +62,14 @@ exports and six durable pairs pass. Original failed scripts/logs remain in the
 [new continuation archive](../../docs/plans/evidence/d11-earned-tyrael-and-river-through379.md).
 Actual Tyrael blessing and attempts376–379 occur once; no failed diagnostic
 request or audit is presented as a game defect.
+
+## Follow-up through actual388
+
+The next River runner correctly freezes and guards the genuine through379
+input and launches actual380 onward, but one descriptive report `kind` string
+still says through375/next376. The actual input path/SHA, plan, native ordinals
+and all exports agree on380–388, ending level32/next389. Preserve the original
+script/report and annotate the metadata error in the artifact audit; do not
+rerun any action to correct prose. All54 waves and ten exact Continue pairs
+are retained in the
+[earned continuation evidence](../../docs/plans/evidence/d11-earned-river-through388.md).

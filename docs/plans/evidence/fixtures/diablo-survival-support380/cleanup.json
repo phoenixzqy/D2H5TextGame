@@ -1,0 +1,21 @@
+{
+  "removed": [
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/survival-preparation380/dist",
+      "files": 760,
+      "bytes": 41523791
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/survival-preparation380/vite-cache",
+      "files": 2,
+      "bytes": 46
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/survival-preparation380/support-vite-cache",
+      "files": 1,
+      "bytes": 23
+    }
+  ],
+  "remaining": [],
+  "failures": []
+}

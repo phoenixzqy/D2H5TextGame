@@ -1,0 +1,37 @@
+{
+  "kind": "root source/artifact/browser audit; independent acceptance pending",
+  "sourceCommit": "6c6628e",
+  "frozenFiles": 1128,
+  "sourceDrift": [],
+  "productionBuildFiles": 760,
+  "initialAndLintCorrectedBuildsIdentical": true,
+  "builtJsCount": 7,
+  "forbiddenBridgeMatches": {
+    "assets/game-engine-CqIzUXqx.js": [],
+    "assets/i18n-Bxr3rY09.js": [],
+    "assets/index-ghICELN-.js": [],
+    "assets/react-vendor-dRBhy6jq.js": [],
+    "registerSW.js": [],
+    "sw.js": [],
+    "workbox-dcde9eb3.js": []
+  },
+  "servedExact": [
+    "assets/game-engine-CqIzUXqx.js",
+    "assets/i18n-Bxr3rY09.js",
+    "assets/index-ghICELN-.js",
+    "assets/react-vendor-dRBhy6jq.js",
+    "registerSW.js",
+    "sw.js",
+    "workbox-dcde9eb3.js"
+  ],
+  "browserCases": 10,
+  "browserSaveCloseContinuePairs": 10,
+  "browserErrors": [],
+  "browserWarnings": [],
+  "originalCandidateCount": 3713,
+  "openObservedMsRange": [
+    257.4883280000013,
+    397.92559100000653
+  ],
+  "limitations": "Headless scripted observations, not controlled devices or <=0.5s feedback certification. Full-v1 pacing/performance/PWA remain open."
+}

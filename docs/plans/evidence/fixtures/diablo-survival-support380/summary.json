@@ -1,0 +1,195 @@
+{
+  "kind": "root diagnostic audit; no genuine action, source tuning or independent acceptance",
+  "source": "a1c5bfc",
+  "inputRawSHA256": "b0972bad81133bba925939ed6c412307e2338df2e65795a2f6b48fa70735a64f",
+  "rows": [
+    {
+      "build": "retained-stats-survival",
+      "area": "chaos-sanctuary",
+      "n": 32,
+      "wins": 0,
+      "secondHalfWins": 0,
+      "preparation": {
+        "coreStats": {
+          "strength": 10,
+          "dexterity": 150,
+          "vitality": 12,
+          "energy": 63
+        },
+        "derivedStats": {
+          "life": 120,
+          "lifeMax": 531,
+          "mana": 102,
+          "manaMax": 420,
+          "attack": 176,
+          "defense": 249,
+          "magicResist": 0,
+          "attackSpeed": 250,
+          "critChance": 0.19,
+          "critDamage": 2.54,
+          "physDodge": 0.5599999999999999,
+          "magicDodge": 0.11,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 64,
+            "cold": 70,
+            "lightning": 45,
+            "poison": 14,
+            "arcane": 0,
+            "physical": 68
+          }
+        },
+        "skillLevels": {
+          "sorceress.ice_bolt": 1,
+          "sorceress.ice_blast": 1,
+          "sorceress.glacial_spike": 1,
+          "sorceress.blizzard": 1,
+          "sorceress.frozen_orb": 20,
+          "sorceress.static_field": 1,
+          "sorceress.warmth": 3,
+          "sorceress.cold_mastery": 14
+        },
+        "respecsRemaining": {
+          "stat": 2,
+          "skill": 0
+        }
+      },
+      "diagnosticFile": "screen.json",
+      "draws": 32,
+      "finalWaveNumbers": [
+        7
+      ],
+      "enemyRemainingMin": 6049,
+      "enemyRemainingMax": 8218,
+      "heroMinimumEndLife": 425,
+      "mercSurvivors": 1
+    },
+    {
+      "build": "balanced-stats-survival",
+      "area": "chaos-sanctuary",
+      "n": 32,
+      "wins": 0,
+      "secondHalfWins": 0,
+      "preparation": {
+        "coreStats": {
+          "strength": 10,
+          "dexterity": 115,
+          "vitality": 75,
+          "energy": 35
+        },
+        "derivedStats": {
+          "life": 120,
+          "lifeMax": 658,
+          "mana": 102,
+          "manaMax": 359,
+          "attack": 158,
+          "defense": 249,
+          "magicResist": 0,
+          "attackSpeed": 215,
+          "critChance": 0.19,
+          "critDamage": 2.68,
+          "physDodge": 0.42000000000000004,
+          "magicDodge": 0.11,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 64,
+            "cold": 84,
+            "lightning": 41,
+            "poison": 40,
+            "arcane": 0,
+            "physical": 69
+          }
+        },
+        "skillLevels": {
+          "sorceress.ice_bolt": 1,
+          "sorceress.ice_blast": 1,
+          "sorceress.glacial_spike": 1,
+          "sorceress.blizzard": 1,
+          "sorceress.frozen_orb": 20,
+          "sorceress.static_field": 1,
+          "sorceress.warmth": 3,
+          "sorceress.cold_mastery": 14
+        },
+        "respecsRemaining": {
+          "stat": 1,
+          "skill": 0
+        }
+      },
+      "diagnosticFile": "screen.json",
+      "draws": 32,
+      "finalWaveNumbers": [
+        7
+      ],
+      "enemyRemainingMin": 9681,
+      "enemyRemainingMax": 11639,
+      "heroMinimumEndLife": 569,
+      "mercSurvivors": 0
+    },
+    {
+      "build": "crafted-ehp80",
+      "area": "chaos-sanctuary",
+      "n": 32,
+      "wins": 0,
+      "secondHalfWins": 0,
+      "diagnosticFile": "crafted-screen.json",
+      "draws": 32,
+      "finalWaveNumbers": [
+        7
+      ],
+      "enemyRemainingMin": 4915,
+      "enemyRemainingMax": 8275,
+      "heroMinimumEndLife": 146,
+      "mercSurvivors": 1
+    },
+    {
+      "build": "crafted-ehp160",
+      "area": "chaos-sanctuary",
+      "n": 32,
+      "wins": 0,
+      "secondHalfWins": 0,
+      "diagnosticFile": "crafted-screen.json",
+      "draws": 32,
+      "finalWaveNumbers": [
+        7
+      ],
+      "enemyRemainingMin": 5241,
+      "enemyRemainingMax": 7746,
+      "heroMinimumEndLife": 306,
+      "mercSurvivors": 0
+    },
+    {
+      "build": "crafted-ehp80-holy-freeze",
+      "area": "chaos-sanctuary",
+      "n": 32,
+      "wins": 0,
+      "secondHalfWins": 0,
+      "diagnosticFile": "support-screen.json",
+      "draws": 32,
+      "finalWaveNumbers": [
+        7
+      ],
+      "enemyRemainingMin": 5230,
+      "enemyRemainingMax": 7229,
+      "heroMinimumEndLife": 299,
+      "mercSurvivors": 32
+    },
+    {
+      "build": "crafted-ehp160-holy-freeze",
+      "area": "chaos-sanctuary",
+      "n": 32,
+      "wins": 0,
+      "secondHalfWins": 0,
+      "diagnosticFile": "support-screen.json",
+      "draws": 32,
+      "finalWaveNumbers": [
+        7
+      ],
+      "enemyRemainingMin": 5080,
+      "enemyRemainingMax": 7245,
+      "heroMinimumEndLife": 307,
+      "mercSurvivors": 32
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "owner": "root",
+  "removed": [
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/merc-picker380/dist",
+      "files": 760,
+      "bytes": 41524832
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/merc-picker380/dist-final",
+      "files": 760,
+      "bytes": 41524832
+    }
+  ],
+  "remaining": [],
+  "failures": [],
+  "previewPort": 4441,
+  "previewClosed": true
+}
