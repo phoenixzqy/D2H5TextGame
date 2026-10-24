@@ -157,6 +157,7 @@ export function applyEventToTeams(
       break;
     }
     case 'buff': {
+      if (ev.statusBacked) break;
       teams = patchUnit(teams, ev.target, (u) =>
         u.activeBuffIds.includes(ev.buffId)
           ? u

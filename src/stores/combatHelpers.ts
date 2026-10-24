@@ -15,6 +15,7 @@ import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
 import i18n from '@/i18n';
 import type { BattleEvent } from '@/engine/combat/combat';
 import { rebaseStatusClock } from '@/engine/combat/status';
+import { composeBurstOfSpeedRank } from '@/engine/skills/burst-of-speed';
 import type { CombatUnit, MonsterTier } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
 import type { Player } from '@/engine/types/entities';
@@ -234,6 +235,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     ...composeRunewordCombatModifiers(grants, { ...recovery, increasedDamagePct }),
     coldResistanceReductionPct: composeColdMastery(player),
     staticFieldRank: composeStaticField(player),
+    burstOfSpeedRank: composeBurstOfSpeedRank(player),
     manaRegenCarry: 0,
     manaRegenCompensation: 0,
     manaRegenExactCarry: '0',
@@ -1147,6 +1149,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       increasedDamagePct: fresh.increasedDamagePct ?? { fire: 0 },
       coldResistanceReductionPct: fresh.coldResistanceReductionPct ?? 0,
       staticFieldRank: fresh.staticFieldRank ?? 0,
+      burstOfSpeedRank: fresh.burstOfSpeedRank ?? 0,
       physicalReflectionPct: fresh.physicalReflectionPct ?? 0,
       manaRegenCarry: capped ? 0 : unit.manaRegenCarry ?? 0,
       manaRegenCompensation: capped ? 0 : unit.manaRegenCompensation ?? 0,

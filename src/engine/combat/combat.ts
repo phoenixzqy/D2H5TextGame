@@ -40,6 +40,8 @@ import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { activeMightAura, type MightAuraProjection } from '../skills/might';
 import { activeMeditationAura, type MeditationAuraProjection } from '../skills/meditation';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
+import { activeBurstOfSpeed, burstOfSpeedRank, copyBurstOfSpeedStatuses, matchesBurstOfSpeed,
+  paidBurstOfSpeed, BURST_OF_SPEED_IDS, BURST_OF_SPEED_DEFINITION } from '../skills/burst-of-speed';
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
@@ -107,7 +109,9 @@ export type BattleEvent =
   /** Silent complete active view; initial observations precede all gameplay. */
   | { readonly kind: 'status-state'; readonly target: string;
       readonly statuses: readonly ActiveStatus[]; readonly initial?: true }
-  | { readonly kind: 'buff'; readonly target: string; readonly buffId: string }
+  | { readonly kind: 'buff'; readonly target: string; readonly buffId: string;
+      /** Status observations own this finite buff's presentation and expiry. */
+      readonly statusBacked?: true }
   | {
       readonly kind: 'summon';
       readonly owner: string;
@@ -280,7 +284,8 @@ function effectiveActionPeriod(state: State, unit: CombatUnit): number {
   const chilled = unit.statuses.some(s => s.id === 'chill' && statusActiveAt(s, state.simClockMs)) ||
     (unit.side === 'enemy' && holyFreezeSourceId(state) !== undefined);
   const enrage = unit.enraged ? unit.enrage?.attackSpeedMultiplier ?? 1 : 1;
-  return actionPeriodMs(unit.stats.attackSpeed * enrage * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
+  const speedBonus = activeBurstOfSpeed(unit, state.simClockMs)?.attackSpeedPct ?? 0;
+  return actionPeriodMs(unit.stats.attackSpeed * (1 + speedBonus) * enrage * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
 }
 
 /** All new attempts start one full effective period after the current clock. */
@@ -421,7 +426,7 @@ function pickDefender(
 }
 
 function registerUnit(state: State, u: CombatUnit): void {
-  state.units.set(u.id, u);
+  state.units.set(u.id, copyBurstOfSpeedStatuses(u));
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
   if (!state.insertionIdx.has(u.id)) {
     state.insertionIdx.set(u.id, state.insertionCounter++);
@@ -490,7 +495,7 @@ function buildDamageInput(
     defenderMagicResist: defender.stats.magicResist,
     defenderDodge:
       effect.damageType === 'physical' || effect.damageType === 'thorns'
-        ? defender.stats.physDodge
+        ? defender.stats.physDodge + (activeBurstOfSpeed(defender, state.simClockMs)?.physDodgePct ?? 0)
         : defender.stats.magicDodge,
     ...(defender.resistPenalty !== undefined ? { resistPenalty: defender.resistPenalty } : {})
   };
@@ -747,6 +752,7 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
+  if (BURST_OF_SPEED_IDS.some(id => id === skill.id)) return burstOfSpeedRank(unit);
   if (isStaticFieldId(skill.id)) return staticFieldRank(unit);
   const governed = governedActiveId(skill.id);
   if (governed) {
@@ -831,10 +837,15 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  const burst = BURST_OF_SPEED_IDS.some(id => id === skillOrderId || id === skill.id) ||
+    skill.effects.some(effect => effect.kind === 'buff' && effect.timedStatBuff === 'burst-of-speed');
   const ce = isCorpseExplosionId(skillOrderId) || isCorpseExplosionId(skill.id);
   const pe = isPoisonExplosionId(skillOrderId) || isPoisonExplosionId(skill.id);
   const skillLevel = ce ? corpseExplosionRank(unit, state.corpseExplosion)
     : pe ? poisonExplosionRank(unit, state.poisonExplosion) : effectiveSkillLevel(unit, skill);
+  if (burst && (!matchesBurstOfSpeed(skill) || burstOfSpeedRank(unit) === 0 || !Number.isFinite(unit.mana) ||
+    activeBurstOfSpeed(unit, state.simClockMs) !== undefined ||
+    BURST_OF_SPEED_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   if ((isStaticFieldId(skillOrderId) || isStaticFieldId(skill.id) ||
     skill.effects.some(effect => effect.kind === 'static-field')) &&
     (!matchesStaticField(skill) || skillLevel === 0 || !Number.isFinite(unit.mana))) return false;
@@ -851,7 +862,7 @@ function canUseSkillForState(
   if (unit.level < skill.minLevel) return false;
   if (isPaidFrozenArmorSkill(skill)) {
     if (hasPaidFrozenArmor(unit)) return false;
-  } else if (
+  } else if (!burst &&
     skill.isBuff &&
     (unit.activeBuffIds.includes(skill.id) || activeBuffIdsForSkill(skill).some((id) => unit.activeBuffIds.includes(id)))
   ) return false;
@@ -919,6 +930,21 @@ function applyEffect(
     case 'buff': {
       const actor = state.units.get(actorId);
       if (!actor) return;
+      if (matchesBurstOfSpeed(skill) && effect.timedStatBuff === 'burst-of-speed') {
+        if (burstOfSpeedRank(actor) === 0 || activeBurstOfSpeed(actor, state.simClockMs)) return;
+        const exactMarkers: readonly string[] = [...BURST_OF_SPEED_IDS, 'burst-of-speed'];
+        state.units.set(actorId, { ...actor,
+          activeBuffIds: actor.activeBuffIds.filter(id => !exactMarkers.includes(id)),
+          statuses: [...actor.statuses.filter(status => !exactMarkers.includes(status.id)), {
+            id: 'burst-of-speed', sourceId: actorId, stacks: 1,
+            remaining: BURST_OF_SPEED_DEFINITION.durationMs / 1000,
+            appliedAtMs: state.simClockMs, expiresAtMs: state.simClockMs + BURST_OF_SPEED_DEFINITION.durationMs,
+            statBuff: paidBurstOfSpeed(skillLevel)
+          }] });
+        emit(state, { kind: 'buff', target: actorId, buffId: effect.id, statusBacked: true });
+        observeStatuses(state, actorId);
+        break;
+      }
       if (isPaidFrozenArmorSkill(skill) && effect.frozenArmor === true && effect.id === 'frozen-armor') {
         if (skillLevel === 0 || hasPaidFrozenArmor(actor)) return;
         const exactMarkers = ['frozen-armor', 'skills-sorceress-frozen-armor', 'sorceress.frozen_armor'];
