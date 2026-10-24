@@ -1,0 +1,1485 @@
+{
+  "scratchRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-aura-family-1zxzwew4",
+  "rawFiles": 210,
+  "terminalProcessRecords": 34,
+  "byteVerified": true,
+  "archiveSha256": "ff8c2cd328bbefb9009521cd0bab6cb0b072b32348e5d70aa4309131219f64a1",
+  "files": [
+    {
+      "path": "aura-allocation-green.log",
+      "bytes": 700,
+      "sha256": "a34d0f74336151ea45683eec376bea4cd3e11bb0015b40e738ba32d601163cd4",
+      "artifact": "raw.tar.gz",
+      "member": "aura-allocation-green.log"
+    },
+    {
+      "path": "aura-allocation-green.process.json",
+      "bytes": 166,
+      "sha256": "7d662e609de1ff15437c5fd0216381bd6442215c36073167dfa4680186fad3b2",
+      "artifact": "raw.tar.gz",
+      "member": "aura-allocation-green.process.json"
+    },
+    {
+      "path": "aura-allocation-green.result.json",
+      "bytes": 181,
+      "sha256": "d69e27a518476d4fad49870306df97f78e3b1bb534677a5dddb583aaf33c4b17",
+      "artifact": "raw.tar.gz",
+      "member": "aura-allocation-green.result.json"
+    },
+    {
+      "path": "aura-allocation-red-corrected.log",
+      "bytes": 5705,
+      "sha256": "f8aec24148d4a715a28713acf853a54f423444aa7bbae0f4e2d27eae1ffff4ac",
+      "artifact": "raw.tar.gz",
+      "member": "aura-allocation-red-corrected.log"
+    },
+    {
+      "path": "aura-allocation-red-corrected.process.json",
+      "bytes": 166,
+      "sha256": "d73ffaf41faaec13fa0f3d827607ca66c30fd6d8ec6d19a0ec916db578c5c390",
+      "artifact": "raw.tar.gz",
+      "member": "aura-allocation-red-corrected.process.json"
+    },
+    {
+      "path": "aura-allocation-red-corrected.result.json",
+      "bytes": 181,
+      "sha256": "284e06170cb647edfeb9cf85713acc2c13fdd2552d81eda36860b1af47ad7ce9",
+      "artifact": "raw.tar.gz",
+      "member": "aura-allocation-red-corrected.result.json"
+    },
+    {
+      "path": "aura-allocation-red.log",
+      "bytes": 7312,
+      "sha256": "74e78e735ebd4a07cca32f1ec343630f00725ff2eb0346773176cc80bf918ac0",
+      "artifact": "raw.tar.gz",
+      "member": "aura-allocation-red.log"
+    },
+    {
+      "path": "aura-allocation-red.process.json",
+      "bytes": 166,
+      "sha256": "d3a0cb7614e8bb67529af2cfd3c7fc050219360f036d73d0d2aea37def478d08",
+      "artifact": "raw.tar.gz",
+      "member": "aura-allocation-red.process.json"
+    },
+    {
+      "path": "aura-allocation-red.result.json",
+      "bytes": 181,
+      "sha256": "a7521154335c596fc7d9b1fe20f4cb7df7a1876769c9930bba867e5fcb26c885",
+      "artifact": "raw.tar.gz",
+      "member": "aura-allocation-red.result.json"
+    },
+    {
+      "path": "aura-browser-final.log",
+      "bytes": 640,
+      "sha256": "2be3e0c3bdab3438a18baa52e16005ea4d1101b5f01cccd1e3ffad748e575d0f",
+      "artifact": "raw.tar.gz",
+      "member": "aura-browser-final.log"
+    },
+    {
+      "path": "aura-browser-final.process.json",
+      "bytes": 493,
+      "sha256": "81b8a819f3e16b8d7196fe1adc80c7cc12d2187c25010bbd7ad1b126a8f84e4d",
+      "artifact": "raw.tar.gz",
+      "member": "aura-browser-final.process.json"
+    },
+    {
+      "path": "aura-browser-final.result.json",
+      "bytes": 533,
+      "sha256": "5cffd3de13e5fe380a1a27516818ae2c8b3fb67f86a32b5ecd9477b7ed9a49ae",
+      "artifact": "raw.tar.gz",
+      "member": "aura-browser-final.result.json"
+    },
+    {
+      "path": "aura-browser.log",
+      "bytes": 1663,
+      "sha256": "88640c8bb45dc869488fb8d8671c7f8b775a7a78a24ca28ad053bb5f377c83a1",
+      "artifact": "raw.tar.gz",
+      "member": "aura-browser.log"
+    },
+    {
+      "path": "aura-browser.process.json",
+      "bytes": 475,
+      "sha256": "846b93824ec83331c17c0f93b499e33cb2b44048f3974f626db61f325e5e870e",
+      "artifact": "raw.tar.gz",
+      "member": "aura-browser.process.json"
+    },
+    {
+      "path": "aura-browser.result.json",
+      "bytes": 514,
+      "sha256": "bfb2f7879f985e4d908077678a4471a6fe8b69f348060a2368ca63caf826399c",
+      "artifact": "raw.tar.gz",
+      "member": "aura-browser.result.json"
+    },
+    {
+      "path": "aura-build-final.log",
+      "bytes": 2228,
+      "sha256": "b502a55149574502fd712fc0d2b1be54a49af1b4b4d2a902a69a8c3be492adef",
+      "artifact": "raw.tar.gz",
+      "member": "aura-build-final.log"
+    },
+    {
+      "path": "aura-build-final.process.json",
+      "bytes": 245,
+      "sha256": "4f939e4750706de766943bcd991f3213bd34b7b1fc785967a8f6c4d0e98a0e2b",
+      "artifact": "raw.tar.gz",
+      "member": "aura-build-final.process.json"
+    },
+    {
+      "path": "aura-build-final.result.json",
+      "bytes": 274,
+      "sha256": "4136bd75607fd3b171a4348e383b7ad2a7214675fd831820ae48793566a436a6",
+      "artifact": "raw.tar.gz",
+      "member": "aura-build-final.result.json"
+    },
+    {
+      "path": "aura-build.log",
+      "bytes": 2228,
+      "sha256": "91d2a314ba1f8c3cec9ee96d071473fb1156f77503519df841af103f179d837d",
+      "artifact": "raw.tar.gz",
+      "member": "aura-build.log"
+    },
+    {
+      "path": "aura-build.process.json",
+      "bytes": 245,
+      "sha256": "158a1e4766478d21eebdb83a5e41a978734a30e5cd16d5e9fe6b5b785c0a6a23",
+      "artifact": "raw.tar.gz",
+      "member": "aura-build.process.json"
+    },
+    {
+      "path": "aura-build.result.json",
+      "bytes": 275,
+      "sha256": "515a05a0450edad104ea88ea8a226377b10a4b9897dc429eeb7335be97e41b82",
+      "artifact": "raw.tar.gz",
+      "member": "aura-build.result.json"
+    },
+    {
+      "path": "aura-engine-final.log",
+      "bytes": 61816,
+      "sha256": "abd6c1984628818f3e2bedefe767fce5eb851b40d8ed36af78d7d51e7c55e050",
+      "artifact": "raw.tar.gz",
+      "member": "aura-engine-final.log"
+    },
+    {
+      "path": "aura-engine-final.process.json",
+      "bytes": 89,
+      "sha256": "aadadc46936e439a3c19863a74be557f241b454c2be60f4a11f0ebfc0d3e4e6f",
+      "artifact": "raw.tar.gz",
+      "member": "aura-engine-final.process.json"
+    },
+    {
+      "path": "aura-engine-final.result.json",
+      "bytes": 97,
+      "sha256": "c6f049c5d77986a6d0e9508254e4553542ef31220d66c484658793e4bf3eebb1",
+      "artifact": "raw.tar.gz",
+      "member": "aura-engine-final.result.json"
+    },
+    {
+      "path": "aura-engine.log",
+      "bytes": 61787,
+      "sha256": "9b5639a19fa907f854b01b337c56553df062b478d6bca1e974e6b32dca52bc6b",
+      "artifact": "raw.tar.gz",
+      "member": "aura-engine.log"
+    },
+    {
+      "path": "aura-engine.process.json",
+      "bytes": 89,
+      "sha256": "5453d70d4f31795403e99b7a27b2a8c2065ffae80e387c642e70d0c76fc65b82",
+      "artifact": "raw.tar.gz",
+      "member": "aura-engine.process.json"
+    },
+    {
+      "path": "aura-engine.result.json",
+      "bytes": 96,
+      "sha256": "27083950b064444b55b1c5782ab789952db98b6b9b90961a365145ba01eaecbb",
+      "artifact": "raw.tar.gz",
+      "member": "aura-engine.result.json"
+    },
+    {
+      "path": "aura-entry-order-diagnostic.log",
+      "bytes": 2646,
+      "sha256": "94eb89223175d864b5253dc89c61bec0b94d4662ac1b4706887563ff40e0116c",
+      "artifact": "raw.tar.gz",
+      "member": "aura-entry-order-diagnostic.log"
+    },
+    {
+      "path": "aura-entry-order-diagnostic.process.json",
+      "bytes": 160,
+      "sha256": "c2ecc64ec630fd0b62842dc67420dd882df67196159fd60ac032dbdb63761361",
+      "artifact": "raw.tar.gz",
+      "member": "aura-entry-order-diagnostic.process.json"
+    },
+    {
+      "path": "aura-entry-order-diagnostic.result.json",
+      "bytes": 176,
+      "sha256": "14651f45ac906223904c6256a4b72efbf1f2e10f6c44066a3a16d64821bef0a9",
+      "artifact": "raw.tar.gz",
+      "member": "aura-entry-order-diagnostic.result.json"
+    },
+    {
+      "path": "aura-family-types-4.log",
+      "bytes": 1946,
+      "sha256": "745cf0fea9544d2ec96f432e4e528540d25b05f6314da29cdb8aaa9b15d54e4d",
+      "artifact": "raw.tar.gz",
+      "member": "aura-family-types-4.log"
+    },
+    {
+      "path": "aura-family-types-4.process.json",
+      "bytes": 86,
+      "sha256": "77797e8a57c0f6e7d2bca28cfa193db0a6491d51bc3eec64c9f0baa626ed3f79",
+      "artifact": "raw.tar.gz",
+      "member": "aura-family-types-4.process.json"
+    },
+    {
+      "path": "aura-family-types-4.result.json",
+      "bytes": 93,
+      "sha256": "62fe1b58968dfa310b2060ca4d408b53947c0fa2ee8cb9698d637b2bbbda7969",
+      "artifact": "raw.tar.gz",
+      "member": "aura-family-types-4.result.json"
+    },
+    {
+      "path": "aura-family-types-5.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "artifact": "raw.tar.gz",
+      "member": "aura-family-types-5.log"
+    },
+    {
+      "path": "aura-family-types-5.process.json",
+      "bytes": 87,
+      "sha256": "e4eb08809b8eabd769a56c71ea700ace59f9b7fdfcb750abf12ad204d4507391",
+      "artifact": "raw.tar.gz",
+      "member": "aura-family-types-5.process.json"
+    },
+    {
+      "path": "aura-family-types-5.result.json",
+      "bytes": 94,
+      "sha256": "5fa6b1d15d980e9ee7744822b2513cbda0d849b114ff85a04c6d73cba9ae4736",
+      "artifact": "raw.tar.gz",
+      "member": "aura-family-types-5.result.json"
+    },
+    {
+      "path": "aura-full-final.log",
+      "bytes": 147522,
+      "sha256": "d6c068f1b8fb013121d3b42777a25a6116b5da109ee128f3b773b81f904239b5",
+      "artifact": "raw.tar.gz",
+      "member": "aura-full-final.log"
+    },
+    {
+      "path": "aura-full-final.process.json",
+      "bytes": 74,
+      "sha256": "94416f767c4a605c82d62fcc2e88a11f2078822535b55f7ca9004f22562508fc",
+      "artifact": "raw.tar.gz",
+      "member": "aura-full-final.process.json"
+    },
+    {
+      "path": "aura-full-final.result.json",
+      "bytes": 79,
+      "sha256": "a49d3261ab571a9be4ad4f980e00c4aee3c0802f5ebc7bc4b2295161bf9e209d",
+      "artifact": "raw.tar.gz",
+      "member": "aura-full-final.result.json"
+    },
+    {
+      "path": "aura-full.log",
+      "bytes": 148824,
+      "sha256": "eb70d6191ec1bd3fb8e067672f8b1e115a3b1e3e9a0cd3249097baba964cdd9f",
+      "artifact": "raw.tar.gz",
+      "member": "aura-full.log"
+    },
+    {
+      "path": "aura-full.process.json",
+      "bytes": 74,
+      "sha256": "e7f7281c246f3c796cb730ec71bc5ee26cd0421ea3c3c040519574df86c3d382",
+      "artifact": "raw.tar.gz",
+      "member": "aura-full.process.json"
+    },
+    {
+      "path": "aura-full.result.json",
+      "bytes": 79,
+      "sha256": "8e237ea55567add3c645ce353e79422c7ec1a850c1232b2fd672a9817d803683",
+      "artifact": "raw.tar.gz",
+      "member": "aura-full.result.json"
+    },
+    {
+      "path": "aura-lint-final.log",
+      "bytes": 197,
+      "sha256": "c2a2fdb659541b53a5e1e31ef19371245a07a0d256693dd9faef373d3ecf9b73",
+      "artifact": "raw.tar.gz",
+      "member": "aura-lint-final.log"
+    },
+    {
+      "path": "aura-lint-final.process.json",
+      "bytes": 81,
+      "sha256": "b1d671ce55b7e8f8c9d541947a4b7ea83c1ed2fe774afcb7ee99bfec1db59284",
+      "artifact": "raw.tar.gz",
+      "member": "aura-lint-final.process.json"
+    },
+    {
+      "path": "aura-lint-final.result.json",
+      "bytes": 90,
+      "sha256": "d9542d799fefd7661fa411bd7fe1b8f3315c13013fbba76f9ee690948c3b1ede",
+      "artifact": "raw.tar.gz",
+      "member": "aura-lint-final.result.json"
+    },
+    {
+      "path": "aura-lint-post-browser.log",
+      "bytes": 197,
+      "sha256": "c2a2fdb659541b53a5e1e31ef19371245a07a0d256693dd9faef373d3ecf9b73",
+      "artifact": "raw.tar.gz",
+      "member": "aura-lint-final.log"
+    },
+    {
+      "path": "aura-lint-post-browser.process.json",
+      "bytes": 82,
+      "sha256": "9b4c2fbc1329f4a3a22cf7f8ad4927d447e411e97ca07d5f3efee0df6c5820e3",
+      "artifact": "raw.tar.gz",
+      "member": "aura-lint-post-browser.process.json"
+    },
+    {
+      "path": "aura-lint-post-browser.result.json",
+      "bytes": 90,
+      "sha256": "9c0afa72159f149c8d5632250b39625a836028aa33059456a6700f2ab08bd32f",
+      "artifact": "raw.tar.gz",
+      "member": "aura-lint-post-browser.result.json"
+    },
+    {
+      "path": "aura-lint.log",
+      "bytes": 460,
+      "sha256": "7e7d1998f87dd9c7fe51d1b7f50eb6df8954f095d5e22310423f892df3aee13a",
+      "artifact": "raw.tar.gz",
+      "member": "aura-lint.log"
+    },
+    {
+      "path": "aura-lint.process.json",
+      "bytes": 82,
+      "sha256": "16db70cb226d26b514414f76ac326428dc8b4d14ba4b1d68b462cb3056c12bda",
+      "artifact": "raw.tar.gz",
+      "member": "aura-lint.process.json"
+    },
+    {
+      "path": "aura-lint.result.json",
+      "bytes": 90,
+      "sha256": "fdf95ea25d76275f40406cbadeb5f903e270750a9c2273fe9d596530765f01e9",
+      "artifact": "raw.tar.gz",
+      "member": "aura-lint.result.json"
+    },
+    {
+      "path": "aura-save-green.log",
+      "bytes": 345,
+      "sha256": "d040720451dba3eab4ca9af404b527bb471bbd40379a22a516ab1a9cb81c53d7",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-green.log"
+    },
+    {
+      "path": "aura-save-green.process.json",
+      "bytes": 143,
+      "sha256": "4e54e49eaaf25c54e7b8705674b1b34d54e7c557de57ad4628200a84882a44f0",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-green.process.json"
+    },
+    {
+      "path": "aura-save-green.result.json",
+      "bytes": 160,
+      "sha256": "33ffb5e8ecf858c53ff8ffb5c800b65a3771778dc2ba880d17f363439ab714ff",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-green.result.json"
+    },
+    {
+      "path": "aura-save-red.log",
+      "bytes": 23427,
+      "sha256": "9d39a281f4809a920210593c2110bf59313f3107f06191bfd3a3e577250e5092",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-red.log"
+    },
+    {
+      "path": "aura-save-red.process.json",
+      "bytes": 143,
+      "sha256": "7adb7b96a9bf24a43e72c99917bededeb82a3fe1cfda2a90f8bd04ca248a106a",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-red.process.json"
+    },
+    {
+      "path": "aura-save-red.result.json",
+      "bytes": 161,
+      "sha256": "ea3eb1cd6953bea02d1bbd0d33c331e68cee64c51450ada58b3fca43bf5aeaa9",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-red.result.json"
+    },
+    {
+      "path": "aura-save-regression.log",
+      "bytes": 1752,
+      "sha256": "5000f65aabfe7c74381c304d0cea94487bbe42388405a60d8be4394a671b18ca",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-regression.log"
+    },
+    {
+      "path": "aura-save-regression.process.json",
+      "bytes": 126,
+      "sha256": "f1eba96aac6030777289b7687be34f36d7769993c7edb5f283a76b28c2052ad5",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-regression.process.json"
+    },
+    {
+      "path": "aura-save-regression.result.json",
+      "bytes": 145,
+      "sha256": "33a82141745936a303f15c9c4c623ed72c8ab6e5d9cc4cc41bb90d00ed8f4209",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-regression.result.json"
+    },
+    {
+      "path": "aura-save-types-2.log",
+      "bytes": 21763,
+      "sha256": "839304eff6c1b1b0c2d5cbb12f1c3cee6b21b78b27b32f021b2ccc4064960e8f",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-types-2.log"
+    },
+    {
+      "path": "aura-save-types-2.process.json",
+      "bytes": 87,
+      "sha256": "aabf7da7794234b536990413987d974651b215c9970b95c310ff79b1e1be71f4",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-types-2.process.json"
+    },
+    {
+      "path": "aura-save-types-2.result.json",
+      "bytes": 94,
+      "sha256": "4c60e01f2f744851d9b4bab944011f3f8ba5068f5b6be22770678fd26afa39f3",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-types-2.result.json"
+    },
+    {
+      "path": "aura-save-types-3.log",
+      "bytes": 2470,
+      "sha256": "93eca8081ebb0c9e0d14e4a88437cc40598cdf6989c85496a4f26af82a2318b6",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-types-3.log"
+    },
+    {
+      "path": "aura-save-types-3.process.json",
+      "bytes": 86,
+      "sha256": "8e48a62aca459bc347f9658607b8b60cb4fdb5940b2677be1dd67f05c13907ef",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-types-3.process.json"
+    },
+    {
+      "path": "aura-save-types-3.result.json",
+      "bytes": 94,
+      "sha256": "dbc6e56f96ea6610e8786431f0c2936abd9d03b873070255237125c12f7173dd",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-types-3.result.json"
+    },
+    {
+      "path": "aura-save-types.log",
+      "bytes": 24447,
+      "sha256": "70434dc9eabe8a5a83789aa3b9952f36e43b8b18a9266bd520955407734d744b",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-types.log"
+    },
+    {
+      "path": "aura-save-types.process.json",
+      "bytes": 87,
+      "sha256": "d9ea1f11d8bb33ead675d495022ab9db7b32789534cd13899c017893a70b9340",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-types.process.json"
+    },
+    {
+      "path": "aura-save-types.result.json",
+      "bytes": 94,
+      "sha256": "bb98ee729723fb35939cdaa9251c9c05a7ac57ea7fc389ddde53811cadd05749",
+      "artifact": "raw.tar.gz",
+      "member": "aura-save-types.result.json"
+    },
+    {
+      "path": "aura-types-final-2.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "artifact": "raw.tar.gz",
+      "member": "aura-family-types-5.log"
+    },
+    {
+      "path": "aura-types-final-2.process.json",
+      "bytes": 86,
+      "sha256": "8a3dbee528682e05f97ad4b05ce5b4860c405ceca521dd854b383c935cadaa44",
+      "artifact": "raw.tar.gz",
+      "member": "aura-types-final-2.process.json"
+    },
+    {
+      "path": "aura-types-final-2.result.json",
+      "bytes": 94,
+      "sha256": "4109434d91aa7af4efbab0695699cab78555184f588c3698c3c9946b8abc3283",
+      "artifact": "raw.tar.gz",
+      "member": "aura-types-final-2.result.json"
+    },
+    {
+      "path": "aura-types-final.log",
+      "bytes": 1725,
+      "sha256": "08906fd271a10bf7658954f4c3eb4ae28ea3acf5415078b657652a84037fc738",
+      "artifact": "raw.tar.gz",
+      "member": "aura-types-final.log"
+    },
+    {
+      "path": "aura-types-final.process.json",
+      "bytes": 87,
+      "sha256": "5e98e578ca37ba8a9180de5dda32523118e3c0a9a46fd7e214c243e09bb0338d",
+      "artifact": "raw.tar.gz",
+      "member": "aura-types-final.process.json"
+    },
+    {
+      "path": "aura-types-final.result.json",
+      "bytes": 94,
+      "sha256": "07b1537bb70953c7c0f35aa78f59f32808546520f526af2144b26481007f5e1b",
+      "artifact": "raw.tar.gz",
+      "member": "aura-types-final.result.json"
+    },
+    {
+      "path": "aura-types-post-browser.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "artifact": "raw.tar.gz",
+      "member": "aura-family-types-5.log"
+    },
+    {
+      "path": "aura-types-post-browser.process.json",
+      "bytes": 86,
+      "sha256": "751e4cf9e12eb74c9c01ff0b798de4fca4ffd6d2a6a07ba7c39ff3efe4d6d442",
+      "artifact": "raw.tar.gz",
+      "member": "aura-types-post-browser.process.json"
+    },
+    {
+      "path": "aura-types-post-browser.result.json",
+      "bytes": 94,
+      "sha256": "61bcb58d542caf1e596825725ad8c0da3c9e8f5eadbe1db939bc044189358c5b",
+      "artifact": "raw.tar.gz",
+      "member": "aura-types-post-browser.result.json"
+    },
+    {
+      "path": "browser-attempt-1/browser-report.json",
+      "bytes": 1560,
+      "sha256": "0877a55c859cbb5a6e5fe8c77dcd0db1f3826e6ff5504ba3b8716fc89e724006",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-1/browser-report.json"
+    },
+    {
+      "path": "browser-attempt-1/browser.cjs",
+      "bytes": 8159,
+      "sha256": "892f20e28199c22aeee061212d065a63d68ad1f14cd458053e23936aac90c03b",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-1/browser.cjs"
+    },
+    {
+      "path": "browser-attempt-1/en-1280-failed-trace.zip",
+      "bytes": 38155180,
+      "sha256": "45b8106c54121aeb00d82a9f0158246b44d1171ef21d9cff02881d6687a4372a",
+      "artifacts": [
+        "traces/45b8106c5412.zip.part01",
+        "traces/45b8106c5412.zip.part02"
+      ],
+      "reassemble": "concatenate parts in listed order"
+    },
+    {
+      "path": "browser-attempt-1/en-1280-failed.png",
+      "bytes": 101550,
+      "sha256": "ed191ef60e3c767a0149f2ebd4cb713714b83d9be3555fa66ee33256cc241468",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-1/en-1280-failed.png"
+    },
+    {
+      "path": "browser-attempt-1/reason.txt",
+      "bytes": 263,
+      "sha256": "c44ca1121e03bc5dd4b9b953748deb2f3cdc2b6ad6b68afad890b992334d7591",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-1/reason.txt"
+    },
+    {
+      "path": "browser-attempt-2/browser-report.json",
+      "bytes": 56721,
+      "sha256": "ee8c92279a1b4d841aa05f54b3f86a17df3c7e5ef6de0a3dab0c38a2a1192cb1",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/browser-report.json"
+    },
+    {
+      "path": "browser-attempt-2/browser.cjs",
+      "bytes": 8177,
+      "sha256": "ce6d72dd7579a41a2883ccac8831b0708cec78e9212dd00e070e6471114a0e32",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/browser.cjs"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-blessed-aim-after-7.json",
+      "bytes": 3772,
+      "sha256": "8f2d7a418e1f340bc5f7e96e52953909ea440d2876bd64db6569902a11eb2000",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-blessed-aim-after-7.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-blessed-aim-before-6.json",
+      "bytes": 3771,
+      "sha256": "e17d44e89b82fd0d14b97103c10c1851d1bd42a37efbe26a54abbd83a39e7e36",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-blessed-aim-before-6.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-constructed-input.json",
+      "bytes": 3726,
+      "sha256": "d174f5ec219ab8335593af3596831f60ee5b31ee7eea53c135055152c1d28559",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-constructed-input.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-defiance-after-11.json",
+      "bytes": 3769,
+      "sha256": "86063354af42e177b3354c805f03c367bede4fd2997584ef9c7f58fb075ebdde",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-defiance-after-11.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-defiance-before-10.json",
+      "bytes": 3769,
+      "sha256": "d26775c37d3cb5fe067c31092b57c795f4cf23ca75d7df688e26934b3d5bd25a",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-defiance-before-10.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-fanaticism-after-9.json",
+      "bytes": 3771,
+      "sha256": "7fb1b5d256f083117712d6c43f6c269f57163354d9ef6ceb35bfb7db48f1cd6a",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-fanaticism-after-9.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-fanaticism-before-8.json",
+      "bytes": 3771,
+      "sha256": "00cf70af28991c22f52b0e2e4adbac6ddd7270b01c88afd27ea1b307312ab3c7",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-fanaticism-before-8.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-fresh-3.json",
+      "bytes": 3248,
+      "sha256": "8637372e5d51d534b35f8b437bf426f8075b41d397913b860b3b5edb012b6c09",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-fresh-3.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-native-after-2.json",
+      "bytes": 3248,
+      "sha256": "c05edc40a3f1ac0a7f1d7d0777068effaade051a89d6c8d28ad1f6a04729f270",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-native-after-2.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-native-before-1.json",
+      "bytes": 3245,
+      "sha256": "8fdffd7e36340247876c444849de9d385e81ae92584c177b7587771d4287230d",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-native-before-1.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-resist-cold-after-15.json",
+      "bytes": 3772,
+      "sha256": "86b816a773267f4b11bdb8806459d4027fcf7d587ff5c24e9322d5a1f53e1315",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-resist-cold-after-15.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-resist-cold-before-14.json",
+      "bytes": 3772,
+      "sha256": "4d045f932099549d27e01505d610e9b765aff359c910c44c28a90899ca6df398",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-resist-cold-before-14.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-resist-fire-after-13.json",
+      "bytes": 3772,
+      "sha256": "2d8f4ca121bfe90768e730000ee9c733214e068f1c4b5c93fd578d473c7eb501",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-resist-fire-after-13.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-resist-fire-before-12.json",
+      "bytes": 3772,
+      "sha256": "6f2bc42554e9dadea70bdf075659d340912657568274d8ec4bc7ddd2d19221da",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-resist-fire-before-12.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-resist-lightning-after-17.json",
+      "bytes": 3777,
+      "sha256": "0c6b9768d6695cefab8386d11dda0f9467b9b77f64eec0c996eafb64146bd967",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-resist-lightning-after-17.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-resist-lightning-before-16.json",
+      "bytes": 3777,
+      "sha256": "e49b29628a43af657e45e7e54525eaa1edb20e6d11dfd20e9fd4c88b2e29cf23",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-resist-lightning-before-16.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-salvation-after-19.json",
+      "bytes": 3770,
+      "sha256": "ccaaba13d0499295277231aa5363d902eaf2500a34d65131d24acc030cdaeed7",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-salvation-after-19.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-salvation-before-18.json",
+      "bytes": 3770,
+      "sha256": "76b93bf08c3dd86169b67687b70fcb15e273a8c5ea553e7549c89e38f9d023af",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-salvation-before-18.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-selection.png",
+      "bytes": 111496,
+      "sha256": "9a1b717c5e3fd8cea41970d79ece2faf51e1baaf905580c2fab51968002bf3fc",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-selection.png"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-thorns-after-5.json",
+      "bytes": 3766,
+      "sha256": "93c8b456dcc58117a05825efe55ab8d459ce858488c74187fea67a5781059727",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-thorns-after-5.json"
+    },
+    {
+      "path": "browser-attempt-2/en-1280-thorns-before-4.json",
+      "bytes": 3766,
+      "sha256": "1c7162090036b0699bc75de08538067a6078a4cfc1cefa86ebfc95f6f46c8ab2",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-1280-thorns-before-4.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-blessed-aim-after-26.json",
+      "bytes": 3771,
+      "sha256": "fb532021f5c864bbc3dabb98f9e05b2d253e3c38a09d8262b3610ec0d1787b60",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-blessed-aim-after-26.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-blessed-aim-before-25.json",
+      "bytes": 3771,
+      "sha256": "89a31b1fa6d7929460ad3553f313595ff37c97794f815ea1a6947b9a184221bb",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-blessed-aim-before-25.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-constructed-input.json",
+      "bytes": 3726,
+      "sha256": "90147ce6976ea972f9093998ed194c65a4c0a234c1b4d96f87bbecceb684df6a",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-constructed-input.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-defiance-after-30.json",
+      "bytes": 3769,
+      "sha256": "0debab57f2dc3042ce332073fd378c5dc499729577a5db22527b9cc53e02596e",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-defiance-after-30.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-defiance-before-29.json",
+      "bytes": 3769,
+      "sha256": "fe4cb4d957149efa4d7fd77cf0ee36cdd61a83c081a94abf53985d7b8327a6ad",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-defiance-before-29.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-fanaticism-after-28.json",
+      "bytes": 3771,
+      "sha256": "198a27a9fa815031ee1f29362622a033ad10c81941b4e44774b34d6f7b608d07",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-fanaticism-after-28.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-fanaticism-before-27.json",
+      "bytes": 3770,
+      "sha256": "b242c445468be467ec5d7c115aecad8f4c05b074c09f9011c200cbb7f36ba94f",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-fanaticism-before-27.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-fresh-22.json",
+      "bytes": 3248,
+      "sha256": "a4fd53584b44aee4f81bba4c0285541998b38d8527c449ee266f16f5060bc147",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-fresh-22.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-native-after-21.json",
+      "bytes": 3248,
+      "sha256": "0a492ce8eb51f9d1d2e0371f08123f5f88cea4e70bb0e8fbaf2962996f63b301",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-native-after-21.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-native-before-20.json",
+      "bytes": 3245,
+      "sha256": "d1169ff07dd2f7c97e9f1388cdd24f74608d52df2d42b9c215d33271400543e5",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-native-before-20.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-resist-cold-after-34.json",
+      "bytes": 3772,
+      "sha256": "ab6f166c25d0037828f99301163d2106946000d969fbc9f040c42d9f9156f554",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-resist-cold-after-34.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-resist-cold-before-33.json",
+      "bytes": 3772,
+      "sha256": "7f7d862c83a42ac06e6c351c06d29c82bb88033b59bdb7b21e3eb4534eedf19b",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-resist-cold-before-33.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-resist-fire-after-32.json",
+      "bytes": 3772,
+      "sha256": "862c8c69b7b6a0936f902d9780a232f0c547eb3825dc567f8e5283ef600916ba",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-resist-fire-after-32.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-resist-fire-before-31.json",
+      "bytes": 3772,
+      "sha256": "971714fe7b17b8643c5a9da3d2232202b0169617cec63ce7ce7781717c6493d3",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-resist-fire-before-31.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-resist-lightning-after-36.json",
+      "bytes": 3777,
+      "sha256": "c2d1ccc25c6cfac4fe0f70cccbcb4828cf2a210bc497c2565c87452bb8f87776",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-resist-lightning-after-36.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-resist-lightning-before-35.json",
+      "bytes": 3777,
+      "sha256": "27511967f6d2305b785503eb5f01828cf1a46fc51568718ad752b4a1d3da2567",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-resist-lightning-before-35.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-salvation-after-38.json",
+      "bytes": 3770,
+      "sha256": "ccc3adb55d40b5f0e436838944ba35ca9b92bda80872dc491892b9e00852db2e",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-salvation-after-38.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-salvation-before-37.json",
+      "bytes": 3770,
+      "sha256": "13b787d5309fd071184f4892c913b5d256421f7ac689c9c2f4128b53591120db",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-salvation-before-37.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-selection.png",
+      "bytes": 52227,
+      "sha256": "77207a2f611eacf92fd3c67f4845cd44792af4dcc5dd188ad7a6d0e022e89bda",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-selection.png"
+    },
+    {
+      "path": "browser-attempt-2/en-360-thorns-after-24.json",
+      "bytes": 3766,
+      "sha256": "bec182fdf9b5cb838eff232b1624cc87aed781bc20546aef138ba8522ed22437",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-thorns-after-24.json"
+    },
+    {
+      "path": "browser-attempt-2/en-360-thorns-before-23.json",
+      "bytes": 3766,
+      "sha256": "66f46e30fb8bec13fe5f596069897cd655331eeea5c19c6c5b03294b48ab3a4b",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/en-360-thorns-before-23.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-blessed-aim-after-45.json",
+      "bytes": 3774,
+      "sha256": "02b3fad404def4429c6fd85651a1b438b2bc0a608569a85af8162401b24efa8f",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-blessed-aim-after-45.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-blessed-aim-before-44.json",
+      "bytes": 3774,
+      "sha256": "33902e700f58e76134c630c89b266dffdb87969a2b0637c6f0285f733feeaf2a",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-blessed-aim-before-44.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-constructed-input.json",
+      "bytes": 3729,
+      "sha256": "7cea3428e237995a83e3975336543f50b5d8b96c26060bce2de019fc43cd584d",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-constructed-input.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-defiance-after-49.json",
+      "bytes": 3772,
+      "sha256": "209d02e08fec6ed4a9ad053c7409a06cd827ec9a5ad8859d644b4c634edfd3b2",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-defiance-after-49.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-defiance-before-48.json",
+      "bytes": 3771,
+      "sha256": "8a200c7b6b6ef52321ea341e59061c7102faf69f6dd68c969e3694b06451a642",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-defiance-before-48.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-fanaticism-after-47.json",
+      "bytes": 3773,
+      "sha256": "05d348f540a21f32aa3c9a1b90f86a331f5d864ec5e8d2f772d6e61fe85fd142",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-fanaticism-after-47.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-fanaticism-before-46.json",
+      "bytes": 3773,
+      "sha256": "a5d5d81b3e84d52a41fb4887b4bc7d58b0d5dbb68b6469e53faec23f7cb1798f",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-fanaticism-before-46.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-fresh-41.json",
+      "bytes": 3251,
+      "sha256": "25045923fafec6d61a531f79759376b82988fb8653e3e8a86a09464c30b36928",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-fresh-41.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-native-after-40.json",
+      "bytes": 3251,
+      "sha256": "48effcdf8f7da400202d278dc5a03172d78501593e3fae4f95e87e4a2e6b9611",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-native-after-40.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-native-before-39.json",
+      "bytes": 3248,
+      "sha256": "fb3b14ccfa8b822325bcc11a1b02250810b2b4a2f66debe0a39668ebfdcccded",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-native-before-39.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-resist-cold-after-53.json",
+      "bytes": 3775,
+      "sha256": "75da7b0e254f0bec7716f5ec528dd90fd37f3d419257ea01ebf69c8bac7b7b95",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-resist-cold-after-53.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-resist-cold-before-52.json",
+      "bytes": 3775,
+      "sha256": "52a8ab8fded373a8bb2c6e0999bedd19bf9a756576b57559274fe233ee21ba8d",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-resist-cold-before-52.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-resist-fire-after-51.json",
+      "bytes": 3775,
+      "sha256": "81d77ccd1b479851b2a8f2ea8966125fecc35cff8eb77f4ff646c95b6e5662d8",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-resist-fire-after-51.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-resist-fire-before-50.json",
+      "bytes": 3775,
+      "sha256": "d6d50c7b776b0080b7e1655bccd211f82cd9d5ed068caa61cc9babe1d4cdf19f",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-resist-fire-before-50.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-resist-lightning-after-55.json",
+      "bytes": 3780,
+      "sha256": "15f31841f14f544802329af5d3d5768e274414680eb75ff8d6d946714e4228c1",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-resist-lightning-after-55.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-resist-lightning-before-54.json",
+      "bytes": 3780,
+      "sha256": "a4f1ee994238a086754433ad7e3109c7c31f0acff77801820f636b07d4411b24",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-resist-lightning-before-54.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-salvation-after-57.json",
+      "bytes": 3773,
+      "sha256": "ecd8c4072829fe5146445df0d18379a50b1c9feb78821b07d9b2e51eea9c66ea",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-salvation-after-57.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-salvation-before-56.json",
+      "bytes": 3773,
+      "sha256": "f0a8ff757ad60c5c4f2ed61810dd117ee712cbae7e6ed7c507c09eafdf207c78",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-salvation-before-56.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-selection.png",
+      "bytes": 101868,
+      "sha256": "559b5d631b407d42b9e3d3ff6c95dc1fd92605a6b115c176740a1968d71de4e2",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-selection.png"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-thorns-after-43.json",
+      "bytes": 3769,
+      "sha256": "fc7503ec1920dad93eee6b13523ca01ce6c39344e6a5a754e6034558a05c5a73",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-thorns-after-43.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-1280-thorns-before-42.json",
+      "bytes": 3769,
+      "sha256": "4d38dfe4c7df2008a1e9acfb1f38065f716c78fe829b5d805dde1a8bdd190213",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-1280-thorns-before-42.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-blessed-aim-after-64.json",
+      "bytes": 3774,
+      "sha256": "1e04332b74c3dce790c43a831b299823ba1477d3c5c417da3c8dfaa3ecb51bf1",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-blessed-aim-after-64.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-blessed-aim-before-63.json",
+      "bytes": 3774,
+      "sha256": "ec26a493da30d73b55987ef5bdead89df3d57430ca4e1a2a26d1b39e8d33a535",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-blessed-aim-before-63.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-constructed-input.json",
+      "bytes": 3729,
+      "sha256": "a10755ebfb76dff809c6ffd98ada5527ab3714717462cd854660691afb01f6d8",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-constructed-input.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-defiance-after-68.json",
+      "bytes": 3772,
+      "sha256": "84387bd67322c2ffa28149fbd5468031e07633596e8651a48517301de6c52a95",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-defiance-after-68.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-defiance-before-67.json",
+      "bytes": 3771,
+      "sha256": "8c1eaf16b191ae1f3a1c311cabd59930eed20a31cca541a243de2abd01ce44db",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-defiance-before-67.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-fanaticism-after-66.json",
+      "bytes": 3773,
+      "sha256": "176fa76991c02aeba05a2ddc5239370a4a1ec06fe46a9bc8b73a40f072438866",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-fanaticism-after-66.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-fanaticism-before-65.json",
+      "bytes": 3773,
+      "sha256": "264ccdd46c51f56d57375ff754aaaab9a309c6479fe7ca0e06336d5beb3bc04b",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-fanaticism-before-65.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-fresh-60.json",
+      "bytes": 3251,
+      "sha256": "ec27c6495bfce1084f05ac2b8ebf48d39616fab19b29595fd827a8d80db7780b",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-fresh-60.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-native-after-59.json",
+      "bytes": 3251,
+      "sha256": "3045db49c5dc7940927242ca79503b59c0bd86f948fbb4a3b6ce6c04865671df",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-native-after-59.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-native-before-58.json",
+      "bytes": 3248,
+      "sha256": "0adbc5e0ea3e9bdc51409c0da041a1d768c22f77ff476f87edf2e47acd44d489",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-native-before-58.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-resist-cold-after-72.json",
+      "bytes": 3775,
+      "sha256": "56dceba1bdadde6ed250336e74654bfa2ea764efd1fc98b0b1eaf499faf6d715",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-resist-cold-after-72.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-resist-cold-before-71.json",
+      "bytes": 3775,
+      "sha256": "9b7629d585e49d579b51f8a5c5644302c35aad0732a2bcfed663acea3c154878",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-resist-cold-before-71.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-resist-fire-after-70.json",
+      "bytes": 3775,
+      "sha256": "022c96e87fa6f0de167975ac54da74fc26d45adc9d9bdf008c2c770518c937fa",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-resist-fire-after-70.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-resist-fire-before-69.json",
+      "bytes": 3775,
+      "sha256": "36e4d5b39b7829d0bb8b8c61d9b0bc749d6b3f55ad9f4fe2ccb8e3f19a4c734a",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-resist-fire-before-69.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-resist-lightning-after-74.json",
+      "bytes": 3780,
+      "sha256": "e755bc7f228477a57f76cdfb8e298756299f9581b9901a718324860e1c3e603b",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-resist-lightning-after-74.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-resist-lightning-before-73.json",
+      "bytes": 3780,
+      "sha256": "67edc5dd41e30b0dbbc98c57b9bf4eeeca2f5b28dc0d76c7ede6540cc8d73032",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-resist-lightning-before-73.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-salvation-after-76.json",
+      "bytes": 3773,
+      "sha256": "0a20bdaebf227e496e6a3cd5823e5f68f7c42ea4ccf2efb5dabacee07e6eba8f",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-salvation-after-76.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-salvation-before-75.json",
+      "bytes": 3773,
+      "sha256": "1938c95438c07ddbdb62966befc1ebdeaf90db8ef05de837f6966c14603b7215",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-salvation-before-75.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-selection.png",
+      "bytes": 65367,
+      "sha256": "4038cd399943b647c26dd2f80dc0568848f285c5c7b5254fa2d74fdc5a9df2fc",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-selection.png"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-thorns-after-62.json",
+      "bytes": 3769,
+      "sha256": "61f250872931c9e6fc4438f22bc1705e4d6186cd3e17355612ce29edca5a3b41",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-thorns-after-62.json"
+    },
+    {
+      "path": "browser-attempt-2/zh-CN-360-thorns-before-61.json",
+      "bytes": 3769,
+      "sha256": "6483d921b1cc9ec1cf4e14045eddd86c4f8e754748663c538502adfecc432094",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-2/zh-CN-360-thorns-before-61.json"
+    },
+    {
+      "path": "browser-report.json",
+      "bytes": 1560,
+      "sha256": "0877a55c859cbb5a6e5fe8c77dcd0db1f3826e6ff5504ba3b8716fc89e724006",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-1/browser-report.json"
+    },
+    {
+      "path": "browser.cjs",
+      "bytes": 8159,
+      "sha256": "892f20e28199c22aeee061212d065a63d68ad1f14cd458053e23936aac90c03b",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-1/browser.cjs"
+    },
+    {
+      "path": "build-ownership.json",
+      "bytes": 168,
+      "sha256": "4057e0724dddae69cc61256c92b3220a7773beb515a85b9720bc73a79f29da63",
+      "artifact": "raw.tar.gz",
+      "member": "build-ownership.json"
+    },
+    {
+      "path": "earned-save-audit.json",
+      "bytes": 199,
+      "sha256": "9be3878b58586df2ef4722ef1c71ec46762531a5e749698e66a88280f3e3c10f",
+      "artifact": "raw.tar.gz",
+      "member": "earned-save-audit.json"
+    },
+    {
+      "path": "en-1280-failed-trace.zip",
+      "bytes": 38155180,
+      "sha256": "45b8106c54121aeb00d82a9f0158246b44d1171ef21d9cff02881d6687a4372a",
+      "artifacts": [
+        "traces/45b8106c5412.zip.part01",
+        "traces/45b8106c5412.zip.part02"
+      ],
+      "reassemble": "concatenate parts in listed order"
+    },
+    {
+      "path": "en-1280-failed.png",
+      "bytes": 101550,
+      "sha256": "ed191ef60e3c767a0149f2ebd4cb713714b83d9be3555fa66ee33256cc241468",
+      "artifact": "raw.tar.gz",
+      "member": "browser-attempt-1/en-1280-failed.png"
+    },
+    {
+      "path": "final-audit.json",
+      "bytes": 10496,
+      "sha256": "e8c40b034bbfe6d576ee08a997e736b1e15b42b32c5858df3e0c54b2b996b661",
+      "artifact": "raw.tar.gz",
+      "member": "final-audit.json"
+    },
+    {
+      "path": "final-full-before.json",
+      "bytes": 137484,
+      "sha256": "fd7a64ac2205e0c46eb868a2a2acf604c70ab1b9e317b256bd3b5b979859e7f1",
+      "artifact": "raw.tar.gz",
+      "member": "final-full-before.json"
+    },
+    {
+      "path": "ownership.json",
+      "bytes": 381,
+      "sha256": "6f2ed59888ca16a446f8c5151fe7afe9306239d634f6eda66ffa563fc2fc8ed7",
+      "artifact": "raw.tar.gz",
+      "member": "ownership.json"
+    },
+    {
+      "path": "production-build-audit-post-browser.json",
+      "bytes": 103245,
+      "sha256": "bb03a00c20c360c73db94b67639e54e17834251ed25a3068ff1a6ebb7ab407b3",
+      "artifact": "raw.tar.gz",
+      "member": "production-build-audit-post-browser.json"
+    },
+    {
+      "path": "production-build-audit.json",
+      "bytes": 103287,
+      "sha256": "3ea284a6f990aa72e996f31fc21d134884d57bee267314ca51869f3579a69037",
+      "artifact": "raw.tar.gz",
+      "member": "production-build-audit.json"
+    },
+    {
+      "path": "remaining-mechanics-notes.md",
+      "bytes": 3402,
+      "sha256": "7488a23f1afeafbe414b6b1e86370f698ba569cee5d7816bdf5fc036b0a26c88",
+      "artifact": "raw.tar.gz",
+      "member": "remaining-mechanics-notes.md"
+    },
+    {
+      "path": "retain.py",
+      "bytes": 5293,
+      "sha256": "ac77605622855f47e7257320e2e32f9a224d2ae1b528fcabc9af679bf135f080",
+      "artifact": "raw.tar.gz",
+      "member": "retain.py"
+    },
+    {
+      "path": "review.txt",
+      "bytes": 3157,
+      "sha256": "a1b5279850723b4f81f3012376894959fafe159e6ceab7342391873bf34c556f",
+      "artifact": "raw.tar.gz",
+      "member": "review.txt"
+    },
+    {
+      "path": "run.py",
+      "bytes": 603,
+      "sha256": "f41fa41d7e07e4d3e267662910815d951edfac05ee942ff407bb5c2c4bb105a5",
+      "artifact": "raw.tar.gz",
+      "member": "run.py"
+    },
+    {
+      "path": "stat-aura-combat-green-2.log",
+      "bytes": 1704,
+      "sha256": "0a372d92d8cd19e803e11eaa6a346042c697991eefe97803020d39afa56fe083",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-combat-green-2.log"
+    },
+    {
+      "path": "stat-aura-combat-green-2.process.json",
+      "bytes": 222,
+      "sha256": "d76cb2d501b33007a0dc477b121f94312144098f470be048bc6cbf54dc2a03be",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-combat-green-2.process.json"
+    },
+    {
+      "path": "stat-aura-combat-green-2.result.json",
+      "bytes": 248,
+      "sha256": "942d5568136ac49d176d6b6c8a48a6207fafd629b1f035ddc169733df879fc23",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-combat-green-2.result.json"
+    },
+    {
+      "path": "stat-aura-combat-green.log",
+      "bytes": 8604,
+      "sha256": "160efc9b37af10407080581958881cf750e0c74df12dd5aa6622344864137f28",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-combat-green.log"
+    },
+    {
+      "path": "stat-aura-combat-green.process.json",
+      "bytes": 221,
+      "sha256": "319ebbe0b3cfafb2a32a77b72ee36dff899d7e97e4cabced44e967f11b9b2bbc",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-combat-green.process.json"
+    },
+    {
+      "path": "stat-aura-combat-green.result.json",
+      "bytes": 248,
+      "sha256": "65070f525ced711d7bde6fde02db6b4984e6b9c8d6fba4bbc3d13bdce4c8a20d",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-combat-green.result.json"
+    },
+    {
+      "path": "stat-aura-combat-red.log",
+      "bytes": 11691,
+      "sha256": "dba1c3166ea30c6ac982a506629b2caca3abf8d750afb84beee92d19303de193",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-combat-red.log"
+    },
+    {
+      "path": "stat-aura-combat-red.process.json",
+      "bytes": 147,
+      "sha256": "01f18010e8389caa073fb0d23ab79fdba77aefc065f749bf3852a4517f1d8e1a",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-combat-red.process.json"
+    },
+    {
+      "path": "stat-aura-combat-red.result.json",
+      "bytes": 165,
+      "sha256": "eb9b19e84d8ce0df0273f39a814f25b1f3a2763f4f0f4e729de4e36d3d52c695",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-combat-red.result.json"
+    },
+    {
+      "path": "stat-aura-engine-focused.log",
+      "bytes": 418,
+      "sha256": "06d2c7df9e43b248306f9830b5ef68991226300e9c5639dfab009ce2712ba5e7",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-engine-focused.log"
+    },
+    {
+      "path": "stat-aura-engine-focused.process.json",
+      "bytes": 185,
+      "sha256": "81c8482098dea3bb79cacef58f313abfdf0df26b1cd38e3620429d20a3670cd7",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-engine-focused.process.json"
+    },
+    {
+      "path": "stat-aura-engine-focused.result.json",
+      "bytes": 209,
+      "sha256": "d65ec5de7180251a5c87e64d396a49aa62baf2f8787493a0810ee77912d25c0d",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-engine-focused.result.json"
+    },
+    {
+      "path": "stat-aura-native-green.log",
+      "bytes": 695,
+      "sha256": "83fa4eda04c4881010093e49cd7ef661fb981522ba7d1ae7829afa6bc909dff6",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-native-green.log"
+    },
+    {
+      "path": "stat-aura-native-green.process.json",
+      "bytes": 184,
+      "sha256": "93697cca735415b9d2cbaa88bd7bc9f74bf5ea1380e217e1ef6cb159ce431cee",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-native-green.process.json"
+    },
+    {
+      "path": "stat-aura-native-green.result.json",
+      "bytes": 207,
+      "sha256": "7ae9094f5ac819a2db0b2f20f1927228ae45345dad94665b91c0ca1c1a748384",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-native-green.result.json"
+    },
+    {
+      "path": "stat-aura-native-red.log",
+      "bytes": 5063,
+      "sha256": "e394ea8fb95189b41b7b6730439637e5ea6ae326ff387067a3865a62120397e8",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-native-red.log"
+    },
+    {
+      "path": "stat-aura-native-red.process.json",
+      "bytes": 145,
+      "sha256": "d71df27bd7765da0929c3c0f910e52f8fe4ebe82e7fb1d80fbaf6ff24f6cb27a",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-native-red.process.json"
+    },
+    {
+      "path": "stat-aura-native-red.result.json",
+      "bytes": 164,
+      "sha256": "563ab43a58b930b0f0ef0c8a521fca9f94521e6daedb64c138ee62ae85498f52",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-native-red.result.json"
+    },
+    {
+      "path": "stat-aura-ui-green.log",
+      "bytes": 2233,
+      "sha256": "e2a5bdbd805cff3a1815b5d613c78b97e3afaa2a5beb3752f89954ebe883f2f5",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-ui-green.log"
+    },
+    {
+      "path": "stat-aura-ui-green.process.json",
+      "bytes": 266,
+      "sha256": "29ef7aa6e997a6fe308265dd6f214787ed47849b6c0056f4afe0b20de2198819",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-ui-green.process.json"
+    },
+    {
+      "path": "stat-aura-ui-green.result.json",
+      "bytes": 292,
+      "sha256": "30448d8d7fcfcc84095142e96d7b1654c6aaa62d4953713ce832117898e0014f",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-ui-green.result.json"
+    },
+    {
+      "path": "stat-aura-ui-red.log",
+      "bytes": 198963,
+      "sha256": "c80df182e026045b7dcfe6af2c76bc4920f8fa5031dfcc52a6dff17a25467b36",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-ui-red.log"
+    },
+    {
+      "path": "stat-aura-ui-red.process.json",
+      "bytes": 159,
+      "sha256": "9dcb2ceb75c8c0376432bd75613a9ec9a01b42a78d746198e05d71521b053e99",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-ui-red.process.json"
+    },
+    {
+      "path": "stat-aura-ui-red.result.json",
+      "bytes": 178,
+      "sha256": "d720026547375fbe035cd19936321d26a22552c4f2315034da631f6681d39927",
+      "artifact": "raw.tar.gz",
+      "member": "stat-aura-ui-red.result.json"
+    },
+    {
+      "path": "validation-inputs-post-browser.json",
+      "bytes": 134885,
+      "sha256": "77966264495ac9cdb3dd9abd9e8a26b5ca0abfab005af714bfcaac16408b4eb9",
+      "artifact": "raw.tar.gz",
+      "member": "validation-inputs-post-browser.json"
+    },
+    {
+      "path": "validation-inputs.json",
+      "bytes": 134885,
+      "sha256": "2bcbeaf6a936dada1fa5cae5a8907ff21b3dd07bd187616a8d53a416b8d94d5a",
+      "artifact": "raw.tar.gz",
+      "member": "validation-inputs.json"
+    }
+  ]
+}

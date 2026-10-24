@@ -1,7 +1,7 @@
 # BUG-181 — Complete advertised Paladin aura selection and effects
 
 Severity: High
-Status: Open; save-domain foundation in progress
+Status: Open; eight stat auras locally verified, ten distinct aura mechanics outstanding
 Owners: engine-dev, frontend-dev, content-designer; root sole writer this run
 
 ## Reproduction
@@ -41,3 +41,11 @@ allocation key, missing the real producer contract. Preserve the selection domai
 resolve actual canonical underscore allocations as well as data/selection aliases
 by maximum. Reproduce with the public allocation action before changing runtime.
 Original screenshot, trace, browser report and log are retained in task evidence.
+
+Local implementation: save a5c9c3a, runtime/native9329b3f, UI fdbbd55. The corrected
+public-allocation regression passes34cases; full12229/515, engine6088/205,
+types/lint/build/production bridge checks pass. Browser en/zh×desktop/mobile4/4
+proves36 exact Continue pairs and40 geometry samples. [Evidence and original
+failures](../../docs/plans/evidence/d05-paladin-stat-auras.md). The allocation-ID
+finding is repaired; the whole family remains open for the ten explicitly listed
+pulse/control/recovery/corpse/interrupt effects, earned balance and independent QA.

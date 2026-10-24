@@ -1,4 +1,4 @@
-# BUG-180 — Investigate intermittent inventory-first import timeout
+# BUG-180 — Investigate intermittent player/inventory import timeouts
 
 Severity: Low. Status: unresolved intermittent test timing; no gameplay failure established.
 Owner: qa-engineer / technical-director (root sole writer).
@@ -39,3 +39,25 @@ skips. The13-case entry file completes in3880ms. All1222input hashes and Git
 state remain exact during retry. `full-retry.log`/`.result.json` and
 `input-audit-final.json` retain that result. This does not diagnose or fix the
 intermittent failure; status stays unresolved. No runtime/test source was patched.
+
+Paladin batch recurrence, baseline2b5608b plus the initial aura implementation:
+the complete `npm test` run reports12227PASS/twoFAIL/two existing skips,
+514passed/onefailed file,557.274s process. Both player-first and inventory-first
+entry cases exceed the unchanged5000ms limit. Typecheck/lint overlapped an early
+part of this run; overlap is observed context, not an established cause.
+
+After all build/browser/type/lint/engine jobs terminate, the unchanged13-case file
+passes in isolation (10.013s process); player-first1921ms, inventory-first1798ms.
+An independently discovered native aura allocation-ID defect is repaired before
+the final complete run, so that run is not an unchanged-source retry. The import
+test, its assertions,5000ms limit, discovery and worker settings remain unchanged.
+Final complete run on fdbbd55 passes12229tests/515files/two existing skips,
+539.135s process; the13-case file takes3862ms. All1222 source/test/config hashes,
+HEAD/Git state and760 production file hashes stay exact through final validation.
+
+[Paladin evidence](../../docs/plans/evidence/d05-paladin-stat-auras.md) retains the
+original failed full run (`aura-full.*`), isolated diagnostic
+(`aura-entry-order-diagnostic.*`), final full run (`aura-full-final.*`) and source
+audits. Status remains unresolved: no import-cycle/stat assertion failure or
+gameplay defect is established, and no timing/source workaround was introduced.
+Profile the cold import path under the full workload before proposing a source fix.
