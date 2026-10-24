@@ -52,5 +52,11 @@ Only life450–550/growth45–55 applied. Two production-data regressions first
 fail against old values, then pass. Native fixed-group clears5→55/64 with
 identical attempted non-boss prefixes; isolated81→918/1000. Focused2/2,
 engine5485/165, full11285/426 plus two existing skips, typecheck/lint and
-production build pass. Full suite542.25s exceeds budget. Ordinary earned browser
-attempt and independent/broad-balance acceptance remain pending here.
+production build pass. Full suite542.25s exceeds budget.
+
+Fixed locally in `1067b8e075c9c81820c270bdd8a3cd36d9ed0724`; regression:
+`src/engine/combat/summoner.test.ts`. Actual ordinary attempt257 wins all six
+waves, credits original Summoner, explicitly reads journal and claims reward,
+then survives exact Continue. Two precombat setup failures are retained; no
+gameplay retry. See [earned evidence](../../docs/plans/evidence/d11-summoner-durability-and-earned-clear.md).
+Independent/broad-balance acceptance, pack deaths and Duriel remain open.

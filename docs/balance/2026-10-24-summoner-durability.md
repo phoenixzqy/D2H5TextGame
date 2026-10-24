@@ -88,7 +88,14 @@ a failed outcome or challenge. One diagnostic middleware WebSocket port warning
 was retained; the process exits0 and recording assertions pass. This is not a
 production-browser error or evidence that an unrelated listener was stopped.
 
-Pending: ordinary browser attempt257, independent design/source/QA acceptance,
+Actual ordinary browser attempt257 now wins allsix waves with the same owned
+gear and no point spending; explicit journal Read/Claim and four exact Continue
+pairs pass. Two precombat setup failures/reference corrections are retained;
+no gameplay retry or simulated-state promotion. See
+[earned evidence](../plans/evidence/d11-summoner-durability-and-earned-clear.md).
+This single historical continuation is not fresh-current C2 certification.
+
+Pending: independent design/source/QA acceptance,
 new-character/on-level/BiS and other class/build/difficulty grids, broad invariants,
 drop/mana budgets,30–50active-hour first clear, earned Duriel/ActsIII–V and C2–C4/
 G0–G7. Pure Normal28/Nightmare48 regression envelopes do not certify Nightmare
