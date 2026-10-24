@@ -7,6 +7,180 @@
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
   "allOf": [{
+    "if": {
+      "properties": {
+        "id": {
+          "enum": [
+            "skills-amazon-critical-strike",
+            "skills-amazon-penetrate",
+            "skills-amazon-dodge"
+          ]
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "then": {
+      "required": [
+        "requiredLevel",
+        "scaling"
+      ],
+      "properties": {
+        "requiredLevel": {
+          "$ref": "#/properties/requiredLevel"
+        },
+        "trigger": {
+          "const": "passive"
+        },
+        "target": {
+          "const": "self"
+        },
+        "cooldown": {
+          "const": 0
+        },
+        "passive": {
+          "const": true
+        },
+        "aura": {
+          "const": false
+        },
+        "summon": {
+          "const": false
+        },
+        "scaling": {
+          "type": "object",
+          "required": [
+            "passiveStatsPerLevel"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "passiveStatsPerLevel": {
+              "type": "object",
+              "minProperties": 1,
+              "maxProperties": 1,
+              "additionalProperties": false,
+              "properties": {
+                "critChancePct": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Finite nonnegative critical-chance fraction per allocated Critical Strike rank."
+                },
+                "attackPct": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Finite nonnegative fresh Attack fraction per allocated Penetrate rank."
+                },
+                "physDodgePct": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Finite nonnegative physical-dodge fraction per allocated Dodge rank."
+                }
+              }
+            }
+          }
+        },
+        "cost": false,
+        "damage": false,
+        "damageType": false,
+        "appliesStatus": false,
+        "statusEffect": false,
+        "additionalStatusEffects": false,
+        "appliesTags": false,
+        "synergies": false,
+        "heal": false,
+        "summonId": false,
+        "aoeShape": false,
+        "requires": false
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "skills-amazon-critical-strike"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "scaling": {
+                "type": "object",
+                "properties": {
+                  "passiveStatsPerLevel": {
+                    "type": "object",
+                    "required": [
+                      "critChancePct"
+                    ],
+                    "properties": { "critChancePct": {} }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "skills-amazon-penetrate"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "scaling": {
+                "type": "object",
+                "properties": {
+                  "passiveStatsPerLevel": {
+                    "type": "object",
+                    "required": [
+                      "attackPct"
+                    ],
+                    "properties": { "attackPct": {} }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "id": {
+                "const": "skills-amazon-dodge"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "scaling": {
+                "type": "object",
+                "properties": {
+                  "passiveStatsPerLevel": {
+                    "type": "object",
+                    "required": [
+                      "physDodgePct"
+                    ],
+                    "properties": { "physDodgePct": {} }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }, {
       "if": { "properties": { "id": { "const": "aura-holy-freeze" } }, "required": ["id"] },
       "then": {
         "required": ["holyFreeze", "appliesStatus", "appliesTags"],

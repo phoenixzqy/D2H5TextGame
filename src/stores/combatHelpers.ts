@@ -74,6 +74,7 @@ import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeMightAura } from '@/engine/skills/might';
 import { composeMeditationAura } from '@/engine/skills/meditation';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
+import { composeAmazonPassives } from '@/engine/skills/amazon-passives';
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 import { composeGolemMastery } from '@/engine/skills/golem-mastery';
 import { composeCorpseExplosion } from '@/engine/skills/corpse-explosion';
@@ -166,7 +167,12 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     useInventoryStore.getState().questItems, map.questReceipts);
   const ironSkinRank = player.class === 'barbarian' && Number.isFinite(player.level) &&
     player.level >= IRON_SKIN_DEFINITION.requiredLevel ? resolveIronSkinRank(player.skillLevels) : 0;
+  const amazon = composeAmazonPassives({ classId: player.class, level: player.level,
+    ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const stats = { ...freshStats,
+    attack: freshStats.attack * amazon.attackMultiplier,
+    critChance: freshStats.critChance + amazon.critChanceBonus,
+    physDodge: freshStats.physDodge + amazon.physDodgeBonus,
     defense: freshStats.defense * (1 + IRON_SKIN_DEFINITION.defensePctPerRank * ironSkinRank),
     life: Math.min(player.derivedStats.life, freshStats.lifeMax),
     mana: Math.min(player.derivedStats.mana, freshStats.manaMax) };

@@ -196,15 +196,15 @@
     },
     "critical-strike": {
       "name": "Critical Strike",
-      "desc": "Increases critical hit chance by 15%."
+      "desc": "Automatically adds {{bonus}} percentage point of critical hit chance per allocated rank (maximum {{cap}} ranks)."
     },
     "penetrate": {
       "name": "Penetrate",
-      "desc": "Increases hit chance by 20% by reducing enemy dodge."
+      "desc": "Automatically increases your equipment-derived Attack by {{bonus}}% per allocated rank (maximum {{cap}} ranks)."
     },
     "dodge": {
       "name": "Dodge",
-      "desc": "Increases physical dodge chance by 25%."
+      "desc": "Automatically adds {{bonus}} percentage point of physical dodge chance per allocated rank (maximum {{cap}} ranks)."
     },
     "valkyrie": {
       "name": "Valkyrie",

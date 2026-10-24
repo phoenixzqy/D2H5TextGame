@@ -132,9 +132,9 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 #### Passive Skills (4)
 | ID | Name (EN / ZH) | Effect | Notes |
 |---|---|---|---|
-| `amazon.critical_strike` | Critical Strike / 致命攻击 | +15% crit chance | |
-| `amazon.penetrate` | Penetrate / 穿透 | +20% hit chance (reduces enemy dodge by 20%) | |
-| `amazon.dodge` | Dodge / 闪避 | +25% physical dodge | |
+| `amazon.critical_strike` | Critical Strike / 致命攻击 | +1 percentage point crit chance per rank | Unlock L1; cap20; automatic, player only. D05 Amazon contract supersedes fixed15%. |
+| `amazon.penetrate` | Penetrate / 穿透 | +3% equipment-derived Attack per rank | Unlock L18; Critical Strike prerequisite; cap20; automatic, player only. Authored `attackPct`, no accuracy/dodge change. |
+| `amazon.dodge` | Dodge / 闪避 | +1 percentage point physical dodge per rank | Unlock L6; cap20; automatic, player only. D05 Amazon contract supersedes fixed25%. |
 | `amazon.valkyrie` | Valkyrie / 女武神 | Summons 1 Valkyrie minion | Unlocks L18 |
 
 ---

@@ -41,6 +41,7 @@ import { AMPLIFY_DAMAGE_DEFINITION } from '@/engine/combat/amplify-damage-defini
 import { STATUS_DEFAULTS } from '@/engine/combat/status';
 import { METEOR_ARMOR_MELT_DEFINITION } from '@/engine/skills/armor-melt';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
+import { AMAZON_PASSIVE_DEFINITIONS } from '@/engine/skills/amazon-passives';
 import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
 import { GOLEM_MASTERY_DEFINITION, composeGolemMastery, resolveGolemMasteryRank } from '@/engine/skills/golem-mastery';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
@@ -1130,6 +1131,15 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
+  for (const [id, definition] of [
+    ['critical-strike', AMAZON_PASSIVE_DEFINITIONS.criticalStrike],
+    ['penetrate', AMAZON_PASSIVE_DEFINITIONS.penetrate],
+    ['dodge', AMAZON_PASSIVE_DEFINITIONS.dodge],
+  ] as const) {
+    if (skill.id === 'skills-amazon-' + id) return t('amazon.' + id + '.desc', {
+      bonus: definition.perRank * 100, cap: definition.maxRank,
+    });
+  }
   if (skill.id === 'skills-sorceress-static-field') return t('sorceress.static-field.desc');
   if (skill.id === 'skills-necromancer-amplify-damage') {
     const { physicalResistReductionPct, durationMs } = AMPLIFY_DAMAGE_DEFINITION;

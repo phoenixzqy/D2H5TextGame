@@ -1,0 +1,630 @@
+{
+  "kind": "root local functional verification; independent acceptance pending",
+  "sourceFiles": 900,
+  "sourceDrift": [],
+  "rawArchiveSHA256": "a83146d06338912f08e23ccd92bad5c91a798cba33ea97db75ae7ea66d41275d",
+  "files": {
+    "lint.log": "b0f0297908665caafa5d0b2bde7003cb485ec6e2830869803590b94dd3c4222d",
+    "browser-v2.log": "7077ce565d46cc14ca0517b0f8435bd651717dcf7f4e4f0852bcb0e006610d54",
+    "source-hashes-before-browser.json": "59328cf3de028364293e57f086bbe514f176f42e10ec1a5d4f23cc10c40d3d92",
+    "ui-green.log": "156804644eaec6aab8fc63ab5d8e3fb677a58650cee9cfe0762a11562ce2a72f",
+    "prepare-v2.log": "0ec69cdba2d9d4d413486947975efc7d4885712d497d76e396569798862e78ac",
+    "constructed-amazon-60-precanonical.json.gz": "9da8461c97191f24eccd5ce23c8f4bc475702199349e221fa31d8cd35e058701",
+    "types-final.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "browser.log": "878e2386b54349cc4e336e88f13d1e672d046ce760f5362a088df68b1633dcd5",
+    "schema-red.log": "6d21671632387d1babe6b0f3b7383111f2e2a8939fd481179b9c474068ca0937",
+    "native-red-legal-cap.log": "4b146d417f1609c54484c3009bdc160a341de573f79a6e3146f12d696082cdc4",
+    "focused-green-v2.log": "7ad788ef25dd8556856e52998f3b82a81518024c83536dac397870b7ff24bfae",
+    "types-prerequisite.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "ui-red.log": "1357a19f13d610075419e2c8679129fd48aec4c3de62fd7f86cf6df82baec382",
+    "focused-green-initial.log": "44276fc3814b3f5f42490e649e2309356b6b156df99d88aa2999201c46b26968",
+    "prepare-precanonical.ts": "5f9a62006e51e4ecf9d5496bedf4caaeb90ca7eae9b52b66b23048aef219ebb1",
+    "prepare-final.log": "0ec69cdba2d9d4d413486947975efc7d4885712d497d76e396569798862e78ac",
+    "source-hashes-final.json": "59328cf3de028364293e57f086bbe514f176f42e10ec1a5d4f23cc10c40d3d92",
+    "native-red.log": "eb5695f9148a5f3148cec82c25f2c5c997e147100df93707586e4cdd788ee4d2",
+    "full.log": "740c2fb5c40c51ddac96921bf88d83861eff8f70835771b3ea5b640c1ae056a2",
+    "prepare.ts": "276b563ea695dcf8c306a652cbccebf24c9b9ada863986920961ed146807c98a",
+    "constructed-amazon-60.json.gz": "c956b9b0ff81c63115cd1c83c13e6549e91ed7c083d0b2b30f201d5a913821ce",
+    "ui-consumers-green.log": "88888f5239dc6d0962251308462bd5a233193b5f5782c0de87b50f4a86e12a94",
+    "constructed-amazon-30-precanonical.json.gz": "0eb07aa9d5c87b0215a5408ea24c4d07c5a5b7be9c9566c51dfef3db24e565ff",
+    "engine-green.log": "8111791dc3add8fd6146c06f9deaea54c28ee4d97dd6468d48ad5a27708f303d",
+    "constructed-amazon-30.json.gz": "afb40a41e41e3b546b52b31705a8e9d34769095d2967d93923fd39069f535fbb",
+    "build-audit.json": "bbb2f723c1f5506168a61a170b76a2c03155d6850ef76abb55bb9a173232779e",
+    "lint-final.log": "19a856b1249f619dec392d36b691ce93a31c708f8f1a3249796b09a9d3e06ee9",
+    "browser.mjs": "01f4e8f1f345bcc63beea49e3f7a297cf35f173cf39db500577d19b77cdc42e6",
+    "cleanup.json": "86744bf6af77ae9295959947372ed3ca8e3eb63e11178ce2167f81ed43b42112",
+    "build-final.log": "bba00559e543020c69832211250f0d8730b647079b53a20406dfdd35a169fff7",
+    "prepare.log": "ce3af9d82d177b0cdf7c50c46d6358766d349462b1a71a07096c07ab4cb4a8f3",
+    "build.log": "b302844626de0eb5c058875ff4de748ccd2d712dff66f22beafdcdb1da7fe90f",
+    "consumers-initial.log": "28648db77e6919a533ee084db975f9b6ee3d93cc688d1547ca60f07a63d42099",
+    "engine-prerequisite.log": "fccdca28e68a7464083fc3754688ebd147562064603a244c325a87af6b388ec1",
+    "prepare-canonical.log": "0ec69cdba2d9d4d413486947975efc7d4885712d497d76e396569798862e78ac",
+    "browser-v2.mjs": "e7851af0a9352affad2f93f9fe6d4b6e07bae12bb41744d34fa28cbba531cc1e",
+    "definitions-missing.log": "682aac1392e2ab31e4c9fa2d6c1b7370636da112b1074ca26af47b9fa7175813",
+    "repro-red.log": "371f34f8f8c538ec3c8ae6718086d8c746a890e4d949bf34e36820340a653677",
+    "types.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "browser/stopped-diagnostic.json.gz": "546f5f8dea9668a1bc6c34462a04309a02e1d23665629230cdb51db0b23ddc8e",
+    "browser/failure.png": "77172f110a569cfe6c469c4ebd5944d315b7a9fc3b93513f64ca03d3292eab00",
+    "browser/report.json": "9649d5834ad9e7adf6f20e077c52348e4cc01232d63c84f7bbcae58eb2f380c3",
+    "browser/en-imported30.json.gz": "546f5f8dea9668a1bc6c34462a04309a02e1d23665629230cdb51db0b23ddc8e",
+    "browser-v2/zh-CN-penetrate-1920x1080.png": "14fa83a0f59f0294a0527afde6bc7ba9af496f771372c8312f87ca8fe4bbfa61",
+    "browser-v2/en-learned-continued.json.gz": "468ed7789ba3f1322fd2907973b1b62f9d1d94713aff8b6a3bff979432fd8ffd",
+    "browser-v2/en-cap-saved.json.gz": "c956b9b0ff81c63115cd1c83c13e6549e91ed7c083d0b2b30f201d5a913821ce",
+    "browser-v2/zh-CN-penetrate-640x360.png": "33c9471dfe835833a24934d8da85f07eea36e4948b84a9e3a57a029911e1c334",
+    "browser-v2/en-dodge-1920x1080.png": "1b97d60a34b957a2b09b2a1e488f19f30c0572c790dc394d279096a70210e2cd",
+    "browser-v2/zh-CN-dodge-cap.png": "40c3f82281ed5e69a9d94870dbf08a082747fac320104df4ebd92ad3d1eb8345",
+    "browser-v2/en-critical-strike-640x360.png": "4a4c4f69a44f0f5a02cc425b037431246f5aab0b6b7e7b6a1c3546c776557a46",
+    "browser-v2/zh-CN-dodge-412x915.png": "eec3720ecd93e0ff05a2ca75220ba7bd097133718d489017a4d79b4090eb1478",
+    "browser-v2/en-penetrate-1920x1080.png": "adcb8b742a07fc30d006d7650bde645472df2b363b66577f72063015ec7615d7",
+    "browser-v2/zh-CN-combat-continued.json.gz": "42ea1b902520fa8641d6f1e17dd854e3e96e34e05f4e87bb9076237223495b4e",
+    "browser-v2/en-critical-strike-412x915.png": "1e50449dc593d602b4312d222632ed63a0d12bba66a4561953c0d3dafc8e1872",
+    "browser-v2/zh-CN-combat.png": "3a043e6da17b6a33a1c59cf82cc9587c11b6c2515eb98138f9698259a67e11dd",
+    "browser-v2/en-imported60.json.gz": "c956b9b0ff81c63115cd1c83c13e6549e91ed7c083d0b2b30f201d5a913821ce",
+    "browser-v2/zh-CN-critical-strike-1920x1080.png": "2ef433499bfe39079d26144b37e3496bf27d564340cb36ca19a0c4035b0170d3",
+    "browser-v2/en-critical-strike-1280x800.png": "d9c3723456c91772c4556827890b4d68f6b9c529315f788ee5b1edd57b28a73e",
+    "browser-v2/en-dodge-640x360.png": "56c8c10eb3f428ed1e2049e3d759d6e3641b51ee24e7bd1d1ef8e663742df248",
+    "browser-v2/zh-CN-dodge-640x360.png": "eb401f868f0230922b03bb6ae9dcb9d65dd82f40ba9a4fcadbfff9b2ed092594",
+    "browser-v2/en-penetrate-1280x800.png": "007cb0b78e285bd68472a1ed877ee21c6b032818ef84b14f5c2e6f25041d9aad",
+    "browser-v2/zh-CN-penetrate-1280x800.png": "4d9a45c93fde333ad12a366de6e266603df5d7618f55c1f222d8d493143eb47c",
+    "browser-v2/zh-CN-critical-strike-cap.png": "760d674686538180e978a484c491bebff8d9e73982dac63e128b07c6ce3ab9da",
+    "browser-v2/zh-CN-combat-saved.json.gz": "42ea1b902520fa8641d6f1e17dd854e3e96e34e05f4e87bb9076237223495b4e",
+    "browser-v2/en-dodge-412x915.png": "ff9d2f747b46de5f27a6ac78f9bf4a3dbb09e1b7f48ac039f8132aae3c922a36",
+    "browser-v2/en-combat.png": "877e0678a34d11c5376ec65f6747267fa7e78132623047733ea376e51a036edb",
+    "browser-v2/zh-CN-dodge-360x640.png": "d7f3742e20afddea0a6b16444973d64b7aa731e9fc2a6014660d7bcf2bfa2bd1",
+    "browser-v2/en-penetrate-360x640.png": "b98b18ed60dd3c73d15e84f96057eed883e2d807167ac847713ef6dd5d9c355c",
+    "browser-v2/zh-CN-learned-continued.json.gz": "468ed7789ba3f1322fd2907973b1b62f9d1d94713aff8b6a3bff979432fd8ffd",
+    "browser-v2/en-combat-saved.json.gz": "42ea1b902520fa8641d6f1e17dd854e3e96e34e05f4e87bb9076237223495b4e",
+    "browser-v2/zh-CN-critical-strike-360x640.png": "e6cf516d9a7140f4ce3807697c5cbf058d28ae8f578b491b5d7587e1ba4a52b4",
+    "browser-v2/en-critical-strike-1920x1080.png": "6ce10b9d0de0ead58e9801a182a103995f0308dcd25a53f1171bc0553a1d2863",
+    "browser-v2/zh-CN-penetrate-cap.png": "e32f737c1baa1f36062bd1348d524da518523bd0d8e8fa24e78f7d5e591279c6",
+    "browser-v2/zh-CN-penetrate-412x915.png": "6a3e5484fd202df7ad47c3e400a87f91ec01baabc63a845362cbad6d0ebee762",
+    "browser-v2/en-critical-strike-cap.png": "b9ba6e3b50431b56b42919e5aec1295a71342445f2c53e41b3e19c00edf6b000",
+    "browser-v2/en-cap-continued.json.gz": "c956b9b0ff81c63115cd1c83c13e6549e91ed7c083d0b2b30f201d5a913821ce",
+    "browser-v2/en-penetrate-412x915.png": "657ea990c894a00f69b14a9f40f9a443995f6ce7aadbad3eb03b2762db78c41e",
+    "browser-v2/zh-CN-imported30.json.gz": "afb40a41e41e3b546b52b31705a8e9d34769095d2967d93923fd39069f535fbb",
+    "browser-v2/zh-CN-cap-saved.json.gz": "c956b9b0ff81c63115cd1c83c13e6549e91ed7c083d0b2b30f201d5a913821ce",
+    "browser-v2/en-dodge-cap.png": "5ce103f3d435c26979bd536303f5c1a27074f54f9e406861b8d963ab83d7be7b",
+    "browser-v2/zh-CN-penetrate-360x640.png": "62e0c6ccad0ffa8a048204b68814daaadbe78661709569b79767a646006d0784",
+    "browser-v2/en-combat-continued.json.gz": "42ea1b902520fa8641d6f1e17dd854e3e96e34e05f4e87bb9076237223495b4e",
+    "browser-v2/zh-CN-critical-strike-1280x800.png": "a3be688c9fca26a62f589c9383cda78387dae588e143ca03406fd9ee852c8141",
+    "browser-v2/zh-CN-dodge-1280x800.png": "1cb8f9e072343e006d7d4eca050e27309516d0cf543a73da4a6e7177349d19a1",
+    "browser-v2/zh-CN-imported60.json.gz": "c956b9b0ff81c63115cd1c83c13e6549e91ed7c083d0b2b30f201d5a913821ce",
+    "browser-v2/zh-CN-learned-saved.json.gz": "468ed7789ba3f1322fd2907973b1b62f9d1d94713aff8b6a3bff979432fd8ffd",
+    "browser-v2/zh-CN-combat.txt": "b8428a50583f0df2e4d4a325cad35cb3a6b104c3e1f603139c2cc7a84a8f711c",
+    "browser-v2/en-penetrate-640x360.png": "56c8c10eb3f428ed1e2049e3d759d6e3641b51ee24e7bd1d1ef8e663742df248",
+    "browser-v2/en-learned-saved.json.gz": "468ed7789ba3f1322fd2907973b1b62f9d1d94713aff8b6a3bff979432fd8ffd",
+    "browser-v2/en-penetrate-cap.png": "c15106982dc866f16fa8785886e012ae7469c5c78d66f2f6abcd34f3c743d192",
+    "browser-v2/en-critical-strike-360x640.png": "80d1a72ef2830fefa27cb96886cff3957e620df3aafc9469c844e92a313d984b",
+    "browser-v2/en-combat.txt": "b8428a50583f0df2e4d4a325cad35cb3a6b104c3e1f603139c2cc7a84a8f711c",
+    "browser-v2/zh-CN-dodge-1920x1080.png": "cffb0f4a7c8f3fbc9bc6e3ae4a9ac4c546bf530858f9ef0eb6ee6ec3a32cc0e7",
+    "browser-v2/en-dodge-360x640.png": "995d2be1a2ab272a107780f22122c1c0f64680da9f955fe73905f259307ab38d",
+    "browser-v2/en-dodge-1280x800.png": "d8d92b9fd239df049227c31432ac3396fc7b8a96f5e4b772a773aadb26680b47",
+    "browser-v2/report.json": "f5a514de57758f0dc2477b2efe5a9bd3170ae3b3439689e755f90237c358aad1",
+    "browser-v2/zh-CN-critical-strike-640x360.png": "7713367ecae66bb56b1b2f509c483cab713a1540ff1697f1ceef2ced5de03f8e",
+    "browser-v2/en-imported30.json.gz": "afb40a41e41e3b546b52b31705a8e9d34769095d2967d93923fd39069f535fbb",
+    "browser-v2/zh-CN-cap-continued.json.gz": "c956b9b0ff81c63115cd1c83c13e6549e91ed7c083d0b2b30f201d5a913821ce",
+    "browser-v2/zh-CN-critical-strike-412x915.png": "ec31c9f2da0b31f9568bb9cebcc9b5ff768196903755c65f7641cb71acba630b"
+  },
+  "tests": {
+    "focusedTests": 58,
+    "focusedFiles": 5,
+    "engineTests": 5748,
+    "engineFiles": 177,
+    "engineSeconds": 82.73,
+    "fullTests": 11658,
+    "fullFiles": 449,
+    "existingSkips": 2,
+    "fullSeconds": 522.21,
+    "typecheck": 0,
+    "lint": 0,
+    "build": 0
+  },
+  "browser": {
+    "kind": "constructed Amazon production functional proof; no earned campaign, pacing or balance claim; no state promoted",
+    "errors": [],
+    "console": [],
+    "matrix": [
+      {
+        "locale": "en",
+        "id": "critical-strike",
+        "width": 360,
+        "height": 640,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "penetrate",
+        "width": 360,
+        "height": 640,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "dodge",
+        "width": 360,
+        "height": 640,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "critical-strike",
+        "width": 412,
+        "height": 915,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "penetrate",
+        "width": 412,
+        "height": 915,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "dodge",
+        "width": 412,
+        "height": 915,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "critical-strike",
+        "width": 640,
+        "height": 360,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "penetrate",
+        "width": 640,
+        "height": 360,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "dodge",
+        "width": 640,
+        "height": 360,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "critical-strike",
+        "width": 1280,
+        "height": 800,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "penetrate",
+        "width": 1280,
+        "height": 800,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "dodge",
+        "width": 1280,
+        "height": 800,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "critical-strike",
+        "width": 1920,
+        "height": 1080,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "penetrate",
+        "width": 1920,
+        "height": 1080,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "dodge",
+        "width": 1920,
+        "height": 1080,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 135.25,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "en",
+        "id": "critical-strike",
+        "rank": 20,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "locale": "en",
+        "id": "penetrate",
+        "rank": 20,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "locale": "en",
+        "id": "dodge",
+        "rank": 20,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "locale": "zh-CN",
+        "id": "critical-strike",
+        "width": 360,
+        "height": 640,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "penetrate",
+        "width": 360,
+        "height": 640,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "dodge",
+        "width": 360,
+        "height": 640,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "critical-strike",
+        "width": 412,
+        "height": 915,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "penetrate",
+        "width": 412,
+        "height": 915,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "dodge",
+        "width": 412,
+        "height": 915,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "critical-strike",
+        "width": 640,
+        "height": 360,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "penetrate",
+        "width": 640,
+        "height": 360,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "dodge",
+        "width": 640,
+        "height": 360,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "critical-strike",
+        "width": 1280,
+        "height": 800,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "penetrate",
+        "width": 1280,
+        "height": 800,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "dodge",
+        "width": 1280,
+        "height": 800,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "critical-strike",
+        "width": 1920,
+        "height": 1080,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "penetrate",
+        "width": 1920,
+        "height": 1080,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "dodge",
+        "width": 1920,
+        "height": 1080,
+        "rank": 2,
+        "overflow": 0,
+        "button": [
+          {
+            "width": 120,
+            "height": 48
+          }
+        ]
+      },
+      {
+        "locale": "zh-CN",
+        "id": "critical-strike",
+        "rank": 20,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "locale": "zh-CN",
+        "id": "penetrate",
+        "rank": 20,
+        "width": 360,
+        "height": 640
+      },
+      {
+        "locale": "zh-CN",
+        "id": "dodge",
+        "rank": 20,
+        "width": 360,
+        "height": 640
+      }
+    ],
+    "exports": [
+      "en-imported30",
+      "en-learned-saved",
+      "en-learned-continued",
+      "en-combat-saved",
+      "en-combat-continued",
+      "en-imported60",
+      "en-cap-saved",
+      "en-cap-continued",
+      "zh-CN-imported30",
+      "zh-CN-learned-saved",
+      "zh-CN-learned-continued",
+      "zh-CN-combat-saved",
+      "zh-CN-combat-continued",
+      "zh-CN-imported60",
+      "zh-CN-cap-saved",
+      "zh-CN-cap-continued"
+    ],
+    "roundTrips": [
+      "en-learned",
+      "en-combat",
+      "en-cap",
+      "zh-CN-learned",
+      "zh-CN-combat",
+      "zh-CN-cap"
+    ],
+    "status": "pass"
+  },
+  "cleanup": {
+    "removed": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/amazon-passives/dist"
+    ],
+    "previewSession": 75844,
+    "previewExit": 130,
+    "port4431Closed": true,
+    "remainingDisposable": [],
+    "evidenceRetained": "all other files in task-owned amazon-passives subtree; root retains through source/QA/full-v1 consumers"
+  },
+  "remainingRootOwnedEvidence": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/amazon-passives",
+  "removalOwner": "root after dependent source/QA/full-v1 consumers finish"
+}
