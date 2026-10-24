@@ -1,0 +1,204 @@
+{
+  "runtime": "a9dc03081de97e72f3953f1f05d56d060764bf97",
+  "launches": 1,
+  "retries": 0,
+  "errors": [],
+  "console": [],
+  "waves": [
+    {
+      "wave": 1,
+      "outcome": "victory",
+      "delta": {
+        "xp": 2160,
+        "newItems": [
+          "it-1dhq3-4ub",
+          "it-499wl-4uc",
+          "it-61235-4ud",
+          "it-1bypr-4ue"
+        ]
+      }
+    },
+    {
+      "wave": 2,
+      "outcome": "victory",
+      "delta": {
+        "xp": 2430,
+        "newItems": [
+          "it-2ea6o-4uf",
+          "it-6ak6-4ug",
+          "it-48eex-4uh",
+          "it-76tu8-4ui",
+          "it-1cjoo-4uj",
+          "it-70fqj-4uk"
+        ]
+      }
+    },
+    {
+      "wave": 3,
+      "outcome": "victory",
+      "delta": {
+        "xp": 2900,
+        "newItems": [
+          "it-1wzdg-4ul",
+          "it-28gs6-4um",
+          "it-5u7bx-4un",
+          "it-2hrxt-4uo",
+          "it-tec9-4up",
+          "it-2v7yz-4uq",
+          "it-k447-4ur",
+          "it-310x1-4us",
+          "it-8v9c9-4ut",
+          "it-2v1sr-4uu",
+          "it-944eh-4uv",
+          "it-2w2y5-4uw",
+          "it-450iq-4ux",
+          "it-146oq-4uy",
+          "it-4zxql-4uz",
+          "it-3k2mk-4v0",
+          "it-8400d-4v1",
+          "it-355b2-4v2"
+        ]
+      }
+    },
+    {
+      "wave": 4,
+      "outcome": "victory",
+      "delta": {
+        "xp": 3300,
+        "newItems": [
+          "it-4spmu-4v3",
+          "it-7pdc7-4v4",
+          "it-6g0uv-4v5",
+          "it-3gbo3-4v6",
+          "it-40dvz-4v7",
+          "it-6oomc-4v8",
+          "it-8emd4-4v9",
+          "it-3bm7-4va",
+          "it-832m8-4vb",
+          "it-8y34l-4vc",
+          "it-3zjpn-4vd",
+          "it-6lzn9-4ve",
+          "it-5aef9-4vf",
+          "it-2kiuu-4vg",
+          "it-xuf0-4vh",
+          "it-3peg4-4vi",
+          "it-4zyeo-4vj",
+          "it-1o0iz-4vk",
+          "it-4680r-4vl",
+          "it-7kazl-4vm",
+          "it-4ag8e-4vn",
+          "it-1kekq-4vo",
+          "it-7mlli-4vp",
+          "it-90bfj-4vq",
+          "it-2ubwq-4vr",
+          "it-3jafa-4vs",
+          "it-1mfdr-4vt",
+          "it-87pec-4vu",
+          "it-4k2p9-4vv",
+          "it-5me4-4vw",
+          "it-33zz-4vx",
+          "it-2ysgl-4vy",
+          "it-15qhw-4vz",
+          "it-7w8b8-4w0",
+          "it-6j3i-4w1",
+          "it-rd91-4w2",
+          "it-4uut8-4w3",
+          "it-21jw8-4w4",
+          "it-2nhpd-4w5",
+          "it-d2sy-4w6",
+          "it-8g2xs-4w7",
+          "it-104dp-4w8",
+          "it-3tu4g-4w9",
+          "it-2ihh-4wa",
+          "it-54dtk-4wb",
+          "it-3zv40-4wc",
+          "it-17y2d-4wd",
+          "it-5ux6x-4we",
+          "it-t8nz-4wf",
+          "it-2bgha-4wg",
+          "it-1p5m1-4wh",
+          "it-41o02-4wi",
+          "it-8j56b-4wj",
+          "it-6pvy6-4wk",
+          "it-5mec2-4wl"
+        ]
+      }
+    },
+    {
+      "wave": 5,
+      "outcome": "victory",
+      "delta": {
+        "xp": 3720,
+        "newItems": [
+          "it-671pk-4wm",
+          "it-6wj5g-4wn",
+          "it-58dk2-4wo",
+          "it-8zjr5-4wp",
+          "it-cfio-4wq",
+          "it-9dbt-4wr",
+          "it-6enh0-4ws",
+          "it-6qj8x-4wt",
+          "it-7lpev-4wu",
+          "it-4bg3o-4wv",
+          "it-9gshy-4ww",
+          "it-48p1u-4wx",
+          "it-3sdm0-4wy",
+          "it-1278-4wz",
+          "it-56kzo-4x0",
+          "it-9k3fp-4x1",
+          "it-hiwp-4x2",
+          "it-48kd-4x3",
+          "it-2kfgz-4x4",
+          "it-94dtn-4x5",
+          "it-450np-4x6",
+          "it-6fkaz-4x7",
+          "it-1yed-4x8",
+          "it-2cazn-4x9",
+          "it-10os6-4xa"
+        ]
+      }
+    },
+    {
+      "wave": 6,
+      "outcome": "nonwin",
+      "delta": {
+        "xp": 0,
+        "newItems": []
+      }
+    }
+  ],
+  "states": [
+    "before",
+    "precombat-saved",
+    "precombat-continued",
+    "wave-1-initial",
+    "wave-1-terminal",
+    "wave-1-settled",
+    "wave-2-initial",
+    "wave-2-terminal",
+    "wave-2-settled",
+    "wave-3-initial",
+    "wave-3-terminal",
+    "wave-3-settled",
+    "wave-4-initial",
+    "wave-4-terminal",
+    "wave-4-settled",
+    "wave-5-initial",
+    "wave-5-terminal",
+    "wave-5-settled",
+    "wave-6-initial",
+    "wave-6-terminal",
+    "nonwin",
+    "nonwin-saved",
+    "nonwin-continued",
+    "final"
+  ],
+  "kind": "ordinary earned attempt260; no seed, Skip or speed override; historical Date with native timers",
+  "lootDataSHA256": "680f0c530083d9cf9c1886f1d36ca0d9a194607478e669d6437e91ec700305db",
+  "outcome": "nonwin",
+  "ordinalAfter": 261,
+  "ownedBefore": 6274,
+  "ownedAfter": 6382,
+  "totalXP": 14510,
+  "status": "observed"
+}

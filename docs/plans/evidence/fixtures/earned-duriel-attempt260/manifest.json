@@ -1,0 +1,18 @@
+{
+  "baseRuntime": "a9dc03081de97e72f3953f1f05d56d060764bf97",
+  "lootDataSHA256": "680f0c530083d9cf9c1886f1d36ca0d9a194607478e669d6437e91ec700305db",
+  "kind": "five earned guard victories and actual Duriel defeat; no quest claim or act unlock",
+  "parent": "earned-duriel-attempt259/retained-final.json.gz",
+  "rawSHA256": "3a98e14320ef0b2812cad6153641b3677c15d46dfbce01e2daaab035c58558a8",
+  "nextOrdinal": 261,
+  "xpEarned": 14510,
+  "ownedBefore": 6274,
+  "ownedAfter": 6382,
+  "originalFullPayloadsConserved": 6274,
+  "nativeSaveExports": 12,
+  "exactContinuePairs": 2,
+  "failedWaveZeroRewards": true,
+  "rawDiagnosticRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/earned260",
+  "retentionOwner": "root",
+  "retentionReason": "campaign/full-v1 consumers; root removes after completion"
+}

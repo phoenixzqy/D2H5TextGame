@@ -1,0 +1,18 @@
+{
+  "runtime": "a9dc03081de97e72f3953f1f05d56d060764bf97",
+  "parent": "earned-duriel-attempt258/retained-final.json.gz",
+  "kind": "three actual wins; harness stopped on BUG151 zero-gear assertion; no boss entry or gameplay replay",
+  "rawSHA256": "154832bf83990c19938969f05cc5da0d4b619d05b90080b45727e6957e392ce3",
+  "nextOrdinal": 260,
+  "xpEarned": 10170,
+  "ownedBefore": 6259,
+  "ownedAfter": 6274,
+  "originalFullPayloadsConserved": 6259,
+  "precombatExactContinuePairs": 1,
+  "postStopContinueProven": false,
+  "zeroGearWave3": true,
+  "originalReportStatus": "tooling-failure",
+  "rawDiagnosticRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/earned259",
+  "retentionOwner": "root",
+  "retentionReason": "campaign/full-v1 consumers; root removes after completion"
+}

@@ -1,0 +1,61 @@
+{
+  "runtime": "a9dc03081de97e72f3953f1f05d56d060764bf97",
+  "launches": 1,
+  "retries": 0,
+  "errors": [],
+  "console": [],
+  "waves": [
+    {
+      "wave": 1,
+      "outcome": "victory",
+      "delta": {
+        "xp": 5400,
+        "newItems": [
+          "it-1dhq3-4tw",
+          "it-499wl-4tx",
+          "it-61235-4ty",
+          "it-1bypr-4tz",
+          "it-7k3zn-4u0",
+          "it-68av5-4u1",
+          "it-9rqa1-4u2",
+          "it-59wnp-4u3",
+          "it-6pwvz-4u4",
+          "it-55z90-4u5"
+        ]
+      }
+    },
+    {
+      "wave": 2,
+      "outcome": "victory",
+      "delta": {
+        "xp": 2160,
+        "newItems": [
+          "it-2ea6o-4u6",
+          "it-6ak6-4u7",
+          "it-48eex-4u8",
+          "it-76tu8-4u9",
+          "it-1cjoo-4ua"
+        ]
+      }
+    }
+  ],
+  "states": [
+    "before",
+    "precombat-saved",
+    "precombat-continued",
+    "wave-1-initial",
+    "wave-1-terminal",
+    "wave-1-settled",
+    "wave-2-initial",
+    "wave-2-terminal",
+    "wave-2-settled",
+    "wave-3-initial",
+    "wave-3-terminal",
+    "wave-3-settled",
+    "stopped-view",
+    "stopped-export"
+  ],
+  "kind": "ordinary earned attempt259; no seed, Skip or speed override; historical Date with native timers",
+  "status": "tooling-failure",
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(d.newItems.length>0)\n\n    at file:///home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/earned259.mjs:44:105"
+}

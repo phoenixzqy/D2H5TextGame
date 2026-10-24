@@ -183,7 +183,7 @@
         "rarity": "normal",
         "weight": 80,
         "minLevel": 22,
-        "maxLevel": 28
+        "maxLevel": 31
       },
       {
         "type": "item",
@@ -199,7 +199,7 @@
         "rarity": "normal",
         "weight": 80,
         "minLevel": 22,
-        "maxLevel": 28
+        "maxLevel": 31
       },
       {
         "type": "item",
@@ -239,7 +239,7 @@
         "rarity": "normal",
         "weight": 70,
         "minLevel": 22,
-        "maxLevel": 28
+        "maxLevel": 31
       },
       {
         "type": "item",
@@ -263,7 +263,7 @@
         "rarity": "normal",
         "weight": 60,
         "minLevel": 22,
-        "maxLevel": 28
+        "maxLevel": 31
       },
       {
         "type": "item",
