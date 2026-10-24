@@ -108,6 +108,7 @@
     "summon": "召唤",
     "death": "倒下",
     "status": {
+      "burst-of-speed": "速度爆发",
       "merc-inner-sight": "心眼",
       "chill": "冰冷",
       "freeze": "冻结",
@@ -132,6 +133,7 @@
       "mana-burn": "法力燃烧"
     },
     "buff": {
+      "burst-of-speed": "速度爆发",
       "might": "力量",
       "holy_fire": "圣火",
       "thorns": "荆棘",

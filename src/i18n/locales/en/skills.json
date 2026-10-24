@@ -392,7 +392,7 @@
     },
     "burst-of-speed": {
       "name": "Burst of Speed",
-      "desc": "Increases attack and movement speed."
+      "desc": "A paid cast grants +{{speed}}% Attack Speed and +{{dodge}} percentage points of physical dodge per rank for {{seconds}} seconds. Put this skill in active priority. It cannot refresh while active; after expiry it can cast again if mana and cooldown allow. Allocation changes apply next wave; a paid effect keeps its cast rank. Unlocks at level {{level}}, maximum {{cap}} ranks."
     },
     "cloak-of-shadows": {
       "name": "Cloak of Shadows",

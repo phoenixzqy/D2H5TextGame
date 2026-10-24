@@ -744,7 +744,8 @@ function UnitCard({
       id: status.id,
       label: t(`effect.status.${status.id}`, { defaultValue: humanizeEffectId(status.id) }),
       stacks: status.stacks,
-      kind: status.dotPerStack !== undefined || status.id.includes('poison') || status.id.includes('ignite') || status.id.includes('plague') ? 'dot' as const : 'debuff' as const
+      kind: status.id === 'burst-of-speed' && status.statBuff !== undefined ? 'buff' as const
+        : status.dotPerStack !== undefined || status.id.includes('poison') || status.id.includes('ignite') || status.id.includes('plague') ? 'dot' as const : 'debuff' as const
     }))
   ];
 
