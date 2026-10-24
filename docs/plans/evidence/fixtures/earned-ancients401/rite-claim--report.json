@@ -1,0 +1,24 @@
+{
+  "kind": "genuine earned Ancients401 follow-up: explicit Rite Claim; zero new combat entries",
+  "inputRawSHA256": "026fc12f6a04486d824aa34105db3598a8afe5da0f9e30c1e033811cbec52681",
+  "policy": "ordinary UI one-time Rite Claim from genuine qualified Ancients401 kill; exact save-close-Continue before and after Claim; no new combat or preparation",
+  "errors": [],
+  "console": [],
+  "states": [
+    "imported",
+    "rite-unclaimed-saved",
+    "rite-unclaimed-continued",
+    "rite-claimed",
+    "rite-claimed-saved",
+    "rite-claimed-continued",
+    "throne-available-no-entry"
+  ],
+  "status": "observed",
+  "heroXP": 15000,
+  "mercXP": 11250,
+  "skillPoints": 1,
+  "newGear": 0,
+  "zeroNewCombatEntries": true,
+  "nextAreaEntryEnabled": true,
+  "inventoryUnchanged": true
+}

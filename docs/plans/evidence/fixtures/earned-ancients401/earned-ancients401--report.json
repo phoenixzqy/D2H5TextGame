@@ -1,0 +1,259 @@
+{
+  "runtime": "d352c446107b8218ebdb09319fcb4ba8f622c4ab",
+  "sourceAffixSHA256": {
+    "affixes-prefix.json": "80ad25be3f181c7507d7b7cdeaa9091bbcf57d8766cd5dfc32c05d3852f64a72",
+    "affixes-suffix.json": "8a07352970434ba9175579323f1594ad081dfae4a7385ec42a07f01d57c8f414"
+  },
+  "policy": {
+    "maxChallenges": 1,
+    "areas": [
+      "areas/act5-ancients-way"
+    ],
+    "stop": "one actual401 new retry; retain every original prefix/nonwin; no retry",
+    "preparation": "none; exact through400 earned save; prior started Rite retained; fresh32seed qualification required; remaining native attempts capped401/402"
+  },
+  "sourceTreasureClassesSHA256": "82d2978ba863457f95269bfb7b7a8e073ef3ed38d59292e89bea196d152414a8",
+  "inputPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/earned-ancients400/final.json.gz",
+  "inputSHA256": "3a82565612b8814a5aef8ecf8f84c66966139d30b0edeebcd4d8ec6d03f02b32",
+  "kind": "genuine earned ActV Ancients401 from preserved400 timeout; no repeated preparation or Start Rite; fixed historical Date and proof-qualified100ms clock transport; no supplied seed, Skip, speed override, replay or state injection",
+  "launches": [
+    {
+      "ordinal": 401,
+      "alias": "ancients-way"
+    }
+  ],
+  "retries": 0,
+  "errors": [],
+  "console": [],
+  "states": [
+    "001-imported",
+    "002-precombat-saved",
+    "003-precombat-continued",
+    "prelaunch-401",
+    "401-w1-initial",
+    "401-w1-terminal",
+    "004-401-w1-settled",
+    "401-w2-initial",
+    "401-w2-terminal",
+    "005-401-w2-settled",
+    "401-w3-initial",
+    "401-w3-terminal",
+    "006-401-w3-settled",
+    "401-w4-initial",
+    "401-w4-terminal",
+    "007-401-w4-settled",
+    "401-w5-initial",
+    "401-w5-terminal",
+    "008-401-w5-settled",
+    "401-w6-initial",
+    "401-w6-terminal",
+    "009-401-w6-settled",
+    "401-w7-initial",
+    "401-w7-terminal",
+    "010-401-w7-settled",
+    "011-401-won-saved",
+    "012-401-won-continued",
+    "final"
+  ],
+  "areas": [
+    {
+      "alias": "ancients-way",
+      "ordinal": 401,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 13490,
+            "newItems": [
+              "it-2t02c-i6l",
+              "it-50r4-i6m",
+              "it-2n8s8-i6n",
+              "it-7xm7c-i6o",
+              "it-7jsv7-i6p",
+              "it-96h4a-i6q",
+              "it-6n3xz-i6r",
+              "it-6nei8-i6s",
+              "it-3cr6g-i6t"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 14200,
+            "newItems": [
+              "it-32o61-i6u",
+              "it-8u16m-i6v",
+              "it-9cyza-i6w",
+              "it-znva-i6x",
+              "it-611e5-i6y",
+              "it-9fw9s-i6z",
+              "it-5yhyh-i70",
+              "it-8yt56-i71"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5840,
+            "newItems": [
+              "it-2u27z-i72",
+              "it-9671w-i73",
+              "it-4s87w-i74",
+              "it-1yprr-i75",
+              "it-2t14t-i76",
+              "it-22g4j-i77",
+              "it-4nia2-i78",
+              "it-166qi-i79",
+              "it-6u90x-i7a",
+              "it-5qfr5-i7b",
+              "it-8s6ke-i7c",
+              "it-43zc1-i7d",
+              "it-1twe0-i7e",
+              "it-5ghfi-i7f",
+              "it-df5z-i7g",
+              "it-81pz5-i7h"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6570,
+            "newItems": [
+              "it-3tqek-i7i",
+              "it-617j5-i7j",
+              "it-911lm-i7k"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7400,
+            "newItems": [
+              "it-52rsd-i7l",
+              "it-9m85e-i7m",
+              "it-39c5s-i7n",
+              "it-9u0vx-i7o",
+              "it-6llyi-i7p",
+              "it-cz24-i7q",
+              "it-9ac8d-i7r",
+              "it-1f9vq-i7s",
+              "it-6y04g-i7t",
+              "it-2zszq-i7u",
+              "it-4v0sj-i7v",
+              "it-16z8x-i7w",
+              "it-1koaa-i7x",
+              "it-3j4sq-i7y",
+              "it-3pvq7-i7z",
+              "it-4yvjg-i80",
+              "it-eu4m-i81",
+              "it-8it83-i82",
+              "it-1tw6-i83",
+              "it-10tg7-i84",
+              "it-53nq1-i85",
+              "it-13um4-i86",
+              "it-3xbsf-i87",
+              "it-8v0o1-i88",
+              "it-19lbd-i89",
+              "it-6xp4y-i8a",
+              "it-9ngf4-i8b",
+              "it-4s6ts-i8c",
+              "it-8b74m-i8d",
+              "it-79sl0-i8e",
+              "it-1oqxl-i8f",
+              "it-9cze3-i8g",
+              "it-7wt58-i8h",
+              "it-3l1up-i8i",
+              "it-2obna-i8j",
+              "it-5hyxo-i8k",
+              "it-8yvkm-i8l",
+              "it-2l8zd-i8m",
+              "it-9712u-i8n",
+              "it-60jaj-i8o",
+              "it-6sr98-i8p",
+              "it-1d4cw-i8q",
+              "it-8cbtu-i8r",
+              "it-4v7tc-i8s",
+              "it-cvbe-i8t",
+              "it-3vikv-i8u",
+              "it-6e7zo-i8v",
+              "it-10ihz-i8w",
+              "it-6z1rb-i8x",
+              "it-170q5-i8y"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8250,
+            "newItems": [
+              "it-7kvip-i8z",
+              "it-1yht0-i90",
+              "it-8rckr-i91",
+              "it-jygx-i92",
+              "it-31pp2-i93",
+              "it-1bvu5-i94",
+              "it-219e7-i95",
+              "it-25vxx-i96",
+              "it-7s34d-i97",
+              "it-4vrht-i98",
+              "it-6drzj-i99",
+              "it-3v2vh-i9a",
+              "it-10xtr-i9b",
+              "it-4cv0k-i9c",
+              "it-1kj4y-i9d",
+              "it-72rtv-i9e",
+              "it-zobo-i9f",
+              "it-74xl4-i9g",
+              "it-9tzot-i9h",
+              "it-8kzh3-i9i",
+              "it-mobh-i9j",
+              "it-2ffze-i9k",
+              "it-4r1gd-i9l",
+              "it-juoh-i9m"
+            ]
+          }
+        },
+        {
+          "wave": 7,
+          "outcome": "victory",
+          "delta": {
+            "xp": 2250,
+            "newItems": [
+              "it-8tl5i-i9n",
+              "it-15dhk-i9o",
+              "it-12wwv-i9p",
+              "it-40xi9-i9q",
+              "it-2ek9p-i9r",
+              "it-5ctwp-i9s",
+              "it-63gc6-i9t",
+              "it-2ln1s-i9u"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "prior native Start Rite retained; new401 attempt supplies exact three-Ancients proof; separate Claim after script"
+    }
+  ],
+  "executionStartedAt": "2026-10-24T16:57:29.198Z",
+  "requestedClockAdvanceMs": 274600,
+  "outcome": "earned-act5-area-victory",
+  "stopReason": "one-new-attempt-cap",
+  "status": "observed",
+  "finalOrdinal": 402,
+  "ownedBefore": 23564,
+  "ownedAfter": 23682,
+  "totalXP": 58000,
+  "executionWallMs": 69357.582178
+}

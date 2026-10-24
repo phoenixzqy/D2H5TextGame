@@ -1,0 +1,68 @@
+{
+  "kind": "genuine earned Ancients400 timeout, new401 victory, separate Rite Claim; diagnostic saves never promoted",
+  "sourceCommit": "d352c44",
+  "inputRawSHA256": "a6f706340a4a3f5a6374f2322a85fdf12dd1770dc46bf08c74af1711aa14bc90",
+  "finalRawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "final": {
+    "level": 33,
+    "experience": 149261,
+    "statPoints": 10,
+    "skillPoints": 1,
+    "nextNormal": 402,
+    "nextNightmare": 0
+  },
+  "actualAttempts": [
+    {
+      "ordinal": 400,
+      "winningWaves": 6,
+      "final": "guardian timeout",
+      "xp": 60870,
+      "gear": 122
+    },
+    {
+      "ordinal": 401,
+      "winningWaves": 7,
+      "final": "victory",
+      "xp": 58000,
+      "gear": 118
+    }
+  ],
+  "claim": {
+    "heroXP": 15000,
+    "mercXP": 11250,
+    "skillPoints": 1
+  },
+  "totalHeroXP": 133870,
+  "totalNewGear": 240,
+  "qualification400": {
+    "wins": 26,
+    "n": 32,
+    "secondHalfWins": 12
+  },
+  "qualification401": {
+    "wins": 27,
+    "n": 32,
+    "secondHalfWins": 13
+  },
+  "rawEvidence": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi",
+  "rawRetention": "root retains through full-v1 consumers, then removes exact owned artifacts",
+  "independentAcceptance": "pending",
+  "checks": {
+    "engine": {
+      "passed": 5792,
+      "files": 178,
+      "seconds": 77.95
+    },
+    "fullUnit": {
+      "passed": 11722,
+      "existingSkipped": 2,
+      "files": 455,
+      "seconds": 503.87
+    },
+    "typecheck": "pass",
+    "lint": "pass",
+    "productionBuild": "pass with existing bundle/PWA warnings",
+    "browserStatusRepair": "4/4 en/zh-CN mobile360x640",
+    "pacing": "unaccepted"
+  }
+}

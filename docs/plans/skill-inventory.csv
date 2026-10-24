@@ -26,7 +26,7 @@ amazon,skills-amazon-pierce,amazon.pierce,passive,buff,,src/data/skills/amazon.j
 amazon,skills-amazon-fire-arrow,amazon.fire_arrow,active,damage,burn,src/data/skills/amazon.json,burn-ignite-vocabulary-mismatch,unverified,
 amazon,skills-amazon-cold-arrow,amazon.cold_arrow,active,damage,chill,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-exploding-arrow,amazon.exploding_arrow,active,damage,burn,src/data/skills/amazon.json,burn-ignite-vocabulary-mismatch,unverified,
-amazon,skills-amazon-ice-arrow,amazon.ice_arrow,active,damage,freeze|chill,src/data/skills/amazon.json,additional-statuses-truncated-by-adapter,unverified,
+amazon,skills-amazon-ice-arrow,amazon.ice_arrow,active,damage+ordered-freeze-chill,freeze|chill,src/data/skills/amazon.json,earned-class-build-balance-open|native-class-browser-open,bounded-engine-functional;independent-acceptance-open,docs/plans/decisions/D04-freeze-chill-v1.md;production/bugs/BUG-165-freeze-chill-truncation.md
 amazon,skills-amazon-guided-arrow,amazon.guided_arrow,active,damage,,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-immolation-arrow,amazon.immolation_arrow,active,damage,burn,src/data/skills/amazon.json,burn-ignite-vocabulary-mismatch,unverified,
 assassin,skills-assassin-shock-web,assassin.shock_web,active,damage,paralyze,src/data/skills/assassin.json,,unverified,
@@ -193,9 +193,9 @@ sorceress,skills-sorceress-lightning-mastery,sorceress.lightning_mastery,passive
 sorceress,skills-sorceress-fire-mastery,sorceress.fire_mastery,passive,buff,,src/data/skills/sorceress.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 sorceress,skills-sorceress-energy-shield,sorceress.energy_shield,passive,buff,,src/data/skills/sorceress.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 sorceress,skills-sorceress-frozen-armor,sorceress.frozen_armor,active,buff,frozen-armor,src/data/skills/sorceress.json,buff-mechanics-not-applied-in-audited-handler,unverified,
-sorceress,skills-sorceress-ice-blast,sorceress.ice_blast,active,damage,freeze|chill,src/data/skills/sorceress.json,additional-statuses-truncated-by-adapter,unverified,
+sorceress,skills-sorceress-ice-blast,sorceress.ice_blast,active,damage+ordered-freeze-chill,freeze|chill,src/data/skills/sorceress.json,earned-class-build-balance-open,bounded-functional;earned-balance-open,docs/plans/decisions/D04-freeze-chill-v1.md;production/bugs/BUG-165-freeze-chill-truncation.md
 sorceress,skills-sorceress-shiver-armor,sorceress.shiver_armor,active,buff,shiver-armor,src/data/skills/sorceress.json,buff-mechanics-not-applied-in-audited-handler,unverified,
-sorceress,skills-sorceress-glacial-spike,sorceress.glacial_spike,active,damage,freeze|chill,src/data/skills/sorceress.json,additional-statuses-truncated-by-adapter,unverified,
+sorceress,skills-sorceress-glacial-spike,sorceress.glacial_spike,active,damage+ordered-freeze-chill,freeze|chill,src/data/skills/sorceress.json,earned-class-build-balance-open,bounded-functional;earned-balance-open,docs/plans/decisions/D04-freeze-chill-v1.md;production/bugs/BUG-165-freeze-chill-truncation.md
 sorceress,skills-sorceress-blizzard,sorceress.blizzard,active,damage,chill,src/data/skills/sorceress.json,,unverified,
 sorceress,skills-sorceress-chilling-armor,sorceress.chilling_armor,active,buff,chilling-armor,src/data/skills/sorceress.json,buff-mechanics-not-applied-in-audited-handler,unverified,
 sorceress,skills-sorceress-charged-bolt,sorceress.charged_bolt,active,damage,,src/data/skills/sorceress.json,,unverified,

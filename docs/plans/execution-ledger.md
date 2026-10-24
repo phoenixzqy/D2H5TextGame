@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D11 earned Ancients401 / Rite Claim; BUG165 | genuine400timeout retained, new401victory and separateClaim; next402 | Runtime `d352c44` preserves Freeze→Chill for three skills; full11722PASS/455files+two existing skips, engine5792, types/lint/build pass. Six owned diamonds/paid5Wishstone reset produce native Orb20/Mastery18 support state, exact qualified26/32+12/16.400 wins six waves then guardian timeout; fresh401screen27/32+13/16, actual401wins7/7. Combined133870heroXP/+240gear including15000XP/+1skill Claim;11250mercXP Claim. FinalL33/XP149261/23682gear/stat10/skill1/nextNormal402; Rite claimed, no Eve/Baal. [Authoritative final/evidence](evidence/d11-earned-ancients401.md).42prep+31combat snapshots,12exact Continue pairs including Claim; native prefixes and all payloads retained. BUG161 selector/auditor corrections never replay gameplay. Raw evidence/build still in use for next Throne screen; cleanup pending. C2–C4/213skills/pacing/fullG and independent acceptance remain open; local only. |
 | D11 earned Arreat396–399 / L33 | four genuine full clears; next400 retained | Six paired Ancients variants0/32 each; original222MR/minimum-damage and mana diagnostics retained, no genuine preparation/attempt. Exact current Arreat screen31/32+15/16 qualifies bounded maxfive/L33/firstnonwin farm. Actual396–399 win24/24waves,+231930XP/+723gear; level33 reached399W4/current area finished, no later launch. FinalL33/XP15391/23442gear, stat10/skill2/40MR/HolyFreeze, nextNormal400/Nightmare0. [Authoritative final/evidence](evidence/d11-earned-act5-level33.md).40native snapshots/five exact Continue pairs/all22719ancestral full payloads conserved.224qualification trials plus one retained-seed trace, all tooling failures preserved;1128source/760explicitfalse build/7served exact, prior11678unit passes/types/lint apply.185raw files archived; consumers terminal,4447closed/ten exactbuild+cache dirs absent, cleanup[]/failures[]. Ancients/Baal, C2–C4/213skills/pacing/fullG and independent acceptance open. |
 | D11 earned Arreat394 / Passage395 / Prison Claim+Read | two genuine six-wave clears and separate reward actions verified locally; next396 retained | Unchanged40MR Nova preparation: Arreat32/32+16/16, Passage26/32+13/16 with six boss timeouts retained. Actual394/395 win12/12waves; StartPrison/inspect/potion/thaw then original Nihlathak proof, separate12000XP Claim/unread barrier and keyboard Read add10allres exactly once. Combined116080XP/+312gear, finalL32/XP362722/22719gear/stat5/skill1, nextNormal396/Nightmare0; socket/personalization unused. [Authoritative final/evidence](evidence/d11-earned-act5-through395.md).40native snapshots/eight exact Continue pairs/all22407ancestral full payloads conserved. Original driver/auditor failures retained without replay;1128source/760build/7served exact; prior11678unit passes/types/lint apply.112raw files archived, consumers terminal, preview4446 stopped/exactdist+cache absent, cleanup[]/failures[]. Ancients/Baal, wider idle/pacing, C2–C4/213skills/fullG and independent acceptance open. |
 | D11 earned Frigid393 / three cages / Rescue Claim | genuine six-wave clear, three distinct cage actions and separate Claim verified locally; next394 retained | Baseline0/32 and resistance-only0/32; five actual owned flawless diamonds add40MR and qualify32/32+16/16. Overflow unequip diagnostic refusal retained; legal temporary one-for-one swaps prepare exact native state with13actions/five diamonds, no points/skills/merc/currency changes.393 wins6/6,+42150XP/+141gear; cages5→10→15 then separate8000XP/+1skill/+5all-resist Claim. FinalL32/XP246642/22407gear, stat5/skill1/HolyFreeze, nextNormal394/Nightmare0. [Authoritative final/evidence](evidence/d11-earned-act5-frigid393.md).47native snapshots/eight exact Continue pairs/all22266prepared full payloads conserved.1128source/760build/7served hashes exact; prior11678unit passes/types/lint apply. 120raw files archived; all consumers terminal, exactpreview4445 stopped/dist+cache absent, cleanup[]/failures[]. RemainingActV, C2–C4,213skills,pacing/fullG and independent acceptance open. |
@@ -11290,3 +11291,28 @@ Root retains exact raw ancients396 evidence through full-v1 consumers, then
 removes it. Next qualify legal Ancients preparation from actual400 save; no
 unspent point allocation assumed. C2–C4/fullG0–G7/213skills/pacing/independent
 acceptance remain incomplete. Local only; umbrella goal/worktree active.
+
+
+## D04/D11 — Freeze/Chill repair and earned Ancients401
+
+Runtime `d352c44` fixes BUG165 through one shared adapter correction. Actual
+rank1/20 behavior, cadence/expiry, misses/refusals, death order, two-target
+Glacial Spike and deterministic replay pass. Catalog213/210unchanged/3changed;
+full11722PASS/455files/two existing skips503.87s, engine5792/178files77.95s,
+types/lint/explicitfalse build pass; four en/zh mobile diagnostic browsers pass.
+Existing timing, bundle/PWA limits and independent acceptance remain open.
+
+[Earned Ancients evidence](evidence/d11-earned-ancients401.md) retains native
+six-diamond/paid5Wishstone/45skill-point preparation, its two consumed-prefix
+selector recoveries, original400guardian timeout, new401seven-wave victory and
+separate Rite Claim. Diagnostic qualification26/32+12/16 then27/32+13/16 does
+not promote saves. Combined133870heroXP/+240gear; Claim15000hero/11250mercXP/
++1skill/inventoryunchanged. FinalL33/XP149261/23682gear/stat10/skill1,nextNormal402/
+Nightmare0; rawSHA `c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577`.
+Never replay preparation/StartRite/400/401/Claim. Native audit42prep+31combat
+savedstates, twelve Continue pairs including Claim, ancestral payloads exact
+except explicitly authorized crafting and transfer flags. Original auditor
+failures retained with corrected strict assertions. Next actual task is Throne/
+Baal from the new earned save. Raw evidence retained by root through full-v1;
+task build still has active consumers and cleanup is pending. C2–C4/213skills/
+pacing/fullG0–G7 remain incomplete. Goal/worktree active; local only.

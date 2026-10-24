@@ -1,0 +1,76 @@
+{
+  "kind": "genuine native mercenary diamond/armor preparation and paid Frozen Orb build; zero combat entries; consumed actions must never replay",
+  "inputRawSHA256": "a6f706340a4a3f5a6374f2322a85fdf12dd1770dc46bf08c74af1711aa14bc90",
+  "qualification": {
+    "wins": 26,
+    "secondHalfWins": 12
+  },
+  "policy": {
+    "input": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-act5-arreat-farm396/retained-final.json.gz",
+    "inputRawSHA256": "a6f706340a4a3f5a6374f2322a85fdf12dd1770dc46bf08c74af1711aa14bc90",
+    "crafts": [
+      {
+        "slot": "head",
+        "id": "it-1jj18-3hx",
+        "count": 1,
+        "temporaryId": "it-1owml-u"
+      },
+      {
+        "slot": "gloves",
+        "id": "it-87dcu-2ky",
+        "count": 1,
+        "temporaryId": "it-3yxk7-2"
+      },
+      {
+        "slot": "boots",
+        "id": "it-420zl-2mi",
+        "count": 1,
+        "temporaryId": "it-2698r-b"
+      },
+      {
+        "slot": "offhand",
+        "id": "it-17z7s-41o",
+        "count": 1,
+        "temporaryId": "it-6fzu0-a1"
+      },
+      {
+        "slot": "chest",
+        "id": "it-5edsi-3cg",
+        "count": 2
+      }
+    ],
+    "material": "gems/diamond/flawless",
+    "changes": []
+  },
+  "states": [
+    "001-imported.json.gz",
+    "002-preparation-before-saved.json.gz",
+    "003-preparation-before-continued.json.gz",
+    "004-temporary-head.json.gz",
+    "005-diamond-head-0.json.gz",
+    "006-prepared-head.json.gz",
+    "007-stopped-native.json.gz"
+  ],
+  "actions": [
+    {
+      "kind": "merc-equip",
+      "slot": "head",
+      "id": "it-1owml-u"
+    },
+    {
+      "kind": "socket-insert",
+      "id": "it-1jj18-3hx",
+      "material": "gems/diamond/flawless"
+    },
+    {
+      "kind": "merc-equip",
+      "slot": "head",
+      "id": "it-1jj18-3hx"
+    }
+  ],
+  "errors": [],
+  "console": [],
+  "retries": 0,
+  "status": "tooling-failure",
+  "failure": "Error: expect(locator).toHaveCount(expected) failed\n\nLocator:  getByRole('dialog').getByTestId('merc-equip-candidates').locator('li').filter({ hasText: '#it-3yxk7-2' })\nExpected: 1\nReceived: 5\nTimeout:  5000ms\n\nCall log:\n  - Expect \"to.have.count\" with timeout 5000ms\n  - waiting for getByRole('dialog').getByTestId('merc-equip-candidates').locator('li').filter({ hasText: '#it-3yxk7-2' })\n    9 × locator resolved to 5 elements\n      - unexpected value \"5\"\n\n    at Proxy.<anonymous> (/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/playwright/lib/matchers/expect.js:213:24)\n    at equip (file:///home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/prepare-native.mjs:19:386)\n    at async file:///home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/prepare-native.mjs:20:56"
+}

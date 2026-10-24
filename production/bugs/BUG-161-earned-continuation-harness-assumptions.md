@@ -73,3 +73,32 @@ script/report and annotate the metadata error in the artifact audit; do not
 rerun any action to correct prose. All54 waves and ten exact Continue pairs
 are retained in the
 [earned continuation evidence](../../docs/plans/evidence/d11-earned-river-through388.md).
+
+## Act V400 preparation selector recovery
+
+The first native Ancients preparation driver matched `#it-3yxk7-2` by
+substring, returning five candidate rows before any glove transfer. The
+actual ID is rendered in its own span; use exact text to select its parent
+row. This is a driver defect, not an inventory or gameplay defect.
+The original failed report and stopped export remain at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/native-preparation/`.
+Three genuine actions already occurred: temporary head swap, one diamond
+insertion, original head re-equip. Resume only from `007-stopped-native.json.gz`
+(raw SHA256 `80a9a4f8e8d3dd9f45148e63b8c6b528ecc1d6139a89f59f21aea37cef9380fc`),
+skip the completed head policy, retain the remaining exact policy. No combat
+or quest action occurred. Never restart from the prior399 final.
+
+The first recovery incorrectly reused the merc's standalone exact-ID text
+selector for Crafting, where the ID is embedded in the item label. It stops
+after the temporary glove swap, before the second diamond. Preserve this
+second failed prefix too; resume from its own stopped export, skip the already
+completed swap, and match Crafting IDs with a whitespace/end boundary. These
+are separate selectors for the two observed DOM structures.
+
+Artifact auditing also corrected two assumptions: the exchanged chest's native
+`equipped`/`equipSlot` flags legitimately change, and a suffix glob for
+`prepared-continued` also matches `merc-prepared-continued`. The corrected
+auditor keeps immutable item payload assertions, permits only explicit native
+transfer flags on the frozen moved IDs and exact diamond suffixes on the five
+craft targets, and compares full normalized stage names. Original failures
+are retained; no genuine action is rerun to repair an audit.

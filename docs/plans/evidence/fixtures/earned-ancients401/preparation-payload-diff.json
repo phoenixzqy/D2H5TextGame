@@ -1,0 +1,133 @@
+[
+  {
+    "id": "it-5edsi-3cg",
+    "diff": {
+      "socketContents": {
+        "old": null,
+        "new": [
+          {
+            "kind": "gem",
+            "id": "gems/diamond/flawless"
+          },
+          {
+            "kind": "gem",
+            "id": "gems/diamond/flawless"
+          }
+        ]
+      },
+      "equipped": {
+        "old": false,
+        "new": true
+      },
+      "equipSlot": {
+        "old": null,
+        "new": "chest"
+      }
+    }
+  },
+  {
+    "id": "it-1jj18-3hx",
+    "diff": {
+      "socketContents": {
+        "old": [
+          {
+            "kind": "rune",
+            "id": "runes/nef"
+          }
+        ],
+        "new": [
+          {
+            "kind": "rune",
+            "id": "runes/nef"
+          },
+          {
+            "kind": "gem",
+            "id": "gems/diamond/flawless"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "it-6k7mu-2hy",
+    "diff": {
+      "equipped": {
+        "old": true,
+        "new": false
+      },
+      "equipSlot": {
+        "old": "chest",
+        "new": null
+      }
+    }
+  },
+  {
+    "id": "it-87dcu-2ky",
+    "diff": {
+      "socketContents": {
+        "old": [
+          {
+            "kind": "rune",
+            "id": "runes/nef"
+          }
+        ],
+        "new": [
+          {
+            "kind": "rune",
+            "id": "runes/nef"
+          },
+          {
+            "kind": "gem",
+            "id": "gems/diamond/flawless"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "it-420zl-2mi",
+    "diff": {
+      "socketContents": {
+        "old": [
+          {
+            "kind": "rune",
+            "id": "runes/nef"
+          }
+        ],
+        "new": [
+          {
+            "kind": "rune",
+            "id": "runes/nef"
+          },
+          {
+            "kind": "gem",
+            "id": "gems/diamond/flawless"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "it-17z7s-41o",
+    "diff": {
+      "socketContents": {
+        "old": [
+          {
+            "kind": "rune",
+            "id": "runes/shael"
+          }
+        ],
+        "new": [
+          {
+            "kind": "rune",
+            "id": "runes/shael"
+          },
+          {
+            "kind": "gem",
+            "id": "gems/diamond/flawless"
+          }
+        ]
+      }
+    }
+  }
+]

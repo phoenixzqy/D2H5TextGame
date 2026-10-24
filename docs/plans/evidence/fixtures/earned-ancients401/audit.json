@@ -1,0 +1,31 @@
+{
+  "kind": "root artifact audit; no gameplay actions",
+  "preparationSnapshots": 42,
+  "durablePairs": 10,
+  "combatSnapshots": 31,
+  "changedOwnedItems": [
+    "it-17z7s-41o",
+    "it-1jj18-3hx",
+    "it-420zl-2mi",
+    "it-5edsi-3cg",
+    "it-6k7mu-2hy",
+    "it-87dcu-2ky"
+  ],
+  "attempts": [
+    {
+      "ordinal": 400,
+      "outcome": "nonwin",
+      "xp": 60870,
+      "newItems": 122,
+      "finalRawSHA256": "3a82565612b8814a5aef8ecf8f84c66966139d30b0edeebcd4d8ec6d03f02b32"
+    },
+    {
+      "ordinal": 401,
+      "outcome": "earned-act5-area-victory",
+      "xp": 58000,
+      "newItems": 118,
+      "finalRawSHA256": "026fc12f6a04486d824aa34105db3598a8afe5da0f9e30c1e033811cbec52681"
+    }
+  ],
+  "status": "pass"
+}

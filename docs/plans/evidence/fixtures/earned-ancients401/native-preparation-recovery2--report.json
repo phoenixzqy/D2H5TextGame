@@ -1,0 +1,197 @@
+{
+  "kind": "genuine native mercenary diamond/armor preparation and paid Frozen Orb build; zero combat entries; consumed actions must never replay",
+  "inputRawSHA256": "03a4277de7c8f2ee511fe24ae09b7585a1d3ab608124dfab80e9db0864fd73dd",
+  "originalInputRawSHA256": "a6f706340a4a3f5a6374f2322a85fdf12dd1770dc46bf08c74af1711aa14bc90",
+  "resumePath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/native-preparation-resumed/005-stopped-native.json.gz",
+  "qualification": {
+    "wins": 26,
+    "secondHalfWins": 12
+  },
+  "policy": {
+    "input": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-act5-arreat-farm396/retained-final.json.gz",
+    "inputRawSHA256": "a6f706340a4a3f5a6374f2322a85fdf12dd1770dc46bf08c74af1711aa14bc90",
+    "crafts": [
+      {
+        "slot": "head",
+        "id": "it-1jj18-3hx",
+        "count": 1,
+        "temporaryId": "it-1owml-u"
+      },
+      {
+        "slot": "gloves",
+        "id": "it-87dcu-2ky",
+        "count": 1,
+        "temporaryId": "it-3yxk7-2"
+      },
+      {
+        "slot": "boots",
+        "id": "it-420zl-2mi",
+        "count": 1,
+        "temporaryId": "it-2698r-b"
+      },
+      {
+        "slot": "offhand",
+        "id": "it-17z7s-41o",
+        "count": 1,
+        "temporaryId": "it-6fzu0-a1"
+      },
+      {
+        "slot": "chest",
+        "id": "it-5edsi-3cg",
+        "count": 2
+      }
+    ],
+    "material": "gems/diamond/flawless",
+    "changes": []
+  },
+  "states": [
+    "001-imported.json.gz",
+    "002-preparation-before-saved.json.gz",
+    "003-preparation-before-continued.json.gz",
+    "004-diamond-gloves-0.json.gz",
+    "005-prepared-gloves.json.gz",
+    "006-temporary-boots.json.gz",
+    "007-diamond-boots-0.json.gz",
+    "008-prepared-boots.json.gz",
+    "009-temporary-offhand.json.gz",
+    "010-diamond-offhand-0.json.gz",
+    "011-prepared-offhand.json.gz",
+    "012-diamond-chest-0.json.gz",
+    "013-diamond-chest-1.json.gz",
+    "014-prepared-chest.json.gz",
+    "015-merc-prepared-saved.json.gz",
+    "016-merc-prepared-continued.json.gz",
+    "017-paid-skill-reset.json.gz",
+    "018-allocated-ice-bolt.json.gz",
+    "019-allocated-ice-blast.json.gz",
+    "020-allocated-glacial-spike.json.gz",
+    "021-allocated-blizzard.json.gz",
+    "022-allocated-frozen-orb.json.gz",
+    "023-allocated-cold-mastery.json.gz",
+    "024-allocated-static-field.json.gz",
+    "025-allocated-warmth.json.gz",
+    "026-priority.json.gz",
+    "027-prepared.json.gz",
+    "028-prepared-saved.json.gz",
+    "029-prepared-continued.json.gz"
+  ],
+  "actions": [
+    {
+      "kind": "socket-insert",
+      "id": "it-87dcu-2ky",
+      "material": "gems/diamond/flawless"
+    },
+    {
+      "kind": "merc-equip",
+      "slot": "gloves",
+      "id": "it-87dcu-2ky"
+    },
+    {
+      "kind": "merc-equip",
+      "slot": "boots",
+      "id": "it-2698r-b"
+    },
+    {
+      "kind": "socket-insert",
+      "id": "it-420zl-2mi",
+      "material": "gems/diamond/flawless"
+    },
+    {
+      "kind": "merc-equip",
+      "slot": "boots",
+      "id": "it-420zl-2mi"
+    },
+    {
+      "kind": "merc-equip",
+      "slot": "offhand",
+      "id": "it-6fzu0-a1"
+    },
+    {
+      "kind": "socket-insert",
+      "id": "it-17z7s-41o",
+      "material": "gems/diamond/flawless"
+    },
+    {
+      "kind": "merc-equip",
+      "slot": "offhand",
+      "id": "it-17z7s-41o"
+    },
+    {
+      "kind": "socket-insert",
+      "id": "it-5edsi-3cg",
+      "material": "gems/diamond/flawless"
+    },
+    {
+      "kind": "socket-insert",
+      "id": "it-5edsi-3cg",
+      "material": "gems/diamond/flawless"
+    },
+    {
+      "kind": "merc-equip",
+      "slot": "chest",
+      "id": "it-5edsi-3cg"
+    },
+    {
+      "kind": "paid-skill-reset",
+      "cost": 5
+    },
+    {
+      "kind": "skill-allocation",
+      "slug": "ice-bolt",
+      "rank": 1
+    },
+    {
+      "kind": "skill-allocation",
+      "slug": "ice-blast",
+      "rank": 1
+    },
+    {
+      "kind": "skill-allocation",
+      "slug": "glacial-spike",
+      "rank": 1
+    },
+    {
+      "kind": "skill-allocation",
+      "slug": "blizzard",
+      "rank": 1
+    },
+    {
+      "kind": "skill-allocation",
+      "slug": "frozen-orb",
+      "rank": 20
+    },
+    {
+      "kind": "skill-allocation",
+      "slug": "cold-mastery",
+      "rank": 18
+    },
+    {
+      "kind": "skill-allocation",
+      "slug": "static-field",
+      "rank": 1
+    },
+    {
+      "kind": "skill-allocation",
+      "slug": "warmth",
+      "rank": 2
+    },
+    {
+      "kind": "priority",
+      "order": [
+        "static-field",
+        "frozen-orb"
+      ]
+    }
+  ],
+  "errors": [],
+  "console": [],
+  "retries": 0,
+  "status": "observed",
+  "materialsSpent": {
+    "gems/diamond/flawless": 5
+  },
+  "totalPreparationMaterialsSpent": {
+    "gems/diamond/flawless": 6
+  },
+  "finalRawSHA256": "65a9bba36debeb6b578f921d6cba14be077f7bf238abae21515af352661d9e9a"
+}

@@ -1,0 +1,263 @@
+{
+  "runtime": "d352c446107b8218ebdb09319fcb4ba8f622c4ab",
+  "sourceAffixSHA256": {
+    "affixes-prefix.json": "80ad25be3f181c7507d7b7cdeaa9091bbcf57d8766cd5dfc32c05d3852f64a72",
+    "affixes-suffix.json": "8a07352970434ba9175579323f1594ad081dfae4a7385ec42a07f01d57c8f414"
+  },
+  "policy": {
+    "maxChallenges": 1,
+    "areas": [
+      "areas/act5-ancients-way"
+    ],
+    "stop": "one actual400 attempt; retain every original prefix/nonwin; no retry",
+    "preparation": "actual native sixFlawlessDiamonds/mercArmor, paid5Wishstone reset/45point Orb20-ColdMastery18-Static1-Warmth2/prerequisites; Start Rite before event; qualification26/32 and12/16"
+  },
+  "sourceTreasureClassesSHA256": "82d2978ba863457f95269bfb7b7a8e073ef3ed38d59292e89bea196d152414a8",
+  "inputPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/native-preparation-recovery2/final.json.gz",
+  "inputSHA256": "65a9bba36debeb6b578f921d6cba14be077f7bf238abae21515af352661d9e9a",
+  "kind": "genuine earned ActV Ancients400 after actual native merc/Orb preparation and Start Rite quest; fixed historical Date and proof-qualified100ms clock transport; no supplied seed, Skip, speed override, replay or state injection",
+  "launches": [
+    {
+      "ordinal": 400,
+      "alias": "ancients-way"
+    }
+  ],
+  "retries": 0,
+  "errors": [],
+  "console": [],
+  "states": [
+    "001-imported",
+    "002-prequest-saved",
+    "003-prequest-continued",
+    "004-rite-started",
+    "005-precombat-saved",
+    "006-precombat-continued",
+    "prelaunch-400",
+    "400-w1-initial",
+    "400-w1-terminal",
+    "007-400-w1-settled",
+    "400-w2-initial",
+    "400-w2-terminal",
+    "008-400-w2-settled",
+    "400-w3-initial",
+    "400-w3-terminal",
+    "009-400-w3-settled",
+    "400-w4-initial",
+    "400-w4-terminal",
+    "010-400-w4-settled",
+    "400-w5-initial",
+    "400-w5-terminal",
+    "011-400-w5-settled",
+    "400-w6-initial",
+    "400-w6-terminal",
+    "012-400-w6-settled",
+    "400-w7-initial",
+    "400-w7-terminal",
+    "013-400-nonwin",
+    "014-400-nonwin-saved",
+    "015-400-nonwin-continued",
+    "final"
+  ],
+  "areas": [
+    {
+      "alias": "ancients-way",
+      "ordinal": 400,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 12780,
+            "newItems": [
+              "it-2t02c-i37",
+              "it-50r4-i38",
+              "it-2n8s8-i39",
+              "it-7xm7c-i3a",
+              "it-7jsv7-i3b",
+              "it-96h4a-i3c",
+              "it-6n3xz-i3d",
+              "it-6nei8-i3e"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 13490,
+            "newItems": [
+              "it-32o61-i3f",
+              "it-8u16m-i3g",
+              "it-9cyza-i3h",
+              "it-znva-i3i",
+              "it-611e5-i3j",
+              "it-9fw9s-i3k",
+              "it-5yhyh-i3l",
+              "it-8yt56-i3m"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 14600,
+            "newItems": [
+              "it-2u27z-i3n",
+              "it-9671w-i3o",
+              "it-4s87w-i3p",
+              "it-1yprr-i3q",
+              "it-2t14t-i3r",
+              "it-22g4j-i3s",
+              "it-4nia2-i3t",
+              "it-166qi-i3u",
+              "it-6u90x-i3v",
+              "it-5qfr5-i3w",
+              "it-8s6ke-i3x",
+              "it-43zc1-i3y",
+              "it-1twe0-i3z",
+              "it-5ghfi-i40",
+              "it-df5z-i41",
+              "it-81pz5-i42",
+              "it-9juhc-i43",
+              "it-2cuea-i44",
+              "it-6tcup-i45",
+              "it-4uppa-i46",
+              "it-4o5oz-i47",
+              "it-ays5-i48",
+              "it-3rupf-i49",
+              "it-2ytzf-i4a",
+              "it-9aroz-i4b",
+              "it-7n3b9-i4c",
+              "it-1zeu2-i4d",
+              "it-2f996-i4e",
+              "it-5tg50-i4f",
+              "it-26cy9-i4g",
+              "it-8f8g8-i4h",
+              "it-7ifis-i4i",
+              "it-32yq9-i4j",
+              "it-7rz3f-i4k",
+              "it-3z6z2-i4l",
+              "it-21ad8-i4m",
+              "it-1bjud-i4n"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5840,
+            "newItems": [
+              "it-3tqek-i4o",
+              "it-617j5-i4p"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6660,
+            "newItems": [
+              "it-52rsd-i4q",
+              "it-9m85e-i4r",
+              "it-39c5s-i4s",
+              "it-9u0vx-i4t",
+              "it-6llyi-i4u",
+              "it-cz24-i4v",
+              "it-9ac8d-i4w",
+              "it-1f9vq-i4x",
+              "it-6y04g-i4y",
+              "it-2zszq-i4z",
+              "it-4v0sj-i50",
+              "it-16z8x-i51",
+              "it-1koaa-i52",
+              "it-3j4sq-i53",
+              "it-3pvq7-i54",
+              "it-4yvjg-i55",
+              "it-eu4m-i56",
+              "it-8it83-i57",
+              "it-1tw6-i58",
+              "it-10tg7-i59",
+              "it-53nq1-i5a",
+              "it-13um4-i5b",
+              "it-3xbsf-i5c",
+              "it-8v0o1-i5d",
+              "it-19lbd-i5e",
+              "it-6xp4y-i5f",
+              "it-9ngf4-i5g",
+              "it-4s6ts-i5h",
+              "it-8b74m-i5i",
+              "it-79sl0-i5j",
+              "it-1oqxl-i5k",
+              "it-9cze3-i5l",
+              "it-7wt58-i5m",
+              "it-3l1up-i5n",
+              "it-2obna-i5o",
+              "it-5hyxo-i5p",
+              "it-8yvkm-i5q",
+              "it-2l8zd-i5r",
+              "it-9712u-i5s",
+              "it-60jaj-i5t",
+              "it-6sr98-i5u",
+              "it-1d4cw-i5v",
+              "it-8cbtu-i5w",
+              "it-4v7tc-i5x",
+              "it-cvbe-i5y"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7500,
+            "newItems": [
+              "it-7kvip-i5z",
+              "it-1yht0-i60",
+              "it-8rckr-i61",
+              "it-jygx-i62",
+              "it-31pp2-i63",
+              "it-1bvu5-i64",
+              "it-219e7-i65",
+              "it-25vxx-i66",
+              "it-7s34d-i67",
+              "it-4vrht-i68",
+              "it-6drzj-i69",
+              "it-3v2vh-i6a",
+              "it-10xtr-i6b",
+              "it-4cv0k-i6c",
+              "it-1kj4y-i6d",
+              "it-72rtv-i6e",
+              "it-zobo-i6f",
+              "it-74xl4-i6g",
+              "it-9tzot-i6h",
+              "it-8kzh3-i6i",
+              "it-mobh-i6j",
+              "it-2ffze-i6k"
+            ]
+          }
+        },
+        {
+          "wave": 7,
+          "outcome": "nonwin",
+          "delta": {
+            "xp": 0,
+            "newItems": []
+          }
+        }
+      ],
+      "outcome": "nonwin"
+    }
+  ],
+  "executionStartedAt": "2026-10-24T16:53:33.269Z",
+  "requestedClockAdvanceMs": 304700,
+  "outcome": "nonwin",
+  "status": "observed",
+  "finalOrdinal": 401,
+  "ownedBefore": 23442,
+  "ownedAfter": 23564,
+  "totalXP": 60870,
+  "executionWallMs": 76987.574333
+}
