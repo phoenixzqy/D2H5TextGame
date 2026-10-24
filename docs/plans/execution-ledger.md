@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D11 earned ActV Foothills392 / Siege Claim | genuine six-wave clear and socket entitlement verified locally; next393 retained | Fixed IceBlast0/32 (17draws/15defeats), Orb5/32, then Nova20/LightningMastery20/Static1/Warmth2 qualifies30/32+14/16. Native paid5Wishstone reset/43points and StartSiege consumed once; no gear/merc/stat changes.392 wins6/6,+37300XP/+133gear; separate10000XP/socket-service Claim and seven exact Continue pairs pass; all22133ancestral full item payloads conserved. FinalL32/XP196492/22266gear, stat5/skill0/HolyFreeze, nextNormal393/Nightmare0. [Authoritative final/evidence](evidence/d11-earned-act5-foothills392.md).96diagnostic runs never promoted;37native snapshots/zero errors/warnings/retries.1128source/760build/7served hashes exact; prior11678unit passes/types/lint remain applicable.95raw files archived; preview4444 stopped/exactdist+cache absent, cleanup[]/failures[]. Frigid rescue/remainingActV, pacing, C2–C4/fullG and independent acceptance remain open. |
 | D11 earned Diablo391 / Act V unlocked | genuine seven-wave clear and separate Claim verified locally; next392 retained | Qualified IceBlast20/Mastery20 Chaos29/32+River32/32; actual native paid reset/43skill/5Dex/ten crafts/hire/equipment consumed once, all22003prepared full item payloads conserved.391 wins7/7waves,+40900XP/+128gear; separate Claim+25000XP/+2gear, ActV Enter enabled. FinalL32/XP149192/22133gear, stat5/skill0/HolyFreeze, nextNormal392/Nightmare0; five exact Continue pairs/26native snapshots, zero browser errors/warnings. [Authoritative final/evidence](evidence/d11-earned-diablo391.md). Eight paired diagnostic/native full runs exact after documented tooling-only corrections; no source change/replay/diagnostic promotion.1128source/760build/7served hashes exact; prior11678unit passes/types/lint remain applicable. Exact preview4443 stopped, three disposable dirs absent, cleanup[]/failures[]. ActVcombat, pacing, fullidle, C2–C4/G0–G7 and independent acceptance remain open. |
 | D11 earned River idle389–390 | two genuine idle clears; automatic repeat and Stop verified locally; next391 retained | 12native wave victories,+62570XP/+264gear; finalL32/XP83292/22003unique gear, stat10/skill4 unchanged. All21739ancestral full payloads preserved;20native export downloads/23retained snapshots/two exact Continue pairs, zero errors/retries. Native repeat follows temporary Settings inspection; no Enter/Next Run click. Stop prevents391 and120s clock advance grants nothing.1128prior source hashes/760rebuilt files/7served JS exact. [Authoritative final/evidence](evidence/d11-earned-river-idle-through390.md). Auditor nonexistent-key failure corrected without replay. All consumers terminal;4442closed/exactdist absent. Uninterrupted/background/weak-build/matrix idle, Diablo/ActV, pacing and C2–C4/fullG remain open. |
 | D11 earned Travincal363–368 |five full clears, then actual368W5draw; next369 authoritative |34native wave victories,+146060XP/+723gear; finalL30/XP227964/18957unique gear, stat0/skill0, original preparation retained. All18234ancestral full payloads exact; zero failed-wave income/quest changes. Seven exact Continue pairs, zero captured errors/retries;902source/760dist/4served hashes exact. [Authoritative final/evidence](evidence/d11-earned-act3-through368.md). Initial overlay-timing auditor failure retained/corrected without gameplay replay. All consumers terminal; preview31020/4434closed/exactdist removed. C2–C4/fullG gates open. |
@@ -11201,3 +11202,22 @@ Preview and exact three disposables cleaned; raw evidence retained by root throu
 full-v1 consumers. C0/C1 retain narrow historical acceptance; C2–C4,213skills,
 pacing/endgame/fullG0–G7 incomplete. Next inspect earned ActVroute from392.
 Local only, umbrella goal and claimed worktree remain active.
+
+
+## D11 — Earned Foothills392 and Siege Claim
+
+[Earned ActV entry](evidence/d11-earned-act5-foothills392.md) advances the genuine
+character with a legal five-Wishstone/43-point Nova allocation. Fixed candidates
+IceBlast0/32 and Orb5/32 fail; Nova30/32 qualifies without engine/data changes.
+Actual392 wins allsix waves and records exact Shenk source proof; separate
+Claim gives10000XP and the unused socket-service entitlement. Seven exact
+Continue pairs and all22133ancestral full item payloads pass root audit.
+Resume versioned final level32/XP196492/22266gear, stat5/skill0/HolyFreeze,
+nextNormal393. Raw SHA `22ae95d4f6f952c03b602f72c8bfba0629273236af51b6f26dfb327e947feaba`.
+Never replay reset/allocation/StartSiege/392/Claim. Source unchanged; build760
+files identical, prior11678unit passes/two skips/types/lint apply.95raw files
+archived; all consumers terminal, preview4444 stopped, exactdist/cache absent.
+Root retains raw act5-392 evidence through campaign/full-v1 consumers. Next
+qualify Frigid Highlands from393, then actual cages/rescue Claim. C0/C1 retain
+historical acceptance; C2–C4,213skills,pacing/fullG0–G7 remain incomplete.
+Local only; umbrella goal/worktree remain active.

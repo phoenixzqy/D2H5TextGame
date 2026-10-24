@@ -1,0 +1,83 @@
+{
+  "status": "pass",
+  "kind": "root self-audit; independent acceptance pending",
+  "diagnosticSummary": {
+    "IceBlast": {
+      "wins": 0,
+      "n": 32
+    },
+    "Orb": {
+      "wins": 5,
+      "n": 32
+    },
+    "Nova": {
+      "wins": 30,
+      "n": 32,
+      "secondHalfWins": 14
+    }
+  },
+  "genuineResetWishstoneCost": 5,
+  "genuineAllocatedSkillPoints": 43,
+  "genuineAttempt": 392,
+  "nextNormal": 393,
+  "nativeWaveVictories": 6,
+  "nativeNonwins": 0,
+  "preparedItemPayloadsPreserved": 22133,
+  "earnedCombatXP": 37300,
+  "earnedClaimXP": 10000,
+  "newGear": 133,
+  "ownedItems": 22266,
+  "heroLevel": 32,
+  "heroXP": 196492,
+  "statPoints": 5,
+  "skillPoints": 0,
+  "socketService": {
+    "serviceId": "socket_item",
+    "state": "available"
+  },
+  "nativeSavedStateSnapshots": 37,
+  "saveCloseContinuePairs": [
+    [
+      "native-preparation",
+      "preparation-before-saved",
+      "preparation-before-continued"
+    ],
+    [
+      "native-preparation",
+      "prepared-saved",
+      "prepared-continued"
+    ],
+    [
+      "earned-foothills392",
+      "prequest-saved",
+      "prequest-continued"
+    ],
+    [
+      "earned-foothills392",
+      "precombat-saved",
+      "precombat-continued"
+    ],
+    [
+      "earned-foothills392",
+      "392-won-saved",
+      "392-won-continued"
+    ],
+    [
+      "shenk-claim",
+      "shenk-claimed-saved",
+      "shenk-claimed-continued"
+    ],
+    [
+      "shenk-claim",
+      "shenk-unclaimed-saved",
+      "shenk-unclaimed-continued"
+    ]
+  ],
+  "sourceHashCount": 1128,
+  "sourceDrift": [],
+  "buildHashCount": 760,
+  "buildDrift": [],
+  "servedJS": 7,
+  "finalRawSHA256": "22ae95d4f6f952c03b602f72c8bfba0629273236af51b6f26dfb327e947feaba",
+  "limits": "single genuine English/mobile360x640 pilot with fixed historical Date and qualified accelerated playback transport; no Frigid rescue, remaining ActV, pacing, C2-C4/fullG0-G7 acceptance"
+}
