@@ -1,0 +1,78 @@
+import Ajv2020 from 'ajv/dist/2020';
+import skills from '../../data/skills/barbarian.json';
+import schema from '../../data/schema/skill.schema.json';
+import type { SkillDef } from '../types/skills';
+import type { WeaponType } from '../types/items';
+
+/** Exact authored/canonical identities; equipment requirements remain in JSON. */
+export const BARBARIAN_WEAPON_MASTERY_IDENTITIES = {
+  sword: ['skills-barbarian-sword-mastery', 'barbarian.sword_mastery'],
+  axe: ['skills-barbarian-axe-mastery', 'barbarian.axe_mastery'],
+  mace: ['skills-barbarian-mace-mastery', 'barbarian.mace_mastery'],
+} as const;
+type MasteryKey = keyof typeof BARBARIAN_WEAPON_MASTERY_IDENTITIES;
+
+/** Immutable authored unlock, cap, required weapon and fractional per-rank tuning. */
+export interface BarbarianWeaponMasteryDefinition {
+  readonly requiredLevel: number;
+  readonly maxRank: number;
+  readonly weaponType: WeaponType;
+  readonly physicalDamagePctPerRank: number;
+  readonly critChancePctPerRank: number;
+}
+export type BarbarianWeaponMasteryDefinitions = Readonly<Record<MasteryKey, BarbarianWeaponMasteryDefinition>>;
+const validate = new Ajv2020({ strict: true, allErrors: true })
+  .compile<SkillDef & { readonly requiredLevel: number }>(schema);
+
+/** Validate one exact authored row per mastery and copy/freeze primitive tuning. */
+export function resolveBarbarianWeaponMasteryDefinitions(rows: readonly unknown[]): BarbarianWeaponMasteryDefinitions {
+  const read = (key: MasteryKey): BarbarianWeaponMasteryDefinition => {
+    const id = BARBARIAN_WEAPON_MASTERY_IDENTITIES[key][0];
+    const matches = rows.filter(row => typeof row === 'object' && row !== null && 'id' in row && row.id === id);
+    if (matches.length !== 1) throw new Error('Expected exactly one authored ' + id);
+    const row = matches[0];
+    if (!validate(row)) throw new Error('Invalid authored ' + id);
+    const weaponType = row.requires?.weaponType?.[0];
+    const physicalDamagePctPerRank = row.scaling?.passiveStatsPerLevel?.physicalDamagePct;
+    const critChancePctPerRank = row.scaling?.passiveStatsPerLevel?.critChancePct;
+    if (weaponType === undefined || physicalDamagePctPerRank === undefined || critChancePctPerRank === undefined) {
+      throw new Error('Missing authored weapon-mastery metadata');
+    }
+    return Object.freeze({ requiredLevel: row.requiredLevel, maxRank: row.maxLevel,
+      weaponType, physicalDamagePctPerRank, critChancePctPerRank });
+  };
+  return Object.freeze({ sword: read('sword'), axe: read('axe'), mace: read('mace') });
+}
+
+/** Tuning independent of subsequent mutable catalog/registry changes. */
+export const BARBARIAN_WEAPON_MASTERY_DEFINITIONS = resolveBarbarianWeaponMasteryDefinitions(skills);
+
+/** Maximum valid positive integer alias, capped once; never add alias duplicates. */
+export function resolveBarbarianWeaponMasteryRank(key: MasteryKey, levels?: Readonly<Record<string, number>>,
+  definitions: BarbarianWeaponMasteryDefinitions = BARBARIAN_WEAPON_MASTERY_DEFINITIONS): number {
+  let rank = 0;
+  for (const id of BARBARIAN_WEAPON_MASTERY_IDENTITIES[key]) {
+    const allocated = levels?.[id];
+    if (typeof allocated === 'number' && Number.isFinite(allocated) && Number.isInteger(allocated) && allocated > 0) {
+      rank = Math.max(rank, Math.min(definitions[key].maxRank, allocated));
+    }
+  }
+  return rank;
+}
+
+/** Player-only fresh-wave bonuses for the matching canonical weapon snapshot. */
+export function composeBarbarianWeaponMasteries(input: { readonly classId: string; readonly level: number;
+  readonly weaponType?: WeaponType; readonly skillLevels?: Readonly<Record<string, number>> },
+  definitions: BarbarianWeaponMasteryDefinitions = BARBARIAN_WEAPON_MASTERY_DEFINITIONS
+): { readonly physicalDamagePct: number; readonly critChanceBonus: number } {
+  if (input.classId === 'barbarian' && Number.isFinite(input.level)) {
+    for (const key of ['sword', 'axe', 'mace'] as const) {
+      const definition = definitions[key];
+      if (input.weaponType !== definition.weaponType || input.level < definition.requiredLevel) continue;
+      const rank = resolveBarbarianWeaponMasteryRank(key, input.skillLevels, definitions);
+      return Object.freeze({ physicalDamagePct: rank * definition.physicalDamagePctPerRank,
+        critChanceBonus: rank * definition.critChancePctPerRank });
+    }
+  }
+  return Object.freeze({ physicalDamagePct: 0, critChanceBonus: 0 });
+}

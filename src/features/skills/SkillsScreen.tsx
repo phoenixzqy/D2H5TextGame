@@ -44,6 +44,8 @@ import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-
 import { AMAZON_PASSIVE_DEFINITIONS } from '@/engine/skills/amazon-passives';
 import { BARBARIAN_ENDURANCE_DEFINITIONS, BARBARIAN_ENDURANCE_IDENTITIES,
   resolveBarbarianEnduranceRank } from '@/engine/skills/barbarian-endurance';
+import { BARBARIAN_WEAPON_MASTERY_DEFINITIONS, BARBARIAN_WEAPON_MASTERY_IDENTITIES,
+  resolveBarbarianWeaponMasteryRank } from '@/engine/skills/barbarian-weapon-masteries';
 import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
 import { GOLEM_MASTERY_DEFINITION, composeGolemMastery, resolveGolemMasteryRank } from '@/engine/skills/golem-mastery';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
@@ -162,6 +164,13 @@ export function SkillsScreen() {
     for (const key of ['stamina', 'speed', 'resistance'] as const) {
       const rank = resolveBarbarianEnduranceRank(key, levels);
       for (const alias of BARBARIAN_ENDURANCE_IDENTITIES[key]) {
+        if (rank > 0) map.set(alias, rank);
+        else map.delete(alias);
+      }
+    }
+    for (const key of ['sword', 'axe', 'mace'] as const) {
+      const rank = resolveBarbarianWeaponMasteryRank(key, levels);
+      for (const alias of BARBARIAN_WEAPON_MASTERY_IDENTITIES[key]) {
         if (rank > 0) map.set(alias, rank);
         else map.delete(alias);
       }
@@ -884,7 +893,8 @@ function RequirementSection({
           <StatLine label={t('details.prerequisites')} value={t('details.none')} />
         )}
         {skill.requires?.weaponType?.length ? (
-          <StatLine label={t('details.weaponRequired')} value={skill.requires.weaponType.join(', ')} />
+          <StatLine label={t('details.weaponRequired')}
+            value={skill.requires.weaponType.map(type => t('details.weaponTypes.' + type)).join(', ')} />
         ) : null}
       </dl>
     </section>
@@ -1140,6 +1150,14 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
+  for (const key of ['sword', 'axe', 'mace'] as const) {
+    if (skill.id === BARBARIAN_WEAPON_MASTERY_IDENTITIES[key][0]) {
+      const { requiredLevel, maxRank, physicalDamagePctPerRank, critChancePctPerRank }
+        = BARBARIAN_WEAPON_MASTERY_DEFINITIONS[key];
+      return t('barbarian.' + key + '-mastery.desc', { physical: physicalDamagePctPerRank * 100,
+        critical: critChancePctPerRank * 100, cap: maxRank, level: requiredLevel });
+    }
+  }
   for (const key of ['stamina', 'speed', 'resistance'] as const) {
     const [authored] = BARBARIAN_ENDURANCE_IDENTITIES[key];
     if (skill.id === authored) {

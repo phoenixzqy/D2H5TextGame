@@ -151,9 +151,12 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 | `barbarian.berserk` | Berserk / 狂暴 | Arcane | Single | 80–120 | 2 | 20 | — | Converts physical to arcane |
 | `barbarian.war_cry` | War Cry / 战嗥 | — | All | 30–50 | 3 | 30 | Stun (1 turn) | Debuff AOE |
 
-#### Passive Skills (4)
+#### Passive skills and combat buffs
 | ID | Name (EN / ZH) | Effect | Notes |
 |---|---|---|---|
+| `barbarian.sword_mastery` | Sword Mastery / 剑类精通 | +3% direct physical damage and +0.5pp critical chance per rank | L1, cap20; canonical weapon slot must hold a sword, either handedness; [D05 contract](../plans/decisions/D05-barbarian-weapon-masteries-v1.md) |
+| `barbarian.axe_mastery` | Axe Mastery / 斧类精通 | +3% direct physical damage and +0.5pp critical chance per rank | L1, cap20; canonical weapon slot must hold an axe; other learned masteries do not stack |
+| `barbarian.mace_mastery` | Mace Mastery / 钝器精通 | +3% direct physical damage and +0.5pp critical chance per rank | L1, cap20; canonical weapon slot must hold a mace; automatic from next wave |
 | `barbarian.iron_skin` | Iron Skin / 钢铁之肤 | +4% ordinary defense per allocated rank; cap20/+80% | L18; [D05 controlling contract](../plans/decisions/D05-iron-skin-v1.md) |
 | `barbarian.natural_resistance` | Natural Resistance / 自然抗性 | +2pp each of six resistances and +0.5pp magical dodge per rank | L30; Iron Skin prerequisite; cap20; [D05 contract](../plans/decisions/D05-barbarian-endurance-v1.md) |
 | `barbarian.increased_stamina` | Increased Stamina / 提升耐力 | +3% equipment-derived combat max life per rank | L12; cap20; automatic, no healing on learning |

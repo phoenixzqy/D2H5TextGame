@@ -83,6 +83,21 @@
     "missing": "未满足",
     "lockedPrereqName": "{{skill}}（未学习）",
     "weaponRequired": "武器需求",
+    "weaponTypes": {
+      "sword": "剑",
+      "axe": "斧",
+      "mace": "钝器",
+      "dagger": "匕首",
+      "spear": "长矛",
+      "polearm": "长柄武器",
+      "bow": "弓",
+      "crossbow": "弩",
+      "throwing": "投掷武器",
+      "staff": "长杖",
+      "wand": "魔杖",
+      "scepter": "权杖",
+      "orb": "法球"
+    },
     "damageAttack": "{{type}}攻击",
     "flatRange": "{{min}} ~ {{max}}",
     "flatRangeDelta": "(+{{min}} ~ +{{max}})",
@@ -476,15 +491,15 @@
     },
     "sword-mastery": {
       "name": "剑类精通",
-      "desc": "增加剑类武器伤害和命中率。"
+      "desc": "仅野蛮人武器栏装备剑时自动生效。每级提高{{physical}}%直接物理伤害，暴击率增加{{critical}}个百分点；最高{{cap}}级，{{level}}级解锁。变更从下一波生效。"
     },
     "axe-mastery": {
       "name": "斧类精通",
-      "desc": "增加斧类武器伤害和命中率。"
+      "desc": "仅野蛮人武器栏装备斧时自动生效。每级提高{{physical}}%直接物理伤害，暴击率增加{{critical}}个百分点；最高{{cap}}级，{{level}}级解锁。变更从下一波生效。"
     },
     "mace-mastery": {
       "name": "钝器精通",
-      "desc": "增加钝器伤害和命中率。"
+      "desc": "仅野蛮人武器栏装备钝器时自动生效。每级提高{{physical}}%直接物理伤害，暴击率增加{{critical}}个百分点；最高{{cap}}级，{{level}}级解锁。变更从下一波生效。"
     },
     "pole-arm-mastery": {
       "name": "长杆武器精通",

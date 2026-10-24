@@ -12,6 +12,186 @@
         "properties": {
           "id": {
             "enum": [
+              "skills-barbarian-sword-mastery",
+              "skills-barbarian-axe-mastery",
+              "skills-barbarian-mace-mastery"
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "scaling",
+          "requires",
+          "passive"
+        ],
+        "properties": {
+          "requiredLevel": { "$ref": "#/properties/requiredLevel" },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "passive": {
+            "const": true
+          },
+          "aura": {
+            "const": false
+          },
+          "summon": {
+            "const": false
+          },
+          "requires": {
+            "type": "object",
+            "required": [
+              "weaponType"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "weaponType": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 1,
+                "items": {
+                  "$ref": "#/$defs/weaponType"
+                }
+              }
+            }
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "required": [
+                  "physicalDamagePct",
+                  "critChancePct"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "physicalDamagePct": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "critChancePct": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "cost": false,
+          "damage": false,
+          "damageType": false,
+          "appliesStatus": false,
+          "statusEffect": false,
+          "additionalStatusEffects": false,
+          "appliesTags": false,
+          "synergies": false,
+          "heal": false,
+          "summonId": false,
+          "aoeShape": false
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-barbarian-sword-mastery"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "then": {
+              "properties": {
+                "requires": {
+                  "type": "object",
+                  "properties": {
+                    "weaponType": {
+                      "const": [
+                        "sword"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-barbarian-axe-mastery"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "then": {
+              "properties": {
+                "requires": {
+                  "type": "object",
+                  "properties": {
+                    "weaponType": {
+                      "const": [
+                        "axe"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-barbarian-mace-mastery"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "then": {
+              "properties": {
+                "requires": {
+                  "type": "object",
+                  "properties": {
+                    "weaponType": {
+                      "const": [
+                        "mace"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "enum": [
               "skills-barbarian-increased-stamina",
               "skills-barbarian-increased-speed",
               "skills-barbarian-natural-resistance"

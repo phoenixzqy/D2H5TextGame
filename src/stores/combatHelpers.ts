@@ -75,6 +75,7 @@ import { composeMightAura } from '@/engine/skills/might';
 import { composeMeditationAura } from '@/engine/skills/meditation';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeBarbarianEndurance } from '@/engine/skills/barbarian-endurance';
+import { composeBarbarianWeaponMasteries } from '@/engine/skills/barbarian-weapon-masteries';
 import { composeAmazonPassives } from '@/engine/skills/amazon-passives';
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 import { composeGolemMastery } from '@/engine/skills/golem-mastery';
@@ -172,12 +173,14 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const endurance = composeBarbarianEndurance({ classId: player.class, level: player.level,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
+  const mastery = composeBarbarianWeaponMasteries({ classId: player.class, level: player.level,
+    ...equippedWeapon, ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const lifeMax = freshStats.lifeMax * endurance.lifeMultiplier;
   const stats = { ...freshStats,
     lifeMax,
     attackSpeed: freshStats.attackSpeed * endurance.attackSpeedMultiplier,
     attack: freshStats.attack * amazon.attackMultiplier,
-    critChance: freshStats.critChance + amazon.critChanceBonus,
+    critChance: freshStats.critChance + amazon.critChanceBonus + mastery.critChanceBonus,
     physDodge: freshStats.physDodge + amazon.physDodgeBonus + endurance.physDodgeBonus,
     magicDodge: freshStats.magicDodge + endurance.magicDodgeBonus,
     resistances: { physical: freshStats.resistances.physical + endurance.resistAllBonus,
@@ -207,7 +210,10 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     stats,
     life: stats.life,
     mana: stats.mana,
-    ...composeRunewordCombatModifiers(grants, recovery),
+    ...composeRunewordCombatModifiers(grants, mastery.physicalDamagePct > 0 ? {
+      ...recovery, increasedDamagePct: { ...recovery.increasedDamagePct,
+        physical: (recovery.increasedDamagePct.physical ?? 0) + mastery.physicalDamagePct }
+    } : recovery),
     coldResistanceReductionPct: composeColdMastery(player),
     staticFieldRank: composeStaticField(player),
     manaRegenCarry: 0,

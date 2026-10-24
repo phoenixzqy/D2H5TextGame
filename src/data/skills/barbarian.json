@@ -302,6 +302,7 @@
     "cooldown": 0,
     "minLevel": 1,
     "maxLevel": 20,
+    "requires": { "weaponType": ["sword"] },
     "scaling": {
       "passiveStatsPerLevel": {
         "physicalDamagePct": 0.03,
@@ -322,6 +323,7 @@
     "cooldown": 0,
     "minLevel": 1,
     "maxLevel": 20,
+    "requires": { "weaponType": ["axe"] },
     "scaling": {
       "passiveStatsPerLevel": {
         "physicalDamagePct": 0.03,
@@ -342,6 +344,7 @@
     "cooldown": 0,
     "minLevel": 1,
     "maxLevel": 20,
+    "requires": { "weaponType": ["mace"] },
     "scaling": {
       "passiveStatsPerLevel": {
         "physicalDamagePct": 0.03,

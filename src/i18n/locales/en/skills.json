@@ -83,6 +83,21 @@
     "missing": "Missing",
     "lockedPrereqName": "{{skill}} (missing)",
     "weaponRequired": "Weapon",
+    "weaponTypes": {
+      "sword": "Sword",
+      "axe": "Axe",
+      "mace": "Mace",
+      "dagger": "Dagger",
+      "spear": "Spear",
+      "polearm": "Polearm",
+      "bow": "Bow",
+      "crossbow": "Crossbow",
+      "throwing": "Throwing weapon",
+      "staff": "Staff",
+      "wand": "Wand",
+      "scepter": "Scepter",
+      "orb": "Orb"
+    },
     "damageAttack": "{{type}} attack",
     "flatRange": "{{min}} ~ {{max}}",
     "flatRangeDelta": "(+{{min}} ~ +{{max}})",
@@ -476,15 +491,15 @@
     },
     "sword-mastery": {
       "name": "Sword Mastery",
-      "desc": "Increases damage and attack rating with swords."
+      "desc": "Automatically active for a Barbarian with a sword in the weapon slot. Each rank adds {{physical}}% direct physical damage and {{critical}} percentage points of critical chance; maximum {{cap}} ranks, unlocked at level {{level}}. Changes apply next wave."
     },
     "axe-mastery": {
       "name": "Axe Mastery",
-      "desc": "Increases damage and attack rating with axes."
+      "desc": "Automatically active for a Barbarian with an axe in the weapon slot. Each rank adds {{physical}}% direct physical damage and {{critical}} percentage points of critical chance; maximum {{cap}} ranks, unlocked at level {{level}}. Changes apply next wave."
     },
     "mace-mastery": {
       "name": "Mace Mastery",
-      "desc": "Increases damage and attack rating with maces."
+      "desc": "Automatically active for a Barbarian with a mace in the weapon slot. Each rank adds {{physical}}% direct physical damage and {{critical}} percentage points of critical chance; maximum {{cap}} ranks, unlocked at level {{level}}. Changes apply next wave."
     },
     "pole-arm-mastery": {
       "name": "Pole Arm Mastery",
