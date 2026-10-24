@@ -1,5 +1,9 @@
 # Earned Act III through attempt268
 
+Historical boundary: subsequent actual269–271 Spider Forest farming is retained
+in [the current earned final](d11-earned-act3-through271.md). Resume that next272
+save; this268 fixture remains preserved ancestry and must not be replayed.
+
 Root execution and self-audit; independent acceptance pending. Runtime7441227
 plus the BUG152 authored equipment-band correction, actual treasure-class SHA
 `f73ebe9a09a2a5ba5a11adf0b90aa6801f17eec11434cd94504f426b1a61a2d7`.

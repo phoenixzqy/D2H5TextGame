@@ -1,0 +1,59 @@
+{
+  "kind": "independent native UI acquisition and conservation audit",
+  "inputRawSHA256": "f6a306049ee4710c0e613c16c92f182d8b4d00d54c1595e8925f29bab4d262a0",
+  "finalRawSHA256": "331c8bcb4df3f24709b5d8e7c94bfc05d9c789105106d82d3ea1193d0a0ea6fc",
+  "before": {
+    "level": 25,
+    "xp": 59741,
+    "gear": 7316,
+    "nextOrdinal": 269
+  },
+  "after": {
+    "level": 25,
+    "xp": 122811,
+    "gear": 7622,
+    "nextOrdinal": 272,
+    "statPoints": 10,
+    "skillPoints": 1
+  },
+  "deltaXP": 63070,
+  "gearGain": 306,
+  "launches": 3,
+  "waves": [
+    {
+      "ordinal": 269,
+      "outcome": "victory",
+      "waves": [
+        "victory",
+        "victory",
+        "victory",
+        "victory",
+        "victory"
+      ]
+    },
+    {
+      "ordinal": 270,
+      "outcome": "victory",
+      "waves": [
+        "victory",
+        "victory",
+        "victory",
+        "victory",
+        "victory"
+      ]
+    },
+    {
+      "ordinal": 271,
+      "outcome": "victory",
+      "waves": [
+        "victory",
+        "victory",
+        "victory",
+        "victory",
+        "victory"
+      ]
+    }
+  ],
+  "roundTrips": 4,
+  "errors": 0
+}

@@ -38,6 +38,7 @@ No earned save is manufactured from these isolated materialization calls.
 Raw audits, scripts and all failed/passing command logs remain root-owned at
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop`
 (`bug153-*`) through full-v1 consumers; root removes them afterward. The
-disposable `dist269` build is used only by the owned earned-campaign preview,
-then removed after its browser/preview consumers finish. Existing suite-time,
+disposable `dist269` build served the owned earned-campaign preview. Its
+browser exits0, preview97330 exits130, port4417 refuses connections and the
+exact build directory is removed/absence verified. Existing suite-time,
 bundle/PWA warnings and full G4/build/economy acceptance remain open. Local only.
