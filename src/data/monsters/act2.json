@@ -499,8 +499,8 @@
   {
     "id": "monsters/act2.the-summoner",
     "name": "monsters.theSummoner",
-    "life": [780, 980],
-    "lifeGrowth": [78, 98],
+    "life": [450, 550],
+    "lifeGrowth": [45, 55],
     "skills": ["monster-fire-ball", "monster-frost-nova", "monster-lightning", "monster-teleport", "monster-summon-adds"],
     "attackSpeed": 110,
     "defense": 120,
