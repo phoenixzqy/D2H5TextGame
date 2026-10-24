@@ -1,0 +1,68 @@
+{
+  "stats": {
+    "startTime": "2026-10-24T17:26:52.407Z",
+    "duration": 72620.913,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "project": "endurance-desktop",
+      "locale": "en",
+      "status": "passed",
+      "screenshot": "final-endurance-desktop-en.png",
+      "exactContinueDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "errors": []
+    },
+    {
+      "project": "endurance-desktop",
+      "locale": "zh-CN",
+      "status": "passed",
+      "screenshot": "final-endurance-desktop-zh-CN.png",
+      "exactContinueDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "errors": []
+    },
+    {
+      "project": "endurance-mobile",
+      "locale": "en",
+      "status": "passed",
+      "screenshot": "final-endurance-mobile-en.png",
+      "exactContinueDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "errors": []
+    },
+    {
+      "project": "endurance-mobile",
+      "locale": "zh-CN",
+      "status": "passed",
+      "screenshot": "final-endurance-mobile-zh-CN.png",
+      "exactContinueDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "errors": []
+    }
+  ]
+}

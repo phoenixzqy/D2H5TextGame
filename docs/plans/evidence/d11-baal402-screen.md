@@ -58,3 +58,19 @@ cache, runtime home, repository, worktree or branch is removed. Source behavior
 remains `d352c44`; the prior full11722PASS/types/lint/build checks apply, without
 a new suite for these evidence-only changes. Full test/performance/PWA budgets,
 independent acceptance, C2–C4/213skills/pacing/G0–G7 remain incomplete. Local only.
+
+## Final ranked-Ice policy and return to implementation
+
+One final frozen policy, paid reset to IceBolt1/IceBlast20/ColdMastery20/
+Static4/Warmth1 with Static→IceBlast, finished25/32wins and15/16second-half
+wins. It fails the unchanged26/32+12/16 gate. These32independent original
+seeds bring the total to256trials/eightpolicies, all unqualified. No genuine
+action or projected-save promotion occurred. The complete outcome report is
+[retained](fixtures/baal402-screen/ranked-ice-report.json.gz).
+
+Its32raw recordings/policy/seeds/driver remain under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-baal402-iceblast-b5mw39l9`
+through full-v1 consumers; root removes them afterward. Session79501 is
+terminal/0; its exact owned Vite cache is removed and absence verified.
+This failed screen changed the next action: stop further speculative build
+screens and implement the missing [Barbarian endurance group](d05-barbarian-endurance.md).

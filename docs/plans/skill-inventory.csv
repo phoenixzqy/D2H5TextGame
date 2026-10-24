@@ -66,7 +66,7 @@ barbarian,skills-barbarian-leap-attack,barbarian.leap_attack,active,damage,stun,
 barbarian,skills-barbarian-berserk,barbarian.berserk,active,damage,,src/data/skills/barbarian.json,,unverified,
 barbarian,skills-barbarian-war-cry,barbarian.war_cry,active,damage,stun,src/data/skills/barbarian.json,,unverified,
 barbarian,skills-barbarian-iron-skin,barbarian.iron_skin,passive,buff,,src/data/skills/barbarian.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
-barbarian,skills-barbarian-natural-resistance,barbarian.natural_resistance,passive,buff,,src/data/skills/barbarian.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+barbarian,skills-barbarian-natural-resistance,barbarian.natural_resistance,passive,buff-metadata+fresh-player-stat-composition,,src/data/skills/barbarian.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-barbarian-endurance.md
 barbarian,skills-barbarian-battle-orders,barbarian.battle_orders,passive,buff,,src/data/skills/barbarian.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 barbarian,skills-barbarian-shout,barbarian.shout,passive,buff,,src/data/skills/barbarian.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 barbarian,skills-barbarian-sword-mastery,barbarian.sword_mastery,passive,buff,,src/data/skills/barbarian.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
@@ -75,8 +75,8 @@ barbarian,skills-barbarian-mace-mastery,barbarian.mace_mastery,passive,buff,,src
 barbarian,skills-barbarian-pole-arm-mastery,barbarian.pole_arm_mastery,passive,buff,,src/data/skills/barbarian.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 barbarian,skills-barbarian-throwing-mastery,barbarian.throwing_mastery,passive,buff,,src/data/skills/barbarian.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 barbarian,skills-barbarian-spear-mastery,barbarian.spear_mastery,passive,buff,,src/data/skills/barbarian.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
-barbarian,skills-barbarian-increased-stamina,barbarian.increased_stamina,passive,buff,,src/data/skills/barbarian.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
-barbarian,skills-barbarian-increased-speed,barbarian.increased_speed,passive,buff,,src/data/skills/barbarian.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+barbarian,skills-barbarian-increased-stamina,barbarian.increased_stamina,passive,buff-metadata+fresh-player-stat-composition,,src/data/skills/barbarian.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-barbarian-endurance.md
+barbarian,skills-barbarian-increased-speed,barbarian.increased_speed,passive,buff-metadata+fresh-player-stat-composition,,src/data/skills/barbarian.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-barbarian-endurance.md
 barbarian,skills-barbarian-leap,barbarian.leap,active,debuff,knockback,src/data/skills/barbarian.json,pure-debuff-consumer-not-found-in-audit,unverified,
 barbarian,skills-barbarian-stun,barbarian.stun,active,damage,stun,src/data/skills/barbarian.json,,unverified,
 barbarian,skills-barbarian-double-throw,barbarian.double_throw,active,damage,,src/data/skills/barbarian.json,,unverified,

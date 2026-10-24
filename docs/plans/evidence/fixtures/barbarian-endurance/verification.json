@@ -1,0 +1,29 @@
+{
+  "focused": {
+    "passed": 100,
+    "files": 6,
+    "seconds": 11.96
+  },
+  "engine": {
+    "passed": 5823,
+    "files": 180,
+    "seconds": 131.05
+  },
+  "full": {
+    "passed": 11778,
+    "skipped": 2,
+    "files": 460,
+    "seconds": 599.47
+  },
+  "typecheck": 0,
+  "lint": 0,
+  "build": 0,
+  "browser": {
+    "passed": 4,
+    "skipped": 0,
+    "flaky": 0,
+    "retries": 0
+  },
+  "independentAcceptance": "pending",
+  "genuineProgressChanged": false
+}

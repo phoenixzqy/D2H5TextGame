@@ -1,0 +1,10 @@
+{
+  "removed": [
+    "dist",
+    "dist-final"
+  ],
+  "remainingDisposable": [],
+  "previewPort4451Closed": true,
+  "failures": [],
+  "reason": "both production browser runs terminal; source/build hashes captured and final build rechecked"
+}

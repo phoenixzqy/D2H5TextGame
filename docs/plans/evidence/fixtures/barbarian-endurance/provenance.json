@@ -1,0 +1,27 @@
+{
+  "baseCommit": "f7718ac1d58efbe29761fe79c61d3d1e439db5b9",
+  "sourceSHA256": {
+    "src/engine/skills/barbarian-endurance.ts": "671963bdf907450657e606eb02054b309d17fe7ac2304a4cad69e1fa9bbf0176",
+    "src/data/schema/skill.schema.json": "6221ad3fbc4350c69d9e54f6596f9f6f1f63dc00b3b5acf591862b1f78fc16c3",
+    "src/stores/combatHelpers.ts": "b11b80f068a59bc739e21066a7f5431f28a631ffe783011c179bafe0f6bd984d",
+    "src/features/skills/SkillsScreen.tsx": "c1874ae37a98f2e9c3e7c06d091fe8c548618c0057916d7aab059467ccc4b4f7",
+    "src/i18n/locales/en/skills.json": "ab8dfa7f338048c504f8438aa0d45cfba72be2a0497d5553d9260ce9055ad01e",
+    "src/i18n/locales/zh-CN/skills.json": "4338cf39874fa7189f56cccd4b5151a7f29a536e2fea2d78a514d745fe0ea472",
+    "src/data/skills/barbarian.json": "38beb0e4c1821ada7e02be74149cc5c6294370158f4adef20c29a677a2e4fe33",
+    "src/stores/barbarian-passive-composition.test.ts": "b7e05ad34310c594bc09a9dbc7f21b90822fb1153191cfdbcbe001e785886cba",
+    "src/stores/barbarian-endurance-native.test.ts": "652de260afa6f23f1c4c0ff898323adeb8089c341c7d61ddd537dcdf2f734d31",
+    "src/engine/skills/barbarian-endurance-schema.test.ts": "aba9b1d91ac259359f5128f8c54afb186be5d1aaa75ed7e14320d3bcb78107ae",
+    "src/engine/skills/barbarian-endurance.test.ts": "000e46bb26a21ba8ed4d31418270b03cf51f88319c44f95aaa961dff96c7a6a6",
+    "src/features/skills/SkillsScreen.barbarian-endurance.test.tsx": "d44fd20337066781adb59c3bb017df479463cb5fd3d70af325953b514eb3f025",
+    "tests/pwa/barbarian-endurance.config.ts": "c6054dc1158e52ce60eac1bf4db32f6b48e2767666b8211fc6936309c58dac34",
+    "tests/pwa/barbarian-endurance.spec.ts": "d44b31e85ba2f323dbfa19bbcf1b105b14b38c26648686bcae1f86b0f86059ae"
+  },
+  "productionJS": {
+    "react-vendor-dRBhy6jq.js": "d023b474fbe60dec77510b20d3560e8a8c6b796e6d623cf648bf12800af453fb",
+    "game-engine-CqIzUXqx.js": "1fa97c84cee8074c2e55d99513c68c552e06b85906d088e0014d0d2f29fe3506",
+    "index-OXSQE5MI.js": "fe2570b4fb2d311a83f0a187558a55790dc2d3461f442ba9a590d3486a7fc4cb",
+    "i18n-Bxr3rY09.js": "cb3cefca3bda4b6da700c1dcd65dae18a27f3a44e5c831c09cacb7652a2505f8"
+  },
+  "bridgeViolations": [],
+  "genuineResumeRawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577"
+}

@@ -1,6 +1,6 @@
 # BUG-166 — Apply Barbarian endurance passive allocations
 
-Severity: High. Status: fixed locally; independent acceptance pending.
+Severity: High. Status: fixed in `99a3733`; independent acceptance pending.
 Owner: engine-dev / frontend-dev. Affected: combat composition and Skills copy.
 
 ## Reproduction

@@ -1,0 +1,149 @@
+{
+  "owner": "01a1577a-5af4-70e3-8699-50a906877d8f",
+  "purpose": "BUG166 three Barbarian endurance passives",
+  "inputCommit": "f7718ac",
+  "disposable": [
+    "dist",
+    "dist-final"
+  ],
+  "retainedEvidence": "all other exact files under this task root; root removes after active full-v1 consumers finish",
+  "processes": [
+    {
+      "sessionId": 17631,
+      "status": "terminal"
+    },
+    {
+      "sessionId": 48735,
+      "status": "terminal"
+    },
+    {
+      "sessionId": 28029,
+      "status": "terminal"
+    },
+    {
+      "sessionId": 78883,
+      "status": "terminal"
+    },
+    {
+      "sessionId": 47757,
+      "status": "terminal"
+    },
+    {
+      "sessionId": 26461,
+      "status": "terminal"
+    },
+    {
+      "sessionId": 59001,
+      "status": "terminal"
+    },
+    {
+      "sessionId": 53881,
+      "status": "terminal"
+    },
+    {
+      "sessionId": 16896,
+      "status": "terminal"
+    },
+    {
+      "sessionId": 66928,
+      "status": "terminal"
+    },
+    {
+      "sessionId": 67010,
+      "status": "terminal/0"
+    },
+    {
+      "sessionId": 85734,
+      "status": "terminal/130; exact owned PID SIGINT for BUG167 correction"
+    },
+    {
+      "sessionId": 77736,
+      "status": "terminal/0"
+    },
+    {
+      "sessionId": 28392,
+      "status": "terminal/1; initial six lint errors corrected"
+    },
+    {
+      "sessionId": 52401,
+      "status": "terminal/0"
+    },
+    {
+      "sessionId": 64412,
+      "status": "terminal/0"
+    },
+    {
+      "sessionId": 82969,
+      "status": "terminal/0"
+    },
+    {
+      "sessionId": 94479,
+      "status": "terminal/0"
+    },
+    {
+      "sessionId": 31050,
+      "status": "terminal/0"
+    },
+    {
+      "sessionId": 97337,
+      "status": "terminal/0; 11778 passes/two existing skips"
+    },
+    {
+      "sessionId": 78644,
+      "status": "terminal/0"
+    }
+  ],
+  "files": [
+    "bridge-scan.json",
+    "browser-final-report.json",
+    "browser-final-summary.json",
+    "browser-final.log",
+    "browser-final/.last-run.json",
+    "browser-report.json",
+    "browser-summary.json",
+    "browser.log",
+    "browser/.last-run.json",
+    "build-final.log",
+    "build.log",
+    "cleanup.json",
+    "endurance-desktop-en.png",
+    "endurance-desktop-zh-CN.png",
+    "endurance-mobile-en.png",
+    "endurance-mobile-zh-CN.png",
+    "engine-final.log",
+    "engine.log",
+    "final-endurance-desktop-en.png",
+    "final-endurance-desktop-zh-CN.png",
+    "final-endurance-mobile-en.png",
+    "final-endurance-mobile-zh-CN.png",
+    "focused-final.log",
+    "full-final.log",
+    "full-interruption.json",
+    "full.log",
+    "green-focused-first.log",
+    "green-focused.log",
+    "lint-final.log",
+    "lint.log",
+    "native-first.log",
+    "ownership.json",
+    "provenance.json",
+    "red-composition-corrected.log",
+    "red-composition.log",
+    "red-fractional-ui.log",
+    "red-schema-ui.log",
+    "red-ui-corrected.log",
+    "typecheck-corrected.log",
+    "typecheck-final.log",
+    "typecheck-first.log"
+  ],
+  "cleanup": {
+    "removed": [
+      "dist",
+      "dist-final"
+    ],
+    "remainingDisposable": [],
+    "previewPort4451Closed": true,
+    "failures": [],
+    "reason": "both production browser runs terminal; source/build hashes captured and final build rechecked"
+  }
+}

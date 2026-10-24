@@ -1,6 +1,6 @@
 # BUG-167 — Preserve fractional percentages in skill utility details
 
-Severity: Medium. Status: fixed locally; independent acceptance pending.
+Severity: Medium. Status: fixed in `99a3733`; independent acceptance pending.
 Owner: frontend-dev. Affected: Skills current/next utility percentages/deltas.
 
 ## Reproduction
