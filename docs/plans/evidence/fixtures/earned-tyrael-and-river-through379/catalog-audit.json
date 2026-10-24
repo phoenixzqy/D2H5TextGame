@@ -1,0 +1,1422 @@
+{
+  "kind": "full authored base enumeration through public current matcher; no generated item, material spending or genuine action",
+  "sourceCommit": "59f2590",
+  "baseCount": 75,
+  "recipeCount": 35,
+  "insightCorrection": "Insight has a legal level35 GiantThresher target; earlier staff/polearm string search omitted that base. Current hero31 cannot equip it.",
+  "rows": [
+    {
+      "word": "runewords/steel",
+      "sockets": 2,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-short-sword",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/wp1h-scimitar",
+          "baseRequiredLevel": 8,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/wp1h-long-sword",
+          "baseRequiredLevel": 22,
+          "wordRequiredLevel": 13,
+          "equipLevel": 22,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/wp1h-war-sword",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 13,
+          "equipLevel": 32,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 13,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 13,
+          "equipLevel": 60,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-two-handed-sword",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/wp2h-great-axe",
+          "baseRequiredLevel": 8,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/wp2h-war-pike",
+          "baseRequiredLevel": 24,
+          "wordRequiredLevel": 13,
+          "equipLevel": 24,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 13,
+          "equipLevel": 35,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 13,
+          "equipLevel": 52,
+          "maxSockets": 5
+        },
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 13,
+          "equipLevel": 62,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/weapon-bow",
+          "baseRequiredLevel": 10,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/weapon-crossbow",
+          "baseRequiredLevel": 15,
+          "wordRequiredLevel": 13,
+          "equipLevel": 15,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/weapon-polearm",
+          "baseRequiredLevel": 20,
+          "wordRequiredLevel": 13,
+          "equipLevel": 20,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/weapon-staff",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/weapon-scepter",
+          "baseRequiredLevel": 15,
+          "wordRequiredLevel": 13,
+          "equipLevel": 15,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/weapon-mace",
+          "baseRequiredLevel": 10,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/weapon-axe",
+          "baseRequiredLevel": 12,
+          "wordRequiredLevel": 13,
+          "equipLevel": 13,
+          "maxSockets": 2
+        }
+      ]
+    },
+    {
+      "word": "runewords/stealth",
+      "sockets": 2,
+      "matches": [
+        {
+          "baseId": "items/base/armor-quilted",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 17,
+          "equipLevel": 17,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/armor-leather",
+          "baseRequiredLevel": 6,
+          "wordRequiredLevel": 17,
+          "equipLevel": 17,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 17,
+          "equipLevel": 25,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 17,
+          "equipLevel": 32,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 17,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 17,
+          "equipLevel": 60,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-light",
+          "baseRequiredLevel": 10,
+          "wordRequiredLevel": 17,
+          "equipLevel": 17,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 17,
+          "equipLevel": 40,
+          "maxSockets": 3
+        }
+      ]
+    },
+    {
+      "word": "runewords/leaf",
+      "sockets": 2,
+      "matches": [
+        {
+          "baseId": "items/base/weapon-staff",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 19,
+          "equipLevel": 19,
+          "maxSockets": 2
+        }
+      ]
+    },
+    {
+      "word": "runewords/malice",
+      "sockets": 3,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-long-sword",
+          "baseRequiredLevel": 22,
+          "wordRequiredLevel": 15,
+          "equipLevel": 22,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/wp1h-war-sword",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 15,
+          "equipLevel": 32,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 15,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 15,
+          "equipLevel": 60,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-war-pike",
+          "baseRequiredLevel": 24,
+          "wordRequiredLevel": 15,
+          "equipLevel": 24,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 15,
+          "equipLevel": 35,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 15,
+          "equipLevel": 52,
+          "maxSockets": 5
+        },
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 15,
+          "equipLevel": 62,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/weapon-polearm",
+          "baseRequiredLevel": 20,
+          "wordRequiredLevel": 15,
+          "equipLevel": 20,
+          "maxSockets": 3
+        }
+      ]
+    },
+    {
+      "word": "runewords/strength",
+      "sockets": 2,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-short-sword",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/wp1h-scimitar",
+          "baseRequiredLevel": 8,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/wp1h-long-sword",
+          "baseRequiredLevel": 22,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/wp1h-war-sword",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 25,
+          "equipLevel": 32,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 25,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 25,
+          "equipLevel": 60,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-two-handed-sword",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/wp2h-great-axe",
+          "baseRequiredLevel": 8,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/wp2h-war-pike",
+          "baseRequiredLevel": 24,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 25,
+          "equipLevel": 35,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 25,
+          "equipLevel": 52,
+          "maxSockets": 5
+        },
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 25,
+          "equipLevel": 62,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/weapon-bow",
+          "baseRequiredLevel": 10,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/weapon-crossbow",
+          "baseRequiredLevel": 15,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/weapon-polearm",
+          "baseRequiredLevel": 20,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/weapon-staff",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/weapon-scepter",
+          "baseRequiredLevel": 15,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/weapon-mace",
+          "baseRequiredLevel": 10,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/weapon-axe",
+          "baseRequiredLevel": 12,
+          "wordRequiredLevel": 25,
+          "equipLevel": 25,
+          "maxSockets": 2
+        }
+      ]
+    },
+    {
+      "word": "runewords/ancients-pledge",
+      "sockets": 3,
+      "matches": [
+        {
+          "baseId": "items/base/sh-aegis",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 21,
+          "equipLevel": 25,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 21,
+          "equipLevel": 35,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 21,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 21,
+          "equipLevel": 60,
+          "maxSockets": 4
+        }
+      ]
+    },
+    {
+      "word": "runewords/lore",
+      "sockets": 2,
+      "matches": [
+        {
+          "baseId": "items/base/helm-cap",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 27,
+          "equipLevel": 27,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/helm-skull-cap",
+          "baseRequiredLevel": 5,
+          "wordRequiredLevel": 27,
+          "equipLevel": 27,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/helm-war-hat",
+          "baseRequiredLevel": 22,
+          "wordRequiredLevel": 27,
+          "equipLevel": 27,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/helm-casque",
+          "baseRequiredLevel": 28,
+          "wordRequiredLevel": 27,
+          "equipLevel": 28,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/helm-armet",
+          "baseRequiredLevel": 45,
+          "wordRequiredLevel": 27,
+          "equipLevel": 45,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/helm-giant-conch",
+          "baseRequiredLevel": 55,
+          "wordRequiredLevel": 27,
+          "equipLevel": 55,
+          "maxSockets": 4
+        }
+      ]
+    },
+    {
+      "word": "runewords/wealth",
+      "sockets": 3,
+      "matches": [
+        {
+          "baseId": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 43,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 43,
+          "equipLevel": 60,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 3
+        }
+      ]
+    },
+    {
+      "word": "runewords/steelclash",
+      "sockets": 3,
+      "matches": [
+        {
+          "baseId": "items/base/sh-aegis",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 29,
+          "equipLevel": 29,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 29,
+          "equipLevel": 35,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 29,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 29,
+          "equipLevel": 60,
+          "maxSockets": 4
+        }
+      ]
+    },
+    {
+      "word": "runewords/smoke",
+      "sockets": 2,
+      "matches": [
+        {
+          "baseId": "items/base/armor-quilted",
+          "baseRequiredLevel": 1,
+          "wordRequiredLevel": 37,
+          "equipLevel": 37,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/armor-leather",
+          "baseRequiredLevel": 6,
+          "wordRequiredLevel": 37,
+          "equipLevel": 37,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 37,
+          "equipLevel": 37,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 37,
+          "equipLevel": 37,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 37,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 37,
+          "equipLevel": 60,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-light",
+          "baseRequiredLevel": 10,
+          "wordRequiredLevel": 37,
+          "equipLevel": 37,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 37,
+          "equipLevel": 40,
+          "maxSockets": 3
+        }
+      ]
+    },
+    {
+      "word": "runewords/rhyme",
+      "sockets": 2,
+      "matches": [
+        {
+          "baseId": "items/base/sh-kite",
+          "baseRequiredLevel": 8,
+          "wordRequiredLevel": 29,
+          "equipLevel": 29,
+          "maxSockets": 2
+        },
+        {
+          "baseId": "items/base/sh-aegis",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 29,
+          "equipLevel": 29,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 29,
+          "equipLevel": 35,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 29,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 29,
+          "equipLevel": 60,
+          "maxSockets": 4
+        }
+      ]
+    },
+    {
+      "word": "runewords/insight",
+      "sockets": 4,
+      "matches": [
+        {
+          "baseId": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 27,
+          "equipLevel": 35,
+          "maxSockets": 4
+        }
+      ]
+    },
+    {
+      "word": "runewords/treachery",
+      "sockets": 3,
+      "matches": [
+        {
+          "baseId": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 43,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 43,
+          "equipLevel": 60,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 3
+        }
+      ]
+    },
+    {
+      "word": "runewords/duress",
+      "sockets": 3,
+      "matches": [
+        {
+          "baseId": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 47,
+          "equipLevel": 47,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 47,
+          "equipLevel": 47,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 47,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 47,
+          "equipLevel": 60,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 47,
+          "equipLevel": 47,
+          "maxSockets": 3
+        }
+      ]
+    },
+    {
+      "word": "runewords/spirit",
+      "sockets": 4,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 25,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 25,
+          "equipLevel": 60,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 25,
+          "equipLevel": 52,
+          "maxSockets": 5
+        },
+        {
+          "baseId": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 25,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 25,
+          "equipLevel": 60,
+          "maxSockets": 4
+        }
+      ]
+    },
+    {
+      "word": "runewords/lionheart",
+      "sockets": 3,
+      "matches": [
+        {
+          "baseId": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 41,
+          "equipLevel": 41,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 41,
+          "equipLevel": 41,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 41,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 41,
+          "equipLevel": 60,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 41,
+          "equipLevel": 41,
+          "maxSockets": 3
+        }
+      ]
+    },
+    {
+      "word": "runewords/obedience",
+      "sockets": 5,
+      "matches": []
+    },
+    {
+      "word": "runewords/passion",
+      "sockets": 4,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 43,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 43,
+          "equipLevel": 60,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 43,
+          "equipLevel": 43,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 43,
+          "equipLevel": 52,
+          "maxSockets": 5
+        },
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 43,
+          "equipLevel": 62,
+          "maxSockets": 6
+        }
+      ]
+    },
+    {
+      "word": "runewords/oath",
+      "sockets": 4,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 49,
+          "equipLevel": 50,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 49,
+          "equipLevel": 60,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 49,
+          "equipLevel": 49,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 49,
+          "equipLevel": 52,
+          "maxSockets": 5
+        },
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 49,
+          "equipLevel": 62,
+          "maxSockets": 6
+        }
+      ]
+    },
+    {
+      "word": "runewords/fortitude",
+      "sockets": 4,
+      "matches": [
+        {
+          "baseId": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 59,
+          "equipLevel": 59,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 59,
+          "equipLevel": 60,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 59,
+          "equipLevel": 59,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 59,
+          "equipLevel": 60,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 59,
+          "equipLevel": 59,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 59,
+          "equipLevel": 59,
+          "maxSockets": 5
+        },
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 59,
+          "equipLevel": 62,
+          "maxSockets": 6
+        }
+      ]
+    },
+    {
+      "word": "runewords/call-to-arms",
+      "sockets": 5,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 57,
+          "equipLevel": 60,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 57,
+          "equipLevel": 57,
+          "maxSockets": 5
+        },
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 57,
+          "equipLevel": 62,
+          "maxSockets": 6
+        }
+      ]
+    },
+    {
+      "word": "runewords/heart-of-the-oak",
+      "sockets": 4,
+      "matches": [
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 55,
+          "equipLevel": 62,
+          "maxSockets": 6
+        }
+      ]
+    },
+    {
+      "word": "runewords/enigma",
+      "sockets": 3,
+      "matches": [
+        {
+          "baseId": "items/base/armor-chain-mail",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-breast-plate",
+          "baseRequiredLevel": 32,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-heavy",
+          "baseRequiredLevel": 40,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3
+        }
+      ]
+    },
+    {
+      "word": "runewords/breath-of-the-dying",
+      "sockets": 6,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 69,
+          "equipLevel": 69,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 69,
+          "equipLevel": 69,
+          "maxSockets": 6
+        }
+      ]
+    },
+    {
+      "word": "runewords/grief",
+      "sockets": 5,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 59,
+          "equipLevel": 60,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 59,
+          "equipLevel": 59,
+          "maxSockets": 5
+        }
+      ]
+    },
+    {
+      "word": "runewords/infinity",
+      "sockets": 4,
+      "matches": [
+        {
+          "baseId": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 63,
+          "equipLevel": 63,
+          "maxSockets": 4
+        }
+      ]
+    },
+    {
+      "word": "runewords/beast",
+      "sockets": 5,
+      "matches": [
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 63,
+          "equipLevel": 63,
+          "maxSockets": 6
+        }
+      ]
+    },
+    {
+      "word": "runewords/chains-of-honor",
+      "sockets": 4,
+      "matches": [
+        {
+          "baseId": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 63,
+          "equipLevel": 63,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 63,
+          "equipLevel": 63,
+          "maxSockets": 4
+        }
+      ]
+    },
+    {
+      "word": "runewords/bramble",
+      "sockets": 4,
+      "matches": [
+        {
+          "baseId": "items/base/armor-dusk-shroud",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 61,
+          "equipLevel": 61,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/armor-archon-plate",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 61,
+          "equipLevel": 61,
+          "maxSockets": 4
+        }
+      ]
+    },
+    {
+      "word": "runewords/last-wish",
+      "sockets": 6,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 6
+        }
+      ]
+    },
+    {
+      "word": "runewords/phoenix",
+      "sockets": 4,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 5
+        },
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4
+        }
+      ]
+    },
+    {
+      "word": "runewords/dream",
+      "sockets": 3,
+      "matches": [
+        {
+          "baseId": "items/base/helm-war-hat",
+          "baseRequiredLevel": 22,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/helm-casque",
+          "baseRequiredLevel": 28,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/helm-armet",
+          "baseRequiredLevel": 45,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/helm-giant-conch",
+          "baseRequiredLevel": 55,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/sh-aegis",
+          "baseRequiredLevel": 25,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/sh-dragon-shield",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 3
+        },
+        {
+          "baseId": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 65,
+          "equipLevel": 65,
+          "maxSockets": 4
+        }
+      ]
+    },
+    {
+      "word": "runewords/hand-of-justice",
+      "sockets": 4,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-phase-blade",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 67,
+          "equipLevel": 67,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 67,
+          "equipLevel": 67,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-giant-thresher",
+          "baseRequiredLevel": 35,
+          "wordRequiredLevel": 67,
+          "equipLevel": 67,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 67,
+          "equipLevel": 67,
+          "maxSockets": 5
+        },
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 67,
+          "equipLevel": 67,
+          "maxSockets": 6
+        }
+      ]
+    },
+    {
+      "word": "runewords/exile",
+      "sockets": 4,
+      "matches": [
+        {
+          "baseId": "items/base/sh-monarch",
+          "baseRequiredLevel": 50,
+          "wordRequiredLevel": 57,
+          "equipLevel": 57,
+          "maxSockets": 4
+        },
+        {
+          "baseId": "items/base/sh-sacred-targe",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 57,
+          "equipLevel": 60,
+          "maxSockets": 4
+        }
+      ]
+    },
+    {
+      "word": "runewords/death",
+      "sockets": 5,
+      "matches": [
+        {
+          "baseId": "items/base/wp1h-legend-sword",
+          "baseRequiredLevel": 60,
+          "wordRequiredLevel": 55,
+          "equipLevel": 60,
+          "maxSockets": 6
+        },
+        {
+          "baseId": "items/base/wp2h-colossus-blade",
+          "baseRequiredLevel": 52,
+          "wordRequiredLevel": 55,
+          "equipLevel": 55,
+          "maxSockets": 5
+        },
+        {
+          "baseId": "items/base/wp2h-thunder-maul",
+          "baseRequiredLevel": 62,
+          "wordRequiredLevel": 55,
+          "equipLevel": 62,
+          "maxSockets": 6
+        }
+      ]
+    }
+  ]
+}

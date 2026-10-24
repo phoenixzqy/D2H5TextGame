@@ -1,0 +1,70 @@
+{
+  "sourceCommit": "59f2590",
+  "runtimeHead": "22bc93c",
+  "sourceFiles": 903,
+  "buildFiles": 760,
+  "builtBridgeFreeJS": 7,
+  "servedChunks": 4,
+  "exportsAudited": 47,
+  "ancestralFullPayloads": 19893,
+  "exactDurablePairs": 6,
+  "pairs": [
+    [
+      "tyrael-blessing/saved.json.gz",
+      "tyrael-blessing/continued.json.gz"
+    ],
+    [
+      "river-farm376/002-precombat-saved.json.gz",
+      "river-farm376/003-precombat-continued.json.gz"
+    ],
+    [
+      "river-farm376/034-379-won-saved.json.gz",
+      "river-farm376/035-379-won-continued.json.gz"
+    ],
+    [
+      "river-farm376/018-377-won-saved.json.gz",
+      "river-farm376/019-377-won-continued.json.gz"
+    ],
+    [
+      "river-farm376/026-378-won-saved.json.gz",
+      "river-farm376/027-378-won-continued.json.gz"
+    ],
+    [
+      "river-farm376/010-376-won-saved.json.gz",
+      "river-farm376/011-376-won-continued.json.gz"
+    ]
+  ],
+  "diagnosticProjections": 224,
+  "selected": null,
+  "tyraelSkillPointsEarned": 2,
+  "launches": [
+    {
+      "ordinal": 376,
+      "alias": "river-of-flame"
+    },
+    {
+      "ordinal": 377,
+      "alias": "river-of-flame"
+    },
+    {
+      "ordinal": 378,
+      "alias": "river-of-flame"
+    },
+    {
+      "ordinal": 379,
+      "alias": "river-of-flame"
+    }
+  ],
+  "winningWaves": 24,
+  "failedWaves": 0,
+  "heroXPEarned": 129140,
+  "newGear": 478,
+  "finalLevel": 31,
+  "finalXP": 166224,
+  "nextNormal": 380,
+  "finalOwnedGear": 20371,
+  "statPoints": 5,
+  "skillPoints": 3,
+  "finalRawSHA256": "b0972bad81133bba925939ed6c412307e2338df2e65795a2f6b48fa70735a64f",
+  "scope": "earned Tyrael blessing and new River farming; originalDiablo375 loss retained, no actual reset/equip/point spending or newDiablo attempt; C2-C4/fullG0-G7 incomplete"
+}

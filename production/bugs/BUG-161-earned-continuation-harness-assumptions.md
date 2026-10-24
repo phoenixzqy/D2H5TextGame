@@ -48,3 +48,17 @@ stopped snapshots and reports remain under
 through campaign/full-v1 consumers; root removes them afterward. The workaround
 is to continue from the consumed native snapshot and correct the expectation;
 replaying the original genuine action is prohibited.
+
+## Follow-up through actual379
+
+Two later diagnostic-only joint screens incorrectly request Ormus, then Jamella,
+in Act IV. The product correctly refuses both with `wrong-town` before any
+trials or genuine changes. `joint-screen-v3.mjs` reads the authoritative town
+NPC from `src/data/respec.json` (Tyrael) and completes all96 projections, with
+no qualifying candidate and no actual reset. The first new artifact auditor
+also assumes Save/Continue filenames share a serial prefix. `audit-v2.py`
+matches their normalized stage names and retains complete deep equality;47
+exports and six durable pairs pass. Original failed scripts/logs remain in the
+[new continuation archive](../../docs/plans/evidence/d11-earned-tyrael-and-river-through379.md).
+Actual Tyrael blessing and attempts376–379 occur once; no failed diagnostic
+request or audit is presented as a game defect.

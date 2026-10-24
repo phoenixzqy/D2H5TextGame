@@ -11036,3 +11036,37 @@ C0/C1 retain historical acceptance; C2 is unfinished at Diablo; C3/C4,213-skill,
 pacing, independent acceptance and fullG0–G7 remain incomplete. Next is owned
 physical mitigation and legal earned-point preparation for new actual376.
 Local only; the umbrella goal and claimed worktree remain active.
+
+
+## D11 — Earned Tyrael blessing and River farming through379
+
+[Continuation evidence](evidence/d11-earned-tyrael-and-river-through379.md)
+records actual Start/Talk/Claim of the separate Tyrael blessing (+2skillpoints,
+zeroXP/gear/currency), then four new River clears376–379:24 winning waves,
+129140heroXP and478gear. OriginalDiablo375defeat/seals/consumedForge graph
+remain authoritative; no new Diablo attempt, ActV unlock or Terror's End Claim.
+Final genuine state isL31/XP166224/next380/20371owned gear,5stat/3skill unspent.
+No actual equipment, point allocation or reset is spent.
+
+Four hero policies128projections and three joint policies96projections each
+produce0/32Chaos clears; none qualifies under the unchanged selection rule.
+Original failed diagnostic town-NPC assumptions and audit serial-name assumption
+are retained with corrections in BUG161. Complete public-matcher enumeration
+of75bases×35recipes corrects the preliminary Insight claim: legalGiantThresher
+requireslevel35. It separately proves BUG162: no five-socket polearm exists
+for Obedience. Preserve recipe identity/costs; no content bypass is applied.
+
+AuditPASS47native exports,6exactSave-close-Continue pairs,19893ancestral full
+item payloads,903source/760build hashes,7bridge-free builtJS/4exactserved chunks.
+Production source remains59f2590; previous11670unit/typecheck/lint/build results
+apply, with existing skips/timing/PWA/bundle limitations unchanged. Transport
+measurements do not establish active/economic30–50-hour campaign pacing.
+All146raw files are archived, including every native export and original failure.
+All task processes terminal; own preview75379 exits1 afterCtrl-C,4438closed;
+exact task build/cache/unuseddraft absent, cleanup remaining[]/failures[].
+Root retains the exact raw directory
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/diablo-preparation376`
+through campaign/full-v1 consumers, then removes it. C0/C1 retain historical
+acceptance; C2–C4,213skills, pacing and fullG0–G7 remain incomplete. Resume from
+versioned through379, never replay369–379 or TyraelClaim. Local only; goal and
+claimed worktree stay active.
