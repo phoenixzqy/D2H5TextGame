@@ -79,6 +79,7 @@ import { composeBarbarianWeaponMasteries } from '@/engine/skills/barbarian-weapo
 import { composeDamageMasteries } from '@/engine/skills/damage-masteries';
 import { composeAmazonPassives } from '@/engine/skills/amazon-passives';
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
+import { composeSummonPassives } from '@/engine/skills/summon-passives';
 import { composeGolemMastery } from '@/engine/skills/golem-mastery';
 import { composeCorpseExplosion } from '@/engine/skills/corpse-explosion';
 import { composePoisonExplosion } from '@/engine/skills/poison-explosion';
@@ -1100,6 +1101,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const meditationAura = fresh && currentPlayer?.id === run.playerUnit.id
     ? composeMeditationAura(currentPlayer, fresh.manaRegenBaselinePerSecond ?? fresh.manaRegenPerSecond ?? 0,
       run.fieldedMercCombatId) : undefined;
+  const summonPassives = currentPlayer?.id === run.playerUnit.id
+    ? composeSummonPassives(currentPlayer) : undefined;
   const skeletonMastery = currentPlayer?.id === run.playerUnit.id
     ? composeSkeletonMastery(currentPlayer) : undefined;
   const golemMastery = currentPlayer?.id === run.playerUnit.id
@@ -1184,6 +1187,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       ...(meditationAura ? { meditationAura } : {}),
       ...(skeletonMastery ? { skeletonMastery } : {}),
       ...(golemMastery ? { golemMastery } : {}),
+      ...(summonPassives ? { summonPassives } : {}),
       ...(corpseExplosion ? { corpseExplosion: [corpseExplosion] } : {}),
       ...(poisonExplosion ? { poisonExplosion: [poisonExplosion] } : {})
     },

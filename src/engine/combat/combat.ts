@@ -54,8 +54,9 @@ import { copyCorpseExplosionProjections, corpseExplosionRank, isCorpseExplosionI
   type CorpseExplosionProjection } from '../skills/corpse-explosion';
 import { copyPoisonExplosionProjections, poisonExplosionRank, isPoisonExplosionId, matchesPoisonExplosion,
   type PoisonExplosionProjection } from '../skills/poison-explosion';
-import { empowerSkeletonSummon, type SkeletonMasteryProjection } from '../skills/skeleton-mastery';
-import { empowerGolemSummon, type GolemMasteryProjection } from '../skills/golem-mastery';
+import type { SkeletonMasteryProjection } from '../skills/skeleton-mastery';
+import type { GolemMasteryProjection } from '../skills/golem-mastery';
+import { empowerNecromancerSummon, type SummonPassiveProjection } from '../skills/summon-passives';
 import { SKELETAL_MAGE_DEFINITION, type SkeletalMageElement } from '../skills/skeletal-mage';
 import { IRON_GOLEM_SKILL_ID, isIronGolemSkill, qualifyIronGolemSource, applyIronGolemItemStats,
   type IronGolemInput, type IronGolemPreparationAttestation } from '../skills/iron-golem';
@@ -142,6 +143,8 @@ export interface CombatSnapshot {
   readonly skeletonMastery?: SkeletonMasteryProjection;
   /** Copied authoritative Golem Mastery for fresh summons in this wave. */
   readonly golemMastery?: GolemMasteryProjection;
+  /** Copied global bonuses for newly created owned Necromancer summons. */
+  readonly summonPassives?: SummonPassiveProjection;
   /** Explicit isolated item bonuses for a selected-item Iron startup attempt. */
   readonly ironGolem?: IronGolemInput;
 }
@@ -174,6 +177,7 @@ interface State {
   readonly meditationAura?: MeditationAuraProjection;
   readonly skeletonMastery?: SkeletonMasteryProjection;
   readonly golemMastery?: GolemMasteryProjection;
+  readonly summonPassives?: SummonPassiveProjection;
   units: Map<string, CombatUnit>;
   events: BattleEvent[];
   /** Battle-local copied presentation views; never used by gameplay. */
@@ -946,8 +950,7 @@ function applyEffect(
           skillLevel, statScaling: effect.statScaling, monsterDef: effect.monsterDef, rng: state.rng
         });
         if (!template) return;
-        const empowered = empowerGolemSummon(state.golemMastery, owner,
-          empowerSkeletonSummon(state.skeletonMastery, owner, template));
+        const empowered = empowerNecromancerSummon(owner, template, state.skeletonMastery, state.golemMastery, state.summonPassives);
         if (empowered) registerSpawnedSummon(state, owner, effect.summonId, {
           ...empowered, ...(effect.refundOnDeath !== undefined ? { summonRefundOnDeath: effect.refundOnDeath } : {})
         });
@@ -1273,8 +1276,7 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
   for (let i = 0; i < missing; i++) {
     const template = buildSummon(owner, effect.summonId, { skillLevel: rank, statScaling: effect.statScaling });
     if (!template) return;
-    const candidate = empowerGolemSummon(state.golemMastery, owner,
-      empowerSkeletonSummon(state.skeletonMastery, owner, template));
+    const candidate = empowerNecromancerSummon(owner, template, state.skeletonMastery, state.golemMastery, state.summonPassives);
     if (!candidate || !validPreparationCandidate(candidate)) return;
     candidates.push(candidate);
   }
@@ -1327,7 +1329,8 @@ function prepareIronGolem(state: State, owner: CombatUnit, skill: RegisteredSkil
   if (!template) return;
   const stats = applyIronGolemItemStats(template.stats, input);
   if (!stats) return;
-  const candidate = empowerGolemSummon(state.golemMastery, owner, { ...template, stats, life: stats.lifeMax });
+  const candidate = empowerNecromancerSummon(owner, { ...template, stats, life: stats.lifeMax },
+    state.skeletonMastery, state.golemMastery, state.summonPassives);
   if (!candidate || !validPreparationCandidate(candidate)) return;
   const spawned = castSkill(state, owner.id, skill, { summonId: 'iron_golem', units: [candidate], skillLevel: rank })?.[0];
   if (spawned) state.ironGolemPreparation = Object.freeze({ sourceHeroId: owner.id, sourceItemId: input.sourceItemId,
@@ -1532,8 +1535,13 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const mastery = snapshot.skeletonMastery;
   const golemMastery = snapshot.golemMastery;
   const iron = snapshot.ironGolem;
+  const global = snapshot.summonPassives;
   const state: State = {
     holyFreezeSources: [],
+    ...(global ? { summonPassives: Object.freeze({ sourceHeroId: global.sourceHeroId,
+      masteryRank: global.masteryRank, resistRank: global.resistRank,
+      masteryMaxRank: global.masteryMaxRank, resistMaxRank: global.resistMaxRank,
+      lifePct: global.lifePct, attackPct: global.attackPct, resistAllBonus: global.resistAllBonus }) } : {}),
     difficulty: snapshot.difficulty ?? 'normal',
     corpseExplosion: new Map(copyCorpseExplosionProjections(snapshot.corpseExplosion).map(p => [p.sourceHeroId, p.rank])),
     poisonExplosion: new Map(copyPoisonExplosionProjections(snapshot.poisonExplosion).map(p => [p.sourceHeroId, p.rank])),
