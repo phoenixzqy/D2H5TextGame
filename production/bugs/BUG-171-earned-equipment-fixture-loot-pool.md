@@ -33,6 +33,8 @@ Validation: positive fixture and all29other earned-adapter cases pass (30/30).
 No discovery loop remains in required tests; one fixed clock/one farm, with
 all original ownership/resource/equipment assertions plus an exact run-seed check.
 
+Implementation commit: `1617315`.
+
 Final validation:11849PASS/469files+2existing skips; engine5840PASS,
 types/standard lint/build pass, production browser4/4. Raw logs and diagnostic
 inputs retained in [versioned evidence](../../docs/plans/evidence/d05-remaining-weapon-masteries.md);

@@ -3,7 +3,7 @@
 Severity: High. Status: fixed locally; independent acceptance pending.
 Owner: engine-dev / frontend-dev / content-designer.
 Affected: fresh player composition, direct damage/crit/cadence, bilingual details.
-Build: `44477e9` plus uncommitted BUG169 availability. Node/Vitest;
+Reproduction build: `44477e9` plus BUG169 availability (now `1617315`). Node/Vitest;
 Chromium target en/zh-CN,360×640 and1280×800. Seeds1–32, fixed constructed units.
 
 ## Reproduction
@@ -26,6 +26,8 @@ rows are treated as inert buff metadata. Workaround: other skills remain usable;
 allocated mastery points have no effect.
 Contract: `docs/plans/decisions/D05-remaining-weapon-masteries-v1.md`.
 Raw evidence: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-remaining-masteries-i5r4g6lk`.
+
+Implementation commit: `12b6d6d`.
 
 Final validation:11849PASS/469files+2existing skips; engine5840PASS,
 types/standard lint/build pass, production browser4/4. Raw logs and diagnostic

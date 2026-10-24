@@ -1,0 +1,37 @@
+{
+  "baseCommit": "44477e9",
+  "sourceSHA256": {
+    "src/data/items/bases.json": "06dd0a73366f303f42ea349ac04787652c73b3a2b282f84f966fc3708ff68d71",
+    "src/data/loot/treasure-classes.json": "faaa7a9afa1ddccfd0d09dfd576031d7a90e1aac933ed9d8a70f01cdfb281c85",
+    "src/data/schema/skill.schema.json": "5951bfceb0b90d3ee47e9d89bf31fc1dd03543c13ac5308ebd89b4829df4d0bf",
+    "src/data/skills/barbarian.json": "f42a6e91af7c1a926405ba0fe2d2315f26f91dc310dde45bd840a9f73ead4599",
+    "src/data/__tests__/item-catalog-integrity.test.ts": "a0c1c656979022d4a29974be72e57ea58daa63f69c35ac98418fcc737e25ef8f",
+    "src/data/loaders/mastery-base-availability.test.ts": "9a829266e9b8d52206132f61af49e607971d73f439ad32c03724cc9795724bb8",
+    "src/engine/loot/nightmare-affix-eligibility.test.ts": "eb39ba0b5efdc5a0b9167a7e08be6dfa50f1171cbe91bbb8fe1b0542624654eb",
+    "src/engine/skills/barbarian-weapon-masteries.ts": "9bba16fff9a6f5820628008825fede69b70495ff9cee70e828cf373fd789d15d",
+    "src/engine/skills/barbarian-weapon-masteries.test.ts": "404ed23abc1660b8681c666280bcc96b167f776d0f4eeb1452fa7c8aeff8a324",
+    "src/engine/skills/barbarian-remaining-masteries.test.ts": "f4b8708caa2a15c5c6f121e8fa089caa48818ef937b45a2ee6ae4d8112195a1d",
+    "src/engine/skills/barbarian-weapon-masteries-schema.test.ts": "66b9c04d935a57646976fe69f488b7933bc0be8d7a357fd878bc72cdd4cdb786",
+    "src/stores/combatHelpers.ts": "e2401d54cf891c07bdded472318da53a353e89d9efa67e050ac3af868afa0f94",
+    "src/stores/barbarian-remaining-masteries.test.ts": "12ee83ceb1b77e775585ed5778c0ac663ac6dba48c5f150fd5ae16c04803735c",
+    "src/stores/barbarian-weapon-masteries-native.test.ts": "a1f29ff17c3f67cd569a227aba1cb8c7700fcb3b432cf427bf5cd8210e9787a6",
+    "src/features/skills/SkillsScreen.tsx": "2a04eccbcd5c6b94795000197a1a4a8db903342f8eb594e04724ccedfd0e39d9",
+    "src/features/skills/SkillsScreen.remaining-masteries.test.tsx": "fc3565318097e7554b727f5e967a3ba26ab60ce8e70e6341820f342bcf009db3",
+    "src/i18n/locales/en/skills.json": "026c15a496aef7da1f57f2260af059fc53851822f59c876769bb3191682e6e88",
+    "src/i18n/locales/zh-CN/skills.json": "b8edd2618f87eda9f966af440444ca34c52f3a81298f990081ec244fb92ef8ad",
+    "src/i18n/locales/en/items.json": "e77354cbbf2a6b319e2ef5532d50c186d80b44f8caa85eac3b7ccfd54ef04507",
+    "src/i18n/locales/zh-CN/items.json": "5dcb330b0eb469df750be9104c511bc459f0e5cf2f02c7ac4322ae1a529f814e",
+    "tests/pwa/barbarian-remaining-masteries.config.ts": "f37174eae8d37b437854205f824f669f516397feba252a737d37a909cc3c7dfa",
+    "tests/pwa/barbarian-remaining-masteries.spec.ts": "72c537294287902e21b0efc7fb320f6c907567067aaf2a55a79809a78edb339e",
+    "tests/sim/production/earned-adapter.test.ts": "28d3bf8f023ee71070b9b0c0217c7c9f96abd7b401aeacd5a86790fae434b39a"
+  },
+  "productionJS": {
+    "react-vendor-dRBhy6jq.js": "d023b474fbe60dec77510b20d3560e8a8c6b796e6d623cf648bf12800af453fb",
+    "game-engine-CqIzUXqx.js": "1fa97c84cee8074c2e55d99513c68c552e06b85906d088e0014d0d2f29fe3506",
+    "i18n-Bxr3rY09.js": "cb3cefca3bda4b6da700c1dcd65dae18a27f3a44e5c831c09cacb7652a2505f8",
+    "index-BT3-aF-g.js": "4a17c3a2e264cb3e34c011cc5d07776c5e0f626228550df8d9951b4b373e1d99"
+  },
+  "bridgeViolations": [],
+  "genuineResumeRawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "sourceLimit": "Final production runtime/data unchanged since engine/build/browser pass. Focused138/11 predates a test-only native slug guard. Initial full11848/1FAIL exposes the stale earned fixture; fixed-clock positive recipe30/30 passes; final full/typechecks include both test-only corrections."
+}

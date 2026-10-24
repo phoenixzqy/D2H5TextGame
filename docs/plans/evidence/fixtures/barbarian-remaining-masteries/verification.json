@@ -1,0 +1,53 @@
+{
+  "focused": {
+    "passed": 138,
+    "files": 11,
+    "seconds": 27.55,
+    "limit": "Predates test-only native slug guard; final full/types/lint cover it."
+  },
+  "engine": {
+    "passed": 5840,
+    "files": 183,
+    "seconds": 135.61
+  },
+  "fullInitial": {
+    "passed": 11848,
+    "failed": 1,
+    "skipped": 2,
+    "files": 469,
+    "seconds": 602.96,
+    "cause": "Positive earned-equipment fixture lost boots after intentional TC expansion."
+  },
+  "earnedFixtureFinal": {
+    "passed": 30,
+    "files": 1,
+    "seconds": 13.79,
+    "clock": 1792497600017,
+    "runSeed": 2330410292
+  },
+  "fullFinal": {
+    "passed": 11849,
+    "failed": 0,
+    "skipped": 2,
+    "files": 469,
+    "seconds": 491.28,
+    "exit": 0
+  },
+  "typecheck": 0,
+  "standardLint": 0,
+  "extraLintScope": "tests/sim is ignored by standard lint; forcing it reports 3 unchanged pre-existing findings at earned-adapter.test.ts:172,173,386. No lint configuration or assertions weakened.",
+  "build": 0,
+  "browser": {
+    "passed": 4,
+    "skipped": 0,
+    "flaky": 0,
+    "retries": 0,
+    "seconds": 95.79,
+    "exactContinuePairs": 4,
+    "capturedErrors": 0
+  },
+  "sourceHashesVerified": 23,
+  "independentAcceptance": "pending",
+  "earnedClassBuildBalance": "pending",
+  "genuineProgressChanged": false
+}

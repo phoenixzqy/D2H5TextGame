@@ -1,0 +1,13 @@
+{
+  "removed": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-remaining-masteries-i5r4g6lk/dist",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-remaining-masteries-i5r4g6lk/browser-output"
+  ],
+  "port4453Closed": true,
+  "remainingDisposable": [],
+  "failures": [],
+  "rawSourceRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-remaining-masteries-i5r4g6lk",
+  "rawSourceRootRemoved": true,
+  "archivedRawFiles": 34,
+  "rawArchive": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/barbarian-remaining-masteries/raw-evidence.tar.gz"
+}

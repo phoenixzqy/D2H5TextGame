@@ -1,0 +1,178 @@
+{
+  "owner": "01a1577a-5af4-70e3-8699-50a906877d8f",
+  "purpose": "Remaining Barbarian weapon masteries and availability",
+  "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-remaining-masteries-i5r4g6lk",
+  "disposable": [],
+  "retained": [
+    "docs/plans/evidence/fixtures/barbarian-remaining-masteries/raw-evidence.tar.gz"
+  ],
+  "processes": [
+    {
+      "session": 11388,
+      "command": "red availability",
+      "state": "terminal",
+      "exit": 1
+    },
+    {
+      "session": 67210,
+      "command": "green availability",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 26342,
+      "command": "initial incorrect composition fixture",
+      "state": "terminal",
+      "exit": 1
+    },
+    {
+      "session": 18903,
+      "command": "corrected frozen composition RED",
+      "state": "terminal",
+      "exit": 1
+    },
+    {
+      "session": 51562,
+      "command": "schema/UI RED",
+      "state": "terminal",
+      "exit": 1
+    },
+    {
+      "session": 52716,
+      "command": "green composition",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 64485,
+      "command": "green UI",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 51595,
+      "command": "initial engine stale counts",
+      "state": "terminal",
+      "exit": 1
+    },
+    {
+      "session": 79311,
+      "command": "initial typecheck fixture optional",
+      "state": "terminal",
+      "exit": 2
+    },
+    {
+      "session": 66311,
+      "command": "native lifecycle",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 39792,
+      "command": "initial lint fixture slug",
+      "state": "terminal",
+      "exit": 1
+    },
+    {
+      "session": 27204,
+      "command": "production build",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 78294,
+      "command": "production browser",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 91322,
+      "command": "final engine",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 1443,
+      "command": "typecheck after null normalization",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 64431,
+      "command": "focused final",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 60639,
+      "command": "standard lint final",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 20181,
+      "command": "initial full stale fixture",
+      "state": "terminal",
+      "exit": 1
+    },
+    {
+      "session": 56085,
+      "command": "typecheck after slug guard",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 85031,
+      "command": "initial exploratory compile benchmark",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 17812,
+      "command": "bounded fixture discovery",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 99427,
+      "command": "fixed earned fixture",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 15784,
+      "command": "typecheck fixture final",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 5445,
+      "command": "extra ignored-file lint attempt",
+      "state": "terminal",
+      "exit": 1
+    },
+    {
+      "session": 47089,
+      "command": "extra forced lint existing findings",
+      "state": "terminal",
+      "exit": 1
+    },
+    {
+      "session": 60644,
+      "command": "equal-work exploratory compile benchmark",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 8544,
+      "command": "full final",
+      "state": "terminal",
+      "exit": 0
+    }
+  ],
+  "removed": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-remaining-masteries-i5r4g6lk/dist",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-remaining-masteries-i5r4g6lk/browser-output"
+  ],
+  "retentionReason": "Versioned raw archive retains all logs, failed attempts, complete browser report and exploratory diagnostics for full-v1 reviewers; temporary originals removed after byte verification."
+}

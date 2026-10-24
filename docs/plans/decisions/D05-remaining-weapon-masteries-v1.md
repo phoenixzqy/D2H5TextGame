@@ -2,7 +2,8 @@
 
 Status: implemented and locally verified; root sole writer. Independent review/QA,
 earned class builds, balance and full C0–C4/G0–G7 acceptance remain open.
-Base: `44477e9`. Existing D05 weapon-mastery composition remains controlling.
+Base: `44477e9`. Implementation: `1617315` (availability), `12b6d6d` (masteries).
+Existing D05 weapon-mastery composition remains controlling.
 
 ## Player behavior
 
