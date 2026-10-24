@@ -1,7 +1,8 @@
 # P18d — Explicit endgame Claim, title and native UI
 
 Date: 2026-10-24. Local implementation after `ff47a50`, branch
-`feat/playable-foundations`; no push, PR, merge or deployment.
+`feat/playable-foundations`; delivered in local commits `299f94f` and `fd99436`.
+No push, PR, merge or deployment.
 
 ## Delivered behavior
 

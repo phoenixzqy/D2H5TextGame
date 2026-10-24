@@ -1,0 +1,20 @@
+{
+  "runtime": "fd99436f9a785da5f2a564748c9687a52337004e",
+  "input": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-socket-dmbgdt1a/stopped-export.json.gz",
+    "rawSha256": "e2fead25436aa87dc98d6188c7ae8f45b141ee85216d88be2aad88649538c973"
+  },
+  "final": {
+    "path": "retained-final.json.gz",
+    "gzipSha256": "0efe53e35d31534f25b83adf82464b2aeb8a60bea292326a9e3c8be514c324e9",
+    "rawSha256": "6ba04b90d68a5e5c8185289fa57e7fa0631e82e6d15fde9c0bf7c32f0dfc8974",
+    "version": 20,
+    "level": 24,
+    "experience": 45612,
+    "ownedItems": 5832,
+    "nextNormalOrdinal": 255
+  },
+  "outcome": "four wins then native Radament draw; no quest/clear/claim",
+  "scope": "historical earned continuation; independent acceptance pending; full-v1 open",
+  "rawEvidence": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-radament-g8mi712o"
+}
