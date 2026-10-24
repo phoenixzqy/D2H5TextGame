@@ -34,6 +34,17 @@ equipment is now eligible; inspect owned options and legal point allocation
 before next ordinary Travincal269. The two unsuccessful priority projections
 are evidence against using those configurations, not a balance sign-off.
 
+Follow-up269 diagnostics leave the actual save unchanged. A fixed two-order,
+two-pass lightning-survival heuristic over nine eligible owned gear slots
+finds four legal transfers and a modest score improvement; full-area matched
+17-seed retained/adapted screens both win0/17. Three legal Ormus32-point cold
+support/damage reset recipes also win0/17, alongside the retained0/17 control.
+Do not consume the last free reset or apply that equipment on this evidence.
+Original heuristic used nonmatching ring slot names; corrected v2 uses actual
+`ring-left`/`ring-right`, and both reports remain. Inspect the progression/
+encounter envelope and additional earned options before any tuning or real
+269 launch. These are projections only, not consumed attempts or earned saves.
+
 The exact owned preview2135 is terminal(exit130), dist266 removed/absence and
 port refusal verified. No active browser consumer remains. Required raw logs,
 screens, saves, reports and audit remain root-owned at

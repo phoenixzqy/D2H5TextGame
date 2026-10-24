@@ -1,6 +1,6 @@
 # BUG-152 — Cover campaign and Nightmare equipment contexts
 
-Severity: High. Status: fixed locally; independent acceptance pending.
+Severity: High. Status: Fixed in `6203a9b`; independent acceptance pending.
 Owner: root/content/engine QA. Runtime50094ce, production sourceseca8549.
 Environment: Node24.21.0/Vite SSR using actual production planner/loaders; no
 browser interaction in this reproduction, viewport/locale not applicable.
