@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D11 earned Frigid393 / three cages / Rescue Claim | genuine six-wave clear, three distinct cage actions and separate Claim verified locally; next394 retained | Baseline0/32 and resistance-only0/32; five actual owned flawless diamonds add40MR and qualify32/32+16/16. Overflow unequip diagnostic refusal retained; legal temporary one-for-one swaps prepare exact native state with13actions/five diamonds, no points/skills/merc/currency changes.393 wins6/6,+42150XP/+141gear; cages5→10→15 then separate8000XP/+1skill/+5all-resist Claim. FinalL32/XP246642/22407gear, stat5/skill1/HolyFreeze, nextNormal394/Nightmare0. [Authoritative final/evidence](evidence/d11-earned-act5-frigid393.md).47native snapshots/eight exact Continue pairs/all22266prepared full payloads conserved.1128source/760build/7served hashes exact; prior11678unit passes/types/lint apply. 120raw files archived; all consumers terminal, exactpreview4445 stopped/dist+cache absent, cleanup[]/failures[]. RemainingActV, C2–C4,213skills,pacing/fullG and independent acceptance open. |
 | D11 earned ActV Foothills392 / Siege Claim | genuine six-wave clear and socket entitlement verified locally; next393 retained | Fixed IceBlast0/32 (17draws/15defeats), Orb5/32, then Nova20/LightningMastery20/Static1/Warmth2 qualifies30/32+14/16. Native paid5Wishstone reset/43points and StartSiege consumed once; no gear/merc/stat changes.392 wins6/6,+37300XP/+133gear; separate10000XP/socket-service Claim and seven exact Continue pairs pass; all22133ancestral full item payloads conserved. FinalL32/XP196492/22266gear, stat5/skill0/HolyFreeze, nextNormal393/Nightmare0. [Authoritative final/evidence](evidence/d11-earned-act5-foothills392.md).96diagnostic runs never promoted;37native snapshots/zero errors/warnings/retries.1128source/760build/7served hashes exact; prior11678unit passes/types/lint remain applicable.95raw files archived; preview4444 stopped/exactdist+cache absent, cleanup[]/failures[]. Frigid rescue/remainingActV, pacing, C2–C4/fullG and independent acceptance remain open. |
 | D11 earned Diablo391 / Act V unlocked | genuine seven-wave clear and separate Claim verified locally; next392 retained | Qualified IceBlast20/Mastery20 Chaos29/32+River32/32; actual native paid reset/43skill/5Dex/ten crafts/hire/equipment consumed once, all22003prepared full item payloads conserved.391 wins7/7waves,+40900XP/+128gear; separate Claim+25000XP/+2gear, ActV Enter enabled. FinalL32/XP149192/22133gear, stat5/skill0/HolyFreeze, nextNormal392/Nightmare0; five exact Continue pairs/26native snapshots, zero browser errors/warnings. [Authoritative final/evidence](evidence/d11-earned-diablo391.md). Eight paired diagnostic/native full runs exact after documented tooling-only corrections; no source change/replay/diagnostic promotion.1128source/760build/7served hashes exact; prior11678unit passes/types/lint remain applicable. Exact preview4443 stopped, three disposable dirs absent, cleanup[]/failures[]. ActVcombat, pacing, fullidle, C2–C4/G0–G7 and independent acceptance remain open. |
 | D11 earned River idle389–390 | two genuine idle clears; automatic repeat and Stop verified locally; next391 retained | 12native wave victories,+62570XP/+264gear; finalL32/XP83292/22003unique gear, stat10/skill4 unchanged. All21739ancestral full payloads preserved;20native export downloads/23retained snapshots/two exact Continue pairs, zero errors/retries. Native repeat follows temporary Settings inspection; no Enter/Next Run click. Stop prevents391 and120s clock advance grants nothing.1128prior source hashes/760rebuilt files/7served JS exact. [Authoritative final/evidence](evidence/d11-earned-river-idle-through390.md). Auditor nonexistent-key failure corrected without replay. All consumers terminal;4442closed/exactdist absent. Uninterrupted/background/weak-build/matrix idle, Diablo/ActV, pacing and C2–C4/fullG remain open. |
@@ -11221,3 +11222,26 @@ Root retains raw act5-392 evidence through campaign/full-v1 consumers. Next
 qualify Frigid Highlands from393, then actual cages/rescue Claim. C0/C1 retain
 historical acceptance; C2–C4,213skills,pacing/fullG0–G7 remain incomplete.
 Local only; umbrella goal/worktree remain active.
+
+
+## D11 — Earned Frigid393 and Rescue Claim
+
+[Earned Frigid/rescue](evidence/d11-earned-act5-frigid393.md) advances genuine
+Foothills392 state with five owned flawless diamonds and four resistance swaps.
+Baseline and resistance-only screens both0/32;40flatMR qualifies32/32+16/16.
+One diagnostic overflow-unequip refusal is retained; exact legal temporary swaps
+permit native crafting without source/balance/capacity edits.13native preparation
+actions spend five diamonds only.393 wins allsix waves,+42150XP/+141gear.
+Three distinct native cages give5→10→15, then separate8000XP/+1skill/+5allres
+Claim; combat alone grants no rescue credit. Eight exact Continue pairs and
+all22266prepared full item payloads pass root audit across47native saved states.
+Resume versioned finalL32/XP246642/22407gear, stat5/skill1/HolyFreeze/40MR,
+nextNormal394. RawSHA `7ad3337349d58c85e7ac61c6c9f5202701f764c92b31a13a33c32c6613e55cb0`.
+Never replay preparation/StartRescue/393/cages/Claim. Siege socket entitlement
+remains available. Source unchanged;1128source/760build/7served exact, prior
+11678unit passes/two skips/types/lint applicable. All consumers terminal,
+preview4445 stopped, exactdist/cache absent, cleanup remaining[]/failures[].
+Root retains raw frigid393 evidence through campaign/full-v1 consumers.
+Next remaining ActV from394; unspent skill point not allocated. C0/C1 retain
+historical acceptance; C2–C4,213skills,pacing/fullG0–G7 and independent
+acceptance incomplete. Local only; umbrella goal/worktree remain active.

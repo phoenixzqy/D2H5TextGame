@@ -1,0 +1,74 @@
+{
+  "status": "pass",
+  "sourceFiles": 1128,
+  "sourceDrift": [],
+  "diagnostics": {
+    "baselineWins": 0,
+    "resistanceOnlyWins": 0,
+    "diamondWins": 32,
+    "diamondSecondHalfWins": 16,
+    "nEach": 32,
+    "diagnosticPromotions": 0
+  },
+  "nativePreparationActions": 13,
+  "diamondCost": 5,
+  "genuineLaunches": [
+    {
+      "ordinal": 393,
+      "alias": "frigid-highlands"
+    }
+  ],
+  "nativeCageActions": 3,
+  "separateClaim": true,
+  "saveContinuePairs": [
+    [
+      "native-diamond-preparation/002-preparation-before-saved.json.gz",
+      "native-diamond-preparation/003-preparation-before-continued.json.gz"
+    ],
+    [
+      "native-diamond-preparation/018-prepared-saved.json.gz",
+      "native-diamond-preparation/019-prepared-continued.json.gz"
+    ],
+    [
+      "earned-frigid393/002-prequest-saved.json.gz",
+      "earned-frigid393/003-prequest-continued.json.gz"
+    ],
+    [
+      "earned-frigid393/005-precombat-saved.json.gz",
+      "earned-frigid393/006-precombat-continued.json.gz"
+    ],
+    [
+      "earned-frigid393/013-393-won-saved.json.gz",
+      "earned-frigid393/014-393-won-continued.json.gz"
+    ],
+    [
+      "native-rescue-claim/002-before-cages-saved.json.gz",
+      "native-rescue-claim/003-before-cages-continued.json.gz"
+    ],
+    [
+      "native-rescue-claim/007-three-cages-unclaimed-saved.json.gz",
+      "native-rescue-claim/008-three-cages-unclaimed-continued.json.gz"
+    ],
+    [
+      "native-rescue-claim/010-rescue-claimed-saved.json.gz",
+      "native-rescue-claim/011-rescue-claimed-continued.json.gz"
+    ]
+  ],
+  "nativeSavedSnapshots": 47,
+  "ownedBefore": 22266,
+  "ownedPrepared": 22266,
+  "ownedFinal": 22407,
+  "allPreparedPayloadsExactAtFinal": true,
+  "totalXPEarned": 50150,
+  "combatXP": 42150,
+  "claimXP": 8000,
+  "finalLevel": 32,
+  "finalXP": 246642,
+  "finalSkillPoints": 1,
+  "finalStatPoints": 5,
+  "finalMagicResist": 40,
+  "finalNextNormal": 394,
+  "finalRawSHA256": "7ad3337349d58c85e7ac61c6c9f5202701f764c92b31a13a33c32c6613e55cb0",
+  "noBrowserErrors": true,
+  "limitations": "one English/mobile earned pilot; no C2/full-v1 or pacing acceptance; source unchanged"
+}

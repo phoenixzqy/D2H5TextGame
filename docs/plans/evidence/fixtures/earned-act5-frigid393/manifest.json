@@ -1,0 +1,507 @@
+{
+  "kind": "Frigid393 diagnostic policies and native diamond preparation/combat/three cages/Rescue Claim; diagnostic saves never resume",
+  "owner": "root",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/frigid393",
+  "retention": "root retains exact raw directory through campaign/full-v1 consumers, then removes it",
+  "files": {
+    "audit-earned.log": {
+      "sha256": "b9b6943c336c56133005846dd803da8de2e12c53c8c0f4f182734b86853ba396",
+      "bytes": 1022
+    },
+    "audit-earned.py": {
+      "sha256": "e20e73ab6dd139763f26b68037208d9ebf1118f8981ceade168c58f5f49cf318",
+      "bytes": 7111
+    },
+    "bridge-scan.json": {
+      "sha256": "0e17b2aa68f0ebe445812e18fb80b8f3700c9f00af31914e8665ae548c5ec12f",
+      "bytes": 799
+    },
+    "build-hashes.json": {
+      "sha256": "c57c83eb6995546de05f2435343d806421647319878297baaa5e5794691d0575",
+      "bytes": 101673
+    },
+    "build.log": {
+      "sha256": "40b7902f8e61b4666d733bc595e7f584e2ce8ee7a622ef8d7f0c2becfc7bbb34",
+      "bytes": 2168
+    },
+    "cleanup.json": {
+      "sha256": "d024b8226f2c60824bde7c9be123c5a11012c96b065fa8909fd9916f55ecb55a",
+      "bytes": 661
+    },
+    "combat-current.json": {
+      "sha256": "61c129c86f1213e5b0b5f5c6ada1e8d72ab22c1554d77d48dfc4277b92be506a",
+      "bytes": 272
+    },
+    "damage-events.json": {
+      "sha256": "f2000a87067c1ab7bedbac9029025b8050ede97da9c8ad6eadc26877e9ff8484",
+      "bytes": 50063
+    },
+    "diagnose.log": {
+      "sha256": "b2b1ec6d0507a8696a3c61bf663fcd008504bace6aca87287365d1e36e47519d",
+      "bytes": 2563
+    },
+    "diagnose.mjs": {
+      "sha256": "cf966bf04a0fa11d054f2374b530e5408d5c2dcb3f3d3b2dbb47f678568b283e",
+      "bytes": 3479
+    },
+    "diamond-policy-v2.json": {
+      "sha256": "9de1221a729ee4a4bdf93d13004f02b2bcf4f5d0c11b35c3778ec4d9a70c037c",
+      "bytes": 3915
+    },
+    "diamond-policy.json": {
+      "sha256": "3b2dc3f2081ef108738b8018839f7f200758eb05a0403737a00687561ea9b881",
+      "bytes": 3594
+    },
+    "diamond-screen-failure.json": {
+      "sha256": "6c43bded212542b33693afeaa5a3591fc1abd51af24d289b3debd172b3e613eb",
+      "bytes": 5208
+    },
+    "diamond-screen-v2.log": {
+      "sha256": "6ca5aef0bbb1e90b06d1940b65204df1c464d71befee16f29a9c9390e5a4e159",
+      "bytes": 6919
+    },
+    "diamond-screen-v2.mjs": {
+      "sha256": "4302210047960c5272dbeb3db266dffdd524a3aaef292bd603ddb34f37f76b7a",
+      "bytes": 6550
+    },
+    "diamond-screen.log": {
+      "sha256": "4f747ed9f43dc49e15f6f786a06af572f572e52a63c29a96d7e220cac96d4e1a",
+      "bytes": 871
+    },
+    "diamond-screen.mjs": {
+      "sha256": "3181a297a40916cc1d7433d839edff1ec8249d14af8e8168248905dafd05cc72",
+      "bytes": 6388
+    },
+    "diamond-seeds.json": {
+      "sha256": "c822e39ef52207bf836ff20ea8ac3d3f7da7c7c2a3dc2bd395f6184e6081050c",
+      "bytes": 354
+    },
+    "diamond-v2-partial.json": {
+      "sha256": "46e7e25e7cb779dbe1577816eb7770e0a4b9f01c736a1178df395fff6bec9db6",
+      "bytes": 99132
+    },
+    "diamond-v2-prepared.diagnostic-only.json.gz": {
+      "sha256": "9814dcf092da536146224c3e4bb225cc48cb0f7d0adc8f5b8177a78374765dc0",
+      "bytes": 236823
+    },
+    "diamond-v2-screen.json": {
+      "sha256": "6eb7593f2137b5f66553a554cb74cb9489b1b5aeadac5008f539daac9cd5239c",
+      "bytes": 99215
+    },
+    "diamond-v2-seeds.json": {
+      "sha256": "c822e39ef52207bf836ff20ea8ac3d3f7da7c7c2a3dc2bd395f6184e6081050c",
+      "bytes": 354
+    },
+    "earned-frigid393/001-imported.json.gz": {
+      "sha256": "9814dcf092da536146224c3e4bb225cc48cb0f7d0adc8f5b8177a78374765dc0",
+      "bytes": 236823
+    },
+    "earned-frigid393/002-prequest-saved.json.gz": {
+      "sha256": "9814dcf092da536146224c3e4bb225cc48cb0f7d0adc8f5b8177a78374765dc0",
+      "bytes": 236823
+    },
+    "earned-frigid393/003-prequest-continued.json.gz": {
+      "sha256": "9814dcf092da536146224c3e4bb225cc48cb0f7d0adc8f5b8177a78374765dc0",
+      "bytes": 236823
+    },
+    "earned-frigid393/004-rescue-started.json.gz": {
+      "sha256": "26ef05edcbbdea1294a3db38a1440582337899a0bb5c73f06236ff8c6c3f1ab2",
+      "bytes": 236860
+    },
+    "earned-frigid393/005-precombat-saved.json.gz": {
+      "sha256": "26ef05edcbbdea1294a3db38a1440582337899a0bb5c73f06236ff8c6c3f1ab2",
+      "bytes": 236860
+    },
+    "earned-frigid393/006-precombat-continued.json.gz": {
+      "sha256": "26ef05edcbbdea1294a3db38a1440582337899a0bb5c73f06236ff8c6c3f1ab2",
+      "bytes": 236860
+    },
+    "earned-frigid393/007-393-w1-settled.json.gz": {
+      "sha256": "3d3d4acfc5d05cee14295d70f4c44f9e09b59d566476774634da8e57de27b883",
+      "bytes": 236906
+    },
+    "earned-frigid393/008-393-w2-settled.json.gz": {
+      "sha256": "23cba9f7f48aefb389ca626d1eac5d75a4fcf8dcb5d708266fb8f770e742c66b",
+      "bytes": 236932
+    },
+    "earned-frigid393/009-393-w3-settled.json.gz": {
+      "sha256": "2685b4c13845e810828fafa3756c7409361dec714d72684f0628bcd74fa09fc8",
+      "bytes": 237350
+    },
+    "earned-frigid393/010-393-w4-settled.json.gz": {
+      "sha256": "5d8fabc35bbae41ba9e62747494338c2373805ba6b45953bebd1279c1258b5c7",
+      "bytes": 238483
+    },
+    "earned-frigid393/011-393-w5-settled.json.gz": {
+      "sha256": "e54b85a63e36c23b5e1a728b5c3d18770675a65a812a3c7ec5c38304ecad079f",
+      "bytes": 238996
+    },
+    "earned-frigid393/012-393-w6-settled.json.gz": {
+      "sha256": "a9b166230ba56a68e59b79e7bd56f714c290fd2a05d5379a9939e1cb506b6ff9",
+      "bytes": 239523
+    },
+    "earned-frigid393/013-393-won-saved.json.gz": {
+      "sha256": "a9b166230ba56a68e59b79e7bd56f714c290fd2a05d5379a9939e1cb506b6ff9",
+      "bytes": 239523
+    },
+    "earned-frigid393/014-393-won-continued.json.gz": {
+      "sha256": "a9b166230ba56a68e59b79e7bd56f714c290fd2a05d5379a9939e1cb506b6ff9",
+      "bytes": 239523
+    },
+    "earned-frigid393/393-victory.png": {
+      "sha256": "2a3fa7c3c3e408abb661082b8b2ee620bffd43681eda5f21eb4cd3aeae901eab",
+      "bytes": 33286
+    },
+    "earned-frigid393/393-w1-initial.json.gz": {
+      "sha256": "80d7389816df2de26f933aa3963a4bf7cdd8dc3eb27a293f4629ba8098059216",
+      "bytes": 438
+    },
+    "earned-frigid393/393-w1-terminal.json.gz": {
+      "sha256": "32de23c8313cee0d4e38f08c255c75e677dfe28c743ad9c12a9661fc0808ce49",
+      "bytes": 1379
+    },
+    "earned-frigid393/393-w2-initial.json.gz": {
+      "sha256": "8a4c0ed8d9a90bfe7c8d8afc7aaf8cb0b9def38a1dd06ab56ee8de964a6ab20e",
+      "bytes": 462
+    },
+    "earned-frigid393/393-w2-terminal.json.gz": {
+      "sha256": "8bf3c1b346a8d1c03d88be1858398c2e19106432fd42d29fbc109da8d79ac8db",
+      "bytes": 1511
+    },
+    "earned-frigid393/393-w3-initial.json.gz": {
+      "sha256": "8961e3e39790764060ba50b13e56f808e8b65b7ad87bae1190892406b7659cc7",
+      "bytes": 439
+    },
+    "earned-frigid393/393-w3-terminal.json.gz": {
+      "sha256": "fd54bc0de1954d9583cfbfa8591cb0a343223b661f4a3bb4f18f97bb374ebf35",
+      "bytes": 1357
+    },
+    "earned-frigid393/393-w4-initial.json.gz": {
+      "sha256": "3c3689dbded5cb74fd808ccfdcc4e6a937dec88c8853eef1b4aec854ce87d479",
+      "bytes": 420
+    },
+    "earned-frigid393/393-w4-terminal.json.gz": {
+      "sha256": "ed5156ba5a7f87b51388e4d0885428c2404a33e48ede54166be70de1ab715081",
+      "bytes": 1321
+    },
+    "earned-frigid393/393-w5-initial.json.gz": {
+      "sha256": "64093a33ce6864cb25b82a0bc197ee35b664aa43c90f22d808aacfb3587e5e6f",
+      "bytes": 411
+    },
+    "earned-frigid393/393-w5-terminal.json.gz": {
+      "sha256": "a260f477bf26eaa7352950ec48f4102b454c0a5295ab40bdc5bab8642c112486",
+      "bytes": 1186
+    },
+    "earned-frigid393/393-w6-initial.json.gz": {
+      "sha256": "270e592ee5aef3b12671df0f8429a4cf8cbe13c11ce88648e41e0775fd4157ea",
+      "bytes": 299
+    },
+    "earned-frigid393/393-w6-terminal.json.gz": {
+      "sha256": "da6ce7fc7e0e0d1eca41b36a9391b95fd9001553c59dcfdad61cb7f8eab79851",
+      "bytes": 1009
+    },
+    "earned-frigid393/final.json.gz": {
+      "sha256": "a9b166230ba56a68e59b79e7bd56f714c290fd2a05d5379a9939e1cb506b6ff9",
+      "bytes": 239523
+    },
+    "earned-frigid393/launch-393.json": {
+      "sha256": "c983503623abf966567d3e03b412224587f88ba84079b37753f3d298b8b614b5",
+      "bytes": 132
+    },
+    "earned-frigid393/prelaunch-393.json.gz": {
+      "sha256": "26ef05edcbbdea1294a3db38a1440582337899a0bb5c73f06236ff8c6c3f1ab2",
+      "bytes": 236860
+    },
+    "earned-frigid393/report.json": {
+      "sha256": "36255615c247497fdd6a4115b42ee66dd4f90124fa1efafbd51b21336af47d1d",
+      "bytes": 7903
+    },
+    "final-build-audit.json": {
+      "sha256": "157bd4b7c2952db650351c62270113901d3bec0daef7e55f811e70b0f21216f3",
+      "bytes": 781
+    },
+    "first-seed-wave4-recording.diagnostic-only.json.gz": {
+      "sha256": "f80029b159e97c1e11327e8c26bd2c4c7418b2c8645e933d748ef380a58202ae",
+      "bytes": 17401
+    },
+    "frigid393-diamond-native.log": {
+      "sha256": "3ed45121956672b08f1f3822becf18ade4875e4534776cb0b6409ec9d0caca83",
+      "bytes": 472
+    },
+    "frigid393-diamond-native.mjs": {
+      "sha256": "669bc3e29db9ac9c6bba30712d6716ba948752011edb7984403888a2e8a3697d",
+      "bytes": 14978
+    },
+    "frigid393-native.mjs": {
+      "sha256": "09705c69348626cb5ff3b8dabdfe72548b8a821865d08b71a9196b7b8ce29dd1",
+      "bytes": 14739
+    },
+    "gear-partial.json": {
+      "sha256": "2aa0453096ac4ab7e10b999e36f48301379b3612250f8fccd28fbb3af401a8ee",
+      "bytes": 154160
+    },
+    "gear-policy.json": {
+      "sha256": "a92889428bc8e4fe5d91ddce6a5c8ae92b5258858c7f779428c1d4cd67f94b35",
+      "bytes": 3249
+    },
+    "gear-prepared.diagnostic-only.json.gz": {
+      "sha256": "84b1e48bbd064575a50cf6ffef20bc6d629896779290881a3c8f8616949dc02b",
+      "bytes": 236752
+    },
+    "gear-screen.json": {
+      "sha256": "b32170edd2e41ff791f103f364f212c68e2b1af4800f3780dbc9b25853fa86d6",
+      "bytes": 154242
+    },
+    "gear-screen.log": {
+      "sha256": "481566072c957b2128193dcdb1a1ac42efd8b9db84b900bc2ea63b53fcf684ff",
+      "bytes": 51347
+    },
+    "gear-screen.mjs": {
+      "sha256": "54a75c3aa040b4b8820c36b00088766ce3e17d84a3fc9c7473f58a9b447fa19a",
+      "bytes": 5440
+    },
+    "gear-seeds.json": {
+      "sha256": "ebc3d8ab40d95135990d115d2550a52e638e1559caa143a6d77697995b83f33b",
+      "bytes": 322
+    },
+    "native-diamond-preparation/001-imported.json.gz": {
+      "sha256": "5ed2dc1af041946f006ac5b6fd4a5da19a67b230d71324df42965d92cffc558b",
+      "bytes": 236744
+    },
+    "native-diamond-preparation/002-preparation-before-saved.json.gz": {
+      "sha256": "5ed2dc1af041946f006ac5b6fd4a5da19a67b230d71324df42965d92cffc558b",
+      "bytes": 236744
+    },
+    "native-diamond-preparation/003-preparation-before-continued.json.gz": {
+      "sha256": "5ed2dc1af041946f006ac5b6fd4a5da19a67b230d71324df42965d92cffc558b",
+      "bytes": 236744
+    },
+    "native-diamond-preparation/004-temporary-gloves.json.gz": {
+      "sha256": "474b31d06da97918209e62f0c397d4ceade0ab107d6e36bffaab5af29b715fc0",
+      "bytes": 236703
+    },
+    "native-diamond-preparation/005-diamond-gloves-0.json.gz": {
+      "sha256": "6b1baf73e5886ccc864408565845b6623254f876071556a18246116c55ebb4b0",
+      "bytes": 236721
+    },
+    "native-diamond-preparation/006-diamond-gloves-1.json.gz": {
+      "sha256": "b987a7f6c96bd397a1beb554cdffa82ddfa2348034c287b10a599b552ea91f53",
+      "bytes": 236722
+    },
+    "native-diamond-preparation/007-restored-gloves.json.gz": {
+      "sha256": "87850ac5cb5261ffcf176034fee8cdf403d2ffae75d56f4acd8f99a5eb4776d5",
+      "bytes": 236804
+    },
+    "native-diamond-preparation/008-temporary-boots.json.gz": {
+      "sha256": "57da3ec54643ea2953abb44e910a4a9beedca5c59a8c3c7caf86f392173de467",
+      "bytes": 236780
+    },
+    "native-diamond-preparation/009-diamond-boots-0.json.gz": {
+      "sha256": "ad4398e65072a3d89f64b06fb5a0ad1802537f48937a44ec72ba30420dd239ae",
+      "bytes": 236783
+    },
+    "native-diamond-preparation/010-diamond-boots-1.json.gz": {
+      "sha256": "b181584cc1e5e7a4df51511cfc50174f2a7351b91483c9d8e356b1971bf3699d",
+      "bytes": 236785
+    },
+    "native-diamond-preparation/011-restored-boots.json.gz": {
+      "sha256": "395374daf0065e4660e30391e923ce203411e23e5314a678e32ce0f3101f26e8",
+      "bytes": 236803
+    },
+    "native-diamond-preparation/012-diamond-chest-0.json.gz": {
+      "sha256": "aa76d41c8850a161247f4afcd71c25a6da6acf38fdda8f34197aa62518890a02",
+      "bytes": 236824
+    },
+    "native-diamond-preparation/013-defense-head.json.gz": {
+      "sha256": "e83fba359ab31b2045ef3ed3555ba1999eedbabca2c4d86659cf635a249ab553",
+      "bytes": 236813
+    },
+    "native-diamond-preparation/014-defense-chest.json.gz": {
+      "sha256": "39fde5166c7f60d51883964d298fca2c8ac346b6642a67e0d4ad5bac64add595",
+      "bytes": 236837
+    },
+    "native-diamond-preparation/015-defense-offhand.json.gz": {
+      "sha256": "e9abdc8684a619c9d9eadcdb8873e384c89a43212e57c918e554b73ad9f597a4",
+      "bytes": 236864
+    },
+    "native-diamond-preparation/016-defense-amulet.json.gz": {
+      "sha256": "9814dcf092da536146224c3e4bb225cc48cb0f7d0adc8f5b8177a78374765dc0",
+      "bytes": 236823
+    },
+    "native-diamond-preparation/017-prepared.json.gz": {
+      "sha256": "9814dcf092da536146224c3e4bb225cc48cb0f7d0adc8f5b8177a78374765dc0",
+      "bytes": 236823
+    },
+    "native-diamond-preparation/018-prepared-saved.json.gz": {
+      "sha256": "9814dcf092da536146224c3e4bb225cc48cb0f7d0adc8f5b8177a78374765dc0",
+      "bytes": 236823
+    },
+    "native-diamond-preparation/019-prepared-continued.json.gz": {
+      "sha256": "9814dcf092da536146224c3e4bb225cc48cb0f7d0adc8f5b8177a78374765dc0",
+      "bytes": 236823
+    },
+    "native-diamond-preparation/final.json.gz": {
+      "sha256": "9814dcf092da536146224c3e4bb225cc48cb0f7d0adc8f5b8177a78374765dc0",
+      "bytes": 236823
+    },
+    "native-diamond-preparation/report.json": {
+      "sha256": "7bc72ea3343dc1f983209db53311662971b975a3d29f0766de57248728731dc6",
+      "bytes": 6608
+    },
+    "native-preparation-current.json": {
+      "sha256": "92a94a66241255a8b02ba5b84090d22114b2861561b11f3fbc2ad2cc43ac124e",
+      "bytes": 280
+    },
+    "native-rescue-claim/001-imported.json.gz": {
+      "sha256": "a9b166230ba56a68e59b79e7bd56f714c290fd2a05d5379a9939e1cb506b6ff9",
+      "bytes": 239523
+    },
+    "native-rescue-claim/002-before-cages-saved.json.gz": {
+      "sha256": "a9b166230ba56a68e59b79e7bd56f714c290fd2a05d5379a9939e1cb506b6ff9",
+      "bytes": 239523
+    },
+    "native-rescue-claim/003-before-cages-continued.json.gz": {
+      "sha256": "a9b166230ba56a68e59b79e7bd56f714c290fd2a05d5379a9939e1cb506b6ff9",
+      "bytes": 239523
+    },
+    "native-rescue-claim/004-cage-1.json.gz": {
+      "sha256": "f5b2127b02ebb55011cc3b062d9d3a1781b502fb7e796943186d365de3f79a3f",
+      "bytes": 239537
+    },
+    "native-rescue-claim/005-cage-2.json.gz": {
+      "sha256": "80c632c1aaa81b24427af7e04abc9429b79a5d7730c3c182e943689489467ff3",
+      "bytes": 239543
+    },
+    "native-rescue-claim/006-cage-3.json.gz": {
+      "sha256": "25e09144a232557c233f3a2d133c3e74e10314bed1afec25815c773d30e12524",
+      "bytes": 239539
+    },
+    "native-rescue-claim/007-three-cages-unclaimed-saved.json.gz": {
+      "sha256": "25e09144a232557c233f3a2d133c3e74e10314bed1afec25815c773d30e12524",
+      "bytes": 239539
+    },
+    "native-rescue-claim/008-three-cages-unclaimed-continued.json.gz": {
+      "sha256": "25e09144a232557c233f3a2d133c3e74e10314bed1afec25815c773d30e12524",
+      "bytes": 239539
+    },
+    "native-rescue-claim/009-rescue-claimed.json.gz": {
+      "sha256": "044459cc700a949b0d90dd1525e8aa7891a279ad941e3c9288d012275a723ca2",
+      "bytes": 239534
+    },
+    "native-rescue-claim/010-rescue-claimed-saved.json.gz": {
+      "sha256": "044459cc700a949b0d90dd1525e8aa7891a279ad941e3c9288d012275a723ca2",
+      "bytes": 239534
+    },
+    "native-rescue-claim/011-rescue-claimed-continued.json.gz": {
+      "sha256": "044459cc700a949b0d90dd1525e8aa7891a279ad941e3c9288d012275a723ca2",
+      "bytes": 239534
+    },
+    "native-rescue-claim/012-claim-still-disabled.json.gz": {
+      "sha256": "044459cc700a949b0d90dd1525e8aa7891a279ad941e3c9288d012275a723ca2",
+      "bytes": 239534
+    },
+    "native-rescue-claim/final.json.gz": {
+      "sha256": "044459cc700a949b0d90dd1525e8aa7891a279ad941e3c9288d012275a723ca2",
+      "bytes": 239534
+    },
+    "native-rescue-claim/report.json": {
+      "sha256": "cc2c4a89698e40173b2ba2ecd0e337828da9df5e7fb5354c967cdaad5c6d42e4",
+      "bytes": 1505
+    },
+    "native-rescue-claim/rescue-claimed.png": {
+      "sha256": "ea527d725255155031143cbb89a3620aa93017b6d037ad2c5f099fa861795d86",
+      "bytes": 55824
+    },
+    "native-rescue-claim/three-cages.png": {
+      "sha256": "e8530d9711889f11d9dec5085147e7dccf4a220935e69864b0f941b9b88c4462",
+      "bytes": 47542
+    },
+    "owned-magic-defense-candidates.json": {
+      "sha256": "0fe1a113cae97ed086c181df7b21c07627f7adc427db56fbce4eff2a866a4b8d",
+      "bytes": 25644
+    },
+    "partial.json": {
+      "sha256": "47eb377a3d58cfe6f840b4b68b6b76fe5fe0b2c7b1dccfd83719d4dd46ea099e",
+      "bytes": 153822
+    },
+    "policy.json": {
+      "sha256": "fffbeaa212b62ef42b88b2faf18924d88a216ef5e4cd3d5932e2474eb6855ed4",
+      "bytes": 2302
+    },
+    "pre-native-audit.json": {
+      "sha256": "17b82bbe06ecc9537225f753efff05bb2841b273db44cfb3dca127ff45b1763d",
+      "bytes": 491
+    },
+    "prepare-diamond-native.log": {
+      "sha256": "7bfde24235ff316c6f3c7403848eb9b0d10294c26581eea418a9a8a74758d352",
+      "bytes": 72
+    },
+    "prepare-diamond-native.mjs": {
+      "sha256": "7413dcc368d71d44ac8c3f22a813eddcbdd62f870e3c559fe4ce2cab4bb17487",
+      "bytes": 8800
+    },
+    "preview-stop-request.json": {
+      "sha256": "0c4387af3fe1d35276139308489338832e370e8c4ce5dfe2385c1798cbd78334",
+      "bytes": 296
+    },
+    "rescue-current.json": {
+      "sha256": "200624bdac6ece28180da9051d6f00c2177e6ae868ef23fe2640849dfbfe8f3e",
+      "bytes": 277
+    },
+    "rescue-native.log": {
+      "sha256": "b38fca86e2c8c931d3d6af85b54c4697bb9e735e8264eee9a9cc418ca2500508",
+      "bytes": 71
+    },
+    "rescue-native.mjs": {
+      "sha256": "1ffa7eafcd3c6e6d2540061b9f6cb7c18655445efcab0653f13ecbb3326510e1",
+      "bytes": 10219
+    },
+    "screen.json": {
+      "sha256": "912165b7832178123833b78b8d9539e6130d5689cf2084642a0dc3e764fd4c66",
+      "bytes": 153904
+    },
+    "screen.log": {
+      "sha256": "aa55b2587bbf13cd559a2a20e441809d604881f7caf7d7d57b6fcd7b746c7e7e",
+      "bytes": 52179
+    },
+    "screen.mjs": {
+      "sha256": "7181376b4019dac0511fa4769f671dc69b7267e723b5387eedd2205d4d316f8d",
+      "bytes": 4275
+    },
+    "seeds.json": {
+      "sha256": "a9dcd10eaa9afb5be30a3583874c18f819228175c2b322acdfed378f4a50ae5d",
+      "bytes": 322
+    },
+    "served-hashes.json": {
+      "sha256": "0637be142202264a0f7c80ee652caa4224e8ebdfe6ee0bfeac032a382f92a59f",
+      "bytes": 666
+    },
+    "source-freeze.json": {
+      "sha256": "4214500182fc894a6b13ddcf71b4fe9e1299bba70fadf31196c63f369958c962",
+      "bytes": 123877
+    },
+    "summary.json": {
+      "sha256": "1303834cf4ba9006776ce646760a41a1c9755cef1fae92a9407e71f82afcd09a",
+      "bytes": 2151
+    }
+  },
+  "archiveSHA256": "514917b5cc010f3ac8c5065f03dc8bd9a19171bd8e9a63aa724810b48373c9c3",
+  "archiveBytes": 11711759,
+  "finalRawSHA256": "7ad3337349d58c85e7ac61c6c9f5202701f764c92b31a13a33c32c6613e55cb0",
+  "cleanup": {
+    "owner": "root",
+    "allConsumersTerminal": true,
+    "previewPID": 1225595,
+    "previewSession": 11347,
+    "previewExit": 130,
+    "previewPort4445": "<urlopen error [Errno 111] Connection refused>",
+    "removed": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/frigid393/dist",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/frigid393/vite-cache"
+    ],
+    "remaining": [],
+    "failures": [],
+    "retainedRaw": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/frigid393",
+    "retention": "root retains exact raw root through campaign/full-v1 consumers, then removes it"
+  }
+}
