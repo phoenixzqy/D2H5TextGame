@@ -23,6 +23,7 @@ import { monsterLevelForReplay } from '@/engine/map/replay-profile';
 import { IdleTickerStrip } from '@/features/idle/IdleTickerStrip';
 import { hasAreaObjects, travelToAreaObjects, type ObjectActionResult } from '@/features/quests/interactObject';
 import { ReplayProfileControls } from './ReplayProfileControls';
+import { EndgamePanel } from '@/features/endgame/EndgamePanel';
 import { AreaObjectsPanel } from './AreaObjectsPanel';
 import { resolveSubArea } from '@/stores/subAreaResolver';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
@@ -153,9 +154,10 @@ export function MapScreen() {
   };
 
   return (
-    <ScreenShell testId="map-screen" title={t('worldMap')}>
+    <ScreenShell testId="map-screen" title={t('worldMap')} footer={<IdleTickerStrip />}>
       <div className="space-y-3 max-w-3xl mx-auto pb-12">
         <ReplayProfileControls />
+        <EndgamePanel />
         {idleTarget && idleAreaName && (
           <div
             className="sticky top-0 z-20 -mx-3 md:-mx-6 px-3 md:px-6 py-2
@@ -391,7 +393,6 @@ export function MapScreen() {
           );
         })}
       </div>
-      <IdleTickerStrip />
     </ScreenShell>
   );
 }

@@ -106,6 +106,7 @@
     "title": "Character title",
     "description": "Choose a title for your nameplate. Titles add no combat stats.",
     "slayer": "Slayer of Baal",
-    "none": "No title"
+    "none": "No title",
+    "riftwalker": "Riftwalker"
   }
 }

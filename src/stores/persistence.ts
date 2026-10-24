@@ -203,8 +203,10 @@ export function blockSavesForRecovery(): void {
   writesBlocked = true;
   cancelPendingSave();
   const message = 'Material action restoration failed; saved-state recovery is required';
-  useSaveStatusStore.setState({ error: message });
-  useHydrationStore.getState().setStatus('error', message);
+  const errors: unknown[] = [];
+  try { useSaveStatusStore.setState({ error: message }); } catch (error) { errors.push(error); }
+  try { useHydrationStore.getState().setStatus('error', message); } catch (error) { errors.push(error); }
+  if (errors.length > 0) throw new AggregateError(errors, 'Saved-state recovery notification failed');
 }
 
 /**

@@ -1,4 +1,4 @@
-import type { CampaignMapSaveData } from '@/engine/types/save';
+import type { CurrentMapSaveData } from '@/engine/types/save';
 import { emptyEndgameState } from '@/engine/endgame/state';
 import type { EndgameState } from '@/engine/endgame/types';
 import { ACT5_ENCOUNTERS, PRISON_QUEST } from '@/engine/map/act5-admission';
@@ -25,7 +25,7 @@ import { GUARDIAN_QUEST_ID } from '@/engine/map/guardian-admission';
 
 type QuestProgress = InteractionProgress;
 
-interface MapState extends Pick<CampaignMapSaveData, 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'challengeOrdinals'> {
+interface MapState extends Pick<CurrentMapSaveData, 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'challengeOrdinals'> {
   endgame: EndgameState;
   currentAct: number;
   currentSubAreaId: string | null;

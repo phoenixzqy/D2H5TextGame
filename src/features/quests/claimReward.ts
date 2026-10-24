@@ -1,6 +1,7 @@
 import { QUEST_SERVICE_SOURCES, validateQuestServiceLedger, type QuestServiceLedger } from '@/engine/services/quest-services';
 import { hasAct5Completion, READ_PROOF, SCROLL_SOURCE } from '@/engine/save/act5-state';
-import { hasQuestServiceSourceGraph, validateAct5CampaignRewards, BAAL_TITLE, NIGHTMARE_UNLOCK } from '@/engine/save/act5-campaign';
+import { hasQuestServiceSourceGraph, BAAL_TITLE, NIGHTMARE_UNLOCK } from '@/engine/save/act5-campaign';
+import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
 import { EVE_QUEST, RESCUE_QUEST } from '@/engine/map/act5-admission';
 import { ACT4_ENCOUNTERS } from '@/engine/map/act4-admission';
 /** Shared synchronous quest reward boundary; completion and claim stay separate. */
@@ -256,8 +257,8 @@ export function claimQuestReward(questId: string): ClaimResult {
     const mapBefore = useMapStore.getState();
     const campaignFields = campaignReward ? { questTitles: { ...mapBefore.questTitles, [BAAL_TITLE]: true as const },
       questDifficulties: { ...mapBefore.questDifficulties, [NIGHTMARE_UNLOCK]: true as const } } : {};
-    try { validateAct5CampaignRewards({ ...mapBefore, ...campaignFields, questProgress: claimedContext },
-      questItems ?? inventory.questItems, questServices ?? inventory.questServices); }
+    try { validateCurrentCampaignRewards({ ...mapBefore, ...campaignFields, questProgress: claimedContext },
+      questItems ?? inventory.questItems, questServices ?? inventory.questServices, mapBefore.endgame); }
     catch { return 'unsupported-rewards'; }
 
     // Preparation is private: failure here must not publish rollback writes.

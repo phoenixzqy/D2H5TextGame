@@ -12,7 +12,7 @@ import {
   type SaveCurrent,
   type SocketInventorySaveData,
   type QuestActionReceipts,
-  type CampaignMapSaveData,
+  type CurrentMapSaveData,
 
   type MapSaveData,
   type MetaSaveData,
@@ -30,7 +30,7 @@ export interface BuildSaveInput {
   readonly player: Player;
   readonly inventory: Pick<SocketInventorySaveData, 'backpack' | 'stash' | 'equipped' | 'currencies'> & Partial<Omit<SocketInventorySaveData, 'backpack' | 'stash' | 'equipped' | 'currencies' | 'latestMaterialAction'>> & { readonly latestMaterialAction?: MaterialActionReceipt | null };
   readonly mercs: SaveCurrent['mercs'];
-  readonly map: MapSaveData & { readonly questReceipts?: QuestActionReceipts } & Partial<Pick<CampaignMapSaveData, 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'challengeOrdinals'>>;
+  readonly map: MapSaveData & { readonly questReceipts?: QuestActionReceipts } & Partial<Pick<CurrentMapSaveData, 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'challengeOrdinals'>>;
   readonly meta: MetaSaveData;
   readonly formation: FormationPreferences;
   readonly timestamp?: number;

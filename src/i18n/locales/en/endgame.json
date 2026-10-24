@@ -1,0 +1,52 @@
+{
+  "worldstoneRemnant": {
+    "name": "Worldstone Remnant"
+  },
+  "summary": "Level {{level}} · {{waves}} waves · Free entry · Manual battles",
+  "locked": "Defeat Baal and claim Eve of Destruction to unlock this dungeon.",
+  "invalid": "Dungeon progress could not be verified. Restore a saved character before entering.",
+  "choose": "Choose your trial",
+  "modifiers": {
+    "ashen": {
+      "name": "Ashen Trial",
+      "description": "Blood Lords resist fire and attack with fire breath and ignite."
+    },
+    "glacial": {
+      "name": "Glacial Trial",
+      "description": "Frozen Terrors resist cold and slow attacks with frost aura and chill."
+    }
+  },
+  "cache": "Every full clear: {{materials}}",
+  "clears": "Clears: {{count}}",
+  "enter": "Enter dungeon",
+  "rewards": "Won waves grant Act V rewards. A loss keeps settled wave rewards; the completion cache requires every wave.",
+  "achievement": {
+    "title": "Riftwalker",
+    "requirement": "Clear each trial at least once, then claim your reward.",
+    "reward": "Claim reward: {{materials}} and the Riftwalker title.",
+    "ready": "Both trials cleared. Your reward is ready.",
+    "claimed": "Reward claimed. Riftwalker is available in town.",
+    "claim": "Claim achievement"
+  },
+  "combat": {
+    "manual": "Manual dungeon · Level {{level}}",
+    "newAttempt": "New attempt",
+    "invalid": "This dungeon request is invalid. Return to the map and choose a trial.",
+    "refused": "Dungeon entry is unavailable. Return to the map to check your character and progress."
+  },
+  "feedback": {
+    "ok": "Achievement reward claimed.",
+    "not-eligible": "Clear both trials before claiming.",
+    "already-claimed": "This reward has already been claimed.",
+    "grant-failed": "The reward could not be granted. Free space or reduce material balances, then try again.",
+    "not-ready": "Wait for your character to finish loading.",
+    "no-player": "Create or continue a character first.",
+    "combat-active": "Finish or leave the current battle first.",
+    "claim-in-progress": "Another reward is being processed. Try again shortly.",
+    "busy": "Another action is in progress. Try again shortly.",
+    "restoration-failed": "Reward recovery failed. Restore your saved character in Settings before continuing.",
+    "locked": "Claim the final campaign reward first.",
+    "invalid": "Dungeon progress could not be verified. Restore your saved character.",
+    "exhausted": "No further dungeon attempts are available for this character."
+  }
+}

@@ -14,9 +14,11 @@ interface ScreenShellProps {
   title?: ReactNode;
   /** Hide bottom nav (e.g. for combat screen takeover, or before character creation) */
   hideNav?: boolean;
+  /** Persistent screen controls with reserved space outside the scrolling main. */
+  footer?: ReactNode;
 }
 
-export function ScreenShell({ children, testId, title, hideNav = false }: ScreenShellProps) {
+export function ScreenShell({ children, testId, title, hideNav = false, footer }: ScreenShellProps) {
   return (
     <div
       // Bug #10: outer shell is exactly 100dvh (fallback 100vh) and never
@@ -48,6 +50,7 @@ export function ScreenShell({ children, testId, title, hideNav = false }: Screen
         >
           {children}
         </main>
+        {footer && <div className="shrink-0">{footer}</div>}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { captureAct5SettlementRollback, prepareAct5Settlement } from './act5Ques
 import { captureAct4Encounter, hasOriginalAct4Victory, isAct4AdmissionEligible, type Act4Encounter } from '@/engine/map/act4-admission';
 import { loadQuests } from '@/data/loaders/quests';
 import { applyReplayProfileToPlan, type ReplayProfileId } from '@/engine/map/replay-profile';
-import { validateAct5CampaignRewards } from '@/engine/save/act5-campaign';
+import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
 /**
  * Combat integration helpers
  * Bridge between engine and stores for playability
@@ -42,7 +42,7 @@ import { captureGuardianEncounter, GUARDIAN_QUEST_ID, hasOriginalGuardianVictory
   isGuardianAdmissionEligible, type GuardianEncounter } from '@/engine/map/guardian-admission';
 import { withQuestTransaction } from '@/features/quests/questTransaction';
 import { validateQuestActionReceipts } from '@/engine/save/validate';
-import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
+import { combatRunLifecycle, type ActiveRun, type RunOrigin } from './combatRunLifecycle';
 import { abandonRecordedWaves, readRecordedWaveInstallation, markRecordedWaveMetadataInstalled,
   observeRecordedWaveSelection, observeRecordedWaveEntry, recognizeRecordedWavePublication, RecordedWaveReceiptError,
   prepareRecordedWaveInstallation, assertPreparedRecordedWaveBinding, cancelPreparedRecordedWave,
@@ -611,7 +611,7 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
     });
     const profile = endgame ? 'normal' : map.selectedDifficulty;
     validateQuestActionReceipts(map.questReceipts, map.questProgress, inventory.questItems);
-    validateAct5CampaignRewards(map, inventory.questItems, inventory.questServices);
+    validateCurrentCampaignRewards(map, inventory.questItems, inventory.questServices, map.endgame);
     const act = endgame ? 5 : clampAct(opts.act ?? map.currentAct);
     const subAreaId = opts.subAreaId ?? map.currentSubAreaId;
     const subArea = resolveSubArea(act, subAreaId);
@@ -1415,6 +1415,12 @@ export function readCombatTransitionRecovery(): CombatTransitionRecovery {
   }
   // Foundation-only pending phases retain their existing typed access refusals.
   return { kind: 'ready' };
+}
+
+/** Display the captured origin across entry recovery, active waves and terminal settlement. */
+export function readCombatRunOrigin(): RunOrigin | null {
+  const { pending, currentPublished } = inspectRecordedWaves();
+  return pending?.binding.origin ?? combatRunLifecycle.activeRun?.origin ?? currentPublished?.binding.origin ?? null;
 }
 
 /** Explicit screen operations, with the exact recovery that was displayed. */

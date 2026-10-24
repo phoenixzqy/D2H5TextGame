@@ -1,0 +1,52 @@
+{
+  "worldstoneRemnant": {
+    "name": "世界之石残境"
+  },
+  "summary": "怪物等级 {{level}} · {{waves}} 波 · 免费进入 · 手动战斗",
+  "locked": "击败巴尔并领取「毁灭前夕」任务奖励后解锁。",
+  "invalid": "无法验证残境进度。请恢复已保存的角色后再进入。",
+  "choose": "选择试炼",
+  "modifiers": {
+    "ashen": {
+      "name": "余烬试炼",
+      "description": "鲜血领主拥有火焰抗性，施放火焰吐息并点燃目标。"
+    },
+    "glacial": {
+      "name": "冰川试炼",
+      "description": "冰霜恐魔拥有冰冷抗性，通过寒霜光环和冰冷效果减缓攻击。"
+    }
+  },
+  "cache": "每次完整通关：{{materials}}",
+  "clears": "通关次数：{{count}}",
+  "enter": "进入残境",
+  "rewards": "获胜波次提供第五幕奖励。失败保留已结算的波次奖励；完成全部波次才能获得通关宝匣。",
+  "achievement": {
+    "title": "裂境行者",
+    "requirement": "两种试炼各通关至少一次后，可领取成就奖励。",
+    "reward": "领取奖励：{{materials}}及「裂境行者」称号。",
+    "ready": "两种试炼均已通关，奖励待领取。",
+    "claimed": "奖励已领取。可在城镇选择「裂境行者」称号。",
+    "claim": "领取成就奖励"
+  },
+  "combat": {
+    "manual": "手动残境 · 怪物等级 {{level}}",
+    "newAttempt": "重新挑战",
+    "invalid": "残境请求无效。请返回地图选择试炼。",
+    "refused": "暂时无法进入残境。请返回地图检查角色状态与进度。"
+  },
+  "feedback": {
+    "ok": "成就奖励已领取。",
+    "not-eligible": "请先通关两种试炼。",
+    "already-claimed": "此奖励已领取。",
+    "grant-failed": "无法发放奖励。请整理物品或降低材料数量后重试。",
+    "not-ready": "请等待角色加载完成。",
+    "no-player": "请先创建或继续角色。",
+    "combat-active": "请先完成或离开当前战斗。",
+    "claim-in-progress": "正在处理其他奖励，请稍后重试。",
+    "busy": "正在处理其他操作，请稍后重试。",
+    "restoration-failed": "奖励恢复失败。请在设置中恢复已保存的角色后再继续。",
+    "locked": "请先领取最终主线任务奖励。",
+    "invalid": "无法验证残境进度，请恢复已保存的角色。",
+    "exhausted": "此角色已无法开始更多残境挑战。"
+  }
+}

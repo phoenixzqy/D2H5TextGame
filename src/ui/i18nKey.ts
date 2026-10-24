@@ -40,7 +40,8 @@ const KNOWN_NAMESPACES: ReadonlySet<string> = new Set([
   'rarity',
   'damage-types',
   'card',
-  'affixes'
+  'affixes',
+  'endgame'
 ]);
 
 /**

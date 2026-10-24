@@ -4,9 +4,13 @@ import type { SaveCurrent, LegacyGearQuarantineEntry } from '../../src/engine/ty
 import { emptyEndgameState } from '../../src/engine/endgame/state';
 
 /** Historical save roots never contain the new durable endgame namespace. */
-export function withoutV20Fields<T extends { endgame?: unknown }>(save: T) {
+export function withoutV20Fields<T extends { endgame?: unknown; map: SaveCurrent['map'] }>(save: T) {
   const { endgame: _endgame, ...historical } = save;
-  return historical;
+  const selectedTitle = save.map.selectedTitle;
+  if (selectedTitle !== null && selectedTitle !== 'titles/slayer_of_baal') {
+    throw new Error('An achievement title has no historical representation');
+  }
+  return { ...historical, map: { ...save.map, selectedTitle } };
 }
 
 /** Remove current-only state before constructing a genuine v18 or earlier fixture. */

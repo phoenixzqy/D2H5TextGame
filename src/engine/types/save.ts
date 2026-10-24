@@ -378,8 +378,12 @@ export interface SaveV19 extends Omit<SaveV18, 'version' | 'inventory' | 'player
     readonly ownedMercs: readonly (Omit<HistoricalMercenary, 'equipment'> & { readonly equipment: readonly CanonicalSocketItem[] })[];
   };
 }
+export interface CurrentMapSaveData extends Omit<CampaignMapSaveData, 'selectedTitle'> {
+  readonly selectedTitle: CampaignMapSaveData['selectedTitle'] | 'titles/worldstone-adapt';
+}
 /** Native v20 adds separate durable dungeon ownership; historical campaign types stay frozen. */
-export interface SaveV20 extends Omit<SaveV19, 'version'> {
+export interface SaveV20 extends Omit<SaveV19, 'version' | 'map'> {
+  readonly map: CurrentMapSaveData;
   readonly version: 20;
   readonly endgame: EndgameState;
 }

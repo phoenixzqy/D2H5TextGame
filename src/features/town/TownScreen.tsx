@@ -49,7 +49,7 @@ export function TownScreen() {
         <span>
           {t('map:act', { number: currentAct })} ·{' '}
           {t('town')}
-          {player && <span className="ml-2 text-sm text-d2-white/60">— {player.name}{selectedTitle === 'titles/slayer_of_baal' ? ` · ${t('titles.slayer')}` : ''}</span>}
+          {player && <span className="ml-2 text-sm text-d2-white/60">— {player.name}{selectedTitle === 'titles/slayer_of_baal' ? ` · ${t('titles.slayer')}` : selectedTitle === 'titles/worldstone-adapt' ? ` · ${t('titles.riftwalker')}` : ''}</span>}
         </span>
       }
     >

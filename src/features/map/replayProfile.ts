@@ -1,4 +1,5 @@
-import { NIGHTMARE_UNLOCK, validateAct5CampaignRewards } from '@/engine/save/act5-campaign';
+import { NIGHTMARE_UNLOCK } from '@/engine/save/act5-campaign';
+import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import { questActionPreflight, withQuestTransaction } from '@/features/quests/questTransaction';
 import { useInventoryStore } from '@/stores/inventoryStore';
@@ -30,8 +31,8 @@ export function selectReplayProfile(profile: 'normal' | 'nightmare'): ReplayProf
       const map = useMapStore.getState(), inventory = useInventoryStore.getState();
       try {
         validateQuestItemLedger(inventory.questItems, map.questProgress, map.questReceipts);
-        validateAct5CampaignRewards(map, inventory.questItems, inventory.questServices);
-        validateAct5CampaignRewards({ ...map, selectedDifficulty: profile }, inventory.questItems, inventory.questServices);
+        validateCurrentCampaignRewards(map, inventory.questItems, inventory.questServices, map.endgame);
+        validateCurrentCampaignRewards({ ...map, selectedDifficulty: profile }, inventory.questItems, inventory.questServices, map.endgame);
       } catch { return 'not-owned'; }
       if (profile === 'nightmare' && (!Object.hasOwn(map.questDifficulties, NIGHTMARE_UNLOCK) ||
         map.questDifficulties[NIGHTMARE_UNLOCK] !== true)) return 'not-owned';

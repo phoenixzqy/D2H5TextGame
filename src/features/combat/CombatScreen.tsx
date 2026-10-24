@@ -10,7 +10,7 @@
  * vertically so complete names remain readable in the scrolling main.
  */
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Modal, Panel, ScreenShell, StatBar, GameCard, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey } from '@/ui';
 import { CombatRewardSummary } from './CombatRewardSummary';
@@ -18,6 +18,7 @@ import { useCombatStore, useFormationStore, useMapStore, useMetaStore, usePlayer
 import {
   performCombatScreenTransition,
   readCombatTransitionRecovery,
+  readCombatRunOrigin,
   abortSubAreaRun,
   hasActiveSubAreaRun,
   resetIdleElitePity,
@@ -32,6 +33,9 @@ import { recordedPlaybackBatch } from '@/stores/combatStore';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit, GridPosition } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
+import { endgameDefinition } from '@/data/loaders/endgame';
+import { readEndgameRequest } from '@/features/endgame/navigation';
+import { checkEndgameEntry } from '@/stores/endgameActions';
 
 const MAX_LOG = 200;
 const SPEED_CYCLE = [1, 2, 4] as const;
@@ -50,8 +54,10 @@ function mapSubAreaNameKey(id: string): string {
 }
 
 export function CombatScreen() {
-  const { t } = useTranslation(['combat', 'common', 'map']);
+  const { t } = useTranslation(['combat', 'common', 'map', 'endgame']);
   const navigate = useNavigate();
+  const { search } = useLocation();
+  const request = useMemo(() => readEndgameRequest(search), [search]);
 
   const player = usePlayerStore((s) => s.player);
   const hydrationStatus = useHydrationStore((s) => s.status);
@@ -93,11 +99,17 @@ export function CombatScreen() {
   const [exitFailed, setExitFailed] = useState(false);
   const [transitionFailed, setTransitionFailed] = useState(() => readCombatTransitionRecovery().kind !== 'ready');
   const [transitionRetry, setTransitionRetry] = useState(0);
+  const [entryRefused, setEntryRefused] = useState(false);
+  const origin = readCombatRunOrigin();
+  const dungeonModifier = origin?.kind === 'endgame' ? origin.modifierId
+    : origin === null && request.kind === 'endgame' ? request.modifierId : null;
+  const isDungeon = dungeonModifier !== null;
+  const invalidRequest = origin === null && request.kind === 'invalid';
   const recovery = readCombatTransitionRecovery();
-  const transitionBlocked = transitionFailed || recovery.kind !== 'ready' || hydrationStatus !== 'ready';
+  const transitionBlocked = invalidRequest || entryRefused || transitionFailed || recovery.kind !== 'ready' || hydrationStatus !== 'ready';
   // Inter-wave countdown banner; null = no pending advance.
   const [nextWaveCountingDown, setNextWaveCountingDown] = useState(false);
-  const isIdleLoop = Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
+  const isIdleLoop = !isDungeon && Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
 
   // Explicit exits reset the store before deferred router navigation unmounts us.
   const exiting = useRef(false);
@@ -106,9 +118,19 @@ export function CombatScreen() {
   useEffect(() => {
     if (transitionBlocked || readCombatTransitionRecovery().kind !== 'ready') return;
     if (!exiting.current && !inCombat && player && !runVictory && !runDefeat) {
-      setTransitionFailed(!performCombatScreenTransition({ kind: 'start', options: { mode: isIdleLoop ? 'idle' : 'manual' } }));
+      if (dungeonModifier !== null) {
+        try {
+          if (checkEndgameEntry(dungeonModifier) !== 'ok') { setEntryRefused(true); return; }
+          setTransitionFailed(!performCombatScreenTransition({ kind: 'endgame', modifierId: dungeonModifier }));
+        } catch (error) {
+          if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
+          setTransitionFailed(true);
+        }
+      } else {
+        setTransitionFailed(!performCombatScreenTransition({ kind: 'start', options: { mode: isIdleLoop ? 'idle' : 'manual' } }));
+      }
     }
-  }, [inCombat, isIdleLoop, player, runVictory, runDefeat, transitionBlocked, transitionRetry]);
+  }, [inCombat, isIdleLoop, dungeonModifier, player, runVictory, runDefeat, transitionBlocked, transitionRetry]);
 
   // Schedule the same atomic timestamp group consumed by the store.
   useEffect(() => {
@@ -214,7 +236,7 @@ export function CombatScreen() {
       return;
     }
     exiting.current = true;
-    if (wasInRun) {
+    if (wasInRun && !isDungeon) {
       setIdleTarget(undefined);
       resetIdleElitePity();
     }
@@ -224,8 +246,8 @@ export function CombatScreen() {
 
   // Compute next sub-area for the post-victory CTA.
   const nextSubArea = useMemo(
-    () => nextSubAreaInAct(currentAct, subAreaRunId),
-    [currentAct, subAreaRunId]
+    () => isDungeon ? null : nextSubAreaInAct(currentAct, subAreaRunId),
+    [isDungeon, currentAct, subAreaRunId]
   );
 
   const handleContinueToNext = () => {
@@ -234,22 +256,19 @@ export function CombatScreen() {
     endCombat(); // will trigger auto-start in the mount effect
   };
 
-  const handleReturnToMap = () => {
+  const handleReturn = (destination: '/map' | '/town') => {
     if (transitionBlocked || readCombatTransitionRecovery().kind !== 'ready') return;
+    try {
+      abortSubAreaRun();
+    } catch (error) {
+      if (!(error instanceof WaveGuardError)) throw error;
+      setExitFailed(true);
+      return;
+    }
     exiting.current = true;
-    setIdleTarget(undefined);
-    resetIdleElitePity();
+    if (!isDungeon) { setIdleTarget(undefined); resetIdleElitePity(); }
     endCombat();
-    navigate('/map');
-  };
-
-  const handleReturnToTown = () => {
-    if (transitionBlocked || readCombatTransitionRecovery().kind !== 'ready') return;
-    exiting.current = true;
-    setIdleTarget(undefined);
-    resetIdleElitePity();
-    endCombat();
-    navigate('/town');
+    navigate(destination);
   };
 
   useEffect(() => {
@@ -287,6 +306,15 @@ export function CombatScreen() {
   // can render compactly next to the action buttons.
   const [logHoverPaused, setLogHoverPaused] = useState(false);
 
+  if (invalidRequest || entryRefused) return <ScreenShell testId="combat-screen" title={tDataKey(t, endgameDefinition.nameKey)}>
+    <Panel>
+      <p role="alert" data-testid="endgame-entry-refusal" className="mb-3 text-d2-gold">
+        {t(invalidRequest ? 'endgame:combat.invalid' : 'endgame:combat.refused')}
+      </p>
+      <Button type="button" className="min-h-11" onClick={() => { navigate('/map'); }}>{t('returnToMap')}</Button>
+    </Panel>
+  </ScreenShell>;
+
   return (
     <ScreenShell
       testId="combat-screen"
@@ -304,11 +332,11 @@ export function CombatScreen() {
                   <span className="text-d2-set" data-testid="idle-loop-label">{t('idleLoop.label')}</span>
                 </>
               )}
-              {currentSubAreaId && (
+              {(isDungeon || currentSubAreaId) && (
                 <>
                   {' · '}
                   <span data-testid="combat-sub-area-name" className="text-d2-gold">
-                    {tDataKey(t, mapSubAreaNameKey(currentSubAreaId))}
+                    {isDungeon ? tDataKey(t, endgameDefinition.nameKey) : tDataKey(t, mapSubAreaNameKey(currentSubAreaId ?? ''))}
                   </span>
                 </>
               )}
@@ -331,9 +359,8 @@ export function CombatScreen() {
               )}
             </span>
             <span className="text-[10px] uppercase tracking-wide text-d2-white/60" data-testid="combat-act-name">
-              {t('map:act', { number: currentAct, defaultValue: `Act ${String(currentAct)}` })}
-              {' · '}
-              {tDataKey(t, `map.actName.${String(currentAct)}`)}
+              {isDungeon ? <>{t(`endgame:modifiers.${dungeonModifier}.name`)} · {t('endgame:combat.manual', { level: endgameDefinition.monsterLevel })}</>
+                : <>{t('map:act', { number: currentAct, defaultValue: `Act ${String(currentAct)}` })} · {tDataKey(t, `map.actName.${String(currentAct)}`)}</>}
             </span>
           </div>
           <div className="flex flex-wrap items-center justify-start gap-2 lg:justify-end">
@@ -454,6 +481,12 @@ export function CombatScreen() {
           >
             {runVictory && <CombatRewardSummary rewards={runRewards} />}
             <div className="flex flex-wrap gap-2 mt-2">
+              {dungeonModifier !== null && <Button type="button" className="min-h-11 max-w-full whitespace-normal" disabled={transitionBlocked}
+                data-testid="endgame-new-attempt" onClick={() => {
+                  if (transitionBlocked || readCombatTransitionRecovery().kind !== 'ready') return;
+                  // Clear terminal playback; the captured origin still chooses the fresh admission.
+                  endCombat();
+                }}>{t('endgame:combat.newAttempt')}</Button>}
               {runVictory && nextSubArea && (
                 <Button
                   variant="primary"
@@ -481,7 +514,7 @@ export function CombatScreen() {
               <Button
                 variant="secondary"
                 className="min-h-11 text-sm"
-                onClick={handleReturnToMap}
+                  onClick={() => { handleReturn('/map'); }}
                 disabled={transitionBlocked}
                 data-testid="return-to-map"
               >
@@ -490,7 +523,7 @@ export function CombatScreen() {
               <Button
                 variant="secondary"
                 className="min-h-11 text-sm"
-                onClick={handleReturnToTown}
+                  onClick={() => { handleReturn('/town'); }}
                 disabled={transitionBlocked}
                 data-testid="return-to-town"
               >

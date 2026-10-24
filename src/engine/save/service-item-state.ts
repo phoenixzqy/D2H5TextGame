@@ -7,7 +7,7 @@ const mapFields = ['questTitles', 'questDifficulties', 'selectedTitle', 'selecte
 function record(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && (Object.getPrototypeOf(value) === Object.prototype || Object.getPrototypeOf(value) === null);
 }
-function activeItems(save: Omit<SaveV17, 'version'>): readonly Item[] {
+function activeItems(save: Pick<SaveV17, 'inventory' | 'player' | 'mercs'>): readonly Item[] {
   return [...save.inventory.backpack, ...save.inventory.stash,
     ...Object.values(save.inventory.equipped).filter((item): item is Item => item !== null),
     ...Object.values(save.mercs.mercEquipment).flatMap(equipment => Object.values(equipment).filter((item): item is Item => item != null))];
@@ -28,7 +28,7 @@ export function rejectHistoricalServiceFields(value: unknown): void {
   inspect(value.inventory); inspect(value.player); inspect(value.mercs);
 }
 /** Validate active instances and uniqueness across actual ownership containers, excluding actor cache mirrors. */
-export function validateNativeItemState(save: Omit<SaveV17, 'version'>): void {
+export function validateNativeItemState(save: Pick<SaveV17, 'inventory' | 'player' | 'mercs'>): void {
   const ids = new Set<string>();
   const bases = new Map(itemBases.map(base => [base.id, base]));
   for (const item of activeItems(save)) {
@@ -43,7 +43,7 @@ export function validateNativeItemState(save: Omit<SaveV17, 'version'>): void {
   if (save.inventory.legacyGearQuarantine.some(entry => ids.has(entry.item.id))) throw new Error('Invalid save: quarantined item remains active');
 }
 /** Preserved predecessor payloads are inspectable only; each has one exact finite original location. */
-export function validateLegacyQuarantine(save: Omit<SaveV17, 'version'>, validateItem: (value: unknown) => void): void {
+export function validateLegacyQuarantine(save: Pick<SaveV17, 'inventory'>, validateItem: (value: unknown) => void): void {
   const origins = new Set<string>();
   if (!Array.isArray(save.inventory.legacyGearQuarantine)) throw new Error('Invalid save: quarantine must be an array');
   for (const entry of save.inventory.legacyGearQuarantine) {

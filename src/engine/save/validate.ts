@@ -6,6 +6,7 @@ import { rejectSocketSaveAccessors, validateNativeSocketState } from './native-s
 import { ACT5_RECEIPTS, validateAct5QuestGraph } from './act5-state';
 import { ACT5_ENCOUNTERS } from '../map/act5-admission';
 import { validateAct5CampaignRewards } from './act5-campaign';
+import { validateCurrentCampaignRewards } from './current-campaign';
 import { validateNativeItemState, rejectHistoricalServiceFields, validateLegacyQuarantine } from './service-item-state';
 import frozenV16 from './frozen-v16-quests.json';
 /** Structural validation at the untrusted save boundary; never mutates input. */
@@ -680,7 +681,9 @@ function validateNativeSave(value: unknown, version: 17 | 18 | 19 | 20): SaveV17
     validateQuestActionReceipts(value.map.questReceipts, value.map.questProgress);
   }
   if (record(value) && value.version === version && record(value.map) && record(value.inventory)) {
-    validateAct5CampaignRewards(value.map as unknown as SaveCurrent['map'], value.inventory.questItems as QuestItemLedger, value.inventory.questServices);
+    if (version === 20) validateCurrentCampaignRewards(value.map as unknown as SaveCurrent['map'],
+      value.inventory.questItems as QuestItemLedger, value.inventory.questServices, value.endgame);
+    else validateAct5CampaignRewards(value.map as unknown as SaveV19['map'], value.inventory.questItems as QuestItemLedger, value.inventory.questServices);
   }
   if (version >= 19) validateNativeSocketState(value, validateFrozenV16Item);
   const normalized = normalizeMaps(value);
@@ -692,7 +695,8 @@ function validateNativeSave(value: unknown, version: 17 | 18 | 19 | 20): SaveV17
   // Own undefined, inherited values and accessors must not disappear through normalization.
   validateLegacyQuarantine(value as SaveV17 | SaveV18 | SaveV19, validateFrozenV16Item);
   if (version < 19) validateNativeItemState(value as SaveV17 | SaveV18);
-  validateAct5CampaignRewards(save.map, save.inventory.questItems, save.inventory.questServices);
+  if (save.version === 20) validateCurrentCampaignRewards(save.map, save.inventory.questItems, save.inventory.questServices, save.endgame);
+  else validateAct5CampaignRewards(save.map, save.inventory.questItems, save.inventory.questServices);
   validateLegacyQuarantine(save, validateFrozenV16Item);
   if (version >= 19) validateNativeSocketState(save, validateFrozenV16Item);
   else validateNativeItemState(save);
