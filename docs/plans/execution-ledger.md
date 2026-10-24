@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D11 earned Arreat396–399 / L33 | four genuine full clears; next400 retained | Six paired Ancients variants0/32 each; original222MR/minimum-damage and mana diagnostics retained, no genuine preparation/attempt. Exact current Arreat screen31/32+15/16 qualifies bounded maxfive/L33/firstnonwin farm. Actual396–399 win24/24waves,+231930XP/+723gear; level33 reached399W4/current area finished, no later launch. FinalL33/XP15391/23442gear, stat10/skill2/40MR/HolyFreeze, nextNormal400/Nightmare0. [Authoritative final/evidence](evidence/d11-earned-act5-level33.md).40native snapshots/five exact Continue pairs/all22719ancestral full payloads conserved.224qualification trials plus one retained-seed trace, all tooling failures preserved;1128source/760explicitfalse build/7served exact, prior11678unit passes/types/lint apply.185raw files archived; consumers terminal,4447closed/ten exactbuild+cache dirs absent, cleanup[]/failures[]. Ancients/Baal, C2–C4/213skills/pacing/fullG and independent acceptance open. |
 | D11 earned Arreat394 / Passage395 / Prison Claim+Read | two genuine six-wave clears and separate reward actions verified locally; next396 retained | Unchanged40MR Nova preparation: Arreat32/32+16/16, Passage26/32+13/16 with six boss timeouts retained. Actual394/395 win12/12waves; StartPrison/inspect/potion/thaw then original Nihlathak proof, separate12000XP Claim/unread barrier and keyboard Read add10allres exactly once. Combined116080XP/+312gear, finalL32/XP362722/22719gear/stat5/skill1, nextNormal396/Nightmare0; socket/personalization unused. [Authoritative final/evidence](evidence/d11-earned-act5-through395.md).40native snapshots/eight exact Continue pairs/all22407ancestral full payloads conserved. Original driver/auditor failures retained without replay;1128source/760build/7served exact; prior11678unit passes/types/lint apply.112raw files archived, consumers terminal, preview4446 stopped/exactdist+cache absent, cleanup[]/failures[]. Ancients/Baal, wider idle/pacing, C2–C4/213skills/fullG and independent acceptance open. |
 | D11 earned Frigid393 / three cages / Rescue Claim | genuine six-wave clear, three distinct cage actions and separate Claim verified locally; next394 retained | Baseline0/32 and resistance-only0/32; five actual owned flawless diamonds add40MR and qualify32/32+16/16. Overflow unequip diagnostic refusal retained; legal temporary one-for-one swaps prepare exact native state with13actions/five diamonds, no points/skills/merc/currency changes.393 wins6/6,+42150XP/+141gear; cages5→10→15 then separate8000XP/+1skill/+5all-resist Claim. FinalL32/XP246642/22407gear, stat5/skill1/HolyFreeze, nextNormal394/Nightmare0. [Authoritative final/evidence](evidence/d11-earned-act5-frigid393.md).47native snapshots/eight exact Continue pairs/all22266prepared full payloads conserved.1128source/760build/7served hashes exact; prior11678unit passes/types/lint apply. 120raw files archived; all consumers terminal, exactpreview4445 stopped/dist+cache absent, cleanup[]/failures[]. RemainingActV, C2–C4,213skills,pacing/fullG and independent acceptance open. |
 | D11 earned ActV Foothills392 / Siege Claim | genuine six-wave clear and socket entitlement verified locally; next393 retained | Fixed IceBlast0/32 (17draws/15defeats), Orb5/32, then Nova20/LightningMastery20/Static1/Warmth2 qualifies30/32+14/16. Native paid5Wishstone reset/43points and StartSiege consumed once; no gear/merc/stat changes.392 wins6/6,+37300XP/+133gear; separate10000XP/socket-service Claim and seven exact Continue pairs pass; all22133ancestral full item payloads conserved. FinalL32/XP196492/22266gear, stat5/skill0/HolyFreeze, nextNormal393/Nightmare0. [Authoritative final/evidence](evidence/d11-earned-act5-foothills392.md).96diagnostic runs never promoted;37native snapshots/zero errors/warnings/retries.1128source/760build/7served hashes exact; prior11678unit passes/types/lint remain applicable.95raw files archived; preview4444 stopped/exactdist+cache absent, cleanup[]/failures[]. Frigid rescue/remainingActV, pacing, C2–C4/fullG and independent acceptance remain open. |
@@ -11267,3 +11268,25 @@ cache absent, remaining[]/failures[]. Root retains exact raw act5-394 directory
 through campaign/full-v1 consumers, then removes it. Next Ancients/Rite from396,
 then Throne/Baal. C2–C4/fullG0–G7,213skills,pacing and independent acceptance
 incomplete. Local only; umbrella goal/worktree remain active.
+
+
+## D11 — Earned Arreat396–399 / level33
+
+[Level33 evidence](evidence/d11-earned-act5-level33.md) retains six unqualified
+32-seed Ancients alternatives without actual reset/equip/points or Rite entry.
+Original guardian222MR/1damage and mana observations remain diagnostic. Exact
+current Arreat qualifies31/32+15/16; four genuine clears win24waves,+231930XP/
+723gear. Stop at level33 after finishing399, no400 entry; never replay396–399.
+FinalL33/XP15391/23442gear/stat10/skill2/40MR/HolyFreeze, nextNormal400/Nightmare0.
+40native snapshots/five exact Continue pairs preserve all22719ancestral full
+item payloads and all quest/service/scroll history. RawSHA
+`a6f706340a4a3f5a6374f2322a85fdf12dd1770dc46bf08c74af1711aa14bc90`.
+1128source/760explicit VITE_E2E=false build/7served hashes exact; prior11678unit
+passes/two skips/types/lint apply, no fresh suite. Original wrong-town/path/
+prerequisite/preview failures and unset-flag build difference are preserved,
+with no genuine replay.185raw files archived; all consumers terminal, exact
+preview4447 stopped/ten owned build+cache dirs absent, cleanup[]/failures[].
+Root retains exact raw ancients396 evidence through full-v1 consumers, then
+removes it. Next qualify legal Ancients preparation from actual400 save; no
+unspent point allocation assumed. C2–C4/fullG0–G7/213skills/pacing/independent
+acceptance remain incomplete. Local only; umbrella goal/worktree active.

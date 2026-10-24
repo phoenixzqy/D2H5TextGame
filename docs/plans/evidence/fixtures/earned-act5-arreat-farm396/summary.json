@@ -1,0 +1,100 @@
+{
+  "status": "pass",
+  "kind": "six unqualified Ancients alternatives retained; bounded genuine Arreat farming from396",
+  "diagnostics": {
+    "baseline": {
+      "wins": 0,
+      "secondHalfWins": 0,
+      "qualified": false
+    },
+    "weapon": {
+      "wins": 0,
+      "secondHalfWins": 0,
+      "qualified": false
+    },
+    "Dexterity": {
+      "wins": 0,
+      "secondHalfWins": 0,
+      "qualified": false
+    },
+    "IceBlast": {
+      "wins": 0,
+      "secondHalfWins": 0,
+      "qualified": false
+    },
+    "FrozenOrb": {
+      "wins": 0,
+      "secondHalfWins": 0,
+      "qualified": false
+    },
+    "manaCritGear": {
+      "wins": 0,
+      "secondHalfWins": 0,
+      "qualified": false
+    },
+    "ArreatFarm": {
+      "wins": 31,
+      "secondHalfWins": 15,
+      "qualified": true
+    }
+  },
+  "diagnosticRuns": 224,
+  "genuineLaunches": [
+    {
+      "ordinal": 396,
+      "alias": "arreat-plateau"
+    },
+    {
+      "ordinal": 397,
+      "alias": "arreat-plateau"
+    },
+    {
+      "ordinal": 398,
+      "alias": "arreat-plateau"
+    },
+    {
+      "ordinal": 399,
+      "alias": "arreat-plateau"
+    }
+  ],
+  "victoryWaves": 24,
+  "nonwinWaves": 0,
+  "heroXP": 231930,
+  "newGear": 723,
+  "ownedBefore": 22719,
+  "ownedFinal": 23442,
+  "ancestralFullPayloadsExact": true,
+  "nativeSavedSnapshots": 40,
+  "saveContinuePairs": [
+    [
+      "002-precombat-saved",
+      "003-precombat-continued"
+    ],
+    [
+      "010-396-won-saved",
+      "011-396-won-continued"
+    ],
+    [
+      "018-397-won-saved",
+      "019-397-won-continued"
+    ],
+    [
+      "026-398-won-saved",
+      "027-398-won-continued"
+    ],
+    [
+      "034-399-won-saved",
+      "035-399-won-continued"
+    ]
+  ],
+  "finalLevel": 33,
+  "finalXP": 15391,
+  "finalStatPoints": 10,
+  "finalSkillPoints": 2,
+  "finalNextNormal": 400,
+  "finalRawSHA256": "a6f706340a4a3f5a6374f2322a85fdf12dd1770dc46bf08c74af1711aa14bc90",
+  "sourceFiles": 1128,
+  "sourceDrift": [],
+  "stopReason": "target-level33",
+  "limitations": "no Ancients/native Rite or C2/full-v1 acceptance; no diagnostic save promotion; clock transport is not player pacing"
+}
