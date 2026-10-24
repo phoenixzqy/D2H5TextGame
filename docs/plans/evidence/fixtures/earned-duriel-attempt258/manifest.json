@@ -1,0 +1,26 @@
+{
+  "runtime": "d77fa53b664f9e13dd37aceb97af691819ef57b0",
+  "kind": "ordinary earned attempt258: two victories, elite-wave3 defeat; no boss encounter or claim",
+  "parent": "earned-static-preparation258/retained-final.json.gz",
+  "parentRawSHA256": "ec6e3111495b01fdfcdc19c8ad503ac2019514ea08391ced357462d94d7cacae",
+  "rawSHA256": "3ce55f4dd5749c3a5fceb61e5da088b00de21187d22b320ae0a6e661e047af28",
+  "nextOrdinal": 259,
+  "audit": {
+    "nativeSaveExports": 9,
+    "exactContinuePairs": 2,
+    "ownedBefore": 6240,
+    "ownedAfter": 6259,
+    "originalFullPayloadsConserved": 6240,
+    "xpEarned": 10530,
+    "nonwinExactlyEqualsWinningPrefix": true,
+    "skillAllocationResetAndCoreUnchanged": true,
+    "durielQuestAndUnlocksUnchanged": true,
+    "gameplayRetries": 0,
+    "pageErrors": 0,
+    "consoleWarningsAndErrors": 0
+  },
+  "auditCorrection": "Initial audit asserted defeat panel in immediate terminal capture before its render. Corrected to recorded hero death/terminal log/three live enemies; the browser separately awaited the actual defeat panel successfully. No gameplay rerun.",
+  "rawDiagnosticRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/earned258",
+  "retentionOwner": "root",
+  "retentionReason": "earned campaign and full-v1 evidence consumers; root removes after they finish"
+}

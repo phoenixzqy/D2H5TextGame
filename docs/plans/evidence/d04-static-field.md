@@ -53,7 +53,9 @@ for the original scripts; reports, saves and screenshots remain.
 
 [Prepared native save](fixtures/earned-static-preparation258/retained-final.json.gz)
 and its manifest are now the retained precombat boundary: nextNormal258,
-Nightmare0, Duriel undefeated and ActIII locked. Actual attempt258 is next.
+Nightmare0, Duriel undefeated and ActIII locked. This precombat boundary is now
+superseded by the [actual attempt258 final](d11-earned-duriel-attempt258.md):
+two wins, elite-wave3 defeat, nextNormal259. Resume that retained final save.
 
 Fixed native diagnostic seeds1–16: unchanged cold0/16; cold+Static1 11/16;
 cold+Static1+Warmth2 11/16; legal fire+Static1 16/16; fire/control+Static1

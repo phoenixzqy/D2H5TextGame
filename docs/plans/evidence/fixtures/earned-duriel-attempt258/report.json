@@ -1,0 +1,78 @@
+{
+  "runtime": "d77fa53b664f9e13dd37aceb97af691819ef57b0",
+  "launches": 1,
+  "retries": 0,
+  "errors": [],
+  "console": [],
+  "waves": [
+    {
+      "wave": 1,
+      "outcome": "victory",
+      "delta": {
+        "xp": 5130,
+        "newItems": [
+          "it-1dhq3-4td",
+          "it-499wl-4te",
+          "it-61235-4tf",
+          "it-1bypr-4tg",
+          "it-7k3zn-4th",
+          "it-68av5-4ti",
+          "it-9rqa1-4tj",
+          "it-59wnp-4tk",
+          "it-6pwvz-4tl",
+          "it-55z90-4tm"
+        ]
+      }
+    },
+    {
+      "wave": 2,
+      "outcome": "victory",
+      "delta": {
+        "xp": 5400,
+        "newItems": [
+          "it-2ea6o-4tn",
+          "it-6ak6-4to",
+          "it-48eex-4tp",
+          "it-76tu8-4tq",
+          "it-1cjoo-4tr",
+          "it-70fqj-4ts",
+          "it-ieyc-4tt",
+          "it-zwpl-4tu",
+          "it-ypgx-4tv"
+        ]
+      }
+    },
+    {
+      "wave": 3,
+      "outcome": "nonwin",
+      "delta": {
+        "xp": 0,
+        "newItems": []
+      }
+    }
+  ],
+  "states": [
+    "before",
+    "precombat-saved",
+    "precombat-continued",
+    "wave-1-initial",
+    "wave-1-terminal",
+    "wave-1-settled",
+    "wave-2-initial",
+    "wave-2-terminal",
+    "wave-2-settled",
+    "wave-3-initial",
+    "wave-3-terminal",
+    "nonwin",
+    "nonwin-saved",
+    "nonwin-continued",
+    "final"
+  ],
+  "kind": "ordinary earned attempt258; no seed, Skip or speed override; historical Date with native timers",
+  "outcome": "nonwin",
+  "ordinalAfter": 259,
+  "ownedBefore": 6240,
+  "ownedAfter": 6259,
+  "totalXP": 10530,
+  "status": "observed"
+}
