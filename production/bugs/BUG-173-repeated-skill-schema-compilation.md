@@ -1,6 +1,6 @@
 # BUG-173 — Share compiled skill validation across authored modules
 
-Severity: Medium. Status: reproduced; fix in progress.
+Severity: Medium. Status: fixed locally in `9e643b8`; independent acceptance open.
 Owner: engine-dev / performance-analyst. Reproduction build `b713c03`.
 Node24.21.0/Vitest; locale/viewport independent; no gameplay RNG or campaign actions.
 Production browser validation target: Chromium en/zh×1280×800/360×640.
@@ -29,3 +29,11 @@ checks protect behavior. Benchmark exact registry import and compare all284seria
 registered definitions before/after. Full engine/unit/types/lint/build and production browser.
 Security check: pass; typed local validation reuse, no dependencies/network/credentials,
 permissions, CI or persistence changes. Root sole writer; independent acceptance remains open.
+
+Final validation: compiler-only engine5851/185; combined full11915/479 with two
+existing skips; types/lint/build pass, four production browser cases/four exact
+Continue pairs.284registered definitions remain byte-identical. Five-sample
+synthetic import median1526.75→1192.19ms; no device/G7 claim. First full-run
+provenance/timeout failures and lint corrections retained. Raw scratch has been
+archived to `docs/plans/evidence/fixtures/shared-skill-validator/`; cleanup is
+recorded there. [Evidence](../../docs/plans/evidence/shared-skill-validator.md).

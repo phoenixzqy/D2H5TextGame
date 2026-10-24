@@ -95,7 +95,7 @@ druid,skills-druid-tornado,druid.tornado,active,damage,,src/data/skills/druid.js
 druid,skills-druid-summon-dire-wolf,druid.summon_dire_wolf,active,summon,,src/data/skills/druid.json,,unverified,
 druid,skills-druid-werewolf-maul,druid.werewolf_maul,active,damage,bleed,src/data/skills/druid.json,dot-strength-metadata-missing,unverified,
 druid,skills-druid-hurricane,druid.hurricane,active,damage,chill,src/data/skills/druid.json,,unverified,
-druid,skills-druid-elemental-mastery,druid.elemental_mastery,passive,buff,,src/data/skills/druid.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+druid,skills-druid-elemental-mastery,druid.elemental_mastery,passive,buff,,src/data/skills/druid.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,bounded-functional;independent-acceptance-open,decisions/D05-poison-elemental-masteries-v1.md; evidence/d05-poison-elemental-masteries.md
 druid,skills-druid-lycanthropy,druid.lycanthropy,passive,buff,,src/data/skills/druid.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 druid,skills-druid-heart-of-wolverine,druid.heart_of_wolverine,passive,buff,,src/data/skills/druid.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 druid,skills-druid-oak-sage,druid.oak_sage,passive,buff,,src/data/skills/druid.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
@@ -127,7 +127,7 @@ necromancer,skills-necromancer-bone-spear,necromancer.bone_spear,active,damage,,
 necromancer,skills-necromancer-amplify-damage,necromancer.amplify_damage,active,debuff,amplify-damage,src/data/skills/necromancer.json,pure-debuff-consumer-not-found-in-audit,unverified,
 necromancer,skills-necromancer-decrepify,necromancer.decrepify,active,debuff,decrepify,src/data/skills/necromancer.json,pure-debuff-consumer-not-found-in-audit,unverified,
 necromancer,skills-necromancer-summon-mastery,necromancer.summon_mastery,passive,buff,,src/data/skills/necromancer.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
-necromancer,skills-necromancer-poison-mastery,necromancer.poison_mastery,passive,buff,,src/data/skills/necromancer.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+necromancer,skills-necromancer-poison-mastery,necromancer.poison_mastery,passive,buff,,src/data/skills/necromancer.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,bounded-functional;independent-acceptance-open,decisions/D05-poison-elemental-masteries-v1.md; evidence/d05-poison-elemental-masteries.md
 necromancer,skills-necromancer-blood-golem,necromancer.blood_golem,active,summon,,src/data/skills/necromancer.json,,unverified,
 necromancer,skills-necromancer-bone-armor,necromancer.bone_armor,passive,buff,,src/data/skills/necromancer.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 necromancer,skills-necromancer-dim-vision,necromancer.dim_vision,active,debuff,dim-vision,src/data/skills/necromancer.json,pure-debuff-consumer-not-found-in-audit,unverified,

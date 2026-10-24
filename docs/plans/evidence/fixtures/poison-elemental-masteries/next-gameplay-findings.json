@@ -1,0 +1,14 @@
+{
+  "nextGameplayCandidate": "Necromancer Summon Mastery / Summon Resist",
+  "observed": [
+    "Both have JSON passive metadata but no consumer found in engine/skills, engine/combat or combatHelpers.",
+    "Summon Mastery unlock30/cap20: summonLifePct .05 and summonAttackPct .02 per rank.",
+    "Summon Resist unlock24/cap20: summonResistAllPct .02 per rank.",
+    "Skeleton Mastery and Golem Mastery already bind immutable projections to living hero ownership and fresh summons.",
+    "Fresh summon construction has three relevant call sites in combat.ts near949,1276,1330; the third is Revive.",
+    "Do not multiply another personal damage modifier into summons; reconcile additive global/local stat fractions over fresh templates.",
+    "Never retrofit/refill preloaded damaged summons or alter source/identity/corpse/item/cost/cap/RNG policies.",
+    "Need review source canonical ownership, exact eligible template scope, six-resist treatment, and all three creation paths before implementation."
+  ],
+  "scope": "Read-only findings; no implementation, campaign action or acceptance claim."
+}

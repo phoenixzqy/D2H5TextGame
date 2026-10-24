@@ -1,0 +1,18 @@
+{
+  "compilerFullFirstAttempt": {
+    "result": "3failed/11876passed/2existingSkips/473files;563.87s",
+    "failures": [
+      "Earned source identity drift",
+      "Fresh-campaign source/data drift",
+      "player-first dynamic import timeout5000ms"
+    ],
+    "cause": "Root edited new source/test files during measurement. Timeout cause not independently established.",
+    "action": "Freeze source and worktree identity for combined full rerun; keep all timeouts/assertions/checks unchanged."
+  },
+  "masteryCompositionFirstAttempt": "Compared whole CombatUnits with deliberately different stored allocations and generated identity. Corrected to compare projected mechanics; four causal failures/four controls retained in separate corrected RED.",
+  "schemaInsertionFirstAttempt": "Scratch edit helper asserted one occurrence of allOf marker, found five including nested blocks, and stopped before writing. Corrected to insert at first top-level marker and verify 25 original rules unchanged. Initial focused run retained2schema failures/108pass.",
+  "pureDefinitionTestFirstAttempt": "Type assertion after newline was parsed as a new statement; syntax corrected. No runtime change.",
+  "typecheckFirstAttempt": "Test helper accepted Player.class (string) instead of createMockPlayer CharacterClass. Narrowed helper parameter to the actual function parameter type; final types pass.",
+  "catalogFinalFirstAttempt": "Missing required BENCH_PHASE; failed before writing catalog. Corrected external copy writes a separate final catalog. All284entries remain byte-identical.",
+  "sourceFreeze": "No runtime/test edits after final42-file hash capture; full suite running."
+}

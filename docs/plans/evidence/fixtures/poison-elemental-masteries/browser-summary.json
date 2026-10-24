@@ -1,0 +1,117 @@
+{
+  "stats": {
+    "startTime": "2026-10-24T19:06:56.067Z",
+    "duration": 99712.872,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": [],
+  "cases": [
+    {
+      "case": "damage-mastery-desktop-necromancer-en",
+      "status": "passed",
+      "retry": 0,
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "capturedErrors": []
+    },
+    {
+      "case": "damage-mastery-desktop-druid-en",
+      "status": "passed",
+      "retry": 0,
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "capturedErrors": []
+    },
+    {
+      "case": "damage-mastery-desktop-necromancer-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "capturedErrors": []
+    },
+    {
+      "case": "damage-mastery-desktop-druid-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "capturedErrors": []
+    },
+    {
+      "case": "damage-mastery-mobile-necromancer-en",
+      "status": "passed",
+      "retry": 0,
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "capturedErrors": []
+    },
+    {
+      "case": "damage-mastery-mobile-druid-en",
+      "status": "passed",
+      "retry": 0,
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "capturedErrors": []
+    },
+    {
+      "case": "damage-mastery-mobile-necromancer-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "capturedErrors": []
+    },
+    {
+      "case": "damage-mastery-mobile-druid-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "capturedErrors": []
+    }
+  ]
+}

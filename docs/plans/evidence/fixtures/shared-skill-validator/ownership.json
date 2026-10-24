@@ -1,0 +1,294 @@
+{
+  "task": "shared skill validator",
+  "base": "b713c03",
+  "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2",
+  "processes": [
+    {
+      "tag": "red-shared",
+      "pid": 1647155,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/data/loaders/shared-skill-validator.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 4.56
+    },
+    {
+      "tag": "before-1",
+      "pid": 1647207,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/bench-init.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.36
+    },
+    {
+      "tag": "before-2",
+      "pid": 1647274,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/bench-init.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.26
+    },
+    {
+      "tag": "before-3",
+      "pid": 1647303,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/bench-init.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.21
+    },
+    {
+      "tag": "before-4",
+      "pid": 1647384,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/bench-init.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.56
+    },
+    {
+      "tag": "before-5",
+      "pid": 1647441,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/bench-init.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.17
+    },
+    {
+      "tag": "catalog-before",
+      "pid": 1649296,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/catalog.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.31
+    },
+    {
+      "tag": "focused",
+      "pid": 1650470,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/skill-validator.test.ts",
+        "src/data/loaders/shared-skill-validator.test.ts",
+        "src/engine/skills/amazon-passives.test.ts",
+        "src/engine/skills/blood-raven.test.ts",
+        "src/engine/skills/cold-mastery.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 3.87
+    },
+    {
+      "tag": "after-1",
+      "pid": 1650602,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/bench-init.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.37
+    },
+    {
+      "tag": "after-2",
+      "pid": 1650822,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/bench-init.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.55
+    },
+    {
+      "tag": "after-3",
+      "pid": 1650951,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/bench-init.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 3.43
+    },
+    {
+      "tag": "after-4",
+      "pid": 1651579,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/bench-init.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.7
+    },
+    {
+      "tag": "after-5",
+      "pid": 1652017,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/bench-init.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.52
+    },
+    {
+      "tag": "catalog-after",
+      "pid": 1652195,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/catalog.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.57
+    },
+    {
+      "tag": "full",
+      "pid": 1657976,
+      "command": [
+        "npm",
+        "test"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 566.21
+    },
+    {
+      "tag": "types",
+      "pid": 1657983,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 104.26
+    },
+    {
+      "tag": "engine",
+      "pid": 1658012,
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 142.98
+    },
+    {
+      "tag": "lint",
+      "pid": 1658052,
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 183.69
+    },
+    {
+      "tag": "build",
+      "pid": 1658067,
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/build"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 34.38
+    },
+    {
+      "tag": "browser",
+      "pid": 1669317,
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "-c",
+        "tests/pwa/amazon-remaining-passives.config.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 101.13
+    },
+    {
+      "tag": "focused-final",
+      "pid": 1701452,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/data/loaders/shared-skill-validator.test.ts",
+        "src/engine/skills/skill-validator.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 8.1
+    },
+    {
+      "tag": "catalog-final",
+      "pid": 1734230,
+      "command": [
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2/catalog.ts"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 2.6
+    },
+    {
+      "tag": "lint-final",
+      "pid": 1701453,
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 116.21,
+      "recordRecovery": "Recovered from terminal tool session88915 output; concurrent runner JSON updates had lost this entry. No process restart."
+    }
+  ],
+  "recordRecovery": "One confirmed terminal record restored from tool output after checking every log against process tags. Future concurrent runners should lock ownership updates."
+}

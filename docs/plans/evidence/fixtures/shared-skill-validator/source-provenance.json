@@ -1,0 +1,33 @@
+{
+  "base": "b713c03",
+  "sourceSHA256": {
+    "src/data/loaders/shared-skill-validator.test.ts": "66c307b3e7815a7234d43a24d775d002696ff594d41581d47fb259c92154b432",
+    "src/engine/skills/act1-lightning.ts": "03cb667146b4c978b998b872e5ad86aa043c4dc3bc8a3902f7b9e24abda8c549",
+    "src/engine/skills/amazon-passives.ts": "3c6be7b74ceadb6b7f77c67c3e70d592747461448f12f625d63d5443411a859f",
+    "src/engine/skills/armor-melt.ts": "1928c0201d930ae0bf51ca3b91b4df1adf318daa506b4c4aa2c86eb24495e153",
+    "src/engine/skills/barbarian-endurance.ts": "3ca2bac7baf18dddcd36b2246b7f9580c7c190478073498cb2d6681f4e8c03f4",
+    "src/engine/skills/barbarian-weapon-masteries.ts": "b4dde53cc2907bfba2a8bcd05c962f52ae6e04bee36c65e45c2333f1e680cc83",
+    "src/engine/skills/blood-raven.ts": "de314913d1befd60999020e5d6fed87273b76fd2e6c1c8003db4256c9db2e3dc",
+    "src/engine/skills/cold-mastery.ts": "14f3bea39387ae591015c24f28eda7477144d842b9f97c610698f77ec615432c",
+    "src/engine/skills/corpse-explosion.ts": "f7be00acf7bdd27e08d13022ffbe077d67e80fe2ea5dda2d8ef8a47049588c6d",
+    "src/engine/skills/fire-mastery.ts": "32195787671815f9bcbfeb574baa4b71c908affd6177e31f8f952888610d6c90",
+    "src/engine/skills/frozen-armor.ts": "2a8e35884d20ff182e1d06d9f401603860a86d0304ea89f74eb1486fbb98324c",
+    "src/engine/skills/golem-mastery.ts": "7a3f0f17004f558e246fce64f519bcfe8bacdcc3068c156624c8bce9248e6119",
+    "src/engine/skills/inner-sight.ts": "e499073319428f1460849aa4878c195a7c65e1f22290aa041f5761b7265c0c31",
+    "src/engine/skills/iron-golem.ts": "cdc9c58d43f6bd6284621376ce9185de3d3fc645862f0b0ae5dc7691e5761c3b",
+    "src/engine/skills/iron-skin.ts": "710791ba8406fdd487ef7657735a86d1def7321d5963af9a7a0272ac06cc1ffd",
+    "src/engine/skills/item-redemption.ts": "b329d35c5584bf1f15f0b4dd9031c3d16c8d2d052d151bd6e72537b6a53dfb4a",
+    "src/engine/skills/lightning-mastery.ts": "726326a94ded5d562cebf13edae16b603c53557f6ce53dc38ae8e3bd5bbe2c2a",
+    "src/engine/skills/meditation.ts": "0cad5d425e94c0011c86617e86ac4f564c244286ddde79faf79d8c4fe6ef6f82",
+    "src/engine/skills/merc-arrows.ts": "9a0be563c9efa97aa2191d6904b07f6095b2c45a4c37798718a3a1fb2de1098f",
+    "src/engine/skills/merc-holy-freeze.ts": "30408c5627c3a94e377cad7ae037b575e94182ef92292b2b888bd92776172140",
+    "src/engine/skills/might.ts": "97d2c3b333cc6cd48fa3afe5380e1b0ccca08406a7d27a340ac5dae14dd8126b",
+    "src/engine/skills/poison-explosion.ts": "a75622765d821760c18cdde239898d293141653116a691cef1d5ecda4470b0d9",
+    "src/engine/skills/skeletal-mage.ts": "7350cab4058d063a612089e3b30750c2fa8aeb16371877125af2da44ca249492",
+    "src/engine/skills/skeleton-mastery.ts": "836ac57d6c66152cd694ccb4494c2b9c1860ad252fdc1f3b8fecbe0177e53264",
+    "src/engine/skills/skill-validator.test.ts": "fb2af0e8a7e2a197c14ae50ff0e065653adf686fb7ca205b97c0314764aad5ba",
+    "src/engine/skills/skill-validator.ts": "d56002142fb138946bb536be40e74ad7da278661444981d5e46154152f538168",
+    "src/engine/skills/static-field.ts": "20973d70f0d8bd622c2981027ae6b6f86113ad421697e7af625ca32fe43ec9d3"
+  },
+  "genuineResumeRawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577"
+}

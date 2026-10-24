@@ -1,0 +1,65 @@
+{
+  "stats": {
+    "startTime": "2026-10-24T18:54:30.401Z",
+    "duration": 97948.337,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": [],
+  "cases": [
+    {
+      "case": "amazon-passive-desktop-en",
+      "status": "passed",
+      "retry": 0,
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "capturedErrors": []
+    },
+    {
+      "case": "amazon-passive-desktop-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "capturedErrors": []
+    },
+    {
+      "case": "amazon-passive-mobile-en",
+      "status": "passed",
+      "retry": 0,
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "capturedErrors": []
+    },
+    {
+      "case": "amazon-passive-mobile-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "capturedErrors": []
+    }
+  ]
+}

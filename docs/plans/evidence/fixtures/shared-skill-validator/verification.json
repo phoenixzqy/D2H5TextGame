@@ -1,0 +1,43 @@
+{
+  "implementation": "9e643b8",
+  "focused": {
+    "passed": 37,
+    "files": 5,
+    "seconds": 2.9
+  },
+  "finalTwoTestLintCorrection": {
+    "passed": 3,
+    "files": 2,
+    "seconds": 4.6
+  },
+  "engineAtCompilerOnly": {
+    "passed": 5851,
+    "files": 185,
+    "seconds": 140.71
+  },
+  "combinedFinalFull": {
+    "passed": 11915,
+    "skipped": 2,
+    "files": 479,
+    "seconds": 408.64,
+    "exit": 0
+  },
+  "finalFullScope": "Shared compiler plus09a2722 Poison/Elemental Mastery;42changed source/test hashes and worktree identity unchanged during final run.",
+  "typecheck": 0,
+  "standardLint": 0,
+  "productionBuild": 0,
+  "browser": {
+    "passed": 4,
+    "exactContinuePairs": 4,
+    "retry": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "errors": 0,
+    "seconds": 97.948337
+  },
+  "catalogEntries": 284,
+  "catalogByteParity": true,
+  "benchmark": "Five fresh processes per version;21.91%lower median;noisy synthetic current-host observation only.",
+  "independentAcceptance": "open",
+  "genuineCampaignChanged": false
+}

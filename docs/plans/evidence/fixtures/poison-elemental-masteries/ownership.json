@@ -1,0 +1,324 @@
+{
+  "task": "Poison and Elemental Mastery",
+  "base": "b713c03 plus pending shared compiler",
+  "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-masteries-in_ia_ab",
+  "processes": [
+    {
+      "tag": "red-composition",
+      "pid": 1709042,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/damage-masteries-composition.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 9.04
+    },
+    {
+      "tag": "red-composition-corrected",
+      "pid": 1709882,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/damage-masteries-composition.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 8.38
+    },
+    {
+      "tag": "red-schema",
+      "pid": 1713396,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/damage-masteries-schema.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 2.16
+    },
+    {
+      "tag": "red-ui",
+      "pid": 1714227,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.damage-masteries.test.tsx"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 9.7
+    },
+    {
+      "tag": "red-native",
+      "pid": 1724659,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/damage-masteries-native.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 8.7
+    },
+    {
+      "tag": "focused",
+      "pid": 1728927,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/damage-masteries-composition.test.ts",
+        "src/stores/damage-masteries-native.test.ts",
+        "src/engine/skills/damage-masteries-schema.test.ts",
+        "src/features/skills/SkillsScreen.damage-masteries.test.tsx",
+        "src/engine/skills/displayStats.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 10.46
+    },
+    {
+      "tag": "focused-schema-fixed",
+      "pid": 1729222,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/damage-masteries-composition.test.ts",
+        "src/stores/damage-masteries-native.test.ts",
+        "src/engine/skills/damage-masteries-schema.test.ts",
+        "src/features/skills/SkillsScreen.damage-masteries.test.tsx",
+        "src/engine/skills/displayStats.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 10.2
+    },
+    {
+      "tag": "lint-targeted",
+      "pid": 1729589,
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/skills/damage-masteries.ts",
+        "src/engine/skills/damage-masteries.test.ts",
+        "src/engine/skills/damage-masteries-schema.test.ts",
+        "src/engine/combat/damage-masteries.test.ts",
+        "src/engine/skills/displayStats.ts",
+        "src/stores/damage-masteries-native.test.ts",
+        "src/stores/damage-masteries-composition.test.ts",
+        "src/stores/combatHelpers.ts",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.damage-masteries.test.tsx",
+        "--max-warnings=0"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 9.38
+    },
+    {
+      "tag": "focused-engine",
+      "pid": 1729590,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/damage-masteries.test.ts",
+        "src/engine/combat/damage-masteries.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 2.58
+    },
+    {
+      "tag": "focused-engine-final",
+      "pid": 1729840,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/damage-masteries.test.ts",
+        "src/engine/combat/damage-masteries.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.53
+    },
+    {
+      "tag": "types",
+      "pid": 1732270,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "state": "terminal",
+      "exit": 2,
+      "seconds": 32.33
+    },
+    {
+      "tag": "lint-browser",
+      "pid": 1732423,
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "tests/pwa/damage-masteries.config.ts",
+        "tests/pwa/damage-masteries.spec.ts",
+        "--max-warnings=0"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 6.61
+    },
+    {
+      "tag": "focused-final",
+      "pid": 1732683,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/damage-masteries-composition.test.ts",
+        "src/stores/damage-masteries-native.test.ts",
+        "src/engine/skills/damage-masteries-schema.test.ts",
+        "src/engine/skills/damage-masteries.test.ts",
+        "src/engine/combat/damage-masteries.test.ts",
+        "src/features/skills/SkillsScreen.damage-masteries.test.tsx",
+        "src/engine/skills/displayStats.test.ts",
+        "src/stores/playerStore.experience-equipment.test.ts",
+        "src/data/loaders/shared-skill-validator.test.ts",
+        "src/engine/skills/skill-validator.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 13.3
+    },
+    {
+      "tag": "lint-targeted-final",
+      "pid": 1732684,
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/skills/damage-masteries.ts",
+        "src/engine/skills/damage-masteries.test.ts",
+        "src/engine/skills/damage-masteries-schema.test.ts",
+        "src/engine/combat/damage-masteries.test.ts",
+        "src/engine/skills/displayStats.ts",
+        "src/stores/damage-masteries-native.test.ts",
+        "src/stores/damage-masteries-composition.test.ts",
+        "src/stores/combatHelpers.ts",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.damage-masteries.test.tsx",
+        "--max-warnings=0"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 10.37
+    },
+    {
+      "tag": "types-final",
+      "pid": 1733637,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 34.24
+    },
+    {
+      "tag": "build",
+      "pid": 1733638,
+      "command": [
+        "env",
+        "VITE_E2E=false",
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-masteries-in_ia_ab/build"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 12.56
+    },
+    {
+      "tag": "lint",
+      "pid": 1733639,
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 112.86
+    },
+    {
+      "tag": "browser",
+      "pid": 1733968,
+      "command": [
+        "env",
+        "PWA_PORT=4456",
+        "DAMAGE_MASTERY_BUILD_DIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-masteries-in_ia_ab/build",
+        "DAMAGE_MASTERY_OUTPUT_DIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-masteries-in_ia_ab/browser-output",
+        "DAMAGE_MASTERY_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-masteries-in_ia_ab/browser-report.json",
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "tests/pwa/damage-masteries.config.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 101.34
+    },
+    {
+      "tag": "engine",
+      "pid": 1734229,
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 73.85
+    },
+    {
+      "tag": "catalog-final",
+      "pid": 1736633,
+      "command": [
+        "env",
+        "BENCH_PHASE=final",
+        "node_modules/.bin/vite-node",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-masteries-in_ia_ab/catalog-final.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 2.3
+    },
+    {
+      "tag": "full",
+      "pid": 1739046,
+      "command": [
+        "npm",
+        "test"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 409.96
+    }
+  ]
+}

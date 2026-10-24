@@ -1,0 +1,222 @@
+{
+  "archive.py": {
+    "bytes": 1932,
+    "sha256": "0069aeee9801be9aab36449268026c697e2b6e1265d3d68e8f2cab5c27dbe4b6"
+  },
+  "attachments.sha256.json": {
+    "bytes": 4035,
+    "sha256": "fe61ed2fd47b70010757eb6bb48281412596dc439fbc11a1d84ff3543d0c719d"
+  },
+  "attempt-notes.json": {
+    "bytes": 1674,
+    "sha256": "9f5aeab63e06e3158f0636e3229fe4981a40afca1a6c6660ffb91ad769816777"
+  },
+  "browser-report.json": {
+    "bytes": 3604644,
+    "sha256": "e9ff660a2cd2f9c83a4585c2d4914089d61baf28ff3ba3858e4af03528c0b8b7"
+  },
+  "browser-summary.json": {
+    "bytes": 2287,
+    "sha256": "7272cb4299604bdec78d449a13ed7977dd338296ed7f4af747307825647062c6"
+  },
+  "browser.log": {
+    "bytes": 2208,
+    "sha256": "c28f26f929e8ed862ed688f1c9b60a7d85588e01980ca0149994c75a8824bc46"
+  },
+  "build-provenance.json": {
+    "bytes": 581,
+    "sha256": "c2d30f51579aadf69006cdedecaa3ae903c013a2c89bee2cdf8d036e33f0a53e"
+  },
+  "build.log": {
+    "bytes": 2252,
+    "sha256": "d6afc03150bf31da4d58c1355a8a87764cf1f6467bf0481382befac40d147e67"
+  },
+  "catalog-final.json": {
+    "bytes": 74358,
+    "sha256": "d42cfcfa8aa520cbe119b4d2d73d85e8bd35a1e424dc541bd71de8bf174e9e83"
+  },
+  "catalog-final.log": {
+    "bytes": 118,
+    "sha256": "386f229dcd470970f77309a0b29af608194b8d7b682073c322f227c0230d4a4b"
+  },
+  "catalog-final.ts": {
+    "bytes": 815,
+    "sha256": "2d9a9830c723891ad055a6aaf261d52193d3f57a40e7df0764fbc6124609211a"
+  },
+  "damage-mastery-desktop-druid-en-continue.json.gz": {
+    "bytes": 1128,
+    "sha256": "a8308c6871afa6ce627593df336c32b2401125b80fd738403670220bea08b959"
+  },
+  "damage-mastery-desktop-druid-en.png": {
+    "bytes": 134101,
+    "sha256": "9ca232be5ee8e0c60672e6f833bcbcb9aa824956d2eb3e9e267ae91756e8aae1"
+  },
+  "damage-mastery-desktop-druid-zh-CN-continue.json.gz": {
+    "bytes": 1132,
+    "sha256": "ba2f401d923b285c96cc286b3eb3a8d01e89025120ce2ec245bfc32bfd4701fc"
+  },
+  "damage-mastery-desktop-necromancer-en-continue.json.gz": {
+    "bytes": 1132,
+    "sha256": "21b9c5b7e8592985801d082622914d9b327d35af4afe34f258164989299fc195"
+  },
+  "damage-mastery-desktop-necromancer-en.png": {
+    "bytes": 146455,
+    "sha256": "a9b42aa88b9cfd60f33b50873c97b86a24ce787fdfb470aeeb904ba87c0ad0dc"
+  },
+  "damage-mastery-desktop-necromancer-zh-CN-continue.json.gz": {
+    "bytes": 1140,
+    "sha256": "043ee8a001f6e6ff7f417521c22e426785c9453a6813dd3e71072b83e33f2127"
+  },
+  "damage-mastery-mobile-druid-en-continue.json.gz": {
+    "bytes": 1128,
+    "sha256": "e740d3b8e948950793a87a5c723a17f3806965b2da9313bfb61ac7641a806578"
+  },
+  "damage-mastery-mobile-druid-zh-CN-continue.json.gz": {
+    "bytes": 1135,
+    "sha256": "5e407a072ca20745c10d5e1da2ca2141acc7ecffd25fb3b7b775a72ba0c46b85"
+  },
+  "damage-mastery-mobile-druid-zh-CN.png": {
+    "bytes": 182480,
+    "sha256": "c2b2ef3c76316cea0189ec2040ad7bbb59c6e490ccf88b17761ab78a8c1a6c27"
+  },
+  "damage-mastery-mobile-necromancer-en-continue.json.gz": {
+    "bytes": 1134,
+    "sha256": "e20fc5d064007962776677c69b5061da58f8cd29f5b9767ce2b1f5980c8c4090"
+  },
+  "damage-mastery-mobile-necromancer-zh-CN-continue.json.gz": {
+    "bytes": 1138,
+    "sha256": "1550c3d61da2d89827cad3dbed9351bb12ca727e7d5bc754e5ae2d8eb5b5017e"
+  },
+  "damage-mastery-mobile-necromancer-zh-CN.png": {
+    "bytes": 185119,
+    "sha256": "22a4e77d07f4bf1f4044feaa58af0bf3be7c95a302f8007c21d4df793f346731"
+  },
+  "engine.log": {
+    "bytes": 60549,
+    "sha256": "afb42b774b1c5dfdcb062e4c2b89518899a1c97e1e60726cd3fea706439312cc"
+  },
+  "focused-engine-final.log": {
+    "bytes": 426,
+    "sha256": "40d43456e03d35449151c4175af08de55967c671dfa3fa92363c5cdcfd8563fe"
+  },
+  "focused-engine.log": {
+    "bytes": 1241,
+    "sha256": "0e565a969e75e35f7e5973af8d696d036d4099cb8219f4faee20f4036ee8e924"
+  },
+  "focused-final.log": {
+    "bytes": 1049,
+    "sha256": "39c4bdd8edae172d6d8433b00d05ce4efb03ca76637a90f49331a7bb051b1e39"
+  },
+  "focused-schema-fixed.log": {
+    "bytes": 668,
+    "sha256": "ab47236f0e1a24cdc8eedb8464620a950a14832a83922332cf2ef2cc52c282dd"
+  },
+  "focused.log": {
+    "bytes": 28608,
+    "sha256": "3c0298da57f9b4b1f0092d0ad2af81adac7b4e3b35af284a555722e7df819517"
+  },
+  "frozen-red-SkillsScreen.damage-masteries.test.tsx": {
+    "bytes": 3944,
+    "sha256": "ccce9f633ceb7790789a937efc6fb651e033f32337d8ed0568f48adb16bdf8ff"
+  },
+  "frozen-red-damage-masteries-composition.test.ts": {
+    "bytes": 4286,
+    "sha256": "c62fd2833b7d4597d117b1f0a045fc2ffe11ac3a6b694cb9962ff6a84362d7c7"
+  },
+  "frozen-red-damage-masteries-native.test.ts": {
+    "bytes": 6851,
+    "sha256": "79b986e7169a4f2872150ce0bb52a0c2faf3efb9cdaf0ac82331bc584167dab3"
+  },
+  "frozen-red-damage-masteries-schema.test.ts": {
+    "bytes": 2423,
+    "sha256": "c01c86f72a2def96000cef9bcefad42c2a20061ae12b37a3f56993ca949439b3"
+  },
+  "frozen-red-tests.json": {
+    "bytes": 495,
+    "sha256": "abcf0fdb33bf28d558772912567a1e362a9fead8d5398bc04133f75d129ca36c"
+  },
+  "full-after-status.txt": {
+    "bytes": 2001,
+    "sha256": "6595e153111c27d104570cce39a854bb053bcfbbed87be37030503b13fcb32b9"
+  },
+  "full-before-status.txt": {
+    "bytes": 2001,
+    "sha256": "6595e153111c27d104570cce39a854bb053bcfbbed87be37030503b13fcb32b9"
+  },
+  "full-stability.json": {
+    "bytes": 173,
+    "sha256": "e5a144cf5d461227bf37273ec46975638e2db3c6e46abe53e490d30cdfc17b85"
+  },
+  "full.log": {
+    "bytes": 144808,
+    "sha256": "f390bc4282e15d97ee22152775f0fed7479848d16bd98b10eb6b7dce9e0c64a1"
+  },
+  "lint-browser.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "lint-targeted-final.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "lint-targeted.log": {
+    "bytes": 225,
+    "sha256": "09c26d0c345713e9561f3a707811b09c915e1c166f37f3ed1bbd1c85d840110e"
+  },
+  "lint.log": {
+    "bytes": 197,
+    "sha256": "f0c2e512e557c31341b1079ae8004608f40dc6c94cba9b343a47d3ce2e906bda"
+  },
+  "next-gameplay-findings.json": {
+    "bytes": 1100,
+    "sha256": "355d3686d13c47b457460a6dc1dd4dfb7d678054daab835cdfefcc429ebd61ac"
+  },
+  "ownership.json": {
+    "bytes": 8242,
+    "sha256": "0c94f2acdcc1e95795aee7d950339eb8aadf81fa55677a25623226e64cca7205"
+  },
+  "red-composition-corrected.log": {
+    "bytes": 10867,
+    "sha256": "643d63e5ce986679bd1cd6fc6f0ad564044651a4b40b31b2c74b9980eb077421"
+  },
+  "red-composition.log": {
+    "bytes": 30262,
+    "sha256": "7b745c745ff5bad579d4f7d9bad3d28f420b376cdeb3533a071e90c4203db4a2"
+  },
+  "red-native.log": {
+    "bytes": 4920,
+    "sha256": "e3a668fe7d5fee1d354ae0a323b08941b940ed4767cae5698187bab9a7d41948"
+  },
+  "red-schema.log": {
+    "bytes": 28286,
+    "sha256": "d2300f605077effceffb1e511a4a9d5c14bc2f437840641bb2ae2418e810eef9"
+  },
+  "red-ui.log": {
+    "bytes": 28453,
+    "sha256": "6d6cd97f796fe44fdb47b94baf04b5d2bee071f08d51de9eada8c709769b3b5d"
+  },
+  "run.py": {
+    "bytes": 896,
+    "sha256": "5e9fd869778a981be97986bfa4668a0e87b24f7fadbfefc5ccff97fe606a7151"
+  },
+  "source-provenance.json": {
+    "bytes": 4918,
+    "sha256": "e2557e7ce667fc9d61778225fbcea079626cfae662278b0a3354424ea6af8ded"
+  },
+  "staging-cleanup.json": {
+    "bytes": 98,
+    "sha256": "b9e396e711c79fbbd81015ea097da1a5396b1b83732fbfa27ebd67a3541c411c"
+  },
+  "types-final.log": {
+    "bytes": 50,
+    "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+  },
+  "types.log": {
+    "bytes": 203,
+    "sha256": "a871df045569cd89c77361c744ac27ef2a1543fda2b81078bed48c6d53db1707"
+  },
+  "verification.json": {
+    "bytes": 799,
+    "sha256": "5ec167ce03fc4a06a7e42f48ac04ec81c017884ed3c08839c52034d8a529e557"
+  }
+}

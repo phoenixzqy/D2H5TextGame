@@ -1,0 +1,13 @@
+{
+  "removedScratchRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-skill-validator-vfh47ty2",
+  "rawFilesArchived": 50,
+  "rawMembersByteVerified": 50,
+  "allTaskProcessesTerminal": true,
+  "processes": 23,
+  "buildRemoved": true,
+  "browserStagingRemoved": true,
+  "remainingDisposable": [],
+  "failures": [],
+  "previewPort": 4455,
+  "portClosed": true
+}

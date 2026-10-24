@@ -1,0 +1,82 @@
+{
+  "amazon-passive-desktop-en/allocated-avoid": {
+    "sha256": "670828ca2972b433be7266934e4ded6998a33f1a0a5c1608d344f64ab92f8a8c",
+    "bytes": 107224
+  },
+  "amazon-passive-desktop-en/allocated-evade": {
+    "sha256": "4f777765ea0df1730686a3e943e39a9f80ee86bbf6a83bdd07a5e6d678a685f8",
+    "bytes": 115372
+  },
+  "amazon-passive-desktop-en/allocated-pierce": {
+    "sha256": "2e211f787922ddfacdeb602879b7f343812dbad9ad6010adfda7d407e638b2f2",
+    "bytes": 136991
+  },
+  "amazon-passive-desktop-en/amazon-after-Continue": {
+    "sha256": "b36d60dfd1129322537b4793bea7dc6c068a7d30bc1af15b6b8034abef1644e2",
+    "bytes": 114475
+  },
+  "amazon-passive-desktop-en/exact-Continue": {
+    "sha256": "8e150ff725a7f47fdfe5450d8f3725e95690d1cd186972d4a8c55a624d9476c2",
+    "bytes": 8934
+  },
+  "amazon-passive-desktop-zh-CN/allocated-avoid": {
+    "sha256": "3ce0b1442890d83fda42b9984ef2c1a41a29eb910eadc3172df5b580c88e9789",
+    "bytes": 106891
+  },
+  "amazon-passive-desktop-zh-CN/allocated-evade": {
+    "sha256": "7d1e8e3dff8278d492d15ed6f4d9e0dcc032e0a8d4e3875610e25266eb297eaa",
+    "bytes": 112015
+  },
+  "amazon-passive-desktop-zh-CN/allocated-pierce": {
+    "sha256": "bf209fa65f95510eafd4b900b550af85c516c2c9f890d762e95e99cd21a1896e",
+    "bytes": 141090
+  },
+  "amazon-passive-desktop-zh-CN/amazon-after-Continue": {
+    "sha256": "97df0f8981108ab8f4c73726f947137e0fd60723803e3b7bdf795233983da492",
+    "bytes": 111924
+  },
+  "amazon-passive-desktop-zh-CN/exact-Continue": {
+    "sha256": "20a7effd969102f0621c0628e7c599cdf918ef1415d2b2e14325347fcf41f800",
+    "bytes": 8940
+  },
+  "amazon-passive-mobile-en/allocated-avoid": {
+    "sha256": "22201151d9d5dfa718f2d6ccc2e482f9549fe1e36144448fb47887fe8f69d29c",
+    "bytes": 256327
+  },
+  "amazon-passive-mobile-en/allocated-evade": {
+    "sha256": "9cbc77f62169d4615eff7e66ee128aa72b5219aca3cb1e717bbff451f43830bc",
+    "bytes": 260309
+  },
+  "amazon-passive-mobile-en/allocated-pierce": {
+    "sha256": "f2f6fc79d9200450ee47d771289605bf672d12a454d85eb62b54eb40d07bbbf7",
+    "bytes": 320624
+  },
+  "amazon-passive-mobile-en/amazon-after-Continue": {
+    "sha256": "dec5c3e1b27ca8bd993602fac20c469c9edb2d704b833acb436140c85dc51bb0",
+    "bytes": 187549
+  },
+  "amazon-passive-mobile-en/exact-Continue": {
+    "sha256": "f2779bbbff443d58aad8c03d13349bf3cf6e85f10bf3b355ad3cc859e7d17767",
+    "bytes": 8934
+  },
+  "amazon-passive-mobile-zh-CN/allocated-avoid": {
+    "sha256": "b5dff969044f838f97a59603b2310386b78a9ca36e6df3f14debd84c1598d0a6",
+    "bytes": 246410
+  },
+  "amazon-passive-mobile-zh-CN/allocated-evade": {
+    "sha256": "9a7d536a1f5427f7eaaf21b0a2ce8662fb02077f1246f9251680e88f8f1d3365",
+    "bytes": 257510
+  },
+  "amazon-passive-mobile-zh-CN/allocated-pierce": {
+    "sha256": "627328039f96aa660d53519b4dce2a4961898e862189aa990e3f8bdc954089d9",
+    "bytes": 319557
+  },
+  "amazon-passive-mobile-zh-CN/amazon-after-Continue": {
+    "sha256": "d73aa45fe152ffbf633ca822c15ea5facded40153c6f278825c052c90d49b9ee",
+    "bytes": 175616
+  },
+  "amazon-passive-mobile-zh-CN/exact-Continue": {
+    "sha256": "7b4728bcc89f92f65163ec6bc2540cc576e40e5dfabbf3a2ada29b5525d941c1",
+    "bytes": 8940
+  }
+}

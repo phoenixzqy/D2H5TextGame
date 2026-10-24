@@ -1,6 +1,6 @@
 # BUG-174 — Apply authored Poison and Elemental Mastery bonuses
 
-Severity: High. Status: reproduced; fix in progress.
+Severity: High. Status: fixed locally in `09a2722`; independent acceptance open.
 Owner: engine-dev / frontend-dev. Base `b713c03` plus the shared-validator refactor.
 Environment: Node24/Vitest; Chromium en/zh-CN, 1280×800 and 360×640 targets.
 Seed: composition is RNG-free; seeded combat regressions will use seed7.
@@ -22,3 +22,10 @@ it is retained as a test-harness failure, not causal RED evidence.
 Root cause: passive metadata is displayed/registered but never projected into the
 fresh hero damage/dodge modifiers. No workaround; another passive cannot grant it.
 Independent acceptance and earned class/build balance remain open.
+
+Final validation:142focused/10files, engine5868/188, full11915/479 with two
+existing skips, types/lint/build pass. Production bilingual/class/viewport8/8,
+eight exact Save/close/Continue pairs and no captured errors. Strict schema,
+real Poison Nova/DoT, per-type damage, actual magical misses, gear/runewords,
+native next-wave/reset/replay covered. Original failures/corrections retained.
+[Evidence](../../docs/plans/evidence/d05-poison-elemental-masteries.md).

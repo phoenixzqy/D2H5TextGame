@@ -1,0 +1,41 @@
+{
+  "implementation": "09a2722",
+  "sharedCompiler": "9e643b8",
+  "focused": {
+    "passed": 142,
+    "files": 10,
+    "seconds": 11.98
+  },
+  "engine": {
+    "passed": 5868,
+    "files": 188,
+    "seconds": 72.0,
+    "exit": 0
+  },
+  "full": {
+    "passed": 11915,
+    "skipped": 2,
+    "files": 479,
+    "seconds": 408.64,
+    "exit": 0
+  },
+  "typecheck": 0,
+  "standardLint": 0,
+  "explicitBrowserFileLint": 0,
+  "productionBuild": 0,
+  "browser": {
+    "passed": 8,
+    "exactContinuePairs": 8,
+    "retry": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "errors": 0,
+    "seconds": 99.712872
+  },
+  "sourceFreezeFiles": 42,
+  "sourceHashDrift": [],
+  "worktreeStatusBeforeAfterExact": true,
+  "independentAcceptance": "open",
+  "earnedClassBuildBalance": "open",
+  "genuineCampaignChanged": false
+}

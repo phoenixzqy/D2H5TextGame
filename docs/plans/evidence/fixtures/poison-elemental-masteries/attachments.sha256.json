@@ -1,0 +1,98 @@
+{
+  "damage-mastery-desktop-necromancer-en/allocated-mastery": {
+    "sha256": "cbbe16fa7cb00af1481cf48378d40d186622051d5f650dac77d570c4d87d7e47",
+    "bytes": 154551
+  },
+  "damage-mastery-desktop-necromancer-en/mastery-after-Continue": {
+    "sha256": "a9b42aa88b9cfd60f33b50873c97b86a24ce787fdfb470aeeb904ba87c0ad0dc",
+    "bytes": 146455
+  },
+  "damage-mastery-desktop-necromancer-en/exact-Continue": {
+    "sha256": "6ee6166d243d8093ef16ef6645f522e1f789fd5711bca68419bd97da03ea1684",
+    "bytes": 7042
+  },
+  "damage-mastery-desktop-druid-en/allocated-mastery": {
+    "sha256": "ca0884a1c03f3cca24d3b8f299e0902d9e39b95f19aa9bb31af2a1a650bf8453",
+    "bytes": 137333
+  },
+  "damage-mastery-desktop-druid-en/mastery-after-Continue": {
+    "sha256": "9ca232be5ee8e0c60672e6f833bcbcb9aa824956d2eb3e9e267ae91756e8aae1",
+    "bytes": 134101
+  },
+  "damage-mastery-desktop-druid-en/exact-Continue": {
+    "sha256": "469b0e934e8c3cbf6d439f20fe36c13b5ce40e961c002e7d995b03a9f0feee54",
+    "bytes": 7026
+  },
+  "damage-mastery-desktop-necromancer-zh-CN/allocated-mastery": {
+    "sha256": "6a3c680097e9b8af929ac63c4135ecbf51067d6007f621404dca88bd42c08263",
+    "bytes": 156896
+  },
+  "damage-mastery-desktop-necromancer-zh-CN/mastery-after-Continue": {
+    "sha256": "5004be2ec79930df55572820ca1fa9c2f1633be4a98495f9ef529289d81a5c29",
+    "bytes": 142971
+  },
+  "damage-mastery-desktop-necromancer-zh-CN/exact-Continue": {
+    "sha256": "4ec0a65c6a71fc1095de5eaa9826e6dd945d59586809f00fb9fa101072d29609",
+    "bytes": 7048
+  },
+  "damage-mastery-desktop-druid-zh-CN/allocated-mastery": {
+    "sha256": "6af41697536a7f009644e285a3a0a3759b0c47caaab85298e906c972a18b62e4",
+    "bytes": 140869
+  },
+  "damage-mastery-desktop-druid-zh-CN/mastery-after-Continue": {
+    "sha256": "7990a96daa06106cc350115ef1ab1b109cf4f87dca611333a9496f79eaa3ff3b",
+    "bytes": 132539
+  },
+  "damage-mastery-desktop-druid-zh-CN/exact-Continue": {
+    "sha256": "dfb9b6a512f7b9b9383ed9620a32d899051fce8a7fb3a31db03f7d751785d936",
+    "bytes": 7032
+  },
+  "damage-mastery-mobile-necromancer-en/allocated-mastery": {
+    "sha256": "7e4d1ab6e2bfde7c59dccc2f140c6e88bf9ed429d8d6d178fe238734b6e4b6ac",
+    "bytes": 181284
+  },
+  "damage-mastery-mobile-necromancer-en/mastery-after-Continue": {
+    "sha256": "a50f2e6488216223d0c6ce08496127cf94687b09ad0a7d3781a511ea46de5d7d",
+    "bytes": 182070
+  },
+  "damage-mastery-mobile-necromancer-en/exact-Continue": {
+    "sha256": "ee936f69c37443fe689d1e1651a68b7e2a37ad5fce901d07fcf54843cf595942",
+    "bytes": 7042
+  },
+  "damage-mastery-mobile-druid-en/allocated-mastery": {
+    "sha256": "5d000c76eb5d852a0b08ac3fe66ed55604d423f54d70712444b64a8220a7f49b",
+    "bytes": 163215
+  },
+  "damage-mastery-mobile-druid-en/mastery-after-Continue": {
+    "sha256": "97278e39474dea063f0ce3d48a84780f1c85aa505011bf8d157b87e146013a49",
+    "bytes": 181356
+  },
+  "damage-mastery-mobile-druid-en/exact-Continue": {
+    "sha256": "ac38aa933a67df72d2f8c086c346a88aebf72a4ee3e74cc3e0ce665e23fb2516",
+    "bytes": 7026
+  },
+  "damage-mastery-mobile-necromancer-zh-CN/allocated-mastery": {
+    "sha256": "15296dfc858a5d4745c430733a5bfcbb6e385b2a455c8e6ac71f63657723b408",
+    "bytes": 212780
+  },
+  "damage-mastery-mobile-necromancer-zh-CN/mastery-after-Continue": {
+    "sha256": "22a4e77d07f4bf1f4044feaa58af0bf3be7c95a302f8007c21d4df793f346731",
+    "bytes": 185119
+  },
+  "damage-mastery-mobile-necromancer-zh-CN/exact-Continue": {
+    "sha256": "942ba91120385652533bb654c78b34a13a79bc2a4280149ab440f762bb47af07",
+    "bytes": 7048
+  },
+  "damage-mastery-mobile-druid-zh-CN/allocated-mastery": {
+    "sha256": "132e4e39311a47cddeb137eb0799b429e4885dbf76ba34ed5cc4e0030dffd6e3",
+    "bytes": 200942
+  },
+  "damage-mastery-mobile-druid-zh-CN/mastery-after-Continue": {
+    "sha256": "c2b2ef3c76316cea0189ec2040ad7bbb59c6e490ccf88b17761ab78a8c1a6c27",
+    "bytes": 182480
+  },
+  "damage-mastery-mobile-druid-zh-CN/exact-Continue": {
+    "sha256": "2af5216b0274762b0b924edf12d0780dff626a99fd610acd8062c0878c5efe79",
+    "bytes": 7032
+  }
+}

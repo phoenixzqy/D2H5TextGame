@@ -1,0 +1,79 @@
+{
+  "before": {
+    "samples": [
+      {
+        "phase": "before",
+        "importMs": 1618.743062,
+        "registered": 284,
+        "node": "v24.21.0"
+      },
+      {
+        "phase": "before",
+        "importMs": 1526.754716,
+        "registered": 284,
+        "node": "v24.21.0"
+      },
+      {
+        "phase": "before",
+        "importMs": 1492.7336559999999,
+        "registered": 284,
+        "node": "v24.21.0"
+      },
+      {
+        "phase": "before",
+        "importMs": 1698.7687389999999,
+        "registered": 284,
+        "node": "v24.21.0"
+      },
+      {
+        "phase": "before",
+        "importMs": 1453.8583319999998,
+        "registered": 284,
+        "node": "v24.21.0"
+      }
+    ],
+    "medianMs": 1526.754716,
+    "minMs": 1453.8583319999998,
+    "maxMs": 1698.7687389999999
+  },
+  "after": {
+    "samples": [
+      {
+        "phase": "after",
+        "importMs": 1424.874342,
+        "registered": 284,
+        "node": "v24.21.0"
+      },
+      {
+        "phase": "after",
+        "importMs": 1166.417144,
+        "registered": 284,
+        "node": "v24.21.0"
+      },
+      {
+        "phase": "after",
+        "importMs": 1853.1140129999999,
+        "registered": 284,
+        "node": "v24.21.0"
+      },
+      {
+        "phase": "after",
+        "importMs": 1192.18578,
+        "registered": 284,
+        "node": "v24.21.0"
+      },
+      {
+        "phase": "after",
+        "importMs": 1085.61183,
+        "registered": 284,
+        "node": "v24.21.0"
+      }
+    ],
+    "medianMs": 1192.18578,
+    "minMs": 1085.61183,
+    "maxMs": 1853.1140129999999
+  },
+  "catalogSHA256": "d42cfcfa8aa520cbe119b4d2d73d85e8bd35a1e424dc541bd71de8bf174e9e83",
+  "medianReductionPct": 21.913731950116333,
+  "limit": "Five fresh-process Vite-node registry imports per version on this host; includes transformation and dependency loading, noisy host load, no device/RUM or full performance-gate acceptance."
+}

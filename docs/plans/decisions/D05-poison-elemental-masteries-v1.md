@@ -1,6 +1,7 @@
 # D05 — Poison and Elemental Mastery
 
-Root contract; implementation in progress. Full C3/G2 acceptance stays open.
+Root contract implemented in `09a2722` and locally verified. Independent acceptance and full C3/G2 stay open.
+[Evidence](../evidence/d05-poison-elemental-masteries.md).
 Preserve authored JSON potency and the fire/cold scope stated by both locales
 and `docs/design/skills-spec.md`; supersede only their fixed30% descriptions.
 
