@@ -2,6 +2,7 @@
 
 Status: implemented and locally verified at base `b5ce230`; independent acceptance open.
 Root sole writer; independent acceptance and earned class/build balance remain open.
+Implementation: `9658f86`; [evidence](../evidence/d05-amazon-remaining-passives.md).
 Extends D05 Amazon passive composition without changing authored potency or saves.
 
 | Skill | Unlock/prerequisite | Per rank (cap20) |

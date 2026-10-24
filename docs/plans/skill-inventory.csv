@@ -19,10 +19,10 @@ amazon,skills-amazon-fend,amazon.fend,active,damage,,src/data/skills/amazon.json
 amazon,skills-amazon-lightning-strike,amazon.lightning_strike,active,damage,paralyze,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-inner-sight,amazon.inner_sight,active,debuff,inner-sight,src/data/skills/amazon.json,pure-debuff-consumer-not-found-in-audit,unverified,
 amazon,skills-amazon-slow-missiles,amazon.slow_missiles,active,debuff,slow-missiles,src/data/skills/amazon.json,pure-debuff-consumer-not-found-in-audit,unverified,
-amazon,skills-amazon-avoid,amazon.avoid,passive,buff,,src/data/skills/amazon.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+amazon,skills-amazon-avoid,amazon.avoid,passive,buff-metadata+fresh-player-stat-composition,,src/data/skills/amazon.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-amazon-remaining-passives.md
 amazon,skills-amazon-decoy,amazon.decoy,active,buff,decoy,src/data/skills/amazon.json,buff-mechanics-not-applied-in-audited-handler,unverified,
-amazon,skills-amazon-evade,amazon.evade,passive,buff,,src/data/skills/amazon.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
-amazon,skills-amazon-pierce,amazon.pierce,passive,buff,,src/data/skills/amazon.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+amazon,skills-amazon-evade,amazon.evade,passive,buff-metadata+fresh-player-stat-composition,,src/data/skills/amazon.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-amazon-remaining-passives.md
+amazon,skills-amazon-pierce,amazon.pierce,passive,buff-metadata+fresh-player-stat-composition+direct-physical-damage,,src/data/skills/amazon.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-amazon-remaining-passives.md
 amazon,skills-amazon-fire-arrow,amazon.fire_arrow,active,damage,burn,src/data/skills/amazon.json,burn-ignite-vocabulary-mismatch,unverified,
 amazon,skills-amazon-cold-arrow,amazon.cold_arrow,active,damage,chill,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-exploding-arrow,amazon.exploding_arrow,active,damage,burn,src/data/skills/amazon.json,burn-ignite-vocabulary-mismatch,unverified,

@@ -1,0 +1,17 @@
+{
+  "VITE_E2E": "false",
+  "patterns": [
+    "__GAME__",
+    "\\bseedItem\\b",
+    "\\bseedMerc\\b",
+    "\\binstallTestBridge\\b",
+    "[,{]flushSave:"
+  ],
+  "violations": [],
+  "chunks": {
+    "react-vendor-dRBhy6jq.js": "d023b474fbe60dec77510b20d3560e8a8c6b796e6d623cf648bf12800af453fb",
+    "game-engine-CqIzUXqx.js": "1fa97c84cee8074c2e55d99513c68c552e06b85906d088e0014d0d2f29fe3506",
+    "i18n-Bxr3rY09.js": "cb3cefca3bda4b6da700c1dcd65dae18a27f3a44e5c831c09cacb7652a2505f8",
+    "index-B2pCJiOS.js": "d45b6cfe8289d34daa47dd57d5df3323f45550bed713e5e35e1dad745c1217f7"
+  }
+}

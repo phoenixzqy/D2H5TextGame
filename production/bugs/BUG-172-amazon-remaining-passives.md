@@ -29,3 +29,7 @@ Final verification:11876PASS/471files+two existing skips,611.55s; engine5849PASS
 focused85PASS; final types/standard lint/build and explicit browser-file lint pass.
 Production en/zh×desktop/mobile4/4, four exact Continue pairs, no retries/errors.
 [Final evidence](../../docs/plans/evidence/d05-amazon-remaining-passives.md).
+
+Implementation: `9658f86`. All26raw files archived/byte-verified,11attachments
+and13source hashes verified; historical scratch root removed/port4454closed.
+All14task process records terminal; cleanup remaining[]/failures[].

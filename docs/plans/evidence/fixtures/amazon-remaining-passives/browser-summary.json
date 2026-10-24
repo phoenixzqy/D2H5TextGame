@@ -1,0 +1,49 @@
+{
+  "stats": {
+    "startTime": "2026-10-24T18:39:12.056Z",
+    "duration": 90149.133,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "project": "amazon-passive-desktop",
+      "locale": "en",
+      "status": "passed",
+      "retry": 0,
+      "errors": [],
+      "duration": 23471,
+      "expectedStatus": "passed"
+    },
+    {
+      "project": "amazon-passive-desktop",
+      "locale": "zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "errors": [],
+      "duration": 23837,
+      "expectedStatus": "passed"
+    },
+    {
+      "project": "amazon-passive-mobile",
+      "locale": "en",
+      "status": "passed",
+      "retry": 0,
+      "errors": [],
+      "duration": 19322,
+      "expectedStatus": "passed"
+    },
+    {
+      "project": "amazon-passive-mobile",
+      "locale": "zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "errors": [],
+      "duration": 19087,
+      "expectedStatus": "passed"
+    }
+  ],
+  "exactContinuePairs": 4
+}

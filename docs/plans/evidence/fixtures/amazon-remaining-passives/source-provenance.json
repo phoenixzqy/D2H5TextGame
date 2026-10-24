@@ -1,0 +1,19 @@
+{
+  "base": "b5ce230",
+  "sourceSHA256": {
+    "src/data/schema/skill.schema.json": "d095495c1842022d0d41c61ed9c25fbf173efe724cefd444668f8c7c8b1461e1",
+    "src/engine/skills/amazon-passive-definitions.test.ts": "bec5532b1b86b79ca23d890204bf5b4a0fba13f5bf8d7131bb56cbc23b1fdecc",
+    "src/engine/skills/amazon-passives.ts": "543655062331969f0903d74d7eaba593f89523fd97aeccfd6ae72c01d403d68d",
+    "src/engine/skills/amazon-remaining-passives-schema.test.ts": "4dc2318667c9d0cd28f02fa1059a7620aaf90f83e5a0f9f32f29610355511b7e",
+    "src/features/skills/SkillsScreen.amazon-passives.test.tsx": "5f80c7c16162b4380b99d5dfbc131f7c3dad6ca0ecf37cd32c473a3571a669d8",
+    "src/features/skills/SkillsScreen.tsx": "16d46b186ab48a50f7361a387bd10da4726df76f0d3327419186e2331cc506c3",
+    "src/i18n/locales/en/skills.json": "be657d132bb47a52bb89a00b9cbb0143b884f07d0da6c9f5743c0ae36660819a",
+    "src/i18n/locales/zh-CN/skills.json": "ae7aa2a691af0d96317f7fa5d2a9f27f6aeafc501b955aae5c8642eba882212d",
+    "src/stores/amazon-passive-native.test.ts": "8a02c67caf639aea0f8febe62b3420cc7f82bf2441ad9f10cdb1e1e0a4b9dd36",
+    "src/stores/amazon-remaining-passives.test.ts": "90bc978c6af0d85855f3fb405dd5f2a58a74e799393dccd5438252b776bd9622",
+    "src/stores/combatHelpers.ts": "b5948179022544e4aa2bae0bd65bd57ea234b16b3b503318879bcff04f0a1efc",
+    "tests/pwa/amazon-remaining-passives.config.ts": "e4f600b9db59fe9212f2f48b36012f12e52445957ddb60d2bebeca433cf93c0d",
+    "tests/pwa/amazon-remaining-passives.spec.ts": "66845b9da950ed0a21805649767e12b4dc9302a5a978033b802e797e73c411cb"
+  },
+  "genuineResumeRawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577"
+}

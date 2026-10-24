@@ -1,0 +1,190 @@
+{
+  "task": "D05 Amazon Avoid/Evade/Pierce",
+  "base": "b5ce230",
+  "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-passives-l3mdixt8",
+  "processes": [
+    {
+      "tag": "red-composition",
+      "pid": 1581401,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/amazon-remaining-passives.test.ts"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 9.11
+    },
+    {
+      "tag": "red-schema-ui",
+      "pid": 1581566,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/amazon-remaining-passives-schema.test.ts",
+        "src/features/skills/SkillsScreen.amazon-passives.test.tsx"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 10.27
+    },
+    {
+      "tag": "red-final-ui",
+      "pid": 1581887,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/features/skills/SkillsScreen.amazon-passives.test.tsx"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 9.59
+    },
+    {
+      "tag": "green-first",
+      "pid": 1582031,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/amazon-remaining-passives.test.ts",
+        "src/engine/skills/amazon-remaining-passives-schema.test.ts",
+        "src/engine/skills/amazon-passives.test.ts",
+        "src/features/skills/SkillsScreen.amazon-passives.test.tsx"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 9.36
+    },
+    {
+      "tag": "focused",
+      "pid": 1582391,
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/amazon-passive-definitions.test.ts",
+        "src/engine/skills/amazon-passives.test.ts",
+        "src/engine/skills/amazon-remaining-passives-schema.test.ts",
+        "src/stores/amazon-remaining-passives.test.ts",
+        "src/stores/amazon-passive-composition.test.ts",
+        "src/stores/amazon-passive-native.test.ts",
+        "src/features/skills/SkillsScreen.amazon-passives.test.tsx"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 12.66
+    },
+    {
+      "tag": "typecheck",
+      "pid": 1582487,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 33.83
+    },
+    {
+      "tag": "engine",
+      "pid": 1582823,
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 107.05
+    },
+    {
+      "tag": "full",
+      "pid": 1582931,
+      "command": [
+        "npm",
+        "test"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 613.0
+    },
+    {
+      "tag": "lint",
+      "pid": 1583186,
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 123.78
+    },
+    {
+      "tag": "build",
+      "pid": 1583187,
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-passives-l3mdixt8/build"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 17.11
+    },
+    {
+      "tag": "browser",
+      "pid": 1584702,
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "-c",
+        "tests/pwa/amazon-remaining-passives.config.ts"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 91.73
+    },
+    {
+      "tag": "final-types",
+      "pid": 1584748,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 59.77
+    },
+    {
+      "tag": "final-browser-lint",
+      "pid": 1594392,
+      "command": [
+        "node_modules/.bin/eslint",
+        "tests/pwa/amazon-remaining-passives.spec.ts",
+        "--max-warnings=0"
+      ],
+      "state": "terminal",
+      "exit": 1,
+      "seconds": 1.95
+    },
+    {
+      "tag": "browser-lint-explicit",
+      "pid": 1599276,
+      "command": [
+        "node_modules/.bin/eslint",
+        "--no-ignore",
+        "tests/pwa/amazon-remaining-passives.spec.ts",
+        "tests/pwa/amazon-remaining-passives.config.ts",
+        "--max-warnings=0"
+      ],
+      "state": "terminal",
+      "exit": 0,
+      "seconds": 8.52
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "implementation": "9658f86",
+  "focused": {
+    "passed": 85,
+    "files": 7,
+    "seconds": 11.57
+  },
+  "engine": {
+    "passed": 5849,
+    "files": 184,
+    "seconds": 105.88,
+    "exit": 0
+  },
+  "full": {
+    "passed": 11876,
+    "skipped": 2,
+    "files": 471,
+    "seconds": 611.55,
+    "exit": 0
+  },
+  "typecheck": 0,
+  "standardLint": 0,
+  "explicitBrowserFileLint": 0,
+  "extraLintAttempt": "Direct browser lint initially reports normally ignored file; explicit --no-ignore on both new files passes. No config changed.",
+  "build": 0,
+  "browser": {
+    "passed": 4,
+    "retry": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "capturedErrors": 0,
+    "exactContinuePairs": 4,
+    "seconds": 90.15
+  },
+  "independentAcceptance": "open",
+  "earnedClassBuildBalance": "open",
+  "genuineCampaignChanged": false,
+  "sourceLimit": "Runtime/data unchanged throughout final focused/engine/full/build/browser checks. Final browser assertion formatting is covered by final types and explicit file lint; unit tests exclude Playwright specs."
+}
