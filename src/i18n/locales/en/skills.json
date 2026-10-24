@@ -726,7 +726,7 @@
     },
     "bone-armor": {
       "name": "Bone Armor",
-      "desc": "At combat start, gain a 100-point absorb shield that blocks incoming damage."
+      "desc": "Automatic: gain {{absorb}} absorption per rank at the next fresh area run (character level {{level}}, maximum {{cap}} ranks). Your personal pool blocks direct and periodic damage after mitigation and does not refill between waves. Learning or upgrading applies to the next fresh area run. It does not heal or increase maximum life."
     },
     "teeth": {
       "name": "Teeth",

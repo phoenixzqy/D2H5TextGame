@@ -108,6 +108,7 @@
     "summon": "召唤",
     "death": "倒下",
     "status": {
+      "bone-armor": "骨甲：{{amount}}",
       "burst-of-speed": "速度爆发",
       "merc-inner-sight": "心眼",
       "chill": "冰冷",
@@ -211,6 +212,7 @@
     "true": "真实"
   },
   "event": {
+    "boneArmorAbsorbed": "{{target}}的骨甲吸收了{{amount}}点伤害。",
     "system": "系统",
     "turnStart": "第 {{turn}} 回合开始",
     "basicAction": "{{actor}} 准备出招。",

@@ -742,9 +742,11 @@ function UnitCard({
     ...unit.activeBuffIds.map((id) => ({ id, label: t(`effect.buff.${id}`, { defaultValue: humanizeEffectId(id) }), kind: 'buff' as const })),
     ...unit.statuses.map((status) => ({
       id: status.id,
-      label: t(`effect.status.${status.id}`, { defaultValue: humanizeEffectId(status.id) }),
+      label: t(`effect.status.${status.id}`, { defaultValue: humanizeEffectId(status.id),
+        amount: status.boneArmor?.remaining ?? 0 }),
       stacks: status.stacks,
-      kind: status.id === 'burst-of-speed' && status.statBuff !== undefined ? 'buff' as const
+      kind: (status.id === 'burst-of-speed' && status.statBuff !== undefined) ||
+        (status.id === 'bone-armor' && status.boneArmor !== undefined) ? 'buff' as const
         : status.dotPerStack !== undefined || status.id.includes('poison') || status.id.includes('ignite') || status.id.includes('plague') ? 'dot' as const : 'debuff' as const
     }))
   ];

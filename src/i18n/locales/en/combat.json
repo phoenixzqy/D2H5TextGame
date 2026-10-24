@@ -108,6 +108,7 @@
     "summon": "Summon",
     "death": "Down",
     "status": {
+      "bone-armor": "Bone Armor: {{amount}}",
       "burst-of-speed": "Burst of Speed",
       "merc-inner-sight": "Inner Sight",
       "chill": "Chill",
@@ -211,6 +212,7 @@
     "true": "true"
   },
   "event": {
+    "boneArmorAbsorbed": "{{target}}'s Bone Armor absorbs {{amount}} damage.",
     "system": "System",
     "turnStart": "Turn {{turn}} begins",
     "basicAction": "{{actor}} readies an attack.",

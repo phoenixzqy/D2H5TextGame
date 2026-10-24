@@ -53,6 +53,7 @@ import { composeSummonPassives, SUMMON_PASSIVE_IDENTITIES, SUMMON_PASSIVE_DEFINI
 import { ASSASSIN_WEAPON_PASSIVE_DEFINITIONS, ASSASSIN_WEAPON_PASSIVE_IDENTITIES } from '@/engine/skills/assassin-weapon-passives';
 import { ASSASSIN_SHADOW_DEFINITIONS, ASSASSIN_SHADOW_IDENTITIES } from '@/engine/skills/assassin-shadow';
 import { BURST_OF_SPEED_DEFINITION, BURST_OF_SPEED_IDS } from '@/engine/skills/burst-of-speed';
+import { BONE_ARMOR_DEFINITION, BONE_ARMOR_IDS } from '@/engine/skills/bone-armor';
 import { DAMAGE_MASTERY_DEFINITIONS, DAMAGE_MASTERY_IDENTITIES } from '@/engine/skills/damage-masteries';
 import { COLD_MASTERY_DEFINITION, coldMasteryReductionAtRank, resolveColdMasteryRank } from '@/engine/skills/cold-mastery';
 import { resolveStaticFieldRank } from '@/engine/skills/static-field';
@@ -1157,6 +1158,10 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
+  if (skill.id === BONE_ARMOR_IDS[0]) {
+    const d = BONE_ARMOR_DEFINITION;
+    return t('necromancer.bone-armor.desc', { absorb: d.absorbPerRank, cap: d.maxRank, level: d.requiredLevel });
+  }
   if (skill.id === BURST_OF_SPEED_IDS[0]) {
     const definition = BURST_OF_SPEED_DEFINITION;
     return t('assassin.burst-of-speed.desc', {

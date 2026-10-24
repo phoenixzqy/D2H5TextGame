@@ -91,7 +91,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 | `necromancer.skeleton_mastery` (`skills-necromancer-skeleton-mastery`) | Skeleton Mastery / 支配骷髅 | Newly created skeleton warriors/mages: +4% maximum life, +2% Attack and +1% ordinary Defense per allocated rank; cap20 totals +80%/+40%/+20%. | Unlock level1; creation only, no existing-summon retrofit/refill. [D05 contract](../plans/decisions/D05-skeleton-mastery-v1.md). |
 | `necromancer.poison_mastery` | Poison & Bone Mastery / 毒骨精通 | Per rank: +4% poison/+2% arcane damage; unlock30/cap20; hero only, next-wave, hit-derived poison snapshot once ([D05](../plans/decisions/D05-poison-elemental-masteries-v1.md)) | |
 | `necromancer.corpse_attracter` | Blood Golem / 血石魔像 | Passive: 10% life leech | Always-on aura |
-| `necromancer.bone_armor` | Bone Armor / 白骨护甲 | +100 absorb shield at combat start | Buff |
+| `necromancer.bone_armor` | Bone Armor / 白骨护甲 | Automatic personal absorption:12 per rank, cap20/240; unlock1 | One pool per fresh area run; all mitigated direct/periodic damage, no wave refill or HP increase; [D05 contract](../plans/decisions/D05-bone-armor-v1.md) |
 
 ---
 

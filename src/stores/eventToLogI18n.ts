@@ -122,7 +122,8 @@ export function eventToLocalizedLogEntry(
         actorName: sourceName,
         targetId: event.target,
         targetName,
-        message: tx(key, params),
+        message: tx(key, params) + ((event.absorbed ?? 0) > 0
+          ? ' ' + tx('combat:event.boneArmorAbsorbed', { target: targetName, amount: event.absorbed }) : ''),
         value: event.amount
       };
     }
@@ -198,7 +199,8 @@ export function eventToLocalizedLogEntry(
           target: targetName,
           amount: event.amount,
           defaultValue: `${targetName} takes ${String(event.amount)} DoT damage`
-        }),
+        }) + ((event.absorbed ?? 0) > 0
+          ? ' ' + tx('combat:event.boneArmorAbsorbed', { target: targetName, amount: event.absorbed }) : ''),
         value: event.amount
       };
     }
