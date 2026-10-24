@@ -1,0 +1,15 @@
+{
+  "runtime": "43a95d2ced36d8562bc762001da74918f843248f",
+  "parent": "earned-duriel-attempt261/retained-final.json.gz",
+  "actualOrdinal": 262,
+  "nextNormal": 263,
+  "outcome": "duriel-victory-claimed-act3-open",
+  "heroLevel": 24,
+  "heroXP": 188752,
+  "uniqueGear": 6629,
+  "addedXP": 29710,
+  "addedGear": 132,
+  "retainedFinalRawSHA256": "9219fbd9a24ffb993d987191e37b10934556d22ab201dc3110db7c6457260e69",
+  "rootEvidence": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop",
+  "independentAcceptance": "pending"
+}
