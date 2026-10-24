@@ -74,6 +74,7 @@ import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeMightAura } from '@/engine/skills/might';
 import { composeMeditationAura } from '@/engine/skills/meditation';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
+import { composeBarbarianEndurance } from '@/engine/skills/barbarian-endurance';
 import { composeAmazonPassives } from '@/engine/skills/amazon-passives';
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 import { composeGolemMastery } from '@/engine/skills/golem-mastery';
@@ -169,12 +170,24 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     player.level >= IRON_SKIN_DEFINITION.requiredLevel ? resolveIronSkinRank(player.skillLevels) : 0;
   const amazon = composeAmazonPassives({ classId: player.class, level: player.level,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
+  const endurance = composeBarbarianEndurance({ classId: player.class, level: player.level,
+    ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
+  const lifeMax = freshStats.lifeMax * endurance.lifeMultiplier;
   const stats = { ...freshStats,
+    lifeMax,
+    attackSpeed: freshStats.attackSpeed * endurance.attackSpeedMultiplier,
     attack: freshStats.attack * amazon.attackMultiplier,
     critChance: freshStats.critChance + amazon.critChanceBonus,
-    physDodge: freshStats.physDodge + amazon.physDodgeBonus,
+    physDodge: freshStats.physDodge + amazon.physDodgeBonus + endurance.physDodgeBonus,
+    magicDodge: freshStats.magicDodge + endurance.magicDodgeBonus,
+    resistances: { physical: freshStats.resistances.physical + endurance.resistAllBonus,
+      fire: freshStats.resistances.fire + endurance.resistAllBonus,
+      cold: freshStats.resistances.cold + endurance.resistAllBonus,
+      lightning: freshStats.resistances.lightning + endurance.resistAllBonus,
+      arcane: freshStats.resistances.arcane + endurance.resistAllBonus,
+      poison: freshStats.resistances.poison + endurance.resistAllBonus },
     defense: freshStats.defense * (1 + IRON_SKIN_DEFINITION.defensePctPerRank * ironSkinRank),
-    life: Math.min(player.derivedStats.life, freshStats.lifeMax),
+    life: Math.min(player.derivedStats.life, lifeMax),
     mana: Math.min(player.derivedStats.mana, freshStats.manaMax) };
   const recovery = composeHeroRecovery({ classId: player.class, level: player.level,
     effectiveEnergy: effectiveStatValue(core.energy),

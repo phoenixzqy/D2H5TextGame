@@ -42,6 +42,8 @@ import { STATUS_DEFAULTS } from '@/engine/combat/status';
 import { METEOR_ARMOR_MELT_DEFINITION } from '@/engine/skills/armor-melt';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { AMAZON_PASSIVE_DEFINITIONS } from '@/engine/skills/amazon-passives';
+import { BARBARIAN_ENDURANCE_DEFINITIONS, BARBARIAN_ENDURANCE_IDENTITIES,
+  resolveBarbarianEnduranceRank } from '@/engine/skills/barbarian-endurance';
 import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
 import { GOLEM_MASTERY_DEFINITION, composeGolemMastery, resolveGolemMasteryRank } from '@/engine/skills/golem-mastery';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
@@ -156,6 +158,13 @@ export function SkillsScreen() {
     for (const alias of ['barbarian.iron_skin', 'skills-barbarian-iron-skin']) {
       if (ironSkinRank > 0) map.set(alias, ironSkinRank);
       else map.delete(alias);
+    }
+    for (const key of ['stamina', 'speed', 'resistance'] as const) {
+      const rank = resolveBarbarianEnduranceRank(key, levels);
+      for (const alias of BARBARIAN_ENDURANCE_IDENTITIES[key]) {
+        if (rank > 0) map.set(alias, rank);
+        else map.delete(alias);
+      }
     }
     const skeletonMasteryRank = resolveSkeletonMasteryRank(levels);
     for (const alias of ['necromancer.skeleton_mastery', 'skills-necromancer-skeleton-mastery']) {
@@ -1131,6 +1140,17 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
+  for (const key of ['stamina', 'speed', 'resistance'] as const) {
+    const [authored] = BARBARIAN_ENDURANCE_IDENTITIES[key];
+    if (skill.id === authored) {
+      const { requiredLevel, maxRank, perRank } = BARBARIAN_ENDURANCE_DEFINITIONS[key];
+      return t('barbarian.' + authored.slice('skills-barbarian-'.length) + '.desc', {
+        life: perRank.lifePct * 100, speed: perRank.attackSpeedPct * 100,
+        physicalDodge: perRank.physDodgePct * 100, resist: perRank.resistAllPct * 100,
+        magicDodge: perRank.magicDodgePct * 100, cap: maxRank, level: requiredLevel,
+      });
+    }
+  }
   for (const [id, definition] of [
     ['critical-strike', AMAZON_PASSIVE_DEFINITIONS.criticalStrike],
     ['penetrate', AMAZON_PASSIVE_DEFINITIONS.penetrate],
@@ -1284,7 +1304,11 @@ function summonStatDelta(row: SkillSummonStatDisplayRow, compare: SkillRankDispl
 }
 
 function formatUtilityStat(row: SkillUtilityDisplayRow): string {
-  return row.valueKind === 'percent' ? `${String(Math.round(row.value * 100))}%` : String(row.value);
+  return row.valueKind === 'percent' ? formatUtilityPercent(row.value) : String(row.value);
+}
+
+function formatUtilityPercent(value: number): string {
+  return `${String(Number((value * 100).toFixed(2)))}%`;
 }
 
 function utilityDelta(row: SkillUtilityDisplayRow, compare: SkillRankDisplayStats | undefined): string | null {
@@ -1293,7 +1317,7 @@ function utilityDelta(row: SkillUtilityDisplayRow, compare: SkillRankDisplayStat
   const delta = row.value - old.value;
   if (delta === 0) return null;
   return row.valueKind === 'percent'
-    ? `(+${String(Math.round(delta * 100))}%)`
+    ? `(+${formatUtilityPercent(delta)})`
     : `(+${String(delta)})`;
 }
 

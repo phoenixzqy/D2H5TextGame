@@ -444,7 +444,7 @@
     },
     "natural-resistance": {
       "name": "自然抗性",
-      "desc": "全抗性 +30%。"
+      "desc": "自动生效：每级技能增加六种抗性各{{resist}}个百分点、魔法闪避{{magicDodge}}个百分点。仅野蛮人，角色{{level}}级解锁，最高{{cap}}级。"
     },
     "battle-orders": {
       "name": "战斗命令",
@@ -500,11 +500,11 @@
     },
     "increased-stamina": {
       "name": "提升耐力",
-      "desc": "增加最大耐力。"
+      "desc": "自动生效：每级技能使装备结算后的战斗最大生命增加{{life}}%。仅野蛮人，角色{{level}}级解锁，最高{{cap}}级。战斗中学习不会恢复生命。"
     },
     "increased-speed": {
       "name": "提升速度",
-      "desc": "增加移动和攻击速度。"
+      "desc": "自动生效：每级技能使装备结算后的攻击速度增加{{speed}}%，物理闪避增加{{physicalDodge}}个百分点。仅野蛮人，角色{{level}}级解锁，最高{{cap}}级。"
     },
     "howl": {
       "name": "大叫",

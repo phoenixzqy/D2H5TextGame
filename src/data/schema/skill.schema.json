@@ -6,7 +6,198 @@
   "type": "object",
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
-  "allOf": [{
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "enum": [
+              "skills-barbarian-increased-stamina",
+              "skills-barbarian-increased-speed",
+              "skills-barbarian-natural-resistance"
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "scaling"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "$ref": "#/properties/requiredLevel"
+          },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "passive": {
+            "const": true
+          },
+          "aura": {
+            "const": false
+          },
+          "summon": {
+            "const": false
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "lifePct": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "attackSpeedPct": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "physDodgePct": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "resistAllPct": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "magicDodgePct": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "cost": false,
+          "damage": false,
+          "damageType": false,
+          "appliesStatus": false,
+          "statusEffect": false,
+          "additionalStatusEffects": false,
+          "appliesTags": false,
+          "synergies": false,
+          "heal": false,
+          "summonId": false,
+          "aoeShape": false,
+          "requires": false
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-barbarian-increased-stamina"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "then": {
+              "properties": {
+                "scaling": {
+                  "type": "object",
+                  "properties": {
+                    "passiveStatsPerLevel": {
+                      "type": "object",
+                      "required": [
+                        "lifePct"
+                      ],
+                      "maxProperties": 1,
+                      "properties": {
+                        "lifePct": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-barbarian-increased-speed"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "then": {
+              "properties": {
+                "scaling": {
+                  "type": "object",
+                  "properties": {
+                    "passiveStatsPerLevel": {
+                      "type": "object",
+                      "required": [
+                        "attackSpeedPct",
+                        "physDodgePct"
+                      ],
+                      "maxProperties": 2,
+                      "properties": {
+                        "attackSpeedPct": {},
+                        "physDodgePct": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-barbarian-natural-resistance"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "then": {
+              "properties": {
+                "scaling": {
+                  "type": "object",
+                  "properties": {
+                    "passiveStatsPerLevel": {
+                      "type": "object",
+                      "required": [
+                        "resistAllPct",
+                        "magicDodgePct"
+                      ],
+                      "maxProperties": 2,
+                      "properties": {
+                        "resistAllPct": {},
+                        "magicDodgePct": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }, {
     "if": {
       "properties": {
         "id": {

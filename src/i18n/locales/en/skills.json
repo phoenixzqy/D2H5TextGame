@@ -444,7 +444,7 @@
     },
     "natural-resistance": {
       "name": "Natural Resistance",
-      "desc": "Increases all resistances by 30%."
+      "desc": "Automatically adds {{resist}} percentage points to all six resistances and {{magicDodge}} percentage points to magical dodge per allocated rank. Barbarian only, level {{level}}; maximum {{cap}} ranks."
     },
     "battle-orders": {
       "name": "Battle Orders",
@@ -500,11 +500,11 @@
     },
     "increased-stamina": {
       "name": "Increased Stamina",
-      "desc": "Increases maximum stamina."
+      "desc": "Automatically increases equipment-derived combat maximum life by {{life}}% per allocated rank. Barbarian only, level {{level}}; maximum {{cap}} ranks. Learning does not heal during an encounter."
     },
     "increased-speed": {
       "name": "Increased Speed",
-      "desc": "Increases movement and attack speed."
+      "desc": "Automatically increases equipment-derived attack speed by {{speed}}% and adds {{physicalDodge}} percentage points to physical dodge per allocated rank. Barbarian only, level {{level}}; maximum {{cap}} ranks."
     },
     "howl": {
       "name": "Howl",
