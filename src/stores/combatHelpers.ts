@@ -175,6 +175,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const mastery = composeBarbarianWeaponMasteries({ classId: player.class, level: player.level,
     ...equippedWeapon, ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
+  const physicalDamagePct = mastery.physicalDamagePct + amazon.physicalDamagePct;
   const lifeMax = freshStats.lifeMax * endurance.lifeMultiplier;
   const stats = { ...freshStats,
     lifeMax,
@@ -182,7 +183,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     attack: freshStats.attack * amazon.attackMultiplier,
     critChance: freshStats.critChance + amazon.critChanceBonus + mastery.critChanceBonus,
     physDodge: freshStats.physDodge + amazon.physDodgeBonus + endurance.physDodgeBonus,
-    magicDodge: freshStats.magicDodge + endurance.magicDodgeBonus,
+    magicDodge: freshStats.magicDodge + amazon.magicDodgeBonus + endurance.magicDodgeBonus,
     resistances: { physical: freshStats.resistances.physical + endurance.resistAllBonus,
       fire: freshStats.resistances.fire + endurance.resistAllBonus,
       cold: freshStats.resistances.cold + endurance.resistAllBonus,
@@ -210,9 +211,9 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     stats,
     life: stats.life,
     mana: stats.mana,
-    ...composeRunewordCombatModifiers(grants, mastery.physicalDamagePct > 0 ? {
+    ...composeRunewordCombatModifiers(grants, physicalDamagePct > 0 ? {
       ...recovery, increasedDamagePct: { ...recovery.increasedDamagePct,
-        physical: (recovery.increasedDamagePct.physical ?? 0) + mastery.physicalDamagePct }
+        physical: (recovery.increasedDamagePct.physical ?? 0) + physicalDamagePct }
     } : recovery),
     coldResistanceReductionPct: composeColdMastery(player),
     staticFieldRank: composeStaticField(player),

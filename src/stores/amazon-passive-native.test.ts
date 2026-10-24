@@ -99,6 +99,42 @@ describe('Amazon passive native recording and replay boundaries', () => {
     expect(pools(currentHero())).toEqual(pools(final));
   });
 
+  it('learns Avoid/Evade/Pierce through prerequisites without rewriting the recorded wave', () => {
+    arrange({ 'amazon.dodge': 1, 'amazon.critical_strike': 1, 'amazon.penetrate': 1 });
+    const before = recording(), baseline = structuredClone(currentHero());
+    for (const id of ['skills-amazon-avoid', 'skills-amazon-evade', 'skills-amazon-pierce']) {
+      expect(usePlayerStore.getState().allocateSkillPoint(id)).toBe('ok');
+      expect(recording()).toEqual(before);
+    }
+    expect(player().skillPoints).toBe(0);
+    const final = before.outcome?.finalPlayerTeam[0];
+    if (!final) throw new Error('Missing original outcome');
+    drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
+    expect(currentHero().stats.physDodge).toBeCloseTo(baseline.stats.physDodge + 0.005, 12);
+    expect(currentHero().stats.magicDodge).toBeCloseTo(baseline.stats.magicDodge + 0.015, 12);
+    expect(currentHero().stats.attack).toBeCloseTo(baseline.stats.attack / 1.03 * 1.04, 12);
+    expect(currentHero().increasedDamagePct?.physical).toBe(0.02);
+    expect(pools(currentHero())).toEqual(pools(final));
+  });
+
+  it('removes remaining passives on reset/replay without refilling pools or income', () => {
+    arrange({ 'amazon.dodge': 1, 'amazon.critical_strike': 1, 'amazon.penetrate': 1,
+      'amazon.avoid': 20, 'amazon.evade': 20, 'amazon.pierce': 20 }, 70);
+    const baseline = structuredClone(currentHero()), before = recording();
+    const plain = playerToCombatUnit({ ...player(), skillLevels: {} });
+    expect(baseline.stats.magicDodge).toBeCloseTo(plain.stats.magicDodge + 0.3, 12);
+    expect(baseline.increasedDamagePct?.physical).toBe(0.4);
+    expect(resetSkillsForCompositionTest()).toBe('ok');
+    expect(recording()).toEqual(before);
+    refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+    expect(currentHero().stats).toEqual(plain.stats);
+    expect(currentHero().increasedDamagePct).toEqual(plain.increasedDamagePct);
+    expect(pools(currentHero())).toEqual(pools(baseline));
+    expect(useCombatStore.getState().runRewards).toEqual(before.rewards);
+    const first = recording(); refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+    expect(recording()).toEqual(first);
+  });
+
   it('removes rank-cap passives on explicit replay after a constructed free reset, preserving original pools and rewards', () => {
     arrange(ranks, 60);
     const baseline = structuredClone(currentHero()), before = recording();

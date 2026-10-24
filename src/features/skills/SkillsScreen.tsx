@@ -41,7 +41,7 @@ import { AMPLIFY_DAMAGE_DEFINITION } from '@/engine/combat/amplify-damage-defini
 import { STATUS_DEFAULTS } from '@/engine/combat/status';
 import { METEOR_ARMOR_MELT_DEFINITION } from '@/engine/skills/armor-melt';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
-import { AMAZON_PASSIVE_DEFINITIONS } from '@/engine/skills/amazon-passives';
+import { AMAZON_PASSIVE_DEFINITIONS, AMAZON_PASSIVE_IDENTITIES, AMAZON_PASSIVE_KEYS } from '@/engine/skills/amazon-passives';
 import { BARBARIAN_ENDURANCE_DEFINITIONS, BARBARIAN_ENDURANCE_IDENTITIES,
   resolveBarbarianEnduranceRank } from '@/engine/skills/barbarian-endurance';
 import { BARBARIAN_WEAPON_MASTERY_DEFINITIONS, BARBARIAN_WEAPON_MASTERY_IDENTITIES, BARBARIAN_WEAPON_MASTERY_KEYS,
@@ -1170,14 +1170,17 @@ function dynamicDescription(
       });
     }
   }
-  for (const [id, definition] of [
-    ['critical-strike', AMAZON_PASSIVE_DEFINITIONS.criticalStrike],
-    ['penetrate', AMAZON_PASSIVE_DEFINITIONS.penetrate],
-    ['dodge', AMAZON_PASSIVE_DEFINITIONS.dodge],
-  ] as const) {
-    if (skill.id === 'skills-amazon-' + id) return t('amazon.' + id + '.desc', {
-      bonus: definition.perRank * 100, cap: definition.maxRank,
-    });
+  for (const key of AMAZON_PASSIVE_KEYS) {
+    const { authored } = AMAZON_PASSIVE_IDENTITIES[key];
+    if (skill.id === authored) {
+      const { perRank, maxRank, requiredLevel } = AMAZON_PASSIVE_DEFINITIONS[key];
+      return t('amazon.' + authored.slice('skills-amazon-'.length) + '.desc', {
+        bonus: (perRank.critChancePct || perRank.attackPct || perRank.physDodgePct || perRank.magicDodgePct) * 100,
+        physicalDodge: perRank.physDodgePct * 100, magicDodge: perRank.magicDodgePct * 100,
+        damage: perRank.physicalDamagePct * 100, attack: perRank.attackPct * 100,
+        cap: maxRank, level: requiredLevel,
+      });
+    }
   }
   if (skill.id === 'skills-sorceress-static-field') return t('sorceress.static-field.desc');
   if (skill.id === 'skills-necromancer-amplify-damage') {

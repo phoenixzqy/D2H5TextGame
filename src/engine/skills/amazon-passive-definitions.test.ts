@@ -3,18 +3,25 @@ import amazonSkills from '../../data/skills/amazon.json';
 import { AMAZON_PASSIVE_DEFINITIONS, composeAmazonPassives,
   resolveAmazonPassiveDefinitions } from './amazon-passives';
 
-const neutral = { critChanceBonus: 0, attackMultiplier: 1, physDodgeBonus: 0 };
+const neutral = { critChanceBonus: 0, attackMultiplier: 1, physDodgeBonus: 0, magicDodgeBonus: 0, physicalDamagePct: 0 };
+const zero = { critChancePct: 0, attackPct: 0, physDodgePct: 0, magicDodgePct: 0, physicalDamagePct: 0 };
 describe('immutable authored Amazon passive definitions', () => {
   it('copies JSON unlocks, caps and coefficients without retaining mutable rows', () => {
     expect(AMAZON_PASSIVE_DEFINITIONS).toEqual({
-      criticalStrike: { requiredLevel: 1, maxRank: 20, perRank: 0.01 },
-      penetrate: { requiredLevel: 18, maxRank: 20, perRank: 0.03 },
-      dodge: { requiredLevel: 6, maxRank: 20, perRank: 0.01 },
+      criticalStrike: { requiredLevel: 1, maxRank: 20, perRank: { ...zero, critChancePct: 0.01 } },
+      penetrate: { requiredLevel: 18, maxRank: 20, perRank: { ...zero, attackPct: 0.03 } },
+      dodge: { requiredLevel: 6, maxRank: 20, perRank: { ...zero, physDodgePct: 0.01 } },
+      avoid: { requiredLevel: 12, maxRank: 20, perRank: { ...zero, magicDodgePct: 0.01 } },
+      evade: { requiredLevel: 24, maxRank: 20, perRank: { ...zero, physDodgePct: 0.005, magicDodgePct: 0.005 } },
+      pierce: { requiredLevel: 30, maxRank: 20, perRank: { ...zero, physicalDamagePct: 0.02, attackPct: 0.01 } },
     });
     const original = structuredClone(amazonSkills);
     const copied = resolveAmazonPassiveDefinitions(original);
     expect(Object.isFrozen(copied)).toBe(true);
-    for (const definition of Object.values(copied)) expect(Object.isFrozen(definition)).toBe(true);
+    for (const definition of Object.values(copied)) {
+      expect(Object.isFrozen(definition)).toBe(true);
+      expect(Object.isFrozen(definition.perRank)).toBe(true);
+    }
     expect(original).toEqual(amazonSkills);
     expect(Object.isFrozen(original)).toBe(false);
     const index = original.findIndex(row => row.id === 'skills-amazon-critical-strike');
@@ -50,7 +57,7 @@ describe('allocated and eligible Amazon passive composition', () => {
       'skills-amazon-dodge': 20, 'amazon.dodge': 1 };
     const before = structuredClone(skillLevels);
     expect(composeAmazonPassives({ classId: 'amazon', level: 30, skillLevels }))
-      .toEqual({ critChanceBonus: 0.2, attackMultiplier: 1.6, physDodgeBonus: 0.2 });
+      .toEqual({ ...neutral, critChanceBonus: 0.2, attackMultiplier: 1.6, physDodgeBonus: 0.2 });
     expect(skillLevels).toEqual(before);
     expect(composeAmazonPassives({ classId: 'amazon', level: 30 })).toEqual(neutral);
   });
@@ -70,7 +77,7 @@ describe('allocated and eligible Amazon passive composition', () => {
     expect(composeAmazonPassives({ classId: 'amazon', level: 6, skillLevels }))
       .toEqual({ ...neutral, critChanceBonus: 0.01, physDodgeBonus: 0.01 });
     expect(composeAmazonPassives({ classId: 'amazon', level: 18, skillLevels }))
-      .toEqual({ critChanceBonus: 0.01, attackMultiplier: 1.03, physDodgeBonus: 0.01 });
+      .toEqual({ ...neutral, critChanceBonus: 0.01, attackMultiplier: 1.03, physDodgeBonus: 0.01 });
   });
 
   it.each(['sorceress', 'paladin', 'barbarian', 'necromancer', 'druid', 'assassin', ''])('does not grant passives to class %s', classId => {
@@ -81,5 +88,32 @@ describe('allocated and eligible Amazon passive composition', () => {
   it.each([NaN, Infinity, -Infinity, 0])('suppresses passives at invalid/below-unlock level %s', level => {
     expect(composeAmazonPassives({ classId: 'amazon', level,
       skillLevels: { 'amazon.critical_strike': 20, 'amazon.penetrate': 20, 'amazon.dodge': 20 } })).toEqual(neutral);
+  });
+});
+
+
+describe('remaining Amazon immutable definitions and authored tuning', () => {
+  const cases = [
+    ['avoid', { magicDodgePct: 0.125 }, { ...neutral, magicDodgeBonus: 3.875 }],
+    ['evade', { physDodgePct: 0.125, magicDodgePct: 0.25 },
+      { ...neutral, physDodgeBonus: 3.875, magicDodgeBonus: 7.75 }],
+    ['pierce', { physicalDamagePct: 0.25, attackPct: 0.125 },
+      { ...neutral, attackMultiplier: 4.875, physicalDamagePct: 7.75 }],
+  ] as const;
+  it.each(cases)('takes %s coefficients, unlock and cap from copied JSON', (key, stats, expected) => {
+    const rows = structuredClone(amazonSkills), source = rows.find(row => row.id === 'skills-amazon-' + key);
+    if (!source) throw new Error('Missing authored ' + key);
+    const definitions = resolveAmazonPassiveDefinitions(rows.map(row => row === source
+      ? { ...row, requiredLevel: 9, maxLevel: 31, scaling: { passiveStatsPerLevel: stats } } : row));
+    const input = { classId: 'amazon', skillLevels: { ['amazon.' + key]: 99 } };
+    expect(composeAmazonPassives({ ...input, level: 8 }, definitions)).toEqual(neutral);
+    expect(composeAmazonPassives({ ...input, level: 9 }, definitions)).toEqual(expected);
+    expect(() => resolveAmazonPassiveDefinitions([...rows, source])).toThrow(/exactly one/);
+    expect(() => resolveAmazonPassiveDefinitions(rows.filter(row => row !== source))).toThrow(/exactly one/);
+    expect(() => resolveAmazonPassiveDefinitions(rows.map(row => row === source ? { ...row, cost: { mana: 0 } } : row)))
+      .toThrow(/Invalid/);
+    const copied = resolveAmazonPassiveDefinitions(rows);
+    rows.splice(0, rows.length);
+    expect(copied).toEqual(AMAZON_PASSIVE_DEFINITIONS);
   });
 });

@@ -568,7 +568,10 @@
           "enum": [
             "skills-amazon-critical-strike",
             "skills-amazon-penetrate",
-            "skills-amazon-dodge"
+            "skills-amazon-dodge",
+            "skills-amazon-avoid",
+            "skills-amazon-evade",
+            "skills-amazon-pierce"
           ]
         }
       },
@@ -613,7 +616,7 @@
             "passiveStatsPerLevel": {
               "type": "object",
               "minProperties": 1,
-              "maxProperties": 1,
+              "maxProperties": 2,
               "additionalProperties": false,
               "properties": {
                 "critChancePct": {
@@ -630,7 +633,11 @@
                   "type": "number",
                   "minimum": 0,
                   "description": "Finite nonnegative physical-dodge fraction per allocated Dodge rank."
-                }
+                },
+                "magicDodgePct": { "type": "number", "minimum": 0,
+                  "description": "Finite nonnegative magical-dodge fraction per allocated rank." },
+                "physicalDamagePct": { "type": "number", "minimum": 0,
+                  "description": "Finite nonnegative direct physical-damage fraction per allocated Pierce rank." }
               }
             }
           }
@@ -670,6 +677,7 @@
                     "required": [
                       "critChancePct"
                     ],
+                    "maxProperties": 1,
                     "properties": { "critChancePct": {} }
                   }
                 }
@@ -698,6 +706,7 @@
                     "required": [
                       "attackPct"
                     ],
+                    "maxProperties": 1,
                     "properties": { "attackPct": {} }
                   }
                 }
@@ -726,12 +735,34 @@
                     "required": [
                       "physDodgePct"
                     ],
+                    "maxProperties": 1,
                     "properties": { "physDodgePct": {} }
                   }
                 }
               }
             }
           }
+        },
+        {
+          "if": { "properties": { "id": { "const": "skills-amazon-avoid" } }, "required": ["id"] },
+          "then": { "properties": { "scaling": { "type": "object", "properties": {
+            "passiveStatsPerLevel": { "type": "object", "required": ["magicDodgePct"],
+              "maxProperties": 1, "properties": {"magicDodgePct": {}} }
+          } } } }
+        },
+        {
+          "if": { "properties": { "id": { "const": "skills-amazon-evade" } }, "required": ["id"] },
+          "then": { "properties": { "scaling": { "type": "object", "properties": {
+            "passiveStatsPerLevel": { "type": "object", "required": ["physDodgePct", "magicDodgePct"],
+              "maxProperties": 2, "properties": {"physDodgePct": {}, "magicDodgePct": {}} }
+          } } } }
+        },
+        {
+          "if": { "properties": { "id": { "const": "skills-amazon-pierce" } }, "required": ["id"] },
+          "then": { "properties": { "scaling": { "type": "object", "properties": {
+            "passiveStatsPerLevel": { "type": "object", "required": ["physicalDamagePct", "attackPct"],
+              "maxProperties": 2, "properties": {"physicalDamagePct": {}, "attackPct": {}} }
+          } } } }
         }
       ]
     }

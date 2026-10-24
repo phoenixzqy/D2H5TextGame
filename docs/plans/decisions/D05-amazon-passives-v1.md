@@ -2,8 +2,9 @@
 
 Status: root contract implemented and locally verified; independent acceptance pending.
 [Implementation evidence](../evidence/d05-amazon-passives.md).
-Scope: the three currently advertised Amazon passives and their ordinary
-learning, next-wave/replay, display and persistence paths. Full C3/G2 remains open.
+Scope: Critical Strike, Penetrate and Dodge, including ordinary learning,
+next-wave/replay, display and persistence. Avoid/Evade/Pierce are covered by
+[D05 remaining passives](D05-amazon-remaining-passives-v1.md). Full C3/G2 remains open.
 
 Preserve existing JSON as the numerical authority, following the prior D05
 Warmth/mastery/Iron Skin reconciliations. This supersedes only the three older

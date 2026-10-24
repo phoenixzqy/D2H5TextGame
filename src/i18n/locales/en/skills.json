@@ -291,7 +291,7 @@
     },
     "avoid": {
       "name": "Avoid",
-      "desc": "Increases chance to avoid ranged attacks."
+      "desc": "Automatically adds {{magicDodge}} percentage point to magical dodge per allocated rank. Amazon only, level {{level}}; maximum {{cap}} ranks. Applies from the next wave."
     },
     "decoy": {
       "name": "Decoy",
@@ -299,11 +299,11 @@
     },
     "evade": {
       "name": "Evade",
-      "desc": "Increases chance to evade while moving."
+      "desc": "Automatically adds {{physicalDodge}} percentage point to physical dodge and {{magicDodge}} percentage point to magical dodge per allocated rank. Amazon only, level {{level}}; maximum {{cap}} ranks. Applies from the next wave."
     },
     "pierce": {
       "name": "Pierce",
-      "desc": "Arrows and javelins can pass through targets, hitting multiple enemies."
+      "desc": "Automatically increases direct physical damage by {{damage}}% and equipment-derived Attack by {{attack}}% per allocated rank. Attack bonuses add with Penetrate. Amazon only, level {{level}}; maximum {{cap}} ranks. Applies from the next wave."
     }
   },
   "assassin": {

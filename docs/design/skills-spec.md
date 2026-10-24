@@ -129,12 +129,15 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 | `amazon.plague_javelin` | Plague Javelin / 瘟疫标枪 | Poison | Cone | 30–50 | 2 | 25 | Poison (3 stacks) + Plague | Spreads on kill |
 | `amazon.piercing_strike` | Strafe / 炮轰 | Physical | All | 35–55 | 2 | 20 | — | Rapid multi-hit |
 
-#### Passive Skills (4)
+#### Passive and Summon Skills (7)
 | ID | Name (EN / ZH) | Effect | Notes |
 |---|---|---|---|
 | `amazon.critical_strike` | Critical Strike / 致命攻击 | +1 percentage point crit chance per rank | Unlock L1; cap20; automatic, player only. D05 Amazon contract supersedes fixed15%. |
 | `amazon.penetrate` | Penetrate / 穿透 | +3% equipment-derived Attack per rank | Unlock L18; Critical Strike prerequisite; cap20; automatic, player only. Authored `attackPct`, no accuracy/dodge change. |
 | `amazon.dodge` | Dodge / 闪避 | +1 percentage point physical dodge per rank | Unlock L6; cap20; automatic, player only. D05 Amazon contract supersedes fixed25%. |
+| `amazon.avoid` | Avoid / 躲避 | +1 percentage point magical dodge per rank | Unlock L12; Dodge prerequisite; cap20; automatic, next wave. |
+| `amazon.evade` | Evade / 回避 | +0.5 percentage point physical and magical dodge per rank | Unlock L24; Avoid prerequisite; cap20; automatic, next wave; no movement condition. |
+| `amazon.pierce` | Pierce / 穿刺 | +2% direct physical damage and +1% equipment-derived Attack per rank | Unlock L30; Penetrate prerequisite; cap20; Attack percentages add with Penetrate; no projectile passthrough. |
 | `amazon.valkyrie` | Valkyrie / 女武神 | Summons 1 Valkyrie minion | Unlocks L18 |
 
 ---
