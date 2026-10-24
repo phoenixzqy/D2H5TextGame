@@ -75,9 +75,10 @@ and explicit no-movement repulsion adaptation. Cleansing requires poison/curse
 duration reduction; Redemption consumes authoritative corpses for life/mana;
 Prayer heals; Vigor requires a truthful no-movement/stamina adaptation;
 Concentration requires an explicit interruption-prevention rule. Existing JSON
-and older descriptions disagree for these ten: resolve their affected rules and
+and older descriptions disagree for these eight: resolve their affected rules and
 data explicitly before implementation. Holy Freeze/Conviction follow the resolved
-contract above but remain unverified until their implementation/evidence is complete.
+contract above and have [bounded local verification](../evidence/d05-paladin-enemy-auras.md).
+Independent design/QA and earned class/build balance remain open.
 Do not expose or count stat-only
 substitutes as completion of those effects.
 

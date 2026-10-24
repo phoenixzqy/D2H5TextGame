@@ -1,7 +1,7 @@
 # BUG-181 — Complete advertised Paladin aura selection and effects
 
 Severity: High
-Status: Open; eight stat auras locally verified, ten distinct aura mechanics outstanding
+Status: Open; eight stat auras plus Holy Freeze/Conviction locally verified, eight distinct aura mechanics outstanding
 Owners: engine-dev, frontend-dev, content-designer; root sole writer this run
 
 ## Reproduction
@@ -47,5 +47,15 @@ public-allocation regression passes34cases; full12229/515, engine6088/205,
 types/lint/build/production bridge checks pass. Browser en/zh×desktop/mobile4/4
 proves36 exact Continue pairs and40 geometry samples. [Evidence and original
 failures](../../docs/plans/evidence/d05-paladin-stat-auras.md). The allocation-ID
-finding is repaired; the whole family remains open for the ten explicitly listed
+finding is repaired; at that checkpoint the family remained open for ten distinct
 pulse/control/recovery/corpse/interrupt effects, earned balance and independent QA.
+
+Second batch bee0cd8 implements selected hero Holy Freeze and Conviction through
+the shared wave projection. Actual Chill/cadence/provenance, six-type resistance
+reduction, recipient damage/dodge, source authority, native public allocation,
+replay and persistence pass. Full12261/517/two existing skips, engine6114/207,
+types/lint/build/bridge pass. Production browser4/4 proves12 exact five-domain
+Continue pairs and40 geometry samples. [Evidence and retained original failures](../../docs/plans/evidence/d05-paladin-enemy-auras.md).
+Remaining eight: Holy Fire, Holy Shock, Sanctuary, Cleansing, Redemption, Prayer,
+Vigor and Concentration. The complete family, earned balance and independent
+acceptance remain open.

@@ -11419,3 +11419,38 @@ no campaign action or diagnostic-save promotion. Next family investigation finds
 pulse/control/corpse identities rather than count stat-only substitutes. All-class
 builds, earned Baal, economy/endgame/pacing/PWA/performance/independent C2–C4/fullG
 remain open. Local only; umbrella goal/worktree/branch remain active.
+
+
+## D05 — Selected Holy Freeze and Conviction / BUG181
+
+Following the eight selected stat auras retained at bc9750f, implementation
+bee0cd8 adds actual hero-owned ambient Chill and JSON-owned25-point enemy
+six-resistance reduction. Hero/original fielded merc cold/dodge and elemental/
+arcane rank bonuses remain authored; summons receive only the enemy debuff.
+Mercenary Freeze cold bonus stays separate; slowdown never stacks. Savev22
+already contains both selection IDs, and no transient aura payload persists.
+Both locales show actual effects and thirteen exclusive selection controls.
+
+[Evidence](evidence/d05-paladin-enemy-auras.md): focused133/8, engine6114/207,
+full12261/517/two existing skips, types/lint/explicit-false production build and
+bridge scan PASS. All1231 source/test/config and760 build hashes, HEAD/Git state
+and genuine save digest remain exact throughout the533.89s full run. Browser4/4
+and separate saved-attachment audit prove12 exact five-domain Continue pairs;
+40geometry samples pass. Original fixture/copy/radio/type failures and hover-
+affected screenshots remain, with separate corrected visual captures.113raw files/
+18terminal process records retained and byte-verified. Exact873file cleanup confirms
+scratch absent/4463closed/no failures or remaining paths. Shared caches and older
+campaign evidence remain.
+
+Only two new bounded-functional dispositions:213IDs/order unchanged,
+164unverified/47bounded-functional/one bounded-engine-functional (Ice Arrow)/one
+review-needed (Cold Mastery). The48 bounded records have different proof scopes;
+this batch does not promote the engine-only record. BUG181 stays open for Holy
+Fire/Shock, Sanctuary, Cleansing, Redemption, Prayer, Vigor and Concentration;
+no stat-only substitute counts as a promised pulse/control/corpse/interrupt effect.
+Existing suite-time/bundle/PWA budgets, intermittent BUG180 and independent QA/
+earned class balance remain open. Genuine claimed Rite save remainsL33/XP149261/
+23682gear/nextNormal402, rawSHA c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577;
+no actual campaign action or diagnostic-save promotion. Next: remaining distinct
+aura mechanics. Baal/C2–C4/fullG0–G7 and the complete privatev1 remain incomplete.
+Local only; umbrella goal, branch and claimed worktree remain active.
