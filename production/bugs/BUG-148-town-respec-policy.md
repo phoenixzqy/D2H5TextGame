@@ -1,6 +1,6 @@
 # BUG-148 — Make the authored respec policy available in town
 
-Severity: High. Status: reproduced at `6521722`; locally implemented; final validation and independent acceptance pending.
+Severity: High. Status: fixed locally in `b67f0a0`; independent acceptance pending.
 Owner: root (engine/store/frontend). Browser target: Chromium 360×640 and1280×800, zh-CN/en. Seed: not applicable.
 
 1. Continue an allocated character and visit Akara or Drognan in town.
@@ -19,3 +19,9 @@ Production browser reproduction additionally found the missing Drognan NPC in
 ActII. `respec.test.ts` has a causal configured-NPC presence regression; the
 canonical dialogue and both locale keys are added. The original browser setup
 and interrupted broad run are retained under the D11 evidence root.
+
+Final validation: full11326/430+2 existing skips; types/lint/build and bridge scan
+pass; production8/8,56 native saves and8 exact Continue pairs audited. Regression
+paths: `respec.test.ts`, `respec-v21.test.ts`, `respecActions.test.ts`,
+`TownRespecPanel.test.tsx`. See `docs/plans/evidence/d11-town-respec.md` for limits,
+raw evidence ownership and verified disposable cleanup.

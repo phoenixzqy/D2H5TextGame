@@ -1,7 +1,7 @@
 # BUG-149 — Initialize reset allowances before the first save
 
-Severity: Medium. Status: reproduced on `6521722` plus the town-reset candidate;
-root correction and regression validation pending. Owner: root/frontend/QA.
+Severity: Medium. Status: fixed locally in `b67f0a0`; independent acceptance
+pending. Owner: root/frontend/QA.
 Environment: Vitest 1.6.1, Node, en/zh-CN; no browser or combat seed involved.
 
 1. Create a fresh character using the production character factory.
@@ -28,3 +28,9 @@ but this must not substitute for correct initialization.
 
 Security check: pass. Local initialization and exact fixture corrections only;
 no relaxed import validation, new privileges, dependency/network or publication.
+
+Correction: production character creation explicitly initializes independent
+policy-owned counters. All7 fresh-class regressions fail before/pass after;
+the315-test affected group and final11326-test full run pass. Final production
+browser8/8 additionally exports each fresh character's3/3 counters before
+importing its separate free/paid controls. No import assertion was relaxed.

@@ -1,6 +1,6 @@
 # D11 — Ordinary town stat/skill reset
 
-Local implementation, root self-review; independent acceptance pending.
+Local implementation `b67f0a0`, root self-review; independent acceptance pending.
 Controlling contract: [D11 town reset](../decisions/D11-town-respec-v1.md),
 implementing progression-curve §§4.3/5.3 rather than inventing a Duriel-specific fee.
 
