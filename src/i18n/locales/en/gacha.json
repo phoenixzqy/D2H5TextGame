@@ -1,5 +1,6 @@
 {
   "gacha": "Recruit",
+  "openBanner": "Recruit with Wishstones",
   "wishstones": "Wishstones",
   "singlePull": "Single Pull",
   "tenPull": "10× Pull",
@@ -13,5 +14,6 @@
   "banner": "Banner",
   "bannerName": "Wish of the Horadrim",
   "grant": "+90 💠 (dev)",
-  "isNew": "NEW"
+  "isNew": "NEW",
+  "pullFailed": "Recruitment could not be completed."
 }

@@ -9,6 +9,7 @@ import { CombatScreen } from '@/features/combat/CombatScreen';
 import { InventoryScreen } from '@/features/inventory/InventoryScreen';
 import { SkillsScreen } from '@/features/skills/SkillsScreen';
 import { MercsScreen } from '@/features/mercs/MercsScreen';
+import { GachaScreen } from '@/features/gacha/GachaScreen';
 import { QuestsScreen } from '@/features/quests/QuestsScreen';
 import { SettingsScreen } from '@/features/settings/SettingsScreen';
 import { RequireCharacter } from './RequireCharacter';
@@ -93,7 +94,7 @@ export function AppRoutes() {
       />
       <Route
         path="/gacha"
-        element={<Navigate to="/mercs" replace />}
+        element={<RequireCharacter><GachaScreen /></RequireCharacter>}
       />
       <Route
         path="/quests"

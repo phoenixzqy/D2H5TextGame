@@ -1,5 +1,6 @@
 {
   "gacha": "招募",
+  "openBanner": "使用祈愿石招募",
   "wishstones": "祈愿石",
   "singlePull": "单抽",
   "tenPull": "十连抽",
@@ -13,5 +14,6 @@
   "banner": "卡池",
   "bannerName": "霍拉德里姆的祈愿",
   "grant": "+90 💠 (调试)",
-  "isNew": "新"
+  "isNew": "新",
+  "pullFailed": "暂时无法完成招募。"
 }

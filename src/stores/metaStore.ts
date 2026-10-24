@@ -5,11 +5,10 @@
 
 import { create } from 'zustand';
 import type { Settings, IdleState, GachaState } from '@/engine/types/save';
-import { loadMercPool, type MercDef } from '@/data/loaders/mercs';
-import { createRng } from '@/engine/rng';
-import { rollMany, pickFromPool, type GachaRarity } from '@/engine/gacha/roller';
-import { createMercFromDef } from './mercFactory';
-import { useMercStore } from './mercStore';
+import type { MercDef } from '@/data/loaders/mercs';
+import type { GachaRarity } from '@/engine/gacha/roller';
+import { addRecruitmentCurrency, executeGachaPull, spendRecruitmentCurrency } from './gachaActions';
+import { assertMaterialMutationAllowed } from './waveTransitionGuard';
 import { checkpointIdleBonus } from '@/engine/idle/persisted-bonus';
 
 /** Result of a single gacha pull surfaced to the UI. */
@@ -44,9 +43,8 @@ interface MetaState {
   incrementPity: () => void;
   resetPity: () => void;
   /**
-   * Run an N-pull gacha. Returns the results, or `null` when the player
-   * lacks enough currency. Spends `count × banner.cost.single` currency,
-   * threads pity through every pull, and adds new mercs to `useMercStore`.
+   * Run an authored single/ten pull using earned wishstones plus conserved
+   * legacy value. Refusal returns null; payment, roster and pity commit together.
    */
   pullGacha: (count: number) => GachaPullResult[] | null;
   reset: () => void;
@@ -172,114 +170,34 @@ export const useMetaStore = create<MetaState>((set, get) => ({
     return { idleState: { ...state.idleState, ...patch } };
   }); },
   
-  updateGachaState: (gachaState) => { set((state) => ({
+  updateGachaState: (gachaState) => { assertMaterialMutationAllowed(); set((state) => ({
     gachaState: {
       ...state.gachaState,
       ...gachaState
     }
   })); },
   
-  addGachaCurrency: (amount) => { set((state) => ({
-    gachaState: {
-      ...state.gachaState,
-      currency: state.gachaState.currency + amount
-    }
-  })); },
+  addGachaCurrency: addRecruitmentCurrency,
+  spendGachaCurrency: spendRecruitmentCurrency,
   
-  spendGachaCurrency: (amount) => {
-    const state = get();
-    if (state.gachaState.currency < amount) {
-      return false;
-    }
-    
-    set((state) => ({
-      gachaState: {
-        ...state.gachaState,
-        currency: state.gachaState.currency - amount
-      }
-    }));
-    
-    return true;
-  },
-  
-  incrementPity: () => { set((state) => ({
+  incrementPity: () => { assertMaterialMutationAllowed(); set((state) => ({
     gachaState: {
       ...state.gachaState,
       pityCounter: state.gachaState.pityCounter + 1
     }
   })); },
   
-  resetPity: () => { set((state) => ({
+  resetPity: () => { assertMaterialMutationAllowed(); set((state) => ({
     gachaState: {
       ...state.gachaState,
       pityCounter: 0
     }
   })); },
 
-  pullGacha: (count) => {
-    const pool = loadMercPool();
-    const totalCost = pool.banner.cost.single * count;
-    const state = get();
-    if (state.gachaState.currency < totalCost) return null;
-
-    // Charge up-front so any thrown errors below leave the wallet
-    // unchanged (we restore on throw via try/catch).
-    set((s) => ({
-      gachaState: {
-        ...s.gachaState,
-        currency: s.gachaState.currency - totalCost
-      }
-    }));
-
-    try {
-      const rng = createRng((Date.now() ^ state.gachaState.pityCounter) >>> 0);
-      const { results, finalPity } = rollMany(
-        rng,
-        pool.rates,
-        state.gachaState.pityCounter,
-        pool.pity.ssr.threshold,
-        count
-      );
-      // Build a quick lookup from id → MercDef
-      const byId = new Map<string, MercDef>();
-      for (const m of pool.pool) byId.set(m.id, m);
-
-      const ownedIds = new Set(useMercStore.getState().ownedMercs.map((m) => m.id));
-      const out: GachaPullResult[] = [];
-      for (const roll of results) {
-        const mercId = pickFromPool(rng, pool.banner.pool, roll.rarity);
-        const def = byId.get(mercId);
-        if (!def) continue;
-        const isNew = !ownedIds.has(def.id);
-        if (isNew) {
-          useMercStore.getState().addMerc(createMercFromDef(def));
-          ownedIds.add(def.id);
-        }
-        out.push({ mercDef: def, rarity: roll.rarity, isNew });
-      }
-
-      const ownedSnapshot = [...useMercStore.getState().ownedMercs.map((m) => m.id)];
-      set((s) => ({
-        gachaState: {
-          ...s.gachaState,
-          pityCounter: finalPity,
-          ownedMercIds: ownedSnapshot
-        }
-      }));
-      return out;
-    } catch (err) {
-      // Refund on unexpected failure.
-      set((s) => ({
-        gachaState: {
-          ...s.gachaState,
-          currency: s.gachaState.currency + totalCost
-        }
-      }));
-      throw err;
-    }
-  },
+  pullGacha: executeGachaPull,
 
   reset: () => {
+    assertMaterialMutationAllowed();
     const now = Date.now();
     if (!Number.isFinite(now)) throw new RangeError('Idle bonus arithmetic requires finite numbers');
     set({

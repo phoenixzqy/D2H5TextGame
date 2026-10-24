@@ -16,7 +16,8 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Modal, Panel, ScreenShell, Tooltip, RarityText } from '@/ui';
 import type { GachaPullResult } from '@/stores/metaStore';
-import { useMetaStore } from '@/stores';
+import { useMetaStore, useInventoryStore } from '@/stores';
+import { recruitmentBalance } from '@/stores/gachaActions';
 import { loadMercPool } from '@/data/loaders/mercs';
 import type { GachaRarity } from '@/engine/gacha/roller';
 
@@ -24,13 +25,16 @@ const RARITY_TO_TEXT = { R: 'magic', SR: 'rare', SSR: 'unique' } as const;
 
 export function GachaScreen() {
   const { t } = useTranslation(['gacha', 'mercs', 'common']);
-  const balance = useMetaStore((s) => s.gachaState.currency);
+  const earned = useInventoryStore((s) => s.currencies.wishstone ?? 0);
+  const legacy = useMetaStore((s) => s.gachaState.currency);
+  const balance = recruitmentBalance(earned, legacy);
   const pity = useMetaStore((s) => s.gachaState.pityCounter);
   const addCurrency = useMetaStore((s) => s.addGachaCurrency);
   const pullGacha = useMetaStore((s) => s.pullGacha);
 
   const [recent, setRecent] = useState<GachaPullResult[]>([]);
   const [resultModal, setResultModal] = useState<GachaPullResult[] | null>(null);
+  const [pullFailed, setPullFailed] = useState(false);
 
   const banner = useMemo(() => loadMercPool(), []);
   const RATES = banner.rates;
@@ -39,10 +43,15 @@ export function GachaScreen() {
   const COST_TEN = banner.banner.cost.tenPull;
 
   const doPulls = (n: number) => {
-    const results = pullGacha(n);
-    if (!results) return;
-    setRecent((prev) => [...results, ...prev].slice(0, banner.banner.uiHistoryCap));
-    setResultModal(results);
+    setPullFailed(false);
+    try {
+      const results = pullGacha(n);
+      if (!results) { setPullFailed(true); return; }
+      setRecent((prev) => [...results, ...prev].slice(0, banner.banner.uiHistoryCap));
+      setResultModal(results);
+    } catch {
+      setPullFailed(true);
+    }
   };
 
   return (
@@ -58,7 +67,7 @@ export function GachaScreen() {
             </div>
             <div>
               <div className="text-xs text-d2-white/60">{t('wishstones')}</div>
-              <div className="text-2xl text-d2-gold font-serif">💠 {balance}</div>
+              <div className="text-2xl text-d2-gold font-serif">💠 {balance ?? 0}</div>
             </div>
             <div className="text-right">
               <div className="text-xs text-d2-white/60">
@@ -86,7 +95,7 @@ export function GachaScreen() {
             <div className="mt-3 text-right">
               <Button
                 variant="secondary"
-                className="min-h-[40px] text-xs"
+                className="min-h-[44px] text-xs"
                 onClick={() => { addCurrency(COST_TEN); }}
                 data-testid="gacha-add-currency"
               >
@@ -100,7 +109,7 @@ export function GachaScreen() {
           <Button
             variant="primary"
             className="min-h-[64px] text-lg"
-            disabled={balance < COST_SINGLE}
+            disabled={balance === null || balance < COST_SINGLE}
             onClick={() => { doPulls(1); }}
             data-testid="gacha-pull-1"
           >
@@ -109,13 +118,15 @@ export function GachaScreen() {
           <Button
             variant="primary"
             className="min-h-[64px] text-lg"
-            disabled={balance < COST_TEN}
+            disabled={balance === null || balance < COST_TEN}
             onClick={() => { doPulls(10); }}
             data-testid="gacha-pull-10"
           >
             {t('tenPull')} · {t('cost', { amount: COST_TEN })}
           </Button>
         </div>
+
+        {pullFailed && <p role="alert" className="text-sm text-d2-white">{t('pullFailed')}</p>}
 
         <Tooltip
           content={
@@ -131,7 +142,7 @@ export function GachaScreen() {
         >
           <button
             type="button"
-            className="text-xs text-d2-white/70 underline-offset-2 hover:underline min-h-[32px]
+            className="text-xs text-d2-white/70 underline-offset-2 hover:underline min-h-[44px] min-w-[44px]
                        focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold rounded"
           >
             ⓘ {t('rates')}

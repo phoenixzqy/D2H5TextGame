@@ -9,7 +9,9 @@ import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
 import { GachaScreen } from './GachaScreen';
-import { useMetaStore, useMercStore } from '@/stores';
+import { useMetaStore, useMercStore, useInventoryStore, usePlayerStore, useCombatStore } from '@/stores';
+import { useHydrationStore } from '@/stores/hydrationStore';
+import { createMockPlayer } from '@/features/character/createMockPlayer';
 
 function renderScreen() {
   return render(
@@ -28,6 +30,10 @@ describe('GachaScreen', () => {
     act(() => {
       useMetaStore.getState().reset();
       useMercStore.getState().reset();
+      useInventoryStore.getState().reset();
+      useCombatStore.getState().reset();
+      usePlayerStore.getState().setPlayer(createMockPlayer('Recruitment', 'sorceress'));
+      useHydrationStore.getState().setStatus('ready');
     });
   });
 
@@ -58,5 +64,39 @@ describe('GachaScreen', () => {
     fireEvent.click(screen.getByTestId('gacha-pull-10'));
     const list = screen.getByTestId('gacha-results');
     expect(list.querySelectorAll('li').length).toBe(10);
+  });
+
+  it('shows earned wishstones, pays exactly the displayed ten-pull cost and updates both buttons', () => {
+    useInventoryStore.setState({ currencies: { wishstone: 90 } });
+    renderScreen();
+    expect(screen.getByText('💠 90')).toBeInTheDocument();
+    expect(screen.getByTestId('gacha-pull-10')).toBeEnabled();
+    fireEvent.click(screen.getByTestId('gacha-pull-10'));
+    expect(screen.getByTestId('gacha-results').querySelectorAll('li')).toHaveLength(10);
+    expect(screen.getByText('💠 0')).toBeInTheDocument();
+    expect(screen.getByTestId('gacha-pull-1')).toBeDisabled();
+    expect(screen.getByTestId('gacha-pull-10')).toBeDisabled();
+  });
+
+  it('displays conserved legacy value without moving it just by opening recruitment', () => {
+    useInventoryStore.setState({ currencies: { wishstone: 5 } });
+    useMetaStore.getState().updateGachaState({ currency: 5 });
+    renderScreen();
+    expect(screen.getByText('💠 10')).toBeInTheDocument();
+    expect(screen.getByTestId('gacha-pull-1')).toBeEnabled();
+    expect(useInventoryStore.getState().currencies.wishstone).toBe(5);
+    expect(useMetaStore.getState().gachaState.currency).toBe(5);
+  });
+
+  it.each(['en', 'zh-CN'])('shows localized refusal feedback in %s', async locale => {
+    await i18n.changeLanguage(locale);
+    useInventoryStore.setState({ currencies: { wishstone: 100 } });
+    useHydrationStore.getState().setStatus('loading');
+    renderScreen();
+    fireEvent.click(screen.getByTestId('gacha-pull-1'));
+    expect(screen.getByRole('alert')).toHaveTextContent(locale === 'en'
+      ? 'Recruitment could not be completed.' : '暂时无法完成招募。');
+    expect(useInventoryStore.getState().currencies.wishstone).toBe(100);
+    expect(screen.queryByTestId('gacha-results')).not.toBeInTheDocument();
   });
 });

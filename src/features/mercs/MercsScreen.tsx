@@ -15,6 +15,7 @@
  * and flavor metadata. Current core stats come from the owned mercenary.
  */
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
 import { Button, EquipmentPanel, EquippedItemModal, Modal, Panel, ScreenShell, resolveMercArt, tDataKey, tItemName } from '@/ui';
@@ -27,7 +28,7 @@ import { loadMercHireRoster, loadMercPool, resolveMercSkillLoadout, type MercDef
 import { MercSkillPriority } from './MercSkillPriority';
 
 export function MercsScreen() {
-  const { t } = useTranslation(['mercs', 'common', 'inventory']);
+  const { t } = useTranslation(['mercs', 'common', 'inventory', 'gacha']);
   const ownedMercs = useMercStore((s) => s.ownedMercs);
   const fieldedMercId = useMercStore((s) => s.fieldedMercId);
   const setFielded = useMercStore((s) => s.setFieldedMerc);
@@ -50,6 +51,10 @@ export function MercsScreen() {
   return (
     <ScreenShell testId="mercs-screen" title={t('mercenaries')}>
       <div className="max-w-4xl mx-auto space-y-3">
+        <Link to="/gacha" data-testid="merc-gacha-link"
+          className="inline-flex min-h-[44px] items-center rounded border border-d2-border px-4 py-2 text-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold">
+          {t('gacha:openBanner')}
+        </Link>
         <Panel title={t('hirePanelTitle')}>
           <div className="space-y-4">
             <p className="text-sm text-d2-white/70">{t('hirePanelBody')}</p>
