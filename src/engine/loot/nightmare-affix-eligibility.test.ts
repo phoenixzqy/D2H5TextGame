@@ -44,7 +44,7 @@ describe('BUG153 finite Nightmare affix eligibility', () => {
 
   for (const rarity of ['magic', 'rare'] as const) {
     it.each([99, 100, 101, 102])(`materializes legal ${rarity} bonuses on every affixable base at%i`, ilvl => {
-      expect(bases).toHaveLength(75);
+      expect(bases).toHaveLength(76);
       for (const base of bases) {
         const item = required(rollItem({ baseId: base.id, rarity, ilvl }, pools, createRng(seed)));
         expect(item).toMatchObject({ baseId: base.id, rarity, level: ilvl, ilvl });

@@ -651,6 +651,26 @@
     "handedness": "twoHanded"
   },
   {
+    "id": "items/base/wp2h-battle-scythe",
+    "metal": true,
+    "name": "items.base.wp2h-battle-scythe",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 32,
+      "max": 62,
+      "breakdown": {
+        "physical": 62
+      }
+    },
+    "reqLevel": 41,
+    "sockets": 5,
+    "maxSockets": 5,
+    "canHaveAffixes": true,
+    "weaponType": "polearm",
+    "handedness": "twoHanded"
+  },
+  {
     "id": "items/base/wp2h-colossus-blade",
     "metal": true,
     "name": "items.base.wp2h-colossus-blade",

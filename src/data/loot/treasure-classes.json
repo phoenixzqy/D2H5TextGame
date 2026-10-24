@@ -471,6 +471,14 @@
       },
       {
         "type": "item",
+        "itemBase": "items/base/wp2h-battle-scythe",
+        "rarity": "normal",
+        "weight": 120,
+        "minLevel": 41,
+        "maxLevel": 81
+      },
+      {
+        "type": "item",
         "itemBase": "items/base/sh-monarch",
         "rarity": "normal",
         "weight": 180,
@@ -577,6 +585,14 @@
         "rarity": "normal",
         "weight": 180,
         "minLevel": 55,
+        "maxLevel": 102
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp2h-thunder-maul",
+        "rarity": "normal",
+        "weight": 180,
+        "minLevel": 62,
         "maxLevel": 102
       },
       {

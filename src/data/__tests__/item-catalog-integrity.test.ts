@@ -336,6 +336,8 @@ const IRON_METAL_IDS = [
   'boot-chain', 'boot-light-plated', 'boot-myrmidon-greaves',
   'belt-plated', 'belt-mithril-coil', 'sh-aegis', 'sh-monarch'
 ].map(suffix => `items/base/${suffix}`).sort();
+// D10 source-backed addition; the D06 historical acceptance set above stays literal.
+const CURRENT_IRON_METAL_IDS = [...IRON_METAL_IDS, 'items/base/wp2h-battle-scythe'].sort();
 
 const BASE_KINDS: readonly ItemBaseType[] = [
   'weapon', 'armor', 'jewelry', 'charm', 'rune', 'gem', 'material'
@@ -350,12 +352,15 @@ function metalSchemaCandidate(type: ItemBaseType): ItemBase {
 }
 
 describe('reviewed socket maximum metadata', () => {
-  it('covers all 74 historical bases plus the approved staff and preserves every socket ceiling', () => {
-    expect(rawItemBases.filter(base => base.id !== 'items/base/weapon-staff')).toHaveLength(74);
+  it('covers all 74 historical bases plus the staff and scythe without changing historical ceilings', () => {
+    expect(rawItemBases.filter(base => !['items/base/weapon-staff', 'items/base/wp2h-battle-scythe'].includes(base.id))).toHaveLength(74);
     expect(rawItemBases.filter(base => base.id === 'items/base/weapon-staff')).toEqual([
       expect.objectContaining({ sockets: 2, maxSockets: 2 })
     ]);
-    expect(rawItemBases).toHaveLength(75);
+    expect(rawItemBases.filter(base => base.id === 'items/base/wp2h-battle-scythe')).toEqual([
+      expect.objectContaining({ sockets: 5, maxSockets: 5 })
+    ]);
+    expect(rawItemBases).toHaveLength(76);
     for (const base of rawItemBases) {
       expect(base.maxSockets, base.id).toBe('sockets' in base ? base.sockets : 0);
     }
@@ -368,24 +373,25 @@ describe('reviewed socket maximum metadata', () => {
 });
 
 describe('Iron Golem authored metal metadata', () => {
-  it('authors exactly the 31 approved existing bases, with no inferred additions', () => {
+  it('preserves the 31 historical metal bases and explicitly adds only the new scythe', () => {
     const catalog = rawItemBases as readonly ItemBase[];
     expect(new Set(IRON_METAL_IDS).size).toBe(31);
+    expect(new Set(CURRENT_IRON_METAL_IDS).size).toBe(32);
     for (const id of IRON_METAL_IDS) {
       expect(catalog.filter(base => base.id === id), id).toHaveLength(1);
     }
     expect(catalog.filter(base => base.metal === true).map(base => base.id).sort())
-      .toEqual(IRON_METAL_IDS);
+      .toEqual(CURRENT_IRON_METAL_IDS);
     for (const base of catalog) {
       expect(() => validateGameData(itemBaseSchema.$id, base), base.id).not.toThrow();
-      if (!IRON_METAL_IDS.includes(base.id)) expect(base.metal, base.id).not.toBe(true);
+      if (!CURRENT_IRON_METAL_IDS.includes(base.id)) expect(base.metal, base.id).not.toBe(true);
     }
   });
 
   it('preserves the exact material flags through both real data loaders', async () => {
     for (const loaded of [loadItemBases(), (await loadGameData()).itemBases]) {
       expect([...loaded.values()].filter(base => base.metal === true).map(base => base.id).sort())
-        .toEqual(IRON_METAL_IDS);
+        .toEqual(CURRENT_IRON_METAL_IDS);
       for (const base of loaded.values()) {
         if (base.metal === true) expect(['weapon', 'armor']).toContain(base.type);
       }
