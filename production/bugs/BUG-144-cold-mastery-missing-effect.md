@@ -1,6 +1,7 @@
 # BUG-144 — Apply the allocated Cold Mastery passive
 
-Status: reproduced at861db8e; correction underway.
+Status: fixed locally in `db3976b1550f113138f1544474dee2e707c0fcac`;
+independent design/source/QA acceptance pending.
 Severity: High — this advertised passive has no combat effect.
 Owner: root integrator / engine-dev / content-designer / frontend-dev.
 
@@ -26,4 +27,15 @@ Negative controls for noncold hits, class and unlock pass before the fix.
 Root cause: contradictory authored identity plus missing automatic projection
 and source-owned resistance consumer. See the controlling
 `docs/plans/decisions/D05-cold-mastery-v1.md` for the explicit reconciliation.
-No workaround restores this passive; allocating other skills avoids its cost.
+Before correction, allocating other skills avoided spending points on a no-op.
+
+Correction: closed personal-penetration metadata and production hero/damage/
+new-wave projection, plus truthful bilingual stat rows. Regression coverage is
+in `src/stores/cold-mastery-composition.test.ts`,
+`src/stores/cold-mastery-lifecycle.test.ts`,
+`src/engine/skills/cold-mastery{,-schema}.test.ts` and
+`src/features/skills/SkillsScreen.cold-mastery.test.tsx`.
+Final focused78, engine5481, full11281with2existing skips, types/lint/build and
+production10/10plus2mobile scroll checks pass. See
+`docs/plans/evidence/p07-cold-mastery.md`. New rank-growth reconciliation and
+independent acceptance remain pending; full campaign/v1 is not certified.

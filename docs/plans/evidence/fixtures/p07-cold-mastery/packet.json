@@ -1,0 +1,486 @@
+{
+  "implementationCommit": "db3976b1550f113138f1544474dee2e707c0fcac",
+  "kind": "root local verification; independent design/source/QA pending",
+  "contract": "docs/plans/decisions/D05-cold-mastery-v1.md",
+  "gates": {
+    "sourceFiles": 1089,
+    "stages": [
+      {
+        "stage": "types",
+        "exit": 0,
+        "seconds": 32.584
+      },
+      {
+        "stage": "lint",
+        "exit": 0,
+        "seconds": 72.558
+      },
+      {
+        "stage": "engine",
+        "exit": 0,
+        "seconds": 55.569
+      },
+      {
+        "stage": "build",
+        "exit": 0,
+        "seconds": 10.982
+      },
+      {
+        "stage": "full",
+        "exit": 0,
+        "seconds": 389.223
+      }
+    ],
+    "processes": [
+      {
+        "stage": "types",
+        "pid": 466009,
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        "terminal": true
+      },
+      {
+        "stage": "lint",
+        "pid": 466334,
+        "command": [
+          "npm",
+          "run",
+          "lint"
+        ],
+        "terminal": true
+      },
+      {
+        "stage": "engine",
+        "pid": 466874,
+        "command": [
+          "npm",
+          "run",
+          "test:engine"
+        ],
+        "terminal": true
+      },
+      {
+        "stage": "build",
+        "pid": 469791,
+        "command": [
+          "npm",
+          "run",
+          "build",
+          "--",
+          "--outDir",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cold-mastery-z8mtwgmg/dist"
+        ],
+        "terminal": true
+      },
+      {
+        "stage": "full",
+        "pid": 469837,
+        "command": [
+          "npm",
+          "test"
+        ],
+        "terminal": true
+      }
+    ],
+    "sourceDrift": []
+  },
+  "focused": {
+    "tests": 78,
+    "files": 5,
+    "status": "pass"
+  },
+  "engine": {
+    "tests": 5481,
+    "files": 163,
+    "status": "pass"
+  },
+  "full": {
+    "tests": 11281,
+    "files": 424,
+    "existingSkips": 2,
+    "status": "pass"
+  },
+  "browser": {
+    "kind": "root self-audit; independent acceptance pending",
+    "cases": 10,
+    "nativeSaves": 40,
+    "exactDurablePairs": 10,
+    "sourceFiles": 1089,
+    "sourceDrift": [],
+    "combatLaunches": 0,
+    "status": "pass"
+  },
+  "mobileScrollCases": 2,
+  "cleanup": {
+    "owner": "root",
+    "sourceFiles": 1089,
+    "sourceDrift": [],
+    "activeTaskProcesses": [],
+    "preview4403": "closed",
+    "removed": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cold-mastery-z8mtwgmg/dist",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cold-mastery-z8mtwgmg/downloads"
+    ],
+    "remaining": [],
+    "failures": []
+  },
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cold-mastery-z8mtwgmg",
+  "rawOwner": "root",
+  "rawRemovalCondition": "independent Cold Mastery review and full-v1 integration consumers finish",
+  "archive": {
+    "path": "raw.tar.gz",
+    "bytes": 4086000,
+    "sha256": "36156dbc5766fc5132d8c3de8f32c21caee350c3630db3d2c199a2239fb7ab16",
+    "verifiedMembers": 86
+  },
+  "rawInventory": {
+    "artifact-ownership.json": {
+      "bytes": 4042,
+      "sha256": "3b2295e45a151571d2d4b9fa49939eee705d7f20bdcec53e0315d937cd920fe0"
+    },
+    "audit-browser.mjs": {
+      "bytes": 2372,
+      "sha256": "c385c806fc5312f8ca12caf4d25e0b04e6dc0fd229f5ebc11d0c22e1c98bfca2"
+    },
+    "bridge-scan.json": {
+      "bytes": 732,
+      "sha256": "241587f91e0cdbd252ccf0f6b4681f3171bc2172797b15e9502d0ff2626e3142"
+    },
+    "browser-audit.json": {
+      "bytes": 213,
+      "sha256": "e1768528dcc480df2676ecaf456a4bb70628e27078bad04268d44ca9a934c42e"
+    },
+    "browser-audit.log": {
+      "bytes": 181,
+      "sha256": "c0530b6caedeaaa9f63f73b09e99ef83159aa85f38ae07127b71dcc1e6765674"
+    },
+    "browser-evidence/en-1280x800-continued.png": {
+      "bytes": 138479,
+      "sha256": "02ad42c2062af41c93757daef6cd6b36228e9b4b2c49931b90dc1bfd98362bde"
+    },
+    "browser-evidence/en-1280x800-locked.png": {
+      "bytes": 121566,
+      "sha256": "75561c8e7e523b150636fb3b1ec435c672877447b743bfd6eed94a50a4e4606e"
+    },
+    "browser-evidence/en-1280x800-rank1.png": {
+      "bytes": 140084,
+      "sha256": "eb81255e01626e891a1518ca0dda04c6117fccd68a2977ff5990478e55b54aee"
+    },
+    "browser-evidence/en-1280x800-rank2.png": {
+      "bytes": 140555,
+      "sha256": "205d52b0bbda561165ac6428abef7c4d81f0bb5831ff46f11f9b4342c3c204b5"
+    },
+    "browser-evidence/en-1920x1080-continued.png": {
+      "bytes": 190677,
+      "sha256": "806a43789af5a3300ab733fe466028fcac9ad82e230ebcb6a87fc4ad13ce4604"
+    },
+    "browser-evidence/en-1920x1080-locked.png": {
+      "bytes": 172060,
+      "sha256": "094df84d69e755b2d1df6f9b26e96cc889e8d3fee10041f6d178fae8a9700ec8"
+    },
+    "browser-evidence/en-1920x1080-rank1.png": {
+      "bytes": 191625,
+      "sha256": "474f83971ab29c4205b6c75f2b64e99c102282c224a0a9f370b4a8e6b0e6b784"
+    },
+    "browser-evidence/en-1920x1080-rank2.png": {
+      "bytes": 192543,
+      "sha256": "e60e6807cb1a32beaf397e4c2b6e2d2a08b2d2eb161da9fd133f3a0b82a38f17"
+    },
+    "browser-evidence/en-360x640-continued.png": {
+      "bytes": 39506,
+      "sha256": "c28802bdef25f9bc56c3289000dbd6abd9eb28528ec0ee44a6ee276a1b28a580"
+    },
+    "browser-evidence/en-360x640-locked.png": {
+      "bytes": 40714,
+      "sha256": "c375ce918f5177c25ba916011b4c8471d15271dd6502c587faa8e4322d46305e"
+    },
+    "browser-evidence/en-360x640-rank1.png": {
+      "bytes": 57392,
+      "sha256": "85241f3739d0b4cb733b9435765302a9bf245bff10b84b43fbb7de1c4247f816"
+    },
+    "browser-evidence/en-360x640-rank2.png": {
+      "bytes": 56021,
+      "sha256": "b0fa084687a7f935f3b0651b31bd3c4d3cb3fcb9c4277e8b0ff3548e97367b84"
+    },
+    "browser-evidence/en-360x640-stats-1.png": {
+      "bytes": 44099,
+      "sha256": "ee6d3cab9800b7c08672c934daa5c95cb19b788200a2c4fb4aa75bdfbce90c20"
+    },
+    "browser-evidence/en-360x640-stats-2.png": {
+      "bytes": 44099,
+      "sha256": "ee6d3cab9800b7c08672c934daa5c95cb19b788200a2c4fb4aa75bdfbce90c20"
+    },
+    "browser-evidence/en-412x915-continued.png": {
+      "bytes": 68830,
+      "sha256": "08c94d22ba016cf65075851250d23b91f0dc509b7a770608a83b5d5c3e994105"
+    },
+    "browser-evidence/en-412x915-locked.png": {
+      "bytes": 63648,
+      "sha256": "bfd4613482f4172b54e369dce82dc24e6577a3dda02e4a7c370e5d0fbbd0c116"
+    },
+    "browser-evidence/en-412x915-rank1.png": {
+      "bytes": 69639,
+      "sha256": "492fcf8f7d9763c1f82e24f68225942ea21c99e7fc7f8b59bb78438fa137f446"
+    },
+    "browser-evidence/en-412x915-rank2.png": {
+      "bytes": 70745,
+      "sha256": "a499343f71e44ecc839e1ce1b6f34d6bcb2c502f74f06ab653d4bedd13af3299"
+    },
+    "browser-evidence/en-640x360-continued.png": {
+      "bytes": 37731,
+      "sha256": "8cfceace10eab1c0020d9112fc1195baac45c725106bb2558f4a08896cb412d1"
+    },
+    "browser-evidence/en-640x360-locked.png": {
+      "bytes": 38511,
+      "sha256": "122950521a63a5a3d3d81ec5213e841bff124917f86d0dc83e74177f62f06014"
+    },
+    "browser-evidence/en-640x360-rank1.png": {
+      "bytes": 39545,
+      "sha256": "8da8cfb203be6211c4a1827656412617fe261171865abd98f4b6f77efbaf256e"
+    },
+    "browser-evidence/en-640x360-rank2.png": {
+      "bytes": 39913,
+      "sha256": "f716b7a05424b7e99e2887ffdbfa79d2bb8d67ce9331738cfc5f3919f9e2248c"
+    },
+    "browser-evidence/zh-CN-1280x800-continued.png": {
+      "bytes": 143958,
+      "sha256": "987c35a6a842702986c5e5f5573c428f8cc89be2979f1a0d1d428f9e43773ae4"
+    },
+    "browser-evidence/zh-CN-1280x800-locked.png": {
+      "bytes": 127622,
+      "sha256": "f52eb13595e866a6d242f3ded7e9eedfe2f8fe5f3ddf37dbb9f9d2bdfd89d052"
+    },
+    "browser-evidence/zh-CN-1280x800-rank1.png": {
+      "bytes": 144928,
+      "sha256": "7bbc7fa6fbfc45209934f203227610f26f629823589590b2ebd75ecf89980fb3"
+    },
+    "browser-evidence/zh-CN-1280x800-rank2.png": {
+      "bytes": 145929,
+      "sha256": "7b9cdeeddf12e6b70445b36ad0d8a00705b5e1648c42da2f4102be3aafc97e50"
+    },
+    "browser-evidence/zh-CN-1920x1080-continued.png": {
+      "bytes": 188574,
+      "sha256": "e3fa8ceee009a994e5cf5f8c4e39666bdb64417779032620832afa63fbba53ab"
+    },
+    "browser-evidence/zh-CN-1920x1080-locked.png": {
+      "bytes": 171926,
+      "sha256": "fbd1650fd99203ca32438b0924bcceca828d7a51a64241df97091c1cb54bbf61"
+    },
+    "browser-evidence/zh-CN-1920x1080-rank1.png": {
+      "bytes": 189408,
+      "sha256": "5b3c40434ce535975ea2e4a725fe0e4721a57409b4e11b70e4828f917c991a9c"
+    },
+    "browser-evidence/zh-CN-1920x1080-rank2.png": {
+      "bytes": 190737,
+      "sha256": "d3bdf3d6ca57d7ee13f826c1ae4590f7a2be7a2b29ddf8ed503816aca87ad2c2"
+    },
+    "browser-evidence/zh-CN-360x640-continued.png": {
+      "bytes": 58436,
+      "sha256": "23e4d6c4bf9a464dd94a74cdade57f6b3b78c51c757a3ef10e459542b321f62e"
+    },
+    "browser-evidence/zh-CN-360x640-locked.png": {
+      "bytes": 54452,
+      "sha256": "a3f62a90e420ca62e7e137b2c9e2d07c8769d6ec3d99e53d8f88bcfb74fbab8b"
+    },
+    "browser-evidence/zh-CN-360x640-rank1.png": {
+      "bytes": 58661,
+      "sha256": "2af6f4568596abdc9d91660a0ddee6c282cee1a98a3ee9287fccf6910e6acaed"
+    },
+    "browser-evidence/zh-CN-360x640-rank2.png": {
+      "bytes": 60637,
+      "sha256": "03bbbb8b5da4c7308d497cebaf16871cd92a9a61c4fd1900268f8979d0e9c41e"
+    },
+    "browser-evidence/zh-CN-360x640-stats-1.png": {
+      "bytes": 49104,
+      "sha256": "24c62d8d86f71c319cd278a70273e5fba0776a074c5bd1e3b406965f9d3e9024"
+    },
+    "browser-evidence/zh-CN-360x640-stats-2.png": {
+      "bytes": 49104,
+      "sha256": "24c62d8d86f71c319cd278a70273e5fba0776a074c5bd1e3b406965f9d3e9024"
+    },
+    "browser-evidence/zh-CN-412x915-continued.png": {
+      "bytes": 72030,
+      "sha256": "09d85885ed8286a93929664bba1eb4e7f1738455dc02ebc62293d2a28a89fa50"
+    },
+    "browser-evidence/zh-CN-412x915-locked.png": {
+      "bytes": 68195,
+      "sha256": "1a0f7c6be8c6c017d1716eb90028133b69bc1a3fad0cc6281aea8f168a42feca"
+    },
+    "browser-evidence/zh-CN-412x915-rank1.png": {
+      "bytes": 72195,
+      "sha256": "331e1ab7823b463393d2bf80909d9a05912fe13300dc6beb0528b14a021b806e"
+    },
+    "browser-evidence/zh-CN-412x915-rank2.png": {
+      "bytes": 74176,
+      "sha256": "4a55f79376eedcaa85c6e9f2c6a55072801388af6024ee7287c7cf57986fc88f"
+    },
+    "browser-evidence/zh-CN-640x360-continued.png": {
+      "bytes": 38669,
+      "sha256": "265553f01431cd87e006c938a0d8b3b56ab0ec3bc7072876448387c92bd1a0dc"
+    },
+    "browser-evidence/zh-CN-640x360-locked.png": {
+      "bytes": 39272,
+      "sha256": "fb3d56b32d89426182857e468903e24de900c874b5eab0bc32ad02d40601bb71"
+    },
+    "browser-evidence/zh-CN-640x360-rank1.png": {
+      "bytes": 39815,
+      "sha256": "6ec7b357b0dfe0364c3f7881e7e2a72500d9cc0198daeb2c91282ec7c4b7ffb2"
+    },
+    "browser-evidence/zh-CN-640x360-rank2.png": {
+      "bytes": 40721,
+      "sha256": "4186c1a90f9e32bf1e29e918027bb5e08d776a898fe96839e44fcb0e00ff95cc"
+    },
+    "browser-fresh.json": {
+      "bytes": 3182,
+      "sha256": "7609ed3a15049002a95ea00da444d8f3ff122fdc5d310cd1bb7b5e7905beb32d"
+    },
+    "browser-preparation.json": {
+      "bytes": 395,
+      "sha256": "0b1c3832e1d6aa91c41680d41c1546d09039d0cb12e216eeb31555e53f434a28"
+    },
+    "browser-prepared.json": {
+      "bytes": 3116,
+      "sha256": "606441537ac0cf95ff60d8886179ee31917d7806205c25e5f70010d940a7d5b0"
+    },
+    "browser-results.json": {
+      "bytes": 187091,
+      "sha256": "a77d9144533c8ed35520007ca4100756e729f74a2439a25dbd04a818c0e6b8b0"
+    },
+    "browser-script-freeze.json": {
+      "bytes": 180,
+      "sha256": "5fc63865e349ba4e250dfd8688c1743d124f489cec6310b990568396ab966e03"
+    },
+    "browser.log": {
+      "bytes": 610,
+      "sha256": "b4ec13601f1362876aafd49b6516c6849dca75ba95863ac2da372011bcc5d74f"
+    },
+    "browser.mjs": {
+      "bytes": 7513,
+      "sha256": "92fe01139882b050d6bae040c5fcaff7651c1535c546643d5ab32c2929aeb7a8"
+    },
+    "build.log": {
+      "bytes": 2192,
+      "sha256": "ea9a83bbed04f4322574403e4eb85e148d0ec7176abdc8354042476c516f7096"
+    },
+    "cleanup.json": {
+      "bytes": 359,
+      "sha256": "0e00b15079450f97dcfc2755564adb272ebb07678301e94eb90576b4871c4954"
+    },
+    "composition-red.log": {
+      "bytes": 5212,
+      "sha256": "10c6a3b72a723bc958bb8918da9bdb011e4608b32cc80ca0ace77a9e1dc09115"
+    },
+    "corrected-focused.log": {
+      "bytes": 656,
+      "sha256": "c5e5e7f8623806fbb0575404e9219cf87cf53234cb6b7d9e6c1200dbfe2dc841"
+    },
+    "engine.log": {
+      "bytes": 58596,
+      "sha256": "affcf7f59821df8fd75bfcb28abb9b68a20a340bbd413e70d1898b9c5acb76d5"
+    },
+    "final-focused.log": {
+      "bytes": 10199,
+      "sha256": "1a749be820ca3d6403d6c5c5503b336dbb77687e99d85e82e5e7fba5fda35956"
+    },
+    "full.log": {
+      "bytes": 139890,
+      "sha256": "58b9b03ded1c5ddd656a8a32f8f88e8840a6b74a460c78ecc6aa01e440ba87c6"
+    },
+    "implementation-commit.json": {
+      "bytes": 108,
+      "sha256": "57c05a60970a56eb7b912cfb078ddb2835a41fb7b263a6e1f692f29f5ce13d8d"
+    },
+    "initial-source-freeze.json": {
+      "bytes": 119366,
+      "sha256": "bcd481cfcff4609943e7053e738793a7bc6080fc6ade24de326cd3e4bf43d61a"
+    },
+    "initial-types.log": {
+      "bytes": 1263,
+      "sha256": "2fb3ba453d4d673dc3a4a3f57a6c30f13a295d1337d476b1bf2b8dec4c0ceecd"
+    },
+    "initial-validation-interruption.json": {
+      "bytes": 346,
+      "sha256": "796e7fbd11da5b0f3020b09548a02ea04490fb982a892ab1b46f0496d189eeb3"
+    },
+    "initial-validation.json": {
+      "bytes": 222,
+      "sha256": "bbef494f24e5219f2001c3b9e1259f4c8a316dd64aa5ae015bad4ffdcf4558f7"
+    },
+    "lint.log": {
+      "bytes": 197,
+      "sha256": "7ed78ece99db99bf73bc7fdca280ef9eda7d79800660c4bcd73933e732d6ad6b"
+    },
+    "prepare-browser.mjs": {
+      "bytes": 1661,
+      "sha256": "04df70bbb840c679f3751a038fefbbd3e07ba70bef2a0235acdfbbacd63a451a"
+    },
+    "root-review.json": {
+      "bytes": 1896,
+      "sha256": "590941f3dd9e7440b5794b1cb08bc6aecbf619387acfed6f71d1f6e0b83a647c"
+    },
+    "run-validation-v2.py": {
+      "bytes": 2482,
+      "sha256": "254d4e6971b4a1e61ca19eac5d36f9978ddd178d37a07025af0a788ce1258df6"
+    },
+    "run-validation.py": {
+      "bytes": 2469,
+      "sha256": "f1fd283f28064712aa57a8f2b97bafe29ee69a91ced8719b09e46878cd2a8ae4"
+    },
+    "runtime-focused.log": {
+      "bytes": 502,
+      "sha256": "69ce6258c1a7984bf725a538d877682772314ae0a804424bde41a6415a7437c8"
+    },
+    "schema-corrected-green.log": {
+      "bytes": 435,
+      "sha256": "f25ca25e0c286bc0f61ed1dd0ac1fc1135569c9d87c291a7f5d972a1e1191035"
+    },
+    "schema-corrected-red.log": {
+      "bytes": 2447,
+      "sha256": "10c33f12a63e8923139602d7aed230cd72c8cc49dd66798ddf685a51e436323d"
+    },
+    "schema-green.log": {
+      "bytes": 1604,
+      "sha256": "040cbeac62625f76e44ee5ff616371fe657b1abedc6367aff679fe281d27afe0"
+    },
+    "schema-red.log": {
+      "bytes": 1426,
+      "sha256": "c5c5aaa1d9c1489f3da229eba9d96c3dc2c29215ae0b5ff394c383b02dfd5b81"
+    },
+    "source-freeze.json": {
+      "bytes": 119366,
+      "sha256": "bb1e9eeae0586de1ab322dba0ab93a9092863312b155afd1892412df367719cc"
+    },
+    "stats-browser-results.json": {
+      "bytes": 1249,
+      "sha256": "afec74d46c12442680b883035599b684fd6f345ccad6820cf5b1001f71d94d78"
+    },
+    "stats-browser.log": {
+      "bytes": 512,
+      "sha256": "62a65e9630cb1482f15542d6b3de07fd499e0084891d91f076e9852c58b9a268"
+    },
+    "stats-browser.mjs": {
+      "bytes": 3402,
+      "sha256": "6e59162020759bc9140f2de32228084095216daffd3ab7b70c2ecef097a11e1a"
+    },
+    "types.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "ui-red.log": {
+      "bytes": 90519,
+      "sha256": "843571b75247d3d3774a1f485145b9fed87ecbbbfec06b02b8baa4aa334ea168"
+    },
+    "validation.json": {
+      "bytes": 1368,
+      "sha256": "2a74662c74a0ec96f0ff1ed1304037f0c22b18e30fd51508f60a78f6cc627385"
+    },
+    "vertical-focused.log": {
+      "bytes": 587,
+      "sha256": "9ae995df1b35554b56fe72fb501cf6ab7aa1514d615c9dc5548a99709e239d01"
+    }
+  },
+  "remaining": "earned Acts II-V/C2, all 213 skills/seven classes/builds/C3, C4 and G0-G7 remain open; no new earned attempt"
+}

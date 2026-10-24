@@ -188,7 +188,7 @@ sorceress,skills-sorceress-frozen-orb,sorceress.frozen_orb,active,damage,chill,s
 sorceress,skills-sorceress-chain-lightning,sorceress.chain_lightning,active,damage,paralyze,src/data/skills/sorceress.json,,unverified,
 sorceress,skills-sorceress-fire-ball,sorceress.fire_ball,active,damage,burn,src/data/skills/sorceress.json,burn-ignite-vocabulary-mismatch,unverified,
 sorceress,skills-sorceress-meteor,sorceress.meteor,active,damage,burn|armor-melt,src/data/skills/sorceress.json,additional-statuses-truncated-by-adapter|burn-ignite-vocabulary-mismatch,unverified,
-sorceress,skills-sorceress-cold-mastery,sorceress.cold_mastery,passive,buff,,src/data/skills/sorceress.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+sorceress,skills-sorceress-cold-mastery,sorceress.cold_mastery,passive,buff,,src/data/skills/sorceress.json,independent-acceptance-pending|campaign-balance-unverified,review-needed,docs/plans/decisions/D05-cold-mastery-v1.md|docs/plans/evidence/p07-cold-mastery.md
 sorceress,skills-sorceress-lightning-mastery,sorceress.lightning_mastery,passive,buff,,src/data/skills/sorceress.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 sorceress,skills-sorceress-fire-mastery,sorceress.fire_mastery,passive,buff,,src/data/skills/sorceress.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 sorceress,skills-sorceress-energy-shield,sorceress.energy_shield,passive,buff,,src/data/skills/sorceress.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
