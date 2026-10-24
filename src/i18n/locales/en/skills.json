@@ -876,7 +876,7 @@
     },
     "blessed-aim": {
       "name": "Blessed Aim",
-      "desc": "Aura: increases attack rating for you and allies."
+      "desc": "Selected aura: each rank grants +{{attackPct}}% Attack to basic attacks and Attack-scaled skill damage."
     },
     "concentration": {
       "name": "Concentration",
@@ -896,7 +896,7 @@
     },
     "fanaticism": {
       "name": "Fanaticism",
-      "desc": "Aura: greatly increases attack speed and damage."
+      "desc": "Selected aura: each rank grants +{{physicalDamagePct}}% physical damage and +{{attackSpeedPct}}% attack speed."
     },
     "prayer": {
       "name": "Prayer",
@@ -904,15 +904,15 @@
     },
     "resist-fire": {
       "name": "Resist Fire",
-      "desc": "Aura: increases fire resistance for you and allies."
+      "desc": "Selected aura: each rank grants +{{resistAllPct}} percentage point to all six resistances and +{{fireDamagePct}}% fire damage."
     },
     "defiance": {
       "name": "Defiance",
-      "desc": "Aura: greatly increases defense rating."
+      "desc": "Selected aura: each rank grants +{{defensePct}}% Defense before enemy defense reductions."
     },
     "resist-cold": {
       "name": "Resist Cold",
-      "desc": "Aura: increases cold resistance for you and allies."
+      "desc": "Selected aura: each rank grants +{{resistAllPct}} percentage point to all six resistances and +{{coldDamagePct}}% cold damage."
     },
     "cleansing": {
       "name": "Cleansing",
@@ -920,7 +920,7 @@
     },
     "resist-lightning": {
       "name": "Resist Lightning",
-      "desc": "Aura: increases lightning resistance for you and allies."
+      "desc": "Selected aura: each rank grants +{{resistAllPct}} percentage point to all six resistances and +{{lightningDamagePct}}% lightning damage."
     },
     "vigor": {
       "name": "Vigor",
@@ -932,11 +932,11 @@
     },
     "salvation": {
       "name": "Salvation",
-      "desc": "Aura: greatly increases all resistances."
+      "desc": "Selected aura: each rank grants +{{resistAllPct}} percentage points to all six resistances and +{{elementalDamagePct}}% fire, cold and lightning damage."
     },
     "thorns": {
       "name": "Thorns",
-      "desc": "Aura: reflects damage back to attackers."
+      "desc": "Selected aura: each rank reflects {{thornsPct}}% of physical Life actually lost by a surviving recipient. Reflection is mitigated as thorns and cannot reflect again."
     }
   },
   "sorceress": {
@@ -1389,7 +1389,10 @@
     "meditationNeedsLevel": "Meditation requires character level {{level}}.",
     "meditationNeedsRank": "Spend a skill point on Meditation first.",
     "meditationRankBonuses": "These rank bonuses require selecting Meditation.",
-    "meditationEarned": "A surviving mercenary keeps Meditation recovery earned before you fell."
+    "meditationEarned": "A surviving mercenary keeps Meditation recovery earned before you fell.",
+    "genericUnavailable": "Selected: {{aura}} — unavailable",
+    "statEligibility": "Paladin · level {{level}} · allocated rank required",
+    "statRankBonuses": "These rank bonuses require selecting this aura."
   },
   "ironGolem": {
     "title": "Iron Golem sacrifice",

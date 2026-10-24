@@ -876,7 +876,7 @@
     },
     "blessed-aim": {
       "name": "祝福瞄准",
-      "desc": "光环：为自己和盟友增加命中率。"
+      "desc": "选择此光环后，每级增加{{attackPct}}%攻击，作用于普通攻击及技能中按攻击计算的伤害。"
     },
     "concentration": {
       "name": "专注",
@@ -896,7 +896,7 @@
     },
     "fanaticism": {
       "name": "狂热",
-      "desc": "光环：大幅增加攻击速度和伤害。"
+      "desc": "选择此光环后，每级增加{{physicalDamagePct}}%物理伤害及{{attackSpeedPct}}%攻击速度。"
     },
     "prayer": {
       "name": "祈祷",
@@ -904,15 +904,15 @@
     },
     "resist-fire": {
       "name": "抗火",
-      "desc": "光环：为自己和盟友增加火焰抗性。"
+      "desc": "选择此光环后，每级使全部六种抗性各增加{{resistAllPct}}个百分点，并增加{{fireDamagePct}}%火焰伤害。"
     },
     "defiance": {
       "name": "反抗",
-      "desc": "光环：大幅增加防御等级。"
+      "desc": "选择此光环后，每级增加{{defensePct}}%防御，再计算敌人的减防效果。"
     },
     "resist-cold": {
       "name": "抗冰",
-      "desc": "光环：为自己和盟友增加冰冷抗性。"
+      "desc": "选择此光环后，每级使全部六种抗性各增加{{resistAllPct}}个百分点，并增加{{coldDamagePct}}%冰冷伤害。"
     },
     "cleansing": {
       "name": "净化",
@@ -920,7 +920,7 @@
     },
     "resist-lightning": {
       "name": "抗电",
-      "desc": "光环：为自己和盟友增加闪电抗性。"
+      "desc": "选择此光环后，每级使全部六种抗性各增加{{resistAllPct}}个百分点，并增加{{lightningDamagePct}}%闪电伤害。"
     },
     "vigor": {
       "name": "活力",
@@ -932,11 +932,11 @@
     },
     "salvation": {
       "name": "救助",
-      "desc": "光环：大幅增加所有抗性。"
+      "desc": "选择此光环后，每级使全部六种抗性各增加{{resistAllPct}}个百分点，并增加{{elementalDamagePct}}%火焰、冰冷及闪电伤害。"
     },
     "thorns": {
       "name": "荆棘",
-      "desc": "光环：反弹伤害给攻击者。"
+      "desc": "选择此光环后，每级将存活受益者实际损失生命的{{thornsPct}}%物理伤害反弹。反弹伤害按荆棘伤害减免，不能再次反弹。"
     }
   },
   "sorceress": {
@@ -1389,7 +1389,10 @@
     "meditationNeedsLevel": "冥想需要角色等级{{level}}。",
     "meditationNeedsRank": "请先为冥想投入技能点。",
     "meditationRankBonuses": "以下技能等级加成需要选择冥想光环才会生效。",
-    "meditationEarned": "角色倒下前已获得的冥想恢复仍会计入存活的佣兵。"
+    "meditationEarned": "角色倒下前已获得的冥想恢复仍会计入存活的佣兵。",
+    "genericUnavailable": "已选择：{{aura}}（当前不可用）",
+    "statEligibility": "圣骑士 · 等级{{level}} · 需投入技能点",
+    "statRankBonuses": "这些等级加成仅在选择此光环时生效。"
   },
   "ironGolem": {
     "title": "钢铁石魔献祭",

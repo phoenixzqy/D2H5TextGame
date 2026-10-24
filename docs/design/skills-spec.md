@@ -260,17 +260,30 @@ Monsters use a simplified skill set. Examples:
 - **Stacking:** Buffs with same ID do NOT stack. Different buffs (e.g., *Battle Orders* + *Shout*) do stack.
 
 ### 6.2 Aura Skills (Paladin-specific)
-The implemented player selection supports **None, Might or Meditation** in one
-exclusive saved canonical slot. Other advertised aura rows above remain separate
-implementation contracts; full aura-catalog acceptance remains open. Meditation
-production-browser acceptance is pending under D05.
+The implemented player selection supports **None, Might, Meditation, Thorns,
+Blessed Aim, Fanaticism, Defiance, Resist Fire, Resist Cold, Resist Lightning and
+Salvation** in one exclusive saved canonical slot. The eight additional stat
+effects follow [the family contract](../plans/decisions/D05-paladin-aura-family-v1.md).
+The remaining ten auras require distinct pulse/control/recovery contracts;
+full aura-catalog and independent acceptance remain open.
 
-- **Selection:** None is physical absence of `selectedAuraId`; the other values are
-  `paladin.might` and `paladin.meditation`. Each requires Paladin, its own unlock
+- **Selection:** None is physical absence of `selectedAuraId`. Runtime-supported
+  selections use canonical `paladin.*` IDs. Each requires Paladin, its own unlock
   level (Might1, Meditation24) and a positive allocated rank. Learning, inspecting
   and combo editing do not select an aura; successful paid respec clears it.
   Old/new characters default to None. Retained but unavailable imported selection
   grants no effect and remains clearable through None.
+- **Persistence:** v22 admits the complete twenty-ID canonical aura domain without
+  implying runtime support or eligibility. v21 remains frozen to Might/Meditation;
+  its validated migration changes only the version. No selection is inferred.
+- **Stat auras:** Thorns reflects actual physical HP loss from a surviving
+  recipient through existing deterministic thorns mitigation. Blessed Aim affects
+  basic Attack and Attack-scaled skill components. Fanaticism changes physical
+  increased damage and scheduled cadence; Defiance changes actual Defense.
+  Named resistance auras retain their authored all-six-resistance and named
+  elemental damage bonuses; Salvation adds fire/cold/lightning damage. Coefficients
+  and authored unlocks remain in JSON. These effects apply over baseline views,
+  never accumulating into persistent or carried combat stats.
 - **Might strength:** Each allocated rank supplies separate additive physical
   increased damage (+3%) and Attack (+1%), capped at rank20. Basic Attack100
   therefore gives104/192 at ranks1/20; fixed physical100 gives103/160, without new

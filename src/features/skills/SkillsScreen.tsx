@@ -59,6 +59,7 @@ import { COLD_MASTERY_DEFINITION, coldMasteryReductionAtRank, resolveColdMastery
 import { resolveStaticFieldRank } from '@/engine/skills/static-field';
 import { MIGHT_DEFINITION, resolveEligibleMightRank, resolveMightRank } from '@/engine/skills/might';
 import { MEDITATION_DEFINITION, resolveEligibleMeditationRank, resolveMeditationRank } from '@/engine/skills/meditation';
+import { isStatAuraId, resolveEligibleStatAuraRank, STAT_AURA_DEFINITIONS, STAT_AURA_IDS } from '@/engine/skills/stat-auras';
 import {
   computeSkillDisplayModel,
   type SkillDamageDisplayRow,
@@ -109,6 +110,11 @@ export function SkillsScreen() {
   const playerClass = player?.class ?? '';
   const eligibleMightRank = player ? resolveEligibleMightRank(player) : 0;
   const eligibleMeditationRank = player ? resolveEligibleMeditationRank(player) : 0;
+  const selectedAuraName = player?.selectedAuraId
+    ? tDataKey(t, `skills.${player.selectedAuraId}.name`) : t('auraSelection.none');
+  const selectedAuraEligible = player?.selectedAuraId === 'paladin.might' ? eligibleMightRank > 0
+    : player?.selectedAuraId === 'paladin.meditation' ? eligibleMeditationRank > 0
+      : player && isStatAuraId(player.selectedAuraId) ? resolveEligibleStatAuraRank(player, player.selectedAuraId) > 0 : false;
 
   const allSkills = useMemo(() => {
     if (!playerClass) return [];
@@ -435,7 +441,7 @@ export function SkillsScreen() {
           </span>
         </Panel>
 
-        {player.class === 'paladin' || player.selectedAuraId === 'paladin.might' || player.selectedAuraId === 'paladin.meditation' ? (
+        {player.class === 'paladin' || player.selectedAuraId !== undefined ? (
           <Panel>
             <fieldset className="min-w-0 space-y-3" aria-describedby="aura-selection-timing">
               <legend className="font-serif text-lg text-d2-gold">{t('auraSelection.legend')}</legend>
@@ -466,14 +472,26 @@ export function SkillsScreen() {
                     className="h-5 w-5 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
                   <span>{t('auraSelection.meditation')}</span>
                 </label>
+                {STAT_AURA_IDS.map(id => {
+                  const name = tDataKey(t, `skills.${id}.name`);
+                  return <label key={id} className="flex min-h-[44px] items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
+                    <input type="radio" name="selected-player-aura" value={id} aria-label={name}
+                      checked={player.selectedAuraId === id} disabled={resolveEligibleStatAuraRank(player, id) === 0}
+                      onChange={() => { selectAura(id); }}
+                      aria-describedby={`aura-selection-timing aura-eligibility-${id}`}
+                      className="h-5 w-5 shrink-0 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
+                    <span className="min-w-0">
+                      <span className="block">{name}</span>
+                      <span id={`aura-eligibility-${id}`} className="block text-sm text-d2-white/80">
+                        {t('auraSelection.statEligibility', { level: STAT_AURA_DEFINITIONS[id].requiredLevel })}
+                      </span>
+                    </span>
+                  </label>;
+                })}
               </div>
               <p role="status" aria-live="polite" className="text-d2-gold">
-                {player.selectedAuraId === 'paladin.meditation'
-                  ? eligibleMeditationRank === 0 ? t('auraSelection.meditationUnavailableSelected')
-                    : t('auraSelection.selected', { aura: t('auraSelection.meditation') })
-                  : player.selectedAuraId === 'paladin.might' && eligibleMightRank === 0
-                    ? t('auraSelection.unavailableSelected')
-                  : t('auraSelection.selected', { aura: t(player.selectedAuraId === 'paladin.might' ? 'auraSelection.might' : 'auraSelection.none') })}
+                {t(player.selectedAuraId && !selectedAuraEligible ? 'auraSelection.genericUnavailable' : 'auraSelection.selected',
+                  { aura: selectedAuraName })}
               </p>
               <p id="aura-selection-eligibility" className="text-sm text-d2-white/90">
                 {eligibleMightRank > 0 ? null : player.class !== 'paladin'
@@ -699,7 +717,8 @@ function SkillDetailPanel({
                 ? t('details.level', { current: model.allocatedLevel, max: model.maxLevel })
                 : t('details.unlearned', { max: model.maxLevel })}
               {' · '}
-              {t(`trigger.${skill.id === 'skills-paladin-might' || skill.id === 'skills-paladin-meditation' ? 'aura' : skill.trigger}`, { defaultValue: skill.trigger })}
+              {t(`trigger.${skill.id === 'skills-paladin-might' || skill.id === 'skills-paladin-meditation' ||
+                isStatAuraId(skill.id.replace('skills-paladin-', 'paladin.')) ? 'aura' : skill.trigger}`, { defaultValue: skill.trigger })}
             </p>
           </div>
           <Button
@@ -721,6 +740,9 @@ function SkillDetailPanel({
         ) : null}
         {skill.id === 'skills-paladin-might' ? (
           <p className="text-sm text-d2-white/90">{t('auraSelection.rankBonuses')}</p>
+        ) : null}
+        {isStatAuraId(skill.id.replace('skills-paladin-', 'paladin.')) ? (
+          <p className="text-sm text-d2-white/90">{t('auraSelection.statRankBonuses')}</p>
         ) : null}
 
         {skill.id === 'skills-necromancer-iron-golem' ? (
@@ -1158,6 +1180,13 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
+  const statAuraId = skill.id.replace('skills-paladin-', 'paladin.');
+  if (isStatAuraId(statAuraId)) {
+    const definition = STAT_AURA_DEFINITIONS[statAuraId];
+    return t(`${statAuraId}.desc`, { ...Object.fromEntries(Object.entries(definition.perRank)
+      .map(([key, value]) => [key, Number((value * 100).toFixed(4))])),
+      level: definition.requiredLevel, cap: definition.maxRank });
+  }
   if (skill.id === BONE_ARMOR_IDS[0]) {
     const d = BONE_ARMOR_DEFINITION;
     return t('necromancer.bone-armor.desc', { absorb: d.absorbPerRank, cap: d.maxRank, level: d.requiredLevel });

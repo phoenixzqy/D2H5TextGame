@@ -87,7 +87,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
       const none = within(group).getByRole('radio', { name: copy[locale].none });
       const meditation = within(group).getByRole('radio', { name: copy[locale].meditation });
       const might = within(group).getByRole('radio', { name: copy[locale].might });
-      expect(within(group).getAllByRole('radio')).toHaveLength(3);
+      expect(within(group).getAllByRole('radio')).toHaveLength(11);
       expect(none).toBeChecked(); expect(meditation).toBeEnabled(); expect(might).toBeEnabled();
       fireEvent.click(meditation); expect(player()).toEqual({ ...before, selectedAuraId: AURA });
       expect(meditation).toBeChecked(); expect(none).not.toBeChecked(); expect(might).not.toBeChecked();
