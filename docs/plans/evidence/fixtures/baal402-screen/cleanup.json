@@ -1,0 +1,33 @@
+{
+  "kind": "exact task-only disposal after all diagnostic/browser/test consumers terminal",
+  "removed": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/vite-cache",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/dist",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/qualification/vite-cache",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/ancients401-screen/vite-cache",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/baal402-screen/vite-cache",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/baal402-freeze-screen/vite-cache",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/baal402-static-freeze-screen/vite-cache",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/baal402-static-spike-screen/vite-cache",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/baal402-static-nova-screen/vite-cache",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/rite-claim.mjs",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/baal401-screen/qualify.mjs",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/baal402-prepare-native.mjs",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/baal402-native.mjs",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/baal401-screen"
+  ],
+  "absent": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/vitest-cache",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi/baal401-screen/vite-cache"
+  ],
+  "failures": [],
+  "retainedEvidenceRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi",
+  "retainedEvidenceOwner": "root until full-v1 consumers finish",
+  "unusedScriptHashes": {
+    "rite-claim.mjs": "8ec6660b9a74dc0a6fe0dba5236603f571e39659eb0494a78856ccdf85b2129f",
+    "baal401-screen/qualify.mjs": "c6c716bc009e8c7e2bf478852bff3912a39dd6249f03b96221ba4a905d5c3812",
+    "baal402-prepare-native.mjs": "3abe6138aef9099fef1a4c6fa18c62b1db72ab9c4fa34fd8eeb179711749dd9d",
+    "baal402-native.mjs": "781760ecc4214fc11f112da2431353b6c7c523085c7171b3525d6208dc9481e6"
+  },
+  "port4448Closed": true
+}

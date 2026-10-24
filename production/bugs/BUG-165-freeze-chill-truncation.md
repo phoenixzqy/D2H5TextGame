@@ -16,8 +16,8 @@ Owner: root, engine responsibility; no delegation.
 3. Compare the authored `appliesStatus:[freeze,chill]` and the registered
    damage effect; inspect the resulting status events and enemy cadence.
 
-Expected: one successful cold hit applies Freeze followed by Chill. Chill
-remains for its full two seconds after the shorter Freeze has expired.
+Expected: one successful cold hit applies Freeze followed by Chill. Both start
+on that hit; Chill expires at two seconds and outlasts the shorter Freeze.
 
 Actual: the registered effect contains only `applyStatus:{id:'freeze'}`.
 No Chill is applied by any of these three skills. The secondary adapter accepts

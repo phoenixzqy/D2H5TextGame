@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D11 Baal402 diagnostic screens | seven policies/224trials terminal; all unqualified, no native402 | Current Orb0/32; three learned Freeze-priority variants0/32 each; legal paid Static20/Warmth20/IceBlast utility2/32; two-target Spike0/32; all-enemy Nova support8/32. Retain every result under unchanged26/32+12/16 gate. Original Orb reaches Baal32/32 then times out; utility paths reveal summon interception in guards. [Evidence](evidence/d11-baal402-screen.md). Genuine claimed Rite save remains L33/XP149261/stat10/skill1/23682gear/nextNormal402; no Eve Start, new reset or actual402. All consumers terminal; exactdist/eight caches/four abandoned scripts removed,4448closed, failures[]. Root retains511raw evidence files through full-v1 consumers. C2–C4/fullG remain open; next work must address an evidenced changed build/mechanic or broader missing class/skill/balance requirements. |
 | D11 earned Ancients401 / Rite Claim; BUG165 | genuine400timeout retained, new401victory and separateClaim; next402 | Runtime `d352c44` preserves Freeze→Chill for three skills; full11722PASS/455files+two existing skips, engine5792, types/lint/build pass. Six owned diamonds/paid5Wishstone reset produce native Orb20/Mastery18 support state, exact qualified26/32+12/16.400 wins six waves then guardian timeout; fresh401screen27/32+13/16, actual401wins7/7. Combined133870heroXP/+240gear including15000XP/+1skill Claim;11250mercXP Claim. FinalL33/XP149261/23682gear/stat10/skill1/nextNormal402; Rite claimed, no Eve/Baal. [Authoritative final/evidence](evidence/d11-earned-ancients401.md).42prep+31combat snapshots,12exact Continue pairs including Claim; native prefixes and all payloads retained. BUG161 selector/auditor corrections never replay gameplay. Raw evidence/build still in use for next Throne screen; cleanup pending. C2–C4/213skills/pacing/fullG and independent acceptance remain open; local only. |
 | D11 earned Arreat396–399 / L33 | four genuine full clears; next400 retained | Six paired Ancients variants0/32 each; original222MR/minimum-damage and mana diagnostics retained, no genuine preparation/attempt. Exact current Arreat screen31/32+15/16 qualifies bounded maxfive/L33/firstnonwin farm. Actual396–399 win24/24waves,+231930XP/+723gear; level33 reached399W4/current area finished, no later launch. FinalL33/XP15391/23442gear, stat10/skill2/40MR/HolyFreeze, nextNormal400/Nightmare0. [Authoritative final/evidence](evidence/d11-earned-act5-level33.md).40native snapshots/five exact Continue pairs/all22719ancestral full payloads conserved.224qualification trials plus one retained-seed trace, all tooling failures preserved;1128source/760explicitfalse build/7served exact, prior11678unit passes/types/lint apply.185raw files archived; consumers terminal,4447closed/ten exactbuild+cache dirs absent, cleanup[]/failures[]. Ancients/Baal, C2–C4/213skills/pacing/fullG and independent acceptance open. |
 | D11 earned Arreat394 / Passage395 / Prison Claim+Read | two genuine six-wave clears and separate reward actions verified locally; next396 retained | Unchanged40MR Nova preparation: Arreat32/32+16/16, Passage26/32+13/16 with six boss timeouts retained. Actual394/395 win12/12waves; StartPrison/inspect/potion/thaw then original Nihlathak proof, separate12000XP Claim/unread barrier and keyboard Read add10allres exactly once. Combined116080XP/+312gear, finalL32/XP362722/22719gear/stat5/skill1, nextNormal396/Nightmare0; socket/personalization unused. [Authoritative final/evidence](evidence/d11-earned-act5-through395.md).40native snapshots/eight exact Continue pairs/all22407ancestral full payloads conserved. Original driver/auditor failures retained without replay;1128source/760build/7served exact; prior11678unit passes/types/lint apply.112raw files archived, consumers terminal, preview4446 stopped/exactdist+cache absent, cleanup[]/failures[]. Ancients/Baal, wider idle/pacing, C2–C4/213skills/fullG and independent acceptance open. |
@@ -11316,3 +11317,27 @@ failures retained with corrected strict assertions. Next actual task is Throne/
 Baal from the new earned save. Raw evidence retained by root through full-v1;
 task build still has active consumers and cleanup is pending. C2–C4/213skills/
 pacing/fullG0–G7 remain incomplete. Goal/worktree active; local only.
+
+
+## D11 — Baal402 screens finish without new genuine actions
+
+[Seven frozen policies](evidence/d11-baal402-screen.md),224trials total, retain
+all nonwins and remain unqualified under unchanged26/32+12/16. Current Orb and
+three priority-only variants0/32 each; Static20/Warmth20/IceBlast2/32, Static/
+Spike0/32, Static/FrostNova/IceBlast8/32. The original build reaches Baal32/32
+then times out; utility failures frequently retain summoners at low HP behind
+repeated minions. These diagnostics do not prove a global formula/balance bug,
+license number/limit changes, or justify replaying already consumed actions.
+No native reset/allocation/EveStart/402entry occurs. Resume only versioned
+claimed Rite final rawSHA `c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577`.
+
+All test/diagnostic/browser consumers terminal. Exact taskdist/eight existing
+caches/four abandoned unexecuted scripts removed; two intended caches absent,
+4448closed, cleanup failures[]. Root retains511raw evidence files under the
+exact Ancients400 path in the report through full-v1 consumers, then removes
+those owned artifacts. New ownership manifest and genuine-current pointer
+identify the authoritative versioned resume; older raw pointers are historical.
+Source remains d352c44; prior full11722/types/lint/build apply, no repeated suite
+for evidence-only edits. C0/C1 retain narrow historical acceptance; C2–C4,
+all213skill/build/economy/pacing/PWA/performance and fullG0–G7 remain open.
+Goal and human worktree stay active; all work local, no remote publication.

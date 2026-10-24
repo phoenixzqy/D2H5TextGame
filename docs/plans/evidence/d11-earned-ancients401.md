@@ -61,6 +61,7 @@ versioned beside the final. Root retains raw logs,64qualification traces,
 failed prefixes and browser captures at
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi`
 through campaign/full-v1 consumers, then removes the exact owned artifacts.
-The task build remains in use for the next Throne screen/native continuation;
-cleanup is pending while those consumers run. Independent acceptance, C2–C4,
+The subsequent [Throne screen](d11-baal402-screen.md) remains unqualified.
+After all consumers finish, exact task build/caches are removed and port4448
+is verified closed; raw evidence remains as described above. Independent acceptance, C2–C4,
 213skills,30–50active-hour pacing and fullG0–G7 remain incomplete. Local only.

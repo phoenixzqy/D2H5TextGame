@@ -1,0 +1,82 @@
+{
+  "kind": "diagnostic only; no native preparation/Eve Start/402 entry; all projections remain diagnostic",
+  "genuineInput": "docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
+  "genuineInputRawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "requiredWins": 26,
+  "requiredSecondHalfWins": 12,
+  "policies": [
+    {
+      "id": "unchanged-earned-orb-support",
+      "wins": 0,
+      "secondHalfWins": 0,
+      "qualified": false,
+      "n": 32,
+      "report": "baal402-screen-report.json.gz"
+    },
+    {
+      "id": "static-orb-ice",
+      "order": [
+        "static-field",
+        "frozen-orb",
+        "ice-blast"
+      ],
+      "wins": 0,
+      "secondHalfWins": 0,
+      "qualified": false,
+      "n": 32,
+      "report": "baal402-freeze-screen-report.json.gz"
+    },
+    {
+      "id": "static-ice-orb",
+      "order": [
+        "static-field",
+        "ice-blast",
+        "frozen-orb"
+      ],
+      "wins": 0,
+      "secondHalfWins": 0,
+      "qualified": false,
+      "n": 32,
+      "report": "baal402-freeze-screen-report.json.gz"
+    },
+    {
+      "id": "static-ice",
+      "order": [
+        "static-field",
+        "ice-blast"
+      ],
+      "wins": 0,
+      "secondHalfWins": 0,
+      "qualified": false,
+      "n": 32,
+      "report": "baal402-freeze-screen-report.json.gz"
+    },
+    {
+      "id": "paid skill reset; Static20-Warmth20-IceBolt1-IceBlast1-ColdMastery4; Static then IceBlast",
+      "wins": 2,
+      "secondHalfWins": 1,
+      "qualified": false,
+      "n": 32,
+      "report": "baal402-static-freeze-screen-report.json.gz"
+    },
+    {
+      "id": "paid skill reset; Static20-Warmth18-IceBolt1-IceBlast1-GlacialSpike1-ColdMastery5; Static then GlacialSpike",
+      "wins": 0,
+      "secondHalfWins": 0,
+      "qualified": false,
+      "n": 32,
+      "report": "baal402-static-spike-screen-report.json.gz"
+    },
+    {
+      "id": "paid skill reset; Static20-Warmth16-ColdMastery7-IceBolt1-IceBlast1-FrostNova1; Static-FrostNova-IceBlast",
+      "wins": 8,
+      "secondHalfWins": 3,
+      "qualified": false,
+      "n": 32,
+      "report": "baal402-static-nova-screen-report.json.gz"
+    }
+  ],
+  "rawEvidence": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi",
+  "rawOwner": "root retains through full-v1 consumers, then removes exact task-owned artifacts",
+  "trials": 224
+}
