@@ -45,6 +45,7 @@ import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMas
 import { GOLEM_MASTERY_DEFINITION, composeGolemMastery, resolveGolemMasteryRank } from '@/engine/skills/golem-mastery';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
 import { COLD_MASTERY_DEFINITION, coldMasteryReductionAtRank, resolveColdMasteryRank } from '@/engine/skills/cold-mastery';
+import { resolveStaticFieldRank } from '@/engine/skills/static-field';
 import { MIGHT_DEFINITION, resolveEligibleMightRank, resolveMightRank } from '@/engine/skills/might';
 import { MEDITATION_DEFINITION, resolveEligibleMeditationRank, resolveMeditationRank } from '@/engine/skills/meditation';
 import {
@@ -142,6 +143,11 @@ export function SkillsScreen() {
     }
     const ironSkinRank = resolveIronSkinRank(levels);
     const coldRank = resolveColdMasteryRank(levels);
+    const staticRank = resolveStaticFieldRank(levels);
+    for (const alias of ['sorceress.static_field', 'skills-sorceress-static-field']) {
+      if (staticRank > 0) map.set(alias, staticRank);
+      else map.delete(alias);
+    }
     for (const alias of ['sorceress.cold_mastery', 'skills-sorceress-cold-mastery']) {
       if (coldRank > 0) map.set(alias, coldRank);
       else map.delete(alias);
@@ -1124,6 +1130,7 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
+  if (skill.id === 'skills-sorceress-static-field') return t('sorceress.static-field.desc');
   if (skill.id === 'skills-necromancer-amplify-damage') {
     const { physicalResistReductionPct, durationMs } = AMPLIFY_DAMAGE_DEFINITION;
     return t('necromancer.amplify-damage.desc', {

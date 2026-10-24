@@ -579,20 +579,14 @@
     "cost": {
       "mana": 10
     },
-    "appliesStatus": [
-      "static-field"
-    ],
-    "appliesTags": [
-      "lightning",
-      "shock",
-      "amp-damage"
-    ],
     "scaling": {
       "cooldownPerLevel": -0.05,
-      "costPerLevel": -0.1,
-      "passiveStatsPerLevel": {
-        "lightningDamagePct": 0.01
-      }
+      "costPerLevel": -0.1
+    },
+    "staticField": {
+      "currentHealthFraction": 0.25,
+      "normalFloorFraction": 0,
+      "nightmareFloorFraction": 0.33
     }
   },
   {

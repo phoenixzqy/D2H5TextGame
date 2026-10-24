@@ -1,0 +1,19 @@
+{
+  "kind": "ordinary UI preparation; zero combat entries",
+  "parent": "earned-summoner-attempt257/retained-final.json.gz",
+  "parentRawSHA256": "458c75cc6b609f1b15cdb6d77fd8435917cad10d1df9d1525a1925a9917f1fd7",
+  "rawSHA256": "ec6e3111495b01fdfcdc19c8ad503ac2019514ea08391ced357462d94d7cacae",
+  "source": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/browser-v5/continued.json.gz",
+  "nextOrdinal": 258,
+  "skillLevels": {
+    "sorceress.fire_bolt": 9,
+    "sorceress.warmth": 1,
+    "sorceress.fire_ball": 20,
+    "sorceress.static_field": 1
+  },
+  "respecsRemaining": {
+    "stat": 3,
+    "skill": 2
+  },
+  "scope": "Native town reset, 31 public allocations, priority selection, bilingual UI and exact Save-close-Continue. No projection or combat retry."
+}

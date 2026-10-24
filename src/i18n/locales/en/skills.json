@@ -116,6 +116,10 @@
       "shadow_warrior": "Shadow Warrior",
       "shadow_master": "Shadow Master"
     },
+    "staticField": {
+      "currentHealth": "Current Health Damage",
+      "nightmareFloor": "Nightmare Health Floor"
+    },
     "passiveStat": {
       "summonLifePct": "Summon Life",
       "summonAttackPct": "Summon Attack",
@@ -984,7 +988,7 @@
     },
     "static-field": {
       "name": "Static Field",
-      "desc": "Creates a field of static electricity that damages all nearby enemies."
+      "desc": "Weakens all enemies with lightning based on their current health. Lightning resistance and magic resist reduce the damage. Cannot kill; follow with another attack. At the health floor, yields to the next available skill. Higher ranks reduce mana cost and cooldown."
     },
     "telekinesis": {
       "name": "Telekinesis",

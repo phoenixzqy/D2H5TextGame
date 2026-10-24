@@ -7,6 +7,13 @@ import type { DamageType, DamageInfo } from './attributes';
 import type { WeaponType, Handedness } from './items';
 import type { AoeShape } from '../combat/grid';
 
+/** Fraction of current health and maximum-health floors for the exact Static Field skill. */
+export interface StaticFieldTuning {
+  readonly currentHealthFraction: number;
+  readonly normalFloorFraction: number;
+  readonly nightmareFloorFraction: number;
+}
+
 /** Personal cold-resistance reduction in percentage points, with rank-one base. */
 export interface ColdMasteryTuning {
   readonly resistanceReductionPct: number;
@@ -169,6 +176,8 @@ export interface SkillArmorMeltMetadata {
  * This is the immutable template for a skill
  */
 export interface SkillDef {
+  /** JSON-owned nonlethal current-health damage; exact player Static Field only. */
+  readonly staticField?: StaticFieldTuning;
   /** JSON-owned personal cold penetration; exact player Cold Mastery only. */
   readonly coldMastery?: ColdMasteryTuning;
   readonly id: string;

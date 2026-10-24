@@ -7,6 +7,91 @@
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
   "allOf": [{
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-sorceress-static-field"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "staticField",
+          "cost",
+          "scaling"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "$ref": "#/properties/requiredLevel"
+          },
+          "staticField": {
+            "$ref": "#/properties/staticField"
+          },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "all-enemies"
+          },
+          "cooldown": {
+            "type": "number",
+            "minimum": 1
+          },
+          "cost": {
+            "type": "object",
+            "required": [
+              "mana"
+            ],
+            "maxProperties": 1,
+            "properties": {
+              "mana": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          },
+          "scaling": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "costPerLevel": {
+                "type": "number"
+              },
+              "cooldownPerLevel": {
+                "type": "number"
+              }
+            }
+          },
+          "damage": false,
+          "damageType": false,
+          "attackDamagePct": false,
+          "appliesStatus": false,
+          "statusEffect": false,
+          "additionalStatusEffects": false,
+          "appliesTags": false,
+          "synergies": false,
+          "heal": false,
+          "summonId": false,
+          "monsterSummon": false,
+          "summonBasicAttackElements": false,
+          "aoeShape": false,
+          "requires": false,
+          "passive": false,
+          "aura": false,
+          "summon": false,
+          "prerequisites": false
+        }
+      },
+      "else": {
+        "properties": {
+          "staticField": false
+        }
+      }
+  }, {
     "if": { "properties": { "id": { "const": "skills-sorceress-cold-mastery" } }, "required": ["id"] },
     "then": {
       "required": ["requiredLevel", "coldMastery"],
@@ -761,6 +846,34 @@
       "type": "number",
       "minimum": 0,
       "description": "Cooldown in turns"
+    },
+    "staticField": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Current-health lightning fraction and maximum-health nonlethal floors; exact player Static Field only.",
+      "required": [
+        "currentHealthFraction",
+        "normalFloorFraction",
+        "nightmareFloorFraction"
+      ],
+      "properties": {
+        "currentHealthFraction": {
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 1,
+          "exclusiveMinimum": 0
+        },
+        "normalFloorFraction": {
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "nightmareFloorFraction": {
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 1
+        }
+      }
     },
     "coldMastery": {
       "type": "object",

@@ -116,6 +116,10 @@
       "shadow_warrior": "影子战士",
       "shadow_master": "影子大师"
     },
+    "staticField": {
+      "currentHealth": "当前生命伤害",
+      "nightmareFloor": "噩梦生命下限"
+    },
     "passiveStat": {
       "summonLifePct": "召唤物生命",
       "summonAttackPct": "召唤物攻击",
@@ -984,7 +988,7 @@
     },
     "static-field": {
       "name": "静电力场",
-      "desc": "创造静电场伤害所有附近敌人。"
+      "desc": "以敌人当前生命为基础，对所有敌人造成闪电伤害。闪电抗性与魔法抗性会降低伤害。无法击杀，需用其他攻击收尾；生命达到下限时改用下一个可用技能。升级降低法力消耗和冷却时间。"
     },
     "telekinesis": {
       "name": "心灵传动",

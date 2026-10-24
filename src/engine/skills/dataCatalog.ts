@@ -16,7 +16,7 @@ import paladinSkills from '../../data/skills/paladin.json';
 import sorceressSkills from '../../data/skills/sorceress.json';
 import type { AoeShape } from '../combat/grid';
 import type { DamageType } from '../types/attributes';
-import type { ComboTag, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget } from '../types/skills';
+import type { ComboTag, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
 import type { OnHitStatus, RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
 
 export type PlayableSkillClass =
@@ -29,6 +29,7 @@ export type PlayableSkillClass =
   | 'sorceress';
 
 interface JsonSkill {
+  readonly staticField?: StaticFieldTuning;
   readonly id: string;
   readonly name: string;
   readonly icon?: string;
@@ -121,6 +122,7 @@ function summonMaxForKind(kind: SummonMaxCountScalingKind | undefined): number {
 }
 
 function effectsForSkill(skill: JsonSkill): SkillEffect[] {
+  if (skill.id === 'skills-sorceress-static-field' && skill.staticField) return [{ kind: 'static-field' }];
   const effects: SkillEffect[] = [];
   if (skill.damage && skill.damageType) {
     const tags = comboTags(skill.appliesTags);

@@ -69,6 +69,7 @@ import { effectiveStatValue } from '@/engine/progression/stats';
 import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import { composeHeroRecovery } from '@/engine/progression/warmth';
 import { composeColdMastery } from '@/engine/skills/cold-mastery';
+import { composeStaticField } from '@/engine/skills/static-field';
 import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeMightAura } from '@/engine/skills/might';
 import { composeMeditationAura } from '@/engine/skills/meditation';
@@ -189,6 +190,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     mana: stats.mana,
     ...composeRunewordCombatModifiers(grants, recovery),
     coldResistanceReductionPct: composeColdMastery(player),
+    staticFieldRank: composeStaticField(player),
     manaRegenCarry: 0,
     manaRegenCompensation: 0,
     manaRegenExactCarry: '0',
@@ -1097,6 +1099,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       manaRegenBaselinePerSecond: fresh.manaRegenBaselinePerSecond ?? 0,
       increasedDamagePct: fresh.increasedDamagePct ?? { fire: 0 },
       coldResistanceReductionPct: fresh.coldResistanceReductionPct ?? 0,
+      staticFieldRank: fresh.staticFieldRank ?? 0,
       physicalReflectionPct: fresh.physicalReflectionPct ?? 0,
       manaRegenCarry: capped ? 0 : unit.manaRegenCarry ?? 0,
       manaRegenCompensation: capped ? 0 : unit.manaRegenCompensation ?? 0,

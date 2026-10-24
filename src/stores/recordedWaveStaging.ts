@@ -48,7 +48,13 @@ function freezeOwnedInput(value: unknown): void {
  * reaches the caller before run installation, ordinal changes or item payment.
  */
 export function stageRecordedWave(input: RecordedWaveStagingInput): StagedRecordedWave {
-  const engineInput = structuredClone(input.snapshot);
+  const difficulty = input.replayProfileId ?? 'normal';
+  if ((difficulty as unknown) !== 'normal' && (difficulty as unknown) !== 'nightmare') {
+    throw new Error('Invalid recorded wave difficulty');
+  }
+  // The caller's immutable run profile owns gameplay difficulty, never a selected map or supplied snapshot.
+  const engineInput = structuredClone({ ...input.snapshot,
+    ...(difficulty === 'nightmare' || input.snapshot.difficulty !== undefined ? { difficulty } : {}) });
   freezeOwnedInput(engineInput);
   const { events, result } = runBattleRecorded(engineInput);
   const terminal = events.at(-1);

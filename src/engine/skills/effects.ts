@@ -104,6 +104,7 @@ export interface SummonEffect {
 
 /** Union of effect primitives. */
 export type SkillEffect =
+  | { readonly kind: 'static-field' }
   | DamageEffect
   | HealEffect
   | BuffEffect

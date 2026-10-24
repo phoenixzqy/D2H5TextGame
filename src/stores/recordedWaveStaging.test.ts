@@ -34,6 +34,25 @@ beforeEach(() => { loadDefaultSkills(); });
 afterEach(() => { vi.restoreAllMocks(); resetRegistry(); });
 
 describe('owned recorded-wave staging', () => {
+  it.each(['normal', 'nightmare'] as const)('captures immutable %s run difficulty over contradictory input', difficulty => {
+    const source = input(), hero = required(source.snapshot.playerTeam[0]), target = required(source.snapshot.enemyTeam[0]);
+    const held = (appliedAtMs: number) => ({ id: 'stun', stacks: 1, remaining: -1, sourceId: 'fixture', appliedAtMs });
+    const snapshot: engine.CombatSnapshot = { ...source.snapshot,
+      difficulty: difficulty === 'normal' ? 'nightmare' : 'normal',
+      playerTeam: [{ ...hero, skillOrder: ['sorceress.static_field'], staticFieldRank: 1,
+        statuses: [held(1701)] }],
+      enemyTeam: [{ ...target, life: 34, statuses: [held(0)] }] };
+    const original = structuredClone(snapshot);
+    const staged = stageRecordedWave({ ...source, replayProfileId: difficulty, snapshot });
+    expect(staged.engineInput.difficulty).toBe(difficulty);
+    expect(staged.recording.replayProfileId).toBe(difficulty);
+    expect(staged.recording.outcome.finalEnemyTeam[0]?.life).toBe(difficulty === 'normal' ? 26 : 33);
+    expect(snapshot).toEqual(original);
+    Object.assign(snapshot, { difficulty });
+    expect(staged.engineInput.difficulty).toBe(difficulty);
+    expect(Object.isFrozen(staged.engineInput)).toBe(true);
+  });
+
   it('passes its exact retained immutable input to the real engine with equivalent recording', () => {
     const source = input();
     const expected = engine.runBattleRecorded(source.snapshot);

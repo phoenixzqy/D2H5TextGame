@@ -1,6 +1,6 @@
 # BUG-150 — Make Static Field damage enemy health
 
-Severity: High. Status: reproduced; implementation next. Owner: root/engine,
+Severity: High. Status: fixed locally; independent acceptance pending. Owner: root/engine,
 game design, frontend and QA. Current source: `b67f0a0`.
 Environment: actual production skill registry and deterministic engine via Vite
 SSR; no browser or campaign control. Seed1, heroL24, ranks1/20.
@@ -41,3 +41,7 @@ production casts and then screen the exact earned input using only legal point
 allocation. No diagnostic projection becomes authoritative campaign progress.
 Authoritative earned save remains L24/SP2/next258, raw SHA256
 `458c75cc6b609f1b15cdb6d77fd8435917cad10d1df9d1525a1925a9917f1fd7`.
+
+Local resolution: [Static Field evidence](../../docs/plans/evidence/d04-static-field.md).
+Real catalog casts now damage current health; rank/floor/eligibility/replay/UI
+controls pass. Duriel remains unchanged. All full-v1 gates remain open.

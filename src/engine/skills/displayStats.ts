@@ -9,7 +9,7 @@
  */
 
 import type { DamageType } from '../types/attributes';
-import type { ColdMasteryTuning } from '../types/skills';
+import type { ColdMasteryTuning, StaticFieldTuning } from '../types/skills';
 import { coldMasteryReductionAtRank } from './cold-mastery';
 import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
 import { getSummonStats } from './summons';
@@ -19,6 +19,7 @@ import { applyGolemMasteryStats, type GolemMasteryProjection } from './golem-mas
 
 export interface DisplaySkillSource {
   readonly coldMastery?: ColdMasteryTuning;
+  readonly staticField?: StaticFieldTuning;
   readonly id: string;
   readonly trigger: string;
   readonly target: string;
@@ -249,6 +250,14 @@ function summonUnit(
 }
 
 function passiveUtilityRows(skill: DisplaySkillSource, rank: number): readonly SkillUtilityDisplayRow[] {
+  if (skill.id === 'skills-sorceress-static-field' && skill.staticField) {
+    return [
+      { id: 'staticFieldCurrentHealth', labelKey: 'details.staticField.currentHealth',
+        value: skill.staticField.currentHealthFraction, valueKind: 'percent' },
+      { id: 'staticFieldNightmareFloor', labelKey: 'details.staticField.nightmareFloor',
+        value: skill.staticField.nightmareFloorFraction, valueKind: 'percent' }
+    ];
+  }
   if (skill.id === 'skills-sorceress-cold-mastery' && skill.coldMastery) {
     return [{ id: 'coldResistanceReductionPct',
       labelKey: 'details.passiveStat.coldResistanceReductionPct',

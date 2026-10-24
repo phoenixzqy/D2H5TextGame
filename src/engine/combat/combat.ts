@@ -37,6 +37,7 @@ import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { activeMightAura, type MightAuraProjection } from '../skills/might';
 import { activeMeditationAura, type MeditationAuraProjection } from '../skills/meditation';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
+import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
 import {
@@ -121,6 +122,8 @@ export type BattleEvent =
 
 /** Initial combat snapshot. */
 export interface CombatSnapshot {
+  /** Immutable run difficulty; omitted historical snapshots use Normal. */
+  readonly difficulty?: 'normal' | 'nightmare';
   readonly seed: number;
   readonly playerTeam: readonly CombatUnit[];
   readonly enemyTeam: readonly CombatUnit[];
@@ -157,6 +160,7 @@ export interface CombatResult {
 }
 
 interface State {
+  readonly difficulty: 'normal' | 'nightmare';
   /** Valid copied player authority and FIFO primary enemy-monster death IDs; wave-local only. */
   readonly corpseExplosion: Map<string, number>;
   readonly poisonExplosion: Map<string, number>;
@@ -694,6 +698,7 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
+  if (isStaticFieldId(skill.id)) return staticFieldRank(unit);
   const governed = governedActiveId(skill.id);
   if (governed) {
     if (unit.governedActiveRanks) return unit.governedActiveRanks[governed];
@@ -755,6 +760,11 @@ function healingTargets(state: State, actorId: string, effect: HealEffect): Comb
 }
 
 function hasAvailableEffect(state: State, actorId: string, skill: RegisteredSkill, skillLevel: number): boolean {
+  if (matchesStaticField(skill)) {
+    const actor = state.units.get(actorId);
+    return actor !== undefined && aliveOf(state, actor.side === 'player' ? 'enemy' : 'player')
+      .some(target => staticFieldDamage(target, state.difficulty) > 0);
+  }
   if (skill.effects.length > 0 && skill.effects.every((effect) => effect.kind === 'heal')) {
     return skill.effects.some((effect) => healingTargets(state, actorId, effect).length > 0);
   }
@@ -776,6 +786,9 @@ function canUseSkillForState(
   const pe = isPoisonExplosionId(skillOrderId) || isPoisonExplosionId(skill.id);
   const skillLevel = ce ? corpseExplosionRank(unit, state.corpseExplosion)
     : pe ? poisonExplosionRank(unit, state.poisonExplosion) : effectiveSkillLevel(unit, skill);
+  if ((isStaticFieldId(skillOrderId) || isStaticFieldId(skill.id) ||
+    skill.effects.some(effect => effect.kind === 'static-field')) &&
+    (!matchesStaticField(skill) || skillLevel === 0 || !Number.isFinite(unit.mana))) return false;
   if (ce && (!matchesCorpseExplosion(skill) ||
     ['necromancer.corpse_explosion', 'skills-necromancer-corpse-explosion'].some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   if (pe && (!matchesPoisonExplosion(skill) ||
@@ -835,6 +848,19 @@ function applyEffect(
   const acting = state.units.get(actorId);
   if (!acting || !alive(acting)) return;
   switch (effect.kind) {
+    case 'static-field': {
+      if (!matchesStaticField(skill) || staticFieldRank(acting) === 0) break;
+      for (const candidate of enemySideAlive) {
+        const target = state.units.get(candidate.id);
+        if (!target) continue;
+        const amount = staticFieldDamage(target, state.difficulty);
+        if (amount <= 0) continue;
+        state.units.set(target.id, { ...target, life: target.life - amount });
+        emit(state, { kind: 'damage', source: actorId, target: target.id,
+          damageType: 'lightning', amount, crit: false, dodged: false });
+      }
+      break;
+    }
     case 'damage': {
       for (const t of enemySideAlive) {
         applyDamageToUnit(state, actorId, t.id, effect, skillLevel);
@@ -1468,6 +1494,11 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   simTimes: number[];
   result: CombatResult;
 } {
+  // Pure engine entry points can also receive untyped external snapshots.
+  if ((snapshot.difficulty as unknown) !== undefined && (snapshot.difficulty as unknown) !== 'normal' &&
+    (snapshot.difficulty as unknown) !== 'nightmare') {
+    throw new Error('Invalid combat difficulty');
+  }
   if (snapshot.mightAura !== undefined && snapshot.meditationAura !== undefined) {
     throw new Error('Only one player aura projection');
   }
@@ -1478,6 +1509,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const golemMastery = snapshot.golemMastery;
   const iron = snapshot.ironGolem;
   const state: State = {
+    difficulty: snapshot.difficulty ?? 'normal',
     corpseExplosion: new Map(copyCorpseExplosionProjections(snapshot.corpseExplosion).map(p => [p.sourceHeroId, p.rank])),
     poisonExplosion: new Map(copyPoisonExplosionProjections(snapshot.poisonExplosion).map(p => [p.sourceHeroId, p.rank])),
     corpses: [],
