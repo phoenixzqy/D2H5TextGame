@@ -1,0 +1,19 @@
+{
+  "runtime": "43a95d2ced36d8562bc762001da74918f843248f",
+  "parent": "earned-duriel-attempt262/retained-final.json.gz",
+  "actualOrdinals": [
+    263,
+    264,
+    265
+  ],
+  "nextNormal": 266,
+  "outcome": "Spider Forest/Golden Bird/Potion and Great Marsh/Brain complete; Flayer Jungle3 wins then wave4 draw",
+  "heroLevel": 24,
+  "heroXP": 247122,
+  "uniqueGear": 6906,
+  "addedXP": 58370,
+  "addedGear": 277,
+  "retainedFinalRawSHA256": "e2628dfdec6f464f7764c373714d7bfb343b2950e7e084d339696ca8b1f3964c",
+  "rootEvidence": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop",
+  "independentAcceptance": "pending"
+}

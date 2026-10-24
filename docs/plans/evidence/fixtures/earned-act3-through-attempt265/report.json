@@ -1,0 +1,521 @@
+{
+  "runtime": "43a95d2ced36d8562bc762001da74918f843248f",
+  "inputPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/earned262-resume/final.json.gz",
+  "inputSHA256": "9219fbd9a24ffb993d987191e37b10934556d22ab201dc3110db7c6457260e69",
+  "kind": "ordinary earned Act III UI progression; historical Date, native timers; no seed, Skip, speed override or state injection",
+  "launches": [
+    {
+      "ordinal": 263,
+      "alias": "spider-forest"
+    },
+    {
+      "ordinal": 264,
+      "alias": "great-marsh"
+    },
+    {
+      "ordinal": 265,
+      "alias": "flayer-jungle"
+    }
+  ],
+  "retries": 0,
+  "errors": [],
+  "console": [],
+  "states": [
+    "001-imported",
+    "002-quests-started",
+    "003-precombat-saved",
+    "004-precombat-continued",
+    "263-w1-initial",
+    "263-w1-terminal",
+    "005-263-w1-settled",
+    "263-w2-initial",
+    "263-w2-terminal",
+    "006-263-w2-settled",
+    "263-w3-initial",
+    "263-w3-terminal",
+    "007-263-w3-settled",
+    "263-w4-initial",
+    "263-w4-terminal",
+    "008-263-w4-settled",
+    "263-w5-initial",
+    "263-w5-terminal",
+    "009-263-w5-settled",
+    "010-263-won-saved",
+    "011-263-won-continued",
+    "012-recover-quest-jade_figurine",
+    "013-give-quest-jade_figurine",
+    "014-give-quest-golden_bird",
+    "015-claim-act3-golden-bird",
+    "016-potion-consumed",
+    "017-spider-forest-actions-saved",
+    "018-spider-forest-actions-continued",
+    "264-w1-initial",
+    "264-w1-terminal",
+    "019-264-w1-settled",
+    "264-w2-initial",
+    "264-w2-terminal",
+    "020-264-w2-settled",
+    "264-w3-initial",
+    "264-w3-terminal",
+    "021-264-w3-settled",
+    "264-w4-initial",
+    "264-w4-terminal",
+    "022-264-w4-settled",
+    "264-w5-initial",
+    "264-w5-terminal",
+    "023-264-w5-settled",
+    "024-264-won-saved",
+    "025-264-won-continued",
+    "026-recover-quest-khalims_brain",
+    "027-great-marsh-actions-saved",
+    "028-great-marsh-actions-continued",
+    "265-w1-initial",
+    "265-w1-terminal",
+    "029-265-w1-settled",
+    "265-w2-initial",
+    "265-w2-terminal",
+    "030-265-w2-settled",
+    "265-w3-initial",
+    "265-w3-terminal",
+    "031-265-w3-settled",
+    "265-w4-initial",
+    "265-w4-terminal",
+    "032-265-nonwin",
+    "033-265-nonwin-saved",
+    "034-265-nonwin-continued",
+    "final"
+  ],
+  "areas": [
+    {
+      "alias": "spider-forest",
+      "ordinal": 263,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 2970,
+            "newItems": [
+              "it-55rvo-546",
+              "it-17tay-547",
+              "it-1d7s2-548",
+              "it-hzpb-549",
+              "it-6n7rv-54a",
+              "it-9nzzn-54b"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3240,
+            "newItems": [
+              "it-ocao-54c",
+              "it-8w5mq-54d",
+              "it-4gky3-54e",
+              "it-6trf6-54f",
+              "it-7eime-54g"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3770,
+            "newItems": [
+              "it-3xv6h-54h",
+              "it-1cf59-54i",
+              "it-7lid7-54j",
+              "it-9nvl2-54k",
+              "it-17y9b-54l",
+              "it-4heq7-54m"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 4200,
+            "newItems": [
+              "it-1jqj9-54n",
+              "it-21w3l-54o",
+              "it-1y5al-54p",
+              "it-12vz-54q",
+              "it-4m6nx-54r",
+              "it-7mdho-54s",
+              "it-2ciy0-54t",
+              "it-5q3dw-54u",
+              "it-850od-54v",
+              "it-3pguu-54w",
+              "it-5nvam-54x",
+              "it-3280q-54y",
+              "it-7nx88-54z",
+              "it-6wc4c-550",
+              "it-a8su-551",
+              "it-13jn1-552",
+              "it-359hs-553",
+              "it-71dew-554",
+              "it-ekbq-555",
+              "it-6jx2w-556",
+              "it-3rlhz-557",
+              "it-2gse8-558",
+              "it-3edif-559",
+              "it-3oewd-55a",
+              "it-27lw5-55b",
+              "it-953qo-55c",
+              "it-9dtgf-55d",
+              "it-2r8pa-55e",
+              "it-8ar85-55f",
+              "it-70bhp-55g",
+              "it-6x9px-55h",
+              "it-1bcbp-55i",
+              "it-9kj7t-55j",
+              "it-74pms-55k",
+              "it-a3yv-55l",
+              "it-2l2u8-55m",
+              "it-8cy2u-55n",
+              "it-79ibt-55o",
+              "it-1qavj-55p",
+              "it-26lxf-55q",
+              "it-4gstg-55r",
+              "it-4pyrj-55s",
+              "it-7g5xs-55t",
+              "it-1kebg-55u",
+              "it-5hsoj-55v",
+              "it-5tyhw-55w",
+              "it-70hd8-55x",
+              "it-162wj-55y",
+              "it-8aobo-55z",
+              "it-9ihde-560",
+              "it-7rdw0-561",
+              "it-r1on-562",
+              "it-91irb-563",
+              "it-12uhx-564",
+              "it-33by9-565",
+              "it-2hp0z-566",
+              "it-1q7ft-567",
+              "it-5e0we-568",
+              "it-27hk5-569",
+              "it-5fcqa-56a",
+              "it-4wlkt-56b",
+              "it-1x2el-56c",
+              "it-7azgp-56d",
+              "it-6fh82-56e",
+              "it-40q7s-56f",
+              "it-5jj9m-56g",
+              "it-s3gt-56h",
+              "it-8bohb-56i",
+              "it-lwl3-56j",
+              "it-88gch-56k"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 4650,
+            "newItems": [
+              "it-2kcog-56l",
+              "it-7dt4j-56m",
+              "it-216xx-56n",
+              "it-3z59w-56o",
+              "it-udwo-56p",
+              "it-49gb5-56q",
+              "it-1vlr4-56r",
+              "it-tm6y-56s",
+              "it-32rk3-56t",
+              "it-9tk3k-56u",
+              "it-1mbhm-56v",
+              "it-8wg5g-56w",
+              "it-19anw-56x",
+              "it-8j6yq-56y",
+              "it-pbvh-56z",
+              "it-9mkt2-570",
+              "it-30gyy-571",
+              "it-785oq-572",
+              "it-1yqk6-573",
+              "it-vqgf-574",
+              "it-3uodt-575",
+              "it-8873p-576",
+              "it-9xlye-577",
+              "it-1vrav-578",
+              "it-8td2i-579",
+              "it-4hdfe-57a",
+              "it-5brze-57b",
+              "it-nxjv-57c",
+              "it-c0tj-57d",
+              "it-748ho-57e"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "complete"
+    },
+    {
+      "alias": "great-marsh",
+      "ordinal": 264,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3480,
+            "newItems": [
+              "it-8fgh1-57f",
+              "it-4s6jt-57g",
+              "it-2a21n-57h",
+              "it-5lxb3-57i",
+              "it-8r9xi-57j",
+              "it-523ei-57k",
+              "it-7zv5k-57l"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3900,
+            "newItems": [
+              "it-72j8l-57m",
+              "it-4jntg-57n",
+              "it-45rqa-57o",
+              "it-gavb-57p",
+              "it-5ikbu-57q"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 4340,
+            "newItems": [
+              "it-62mbd-57r",
+              "it-5gw1z-57s",
+              "it-7uapj-57t",
+              "it-as2g-57u"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 4800,
+            "newItems": [
+              "it-2uxtv-57v",
+              "it-4ng4e-57w",
+              "it-58cpw-57x",
+              "it-k4n0-57y",
+              "it-dn6x-57z",
+              "it-2b7dy-580",
+              "it-6gjr7-581",
+              "it-12kbm-582",
+              "it-8b0uc-583",
+              "it-7rptz-584",
+              "it-1fab9-585",
+              "it-1i8bg-586",
+              "it-fapg-587",
+              "it-98scc-588",
+              "it-92zp7-589",
+              "it-89nyn-58a",
+              "it-8kbx6-58b",
+              "it-1y2yd-58c",
+              "it-77biq-58d",
+              "it-9y9p7-58e",
+              "it-2szkd-58f",
+              "it-784hm-58g",
+              "it-vupt-58h",
+              "it-m4g3-58i",
+              "it-4bnjg-58j",
+              "it-80p4y-58k",
+              "it-45pep-58l",
+              "it-4lnps-58m",
+              "it-7th7i-58n",
+              "it-3yffq-58o",
+              "it-6ctm3-58p",
+              "it-9p8wr-58q",
+              "it-59mdv-58r",
+              "it-1jn28-58s",
+              "it-3nqce-58t",
+              "it-6iweb-58u",
+              "it-2zx56-58v",
+              "it-1g1g6-58w",
+              "it-6larl-58x",
+              "it-46smz-58y",
+              "it-8om22-58z",
+              "it-7v25c-590",
+              "it-5wevh-591",
+              "it-5rvlj-592",
+              "it-2w9mw-593",
+              "it-1nqxu-594",
+              "it-99bt3-595",
+              "it-7itp1-596",
+              "it-9msgp-597",
+              "it-8pja5-598",
+              "it-76pbe-599",
+              "it-4aa6w-59a",
+              "it-841mf-59b",
+              "it-9v9il-59c",
+              "it-6lys1-59d",
+              "it-c0rw-59e",
+              "it-364ax-59f",
+              "it-6vnox-59g",
+              "it-7klqk-59h",
+              "it-5dkrn-59i",
+              "it-6ldxh-59j",
+              "it-4yzpr-59k",
+              "it-2wyh1-59l",
+              "it-377j9-59m",
+              "it-6xqnd-59n",
+              "it-2h0gt-59o",
+              "it-32g7n-59p",
+              "it-70gug-59q",
+              "it-48ftv-59r",
+              "it-7nbf9-59s",
+              "it-731zv-59t",
+              "it-1x7fi-59u",
+              "it-prle-59v",
+              "it-9k0xa-59w",
+              "it-62wr6-59x"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5280,
+            "newItems": [
+              "it-3ngg6-59y",
+              "it-5b25l-59z",
+              "it-3t880-5a0",
+              "it-6qbvq-5a1",
+              "it-942r1-5a2",
+              "it-yoak-5a3",
+              "it-2whvv-5a4",
+              "it-5yilu-5a5",
+              "it-w9xz-5a6",
+              "it-8uig5-5a7",
+              "it-1xffv-5a8",
+              "it-352ty-5a9",
+              "it-9d9u4-5aa",
+              "it-6d5fh-5ab",
+              "it-6yaw-5ac",
+              "it-77upi-5ad",
+              "it-6jaa0-5ae",
+              "it-8957c-5af",
+              "it-8z0x0-5ag",
+              "it-33u7g-5ah",
+              "it-8hpsb-5ai",
+              "it-3u7lr-5aj",
+              "it-7pfgk-5ak",
+              "it-9ox-5al",
+              "it-7ctad-5am",
+              "it-2jghh-5an",
+              "it-9pgv3-5ao",
+              "it-u0yz-5ap"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "complete"
+    },
+    {
+      "alias": "flayer-jungle",
+      "ordinal": 265,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 4160,
+            "newItems": [
+              "it-2hlz3-5aq",
+              "it-8ubuq-5ar",
+              "it-72pcm-5as",
+              "it-7ea0g-5at",
+              "it-6tjbf-5au",
+              "it-4ykms-5av",
+              "it-8wa0b-5aw",
+              "it-2r5s1-5ax",
+              "it-4jk2r-5ay"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 4480,
+            "newItems": [
+              "it-3btsi-5az",
+              "it-51ok6-5b0",
+              "it-3j39c-5b1"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5100,
+            "newItems": [
+              "it-72l6y-5b2",
+              "it-3imbn-5b3",
+              "it-3wuly-5b4",
+              "it-8tqxz-5b5",
+              "it-8agoo-5b6",
+              "it-4tu2-5b7",
+              "it-17ji7-5b8",
+              "it-5reqv-5b9",
+              "it-1bno6-5ba",
+              "it-3ggs8-5bb",
+              "it-38qqs-5bc",
+              "it-2izws-5bd",
+              "it-5wlf2-5be",
+              "it-6u8gr-5bf",
+              "it-946cc-5bg",
+              "it-998py-5bh",
+              "it-34dmv-5bi",
+              "it-6wmsx-5bj",
+              "it-3uhuv-5bk",
+              "it-95904-5bl",
+              "it-4caaf-5bm",
+              "it-6agst-5bn",
+              "it-1fthw-5bo",
+              "it-7a6dv-5bp",
+              "it-5fvmf-5bq",
+              "it-8tkai-5br",
+              "it-8k2g3-5bs",
+              "it-hm9n-5bt",
+              "it-2nm73-5bu"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "nonwin",
+          "delta": {
+            "xp": 0,
+            "newItems": []
+          }
+        }
+      ],
+      "outcome": "nonwin"
+    }
+  ],
+  "outcome": "nonwin",
+  "status": "observed",
+  "finalOrdinal": 266,
+  "ownedBefore": 6629,
+  "ownedAfter": 6906,
+  "totalXP": 58370
+}
