@@ -34,6 +34,27 @@ its own ordinal272→273; none becomes the genuine campaign save. Zero browser /
 console errors. The rebuild emits the same four named production JS chunks as
 the tested Holy Freeze build; five forbidden bridge-token checks pass.
 
+The original terminal DOM contains only the last200log rows. It therefore
+proves equality of that visible suffix, not a complete event transcript. The
+original report remains unchanged. A subsequent `trace-v2` extension observes
+newly mounted log rows from before entry through the original terminal in each
+of four new isolated contexts. All **215messages** match in exact order across
+ordinary/accelerated pairs and against the native production recording. That
+recording has312events, including non-rendered resource/status transport, with
+an authoritative terminal simulation time of6000ms in both modes. The native
+scheduler's summed presentation delays are6240ms; presentation and simulation
+time remain distinct. All four complete saves and initial/terminal views match
+within each mode, all contexts close, and no browser/console errors occur.
+
+The extension's complete traces, raw native events, timestamp groups and scripts
+are preserved under `fixtures/native-clock-equivalence/trace-v2/`; raw files
+remain under the corresponding task-local `clock-preparation/trace-v2` path.
+This closes the200-row observation gap for the short fixture. It does not claim
+universal timer/bonus equivalence or final pacing acceptance. The subsequent
+frozen earned batch uses the same production scheduler, zero offline-bonus
+window, fixed historical Date and100ms `runFor` steps; every original terminal
+and settlement is observed and retained without Skip or gameplay replay.
+
 The requested virtual UI advance is7600ms manual /7500ms idle. Neither virtual
 UI wait nor execution wall time is a combat/economic-duration measurement.
 The pure deterministic combat timeline remains authoritative for simulated
