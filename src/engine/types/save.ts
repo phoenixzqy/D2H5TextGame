@@ -7,6 +7,8 @@ import type { HistoricalItem } from '../save/historical-items';
 import type { QuestServiceLedger } from '../services/quest-services';
 import { migrateSaveV19 } from '../save/migrate-v19';
 import { migrateSaveV21 } from '../save/migrate-v21';
+import { migrateSaveV22 } from '../save/migrate-v22';
+import type { PlayerAuraId } from './auras';
 import type { RespecsRemaining } from '../progression/respec';
 import { migrateSaveV20 } from '../save/migrate-v20';
 import type { EndgameState } from '../endgame/types';
@@ -26,7 +28,7 @@ import type { MaterialRecoveryEntry } from '../crafting/material-actions';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 21;
+export const CURRENT_SAVE_VERSION = 22;
 
 /**
  * Save file version (most recent).
@@ -103,7 +105,10 @@ export type LegacyMercenary = Omit<Mercenary, 'derivedStats' | 'equipment'> & {
 };
 
 /** Actor payloads retain the historical equipment contract through v18. */
-export type HistoricalPlayer = Omit<Player, 'equipment' | 'respecsRemaining'> & { readonly equipment: readonly HistoricalItem[] };
+export type HistoricalPlayer = Omit<Player, 'equipment' | 'respecsRemaining' | 'selectedAuraId'> & {
+  readonly equipment: readonly HistoricalItem[];
+  readonly selectedAuraId?: 'paladin.might' | 'paladin.meditation';
+};
 export type HistoricalMercenary = Omit<Mercenary, 'equipment'> & { readonly equipment: readonly HistoricalItem[] };
 
 /**
@@ -394,7 +399,12 @@ export interface SaveV21 extends Omit<SaveV20, 'version' | 'player'> {
   readonly version: 21;
   readonly player: SaveV20['player'] & { readonly respecsRemaining: RespecsRemaining };
 }
-export type SaveCurrent = SaveV21;
+/** Native v22 widens only the canonical player selection domain; effects remain transient. */
+export interface SaveV22 extends Omit<SaveV21, 'version' | 'player'> {
+  readonly version: 22;
+  readonly player: Omit<SaveV21['player'], 'selectedAuraId'> & { readonly selectedAuraId?: PlayerAuraId };
+}
+export type SaveCurrent = SaveV22;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -604,5 +614,6 @@ export const MIGRATIONS: Record<number, Migration> = {
   /** Decode validates frozen18 before the lossless canonical conversion. */
   19: (raw: unknown): SaveV19 => migrateSaveV19(raw as SaveV18),
   20: (raw: unknown): SaveV20 => migrateSaveV20(raw as SaveV19),
-  21: (raw: unknown): SaveV21 => migrateSaveV21(raw as SaveV20)
+  21: (raw: unknown): SaveV21 => migrateSaveV21(raw as SaveV20),
+  22: (raw: unknown): SaveV22 => migrateSaveV22(raw as SaveV21)
 };

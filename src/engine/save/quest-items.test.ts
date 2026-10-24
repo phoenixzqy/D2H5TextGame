@@ -142,7 +142,7 @@ describe('v12 source-bound quest item ledger', () => {
     }
   );
   it('emits a required empty ledger for a trusted legacy builder input', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(21);
+    expect(CURRENT_SAVE_VERSION).toBe(22);
     expect(sampleSave().inventory).toHaveProperty('questItems', {});
   });
 

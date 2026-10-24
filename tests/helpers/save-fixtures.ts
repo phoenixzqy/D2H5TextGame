@@ -1,17 +1,26 @@
 import type { Item } from '../../src/engine/types/items';
 import type { HistoricalItem } from '../../src/engine/save/historical-items';
-import type { SaveCurrent, LegacyGearQuarantineEntry } from '../../src/engine/types/save';
+import type { SaveCurrent, LegacyGearQuarantineEntry, HistoricalPlayer, CampaignMapSaveData } from '../../src/engine/types/save';
 import { emptyEndgameState } from '../../src/engine/endgame/state';
+import type { PlayerAuraId } from '../../src/engine/types/auras';
 
 /** Historical save roots never contain the new durable endgame namespace. */
-export function withoutV20Fields<T extends { endgame?: unknown; map: SaveCurrent['map']; player: { respecsRemaining?: unknown } }>(save: T) {
-  const { endgame: _endgame, ...historical } = save;
+export function withoutV20Fields<T extends { endgame?: unknown; map: SaveCurrent['map']; player: { respecsRemaining?: unknown; selectedAuraId?: PlayerAuraId } }>(save: T):
+  Omit<T, 'endgame' | 'player' | 'map'> & {
+    player: Omit<T['player'], 'respecsRemaining' | 'selectedAuraId'> & Pick<HistoricalPlayer, 'selectedAuraId'>;
+    map: Omit<T['map'], 'selectedTitle'> & Pick<CampaignMapSaveData, 'selectedTitle'>;
+  } {
+  const { endgame: _endgame, player: _player, map: _map, ...historical } = save;
   const selectedTitle = save.map.selectedTitle;
   if (selectedTitle !== null && selectedTitle !== 'titles/slayer_of_baal') {
     throw new Error('An achievement title has no historical representation');
   }
-  const { respecsRemaining: _counts, ...player } = save.player;
-  return { ...historical, player, map: { ...save.map, selectedTitle } };
+  const { respecsRemaining: _counts, selectedAuraId, ...player } = save.player as T['player'];
+  if (selectedAuraId !== undefined && selectedAuraId !== 'paladin.might' && selectedAuraId !== 'paladin.meditation') {
+    throw new Error('Aura selection has no historical representation');
+  }
+  return { ...historical, player: { ...player, ...(selectedAuraId !== undefined ? { selectedAuraId } : {}) },
+    map: { ...(save.map as T['map']), selectedTitle } };
 }
 
 /** Remove current-only state before constructing a genuine v18 or earlier fixture. */
@@ -98,7 +107,13 @@ export function withV21Defaults<T extends { version: number; player: object }>(s
   return { ...rest, version: 21 as const, player: { ...player, respecsRemaining: { stat: 3, skill: 3 } } };
 }
 
+/** v21→22 changes only the version; no inferred selection, resources or allowances. */
+export function withV22Defaults<T extends { version: number }>(save: T) {
+  const { version: _version, ...unchanged } = save;
+  return { ...unchanged, version: 22 as const };
+}
+
 /** Older fixture expectations explicitly compose every added empty ownership domain. */
 export function withCurrentDefaults<T extends { inventory: object; map: object; player: object }>(save: T) {
-  return withV21Defaults(withV20Defaults(withV19Defaults(save)));
+  return withV22Defaults(withV21Defaults(withV20Defaults(withV19Defaults(save))));
 }

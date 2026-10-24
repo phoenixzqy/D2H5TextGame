@@ -6,6 +6,7 @@
 import type { CoreStats, DerivedStats } from './attributes';
 import type { StatusEffect, CooldownState, SkillDef } from './skills';
 import type { Item } from './items';
+import type { PlayerAuraId } from './auras';
 
 /**
  * Team enumeration
@@ -82,7 +83,7 @@ export interface Player extends Unit {
   readonly skillLevels?: Readonly<Record<string, number>>;
 
   /** Explicit canonical player aura selection. Absence means None; learning never selects. */
-  readonly selectedAuraId?: 'paladin.might' | 'paladin.meditation';
+  readonly selectedAuraId?: PlayerAuraId;
   
   /** Independent town-reset allowances; absent only in trusted pre-v21 runtime input. */
   readonly respecsRemaining?: Readonly<{ stat: number; skill: number }>;

@@ -1,3 +1,4 @@
+import type { PlayerAuraId } from '../types/auras';
 import { withoutV17Fields, withCurrentDefaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import { deriveStats } from '../progression/stats';
@@ -51,7 +52,7 @@ const malformedSelections: readonly unknown[] = [
 
 describe('D05 v11 exclusive selected aura save boundary', () => {
   it('retains the v11 contract and its migrations with the current receipt format', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(21);
+    expect(CURRENT_SAVE_VERSION).toBe(22);
     for (const version of [8, 9, 10, 11]) expect(MIGRATIONS[version]).toBeDefined();
   });
 
@@ -196,8 +197,8 @@ describe('D05 native Maps and genuine historical migration', () => {
 describe('D05 Meditation v11 acceptance and frozen historical v10', () => {
   it('freezes the historical v10 selection type while widening live and current selection', () => {
     expectTypeOf<SaveV10['player']['selectedAuraId']>().toEqualTypeOf<'paladin.might' | undefined>();
-    expectTypeOf<Player['selectedAuraId']>().toEqualTypeOf<'paladin.might' | 'paladin.meditation' | undefined>();
-    expectTypeOf<SaveCurrent['player']['selectedAuraId']>().toEqualTypeOf<'paladin.might' | 'paladin.meditation' | undefined>();
+    expectTypeOf<Player['selectedAuraId']>().toEqualTypeOf<PlayerAuraId | undefined>();
+    expectTypeOf<SaveCurrent['player']['selectedAuraId']>().toEqualTypeOf<PlayerAuraId | undefined>();
   });
   it.each([11, CURRENT_SAVE_VERSION].flatMap(version =>
     ['paladin.might', 'paladin.meditation'].map(selectedAuraId => ({ version, selectedAuraId }))))(

@@ -36,7 +36,7 @@ export function expectedCurrentV20(witness: SaveV17): SaveCurrent {
     ...witness.mercs.ownedMercs.flatMap(merc => merc.equipment)];
   for (const item of items) assert.ok(!('runes' in item) && !('socketContents' in item) && !('runewordId' in item),
     'Historical lineage adapter supports only original unsocketed gear');
-  return structuredClone({ ...witness, version: 21, endgame: emptyEndgameState(),
+  return structuredClone({ ...witness, version: 22, endgame: emptyEndgameState(),
     inventory: { ...witness.inventory, materials: {}, socketQuarantine: [], materialActionOrdinal: 0 },
     player: { ...witness.player, respecsRemaining: { stat: 3, skill: 3 }, equipment: Object.values(witness.inventory.equipped).filter(present) },
     mercs: { ...witness.mercs, ownedMercs: witness.mercs.ownedMercs.map(merc => ({ ...merc,
@@ -56,7 +56,7 @@ export function historicalV17EarnedState(state: EarnedState, witness: SaveV17) {
   const { latestMaterialAction: _receipt, ...inventory } = state.inventory;
   assert.deepEqual(state.map.endgame, emptyEndgameState(), 'Historical lineage cannot discard endgame progress');
   const { endgame, ...map } = state.map;
-  const historical = historicalV17Save({ version: 21, endgame, timestamp: witness.timestamp,
+  const historical = historicalV17Save({ version: 22, endgame, timestamp: witness.timestamp,
     player: { ...state.player.player, respecsRemaining: readRespecsRemaining(state.player.player, true) }, inventory, mercs: state.merc, map,
     meta: { settings: state.meta.settings, idleState: state.meta.idleState, gachaState: state.meta.gachaState },
     formation: state.formation }, witness);
