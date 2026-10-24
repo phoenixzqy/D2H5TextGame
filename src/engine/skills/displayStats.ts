@@ -16,6 +16,7 @@ import { getSummonStats } from './summons';
 import { applySkeletonMasteryStats, type SkeletonMasteryProjection } from './skeleton-mastery';
 import { applyIronGolemItemStats, isIronGolemSkill, type IronGolemInput } from './iron-golem';
 import { applyGolemMasteryStats, type GolemMasteryProjection } from './golem-mastery';
+import { applySummonPassiveStats, type SummonPassiveProjection } from './summon-passives';
 
 export interface DisplaySkillSource {
   readonly coldMastery?: ColdMasteryTuning;
@@ -95,7 +96,7 @@ export interface SkillDamageDisplayRow {
 }
 
 export interface SkillSummonStatDisplayRow {
-  readonly id: 'lifeMax' | 'attack' | 'defense' | 'attackSpeed' | 'physDodge' | 'magicDodge';
+  readonly id: 'lifeMax' | 'attack' | 'defense' | 'attackSpeed' | 'physDodge' | 'magicDodge' | 'physicalResistance' | 'fireResistance' | 'coldResistance' | 'lightningResistance' | 'arcaneResistance' | 'poisonResistance';
   readonly labelKey: string;
   readonly value: number;
   readonly valueKind: 'flat' | 'percent';
@@ -209,7 +210,8 @@ function summonUnit(
   rank: number,
   mastery: SkeletonMasteryProjection | undefined,
   ironGolem: Pick<IronGolemInput, 'life' | 'attack' | 'defense'> | undefined,
-  golemMastery: GolemMasteryProjection | undefined
+  golemMastery: GolemMasteryProjection | undefined,
+  global: SummonPassiveProjection | undefined
 ): SkillSummonDisplayStats | undefined {
   const summonId = inferSummonId(skill);
   if (!summonId) return undefined;
@@ -222,11 +224,13 @@ function summonUnit(
     (skill.id === 'skills-necromancer-raise-skeleton' || skill.id === 'necromancer.raise_skeleton')) ||
     (skill.summonId === 'skeletal_mage' &&
       (skill.id === 'skills-necromancer-raise-skeletal-mage' || skill.id === 'necromancer.raise_skeletal_mage'));
+  let baseline = baseStats;
   let stats = receivesMastery ? applySkeletonMasteryStats(baseStats, mastery) : baseStats;
   if (ironGolem !== undefined && skill.summonId === 'iron_golem' && isIronGolemSkill(skill)) {
     const inherited = applyIronGolemItemStats(baseStats, ironGolem);
     if (!inherited) return undefined;
     stats = inherited;
+    baseline = inherited;
   }
   const exactGolem = ['clay', 'blood', 'iron', 'fire'].some(type =>
     skill.summonId === `${type}_golem` &&
@@ -236,10 +240,22 @@ function summonUnit(
     if (!empowered) return undefined;
     stats = empowered;
   }
+  const exactNecromancer = receivesMastery || exactGolem || (summonId === 'revived' &&
+    (skill.id === 'skills-necromancer-revive' || skill.id === 'necromancer.revive'));
+  if (exactNecromancer) {
+    const combined = applySummonPassiveStats(baseline, stats, summonId, global);
+    if (!combined) return undefined;
+    stats = combined;
+  }
+  const resistanceRows: SkillSummonStatDisplayRow[] = exactNecromancer && global?.resistRank
+    ? (['physical', 'fire', 'cold', 'lightning', 'arcane', 'poison'] as const).map(type => ({
+      id: `${type}Resistance`, labelKey: `details.summonStat.${type}Resistance`,
+      value: stats.resistances[type] / 100, valueKind: 'percent' })) : [];
   return {
     summonId,
     nameKey: `details.summonName.${summonId}`,
     stats: [
+      ...resistanceRows,
       { id: 'lifeMax', labelKey: 'details.summonStat.lifeMax', value: stats.lifeMax, valueKind: 'flat' },
       { id: 'attack', labelKey: 'details.summonStat.attack', value: stats.attack, valueKind: 'flat' },
       { id: 'defense', labelKey: 'details.summonStat.defense', value: stats.defense, valueKind: 'flat' },
@@ -325,7 +341,8 @@ export function computeSkillRankDisplayStats(
   rank: number,
   mastery?: SkeletonMasteryProjection,
   ironGolem?: Pick<IronGolemInput, 'life' | 'attack' | 'defense'>,
-  golemMastery?: GolemMasteryProjection
+  golemMastery?: GolemMasteryProjection,
+  global?: SummonPassiveProjection
 ): SkillRankDisplayStats {
   const safeRank = clampRank(rank, skill.maxLevel);
   const damage = damageRows(skill, safeRank);
@@ -336,7 +353,7 @@ export function computeSkillRankDisplayStats(
       }
     : undefined;
   const resolvedSummonCap = summonCap(skill, safeRank);
-  const resolvedSummonUnit = summonUnit(skill, safeRank, mastery, ironGolem, golemMastery);
+  const resolvedSummonUnit = summonUnit(skill, safeRank, mastery, ironGolem, golemMastery, global);
   const utility = passiveUtilityRows(skill, safeRank);
   const manaCost = scaleCost(skill.cost?.mana, skill.scaling?.costPerLevel ?? 0, safeRank);
   const lifeCost = scaleCost(skill.cost?.life, skill.scaling?.costPerLevel ?? 0, safeRank);
@@ -362,7 +379,8 @@ export function computeSkillDisplayModel(
   allocatedLevel: number,
   mastery?: SkeletonMasteryProjection,
   ironGolem?: Pick<IronGolemInput, 'life' | 'attack' | 'defense'>,
-  golemMastery?: GolemMasteryProjection
+  golemMastery?: GolemMasteryProjection,
+  global?: SummonPassiveProjection
 ): SkillDisplayModel {
   const maxLevel = Math.max(1, Math.floor(skill.maxLevel));
   const allocated = Math.max(0, Math.floor(allocatedLevel));
@@ -375,8 +393,8 @@ export function computeSkillDisplayModel(
     maxLevel,
     displayRank,
     ...(nextRank !== undefined ? { nextRank } : {}),
-    ...(allocated > 0 ? { current: computeSkillRankDisplayStats(skill, displayRank, mastery, ironGolem, golemMastery) } : {}),
-    ...(nextRank !== undefined ? { next: computeSkillRankDisplayStats(skill, nextRank, mastery, ironGolem, golemMastery) } : {}),
+    ...(allocated > 0 ? { current: computeSkillRankDisplayStats(skill, displayRank, mastery, ironGolem, golemMastery, global) } : {}),
+    ...(nextRank !== undefined ? { next: computeSkillRankDisplayStats(skill, nextRank, mastery, ironGolem, golemMastery, global) } : {}),
     maxed
   };
 }

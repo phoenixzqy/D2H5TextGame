@@ -105,6 +105,12 @@
     "summonCap": "Summon Cap",
     "summonedUnit": "Summoned Unit",
     "summonStat": {
+      "physicalResistance": "Physical Resistance",
+      "fireResistance": "Fire Resistance",
+      "coldResistance": "Cold Resistance",
+      "lightningResistance": "Lightning Resistance",
+      "arcaneResistance": "Arcane Resistance",
+      "poisonResistance": "Poison Resistance",
       "lifeMax": "Life",
       "attack": "Attack",
       "defense": "Defense",
@@ -707,7 +713,7 @@
     },
     "summon-mastery": {
       "name": "Summon Mastery",
-      "desc": "Increases minion HP and damage by 50%."
+      "desc": "Automatically grants newly created skeletons, skeletal mages, golems and revived minions +{{life}}% maximum life and +{{attack}}% Attack per allocated rank. Adds to local mastery bonuses. Necromancer only, level {{level}}; maximum {{cap}} ranks. Applies from the next wave; existing summons stay unchanged."
     },
     "poison-mastery": {
       "name": "Poison and Bone Mastery",
@@ -763,7 +769,7 @@
     },
     "summon-resist": {
       "name": "Summon Resist",
-      "desc": "Increases the resistances of summoned creatures."
+      "desc": "Automatically grants newly created skeletons, skeletal mages, golems and revived minions +{{resist}} percentage points to physical, fire, cold, lightning, arcane and poison resistance per allocated rank. Requires Golem Mastery and its Clay Golem prerequisite. Necromancer only, level {{level}}; maximum {{cap}} ranks. Applies from the next wave; existing summons stay unchanged."
     },
     "iron-golem": {
       "name": "Iron Golem",

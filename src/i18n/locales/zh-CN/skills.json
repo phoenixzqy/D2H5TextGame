@@ -105,6 +105,12 @@
     "summonCap": "召唤上限",
     "summonedUnit": "召唤单位",
     "summonStat": {
+      "physicalResistance": "物理抗性",
+      "fireResistance": "火焰抗性",
+      "coldResistance": "冰冷抗性",
+      "lightningResistance": "闪电抗性",
+      "arcaneResistance": "奥术抗性",
+      "poisonResistance": "毒素抗性",
       "lifeMax": "生命",
       "attack": "攻击",
       "defense": "防御",
@@ -707,7 +713,7 @@
     },
     "summon-mastery": {
       "name": "召唤精通",
-      "desc": "随从生命与伤害 +50%。"
+      "desc": "自动生效：每级投入使新召唤的骷髅、骷髅法师、魔像和复生随从最大生命提高{{life}}%、攻击提高{{attack}}%，与对应精通加成相加。仅限死灵法师，角色{{level}}级解锁，最高{{cap}}级。从下一波起生效，已有召唤物保持不变。"
     },
     "poison-mastery": {
       "name": "毒素与骨之精通",
@@ -763,7 +769,7 @@
     },
     "summon-resist": {
       "name": "召唤抵抗",
-      "desc": "增加被召唤生物的抗性。"
+      "desc": "自动生效：每级投入使新召唤的骷髅、骷髅法师、魔像和复生随从的物理、火焰、冰冷、闪电、奥术、毒素抗性各提高{{resist}}个百分点。需要魔像精通及其黏土魔像前置。仅限死灵法师，角色{{level}}级解锁，最高{{cap}}级。从下一波起生效，已有召唤物保持不变。"
     },
     "iron-golem": {
       "name": "钢铁石魔",

@@ -49,6 +49,7 @@ import { BARBARIAN_WEAPON_MASTERY_DEFINITIONS, BARBARIAN_WEAPON_MASTERY_IDENTITI
 import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
 import { GOLEM_MASTERY_DEFINITION, composeGolemMastery, resolveGolemMasteryRank } from '@/engine/skills/golem-mastery';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
+import { composeSummonPassives, SUMMON_PASSIVE_IDENTITIES, SUMMON_PASSIVE_DEFINITIONS } from '@/engine/skills/summon-passives';
 import { DAMAGE_MASTERY_DEFINITIONS, DAMAGE_MASTERY_IDENTITIES } from '@/engine/skills/damage-masteries';
 import { COLD_MASTERY_DEFINITION, coldMasteryReductionAtRank, resolveColdMasteryRank } from '@/engine/skills/cold-mastery';
 import { resolveStaticFieldRank } from '@/engine/skills/static-field';
@@ -206,7 +207,8 @@ export function SkillsScreen() {
   const activeModel = activeSkill
     ? computeSkillDisplayModel(activeSkill, allocatedSkills.get(activeSkill.id) ?? 0,
       player ? composeSkeletonMastery(player) : undefined, undefined,
-      player ? composeGolemMastery(player) : undefined)
+      player ? composeGolemMastery(player) : undefined,
+      player ? composeSummonPassives(player) : undefined)
     : null;
   const activeLocked = activeSkill ? isSkillLocked(activeSkill, playerLevel, allocatedSkills) : false;
   const activeCanAllocate = Boolean(
@@ -1151,6 +1153,15 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
+  for (const key of ['mastery', 'resist'] as const) {
+    if (skill.id === SUMMON_PASSIVE_IDENTITIES[key][0]) {
+      const { lifePerRank, attackPerRank, resistPerRank, requiredLevel, maxRank } = SUMMON_PASSIVE_DEFINITIONS[key];
+      return t('necromancer.' + (key === 'mastery' ? 'summon-mastery' : 'summon-resist') + '.desc', {
+        life: lifePerRank * 100, attack: attackPerRank * 100, resist: resistPerRank * 100,
+        level: requiredLevel, cap: maxRank,
+      });
+    }
+  }
   for (const key of ['poison', 'elemental'] as const) {
     const { authored, classId } = DAMAGE_MASTERY_IDENTITIES[key];
     if (skill.id === authored) {
