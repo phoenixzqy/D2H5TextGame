@@ -1,0 +1,23 @@
+{
+  "runtime": "1b937672fc4a8bd8b2ba85f175a273b57f252086",
+  "inputRawSHA256": "6ba04b90d68a5e5c8185289fa57e7fa0631e82e6d15fde9c0bf7c32f0dfc8974",
+  "kind": "isolated production-engine/native projections; no campaign state promotion",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-radament-damage-kh5jm65l",
+  "independentAcceptance": "pending",
+  "files": {
+    "engine-screen-joint.json.gz": {
+      "gzipSHA256": "f187b6e0e09fa6f222ec878b077fe9379d506d91c0af2a58cc219187c2bfc16d",
+      "rawSHA256": "fed6334d176a556940fa46fb213bd0f6fb31c6de628a871017b06654dbdf48a0",
+      "rawBytes": 68685
+    },
+    "native-screen.json.gz": {
+      "gzipSHA256": "e425dc28543b6403c21fd1b06fc12416f39ab07a2568376096daf8fc8b05cb8d",
+      "rawSHA256": "5a50bf51c1c4ce18cda2fc7609a75c294e34c9aeeae3587cea8c977e2dcd86b6",
+      "rawBytes": 121344
+    }
+  },
+  "executables": {
+    "engine-screen-joint.mjs": "583eb43d577fabd075da96457132428b9abd0923d8a27d9d506f91b7c414403c",
+    "native-screen.mjs": "05ce49e8d8c4ae49313aea71e83a8a3a0b31f59d18692fce5a11d566a0013839"
+  }
+}
