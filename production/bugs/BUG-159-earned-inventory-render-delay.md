@@ -1,6 +1,7 @@
 # BUG-159 — Bound earned inventory rendering
 
-Status: Open; observed during genuine Act III continuation on 2026-10-24.
+Status: Fixed in `bee76a4`; observed during genuine Act III continuation on 2026-10-24.
+Independent acceptance and the broader performance budget remain open.
 Severity: Medium. Waiting allows the action; navigation and feedback budgets fail.
 Owner: root, frontend/performance responsibility; no delegation.
 
@@ -46,3 +47,24 @@ deadline, not a product fix or performance acceptance.
 
 Root retains the raw evidence through dependent campaign/full-v1 consumers
 and owns its eventual cleanup. Genuine saves and this report are retained.
+
+## Resolution
+
+`useInventoryPage.tsx` bounds backpack/stash rendering and backpack upgrade
+comparisons to100 visible items, with bilingual first/previous/direct/next/last
+controls. Each container retains its own page across tabs and clamps after
+removal/import. Full ownership, bulk counts and selected-item actions retain
+their existing store boundaries; paging never mutates save data.
+
+The six new integration regressions fail before the change and pass after it.
+Together with the seven existing grid tests,13/2files pass. Full11664/450 passes
+with two existing skips; typecheck, lint and production build pass.
+
+Production Chromium, en/zh-CN at all five required sizes, verifies100-card
+pages, middle/last item access,44px controls, no horizontal overflow and10exact
+Save-close-Continue pairs. The original Chinese harness locale-equality failure
+is preserved; its correction permits only the actual settings locale change.
+All captured page/console errors are empty. Navigation post-click observations
+are321.4–1119.1ms on the larger18214-item backpack. This is an improvement from
+the historical10661.3ms observation, not a controlled device benchmark or proof
+of the0.5s feedback budget. See [complete evidence](../../docs/plans/evidence/p16-inventory-pagination.md).
