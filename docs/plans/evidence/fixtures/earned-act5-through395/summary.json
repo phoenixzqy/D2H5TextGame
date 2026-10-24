@@ -1,0 +1,82 @@
+{
+  "status": "pass",
+  "kind": "earned Arreat394/Anya prep and one Passage395 with actual terminal retained",
+  "sourceFiles": 1128,
+  "sourceDrift": [],
+  "arreatDiagnostic": {
+    "n": 32,
+    "wins": 32,
+    "secondHalfWins": 16
+  },
+  "passageDiagnostic": {
+    "n": 32,
+    "wins": 26,
+    "secondHalfWins": 13,
+    "draws": 6
+  },
+  "genuineLaunches": [
+    {
+      "ordinal": 394,
+      "area": "arreat-plateau"
+    },
+    {
+      "ordinal": 395,
+      "area": "crystalline-passage"
+    }
+  ],
+  "genuine395Outcome": "earned-act5-area-victory",
+  "PrisonClaimedAndRead": true,
+  "nativeSavedSnapshots": 40,
+  "saveContinuePairs394": [
+    [
+      "002-precombat-saved",
+      "003-precombat-continued"
+    ],
+    [
+      "010-394-won-saved",
+      "011-394-won-continued"
+    ],
+    [
+      "016-prison-prepared-saved",
+      "017-prison-prepared-continued"
+    ]
+  ],
+  "saveContinuePairs395": [
+    [
+      "002-precombat-saved",
+      "003-precombat-continued"
+    ],
+    [
+      "010-395-won-saved",
+      "011-395-won-continued"
+    ],
+    [
+      "012-prison-unclaimed-saved",
+      "013-prison-unclaimed-continued"
+    ],
+    [
+      "015-prison-claimed-unread-saved",
+      "016-prison-claimed-unread-continued"
+    ],
+    [
+      "018-scroll-read-saved",
+      "019-scroll-read-continued"
+    ]
+  ],
+  "ownedBefore": 22407,
+  "ownedFinal": 22719,
+  "newItems": 312,
+  "allAncestorFullPayloadsExact": true,
+  "heroXP394": 48820,
+  "heroXP395": 67260,
+  "PrisonClaimXP": 12000,
+  "totalHeroXP": 116080,
+  "finalLevel": 32,
+  "finalXP": 362722,
+  "finalStatPoints": 5,
+  "finalSkillPoints": 1,
+  "finalMagicResist": 40,
+  "finalNextNormal": 396,
+  "finalRawSHA256": "f95d933cc60c142333d54e9ba3f70ba9280056f3bb625dcdac72ec55bfa2ed34",
+  "limitations": "one English360x640 earned pilot; no C2/full-v1/pacing/class-matrix acceptance; source unchanged; no diagnostic promotion"
+}
