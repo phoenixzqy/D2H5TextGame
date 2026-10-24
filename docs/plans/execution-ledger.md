@@ -10967,3 +10967,34 @@ UI and production play remain next; earnedActsII–V/C2, C3/C4/fullG0–G7 open.
 No remote publication. Exact task-owned dist/validator/draft removed; cleanup
 remaining[]/failures[]. Root retains diagnostic evidence and next-slice plan
 through their consumers in the same exact P18 artifact directory.
+
+
+## P03 — Selected equipment slot and bounded level30 preparation
+
+Local source `59f2590` fixes BUG160: the picker now publishes the exact ring
+slot it compares. The authoritative store validates the optional destination
+against the owned item's base; omitted destinations preserve automatic filling.
+Five causal failures precede the fix;52 focused tests pass, then full11670/451
+with two existing skips in471.30s. Typecheck/full lint/production build pass.
+English/Chinese mobile/desktop4/4 browser cases and12 exact Save-close-Continue
+pairs pass; the artifact audit verifies28 exports and all18957 ancestral item
+payloads.903source/760build hashes and four served bridge-free chunks are exact.
+See [selected-slot evidence](evidence/p03-selected-equipment-slot.md).
+
+The [level30 stat screen](evidence/d11-level30-dexterity-screen.md) retains256
+fixed paired full-area projections. No40/80/120-point Dexterity redistribution
+meets its frozen two-area threshold, so no genuine reset is spent. A separate
+owned-damage heuristic is inconclusive for its intended loadout: it omitted
+hero ring destinations and exposed BUG160. Preserve its original outputs; future
+preparation must use explicit slots and assert complete actual equipment maps.
+
+The genuine campaign remains L30/next369 with unchanged raw save hash and
+stat3/skill0 free resets. No actual preparation, challenge or diagnostic promotion
+occurs in this slice. C0/C1 retain historical acceptance; C2–C4, full213-skill,
+pacing, independent acceptance and G0–G7 remain incomplete. Full-suite timing and
+existing bundle/PWA warnings remain unresolved. All processes are terminal;
+ports4435/4436 closed and both exact owned builds removed. The83-file versioned
+archive is verified. Root retains raw diagnostic evidence in the three named
+subdirectories under `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop`
+through campaign/full-v1 consumers, then removes it. Local only; goal and claimed
+worktree remain active.

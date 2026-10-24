@@ -1,0 +1,426 @@
+{
+  "sourceCommit": "59f2590",
+  "archive": "raw.tar.gz",
+  "archiveBytes": 7690692,
+  "archiveSHA256": "834ba60263b6b32a5d519eb704428df6bb1543626998a4aa03eba4b9f1fb3a3b",
+  "fileCount": 83,
+  "files": [
+    {
+      "path": "dexterity-preparation369/build.log",
+      "bytes": 2492,
+      "sha256": "88757d0bb47e3393d7909e94a8a5e097ff9d2d6c4df16eb8aeba1b19aaa7473c"
+    },
+    {
+      "path": "dexterity-preparation369/cleanup.json",
+      "bytes": 607,
+      "sha256": "9b413755818e53c4f671bd63daff675c0a05fa904993644d5be627bba7c45c36"
+    },
+    {
+      "path": "dexterity-preparation369/freeze.json",
+      "bytes": 204135,
+      "sha256": "6bc38f90d373d53a8aad7e629f8f9613fc127d2642000e48f4f7254c78953ea8"
+    },
+    {
+      "path": "dexterity-preparation369/policy.json",
+      "bytes": 916,
+      "sha256": "cdbab1696a74ec29438920a3c737856cb8fe35eb7c75845ec0d431e5d0bfe611"
+    },
+    {
+      "path": "dexterity-preparation369/screen.json",
+      "bytes": 1986001,
+      "sha256": "51788f27ac935520e2b1a0fd02e823931a8307f8569493a93e90c7a47e36ef23"
+    },
+    {
+      "path": "dexterity-preparation369/screen.log",
+      "bytes": 1145,
+      "sha256": "87c0818cc989bc2c04c49f8aadfaaea633a5458c64f0f64bedb2d8cf99f92cd6"
+    },
+    {
+      "path": "dexterity-preparation369/screen.mjs",
+      "bytes": 4114,
+      "sha256": "d9b2ccd4a7416afb16926499f8e54f6410a55811a919f1f284405c165e5102e0"
+    },
+    {
+      "path": "dexterity-preparation369/selection.json",
+      "bytes": 167,
+      "sha256": "56437b098181ec78f5772653b1a6380b4a3995d6820de072403aaf3b4961b93a"
+    },
+    {
+      "path": "dexterity-preparation369/served.json",
+      "bytes": 471,
+      "sha256": "f1cfd348ce6bf88fd60017c669281638654aed978f485e9fb912445fbe50a2e0"
+    },
+    {
+      "path": "owned-damage369/disposition.json",
+      "bytes": 304,
+      "sha256": "a560d78c4d05831ba2ea74610a2d14a1928090de6839d58028b6971f67af22a1"
+    },
+    {
+      "path": "owned-damage369/policy.json",
+      "bytes": 668,
+      "sha256": "7dcaf2384056217c51ebf8e7040918212f8abf1fe5e80203ea5c44528f988600"
+    },
+    {
+      "path": "owned-damage369/screen.json",
+      "bytes": 150603,
+      "sha256": "a64177723e648ac6d88152dafde0af746d30ae83a5316b9ea6a9e4f459e82e01"
+    },
+    {
+      "path": "owned-damage369/screen.log",
+      "bytes": 5880,
+      "sha256": "a5d2f6327837dbb79ce99a5de92e7e90165b96fb210ac63645751baa97ce1c1b"
+    },
+    {
+      "path": "owned-damage369/screen.mjs",
+      "bytes": 6325,
+      "sha256": "8ed46fc9115f2387bc714b507d5386e21704e6d9e46fd4c584ca5aab7762ba89"
+    },
+    {
+      "path": "ring-slot160/archive.py",
+      "bytes": 2862,
+      "sha256": "698fc6cc4c02552dcc3bcb006f48366dc5070191c1d7e4ba83517c96bf096b7e"
+    },
+    {
+      "path": "ring-slot160/audit.json",
+      "bytes": 371,
+      "sha256": "b0d7de961a2f403e87db507263621725c5a73fe698840ae08c5f251e32512469"
+    },
+    {
+      "path": "ring-slot160/audit.log",
+      "bytes": 371,
+      "sha256": "b0d7de961a2f403e87db507263621725c5a73fe698840ae08c5f251e32512469"
+    },
+    {
+      "path": "ring-slot160/audit.py",
+      "bytes": 2900,
+      "sha256": "d7ebd061084218a9884b7825d2f87e12450b0535d0c8ed15daf5dda25300ea7e"
+    },
+    {
+      "path": "ring-slot160/browser/en-1280/imported.json.gz",
+      "bytes": 189932,
+      "sha256": "fe4b7927c510bded6a826e69a4ad2a7d8bfd263f4c62a08efa5e95851688a28e"
+    },
+    {
+      "path": "ring-slot160/browser/en-1280/left-empty-continued.json.gz",
+      "bytes": 189895,
+      "sha256": "77379bd63b7d0cd55d97c8e8cd2bc776aec12970475660b76fff38e0e7e129ec"
+    },
+    {
+      "path": "ring-slot160/browser/en-1280/left-empty-saved.json.gz",
+      "bytes": 189895,
+      "sha256": "77379bd63b7d0cd55d97c8e8cd2bc776aec12970475660b76fff38e0e7e129ec"
+    },
+    {
+      "path": "ring-slot160/browser/en-1280/right-again-continued.json.gz",
+      "bytes": 189907,
+      "sha256": "6f612ea5f660ee54d5ace6d6d3ad1a847e97d0216ff6eaecfc79b32c1ba7bb19"
+    },
+    {
+      "path": "ring-slot160/browser/en-1280/right-again-preview.png",
+      "bytes": 155391,
+      "sha256": "e5fa630cd202fb4aa4a6e717bbe8d5805f7e2fbee70840b63345366a753836a3"
+    },
+    {
+      "path": "ring-slot160/browser/en-1280/right-again-saved.json.gz",
+      "bytes": 189907,
+      "sha256": "6f612ea5f660ee54d5ace6d6d3ad1a847e97d0216ff6eaecfc79b32c1ba7bb19"
+    },
+    {
+      "path": "ring-slot160/browser/en-1280/right-continued.json.gz",
+      "bytes": 189933,
+      "sha256": "bb80749f2a4d6256e9bba1e19de45400dbc56ffd0bdd19a62e70a81b6bb389d0"
+    },
+    {
+      "path": "ring-slot160/browser/en-1280/right-preview.png",
+      "bytes": 126932,
+      "sha256": "91b7f7ae046ce9876a12541a176bd0f596fe5e2d4cead8f7a8b13aa2dc35918c"
+    },
+    {
+      "path": "ring-slot160/browser/en-1280/right-saved.json.gz",
+      "bytes": 189933,
+      "sha256": "bb80749f2a4d6256e9bba1e19de45400dbc56ffd0bdd19a62e70a81b6bb389d0"
+    },
+    {
+      "path": "ring-slot160/browser/en-360/imported.json.gz",
+      "bytes": 189932,
+      "sha256": "fe4b7927c510bded6a826e69a4ad2a7d8bfd263f4c62a08efa5e95851688a28e"
+    },
+    {
+      "path": "ring-slot160/browser/en-360/left-empty-continued.json.gz",
+      "bytes": 189895,
+      "sha256": "77379bd63b7d0cd55d97c8e8cd2bc776aec12970475660b76fff38e0e7e129ec"
+    },
+    {
+      "path": "ring-slot160/browser/en-360/left-empty-saved.json.gz",
+      "bytes": 189895,
+      "sha256": "77379bd63b7d0cd55d97c8e8cd2bc776aec12970475660b76fff38e0e7e129ec"
+    },
+    {
+      "path": "ring-slot160/browser/en-360/right-again-continued.json.gz",
+      "bytes": 189907,
+      "sha256": "6f612ea5f660ee54d5ace6d6d3ad1a847e97d0216ff6eaecfc79b32c1ba7bb19"
+    },
+    {
+      "path": "ring-slot160/browser/en-360/right-again-preview.png",
+      "bytes": 51181,
+      "sha256": "a013bf05ba9b6692cbdb35d33d809636c7dd3837fc106d8ec3116d9a17114c60"
+    },
+    {
+      "path": "ring-slot160/browser/en-360/right-again-saved.json.gz",
+      "bytes": 189907,
+      "sha256": "6f612ea5f660ee54d5ace6d6d3ad1a847e97d0216ff6eaecfc79b32c1ba7bb19"
+    },
+    {
+      "path": "ring-slot160/browser/en-360/right-continued.json.gz",
+      "bytes": 189933,
+      "sha256": "bb80749f2a4d6256e9bba1e19de45400dbc56ffd0bdd19a62e70a81b6bb389d0"
+    },
+    {
+      "path": "ring-slot160/browser/en-360/right-preview.png",
+      "bytes": 44100,
+      "sha256": "3abcb60dd4ce04791e83cbbd31ecaf73dc31701584a711e07b900160b8acf2f9"
+    },
+    {
+      "path": "ring-slot160/browser/en-360/right-saved.json.gz",
+      "bytes": 189933,
+      "sha256": "bb80749f2a4d6256e9bba1e19de45400dbc56ffd0bdd19a62e70a81b6bb389d0"
+    },
+    {
+      "path": "ring-slot160/browser/report.json",
+      "bytes": 2186,
+      "sha256": "4017c6c3bdf93d4b3168db9d4e544456508e6cdc643e97f723451c787d442dfb"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-1280/imported.json.gz",
+      "bytes": 189936,
+      "sha256": "e010fe49e19dd018b4df11a13eddd518a0ae986efd0b378f4e323927ec92337e"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-1280/left-empty-continued.json.gz",
+      "bytes": 189899,
+      "sha256": "f39acf0cd0980ef24db16f4cd5e0ec9a97b8e4f22083160c5fd5a355d52269af"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-1280/left-empty-saved.json.gz",
+      "bytes": 189899,
+      "sha256": "f39acf0cd0980ef24db16f4cd5e0ec9a97b8e4f22083160c5fd5a355d52269af"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-1280/right-again-continued.json.gz",
+      "bytes": 189910,
+      "sha256": "cbf266e7dc521d162d10782952bb4fa088ba6b00fdbdd08f560197539386309d"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-1280/right-again-preview.png",
+      "bytes": 153404,
+      "sha256": "d059a7ac48485a2f6a68f4e69f3fe7bf78339e18ad16fcae774c2274af34de06"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-1280/right-again-saved.json.gz",
+      "bytes": 189910,
+      "sha256": "cbf266e7dc521d162d10782952bb4fa088ba6b00fdbdd08f560197539386309d"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-1280/right-continued.json.gz",
+      "bytes": 189936,
+      "sha256": "e454f1d9bc7d965488d7a08b63c07a874f1b6164f7f7d47b214033d4681fe5a1"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-1280/right-preview.png",
+      "bytes": 135821,
+      "sha256": "15560faa3d5289e977ab03a3acedb15b2bdbc577e09a71823ce5a34c15cb85ce"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-1280/right-saved.json.gz",
+      "bytes": 189936,
+      "sha256": "e454f1d9bc7d965488d7a08b63c07a874f1b6164f7f7d47b214033d4681fe5a1"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-360/imported.json.gz",
+      "bytes": 189936,
+      "sha256": "e010fe49e19dd018b4df11a13eddd518a0ae986efd0b378f4e323927ec92337e"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-360/left-empty-continued.json.gz",
+      "bytes": 189899,
+      "sha256": "f39acf0cd0980ef24db16f4cd5e0ec9a97b8e4f22083160c5fd5a355d52269af"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-360/left-empty-saved.json.gz",
+      "bytes": 189899,
+      "sha256": "f39acf0cd0980ef24db16f4cd5e0ec9a97b8e4f22083160c5fd5a355d52269af"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-360/right-again-continued.json.gz",
+      "bytes": 189910,
+      "sha256": "cbf266e7dc521d162d10782952bb4fa088ba6b00fdbdd08f560197539386309d"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-360/right-again-preview.png",
+      "bytes": 53149,
+      "sha256": "f46eb52fa9bcd999182dc37d3bdd0871209c2ff302c4c071a7f9e5958d0133b4"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-360/right-again-saved.json.gz",
+      "bytes": 189910,
+      "sha256": "cbf266e7dc521d162d10782952bb4fa088ba6b00fdbdd08f560197539386309d"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-360/right-continued.json.gz",
+      "bytes": 189936,
+      "sha256": "e454f1d9bc7d965488d7a08b63c07a874f1b6164f7f7d47b214033d4681fe5a1"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-360/right-preview.png",
+      "bytes": 53610,
+      "sha256": "74252c0982f5a8894d59a081e47341cfc5bd3d2acf8b8c185c53c3e170fd075b"
+    },
+    {
+      "path": "ring-slot160/browser/zh-CN-360/right-saved.json.gz",
+      "bytes": 189936,
+      "sha256": "e454f1d9bc7d965488d7a08b63c07a874f1b6164f7f7d47b214033d4681fe5a1"
+    },
+    {
+      "path": "ring-slot160/browser.log",
+      "bytes": 208,
+      "sha256": "6395b2413f8988ddf3574c180f0398b0779b48469ac344b08ef9a779decb41ed"
+    },
+    {
+      "path": "ring-slot160/browser.mjs",
+      "bytes": 5712,
+      "sha256": "c96276f02caddfdafa297a981d130ceecdad9b4cf390af7d467a9f7fb3f78496"
+    },
+    {
+      "path": "ring-slot160/build.log",
+      "bytes": 2348,
+      "sha256": "1c88653fd71da0690098c9b5b6c3830b3e42a5f0c8f25863632168c8e4999b47"
+    },
+    {
+      "path": "ring-slot160/cleanup.json",
+      "bytes": 367,
+      "sha256": "345efcb7ea6bf6a6566017ab9a7d744ae2776dda45c647191d0a3bc74b277f3e"
+    },
+    {
+      "path": "ring-slot160/en-input.json.gz",
+      "bytes": 189906,
+      "sha256": "4b0f8b99b9b92f74a1610a58d0d6475b171b52568883592a0513ba96773dc895"
+    },
+    {
+      "path": "ring-slot160/en-right.json.gz",
+      "bytes": 189929,
+      "sha256": "46214a7facfa2568266b57e642d02b6d9272e6f3e86afb0f8a3c91ac56b244c4"
+    },
+    {
+      "path": "ring-slot160/final-check.json",
+      "bytes": 1004,
+      "sha256": "e043a9fe166b510ad98b2bc1097406af3c2ee689df15529961a7dd71196720bc"
+    },
+    {
+      "path": "ring-slot160/fixture-v2/en-input.json.gz",
+      "bytes": 189932,
+      "sha256": "fe4b7927c510bded6a826e69a4ad2a7d8bfd263f4c62a08efa5e95851688a28e"
+    },
+    {
+      "path": "ring-slot160/fixture-v2/en-left-empty.json.gz",
+      "bytes": 189895,
+      "sha256": "77379bd63b7d0cd55d97c8e8cd2bc776aec12970475660b76fff38e0e7e129ec"
+    },
+    {
+      "path": "ring-slot160/fixture-v2/en-right-again.json.gz",
+      "bytes": 189907,
+      "sha256": "6f612ea5f660ee54d5ace6d6d3ad1a847e97d0216ff6eaecfc79b32c1ba7bb19"
+    },
+    {
+      "path": "ring-slot160/fixture-v2/en-right.json.gz",
+      "bytes": 189933,
+      "sha256": "bb80749f2a4d6256e9bba1e19de45400dbc56ffd0bdd19a62e70a81b6bb389d0"
+    },
+    {
+      "path": "ring-slot160/fixture-v2/fixture.json",
+      "bytes": 310,
+      "sha256": "d51aeb2c054d612eb99cf19ce65fe2bf0329e4b26c1548de44ad648f6c1f1c0a"
+    },
+    {
+      "path": "ring-slot160/fixture-v2/zh-CN-input.json.gz",
+      "bytes": 189936,
+      "sha256": "e010fe49e19dd018b4df11a13eddd518a0ae986efd0b378f4e323927ec92337e"
+    },
+    {
+      "path": "ring-slot160/fixture-v2/zh-CN-left-empty.json.gz",
+      "bytes": 189899,
+      "sha256": "f39acf0cd0980ef24db16f4cd5e0ec9a97b8e4f22083160c5fd5a355d52269af"
+    },
+    {
+      "path": "ring-slot160/fixture-v2/zh-CN-right-again.json.gz",
+      "bytes": 189910,
+      "sha256": "cbf266e7dc521d162d10782952bb4fa088ba6b00fdbdd08f560197539386309d"
+    },
+    {
+      "path": "ring-slot160/fixture-v2/zh-CN-right.json.gz",
+      "bytes": 189936,
+      "sha256": "e454f1d9bc7d965488d7a08b63c07a874f1b6164f7f7d47b214033d4681fe5a1"
+    },
+    {
+      "path": "ring-slot160/freeze.json",
+      "bytes": 204041,
+      "sha256": "213246e700c0d4d4e659fba5e38c7dfbfae907181f741ee2cf67bc1304f0a4dd"
+    },
+    {
+      "path": "ring-slot160/full.log",
+      "bytes": 142582,
+      "sha256": "53ec888f0ba635b0ae56636555e45f51be9c6df436b9bce4567e8c1daffab9cc"
+    },
+    {
+      "path": "ring-slot160/green-focused.log",
+      "bytes": 566,
+      "sha256": "dde804fd8700cbabb0e8c27e9d249d08111e7f90db5650caa13ef7deff578b5d"
+    },
+    {
+      "path": "ring-slot160/lint.log",
+      "bytes": 197,
+      "sha256": "19a856b1249f619dec392d36b691ce93a31c708f8f1a3249796b09a9d3e06ee9"
+    },
+    {
+      "path": "ring-slot160/prepare-fixture-v2.log",
+      "bytes": 47,
+      "sha256": "e79feac8ffbbe3182f8ad165dcc9d7f79f082f3f073cb63cbffea5eb10562d92"
+    },
+    {
+      "path": "ring-slot160/prepare-fixture-v2.mjs",
+      "bytes": 3121,
+      "sha256": "4e803d11afacbd2484c69f6266e7efe04ff21afe965d895f1c8480ea7851872b"
+    },
+    {
+      "path": "ring-slot160/prepare-fixture.log",
+      "bytes": 558,
+      "sha256": "84d6f744630989ee4890e563f00c3374f97244fa07a1a0eb1874739ad46d12a0"
+    },
+    {
+      "path": "ring-slot160/prepare-fixture.mjs",
+      "bytes": 2874,
+      "sha256": "4202c02102f9b7805cf6132e6694c2709c499777d16a11b3c6a97dae78b78614"
+    },
+    {
+      "path": "ring-slot160/red-store.log",
+      "bytes": 1971,
+      "sha256": "3bacd42b6b62559caf96485f9968821ab103c3aedac45c574fd4a88978effc55"
+    },
+    {
+      "path": "ring-slot160/red-ui.log",
+      "bytes": 2572,
+      "sha256": "ad8ed4c0dba46349d47027e1c52e974cb7f1afc89422fd3a3e055be372345915"
+    },
+    {
+      "path": "ring-slot160/served.json",
+      "bytes": 503,
+      "sha256": "16e37cbd5d574c436536a13607cce85d7cc0bd1799978b67c1a090eefe6da16b"
+    },
+    {
+      "path": "ring-slot160/types.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    }
+  ],
+  "actualCampaign": "unchanged genuine next369; no diagnostic state promoted",
+  "retention": "root retains raw diagnostic evidence through campaign/full-v1 consumers; removes it after consumers finish; source/history/versioned evidence retained"
+}

@@ -1,9 +1,8 @@
 # BUG-160 — Equip the ring in the slot shown by its comparison
 
-Severity: High. Status: reproduced; fix in progress.
+Severity: High. Status: fixed locally in `59f2590`.
 
-Build: `220de7a`; deterministic real-store/React reproduction, zh-CN. Browser
-verification follows on production Chromium at 360×640 and desktop, both locales.
+Build: `220de7a`; deterministic real-store/React reproduction, zh-CN. Production Chromium verification passes at360×640 and1280×800 in both locales.
 No combat RNG seed applies to this equipment transaction.
 
 1. Equip distinct rings in both hero slots, leaving a third owned ring in the backpack.
@@ -30,7 +29,12 @@ pass the picker's slot; callers omitting it retain the existing automatic rule.
 Validate compatibility against the stored owned item, never a caller's base ID.
 No persistent format or balance change is needed.
 
-Workaround: unequip the intended ring before equipping its replacement.
+Historical workaround: with backpack room, unequip the intended ring before
+equipping its replacement.
 The genuine next369 save is unchanged. The owned-damage369 diagnostic is
 inconclusive for its proposed loadout because it also omitted the hero ring
 destination; no diagnostic save or gear transfer is promoted.
+
+Validation:52 focused tests pass; full11670/451 pass with two existing skips;
+typecheck/lint/production build pass. Four browser cases and12 exact durable
+pairs pass. See [evidence](../../docs/plans/evidence/p03-selected-equipment-slot.md).
