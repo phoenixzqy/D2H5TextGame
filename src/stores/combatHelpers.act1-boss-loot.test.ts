@@ -89,7 +89,8 @@ describe('Act I manual chapter-boss equipment eligibility', () => {
     expect(enemies[0]).toMatchObject({ level: 19, tier: 'chapter-boss', kind: 'monster' });
   });
 
-  it.each([[8, 0], [9, 4], [10, 5], [12, 7], [14, 7], [19, 7], [20, 0]])(
+  // BUG152 extends the same seven rows through the finite Nightmare ceiling39.
+  it.each([[8, 0], [9, 4], [10, 5], [12, 7], [14, 7], [19, 7], [20, 7], [39, 7], [40, 0]])(
     'admits %i-level equipment with exactly %i eligible authored rows', (level, count) => {
       const tc = required(loadTreasureClasses().get('loot/act1-boss'));
       expect(tc.picks.filter(pick => pick.type === 'item' &&
@@ -100,7 +101,7 @@ describe('Act I manual chapter-boss equipment eligibility', () => {
     const tc = required(loadTreasureClasses().get('loot/act1-boss'));
     const rune = required(tc.picks.find(pick => pick.type === 'rune'));
     expect([rune.qlvlMin, rune.qlvlMax]).toEqual([9, 18]);
-    for (const level of [8, 20]) {
+    for (const level of [8, 40]) {
       expect(tc.picks.filter(pick => level >= pick.qlvlMin && level <= pick.qlvlMax)
         .map(pick => pick.type)).toEqual(['gem', 'currency', 'gold']);
     }

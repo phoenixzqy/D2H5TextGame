@@ -32,11 +32,12 @@ describe('BUG151 late Act II ordinary equipment eligibility', () => {
     const table = required(loadTreasureClasses().get('loot/trash-act2'));
     const high = table.picks.filter(pick => highBases.includes(pick.baseId ?? ''));
     expect(high).toHaveLength(4);
-    for (const pick of high) expect([pick.qlvlMin, pick.qlvlMax]).toEqual([22, 31]);
+    // BUG152 supersedes the Normal-only upper31 with the finite replay cap51.
+    for (const pick of high) expect([pick.qlvlMin, pick.qlvlMax]).toEqual([22, 51]);
     expect(table.picks.filter(pick => !highBases.includes(pick.baseId ?? '')).map(pick => pick.qlvlMax))
       .toEqual([22, 22, 26, 26, 26, 22, 26, 26, 26, 26]);
-    for (const level of [21, 32]) expect(high.filter(pick => level >= pick.qlvlMin && level <= pick.qlvlMax)).toEqual([]);
-    for (const level of [22, 28]) expect(high.filter(pick => level >= pick.qlvlMin && level <= pick.qlvlMax)).toHaveLength(4);
+    for (const level of [21, 52]) expect(high.filter(pick => level >= pick.qlvlMin && level <= pick.qlvlMax)).toEqual([]);
+    for (const level of [22, 28, 31, 32, 51]) expect(high.filter(pick => level >= pick.qlvlMin && level <= pick.qlvlMax)).toHaveLength(4);
   });
 
   it.each(['manual', 'idle'] as const)('covers actual ordinary levels in all six Normal Act II areas (%s)', mode => {

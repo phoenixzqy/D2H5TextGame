@@ -17,6 +17,7 @@ import { __resetPersistenceForTests, useHydrationStore, snapshotStores, importIn
 import { decodeSave } from '@/engine/save/validate';
 import { toJsonSafe } from '@/engine/save/serialize';
 import * as currency from '@/engine/loot/orbs-and-currency';
+import * as dropRoller from '@/engine/loot/drop-roller';
 // Native persistence/restore remains real; this file replaces only IndexedDB IO.
 vi.mock('./save-adapter', async importOriginal => ({
   ...await importOriginal<typeof import('./save-adapter')>(), saveSave: vi.fn(() => Promise.resolve())
@@ -111,12 +112,17 @@ describe('production replay profile authority', () => {
     for (let wave = 1; wave < total; wave++) expect(accept()).toBe('next-wave');
     const rewardBefore = useCombatStore.getState().runRewards.wishstones;
     const drops = vi.spyOn(currency, 'rollCurrencyDrops');
+    const treasure = vi.spyOn(dropRoller, 'rollDrops');
     useMapStore.setState({ selectedDifficulty: 'normal' });
     expect(accept()).toBe('victory');
     expect(drops).toHaveBeenLastCalledWith(102, 'chapter-boss', 5, 'nightmare', expect.any(Number), expect.any(Object));
     expect(drops.mock.results.at(-1)?.value).toHaveProperty('wishstones', 48);
-    // The authored treasure class independently yields another forty in this fixed seed.
-    expect(useCombatStore.getState().runRewards.wishstones - rewardBefore).toBe(88);
+    // BUG152 admits equipment at102; the native TC now selects two40-stone picks.
+    const chapterDrops = required(treasure.mock.results.at(-1)?.value as ReturnType<typeof dropRoller.rollDrops> | undefined);
+    expect(chapterDrops.filter(drop => drop.kind === 'item').length).toBeGreaterThan(0);
+    expect(chapterDrops.filter(drop => drop.kind === 'direct' && drop.currency === 'wishstones'))
+      .toEqual(Array.from({ length: 2 }, () => ({ kind: 'direct', currency: 'wishstones', itemId: 'currency/wishstone', quantity: 40, ilvl: 102 })));
+    expect(useCombatStore.getState().runRewards.wishstones - rewardBefore).toBe(48 + 80);
     expect(useMapStore.getState().nightmareClearedSubAreas).toEqual([area]);
     expect(useMapStore.getState().clearedSubAreas).toEqual(initial.clearedSubAreas);
     expect(useMapStore.getState().questReceipts).toBe(receipts);
@@ -147,10 +153,15 @@ describe('production replay profile authority', () => {
     for (let wave = 1; wave < total; wave++) expect(accept()).toBe('next-wave');
     const rewardBefore = useCombatStore.getState().runRewards.wishstones;
     const drops = vi.spyOn(currency, 'rollCurrencyDrops');
+    const treasure = vi.spyOn(dropRoller, 'rollDrops');
     expect(accept()).toBe('victory');
     expect(drops).toHaveBeenLastCalledWith(82, 'chapter-boss', 5, 'normal', expect.any(Number), expect.any(Object));
     expect(drops.mock.results.at(-1)?.value).toHaveProperty('wishstones', 40);
-    expect(useCombatStore.getState().runRewards.wishstones - rewardBefore).toBe(160);
+    const chapterDrops = required(treasure.mock.results.at(-1)?.value as ReturnType<typeof dropRoller.rollDrops> | undefined);
+    expect(chapterDrops.filter(drop => drop.kind === 'item').length).toBeGreaterThan(0);
+    expect(chapterDrops.filter(drop => drop.kind === 'direct' && drop.currency === 'wishstones'))
+      .toEqual(Array.from({ length: 2 }, () => ({ kind: 'direct', currency: 'wishstones', itemId: 'currency/wishstone', quantity: 40, ilvl: 82 })));
+    expect(useCombatStore.getState().runRewards.wishstones - rewardBefore).toBe(40 + 80);
     expect(useMapStore.getState().clearedSubAreas).toContain(area);
     expect(useMapStore.getState().nightmareClearedSubAreas).toEqual([]);
   });

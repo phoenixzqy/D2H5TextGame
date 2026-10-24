@@ -17,7 +17,7 @@
         "rarity": "normal",
         "weight": 150,
         "minLevel": 4,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -33,7 +33,7 @@
         "rarity": "normal",
         "weight": 150,
         "minLevel": 5,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -41,7 +41,7 @@
         "rarity": "normal",
         "weight": 200,
         "minLevel": 1,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -49,7 +49,7 @@
         "rarity": "normal",
         "weight": 200,
         "minLevel": 1,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -57,7 +57,7 @@
         "rarity": "normal",
         "weight": 200,
         "minLevel": 1,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -65,7 +65,7 @@
         "rarity": "normal",
         "weight": 100,
         "minLevel": 6,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -81,7 +81,7 @@
         "rarity": "normal",
         "weight": 150,
         "minLevel": 7,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -105,7 +105,7 @@
         "rarity": "normal",
         "weight": 70,
         "minLevel": 7,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -121,7 +121,7 @@
         "rarity": "normal",
         "weight": 100,
         "minLevel": 7,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -129,7 +129,7 @@
         "rarity": "normal",
         "weight": 80,
         "minLevel": 1,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -137,7 +137,7 @@
         "rarity": "normal",
         "weight": 50,
         "minLevel": 9,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -145,7 +145,7 @@
         "rarity": "normal",
         "weight": 60,
         "minLevel": 1,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -153,7 +153,7 @@
         "rarity": "normal",
         "weight": 40,
         "minLevel": 9,
-        "maxLevel": 14
+        "maxLevel": 38
       },
       {
         "type": "item",
@@ -183,7 +183,7 @@
         "rarity": "normal",
         "weight": 80,
         "minLevel": 22,
-        "maxLevel": 31
+        "maxLevel": 51
       },
       {
         "type": "item",
@@ -199,7 +199,7 @@
         "rarity": "normal",
         "weight": 80,
         "minLevel": 22,
-        "maxLevel": 31
+        "maxLevel": 51
       },
       {
         "type": "item",
@@ -239,7 +239,7 @@
         "rarity": "normal",
         "weight": 70,
         "minLevel": 22,
-        "maxLevel": 31
+        "maxLevel": 51
       },
       {
         "type": "item",
@@ -263,7 +263,7 @@
         "rarity": "normal",
         "weight": 60,
         "minLevel": 22,
-        "maxLevel": 31
+        "maxLevel": 51
       },
       {
         "type": "item",
@@ -301,7 +301,7 @@
         "rarity": "normal",
         "weight": 50,
         "minLevel": 38,
-        "maxLevel": 45
+        "maxLevel": 66
       },
       {
         "type": "item",
@@ -317,7 +317,7 @@
         "rarity": "normal",
         "weight": 40,
         "minLevel": 38,
-        "maxLevel": 45
+        "maxLevel": 66
       },
       {
         "type": "item",
@@ -357,7 +357,7 @@
         "rarity": "normal",
         "weight": 30,
         "minLevel": 38,
-        "maxLevel": 45
+        "maxLevel": 66
       },
       {
         "type": "item",
@@ -381,7 +381,7 @@
         "rarity": "normal",
         "weight": 50,
         "minLevel": 38,
-        "maxLevel": 45
+        "maxLevel": 66
       },
       {
         "type": "item",
@@ -411,7 +411,7 @@
         "rarity": "normal",
         "weight": 200,
         "minLevel": 40,
-        "maxLevel": 55
+        "maxLevel": 81
       },
       {
         "type": "item",
@@ -419,7 +419,7 @@
         "rarity": "normal",
         "weight": 200,
         "minLevel": 40,
-        "maxLevel": 55
+        "maxLevel": 81
       },
       {
         "type": "item",
@@ -427,7 +427,7 @@
         "rarity": "normal",
         "weight": 150,
         "minLevel": 45,
-        "maxLevel": 55
+        "maxLevel": 81
       },
       {
         "type": "item",
@@ -435,7 +435,7 @@
         "rarity": "normal",
         "weight": 180,
         "minLevel": 40,
-        "maxLevel": 55
+        "maxLevel": 81
       },
       {
         "type": "item",
@@ -443,7 +443,7 @@
         "rarity": "normal",
         "weight": 180,
         "minLevel": 40,
-        "maxLevel": 55
+        "maxLevel": 81
       },
       {
         "type": "item",
@@ -451,7 +451,7 @@
         "rarity": "normal",
         "weight": 180,
         "minLevel": 40,
-        "maxLevel": 55
+        "maxLevel": 81
       },
       {
         "type": "item",
@@ -459,7 +459,7 @@
         "rarity": "normal",
         "weight": 180,
         "minLevel": 40,
-        "maxLevel": 55
+        "maxLevel": 81
       },
       {
         "type": "item",
@@ -467,7 +467,7 @@
         "rarity": "normal",
         "weight": 120,
         "minLevel": 40,
-        "maxLevel": 55
+        "maxLevel": 81
       },
       {
         "type": "item",
@@ -475,7 +475,7 @@
         "rarity": "normal",
         "weight": 180,
         "minLevel": 40,
-        "maxLevel": 55
+        "maxLevel": 81
       },
       {
         "type": "item",
@@ -483,7 +483,7 @@
         "rarity": "normal",
         "weight": 100,
         "minLevel": 40,
-        "maxLevel": 55
+        "maxLevel": 81
       },
       {
         "type": "item",
@@ -491,7 +491,7 @@
         "rarity": "normal",
         "weight": 80,
         "minLevel": 40,
-        "maxLevel": 55
+        "maxLevel": 81
       }
     ]
   },
@@ -505,7 +505,7 @@
         "rarity": "normal",
         "weight": 220,
         "minLevel": 55,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -513,7 +513,7 @@
         "rarity": "normal",
         "weight": 150,
         "minLevel": 60,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -521,7 +521,7 @@
         "rarity": "normal",
         "weight": 220,
         "minLevel": 55,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -529,7 +529,7 @@
         "rarity": "normal",
         "weight": 200,
         "minLevel": 55,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -537,7 +537,7 @@
         "rarity": "normal",
         "weight": 150,
         "minLevel": 60,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -545,7 +545,7 @@
         "rarity": "normal",
         "weight": 200,
         "minLevel": 55,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -553,7 +553,7 @@
         "rarity": "normal",
         "weight": 200,
         "minLevel": 55,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -561,7 +561,7 @@
         "rarity": "normal",
         "weight": 200,
         "minLevel": 60,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -569,7 +569,7 @@
         "rarity": "normal",
         "weight": 200,
         "minLevel": 55,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -577,7 +577,7 @@
         "rarity": "normal",
         "weight": 180,
         "minLevel": 55,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -585,7 +585,7 @@
         "rarity": "normal",
         "weight": 220,
         "minLevel": 55,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -593,7 +593,7 @@
         "rarity": "normal",
         "weight": 150,
         "minLevel": 60,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -601,7 +601,7 @@
         "rarity": "normal",
         "weight": 120,
         "minLevel": 55,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -609,7 +609,7 @@
         "rarity": "normal",
         "weight": 100,
         "minLevel": 58,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -617,7 +617,7 @@
         "rarity": "normal",
         "weight": 100,
         "minLevel": 55,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -625,7 +625,7 @@
         "rarity": "normal",
         "weight": 80,
         "minLevel": 58,
-        "maxLevel": 75
+        "maxLevel": 102
       }
     ]
   },
@@ -1289,7 +1289,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 7,
-        "maxLevel": 14
+        "maxLevel": 32
       },
       {
         "type": "item",
@@ -1297,7 +1297,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 8,
-        "maxLevel": 14
+        "maxLevel": 32
       },
       {
         "type": "item",
@@ -1305,7 +1305,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 10,
-        "maxLevel": 14
+        "maxLevel": 32
       },
       {
         "type": "item",
@@ -1313,7 +1313,7 @@
         "rarity": "rare",
         "weight": 80,
         "minLevel": 9,
-        "maxLevel": 14
+        "maxLevel": 32
       },
       {
         "type": "item",
@@ -1321,7 +1321,7 @@
         "rarity": "rare",
         "weight": 60,
         "minLevel": 9,
-        "maxLevel": 14
+        "maxLevel": 32
       },
       {
         "type": "rune",
@@ -1379,7 +1379,7 @@
         "rarity": "rare",
         "weight": 80,
         "minLevel": 23,
-        "maxLevel": 32
+        "maxLevel": 48
       },
       {
         "type": "rune",
@@ -1413,7 +1413,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 29,
-        "maxLevel": 45
+        "maxLevel": 63
       },
       {
         "type": "item",
@@ -1421,7 +1421,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 29,
-        "maxLevel": 45
+        "maxLevel": 63
       },
       {
         "type": "item",
@@ -1429,7 +1429,7 @@
         "rarity": "rare",
         "weight": 80,
         "minLevel": 38,
-        "maxLevel": 45
+        "maxLevel": 63
       },
       {
         "type": "item",
@@ -1437,7 +1437,7 @@
         "rarity": "rare",
         "weight": 80,
         "minLevel": 33,
-        "maxLevel": 45
+        "maxLevel": 63
       },
       {
         "type": "rune",
@@ -1471,7 +1471,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 43,
-        "maxLevel": 55
+        "maxLevel": 76
       },
       {
         "type": "item",
@@ -1479,7 +1479,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 43,
-        "maxLevel": 55
+        "maxLevel": 76
       },
       {
         "type": "item",
@@ -1487,7 +1487,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 43,
-        "maxLevel": 55
+        "maxLevel": 76
       },
       {
         "type": "item",
@@ -1495,7 +1495,7 @@
         "rarity": "rare",
         "weight": 80,
         "minLevel": 43,
-        "maxLevel": 55
+        "maxLevel": 76
       },
       {
         "type": "rune",
@@ -1529,7 +1529,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 58,
-        "maxLevel": 75
+        "maxLevel": 95
       },
       {
         "type": "item",
@@ -1537,7 +1537,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 58,
-        "maxLevel": 75
+        "maxLevel": 95
       },
       {
         "type": "item",
@@ -1545,7 +1545,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 58,
-        "maxLevel": 75
+        "maxLevel": 95
       },
       {
         "type": "item",
@@ -1553,7 +1553,7 @@
         "rarity": "rare",
         "weight": 80,
         "minLevel": 58,
-        "maxLevel": 75
+        "maxLevel": 95
       },
       {
         "type": "rune",
@@ -1587,7 +1587,7 @@
         "rarity": "rare",
         "weight": 120,
         "minLevel": 9,
-        "maxLevel": 19
+        "maxLevel": 39
       },
       {
         "type": "item",
@@ -1595,7 +1595,7 @@
         "rarity": "rare",
         "weight": 120,
         "minLevel": 10,
-        "maxLevel": 19
+        "maxLevel": 39
       },
       {
         "type": "item",
@@ -1603,7 +1603,7 @@
         "rarity": "rare",
         "weight": 120,
         "minLevel": 12,
-        "maxLevel": 19
+        "maxLevel": 39
       },
       {
         "type": "item",
@@ -1611,7 +1611,7 @@
         "rarity": "rare",
         "weight": 80,
         "minLevel": 12,
-        "maxLevel": 19
+        "maxLevel": 39
       },
       {
         "type": "item",
@@ -1619,7 +1619,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 9,
-        "maxLevel": 19
+        "maxLevel": 39
       },
       {
         "type": "item",
@@ -1627,7 +1627,7 @@
         "rarity": "rare",
         "weight": 80,
         "minLevel": 9,
-        "maxLevel": 19
+        "maxLevel": 39
       },
       {
         "type": "item",
@@ -1635,7 +1635,7 @@
         "rarity": "unique",
         "weight": 30,
         "minLevel": 9,
-        "maxLevel": 19
+        "maxLevel": 39
       },
       {
         "type": "rune",
@@ -1707,7 +1707,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 23,
-        "maxLevel": 32
+        "maxLevel": 52
       },
       {
         "type": "item",
@@ -1715,7 +1715,7 @@
         "rarity": "rare",
         "weight": 80,
         "minLevel": 23,
-        "maxLevel": 32
+        "maxLevel": 52
       },
       {
         "type": "item",
@@ -1723,7 +1723,7 @@
         "rarity": "unique",
         "weight": 35,
         "minLevel": 23,
-        "maxLevel": 32
+        "maxLevel": 52
       },
       {
         "type": "rune",
@@ -1763,7 +1763,7 @@
         "rarity": "rare",
         "weight": 120,
         "minLevel": 31,
-        "maxLevel": 45
+        "maxLevel": 67
       },
       {
         "type": "item",
@@ -1771,7 +1771,7 @@
         "rarity": "rare",
         "weight": 120,
         "minLevel": 31,
-        "maxLevel": 45
+        "maxLevel": 67
       },
       {
         "type": "item",
@@ -1779,7 +1779,7 @@
         "rarity": "rare",
         "weight": 120,
         "minLevel": 38,
-        "maxLevel": 45
+        "maxLevel": 67
       },
       {
         "type": "item",
@@ -1787,7 +1787,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 38,
-        "maxLevel": 45
+        "maxLevel": 67
       },
       {
         "type": "item",
@@ -1795,7 +1795,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 33,
-        "maxLevel": 45
+        "maxLevel": 67
       },
       {
         "type": "item",
@@ -1803,7 +1803,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 33,
-        "maxLevel": 45
+        "maxLevel": 67
       },
       {
         "type": "item",
@@ -1811,7 +1811,7 @@
         "rarity": "unique",
         "weight": 40,
         "minLevel": 38,
-        "maxLevel": 45
+        "maxLevel": 67
       },
       {
         "type": "rune",
@@ -1883,7 +1883,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 48,
-        "maxLevel": 58
+        "maxLevel": 81
       },
       {
         "type": "item",
@@ -1891,7 +1891,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 48,
-        "maxLevel": 58
+        "maxLevel": 81
       },
       {
         "type": "item",
@@ -1947,7 +1947,7 @@
         "rarity": "rare",
         "weight": 120,
         "minLevel": 60,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -1955,7 +1955,7 @@
         "rarity": "rare",
         "weight": 120,
         "minLevel": 60,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -1963,7 +1963,7 @@
         "rarity": "rare",
         "weight": 120,
         "minLevel": 60,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -1971,7 +1971,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 60,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -1979,7 +1979,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 58,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -1987,7 +1987,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 58,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -1995,7 +1995,7 @@
         "rarity": "unique",
         "weight": 60,
         "minLevel": 60,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "item",
@@ -2003,7 +2003,7 @@
         "rarity": "set",
         "weight": 50,
         "minLevel": 60,
-        "maxLevel": 75
+        "maxLevel": 102
       },
       {
         "type": "rune",
