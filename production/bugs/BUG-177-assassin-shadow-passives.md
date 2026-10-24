@@ -1,6 +1,6 @@
 # BUG-177 — Apply Fade and Venom in actual combat
 
-Severity: High. Status: reproduced; implementation in progress.
+Severity: High. Status: fixed locally in `947f020`; independent acceptance open.
 Owner: root (engine/frontend/content). Baseline `2a1dc00`.
 Environment: Vitest Node/jsdom; no browser, viewport or locale required.
 Seed: 7 for actual basic-attack reproduction.
@@ -21,3 +21,10 @@ casting, but there is no fresh-player Fade/Venom consumer or basic-hit poison
 consumer. Descriptions also conflict with authored rank tuning. Workaround: none
 for the missing learned effects. Resolve the explicit mechanic contract before
 patching; do not replace poison-on-hit with a damage percentage alone.
+
+
+Verification: 57 focused passes, engine 5,976/197 files, full 12,085/497 files
+with two existing skips, types/lint/build pass, production desktop/mobile × en/zh
+8/8 and eight exact Continue pairs. Source/Git state remained frozen during full
+validation. [Evidence and retained failed attempts](../../docs/plans/evidence/d05-assassin-shadow.md).
+Earned class/build balance and full-v1 acceptance remain open.

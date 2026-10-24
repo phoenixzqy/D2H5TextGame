@@ -1,0 +1,12 @@
+{
+  "owner": "root / BUG177 Assassin Fade-Venom",
+  "removed": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-y5kxjfgb"
+  ],
+  "remaining": [],
+  "port4459Closed": true,
+  "failures": [],
+  "retainedEvidence": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/assassin-shadow",
+  "archiveByteVerified": true,
+  "preserved": "claimed worktree/branch, source/history/deliverables, installed tools/shared caches, and earlier campaign evidence under its existing ownership records"
+}

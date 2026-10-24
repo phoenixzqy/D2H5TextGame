@@ -1,0 +1,11 @@
+{
+  "failure": "First post-validation documentation update incorrectly asserted only one generic table separator in the multi-table ledger.",
+  "partialWrites": [
+    "evidence report",
+    "BUG177 verification/status",
+    "two CSV inventory rows"
+  ],
+  "correction": "Insert the new card only after the Current cards heading; write the ledger once and verify final inventory count.",
+  "gameplaySourceChanged": false,
+  "replayedGenuineActions": 0
+}

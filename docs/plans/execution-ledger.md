@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D05 Assassin Fade/Venom / BUG177 | implemented in `947f020`; locally verified; independent acceptance pending | Fresh Fade six-resistance/magical-dodge composition and JSON-tuned Venom basic-hit poison share existing mitigation/stack/expiry/spread rules; no new RNG roll or save field. Strict copied authority/tuning, native next-wave learning, free pure-respec composition/replay and exact save/import; truthful en/zh details. Focused57/6, engine5976/197, full12085/497+two existing skips; types/standard+14-path lint/build/bridge PASS. Production8/8, eight exact Continue pairs, no retries/errors;1340inputs/HEAD/Git state unchanged during full. [Evidence](evidence/d05-assassin-shadow.md),133raw files/22terminal process records archived and byte-verified.213IDs/185unverified; earned balance, independent QA, C2–C4/fullG open. Genuine Rite save unchanged/next402; local only. |
 | D05 Assassin weapons / BUG176 | implemented in `a673b47`; locally verified; independent acceptance pending | Six obtainable claw tiers, explicit one-handed offhand equip, canonical preview/transaction/runeword grants, learned Claw Mastery/Weapon Block and truthful bilingual details. Focused85, loot/quest138, grant78; engine5936/194, full12028/491+two existing skips; types/lint/build/bridge PASS. Production8/8, eight exact Continue pairs, no retries/errors;1202source hashes/Git state unchanged. [Evidence](evidence/d05-assassin-weapons.md).187unverified skills remain; earned class/build balance and C2–C4/fullG open. Genuine Ancients save unchanged/next402; no campaign action or remote publication. |
 | D05 Poison and Elemental Mastery / BUG174 | implemented in `09a2722`; locally verified; independent acceptance pending | Necromancer authored +4%poison/+2%arcane and Druid +3%fire/cold/+0.5pp magical dodge per rank now compose at the fresh hero boundary; unlock30/cap20, exact aliases, strict immutable tuning, gear/Infinity addition, native next-wave/reset/replay/no refill/income, real Poison Nova snapshots once, truthful en/zh current/next details. Frozen14causal RED/6controls; focused142/10, engine5868/188, full11915/479+two existing skips408.64s; types/standard lint/explicit browser lint/build/bridge pass. Production two classes×en/zh×desktop/mobile8/8, eight exact Continue pairs, no retries/errors; four representative screenshots inspected. [Evidence](evidence/d05-poison-elemental-masteries.md). All55raw files archived/byte-verified,24attachments/42source hashes checked,21processes terminal; scratch/staging removed/4456closed/cleanup[]. Remaining191unverified IDs; genuine Rite save unchanged/next402. Earned builds/balance, independent acceptance, C2–C4/fullG open. Next candidate: Summon Mastery/Summon Resist with all creation/owner/stat boundaries reconciled. |
 | Shared skill-schema compilation / BUG173 | implemented in `9e643b8`; locally verified; independent acceptance pending | Exactly24modules share a private strict/allErrors Ajv cache through a typed pure helper; separate monster and dataset-loader validation preserved. Genuine real-import24→1RED/GREEN; focused37/5, compiler-only engine5851/185, final combined full11915/479+two existing skips408.64s, types/lint/build pass. All284registered definitions byte-identical; five-process synthetic medians1526.75→1192.19ms,21.91%lower with noise/overlap, no device/G7 claim. Production en/zh×desktop/mobile4/4, four exact Continue pairs; original source-drift/timeout/lint failures retained and corrected without bypass. [Evidence](evidence/shared-skill-validator.md). All50raw files archived/byte-verified;23processes terminal, task scratch/staging removed/4455closed. No skill acceptance or genuine campaign change from this refactor; C2–C4/fullG open. |
@@ -11365,3 +11366,22 @@ Full-run1173source/test/config hashes and Git state stayed unchanged. Raw67files
 213skill IDs remain,189unverified; only two bounded functional dispositions added.
 Earned Ancients401 save/next402 unchanged. C2–C4/fullG0–G7 and independent QA remain
 open. Local only; preserved umbrella worktree/goal remain active.
+
+
+## D05 — Assassin Fade and Venom / BUG177
+
+Implementation `947f020` applies authored personal Fade and Venom from fresh Player
+composition, plus a copied wave-local source/rank authority for poison on successful
+basic hits. Existing poison mitigation, stacking, payload/source retention, expiry
+and death-spread apply once; active skills/misses/foreign sources never proc it.
+Both locales show actual current/next effects. [Evidence](evidence/d05-assassin-shadow.md):
+causal native/schema/UI failures retained; final focused57/6, engine5976/197,
+full12085/497/two existing skips; types/lint/build/bridge PASS. Production8/8 with
+eight separately audited exact Continue pairs. Full-run1340source/test/config hashes,
+HEAD and complete Git state stayed unchanged.133raw files/22terminal process records
+archived and byte-verified. The free pure-respec helper proves composition/replay,
+not the paid town service.213IDs remain,185unverified; only these two bounded
+functional dispositions added. Genuine claimed Rite save/next402 unchanged.
+Independent acceptance, earned class/build balance, Baal, C2–C4/fullG0–G7 remain
+open. Next: reconcile existing skill evidence and implement remaining mechanic
+families; no repeated speculative campaign screens. Local only; goal/worktree active.

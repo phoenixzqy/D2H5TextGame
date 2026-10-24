@@ -1,0 +1,19 @@
+{
+  "validatedFiles": 1340,
+  "driftAfterImplementationCommit": [],
+  "skillIds": 213,
+  "unverifiedSkills": 185,
+  "earnedSaveSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "cleanup": {
+    "owner": "root / BUG177 Assassin Fade-Venom",
+    "removed": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-y5kxjfgb"
+    ],
+    "remaining": [],
+    "port4459Closed": true,
+    "failures": [],
+    "retainedEvidence": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/assassin-shadow",
+    "archiveByteVerified": true,
+    "preserved": "claimed worktree/branch, source/history/deliverables, installed tools/shared caches, and earlier campaign evidence under its existing ownership records"
+  }
+}
