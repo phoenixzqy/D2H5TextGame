@@ -1,0 +1,14 @@
+{
+  "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj",
+  "filesRemoved": 1005,
+  "remaining": [],
+  "failures": [],
+  "scratchAbsent": true,
+  "ownedPreviewPid": 392639,
+  "ownedPreviewAbsent": true,
+  "port": 4479,
+  "portClosed": true,
+  "retentionVerifiedBeforeDeletion": true,
+  "preserved": "Source/history/umbrella worktree/shared caches/older required campaign evidence",
+  "finished": "2026-10-25T08:10:39.402462+00:00"
+}

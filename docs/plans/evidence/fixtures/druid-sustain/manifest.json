@@ -1,0 +1,2518 @@
+{
+  "scope": "Feral Rage/Hunger actual recovery and Feral speed/Bleed; synthetic local proof only. Independent QA and earned balance remain open.",
+  "owner": "root",
+  "session": "01a1577a-5af4-70e3-8699-50a906877d8f",
+  "worktree": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+  "base": "7af99d35f8cae0ee97dbb6ad7077cb204ca4e02e",
+  "runtime": "7b7f3b28d9eb009f48453dd779c29d416ca5beca",
+  "presentation": "801d97fd479ed941a9ea6a747e69a6edff0f77c6",
+  "rawFiles": 245,
+  "files": {
+    "CombatScreen.druid-sustain.test.tsx.red.txt": {
+      "bytes": 2680,
+      "sha256": "bf4c9d074c39963bbf802d732d4ecb855554b11ec70f0fa5b76abc2c1cea7f39",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "CombatScreen.druid-sustain.test.tsx.red.txt"
+      }
+    },
+    "SkillsScreen.druid-sustain.test.tsx.lint-original.txt": {
+      "bytes": 5173,
+      "sha256": "c96611a3e3b3cc066d1412141d3a797dd0ec11d4f0a19b2d4dc2e1ce21506ced",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "SkillsScreen.druid-sustain.test.tsx.lint-original.txt"
+      }
+    },
+    "SkillsScreen.druid-sustain.test.tsx.red.txt": {
+      "bytes": 4196,
+      "sha256": "117e2eb47aee8570a5883a17548b40b4bd18655861d75bc14a78c5916f764c16",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "SkillsScreen.druid-sustain.test.tsx.red.txt"
+      }
+    },
+    "archive-evidence.py": {
+      "bytes": 3505,
+      "sha256": "330a0423593ca2e0ce3d238332a4a45422857ab31ff904eb7886beca16a5bfa4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "archive-evidence.py"
+      }
+    },
+    "attachment-audit-command.json": {
+      "bytes": 314,
+      "sha256": "75d2e61013cd90d8e43a96b0eccc621e368961fdd9e223b9b08f4f843aa4f921",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "attachment-audit-command.json"
+      }
+    },
+    "attachment-audit-command.log": {
+      "bytes": 130,
+      "sha256": "201b0038d7498c0a567d682ae8728c5989cf095f4cc2b2dee118e6599341c83c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "attachment-audit-command.log"
+      }
+    },
+    "audit-browser-before-receipt-collision.py": {
+      "bytes": 2332,
+      "sha256": "6d97d43fbcc567ae9c67a67d4c2656fb9c8c48e1777be991234636a8ded3013a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "audit-browser-before-receipt-collision.py"
+      }
+    },
+    "audit-browser.py": {
+      "bytes": 2851,
+      "sha256": "083de69b4bc7d2dd2036f61b603d9df8de9aa8158ed430602249d3370c98196e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "audit-browser.py"
+      }
+    },
+    "boundary-diagnosis.json": {
+      "bytes": 347,
+      "sha256": "c68af6f4278d79210d0f2f458cbb9edf1f40934000443060f82446317496e7bd",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "boundary-diagnosis.json"
+      }
+    },
+    "bridge-and-genuine.json": {
+      "bytes": 281,
+      "sha256": "b1d1612751ee22f22cca12c9fae363567e4998a687f55ba9c9fdec39b34e8a3a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "bridge-and-genuine.json"
+      }
+    },
+    "bridge-final.json": {
+      "bytes": 581,
+      "sha256": "aa4e278f1ebcc911e4edf10ac7ebcfa659dd819da9fd99aa30cd564914b5957d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "bridge-final.json"
+      }
+    },
+    "browser-attachment-audit.json": {
+      "bytes": 9862,
+      "sha256": "44833d42539f1b21c80d4ec268c82d4ca070c465785661174d0cca11faed3723",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-attachment-audit.json"
+      }
+    },
+    "browser-audit.json": {
+      "bytes": 314,
+      "sha256": "b8059525f5a842775496b453fcd257cdf156c5b965a9378e740f1711bc5de223",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-audit.json"
+      }
+    },
+    "browser-audit.log": {
+      "bytes": 130,
+      "sha256": "201b0038d7498c0a567d682ae8728c5989cf095f4cc2b2dee118e6599341c83c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-audit.log"
+      }
+    },
+    "browser-before-crit.cjs": {
+      "bytes": 9683,
+      "sha256": "76875be56d1d3d0070e3ef7c3aef5b48d26de4e5a42d7d7478f1083e0ba3a3e0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-before-crit.cjs"
+      }
+    },
+    "browser-before-lower-crit.cjs": {
+      "bytes": 9735,
+      "sha256": "7732698c4ef17ad54e00e45e064babe8c4192256379cc7c4963c92a4d77c6654",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-before-lower-crit.cjs"
+      }
+    },
+    "browser-current.cjs": {
+      "bytes": 9737,
+      "sha256": "919471b19e0c1f936d3fe6cd9f98ad590569bcc067297e8f1351c599ba66257d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-current.cjs"
+      }
+    },
+    "browser-en-desktop/browser-report.json": {
+      "bytes": 84440,
+      "sha256": "b1bf6c29390bcae1fb1d8c8c331bbe294900ae9abe5f79976e6b4dd6ca30ab02",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-desktop/browser-report.json"
+      }
+    },
+    "browser-en-desktop/en-1280-failed-trace.zip": {
+      "bytes": 45731064,
+      "sha256": "1f77a2ba6d46887d3d0ba22a6aee6bd16b04df0ace263dc9fdba0136da23967d",
+      "storage": {
+        "attachment": "traces/browser-en-desktop--en-1280-failed-trace.zip"
+      }
+    },
+    "browser-en-desktop/en-1280-failed.png": {
+      "bytes": 425494,
+      "sha256": "d8f3fee63b242c185d8239707a2fe0bba6fea7e73aa4e5ded699f06aa479b83e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-desktop/en-1280-failed.png"
+      }
+    },
+    "browser-en-desktop/en-1280-feral-rage-details.png": {
+      "bytes": 160590,
+      "sha256": "0160e20475e80fa6463cc40eb6eaedcb457d0aebc34a1b8c206b3f1607859725",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-desktop/en-1280-feral-rage-details.png"
+      }
+    },
+    "browser-en-desktop/en-1280-fresh-1.json": {
+      "bytes": 3238,
+      "sha256": "09ebc429c4f1e656a0d95849270c73b3b7de3a17aca5b64e40aaf2b3c061e540",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-desktop/en-1280-fresh-1.json"
+      }
+    },
+    "browser-en-desktop/en-1280-imported-2.json": {
+      "bytes": 4937,
+      "sha256": "58258575af818bef1634b619239156722a0f0d4d0dfd8078903cf448a82fcc71",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-desktop/en-1280-imported-2.json"
+      }
+    },
+    "browser-en-desktop/en-1280-rank1-after-4.json": {
+      "bytes": 4940,
+      "sha256": "f32d104d1be08713da0ea504cfada1bae9afeac2cbbe89cbfdbcad5eed166df2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-desktop/en-1280-rank1-after-4.json"
+      }
+    },
+    "browser-en-desktop/en-1280-rank1-before-3.json": {
+      "bytes": 4937,
+      "sha256": "bf58cdf4b0dc1c3c28eee4e754ace0b98dca93483dbc6b5ab989b4aa1be3558e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-desktop/en-1280-rank1-before-3.json"
+      }
+    },
+    "browser-en-desktop/en-1280-synthetic-input.json": {
+      "bytes": 4114,
+      "sha256": "4c45b6e704e949872bc12192778208e4d130ed973e7ccab991df70916bd29001",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-desktop/en-1280-synthetic-input.json"
+      }
+    },
+    "browser-en-desktop.json": {
+      "bytes": 315,
+      "sha256": "bedd2e94708e6a6b773f51036f5fb5fb77835c840b4849c6b78bf299222992dc",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-desktop.json"
+      }
+    },
+    "browser-en-desktop.log": {
+      "bytes": 175668,
+      "sha256": "3da25fabcd8408d6a796ed5171edb412407f2bc25e0949d2da9ce2aaa179c1c0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-desktop.log"
+      }
+    },
+    "browser-failed-build-sha256.json": {
+      "bytes": 101673,
+      "sha256": "7dbf34cd2c016a1e5f3244e56826b45a3ae0860630a84cc38d7f7f81025e6f93",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-failed-build-sha256.json"
+      }
+    },
+    "browser-final-en-1280/browser-report.json": {
+      "bytes": 1755,
+      "sha256": "0d594fa513a53f6815099e50ab81e45bcad789785e9f73ecf748d727e731be0d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-1280/browser-report.json"
+      }
+    },
+    "browser-final-en-1280/en-1280-failed-trace.zip": {
+      "bytes": 40995749,
+      "sha256": "1081267a22b8bd54c746313bed5ef2c64e11dd7380cffa4d577d8d4bffb79d72",
+      "storage": {
+        "attachment": "traces/browser-final-en-1280--en-1280-failed-trace.zip"
+      }
+    },
+    "browser-final-en-1280/en-1280-failed.png": {
+      "bytes": 410727,
+      "sha256": "413837e1ba75107666e094cab16f88d24df49d4a6378752d2d5ceee930d2a75e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-1280/en-1280-failed.png"
+      }
+    },
+    "browser-final-en-1280/en-1280-feral-rage-details.png": {
+      "bytes": 160590,
+      "sha256": "0160e20475e80fa6463cc40eb6eaedcb457d0aebc34a1b8c206b3f1607859725",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-1280/en-1280-feral-rage-details.png"
+      }
+    },
+    "browser-final-en-1280/en-1280-fresh-1.json": {
+      "bytes": 3238,
+      "sha256": "4a25b37c2d9330798303ced72c02cd1ea73024601323efd1c923bc941e03fe2c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-1280/en-1280-fresh-1.json"
+      }
+    },
+    "browser-final-en-1280/en-1280-imported-2.json": {
+      "bytes": 5297,
+      "sha256": "d34545aa2c7bab51742eeeb53f636fec04c2a490b09b2213fa038efa97eed119",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-1280/en-1280-imported-2.json"
+      }
+    },
+    "browser-final-en-1280/en-1280-rank1-after-4.json": {
+      "bytes": 5300,
+      "sha256": "9d46de66ad41e1e32b4a116ae0f638e8be4324bd3ca6fcd702dfa40eb9e05005",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-1280/en-1280-rank1-after-4.json"
+      }
+    },
+    "browser-final-en-1280/en-1280-rank1-before-3.json": {
+      "bytes": 5297,
+      "sha256": "d554653421408ccda40885328efb525966a3ea9315ddf3565cb7836e18bd4ef4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-1280/en-1280-rank1-before-3.json"
+      }
+    },
+    "browser-final-en-1280/en-1280-synthetic-input.json": {
+      "bytes": 4294,
+      "sha256": "4386bddc952cdf60680cca54dfb6847c377215f767676b410aa3bb75e7bb8a48",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-1280/en-1280-synthetic-input.json"
+      }
+    },
+    "browser-final-en-1280.json": {
+      "bytes": 315,
+      "sha256": "caab387e639a4e526b68c2ec4e5111c68391640a2463ae175eddade727efd5bd",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-1280.json"
+      }
+    },
+    "browser-final-en-1280.log": {
+      "bytes": 527,
+      "sha256": "82d5d83e129673fd2f8ae838864085fb30d9f3b0c6934b43cdf836c0457f06ff",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-1280.log"
+      }
+    },
+    "browser-final-en-360/browser-report.json": {
+      "bytes": 1748,
+      "sha256": "556db61246757b89d18953332c848ea30447636aedbd2749c0bd625e4e323037",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-360/browser-report.json"
+      }
+    },
+    "browser-final-en-360/en-360-failed-trace.zip": {
+      "bytes": 44763016,
+      "sha256": "23250f6d015b282b2d53917546c44be06fab5a9402b4129ecd7703b1c76dfb44",
+      "storage": {
+        "attachment": "traces/browser-final-en-360--en-360-failed-trace.zip"
+      }
+    },
+    "browser-final-en-360/en-360-failed.png": {
+      "bytes": 35841,
+      "sha256": "36a2e20a3e18643c3e15ee8ae997ffc42086cdf14fc122c196c8f84de8001616",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-360/en-360-failed.png"
+      }
+    },
+    "browser-final-en-360/en-360-feral-rage-details.png": {
+      "bytes": 62548,
+      "sha256": "d2eb49c8d9ec9ead6db4613ecb659ee1fa15369e31819c2b54f30f3d6ae16f1f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-360/en-360-feral-rage-details.png"
+      }
+    },
+    "browser-final-en-360/en-360-fresh-1.json": {
+      "bytes": 3238,
+      "sha256": "4f274366a67b6b66c851b496260a1af430b609160a778fc69a355f4816094b65",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-360/en-360-fresh-1.json"
+      }
+    },
+    "browser-final-en-360/en-360-imported-2.json": {
+      "bytes": 5297,
+      "sha256": "5438acbf65af68d8e93fc4e4366b454962bb802e7da887ce44f9a4983bf618f4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-360/en-360-imported-2.json"
+      }
+    },
+    "browser-final-en-360/en-360-rank1-after-4.json": {
+      "bytes": 5300,
+      "sha256": "3c9f071aa5e9bb990d208f4bf0175b4e47f0a1fb01c9bed61afa68fd2d11068b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-360/en-360-rank1-after-4.json"
+      }
+    },
+    "browser-final-en-360/en-360-rank1-before-3.json": {
+      "bytes": 5297,
+      "sha256": "58378faef05cac4a61cf09c8bf0a05947985dc5606f0c190b5e08caca0ef79e8",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-360/en-360-rank1-before-3.json"
+      }
+    },
+    "browser-final-en-360/en-360-synthetic-input.json": {
+      "bytes": 4294,
+      "sha256": "209f01e4255af0899229f830d9322f394fa711c0ed8f3b0e21d816ad164f3f21",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-360/en-360-synthetic-input.json"
+      }
+    },
+    "browser-final-en-360.json": {
+      "bytes": 315,
+      "sha256": "79411ab072aa9a8e0699012385982627397f552a150fc925473aa32006f92329",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-360.json"
+      }
+    },
+    "browser-final-en-360.log": {
+      "bytes": 527,
+      "sha256": "82d5d83e129673fd2f8ae838864085fb30d9f3b0c6934b43cdf836c0457f06ff",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-en-360.log"
+      }
+    },
+    "browser-final-zh-CN-1280/browser-report.json": {
+      "bytes": 1590,
+      "sha256": "5b35d72153353ce09cf6507b73c47a9ce81dc1fe28919f87843730befa3a4248",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/browser-report.json"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-feral-rage-combat.json": {
+      "bytes": 3057,
+      "sha256": "cf7a12468051ba3fce02a02ada140f6836b7e8e8dd6fd6f571e75b16d9b82292",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-feral-rage-combat.json"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-feral-rage-combat.png": {
+      "bytes": 419704,
+      "sha256": "7a8bf9467fb00f5a1ee705d8e62cdbe7b2fe364cf1ce0615f5bfc33a6ff823cc",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-feral-rage-combat.png"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-feral-rage-details.png": {
+      "bytes": 173453,
+      "sha256": "5eacf34211a1472ae0aea6a4359b7b13105c127822e51cdbdbffaa6db60fe52d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-feral-rage-details.png"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-fresh-1.json": {
+      "bytes": 3241,
+      "sha256": "ab80c1e090e7ead5e338114ef1f6e2ebb6e3eff9dd54f1b8064e6f65bfe7a2f5",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-fresh-1.json"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-hunger-combat.json": {
+      "bytes": 2365,
+      "sha256": "09b1c8ba79f9301465a83cdd7d605da5a5f6159e303d38b0dd64c1936b79692b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-hunger-combat.json"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-hunger-combat.png": {
+      "bytes": 416072,
+      "sha256": "801f3d0e2ac2be4c1138218bbc71dae6da5169cd5766245d58377dc6ec7fa4bf",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-hunger-combat.png"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-hunger-details.png": {
+      "bytes": 145720,
+      "sha256": "37d08fafdcd55c8b6a361ec94d9f0075d266b42b805064d5f24575ea0ca8e08f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-hunger-details.png"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-imported-2.json": {
+      "bytes": 5300,
+      "sha256": "2f77ba22a5a9fafd62be927cdd4c34fd3ba296f2bdb3803c65b3d65ab28eacf6",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-imported-2.json"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-rank1-after-4.json": {
+      "bytes": 5303,
+      "sha256": "5e555c6d2f9542c2555810ffa6a7765ecf2c7dc66320c76b1047ecea625bfef1",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-rank1-after-4.json"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-rank1-before-3.json": {
+      "bytes": 5300,
+      "sha256": "2f379bbf46c9a88a69c4427fbf0116f4e9752c69448a053ba7a1f92853f4d1e5",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-rank1-before-3.json"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-rank2-after-6.json": {
+      "bytes": 5316,
+      "sha256": "44f0a62e99e000a2c697cd9388a316facbdcad79d36b754ddc3c1c9e88015aad",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-rank2-after-6.json"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-rank2-before-5.json": {
+      "bytes": 5316,
+      "sha256": "eec5b58212d4b057312221f3ca67b2d7494ae8bef58bb0c3e3c29bf8871217bf",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-rank2-before-5.json"
+      }
+    },
+    "browser-final-zh-CN-1280/zh-CN-1280-synthetic-input.json": {
+      "bytes": 4297,
+      "sha256": "2cbf5df8d7bcbc782328ac0691048763d3e30d3f831fd9fee34e2bbac03bc55a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280/zh-CN-1280-synthetic-input.json"
+      }
+    },
+    "browser-final-zh-CN-1280.json": {
+      "bytes": 313,
+      "sha256": "fb37494a5cf29d9631d569962f4c5dd8215549559a085bd9bd623b9be3e90fc7",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280.json"
+      }
+    },
+    "browser-final-zh-CN-1280.log": {
+      "bytes": 76,
+      "sha256": "d2321159d22c43af1429fdf422ec0ae4aba4dcccd259cc4f8263ef63ee5e11c2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-1280.log"
+      }
+    },
+    "browser-final-zh-CN-360/browser-report.json": {
+      "bytes": 1699,
+      "sha256": "8281dc8f50c5c650dfd302e11a70cae14c28fdf1ea4d7b2e353fbb5dc711283b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-360/browser-report.json"
+      }
+    },
+    "browser-final-zh-CN-360/zh-CN-360-failed-trace.zip": {
+      "bytes": 41582593,
+      "sha256": "098d918620119225251fbefb55a29200eae7b58725acabd31d4f5e4488db20f1",
+      "storage": {
+        "attachment": "traces/browser-final-zh-CN-360--zh-CN-360-failed-trace.zip"
+      }
+    },
+    "browser-final-zh-CN-360/zh-CN-360-failed.png": {
+      "bytes": 37030,
+      "sha256": "948242521fb9d5a380bafff284b5d00906183d2ca93b179320f414db5867c831",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-360/zh-CN-360-failed.png"
+      }
+    },
+    "browser-final-zh-CN-360/zh-CN-360-feral-rage-details.png": {
+      "bytes": 83702,
+      "sha256": "03ec2abf9287f24c23bce33e59920eed4ff3de083e4ace436e46c9b62788128f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-360/zh-CN-360-feral-rage-details.png"
+      }
+    },
+    "browser-final-zh-CN-360/zh-CN-360-fresh-1.json": {
+      "bytes": 3241,
+      "sha256": "c6091ac836acaa1b6e2da039bcba1b4fd34eed0fa5fdda8eff7f04ea2150eaa4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-360/zh-CN-360-fresh-1.json"
+      }
+    },
+    "browser-final-zh-CN-360/zh-CN-360-imported-2.json": {
+      "bytes": 5300,
+      "sha256": "194501e7c089512fe7cd10b7cacb55689c360c9abdc1bee9665ef0955e771177",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-360/zh-CN-360-imported-2.json"
+      }
+    },
+    "browser-final-zh-CN-360/zh-CN-360-rank1-after-4.json": {
+      "bytes": 5303,
+      "sha256": "aac93fce4d83e7e6a8393b89d449efb146186fd63f4d847f0ec869823fd1ebdf",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-360/zh-CN-360-rank1-after-4.json"
+      }
+    },
+    "browser-final-zh-CN-360/zh-CN-360-rank1-before-3.json": {
+      "bytes": 5300,
+      "sha256": "1effa312b7964b929596b4f7ac9a83aac1eb5ce71067b454fbf28fbc6b56e08b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-360/zh-CN-360-rank1-before-3.json"
+      }
+    },
+    "browser-final-zh-CN-360/zh-CN-360-synthetic-input.json": {
+      "bytes": 4297,
+      "sha256": "187302a9e1c580823ce719140e7bc0196d95680c6070bdede7d89917f0954a22",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-360/zh-CN-360-synthetic-input.json"
+      }
+    },
+    "browser-final-zh-CN-360.json": {
+      "bytes": 315,
+      "sha256": "9c61b548ba016119a63d31d429abbe236b7c64d07f261a764bab1f3a649abe10",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-360.json"
+      }
+    },
+    "browser-final-zh-CN-360.log": {
+      "bytes": 527,
+      "sha256": "82d5d83e129673fd2f8ae838864085fb30d9f3b0c6934b43cdf836c0457f06ff",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-final-zh-CN-360.log"
+      }
+    },
+    "browser-previous.cjs": {
+      "bytes": 9317,
+      "sha256": "85d5c3c63db31febdba186c9467d853d1a96232ec0adab8ab779dcf4335c20d7",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-previous.cjs"
+      }
+    },
+    "browser-verified-en-1280/browser-report.json": {
+      "bytes": 1642,
+      "sha256": "929d90b8133e9a6714c7d240cd701a2ca9c7a2b4919d3c6123388e23add5dd17",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/browser-report.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-feral-rage-combat.json": {
+      "bytes": 2829,
+      "sha256": "efad6b080706566fb65187e8047e31e03a8186e77e340d5342bd0fbaceec2970",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-feral-rage-combat.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-feral-rage-combat.png": {
+      "bytes": 423037,
+      "sha256": "3a69190007785fb083f73b3ecde2ce8c081fc37f7c8844f7eb4a59047f890893",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-feral-rage-combat.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-feral-rage-details.png": {
+      "bytes": 160590,
+      "sha256": "0160e20475e80fa6463cc40eb6eaedcb457d0aebc34a1b8c206b3f1607859725",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-feral-rage-details.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-fresh-1.json": {
+      "bytes": 3238,
+      "sha256": "2b4d016a994fcd4a576fdc46ac13b857c2c7a692bcb92e318cde4826eb56b1b9",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-fresh-1.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-hunger-combat.json": {
+      "bytes": 3271,
+      "sha256": "87d59b2ff84b83c5365851e1e72ef27290c261632a2d17039f2e76104942ece7",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-hunger-combat.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-hunger-combat.png": {
+      "bytes": 415414,
+      "sha256": "f4466e4bfd0b02e0f49c801713834b89fbda6aa85b4e70d120e83f5f4684d920",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-hunger-combat.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-hunger-details.png": {
+      "bytes": 143716,
+      "sha256": "5d5fad4ea0e027e00a19fcc391f2755aa7dcef772aa26dc36ddbaf2dab7cc58e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-hunger-details.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-imported-2.json": {
+      "bytes": 5301,
+      "sha256": "36ece3e6e4196290200ab9a4d3b437257f83ef5f6c2ae6c6ae89694d8d15ec97",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-imported-2.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-rank1-after-4.json": {
+      "bytes": 5304,
+      "sha256": "22065306322a1c06f77d48310c22f1296832133ffd344b5633e7c521308a8d91",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-rank1-after-4.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-rank1-before-3.json": {
+      "bytes": 5301,
+      "sha256": "3058189b3e70b8bc7bc85e899bfcae200b66a47ae039011b948100e6c6375a0d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-rank1-before-3.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-rank2-after-6.json": {
+      "bytes": 5317,
+      "sha256": "bae251c362d6a83c4a45d3e237bbc060ac7295c92129676751d045ab9ac2ac58",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-rank2-after-6.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-rank2-before-5.json": {
+      "bytes": 5317,
+      "sha256": "20d3e84630e5538d1b78272508fd0770c4b0124e3751d465cf697ad45d63146b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-rank2-before-5.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-synthetic-input.json": {
+      "bytes": 4296,
+      "sha256": "7e7654980dfa8424f9d2c6b16f449ca1e02c5cb689ee41fc1a7f27962d97501e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-synthetic-input.json"
+      }
+    },
+    "browser-verified-en-1280.json": {
+      "bytes": 315,
+      "sha256": "98714405aece9140dfa37c286b28cb480c2ca3d2b4dfa2b51d290dabe89e4965",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280.json"
+      }
+    },
+    "browser-verified-en-1280.log": {
+      "bytes": 73,
+      "sha256": "f1a44260d06c4f5729a88c2a39afa41b8033b4cb1e725b8948c8b4267d7c1546",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280.log"
+      }
+    },
+    "browser-verified-en-360/browser-report.json": {
+      "bytes": 1636,
+      "sha256": "8880e87982431afd252f7116bd0898f9f02f6bfebf757dfb5c9f3ca645266c4e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/browser-report.json"
+      }
+    },
+    "browser-verified-en-360/en-360-feral-rage-combat.json": {
+      "bytes": 2843,
+      "sha256": "ecc1b3534cd6f10c4d942a4d35a763da716cc7ac9c5cd2b8556629d4c7f5897e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-feral-rage-combat.json"
+      }
+    },
+    "browser-verified-en-360/en-360-feral-rage-combat.png": {
+      "bytes": 37153,
+      "sha256": "db5935e911fbf8be01fb278debf86ad95ab83072c1852ae4e0605274a9f174c9",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-feral-rage-combat.png"
+      }
+    },
+    "browser-verified-en-360/en-360-feral-rage-details.png": {
+      "bytes": 62548,
+      "sha256": "d2eb49c8d9ec9ead6db4613ecb659ee1fa15369e31819c2b54f30f3d6ae16f1f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-feral-rage-details.png"
+      }
+    },
+    "browser-verified-en-360/en-360-fresh-1.json": {
+      "bytes": 3238,
+      "sha256": "8546e86f9298e04601a7318ee3f3eb4843594f5770f7a6aa662c6a3a94f0daf9",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-fresh-1.json"
+      }
+    },
+    "browser-verified-en-360/en-360-hunger-combat.json": {
+      "bytes": 2262,
+      "sha256": "10d0371d48293a706f58facdf54ff906116b2634fb25aaad34d32f4c3af4c916",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-hunger-combat.json"
+      }
+    },
+    "browser-verified-en-360/en-360-hunger-combat.png": {
+      "bytes": 38099,
+      "sha256": "ecbbc6010690f2f62477d853f1d66939f61fd94d19f7c66e5f1b769a9c48c44f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-hunger-combat.png"
+      }
+    },
+    "browser-verified-en-360/en-360-hunger-details.png": {
+      "bytes": 57126,
+      "sha256": "32f15467d0d3c78e8710313bc4ddf282365e9e9c8aac29e830483f1f71ff0033",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-hunger-details.png"
+      }
+    },
+    "browser-verified-en-360/en-360-imported-2.json": {
+      "bytes": 5301,
+      "sha256": "01d318c86b451306d21bb4734484b836cb49dc08c34053f54d7a15bb10349954",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-imported-2.json"
+      }
+    },
+    "browser-verified-en-360/en-360-rank1-after-4.json": {
+      "bytes": 5304,
+      "sha256": "708febf54cab19dcc69b0650136341d45a4f3da3c7469c30ddddfaa468802d04",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-rank1-after-4.json"
+      }
+    },
+    "browser-verified-en-360/en-360-rank1-before-3.json": {
+      "bytes": 5301,
+      "sha256": "4b8dd6de95f97c038616417ded4854e04885752412fb236d9bc3c2426217d17f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-rank1-before-3.json"
+      }
+    },
+    "browser-verified-en-360/en-360-rank2-after-6.json": {
+      "bytes": 5317,
+      "sha256": "2259fb70c68b2b61838398d4da02b2d7001a3a3b02b85ae37b6fe581d08c3ddc",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-rank2-after-6.json"
+      }
+    },
+    "browser-verified-en-360/en-360-rank2-before-5.json": {
+      "bytes": 5317,
+      "sha256": "1a0c0d730a9f3a011212a817142fd137e8cdf9d8f39ac1a4df83578a623c0fe6",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-rank2-before-5.json"
+      }
+    },
+    "browser-verified-en-360/en-360-synthetic-input.json": {
+      "bytes": 4296,
+      "sha256": "f56a5cc68212b06f6bbc99c691a8943a032d22a65656a46524526bfb587d70d2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-synthetic-input.json"
+      }
+    },
+    "browser-verified-en-360.json": {
+      "bytes": 315,
+      "sha256": "4d4f014849343eb5ec107b34fa6cc4b3e22444ac79595e083f14e3075ed51020",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360.json"
+      }
+    },
+    "browser-verified-en-360.log": {
+      "bytes": 72,
+      "sha256": "1b389460a8c2c993917066ead51fd13045fcfe4dd00c1ecef3b0272213404458",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360.log"
+      }
+    },
+    "browser-verified-zh-CN-1280/browser-report.json": {
+      "bytes": 1590,
+      "sha256": "5b35d72153353ce09cf6507b73c47a9ce81dc1fe28919f87843730befa3a4248",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/browser-report.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-feral-rage-combat.json": {
+      "bytes": 3041,
+      "sha256": "e85578fd1154232c38f9f57535b0dc6182cf1ff4d4aa45793a4faaa12bf64b33",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-feral-rage-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-feral-rage-combat.png": {
+      "bytes": 470379,
+      "sha256": "55a519741497dab2a850c73ddade6030f5510279eafdceb7aaac511ef4c3afe5",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-feral-rage-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-feral-rage-details.png": {
+      "bytes": 173453,
+      "sha256": "5eacf34211a1472ae0aea6a4359b7b13105c127822e51cdbdbffaa6db60fe52d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-feral-rage-details.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-fresh-1.json": {
+      "bytes": 3241,
+      "sha256": "82eb9e7cba30cf77f633da358b5e39c187ebc4efa8325d2b478e7b07990f97e5",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-fresh-1.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-hunger-combat.json": {
+      "bytes": 2385,
+      "sha256": "5304ab7a56cb4e7074d2ec99eba915cd4282012a2e7b6d522f6fd9de4bca73eb",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-hunger-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-hunger-combat.png": {
+      "bytes": 421515,
+      "sha256": "b8b327c582e04f49fb17b1f25d07eb0cffdd89763acd18cc72cb2be5173746ce",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-hunger-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-hunger-details.png": {
+      "bytes": 145631,
+      "sha256": "3eb99937929a5baac507792511f493d12616d6813b4e974057264b611ce10c9e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-hunger-details.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-imported-2.json": {
+      "bytes": 5304,
+      "sha256": "f2b2e27f0515edf39cc28bc0f2d658686201fcc39e6023f531ba8de6c9575116",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-imported-2.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-rank1-after-4.json": {
+      "bytes": 5307,
+      "sha256": "786a37915489ad2278fd688b077cbb71fab2de3af2b818c714d4d201f47ca955",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-rank1-after-4.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-rank1-before-3.json": {
+      "bytes": 5304,
+      "sha256": "b608b43f33a66bf7158bd30f99283eeec795d773a9c51ac6b8b43c2e0f863919",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-rank1-before-3.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-rank2-after-6.json": {
+      "bytes": 5320,
+      "sha256": "4e05d9340161121fedac65a5d20d43f38b651b114d626f0fc6e87357d692f4b4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-rank2-after-6.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-rank2-before-5.json": {
+      "bytes": 5320,
+      "sha256": "d63282544d3ddd997fab4bf533005065d42a413b90de47673b4ed88b5860413c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-rank2-before-5.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-synthetic-input.json": {
+      "bytes": 4299,
+      "sha256": "7e364199fd798695afce3b27fc0c38915f81acd53a5025d91154cd870b61a72f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-synthetic-input.json"
+      }
+    },
+    "browser-verified-zh-CN-1280.json": {
+      "bytes": 315,
+      "sha256": "a859c95b183d3e73b479e81dca605afd9bfede8023a73a9f6bb67d02c154943a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280.json"
+      }
+    },
+    "browser-verified-zh-CN-1280.log": {
+      "bytes": 76,
+      "sha256": "d2321159d22c43af1429fdf422ec0ae4aba4dcccd259cc4f8263ef63ee5e11c2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280.log"
+      }
+    },
+    "browser-verified-zh-CN-360/browser-report.json": {
+      "bytes": 1584,
+      "sha256": "0909f9b5edcf1d5d3f351cdcec3ebb0d74bed06c7b5023e661d4f34e8daf2c31",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/browser-report.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-feral-rage-combat.json": {
+      "bytes": 3045,
+      "sha256": "14678a7a5549fd484989c9544ddc62ceec6e4a53ff687ba14ff36d940a9b37cb",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-feral-rage-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-feral-rage-combat.png": {
+      "bytes": 36861,
+      "sha256": "54d2e6a002c154d2fb8f39a2e9eabb8520fe7331d53c7b31b55e54e662da4a89",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-feral-rage-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-feral-rage-details.png": {
+      "bytes": 83702,
+      "sha256": "03ec2abf9287f24c23bce33e59920eed4ff3de083e4ace436e46c9b62788128f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-feral-rage-details.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-fresh-1.json": {
+      "bytes": 3241,
+      "sha256": "3ac65fa49d70469907731f734ed8924ac119162b1d39a2c1bb8209f87fd3bf08",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-fresh-1.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-hunger-combat.json": {
+      "bytes": 2341,
+      "sha256": "673478120c13d30c6006bc3bef273edf519b3035b31890ce30e95921448748b0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-hunger-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-hunger-combat.png": {
+      "bytes": 34459,
+      "sha256": "4ab16d2ef99b41b8c92761f0d21bbac3b7ecdb8ee0a556b449a93be35680a983",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-hunger-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-hunger-details.png": {
+      "bytes": 63928,
+      "sha256": "f19621d9ea7f9663c7dfc416fd768d2a24a3efb7520cfe78a9c3fec372fc7bc7",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-hunger-details.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-imported-2.json": {
+      "bytes": 5304,
+      "sha256": "99c345ad6d073bdb2109089274d2ffa949e2a166cab5d4b26ebb4645e8a30a6e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-imported-2.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-rank1-after-4.json": {
+      "bytes": 5307,
+      "sha256": "3697ad7be908f77682639b8ecce48d4b6ef7da9c9ef0a187e07acbc190f5ecb0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-rank1-after-4.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-rank1-before-3.json": {
+      "bytes": 5304,
+      "sha256": "67f08882c91564e10eef4b2ee1e803b6b4a4e10263bb711cff02fcb53f6809a6",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-rank1-before-3.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-rank2-after-6.json": {
+      "bytes": 5320,
+      "sha256": "c9724b231b3fb705cb2e6688b505bfe6702607ef95a100e4e4b768530c12b6cf",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-rank2-after-6.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-rank2-before-5.json": {
+      "bytes": 5320,
+      "sha256": "531eb1be94771b2f8309e098548cbaf6d390a908c6a3d8d845acb3c025b2991b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-rank2-before-5.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-synthetic-input.json": {
+      "bytes": 4299,
+      "sha256": "fd6455af37a98cbd39d6e6c2e434e8bb5e0bad2f256c846698fc78ab432ff17f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-synthetic-input.json"
+      }
+    },
+    "browser-verified-zh-CN-360.json": {
+      "bytes": 315,
+      "sha256": "52032b5f4b1cebc3cf58829040e00efe59333f47e29af26cdd16506edeb6b50e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360.json"
+      }
+    },
+    "browser-verified-zh-CN-360.log": {
+      "bytes": 75,
+      "sha256": "6f192eb1f7331d469e80c78616799796c0be954f90e28986dd43231d4cf5c248",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360.log"
+      }
+    },
+    "build-final.json": {
+      "bytes": 376,
+      "sha256": "d1da67e1c8fc6ba83563c4474ed61ac8f05d391d8ac3bb5f5d7653072053d252",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "build-final.json"
+      }
+    },
+    "build-final.log": {
+      "bytes": 2150,
+      "sha256": "fd62092eccdebf247f2c0d0f97748783f3cb77e03f05952f0efbb924d56b4b26",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "build-final.log"
+      }
+    },
+    "build.json": {
+      "bytes": 355,
+      "sha256": "56cd15a85d45df1b794074fb3de701d80a2691c2e1d8e8343c85a0c8b4342062",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "build.json"
+      }
+    },
+    "build.log": {
+      "bytes": 2325,
+      "sha256": "cb639adf71447e181b632246c44f98800fec78580ee87a2b887d21b62fa07b53",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "build.log"
+      }
+    },
+    "cleanup-owned.py": {
+      "bytes": 2717,
+      "sha256": "bf2ee4b63208573e22bd7c38eba6baa06989e741606d43e5074aef877b02d1b1",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "cleanup-owned.py"
+      }
+    },
+    "combat-before-rounding.ts.txt": {
+      "bytes": 102445,
+      "sha256": "b4f24543a9478a8e4f1e1cd93688568b6ee176d19bf4d6be29d7f743d86b9344",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "combat-before-rounding.ts.txt"
+      }
+    },
+    "combat-boundaries-green.json": {
+      "bytes": 387,
+      "sha256": "3e677d18fda3da5d5d95733d8b998d6fdd0e4abe30a38a937dbfb9f77e565338",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "combat-boundaries-green.json"
+      }
+    },
+    "combat-boundaries-green.log": {
+      "bytes": 501,
+      "sha256": "4e943587e936184fc9508db319e5bf4da76d46a431ed0557d8b859781bc2ea29",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "combat-boundaries-green.log"
+      }
+    },
+    "combat-boundaries-original.test.ts.txt": {
+      "bytes": 9014,
+      "sha256": "d8792e468d4f02abf71d42d68e22aa35fdd5211fd752d2e153d513f327ab9081",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "combat-boundaries-original.test.ts.txt"
+      }
+    },
+    "combat-boundaries.json": {
+      "bytes": 434,
+      "sha256": "e8697833cdbc14e69d077b84be8ffd5463e065dbad12eac243a649bcaa2f5670",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "combat-boundaries.json"
+      }
+    },
+    "combat-boundaries.log": {
+      "bytes": 3810,
+      "sha256": "805276f39a8bf410fa1c644838e75150f76d3d8f2dff5e09343a522b8977606f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "combat-boundaries.log"
+      }
+    },
+    "committed-source-audit-command.json": {
+      "bytes": 323,
+      "sha256": "468fccf45181838b9fc1d5198f86ce1a33377dec283106174f73cca797b20c32",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "committed-source-audit-command.json"
+      }
+    },
+    "committed-source-audit-command.log": {
+      "bytes": 238,
+      "sha256": "69c85107e490aa469f0fecd6d293b62fc2a29934c19268b84dcc7ceaf2e8b9ba",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "committed-source-audit-command.log"
+      }
+    },
+    "committed-source-audit.py": {
+      "bytes": 1643,
+      "sha256": "93568d042e46167228381b077ef7031044aa691581c73da8c79e129c7ded74b9",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "committed-source-audit.py"
+      }
+    },
+    "committed-source-proof.json": {
+      "bytes": 284368,
+      "sha256": "fab6965e5d59c5e54573a2efdb8ec529bd38fadd8beca79ec7fd25830826ba1c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "committed-source-proof.json"
+      }
+    },
+    "druid-sustain.native.test.ts.lint-original.txt": {
+      "bytes": 8244,
+      "sha256": "c875c8ad77b8ff4244bf4c46c011ee98e369de55da544e8d67e78e60a14d6d48",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "druid-sustain.native.test.ts.lint-original.txt"
+      }
+    },
+    "engine-final.json": {
+      "bytes": 236,
+      "sha256": "58c36f4ee19cf8fa4128cd03df406c85394e617d7f9edf77473f6dfc2528406b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "engine-final.json"
+      }
+    },
+    "engine-final.log": {
+      "bytes": 64770,
+      "sha256": "371f0226f8c2a51f6a13275c93ff52c5f0aff484f4b20617c5bb8f4aa8a7cd23",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "engine-final.log"
+      }
+    },
+    "engine-first.json": {
+      "bytes": 236,
+      "sha256": "83377cbf6437f3cdf752d0afc3a5e0f350c8124430e8af4188377a1666df1562",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "engine-first.json"
+      }
+    },
+    "engine-first.log": {
+      "bytes": 64675,
+      "sha256": "58b3e6d055b8f94b9f399f5f2a7081913eae37b8a1f71cec0efaa456e46af42a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "engine-first.log"
+      }
+    },
+    "eventToLogI18n.druid-sustain.test.ts.log-red.txt": {
+      "bytes": 1009,
+      "sha256": "9069be7068fb23d59ce76b850931fd0ac3e1b50d24d6c182a4588c62ca6736af",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "eventToLogI18n.druid-sustain.test.ts.log-red.txt"
+      }
+    },
+    "eventToLogI18n.ts.log-red.txt": {
+      "bytes": 8176,
+      "sha256": "24182b9604e2e3882605fa69764150dbdca7235301c6fef0f7c8852f0c2335ba",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "eventToLogI18n.ts.log-red.txt"
+      }
+    },
+    "extended-focused-original.test.ts.txt": {
+      "bytes": 10995,
+      "sha256": "d791d4cc628cbbb0721dfb2be7acad6a79c38d63bec3fd5f1e4a665c32804f75",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "extended-focused-original.test.ts.txt"
+      }
+    },
+    "extended-focused.json": {
+      "bytes": 346,
+      "sha256": "3a983d7f3df9a797d6a4ee79cb315de349a7b008d29259045e8ca3f47b58f213",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "extended-focused.json"
+      }
+    },
+    "extended-focused.log": {
+      "bytes": 2511,
+      "sha256": "01bcae2530575c836e278f6ca2187df77e4ed4594c3c5b2a04c303977c3b58ec",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "extended-focused.log"
+      }
+    },
+    "feral-lifecycle.json": {
+      "bytes": 333,
+      "sha256": "cad1cb696fe77cf926d11dff3f42aa1019e97bc2213059cdf27c0413871a1426",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "feral-lifecycle.json"
+      }
+    },
+    "feral-lifecycle.log": {
+      "bytes": 347,
+      "sha256": "d53c014ba86ad53e0cbe9682b86218fd43743eeb1116950498ef0b6aca523440",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "feral-lifecycle.log"
+      }
+    },
+    "focused-complete.json": {
+      "bytes": 440,
+      "sha256": "7713cbac3f09bd55d444ecbdc7e5b15dd051e9afbb31b3507c436015f82398f7",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "focused-complete.json"
+      }
+    },
+    "focused-complete.log": {
+      "bytes": 575,
+      "sha256": "04b6c6364350914370cc21bc511a2560be14922dcdff515792e8684dd1ccff5b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "focused-complete.log"
+      }
+    },
+    "focused-final.json": {
+      "bytes": 440,
+      "sha256": "e94f6f702fda7388d1718ff9d84100e7657080c9974b2b7ff6500ac62a05ebd0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "focused-final.json"
+      }
+    },
+    "focused-final.log": {
+      "bytes": 1897,
+      "sha256": "42ceaecc2c4d308d3f76dbf6e5ce547c8ace1c4bd967da13db7266fff414eca9",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "focused-final.log"
+      }
+    },
+    "format-lint-fixed.json": {
+      "bytes": 355,
+      "sha256": "dbefeab291808057b80f50605dffe1114938f4ea861c5829313a4c72dd434fae",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-lint-fixed.json"
+      }
+    },
+    "format-lint-fixed.log": {
+      "bytes": 107,
+      "sha256": "8f0619d9fe3d4757557a05acb8763ad878cbdfbca2e5a7a3e8c533ca206e9992",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-lint-fixed.log"
+      }
+    },
+    "format-log-test.json": {
+      "bytes": 300,
+      "sha256": "7b7a315acc3d9bd7972a3af27b1092e3f8ab293d7c27f0f6b911f1af6ba0c40d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-log-test.json"
+      }
+    },
+    "format-log-test.log": {
+      "bytes": 53,
+      "sha256": "2ed01e613c6759cc9d4eacef31376bbfe501bdfb80495148b05eb5bffcdf9319",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-log-test.log"
+      }
+    },
+    "format-new.json": {
+      "bytes": 715,
+      "sha256": "82e645f5f7a62385901a3d36c0d40868606c25686936e3a25a20781610e0adb4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-new.json"
+      }
+    },
+    "format-new.log": {
+      "bytes": 464,
+      "sha256": "9198193a3dd853469d00e6549bd05f23b20ca8dc5e95d42e5bec4426495ed8c2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-new.log"
+      }
+    },
+    "forms-original.test.ts.txt": {
+      "bytes": 5824,
+      "sha256": "29a56938dfbc8dccd1230684f229d8d5b1f124e9795b3b26e534b2a1f59c690f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "forms-original.test.ts.txt"
+      }
+    },
+    "freeze.py": {
+      "bytes": 1429,
+      "sha256": "bf7addd0973913e57688deca0dbbdc0ffc8e138476e695c5e4efa44a006f0811",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "freeze.py"
+      }
+    },
+    "frozen-after.json": {
+      "bytes": 252864,
+      "sha256": "8c136a80db417f0bf2d6e969d166d9d6d7bd99951d4126403025bb01f51e64d4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "frozen-after.json"
+      }
+    },
+    "frozen-before.json": {
+      "bytes": 252864,
+      "sha256": "8c136a80db417f0bf2d6e969d166d9d6d7bd99951d4126403025bb01f51e64d4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "frozen-before.json"
+      }
+    },
+    "full.json": {
+      "bytes": 219,
+      "sha256": "1b07189690bcfe0b88029065d6fffa76e3aef35134ba93e4aff63ce4626d4d22",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "full.json"
+      }
+    },
+    "full.log": {
+      "bytes": 153123,
+      "sha256": "42e8d2ebf503ad9849015e22228b48753cd4348a2027a79200c0a2f025838f93",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "full.log"
+      }
+    },
+    "inventory-publication-proof.json": {
+      "bytes": 359,
+      "sha256": "2b010a54d4d68209089f95cc0b8c8a9031b59bd99df8777ee4e6ea1e73a66419",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "inventory-publication-proof.json"
+      }
+    },
+    "lint-final.json": {
+      "bytes": 229,
+      "sha256": "3e701de235a423ecfc65f7d6665f49b55082a5a11c085845db07f10c11da4d84",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-final.json"
+      }
+    },
+    "lint-final.log": {
+      "bytes": 197,
+      "sha256": "840141e17bf79b15c0b9305c6943f67006ed4b3f7551b653b8356c84a3b6f030",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-final.log"
+      }
+    },
+    "lint-first.json": {
+      "bytes": 230,
+      "sha256": "e65cfae49d5ca3053be1823619ca2ec61bf8a0882f27777fe2e4f191bea8a21e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-first.json"
+      }
+    },
+    "lint-first.log": {
+      "bytes": 895,
+      "sha256": "5bb718396ba39cb982c752c60be0114f0569109f01d81779f04be8aab0dc6c50",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-first.log"
+      }
+    },
+    "lint-fix-new.json": {
+      "bytes": 350,
+      "sha256": "c3a38a78ad3612e0f19fab5bcfa923ac5129844c9946406b6a47690edf5e5e00",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-fix-new.json"
+      }
+    },
+    "lint-fix-new.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-fix-new.log"
+      }
+    },
+    "lint-integrated.json": {
+      "bytes": 229,
+      "sha256": "09dda6b59c30c83426f2bc25405d367499b610aa88e1722120129462349adb7c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-integrated.json"
+      }
+    },
+    "lint-integrated.log": {
+      "bytes": 197,
+      "sha256": "840141e17bf79b15c0b9305c6943f67006ed4b3f7551b653b8356c84a3b6f030",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-integrated.log"
+      }
+    },
+    "log-green.json": {
+      "bytes": 384,
+      "sha256": "75fa75cebfddb78be252f4265c8277fd16cba1e3c38f941601c69a5c5b36cb7e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "log-green.json"
+      }
+    },
+    "log-green.log": {
+      "bytes": 494,
+      "sha256": "0d4fcb2dfd1ec967fc1d32379854b4b45c75976b1aed6ccf38a9ae17b8a23fba",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "log-green.log"
+      }
+    },
+    "log-red.json": {
+      "bytes": 294,
+      "sha256": "db4e09ba95a8beba26db395a09aa72d9174e609f014d4ae4373ce35ffd26ff6f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "log-red.json"
+      }
+    },
+    "log-red.log": {
+      "bytes": 2662,
+      "sha256": "409b2528f2e1a4bbb54f6c92938f43c8c491726ee62ac2d036b74bfc53fad631",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "log-red.log"
+      }
+    },
+    "native-causal-green.json": {
+      "bytes": 329,
+      "sha256": "1cc96d809752b0d7ed331d356ca4eee656f72b41efa70ff2cb0a1e2c13c29123",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-causal-green.json"
+      }
+    },
+    "native-causal-green.log": {
+      "bytes": 351,
+      "sha256": "23148dfd220348195ee7b1e78450fc0566e46cb0a3251af06163427e45ed8064",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-causal-green.log"
+      }
+    },
+    "native-causal-red.json": {
+      "bytes": 330,
+      "sha256": "42fa66c3b41b43f0afd1f392a24b418a9c9ecf87678123ae220bdc0ae7fa9788",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-causal-red.json"
+      }
+    },
+    "native-causal-red.log": {
+      "bytes": 19925,
+      "sha256": "d6acb0165dd573e1c1efa46d45ca0e5b6e51759a1d3f6440e719c1d1522009b2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-causal-red.log"
+      }
+    },
+    "native-causal-red.test.ts.txt": {
+      "bytes": 4459,
+      "sha256": "f2b9f90024daa74e3b97c489ebbe99ee52b98f372eb2bc087df17d4590521bd2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-causal-red.test.ts.txt"
+      }
+    },
+    "native-lifecycle-corrected.json": {
+      "bytes": 333,
+      "sha256": "65ddb2c3b328afaa74c56ea58adde491bcd085c241a7cd8bd92dff83df865574",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-lifecycle-corrected.json"
+      }
+    },
+    "native-lifecycle-corrected.log": {
+      "bytes": 419,
+      "sha256": "2d4f72d8b056de8af85e6a2e861a25aabe7529744d3860ef4437d0bf4e297bd0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-lifecycle-corrected.log"
+      }
+    },
+    "native-lifecycle-original.test.ts.txt": {
+      "bytes": 6915,
+      "sha256": "2d1f435f45848e5b5cf2fb2e6440e87cbf951894e15d186ab7226a6d29b14e36",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-lifecycle-original.test.ts.txt"
+      }
+    },
+    "native-lifecycle.json": {
+      "bytes": 286,
+      "sha256": "b9ced511027924ff0dc2584d1b1fc9bcb33f66ca1a45b004ee382f63b28e4906",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-lifecycle.json"
+      }
+    },
+    "native-lifecycle.log": {
+      "bytes": 48667,
+      "sha256": "06a36b92ae641c1b9ab7a470ae194577bc8cd18264d11e1189cfd2668f6341bc",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-lifecycle.log"
+      }
+    },
+    "original-native-green-result.json": {
+      "bytes": 8233,
+      "sha256": "739075b6ae2991ccf38863b490935e39edece5375f4f1fa30afb9c30a19feb6e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "original-native-green-result.json"
+      }
+    },
+    "original-native-green.json": {
+      "bytes": 368,
+      "sha256": "83a6e534f0cf7904cead22cffaf85278996fe619cecc0fa09a721d29b900a2f4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "original-native-green.json"
+      }
+    },
+    "original-native-green.log": {
+      "bytes": 8233,
+      "sha256": "739075b6ae2991ccf38863b490935e39edece5375f4f1fa30afb9c30a19feb6e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "original-native-green.log"
+      }
+    },
+    "original-native-repro-green.ts": {
+      "bytes": 4883,
+      "sha256": "ef7e429d16c2de8674f36066462617b5f3af931dbc4b109abd0ed06e52746d1a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "original-native-repro-green.ts"
+      }
+    },
+    "ownership.json": {
+      "bytes": 329,
+      "sha256": "34f46ee695ea6ceabc15bab692da16dd2dd59d64caa88bbc30825469ee8a86d3",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "ownership.json"
+      }
+    },
+    "publish-record-command.json": {
+      "bytes": 315,
+      "sha256": "609390e83c02b80a61e3ee808b001b9937b9589ec83e8cdda52263d0f20a6fe4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "publish-record-command.json"
+      }
+    },
+    "publish-record-command.log": {
+      "bytes": 313,
+      "sha256": "8114e87d51095bc68d6c2c8cc87274140c0dcdf5e4f73dfa8970a77bce89b353",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "publish-record-command.log"
+      }
+    },
+    "publish-record.py": {
+      "bytes": 7501,
+      "sha256": "6b2be9a8ce485e3ab0f3f9442bbba5683eb626c8b33a3f623d35f8ce0140c049",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "publish-record.py"
+      }
+    },
+    "run.py": {
+      "bytes": 716,
+      "sha256": "5b4aa743f837643d012697def88abc2a31f01721228e0c13b79821b2351a089c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "run.py"
+      }
+    },
+    "runtime-commit.json": {
+      "bytes": 367,
+      "sha256": "39e151edd7b8d9eb9a70a22100826ea0d31576fa85c61b91b0709240fefc606e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "runtime-commit.json"
+      }
+    },
+    "runtime-commit.log": {
+      "bytes": 506,
+      "sha256": "d55d878d24e45757610b4fa11aecc9bc6785c348cc52b4d0d0874929b12c6bea",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "runtime-commit.log"
+      }
+    },
+    "schema-green.json": {
+      "bytes": 448,
+      "sha256": "dee4844b028a1373c17f4a0ef3d176fd66e2a43af5fcb43d92778bd8a6892f4e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "schema-green.json"
+      }
+    },
+    "schema-green.log": {
+      "bytes": 516,
+      "sha256": "fc0452826ef82f605e77da8a8cd57f39bb2ab2c30eb96da0def830514dc8aab5",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "schema-green.log"
+      }
+    },
+    "schema-red.json": {
+      "bytes": 340,
+      "sha256": "fd9871742195874c48f9d63b9ffebccc89045892e23245c41bc939b67d0514ff",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "schema-red.json"
+      }
+    },
+    "schema-red.log": {
+      "bytes": 5131,
+      "sha256": "eb01e87a6de81e1d1b45460d8f9b0540aa0c0f5676cd5d5eee25257897761257",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "schema-red.log"
+      }
+    },
+    "schema-red.test.ts.txt": {
+      "bytes": 3919,
+      "sha256": "8031b90a77e8259f929c47a4f16968d63302e94fe273971c01b8fc6452ab2bde",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "schema-red.test.ts.txt"
+      }
+    },
+    "self-review.md": {
+      "bytes": 3521,
+      "sha256": "0c87e98180474d48c888e95725a4ba5cc41c1244a0b8cc4020bb9e015aefd2d0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "self-review.md"
+      }
+    },
+    "serve.py": {
+      "bytes": 706,
+      "sha256": "7ed2b8678a2cc12a02df446b47c77f65c246d27e79d09489714b48bd3293b134",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "serve.py"
+      }
+    },
+    "server-closed.json": {
+      "bytes": 62,
+      "sha256": "522aa53eb0b4176e787b90ae06a09b6e0ff8dc444648666f157c9fb063ffb9ed",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "server-closed.json"
+      }
+    },
+    "server-owner.json": {
+      "bytes": 400,
+      "sha256": "09d1250d6e7ad257109162d661ee9c2f534e46a3fad59713a532a8d5f8ef5bc6",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "server-owner.json"
+      }
+    },
+    "server-stop-request.json": {
+      "bytes": 351,
+      "sha256": "c2c142c80b264275f41c1a559733e1cd496260936950371ee76be100fc7cbdc8",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "server-stop-request.json"
+      }
+    },
+    "server-terminal.json": {
+      "bytes": 27,
+      "sha256": "523f2da318946cdce5d7325e6f57bfb06bec487746439921c4adebc1622cbdd3",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "server-terminal.json"
+      }
+    },
+    "server.log": {
+      "bytes": 39,
+      "sha256": "c923482eb948370921447f15ffb2ab44389b0ba2739ef92415478123983521cd",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "server.log"
+      }
+    },
+    "types-final.json": {
+      "bytes": 234,
+      "sha256": "49578bb98eebc63f69f12cb153c09303c09d2b69cb51a15d90f0d025345c191d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-final.json"
+      }
+    },
+    "types-final.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-final.log"
+      }
+    },
+    "types-first.json": {
+      "bytes": 233,
+      "sha256": "713965d053fcd974b7b15476d2c8f45c76926a96522f1972c7b2b0e594ec4f23",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-first.json"
+      }
+    },
+    "types-first.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-first.log"
+      }
+    },
+    "types-integrated.json": {
+      "bytes": 233,
+      "sha256": "66e07e5ba0c2f9da69983d8b48976d5215add3be328c8b2057910ce05a3309c1",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-integrated.json"
+      }
+    },
+    "types-integrated.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-integrated.log"
+      }
+    },
+    "ui-commit.json": {
+      "bytes": 368,
+      "sha256": "ee8a42256693c428c0bcfefc3e36db9f0d147bf778c98ea159bd3c8a5d38e786",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "ui-commit.json"
+      }
+    },
+    "ui-commit.log": {
+      "bytes": 437,
+      "sha256": "0eb524412cc82c259efb6d65b886070bb96a7e48ba749df7129120c57cd49c9a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "ui-commit.log"
+      }
+    },
+    "ui-green.json": {
+      "bytes": 431,
+      "sha256": "aba28c8c6ea4c7a9d687fab7783ed677e9ff32dfe193e675fc053a12ce57cae2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "ui-green.json"
+      }
+    },
+    "ui-green.log": {
+      "bytes": 542,
+      "sha256": "d3590b0622f094d52a636102b1dce4451489b2e6bffbd213073a2260055c9207",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "ui-green.log"
+      }
+    },
+    "ui-red.json": {
+      "bytes": 365,
+      "sha256": "de14c75c573b192102daf65db5eb5af51adad8e55e7d4f31c235b7cbbda0c970",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "ui-red.json"
+      }
+    },
+    "ui-red.log": {
+      "bytes": 113297,
+      "sha256": "847018da295ea2956707020a4ce6afb7e3c7173d7a454874c793b733490db051",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "ui-red.log"
+      }
+    },
+    "visual-inspection.json": {
+      "bytes": 942,
+      "sha256": "48deeac872a2484cd146dee5fef0718b0fdb3051507c6128658245b9af015055",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "visual-inspection.json"
+      }
+    }
+  },
+  "archiveSha256": "af6530eafbb7626d3210f0de9211d2476f2b9db92999f35743ac50f931953122",
+  "archiveBytes": 5730278,
+  "largeTraceAttachments": [
+    "browser-en-desktop/en-1280-failed-trace.zip",
+    "browser-final-en-1280/en-1280-failed-trace.zip",
+    "browser-final-en-360/en-360-failed-trace.zip",
+    "browser-final-zh-CN-360/zh-CN-360-failed-trace.zip"
+  ],
+  "terminalReceipts": {
+    "attachment-audit-command.json": {
+      "argv": [
+        "python3",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/audit-browser.py"
+      ],
+      "exit": 0,
+      "seconds": 0.038,
+      "finished": "2026-10-25T08:04:00.808457+00:00"
+    },
+    "browser-audit.json": {
+      "argv": [
+        "python3",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/audit-browser.py"
+      ],
+      "exit": 0,
+      "seconds": 0.038,
+      "finished": "2026-10-25T08:01:44.410742+00:00"
+    },
+    "browser-en-desktop.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/browser-current.cjs"
+      ],
+      "exit": 1,
+      "seconds": 33.048,
+      "finished": "2026-10-25T07:56:47.802750+00:00"
+    },
+    "browser-final-en-1280.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/browser-current.cjs"
+      ],
+      "exit": 1,
+      "seconds": 28.366,
+      "finished": "2026-10-25T07:59:22.768867+00:00"
+    },
+    "browser-final-en-360.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/browser-current.cjs"
+      ],
+      "exit": 1,
+      "seconds": 31.094,
+      "finished": "2026-10-25T07:59:25.496290+00:00"
+    },
+    "browser-final-zh-CN-1280.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/browser-current.cjs"
+      ],
+      "exit": 0,
+      "seconds": 33.3,
+      "finished": "2026-10-25T07:59:27.703582+00:00"
+    },
+    "browser-final-zh-CN-360.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/browser-current.cjs"
+      ],
+      "exit": 1,
+      "seconds": 28.277,
+      "finished": "2026-10-25T07:59:22.679777+00:00"
+    },
+    "browser-verified-en-1280.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/browser-current.cjs"
+      ],
+      "exit": 0,
+      "seconds": 34.963,
+      "finished": "2026-10-25T08:00:37.407807+00:00"
+    },
+    "browser-verified-en-360.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/browser-current.cjs"
+      ],
+      "exit": 0,
+      "seconds": 31.821,
+      "finished": "2026-10-25T08:00:34.267172+00:00"
+    },
+    "browser-verified-zh-CN-1280.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/browser-current.cjs"
+      ],
+      "exit": 0,
+      "seconds": 33.488,
+      "finished": "2026-10-25T08:00:35.938884+00:00"
+    },
+    "browser-verified-zh-CN-360.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/browser-current.cjs"
+      ],
+      "exit": 0,
+      "seconds": 31.749,
+      "finished": "2026-10-25T08:00:34.207799+00:00"
+    },
+    "build-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/production",
+        "--emptyOutDir"
+      ],
+      "exit": 0,
+      "seconds": 11.808,
+      "finished": "2026-10-25T07:58:35.078181+00:00"
+    },
+    "build.json": {
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/production"
+      ],
+      "exit": 0,
+      "seconds": 14.819,
+      "finished": "2026-10-25T07:55:03.953808+00:00"
+    },
+    "combat-boundaries-green.json": {
+      "argv": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/druid-sustain.test.ts",
+        "src/engine/skills/druid-sustain.test.ts",
+        "src/engine/skills/druid-sustain-schema.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 2.702,
+      "finished": "2026-10-25T07:49:49.000426+00:00"
+    },
+    "combat-boundaries.json": {
+      "argv": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/combat/druid-sustain.test.ts",
+        "src/engine/skills/druid-sustain.test.ts",
+        "src/engine/skills/druid-sustain-schema.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 2.696,
+      "finished": "2026-10-25T07:46:59.366271+00:00"
+    },
+    "committed-source-audit-command.json": {
+      "argv": [
+        "python3",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/committed-source-audit.py"
+      ],
+      "exit": 0,
+      "seconds": 0.522,
+      "finished": "2026-10-25T08:07:58.297363+00:00"
+    },
+    "engine-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "exit": 0,
+      "seconds": 82.206,
+      "finished": "2026-10-25T07:56:11.342987+00:00"
+    },
+    "engine-first.json": {
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "exit": 0,
+      "seconds": 79.395,
+      "finished": "2026-10-25T07:51:09.415042+00:00"
+    },
+    "extended-focused.json": {
+      "argv": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/druid-sustain.test.ts",
+        "src/engine/skills/displayStats.druid-sustain.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 2.368,
+      "finished": "2026-10-25T07:53:21.375139+00:00"
+    },
+    "feral-lifecycle.json": {
+      "argv": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/skills/druid-sustain.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 1.647,
+      "finished": "2026-10-25T07:45:47.171265+00:00"
+    },
+    "focused-complete.json": {
+      "argv": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/druid-sustain.test.ts",
+        "src/engine/skills/displayStats.druid-sustain.test.ts",
+        "src/stores/druid-sustain.causal.test.ts",
+        "src/stores/druid-sustain.native.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 7.085,
+      "finished": "2026-10-25T07:54:31.866880+00:00"
+    },
+    "focused-final.json": {
+      "argv": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/druid-sustain.test.ts",
+        "src/engine/skills/displayStats.druid-sustain.test.ts",
+        "src/stores/druid-sustain.causal.test.ts",
+        "src/stores/druid-sustain.native.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 6.657,
+      "finished": "2026-10-25T07:53:52.358058+00:00"
+    },
+    "format-lint-fixed.json": {
+      "argv": [
+        "./node_modules/.bin/prettier",
+        "--write",
+        "src/features/skills/SkillsScreen.druid-sustain.test.tsx",
+        "src/stores/druid-sustain.native.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 0.374,
+      "finished": "2026-10-25T07:56:54.746588+00:00"
+    },
+    "format-log-test.json": {
+      "argv": [
+        "./node_modules/.bin/prettier",
+        "--write",
+        "src/stores/eventToLogI18n.druid-sustain.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 0.197,
+      "finished": "2026-10-25T07:58:41.458910+00:00"
+    },
+    "format-new.json": {
+      "argv": [
+        "./node_modules/.bin/prettier",
+        "--write",
+        "src/engine/skills/druid-sustain.ts",
+        "src/engine/skills/druid-sustain.test.ts",
+        "src/engine/skills/druid-sustain-schema.test.ts",
+        "src/engine/skills/displayStats.druid-sustain.test.ts",
+        "src/engine/combat/druid-sustain.test.ts",
+        "src/stores/druid-sustain.causal.test.ts",
+        "src/stores/druid-sustain.native.test.ts",
+        "src/features/skills/SkillsScreen.druid-sustain.test.tsx",
+        "src/features/combat/CombatScreen.druid-sustain.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 0.624,
+      "finished": "2026-10-25T07:54:03.091251+00:00"
+    },
+    "full.json": {
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "seconds": 482.649,
+      "finished": "2026-10-25T08:06:58.576784+00:00"
+    },
+    "lint-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 84.912,
+      "finished": "2026-10-25T07:58:19.723584+00:00"
+    },
+    "lint-first.json": {
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 1,
+      "seconds": 108.396,
+      "finished": "2026-10-25T07:56:14.322366+00:00"
+    },
+    "lint-fix-new.json": {
+      "argv": [
+        "./node_modules/.bin/eslint",
+        "--fix",
+        "src/features/skills/SkillsScreen.druid-sustain.test.tsx",
+        "src/stores/druid-sustain.native.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 7.15,
+      "finished": "2026-10-25T07:56:29.900095+00:00"
+    },
+    "lint-integrated.json": {
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 124.36,
+      "finished": "2026-10-25T08:01:09.025635+00:00"
+    },
+    "log-green.json": {
+      "argv": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "src/stores/eventToLogI18n.druid-sustain.test.ts",
+        "src/stores/eventToLogI18n.test.ts",
+        "src/features/combat/CombatScreen.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 8.902,
+      "finished": "2026-10-25T07:58:31.177085+00:00"
+    },
+    "log-red.json": {
+      "argv": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "src/stores/eventToLogI18n.druid-sustain.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 2.534,
+      "finished": "2026-10-25T07:57:59.520400+00:00"
+    },
+    "native-causal-green.json": {
+      "argv": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/druid-sustain.causal.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 6.713,
+      "finished": "2026-10-25T07:42:39.333610+00:00"
+    },
+    "native-causal-red.json": {
+      "argv": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/druid-sustain.causal.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 15.304,
+      "finished": "2026-10-25T07:39:21.004828+00:00"
+    },
+    "native-lifecycle-corrected.json": {
+      "argv": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "src/stores/druid-sustain.native.test.ts",
+        "src/stores/druid-sustain.causal.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 6.254,
+      "finished": "2026-10-25T07:51:44.826896+00:00"
+    },
+    "native-lifecycle.json": {
+      "argv": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "src/stores/druid-sustain.native.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 7.974,
+      "finished": "2026-10-25T07:51:02.991896+00:00"
+    },
+    "original-native-green.json": {
+      "argv": [
+        "node",
+        "node_modules/vite-node/vite-node.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/original-native-repro-green.ts"
+      ],
+      "exit": 0,
+      "seconds": 5.41,
+      "finished": "2026-10-25T07:45:01.262335+00:00"
+    },
+    "publish-record-command.json": {
+      "argv": [
+        "python3",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-fix-erqp85uj/publish-record.py"
+      ],
+      "exit": 0,
+      "seconds": 0.066,
+      "finished": "2026-10-25T08:09:24.122897+00:00"
+    },
+    "runtime-commit.json": {
+      "argv": [
+        "git",
+        "-c",
+        "user.name=Codex",
+        "-c",
+        "user.email=codex@openai.com",
+        "commit",
+        "-m",
+        "fix: apply Druid hit recovery and Feral speed stacks"
+      ],
+      "exit": 0,
+      "seconds": 0.039,
+      "finished": "2026-10-25T08:07:31.836308+00:00"
+    },
+    "schema-green.json": {
+      "argv": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/skills/druid-sustain-schema.test.ts",
+        "src/engine/skills/druid-attack-dot-schema.test.ts",
+        "src/engine/skills/druid-fire-schema.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 1.794,
+      "finished": "2026-10-25T07:41:09.330054+00:00"
+    },
+    "schema-red.json": {
+      "argv": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/skills/druid-sustain-schema.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 1.637,
+      "finished": "2026-10-25T07:40:26.456017+00:00"
+    },
+    "types-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 35.631,
+      "finished": "2026-10-25T07:57:30.445401+00:00"
+    },
+    "types-first.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 35.45,
+      "finished": "2026-10-25T07:54:11.208322+00:00"
+    },
+    "types-integrated.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 54.72,
+      "finished": "2026-10-25T07:59:59.412926+00:00"
+    },
+    "ui-commit.json": {
+      "argv": [
+        "git",
+        "-c",
+        "user.name=Codex",
+        "-c",
+        "user.email=codex@openai.com",
+        "commit",
+        "-m",
+        "fix: explain Druid sustain and localize buff playback"
+      ],
+      "exit": 0,
+      "seconds": 0.034,
+      "finished": "2026-10-25T08:07:34.890660+00:00"
+    },
+    "ui-green.json": {
+      "argv": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "src/features/skills/SkillsScreen.druid-sustain.test.tsx",
+        "src/features/combat/CombatScreen.druid-sustain.test.tsx",
+        "src/features/skills/SkillsScreen.druid-attack-dot.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 9.161,
+      "finished": "2026-10-25T07:52:59.576428+00:00"
+    },
+    "ui-red.json": {
+      "argv": [
+        "./node_modules/.bin/vitest",
+        "run",
+        "src/features/skills/SkillsScreen.druid-sustain.test.tsx",
+        "src/features/combat/CombatScreen.druid-sustain.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 7.807,
+      "finished": "2026-10-25T07:52:14.449097+00:00"
+    }
+  },
+  "sourceCount": 1316,
+  "buildCount": 760,
+  "genuine": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "inventory": {
+    "rows": 213,
+    "changed": [
+      "skills-druid-feral-rage",
+      "skills-druid-hunger"
+    ],
+    "idsAndOrderExact": true,
+    "counts": {
+      "unverified": 135,
+      "bounded-functional;independent-acceptance-open": 73,
+      "bounded-engine-functional;independent-acceptance-open": 1,
+      "bounded-functional;earned-balance-open": 3,
+      "review-needed": 1
+    }
+  },
+  "independentAcceptance": false,
+  "earnedCampaignActions": false
+}

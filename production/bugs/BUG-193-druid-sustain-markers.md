@@ -2,7 +2,7 @@
 
 Severity: High — Hunger's life stealing and Feral Rage's life/speed effects
 have no combat consumer. These are advertised active-skill behaviors.
-Status: Reproduced; mechanics contract and repair pending.
+Status: Locally fixed and verified; independent design/QA and earned balance open.
 Owners: engine-dev / content-designer / frontend-dev; root sole writer.
 
 ## Reproduction
@@ -53,4 +53,28 @@ Evidence: [reproduction packet](../../docs/plans/evidence/d04-druid-sustain-repr
 and [manifest](../../docs/plans/evidence/fixtures/druid-sustain-repro/manifest.json).
 The original source, native results, failed command log/receipt and audit are
 retained. Independent design/QA and all-class earned balance remain open;
-neither skill gains functional credit.
+neither skill gained functional credit from the reproduction alone.
+
+
+## Local repair and validation
+
+Runtime `7b7f3b2`, presentation `801d97f`, and the
+[controlling contract](../../docs/plans/decisions/D04-druid-sustain-v1.md)
+add explicit provisional10%/50% actual-hit-HP recovery, authenticated Feral5%
+speed stacks (cap5/8s) and10% final-hit/s primary Bleed. Reflection/death settlement
+precedes recovery; no resurrection, periodic/basic drain, mana recovery or new
+RNG. Native authority/rebase and existing ordinary current-configuration replay
+are preserved, with no Save22 change. Both forms and human attacks remain legal.
+The initial replay assumption and a real introduced cadence rounding defect were
+corrected without changing controlling replay semantics or global cadence.
+
+[Repair evidence](../../docs/plans/evidence/d04-druid-sustain.md): original six
+RED cases now GREEN;114 new tests, final full13519/591/two existing skips,
+engine7027/246, types/lint/clean explicit-false build/bridge pass. Production4/4,
+eight positive hero-recovery attacks, eight exact five-domain Continue pairs,
+20geometry samples,16 screenshots/eight inspected. Source/build/Git/genuine
+freeze and actual1316 committed source blobs verified. All original failures and
+synthetic fixture corrections are retained. Exactly these two skills now have
+bounded functional credit; independent acceptance, earned builds/balance,
+mobile occlusion, performance and full privatev1 remain open. GenuineL33/next402
+is unchanged and Baal remains uncleared. No campaign or remote action.
