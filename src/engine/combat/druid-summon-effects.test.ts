@@ -600,3 +600,140 @@ describe('source-bound summon effects and shared finite corpses', () => {
     expect(out.events.some((e) => e.kind === 'damage' && e.source === 'bound-body')).toBe(true);
   });
 });
+
+describe('Druid summon effect lifecycle', () => {
+  it.each(['raven', 'poison_creeper'] as const)(
+    '%s refreshes its real landed effect on a boss',
+    (template) => {
+      const input = fixture(template),
+        body = required(input.playerTeam[1]),
+        target = required(input.enemyTeam[0]);
+      const out = record({
+        ...input,
+        playerTeam: [
+          required(input.playerTeam[0]),
+          { ...body, stats: { ...body.stats, attackSpeed: 100 }, statuses: [hold(6001)] }
+        ],
+        enemyTeam: [
+          { ...target, tier: 'boss', life: 1000000, stats: { ...target.stats, lifeMax: 1000000 } }
+        ]
+      });
+      const id = template === 'raven' ? 'blind' : 'poison';
+      const applied = out.events
+        .filter((e) => e.kind === 'status-state' && e.target === target.id)
+        .flatMap((e) =>
+          e.kind === 'status-state'
+            ? e.statuses
+                .filter(
+                  (s) =>
+                    s.id === id && s.expiresAtMs === e.simClockMs + (id === 'blind' ? 2000 : 5000)
+                )
+                .map((s) => ({ time: e.simClockMs, status: s }))
+            : []
+        );
+      expect(new Set(applied.map((row) => row.time)).size).toBeGreaterThanOrEqual(2);
+      expect(applied.some(({ time, status }) => (status.appliedAtMs ?? time) < time)).toBe(true);
+      for (const { time, status } of applied) {
+        expect(status.expiresAtMs).toBe(time + (id === 'blind' ? 2000 : 5000));
+        expect(status.sourceId).toBe(body.id);
+        if (id === 'blind') expect(status.stacks).toBe(1);
+        else expect(status.dotPerStack).toBe(10);
+      }
+      if (id === 'poison') {
+        expect(applied.some(({ status }) => status.stacks >= 2)).toBe(true);
+        const direct = out.events.reduce(
+          (sum, e) => sum + (e.kind === 'damage' && e.target === target.id ? e.amount : 0),
+          0
+        );
+        const periodic = out.events.reduce(
+          (sum, e) => sum + (e.kind === 'dot' && e.target === target.id ? e.amount : 0),
+          0
+        );
+        expect(periodic).toBeGreaterThan(50);
+        expect(out.result.enemyTeam.find((u) => u.id === target.id)?.life).toBe(
+          1000000 - direct - periodic
+        );
+      }
+    }
+  );
+  it.each(['raven', 'poison_creeper', 'carrion_vine', 'solar_creeper'] as const)(
+    '%s loses its action and usefulness when the real owner dies',
+    (template) => {
+      const input = fixture(template),
+        hero = required(input.playerTeam[0]),
+        body = required(input.playerTeam[1]);
+      const out = record({
+        ...input,
+        playerTeam: [
+          {
+            ...hero,
+            statuses: [
+              ...hero.statuses,
+              {
+                id: 'ignite',
+                sourceId: 'synthetic-lethal',
+                stacks: 1,
+                remaining: -1,
+                expiresAtMs: 1000,
+                dotPerStack: 500,
+                damageType: 'fire'
+              }
+            ]
+          },
+          body
+        ]
+      });
+      expect(out.events).toContainEqual(
+        expect.objectContaining({ kind: 'death', target: hero.id, simClockMs: 1000 })
+      );
+      expect(out.events).toContainEqual(
+        expect.objectContaining({ kind: 'death', target: body.id, simClockMs: 1000 })
+      );
+      expect(out.events.some((e) => e.kind === 'action' && e.actor === body.id)).toBe(false);
+      expect(
+        out.events.some(
+          (e) => e.kind === 'message' && e.messageKey.startsWith('combat:corpses.consumed')
+        )
+      ).toBe(false);
+      expect(out.result.playerTeam.find((u) => u.id === hero.id)?.life).toBe(0);
+    }
+  );
+  it('does not carry unconsumed primary deaths into another battle', () => {
+    const input = fixture('carrion_vine'),
+      hero = required(input.playerTeam[0]),
+      body = required(input.playerTeam[1]);
+    const first = record({ ...input, playerTeam: [{ ...hero, life: hero.stats.lifeMax }, body] });
+    expect(first.events).toContainEqual(
+      expect.objectContaining({
+        kind: 'message',
+        messageKey: 'combat:corpses.available',
+        params: { count: 1 }
+      })
+    );
+    expect(
+      first.events.some(
+        (e) => e.kind === 'message' && e.messageKey.startsWith('combat:corpses.consumed')
+      )
+    ).toBe(false);
+    const second = record({
+      seed: input.seed,
+      playerTeam: [
+        { ...required(first.result.playerTeam.find((u) => u.id === hero.id)), life: 500 },
+        {
+          ...required(first.result.playerTeam.find((u) => u.id === body.id)),
+          statuses: [hold(2001)]
+        }
+      ],
+      enemyTeam: [unit('fresh-target', 'enemy')]
+    });
+    expect(
+      second.events.some((e) => e.kind === 'damage' && e.source === body.id && e.amount > 0)
+    ).toBe(true);
+    expect(
+      second.events.some(
+        (e) => e.kind === 'message' && e.messageKey.startsWith('combat:corpses.consumed')
+      )
+    ).toBe(false);
+    expect(second.result.playerTeam.find((u) => u.id === hero.id)?.life).toBe(500);
+  });
+});
