@@ -8,6 +8,44 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-cloak-of-shadows" } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "appliesStatus", "timedBuff", "scaling", "cost"],
+        "properties": {
+          "requiredLevel": { "const": 12 }, "maxLevel": { "const": 20 },
+          "trigger": { "const": "active" }, "target": { "const": "all-enemies" },
+          "prerequisites": { "const": ["skills-assassin-psychic-hammer"] },
+          "appliesStatus": { "const": ["cloak-of-shadows", "blind"] },
+          "timedBuff": { "$ref": "#/properties/timedBuff" },
+          "cooldown": { "type": "number", "minimum": 1 },
+          "cost": { "type": "object", "additionalProperties": false, "required": ["mana"],
+            "properties": { "mana": { "type": "number", "exclusiveMinimum": 0 } } },
+          "scaling": {
+            "type": "object", "additionalProperties": false,
+            "required": ["costPerLevel", "cooldownPerLevel", "passiveStatsPerLevel"],
+            "properties": {
+              "costPerLevel": { "type": "number" }, "cooldownPerLevel": { "type": "number" },
+              "passiveStatsPerLevel": {
+                "type": "object", "additionalProperties": false,
+                "required": ["defensePct", "critChancePct", "magicDodgePct"],
+                "properties": {
+                  "defensePct": { "type": "number", "exclusiveMinimum": 0, "maximum": 1,
+                    "description": "Paid personal Defense increase per allocated Cloak rank." },
+                  "critChancePct": { "type": "number", "minimum": 0, "maximum": 1 },
+                  "magicDodgePct": { "type": "number", "minimum": 0, "maximum": 1 }
+                }
+              }
+            }
+          },
+          "passive": { "const": false }, "aura": { "const": false }, "summon": { "const": false },
+          "damage": false, "damageType": false, "statusEffect": false, "additionalStatusEffects": false,
+          "synergies": false, "heal": false, "summonId": false, "aoeShape": false, "maxTargets": false,
+          "requires": false, "appliesTags": false, "venomOnBasicHit": false,
+          "hitSequence": false, "critChanceBonus": false
+        }
+      }
+    },
+    {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-mind-blast" } } },
       "then": {
         "required": ["requiredLevel", "prerequisites", "damage", "damageType", "appliesStatus"],
@@ -944,7 +982,7 @@
       "then": {
         "properties": {
           "id": {
-            "const": "skills-assassin-burst-of-speed"
+            "enum": ["skills-assassin-burst-of-speed", "skills-assassin-cloak-of-shadows"]
           }
         }
       }

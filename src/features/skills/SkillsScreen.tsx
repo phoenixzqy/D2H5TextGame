@@ -59,6 +59,7 @@ import { DRUID_ALLY_AURA_DEFINITIONS, DRUID_ALLY_AURA_IDS, druidAllyAuraRank } f
 import { SPIRIT_OF_BARBS_DEFINITION, SPIRIT_OF_BARBS_IDS, spiritOfBarbsRank } from '@/engine/skills/spirit-of-barbs';
 import { DRUID_SHAPE_DEFINITIONS, DRUID_SHAPE_IDS, druidFormForId, resolveDruidShapeRank, type DruidShapeKey } from '@/engine/skills/druid-shapeshifting';
 import { BURST_OF_SPEED_DEFINITION, BURST_OF_SPEED_IDS } from '@/engine/skills/burst-of-speed';
+import { CLOAK_OF_SHADOWS_DEFINITION, CLOAK_OF_SHADOWS_IDS } from '@/engine/skills/cloak-of-shadows';
 import { BONE_ARMOR_DEFINITION, BONE_ARMOR_IDS } from '@/engine/skills/bone-armor';
 import { ENERGY_SHIELD_DEFINITION, ENERGY_SHIELD_IDS, resolveEnergyShieldRank } from '@/engine/skills/energy-shield';
 import { CONVERSION_DEFINITION, CONVERSION_IDS } from '@/engine/skills/conversion';
@@ -946,6 +947,10 @@ function StatSection({
             <StatLine label={t('details.lifeCost')} value={String(stats.lifeCost)} />
           ) : null}
           <StatLine label={t('details.cooldown')} value={t('details.seconds', { seconds: stats.cooldown })} />
+          {stats.cloak ? <>
+            <StatLine label={t('details.cloakDuration')} value={t('details.seconds', { seconds: stats.cloak.durationSeconds })} />
+            <StatLine label={t('details.cloakBlindPenalty')} value={t('details.cloakBlindPenaltyValue', { points: stats.cloak.blindHitPenaltyPoints })} />
+          </> : null}
           {stats.strikesPerCast !== undefined ? (
             <StatLine label={t('details.strikesPerCast')} value={String(stats.strikesPerCast)} />
           ) : null}
@@ -969,6 +974,8 @@ function StatSection({
                 id === AMPLIFY_DAMAGE_DEFINITION.canonicalStatusId || id === AMPLIFY_DAMAGE_DEFINITION.legacyStatusId
                   ? t('necromancer.amplify-damage.name')
                   : id === 'burst-of-speed' ? t('assassin.burst-of-speed.name')
+                  : id === 'cloak-of-shadows' ? t('assassin.cloak-of-shadows.name')
+                  : id === 'blind' ? t('combat:effect.status.blind')
                   : id === 'holy-shield' ? t('paladin.holy-shield.name')
                   : id === 'cyclone-armor' ? t('druid.cyclone-armor.name')
                   : id === 'werewolf' || id === 'werebear' ? t('druid.' + id + '.name')
@@ -1421,6 +1428,12 @@ function dynamicDescription(
       speed: definition.attackSpeedPerRank * 100, dodge: definition.physDodgePerRank * 100,
       seconds: definition.durationMs / 1000, level: definition.requiredLevel, cap: definition.maxRank
     });
+  }
+  if (skill.id === CLOAK_OF_SHADOWS_IDS[0] && stats?.cloak) {
+    const d = CLOAK_OF_SHADOWS_DEFINITION;
+    return t('assassin.cloak-of-shadows.desc', { seconds: stats.cloak.durationSeconds,
+      defense: d.defensePerRank * 100, critical: d.critPerRank * 100, dodge: d.magicDodgePerRank * 100,
+      penalty: stats.cloak.blindHitPenaltyPoints });
   }
   for (const key of ['fade', 'venom'] as const) {
     if (skill.id === ASSASSIN_SHADOW_IDENTITIES[key][0]) {

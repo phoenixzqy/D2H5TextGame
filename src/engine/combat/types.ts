@@ -26,6 +26,9 @@ export interface GridPosition {
 
 /** Active status effect on a combat unit. */
 export interface ActiveStatus {
+  /** Source-bound finite personal Cloak potency, independent of Burst's paid payload. */
+  readonly cloakOfShadows?: { readonly rank: number; readonly defensePct: number;
+    readonly critChancePct: number; readonly magicDodgePct: number };
   /** Authenticated finite self Feral speed; bare enemy markers confer no power. */
   readonly feralRage?: true;
   /** Transient one-time Cleansing reduction; follows this record across waves, never saved. */
@@ -72,6 +75,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Fresh native learned Cloak authority; its paid status is run-local and never saved. */
+  readonly cloakOfShadowsRank?: number;
   /** Fresh native legal Conversion rank; paid bindings exist only inside each battle. */
   readonly conversionRank?: number;
   /** Selected native Druid summon ranks, copied at registration; never persisted. */

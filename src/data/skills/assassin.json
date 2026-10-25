@@ -712,9 +712,13 @@
       "cooldownPerLevel": -0.05,
       "costPerLevel": -0.1,
       "passiveStatsPerLevel": {
+        "defensePct": 0.03,
         "critChancePct": 0.005,
         "magicDodgePct": 0.005
       }
+    },
+    "timedBuff": {
+      "durationMs": 8000
     }
   },
   {

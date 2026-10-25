@@ -64,6 +64,9 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "cloakDuration": "Cloak / Blind Duration",
+    "cloakBlindPenalty": "Blind Physical / thorns hit penalty",
+    "cloakBlindPenaltyValue": "−{{points}} percentage points",
     "manaBurnDrain": "Mana drain",
     "manaBurnDrainValue": "{{percent}}% of actual HP removed, rounded down; capped at MP",
     "manaBurnBonus": "At zero MP",
@@ -456,7 +459,7 @@
     },
     "cloak-of-shadows": {
       "name": "Cloak of Shadows",
-      "desc": "Blinds nearby enemies and provides defense."
+      "desc": "A paid cast Blinds all current enemies for {{seconds}} seconds and grants you +{{defense}}% Defense, +{{critical}} percentage points of critical chance and +{{dodge}} percentage points of magical dodge per rank for the same duration. Blind lowers Physical/thorns hit probability by {{penalty}} percentage points (minimum 5%); it does not stop actions or affect magical attacks. Put Cloak in active priority. It cannot refresh while active. Allocation changes apply next wave; a paid effect keeps its cast rank."
     },
     "shadow-warrior": {
       "name": "Shadow Warrior",

@@ -64,6 +64,9 @@
     "minLevel": "需要等级 {{level}}"
   },
   "details": {
+    "cloakDuration": "斗篷／致盲持续时间",
+    "cloakBlindPenalty": "致盲物理／荆棘命中率惩罚",
+    "cloakBlindPenaltyValue": "降低{{points}}个百分点",
     "manaBurnDrain": "法力扣除",
     "manaBurnDrainValue": "实际损失生命的{{percent}}%，向下取整；不超过剩余法力",
     "manaBurnBonus": "法力为零时",
@@ -456,7 +459,7 @@
     },
     "cloak-of-shadows": {
       "name": "影子斗篷",
-      "desc": "致盲附近敌人并提供防御。"
+      "desc": "支付法力施放后，致盲当前所有敌人{{seconds}}秒，并在同一时段内每级为自身增加{{defense}}%防御、{{critical}}个百分点暴击率和{{dodge}}个百分点魔法闪避。致盲降低物理及荆棘命中率{{penalty}}个百分点（最低5%），不会中断行动或影响魔法攻击。请加入主动技能优先序。生效期间不会重复施放。加点变化从下一波生效，已付费效果保留施放时等级。"
     },
     "shadow-warrior": {
       "name": "影子战士",

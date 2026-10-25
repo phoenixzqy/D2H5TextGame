@@ -25,6 +25,7 @@ import { DRUID_SUMMON_DEFINITION, DRUID_SUMMON_IDS } from './druid-summon-defini
 import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 
 export interface DisplaySkillSource {
+  readonly timedBuff?: { readonly durationMs: number };
   readonly aoeShape?: AoeShape;
   readonly maxTargets?: number;
   readonly damageComposition?: 'weighted-components';
@@ -155,6 +156,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Paid personal bonuses and enemy Blind share this explicit finite duration. */
+  readonly cloak?: { readonly durationSeconds: number; readonly blindHitPenaltyPoints: number };
   /** Explicit authored cone footprint; it counts covered cells, not enemy slots. */
   readonly areaShape?: 'cone-2';
   /** Authored limit after resolving the full area and its ordinary target order. */
@@ -545,6 +548,9 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(skill.id === 'skills-assassin-cloak-of-shadows' && skill.timedBuff
+      ? { cloak: { durationSeconds: skill.timedBuff.durationMs / 1000,
+        blindHitPenaltyPoints: DRUID_SUMMON_DEFINITION.raven.physicalHitChancePenalty * 100 } } : {}),
     ...(['skills-assassin-fire-blast', 'skills-assassin-blade-fury'].includes(skill.id) && skill.trigger === 'active' &&
       skill.target === 'area-enemies' && skill.aoeShape === 'cone-2'
       ? { areaShape: skill.aoeShape } : {}),

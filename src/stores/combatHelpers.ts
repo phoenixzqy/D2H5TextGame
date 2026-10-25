@@ -17,6 +17,7 @@ import type { BattleEvent } from '@/engine/combat/combat';
 import { rebaseStatusClock } from '@/engine/combat/status';
 import { composeDruidShapeshifting, refreshDruidFormState } from '@/engine/skills/druid-shapeshifting';
 import { composeBurstOfSpeedRank } from '@/engine/skills/burst-of-speed';
+import { composeCloakOfShadowsRank } from '@/engine/skills/cloak-of-shadows';
 import type { CombatUnit, MonsterTier } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
 import type { Player } from '@/engine/types/entities';
@@ -262,6 +263,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
       level: player.level, ...configuration }) } : {}),
     ...(player.class === 'druid' ? { druidSummonRanks: composeDruidSummonRanks(player) } : {}),
     burstOfSpeedRank: composeBurstOfSpeedRank(player),
+    cloakOfShadowsRank: composeCloakOfShadowsRank(player),
     manaRegenCarry: 0,
     manaRegenCompensation: 0,
     manaRegenExactCarry: '0',
@@ -1195,6 +1197,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       ...((unit.energyShieldRank !== undefined || fresh.energyShieldRank !== undefined)
         ? { energyShieldRank: fresh.energyShieldRank ?? 0 } : {}),
       burstOfSpeedRank: fresh.burstOfSpeedRank ?? 0,
+      cloakOfShadowsRank: fresh.cloakOfShadowsRank ?? 0,
       ...((unit.feralRageRank !== undefined || fresh.feralRageRank !== undefined)
         ? { feralRageRank: fresh.feralRageRank ?? 0 } : {}),
       ...((unit.druidSummonRanks !== undefined || fresh.druidSummonRanks !== undefined)
