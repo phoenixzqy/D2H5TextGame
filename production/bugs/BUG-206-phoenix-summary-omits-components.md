@@ -1,6 +1,6 @@
 # BUG-206 — Show all Phoenix components in the skill summary
 
-- Status: reproduced during BUG205 production visual review; repair pending.
+- Status: fixed and verified locally; independent/earned acceptance open.
 - Severity: Medium — accurate component rows exist below a misleading summary.
 - Source: frozen1383source/test/config snapshot for the in-progress Assassin
   Fire verification; historical HEAD0e1eecd0 predates the uncommitted repair.
@@ -39,3 +39,14 @@ The current full suite must terminate before editing its frozen source; do
 not interrupt/restart that run. Add a failing bilingual summary assertion,
 apply the UI fix, then validate the final source/build and repeat affected
 production cases. No genuine campaign or remote action is authorized here.
+
+## Local repair continuation
+
+The final model-driven composite summary uses shared bilingual prose, with
+eight genuine failing main-paragraph assertions before repair. Final56UI cases,
+full14626/651/two skips, strict types/lint/build and affected production cases
+pass. The two final mobile supplements show complete stat rows after a capture
+scroll correction. See [verified evidence](../../docs/plans/evidence/d04-assassin-fire.md).
+The earlier instruction to wait for the first full run was followed; its terminal
+PASS precedes the UI edit and a separate final full run. Phoenix charge/build
+promises remain open; this issue does not grant whole-skill credit.

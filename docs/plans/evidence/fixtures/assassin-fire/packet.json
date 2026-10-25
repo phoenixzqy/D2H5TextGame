@@ -1,0 +1,2727 @@
+{
+  "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-fire-i8gs6gwc",
+  "members": [
+    {
+      "path": "scratch/archive.py",
+      "sha256": "fdf8e7cfecae11819145418aac4bc4b285ea4f9c53a0992bd6c0bec8b9460cbc",
+      "bytes": 2399
+    },
+    {
+      "path": "scratch/assassin-burn-native-repaired.json",
+      "sha256": "aaf788ebd31526a12aa08d13476511bf0951b1504ff38bd4b151b652f6d8fcb4",
+      "bytes": 219379
+    },
+    {
+      "path": "scratch/assassin-burn-native-repaired.ts",
+      "sha256": "9f17fbe95ac6ecf10c17e85b74da828c240c42ac743dbc43e538d3d5bcc9eb7d",
+      "bytes": 4413
+    },
+    {
+      "path": "scratch/audit-committed.py",
+      "sha256": "3589586906a63412dd75ef78f90b20e839040be0c59f7e7c8a5107a899498dc6",
+      "bytes": 1548
+    },
+    {
+      "path": "scratch/author-review-final.json",
+      "sha256": "20be3d4874bba19025e67ad8b5e53be655f303e1e77728505bb78035306c3e2c",
+      "bytes": 1005
+    },
+    {
+      "path": "scratch/author-review-initial.json",
+      "sha256": "f08050d5858672876a3fa46009216dbe56150690ee45d5d106bcc60b2cc33ac4",
+      "bytes": 1844
+    },
+    {
+      "path": "scratch/baseline-source.json",
+      "sha256": "8bffcee3e21faadeecff156094e4e4584d1deb0914fc7539edb99f3608dc09aa",
+      "bytes": 156035
+    },
+    {
+      "path": "scratch/browser-audit-final.py",
+      "sha256": "e21f7e4f6d2a714ae5a780fd6feb1c304faf8ae3ac4f44e0b55189e8f51188b8",
+      "bytes": 2332
+    },
+    {
+      "path": "scratch/browser-audit-initial.json",
+      "sha256": "04f671244032785267f23e2784c31939f08c8835ea7a3d003a2897aae32b6514",
+      "bytes": 31292
+    },
+    {
+      "path": "scratch/browser-audit.json",
+      "sha256": "ce14163710a8a6c84e71bca40b5570e51cd22b85862f509b55888934eb41959b",
+      "bytes": 44461
+    },
+    {
+      "path": "scratch/browser-audit.py",
+      "sha256": "0fca12b7c6645f7ab1d04b4c4d9404b2b5d480f351e50fd553c681b04347dafc",
+      "bytes": 2338
+    },
+    {
+      "path": "scratch/browser-en-desktop/browser-report.json",
+      "sha256": "cd5e62a04b54eb143a608f136984bafebe420f725b569a3de8872abdbe818b4f",
+      "bytes": 3039
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-tail-cast-visible.png",
+      "sha256": "479ba215f8e4e207d36d94062c0b6fcba495b9de24158c230040ad7159f932d2",
+      "bytes": 192552
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-tail-combat.json",
+      "sha256": "ee2205b1d1dc71afd580ec969428ddd8f9d088dfe9db333544ce74cdeeea5b56",
+      "bytes": 2355
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-tail-description.png",
+      "sha256": "d3a1ad7d208ce208668fc9999daeef12217698bf508c167e7067e966e47aca27",
+      "bytes": 120415
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-tail-details.png",
+      "sha256": "2d8e185e298eb96615f6b4885173306e51d2288b0f9b7c15192e2f0e01742578",
+      "bytes": 121606
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-tail-fresh-13.json",
+      "sha256": "7c71815911c2433a4423419f6746f4959bf08b096b6ecefb9fe2b204f82278bc",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-tail-imported-14.json",
+      "sha256": "b6c118de096d52ec424bcc8defadb75b28c49ab9ae43fae8ca75e040583d324f",
+      "bytes": 4836
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-tail-rank1-after-16.json",
+      "sha256": "6e2425c56ee6e796ffba9af180a172a0d09d7830526cc749bc71ea04f80aca37",
+      "bytes": 4839
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-tail-rank1-before-15.json",
+      "sha256": "38ef20c4b177ef5929b307ada4b73a146078d324d5e8c4b0b81c4ebeda58e2cb",
+      "bytes": 4836
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-tail-rank2-after-18.json",
+      "sha256": "01abdef4e3aa0ee4080c1865de4345279ac209761ab3fbae556dde7cf2bb5eb3",
+      "bytes": 4890
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-tail-rank2-before-17.json",
+      "sha256": "01abdef4e3aa0ee4080c1865de4345279ac209761ab3fbae556dde7cf2bb5eb3",
+      "bytes": 4890
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-tail-synthetic-input.json",
+      "sha256": "bc08cff8c41b719a9ad8d10d4e20b2a3a8c81d3b7dc9d0a115343dd8c05d341d",
+      "bytes": 4013
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fire-blast-cast-visible.png",
+      "sha256": "6f65449050aefcaeae7195ad10c43e82a2beb64e1f8f6aacf860d551c82267ed",
+      "bytes": 201343
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fire-blast-combat.json",
+      "sha256": "436054017533df77baa2cbd8ec0287103d27ecad43c9123c2d22add277c1903e",
+      "bytes": 1479
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fire-blast-description.png",
+      "sha256": "9a82d21aebbfdf30c8cca7591fd32b249b7d50bffcb5d3a44dd57540045499e4",
+      "bytes": 116761
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fire-blast-details.png",
+      "sha256": "38cc60ede4ea5c67fc4705b780470105ac631507b984c4370726543b65789e80",
+      "bytes": 118271
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fire-blast-fresh-1.json",
+      "sha256": "f35231ac98d6a3a5adefb0d03078c0cacf94b956abe6f85ec78e52eac6a69e88",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fire-blast-imported-2.json",
+      "sha256": "30eb81516a1d1635518a105198b8194e2deecacec81eb8fdedef49d8706211f9",
+      "bytes": 4801
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fire-blast-rank1-after-4.json",
+      "sha256": "f2e6d612e744c32078aec43fb2348a8f0b101fd6b4e09cd8d4cddb81c79855c6",
+      "bytes": 4804
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fire-blast-rank1-before-3.json",
+      "sha256": "387b0af9a4cef37e7049f88fec9fd88e049634b242af07bb39d4274f355207f4",
+      "bytes": 4801
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fire-blast-rank2-after-6.json",
+      "sha256": "23e400ff0ddcd7e39926307db25bd72d15b346d69cf5ac2fa29bb91c4a6d36a3",
+      "bytes": 4854
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fire-blast-rank2-before-5.json",
+      "sha256": "23e400ff0ddcd7e39926307db25bd72d15b346d69cf5ac2fa29bb91c4a6d36a3",
+      "bytes": 4854
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fire-blast-synthetic-input.json",
+      "sha256": "ee05b47be871588d783990f00581884835b100e470e0100f1f392b0b2380c9a7",
+      "bytes": 3978
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fists-of-fire-cast-visible.png",
+      "sha256": "dddebd59337e5be4092e55b57769debca3a04caac97ba091f21391e0e25e9ffc",
+      "bytes": 248492
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fists-of-fire-combat.json",
+      "sha256": "8f923e441499c3b04e815aed7cb80f7f36c77dc3cd505ba81e95e2a9f0ce6402",
+      "bytes": 1018
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fists-of-fire-description.png",
+      "sha256": "c9d512e9d79617a73e28c24a8fb6a3d2aa7a99993ed6f84b8475de4aca8f3367",
+      "bytes": 117217
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fists-of-fire-details.png",
+      "sha256": "9a49d2a166d39f761e24b4c384d4f3c1295636c3c8aa14c42d7b9845c76f25f1",
+      "bytes": 118736
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fists-of-fire-fresh-7.json",
+      "sha256": "b31ae0d25d8cd90a79974e68601c933746403b68b17ea267b7712512bf9967cc",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fists-of-fire-imported-8.json",
+      "sha256": "78e966233b1162c3782587ac68b44d0b0ff9f7a85671ef6ebcb4a4157ebb08f6",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fists-of-fire-rank1-after-10.json",
+      "sha256": "c52f8c2627fbd8f49e272d7d46e284f5d88504ab10f9240069a26b0782275959",
+      "bytes": 4841
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fists-of-fire-rank1-before-9.json",
+      "sha256": "0a112bf9d6626f818f294c844ee7abcf9ae8b526b6c1b8ccaac90d104e5b17f5",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fists-of-fire-rank2-after-12.json",
+      "sha256": "82c761d9818159092b547ab065aac32433efa5d06e560068938603132a3d83b2",
+      "bytes": 4894
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fists-of-fire-rank2-before-11.json",
+      "sha256": "82c761d9818159092b547ab065aac32433efa5d06e560068938603132a3d83b2",
+      "bytes": 4894
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-fists-of-fire-synthetic-input.json",
+      "sha256": "e29553d2eb80c41a26d05c6a4582944f918d69c5c13b01e70f32d53549644b05",
+      "bytes": 4015
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-phoenix-strike-cast-visible.png",
+      "sha256": "cc3c039b63c9b4e83cfb6cf8b16497561bf329900cd599ce829014a3bf1ac5a2",
+      "bytes": 206540
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-phoenix-strike-combat.json",
+      "sha256": "aa7a439bb076614987611575ccf8cd73d53777dedddc2af7ea3c1bf883593c9f",
+      "bytes": 1429
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-phoenix-strike-description.png",
+      "sha256": "b2aa18c90e52da16fd5159cbea4020235e514fb46bdeb47836e79c571632f217",
+      "bytes": 141966
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-phoenix-strike-details.png",
+      "sha256": "6587230487f97134b0e1402224f6fd8b26f28ec6ff01ab8a36714f9ac36c7d9e",
+      "bytes": 143190
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-phoenix-strike-fresh-31.json",
+      "sha256": "6ef31d9af00a4a2162fa499d548aed24ff70a55b53a9e09db9288efda9ced415",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-phoenix-strike-imported-32.json",
+      "sha256": "52e76931bfdb4340dc7fde2458c01be75d312cf3cb119494e32f6d35de7bec36",
+      "bytes": 4981
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-phoenix-strike-rank1-after-34.json",
+      "sha256": "65d8d772c5b1c236974e6fae0cbf3db1e9b03812554b582f71bbe2946081ac34",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-phoenix-strike-rank1-before-33.json",
+      "sha256": "1ccecf10a8d2f5c32e2e4ed0df28e92e3949c5f49608bb11d7babe386c68ecf7",
+      "bytes": 4981
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-phoenix-strike-rank2-after-36.json",
+      "sha256": "261c5e80d3aabc87681132d24649d5e95f7ab2f5d16b6111081f482372b51912",
+      "bytes": 5038
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-phoenix-strike-rank2-before-35.json",
+      "sha256": "261c5e80d3aabc87681132d24649d5e95f7ab2f5d16b6111081f482372b51912",
+      "bytes": 5038
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-phoenix-strike-synthetic-input.json",
+      "sha256": "e4cc219dd374a0c169a32fc9a90c223af532eb21217736482d3e260b030ab885",
+      "bytes": 4158
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-fire-cast-visible.png",
+      "sha256": "49989c1d40809e1e4ce5b66809452d9d4c8952f5aac50cdedc90163da5485fe4",
+      "bytes": 192920
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-fire-combat.json",
+      "sha256": "02690a72cff056e75d7ab21cd437fb194c9f58c3f938bdd6e767e93fa58795a6",
+      "bytes": 2245
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-fire-description.png",
+      "sha256": "149e08d402f9679340491f92a96925960657d93e82556819912dd9e631dffda4",
+      "bytes": 120492
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-fire-details.png",
+      "sha256": "a078ccb3124b30bdfa666f79eb82bd5b7385f291b2aab2a10bcbefbb1ff38239",
+      "bytes": 122358
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-fire-fresh-19.json",
+      "sha256": "1bd950e90d3d84c04b0a9be4c497dbbf804ceabe08f525f92e5243bca5c3146d",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-fire-imported-20.json",
+      "sha256": "5f9c5681dcdbc9ca56e891f8aea27e59b93156ee439fdb53b775a0c4c858903d",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-fire-rank1-after-22.json",
+      "sha256": "78b81e96d83c89ec5b286c164a64b071a0cee32dd896f9a81b501c700408a8ea",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-fire-rank1-before-21.json",
+      "sha256": "85f88cab5f20a8f2ab1aca490d256b107df15ca436bce8ee583581d9f2b42b70",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-fire-rank2-after-24.json",
+      "sha256": "fcb0cbfaf16a5c14c750af2fb23865164cad9061bf543faaff82c21252267223",
+      "bytes": 4890
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-fire-rank2-before-23.json",
+      "sha256": "fcb0cbfaf16a5c14c750af2fb23865164cad9061bf543faaff82c21252267223",
+      "bytes": 4890
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-fire-synthetic-input.json",
+      "sha256": "8c051e6cc08043be283c06e3471f2e267569187e8af39c4970404a4be2f83b61",
+      "bytes": 4012
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-inferno-cast-visible.png",
+      "sha256": "ab031e2bbbbd16ccf79f1f66ca1a79384635baf61563d5b12d36eaff89d772f0",
+      "bytes": 192693
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-inferno-combat.json",
+      "sha256": "b3bcd722f193cef2f748ffcab748b618063e2083c17cbc554af246e90a543043",
+      "bytes": 2862
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-inferno-description.png",
+      "sha256": "1775cf9dcc3a29cc120d2017e16306f53088ec2e3bac5091ceeb725c115495cf",
+      "bytes": 122147
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-inferno-details.png",
+      "sha256": "7f124b96bc1a2b85c50b38c0ce9f8869eebb4f8aa94ad7381e289a24ac7e777f",
+      "bytes": 123053
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-inferno-fresh-25.json",
+      "sha256": "3cc92d0963935c11fda02b55d28aa14c3da7958dc5bd41a49a3e743329e5d44d",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-inferno-imported-26.json",
+      "sha256": "459672133d98b8d95aad250511d4b8274b5d241b00290bb1a95f779194410ac9",
+      "bytes": 4872
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-inferno-rank1-after-28.json",
+      "sha256": "845cd5f1a91769d7dcf426e8c54f57b7e29d3bbdf77b6620158458a7c2145813",
+      "bytes": 4875
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-inferno-rank1-before-27.json",
+      "sha256": "aad51df00cb86b94a129117b1536aa7d45e2457e13395ebe0c4ce6c04a368cd9",
+      "bytes": 4872
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-inferno-rank2-after-30.json",
+      "sha256": "062b9db64aa3030c9a72da4d2b621bcb42c148b5eaf291673c8c567366e1cb45",
+      "bytes": 4930
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-inferno-rank2-before-29.json",
+      "sha256": "062b9db64aa3030c9a72da4d2b621bcb42c148b5eaf291673c8c567366e1cb45",
+      "bytes": 4930
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-wake-of-inferno-synthetic-input.json",
+      "sha256": "c05a09d2b536c81bea362f0afa3b759daf2abe1d2e0fe522e87e5c5f7f540be9",
+      "bytes": 4049
+    },
+    {
+      "path": "scratch/browser-en-desktop-owner.json",
+      "sha256": "19d5fbf991affd9681bfffa0b4141cff13feeaf4e7f3f045e767fad7c0e79ab7",
+      "bytes": 272
+    },
+    {
+      "path": "scratch/browser-en-desktop.json",
+      "sha256": "3e8b867da3465ced0d8ca57bbb9a7acf11fc4f958f0a22d7b1692edb6a713591",
+      "bytes": 281
+    },
+    {
+      "path": "scratch/browser-en-desktop.log",
+      "sha256": "3cc101ad011318e4af59d93d508b1d0d70f9fda82530840c47844875933bde46",
+      "bytes": 192
+    },
+    {
+      "path": "scratch/browser-en-mobile/browser-report.json",
+      "sha256": "75c9daa071927337f63fe26bb1c5ff92de77f94dba80aab992cb2df2ecf71ca8",
+      "bytes": 3028
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-tail-cast-visible.png",
+      "sha256": "5853985584e1ef699fb972a66b1bd26808cffccf9faa4bd169d338fe34cd5ade",
+      "bytes": 53179
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-tail-combat.json",
+      "sha256": "ee2205b1d1dc71afd580ec969428ddd8f9d088dfe9db333544ce74cdeeea5b56",
+      "bytes": 2355
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-tail-description.png",
+      "sha256": "381d3f77b7039f11451d4f65e4a1a33afcc62f1deb75801f4fe3963301babf11",
+      "bytes": 51626
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-tail-details.png",
+      "sha256": "aa5eed6bc116bde1985f8de5e94f6be196061bc97f7609da62a50dbbf5dd3435",
+      "bytes": 53272
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-tail-fresh-13.json",
+      "sha256": "a2ceb9d2e7469b67478ddd9302055afe88ad4b47dca81eaa9be0d2bb8c435a2a",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-tail-imported-14.json",
+      "sha256": "ffe0fc355e1d25ddc4b5b5779738cdf7403c33676e2cf622eae04f93ebc77847",
+      "bytes": 4836
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-tail-rank1-after-16.json",
+      "sha256": "dc430db507d1ba9ca5c3bddee628b8699aaea4f1ade8f7be19d35f1b5581ef48",
+      "bytes": 4839
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-tail-rank1-before-15.json",
+      "sha256": "77107ccaa5289dd4b6b1eb09ff8ebf02ae8a01fe60660f230cf1171c29014020",
+      "bytes": 4836
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-tail-rank2-after-18.json",
+      "sha256": "407a33a14cc509e9a69735daa5f601f611825043b9d730151a3b4eebce263921",
+      "bytes": 4890
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-tail-rank2-before-17.json",
+      "sha256": "407a33a14cc509e9a69735daa5f601f611825043b9d730151a3b4eebce263921",
+      "bytes": 4890
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-tail-synthetic-input.json",
+      "sha256": "96de26576a9e31746222b1a5e9e7034bb59589261f98a73f1f5af487e7f71b9e",
+      "bytes": 4013
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fire-blast-cast-visible.png",
+      "sha256": "6e59cfc10cf1eac178ccc84b9dea4b8a2395bee4fa1744a46bd3f2248249761b",
+      "bytes": 52892
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fire-blast-combat.json",
+      "sha256": "c793bde63e2584f0500899dab51ba1159bd9896b3de4ce3948f20d9bc5d6aa43",
+      "bytes": 1695
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fire-blast-description.png",
+      "sha256": "9dc7c1dd00d65abc29ec1acb60071c747287c67372f39ed972247a62144771d1",
+      "bytes": 50464
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fire-blast-details.png",
+      "sha256": "8475ec14c400a5c18a27d0091ee2a112b806afb99ea56e4313ce5773a72989c3",
+      "bytes": 51219
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fire-blast-fresh-1.json",
+      "sha256": "770b2b29462a78fded27eac7b8208bec00b258407c4eeee7dc57c83917ccb7a3",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fire-blast-imported-2.json",
+      "sha256": "7532f1f4c7718ddda7fba1cb79dca979910de430262686039017ff622ecc9145",
+      "bytes": 4801
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fire-blast-rank1-after-4.json",
+      "sha256": "984577478cdf99c9bab6dd024d56c7c57e238c3b9e5550e3e9ff09f97d1a8629",
+      "bytes": 4804
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fire-blast-rank1-before-3.json",
+      "sha256": "39965c9c3990cb5f47ff8f6b66f20af629fad11095c17958631fee9490d7a888",
+      "bytes": 4801
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fire-blast-rank2-after-6.json",
+      "sha256": "61cace927e078284b16cb408c0954b95cab495fba9255f1d7d162202f892e0ce",
+      "bytes": 4854
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fire-blast-rank2-before-5.json",
+      "sha256": "61cace927e078284b16cb408c0954b95cab495fba9255f1d7d162202f892e0ce",
+      "bytes": 4854
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fire-blast-synthetic-input.json",
+      "sha256": "df4fbcf5bc858a7b3bced9b49117bbe9b6724525c2098cdde40ebeb06e536120",
+      "bytes": 3978
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fists-of-fire-cast-visible.png",
+      "sha256": "7917568dc7f6f0269d97ebf6c28db533845cf7facfde72a3757538e3cee7265f",
+      "bytes": 51762
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fists-of-fire-combat.json",
+      "sha256": "b2097bdd9068152d8a19beb0c6ebcee3fe3f43b03d49909edd2b4fe1c3243d71",
+      "bytes": 1234
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fists-of-fire-description.png",
+      "sha256": "83f860f969097b1d36b5e1375991f2cd5d0d39c3bf17965f836be1cd61b1d1ea",
+      "bytes": 50342
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fists-of-fire-details.png",
+      "sha256": "7bccdc200e6e8d34d495a725066e7ee0404a6e14b49869aab05849c0771ccf19",
+      "bytes": 51590
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fists-of-fire-fresh-7.json",
+      "sha256": "a74337fb4724d259cb19f8f3149a695c04818fec152d98d632d0b6236d49e904",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fists-of-fire-imported-8.json",
+      "sha256": "bd6a87eb2c6fe2e653c642d34e1090f82c1088bafe5dba3990a2b5d76af5a2f2",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fists-of-fire-rank1-after-10.json",
+      "sha256": "a7aebc3eec48257680b322e83d81425b089340f7c0f163f94c704626aa57515f",
+      "bytes": 4841
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fists-of-fire-rank1-before-9.json",
+      "sha256": "956af8abbfa73b06e66ce266637fed7ca11416642b734055972574bb417b777c",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fists-of-fire-rank2-after-12.json",
+      "sha256": "aa330184956d642a9e9a49caee1cc34c0a6f802981daefc8d5e6a64069491d95",
+      "bytes": 4894
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fists-of-fire-rank2-before-11.json",
+      "sha256": "aa330184956d642a9e9a49caee1cc34c0a6f802981daefc8d5e6a64069491d95",
+      "bytes": 4894
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-fists-of-fire-synthetic-input.json",
+      "sha256": "b6fad87ec9c9ce2c1277d372086d802fbee4c68c1b811956ce71f51e19e9d662",
+      "bytes": 4015
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-phoenix-strike-cast-visible.png",
+      "sha256": "a29db1f8d890194b2722e3094ec28e63ec08921d7a13484643e3c13e30be22d2",
+      "bytes": 51347
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-phoenix-strike-combat.json",
+      "sha256": "aa7a439bb076614987611575ccf8cd73d53777dedddc2af7ea3c1bf883593c9f",
+      "bytes": 1429
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-phoenix-strike-description.png",
+      "sha256": "e11135472a6b17e37132789eb5f57bb075e25f8a549f838fed1d7011642f1654",
+      "bytes": 48381
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-phoenix-strike-details.png",
+      "sha256": "67f9e8d1725fb6020cc50f63b11f36b6b796df53ac6fa1cc78d1c6507c2a838a",
+      "bytes": 49538
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-phoenix-strike-fresh-31.json",
+      "sha256": "5bf7474056861bbc58d7218a5bcf935d7c2ef97da741644938cb0e41d2c0301e",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-phoenix-strike-imported-32.json",
+      "sha256": "0120ed1a313a2a0c25ca61c365990fb87a17ecfdd521ea0cfa8319fc685e2c12",
+      "bytes": 4981
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-phoenix-strike-rank1-after-34.json",
+      "sha256": "119cd5a3d1ee7f270169cb4898467eca79a0ce311c038a87f3993d057c593e5c",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-phoenix-strike-rank1-before-33.json",
+      "sha256": "4ec2cbd59c39d416bdf42e1b4f7a6f0bcbdbfceb9bc226971ebbee02960d5e79",
+      "bytes": 4981
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-phoenix-strike-rank2-after-36.json",
+      "sha256": "5fcd9aac4aa125b6607c0812570db08ed9d4fa4a7d00981454165aac38a42b08",
+      "bytes": 5038
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-phoenix-strike-rank2-before-35.json",
+      "sha256": "5fcd9aac4aa125b6607c0812570db08ed9d4fa4a7d00981454165aac38a42b08",
+      "bytes": 5038
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-phoenix-strike-synthetic-input.json",
+      "sha256": "8bbbf5c46d494b4de83b0ba077198bf95cebccf2c738d996e920fc77358c9b58",
+      "bytes": 4158
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-fire-cast-visible.png",
+      "sha256": "44062b4595f92b0ec001b07ec041269bb9ceb55e84d7f32a3d4407a60e96744b",
+      "bytes": 53242
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-fire-combat.json",
+      "sha256": "02690a72cff056e75d7ab21cd437fb194c9f58c3f938bdd6e767e93fa58795a6",
+      "bytes": 2245
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-fire-description.png",
+      "sha256": "09f5a20041d2a0cbb98c5fdd7e671765cd3d67254003cf94f9bfacef2e17a5a6",
+      "bytes": 49565
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-fire-details.png",
+      "sha256": "09f5a20041d2a0cbb98c5fdd7e671765cd3d67254003cf94f9bfacef2e17a5a6",
+      "bytes": 49565
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-fire-fresh-19.json",
+      "sha256": "68ab5c7049e486839130bae5d3483aff60518519ae5a170933f725a2a15d717c",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-fire-imported-20.json",
+      "sha256": "61b18605f6b7394df60af3a665c7ba5a3fa6db99eca41872ff94b3e6f05e9414",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-fire-rank1-after-22.json",
+      "sha256": "05bb624f7ba3c98a28dd288a3cd7335e6061a256f904e5ffe84a2190571ef180",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-fire-rank1-before-21.json",
+      "sha256": "037d4d01b71d6c2626ac66ced90e80de44f7f4638600e15ef0d71972547178bc",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-fire-rank2-after-24.json",
+      "sha256": "c29e1a61895a1b72377d3badfab1c97a79b0f9992671514c291d40dafc574ba3",
+      "bytes": 4890
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-fire-rank2-before-23.json",
+      "sha256": "c29e1a61895a1b72377d3badfab1c97a79b0f9992671514c291d40dafc574ba3",
+      "bytes": 4890
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-fire-synthetic-input.json",
+      "sha256": "a3990d79e236d5eff46e0e76421410d714adc214661a1bbd5e906c84f15d134d",
+      "bytes": 4012
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-inferno-cast-visible.png",
+      "sha256": "5a569184a39fd005be15fe0eb1924db1c15b3637ac36097c7bfd7896e3acc53f",
+      "bytes": 51267
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-inferno-combat.json",
+      "sha256": "b3bcd722f193cef2f748ffcab748b618063e2083c17cbc554af246e90a543043",
+      "bytes": 2862
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-inferno-description.png",
+      "sha256": "08b80c11513e878919873c9034846709b46d7633bf98a62ec523fb3ffd1a0205",
+      "bytes": 47286
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-inferno-details.png",
+      "sha256": "fc7fc00d3c8b98a60bef87ede905bb2686461080dac7285b7c00daef3ba8c110",
+      "bytes": 48644
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-inferno-fresh-25.json",
+      "sha256": "ff6523e5f31823f142dc803baadd412ea410ff0648249b75087d8af27f4b98c5",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-inferno-imported-26.json",
+      "sha256": "b832dc7f755e1f2d3b2a151abaa5c1d1d7087e0be3a6d88ee3a5f4497d6bce8d",
+      "bytes": 4872
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-inferno-rank1-after-28.json",
+      "sha256": "d306a6b0b672a6af262b135a50106cdf353ade77fa8f676bb185c1e049137cfa",
+      "bytes": 4875
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-inferno-rank1-before-27.json",
+      "sha256": "d0f1a9fa6d3236caa330e3bdd57192250a669898569925f91e27130531668a50",
+      "bytes": 4872
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-inferno-rank2-after-30.json",
+      "sha256": "03ff0de036d75a43d8fed4803a1e0e4d1b3144a55e7a13b2d3662fbcb8ca19de",
+      "bytes": 4930
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-inferno-rank2-before-29.json",
+      "sha256": "03ff0de036d75a43d8fed4803a1e0e4d1b3144a55e7a13b2d3662fbcb8ca19de",
+      "bytes": 4930
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-wake-of-inferno-synthetic-input.json",
+      "sha256": "707c7d3bce93f667eeeca8e65586c2d3316d495ad26f82544f20f00cc11094fa",
+      "bytes": 4049
+    },
+    {
+      "path": "scratch/browser-en-mobile-owner.json",
+      "sha256": "ab3ba97f42f33659e354c0c874ae2577562af40b14ed4d7dd1c45ba5fe5470ef",
+      "bytes": 270
+    },
+    {
+      "path": "scratch/browser-en-mobile.json",
+      "sha256": "72e31040a89324d3454dc06b333d6ad28ae9c282b96bd58e229f17922ff5da6c",
+      "bytes": 279
+    },
+    {
+      "path": "scratch/browser-en-mobile.log",
+      "sha256": "5262fec72e925a720eaf52679de6416111896e07b3acfcf62fe652c3764bebee",
+      "bytes": 186
+    },
+    {
+      "path": "scratch/browser-final.cjs",
+      "sha256": "064ec73668795a166a632694e14992700c1d54a2000501d9c9818b264b6425e2",
+      "bytes": 11030
+    },
+    {
+      "path": "scratch/browser-initial.cjs",
+      "sha256": "20c83c946c411a894dfd2fdc46d9c0eef807b3d32ec10254ad47f34517938b77",
+      "bytes": 10314
+    },
+    {
+      "path": "scratch/browser-supplement.cjs",
+      "sha256": "c082cafddd6dd82ba39b0a438bd9043d4407b278c2c904ab361af0244f898df2",
+      "bytes": 11270
+    },
+    {
+      "path": "scratch/browser-zh-desktop/browser-report.json",
+      "sha256": "cedb258f272c73c00c426cb55ad2474df1d2d5e2adf7d045171031a8159ed7bf",
+      "bytes": 3001
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-tail-cast-visible.png",
+      "sha256": "33f6f29fdb82f6a9ebf00f2aa9c5f939b1f55ba4ae59daf6ca4d6fa7c7bb20b2",
+      "bytes": 200292
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-tail-combat.json",
+      "sha256": "b6f88fa03ff626678aeb03debc89847726d036442ba92c53a6cf027471531e37",
+      "bytes": 2620
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-tail-description.png",
+      "sha256": "6370b7d647ef5f7f65f2f6fdfa17e32367f888f320628ad771adbae2c9c56e90",
+      "bytes": 127399
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-tail-details.png",
+      "sha256": "052fa957df0b184527c60960be6e6be5b4a3ff3ee87f73e7effcf65440578883",
+      "bytes": 129251
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-tail-fresh-13.json",
+      "sha256": "51395dbe07301c8a2e47c22c7edfe59eda043150cfe3868f4ac84fdf0237b5d6",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-tail-imported-14.json",
+      "sha256": "2ef1e0daa00774223251c0c11a20662e36e2479fad4793922e79a572b71c67bd",
+      "bytes": 4839
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-tail-rank1-after-16.json",
+      "sha256": "ae2241e6a0337a5713c710fd81809f64444a0132100426b30568b295d1ff8fc6",
+      "bytes": 4842
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-tail-rank1-before-15.json",
+      "sha256": "575e775294fd23427c81cc266d7bdb18397bd4d8b5219d32bdc694e38e5c5ef2",
+      "bytes": 4839
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-tail-rank2-after-18.json",
+      "sha256": "2ddf5eacd5fb9fe08679123e76e62f519e384ebe73125117cba2fc2ae2f9b323",
+      "bytes": 4893
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-tail-rank2-before-17.json",
+      "sha256": "2ddf5eacd5fb9fe08679123e76e62f519e384ebe73125117cba2fc2ae2f9b323",
+      "bytes": 4893
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-tail-synthetic-input.json",
+      "sha256": "df2288f00d261f525ef4be636c816340a9547592f2936239c89a9cbb8360a5d2",
+      "bytes": 4016
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fire-blast-cast-visible.png",
+      "sha256": "e08e598029e68ecef4f06b52df5db8feb53282394de39e1042923301b4ec8004",
+      "bytes": 207291
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fire-blast-combat.json",
+      "sha256": "53aab51fd1cc9b4e5567d0fb231102e8ef818c6dd16da55400f645aefbcd1e59",
+      "bytes": 1862
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fire-blast-description.png",
+      "sha256": "2f0a0a41a578f0eba431d93e714cc7568ab4dd1b94ab0a8ba767ddaa3362b537",
+      "bytes": 123461
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fire-blast-details.png",
+      "sha256": "59a15f464494edf8e14a0a7fdf7b792ac13760aefe00b8dbfa1999df39ede2b6",
+      "bytes": 125351
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fire-blast-fresh-1.json",
+      "sha256": "996044c2013e658dddba6d8c787a3eafd527cb6aef375f0462d4f9a4a8b0d4e2",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fire-blast-imported-2.json",
+      "sha256": "0052f44acd956a9044151ca975552bd5f589e83a07af43b5406867af365b8d2f",
+      "bytes": 4804
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fire-blast-rank1-after-4.json",
+      "sha256": "6ad6c27c6671037f59be6a9557685d1fb35d184487dbd391f51e92178a07ac61",
+      "bytes": 4807
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fire-blast-rank1-before-3.json",
+      "sha256": "db90fbe00af0c475f30305dd9b5d40570268b04cbeb4f4964fd87313148f0918",
+      "bytes": 4804
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fire-blast-rank2-after-6.json",
+      "sha256": "678a3b3dcd6f464e762cce879c81e6cbca52973de72273d87b24ebd5b9cc3596",
+      "bytes": 4857
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fire-blast-rank2-before-5.json",
+      "sha256": "678a3b3dcd6f464e762cce879c81e6cbca52973de72273d87b24ebd5b9cc3596",
+      "bytes": 4857
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fire-blast-synthetic-input.json",
+      "sha256": "014d24ab833e51948a9c3b2820b8c563dcc3aace3dc96abbcd4e72a32b2ade8b",
+      "bytes": 3981
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fists-of-fire-cast-visible.png",
+      "sha256": "e18cdf429d43fd91256547941b1c30803d816e3fa6b69d9895fcf9560df03c8b",
+      "bytes": 220212
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fists-of-fire-combat.json",
+      "sha256": "abfd898537cf226b510638458a55f703dac8d635a9c5c6c516635c9b6fcc26f3",
+      "bytes": 1347
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fists-of-fire-description.png",
+      "sha256": "2277da0333caed1366c5c6cf8e15529ecd54c750d92d8f8d6309131b7018889f",
+      "bytes": 123190
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fists-of-fire-details.png",
+      "sha256": "b590ff7f8296f4f456ad5e118aedee5784499189c5b289027bd4f5d411ab935e",
+      "bytes": 125088
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fists-of-fire-fresh-7.json",
+      "sha256": "083d8cc1bc331933eacebd0e04477df33dfc575e2aa3d010200e7272baf598c2",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fists-of-fire-imported-8.json",
+      "sha256": "5f057074eadb28cbd9eb676913e1ebf0e2a6cf1a8249ed784e208deae2500f54",
+      "bytes": 4841
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fists-of-fire-rank1-after-10.json",
+      "sha256": "01e8ea7ebdf56000e17ef484dbe11ae81d95072cc5699ef890d8b54f905fa907",
+      "bytes": 4844
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fists-of-fire-rank1-before-9.json",
+      "sha256": "07c76afdbb64f27563c4fc98f08bfb6aa928ccf63c0aff70990322ba3cbb4dda",
+      "bytes": 4841
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fists-of-fire-rank2-after-12.json",
+      "sha256": "74ff3fbc3317d727c996a3bd42c148960dc69238604905de0d3b3b11f9e8405b",
+      "bytes": 4897
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fists-of-fire-rank2-before-11.json",
+      "sha256": "74ff3fbc3317d727c996a3bd42c148960dc69238604905de0d3b3b11f9e8405b",
+      "bytes": 4897
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-fists-of-fire-synthetic-input.json",
+      "sha256": "6181642d5c656fab813b8bfe5e8c8537c5f2927299c4d9c60c8d9783a2ead5e5",
+      "bytes": 4018
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-phoenix-strike-cast-visible.png",
+      "sha256": "5f581caa26f8e524cfd7f9842a7a741d991ccd55951f0198b6086fd9f6913cfe",
+      "bytes": 220382
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-phoenix-strike-combat.json",
+      "sha256": "b5b489ee32332552912d774314c7cf71a7f5232e580c0e5cff7ec596ae661863",
+      "bytes": 1308
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-phoenix-strike-description.png",
+      "sha256": "a910449a5ac013072fcf2df1461deb780a9ffaac41fb993407b1628090b257f8",
+      "bytes": 146346
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-phoenix-strike-details.png",
+      "sha256": "35a57a8c3b0d597e39660bd1b0cacb9af664ae499326c8d0bc76192aa06c99de",
+      "bytes": 147802
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-phoenix-strike-fresh-31.json",
+      "sha256": "916fbec239a6c93d3edcedc8abe378becb5cf84848444ab27626cd7cb07a1084",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-phoenix-strike-imported-32.json",
+      "sha256": "9ff77f62b6016a491194943685c55f3a100f65a488ef6d80233b786fbea6d2e4",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-phoenix-strike-rank1-after-34.json",
+      "sha256": "30290a0d174e8a43b1267910b037517ba972f57ebb488a9ea362a85fac0f5df6",
+      "bytes": 4987
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-phoenix-strike-rank1-before-33.json",
+      "sha256": "94db755a8578439f2f0bdda828e9a0ed0af2f97283ee03279168bb8d308ca7be",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-phoenix-strike-rank2-after-36.json",
+      "sha256": "76476717a075fd8c112479b4a854dc82903b034b0514be41fe91570c8c2ca198",
+      "bytes": 5041
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-phoenix-strike-rank2-before-35.json",
+      "sha256": "76476717a075fd8c112479b4a854dc82903b034b0514be41fe91570c8c2ca198",
+      "bytes": 5041
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-phoenix-strike-synthetic-input.json",
+      "sha256": "11442ce6a466eb81ca20712512d2f24b347eee3575f242555eb4af9685211718",
+      "bytes": 4161
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-fire-cast-visible.png",
+      "sha256": "869eb82c3d388b9a08cc1f5dc443daeaa454ffdf5265b23e8b73047c46dd0df4",
+      "bytes": 200492
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-fire-combat.json",
+      "sha256": "7a48c34f05b2ed32f3ce596d79287a51d849ae8bc6f0b6b85523b7aad8122a4f",
+      "bytes": 2487
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-fire-description.png",
+      "sha256": "1a9fbddacb0a23b0454d212795d4aceb0cd695e63cb9cda8e978cc7f4f574374",
+      "bytes": 126934
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-fire-details.png",
+      "sha256": "78ed9a550d8e80f1e3b1184888b70e01385869d49982a77ba46b30661b9e65f8",
+      "bytes": 128809
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-fire-fresh-19.json",
+      "sha256": "3b5b73248bb75705069fddaf9b279e35b66f1760b42c1a09e519249d632940b5",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-fire-imported-20.json",
+      "sha256": "f8c95504088e526d69cdb8e6833f56306285e8a95e59ebc5b71df3d6fff4348f",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-fire-rank1-after-22.json",
+      "sha256": "16813a98806bb969b6ce850a5b55a00a22aa7c41da3e8cd974403ff8232af5fc",
+      "bytes": 4841
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-fire-rank1-before-21.json",
+      "sha256": "d97485c5ed80941829d0f5264deed500cb2e1b882b822da5e5638dc20f1f9643",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-fire-rank2-after-24.json",
+      "sha256": "a37b08da07415fe70c1afc50493a666adceda9c0995454b01e4eb144e4db5ff9",
+      "bytes": 4893
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-fire-rank2-before-23.json",
+      "sha256": "a37b08da07415fe70c1afc50493a666adceda9c0995454b01e4eb144e4db5ff9",
+      "bytes": 4893
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-fire-synthetic-input.json",
+      "sha256": "4237cc8c9e471d3ba95060dc6d6b7f44d46f545873640e987c4a58060c2f2694",
+      "bytes": 4015
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-inferno-cast-visible.png",
+      "sha256": "b50736b523518c787d045a5a6e2adda1ba470f995fb29faf89b6711da6618194",
+      "bytes": 201599
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-inferno-combat.json",
+      "sha256": "9cb3b5dab93c79b75fb209bc5646554043f336d98d9ea07f9ddb3c8b0d25c32d",
+      "bytes": 3222
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-inferno-description.png",
+      "sha256": "dd9f0ab250121f01497ea9431ec9c9111ea200b08c93a217c9ce34f331c37b19",
+      "bytes": 128951
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-inferno-details.png",
+      "sha256": "94bf05cc01f1a077a51b686343b0b981e91b1498c102f6d47c90000b0bc61ea0",
+      "bytes": 130790
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-inferno-fresh-25.json",
+      "sha256": "d821881b34c0c1421ea4e27785cd43085954eaa174d179a8f0649d92a6c7bc2c",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-inferno-imported-26.json",
+      "sha256": "0f1a49d473b5d5a36a84b83f925d3c394d9ccd2bd5388265afc9bbafd073c004",
+      "bytes": 4875
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-inferno-rank1-after-28.json",
+      "sha256": "88cc8de4795a1f51cefde3635068f44447bb3559e2dfb6823024039ab0f96799",
+      "bytes": 4878
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-inferno-rank1-before-27.json",
+      "sha256": "d7a3c0cdcc098ca13d4c9b116a162271406919fb42b22782d383176658e0b425",
+      "bytes": 4875
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-inferno-rank2-after-30.json",
+      "sha256": "aa992d0e082f0584a74d599c0eed41afa76fe088151a13a3dc1e9d3c16ebcbb2",
+      "bytes": 4933
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-inferno-rank2-before-29.json",
+      "sha256": "aa992d0e082f0584a74d599c0eed41afa76fe088151a13a3dc1e9d3c16ebcbb2",
+      "bytes": 4933
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-wake-of-inferno-synthetic-input.json",
+      "sha256": "40b2f8216e68330b2984c70431cbf281e47f42e66069fed02fa41d463f09bb44",
+      "bytes": 4052
+    },
+    {
+      "path": "scratch/browser-zh-desktop-owner.json",
+      "sha256": "9e33f46fbe1d2af615cfe4ea2fc17503af264138270c6f0a9c20a06a9c8bf8fd",
+      "bytes": 275
+    },
+    {
+      "path": "scratch/browser-zh-desktop.json",
+      "sha256": "0a9a50004805691814105979869b9302fd2177b0592259fd5c11a9e9020e4a6f",
+      "bytes": 284
+    },
+    {
+      "path": "scratch/browser-zh-desktop.log",
+      "sha256": "b267a207e103889f11caf9b6c458013f9fe01f4960f50e732ef0bc5879c51931",
+      "bytes": 210
+    },
+    {
+      "path": "scratch/browser-zh-mobile/browser-report.json",
+      "sha256": "d4f611bf3713ca78d2f448293f20a92e821ef935f8a67cf939c063eb1fa870b3",
+      "bytes": 2990
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-tail-cast-visible.png",
+      "sha256": "fba57c58d855a2094f56c4826c768a636c02d6fa9dd0d93fdda4646c4052941d",
+      "bytes": 62245
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-tail-combat.json",
+      "sha256": "b6f88fa03ff626678aeb03debc89847726d036442ba92c53a6cf027471531e37",
+      "bytes": 2620
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-tail-description.png",
+      "sha256": "19b4b76271af7e38c92f9083a675637c186a9f9c94d45e7a5377c6b05d30630f",
+      "bytes": 56640
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-tail-details.png",
+      "sha256": "4d67ed6beff4d3c7bfff34c52d812afdde926d9f0b6457cf0181fc899eb39011",
+      "bytes": 57549
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-tail-fresh-13.json",
+      "sha256": "a3cecc1ed9cbb91c14548f45e314d5a6a1e030744f62e222ec67118eac7bebb7",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-tail-imported-14.json",
+      "sha256": "aa3b5f907a1bac46cd98ca821684ca10d975bf417968fd55700322e90fe145d4",
+      "bytes": 4839
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-tail-rank1-after-16.json",
+      "sha256": "7563a791caf1c8699707843875d6f6bec575948c9d8326b8b97c79dbb686802c",
+      "bytes": 4842
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-tail-rank1-before-15.json",
+      "sha256": "8621f23ce6b438a5f0a7198344cf26734e455d2037b430d235c18df5c40c6851",
+      "bytes": 4839
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-tail-rank2-after-18.json",
+      "sha256": "c52fece812eed869fd2ac1d51a572e1ff02d11655445fd7b66b61d9daafefb93",
+      "bytes": 4893
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-tail-rank2-before-17.json",
+      "sha256": "c52fece812eed869fd2ac1d51a572e1ff02d11655445fd7b66b61d9daafefb93",
+      "bytes": 4893
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-tail-synthetic-input.json",
+      "sha256": "62fc2bdd9c367d7939acf8cd2a8195b2009e3dfb96c29e9c5bca0b231a95089b",
+      "bytes": 4016
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fire-blast-cast-visible.png",
+      "sha256": "cd99e9608be9f63816221c309cd1f0339e5f5869f1e91d9cd2c3ae6600ba8724",
+      "bytes": 61506
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fire-blast-combat.json",
+      "sha256": "53aab51fd1cc9b4e5567d0fb231102e8ef818c6dd16da55400f645aefbcd1e59",
+      "bytes": 1862
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fire-blast-description.png",
+      "sha256": "773418297d0e319a76efa5abdf9eebc8714444ef5314c4cf43a14514847801ae",
+      "bytes": 55456
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fire-blast-details.png",
+      "sha256": "b01675b43fd114b98f383199e0deff9d9740c7c68ebd138fb836539723bdfd6e",
+      "bytes": 57099
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fire-blast-fresh-1.json",
+      "sha256": "825341f73961f33fd5c0fc8cc3fb1b745be86843b046dfe43b28025ed7b11126",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fire-blast-imported-2.json",
+      "sha256": "3cfa7cc49b7f787f41c070344dc8b879dadcc173e5386b2e8a4fdbee55c4df8e",
+      "bytes": 4804
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fire-blast-rank1-after-4.json",
+      "sha256": "31bee795e6094b6197b662ec37d3a39b0223f941e32e5ad133d77a60c52868b2",
+      "bytes": 4807
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fire-blast-rank1-before-3.json",
+      "sha256": "861bc33f2610536db50c610ba03b055189d3d681e6d71f8fce1a96a522f2a5d5",
+      "bytes": 4804
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fire-blast-rank2-after-6.json",
+      "sha256": "6ab16c0625f0e8050ad7272d78b5bb225774937ca408d54cd8be1acf8c3b3b0b",
+      "bytes": 4857
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fire-blast-rank2-before-5.json",
+      "sha256": "6ab16c0625f0e8050ad7272d78b5bb225774937ca408d54cd8be1acf8c3b3b0b",
+      "bytes": 4857
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fire-blast-synthetic-input.json",
+      "sha256": "1ade2e13ceaaabb78d14a254e7f47c033606f12824d98fe0e8ce20fb464892fa",
+      "bytes": 3981
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fists-of-fire-cast-visible.png",
+      "sha256": "89cbffb700407e91cff8d173374c8ff70148bd21f5d695d7dfe0da63d9867a7d",
+      "bytes": 61329
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fists-of-fire-combat.json",
+      "sha256": "abfd898537cf226b510638458a55f703dac8d635a9c5c6c516635c9b6fcc26f3",
+      "bytes": 1347
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fists-of-fire-description.png",
+      "sha256": "e1c9f109475b007b3fa6c3af6677896dd9ac8f30d0343331dba3dfbf24be85d2",
+      "bytes": 55032
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fists-of-fire-details.png",
+      "sha256": "bc05fb2624e5bcf28e642acfbf79a61fe6f17cc19f088a364b85cab5213608c8",
+      "bytes": 55612
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fists-of-fire-fresh-7.json",
+      "sha256": "44a01b4d153141121b8b86b393f3e1dead55a0514205380e0b51fe8ad2eb85ae",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fists-of-fire-imported-8.json",
+      "sha256": "8f35396b9801d32ef183c75482782a37889a7e80a6278c0796dd14def3038169",
+      "bytes": 4841
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fists-of-fire-rank1-after-10.json",
+      "sha256": "956419fad5b6c3c800c18653849b0fe065188a0fdbf2f40ec238567b4258dff7",
+      "bytes": 4844
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fists-of-fire-rank1-before-9.json",
+      "sha256": "dd1db4291fe16ab9bc36cf7ba5df6052d85e5f209740463a130fc4c63c0e721f",
+      "bytes": 4841
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fists-of-fire-rank2-after-12.json",
+      "sha256": "84565f423e9689bc3ca980cd71fb9b960de3332a558be90cb2afcbb38ce7696b",
+      "bytes": 4897
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fists-of-fire-rank2-before-11.json",
+      "sha256": "84565f423e9689bc3ca980cd71fb9b960de3332a558be90cb2afcbb38ce7696b",
+      "bytes": 4897
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-fists-of-fire-synthetic-input.json",
+      "sha256": "e63ea6de8bd44887af598807264bce5b73d975ee8e7fe69786f2893ed607673a",
+      "bytes": 4018
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-phoenix-strike-cast-visible.png",
+      "sha256": "ecb57514cc2125ec0835b84d8e9dc88e352d7329751f29fabf5e9152f12667c2",
+      "bytes": 58142
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-phoenix-strike-combat.json",
+      "sha256": "b5b489ee32332552912d774314c7cf71a7f5232e580c0e5cff7ec596ae661863",
+      "bytes": 1308
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-phoenix-strike-description.png",
+      "sha256": "27c504d0059f33822e8ce9549c7fd40f2ec49868cb6d957ad6ce16887e8a41ad",
+      "bytes": 62055
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-phoenix-strike-details.png",
+      "sha256": "bbf26278f3f6684c984a54402aea27ada9150a3bc9ac95049aa1f3950e4fc5d1",
+      "bytes": 63619
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-phoenix-strike-fresh-31.json",
+      "sha256": "cece49f5372fc72fb2ff344d97eeb5111808a3046db013282be7d7334242c070",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-phoenix-strike-imported-32.json",
+      "sha256": "948264956ef550e5596c13fdd2eb697d8cf1328ea19871be99ed332dcd031aff",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-phoenix-strike-rank1-after-34.json",
+      "sha256": "6a8745d5e906081699673a4470a0254504f26fe418001873d36dcea95e578e08",
+      "bytes": 4987
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-phoenix-strike-rank1-before-33.json",
+      "sha256": "b776b1ae5eddc5abae185f6c779cb924fbf8382a78e1f940c79849ea50cda25a",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-phoenix-strike-rank2-after-36.json",
+      "sha256": "d18f7d5a307a03afd06e4db7465dd8982d4df765ffbcef35948e57b4242e5358",
+      "bytes": 5041
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-phoenix-strike-rank2-before-35.json",
+      "sha256": "d18f7d5a307a03afd06e4db7465dd8982d4df765ffbcef35948e57b4242e5358",
+      "bytes": 5041
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-phoenix-strike-synthetic-input.json",
+      "sha256": "d5ef59fe48dbdef60e7000c42b74c1b1cbdcdd22fcdc1fcedbfd40bf6aa88fbf",
+      "bytes": 4161
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-fire-cast-visible.png",
+      "sha256": "7d2e8d391004c3f874ae664f866a1f05796daffe6a1aa24d9e4dab3125c90e40",
+      "bytes": 62136
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-fire-combat.json",
+      "sha256": "7a48c34f05b2ed32f3ce596d79287a51d849ae8bc6f0b6b85523b7aad8122a4f",
+      "bytes": 2487
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-fire-description.png",
+      "sha256": "b218e4ddaecd4c75eae0737cf72f24dd437f0ec0950fae6c39eb4bef5e21524c",
+      "bytes": 56358
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-fire-details.png",
+      "sha256": "06e8b86eca149ba6999281809a131f132f381534249d9f3b7539875fc3ad488d",
+      "bytes": 58006
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-fire-fresh-19.json",
+      "sha256": "b33008765af8c7ab7b6cd40e0a577eead6c562e7412c527ad0e67495218c2cdd",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-fire-imported-20.json",
+      "sha256": "fe6049d5108dc80d802898eb284ee3c6d22b99824349bc58270009b93619af0b",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-fire-rank1-after-22.json",
+      "sha256": "4536ca50e4489e4ebb4e87720089627d54a3ec747b3c96f0d0f21e4b4bde6037",
+      "bytes": 4841
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-fire-rank1-before-21.json",
+      "sha256": "ae6510084f6dea25d3c9d16590cd85297bae8e9f40465d69757abd4a248b8355",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-fire-rank2-after-24.json",
+      "sha256": "1ca3858dd72efef2245ae4b9b34877f7212942c1c97adf7eb4e40ffd42f63ff6",
+      "bytes": 4893
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-fire-rank2-before-23.json",
+      "sha256": "1ca3858dd72efef2245ae4b9b34877f7212942c1c97adf7eb4e40ffd42f63ff6",
+      "bytes": 4893
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-fire-synthetic-input.json",
+      "sha256": "c3b7a61a19459a81b0eceda90f395494baab6dc0f09f58ef09c75591bff29e93",
+      "bytes": 4015
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-inferno-cast-visible.png",
+      "sha256": "5dc2d13747d04723c67a1b21e402d868b1d480f530cdd5738dde1c684f7ebffc",
+      "bytes": 62271
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-inferno-combat.json",
+      "sha256": "9cb3b5dab93c79b75fb209bc5646554043f336d98d9ea07f9ddb3c8b0d25c32d",
+      "bytes": 3222
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-inferno-description.png",
+      "sha256": "6c3e306110315c9df93b42a139c813cc6fddb94ecb30cfca822dd40867054dec",
+      "bytes": 57286
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-inferno-details.png",
+      "sha256": "e8138f3510bb73094493c54d8bd95edd0766bb82bb9ff6cbe5f6f4d1a2a220de",
+      "bytes": 58795
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-inferno-fresh-25.json",
+      "sha256": "7f6ef1d55b7df63e978c95bf1616545b26ae6f8b668a2508f467df302a2ac2f8",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-inferno-imported-26.json",
+      "sha256": "959c6ec9c9fb98bd61e73c84d5335920ed1c4ee3d11e81176040bd62b4aac814",
+      "bytes": 4875
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-inferno-rank1-after-28.json",
+      "sha256": "442908140bb99100089b533a903b783ff869d9d67820191bd435dbeb6cc8140e",
+      "bytes": 4878
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-inferno-rank1-before-27.json",
+      "sha256": "19aaaefae3352100c8a4262ec1690f70d4093bd0244cab1e2091228f0b06301b",
+      "bytes": 4875
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-inferno-rank2-after-30.json",
+      "sha256": "663cfa3fbd9c487a7f00fd48f18ced14a7bba2bad354b9875ee922b9f4fa72c4",
+      "bytes": 4933
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-inferno-rank2-before-29.json",
+      "sha256": "663cfa3fbd9c487a7f00fd48f18ced14a7bba2bad354b9875ee922b9f4fa72c4",
+      "bytes": 4933
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-wake-of-inferno-synthetic-input.json",
+      "sha256": "0a57c4419433795586488e521fc704ce79aced27fcbdc254a93d9513b475bd29",
+      "bytes": 4052
+    },
+    {
+      "path": "scratch/browser-zh-mobile-owner.json",
+      "sha256": "c567f97f2309b36c3ce5ec79c90d42ce08af284fbf6b0329e4eaef97e64f25a3",
+      "bytes": 273
+    },
+    {
+      "path": "scratch/browser-zh-mobile.json",
+      "sha256": "467c73770baf12c7644594848f3b4194747a79b7bedcce6e944424cf01e7860f",
+      "bytes": 282
+    },
+    {
+      "path": "scratch/browser-zh-mobile.log",
+      "sha256": "6f32312a2076a320511f3d6726b4d5ef4c3cb6e1a8d8e0e04097c1c85ce301f5",
+      "bytes": 204
+    },
+    {
+      "path": "scratch/browser.cjs",
+      "sha256": "20c83c946c411a894dfd2fdc46d9c0eef807b3d32ec10254ad47f34517938b77",
+      "bytes": 10314
+    },
+    {
+      "path": "scratch/build-audit-initial.json",
+      "sha256": "f1c11072fdb95e19b6f2334eb34c11db543055af523420dd13a56d9b09259967",
+      "bytes": 89
+    },
+    {
+      "path": "scratch/build-audit.json",
+      "sha256": "60227e4d6e4c8cde7889c5963e74a857111bcb192f3df2e1c4305736cdd8fc2c",
+      "bytes": 125
+    },
+    {
+      "path": "scratch/build-final-owner.json",
+      "sha256": "65ae3bf33017c100b005cb45384f0470062ce3275de233c6c9825f0d91fd778e",
+      "bytes": 266
+    },
+    {
+      "path": "scratch/build-final.json",
+      "sha256": "3c4058c313c248473f7eb05176b16106c3f90a639e4ce65b01fdb09217b141b1",
+      "bytes": 272
+    },
+    {
+      "path": "scratch/build-final.log",
+      "sha256": "714e2374172ecfa693cbb10d7321c3cb41d5d633345bec7dca4693e72d2a6f8f",
+      "bytes": 2409
+    },
+    {
+      "path": "scratch/build-owner.json",
+      "sha256": "8dfcf8408ce206dcc100f0a14a408dc629f906cc0f661e69e01b20bedf3d6450",
+      "bytes": 258
+    },
+    {
+      "path": "scratch/build.json",
+      "sha256": "161989c4663bd26f16ab49117289faa22587a902cc6b3a8c4b70ba75e911ddb6",
+      "bytes": 267
+    },
+    {
+      "path": "scratch/build.log",
+      "sha256": "664316003d2a709008812e69eba1624fc7be3e7fac71fd5de3283e2f90615583",
+      "bytes": 2337
+    },
+    {
+      "path": "scratch/cleanup.py",
+      "sha256": "d6d79b66d77e3cb694e16c0f02402fbccf83cabc1c3ad22b725513134c4e2ba0",
+      "bytes": 2282
+    },
+    {
+      "path": "scratch/committed-source-audit.json",
+      "sha256": "66dd99238613ace5422a0836637e19d4be92211e37c4a91b801bb135bc4ecf86",
+      "bytes": 156898
+    },
+    {
+      "path": "scratch/continuation-state.json",
+      "sha256": "f39d530f31109d39a5f84168597a11846f9d01d1240b8c2a02b1c64d75b45e4d",
+      "bytes": 436
+    },
+    {
+      "path": "scratch/data-compat-final-owner.json",
+      "sha256": "79a855eb9e24a0ccdfd3fdd885544c2e6496d61e70cc8d19cc0c7fd7fb58b8f9",
+      "bytes": 349
+    },
+    {
+      "path": "scratch/data-compat-final.json",
+      "sha256": "bf15a5a648ea9b35571e316155debf36a2d971a7239706f8670537e70f13e1ac",
+      "bytes": 358
+    },
+    {
+      "path": "scratch/data-compat-final.log",
+      "sha256": "30f1ba965cc4186b040d059209b7673c2292c2c428b76c4fae9fea4754237d8d",
+      "bytes": 1356
+    },
+    {
+      "path": "scratch/data-compat-owner.json",
+      "sha256": "d6e494b825f129cccd7031658516308d947bd08bee3e6a1236cb55eeb3218039",
+      "bytes": 349
+    },
+    {
+      "path": "scratch/data-compat.json",
+      "sha256": "9b0bad8f963bbb88d255b3c3b9d9d4758ef5bae450fcbca523bd423695aa58c9",
+      "bytes": 358
+    },
+    {
+      "path": "scratch/data-compat.log",
+      "sha256": "c61ef7f56b8105aff9428ad9cd5d09740a98e61e85722b62ef2ee01dc66c957f",
+      "bytes": 2771
+    },
+    {
+      "path": "scratch/engine-corrected-owner.json",
+      "sha256": "e52f4cd541192167f55b28a00e97b6ac5c7f3ed2e638da36911daaf5a1be4f69",
+      "bytes": 105
+    },
+    {
+      "path": "scratch/engine-corrected.json",
+      "sha256": "beda315e0f7f7419ef29ff4ac9b553e961450e623da3931c649fc7946c54af96",
+      "bytes": 113
+    },
+    {
+      "path": "scratch/engine-corrected.log",
+      "sha256": "8c60ff92c002fb893e6cbaafd02f8be1307ec4b631ce4eb5a67c45410133b310",
+      "bytes": 67072
+    },
+    {
+      "path": "scratch/engine-owner.json",
+      "sha256": "ddf563fe1caa5b55bae6923c4702f3c96c5c960298c3af76dedd6a0cb9195396",
+      "bytes": 105
+    },
+    {
+      "path": "scratch/engine.json",
+      "sha256": "af535fe4c898a21eb63137525d3b36761557e2b7bc914e0b4a00748ff67e6d8a",
+      "bytes": 114
+    },
+    {
+      "path": "scratch/engine.log",
+      "sha256": "951f19e434b5525177e4052a84e3831bee0a02d7a8dd775b2aaa180433baf5c4",
+      "bytes": 68455
+    },
+    {
+      "path": "scratch/final-en-desktop/browser-report.json",
+      "sha256": "d5601021d8047555f2765b7f2fc26c0b24880e6f1ac70d661bf48a6da0dfb837",
+      "bytes": 1544
+    },
+    {
+      "path": "scratch/final-en-desktop/en-1280-phoenix-strike-cast-visible.png",
+      "sha256": "7f7dd4c7a2819cec39834582b32ba308ac9ae243cb2d12cf1f1013c2b2cd337e",
+      "bytes": 206548
+    },
+    {
+      "path": "scratch/final-en-desktop/en-1280-phoenix-strike-combat.json",
+      "sha256": "aa7a439bb076614987611575ccf8cd73d53777dedddc2af7ea3c1bf883593c9f",
+      "bytes": 1429
+    },
+    {
+      "path": "scratch/final-en-desktop/en-1280-phoenix-strike-component-stats.png",
+      "sha256": "d7c68831e8aeb33664ab9085fde9e18cdfa3e5618069c8e144c3bf1ed502ef01",
+      "bytes": 145651
+    },
+    {
+      "path": "scratch/final-en-desktop/en-1280-phoenix-strike-description.png",
+      "sha256": "d7c68831e8aeb33664ab9085fde9e18cdfa3e5618069c8e144c3bf1ed502ef01",
+      "bytes": 145651
+    },
+    {
+      "path": "scratch/final-en-desktop/en-1280-phoenix-strike-details.png",
+      "sha256": "f0d51aad18242a7af35848e8ee6a47d80bb966d26e499dad86809fdc2cfcf578",
+      "bytes": 147356
+    },
+    {
+      "path": "scratch/final-en-desktop/en-1280-phoenix-strike-fresh-1.json",
+      "sha256": "ffd272eeccebfecbefa83261a92e4d86e6925f8a9ecaef1d83c2c3575009c7b6",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/final-en-desktop/en-1280-phoenix-strike-imported-2.json",
+      "sha256": "0e1e70dfbe11d6a2300fe2cc4f05792f519962b6ac297a1e20a221feff665863",
+      "bytes": 4981
+    },
+    {
+      "path": "scratch/final-en-desktop/en-1280-phoenix-strike-rank1-after-4.json",
+      "sha256": "1ef4e787e68e2619c3ed2ede4ab3b9d2d100f05493c558a04ca0e124441adec7",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/final-en-desktop/en-1280-phoenix-strike-rank1-before-3.json",
+      "sha256": "cb42c1a7dbf1b94a4506825b4a3b567aa67e12ca00e32383d83f101a9d608abc",
+      "bytes": 4981
+    },
+    {
+      "path": "scratch/final-en-desktop/en-1280-phoenix-strike-rank2-after-6.json",
+      "sha256": "7c15d341f44d4770fd370b3b1780b5f2accbbb31f44102ebc65d44bf321b7d35",
+      "bytes": 5038
+    },
+    {
+      "path": "scratch/final-en-desktop/en-1280-phoenix-strike-rank2-before-5.json",
+      "sha256": "7c15d341f44d4770fd370b3b1780b5f2accbbb31f44102ebc65d44bf321b7d35",
+      "bytes": 5038
+    },
+    {
+      "path": "scratch/final-en-desktop/en-1280-phoenix-strike-synthetic-input.json",
+      "sha256": "7b0e4dd11ad6784a5be5eb331575e4a3a14fb93be5a61f25d3ebe04c67420bc9",
+      "bytes": 4158
+    },
+    {
+      "path": "scratch/final-en-desktop-owner.json",
+      "sha256": "bdc884bf512c01a2380a66d9cc65e9819053510864ed97ff55857327701c0c2c",
+      "bytes": 314
+    },
+    {
+      "path": "scratch/final-en-desktop.json",
+      "sha256": "3b117bba34e9428e912261fa3a9b2594a6cc32b7fc7e790b729575168e4c79c3",
+      "bytes": 321
+    },
+    {
+      "path": "scratch/final-en-desktop.log",
+      "sha256": "626141833181974f6a3fab42423ba1b5b6939ae7b1c97aa7010dcd618750d6ac",
+      "bytes": 61
+    },
+    {
+      "path": "scratch/final-en-mobile/browser-report.json",
+      "sha256": "b7f43a1ef9b4a72868b39f0e287153f479ab5a349887a198e16535c8b6b29b73",
+      "bytes": 1537
+    },
+    {
+      "path": "scratch/final-en-mobile/en-360-phoenix-strike-cast-visible.png",
+      "sha256": "cae2bca12b23e8e0776747df5d76c51dc5e0a6ddda756c8a4b4331f27f2c0de9",
+      "bytes": 51354
+    },
+    {
+      "path": "scratch/final-en-mobile/en-360-phoenix-strike-combat.json",
+      "sha256": "6259af03edcccc8911a42a285ae7e3040225b5c05a85e9134099305c149ef173",
+      "bytes": 1212
+    },
+    {
+      "path": "scratch/final-en-mobile/en-360-phoenix-strike-component-stats.png",
+      "sha256": "1139562344ab29406761ce5529cb6a82cd97ec9649107f1a61d2f6e9c1d84bca",
+      "bytes": 55604
+    },
+    {
+      "path": "scratch/final-en-mobile/en-360-phoenix-strike-description.png",
+      "sha256": "1139562344ab29406761ce5529cb6a82cd97ec9649107f1a61d2f6e9c1d84bca",
+      "bytes": 55604
+    },
+    {
+      "path": "scratch/final-en-mobile/en-360-phoenix-strike-details.png",
+      "sha256": "c3f344c26a223e2d5570165b0978eddb4dcbc141537854a9e5c0785ec4259933",
+      "bytes": 56733
+    },
+    {
+      "path": "scratch/final-en-mobile/en-360-phoenix-strike-fresh-1.json",
+      "sha256": "9a81b8598bc75a62299571eb4227b2cbe1b0f97517b95f705dcf9601d79d7413",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/final-en-mobile/en-360-phoenix-strike-imported-2.json",
+      "sha256": "d9525b81162e9ad0df2efe1923e4e73e8bacd4b5d9a05355c85228755f478244",
+      "bytes": 4981
+    },
+    {
+      "path": "scratch/final-en-mobile/en-360-phoenix-strike-rank1-after-4.json",
+      "sha256": "110d33185b3d67d49b1389bf4ea3fc15ff2c18e4d4ae1a698f7fe1d1cfa68214",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/final-en-mobile/en-360-phoenix-strike-rank1-before-3.json",
+      "sha256": "d02ebd71e3019234ab198c47747c6b06f73500a6592c63dc782d75c460bdaac8",
+      "bytes": 4981
+    },
+    {
+      "path": "scratch/final-en-mobile/en-360-phoenix-strike-rank2-after-6.json",
+      "sha256": "eab4462872d0df298fd518779c8d3dd3967b6b538dfd0c6101d18e39f6afb49e",
+      "bytes": 5038
+    },
+    {
+      "path": "scratch/final-en-mobile/en-360-phoenix-strike-rank2-before-5.json",
+      "sha256": "eab4462872d0df298fd518779c8d3dd3967b6b538dfd0c6101d18e39f6afb49e",
+      "bytes": 5038
+    },
+    {
+      "path": "scratch/final-en-mobile/en-360-phoenix-strike-synthetic-input.json",
+      "sha256": "de01943beded02049f809a00c2ed9227b46a4f89c23826f2821ca196321c687b",
+      "bytes": 4158
+    },
+    {
+      "path": "scratch/final-en-mobile-owner.json",
+      "sha256": "9451011a9e0d1ee97241cc3a805039ad6ba88a6c383d8ab8c60985e254586de5",
+      "bytes": 312
+    },
+    {
+      "path": "scratch/final-en-mobile.json",
+      "sha256": "59b4858b5fda89df6c9b37814be9555716c109257ee2aa25e4e48e05049f7088",
+      "bytes": 318
+    },
+    {
+      "path": "scratch/final-en-mobile.log",
+      "sha256": "5b7bd81a2002e2e1d3dc59c9f4012b4325cd0a214177db87554c142f44de360c",
+      "bytes": 60
+    },
+    {
+      "path": "scratch/final-zh-desktop/browser-report.json",
+      "sha256": "70ab699aa93648a903e0ea3d8ea926de3f05509b86d609c4a03ee8d6624eb200",
+      "bytes": 1500
+    },
+    {
+      "path": "scratch/final-zh-desktop/zh-CN-1280-phoenix-strike-cast-visible.png",
+      "sha256": "227c48fbf75a7639e33fb85b1b2f512826e55d6cc247f9edd429381ed0093140",
+      "bytes": 208651
+    },
+    {
+      "path": "scratch/final-zh-desktop/zh-CN-1280-phoenix-strike-combat.json",
+      "sha256": "dcef85b5435c5dffe38b6322355e2fe271bf29a37fd5bca560d9aa6f407c6624",
+      "bytes": 1547
+    },
+    {
+      "path": "scratch/final-zh-desktop/zh-CN-1280-phoenix-strike-component-stats.png",
+      "sha256": "905f9d736030dc8fd6a91ad82165db1a304570de694157503a420032e6431407",
+      "bytes": 150051
+    },
+    {
+      "path": "scratch/final-zh-desktop/zh-CN-1280-phoenix-strike-description.png",
+      "sha256": "905f9d736030dc8fd6a91ad82165db1a304570de694157503a420032e6431407",
+      "bytes": 150051
+    },
+    {
+      "path": "scratch/final-zh-desktop/zh-CN-1280-phoenix-strike-details.png",
+      "sha256": "5f17d25d2d5958ce0f4efecc8e1064b150bedc87bc3080e501f4ed04bb853cab",
+      "bytes": 151882
+    },
+    {
+      "path": "scratch/final-zh-desktop/zh-CN-1280-phoenix-strike-fresh-1.json",
+      "sha256": "1d682a75149ff25a2772670f45a71e41afa6f5aaee866056b5fbf70ddafc2d9f",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/final-zh-desktop/zh-CN-1280-phoenix-strike-imported-2.json",
+      "sha256": "2e21f02ce515301c1f352008acf894ed2e339f06141ad5356f844bfe78cf17a5",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/final-zh-desktop/zh-CN-1280-phoenix-strike-rank1-after-4.json",
+      "sha256": "909a8ff25b16c9b8f64ebb764e31899cccc73c68336b61f477ac54b4a3f00272",
+      "bytes": 4987
+    },
+    {
+      "path": "scratch/final-zh-desktop/zh-CN-1280-phoenix-strike-rank1-before-3.json",
+      "sha256": "a12ca382fbffc1e3532b6f460cc9785f6c403b16a4fcd5fa9efcadfc8d92ed02",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/final-zh-desktop/zh-CN-1280-phoenix-strike-rank2-after-6.json",
+      "sha256": "d168c6ed9c8e2f6dec2dc2d4705b51035ab379f688fc2831542b936381d1fba9",
+      "bytes": 5041
+    },
+    {
+      "path": "scratch/final-zh-desktop/zh-CN-1280-phoenix-strike-rank2-before-5.json",
+      "sha256": "d168c6ed9c8e2f6dec2dc2d4705b51035ab379f688fc2831542b936381d1fba9",
+      "bytes": 5041
+    },
+    {
+      "path": "scratch/final-zh-desktop/zh-CN-1280-phoenix-strike-synthetic-input.json",
+      "sha256": "4a0e14349c5319b3403cb35e3938f8cb2dff527294e2fda9c067baee4432a12e",
+      "bytes": 4161
+    },
+    {
+      "path": "scratch/final-zh-desktop-owner.json",
+      "sha256": "ffeacec2e5d2306b6e7a75bb86cb4d47eea032d7a923c2c7dfad437e6f3d131c",
+      "bytes": 317
+    },
+    {
+      "path": "scratch/final-zh-desktop.json",
+      "sha256": "9e0f34535fafdbd174f507194cd654d926f7cfdc6e6a904baf196d9d2c2bcbbc",
+      "bytes": 324
+    },
+    {
+      "path": "scratch/final-zh-desktop.log",
+      "sha256": "9014e5d489b906b69280a0fa41a4ac002b382fa09a4a02c3e0979317ce8745ba",
+      "bytes": 64
+    },
+    {
+      "path": "scratch/final-zh-mobile/browser-report.json",
+      "sha256": "257828a53087981ec9466a77d746f92a9486d86d5d43c74aeb9c8e33f910085b",
+      "bytes": 1494
+    },
+    {
+      "path": "scratch/final-zh-mobile/zh-CN-360-phoenix-strike-cast-visible.png",
+      "sha256": "dabbb81e42f2ebc960a6654704bf397e96f881afb6ffd571ff7ae59ff672a714",
+      "bytes": 58149
+    },
+    {
+      "path": "scratch/final-zh-mobile/zh-CN-360-phoenix-strike-combat.json",
+      "sha256": "dcef85b5435c5dffe38b6322355e2fe271bf29a37fd5bca560d9aa6f407c6624",
+      "bytes": 1547
+    },
+    {
+      "path": "scratch/final-zh-mobile/zh-CN-360-phoenix-strike-component-stats.png",
+      "sha256": "379e651553028d02d9d59d2c482f63ac7ca5b1f5181ccf92d0b0268e7c9ace79",
+      "bytes": 65880
+    },
+    {
+      "path": "scratch/final-zh-mobile/zh-CN-360-phoenix-strike-description.png",
+      "sha256": "379e651553028d02d9d59d2c482f63ac7ca5b1f5181ccf92d0b0268e7c9ace79",
+      "bytes": 65880
+    },
+    {
+      "path": "scratch/final-zh-mobile/zh-CN-360-phoenix-strike-details.png",
+      "sha256": "afadb2d813ae030111c2c6f2081ef62da8c0952daf7a74c672e9aa9adc3d2bcf",
+      "bytes": 67646
+    },
+    {
+      "path": "scratch/final-zh-mobile/zh-CN-360-phoenix-strike-fresh-1.json",
+      "sha256": "56eb09090a7e6b6edbb18a60f851a12d435385e0fe4aebaa7ece836e801205b8",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/final-zh-mobile/zh-CN-360-phoenix-strike-imported-2.json",
+      "sha256": "b11b40f88a9e4efa0b73129773d113ecfac574ce91b88b75c401d918850fd3fd",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/final-zh-mobile/zh-CN-360-phoenix-strike-rank1-after-4.json",
+      "sha256": "f01971de9e839c8120c6a70c586b89a5ebfca6384e14d862649bea38a789ce91",
+      "bytes": 4987
+    },
+    {
+      "path": "scratch/final-zh-mobile/zh-CN-360-phoenix-strike-rank1-before-3.json",
+      "sha256": "e3e232963262633d10f5cf339846e9c88b1d31e518f28f3fd990753ff1149a86",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/final-zh-mobile/zh-CN-360-phoenix-strike-rank2-after-6.json",
+      "sha256": "153bf8fddf9f58a37023503e8f2a4c00223c51a4e90833e6f8176aa3f4b9002a",
+      "bytes": 5041
+    },
+    {
+      "path": "scratch/final-zh-mobile/zh-CN-360-phoenix-strike-rank2-before-5.json",
+      "sha256": "153bf8fddf9f58a37023503e8f2a4c00223c51a4e90833e6f8176aa3f4b9002a",
+      "bytes": 5041
+    },
+    {
+      "path": "scratch/final-zh-mobile/zh-CN-360-phoenix-strike-synthetic-input.json",
+      "sha256": "fec32f31ce2f5051ea33811490e0d6858e7d1c8f3dfabeab0ae5f26a7727c4d4",
+      "bytes": 4161
+    },
+    {
+      "path": "scratch/final-zh-mobile-owner.json",
+      "sha256": "48d2e14663541708d5f571129f53e6facb7829c3661fca204038fe9f6c17af59",
+      "bytes": 315
+    },
+    {
+      "path": "scratch/final-zh-mobile.json",
+      "sha256": "f6c8c81f204ffd57cedaaa9ba5ad461d6d48bb02b1c2e87f1b43e0f09230caf2",
+      "bytes": 322
+    },
+    {
+      "path": "scratch/final-zh-mobile.log",
+      "sha256": "ab55578a5a266cc2b85f8df017a9fb551629865ca56ee64664b58633a89b539f",
+      "bytes": 63
+    },
+    {
+      "path": "scratch/finish-docs.py",
+      "sha256": "e4800ac9a72d0fad7285e07dccda839161074e50ce68d66cf4cf9a647dc77bfc",
+      "bytes": 17787
+    },
+    {
+      "path": "scratch/fire-blast-cone-observed.json",
+      "sha256": "44ce400fd59e9d4d94643b6763f39d1ff39c705f6955856cf6f8787d90abf77d",
+      "bytes": 7688
+    },
+    {
+      "path": "scratch/fire-blast-cone-repro.ts",
+      "sha256": "85b66c83d09fc12d63253cbd5ecfd3a58269d2b0a0fce1917a83415d44629392",
+      "bytes": 4246
+    },
+    {
+      "path": "scratch/fire-preview-server-server-access.log",
+      "sha256": "42bc71d54550c662dafccdd8bc87580f6e4858a2bdb17be07a7bee15aec45d62",
+      "bytes": 1647429
+    },
+    {
+      "path": "scratch/fire-preview-server-server-owner.json",
+      "sha256": "11d85e255c26b34ad6c6d8a76f115d96da18bcb6941a5c51e9f9185caded8718",
+      "bytes": 133
+    },
+    {
+      "path": "scratch/fixture-corrections.json",
+      "sha256": "be350809ea6117d2d37c2c09677c65a0ee86ff2059417c63ec85a9f3e5d7886c",
+      "bytes": 1013
+    },
+    {
+      "path": "scratch/focused-final-owner.json",
+      "sha256": "02466175e4db07504bf47cb9d1c74103dc2e8ecc382de6ae0246cb640b7618e3",
+      "bytes": 678
+    },
+    {
+      "path": "scratch/focused-final.json",
+      "sha256": "9ee2875c62d0e6fcb92461fe38f75ef113bb8df8dfbe08d54ee6a213961e9766",
+      "bytes": 685
+    },
+    {
+      "path": "scratch/focused-final.log",
+      "sha256": "3574af121e6ba38a5fd4ac04520f5b29235768866bd821dc845fb492c3259261",
+      "bytes": 1122
+    },
+    {
+      "path": "scratch/focused-owner.json",
+      "sha256": "c9ea06472d2b0cc1e09b90ea8b770dab51032f4a9a9832c2447108ecdebbe51c",
+      "bytes": 611
+    },
+    {
+      "path": "scratch/focused.json",
+      "sha256": "31b22ac7c616c1499c4a1de17cde054e6e60b0ec070129a340a5f3c3d7dc91bc",
+      "bytes": 620
+    },
+    {
+      "path": "scratch/focused.log",
+      "sha256": "f6c88c82b7d47a6c4c08b05cd2fcb110a141bdfb73d94576d6be4e8404588ac0",
+      "bytes": 1036
+    },
+    {
+      "path": "scratch/format-owner.json",
+      "sha256": "cc87324695c7ef43ad5dba3901663a4e61f3d2a1a57a171d25caf7a3f2f0a3f0",
+      "bytes": 263
+    },
+    {
+      "path": "scratch/format-summary-owner.json",
+      "sha256": "59381e58a14197a1162af3cfa2e6d2bf25e7a989c01436c3c76578c5466faa14",
+      "bytes": 171
+    },
+    {
+      "path": "scratch/format-summary.json",
+      "sha256": "5ea87d752753d6e1232ac5549479776e77a6e458d4ee4f4bab9049ac24e004b5",
+      "bytes": 177
+    },
+    {
+      "path": "scratch/format-summary.log",
+      "sha256": "939aac1a6bb43c304e19f0add9be66c649cf2dd3f5e6d1d9f996e0aa40e11590",
+      "bytes": 62
+    },
+    {
+      "path": "scratch/format-types-owner.json",
+      "sha256": "5e9c3952964d0e0e9d2babefa9c58b53bdd876ea96af9a40a4118fafd2fe0b95",
+      "bytes": 153
+    },
+    {
+      "path": "scratch/format-types.json",
+      "sha256": "8cf23cee1ce612f97e13b055072511914060ceb4d9daa864bcbd9834f767f23c",
+      "bytes": 162
+    },
+    {
+      "path": "scratch/format-types.log",
+      "sha256": "00a31536b12ab8ff8a645504132ac0ca6051ee6aa69eaa940df86632db99ccd2",
+      "bytes": 46
+    },
+    {
+      "path": "scratch/format.json",
+      "sha256": "d6a8b109bddd55adef4c84e0e2c3fd41179b509741fbee11b1acdf88ba77a951",
+      "bytes": 272
+    },
+    {
+      "path": "scratch/format.log",
+      "sha256": "b0c78542eaf5718d4a0e1ac07c9c3a5386ef3acacf673985ccb24b874b2edb38",
+      "bytes": 152
+    },
+    {
+      "path": "scratch/freeze-initial.py",
+      "sha256": "917b8fdc0805bea7eb663ec233c7d52c6ea946c44c16f23feb2457b745d929a2",
+      "bytes": 1732
+    },
+    {
+      "path": "scratch/freeze.py",
+      "sha256": "2d7ffd488e1c6ea7e836392bb8219077ddd8666aef69d8c8b849a9f9a8236394",
+      "bytes": 1744
+    },
+    {
+      "path": "scratch/frozen-inputs-initial.json",
+      "sha256": "f040468e665f1b7e7b103ba49078c798dbd2b5cb90e401bc7a690c401abb8c95",
+      "bytes": 259944
+    },
+    {
+      "path": "scratch/frozen-inputs.json",
+      "sha256": "129a3da3c33bd0678e6766176b15f71a5e39d24b321067555b670bf5a24926d8",
+      "bytes": 259944
+    },
+    {
+      "path": "scratch/full-final-owner.json",
+      "sha256": "bb494a5b4a2dd4c3cc07d4835a7efaf8b7f4300ac7ad3f6403c28374e31ff9d5",
+      "bytes": 89
+    },
+    {
+      "path": "scratch/full-final.json",
+      "sha256": "151e14bf3ff2481c3a1aa7bbcf784f3b277236c882782623dd7b64642a432586",
+      "bytes": 96
+    },
+    {
+      "path": "scratch/full-final.log",
+      "sha256": "d240895db3bdf7cdaac31541d9ca6a62d49c28bdde50c3ed94d3fabd60b2fffe",
+      "bytes": 157571
+    },
+    {
+      "path": "scratch/full-owner.json",
+      "sha256": "0c51ef0ae4bdaa8fb7109ac7e12394796472b95d3d9c791a9316ca9697b77495",
+      "bytes": 87
+    },
+    {
+      "path": "scratch/full.json",
+      "sha256": "8ed0d824d426d187339bf5f50711968b9b0965ea9ccda01d67289ce4c714ce2a",
+      "bytes": 95
+    },
+    {
+      "path": "scratch/full.log",
+      "sha256": "d81cd433e3de9ece64452a11d73dcf54beec6d845c8b1a73a3e264e7e8a50737",
+      "bytes": 157591
+    },
+    {
+      "path": "scratch/green-owner.json",
+      "sha256": "3a2c7ea63d515d7f4f3dfb29203a9c4c93c5b844f9e13da7f71c3c37ff066a68",
+      "bytes": 412
+    },
+    {
+      "path": "scratch/green.json",
+      "sha256": "fc03d04355e70d556f447abc6eb51c134cd8070a3944fd2b2f3cb4b1d7e7811d",
+      "bytes": 421
+    },
+    {
+      "path": "scratch/green.log",
+      "sha256": "ed3f16a379c6354bf38734c1f5ae33d5f1a7953ce4b1894521aeee8b2036e407",
+      "bytes": 3154
+    },
+    {
+      "path": "scratch/historical-talon-browser.cjs",
+      "sha256": "6be88211c43ee3dd207debc29823e0b62bd46653792b3e0c4e1552426cbf9695",
+      "bytes": 9955
+    },
+    {
+      "path": "scratch/historical-talon-serve.py",
+      "sha256": "fce07d8eb0095197a68027886f44ca15a7bda6b13ec772fc6ceb56fe241eb675",
+      "bytes": 842
+    },
+    {
+      "path": "scratch/inventory-reconciliation.json",
+      "sha256": "8e50f0db1fedd089dd9a9037f8323b304a2bcce6fb3cb9829d4fb9d5fe6ebcf8",
+      "bytes": 1035
+    },
+    {
+      "path": "scratch/lint-corrected-owner.json",
+      "sha256": "00deba9459701dbc3782d167205e5719a186ab9556a004600f07587283076f91",
+      "bytes": 98
+    },
+    {
+      "path": "scratch/lint-corrected.json",
+      "sha256": "b94925ffbfd2dd70144b724f3afdd68cede974e3d6131e299f2a75a9211695c7",
+      "bytes": 106
+    },
+    {
+      "path": "scratch/lint-corrected.log",
+      "sha256": "2629aee6e130aafbfecb708926130e1fa918e3633a21c17a87fdce4f0229f8c8",
+      "bytes": 197
+    },
+    {
+      "path": "scratch/lint-owner.json",
+      "sha256": "4ee996b593d2fc168d133f0864bcd6d3bd56563c11e021eee8533b989f191d82",
+      "bytes": 98
+    },
+    {
+      "path": "scratch/lint-summary-owner.json",
+      "sha256": "d6a3f6eafdd4ed7334cd2e3d898f95339dbe2c85134d26fad2b0914a89dcdf62",
+      "bytes": 100
+    },
+    {
+      "path": "scratch/lint-summary.json",
+      "sha256": "4316fc9428cec70f27ea4a0707d207dbb4e2e73c2343cefdd125cfa36831582d",
+      "bytes": 107
+    },
+    {
+      "path": "scratch/lint-summary.log",
+      "sha256": "2629aee6e130aafbfecb708926130e1fa918e3633a21c17a87fdce4f0229f8c8",
+      "bytes": 197
+    },
+    {
+      "path": "scratch/lint.json",
+      "sha256": "c2e48cc7f2da4d194c64e3c7aa827632d1dc95f1e9e67fde26481932ac21e413",
+      "bytes": 106
+    },
+    {
+      "path": "scratch/lint.log",
+      "sha256": "a1a5bd9efcf802530d554ea458422194ecf4377ee2d5d747d97c2ed7bddc6a59",
+      "bytes": 538
+    },
+    {
+      "path": "scratch/mid-full-audit.json",
+      "sha256": "b63884cf30803591f348021a756503c10317da230ac8806aa0ac768270a54c74",
+      "bytes": 170
+    },
+    {
+      "path": "scratch/native-audit.json",
+      "sha256": "4f2831d352aeeda0387b8a0493e4f953441bb202c18e2f99bdd50541560217a0",
+      "bytes": 2150
+    },
+    {
+      "path": "scratch/native-audit.py",
+      "sha256": "a587b94e985f8d1a075dd135c36e32f47277c26f5f8cc49ca8c484ab01dbd971",
+      "bytes": 894
+    },
+    {
+      "path": "scratch/next-fire-blast-cone-repro-owner.json",
+      "sha256": "2a681cfe260db9bbb55eff07edece670d664d7910e6204b03ae8ffbf3acc73a8",
+      "bytes": 231
+    },
+    {
+      "path": "scratch/next-fire-blast-cone-repro.json",
+      "sha256": "dd77178400910acadeedc3736e3b45d0d360d6ac44c96958d496e4f9d0846c3e",
+      "bytes": 237
+    },
+    {
+      "path": "scratch/next-fire-blast-cone-repro.log",
+      "sha256": "85d7f4c667250b2feb7999fcfd5846ce79de9ec5d1f06799e795664edefce45a",
+      "bytes": 1296
+    },
+    {
+      "path": "scratch/original-repaired-owner.json",
+      "sha256": "0e932b148e562e7337e5681efbedcd0bbf416f1dbac4b28aa3d422c3ef49d798",
+      "bytes": 237
+    },
+    {
+      "path": "scratch/original-repaired.json",
+      "sha256": "88cd4cdabd6774fc96be4f42b9a7490f52200bb9cf7151bbd41e33855ff142b5",
+      "bytes": 245
+    },
+    {
+      "path": "scratch/original-repaired.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "scratch/owned-paths.json",
+      "sha256": "a8d63cd3556130b8b88c1a4789f1be20cf249aa6b6c1febf71786dcb6d614c80",
+      "bytes": 256
+    },
+    {
+      "path": "scratch/phoenix-summary-proposed.diff",
+      "sha256": "0bb026e8e89ab19713df2214aa765b77e1b77bcc44cab617a1b931fdc3515898",
+      "bytes": 3059
+    },
+    {
+      "path": "scratch/post-full-freeze-audit.json",
+      "sha256": "b63884cf30803591f348021a756503c10317da230ac8806aa0ac768270a54c74",
+      "bytes": 170
+    },
+    {
+      "path": "scratch/post-initial-full-audit.json",
+      "sha256": "b63884cf30803591f348021a756503c10317da230ac8806aa0ac768270a54c74",
+      "bytes": 170
+    },
+    {
+      "path": "scratch/presentation-delta-audit.json",
+      "sha256": "6d716d2322a90aa3edd3532d987737b07a89983cca6e12e644327231c3233378",
+      "bytes": 573
+    },
+    {
+      "path": "scratch/reconcile-inventory.py",
+      "sha256": "4330b85d6644cf609ac2a83abbb4196b22ead91e8f28af3577507f0f74ee2ae9",
+      "bytes": 3016
+    },
+    {
+      "path": "scratch/red-corrected-owner.json",
+      "sha256": "c26d549b98c7f2467f2b9e0ac7313711f5813098616982c65e0ef444a398fc0c",
+      "bytes": 257
+    },
+    {
+      "path": "scratch/red-corrected.json",
+      "sha256": "e19d349fe9f089f5ae44b277931f30978417b02ca589a611b0723d435f2a2bd7",
+      "bytes": 265
+    },
+    {
+      "path": "scratch/red-corrected.log",
+      "sha256": "4e4da521dd72e1121bc7dddb2d974ad340b83f06b25945c8d9bfcac82ef7f624",
+      "bytes": 326152
+    },
+    {
+      "path": "scratch/red-owner.json",
+      "sha256": "a95f78ea28e1bf4bb5f1615000bce5759612889345fb89a1387443f72a27ed18",
+      "bytes": 194
+    },
+    {
+      "path": "scratch/red.json",
+      "sha256": "c2fc2a6b0f9fb6969095eb0eaac10423c45838d035b155cbf1b5c0556ac51706",
+      "bytes": 202
+    },
+    {
+      "path": "scratch/red.log",
+      "sha256": "d3fdd28477299fc71b12df4d55df7035d8792b4f3e23248fe123bfa79442f7fa",
+      "bytes": 29624
+    },
+    {
+      "path": "scratch/run-stream.py",
+      "sha256": "4c8a43c402b3f5ab98917b3d34c4525f11342fcdf21af3bae5d155992c0094b5",
+      "bytes": 914
+    },
+    {
+      "path": "scratch/serve-final.py",
+      "sha256": "7d3f0af635bcd7dfb64d8dd6a0d62f8c8240e2339905c1e2235b9cea59907d6f",
+      "bytes": 848
+    },
+    {
+      "path": "scratch/serve.py",
+      "sha256": "fdd3aacbb5e61a99a1b55a7bbf37e1b34ff938c20fd43c262babdc75c6d1eeec",
+      "bytes": 842
+    },
+    {
+      "path": "scratch/server-final-stop-request.json",
+      "sha256": "3d44b4fec16609f8c955fdee449e40cb3efd46addc08f52947bf9b04378263e8",
+      "bytes": 246
+    },
+    {
+      "path": "scratch/server-stop-request.json",
+      "sha256": "8cfa579b7904f5e486b87fd2a5ab248632ff4125d3494951ff6d9e61237c826a",
+      "bytes": 247
+    },
+    {
+      "path": "scratch/stat-capture-correction.json",
+      "sha256": "d4ac50aa3d913b119df0880eb30255f01ac744277260a637be11cb8dec7f39c3",
+      "bytes": 564
+    },
+    {
+      "path": "scratch/summary-plan-review.json",
+      "sha256": "4df84fd042a577dafdf85e9067184fab0425b40a5a8404ab71309ef51eb4bafc",
+      "bytes": 784
+    },
+    {
+      "path": "scratch/summary-preview-server-server-access.log",
+      "sha256": "a1811a844b43088f11f2609c2438642f7763657761c623538d01232b027349ec",
+      "bytes": 410205
+    },
+    {
+      "path": "scratch/summary-preview-server-server-owner.json",
+      "sha256": "3b4f13152da2b9a8936160682d30dcc1c2e58fad822acf402bfc039235d12496",
+      "bytes": 140
+    },
+    {
+      "path": "scratch/summary-red-corrected-owner.json",
+      "sha256": "90a10a01b048b34d633140227c1fb10eaef4a270d847dcffdc61f0f2a9ec38ca",
+      "bytes": 165
+    },
+    {
+      "path": "scratch/summary-red-corrected.json",
+      "sha256": "552d3aa2c3de07f6a92dfdc536bb979d31e20834e36d8851d617102fe6223541",
+      "bytes": 172
+    },
+    {
+      "path": "scratch/summary-red-corrected.log",
+      "sha256": "6ac9de2dd2197cfb0f7f04164f0e39ff2d3774c5426988eeb7229875f4b765be",
+      "bytes": 7994
+    },
+    {
+      "path": "scratch/summary-red-owner.json",
+      "sha256": "2b20b0900e0aaef8724a136cb3d2a4472cbed703d8f3321c9c9fb0575dc40c10",
+      "bytes": 165
+    },
+    {
+      "path": "scratch/summary-red.json",
+      "sha256": "5e153a240d13a375ae4dceb104a0782d477aa7c7ae82c18b0bc9862fa53a761b",
+      "bytes": 172
+    },
+    {
+      "path": "scratch/summary-red.log",
+      "sha256": "9818386b0bd061ca3e34e673e4cc82eec8b30725f958e59418c1d7ca94bb362c",
+      "bytes": 9021
+    },
+    {
+      "path": "scratch/summary-selector-correction.json",
+      "sha256": "ff81120e03d094422e57dc633efa74945bb46c7fa86026679a748482f0a196de",
+      "bytes": 360
+    },
+    {
+      "path": "scratch/summary-test-addition.txt",
+      "sha256": "7e513571f2f713fc2b14b5a14800518f4807ff114ba21928a25d8f5cb528e890",
+      "bytes": 1104
+    },
+    {
+      "path": "scratch/typecheck-corrected-owner.json",
+      "sha256": "07497493c4b17e1be16fc1081afac93cfe210815fea4734025cbb56c09bea433",
+      "bytes": 103
+    },
+    {
+      "path": "scratch/typecheck-corrected.json",
+      "sha256": "1ed54a2c46f696c064f185029c24b0bcc781d761bd4ed84de403f30e92ab18f6",
+      "bytes": 111
+    },
+    {
+      "path": "scratch/typecheck-corrected.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "path": "scratch/typecheck-final-owner.json",
+      "sha256": "354eaec79df1bd7cb2851d8ffddf68d8ef51b00111622a5375c2e628cc873135",
+      "bytes": 103
+    },
+    {
+      "path": "scratch/typecheck-final.json",
+      "sha256": "50776f08344be2aae11bd6045b0174116ffac6f3debdd08717dac4207734bdd1",
+      "bytes": 111
+    },
+    {
+      "path": "scratch/typecheck-final.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "path": "scratch/typecheck-owner.json",
+      "sha256": "75fcf65e05c1740048c0e38ea953bd719a865703eb625fbcb5ebeb3dfe712346",
+      "bytes": 103
+    },
+    {
+      "path": "scratch/typecheck-summary-owner.json",
+      "sha256": "81acf0e0a1c00334dd3fcbdafe35150ba8398e0cfae7d8c2524d2feda7d9dbe8",
+      "bytes": 105
+    },
+    {
+      "path": "scratch/typecheck-summary.json",
+      "sha256": "f32b7ec02353821dc9f5210601588f10fbff9571330ea324fab3dfce6a9d112f",
+      "bytes": 111
+    },
+    {
+      "path": "scratch/typecheck-summary.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "path": "scratch/typecheck.json",
+      "sha256": "b62adef7f8f52f501e4e61ea956317e46982a6e595ce16c54328b476f6d1ec48",
+      "bytes": 111
+    },
+    {
+      "path": "scratch/typecheck.log",
+      "sha256": "93833860a60a9137308efdbeb8ad8f3956c5f66770de50c5f661247561c7055e",
+      "bytes": 1789
+    },
+    {
+      "path": "scratch/visual-en-mobile/browser-report.json",
+      "sha256": "b7f43a1ef9b4a72868b39f0e287153f479ab5a349887a198e16535c8b6b29b73",
+      "bytes": 1537
+    },
+    {
+      "path": "scratch/visual-en-mobile/en-360-phoenix-strike-cast-visible.png",
+      "sha256": "be1fff855897979c219e2b5f3c4f4e91083a42a4ddd889f7dd07af67096b9b08",
+      "bytes": 51356
+    },
+    {
+      "path": "scratch/visual-en-mobile/en-360-phoenix-strike-combat.json",
+      "sha256": "6259af03edcccc8911a42a285ae7e3040225b5c05a85e9134099305c149ef173",
+      "bytes": 1212
+    },
+    {
+      "path": "scratch/visual-en-mobile/en-360-phoenix-strike-component-stats.png",
+      "sha256": "b162174b81045020fffc6e7d7dd967d9f850c5e0305e53030a35ae9f01c7408b",
+      "bytes": 46209
+    },
+    {
+      "path": "scratch/visual-en-mobile/en-360-phoenix-strike-description.png",
+      "sha256": "1139562344ab29406761ce5529cb6a82cd97ec9649107f1a61d2f6e9c1d84bca",
+      "bytes": 55604
+    },
+    {
+      "path": "scratch/visual-en-mobile/en-360-phoenix-strike-details.png",
+      "sha256": "b429ed92d516f5d6e73b7776869e7a61d3a3c186cd65fa5ce31ccf393d110763",
+      "bytes": 57061
+    },
+    {
+      "path": "scratch/visual-en-mobile/en-360-phoenix-strike-fresh-1.json",
+      "sha256": "ccb0f385aaa4c428b1232e4e6f268f983aadeaf62ee38e208bffda654060f0d0",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/visual-en-mobile/en-360-phoenix-strike-imported-2.json",
+      "sha256": "9424aea0f60a41b886b416c9a768e6d91d1076d96df6dcb97e0f5d9fd1fff17d",
+      "bytes": 4981
+    },
+    {
+      "path": "scratch/visual-en-mobile/en-360-phoenix-strike-rank1-after-4.json",
+      "sha256": "d73b6dd66e79b8e71119e5f2bb04931d0ee2e5cd50025b317d0ac19727acfdf4",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/visual-en-mobile/en-360-phoenix-strike-rank1-before-3.json",
+      "sha256": "d382e481641c7355184c81e9f61f8a84510a7c6c441af4bcfa1a2a70f9c617cb",
+      "bytes": 4981
+    },
+    {
+      "path": "scratch/visual-en-mobile/en-360-phoenix-strike-rank2-after-6.json",
+      "sha256": "8d0b9bd1dbdd3d361b0957bf9696bbd9dc72a04dfffedcd4f15b0f11ba617055",
+      "bytes": 5038
+    },
+    {
+      "path": "scratch/visual-en-mobile/en-360-phoenix-strike-rank2-before-5.json",
+      "sha256": "8d0b9bd1dbdd3d361b0957bf9696bbd9dc72a04dfffedcd4f15b0f11ba617055",
+      "bytes": 5038
+    },
+    {
+      "path": "scratch/visual-en-mobile/en-360-phoenix-strike-synthetic-input.json",
+      "sha256": "0d9490b15efc82f5258d6e699765f156c8db094fa746cebeafc090b50fa09e61",
+      "bytes": 4158
+    },
+    {
+      "path": "scratch/visual-en-mobile-owner.json",
+      "sha256": "bd637ed6f3f1c3f4c779cccb7c6528d56b03e59c46c7d7f7ce400588225634fd",
+      "bytes": 318
+    },
+    {
+      "path": "scratch/visual-en-mobile.json",
+      "sha256": "0d10ef5f9ccdf1278fcf6f5a9c060ea0dde8083f1b04a4866ef39c4be51f1b33",
+      "bytes": 325
+    },
+    {
+      "path": "scratch/visual-en-mobile.log",
+      "sha256": "5b7bd81a2002e2e1d3dc59c9f4012b4325cd0a214177db87554c142f44de360c",
+      "bytes": 60
+    },
+    {
+      "path": "scratch/visual-review-initial.json",
+      "sha256": "adad068f99a0a5ba8d2080a167d5ed9984a3a4de731ab2b3ed7174ae88406480",
+      "bytes": 1200
+    },
+    {
+      "path": "scratch/visual-review.json",
+      "sha256": "a5f716bad6df4fea206d3f020466502a367820036dd50af3401523c142c22817",
+      "bytes": 1842
+    },
+    {
+      "path": "scratch/visual-zh-mobile/browser-report.json",
+      "sha256": "6918987362ea7857fdad63347266904e71d0b33bfcb639b2683fe89ca33bbda9",
+      "bytes": 1493
+    },
+    {
+      "path": "scratch/visual-zh-mobile/zh-CN-360-phoenix-strike-cast-visible.png",
+      "sha256": "ecb57514cc2125ec0835b84d8e9dc88e352d7329751f29fabf5e9152f12667c2",
+      "bytes": 58142
+    },
+    {
+      "path": "scratch/visual-zh-mobile/zh-CN-360-phoenix-strike-combat.json",
+      "sha256": "b5b489ee32332552912d774314c7cf71a7f5232e580c0e5cff7ec596ae661863",
+      "bytes": 1308
+    },
+    {
+      "path": "scratch/visual-zh-mobile/zh-CN-360-phoenix-strike-component-stats.png",
+      "sha256": "0f0d4be594f387b32978743eeda2149861f66ae8733441d427c5817a78b1bc99",
+      "bytes": 45984
+    },
+    {
+      "path": "scratch/visual-zh-mobile/zh-CN-360-phoenix-strike-description.png",
+      "sha256": "379e651553028d02d9d59d2c482f63ac7ca5b1f5181ccf92d0b0268e7c9ace79",
+      "bytes": 65880
+    },
+    {
+      "path": "scratch/visual-zh-mobile/zh-CN-360-phoenix-strike-details.png",
+      "sha256": "df4274eb9336dbd2e0749b8d2af4da51ab79da6aa051a3f52cc8872c2ba6c028",
+      "bytes": 67558
+    },
+    {
+      "path": "scratch/visual-zh-mobile/zh-CN-360-phoenix-strike-fresh-1.json",
+      "sha256": "9c96a9b128169fa2e064f5e8056785bed7441063ecf22be5713ba537466c1709",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/visual-zh-mobile/zh-CN-360-phoenix-strike-imported-2.json",
+      "sha256": "ee3da142e9ded6412ddf2002562f9c4ff751952d767bd734bebf38742ff7d904",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/visual-zh-mobile/zh-CN-360-phoenix-strike-rank1-after-4.json",
+      "sha256": "2547155c315a668bfb5bf7a26beaf73490136212400d20b8984c036a00a097ab",
+      "bytes": 4987
+    },
+    {
+      "path": "scratch/visual-zh-mobile/zh-CN-360-phoenix-strike-rank1-before-3.json",
+      "sha256": "de65a722275fb9c3c741ace986e5c2e38ef989b596a3a51eb99a82ff58d5700a",
+      "bytes": 4984
+    },
+    {
+      "path": "scratch/visual-zh-mobile/zh-CN-360-phoenix-strike-rank2-after-6.json",
+      "sha256": "2ea1ed925edf57a75a01d13a398a0ae0e5e96b210f2358458073688151cc21be",
+      "bytes": 5041
+    },
+    {
+      "path": "scratch/visual-zh-mobile/zh-CN-360-phoenix-strike-rank2-before-5.json",
+      "sha256": "2ea1ed925edf57a75a01d13a398a0ae0e5e96b210f2358458073688151cc21be",
+      "bytes": 5041
+    },
+    {
+      "path": "scratch/visual-zh-mobile/zh-CN-360-phoenix-strike-synthetic-input.json",
+      "sha256": "3279a001b55a9aa05110040de6c14f90593d67645a94d2d68faee946666cd7b3",
+      "bytes": 4161
+    },
+    {
+      "path": "scratch/visual-zh-mobile-owner.json",
+      "sha256": "6ec5dfac2a5141dc01e02b321e7938b24ca1f3b7ee054e03ef0c01675c45612e",
+      "bytes": 321
+    },
+    {
+      "path": "scratch/visual-zh-mobile.json",
+      "sha256": "473edae135a682b66ec68febce7c036758f3427ad5603cf7cbd3359eddcca7e1",
+      "bytes": 327
+    },
+    {
+      "path": "scratch/visual-zh-mobile.log",
+      "sha256": "ab55578a5a266cc2b85f8df017a9fb551629865ca56ee64664b58633a89b539f",
+      "bytes": 63
+    }
+  ],
+  "terminal_receipts": [
+    {
+      "path": "scratch/browser-en-desktop.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/browser-en-mobile.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/browser-zh-desktop.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/browser-zh-mobile.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/build-final.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/build.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/data-compat-final.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/data-compat.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/engine-corrected.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/engine.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/final-en-desktop.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/final-en-mobile.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/final-zh-desktop.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/final-zh-mobile.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/focused-final.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/focused.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/format-summary.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/format-types.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/format.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/full-final.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/full.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/green.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/lint-corrected.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/lint-summary.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/lint.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/next-fire-blast-cone-repro.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/original-repaired.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/red-corrected.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/red.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/summary-red-corrected.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/summary-red.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/typecheck-corrected.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/typecheck-final.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/typecheck-summary.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/typecheck.json",
+      "exit_code": 2
+    },
+    {
+      "path": "scratch/visual-en-mobile.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/visual-zh-mobile.json",
+      "exit_code": 0
+    }
+  ],
+  "member_hashes_verified": true,
+  "raw_archive_sha256": "f55f0eadb9a6117e4b747b6c8566f6d437a82a7eb7e34773734d60c692f5a9d6",
+  "build_hash_map": "scratch/frozen-inputs.json",
+  "initial_build_hash_map": "scratch/frozen-inputs-initial.json",
+  "final_evidence": [
+    "full-final.json",
+    "post-full-freeze-audit.json",
+    "browser-audit.json",
+    "visual-review.json",
+    "committed-source-audit.json"
+  ],
+  "independent_acceptance_open": true
+}

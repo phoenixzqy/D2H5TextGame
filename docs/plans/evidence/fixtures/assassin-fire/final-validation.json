@@ -1,0 +1,96 @@
+{
+  "exact_source_design_after_cleanup": true,
+  "required_final_full_passed": 14626,
+  "test_files": 651,
+  "existing_skips": 2,
+  "links_checked": 18,
+  "links": [
+    {
+      "from": "docs/plans/evidence/d04-assassin-fire.md",
+      "target": "../../../production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md"
+    },
+    {
+      "from": "docs/plans/evidence/d04-assassin-fire.md",
+      "target": "d04-assassin-burn-repro.md"
+    },
+    {
+      "from": "docs/plans/evidence/d04-assassin-fire.md",
+      "target": "../decisions/D04-assassin-fire-v1.md"
+    },
+    {
+      "from": "docs/plans/evidence/d04-assassin-fire.md",
+      "target": "../../../production/bugs/BUG-206-phoenix-summary-omits-components.md"
+    },
+    {
+      "from": "docs/plans/evidence/d04-assassin-fire.md",
+      "target": "d04-fire-blast-cone-repro.md"
+    },
+    {
+      "from": "docs/plans/evidence/d04-assassin-fire.md",
+      "target": "fixtures/assassin-fire/raw.tar.gz"
+    },
+    {
+      "from": "docs/plans/evidence/d04-assassin-fire.md",
+      "target": "fixtures/assassin-fire/packet.json"
+    },
+    {
+      "from": "docs/plans/evidence/d04-assassin-fire.md",
+      "target": "fixtures/assassin-fire/committed-source-audit.json"
+    },
+    {
+      "from": "docs/plans/evidence/d04-assassin-fire.md",
+      "target": "fixtures/assassin-fire/cleanup.json"
+    },
+    {
+      "from": "docs/plans/evidence/d04-assassin-burn-repro.md",
+      "target": "../../../production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md"
+    },
+    {
+      "from": "docs/plans/evidence/d04-assassin-burn-repro.md",
+      "target": "../decisions/D04-druid-fire-dot-v1.md"
+    },
+    {
+      "from": "docs/plans/evidence/d04-assassin-burn-repro.md",
+      "target": "d04-assassin-fire.md"
+    },
+    {
+      "from": "docs/plans/evidence/d04-fire-blast-cone-repro.md",
+      "target": "../../../production/bugs/BUG-207-fire-blast-cross-instead-of-cone.md"
+    },
+    {
+      "from": "docs/plans/evidence/d04-fire-blast-cone-repro.md",
+      "target": "fixtures/assassin-fire/packet.json"
+    },
+    {
+      "from": "production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md",
+      "target": "../../docs/plans/evidence/d04-assassin-burn-repro.md"
+    },
+    {
+      "from": "production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md",
+      "target": "../../docs/plans/evidence/d04-assassin-fire.md"
+    },
+    {
+      "from": "production/bugs/BUG-206-phoenix-summary-omits-components.md",
+      "target": "../../docs/plans/evidence/d04-assassin-fire.md"
+    },
+    {
+      "from": "production/bugs/BUG-207-fire-blast-cross-instead-of-cone.md",
+      "target": "../../docs/plans/evidence/d04-fire-blast-cone-repro.md"
+    }
+  ],
+  "inventory": {
+    "unverified": 107,
+    "bounded-functional": 104,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "IDs_order_unchanged": true,
+  "seven_changed_rows_other206exact": true,
+  "genuine_decompressed_sha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "verified_archive_sha256": "f55f0eadb9a6117e4b747b6c8566f6d437a82a7eb7e34773734d60c692f5a9d6",
+  "raw_members": 512,
+  "terminal_receipts": 37,
+  "cleanup_verified": true,
+  "independent_acceptance_open": true,
+  "full_goal_incomplete": true
+}

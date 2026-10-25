@@ -52,3 +52,11 @@ Genuine claimed Ancients/Rite remainsL33/XP149261/nextNormal402/Nightmare0,
 Baal uncleared. Its decompressed SHA256 remains
 `c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577`.
 No earned progression, balance, independent acceptance or complete-v1 claim.
+
+## Repair continuation
+
+The above records the original reproduction. Six Fire/Burn paths and Phoenix
+components are now locally repaired and verified in
+[Assassin Fire evidence](d04-assassin-fire.md); Death Sentry remains open.
+Only Dragon Tail gains bounded whole-skill credit. Original charge/trap/corpse
+and earned acceptance requirements are preserved.

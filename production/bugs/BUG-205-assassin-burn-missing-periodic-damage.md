@@ -1,6 +1,6 @@
 # BUG-205 — Seven Assassin skills apply Burn without periodic damage
 
-- Status: reproduced; implementation and functionality credit open.
+- Status: six Fire-hit/Burn paths locally repaired; Death Sentry and other whole-skill promises remain open.
 - Severity: High — an advertised damaging status never removes periodic HP.
 - Environment: Node24.21.0, actual default registry and native L30 Assassin.
 - Scope: Fire Blast, Phoenix Strike, Fists of Fire, Dragon Tail, Wake of Fire,
@@ -40,5 +40,16 @@ Do not cement that conflict by adding potency to the wrong damage identity;
 resolve its full trap/corpse contract before repairing that row.
 
 See [native reproduction](../../docs/plans/evidence/d04-assassin-burn-repro.md).
-This report precedes any Burn implementation. No genuine campaign action,
-source/data repair, inventory functionality credit or remote publication.
+At initial reproduction, no Burn implementation, genuine campaign action,
+source/data repair, inventory functionality credit or remote publication had
+occurred. The current partial repair is recorded below.
+
+## Local repair continuation
+
+Six explicit authored fractions and real Phoenix components are verified in
+[Assassin Fire evidence](../../docs/plans/evidence/d04-assassin-fire.md).
+Final full14626/651/two existing skips, types/lint/build and bounded production
+checks pass. Only Dragon Tail gains functionality credit. Death Sentry remains
+unpowered pending lightning/trap/corpse identity repair; cone, charge and
+persistent-trap requirements stay open. This is partial resolution, not closure
+of all seven advertised skills. Original reproduction remains historical.

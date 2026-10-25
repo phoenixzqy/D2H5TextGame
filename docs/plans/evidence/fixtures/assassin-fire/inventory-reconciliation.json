@@ -1,0 +1,35 @@
+{
+  "rows": 213,
+  "IDs_and_order_unchanged": true,
+  "credited": [
+    "skills-assassin-dragon-tail"
+  ],
+  "repaired_part_but_whole_skill_unverified": [
+    "skills-assassin-fire-blast",
+    "skills-assassin-fists-of-fire",
+    "skills-assassin-wake-of-fire",
+    "skills-assassin-wake-of-inferno",
+    "skills-assassin-phoenix-strike"
+  ],
+  "still_broken_and_unverified": [
+    "skills-assassin-death-sentry"
+  ],
+  "changed_rows": [
+    "skills-assassin-fire-blast",
+    "skills-assassin-phoenix-strike",
+    "skills-assassin-fists-of-fire",
+    "skills-assassin-dragon-tail",
+    "skills-assassin-wake-of-fire",
+    "skills-assassin-wake-of-inferno",
+    "skills-assassin-death-sentry"
+  ],
+  "other206rows_exact": true,
+  "counts": {
+    "unverified": 107,
+    "bounded-functional": 104,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "baseline_sha256": "7bbb4c253eb9a2113b168d72127a112b53268fd602a701647f66cfa76d83c6ee",
+  "final_sha256": "f647dbb8221f7546ce32fde9426f6f5ee03b89a76a3d21b55eafe05dacabe0e7"
+}
