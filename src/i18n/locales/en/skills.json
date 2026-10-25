@@ -64,6 +64,12 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "magicResistBypass": "Magic resist bypass",
+    "magicResistBypassValue": "Flat MR only",
+    "compositeStrike": "Composite strike",
+    "compositeStrikeValue": "Shared hit and critical roll",
+    "burnComponentRateValue": "{{percentOfHit}}% of final Fire component/s (min. {{minDps}})",
+    "descriptionComponentBurn": "Burn uses only the Fire component after mitigation: {{percentOfHit}}% per second per stack (rounded down, minimum {{minDps}}) for {{durationSeconds}} s, up to {{maxStacks}} stacks. Refreshing adds a stack and extends duration; an existing damaging Burn keeps its original rate.",
     "strikesPerCast": "Attack attempts per cast",
     "periodicRate": "{{status}} per stack",
     "periodicDuration": "{{status}} duration",
@@ -858,15 +864,15 @@
     },
     "holy-bolt": {
       "name": "Holy Bolt",
-      "desc": "Fires a bolt of holy energy at a single enemy, healing the caster for 50% of the damage dealt."
+      "desc": "Deals {{min}} ~ {{max}} Arcane base damage to one enemy. A surviving caster restores 50% of the actual direct HP removed."
     },
     "blessed-hammer": {
       "name": "Blessed Hammer",
-      "desc": "Summons spinning hammers of blessed energy that ignore magic resist."
+      "desc": "Deals {{min}} ~ {{max}} Arcane base damage to all enemies, ignoring flat magic resist. Arcane percentage resistance, magic dodge, critical hits and shields still apply."
     },
     "vengeance": {
       "name": "Vengeance",
-      "desc": "A righteous strike that deals fire, cold, and lightning damage simultaneously."
+      "desc": "One strike deals {{fireMin}} ~ {{fireMax}} Fire, {{coldMin}} ~ {{coldMax}} Cold and {{lightningMin}} ~ {{lightningMax}} Lightning base damage. The components share one hit and critical roll, with separate modifiers and mitigation. Fire applies Burn, Cold applies Chill for {{chillSeconds}} s and Lightning applies Paralyze for {{paralyzeSeconds}} s; repeated Paralyze can fail. A miss applies none."
     },
     "charge": {
       "name": "Charge",

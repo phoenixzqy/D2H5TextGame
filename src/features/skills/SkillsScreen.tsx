@@ -787,7 +787,8 @@ function SkillDetailPanel({
           <p className="text-sm text-d2-white/90">{t('details.descriptionFeralSpeed', primaryStats.feralRage)}</p>
         ) : null}
         {primaryStats?.burn ? (
-          <p className="text-sm text-d2-white/90">{t('details.descriptionBurn', primaryStats.burn)}</p>
+          <p className="text-sm text-d2-white/90">{t(primaryStats.burn.component
+            ? 'details.descriptionComponentBurn' : 'details.descriptionBurn', primaryStats.burn)}</p>
         ) : null}
         {primaryStats?.periodic ? (
           <p className="text-sm text-d2-white/90">{t('details.descriptionPeriodic', {
@@ -952,6 +953,12 @@ function StatSection({
           {stats.recovery ? (
             <StatLine label={t('details.recovery')} value={t('details.recoveryValue', stats.recovery)} />
           ) : null}
+          {stats.ignoresMagicResist ? (
+            <StatLine label={t('details.magicResistBypass')} value={t('details.magicResistBypassValue')} />
+          ) : null}
+          {stats.composite ? (
+            <StatLine label={t('details.compositeStrike')} value={t('details.compositeStrikeValue')} />
+          ) : null}
           {stats.feralRage ? (
             <>
               <StatLine label={t('details.feralSpeed')} value={t('details.percentValue', { value: stats.feralRage.percentPerStack })} />
@@ -961,7 +968,8 @@ function StatSection({
           ) : null}
           {stats.burn ? (
             <>
-              <StatLine label={t('details.burnRate')} value={t('details.burnRateValue', stats.burn)} />
+              <StatLine label={t('details.burnRate')} value={t(stats.burn.component
+                ? 'details.burnComponentRateValue' : 'details.burnRateValue', stats.burn)} />
               <StatLine label={t('details.burnDuration')} value={t('details.seconds', { seconds: stats.burn.durationSeconds })} />
               <StatLine label={t('details.burnMaxStacks')} value={String(stats.burn.maxStacks)} />
             </>
@@ -1497,6 +1505,19 @@ function dynamicDescription(
       maxLife: Math.round(life * maxRank * 100), maxSpeed: speed * maxRank, cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && (skill.id === 'skills-paladin-holy-bolt' || skill.id === 'skills-paladin-blessed-hammer')) {
+    return t('paladin.' + skill.id.slice('skills-paladin-'.length) + '.desc', {
+      min: firstDamage.min, max: firstDamage.max
+    });
+  }
+  if (stats?.composite && skill.id === 'skills-paladin-vengeance') {
+    const fire = stats.damage.find(row => row.type === 'fire');
+    const cold = stats.damage.find(row => row.type === 'cold');
+    const lightning = stats.damage.find(row => row.type === 'lightning');
+    return t('paladin.vengeance.desc', { fireMin: fire?.min, fireMax: fire?.max,
+      coldMin: cold?.min, coldMax: cold?.max, lightningMin: lightning?.min, lightningMax: lightning?.max,
+      ...stats.composite });
+  }
   if (['skills-druid-werewolf-maul', 'skills-druid-rabies', 'skills-druid-fire-claws'].includes(skill.id) && firstDamage && skill.description) {
     return t(skill.description.replace('skills.', ''), { min: firstDamage.min, max: firstDamage.max });
   }

@@ -64,6 +64,12 @@
     "minLevel": "需要等级 {{level}}"
   },
   "details": {
+    "magicResistBypass": "魔抗穿透",
+    "magicResistBypassValue": "仅固定魔法抗性",
+    "compositeStrike": "复合打击",
+    "compositeStrikeValue": "共用命中与暴击判定",
+    "burnComponentRateValue": "最终火焰分量的{{percentOfHit}}%/秒（最低{{minDps}}点）",
+    "descriptionComponentBurn": "燃烧仅按减伤后的火焰分量计算：每层每秒造成其{{percentOfHit}}%伤害（向下取整，最低{{minDps}}点），持续{{durationSeconds}} 秒，最多{{maxStacks}}层。再次施加会增加层数并延长持续时间；已有伤害的燃烧保留原伤害率。",
     "strikesPerCast": "每次施放攻击次数",
     "periodicRate": "每层{{status}}",
     "periodicDuration": "{{status}}持续",
@@ -858,15 +864,15 @@
     },
     "holy-bolt": {
       "name": "神圣箭",
-      "desc": "对单体敌人射出神圣能量箭，治疗自身相当于伤害的 50%。"
+      "desc": "对单体敌人造成 {{min}} ~ {{max}} 点奥术基础伤害。仍存活的施法者恢复直接实际生命损失的50%。"
     },
     "blessed-hammer": {
       "name": "祝福之锤",
-      "desc": "召唤旋转的祝福之锤，无视魔法抗性。"
+      "desc": "对所有敌人造成 {{min}} ~ {{max}} 点奥术基础伤害，无视固定魔法抗性。奥术百分比抗性、魔法闪避、暴击和护盾仍生效。"
     },
     "vengeance": {
       "name": "复仇",
-      "desc": "正义之击，同时造成火、冰、闪电伤害。"
+      "desc": "一次打击造成 {{fireMin}} ~ {{fireMax}} 点火焰、{{coldMin}} ~ {{coldMax}} 点冰冷及{{lightningMin}} ~ {{lightningMax}} 点闪电基础伤害。三个分量共用一次命中与暴击判定，分别计算增益和减伤。火焰附加燃烧，冰冷附加冰缓 {{chillSeconds}} 秒，闪电附加麻痹 {{paralyzeSeconds}} 秒；重复麻痹可能失败。未命中不附加任何效果。"
     },
     "charge": {
       "name": "冲锋",

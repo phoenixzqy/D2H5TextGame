@@ -23,6 +23,8 @@ import { DRUID_SUMMON_DEFINITION, DRUID_SUMMON_IDS } from './druid-summon-defini
 import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 
 export interface DisplaySkillSource {
+  readonly damageComposition?: 'weighted-components';
+  readonly ignoresMagicResist?: true;
   readonly hitSequence?: SkillHitSequence;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   readonly feralRage?: FeralRageTuning;
@@ -146,6 +148,10 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Explicit flat MR bypass; percentage resistance and personal absorption remain. */
+  readonly ignoresMagicResist?: true;
+  /** One shared hit/critical decision with ordinary matching elemental control durations. */
+  readonly composite?: { readonly chillSeconds: number; readonly paralyzeSeconds: number };
   /** Independent attack attempts; the displayed damage range remains per strike. */
   readonly strikesPerCast?: number;
   readonly control?: { readonly durationSeconds: number; readonly bossDurationSeconds: number };
@@ -162,6 +168,8 @@ export interface SkillRankDisplayStats {
   };
   /** A rule based on final mitigated hits, never a guaranteed base-damage DPS estimate. */
   readonly burn?: {
+    /** Composite Burn derives its potency from this component alone. */
+    readonly component?: 'fire';
     readonly percentOfHit: number;
     readonly durationSeconds: number;
     readonly maxStacks: number;
@@ -219,6 +227,8 @@ function burnDisplay(skill: DisplaySkillSource): SkillRankDisplayStats['burn'] {
     !Number.isFinite(fraction) || fraction <= 0 ||
     (skill.statusEffect?.chance ?? 1) !== 1 || (skill.statusEffect?.stacksOnApply ?? 1) !== 1) return undefined;
   return { percentOfHit: Number((fraction * 100).toFixed(4)),
+    ...(skill.id === 'skills-paladin-vengeance' && skill.damageComposition === 'weighted-components'
+      ? { component: 'fire' as const } : {}),
     durationSeconds: STATUS_DEFAULTS.ignite.duration, maxStacks: STATUS_DEFAULTS.ignite.maxStacks, minDps: 1 };
 }
 
@@ -461,6 +471,11 @@ export function computeSkillRankDisplayStats(
   const lifeCost = scaleCost(skill.cost?.life, skill.scaling?.costPerLevel ?? 0, safeRank);
   const burn = burnDisplay(skill);
   const periodic = periodicDisplay(skill);
+  const ignoresMagicResist = skill.id === 'skills-paladin-blessed-hammer' && skill.trigger === 'active' &&
+    skill.damageType === 'arcane' && skill.ignoresMagicResist === true;
+  const composite = skill.id === 'skills-paladin-vengeance' && skill.trigger === 'active' &&
+    skill.damageComposition === 'weighted-components'
+    ? { chillSeconds: STATUS_DEFAULTS.chill.duration, paralyzeSeconds: STATUS_DEFAULTS.paralyze.duration } : undefined;
   const strikes = skill.hitSequence?.strikes;
   const strikesPerCast = skill.id === 'skills-druid-fury' && skill.trigger === 'active' && skill.damage &&
     strikes !== undefined && Number.isInteger(strikes) && strikes >= 2 && strikes <= 8 ? strikes : undefined;
@@ -483,6 +498,8 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(ignoresMagicResist ? { ignoresMagicResist: true as const } : {}),
+    ...(composite ? { composite } : {}),
     ...(strikesPerCast !== undefined ? { strikesPerCast } : {}),
     ...(control ? { control } : {}),
     ...(recovery ? { recovery } : {}),
