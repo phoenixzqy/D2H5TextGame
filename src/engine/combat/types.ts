@@ -26,6 +26,8 @@ export interface GridPosition {
 
 /** Active status effect on a combat unit. */
 export interface ActiveStatus {
+  /** Copied finite enemy debuff potency, captured by one paid Battle Cry. */
+  readonly battleCry?: { readonly rank: number; readonly damageReductionPct: number; readonly defenseReductionPct: number };
   /** Source-bound paid finite Concentrate Defense; never persisted. */
   readonly concentrate?: { readonly rank: number; readonly defensePct: number };
   /** Source-bound paid Leap potency; finite, personal and never persisted. */

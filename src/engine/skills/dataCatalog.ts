@@ -264,9 +264,12 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
     }
     const amplifyMetadata = skill.id === 'skills-necromancer-amplify-damage' &&
       skill.appliesStatus[0] === 'amplify-damage' ? skill.statusEffect : undefined;
+    const warcry = ['skills-barbarian-howl', 'skills-barbarian-taunt', 'skills-barbarian-battle-cry'].includes(skill.id);
     effects.push({
       kind: 'debuff',
       statusId: skill.appliesStatus[0],
+      ...(warcry && skill.statusEffect?.durationMs !== undefined ? { durationMs: skill.statusEffect.durationMs } : {}),
+      ...(skill.id === 'skills-barbarian-battle-cry' ? { battleCry: true as const } : {}),
       ...(amplifyMetadata?.durationMs !== undefined ? { durationMs: amplifyMetadata.durationMs } : {}),
       ...(amplifyMetadata?.physicalResistReductionPct !== undefined
         ? { physicalResistReductionPct: amplifyMetadata.physicalResistReductionPct }

@@ -947,6 +947,13 @@ function StatSection({
             <StatLine label={t('details.lifeCost')} value={String(stats.lifeCost)} />
           ) : null}
           <StatLine label={t('details.cooldown')} value={t('details.seconds', { seconds: stats.cooldown })} />
+          {stats.warcry ? <>
+            <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.warcry.durationSeconds })} />
+            {stats.warcry.damageReductionPercent !== undefined ? <StatLine label={t('details.warcryDamageReduction')}
+              value={t('details.percentValue', { value: stats.warcry.damageReductionPercent })} /> : null}
+            {stats.warcry.defenseReductionPercent !== undefined ? <StatLine label={t('details.warcryDefenseReduction')}
+              value={t('details.percentValue', { value: stats.warcry.defenseReductionPercent })} /> : null}
+          </> : null}
           {stats.concentrate ? <StatLine label={t('details.concentrateDuration')}
             value={t('details.seconds', { seconds: stats.concentrate.durationSeconds })} /> : null}
           {stats.convertedAttackPercent !== undefined ? <StatLine label={t('details.convertedAttack')}
@@ -984,6 +991,7 @@ function StatSection({
                   : id === 'cloak-of-shadows' ? t('assassin.cloak-of-shadows.name')
                   : id === 'blind' ? t('combat:effect.status.blind')
                   : id === 'stun' ? t('combat:effect.status.stun')
+                  : id === 'howl' || id === 'taunt' || id === 'battle-cry' ? t(`combat:effect.status.${id}`)
                   : id === 'leap' ? t('barbarian.leap.name')
                   : id === 'holy-shield' ? t('paladin.holy-shield.name')
                   : id === 'cyclone-armor' ? t('druid.cyclone-armor.name')
@@ -1589,6 +1597,14 @@ function dynamicDescription(
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
+  if (stats?.warcry && ['skills-barbarian-howl', 'skills-barbarian-taunt', 'skills-barbarian-battle-cry'].includes(skill.id)) {
+    return t(`barbarian.${skill.id.slice('skills-barbarian-'.length)}.desc`, {
+      duration: t('details.seconds', { seconds: stats.warcry.durationSeconds }),
+      bossDuration: t('details.seconds', { seconds: stats.control?.bossDurationSeconds }),
+      damageReduction: stats.warcry.damageReductionPercent, defenseReduction: stats.warcry.defenseReductionPercent,
+      mana: stats.manaCost, cooldown: stats.cooldown
+    });
+  }
   if (firstDamage && ['skills-barbarian-bash', 'skills-barbarian-whirlwind',
     'skills-barbarian-leap-attack', 'skills-barbarian-war-cry'].includes(skill.id)) {
     return t(`barbarian.${skill.id.slice('skills-barbarian-'.length)}.desc`, {

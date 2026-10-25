@@ -112,6 +112,10 @@
     "summon": "Summon",
     "death": "Down",
     "status": {
+      "howl": "Fear",
+      "taunt": "Taunted",
+      "battle-cry": "Battle Cry",
+
       "spirit-of-barbs": "Spirit of Barbs",
       "oak-sage": "Oak Sage",
       "heart-of-wolverine": "Heart of Wolverine",

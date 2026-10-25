@@ -8,6 +8,51 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["id"], "properties": { "id": { "enum": ["skills-barbarian-howl", "skills-barbarian-taunt", "skills-barbarian-battle-cry"] } } },
+      "then": {
+        "required": ["requiredLevel", "cost", "scaling", "appliesStatus", "statusEffect"],
+        "properties": {
+          "trigger": { "const": "active" }, "maxLevel": { "const": 20 },
+          "cooldown": { "type": "number", "minimum": 1 },
+          "cost": { "type": "object", "required": ["mana"], "properties": { "mana": { "type": "number", "exclusiveMinimum": 0 } } },
+          "scaling": { "type": "object", "additionalProperties": false,
+            "required": ["cooldownPerLevel", "costPerLevel"], "properties": {
+              "cooldownPerLevel": { "type": "number", "maximum": 0 }, "costPerLevel": { "type": "number", "maximum": 0 }
+            } },
+          "damage": false, "damageType": false, "timedBuff": false, "appliesTags": false,
+          "aoeShape": false, "maxTargets": false, "requires": false, "heal": false,
+          "additionalStatusEffects": false, "summonId": false,
+          "passive": { "const": false }, "aura": { "const": false }, "summon": { "const": false }
+        },
+        "allOf": [
+          { "if": { "properties": { "id": { "const": "skills-barbarian-howl" } } }, "then": { "properties": {
+            "target": { "const": "all-enemies" }, "requiredLevel": { "const": 1 },
+            "prerequisites": { "const": [] }, "appliesStatus": { "const": ["howl"] },
+            "statusEffect": { "type": "object", "additionalProperties": false, "required": ["durationMs", "bossDurationMultiplier"],
+              "properties": { "durationMs": { "type": "integer", "minimum": 1 }, "bossDurationMultiplier": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 } } }
+          } } },
+          { "if": { "properties": { "id": { "const": "skills-barbarian-taunt" } } }, "then": { "required": ["prerequisites"], "properties": {
+            "target": { "const": "single-enemy" }, "requiredLevel": { "const": 6 },
+            "prerequisites": { "const": ["skills-barbarian-howl"] }, "appliesStatus": { "const": ["taunt"] },
+            "statusEffect": { "type": "object", "additionalProperties": false, "required": ["durationMs"],
+              "properties": { "durationMs": { "type": "integer", "minimum": 1 } } }
+          } } },
+          { "if": { "properties": { "id": { "const": "skills-barbarian-battle-cry" } } }, "then": { "required": ["prerequisites"], "properties": {
+            "target": { "const": "all-enemies" }, "requiredLevel": { "const": 18 },
+            "prerequisites": { "const": ["skills-barbarian-taunt"] }, "appliesStatus": { "const": ["battle-cry"] },
+            "statusEffect": { "type": "object", "additionalProperties": false,
+              "required": ["durationMs", "damageReductionPct", "damageReductionPerRank", "defenseReductionPct", "defenseReductionPerRank"],
+              "properties": { "durationMs": { "type": "integer", "minimum": 1 },
+                "damageReductionPct": { "type": "number", "minimum": 0, "exclusiveMaximum": 100 },
+                "damageReductionPerRank": { "type": "number", "minimum": 0, "exclusiveMaximum": 100 },
+                "defenseReductionPct": { "type": "number", "minimum": 0, "maximum": 100 },
+                "defenseReductionPerRank": { "type": "number", "minimum": 0, "maximum": 100 }
+              } }
+          } } }
+        ]
+      }
+    },
+    {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-concentrate" } } },
       "then": {
         "required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "timedBuff"],
@@ -4557,6 +4602,10 @@
       },
       "properties": {
         "chance": { "type": "number", "minimum": 0, "maximum": 1 },
+        "bossDurationMultiplier": { "type": "number", "exclusiveMinimum": 0, "maximum": 1, "description": "Howl boss and chapter-boss finite disruption duration factor." },
+        "damageReductionPct": { "type": "number", "minimum": 0, "exclusiveMaximum": 100, "description": "Battle Cry rank-one outgoing direct damage reduction in percentage points." },
+        "damageReductionPerRank": { "type": "number", "minimum": 0, "description": "Additional Battle Cry outgoing damage reduction per rank above one." },
+        "defenseReductionPerRank": { "type": "number", "minimum": 0, "description": "Additional Battle Cry ordinary Defense reduction per rank above one." },
         "stacksOnApply": { "type": "integer", "minimum": 1 },
         "dotPctOfDamage": { "type": "number", "minimum": 0 },
         "durationMs": {

@@ -171,6 +171,13 @@ export interface SkillRequirement {
 
 /** JSON-authored runtime metadata for the first applied status. */
 export interface SkillStatusEffectMetadata {
+  /** Howl's boss/chapter-boss duration factor. */
+  readonly bossDurationMultiplier?: number;
+  /** Battle Cry outgoing direct-damage reduction, in percentage points. */
+  readonly damageReductionPct?: number;
+  readonly damageReductionPerRank?: number;
+  /** Additional ordinary-Defense reduction per rank above one. */
+  readonly defenseReductionPerRank?: number;
   readonly chance?: number;
   readonly stacksOnApply?: number;
   readonly dotPctOfDamage?: number;
@@ -178,7 +185,7 @@ export interface SkillStatusEffectMetadata {
   readonly durationMs?: number;
   /** Nonnegative percentage-point reduction; production Amplify Damage only. */
   readonly physicalResistReductionPct?: number;
-  /** Ordinary-defense reduction percent in [0,100]; mercenary Inner Sight only. */
+  /** Ordinary-defense reduction percent in [0,100]; Inner Sight or Battle Cry. */
   readonly defenseReductionPct?: number;
 }
 

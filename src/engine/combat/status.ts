@@ -24,9 +24,11 @@ import type { ActiveStatus, CombatUnit, MonsterTier } from './types';
 import { AMPLIFY_DAMAGE_DEFINITION } from './amplify-damage-definition';
 import { MANA_BURN_DEFINITION } from './mana-burn-definition';
 import { DRUID_SUMMON_DEFINITION } from '../skills/druid-summon-definition';
+import { WARCRY_DEFINITIONS } from './warcry-definition';
 
 /** Known status IDs handled with explicit defaults. */
 export type StatusId =
+  | 'howl'
   | 'chill'
   | 'blind'
   | 'freeze'
@@ -53,6 +55,8 @@ export interface StatusConfig {
 
 /** Default per-status configuration table, derived from §9. */
 export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.freeze({
+  howl: { duration: WARCRY_DEFINITIONS.howl.durationMs / 1000, maxStacks: 1,
+    bossDurationMult: WARCRY_DEFINITIONS.howl.bossDurationMultiplier },
   chill: { duration: 2, maxStacks: 1 },
   blind: { duration: DRUID_SUMMON_DEFINITION.raven.durationMs / 1000, maxStacks: 1 },
   freeze: { duration: 1, maxStacks: 1, bossDurationMult: 0.5 },
@@ -70,6 +74,7 @@ export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.
 
 /** Description of a status to apply. */
 export interface ApplyStatusInput {
+  readonly battleCry?: ActiveStatus['battleCry'];
   /** Eligible recipient's selected Cleansing factor; affects finite timed poison/curse applications only. */
   readonly cleansingDurationMultiplier?: number;
   readonly id: string;
@@ -201,6 +206,9 @@ export function applyStatus(
     }
   }
 
+  // Paid warcries replace their own source, potency and interval; they never stack.
+  if (id === 'howl' || id === 'taunt' || id === 'battle-cry')
+    unit = { ...unit, statuses: unit.statuses.filter(s => s.id !== id) };
   const idx = unit.statuses.findIndex((s) => canonicalStatusId(s.id) === id);
   const expiresAtMs =
     input.simClockMs !== undefined && !(id === 'mana-burn' && timedDurationMs < 0)
@@ -215,6 +223,7 @@ export function applyStatus(
       stacks: 1,
       remaining: dur,
       sourceId: input.sourceId,
+      ...(id === 'battle-cry' && input.battleCry ? { battleCry: Object.freeze({ ...input.battleCry }) } : {}),
       ...(input.simClockMs !== undefined ? { appliedAtMs: input.simClockMs } : {}),
       ...(expiresAtMs !== undefined ? { expiresAtMs } : {}),
       ...(cleansing !== undefined && Number.isFinite(expiresAtMs) ? { cleansingShortened: true as const } : {}),
@@ -374,11 +383,12 @@ export function dotDamageThisTick(unit: CombatUnit): {
 
 /**
  * Whether a unit will lose its action this turn.
- * Triggered by freeze, stun, paralyze.
+ * Triggered by freeze, stun, paralyze or Howl fear disruption.
  */
 export function isStunned(unit: CombatUnit): boolean {
   return (
     hasStatus(unit, 'freeze') ||
+    hasStatus(unit, 'howl') ||
     hasStatus(unit, 'stun') ||
     hasStatus(unit, 'paralyze')
   );

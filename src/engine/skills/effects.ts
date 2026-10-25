@@ -114,6 +114,8 @@ export interface DebuffEffect {
   readonly durationMs?: number;
   /** Nonnegative physical resistance reduction in percentage points. */
   readonly physicalResistReductionPct?: number;
+  /** Capture authored rank-scaled damage/Defense reduction on payment. */
+  readonly battleCry?: true;
 }
 
 /** Summon primitive. */

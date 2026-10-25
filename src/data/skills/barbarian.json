@@ -649,10 +649,11 @@
     ],
     "scaling": {
       "cooldownPerLevel": -0.05,
-      "costPerLevel": -0.05,
-      "passiveStatsPerLevel": {
-        "physDodgePct": 0.005
-      }
+      "costPerLevel": -0.05
+    },
+    "statusEffect": {
+      "durationMs": 1000,
+      "bossDurationMultiplier": 0.5
     }
   },
   {
@@ -703,10 +704,10 @@
     ],
     "scaling": {
       "cooldownPerLevel": -0.05,
-      "costPerLevel": -0.05,
-      "passiveStatsPerLevel": {
-        "attackPct": 0.01
-      }
+      "costPerLevel": -0.05
+    },
+    "statusEffect": {
+      "durationMs": 1000
     }
   },
   {
@@ -759,15 +760,16 @@
     "appliesStatus": [
       "battle-cry"
     ],
-    "appliesTags": [
-      "amp-damage"
-    ],
     "scaling": {
       "cooldownPerLevel": -0.05,
-      "costPerLevel": -0.1,
-      "passiveStatsPerLevel": {
-        "physicalDamagePct": 0.01
-      }
+      "costPerLevel": -0.1
+    },
+    "statusEffect": {
+      "durationMs": 1000,
+      "damageReductionPct": 25,
+      "damageReductionPerRank": 1,
+      "defenseReductionPct": 50,
+      "defenseReductionPerRank": 2
     }
   },
   {

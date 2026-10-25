@@ -64,6 +64,10 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "warcryDuration": "Enemy effect duration",
+    "warcryDamageReduction": "Outgoing direct damage reduction",
+    "warcryDefenseReduction": "Ordinary Defense reduction",
+
     "concentrateDuration": "Defense duration",
     "convertedAttack": "Attack converted to Arcane",
     "cloakDuration": "Cloak / Blind Duration",
@@ -599,7 +603,7 @@
     },
     "howl": {
       "name": "Howl",
-      "desc": "Frightens enemies, causing them to flee."
+      "desc": "Fear interrupts scheduled actions of every living enemy for {{duration}} (bosses: {{bossDuration}}). No movement or damage. Pay {{mana}} MP and start the {{cooldown}} s cooldown once. Reapplication replaces the interval. Changes apply next wave."
     },
     "find-potion": {
       "name": "Find Potion",
@@ -607,7 +611,7 @@
     },
     "taunt": {
       "name": "Taunt",
-      "desc": "Taunts enemies, forcing them to attack you."
+      "desc": "Forces one enemy to target its living caster with basic and single-target hostile attacks for {{duration}}. If the caster dies or becomes ineligible, ordinary targeting resumes. Area attacks keep their targets. Pay {{mana}} MP and start the {{cooldown}} s cooldown once. Reapplication replaces the source and interval. Changes apply next wave."
     },
     "find-item": {
       "name": "Find Item",
@@ -615,7 +619,7 @@
     },
     "battle-cry": {
       "name": "Battle Cry",
-      "desc": "Reduces enemy damage and defense."
+      "desc": "Reduces every living enemy’s outgoing direct damage by {{damageReduction}}% and ordinary Defense by {{defenseReduction}}% for {{duration}}. Resistances, Magic Resist, existing periodic damage and reflection are unchanged. Pay {{mana}} MP and start the {{cooldown}} s cooldown once. Reapplication replaces potency and interval. Changes apply next wave; paid potency lasts until expiry."
     },
     "grim-ward": {
       "name": "Grim Ward",

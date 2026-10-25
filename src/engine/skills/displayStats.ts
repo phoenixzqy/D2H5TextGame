@@ -12,6 +12,7 @@ import type { DamageType } from '../types/attributes';
 import type { AoeShape } from '../combat/grid';
 import type { ColdMasteryTuning, FeralRageTuning, HitSpeedStackTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
 import { STATUS_DEFAULTS } from '../combat/status';
+import { paidBattleCry } from '../combat/warcry-definition';
 import { MANA_BURN_DEFINITION } from '../combat/mana-burn-definition';
 import { coldMasteryReductionAtRank } from './cold-mastery';
 import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
@@ -158,6 +159,9 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Paid hostile warcry interval and, for Battle Cry, rank-scaled reductions. */
+  readonly warcry?: { readonly durationSeconds: number; readonly damageReductionPercent?: number;
+    readonly defenseReductionPercent?: number };
   /** Paid personal Defense interval and Attack converted into an Arcane hit. */
   readonly concentrate?: { readonly durationSeconds: number };
   readonly convertedAttackPercent?: number;
@@ -544,8 +548,9 @@ export function computeSkillRankDisplayStats(
     skill.target === 'all-enemies' && skill.appliesStatus?.length === 2 &&
     skill.appliesStatus[0] === 'leap' && skill.appliesStatus[1] === 'stun' && skill.timedBuff !== undefined;
   const controlId = mindBlast || leap ? 'stun' : skill.appliesStatus?.[0];
-  const controlDefinition = (skill.damage !== undefined || leap) && skill.trigger === 'active' &&
-    (controlId === 'chill' || controlId === 'stun' || controlId === 'paralyze') ? STATUS_DEFAULTS[controlId] : undefined;
+  const howl = skill.id === 'skills-barbarian-howl';
+  const controlDefinition = (skill.damage !== undefined || leap || howl) && skill.trigger === 'active' &&
+    (controlId === 'chill' || controlId === 'stun' || controlId === 'paralyze' || controlId === 'howl') ? STATUS_DEFAULTS[controlId] : undefined;
   const control = controlDefinition ? { durationSeconds: controlDefinition.duration,
     bossDurationSeconds: controlDefinition.duration * (controlDefinition.bossDurationMult ?? 1) } : undefined;
   const maxTargets = (skill.id === 'skills-paladin-zeal' || strikesPerTarget !== undefined) && skill.trigger === 'active' &&
@@ -579,6 +584,13 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(['skills-barbarian-howl', 'skills-barbarian-taunt', 'skills-barbarian-battle-cry'].includes(skill.id) ? {
+      warcry: { durationSeconds: (skill.statusEffect?.durationMs ?? 0) / 1000,
+        ...(skill.id === 'skills-barbarian-battle-cry' ? {
+          damageReductionPercent: paidBattleCry(safeRank).damageReductionPct,
+          defenseReductionPercent: paidBattleCry(safeRank).defenseReductionPct
+        } : {}) }
+    } : {}),
     ...(skill.id === 'skills-barbarian-concentrate' && skill.timedBuff
       ? { concentrate: { durationSeconds: skill.timedBuff.durationMs / 1000 } } : {}),
     ...(skill.id === 'skills-barbarian-berserk' && skill.attackDamagePct !== undefined

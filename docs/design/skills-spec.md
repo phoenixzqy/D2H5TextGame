@@ -175,6 +175,8 @@ independent design/QA and earned class/build balance remain open.
 | `barbarian.berserk` | Berserk / 狂暴 | Arcane | Single | 80–120 | 2 | 20 | — | Converts physical to arcane |
 | `barbarian.war_cry` | War Cry / 战嗥 | — | All | 30–50 | 3 | 30 | Stun (1 turn) | Debuff AOE |
 
+Paid Howl/Taunt/Battle Cry follow the [D04 hostile-control contract](../plans/decisions/D04-barbarian-warcry-control-v1.md): no-movement fear interrupts actions, Taunt binds eligible single-target attacks to its living source, and Battle Cry snapshots finite direct-damage/ordinary-Defense reduction. Durations and provisional reduction curves are JSON-authored; independent design/QA and earned balance remain open.
+
 #### Passive skills and combat buffs
 | ID | Name (EN / ZH) | Effect | Notes |
 |---|---|---|---|

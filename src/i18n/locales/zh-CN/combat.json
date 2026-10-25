@@ -112,6 +112,10 @@
     "summon": "召唤",
     "death": "倒下",
     "status": {
+      "howl": "恐惧",
+      "taunt": "被嘲讽",
+      "battle-cry": "战斗呐喊",
+
       "spirit-of-barbs": "棘灵",
       "oak-sage": "橡树智者",
       "heart-of-wolverine": "狼獾之心",

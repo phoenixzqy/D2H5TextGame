@@ -64,6 +64,10 @@
     "minLevel": "需要等级 {{level}}"
   },
   "details": {
+    "warcryDuration": "敌方效果持续时间",
+    "warcryDamageReduction": "对外直接伤害降低",
+    "warcryDefenseReduction": "普通防御降低",
+
     "concentrateDuration": "防御持续时间",
     "convertedAttack": "攻击力转为奥术",
     "cloakDuration": "斗篷／致盲持续时间",
@@ -599,7 +603,7 @@
     },
     "howl": {
       "name": "大叫",
-      "desc": "惊吓敌人，使其逃跑。"
+      "desc": "所有存活敌人因恐惧中断行动，持续{{duration}}（首领{{bossDuration}}）。目标不会移动，也不会受到直接伤害。每次消耗{{mana}} 点法力，启动{{cooldown}} 秒冷却。再次施放替换持续时间。调整从下一波生效。"
     },
     "find-potion": {
       "name": "找药水",
@@ -607,7 +611,7 @@
     },
     "taunt": {
       "name": "嘲弄",
-      "desc": "嘲弄敌人，迫使其攻击你。"
+      "desc": "强制一个敌人在普攻与单体敌对技能中选择存活施法者，持续{{duration}}。施法者死亡或不再是有效敌对目标时，恢复普通选敌。范围攻击保留原有目标。每次消耗{{mana}} 点法力，启动{{cooldown}} 秒冷却。再次施放替换来源与持续时间。调整从下一波生效。"
     },
     "find-item": {
       "name": "找物品",
@@ -615,7 +619,7 @@
     },
     "battle-cry": {
       "name": "战斗狂吼",
-      "desc": "降低敌人伤害和防御。"
+      "desc": "所有存活敌人的对外直接伤害降低{{damageReduction}}%，普通防御降低{{defenseReduction}}%，持续{{duration}}。抗性、魔法抗力、已有持续伤害与反伤保持原规则。每次消耗{{mana}} 点法力，启动{{cooldown}} 秒冷却。再次施放替换强度与持续时间。调整从下一波生效；已付费效果保持至到期。"
     },
     "grim-ward": {
       "name": "恐怖图腾",

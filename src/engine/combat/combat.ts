@@ -22,6 +22,7 @@ import { assassinVenomRawDps, copyAssassinVenomProjection, ASSASSIN_SHADOW_DEFIN
 
 import type { Rng } from '../rng';
 import { createRng } from '../rng';
+import { activeBattleCry, paidBattleCry } from './warcry-definition';
 import type { ActiveStatus, CombatUnit, CombatSide, GridPosition } from './types';
 import { inferKind } from './types';
 import { resolveDamage, rollDamage, resolveRolledDamage, mitigateDamage, type DamageInput } from './damage';
@@ -502,6 +503,11 @@ function pickDefender(
   candidates: readonly CombatUnit[]
 ): CombatUnit | undefined {
   if (candidates.length === 0) return undefined;
+  const taunt = activeStatusView(attacker, state.simClockMs).statuses.find(status =>
+    status.id === 'taunt' && status.appliedAtMs !== undefined && status.expiresAtMs !== undefined &&
+    Number.isFinite(status.appliedAtMs) && Number.isFinite(status.expiresAtMs));
+  const forced = taunt && candidates.find(candidate => candidate.id === taunt.sourceId && alive(candidate));
+  if (forced) return forced;
   if (candidates.length === 1) return candidates[0];
 
   if (effectiveSide(state, attacker) === 'player') {
@@ -564,6 +570,8 @@ function buildDamageInput(
   const combo = comboMultiplier(activeDefender, effect.damageType);
   const emptyManaBurn = effect.damageType === 'arcane' && defender.mana === 0 && hasStatus(activeDefender, 'mana-burn');
   const stats = attacker.stats;
+  const attackingCry = activeBattleCry(attacker, state.simClockMs);
+  const defendingCry = activeBattleCry(defender, state.simClockMs);
   const attackingCloak = activeCloakOfShadows(attacker, state.simClockMs);
   const defendingCloak = activeCloakOfShadows(defender, state.simClockMs);
   const attackerAura = activeStatAura(state.statAura, attacker.id, state.units);
@@ -608,6 +616,7 @@ function buildDamageInput(
       (effect.damageType === 'cold' && attacker.side === 'player' && alive(attacker) && holyFreezeSourceId(state) !== undefined
         ? MERC_HOLY_FREEZE_DEFINITION.coldDamagePct : 0),
     comboMult: combo,
+    ...(attackingCry ? { outgoingDamageMultiplier: 1 - attackingCry.damageReductionPct / 100 } : {}),
     ...(emptyManaBurn ? { manaBurnMult: MANA_BURN_DEFINITION.zeroManaArcaneMultiplier } : {}),
     ...((effect.damageType === 'physical' || effect.damageType === 'thorns') &&
       hasStatus(activeStatusView(attacker, state.simClockMs), 'blind')
@@ -616,7 +625,7 @@ function buildDamageInput(
     critChance: stats.critChance + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.critPerRank + (effect.critChanceBonus ?? 0) + (attackingCloak?.critChancePct ?? 0),
     critMult: stats.critDamage,
     defenderResistances,
-    defenderArmor: effect.ignoresDefense === true ? 0 : Math.max(0, defender.stats.defense * (1 + armorBonus + druidFormBonuses(defender).defensePct + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor),
+    defenderArmor: effect.ignoresDefense === true ? 0 : Math.max(0, defender.stats.defense * (1 + armorBonus + druidFormBonuses(defender).defensePct + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor * (1 - (defendingCry?.defenseReductionPct ?? 0) / 100)),
     defenderMagicResist: effect.ignoresMagicResist === true ? 0 : defender.stats.magicResist,
     defenderDodge:
       effect.damageType === 'physical' || effect.damageType === 'thorns'
@@ -1437,6 +1446,7 @@ function applyEffect(
           t,
           {
             id: effect.statusId,
+            ...(effect.battleCry === true && effect.statusId === 'battle-cry' ? { battleCry: paidBattleCry(skillLevel) } : {}),
             ...cleansingDurationInput(state, t.id),
             sourceId: actorId,
             simClockMs: state.simClockMs,
