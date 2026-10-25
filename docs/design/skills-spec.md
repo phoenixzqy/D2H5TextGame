@@ -187,7 +187,7 @@ Paid Werewolf/Werebear and Lycanthropy follow the [D05 form contract](../plans/d
 | `druid.summon_dire_wolf` | Summon Dire Wolf / 召唤狼 | — | Self | — | — | 20 | Summon | Existing authored cap: L1/2/3/6/20→1/2/3/4/8; see D06 v1b (no new tuning). |
 | `druid.werewolf` | Werewolf / 狼人变化 | — | Self | — | 4 | 5 | Form | Per rank: +2% attack speed, +0.5pp physical dodge; paid mutually exclusive run-local form; cap20 ([D05](../plans/decisions/D05-druid-shapeshifting-v1.md)). |
 | `druid.werebear` | Werebear / 熊人变化 | — | Self | — | 4 | 5 | Form | Per rank: +2.5% life capacity, +2% defense; unlock6, learned Lycanthropy, cap20; no healing. |
-| `druid.werewolf_maul` | Werewolf: Maul / 狼人：撕咬 | Physical | Single | 80–120 | 1 | 15 | Bleed | High single-target |
+| `druid.werewolf_maul` | Werewolf: Maul / 狼人：撕咬 | Physical | Single | 80–120 | 1 | 15 | Bleed | Single hit in any form; preserves paid form. Requires Werebear; 10% final-hit/s Bleed for 3s, cap1 (provisional; [D04](../plans/decisions/D04-druid-attack-dot-v1.md)). |
 | `druid.hurricane` | Hurricane / 飓风 | Cold | All | 70–100 | 4 | 50 | Chill | Ultimate cold AOE |
 
 #### Passive Skills (4)
@@ -435,3 +435,7 @@ Full D06/P09, external inputs and earned campaign/balance remain open.
 | Version | Date | Author | Notes |
 |---|---|---|---|
 | 1.0 | 2025-01-01 | game-designer | Initial v1 catalog (~70 skills) |
+
+### Druid attack status reconciliation (BUG192)
+
+[D04 Druid attack contract](../plans/decisions/D04-druid-attack-dot-v1.md) preserves the legacy Werewolf: Maul identity and authored Werebear prerequisite. Maul is a single Physical/Bleed attack usable in any current form; it never transforms or replaces a paid Werewolf/Werebear. Rabies is a single Poison hit with 5% final-hit/s per Poison stack for 5s, cap10. It spreads half the active stacks (floor, minimum1) on death to living same-side units with captured potency and a fresh 5s; later deaths can chain. Fire Claws is one Fire hit with 10% final-hit/s Burn for 3s, cap5, rather than a persistent basic-attack enchantment. Maul Bleed uses provisional 10% final-hit/s for 3s, cap1. Every incoming stack floors its captured rate with minimum1; existing damaging aggregates retain their rate. Rates remain provisional pending earned balance and independent acceptance.

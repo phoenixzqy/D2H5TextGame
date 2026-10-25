@@ -64,6 +64,10 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "periodicRate": "{{status}} per stack",
+    "periodicDuration": "{{status}} duration",
+    "periodicMaxStacks": "Maximum {{status}} stacks",
+    "descriptionPeriodic": "On a successful hit, each {{status}} stack deals {{percentOfHit}}% of the final hit per second (rounded down, minimum {{minDps}}) for {{durationSeconds}} s, up to {{maxStacks}} stacks. Reapplying refreshes duration and adds a stack up to the cap; an existing damaging status keeps its original rate.",
     "burnRate": "Burn per stack",
     "burnRateValue": "{{percentOfHit}}% of final hit/s (min. {{minDps}})",
     "burnDuration": "Burn duration",
@@ -585,7 +589,7 @@
     },
     "werewolf-maul": {
       "name": "Werewolf: Maul",
-      "desc": "Transforms into a werewolf and rends a single enemy, causing them to bleed."
+      "desc": "A single Physical hit deals {{min}}–{{max}} damage and applies Bleed. Usable in any form after learning Werebear; this attack preserves your current form. Werewolf and Werebear are separate paid skills."
     },
     "hurricane": {
       "name": "Hurricane",
@@ -649,11 +653,11 @@
     },
     "rabies": {
       "name": "Rabies",
-      "desc": "Bites an enemy, spreading disease that chains to others."
+      "desc": "A single Poison hit deals {{min}}–{{max}} damage and applies Poison. On death while Poison remains active, half the stacks (rounded down, minimum one) spread to every living enemy on the same side, retaining their damage rate for a fresh 5 s. Further deaths can continue the chain."
     },
     "fire-claws": {
       "name": "Fire Claws",
-      "desc": "Ignites claws with fire, adding fire damage to attacks."
+      "desc": "A single Fire hit deals {{min}}–{{max}} damage and applies Burn. Each cast attacks once; it does not enchant later basic attacks."
     },
     "hunger": {
       "name": "Hunger",

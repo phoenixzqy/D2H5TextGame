@@ -119,6 +119,14 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Explicit primary Bleed/Poison rule; final damage depends on the actual landed hit. */
+  readonly periodic?: {
+    readonly statusId: 'bleed' | 'poison';
+    readonly percentOfHit: number;
+    readonly durationSeconds: number;
+    readonly maxStacks: number;
+    readonly minDps: number;
+  };
   /** A rule based on final mitigated hits, never a guaranteed base-damage DPS estimate. */
   readonly burn?: {
     readonly percentOfHit: number;
@@ -179,6 +187,21 @@ function burnDisplay(skill: DisplaySkillSource): SkillRankDisplayStats['burn'] {
     (skill.statusEffect?.chance ?? 1) !== 1 || (skill.statusEffect?.stacksOnApply ?? 1) !== 1) return undefined;
   return { percentOfHit: Number((fraction * 100).toFixed(4)),
     durationSeconds: STATUS_DEFAULTS.ignite.duration, maxStacks: STATUS_DEFAULTS.ignite.maxStacks, minDps: 1 };
+}
+
+function periodicDisplay(skill: DisplaySkillSource): SkillRankDisplayStats['periodic'] {
+  const id = skill.appliesStatus?.[0], metadata = skill.statusEffect,
+    fraction = metadata?.dotPctOfDamage, durationMs = metadata?.durationMs;
+  if (!skill.damage || skill.trigger !== 'active' || skill.appliesStatus?.length !== 1 ||
+    (id !== 'bleed' && id !== 'poison') ||
+    skill.damageType !== (id === 'bleed' ? 'physical' : 'poison') ||
+    fraction === undefined || !Number.isFinite(fraction) || fraction <= 0 ||
+    (metadata?.chance ?? 1) !== 1 || (metadata?.stacksOnApply ?? 1) !== 1 ||
+    // The generic damage adapter forwards potency, chance and stack count, but no primary duration override.
+    durationMs !== undefined) return undefined;
+  return { statusId: id, percentOfHit: Number((fraction * 100).toFixed(4)),
+    durationSeconds: STATUS_DEFAULTS[id].duration,
+    maxStacks: STATUS_DEFAULTS[id].maxStacks, minDps: 1 };
 }
 
 function damageRows(skill: DisplaySkillSource, rank: number): readonly SkillDamageDisplayRow[] {
@@ -390,10 +413,12 @@ export function computeSkillRankDisplayStats(
   const manaCost = scaleCost(skill.cost?.mana, skill.scaling?.costPerLevel ?? 0, safeRank);
   const lifeCost = scaleCost(skill.cost?.life, skill.scaling?.costPerLevel ?? 0, safeRank);
   const burn = burnDisplay(skill);
+  const periodic = periodicDisplay(skill);
 
   return {
     rank: safeRank,
     ...(burn ? { burn } : {}),
+    ...(periodic ? { periodic } : {}),
     damage,
     ...(totalDamage ? { totalDamage } : {}),
     ...(resolvedSummonCap !== undefined ? { summonCap: resolvedSummonCap } : {}),

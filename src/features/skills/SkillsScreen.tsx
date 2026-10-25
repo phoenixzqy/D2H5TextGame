@@ -783,6 +783,11 @@ function SkillDetailPanel({
         {primaryStats?.burn ? (
           <p className="text-sm text-d2-white/90">{t('details.descriptionBurn', primaryStats.burn)}</p>
         ) : null}
+        {primaryStats?.periodic ? (
+          <p className="text-sm text-d2-white/90">{t('details.descriptionPeriodic', {
+            ...primaryStats.periodic, status: t(`combat:effect.status.${primaryStats.periodic.statusId}`)
+          })}</p>
+        ) : null}
         {skill.id === 'skills-paladin-meditation' ? (
           <p className="text-sm text-d2-white/90">{t('auraSelection.meditationRankBonuses')}</p>
         ) : null}
@@ -912,6 +917,16 @@ function StatSection({
               <StatLine label={t('details.burnRate')} value={t('details.burnRateValue', stats.burn)} />
               <StatLine label={t('details.burnDuration')} value={t('details.seconds', { seconds: stats.burn.durationSeconds })} />
               <StatLine label={t('details.burnMaxStacks')} value={String(stats.burn.maxStacks)} />
+            </>
+          ) : null}
+          {stats.periodic ? (
+            <>
+              <StatLine label={t('details.periodicRate', { status: t(`combat:effect.status.${stats.periodic.statusId}`) })}
+                value={t('details.burnRateValue', stats.periodic)} />
+              <StatLine label={t('details.periodicDuration', { status: t(`combat:effect.status.${stats.periodic.statusId}`) })}
+                value={t('details.seconds', { seconds: stats.periodic.durationSeconds })} />
+              <StatLine label={t('details.periodicMaxStacks', { status: t(`combat:effect.status.${stats.periodic.statusId}`) })}
+                value={String(stats.periodic.maxStacks)} />
             </>
           ) : null}
         </dl>
@@ -1435,6 +1450,9 @@ function dynamicDescription(
       maxLife: Math.round(life * maxRank * 100), maxSpeed: speed * maxRank, cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
+  if (['skills-druid-werewolf-maul', 'skills-druid-rabies', 'skills-druid-fire-claws'].includes(skill.id) && firstDamage && skill.description) {
+    return t(skill.description.replace('skills.', ''), { min: firstDamage.min, max: firstDamage.max });
+  }
   if (skill.id === 'skills-necromancer-corpse-explosion' && stats && firstDamage) {
     return t('necromancer.corpse-explosion.desc', {
       min: firstDamage.min, max: firstDamage.max,

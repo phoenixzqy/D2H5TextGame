@@ -64,6 +64,10 @@
     "minLevel": "需要等级 {{level}}"
   },
   "details": {
+    "periodicRate": "每层{{status}}",
+    "periodicDuration": "{{status}}持续",
+    "periodicMaxStacks": "{{status}}层数上限",
+    "descriptionPeriodic": "命中后每层{{status}}每秒造成最终命中伤害的{{percentOfHit}}%（向下取整，最低{{minDps}}点），持续{{durationSeconds}} 秒，最多{{maxStacks}}层。再次施加会刷新持续时间并增加层数，达到上限后不再增加；已有伤害的状态保留原伤害率。",
     "burnRate": "每层燃烧",
     "burnRateValue": "最终命中伤害的{{percentOfHit}}%/秒（最低{{minDps}}点）",
     "burnDuration": "燃烧持续",
@@ -585,7 +589,7 @@
     },
     "werewolf-maul": {
       "name": "狼人：重伤",
-      "desc": "化身狼人撕裂单体敌人，使其流血。"
+      "desc": "单次物理命中造成{{min}}–{{max}}点伤害并附加流血。学习熊人变化后可在任何形态使用，攻击会保留当前形态；狼人变化与熊人变化是需要另行施放并支付法力的技能。"
     },
     "hurricane": {
       "name": "飓风",
@@ -649,11 +653,11 @@
     },
     "rabies": {
       "name": "狂犬病",
-      "desc": "咬敌人，传播连锁疾病。"
+      "desc": "单次毒素命中造成{{min}}–{{max}}点伤害并附加中毒。目标在中毒仍生效时死亡时，一半层数（向下取整，最低一层）会传给同阵营所有存活敌人，保留每层伤害率并重新持续5 秒；后续死亡可继续传播。"
     },
     "fire-claws": {
       "name": "火焰爪",
-      "desc": "用火焰点燃爪子，为攻击附加火焰伤害。"
+      "desc": "单次火焰命中造成{{min}}–{{max}}点伤害并附加燃烧。每次施放只攻击一次，不会为后续普通攻击附魔。"
     },
     "hunger": {
       "name": "饥饿",
