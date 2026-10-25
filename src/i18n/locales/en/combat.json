@@ -141,6 +141,7 @@
       "mana-burn": "Mana Burn"
     },
     "buff": {
+      "cyclone-armor": "Cyclone Armor",
       "werewolf": "Werewolf",
       "werebear": "Werebear",
       "burst-of-speed": "Burst of Speed",
@@ -223,6 +224,7 @@
   },
   "event": {
     "boneArmorAbsorbed": "{{target}}'s Bone Armor absorbs {{amount}} damage.",
+    "cycloneArmorPrevented": "{{target}}'s Cyclone Armor prevents {{amount}} damage.",
     "system": "System",
     "turnStart": "Turn {{turn}} begins",
     "basicAction": "{{actor}} readies an attack.",

@@ -175,6 +175,8 @@
       "magicFindPct": "魔法寻获",
       "shieldAbsorbPct": "护盾吸收",
       "energyShieldAbsorbPct": "伤害转移至法力",
+      "cycloneArmorReduction": "伤害减免",
+      "cycloneArmorResistance": "全抗（百分点）",
       "boneArmorAbsorb": "骨甲吸收",
       "golemLifePct": "石魔生命",
       "golemAttackSpeed": "石魔攻击速度"
@@ -615,7 +617,7 @@
     },
     "cyclone-armor": {
       "name": "旋风装甲",
-      "desc": "用防护旋风包围德鲁伊。"
+      "desc": "每次战斗流程仅付费施放一次：每级减免{{reduction}}%结算抗性后的伤害，并使全部六种抗性各增加{{resistance}}个百分点。{{cap}}级时伤害减免为{{maxReduction}}%。作用于直接伤害、反弹荆棘及持续伤害；此广泛防护为暂定调校。跨波次保留，无需再次付费，不会治疗或补充资源。已学等级或前置条件的变化于下波生效；失去资格会移除防护。新战斗流程和导入后均须重新施放。需要角色{{level}}级及极地冲击。"
     },
     "twister": {
       "name": "小旋风",

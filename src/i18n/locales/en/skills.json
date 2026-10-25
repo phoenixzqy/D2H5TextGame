@@ -175,6 +175,8 @@
       "magicFindPct": "Magic Find",
       "shieldAbsorbPct": "Shield Absorb",
       "energyShieldAbsorbPct": "Damage Diverted to Mana",
+      "cycloneArmorReduction": "Damage Reduction",
+      "cycloneArmorResistance": "All Resistance Points",
       "boneArmorAbsorb": "Bone Armor Absorb",
       "golemLifePct": "Golem Life",
       "golemAttackSpeed": "Golem Attack Speed"
@@ -615,7 +617,7 @@
     },
     "cyclone-armor": {
       "name": "Cyclone Armor",
-      "desc": "Surrounds the druid with a protective cyclone."
+      "desc": "Paid once per run: each rank reduces post-mitigation damage by {{reduction}}% and adds {{resistance}} point to all six resistances. At rank {{cap}}, reduction is {{maxReduction}}%. Applies to direct damage, reflected Thorns and damage over time; this broad protection is provisional tuning. Carries across waves without another payment and does not heal or refill resources. Learned-rank or prerequisite changes apply next wave; losing eligibility removes protection. New runs and imports start unpaid. Requires level {{level}} and Arctic Blast."
     },
     "twister": {
       "name": "Twister",

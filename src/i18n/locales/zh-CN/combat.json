@@ -141,6 +141,7 @@
       "mana-burn": "法力燃烧"
     },
     "buff": {
+      "cyclone-armor": "旋风装甲",
       "werewolf": "狼人变化",
       "werebear": "熊人变化",
       "burst-of-speed": "速度爆发",
@@ -223,6 +224,7 @@
   },
   "event": {
     "boneArmorAbsorbed": "{{target}}的骨甲吸收了{{amount}}点伤害。",
+    "cycloneArmorPrevented": "{{target}}的旋风装甲减免了{{amount}}点伤害。",
     "system": "系统",
     "turnStart": "第 {{turn}} 回合开始",
     "basicAction": "{{actor}} 准备出招。",

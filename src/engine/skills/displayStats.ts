@@ -305,6 +305,15 @@ function passiveUtilityRows(skill: DisplaySkillSource, rank: number): readonly S
   const scaling = skill.scaling?.passiveStatsPerLevel;
   if (!scaling) return [];
   const multiplier = Math.max(1, rank);
+  if (skill.id === 'skills-druid-cyclone-armor' &&
+    scaling.shieldAbsorbPct !== undefined && scaling.resistAllPct !== undefined) {
+    return [
+      { id: 'shieldAbsorbPct', labelKey: 'details.passiveStat.cycloneArmorReduction',
+        value: Number((scaling.shieldAbsorbPct * multiplier).toFixed(4)), valueKind: 'percent' },
+      { id: 'resistAllPct', labelKey: 'details.passiveStat.cycloneArmorResistance',
+        value: Number((scaling.resistAllPct * 100 * multiplier).toFixed(4)), valueKind: 'flat' }
+    ];
+  }
   const rows: SkillUtilityDisplayRow[] = [];
   const push = (id: keyof PassiveStatsPerLevel, valueKind: 'flat' | 'percent') => {
     const perRank = scaling[id];

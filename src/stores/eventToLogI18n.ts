@@ -40,6 +40,17 @@ function damageTypeLabel(type: string | undefined): string {
   return tx(`combat:damageType.${type}`, { defaultValue: type });
 }
 
+function preventionSuffix(event: { cycloneAbsorbed?: number; absorbed?: number }, target: string): string {
+  let suffix = '';
+  if ((event.cycloneAbsorbed ?? 0) > 0) {
+    suffix += ' ' + tx('combat:event.cycloneArmorPrevented', { target, amount: event.cycloneAbsorbed });
+  }
+  if ((event.absorbed ?? 0) > 0) {
+    suffix += ' ' + tx('combat:event.boneArmorAbsorbed', { target, amount: event.absorbed });
+  }
+  return suffix;
+}
+
 /**
  * Convert a battle event (recorded or live) to a localized log entry.
  *
@@ -123,8 +134,7 @@ export function eventToLocalizedLogEntry(
         actorName: sourceName,
         targetId: event.target,
         targetName,
-        message: tx(key, params) + ((event.absorbed ?? 0) > 0
-          ? ' ' + tx('combat:event.boneArmorAbsorbed', { target: targetName, amount: event.absorbed }) : ''),
+        message: tx(key, params) + preventionSuffix(event, targetName),
         value: event.amount
       };
     }
@@ -200,8 +210,7 @@ export function eventToLocalizedLogEntry(
           target: targetName,
           amount: event.amount,
           defaultValue: `${targetName} takes ${String(event.amount)} DoT damage`
-        }) + ((event.absorbed ?? 0) > 0
-          ? ' ' + tx('combat:event.boneArmorAbsorbed', { target: targetName, amount: event.absorbed }) : ''),
+        }) + preventionSuffix(event, targetName),
         value: event.amount
       };
     }
