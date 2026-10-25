@@ -947,6 +947,14 @@ function StatSection({
             <StatLine label={t('details.lifeCost')} value={String(stats.lifeCost)} />
           ) : null}
           <StatLine label={t('details.cooldown')} value={t('details.seconds', { seconds: stats.cooldown })} />
+          {stats.coldAttack ? <>
+            <StatLine label={t('details.coldChillDuration')} value={t('details.seconds', { seconds: stats.coldAttack.durationSeconds })} />
+            <StatLine label={t('details.coldChillSlow')} value={t('details.percentValue', { value: stats.coldAttack.slowPercent })} />
+            {stats.coldAttack.freeze ? <StatLine label={t('details.coldFreeze')} value={t('details.coldFreezeValue', {
+              chance: stats.coldAttack.freeze.chancePercent, seconds: stats.coldAttack.freeze.durationSeconds,
+              bossSeconds: stats.coldAttack.freeze.bossDurationSeconds
+            })} /> : null}
+          </> : null}
           {stats.warcry ? <>
             <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.warcry.durationSeconds })} />
             {stats.warcry.damageReductionPercent !== undefined ? <StatLine label={t('details.warcryDamageReduction')}
@@ -1597,6 +1605,17 @@ function dynamicDescription(
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && stats.coldAttack && ['skills-sorceress-ice-bolt', 'skills-sorceress-frost-nova',
+    'skills-sorceress-frozen-orb', 'skills-sorceress-blizzard'].includes(skill.id)) {
+    const cold = stats.coldAttack;
+    return t('sorceress.' + skill.id.slice('skills-sorceress-'.length) + '.desc', {
+      min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown,
+      chill: t('details.seconds', { seconds: cold.durationSeconds }), slow: cold.slowPercent,
+      ...(cold.freeze ? { freezeChance: cold.freeze.chancePercent,
+        freeze: t('details.seconds', { seconds: cold.freeze.durationSeconds }),
+        bossFreeze: t('details.seconds', { seconds: cold.freeze.bossDurationSeconds }) } : {})
+    });
+  }
   if (stats?.warcry && ['skills-barbarian-howl', 'skills-barbarian-taunt', 'skills-barbarian-battle-cry'].includes(skill.id)) {
     return t(`barbarian.${skill.id.slice('skills-barbarian-'.length)}.desc`, {
       duration: t('details.seconds', { seconds: stats.warcry.durationSeconds }),

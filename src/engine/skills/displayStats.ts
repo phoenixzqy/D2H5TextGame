@@ -10,8 +10,9 @@
 
 import type { DamageType } from '../types/attributes';
 import type { AoeShape } from '../combat/grid';
-import type { ColdMasteryTuning, FeralRageTuning, HitSpeedStackTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
+import type { ColdMasteryTuning, FeralRageTuning, HitSpeedStackTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillStatusEffectMetadata, SkillAdditionalStatusEffects, StaticFieldTuning } from '../types/skills';
 import { STATUS_DEFAULTS } from '../combat/status';
+import { CHILL_DEFINITION } from '../combat/chill-definition';
 import { paidBattleCry } from '../combat/warcry-definition';
 import { MANA_BURN_DEFINITION } from '../combat/mana-burn-definition';
 import { coldMasteryReductionAtRank } from './cold-mastery';
@@ -59,6 +60,7 @@ export interface DisplaySkillSource {
   readonly damageType?: DamageType;
   readonly appliesStatus?: readonly string[];
   readonly statusEffect?: SkillStatusEffectMetadata;
+  readonly additionalStatusEffects?: SkillAdditionalStatusEffects;
   readonly appliesTags?: readonly string[];
   readonly summonId?: string;
   readonly scaling?: {
@@ -159,6 +161,9 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Authored cold-attack control, including Frost Nova's independent secondary roll. */
+  readonly coldAttack?: { readonly durationSeconds: number; readonly slowPercent: number;
+    readonly freeze?: { readonly chancePercent: number; readonly durationSeconds: number; readonly bossDurationSeconds: number } };
   /** Paid hostile warcry interval and, for Battle Cry, rank-scaled reductions. */
   readonly warcry?: { readonly durationSeconds: number; readonly damageReductionPercent?: number;
     readonly defenseReductionPercent?: number };
@@ -544,6 +549,16 @@ export function computeSkillRankDisplayStats(
     zeroManaArcaneBonusPercent: (MANA_BURN_DEFINITION.zeroManaArcaneMultiplier - 1) * 100,
     untilManaRestored: true as const
   } : undefined;
+  const coldAttack = ['skills-sorceress-ice-bolt', 'skills-sorceress-frost-nova',
+    'skills-sorceress-frozen-orb', 'skills-sorceress-blizzard'].includes(skill.id) &&
+    skill.trigger === 'active' && skill.damageType === 'cold' && skill.appliesStatus?.includes('chill')
+    ? { durationSeconds: STATUS_DEFAULTS.chill.duration,
+      slowPercent: Number(((1 - CHILL_DEFINITION.attackSpeedMultiplier) * 100).toFixed(4)),
+      ...(skill.id === 'skills-sorceress-frost-nova' && skill.additionalStatusEffects?.freeze ? {
+        freeze: { chancePercent: skill.additionalStatusEffects.freeze.chance * 100,
+          durationSeconds: STATUS_DEFAULTS.freeze.duration,
+          bossDurationSeconds: STATUS_DEFAULTS.freeze.duration * (STATUS_DEFAULTS.freeze.bossDurationMult ?? 1) }
+      } : {}) } : undefined;
   const leap = skill.id === 'skills-barbarian-leap' && skill.trigger === 'active' &&
     skill.target === 'all-enemies' && skill.appliesStatus?.length === 2 &&
     skill.appliesStatus[0] === 'leap' && skill.appliesStatus[1] === 'stun' && skill.timedBuff !== undefined;
@@ -584,6 +599,7 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(coldAttack ? { coldAttack } : {}),
     ...(['skills-barbarian-howl', 'skills-barbarian-taunt', 'skills-barbarian-battle-cry'].includes(skill.id) ? {
       warcry: { durationSeconds: (skill.statusEffect?.durationMs ?? 0) / 1000,
         ...(skill.id === 'skills-barbarian-battle-cry' ? {
@@ -599,7 +615,7 @@ export function computeSkillRankDisplayStats(
     ...(skill.id === 'skills-assassin-cloak-of-shadows' && skill.timedBuff
       ? { cloak: { durationSeconds: skill.timedBuff.durationMs / 1000,
         blindHitPenaltyPoints: DRUID_SUMMON_DEFINITION.raven.physicalHitChancePenalty * 100 } } : {}),
-    ...(['skills-assassin-fire-blast', 'skills-assassin-blade-fury'].includes(skill.id) && skill.trigger === 'active' &&
+    ...(['skills-assassin-fire-blast', 'skills-assassin-blade-fury', 'skills-sorceress-frozen-orb'].includes(skill.id) && skill.trigger === 'active' &&
       skill.target === 'area-enemies' && skill.aoeShape === 'cone-2'
       ? { areaShape: skill.aoeShape } : {}),
     ...(maxTargets !== undefined ? { maxTargets } : {}),

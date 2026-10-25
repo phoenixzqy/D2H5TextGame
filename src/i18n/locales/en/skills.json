@@ -64,6 +64,10 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "coldChillDuration": "Chill duration",
+    "coldChillSlow": "Attack Speed reduction",
+    "coldFreeze": "Secondary Freeze",
+    "coldFreezeValue": "{{chance}}% • {{seconds}} s (bosses: {{bossSeconds}} s)",
     "warcryDuration": "Enemy effect duration",
     "warcryDamageReduction": "Outgoing direct damage reduction",
     "warcryDefenseReduction": "Ordinary Defense reduction",
@@ -1015,15 +1019,15 @@
   "sorceress": {
     "ice-bolt": {
       "name": "Ice Bolt",
-      "desc": "Hurls a single bolt of ice at an enemy, dealing cold damage and chilling them."
+      "desc": "One single-target Cold attempt deals {{min}}–{{max}} Cold base damage. A landed hit applies Chill for {{chill}}, reducing Attack Speed by {{slow}}%. Misses apply no Chill. Pay {{mana}} MP and start the {{cooldown}} s cooldown once per cast."
     },
     "frost-nova": {
       "name": "Frost Nova",
-      "desc": "Releases a burst of cold radiating outward, chilling all enemies and freezing some."
+      "desc": "One independent attempt per living enemy deals {{min}}–{{max}} Cold base damage. Landed hits apply Chill for {{chill}}, reducing Attack Speed by {{slow}}%, then independently have a {{freezeChance}}% chance of Freeze for {{freeze}} (bosses: {{bossFreeze}}). Misses apply no Chill or Freeze. Pay {{mana}} MP and start the {{cooldown}} s cooldown once per cast."
     },
     "frozen-orb": {
       "name": "Frozen Orb",
-      "desc": "Hurls an orb of cold that pierces enemies and showers shards in a cone."
+      "desc": "The cone covers one apex cell and three adjacent cells in the next row. Choose the most enemies, breaking ties by foremost row then leftmost column. Each selected enemy receives one independent attempt for {{min}}–{{max}} Cold base damage. A landed hit applies Chill for {{chill}}, reducing Attack Speed by {{slow}}%. Misses apply no Chill. Pay {{mana}} MP and start the {{cooldown}} s cooldown once per cast. Cold resistance and Magic Resist apply."
     },
     "chain-lightning": {
       "name": "Chain Lightning",
@@ -1071,7 +1075,7 @@
     },
     "blizzard": {
       "name": "Blizzard",
-      "desc": "Summons a hailstorm that batters all enemies with ice."
+      "desc": "One independent attempt per living enemy deals {{min}}–{{max}} Cold base damage. A landed hit applies Chill for {{chill}}, reducing Attack Speed by {{slow}}%. Misses apply no Chill. Pay {{mana}} MP and start the {{cooldown}} s cooldown once per cast."
     },
     "chilling-armor": {
       "name": "Chilling Armor",

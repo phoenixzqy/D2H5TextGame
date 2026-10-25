@@ -207,7 +207,37 @@
     },
     {
       "if": { "required": ["aoeShape"], "properties": { "aoeShape": { "const": "cone-2" } } },
-      "then": { "properties": { "id": { "enum": ["skills-assassin-fire-blast", "skills-assassin-blade-fury"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-assassin-fire-blast", "skills-assassin-blade-fury", "skills-sorceress-frozen-orb"] } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-sorceress-frozen-orb" } } },
+      "then": {
+        "required": ["aoeShape", "requiredLevel", "prerequisites", "damage", "damageType", "appliesStatus"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "area-enemies" },
+          "aoeShape": { "const": "cone-2" }, "requiredLevel": { "const": 30 },
+          "maxLevel": { "const": 20 }, "prerequisites": { "const": ["skills-sorceress-blizzard"] },
+          "damageType": { "const": "cold" }, "appliesStatus": { "const": ["chill"] },
+          "statusEffect": false, "additionalStatusEffects": false, "hitSequence": false,
+          "damageComposition": false, "attackDamagePct": false,
+          "onHitRecovery": false, "onHitSelfDamage": false
+        }
+      }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-sorceress-blizzard" } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "appliesStatus"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "all-enemies" },
+          "aoeShape": false, "requiredLevel": { "const": 24 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-sorceress-glacial-spike"] },
+          "damageType": { "const": "cold" }, "appliesStatus": { "const": ["chill"] },
+          "statusEffect": false, "additionalStatusEffects": false, "hitSequence": false,
+          "damageComposition": false, "attackDamagePct": false,
+          "onHitRecovery": false, "onHitSelfDamage": false
+        }
+      }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-fire-blast" } } },
