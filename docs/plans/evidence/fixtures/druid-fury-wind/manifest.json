@@ -1,0 +1,2523 @@
+{
+  "scope": "Fury repeated-attack repair and five unchanged wind/control attacks; synthetic local proof only. Independent QA and earned balance remain open.",
+  "owner": "root",
+  "session": "01a1577a-5af4-70e3-8699-50a906877d8f",
+  "worktree": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+  "base": "cde1e7bb171f7e45e00c0624083aca465e3b01af",
+  "runtime": "f17fd2be0f56ea1a7acf40cc18d1a09500f0bd34",
+  "presentation": "b0c8ee500c34aed2e0c2c3bc49a8059e1c30bbec",
+  "rawFiles": 260,
+  "files": {
+    "SkillsScreen.druid-fury.test.tsx.red.txt": {
+      "bytes": 4753,
+      "sha256": "643233227a0ef339b99c1950d700be65f1084fc04fcc467d96c65f505faaeb88",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "SkillsScreen.druid-fury.test.tsx.red.txt"
+      }
+    },
+    "SkillsScreen.tsx.before-lint-fix.txt": {
+      "bytes": 73902,
+      "sha256": "f5d00c87273e95c8607a0b2b9ce8fcf53719cc256cac4d12a78b2c627be44052",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "SkillsScreen.tsx.before-lint-fix.txt"
+      }
+    },
+    "archive-evidence.py": {
+      "bytes": 3519,
+      "sha256": "82b37ba7a77e24f53cbc878a5a801dafd73cf7f642b850194af2418d46904ab0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "archive-evidence.py"
+      }
+    },
+    "attachment-audit-command.json": {
+      "bytes": 227,
+      "sha256": "9ca582d17fb562a236193e41660147c8f79b4c2ea796bd04af0f3513e68e983b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "attachment-audit-command.json"
+      }
+    },
+    "attachment-audit-command.log": {
+      "bytes": 131,
+      "sha256": "b2685496fa6a54e5646dcc6a2ecf770d7e1f0d83dd7d7c515a9a2625b1e95b3e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "attachment-audit-command.log"
+      }
+    },
+    "audit-browser.py": {
+      "bytes": 3321,
+      "sha256": "5f5f14db603d3c070bcf4bb19cde36852c600d4079db1cb622a91ab119b6f1cc",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "audit-browser.py"
+      }
+    },
+    "author-source-review.json": {
+      "bytes": 1562,
+      "sha256": "32407d024fbabe018a1eaeed730c23c94450e7dd251747fe2b05ac4d80b89130",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "author-source-review.json"
+      }
+    },
+    "bridge-audit.json": {
+      "bytes": 365,
+      "sha256": "75bb0a213fa9c0e1a2c4d4da3f3b83556593af31c07e12f47bb42c3e5f8bb12a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "bridge-audit.json"
+      }
+    },
+    "browser-attachment-audit.json": {
+      "bytes": 125748,
+      "sha256": "6b8410fba6ff80104a9946c646346e8541e3168f6116aa14425f5389a75d12a2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-attachment-audit.json"
+      }
+    },
+    "browser-before-regex-fix.cjs": {
+      "bytes": 11243,
+      "sha256": "e6952a938529bef88107e81e12670ae055b84600440999c276a0246cfa976d19",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-before-regex-fix.cjs"
+      }
+    },
+    "browser-current.cjs": {
+      "bytes": 11243,
+      "sha256": "e6952a938529bef88107e81e12670ae055b84600440999c276a0246cfa976d19",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-current.cjs"
+      }
+    },
+    "browser-en-1280.json": {
+      "bytes": 308,
+      "sha256": "50ba412ab4048802e9db352af42b18dc61bf1bcd7e0658a2d8bd4c02337addf1",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-1280.json"
+      }
+    },
+    "browser-en-1280.log": {
+      "bytes": 112,
+      "sha256": "8be69c2ac9442501a3bba1594f65d3d1162e8b9959bd33405ed7c6ef805ef080",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-1280.log"
+      }
+    },
+    "browser-en-360.json": {
+      "bytes": 308,
+      "sha256": "84674017e049aa5a7abc32af962b7db4f849e0c4e4579e62d513625f0ea94018",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-360.json"
+      }
+    },
+    "browser-en-360.log": {
+      "bytes": 111,
+      "sha256": "61e116e48441ac0a7790bb94166fd36230ec75481796c8a3ef406633f048490a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-en-360.log"
+      }
+    },
+    "browser-helper-help.json": {
+      "bytes": 283,
+      "sha256": "d5cfc0fe44bab3a2312b680372b1bdf2e3976909886594ff8c8181ca78cae20b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-helper-help.json"
+      }
+    },
+    "browser-helper-help.log": {
+      "bytes": 474,
+      "sha256": "38f08148e9ffd761463c90674e7645ec9ce52c012d96e6b9234d8a63c48c25dc",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-helper-help.log"
+      }
+    },
+    "browser-verified-en-1280/browser-report.json": {
+      "bytes": 29146,
+      "sha256": "170392ddc0b4ae2762c6ee3b0e6adcb731f5723f4c72d42e1aac585dd4f2e89d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/browser-report.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-arctic-blast-combat.json": {
+      "bytes": 3343,
+      "sha256": "e560000b0c71948047900d4b716d0a5a0d5a97972bae281a345ae640fc97d5f3",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-arctic-blast-combat.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-arctic-blast-combat.png": {
+      "bytes": 412705,
+      "sha256": "7ae2314554c96200e048e9c78592c540a63b9924d07357e2c262ae6db1be1af4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-arctic-blast-combat.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-arctic-blast-details.png": {
+      "bytes": 135934,
+      "sha256": "0a48a59fa3300a0bef3fb35ef9f264452dc45c0f96702ac747ad78f904583f36",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-arctic-blast-details.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-arctic-blast-details.txt": {
+      "bytes": 443,
+      "sha256": "5f40415af422b5046e1a6072e23c5788d9e2d36a1a2fe64b3c9593cc65e3c093",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-arctic-blast-details.txt"
+      }
+    },
+    "browser-verified-en-1280/en-1280-fresh-1.json": {
+      "bytes": 3235,
+      "sha256": "1c42216d902dfcdcf67bbbd924f10f3c87439546c33319137ea4676196b93e39",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-fresh-1.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-fury-combat.json": {
+      "bytes": 2555,
+      "sha256": "333375a90a1cf7ad7c7557b32ea21beb1e9f2f23a9a8d93a345d70ac4e5e709d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-fury-combat.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-fury-combat.png": {
+      "bytes": 423146,
+      "sha256": "962a61c30dfa461d0468f9422c46370e36021c2365f05323e0cc554ca381ea72",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-fury-combat.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-fury-details.png": {
+      "bytes": 146997,
+      "sha256": "2f73f2547c32bc158b8c35bbdcfd032b791739bf9373db4291d272d94a6ae7cc",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-fury-details.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-fury-details.txt": {
+      "bytes": 638,
+      "sha256": "65e8ae4e0a2bf106dba14421c31904c42d9c4248467252e80f37b1c95f67ac77",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-fury-details.txt"
+      }
+    },
+    "browser-verified-en-1280/en-1280-hurricane-combat.json": {
+      "bytes": 4967,
+      "sha256": "227683ccf6811598b0a25fa0f7dd2bbcd49e5300ce6755b873046a0dc5d67f8a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-hurricane-combat.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-hurricane-combat.png": {
+      "bytes": 407767,
+      "sha256": "a65f660ed2fadac67dbbe814f14552a8607e4ade242f52156f6a4d773e0750a3",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-hurricane-combat.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-hurricane-details.png": {
+      "bytes": 142491,
+      "sha256": "cd67330e93f81572cc6f1f468221eea8371d3dc6038c2b08cf1bc2e2cc0e021a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-hurricane-details.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-hurricane-details.txt": {
+      "bytes": 361,
+      "sha256": "120e1fa0bd56c00f319ca6441f20405e4da5240953da1e7716de49e3423494ff",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-hurricane-details.txt"
+      }
+    },
+    "browser-verified-en-1280/en-1280-imported-2.json": {
+      "bytes": 4977,
+      "sha256": "2d73c8631df4cc23691cd8a1d207bef65c3789be5f27ea5583bf453a505f043c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-imported-2.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-rank1-after-4.json": {
+      "bytes": 4980,
+      "sha256": "e91fa0d5810562a968191ac553a9250489d565e8ac3ffb45cf1ec424e2165bc0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-rank1-after-4.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-rank1-before-3.json": {
+      "bytes": 4977,
+      "sha256": "888f5f36f9aeffb503f3dce4615e96b95a14d0915b9941ae0c5d59dc3192b0c2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-rank1-before-3.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-rank2-after-6.json": {
+      "bytes": 5003,
+      "sha256": "331dfd37604dbded161e45e98b3084f99c68905230b7e7b6eed4433d618b6bb6",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-rank2-after-6.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-rank2-before-5.json": {
+      "bytes": 5003,
+      "sha256": "ffb04c65a803896ef0e5f1a3c9413dac8bedd602c3c85d08e0c4972e1dcecc6e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-rank2-before-5.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-shock-wave-combat.json": {
+      "bytes": 5636,
+      "sha256": "6a5c0c8327a1c3649fdde1e182d713bbf1715dc2ecfeb3b2b2906728bc50f73e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-shock-wave-combat.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-shock-wave-combat.png": {
+      "bytes": 423009,
+      "sha256": "15e8022151be78429f34f4ee648f274cccba923fc1d58554433468d471559673",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-shock-wave-combat.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-shock-wave-details.png": {
+      "bytes": 140955,
+      "sha256": "5b1e61095951e09d0e45e0089db27026c3cf48860fa9784d3176a7b16e0b5317",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-shock-wave-details.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-shock-wave-details.txt": {
+      "bytes": 464,
+      "sha256": "5d0d7e29a25ff8e11ff2b96436764a064bc3b263217c67561dbccc26b45138fc",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-shock-wave-details.txt"
+      }
+    },
+    "browser-verified-en-1280/en-1280-synthetic-input.json": {
+      "bytes": 4243,
+      "sha256": "2e92ec4355ce30e881a6e021b5972de849e268e4948de477515787e8d86e393d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-synthetic-input.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-tornado-combat.json": {
+      "bytes": 2691,
+      "sha256": "2fa05b287d236feff18142a1a0b41ffb92ac065fc8a0461acadeda5816ae8b11",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-tornado-combat.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-tornado-combat.png": {
+      "bytes": 417080,
+      "sha256": "66bcb114dd0fe4dad5e3c158b11c9764ab8ae8f007f4b4fa531f8835ab763487",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-tornado-combat.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-tornado-details.png": {
+      "bytes": 132094,
+      "sha256": "573d249fb8c4a30c4108228d1284c61c05426651a416d2a22b160fb4b9910ab3",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-tornado-details.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-tornado-details.txt": {
+      "bytes": 377,
+      "sha256": "0922993e29a75572acd723f5304c51bf7f7d1a375e5ebabae26836ed056fc166",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-tornado-details.txt"
+      }
+    },
+    "browser-verified-en-1280/en-1280-twister-combat.json": {
+      "bytes": 3335,
+      "sha256": "ca3701c7fc55580ad427e7a65dac52b1d71143da2a2897992c2235dfb6e8d51d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-twister-combat.json"
+      }
+    },
+    "browser-verified-en-1280/en-1280-twister-combat.png": {
+      "bytes": 428059,
+      "sha256": "9a0d4f2f9e4c56e58f2ea3461033638c12304c76326dc294090c1617f1fa3f1b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-twister-combat.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-twister-details.png": {
+      "bytes": 133965,
+      "sha256": "31fc3923ad85775acb82e42b48c80d34dcae4fbb74053b686fdc8df819f3df15",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-twister-details.png"
+      }
+    },
+    "browser-verified-en-1280/en-1280-twister-details.txt": {
+      "bytes": 385,
+      "sha256": "0a297ae6d133a0de71cf602d6fd792eee3a020b22f11c51789f053d9deb8f095",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-1280/en-1280-twister-details.txt"
+      }
+    },
+    "browser-verified-en-360/browser-report.json": {
+      "bytes": 29118,
+      "sha256": "79e46b5c08e10ba00510588312837b0e6dce842dfea7703566d48e5060e47dbb",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/browser-report.json"
+      }
+    },
+    "browser-verified-en-360/en-360-arctic-blast-combat.json": {
+      "bytes": 3353,
+      "sha256": "5620b86deaa6fdfeb90afdfffbcc9971c827a857a8582e45109f3f4e01540ca5",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-arctic-blast-combat.json"
+      }
+    },
+    "browser-verified-en-360/en-360-arctic-blast-combat.png": {
+      "bytes": 38421,
+      "sha256": "2a71c40ccfd9875ab73e98fe9e7d3ae65d1448ba4cad42db93dec794b950b88e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-arctic-blast-combat.png"
+      }
+    },
+    "browser-verified-en-360/en-360-arctic-blast-details.png": {
+      "bytes": 46157,
+      "sha256": "d3b460e3b618bf84d1e8bc44299a746a782b49314b6d1c285a4fdfdd4fb5163f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-arctic-blast-details.png"
+      }
+    },
+    "browser-verified-en-360/en-360-arctic-blast-details.txt": {
+      "bytes": 443,
+      "sha256": "5f40415af422b5046e1a6072e23c5788d9e2d36a1a2fe64b3c9593cc65e3c093",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-arctic-blast-details.txt"
+      }
+    },
+    "browser-verified-en-360/en-360-fresh-1.json": {
+      "bytes": 3235,
+      "sha256": "96083eb0444e998350fd2b11497b581e433b6a442b7c50f4c4f3090b3f73bff5",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-fresh-1.json"
+      }
+    },
+    "browser-verified-en-360/en-360-fury-combat.json": {
+      "bytes": 2734,
+      "sha256": "8c52c748d62cf1cfcf9d309f01d28ce8e17b17530afac5ad779f33780565fd5c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-fury-combat.json"
+      }
+    },
+    "browser-verified-en-360/en-360-fury-combat.png": {
+      "bytes": 38617,
+      "sha256": "8a2f6dbee735c785070e14eda4b7b506e1140adfdc90fd78d6c9a62198479de4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-fury-combat.png"
+      }
+    },
+    "browser-verified-en-360/en-360-fury-details.png": {
+      "bytes": 51409,
+      "sha256": "cd70a89fad9fc4f6f9663769f1829976e0125481b571b2cc921d6462b6559f4f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-fury-details.png"
+      }
+    },
+    "browser-verified-en-360/en-360-fury-details.txt": {
+      "bytes": 638,
+      "sha256": "65e8ae4e0a2bf106dba14421c31904c42d9c4248467252e80f37b1c95f67ac77",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-fury-details.txt"
+      }
+    },
+    "browser-verified-en-360/en-360-hurricane-combat.json": {
+      "bytes": 4873,
+      "sha256": "02e94d303e989867be1089d9011d60d590861979f83ebdb7755aaac1e297e010",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-hurricane-combat.json"
+      }
+    },
+    "browser-verified-en-360/en-360-hurricane-combat.png": {
+      "bytes": 34758,
+      "sha256": "1bbd2063be883488090907f818f2b0eca7df63316854d712bf4a5e4c31d41af9",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-hurricane-combat.png"
+      }
+    },
+    "browser-verified-en-360/en-360-hurricane-details.png": {
+      "bytes": 42201,
+      "sha256": "8c04ad56eb2353f06bd2f90f53560578eb98e4b102b7ffc01152491e4ad787ce",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-hurricane-details.png"
+      }
+    },
+    "browser-verified-en-360/en-360-hurricane-details.txt": {
+      "bytes": 361,
+      "sha256": "120e1fa0bd56c00f319ca6441f20405e4da5240953da1e7716de49e3423494ff",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-hurricane-details.txt"
+      }
+    },
+    "browser-verified-en-360/en-360-imported-2.json": {
+      "bytes": 4977,
+      "sha256": "5888a6d61e8322ea64804a54552c053bf850deffaffc68ffbf721225fc5e6f7d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-imported-2.json"
+      }
+    },
+    "browser-verified-en-360/en-360-rank1-after-4.json": {
+      "bytes": 4980,
+      "sha256": "c41221ed62cd36884af0fac328c0c2f2da3f55e8e5d3614f7c80dc501a55ec6b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-rank1-after-4.json"
+      }
+    },
+    "browser-verified-en-360/en-360-rank1-before-3.json": {
+      "bytes": 4977,
+      "sha256": "a9be068cb20604dc5b77dc81731276473228880f3e2e5ad411fdfdf9b59fcc36",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-rank1-before-3.json"
+      }
+    },
+    "browser-verified-en-360/en-360-rank2-after-6.json": {
+      "bytes": 5003,
+      "sha256": "ff41452eb185886ffc1a32d6186dfc8f0d5557eb5225aba62476623270f6322a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-rank2-after-6.json"
+      }
+    },
+    "browser-verified-en-360/en-360-rank2-before-5.json": {
+      "bytes": 5003,
+      "sha256": "55587358a9def5fd61064cba7057c79c03f807c7f7be35479ac4c584c40a22bd",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-rank2-before-5.json"
+      }
+    },
+    "browser-verified-en-360/en-360-shock-wave-combat.json": {
+      "bytes": 5356,
+      "sha256": "ac1d749a8358e05ab5bb14917bd41d24e2f08ebddd65dd0f2480c6b7ac94ba35",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-shock-wave-combat.json"
+      }
+    },
+    "browser-verified-en-360/en-360-shock-wave-combat.png": {
+      "bytes": 34906,
+      "sha256": "7e6fe6f8c252028bea45d19bfb459218f54ef7d24363912e68f03d5d86ef09fc",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-shock-wave-combat.png"
+      }
+    },
+    "browser-verified-en-360/en-360-shock-wave-details.png": {
+      "bytes": 48132,
+      "sha256": "d5a1bf6d226c6b06444106c30149d839da8804ff74f403cb449fb67301e0c4de",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-shock-wave-details.png"
+      }
+    },
+    "browser-verified-en-360/en-360-shock-wave-details.txt": {
+      "bytes": 464,
+      "sha256": "5d0d7e29a25ff8e11ff2b96436764a064bc3b263217c67561dbccc26b45138fc",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-shock-wave-details.txt"
+      }
+    },
+    "browser-verified-en-360/en-360-synthetic-input.json": {
+      "bytes": 4243,
+      "sha256": "f2082eb74b2372fa5f2948b65369a6a74bbad444f51c42212be8cbaba53dff46",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-synthetic-input.json"
+      }
+    },
+    "browser-verified-en-360/en-360-tornado-combat.json": {
+      "bytes": 2837,
+      "sha256": "08d82e278a175d08aa2583bf7f0b212cf969fe2cf1318621f160995255dab151",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-tornado-combat.json"
+      }
+    },
+    "browser-verified-en-360/en-360-tornado-combat.png": {
+      "bytes": 38822,
+      "sha256": "e70f525e3c855b26941f291dc4e502ba26d3671747dcc8cdac790ff00ae8da39",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-tornado-combat.png"
+      }
+    },
+    "browser-verified-en-360/en-360-tornado-details.png": {
+      "bytes": 43344,
+      "sha256": "0a2a6d5d2046a851adab1f93e4ef991da3d54de156afe80ca4d4be835432ad23",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-tornado-details.png"
+      }
+    },
+    "browser-verified-en-360/en-360-tornado-details.txt": {
+      "bytes": 377,
+      "sha256": "0922993e29a75572acd723f5304c51bf7f7d1a375e5ebabae26836ed056fc166",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-tornado-details.txt"
+      }
+    },
+    "browser-verified-en-360/en-360-twister-combat.json": {
+      "bytes": 3336,
+      "sha256": "34d30f0909227a9ea0037524ae0c4f647463995265bc4a4f3f2ec9e8f56f743f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-twister-combat.json"
+      }
+    },
+    "browser-verified-en-360/en-360-twister-combat.png": {
+      "bytes": 38781,
+      "sha256": "0a431cf80ebdd8360788e5c8c56d2bbc35de899e0a3bb4f888d06df50d8abe89",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-twister-combat.png"
+      }
+    },
+    "browser-verified-en-360/en-360-twister-details.png": {
+      "bytes": 44008,
+      "sha256": "edaa6694606314c0f3deecb9902599740465736d39ba4dc483731acb3a003b64",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-twister-details.png"
+      }
+    },
+    "browser-verified-en-360/en-360-twister-details.txt": {
+      "bytes": 385,
+      "sha256": "0a297ae6d133a0de71cf602d6fd792eee3a020b22f11c51789f053d9deb8f095",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-en-360/en-360-twister-details.txt"
+      }
+    },
+    "browser-verified-zh-CN-1280/browser-report.json": {
+      "bytes": 30627,
+      "sha256": "c99fd2df616c353ff707c7dad8fd1fd2186fc78e987ca02ca3061a163e04bf61",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/browser-report.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-arctic-blast-combat.json": {
+      "bytes": 3573,
+      "sha256": "adfde3b1fc33b7389947d6b4a01285f38d736cb32db4f1dcd504eda648da65eb",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-arctic-blast-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-arctic-blast-combat.png": {
+      "bytes": 415955,
+      "sha256": "e173b644a42195248a4ee614eee81f9eb88f0b1447c53c03374558478469fe69",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-arctic-blast-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-arctic-blast-details.png": {
+      "bytes": 137200,
+      "sha256": "d23ae81d0a2f590a0c848b435f8ac4c692b0f82caab9b0f2c8cf5ec6176b0ac1",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-arctic-blast-details.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-arctic-blast-details.txt": {
+      "bytes": 447,
+      "sha256": "01f86e1c995b482e9f65d36a896e9197483621db1166ae5a5185fec244841521",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-arctic-blast-details.txt"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-fresh-1.json": {
+      "bytes": 3238,
+      "sha256": "74f91192c942d94b493590edc54d51c8cdb27585d1007c0565386c505fe13449",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-fresh-1.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-fury-combat.json": {
+      "bytes": 2856,
+      "sha256": "9ebc2149ee5d53e4971b65ce1cbad81750c3d3a5e6dbf7af2b2ae98a8ac1c788",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-fury-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-fury-combat.png": {
+      "bytes": 416698,
+      "sha256": "44116b9c106b6e162e24f6b872cf6780674cc8634c8ce77575848f60524a11b1",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-fury-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-fury-details.png": {
+      "bytes": 150175,
+      "sha256": "17586a9db08199be53f6ec831cd0989d583ad5c87cc90f8ec9e2dc5d3d76c189",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-fury-details.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-fury-details.txt": {
+      "bytes": 653,
+      "sha256": "bf82e9891308569026d339775def8b9f96b7ff017a95bb81575a8309c88d176d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-fury-details.txt"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-hurricane-combat.json": {
+      "bytes": 5323,
+      "sha256": "3049be6a481f5eee9c2eaef091776eed62d593d2141f0ac641b6d0d954579600",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-hurricane-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-hurricane-combat.png": {
+      "bytes": 437023,
+      "sha256": "de5a2c35d597b05271e6a3577e055e41c7832a65d61cf9d0d60c375d3987fef1",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-hurricane-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-hurricane-details.png": {
+      "bytes": 145787,
+      "sha256": "6ee0a5af0ecfb53d7649cc0bef635684f16f20eef6d8c130bd7775b6cd2e736c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-hurricane-details.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-hurricane-details.txt": {
+      "bytes": 403,
+      "sha256": "c3d6f1c238578929ec213da43dd0317cad76e78e3f5b5c9dcba55f3c3c797adb",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-hurricane-details.txt"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-imported-2.json": {
+      "bytes": 4980,
+      "sha256": "290a82d5066f3e9ea55ff61ed34200722a3635a051b1681eabb6673304dc63f4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-imported-2.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-rank1-after-4.json": {
+      "bytes": 4983,
+      "sha256": "18c1dabcb7e196052edaa128f3d12775300b740621a49e44805c0378260be8f3",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-rank1-after-4.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-rank1-before-3.json": {
+      "bytes": 4980,
+      "sha256": "18fa1fc521d1c63336a7a1d0c3fd0e0435d09602b48526f104502a79fba02e27",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-rank1-before-3.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-rank2-after-6.json": {
+      "bytes": 5006,
+      "sha256": "c79101592806e07643ae4282ec99ae5d5dd7820e0cc635a70a8c2da239da91f7",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-rank2-after-6.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-rank2-before-5.json": {
+      "bytes": 5006,
+      "sha256": "790812201031f8bfe3b5ecd01788ab054b53562e578232991afd4502b02ca255",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-rank2-before-5.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-shock-wave-combat.json": {
+      "bytes": 5765,
+      "sha256": "3c29103796e9c4b017a0b7fd522897fbc75b81127f3835e442444110d69da6e7",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-shock-wave-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-shock-wave-combat.png": {
+      "bytes": 424832,
+      "sha256": "fedd09139fd958ecdebadca2a884033a0a10424a1e92425688c2c8415ff21b24",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-shock-wave-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-shock-wave-details.png": {
+      "bytes": 138648,
+      "sha256": "4ba0366efe1b866c6923a96b3309c961d96259f5109c393a3da2186b1444215b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-shock-wave-details.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-shock-wave-details.txt": {
+      "bytes": 440,
+      "sha256": "5cdf6ee155f33b25a916858f7cc86f7542a2f207fdf8dfc2c64096b60af9545b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-shock-wave-details.txt"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-synthetic-input.json": {
+      "bytes": 4246,
+      "sha256": "0f4e0c43c16a32ee0fe258a54164d474d1e4ba41f5ca60927de9c05575103391",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-synthetic-input.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-tornado-combat.json": {
+      "bytes": 2971,
+      "sha256": "a890459d53fb4a04c070f0eaeab58eef5a685a0f4acb660dccbbcadc2680f85e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-tornado-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-tornado-combat.png": {
+      "bytes": 422973,
+      "sha256": "8056f66c8a7160578f04b2129d0bd4f806c8f62521fc7f10ac2d9313628180b0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-tornado-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-tornado-details.png": {
+      "bytes": 134335,
+      "sha256": "ae3ce84ae5e88b63da0ea49d562cfc19a05e1d3372d55fabb5216d64b1dc20aa",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-tornado-details.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-tornado-details.txt": {
+      "bytes": 362,
+      "sha256": "1684391a6828f42b9d70483213a37f723318af2144b7b8e6fa9d73a0e2bf7fc9",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-tornado-details.txt"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-twister-combat.json": {
+      "bytes": 3556,
+      "sha256": "00be9713fc1b22157cb6c7d7011e3c9ec150c4fc828fd6bad6bc3cb83720d72d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-twister-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-twister-combat.png": {
+      "bytes": 424004,
+      "sha256": "2e0cd9f50bbddd8827218fac2eb55897d3a6dcd69b7ed759097fd339959a8f93",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-twister-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-twister-details.png": {
+      "bytes": 134082,
+      "sha256": "71b822aae206e3ba7351b4edd67d625667101d64e085f8dad644921000b94bf4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-twister-details.png"
+      }
+    },
+    "browser-verified-zh-CN-1280/zh-CN-1280-twister-details.txt": {
+      "bytes": 375,
+      "sha256": "067cf71bee87997af7d1127a8a8cae387155d5adadf0e6ce419ef50a1a98981a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-1280/zh-CN-1280-twister-details.txt"
+      }
+    },
+    "browser-verified-zh-CN-360/browser-report.json": {
+      "bytes": 30931,
+      "sha256": "74508424411aa91dbe3610327aa5ba97922a2d28f482a6a3e142906b301f75d6",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/browser-report.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-arctic-blast-combat.json": {
+      "bytes": 3631,
+      "sha256": "75dcc3e1ac835a7b2341a53cbb4e02835e6ebc0ebf5e05af970672444f9e5a0d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-arctic-blast-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-arctic-blast-combat.png": {
+      "bytes": 38107,
+      "sha256": "a8f29d15ed69157b4ea396e4933f90fd68b356b3b7ac8b889327dbc5b75cef5c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-arctic-blast-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-arctic-blast-details.png": {
+      "bytes": 48684,
+      "sha256": "4623a2fb7f69f6f520907443778e05a208bca3d7b32ba0e94a4c34e28a33079f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-arctic-blast-details.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-arctic-blast-details.txt": {
+      "bytes": 447,
+      "sha256": "01f86e1c995b482e9f65d36a896e9197483621db1166ae5a5185fec244841521",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-arctic-blast-details.txt"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-fresh-1.json": {
+      "bytes": 3238,
+      "sha256": "27059f05d8fee3e7bdfd37f14dfb0d8a6fd07a899c3eef45bfaf565abea6f471",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-fresh-1.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-fury-combat.json": {
+      "bytes": 2851,
+      "sha256": "24568f63406aaa6661e4db55b183c8150034fe6d4592f02d37d30a69ca01b42a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-fury-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-fury-combat.png": {
+      "bytes": 38290,
+      "sha256": "800bf2e4f96c92cee63f0af55e3cb572e6bac77c9bf075a15ebf955e4c0d2916",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-fury-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-fury-details.png": {
+      "bytes": 57208,
+      "sha256": "45190030627e1f05062449398b744056e01886674ead794afc3c466f4998a28b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-fury-details.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-fury-details.txt": {
+      "bytes": 653,
+      "sha256": "bf82e9891308569026d339775def8b9f96b7ff017a95bb81575a8309c88d176d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-fury-details.txt"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-hurricane-combat.json": {
+      "bytes": 5389,
+      "sha256": "38fa6575b7214a81444b0ed9ec2970e3d04aae1f1910f1d9ae82ed10dcebaa28",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-hurricane-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-hurricane-combat.png": {
+      "bytes": 38578,
+      "sha256": "4f0bdd8ac6f108617affd9d0a907347fdb49d8d374b5af35d62fdc38048661d7",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-hurricane-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-hurricane-details.png": {
+      "bytes": 45821,
+      "sha256": "70ea942e6682ec785a6caa2c50736e06e3b0d53e8dd679389849bf57ee349750",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-hurricane-details.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-hurricane-details.txt": {
+      "bytes": 403,
+      "sha256": "c3d6f1c238578929ec213da43dd0317cad76e78e3f5b5c9dcba55f3c3c797adb",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-hurricane-details.txt"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-imported-2.json": {
+      "bytes": 4980,
+      "sha256": "a553e9018005c23b3892dc73ba0c7b5fafa485febb32686b6d3f75a4d8f18953",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-imported-2.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-rank1-after-4.json": {
+      "bytes": 4983,
+      "sha256": "5abc3d43027a395b81b097354fac4aaef729efe14239dd6325c24487e9016afe",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-rank1-after-4.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-rank1-before-3.json": {
+      "bytes": 4980,
+      "sha256": "be507f7587780cb203df9385fa2ce8030ee4e9659a03650b5a6fa790255af326",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-rank1-before-3.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-rank2-after-6.json": {
+      "bytes": 5006,
+      "sha256": "f868f47527a200942130e09b812f1cd2e156da913d739a6fbe7a8aa55447adad",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-rank2-after-6.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-rank2-before-5.json": {
+      "bytes": 5006,
+      "sha256": "1aac21220dd45c427ae51a709c8a40c17c0be0d563bfa182f30057524aa4d0d5",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-rank2-before-5.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-shock-wave-combat.json": {
+      "bytes": 5895,
+      "sha256": "ff95be54722f26ff90897e3590553f66677e671ab318ef3477bac04cbb72b8d8",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-shock-wave-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-shock-wave-combat.png": {
+      "bytes": 34540,
+      "sha256": "3606be70f6cf97d399e53e9767da900d267e65fabd38663bac1b2a7f70937e9a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-shock-wave-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-shock-wave-details.png": {
+      "bytes": 47598,
+      "sha256": "27c2fe0e4c1d964184596e0f1809bdd4d94e98990c5150417f35738c229a6914",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-shock-wave-details.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-shock-wave-details.txt": {
+      "bytes": 440,
+      "sha256": "5cdf6ee155f33b25a916858f7cc86f7542a2f207fdf8dfc2c64096b60af9545b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-shock-wave-details.txt"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-synthetic-input.json": {
+      "bytes": 4246,
+      "sha256": "09fbeaa12ad4287b19b02f9d9f35002c691a2a7c8088e5b95ee15d5113ab2f7a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-synthetic-input.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-tornado-combat.json": {
+      "bytes": 3078,
+      "sha256": "21fa7596faed457b75d3ddf1789a73ecea9b340129a74a62d57be66c7e43121c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-tornado-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-tornado-combat.png": {
+      "bytes": 38595,
+      "sha256": "c11ba11c9b6675f104303c64bb855e5b2209df079a6eb69839cada6d050daaf9",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-tornado-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-tornado-details.png": {
+      "bytes": 45098,
+      "sha256": "fc473f20eded10172fe876e0a5d1a705aff89fbe8f9e20236a03c7e532378c6e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-tornado-details.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-tornado-details.txt": {
+      "bytes": 362,
+      "sha256": "1684391a6828f42b9d70483213a37f723318af2144b7b8e6fa9d73a0e2bf7fc9",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-tornado-details.txt"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-twister-combat.json": {
+      "bytes": 3478,
+      "sha256": "e739639dbd0ba032096cd76abd16c6fd431334aa48f09a53a586c0372c9c48a5",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-twister-combat.json"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-twister-combat.png": {
+      "bytes": 38557,
+      "sha256": "e0912d48864e3fcf4ecb44ec38ed2a92495bac344782dcf15d735e99a67c4b2c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-twister-combat.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-twister-details.png": {
+      "bytes": 43345,
+      "sha256": "aa36a657afb9790f8af83d7ea28a784df3f64e3a9e128f92b79b631077de2ce2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-twister-details.png"
+      }
+    },
+    "browser-verified-zh-CN-360/zh-CN-360-twister-details.txt": {
+      "bytes": 375,
+      "sha256": "067cf71bee87997af7d1127a8a8cae387155d5adadf0e6ce419ef50a1a98981a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-verified-zh-CN-360/zh-CN-360-twister-details.txt"
+      }
+    },
+    "browser-zh-CN-1280.json": {
+      "bytes": 308,
+      "sha256": "f3026378fae6846d2841a6e3c061b16f2e83e59c4f67e039c44181df92cce632",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-zh-CN-1280.json"
+      }
+    },
+    "browser-zh-CN-1280.log": {
+      "bytes": 115,
+      "sha256": "a15673f95c5e502ba4eaa87627c3c81fbb7f8662a5a76373e2ae109eaf90af78",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-zh-CN-1280.log"
+      }
+    },
+    "browser-zh-CN-360.json": {
+      "bytes": 308,
+      "sha256": "f5659c67eb3f87d119bb489d9b5b31d37fbe543cc1d18f72d251a719c396ce87",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-zh-CN-360.json"
+      }
+    },
+    "browser-zh-CN-360.log": {
+      "bytes": 114,
+      "sha256": "b5730a0631245728c58b609037805b182c62fea8ad0782e638b17b1626517df0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "browser-zh-CN-360.log"
+      }
+    },
+    "build-corrected.json": {
+      "bytes": 369,
+      "sha256": "5be276c984687f468cee043fa9aea25080c8ed6433bd51317e99c6738873ccc3",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "build-corrected.json"
+      }
+    },
+    "build-corrected.log": {
+      "bytes": 2073,
+      "sha256": "8d89bdcd0104a592f01e4bce9a2a98e3f53224e3b97d3f54bef24bb307f50e2b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "build-corrected.log"
+      }
+    },
+    "build-final.json": {
+      "bytes": 369,
+      "sha256": "c10a595bd814acfc369747cf7ad822e3f990facb5124a05ec01f59a6702ff9dd",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "build-final.json"
+      }
+    },
+    "build-final.log": {
+      "bytes": 2074,
+      "sha256": "473ceeadbdb8395a78815d7b4e035489e5aeae0cfa5d780fa14c75ce171e44e9",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "build-final.log"
+      }
+    },
+    "build-precache-audit.json": {
+      "bytes": 301,
+      "sha256": "8566a4cd8665e93c5630623b9a950525183d0a55c3ae6a4eae90b737b7cde8e8",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "build-precache-audit.json"
+      }
+    },
+    "causal-before-nested-lint-fix.ts.txt": {
+      "bytes": 12947,
+      "sha256": "82f64018db3a75d19037a56e26d0deea9649e294f0fcf3f1b9d384dd571083f8",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "causal-before-nested-lint-fix.ts.txt"
+      }
+    },
+    "causal-green.json": {
+      "bytes": 332,
+      "sha256": "cb603de7236809751b5a62be6cf3ab5078d375f430f020ef202aa0ec213653c2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "causal-green.json"
+      }
+    },
+    "causal-green.log": {
+      "bytes": 11949,
+      "sha256": "b01b7989104a74049412e0e582d639046e56f04f8b31b90261dfd5c7e67078dd",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "causal-green.log"
+      }
+    },
+    "causal-metadata-green.json": {
+      "bytes": 332,
+      "sha256": "e82aa6c0242c565587cdf4994611317fe3a42ab0a1ec1c3648093f2b743f323c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "causal-metadata-green.json"
+      }
+    },
+    "causal-metadata-green.log": {
+      "bytes": 425,
+      "sha256": "3deb1d57d3da1235cd64eefe2e1d985e9aa2ba3578d789abcc53acefccfcc4ad",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "causal-metadata-green.log"
+      }
+    },
+    "causal-red.json": {
+      "bytes": 332,
+      "sha256": "e9f3a183f4398ed3190ce68f46fe1fcf616e1f1075ee9c39ba46d221e869eff5",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "causal-red.json"
+      }
+    },
+    "causal-red.log": {
+      "bytes": 11949,
+      "sha256": "a47220756284b27270f124b79eb12026fc91178a788aabdaeea5e30e74d72e5d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "causal-red.log"
+      }
+    },
+    "cleanup-owned.py": {
+      "bytes": 1979,
+      "sha256": "bab47bab1f31a193ed7588d68985e6ce49ec93fa28b7bdd2e3b9883fbdefc867",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "cleanup-owned.py"
+      }
+    },
+    "combat.ts.before-lint-fix.txt": {
+      "bytes": 103662,
+      "sha256": "5f04d1916029aaa273a69d6629bf6bc1ca3e3ad6d15859db4de75423ebf0b83e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "combat.ts.before-lint-fix.txt"
+      }
+    },
+    "committed-source-audit.py": {
+      "bytes": 1630,
+      "sha256": "abf0ca3aadfe528a95922a5ef7bf7c43596c3da30e7893a96efe6ebea851994e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "committed-source-audit.py"
+      }
+    },
+    "committed-source-proof.json": {
+      "bytes": 285485,
+      "sha256": "8e1ede7c80a81ed9b46069aed0aa8fb089052d34a57621ec4414f60d561ed5e4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "committed-source-proof.json"
+      }
+    },
+    "continuation-observer-notes.json": {
+      "bytes": 527,
+      "sha256": "a041599b05e11b3fd811b94bd8239fdb5fb80bcfdae7228c29fd0303e8510233",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "continuation-observer-notes.json"
+      }
+    },
+    "display-ui-green.json": {
+      "bytes": 354,
+      "sha256": "8ab73e19176f2efe5fe9aa10a3bbb82b6dfec71314c01084f179c21e958cfe14",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "display-ui-green.json"
+      }
+    },
+    "display-ui-green.log": {
+      "bytes": 444,
+      "sha256": "6adba49a02a6887712b671c5768378b1c9b9360fc8d92aeefe3356309e3bf7e3",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "display-ui-green.log"
+      }
+    },
+    "display-ui-red.json": {
+      "bytes": 353,
+      "sha256": "0acb74b03acda5d25bc357166be38197d0a958404ce03121e0dffffc7b4a33c3",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "display-ui-red.json"
+      }
+    },
+    "display-ui-red.log": {
+      "bytes": 45016,
+      "sha256": "8ff7c2dd47d17fc9ec35965b64795676f15e0f595eb6077810e93768b0c2ec56",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "display-ui-red.log"
+      }
+    },
+    "displayStats.druid-fury.test.ts.before-type-fix.txt": {
+      "bytes": 1044,
+      "sha256": "343f61f748d154b5f403854b43cb01611bcc58caa925e04436a31e80c4037b2e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "displayStats.druid-fury.test.ts.before-type-fix.txt"
+      }
+    },
+    "displayStats.druid-fury.test.ts.red.txt": {
+      "bytes": 876,
+      "sha256": "06cbfee164794a4fa26f62a2d799a303fee7e7636c622150dd33828b16a47ea2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "displayStats.druid-fury.test.ts.red.txt"
+      }
+    },
+    "druid-fury-schema.test.ts.red.txt": {
+      "bytes": 1736,
+      "sha256": "256da2c57cf437c1cc01c5bb92d72965ef8b6420e20789e859010f70ae27bdae",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "druid-fury-schema.test.ts.red.txt"
+      }
+    },
+    "druid-fury-wind.causal.test.ts.before-type-fix.txt": {
+      "bytes": 12489,
+      "sha256": "89a9ec2c6c5163e365c924d69b113a7a0dd3927a1f6811ff5f61a7154abb51ba",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "druid-fury-wind.causal.test.ts.before-type-fix.txt"
+      }
+    },
+    "druid-fury.test.ts.before-type-fix.txt": {
+      "bytes": 8285,
+      "sha256": "daf37a0602bd8bd115be93d4953e2c9dc7284e8763ae57efc9670cff1a56a215",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "druid-fury.test.ts.before-type-fix.txt"
+      }
+    },
+    "druid-fury.test.ts.red.txt": {
+      "bytes": 7120,
+      "sha256": "89abb58e3ca2936be9b53e8749dc9d2a94c9044a342331e6964fef43c71cbc7b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "druid-fury.test.ts.red.txt"
+      }
+    },
+    "engine-final-verified.json": {
+      "bytes": 236,
+      "sha256": "c71792f0e676b93dacf5de5e87ce7451dc6cf30879903b9f901b866a288c049d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "engine-final-verified.json"
+      }
+    },
+    "engine-final-verified.log": {
+      "bytes": 64998,
+      "sha256": "97a3b40e3a8d4d496afbb485040567478b34d9e4f1ea332934376d5e7f48973d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "engine-final-verified.log"
+      }
+    },
+    "engine-final.json": {
+      "bytes": 236,
+      "sha256": "01139705a7239c35c0a7d0fe9c07d45f7e5dddc988f568587b73de25aafae824",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "engine-final.json"
+      }
+    },
+    "engine-final.log": {
+      "bytes": 64990,
+      "sha256": "4b3c0b3cc3d8d2830f9538cd36e230c66fc710674a16bf7312978b0e09eabc38",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "engine-final.log"
+      }
+    },
+    "engine-with-shield.json": {
+      "bytes": 236,
+      "sha256": "97ba246aa53120060ef0e587e6e5a1568c18ab7986330903f0b5a88a36e33fea",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "engine-with-shield.json"
+      }
+    },
+    "engine-with-shield.log": {
+      "bytes": 64980,
+      "sha256": "70ed6174912b31fb169c8709199338c350673bd5a314f5c0c5037936df02697c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "engine-with-shield.log"
+      }
+    },
+    "final-focused-with-shield.json": {
+      "bytes": 561,
+      "sha256": "a8a681cc7e598fb744de22f2e867acda4eac038d846924b903f567e804ef1b4f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "final-focused-with-shield.json"
+      }
+    },
+    "final-focused-with-shield.log": {
+      "bytes": 745,
+      "sha256": "cf7df076377ef935542e34abb94793eecaf191eeaac940de98eeb9647de3f56b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "final-focused-with-shield.log"
+      }
+    },
+    "focused-final.json": {
+      "bytes": 562,
+      "sha256": "397633efdb35f99ed1246e398ba46a799e1826d717024c2c98812c186334ce7a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "focused-final.json"
+      }
+    },
+    "focused-final.log": {
+      "bytes": 748,
+      "sha256": "51dff4930c55f9f94dbf8335545a5b7eaff4f380e3a2abc08630944029cf88d0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "focused-final.log"
+      }
+    },
+    "format-lint-fixes.json": {
+      "bytes": 336,
+      "sha256": "fb9b45a01d4b0b31bf797953f086b642d58297842522ed8d6bf03a99faef7bad",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-lint-fixes.json"
+      }
+    },
+    "format-lint-fixes.log": {
+      "bytes": 114,
+      "sha256": "b14ea05526256f3b9a1dfe2afb5839e1cea9aaa641e336e1458c94e5b4b0acdc",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-lint-fixes.log"
+      }
+    },
+    "format-new.json": {
+      "bytes": 504,
+      "sha256": "01529b5fa35e38d372734bea5cccea735861d9d4235b3350de15bdf8b622f884",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-new.json"
+      }
+    },
+    "format-new.log": {
+      "bytes": 251,
+      "sha256": "67e3a98aeceaffb93ed3b23cee92d053bebe9bebf74b9d68c6f6ee2f25645574",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-new.log"
+      }
+    },
+    "format-schema-test.json": {
+      "bytes": 294,
+      "sha256": "ca5dc55d13c85125b4cba0ae66e531645e9797650f967e703595f9271c86c951",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-schema-test.json"
+      }
+    },
+    "format-schema-test.log": {
+      "bytes": 61,
+      "sha256": "346546408b4eb41209ce3f5632abb07429eba581e59fd0b525065d6c5ff5da14",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-schema-test.log"
+      }
+    },
+    "format-type-fixes.json": {
+      "bytes": 393,
+      "sha256": "7233fd442f9c2cc0cccdb90f11d21a2f9aa78a06be4f73e55945cf62ae9e827f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-type-fixes.json"
+      }
+    },
+    "format-type-fixes.log": {
+      "bytes": 156,
+      "sha256": "9aea528287ca50a99783490a0c269949de0d77ccbd2fd3f9712606891c729817",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "format-type-fixes.log"
+      }
+    },
+    "freeze.py": {
+      "bytes": 1429,
+      "sha256": "bf7addd0973913e57688deca0dbbdc0ffc8e138476e695c5e4efa44a006f0811",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "freeze.py"
+      }
+    },
+    "frozen-after.json": {
+      "bytes": 253006,
+      "sha256": "6592e136a3a349092eafd9fe8b1b8911c615588d61dd0d4ff1c9fd4c8df13345",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "frozen-after.json"
+      }
+    },
+    "frozen-before.json": {
+      "bytes": 253006,
+      "sha256": "6592e136a3a349092eafd9fe8b1b8911c615588d61dd0d4ff1c9fd4c8df13345",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "frozen-before.json"
+      }
+    },
+    "full.json": {
+      "bytes": 219,
+      "sha256": "5187f5a5d89a6d4a34e9dc5eca0e71d7cbded9f97ef03bd0205bdf7f0720f7f1",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "full.json"
+      }
+    },
+    "full.log": {
+      "bytes": 153500,
+      "sha256": "8be263a7949f9c8890def74d5d562313dbbcd94716a768343e963b81d2a76717",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "full.log"
+      }
+    },
+    "fury-before-shield-case.ts.txt": {
+      "bytes": 8388,
+      "sha256": "14476db983006f5f00c93a2d50058d9c38e427896ce58c5a19ef4e774dc919c7",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "fury-before-shield-case.ts.txt"
+      }
+    },
+    "inventory-before.csv": {
+      "bytes": 40547,
+      "sha256": "97b00192d264d10e10a848b02e96c3be44749886b4b43be27e91e5c6b4b27685",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "inventory-before.csv"
+      }
+    },
+    "inventory-publication-proof.json": {
+      "bytes": 747,
+      "sha256": "651f59b7a4f1cba2db3623130d25f8018cbdd315f66c91008016f407b5eb232a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "inventory-publication-proof.json"
+      }
+    },
+    "lint-corrected.json": {
+      "bytes": 230,
+      "sha256": "ea7e6d7cd9082063d0023f4890bb7f9cd736be9bec282babb441d04779fe3c18",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-corrected.json"
+      }
+    },
+    "lint-corrected.log": {
+      "bytes": 197,
+      "sha256": "1d794cfeef04eaab1ed8ee7ea5f0b59730eb0dd9ee93cdea1cf7f284b2c13e05",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-corrected.log"
+      }
+    },
+    "lint-final.json": {
+      "bytes": 230,
+      "sha256": "962e567d7870b9ad9127336ba9d17efdec390781af20b61dbd9a5c721357e75b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-final.json"
+      }
+    },
+    "lint-final.log": {
+      "bytes": 4292,
+      "sha256": "46c2fbaf33f30297645a69d78bdcbb53cafc11cfb66b2b2bcfd8abe2dcb4577d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-final.log"
+      }
+    },
+    "lint-scoped.json": {
+      "bytes": 590,
+      "sha256": "7ed181bf79ef2807ba89f7dc22824cd345e958f4d62376fc3cef1b05315558e6",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-scoped.json"
+      }
+    },
+    "lint-scoped.log": {
+      "bytes": 351,
+      "sha256": "ee52f3d36b105217649d13d8f43e589872769e22e84a5111c41b7b4c3d20b2a0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-scoped.log"
+      }
+    },
+    "lint-with-shield.json": {
+      "bytes": 343,
+      "sha256": "018d3e5c6ca260346147f34bc50a3647d00c28033d636ec857aceefd6ffa0e6a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-with-shield.json"
+      }
+    },
+    "lint-with-shield.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "lint-with-shield.log"
+      }
+    },
+    "local-commits.json": {
+      "bytes": 122,
+      "sha256": "98792b88598fb5d4cec3c3d11cedd6b554b14d2bc2ee60b0af57bccdcb56ae9a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "local-commits.json"
+      }
+    },
+    "native-and-boundaries.json": {
+      "bytes": 330,
+      "sha256": "8424abe457cfa06c18071909ecf0fb8d66ca12347d985679077984a58adb0a0b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-and-boundaries.json"
+      }
+    },
+    "native-and-boundaries.log": {
+      "bytes": 1793,
+      "sha256": "0bfc3b5256f5544650e7a30de00f9522fd1fdcd29c0439856c107ce9d93f7553",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-and-boundaries.log"
+      }
+    },
+    "native-green-result.json": {
+      "bytes": 8893,
+      "sha256": "010fb4409e9a0db9f455b215676496c475f84d16204cb1feac415b1ae52962d0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-green-result.json"
+      }
+    },
+    "native-red-result.json": {
+      "bytes": 6701,
+      "sha256": "4a1ecd1e5a4662ce3569a352dc514f8b9933ce0441351a082b6f043e637bf58c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-red-result.json"
+      }
+    },
+    "native-red.json": {
+      "bytes": 326,
+      "sha256": "2f38d5aa2add8bfb7d60ef20a6f8d2c9ac483eb54b52e530b68b6e30031931af",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-red.json"
+      }
+    },
+    "native-red.log": {
+      "bytes": 6701,
+      "sha256": "4a1ecd1e5a4662ce3569a352dc514f8b9933ce0441351a082b6f043e637bf58c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-red.log"
+      }
+    },
+    "native-repro-green.ts": {
+      "bytes": 2807,
+      "sha256": "bb3eef0074249eddf29e14197484805ef6a86ec3fd3a7e62d15366587e714936",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-repro-green.ts"
+      }
+    },
+    "native-repro.ts": {
+      "bytes": 2805,
+      "sha256": "afc61e761a14872f5a7c59b651cff314ad1f78df6b6696a674709024969901d3",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-repro.ts"
+      }
+    },
+    "native-wind-before-control-fixture-correction.test.ts.txt": {
+      "bytes": 9994,
+      "sha256": "c92e9f89943d6578fef3753000e8ea348985b47ffb936974c73bfa70eee67e9e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-wind-before-control-fixture-correction.test.ts.txt"
+      }
+    },
+    "native-wind-corrected.json": {
+      "bytes": 286,
+      "sha256": "acee7f9acf85ae6c218a25a37280d95822406a978f0dd303bf5afb6218e81c4e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-wind-corrected.json"
+      }
+    },
+    "native-wind-corrected.log": {
+      "bytes": 22561,
+      "sha256": "821d1b595f54a2fc307e248baa41827502cba49947c4f8f4987eae538995102d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-wind-corrected.log"
+      }
+    },
+    "native-wind-final.json": {
+      "bytes": 286,
+      "sha256": "c7588d7dbf38f84675860d7759aafc413683c79c24d2007ac7f4a8c9f896090f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-wind-final.json"
+      }
+    },
+    "native-wind-final.log": {
+      "bytes": 354,
+      "sha256": "b0ad7d168f74ea0fe726b4c3ea515e59c615a0db60f00863aadf5072d82b39d2",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-wind-final.log"
+      }
+    },
+    "native-wind-original.test.ts.txt": {
+      "bytes": 8373,
+      "sha256": "f04bd4df94cd5371ddde69ffe1b2e83c671c4c97b96560c3a250b14a8cf18f34",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "native-wind-original.test.ts.txt"
+      }
+    },
+    "next-readonly-findings.json": {
+      "bytes": 1027,
+      "sha256": "45e9e29ec713dc879f6ac7cc4e066a62f5e89ec63eed1f483c478fe371faee85",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "next-readonly-findings.json"
+      }
+    },
+    "original-native-green.json": {
+      "bytes": 331,
+      "sha256": "94b51cdb708b50e7b092dad30de1da573c519bbf2ff1812d462aaa0fc62f9c87",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "original-native-green.json"
+      }
+    },
+    "original-native-green.log": {
+      "bytes": 8893,
+      "sha256": "010fb4409e9a0db9f455b215676496c475f84d16204cb1feac415b1ae52962d0",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "original-native-green.log"
+      }
+    },
+    "ownership.json": {
+      "bytes": 247,
+      "sha256": "0a233d1b7d3a32f32c738bbb67f6b816a384c8dd5f20927c21678ab137c36177",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "ownership.json"
+      }
+    },
+    "pre-lint-build-hashes.json": {
+      "bytes": 101673,
+      "sha256": "eee78d2432debebda9c225af9b98d9f9730a2a4442e1bf444b978844ba1cd331",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "pre-lint-build-hashes.json"
+      }
+    },
+    "preview-closed.json": {
+      "bytes": 79,
+      "sha256": "677e5c22034679163abbd09eb72da9e7a08a73643ac1df72cae7d0a20be6e371",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "preview-closed.json"
+      }
+    },
+    "prior-archive-evidence.py": {
+      "bytes": 3505,
+      "sha256": "330a0423593ca2e0ce3d238332a4a45422857ab31ff904eb7886beca16a5bfa4",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "prior-archive-evidence.py"
+      }
+    },
+    "prior-audit-browser.py": {
+      "bytes": 2851,
+      "sha256": "083de69b4bc7d2dd2036f61b603d9df8de9aa8158ed430602249d3370c98196e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "prior-audit-browser.py"
+      }
+    },
+    "prior-browser-current.cjs": {
+      "bytes": 9737,
+      "sha256": "919471b19e0c1f936d3fe6cd9f98ad590569bcc067297e8f1351c599ba66257d",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "prior-browser-current.cjs"
+      }
+    },
+    "prior-committed-source-audit.py": {
+      "bytes": 1643,
+      "sha256": "93568d042e46167228381b077ef7031044aa691581c73da8c79e129c7ded74b9",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "prior-committed-source-audit.py"
+      }
+    },
+    "prior-freeze.py": {
+      "bytes": 1429,
+      "sha256": "bf7addd0973913e57688deca0dbbdc0ffc8e138476e695c5e4efa44a006f0811",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "prior-freeze.py"
+      }
+    },
+    "prior-serve.py": {
+      "bytes": 706,
+      "sha256": "7ed2b8678a2cc12a02df446b47c77f65c246d27e79d09489714b48bd3293b134",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "prior-serve.py"
+      }
+    },
+    "publication-command.json": {
+      "bytes": 309,
+      "sha256": "189de3f9c4d5ca805270b6cc9ab890939d502b799162043e375cc29d005b0f89",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "publication-command.json"
+      }
+    },
+    "publication-command.log": {
+      "bytes": 575,
+      "sha256": "fc23702889c07c8c7cb766355bbf1163892d0ad9d2bde49f80ff6f57a86a6c1e",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "publication-command.log"
+      }
+    },
+    "publication-syntax-failure.json": {
+      "bytes": 342,
+      "sha256": "792f4f0e9571ef08563cf20069a236e71c4fe5504d7f702cba1087ba451b41a3",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "publication-syntax-failure.json"
+      }
+    },
+    "publish-results-before-quote-fix.py.txt": {
+      "bytes": 14444,
+      "sha256": "b591e601b79e816335c969d7ef4ab1bfda7a7344e42c3bc7aa5d9948c17c0c2a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "publish-results-before-quote-fix.py.txt"
+      }
+    },
+    "publish-results.py": {
+      "bytes": 14445,
+      "sha256": "1148a5a5bd141cdf7b4eb34b2daa635d54e0a14555aee29de0a95afd575c7aa9",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "publish-results.py"
+      }
+    },
+    "python-playwright-unavailable.json": {
+      "bytes": 199,
+      "sha256": "9121b2b50edcea13ea364331d2be5f118b360216a7ade489a272deea9780ff3f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "python-playwright-unavailable.json"
+      }
+    },
+    "red-input-hashes.json": {
+      "bytes": 538,
+      "sha256": "4c714ae5a5752435fe06ca62a1a79cc3d1b1ea837138d0a2790f57716d0e441a",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "red-input-hashes.json"
+      }
+    },
+    "run.py": {
+      "bytes": 716,
+      "sha256": "5b4aa743f837643d012697def88abc2a31f01721228e0c13b79821b2351a089c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "run.py"
+      }
+    },
+    "schema-edit-before-write-failure.json": {
+      "bytes": 217,
+      "sha256": "d85d67c027c3c52e1961d3723be3de8942617c0b1d4676b41d5fa85a83bcd6e7",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "schema-edit-before-write-failure.json"
+      }
+    },
+    "serve.py": {
+      "bytes": 706,
+      "sha256": "dddc673540fc6e83c57a3e03e02cd09ed744c92dc77a467b5f77938b2744ed10",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "serve.py"
+      }
+    },
+    "server-owner.json": {
+      "bytes": 393,
+      "sha256": "7f5befad295c39a6c6f0bbea6964edef23480ce442d7c16900a270946f7cdf87",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "server-owner.json"
+      }
+    },
+    "server-stop-request.json": {
+      "bytes": 169,
+      "sha256": "a4156802239ce5d6911691812ae8ffb866efd414566b1df2be0a1edae0619b4c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "server-stop-request.json"
+      }
+    },
+    "server-terminal.json": {
+      "bytes": 27,
+      "sha256": "e0e0b4431ec0de524d072ba19efe0687ba70fa7174452af45f94ec98139a0f0f",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "server-terminal.json"
+      }
+    },
+    "server.log": {
+      "bytes": 39,
+      "sha256": "73273c6d2927c0fbd3655661a658ceb4228a505f2e47a27e19ae4f69ac98c65c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "server.log"
+      }
+    },
+    "types-corrected.json": {
+      "bytes": 234,
+      "sha256": "1fd1d6dce368dfebbf86ee105797535816c8283d1cd3e370e3c43266b896fe3c",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-corrected.json"
+      }
+    },
+    "types-corrected.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-corrected.log"
+      }
+    },
+    "types-final-verified.json": {
+      "bytes": 234,
+      "sha256": "62791342e77f08169fb94811267142847dbb9458ad97a34eac968033d2b8504b",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-final-verified.json"
+      }
+    },
+    "types-final-verified.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-final-verified.log"
+      }
+    },
+    "types-final.json": {
+      "bytes": 233,
+      "sha256": "204de25078af841fab62a1b4d92b9ea3b6b94f5fdffb892deff3de5edb2a3305",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-final.json"
+      }
+    },
+    "types-final.log": {
+      "bytes": 10807,
+      "sha256": "4a74d065a4a760d700b8b42ef847301d5fe49693001c1a2f12d81a81da017487",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-final.log"
+      }
+    },
+    "types-with-shield.json": {
+      "bytes": 234,
+      "sha256": "3ccc2f76bcfe9e34f7d3456e9238f2f5d8ad1b3a90fe595a97be93583cd59aac",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-with-shield.json"
+      }
+    },
+    "types-with-shield.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "types-with-shield.log"
+      }
+    },
+    "visual-author-review.json": {
+      "bytes": 1090,
+      "sha256": "5e14d9e976694114a174b1675450b383de01ca82e3bbfb2e39a3c7cdf5de45b1",
+      "storage": {
+        "archive": "raw.tar.gz",
+        "member": "visual-author-review.json"
+      }
+    }
+  },
+  "archiveSha256": "9a7c1f2ed2906b820835df0c571649860b7d671b06fc7fc57e29d228551200da",
+  "archiveBytes": 8170247,
+  "largeTraceAttachments": [],
+  "terminalReceipts": {
+    "attachment-audit-command.json": {
+      "argv": [
+        "python3",
+        "audit-browser.py"
+      ],
+      "exit": 0,
+      "seconds": 0.052,
+      "finished": "2026-10-25T08:32:18.024040+00:00"
+    },
+    "browser-en-1280.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fury-295j1qf_/browser-current.cjs"
+      ],
+      "exit": 0,
+      "seconds": 40.454,
+      "finished": "2026-10-25T08:30:54.184910+00:00"
+    },
+    "browser-en-360.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fury-295j1qf_/browser-current.cjs"
+      ],
+      "exit": 0,
+      "seconds": 37.889,
+      "finished": "2026-10-25T08:31:48.444033+00:00"
+    },
+    "browser-helper-help.json": {
+      "argv": [
+        "python3",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--help"
+      ],
+      "exit": 0,
+      "seconds": 0.037,
+      "finished": "2026-10-25T08:22:24.836065+00:00"
+    },
+    "browser-zh-CN-1280.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fury-295j1qf_/browser-current.cjs"
+      ],
+      "exit": 0,
+      "seconds": 41.741,
+      "finished": "2026-10-25T08:31:52.295163+00:00"
+    },
+    "browser-zh-CN-360.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fury-295j1qf_/browser-current.cjs"
+      ],
+      "exit": 0,
+      "seconds": 38.322,
+      "finished": "2026-10-25T08:31:48.876705+00:00"
+    },
+    "build-corrected.json": {
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fury-295j1qf_/production",
+        "--emptyOutDir"
+      ],
+      "exit": 0,
+      "seconds": 11.942,
+      "finished": "2026-10-25T08:25:44.562483+00:00"
+    },
+    "build-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fury-295j1qf_/production",
+        "--emptyOutDir"
+      ],
+      "exit": 0,
+      "seconds": 15.866,
+      "finished": "2026-10-25T08:23:35.426839+00:00"
+    },
+    "causal-green.json": {
+      "argv": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/druid-fury.test.ts",
+        "src/engine/skills/druid-fury-schema.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 2.583,
+      "finished": "2026-10-25T08:16:23.178961+00:00"
+    },
+    "causal-metadata-green.json": {
+      "argv": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/druid-fury.test.ts",
+        "src/engine/skills/druid-fury-schema.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 3.471,
+      "finished": "2026-10-25T08:16:42.759326+00:00"
+    },
+    "causal-red.json": {
+      "argv": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/druid-fury.test.ts",
+        "src/engine/skills/druid-fury-schema.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 2.639,
+      "finished": "2026-10-25T08:15:34.148356+00:00"
+    },
+    "display-ui-green.json": {
+      "argv": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/displayStats.druid-fury.test.ts",
+        "src/features/skills/SkillsScreen.druid-fury.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 7.617,
+      "finished": "2026-10-25T08:18:42.193651+00:00"
+    },
+    "display-ui-red.json": {
+      "argv": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/displayStats.druid-fury.test.ts",
+        "src/features/skills/SkillsScreen.druid-fury.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 7.49,
+      "finished": "2026-10-25T08:17:43.386440+00:00"
+    },
+    "engine-final-verified.json": {
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "exit": 0,
+      "seconds": 86.672,
+      "finished": "2026-10-25T08:30:52.355758+00:00"
+    },
+    "engine-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "exit": 0,
+      "seconds": 83.474,
+      "finished": "2026-10-25T08:24:19.219769+00:00"
+    },
+    "engine-with-shield.json": {
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "exit": 0,
+      "seconds": 80.664,
+      "finished": "2026-10-25T08:32:50.680891+00:00"
+    },
+    "final-focused-with-shield.json": {
+      "argv": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/druid-fury.test.ts",
+        "src/engine/skills/druid-fury-schema.test.ts",
+        "src/engine/skills/displayStats.druid-fury.test.ts",
+        "src/stores/druid-fury-wind.causal.test.ts",
+        "src/features/skills/SkillsScreen.druid-fury.test.tsx",
+        "src/features/skills/SkillsScreen.druid-sustain.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 9.095,
+      "finished": "2026-10-25T08:31:03.931848+00:00"
+    },
+    "focused-final.json": {
+      "argv": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/druid-fury.test.ts",
+        "src/engine/skills/druid-fury-schema.test.ts",
+        "src/engine/skills/displayStats.druid-fury.test.ts",
+        "src/stores/druid-fury-wind.causal.test.ts",
+        "src/features/skills/SkillsScreen.druid-fury.test.tsx",
+        "src/features/skills/SkillsScreen.druid-sustain.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 12.697,
+      "finished": "2026-10-25T08:23:08.445391+00:00"
+    },
+    "format-lint-fixes.json": {
+      "argv": [
+        "node_modules/.bin/prettier",
+        "--write",
+        "src/engine/combat/druid-fury.test.ts",
+        "src/stores/druid-fury-wind.causal.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 0.406,
+      "finished": "2026-10-25T08:25:31.380545+00:00"
+    },
+    "format-new.json": {
+      "argv": [
+        "node_modules/.bin/prettier",
+        "--write",
+        "src/engine/combat/druid-fury.test.ts",
+        "src/engine/skills/druid-fury-schema.test.ts",
+        "src/engine/skills/displayStats.druid-fury.test.ts",
+        "src/stores/druid-fury-wind.causal.test.ts",
+        "src/features/skills/SkillsScreen.druid-fury.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 0.446,
+      "finished": "2026-10-25T08:22:25.372837+00:00"
+    },
+    "format-schema-test.json": {
+      "argv": [
+        "node_modules/.bin/prettier",
+        "--write",
+        "src/engine/skills/druid-fury-schema.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 0.226,
+      "finished": "2026-10-25T08:22:55.681204+00:00"
+    },
+    "format-type-fixes.json": {
+      "argv": [
+        "node_modules/.bin/prettier",
+        "--write",
+        "src/engine/combat/druid-fury.test.ts",
+        "src/engine/skills/displayStats.druid-fury.test.ts",
+        "src/stores/druid-fury-wind.causal.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 0.417,
+      "finished": "2026-10-25T08:24:45.046494+00:00"
+    },
+    "full.json": {
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "seconds": 443.058,
+      "finished": "2026-10-25T08:40:25.601372+00:00"
+    },
+    "lint-corrected.json": {
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 109.673,
+      "finished": "2026-10-25T08:31:15.352532+00:00"
+    },
+    "lint-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 1,
+      "seconds": 101.923,
+      "finished": "2026-10-25T08:24:37.675551+00:00"
+    },
+    "lint-scoped.json": {
+      "argv": [
+        "node_modules/.bin/eslint",
+        "src/engine/combat/combat.ts",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/engine/combat/druid-fury.test.ts",
+        "src/engine/skills/druid-fury-schema.test.ts",
+        "src/engine/skills/displayStats.druid-fury.test.ts",
+        "src/stores/druid-fury-wind.causal.test.ts",
+        "src/features/skills/SkillsScreen.druid-fury.test.tsx",
+        "--max-warnings=0"
+      ],
+      "exit": 1,
+      "seconds": 9.809,
+      "finished": "2026-10-25T08:25:41.253300+00:00"
+    },
+    "lint-with-shield.json": {
+      "argv": [
+        "node_modules/.bin/eslint",
+        "src/engine/combat/druid-fury.test.ts",
+        "src/stores/druid-fury-wind.causal.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 9.983,
+      "finished": "2026-10-25T08:31:39.996322+00:00"
+    },
+    "native-and-boundaries.json": {
+      "argv": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/druid-fury-wind.causal.test.ts",
+        "src/engine/combat/druid-fury.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 6.708,
+      "finished": "2026-10-25T08:20:19.195639+00:00"
+    },
+    "native-red.json": {
+      "argv": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fury-295j1qf_/native-repro.ts"
+      ],
+      "exit": 1,
+      "seconds": 4.703,
+      "finished": "2026-10-25T08:13:26.016131+00:00"
+    },
+    "native-wind-corrected.json": {
+      "argv": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/druid-fury-wind.causal.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 7.789,
+      "finished": "2026-10-25T08:21:32.221408+00:00"
+    },
+    "native-wind-final.json": {
+      "argv": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/druid-fury-wind.causal.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 6.628,
+      "finished": "2026-10-25T08:22:12.998045+00:00"
+    },
+    "original-native-green.json": {
+      "argv": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fury-295j1qf_/native-repro-green.ts"
+      ],
+      "exit": 0,
+      "seconds": 5.98,
+      "finished": "2026-10-25T08:21:30.411616+00:00"
+    },
+    "publication-command.json": {
+      "argv": [
+        "python3",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fury-295j1qf_/publish-results.py"
+      ],
+      "exit": 0,
+      "seconds": 0.069,
+      "finished": "2026-10-25T08:40:59.860383+00:00"
+    },
+    "types-corrected.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 34.982,
+      "finished": "2026-10-25T08:25:20.093511+00:00"
+    },
+    "types-final-verified.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 47.182,
+      "finished": "2026-10-25T08:30:12.862383+00:00"
+    },
+    "types-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 2,
+      "seconds": 49.93,
+      "finished": "2026-10-25T08:23:45.681455+00:00"
+    },
+    "types-with-shield.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 47.311,
+      "finished": "2026-10-25T08:32:17.324454+00:00"
+    }
+  },
+  "sourceCount": 1321,
+  "buildCount": 760,
+  "genuine": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "inventory": {
+    "total": 213,
+    "idsAndOrderPreserved": true,
+    "changedIds": [
+      "skills-druid-arctic-blast",
+      "skills-druid-tornado",
+      "skills-druid-hurricane",
+      "skills-druid-twister",
+      "skills-druid-shock-wave",
+      "skills-druid-fury"
+    ],
+    "beforeSha256": "97b00192d264d10e10a848b02e96c3be44749886b4b43be27e91e5c6b4b27685",
+    "afterSha256": "645976855fb5e2104b54ee585204fedd5c4f7d4f2b8036b41ea4b96e7d517eea",
+    "counts": {
+      "unverified": 129,
+      "bounded-functional;independent-acceptance-open": 79,
+      "bounded-engine-functional;independent-acceptance-open": 1,
+      "bounded-functional;earned-balance-open": 3,
+      "review-needed": 1
+    },
+    "scope": "Six bounded local skill credits only; independent and earned acceptance open."
+  },
+  "independentAcceptance": false,
+  "earnedCampaignActions": false
+}

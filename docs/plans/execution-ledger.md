@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D04 Fury/wind/control / BUG194 | locally fixed/verified; independent and earned acceptance open | Runtime `f17fd2b`, presentation `b0c8ee5`; explicit provisional five independent Fury attempts in original first-two pool, one payment/action/CD and per-strike settlement/stops. Five wind/control attacks retain existing data with truthful bilingual grid/status/pulse/form copy. Full13607/596/two existing skips (443.058s), engine7069/249, focused104/6, types/lint/build/four-chunk bridge/precache PASS. Production4/4,24 actual attacks/eight exact five-domain Continue pairs/20geometry/48screenshots/eight inspected. [Evidence](evidence/d04-druid-fury-wind.md);1321source/760build/Git/genuine hashes exact, committed source blobs checked. Exactly six credits:213 IDs/order,129unverified/82bounded-functional/one engine-only/one review-needed. Synthetic proof only; genuineL33/next402 unchanged/Baal uncleared. Independent/earned balance, C2-C4/fullG0-G7/privatev1 remain open; root sole writer, local only, umbrella goal/worktree active. |
 | D04 Feral Rage/Hunger / BUG193 | locally fixed/verified; independent and earned acceptance open | Runtime `7b7f3b2`, presentation `801d97f`; explicit provisional10%/50% actual-HP recovery, Feral5% self-speed/cap5/8s and primary10% Bleed. Existing reflection/death order, native authority/rebase/current-configuration replay and Save22 preserved. Final full13519/591/two existing skips, engine7027/246, types/lint/build/bridge PASS; production4/4/eight positive recovery attacks/eight exact five-domain Continue pairs/20geometry/16screenshots/eight inspected. [Evidence](evidence/d04-druid-sustain.md); all1316source/760build hashes, HEAD/Git/genuine exact through482.649s full; committed source blobs checked. Real introduced rounding and incorrect replay/fixture assumptions corrected; all original failures retained. Exactly two credits:213 IDs/order,135unverified/76bounded-functional/one engine-only/one review-needed. Synthetic proof only; genuineL33/next402 unchanged/Baal uncleared. Cleanup/retention receipts accompany raw packet. Independent/earned balance, C2-C4/fullG0-G7/privatev1 remain open; root sole writer, local only, umbrella goal/worktree active. |
 | D04 Maul/Rabies/Fire Claws / BUG192 | locally fixed/verified; independent and earned acceptance open | Runtime `3ab831d` authors explicit10% Bleed/5% Poison/10% Burn using the unchanged adapter/status runtime. Presentation `91056a5` explains bilingual current/next rules, Maul form preservation and actual Rabies death chains. Final full13405/582/two existing skips, engine6955/242, types/lint/build/bridge PASS; production4/4,12 attack entries, eight exact five-domain Continue pairs,20geometry and16inspected screenshots. [Evidence](evidence/d04-druid-attack-dot.md); all1305 source/760 build hashes, HEAD/Git/genuine exact through653.485s full, actual committed HEAD blobs checked. Introduced unsupported duration-display capability corrected after isolated RED; superseded full and interrupted browser failures retained. Exactly three credits:213 IDs/order,137unverified/74bounded-functional/one engine-only/one review-needed.264raw files/37terminal receipts byte-verified;2545owned disposable files removed, scratch absent/4478closed/cleanup[]. Synthetic fixtures; genuineL33/next402 unchanged/Baal uncleared. Independent/earned balance, C2-C4/fullG0-G7/privatev1 remain open; local only, umbrella goal/worktree active. |
 | D05 Cyclone Armor / BUG191 | locally fixed/verified; independent and earned acceptance open | Runtime `ac9eb7e` applies authored paid reduction/resistance with source-bound wave carry; UI `568b833` adds bilingual current/next bonuses and separate prevention logs. Final full 13263/577/two existing skips, engine 6858/239, types/lint/build/bridge PASS; production 4/4, eight exact five-domain Continue pairs, 20 geometry samples and eight inspected screenshots. [Evidence](evidence/d05-cyclone-armor.md); all 1300 source/760 build hashes, HEAD/Git/genuine digest exact through 477.114s full, committed blobs verified. Only one credit: 213 IDs, 140 unverified/71 bounded-functional/one engine-only/one review-needed. 153 raw files/30 command receipts byte-verified; 1673 exact disposable files removed, scratch absent/4478 closed/cleanup []. Synthetic fixtures; genuine L33/next402 unchanged, Baal uncleared. Independent/earned balance, C2–C4/full G0–G7/private v1 remain open; local only, umbrella goal/worktree active. |
@@ -11705,3 +11706,27 @@ L33/XP149261/23682gear/nextNormal402/Nightmare0/Baal uncleared. C0/C1 retain nar
 acceptance; C2-C4/fullG0-G7/all-class earned builds/pacing/economy/endgame and
 independent review remain open. No campaign or remote action. Root sole writer;
 umbrella goal/branch/worktree continue.
+
+
+## D04 — Fury repeated attacks and five wind/control skills / BUG194
+
+Runtime `f17fd2b` introduces the missing JSON-owned bounded independent
+sequence; presentation `b0c8ee5` explains actual per-strike/grid/control
+rules. Five wind/control attacks retain authored runtime data. Original native
+one-hit RED and all fixture/type/lint failures remain in the byte-verified
+[packet](evidence/d04-druid-fury-wind.md). Final full13607/596/two existing skips
+(443.058s), engine7069/249, types/lint/build/bridge/precache PASS. Production4/4,
+24attack entries, eight exact five-domain Continue pairs,20geometry samples,
+48screenshots/eight inspected. Synthetic fixtures and provisional five-strike
+tuning do not establish earned balance. All1321source/760build hashes, HEAD/Git
+and genuine digest stay exact; actual committed source blobs match.
+
+Exactly six credits:213 IDs/order preserved,129unverified/82bounded-functional/
+one engine-only/one review-needed. Genuine Ancients/Rite remainsL33/XP149261/
+23682gear/nextNormal402/Nightmare0/Baal uncleared. C0/C1 retain narrow acceptance;
+C2-C4/fullG0-G7/all-class earned builds/pacing/economy/endgame/independent QA and
+existing mobile/a11y/PWA/performance issues remain open. No campaign/remote
+action. Root sole writer; umbrella goal/branch/worktree remain active.
+
+Retention verified260raw files/37terminal receipts;1020exact task-owned files
+removed, scratch absent/PID423178 absent/4480closed/remaining[]/failures[].

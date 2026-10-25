@@ -28,6 +28,8 @@ shows each resolved attempt. No inserted enemy turn, separate resource charges,
 new clock, guaranteed total damage, healing or special immunity is introduced.
 Engine bounds reject malformed counts; only exact Fury may author this metadata
 in validated player data. Generic attacks with absent metadata remain unchanged.
+The schema/runtime accept only integer counts2–8 as a technical loop bound;
+the authored count is5. Fury cannot override its first-two pool with an AOE shape.
 
 Fury works in human, paid wolf or paid bear form after learning its existing
 full prerequisite chain. Like the preceding Maul/recovery contracts, learning a

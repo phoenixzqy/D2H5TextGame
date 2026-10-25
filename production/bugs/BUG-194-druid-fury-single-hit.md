@@ -1,7 +1,7 @@
 # BUG-194 — Resolve Fury as a real sequence of attacks
 
 Severity: High — the advertised repeated-attack mechanic has no runtime consumer.
-Status: Reproduced; local contract recorded, repair pending.
+Status: Locally repaired and verified; independent design/QA and earned balance remain open.
 Owners: engine-dev / content-designer / frontend-dev; root sole writer.
 
 ## Reproduction
@@ -35,10 +35,14 @@ Multiple targets do not establish a repeated attack sequence. No hit-count or
 sequence policy exists. A wording-only change would discard the advertised
 mechanic. Synthetic stats/holds do not establish earned viability or balance.
 
-The original reproduction script/result/log/terminal receipt are task-owned at
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fury-295j1qf_/`
-until the repair's evidence publication; root will archive them and remove the
-exact scratch after all consumers finish. No workaround, genuine campaign or
-remote action. Independent design/QA and earned balance remain open.
+The original reproduction script/result/log/terminal receipt are retained in
+[the repair evidence packet](../../docs/plans/evidence/d04-druid-fury-wind.md).
+The same assertions pass with a separate output path, preserving the RED result.
+No workaround, genuine campaign or remote action. Independent design/QA and earned balance remain open.
 
 Contract: [Fury and remaining Druid attacks](../../docs/plans/decisions/D04-druid-fury-wind-v1.md).
+
+Local repair `f17fd2b` and presentation `b0c8ee5` follow the linked
+provisional five-strike contract. Full13607/596/two existing skips, engine7069/249,
+types/lint/build/bridge and four production browser cases pass. No genuine
+campaign or remote action; independent/earned acceptance remains open.
