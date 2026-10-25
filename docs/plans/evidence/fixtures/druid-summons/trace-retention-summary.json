@@ -1,0 +1,46 @@
+[
+  {
+    "original": "browser-en-desktop-repaired/en-1280-failed-trace.zip",
+    "originalBytes": 34566057,
+    "originalSha256": "7340a80baa1801ca1192410c9b603897b0e519abece9ed687bbb4b08d7fdb29d",
+    "diagnostics": "browser-en-desktop-repaired/en-1280-failed-trace-diagnostics.zip",
+    "diagnosticsBytes": 121670,
+    "diagnosticsSha256": "3ce72cacf15e74d7824ff8abf7d6acb861902d4f5b2c29fe11e01b37d4ffb3d7",
+    "retained": 6,
+    "omitted": 1089,
+    "reason": "Preserve exact action/network/stack diagnostics and last screenshot per page, plus separate original failure PNG/log/source/receipt. Omit other trace JPEG frames from the retained packet. Original ZIP will be removed with verified task scratch cleanup; compact packet does not retain original ZIP bytes or full screenshot replay."
+  },
+  {
+    "original": "browser-final-en-360/en-360-failed-trace.zip",
+    "originalBytes": 35663939,
+    "originalSha256": "6177c22191f60116897cc59b769d2dd3be947382ad52a20720133cacca452951",
+    "diagnostics": "browser-final-en-360/en-360-failed-trace-diagnostics.zip",
+    "diagnosticsBytes": 130758,
+    "diagnosticsSha256": "b667ef906e8c886c2d82ba469edae6c5bb0041672cad1b00192306ca1c9929fa",
+    "retained": 5,
+    "omitted": 1123,
+    "reason": "Preserve exact action/network/stack diagnostics and last screenshot per page, plus separate original failure PNG/log/source/receipt. Omit other trace JPEG frames from the retained packet. Original ZIP will be removed with verified task scratch cleanup; compact packet does not retain original ZIP bytes or full screenshot replay."
+  },
+  {
+    "original": "browser-observed-en-360/en-360-failed-trace.zip",
+    "originalBytes": 35969084,
+    "originalSha256": "7f4d35eca3166d718a31c4c3abbd8bcf0d9c39c8bbfd8a41d76d5811dda13361",
+    "diagnostics": "browser-observed-en-360/en-360-failed-trace-diagnostics.zip",
+    "diagnosticsBytes": 132468,
+    "diagnosticsSha256": "5b3a9be909c65153bc7e4fb42d6d2e7af6a040025bd871b154593fb029efecdf",
+    "retained": 5,
+    "omitted": 1134,
+    "reason": "Preserve exact action/network/stack diagnostics and last screenshot per page, plus separate original failure PNG/log/source/receipt. Omit other trace JPEG frames from the retained packet. Original ZIP will be removed with verified task scratch cleanup; compact packet does not retain original ZIP bytes or full screenshot replay."
+  },
+  {
+    "original": "browser-resource-en-1280/en-1280-failed-trace.zip",
+    "originalBytes": 51125021,
+    "originalSha256": "a8268088e5f6efeb7f931b6614facadd30a5fb2ef8068e6817f27e9041e5fc50",
+    "diagnostics": "browser-resource-en-1280/en-1280-failed-trace-diagnostics.zip",
+    "diagnosticsBytes": 139190,
+    "diagnosticsSha256": "9ef98b995f62e624fe76ae6b20053a10ded21bc5c85788fbc05e691cec54d0ed",
+    "retained": 5,
+    "omitted": 1028,
+    "reason": "Preserve exact action/network/stack diagnostics and last screenshot per page, plus separate original failure PNG/log/source/receipt. Omit other trace JPEG frames from the retained packet. Original ZIP will be removed with verified task scratch cleanup; compact packet does not retain original ZIP bytes or full screenshot replay."
+  }
+]

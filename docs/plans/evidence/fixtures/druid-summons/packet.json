@@ -1,0 +1,98 @@
+{
+  "scope": "D06/BUG195 seven Druid summons; bounded local functionality, independent design/QA and earned balance open",
+  "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-summon-yiktbzny",
+  "archive": "raw.tar.gz",
+  "archiveBytes": 26133641,
+  "archiveSha256": "4d17b6d2bc30a83089ffa678038678d74127080fe06cdd9387dfbc54202135af",
+  "rawFiles": 551,
+  "rawBytes": 33182071,
+  "disposableFiles": 1524,
+  "disposableBytes": 240715895,
+  "terminalReceipts": 62,
+  "allArchivedBytesVerified": true,
+  "finalFull": {
+    "argv": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 473.146,
+    "finished": "2026-10-25T09:41:28.916859+00:00"
+  },
+  "finalFullTests": 13865,
+  "finalFullFiles": 605,
+  "existingSkipped": 2,
+  "committedSource": {
+    "head": "73731ba24a5ff7c365236c69ccc2a1c76b4026a8",
+    "sourceBlobs": 1334,
+    "mismatches": []
+  },
+  "serverOwners": [
+    {
+      "receipt": "browser-verified-en-1280-server-owner.json",
+      "pid": 502084,
+      "port": 4481,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-summon-yiktbzny/presentation-dist",
+      "stopped": true
+    },
+    {
+      "receipt": "browser-final-en-1280-server-owner.json",
+      "pid": 491361,
+      "port": 4481,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-summon-yiktbzny/presentation-dist",
+      "stopped": true
+    },
+    {
+      "receipt": "browser-verified-zh-CN-360-server-owner.json",
+      "pid": 505714,
+      "port": 4481,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-summon-yiktbzny/presentation-dist",
+      "stopped": true
+    },
+    {
+      "receipt": "browser-resource-en-1280-server-owner.json",
+      "pid": 498311,
+      "port": 4481,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-summon-yiktbzny/presentation-dist",
+      "stopped": true
+    },
+    {
+      "receipt": "browser-final-en-360-server-owner.json",
+      "pid": 493896,
+      "port": 4481,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-summon-yiktbzny/presentation-dist",
+      "stopped": true
+    },
+    {
+      "receipt": "browser-observed-en-360-server-owner.json",
+      "pid": 500803,
+      "port": 4481,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-summon-yiktbzny/presentation-dist",
+      "stopped": true
+    },
+    {
+      "receipt": "browser-verified-en-360-server-owner.json",
+      "pid": 503331,
+      "port": 4481,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-summon-yiktbzny/presentation-dist",
+      "stopped": true
+    },
+    {
+      "receipt": "browser-verified-zh-CN-1280-server-owner.json",
+      "pid": 504463,
+      "port": 4481,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-summon-yiktbzny/presentation-dist",
+      "stopped": true
+    },
+    {
+      "receipt": "browser-observed-en-1280-server-owner.json",
+      "pid": 499625,
+      "port": 4481,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-summon-yiktbzny/presentation-dist",
+      "stopped": true
+    }
+  ],
+  "port4481Closed": true,
+  "tracePolicy": "Original failed ZIP SHA/member maps retained, exact action/network/stack diagnostics and final frame per page retained in compact ZIPs. Other JPEG frames and original ZIP bytes omitted. Separate original failure screenshots, source variants, logs and terminal receipts retained. Original full ZIPs are disposable after byte-verified archive."
+}

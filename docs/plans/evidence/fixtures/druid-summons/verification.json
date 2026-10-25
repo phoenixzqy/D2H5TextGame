@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-25T09:43:48.461047+00:00",
+  "head": "73731ba24a5ff7c365236c69ccc2a1c76b4026a8",
+  "sourceBlobs": 1334,
+  "mismatches": [],
+  "buildFilesVerifiedBeforeRemoval": 760,
+  "rawArchiveFilesVerified": 551,
+  "rawArchiveSha256": "4d17b6d2bc30a83089ffa678038678d74127080fe06cdd9387dfbc54202135af",
+  "genuineDecompressedSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "serversStopped": true,
+  "port4481Closed": true,
+  "scope": "Local bounded functionality; independent/earned acceptance and full v1 remain open."
+}

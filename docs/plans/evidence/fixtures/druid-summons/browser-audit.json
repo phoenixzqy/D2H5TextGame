@@ -1,0 +1,267 @@
+{
+  "cases": [
+    {
+      "case": "en-1280",
+      "combatEntries": 7,
+      "geometry": 5,
+      "pageErrors": [],
+      "solarMana": {
+        "before": {
+          "mp": 50176,
+          "max": 50196,
+          "consumed": 0
+        },
+        "after": {
+          "mp": 50196,
+          "max": 50196,
+          "consumed": 1
+        },
+        "increase": 20
+      },
+      "serverPID": 502084,
+      "serverStopped": true
+    },
+    {
+      "case": "en-360",
+      "combatEntries": 7,
+      "geometry": 5,
+      "pageErrors": [],
+      "solarMana": {
+        "before": {
+          "mp": 50176,
+          "max": 50196,
+          "consumed": 0
+        },
+        "after": {
+          "mp": 50196,
+          "max": 50196,
+          "consumed": 1
+        },
+        "increase": 20
+      },
+      "serverPID": 503331,
+      "serverStopped": true
+    },
+    {
+      "case": "zh-CN-1280",
+      "combatEntries": 7,
+      "geometry": 5,
+      "pageErrors": [],
+      "solarMana": {
+        "before": {
+          "mp": 50185,
+          "max": 50196,
+          "consumed": 0
+        },
+        "after": {
+          "mp": 50196,
+          "max": 50196,
+          "consumed": 1
+        },
+        "increase": 11
+      },
+      "serverPID": 504463,
+      "serverStopped": true
+    },
+    {
+      "case": "zh-CN-360",
+      "combatEntries": 7,
+      "geometry": 5,
+      "pageErrors": [],
+      "solarMana": {
+        "before": {
+          "mp": 50185,
+          "max": 50196,
+          "consumed": 0
+        },
+        "after": {
+          "mp": 50196,
+          "max": 50196,
+          "consumed": 1
+        },
+        "increase": 11
+      },
+      "serverPID": 505714,
+      "serverStopped": true
+    }
+  ],
+  "positiveSummonEntries": 28,
+  "exactFiveDomainPairs": [
+    {
+      "case": "en-1280",
+      "rank": 1,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "version": 22,
+      "exact": true
+    },
+    {
+      "case": "en-1280",
+      "rank": 2,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "version": 22,
+      "exact": true
+    },
+    {
+      "case": "en-360",
+      "rank": 1,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "version": 22,
+      "exact": true
+    },
+    {
+      "case": "en-360",
+      "rank": 2,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "version": 22,
+      "exact": true
+    },
+    {
+      "case": "zh-CN-1280",
+      "rank": 1,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "version": 22,
+      "exact": true
+    },
+    {
+      "case": "zh-CN-1280",
+      "rank": 2,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "version": 22,
+      "exact": true
+    },
+    {
+      "case": "zh-CN-360",
+      "rank": 1,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "version": 22,
+      "exact": true
+    },
+    {
+      "case": "zh-CN-360",
+      "rank": 2,
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "version": 22,
+      "exact": true
+    }
+  ],
+  "geometrySamples": 20,
+  "screenshots": [
+    "browser-verified-en-1280/en-1280-raven-details.png",
+    "browser-verified-en-1280/en-1280-raven-combat.png",
+    "browser-verified-en-1280/en-1280-poison-creeper-details.png",
+    "browser-verified-en-1280/en-1280-poison-creeper-combat.png",
+    "browser-verified-en-1280/en-1280-summon-spirit-wolf-details.png",
+    "browser-verified-en-1280/en-1280-summon-spirit-wolf-combat.png",
+    "browser-verified-en-1280/en-1280-summon-dire-wolf-details.png",
+    "browser-verified-en-1280/en-1280-summon-dire-wolf-combat.png",
+    "browser-verified-en-1280/en-1280-carrion-vine-details.png",
+    "browser-verified-en-1280/en-1280-carrion-vine-combat.png",
+    "browser-verified-en-1280/en-1280-solar-creeper-details.png",
+    "browser-verified-en-1280/en-1280-solar-creeper-combat.png",
+    "browser-verified-en-1280/en-1280-summon-grizzly-details.png",
+    "browser-verified-en-1280/en-1280-summon-grizzly-combat.png",
+    "browser-verified-en-360/en-360-raven-details.png",
+    "browser-verified-en-360/en-360-raven-combat.png",
+    "browser-verified-en-360/en-360-poison-creeper-details.png",
+    "browser-verified-en-360/en-360-poison-creeper-combat.png",
+    "browser-verified-en-360/en-360-summon-spirit-wolf-details.png",
+    "browser-verified-en-360/en-360-summon-spirit-wolf-combat.png",
+    "browser-verified-en-360/en-360-summon-dire-wolf-details.png",
+    "browser-verified-en-360/en-360-summon-dire-wolf-combat.png",
+    "browser-verified-en-360/en-360-carrion-vine-details.png",
+    "browser-verified-en-360/en-360-carrion-vine-combat.png",
+    "browser-verified-en-360/en-360-solar-creeper-details.png",
+    "browser-verified-en-360/en-360-solar-creeper-combat.png",
+    "browser-verified-en-360/en-360-summon-grizzly-details.png",
+    "browser-verified-en-360/en-360-summon-grizzly-combat.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-raven-details.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-raven-combat.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-poison-creeper-details.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-poison-creeper-combat.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-summon-spirit-wolf-details.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-summon-spirit-wolf-combat.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-summon-dire-wolf-details.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-summon-dire-wolf-combat.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-carrion-vine-details.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-carrion-vine-combat.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-solar-creeper-details.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-solar-creeper-combat.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-summon-grizzly-details.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-summon-grizzly-combat.png",
+    "browser-verified-zh-CN-360/zh-CN-360-raven-details.png",
+    "browser-verified-zh-CN-360/zh-CN-360-raven-combat.png",
+    "browser-verified-zh-CN-360/zh-CN-360-poison-creeper-details.png",
+    "browser-verified-zh-CN-360/zh-CN-360-poison-creeper-combat.png",
+    "browser-verified-zh-CN-360/zh-CN-360-summon-spirit-wolf-details.png",
+    "browser-verified-zh-CN-360/zh-CN-360-summon-spirit-wolf-combat.png",
+    "browser-verified-zh-CN-360/zh-CN-360-summon-dire-wolf-details.png",
+    "browser-verified-zh-CN-360/zh-CN-360-summon-dire-wolf-combat.png",
+    "browser-verified-zh-CN-360/zh-CN-360-carrion-vine-details.png",
+    "browser-verified-zh-CN-360/zh-CN-360-carrion-vine-combat.png",
+    "browser-verified-zh-CN-360/zh-CN-360-solar-creeper-details.png",
+    "browser-verified-zh-CN-360/zh-CN-360-solar-creeper-combat.png",
+    "browser-verified-zh-CN-360/zh-CN-360-summon-grizzly-details.png",
+    "browser-verified-zh-CN-360/zh-CN-360-summon-grizzly-combat.png"
+  ],
+  "inspectedScreenshots": [
+    "browser-verified-en-1280/en-1280-raven-details.png",
+    "browser-verified-en-1280/en-1280-solar-creeper-combat.png",
+    "browser-verified-en-360/en-360-raven-details.png",
+    "browser-verified-en-360/en-360-solar-creeper-combat.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-raven-details.png",
+    "browser-verified-zh-CN-1280/zh-CN-1280-solar-creeper-combat.png",
+    "browser-verified-zh-CN-360/zh-CN-360-raven-details.png",
+    "browser-verified-zh-CN-360/zh-CN-360-solar-creeper-combat.png"
+  ],
+  "visualReview": "Author inspection: readable wrapping, reachable >=44px Allocate, no page overflow; descriptions scroll vertically and combat viewport captures are not stand-alone proof of offscreen logs/effects. DOM logs and MP samples provide those checks. Existing font/icon/navigation presentation and independent UX acceptance remain open.",
+  "fixture": "Disclosed synthetic L30, 50000 HP/MP gear, -80 attackSpeed, learned transitive Maul prerequisites. Public creation/import/allocation/selection/combat/export/Continue. Not earned campaign or balance.",
+  "port4481Closed": true
+}

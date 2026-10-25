@@ -1,0 +1,18 @@
+{
+  "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-summon-yiktbzny",
+  "removedFiles": 2075,
+  "preservedFilesInArchive": 551,
+  "removedDisposableBuildAndFullTraceFiles": 1524,
+  "rawArchiveVerifiedAgain": true,
+  "remaining": [],
+  "rootAbsent": true,
+  "failures": [],
+  "port4481Closed": true,
+  "preservedWorktree": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+  "preservedOlderEvidence": [
+    "d2h5-root-iron-golem-bc3r0les",
+    "d2h5-ancients400-yg280ipi",
+    "d2h5-baal402-iceblast-b5mw39l9"
+  ],
+  "sharedCachesUntouched": true
+}

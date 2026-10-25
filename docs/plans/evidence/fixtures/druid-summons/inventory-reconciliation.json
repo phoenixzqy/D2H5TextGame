@@ -1,0 +1,23 @@
+{
+  "ids": 213,
+  "orderPreserved": true,
+  "changedRows": [
+    "skills-druid-summon-dire-wolf",
+    "skills-druid-raven",
+    "skills-druid-poison-creeper",
+    "skills-druid-summon-spirit-wolf",
+    "skills-druid-carrion-vine",
+    "skills-druid-solar-creeper",
+    "skills-druid-summon-grizzly"
+  ],
+  "counts": {
+    "unverified": 122,
+    "bounded-functional": 89,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "beforeSha256": "645976855fb5e2104b54ee585204fedd5c4f7d4f2b8036b41ea4b96e7d517eea",
+  "afterSha256": "3f00eefb9e1611d4b4962005ec7432320e27f662a2292026680002f43fbd741c",
+  "scope": "Only seven bounded local Druid summon functionality credits. Independent/earned/class/two-build acceptance remains open.",
+  "routeAndRiskNotes": "Four effect routes and provisional tuning are explicit; all seven retain earned class/build acceptance risk. Both contract/evidence paths resolve."
+}
