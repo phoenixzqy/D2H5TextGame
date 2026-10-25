@@ -1564,11 +1564,11 @@ function dynamicDescription(
       min: firstDamage.min, max: firstDamage.max
     });
   }
-  if (stats?.composite && skill.id === 'skills-paladin-vengeance') {
+  if (stats?.composite) {
     const fire = stats.damage.find(row => row.type === 'fire');
     const cold = stats.damage.find(row => row.type === 'cold');
     const lightning = stats.damage.find(row => row.type === 'lightning');
-    return t('paladin.vengeance.desc', { fireMin: fire?.min, fireMax: fire?.max,
+    return t('details.descriptionComposite', { fireMin: fire?.min, fireMax: fire?.max,
       coldMin: cold?.min, coldMax: cold?.max, lightningMin: lightning?.min, lightningMax: lightning?.max,
       ...stats.composite });
   }

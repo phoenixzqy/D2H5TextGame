@@ -74,6 +74,7 @@
     "compositeStrike": "Composite strike",
     "compositeStrikeValue": "Shared hit and critical roll",
     "burnComponentRateValue": "{{percentOfHit}}% of final Fire component/s (min. {{minDps}})",
+    "descriptionComposite": "One strike deals {{fireMin}} ~ {{fireMax}} Fire, {{coldMin}} ~ {{coldMax}} Cold and {{lightningMin}} ~ {{lightningMax}} Lightning base damage. The components share one hit and critical roll, with separate modifiers and mitigation. Fire applies Burn, Cold applies Chill for {{chillSeconds}} s and Lightning applies Paralyze for {{paralyzeSeconds}} s; repeated Paralyze can fail. A miss applies none.",
     "descriptionComponentBurn": "Burn uses only the Fire component after mitigation: {{percentOfHit}}% per second per stack (rounded down, minimum {{minDps}}) for {{durationSeconds}} s, up to {{maxStacks}} stacks. Refreshing adds a stack and extends duration; an existing damaging Burn keeps its original rate.",
     "strikesPerCast": "Attack attempts per cast",
     "periodicRate": "{{status}} per stack",
