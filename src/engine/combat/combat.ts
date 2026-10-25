@@ -592,7 +592,7 @@ function buildDamageInput(
       hasStatus(activeStatusView(attacker, state.simClockMs), 'blind')
       ? { hitChancePenalty: DRUID_SUMMON_DEFINITION.raven.physicalHitChancePenalty } : {}),
     type: effect.damageType,
-    critChance: stats.critChance + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.critPerRank,
+    critChance: stats.critChance + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.critPerRank + (effect.critChanceBonus ?? 0),
     critMult: stats.critDamage,
     defenderResistances,
     defenderArmor: effect.ignoresDefense === true ? 0 : Math.max(0, defender.stats.defense * (1 + armorBonus + druidFormBonuses(defender).defensePct + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor),

@@ -30,6 +30,7 @@ export interface DisplaySkillSource {
   readonly ignoresMagicResist?: true;
   readonly ignoresDefense?: true;
   readonly hitSequence?: SkillHitSequence;
+  readonly critChanceBonus?: number;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   readonly onHitSelfDamage?: OnHitSelfDamageTuning;
   readonly feralRage?: FeralRageTuning;
@@ -165,6 +166,8 @@ export interface SkillRankDisplayStats {
   readonly composite?: { readonly chillSeconds: number; readonly paralyzeSeconds: number };
   /** Independent attack attempts; the displayed damage range remains per strike. */
   readonly strikesPerCast?: number;
+  /** Percentage points added by this skill, not the attacker's total critical chance. */
+  readonly criticalBonusPoints?: number;
   readonly control?: { readonly durationSeconds: number; readonly bossDurationSeconds: number };
   /** A fixed fraction of actual direct HP removed, never promised healing from base damage. */
   readonly recovery?: { readonly percentOfHpRemoved: number };
@@ -494,10 +497,14 @@ export function computeSkillRankDisplayStats(
     skill.damageComposition === 'weighted-components'
     ? { chillSeconds: STATUS_DEFAULTS.chill.duration, paralyzeSeconds: STATUS_DEFAULTS.paralyze.duration } : undefined;
   const strikes = skill.hitSequence?.strikes;
-  const supportsSequence = skill.id === 'skills-druid-fury' || (['skills-amazon-jab', 'skills-assassin-dragon-talon'].includes(skill.id) &&
+  const supportsSequence = skill.id === 'skills-druid-fury' || (['skills-amazon-jab', 'skills-assassin-dragon-talon', 'skills-assassin-dragon-claw'].includes(skill.id) &&
     skill.target === 'single-enemy' && skill.damageType === 'physical');
   const strikesPerCast = supportsSequence && skill.trigger === 'active' && skill.damage &&
     strikes !== undefined && Number.isInteger(strikes) && strikes >= 2 && strikes <= 8 ? strikes : undefined;
+  const bonus = skill.critChanceBonus;
+  const criticalBonusPoints = skill.id === 'skills-assassin-dragon-claw' && strikesPerCast === 2 &&
+    bonus !== undefined && Number.isFinite(bonus) && bonus > 0 && bonus <= 1
+    ? Number((bonus * 100).toFixed(4)) : undefined;
   const controlId = skill.appliesStatus?.[0];
   const controlDefinition = skill.damage && skill.trigger === 'active' &&
     (controlId === 'chill' || controlId === 'stun' || controlId === 'paralyze') ? STATUS_DEFAULTS[controlId] : undefined;
@@ -534,6 +541,7 @@ export function computeSkillRankDisplayStats(
     ...(ignoresDefense ? { ignoresDefense: true as const } : {}),
     ...(composite ? { composite } : {}),
     ...(strikesPerCast !== undefined ? { strikesPerCast } : {}),
+    ...(criticalBonusPoints !== undefined ? { criticalBonusPoints } : {}),
     ...(control ? { control } : {}),
     ...(recovery ? { recovery } : {}),
     ...(selfDamage ? { selfDamage } : {}),

@@ -240,6 +240,8 @@ export interface SkillDef {
   /** Explicit hit-only ordinary Defense bypass; resistance and dodge still apply. */
   readonly ignoresDefense?: true;
   readonly hitSequence?: SkillHitSequence;
+  /** Additive critical chance for this skill's direct attempts only. */
+  readonly critChanceBonus?: number;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   readonly onHitSelfDamage?: OnHitSelfDamageTuning;
   readonly feralRage?: FeralRageTuning;

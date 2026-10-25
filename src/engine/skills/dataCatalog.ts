@@ -34,6 +34,7 @@ interface JsonSkill {
   readonly ignoresMagicResist?: true;
   readonly ignoresDefense?: true;
   readonly hitSequence?: SkillHitSequence;
+  readonly critChanceBonus?: number;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   /** Explicit life debit after a real enemy HP loss; independent of personal shields. */
   readonly onHitSelfDamage?: OnHitSelfDamageTuning;
@@ -189,6 +190,7 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       ...(skill.ignoresMagicResist === true ? { ignoresMagicResist: true as const } : {}),
       ...(skill.ignoresDefense === true ? { ignoresDefense: true as const } : {}),
       ...(skill.hitSequence ? { hitSequence: { strikes: skill.hitSequence.strikes } } : {}),
+      ...(skill.critChanceBonus !== undefined ? { critChanceBonus: skill.critChanceBonus } : {}),
       ...(skill.onHitRecovery ? { onHitRecovery: { lifeFraction: skill.onHitRecovery.lifeFraction } } : {}),
       ...(skill.onHitSelfDamage ? { onHitSelfDamage: Object.freeze({
         lifeFraction: skill.onHitSelfDamage.lifeFraction,

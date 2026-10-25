@@ -48,6 +48,8 @@ interface DamageEffectBase {
   readonly ignoresDefense?: true;
   /** One bounded sequence of ordinary attempts, rotating within the original target pool. */
   readonly hitSequence?: SkillHitSequence;
+  /** Additive critical chance for this direct damage effect; ordinary overflow applies. */
+  readonly critChanceBonus?: number;
   /** Explicit direct-hit recovery only; never inherited by ordinary/basic/periodic damage. */
   readonly onHitRecovery?: OnHitRecoveryTuning;
   /** Explicit life debit after a real enemy HP loss; independent of personal shields. */

@@ -266,7 +266,28 @@
     },
     {
       "if": { "required": ["hitSequence"], "properties": { "hitSequence": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "skills-assassin-dragon-talon"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw"] } } }
+    },
+    {
+      "if": { "required": ["critChanceBonus"], "properties": { "critChanceBonus": {} } },
+      "then": { "properties": { "id": { "const": "skills-assassin-dragon-claw" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-dragon-claw" } } },
+      "then": {
+        "required": ["hitSequence", "critChanceBonus", "damage", "damageType", "requiredLevel", "prerequisites"],
+        "properties": {
+          "hitSequence": { "$ref": "#/properties/hitSequence", "const": { "strikes": 2 } },
+          "critChanceBonus": { "$ref": "#/properties/critChanceBonus" },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "requiredLevel": { "const": 6 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-assassin-dragon-talon"] },
+          "aoeShape": false, "appliesStatus": false, "statusEffect": false,
+          "damageComposition": false, "onHitRecovery": false, "onHitSelfDamage": false,
+          "additionalStatusEffects": false
+        }
+      }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "enum": ["skills-amazon-jab", "skills-assassin-dragon-talon"] } } },
@@ -3953,9 +3974,13 @@
       "description": "Explicit Impale ordinary Defense bypass for this hit only; resistance, dodge, critical rolls and personal absorption still apply."
     },
     "hitSequence": {
-      "description": "Explicit bounded sequential attempts, paid once within the original target pool; authored by Fury and single-target Jab/Dragon Talon.",
+      "description": "Explicit bounded sequential attempts, paid once within the original target pool; authored by Fury and single-target Jab/Dragon Talon/Dragon Claw.",
       "type": "object", "additionalProperties": false, "required": ["strikes"],
       "properties": { "strikes": { "type": "integer", "minimum": 2, "maximum": 8 } }
+    },
+    "critChanceBonus": {
+      "description": "Dragon Claw-only additive critical chance for each direct attempt; uses ordinary critical overflow and never changes attacker stats.",
+      "type": "number", "exclusiveMinimum": 0, "maximum": 1
     },
     "onHitRecovery": {
       "type": "object", "additionalProperties": false, "required": ["lifeFraction"],
