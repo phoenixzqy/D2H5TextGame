@@ -49,7 +49,7 @@ assassin,skills-assassin-blades-of-ice,assassin.blades_of_ice,active,damage,chil
 assassin,skills-assassin-dragon-flight,assassin.dragon_flight,active,damage,,src/data/skills/assassin.json,,unverified,
 assassin,skills-assassin-psychic-hammer,assassin.psychic_hammer,active,damage,knockback,src/data/skills/assassin.json,,unverified,
 assassin,skills-assassin-burst-of-speed,assassin.burst_of_speed,active,buff,burst-of-speed,src/data/skills/assassin.json,buff-mechanics-not-applied-in-audited-handler,bounded-functional;independent-acceptance-open,docs/plans/decisions/D05-burst-of-speed-v1.md;docs/plans/evidence/d05-burst-of-speed.md
-assassin,skills-assassin-cloak-of-shadows,assassin.cloak_of_shadows,active,debuff,cloak-of-shadows|blind,src/data/skills/assassin.json,pure-debuff-consumer-not-found-in-audit|additional-statuses-truncated-by-adapter,unverified,
+assassin,skills-assassin-cloak-of-shadows,assassin.cloak_of_shadows,active,buff|debuff,cloak-of-shadows|blind,src/data/skills/assassin.json,provisional-tuning|independent-acceptance-open|earned-balance-open,bounded-functional;independent-acceptance-open,docs/plans/decisions/D04-cloak-of-shadows-v1.md;docs/plans/evidence/d04-cloak-of-shadows.md
 assassin,skills-assassin-shadow-warrior,assassin.shadow_warrior,active,summon,,src/data/skills/assassin.json,,unverified,
 assassin,skills-assassin-shadow-master,assassin.shadow_master,active,summon,,src/data/skills/assassin.json,,unverified,
 assassin,skills-assassin-charged-bolt-sentry,assassin.charged_bolt_sentry,active,damage,,src/data/skills/assassin.json,,unverified,

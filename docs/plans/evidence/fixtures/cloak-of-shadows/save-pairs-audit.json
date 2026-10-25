@@ -1,0 +1,118 @@
+{
+  "pairs": [
+    {
+      "case": "verified-browser-en-1280",
+      "rank": 1,
+      "before": "verified-browser-en-1280/en-1280-cloak-of-shadows-rank1-before-3.json",
+      "after": "verified-browser-en-1280/en-1280-cloak-of-shadows-rank1-after-4.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "case": "verified-browser-en-1280",
+      "rank": 2,
+      "before": "verified-browser-en-1280/en-1280-cloak-of-shadows-rank2-before-5.json",
+      "after": "verified-browser-en-1280/en-1280-cloak-of-shadows-rank2-after-6.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "case": "verified-browser-en-360",
+      "rank": 1,
+      "before": "verified-browser-en-360/en-360-cloak-of-shadows-rank1-before-3.json",
+      "after": "verified-browser-en-360/en-360-cloak-of-shadows-rank1-after-4.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "case": "verified-browser-en-360",
+      "rank": 2,
+      "before": "verified-browser-en-360/en-360-cloak-of-shadows-rank2-before-5.json",
+      "after": "verified-browser-en-360/en-360-cloak-of-shadows-rank2-after-6.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "case": "verified-browser-zh-CN-1280",
+      "rank": 1,
+      "before": "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-rank1-before-3.json",
+      "after": "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-rank1-after-4.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "case": "verified-browser-zh-CN-1280",
+      "rank": 2,
+      "before": "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-rank2-before-5.json",
+      "after": "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-rank2-after-6.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "case": "verified-browser-zh-CN-360",
+      "rank": 1,
+      "before": "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-rank1-before-3.json",
+      "after": "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-rank1-after-4.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "case": "verified-browser-zh-CN-360",
+      "rank": 2,
+      "before": "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-rank2-before-5.json",
+      "after": "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-rank2-after-6.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    }
+  ],
+  "geometryChecks": 20,
+  "errors": []
+}

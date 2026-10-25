@@ -1,0 +1,1111 @@
+{
+  "archiveSha256": "8095ec1d318e6aadfc7553177eb1f472740751315e6d56e93295f96659aa15b9",
+  "members": {
+    "audit-corrections.json": {
+      "sha256": "cf563d4d1eaaa57dd413b0bc6d5d0b4a9890b96be99289893869bcadd96454e7",
+      "bytes": 611
+    },
+    "author-review.json": {
+      "sha256": "33fd1939500723a0876bf4735d9d87d4fd7c8f9f434acb9b1a87183840ade970",
+      "bytes": 1864
+    },
+    "browser-audit.json": {
+      "sha256": "82d799fc26d222a846d46a0cdfc482e7500be96509fad13971ac183061a48872",
+      "bytes": 394
+    },
+    "browser-corrected-live.json": {
+      "sha256": "1c18b5e897b06a1aa13fb1b03c049a856b5cca962d90c157076864ac99bc19bb",
+      "bytes": 547
+    },
+    "browser-corrected.json": {
+      "sha256": "ad14c094879f7ccc24305a53d3c21098f20b98bea87f415df46688dee6ad4bb3",
+      "bytes": 592
+    },
+    "browser-corrected.log": {
+      "sha256": "78a81612dce20dd1470a92668e2dbea457b4622619546efaa68e6e77402b52ff",
+      "bytes": 644
+    },
+    "browser-first-suite.py": {
+      "sha256": "6c9910f7727faefa177be022afaec89c5609e6b27ea3a5492ed4f665a6e4e5c0",
+      "bytes": 318
+    },
+    "browser-first.cjs": {
+      "sha256": "2685886f1ffb2b98f114d18b4be1fea6cf7950e2d432a3e5308b2f38a6ec2f0e",
+      "bytes": 11466
+    },
+    "browser-live.json": {
+      "sha256": "2caa501ca4a914a2b5ca409a2f49938f3f09729189d09f4aaca676fd5a85be08",
+      "bytes": 536
+    },
+    "browser-suite.py": {
+      "sha256": "9dc3a3a9c6d91673ddde5d06f449562d0a1e1ed96a7a59fd8618b75217151039",
+      "bytes": 321
+    },
+    "browser.cjs": {
+      "sha256": "47f97d267b27e04b2d299c6fd8bf30776bc726a9710826ee562076560f4d04f3",
+      "bytes": 11470
+    },
+    "browser.json": {
+      "sha256": "9336023373ecd755556d67727785cd0b63d533c1f83481372276aaaec017cb63",
+      "bytes": 582
+    },
+    "browser.log": {
+      "sha256": "3bc1782c8f74ab184edbdbd5715d56afedb3c84ba438e960288a893ec74b2e2c",
+      "bytes": 276025
+    },
+    "build-audit.json": {
+      "sha256": "9fe31dedcf6198623ef4edf88ec8872c0cb2690d0575164b57da296a62b540e0",
+      "bytes": 603
+    },
+    "build-live.json": {
+      "sha256": "82b4412f46486c7adf88d21f77722759f5198bddcb2b68c2b3b9c65dd2b56189",
+      "bytes": 347
+    },
+    "build.json": {
+      "sha256": "5517495d6604c143d46ff605f090e449c9d81eeb9172e1d16c400dc5ae386801",
+      "bytes": 393
+    },
+    "build.log": {
+      "sha256": "9589269ac554a1533431e103c74f14ee582306918cb72924a16ba84ca1fa55bc",
+      "bytes": 2120
+    },
+    "display-green-live.json": {
+      "sha256": "6b10bdc41708fa24b7324e29832d1f3195b9247b0f56676d62acc4b21e85e9c2",
+      "bytes": 362
+    },
+    "display-green.json": {
+      "sha256": "bf732588215e6d190abcc81d2bc0f5d4a8f44bca3442a2814cce8211e397dafc",
+      "bytes": 407
+    },
+    "display-green.log": {
+      "sha256": "8df78de5e88c8a9c316d2426a1b45a53e270bffa2e77d2c004b2a47f639d859e",
+      "bytes": 590
+    },
+    "display-red-live.json": {
+      "sha256": "4f0d31dac543b4c305afc6a126b4e299c565f0cbc140a75c691ea2826876173d",
+      "bytes": 360
+    },
+    "display-red.json": {
+      "sha256": "5d644f30495f548353802e29b8785932ea5e0cca6ea1bdd4ad11d501d162b720",
+      "bytes": 405
+    },
+    "display-red.log": {
+      "sha256": "c944b990342074054f445141bcc7f82541134b12da5db0a29f5c36f72e051bb2",
+      "bytes": 21833
+    },
+    "engine-final-live.json": {
+      "sha256": "7949092b16c9efbb02c7bb15907fcb88ab99b160e16561f7efc4d40398e39bc6",
+      "bytes": 253
+    },
+    "engine-final.json": {
+      "sha256": "e1e73efeab66f769fefc64a1e6940a59cd8689b7b9984c3ca5292dc05820a8fb",
+      "bytes": 298
+    },
+    "engine-final.log": {
+      "sha256": "e051be3f2a22add584f2966efd0c3ee865e86ebb1b17e9bb61431103e6115aca",
+      "bytes": 67795
+    },
+    "engine-first-live.json": {
+      "sha256": "122b999ca71346e9dea11622b24317b904ccfbea0154edd3e502cb9e6254d57f",
+      "bytes": 252
+    },
+    "engine-first.json": {
+      "sha256": "13b8aeb9601d2a8f60f17ca384239e6e5f5437128c23564d10af5ffcc6943109",
+      "bytes": 297
+    },
+    "engine-first.log": {
+      "sha256": "5579c1c02190e0ea896e96f0beb38a1e0ab4e91e53b304459fafd779ba1ff41b",
+      "bytes": 67652
+    },
+    "final-browser-en-360/browser-report.json": {
+      "sha256": "7150cbd2312636385e39bb9cb846ccca4a39a3b5d84280091174906ff8120706",
+      "bytes": 134219
+    },
+    "final-browser-en-360/en-360-cloak-of-shadows-description.png": {
+      "sha256": "8148049e59ff5d929972ee480263c63dd9160fc6f870204bba82bd04b2f647b8",
+      "bytes": 54369
+    },
+    "final-browser-en-360/en-360-cloak-of-shadows-details.png": {
+      "sha256": "bdbba0cbdf234ea992b3b6d6c721645666a3b97dbbac879014285cc1a49b1442",
+      "bytes": 55553
+    },
+    "final-browser-en-360/en-360-cloak-of-shadows-failed-trace-diagnostics-bounded.zip": {
+      "sha256": "137e8782118e49973bab20364674d98546f91d45b7dcccff62bb10bdaaf64c25",
+      "bytes": 1147839
+    },
+    "final-browser-en-360/en-360-cloak-of-shadows-failed-trace.manifest.json": {
+      "sha256": "50bcbe4dcdf6b90ae84358bfdefec0391ae24e947c7a8905c61795b86ec9efae",
+      "bytes": 206933
+    },
+    "final-browser-en-360/en-360-cloak-of-shadows-failed.png": {
+      "sha256": "f5e5f9e2f4fd55e8f9cf9335da19c45f0538af96e737321feda309d398557338",
+      "bytes": 36390
+    },
+    "final-browser-en-360/en-360-cloak-of-shadows-fresh-1.json": {
+      "sha256": "834dbab53cc2633471ae71f5b60c5b1accb767b4c0778c095de60c8dfb299844",
+      "bytes": 3178
+    },
+    "final-browser-en-360/en-360-cloak-of-shadows-imported-2.json": {
+      "sha256": "0aa22bbea1cb6454716cd0ff2bcdc4152f190ab5ca9b9814ac095b62d9447667",
+      "bytes": 4850
+    },
+    "final-browser-en-360/en-360-cloak-of-shadows-paid-defense-stats.png": {
+      "sha256": "e56f8f009ae82af35371c4285b71f9eaee5a78164bc6593d9b02466737f02303",
+      "bytes": 49115
+    },
+    "final-browser-en-360/en-360-cloak-of-shadows-rank1-after-4.json": {
+      "sha256": "01f082ab22f6b5eee99ca5f56dd70a3ee07041ee988bb9a0f292d67a1bd684aa",
+      "bytes": 4853
+    },
+    "final-browser-en-360/en-360-cloak-of-shadows-rank1-before-3.json": {
+      "sha256": "6eeb64c4292802b65dd77b8ce6860e5f7808a1a3b000b4324e3403e4cfff3949",
+      "bytes": 4850
+    },
+    "final-browser-en-360/en-360-cloak-of-shadows-synthetic-input.json": {
+      "sha256": "6e249f4892ab037c9c08255d2c22a013428244e461404ca5b30923c3990ffbe7",
+      "bytes": 4024
+    },
+    "focused-final-live.json": {
+      "sha256": "1d14350b59710e2f46ad8d0fa862e1a7aa14d851e356b187a56130f2ac546e17",
+      "bytes": 518
+    },
+    "focused-final.json": {
+      "sha256": "19af7d13b58b05a816e186e0a07fd75d6681230be258ccc14c9041b39a4c50d3",
+      "bytes": 564
+    },
+    "focused-final.log": {
+      "sha256": "ea903a767206d8f2ffdeb548a0b88cd7b3e9bbd3ffa2fdf2b2c89c1931be7fbe",
+      "bytes": 952
+    },
+    "focused-live.json": {
+      "sha256": "50844f6aa08ec5742fda349c646f6ec2125e6031b689e9a246235fa668fec7b7",
+      "bytes": 512
+    },
+    "focused.json": {
+      "sha256": "cca28e5b5fd59e1f11024a4ae15cc7158b382791c2c23851abba8af4d9406fd8",
+      "bytes": 557
+    },
+    "focused.log": {
+      "sha256": "7064e050b34f1c098d9e260123d0e1b16ef8d410cd19e993fcc8b728be3762dd",
+      "bytes": 949
+    },
+    "freeze-before-test-lint.json": {
+      "sha256": "97cf3db1cd243beaa4563c60d81d099e09405c973e20f1d1539f36c25e6eadd8",
+      "bytes": 235154
+    },
+    "freeze-before-test-types.json": {
+      "sha256": "771c69653fb4d8ddd4a0bc6d5e507e57188f3bae09844df37512422ada4d11cb",
+      "bytes": 235154
+    },
+    "freeze.json": {
+      "sha256": "c1537d98b1fc05c2b39e0cbbf93f96c85fba79a59d151e313305548f5601c0b2",
+      "bytes": 235154
+    },
+    "full-live.json": {
+      "sha256": "8bc71361f106fdb0dc5cb1cf45b5bc9c361f6f10771e685a6737eae46aa7e3ae",
+      "bytes": 227
+    },
+    "full.json": {
+      "sha256": "3d5ea84af2e7089a8b26d51ccde25aacf6f771eed33deb88a8f9fb3792165488",
+      "bytes": 272
+    },
+    "full.log": {
+      "sha256": "0693940411d0e573e4c3b7cdacc8cc26e9a2a8781ef00c819005288e27c6ffcc",
+      "bytes": 159051
+    },
+    "inventory-audit.json": {
+      "sha256": "68ea7d34cf19a85e5aa01dfae87fad78a5131e91bfdb498eb352e6ddf310c604",
+      "bytes": 318
+    },
+    "inventory-before.csv": {
+      "sha256": "a680fda75b5e7804c985055d27bfdac9be2cea11a3cb803296b97df5875c7f65",
+      "bytes": 48092
+    },
+    "lint-corrected-live.json": {
+      "sha256": "939b0b97fc085656727e2464d246b40e283c760b8023db085d632b7312c5b738",
+      "bytes": 248
+    },
+    "lint-corrected.json": {
+      "sha256": "c128d2298f1fb7c681495d5ab79eab1825fa13884732839eed57f2035f241ec0",
+      "bytes": 294
+    },
+    "lint-corrected.log": {
+      "sha256": "fc8f565687167d0c6786916f9a7d3060e2e072fb5e9bc1a27aa4fa8f46d41a4a",
+      "bytes": 197
+    },
+    "lint-final-live.json": {
+      "sha256": "59d13b732c3dc268de354cd1af2e8bd7644de4362224393ab37820438481ce22",
+      "bytes": 244
+    },
+    "lint-final.json": {
+      "sha256": "4f069ba4051a639146ee2663c73834bde48dc197013dfefb19cbebedb67ead1a",
+      "bytes": 290
+    },
+    "lint-final.log": {
+      "sha256": "a60d4b72c1fbb99e69349bc3123db70ff6348f051e09908085479954263d155c",
+      "bytes": 646
+    },
+    "native-causal-corrected-live.json": {
+      "sha256": "fec004b02d98f00f94e2bc65722712df70c3a70e7eceba5c733c6447b128f247",
+      "bytes": 306
+    },
+    "native-causal-corrected.json": {
+      "sha256": "b89cfc29b3e2c7126edce0af89330efec8f75d6b4822788ba14d8939043244c5",
+      "bytes": 351
+    },
+    "native-causal-corrected.log": {
+      "sha256": "7cfb0f477bae0aebf8327a5fe2ed29afb7ad34ff743dc0b56730507fc957a268",
+      "bytes": 441
+    },
+    "native-causal-live.json": {
+      "sha256": "498dc909b925d8a3e40183f73762a984ff117e8f8e02beb55f9fc66fe89f41f1",
+      "bytes": 296
+    },
+    "native-causal.json": {
+      "sha256": "333893dc53d67e04a1c05a67e43ccbc00e302333150e9a5be398450ac3d24801",
+      "bytes": 341
+    },
+    "native-causal.log": {
+      "sha256": "ee3a53fd202c77055790591776141fa428e3c39884d644b9eb92c8e726afda51",
+      "bytes": 3315
+    },
+    "native-first-green-live.json": {
+      "sha256": "25cd827d88fff9a8e924f158898da05975ae32b4cb8f092839ff12fb91c77579",
+      "bytes": 406
+    },
+    "native-first-green.json": {
+      "sha256": "201407badd48b0e0b03a9eb664d916a18847dc6f83b657d60e54bcdc12a8e6a9",
+      "bytes": 452
+    },
+    "native-first-green.log": {
+      "sha256": "4bd8b065f628e1412494d007f4afcce1c74874f754e6f35deb1cfe3f83df1271",
+      "bytes": 2033
+    },
+    "native-red-live.json": {
+      "sha256": "19ab6cff797d88b29c3d3b6de8215945c5669f453cb093e2e0eedaaaffddcfee",
+      "bytes": 292
+    },
+    "native-red.json": {
+      "sha256": "b1b654bad659f14c7150ca11730b186ee9ad4657ced26d33057a80fd066b3559",
+      "bytes": 337
+    },
+    "native-red.log": {
+      "sha256": "88aa8085ca24ee343750d2083ccb8d9b20f58619a224bf707d7847389ed715e0",
+      "bytes": 8069
+    },
+    "next-hammer-live.json": {
+      "sha256": "f79e0e944d077937712faeac863f4b6314c48165ae8d0605aff273ffa12666a7",
+      "bytes": 367
+    },
+    "next-hammer.json": {
+      "sha256": "6543d7144db00d541a4a4c084c3a597bf0e477658ca3146e957a5a7cd47a936b",
+      "bytes": 412
+    },
+    "next-hammer.log": {
+      "sha256": "d82dbf6da467510589a464ae273d73a72f6d588ba66247c6b1cda379cbeb54e0",
+      "bytes": 3273
+    },
+    "psychic-hammer-observations.json": {
+      "sha256": "a80383341d56280a4893e46edcfe4c7517f453731337e66d115a71217f05ae01",
+      "bytes": 180186
+    },
+    "psychic-hammer-repro.ts": {
+      "sha256": "c67f689c6a48741b06848798a1e8d59152244efd04d8192b075856774fdd6346",
+      "bytes": 3932
+    },
+    "record.py": {
+      "sha256": "4c7bc657a5695df1a6ac100ba4bb5f4946e58ce6bb7fa9b1ba0a6496985d2df2",
+      "bytes": 741
+    },
+    "retain.py": {
+      "sha256": "a1ecc858672b0d925a183b5c0a9256bee9be59077ece795e1d729dec3832022f",
+      "bytes": 4397
+    },
+    "save-pairs-audit.json": {
+      "sha256": "5d621750f5e31b06d5203b2dbf21ac235b47154daeee7a6b26a3891cd29c212b",
+      "bytes": 3196
+    },
+    "schema-authored-live.json": {
+      "sha256": "6cf8327e060d93665157336dfc5df8688934eb9ec682269fe218852a77daebe6",
+      "bytes": 360
+    },
+    "schema-authored.json": {
+      "sha256": "4f4832b038ac2dc141dfeeb59148b0f9b931a0f285d031e597c966cba861eee8",
+      "bytes": 406
+    },
+    "schema-authored.log": {
+      "sha256": "9d51b0a5ce0d96f0038823f008aef592a0a9602f0b0fecf09850d6e29d3b747a",
+      "bytes": 2108
+    },
+    "schema-data-live.json": {
+      "sha256": "1bc9cbbd48450bb2374cc973f69be39a076a2aa6881a6e7df060b6e2d2a28582",
+      "bytes": 356
+    },
+    "schema-data.json": {
+      "sha256": "6238cafb513a2f3c7da729d2f4040d5ecdf1972d88f3029278a5703875c13c44",
+      "bytes": 402
+    },
+    "schema-data.log": {
+      "sha256": "67992dabfadc5286d344185bc01a7441b1fc08d3cc57f31d622dd557072e6423",
+      "bytes": 4710
+    },
+    "schema-green-live.json": {
+      "sha256": "dff9f331ddfcfdd23c99fcf0836351e1993f0f4fac4a6e24d3983755dd64968e",
+      "bytes": 357
+    },
+    "schema-green.json": {
+      "sha256": "8e2c6af2db084b228daa3a10983b57f4eafac252b7ef42a429fca677b502f5ad",
+      "bytes": 402
+    },
+    "schema-green.log": {
+      "sha256": "be637bcde8024c20f24ca4317f9b400c84e014542ef298bed5d3ff6a45b821ab",
+      "bytes": 580
+    },
+    "schema-red-live.json": {
+      "sha256": "93200f0cc443059a2cf91d34c2b38014f5ac89b285f5074b523e5354da5350e0",
+      "bytes": 300
+    },
+    "schema-red.json": {
+      "sha256": "f9b8a48c6b11767a90325249bdde4d6fd947c94ebcad8f5467999c721a693174",
+      "bytes": 346
+    },
+    "schema-red.log": {
+      "sha256": "4b362413a5a5908319585c30eeebf68b18508d1fbbca973ecbd4dca56020b6a6",
+      "bytes": 4572
+    },
+    "serve.py": {
+      "sha256": "63f73be820738d21a67851d27b8bb56e2c9f06731747abba381378baba7a55f7",
+      "bytes": 510
+    },
+    "server-live.json": {
+      "sha256": "6939cb86ea670c2e91784166ad48c55f7667e7baaa1d288ec7d0e0f4b133c52e",
+      "bytes": 117
+    },
+    "types-corrected-live.json": {
+      "sha256": "45ba7b4e1f8efd90e855aa9176893824af678e9fcf6c17416a4fd174f28b3ff8",
+      "bytes": 254
+    },
+    "types-corrected.json": {
+      "sha256": "2d730bf3402d7242bb8ac5e740903941579df53e1e2c144af320567d6046101f",
+      "bytes": 299
+    },
+    "types-corrected.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-delivery-live.json": {
+      "sha256": "5c276df7d3a231e2da08d09adf81e565283213cccdaa3f97b09fdb2bf63a9b7d",
+      "bytes": 252
+    },
+    "types-delivery.json": {
+      "sha256": "25d3a1123f55e1e6d18dbaa0ebaf25da767cfc47587f3790413bbd6527a30bd5",
+      "bytes": 297
+    },
+    "types-delivery.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-final-live.json": {
+      "sha256": "5e4e35c53269868d6dc18621fbd9988b877de032874b0322aae58cc7577da62f",
+      "bytes": 249
+    },
+    "types-final.json": {
+      "sha256": "5c98b3d12fd0334885b229603ca7708bf3859899e1126ffd526a8e8e85c2cc59",
+      "bytes": 293
+    },
+    "types-final.log": {
+      "sha256": "88d212827724adb80ae05ba16d245d84ffea725f0bcd757a63338c8cd6a491d0",
+      "bytes": 4894
+    },
+    "types-first-live.json": {
+      "sha256": "f4abd99aac10a64f569589a3124b84d04eeb34b77645afa3966b09d668c61a2c",
+      "bytes": 249
+    },
+    "types-first.json": {
+      "sha256": "37ff9e0ce7ce921bbeedc1825adcd58202d55ce9ddbb2f07e907aff0eecd9bec",
+      "bytes": 294
+    },
+    "types-first.log": {
+      "sha256": "b5905496e5db3f9984a28259e0065644ab03a0b41fd1bd1f8797bc7ad888bbf8",
+      "bytes": 5025
+    },
+    "verified-browser-en-1280/browser-report.json": {
+      "sha256": "dc73a4bda60aea71750acdaa002424bc1fc87c22adda42e8e2e1a1e4a5bbc5be",
+      "bytes": 1558
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-cast-visible.png": {
+      "sha256": "79f9dc83f7a56180f0c72f14bc664287313866ae289d630762e3c072832e43fd",
+      "bytes": 193622
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-combat.json": {
+      "sha256": "ec4dea6e956472650d514678d85116e3a9dbd84f3e6aa52fc7208d2e7ecb3066",
+      "bytes": 3136
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-description.png": {
+      "sha256": "dfdc1009eba5417713ae913db6c5db0505a571cdf4e7ecae0149b94e7447cea0",
+      "bytes": 132100
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-details.png": {
+      "sha256": "25be0d51ed36851996e7a180d594c95ce781c760ea64651e320c5e07cbcf0efb",
+      "bytes": 133908
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-fresh-1.json": {
+      "sha256": "aaf189ecdbd37f90752f3d89691d56251c7c33385858184a4f97d4f813b06c39",
+      "bytes": 3178
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-imported-2.json": {
+      "sha256": "b0d0b7bc959be8ad1743982b566c3fc97f4a3bedbcf58ac529012815a4baf9f3",
+      "bytes": 4850
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-observed-attempts.json": {
+      "sha256": "5f46370f003f9440561ee3178fde269e5381636bdef5422500b8fc1647a0bfa5",
+      "bytes": 3025
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-paid-defense-stats.png": {
+      "sha256": "e593297a0df33ede0f66c133bafffaf3f72300f8f4f7ac926a5d7ce333953450",
+      "bytes": 129545
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-rank1-after-4.json": {
+      "sha256": "305f6d497684fdc9b03ea4d1178c610437eb30ab79c33bd3a966692c9b1085d2",
+      "bytes": 4853
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-rank1-before-3.json": {
+      "sha256": "5b84fb0395fd6fbb0524c4ab134f804d8f4f2501480edfbbeb05dda60a843bf1",
+      "bytes": 4850
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-rank2-after-6.json": {
+      "sha256": "333f4a302dade4e003920ed8bba40341ac98c34d62f8011db769b8b4012447fb",
+      "bytes": 4909
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-rank2-before-5.json": {
+      "sha256": "333f4a302dade4e003920ed8bba40341ac98c34d62f8011db769b8b4012447fb",
+      "bytes": 4909
+    },
+    "verified-browser-en-1280/en-1280-cloak-of-shadows-synthetic-input.json": {
+      "sha256": "3a0f50e104b3a9f987d28b637188ec2c6bbe0e413827b2d11e7deb72ac7cf5c2",
+      "bytes": 4024
+    },
+    "verified-browser-en-360/browser-report.json": {
+      "sha256": "739d9cc58b4f8534b509e2af900b6ba058a2e6456de8fab8768c590e1c5f2b1d",
+      "bytes": 1552
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-cast-visible.png": {
+      "sha256": "ddb1ec83ae2502c0072f9dd32b95de4c85995deb71558aa491b0fcdc4f710666",
+      "bytes": 47265
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-combat.json": {
+      "sha256": "ec4dea6e956472650d514678d85116e3a9dbd84f3e6aa52fc7208d2e7ecb3066",
+      "bytes": 3136
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-description.png": {
+      "sha256": "8148049e59ff5d929972ee480263c63dd9160fc6f870204bba82bd04b2f647b8",
+      "bytes": 54369
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-details.png": {
+      "sha256": "25df93f1f93993eb0213a7a2baa285d3fba61f8bea95e97fd238a9c2d6066c5c",
+      "bytes": 55401
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-fresh-1.json": {
+      "sha256": "588355820bfece2686967e739b1180d13f3423c3ec246de1af5392bce06df817",
+      "bytes": 3178
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-imported-2.json": {
+      "sha256": "edb20f1eb9612df9a2d236a04b44da5a0d9252c5db477bd73ec7673603a27174",
+      "bytes": 4850
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-observed-attempts.json": {
+      "sha256": "5f46370f003f9440561ee3178fde269e5381636bdef5422500b8fc1647a0bfa5",
+      "bytes": 3025
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-paid-defense-stats.png": {
+      "sha256": "e56f8f009ae82af35371c4285b71f9eaee5a78164bc6593d9b02466737f02303",
+      "bytes": 49115
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-rank1-after-4.json": {
+      "sha256": "a5aa0a67338048fc2193db028ed418aa49954a19b713c69f51aa982d6afec537",
+      "bytes": 4853
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-rank1-before-3.json": {
+      "sha256": "ba2795c9f53ab85ba1d6299d51f8736a02c0f8f2d06a65069d8450038f7acaca",
+      "bytes": 4850
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-rank2-after-6.json": {
+      "sha256": "0f3d17ba8cb9182c99faee1a844ae6f1fe0eee2c4b6c48511912fb49671f5708",
+      "bytes": 4909
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-rank2-before-5.json": {
+      "sha256": "0f3d17ba8cb9182c99faee1a844ae6f1fe0eee2c4b6c48511912fb49671f5708",
+      "bytes": 4909
+    },
+    "verified-browser-en-360/en-360-cloak-of-shadows-synthetic-input.json": {
+      "sha256": "7021854845e40e9c63eeebaec3717cab75a47bc01392118320e017e9e71a5d2b",
+      "bytes": 4024
+    },
+    "verified-browser-zh-CN-1280/browser-report.json": {
+      "sha256": "eef6a365f370886d458602f295de872139a6bfabca6bd2d7295a6cc509d15e32",
+      "bytes": 1514
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-cast-visible.png": {
+      "sha256": "2e54e303c3ff4675318017862d0395a518f887ce8bf126d094e95db764e18713",
+      "bytes": 193300
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-combat.json": {
+      "sha256": "615c81bda8b034bcbb82dcc5a9737033cf8fdacb2b6ea80a48bdabab9e8de184",
+      "bytes": 3317
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-description.png": {
+      "sha256": "d826592524f6e071c64d984013ab91afb1d8a445756e88d79e9b7972748234b7",
+      "bytes": 139980
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-details.png": {
+      "sha256": "a4dd8b47081d56efe9f77fbf5b55b8c62de6b0ee42d54e3b23627e59b6585bfb",
+      "bytes": 141837
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-fresh-1.json": {
+      "sha256": "079269a12e46802a668f66a0d77ac481a8c77203bfa8276e6ca91d6fa00f4fe9",
+      "bytes": 3181
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-imported-2.json": {
+      "sha256": "0183bba043a245c0cff2177adb95121e8aefc898dbd89ed80b4d68cecede678b",
+      "bytes": 4853
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-observed-attempts.json": {
+      "sha256": "6cf319d4bac7260452a1c597f78c2bb9941cef63d0ea0141f6fde49228804892",
+      "bytes": 3206
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-paid-defense-stats.png": {
+      "sha256": "e943828818af587b11121ceefb6b4ce70b4b0ce27d634026d1f7677fd2dcaba9",
+      "bytes": 138358
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-rank1-after-4.json": {
+      "sha256": "177d9523632b3f5bee5092a9cef85bfcaaeac08c09e7b3adf48965a52576e092",
+      "bytes": 4856
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-rank1-before-3.json": {
+      "sha256": "bb85977237ebde2b52876563d46942ce4302e2fd23124689ce693bccd5a630bd",
+      "bytes": 4853
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-rank2-after-6.json": {
+      "sha256": "e8d355e36e2be7961a37f46b0f8431f16cf560dfe4f6808c8ee4070c88018c48",
+      "bytes": 4912
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-rank2-before-5.json": {
+      "sha256": "e8d355e36e2be7961a37f46b0f8431f16cf560dfe4f6808c8ee4070c88018c48",
+      "bytes": 4912
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-cloak-of-shadows-synthetic-input.json": {
+      "sha256": "454adc0fae1723c2c295cb25a599ea40c3b3fad3593df16163fdaa2e38671236",
+      "bytes": 4027
+    },
+    "verified-browser-zh-CN-360/browser-report.json": {
+      "sha256": "53d448954919ee23f43ae0b47a98350a7cfae7abc674884d47d3414500cb78ee",
+      "bytes": 1508
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-cast-visible.png": {
+      "sha256": "b0290f0ddeadd019543479de53ef8606d496eadb52ed165c360636b6baa57b58",
+      "bytes": 45932
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-combat.json": {
+      "sha256": "615c81bda8b034bcbb82dcc5a9737033cf8fdacb2b6ea80a48bdabab9e8de184",
+      "bytes": 3317
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-description.png": {
+      "sha256": "d37bd9aa377d28c1761f013d36d5dbedfef6bbe47db0675257cfb1781ddc5954",
+      "bytes": 65914
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-details.png": {
+      "sha256": "521427d490103078d6872572f0aaebdb04d02745b9471311663d33f53a2a50a6",
+      "bytes": 67035
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-fresh-1.json": {
+      "sha256": "f023a7efe75dd1cbc251bd5f5ff208f4e47ab90a9135b24b01feb2d5c6b23178",
+      "bytes": 3181
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-imported-2.json": {
+      "sha256": "5c13ab678f039e360de28f60321e59b2f5e652b176141e763fc4024d474f4fd8",
+      "bytes": 4853
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-observed-attempts.json": {
+      "sha256": "6cf319d4bac7260452a1c597f78c2bb9941cef63d0ea0141f6fde49228804892",
+      "bytes": 3206
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-paid-defense-stats.png": {
+      "sha256": "260ad2e886442344d31907e687b1c125837127cff8cf88ebca9b4be56432acef",
+      "bytes": 47773
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-rank1-after-4.json": {
+      "sha256": "4fdc309d9d270035cd2fa92db25b5335f7fda93cacc935dae90db27f010bba3c",
+      "bytes": 4856
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-rank1-before-3.json": {
+      "sha256": "f56bcf17ca8372347fbf3ad5d91149752f737ad32ca7573a9e1ea21947b573a4",
+      "bytes": 4853
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-rank2-after-6.json": {
+      "sha256": "a93fc6276042b813640685b9b707349053f214a3cf2326bc87e6f2d6d45e60be",
+      "bytes": 4912
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-rank2-before-5.json": {
+      "sha256": "a93fc6276042b813640685b9b707349053f214a3cf2326bc87e6f2d6d45e60be",
+      "bytes": 4912
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-cloak-of-shadows-synthetic-input.json": {
+      "sha256": "0e7d6d9d4a5921aa4e4ff8f5b37371ad0c8055b39f990eab4173e7cfcd5d6d43",
+      "bytes": 4027
+    }
+  },
+  "terminalReceipts": [
+    {
+      "name": "engine-final",
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1165656,
+      "wrapperPid": 1165622,
+      "started": 1792944324.7851133,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 135.2793505191803
+    },
+    {
+      "name": "types-delivery",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1189519,
+      "wrapperPid": 1189518,
+      "started": 1792944965.687281,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 84.38497281074524
+    },
+    {
+      "name": "types-first",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1163911,
+      "wrapperPid": 1163910,
+      "started": 1792944074.161465,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 2,
+      "seconds": 86.81888461112976
+    },
+    {
+      "name": "lint-corrected",
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1176299,
+      "wrapperPid": 1176291,
+      "started": 1792944485.5530076,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 172.69978427886963
+    },
+    {
+      "name": "next-hammer",
+      "argv": [
+        "node",
+        "node_modules/vite-node/vite-node.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cloak-jqdf76h2/psychic-hammer-repro.ts"
+      ],
+      "pid": 1178912,
+      "wrapperPid": 1178911,
+      "started": 1792944630.2462626,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 5.967433214187622
+    },
+    {
+      "name": "types-final",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1165238,
+      "wrapperPid": 1165237,
+      "started": 1792944249.893854,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 2,
+      "seconds": 92.9575936794281
+    },
+    {
+      "name": "native-causal",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/cloak-of-shadows.causal.test.ts"
+      ],
+      "pid": 1161609,
+      "wrapperPid": 1161608,
+      "started": 1792944038.8913212,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 8.439197301864624
+    },
+    {
+      "name": "display-green",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/cloak-of-shadows.test.ts",
+        "src/features/skills/SkillsScreen.cloak-of-shadows.test.tsx"
+      ],
+      "pid": 1164503,
+      "wrapperPid": 1164502,
+      "started": 1792944169.3189683,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 7.853014707565308
+    },
+    {
+      "name": "native-causal-corrected",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/cloak-of-shadows.causal.test.ts"
+      ],
+      "pid": 1163803,
+      "wrapperPid": 1163802,
+      "started": 1792944072.9957716,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 7.117841720581055
+    },
+    {
+      "name": "browser-corrected",
+      "argv": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cloak-jqdf76h2/serve.py",
+        "--port",
+        "4497",
+        "--",
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cloak-jqdf76h2/browser-suite.py"
+      ],
+      "pid": 1168783,
+      "wrapperPid": 1168781,
+      "started": 1792944386.3031154,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 93.85205125808716
+    },
+    {
+      "name": "display-red",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/cloak-of-shadows.test.ts",
+        "src/features/skills/SkillsScreen.cloak-of-shadows.test.tsx"
+      ],
+      "pid": 1164233,
+      "wrapperPid": 1164232,
+      "started": 1792944128.5113647,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 8.076406002044678
+    },
+    {
+      "name": "full",
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "pid": 1168049,
+      "wrapperPid": 1168048,
+      "started": 1792944370.2079983,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 577.3819077014923
+    },
+    {
+      "name": "build",
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cloak-jqdf76h2/build"
+      ],
+      "pid": 1165289,
+      "wrapperPid": 1165288,
+      "started": 1792944252.244197,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 12.716351747512817
+    },
+    {
+      "name": "browser",
+      "argv": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cloak-jqdf76h2/serve.py",
+        "--port",
+        "4497",
+        "--",
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cloak-jqdf76h2/browser-suite.py"
+      ],
+      "pid": 1165600,
+      "wrapperPid": 1165599,
+      "started": 1792944323.596108,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 39.036190032958984
+    },
+    {
+      "name": "native-first-green",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/cloak-of-shadows.causal.test.ts",
+        "src/engine/skills/cloak-of-shadows-schema.test.ts",
+        "src/stores/burst-of-speed-native.test.ts"
+      ],
+      "pid": 1158782,
+      "wrapperPid": 1158781,
+      "started": 1792943978.9493823,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.7074151039123535
+    },
+    {
+      "name": "engine-first",
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1158896,
+      "wrapperPid": 1158893,
+      "started": 1792943980.126512,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 94.38125085830688
+    },
+    {
+      "name": "schema-green",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/cloak-of-shadows-schema.test.ts",
+        "src/engine/skills/burst-of-speed-schema.test.ts"
+      ],
+      "pid": 1158676,
+      "wrapperPid": 1158675,
+      "started": 1792943961.5285099,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 1.984116554260254
+    },
+    {
+      "name": "focused",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/cloak-of-shadows.causal.test.ts",
+        "src/stores/cloak-of-shadows-native.test.ts",
+        "src/engine/skills/cloak-of-shadows-schema.test.ts",
+        "src/engine/skills/cloak-of-shadows.test.ts",
+        "src/features/skills/SkillsScreen.cloak-of-shadows.test.tsx"
+      ],
+      "pid": 1164729,
+      "wrapperPid": 1164728,
+      "started": 1792944206.582294,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 8.083555936813354
+    },
+    {
+      "name": "native-red",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/cloak-of-shadows.causal.test.ts"
+      ],
+      "pid": 1157251,
+      "wrapperPid": 1157250,
+      "started": 1792943847.790019,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.238521099090576
+    },
+    {
+      "name": "lint-final",
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1165258,
+      "wrapperPid": 1165257,
+      "started": 1792944251.0642562,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 192.79811906814575
+    },
+    {
+      "name": "schema-data",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/cloak-of-shadows-schema.test.ts",
+        "src/engine/skills/burst-of-speed-schema.test.ts"
+      ],
+      "pid": 1158254,
+      "wrapperPid": 1158253,
+      "started": 1792943909.4311593,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 1.9982354640960693
+    },
+    {
+      "name": "focused-final",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/cloak-of-shadows.causal.test.ts",
+        "src/stores/cloak-of-shadows-native.test.ts",
+        "src/engine/skills/cloak-of-shadows-schema.test.ts",
+        "src/engine/skills/cloak-of-shadows.test.ts",
+        "src/features/skills/SkillsScreen.cloak-of-shadows.test.tsx"
+      ],
+      "pid": 1176330,
+      "wrapperPid": 1176329,
+      "started": 1792944486.728033,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 11.759766340255737
+    },
+    {
+      "name": "schema-red",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/cloak-of-shadows-schema.test.ts"
+      ],
+      "pid": 1158018,
+      "wrapperPid": 1158017,
+      "started": 1792943866.6203313,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 2.0944769382476807
+    },
+    {
+      "name": "types-corrected",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1167999,
+      "wrapperPid": 1167998,
+      "started": 1792944369.0266354,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 138.2046926021576
+    },
+    {
+      "name": "schema-authored",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/cloak-of-shadows-schema.test.ts",
+        "src/engine/skills/burst-of-speed-schema.test.ts"
+      ],
+      "pid": 1158518,
+      "wrapperPid": 1158517,
+      "started": 1792943924.5534565,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 1.9509742259979248
+    }
+  ],
+  "verifiedRawMembers": 163,
+  "recordedPids": [
+    1157250,
+    1157251,
+    1158017,
+    1158018,
+    1158253,
+    1158254,
+    1158517,
+    1158518,
+    1158675,
+    1158676,
+    1158781,
+    1158782,
+    1158893,
+    1158896,
+    1161608,
+    1161609,
+    1163802,
+    1163803,
+    1163910,
+    1163911,
+    1164232,
+    1164233,
+    1164502,
+    1164503,
+    1164728,
+    1164729,
+    1165237,
+    1165238,
+    1165257,
+    1165258,
+    1165288,
+    1165289,
+    1165599,
+    1165600,
+    1165622,
+    1165656,
+    1167998,
+    1167999,
+    1168048,
+    1168049,
+    1168781,
+    1168783,
+    1168784,
+    1176291,
+    1176299,
+    1176329,
+    1176330,
+    1178911,
+    1178912,
+    1189518,
+    1189519
+  ],
+  "allRecordedPidsAbsent": true,
+  "excludedDisposable": [
+    "build/",
+    "browser-template-suite.py",
+    "browser-template.cjs"
+  ],
+  "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cloak-jqdf76h2"
+}

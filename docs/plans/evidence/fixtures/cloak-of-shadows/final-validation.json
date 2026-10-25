@@ -1,0 +1,32 @@
+{
+  "sourceCommit": "f08311cbb0b4861ba26cd6013a8270570f8e9b07",
+  "sourceFiles": 1164,
+  "committedSourceVerifiedAtDelivery": true,
+  "runtimeDrift": [],
+  "archiveSha256": "8095ec1d318e6aadfc7553177eb1f472740751315e6d56e93295f96659aa15b9",
+  "rawMembersVerified": 163,
+  "terminalReceipts": 25,
+  "full": {
+    "files": 671,
+    "passed": 14928,
+    "existingSkips": 2
+  },
+  "inventory": {
+    "boundedFunctional": 109,
+    "unverified": 102,
+    "engineOnly": 1,
+    "reviewNeeded": 1,
+    "changedOnly": "skills-assassin-cloak-of-shadows",
+    "unchangedOtherRows": 212
+  },
+  "savePairs": 8,
+  "linkFailures": [],
+  "all51PidsAbsent": true,
+  "port4497Closed": true,
+  "scratchAbsent": true,
+  "cleanupFailures": [],
+  "genuineSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "genuineCampaignActions": 0,
+  "remoteActions": 0,
+  "independentEarnedAndFullV1Acceptance": "open"
+}

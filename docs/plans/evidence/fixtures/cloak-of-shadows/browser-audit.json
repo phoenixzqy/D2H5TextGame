@@ -1,0 +1,14 @@
+{
+  "cases": 4,
+  "saveContinuePairs": 8,
+  "geometryChecks": 20,
+  "screenshots": 16,
+  "individuallyInspected": [
+    "en-360-cast-visible",
+    "zh-CN-360-description",
+    "en-1280-paid-defense-stats",
+    "zh-CN-1280-cast-visible"
+  ],
+  "errors": [],
+  "fixture": "Synthetic L30/resources and imported helmet; public controls, fixed Date.now, ordinary timers; no earned balance credit."
+}
