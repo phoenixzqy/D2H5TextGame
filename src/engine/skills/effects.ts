@@ -162,6 +162,8 @@ export interface RegisteredSkill {
   readonly effects: readonly SkillEffect[];
   /** Optional grid shape used when target is `area-enemies`. */
   readonly aoeShape?: AoeShape;
+  /** Authored cap after shaped area selection; absent preserves all resolved targets. */
+  readonly maxTargets?: number;
   /** Buff skills are skipped if the buff is already active. */
   readonly isBuff?: boolean;
   /** Summon-on-start (cast once at combat start). */

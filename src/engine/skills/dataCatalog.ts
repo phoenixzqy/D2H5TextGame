@@ -64,6 +64,8 @@ interface JsonSkill {
   readonly summon?: boolean;
   readonly summonId?: string;
   readonly aoeShape?: AoeShape;
+  /** Authored cap after shaped area selection; absent preserves all resolved targets. */
+  readonly maxTargets?: number;
   readonly requires?: SkillRequirement;
   readonly scaling?: {
     readonly damagePerLevel?: number;
@@ -270,6 +272,7 @@ export function registeredSkillFromJson(skill: JsonSkill): RegisteredSkill {
     effects: effectsForSkill(skill),
     minLevel: skill.requiredLevel ?? skill.minLevel,
     ...(skill.aoeShape ? { aoeShape: skill.aoeShape } : {}),
+    ...(skill.maxTargets !== undefined ? { maxTargets: skill.maxTargets } : {}),
     ...(skill.target === 'summon' && skill.trigger === 'active' ? { summonOnStart: true } : {}),
     ...(skill.trigger === 'passive' || skill.trigger === 'aura' || (
       skill.target === 'self' && skill.appliesStatus?.[0] !== undefined

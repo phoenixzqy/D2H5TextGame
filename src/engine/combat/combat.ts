@@ -1387,6 +1387,7 @@ function castSkill(
     if (picked) targetEnemies = [picked];
   } else if (skill.target === 'area-enemies') {
     targetEnemies = resolveAoeTargets(enemies, skill.aoeShape);
+    if (skill.maxTargets !== undefined) targetEnemies = targetEnemies.slice(0, skill.maxTargets);
   }
 
   for (const effect of skill.effects) {

@@ -274,6 +274,8 @@ export interface SkillDef {
 
   /** Optional 3-column battle-grid AOE shape for area skills. */
   readonly aoeShape?: AoeShape;
+  /** Authored cap after shaped area selection; absent preserves all resolved targets. */
+  readonly maxTargets?: number;
   
   /** Cooldown in turns */
   readonly cooldown: number;

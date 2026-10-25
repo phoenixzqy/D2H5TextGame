@@ -8,6 +8,25 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["maxTargets"], "properties": { "maxTargets": {} } },
+      "then": { "properties": { "id": { "const": "skills-paladin-zeal" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-paladin-zeal" } } },
+      "then": {
+        "required": ["maxTargets", "aoeShape", "requiredLevel", "damage", "damageType"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "area-enemies" },
+          "aoeShape": { "const": "cross" }, "maxTargets": { "const": 3 },
+          "requiredLevel": { "const": 12 }, "maxLevel": { "const": 20 },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "onHitRecovery": false, "onHitSelfDamage": false, "hitSequence": false,
+          "damageComposition": false, "ignoresMagicResist": false, "feralRage": false,
+          "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false
+        }
+      }
+    },
+    {
       "if": { "required": ["onHitSelfDamage"], "properties": { "onHitSelfDamage": {} } },
       "then": { "properties": { "id": { "const": "skills-paladin-sacrifice" } } }
     },
@@ -3676,6 +3695,10 @@
     }
   },
   "properties": {
+    "maxTargets": {
+      "type": "integer", "const": 3,
+      "description": "Explicit Zeal limit applied after resolving its deterministic densest cross; each selected living target receives one ordinary hit."
+    },
     "onHitSelfDamage": {
       "type": "object", "additionalProperties": false,
       "required": ["lifeFraction", "minimumLifeLoss"],
