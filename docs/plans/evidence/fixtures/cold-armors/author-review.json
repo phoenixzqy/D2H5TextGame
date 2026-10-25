@@ -1,0 +1,36 @@
+{
+  "reviewer": "root author; sole writer; no independent signoff",
+  "verdict": "no additional source findings; bounded local verification passed",
+  "correctness": [
+    "Exact class/unlock/transitive-prerequisite native authority; paid source/rank separated from markers and durable state.",
+    "Rank retained across positive changes, invalidated at native ineligibility boundary; fresh runs unpaid.",
+    "Ordinary damage projection and independent Cold settlement; shields, lethal wearer and surviving attacker checks; explicit reaction guard.",
+    "Existing RNG/order/status APIs reused; paid buff adds no cast-time damage."
+  ],
+  "readability": [
+    "One focused armor module; identity opt-ins in adapter and shared combat pipeline; explicit provisional contract."
+  ],
+  "architecture": [
+    "Pure engine TypeScript; JSON-owned tuning; existing wave/store boundary and no save version/schema change."
+  ],
+  "security": {
+    "result": "pass",
+    "findings": [],
+    "scope": "local engine/data/UI and browser harness; no added dependencies, network, credentials, permissions or durable export fields"
+  },
+  "performance": [
+    "Unaffected no-paid-armor bonus path uses frozen shared zeros; reaction depth bounded to one.",
+    "Existing broad engine/runtime checks pass; overall bundle and test-time budgets remain unresolved."
+  ],
+  "limits": [
+    "Independent design/QA and earned numerical balance open; no campaign action or full skill/build/private-v1 gate acceptance."
+  ],
+  "sourceDiffAudit": "source-diff-audit.json",
+  "sourceFreeze": "freeze-final.json",
+  "fullSuite": {
+    "files": 725,
+    "testsPassed": 16060,
+    "existingTestsSkipped": 2
+  },
+  "sourceCommit": "93e39b22e4f62e83386bcbc2f3b4ca191a668dc1"
+}

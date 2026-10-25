@@ -1,0 +1,9 @@
+{
+  "changedSorceressObjects": [
+    "skills-sorceress-shiver-armor",
+    "skills-sorceress-chilling-armor"
+  ],
+  "unchangedObjectSpans": 28,
+  "existingArmorTuningPreserved": true,
+  "inventoryStillUncredited": true
+}

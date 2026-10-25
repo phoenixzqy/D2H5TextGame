@@ -1,0 +1,73 @@
+{
+  "basis": "Observed terminal exec results; earlier failed logs retained separately",
+  "finalChecks": [
+    {
+      "check": "focused compatibility",
+      "log": "compatibility-final.log",
+      "testsPassed": 437,
+      "filesPassed": 6,
+      "exitCode": 0,
+      "basis": "retained final log; terminal handle 29284 from prior continuation"
+    },
+    {
+      "check": "full engine",
+      "log": "engine-final.log",
+      "testsPassed": 8053,
+      "filesPassed": 301,
+      "exitCode": 0,
+      "session": 67596
+    },
+    {
+      "check": "repository lint",
+      "log": "lint-final.log",
+      "exitCode": 0,
+      "session": 97997
+    },
+    {
+      "check": "explicit browser-file lint",
+      "log": "browser-lint-final.log",
+      "exitCode": 0,
+      "session": 48468
+    },
+    {
+      "check": "frozen typecheck",
+      "log": "types-verified-final.log",
+      "exitCode": 0,
+      "session": 55913
+    },
+    {
+      "check": "production build",
+      "log": "build-final.log",
+      "exitCode": 0,
+      "session": 12097
+    },
+    {
+      "check": "required actual-output precache",
+      "log": "precache-final.log",
+      "exitCode": 0
+    },
+    {
+      "check": "production bridge scan",
+      "log": "freeze-final.json",
+      "exitCode": 0,
+      "findings": []
+    },
+    {
+      "check": "frozen browser",
+      "log": "browser-verified-final.log",
+      "exitCode": 0,
+      "session": 1703,
+      "casesPassed": 8
+    }
+  ],
+  "fullSuite": {
+    "state": "passed",
+    "session": 33381,
+    "log": "full-final.log",
+    "exitCode": 0,
+    "filesPassed": 725,
+    "testsPassed": 16060,
+    "existingTestsSkipped": 2,
+    "durationSeconds": 633.23
+  }
+}

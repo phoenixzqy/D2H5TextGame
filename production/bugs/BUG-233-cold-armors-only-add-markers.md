@@ -35,3 +35,4 @@ Repair: paid JSON-derived armor projection and ordinary guarded Cold counteratta
 125 new tests; full 16060 passed/725 files/two existing skips, engine8053/301,
 types/lint/build/precache and final eight production-browser cases pass.
 See [bounded evidence](../../docs/plans/evidence/d05-cold-armors.md).
+Source commits: engine `484f9433`, presentation/final `93e39b22`.

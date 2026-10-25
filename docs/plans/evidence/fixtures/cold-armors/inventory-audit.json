@@ -1,0 +1,19 @@
+{
+  "changedIds": [
+    "skills-sorceress-shiver-armor",
+    "skills-sorceress-chilling-armor"
+  ],
+  "unchangedSkillRows": 211,
+  "headerUnchanged": true,
+  "counts": {
+    "unverified": 74,
+    "bounded-functional;independent-acceptance-open": 134,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "boundedFunctional": 137,
+  "unverified": 74,
+  "sorceressBounded": 21,
+  "inventorySha256": "b2f8b1eb787d902ab5680754596a7872e85e7d15ce93cec22b1dd380990cdbc0"
+}

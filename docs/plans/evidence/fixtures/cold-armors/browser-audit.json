@@ -1,0 +1,260 @@
+{
+  "report": "browser-verified-final-report.json",
+  "cases": [
+    {
+      "title": "shiver-armor public allocation/counter/save/offline en",
+      "project": "armor-desktop",
+      "durationMs": 15957,
+      "pairs": [
+        {
+          "name": "online-save-pair",
+          "sha256": "1a8c447bd9da573f460a680cf95c0e7ea310f6863fdb29fd08339f10e8b6e270",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        },
+        {
+          "name": "offline-save-pair",
+          "sha256": "1a8c447bd9da573f460a680cf95c0e7ea310f6863fdb29fd08339f10e8b6e270",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "chilling-armor public allocation/counter/save/offline en",
+      "project": "armor-desktop",
+      "durationMs": 15468,
+      "pairs": [
+        {
+          "name": "online-save-pair",
+          "sha256": "e9c8695de4ebc567c5049d8f5db78df4b8437682db15b5eae151c7d5d4df0a7e",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        },
+        {
+          "name": "offline-save-pair",
+          "sha256": "e9c8695de4ebc567c5049d8f5db78df4b8437682db15b5eae151c7d5d4df0a7e",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "shiver-armor public allocation/counter/save/offline zh-CN",
+      "project": "armor-desktop",
+      "durationMs": 15360,
+      "pairs": [
+        {
+          "name": "online-save-pair",
+          "sha256": "79d8a2fd7349063fcb09fd83ecc25742bf063afb358cc392f298f4b9950c0b5f",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        },
+        {
+          "name": "offline-save-pair",
+          "sha256": "79d8a2fd7349063fcb09fd83ecc25742bf063afb358cc392f298f4b9950c0b5f",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "chilling-armor public allocation/counter/save/offline zh-CN",
+      "project": "armor-desktop",
+      "durationMs": 15123,
+      "pairs": [
+        {
+          "name": "online-save-pair",
+          "sha256": "d4089038ece52d7f4ca497304981844c5bcf83ab5320f7a3005ed89f4a112623",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        },
+        {
+          "name": "offline-save-pair",
+          "sha256": "d4089038ece52d7f4ca497304981844c5bcf83ab5320f7a3005ed89f4a112623",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "shiver-armor public allocation/counter/save/offline en",
+      "project": "armor-mobile",
+      "durationMs": 15624,
+      "pairs": [
+        {
+          "name": "online-save-pair",
+          "sha256": "1a8c447bd9da573f460a680cf95c0e7ea310f6863fdb29fd08339f10e8b6e270",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        },
+        {
+          "name": "offline-save-pair",
+          "sha256": "1a8c447bd9da573f460a680cf95c0e7ea310f6863fdb29fd08339f10e8b6e270",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "chilling-armor public allocation/counter/save/offline en",
+      "project": "armor-mobile",
+      "durationMs": 15122,
+      "pairs": [
+        {
+          "name": "online-save-pair",
+          "sha256": "e9c8695de4ebc567c5049d8f5db78df4b8437682db15b5eae151c7d5d4df0a7e",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        },
+        {
+          "name": "offline-save-pair",
+          "sha256": "e9c8695de4ebc567c5049d8f5db78df4b8437682db15b5eae151c7d5d4df0a7e",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "shiver-armor public allocation/counter/save/offline zh-CN",
+      "project": "armor-mobile",
+      "durationMs": 14758,
+      "pairs": [
+        {
+          "name": "online-save-pair",
+          "sha256": "79d8a2fd7349063fcb09fd83ecc25742bf063afb358cc392f298f4b9950c0b5f",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        },
+        {
+          "name": "offline-save-pair",
+          "sha256": "79d8a2fd7349063fcb09fd83ecc25742bf063afb358cc392f298f4b9950c0b5f",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "chilling-armor public allocation/counter/save/offline zh-CN",
+      "project": "armor-mobile",
+      "durationMs": 14594,
+      "pairs": [
+        {
+          "name": "online-save-pair",
+          "sha256": "d4089038ece52d7f4ca497304981844c5bcf83ab5320f7a3005ed89f4a112623",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        },
+        {
+          "name": "offline-save-pair",
+          "sha256": "d4089038ece52d7f4ca497304981844c5bcf83ab5320f7a3005ed89f4a112623",
+          "exactDomains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        }
+      ]
+    }
+  ],
+  "savePairs": 16,
+  "exactDomains": 6,
+  "geometryAssertions": 40,
+  "screenshots": 16,
+  "offlineFreshPageContinues": 8,
+  "pageErrors": [],
+  "bridgePresent": false
+}

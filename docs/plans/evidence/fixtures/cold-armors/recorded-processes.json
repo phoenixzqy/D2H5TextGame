@@ -1,0 +1,26 @@
+{
+  "recordedNodeWarningPids": [
+    1890647,
+    1890669,
+    1891377,
+    1891398,
+    1896889,
+    1896910,
+    1897293,
+    1897315,
+    1897819,
+    1897840,
+    1898313,
+    1898334,
+    1899001,
+    1899022,
+    1899917,
+    1900694,
+    1900715,
+    1901359
+  ],
+  "remainingRecordedProcesses": [],
+  "previewPort4514Open": false,
+  "allTrackedValidationHandlesTerminal": true,
+  "scope": "All task exec handles were observed terminal; recorded warning PIDs checked absent. No broad process termination used."
+}

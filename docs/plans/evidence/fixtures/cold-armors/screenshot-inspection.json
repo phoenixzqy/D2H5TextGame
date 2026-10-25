@@ -1,0 +1,16 @@
+{
+  "report": "browser-delivery-report.json",
+  "production": "dist-final; runtime unchanged during final browser run",
+  "inspectedFiles": [
+    "zh-desktop-chilling-combat.png",
+    "zh-desktop-chilling-skill-preview.png",
+    "en-mobile-shiver-skill-preview.png",
+    "en-mobile-shiver-combat.png"
+  ],
+  "observations": [
+    "Desktop armor status label visible and localized; mobile combat layout stacks with readable controls.",
+    "Tree viewport screenshots retain the selected node; detail panel is below this captured viewport, so these screenshots do not independently prove detail typography.",
+    "Existing navigation/lock glyph boxes remain; full accessibility acceptance is open.",
+    "Five-size overflow/touch geometry and bilingual detail content are separately asserted in browser/React tests."
+  ]
+}
