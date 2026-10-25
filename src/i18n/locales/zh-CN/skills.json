@@ -64,6 +64,14 @@
     "minLevel": "需要等级 {{level}}"
   },
   "details": {
+    "manaBurnDrain": "法力扣除",
+    "manaBurnDrainValue": "实际损失生命的{{percent}}%，向下取整；不超过剩余法力",
+    "manaBurnBonus": "法力为零时",
+    "manaBurnBonusValue": "法力燃烧期间直接奥术伤害增加{{percent}}%",
+    "manaBurnLifetime": "法力燃烧持续时间",
+    "manaBurnLifetimeValue": "直到法力恢复",
+    "manaBurnStun": "晕眩持续时间",
+    "manaBurnStunValue": "{{seconds}}秒；首领{{bossSeconds}}秒",
     "selfDamage": "自身伤害",
     "selfDamageValue": "直接实际生命损失的{{percentOfHpRemoved}}%（最低{{minimumLifeLoss}}点生命）",
     "descriptionSelfDamage": "直接命中并结算通常的目标死亡、恢复球与反伤效果后，仍存活的施法者损失敌人直接实际生命损失的{{percentOfHpRemoved}}%（向下取整，最低{{minimumLifeLoss}}点生命，不超过自身剩余生命）。仅实际损失敌人生命的直接命中才扣除代价。此代价无视自身减伤与护盾，可能致死。吸收伤害和过量伤害不计入；未命中、后续普攻与持续伤害不扣生命，致命反伤无法逆转。",
@@ -380,7 +388,7 @@
     },
     "mind-blast": {
       "name": "精神爆裂",
-      "desc": "释放精神冲击波，灼烧法力并晕眩所有敌人。"
+      "desc": "对所有敌人造成{{min}} ~ {{max}}点奥术伤害。每次命中依次附加法力燃烧与{{seconds}}秒晕眩（首领{{bossSeconds}}秒）。扣除护盾后实际损失生命的{{drain}}%法力，向下取整且不超过剩余法力。法力燃烧持续直到法力恢复；命中前已处于法力燃烧且法力为零时，在已有连携之外额外承受{{bonus}}%直接奥术伤害。受影响且法力为零的怪物可普通攻击，但不能施放技能。每次施放仅支付30点法力并触发一次3秒冷却。"
     },
     "dragon-claw": {
       "name": "龙爪",

@@ -12,6 +12,7 @@ import type { DamageType } from '../types/attributes';
 import type { AoeShape } from '../combat/grid';
 import type { ColdMasteryTuning, FeralRageTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
 import { STATUS_DEFAULTS } from '../combat/status';
+import { MANA_BURN_DEFINITION } from '../combat/mana-burn-definition';
 import { coldMasteryReductionAtRank } from './cold-mastery';
 import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
 import { getSummonStats } from './summons';
@@ -169,6 +170,9 @@ export interface SkillRankDisplayStats {
   /** Percentage points added by this skill, not the attacker's total critical chance. */
   readonly criticalBonusPoints?: number;
   readonly control?: { readonly durationSeconds: number; readonly bossDurationSeconds: number };
+  /** Shared HP-based MP debit and conditional direct Arcane amplification. */
+  readonly manaBurn?: { readonly drainPercent: number; readonly zeroManaArcaneBonusPercent: number;
+    readonly untilManaRestored: true };
   /** A fixed fraction of actual direct HP removed, never promised healing from base damage. */
   readonly recovery?: { readonly percentOfHpRemoved: number };
   /** Life tradeoff from actual enemy HP removed, never a static per-cast HP price. */
@@ -505,7 +509,15 @@ export function computeSkillRankDisplayStats(
   const criticalBonusPoints = skill.id === 'skills-assassin-dragon-claw' && strikesPerCast === 2 &&
     bonus !== undefined && Number.isFinite(bonus) && bonus > 0 && bonus <= 1
     ? Number((bonus * 100).toFixed(4)) : undefined;
-  const controlId = skill.appliesStatus?.[0];
+  const mindBlast = skill.id === 'skills-assassin-mind-blast' && skill.trigger === 'active' &&
+    skill.target === 'all-enemies' && skill.damageType === 'arcane' &&
+    skill.appliesStatus?.length === 2 && skill.appliesStatus[0] === 'mana-burn' && skill.appliesStatus[1] === 'stun';
+  const manaBurn = mindBlast ? {
+    drainPercent: MANA_BURN_DEFINITION.drainFraction * 100,
+    zeroManaArcaneBonusPercent: (MANA_BURN_DEFINITION.zeroManaArcaneMultiplier - 1) * 100,
+    untilManaRestored: true as const
+  } : undefined;
+  const controlId = mindBlast ? 'stun' : skill.appliesStatus?.[0];
   const controlDefinition = skill.damage && skill.trigger === 'active' &&
     (controlId === 'chill' || controlId === 'stun' || controlId === 'paralyze') ? STATUS_DEFAULTS[controlId] : undefined;
   const control = controlDefinition ? { durationSeconds: controlDefinition.duration,
@@ -543,6 +555,7 @@ export function computeSkillRankDisplayStats(
     ...(strikesPerCast !== undefined ? { strikesPerCast } : {}),
     ...(criticalBonusPoints !== undefined ? { criticalBonusPoints } : {}),
     ...(control ? { control } : {}),
+    ...(manaBurn ? { manaBurn } : {}),
     ...(recovery ? { recovery } : {}),
     ...(selfDamage ? { selfDamage } : {}),
     ...(feralRage ? { feralRage } : {}),

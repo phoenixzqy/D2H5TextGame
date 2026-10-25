@@ -169,6 +169,8 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
         }
       : undefined;
     const secondaryStatuses = (skill.appliesStatus?.slice(1) ?? []).flatMap((id): OnHitStatus[] => {
+      if (skill.id === 'skills-assassin-mind-blast' && skill.damageType === 'arcane' &&
+        skill.appliesStatus?.length === 2 && skill.appliesStatus[0] === 'mana-burn' && id === 'stun') return [{ id }];
       if (composite && id === 'chill') return [{ id, damageType: 'cold' }];
       if (composite && id === 'paralyze') return [{ id, damageType: 'lightning' }];
       // The authored freezing cold attacks also slow after Freeze expires.

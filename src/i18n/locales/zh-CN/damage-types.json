@@ -30,6 +30,7 @@
     "thorns": "荆棘抗性"
   },
   "status": {
+    "mana-burn": "法力燃烧",
     "converted": "已转化",
     "bleed": "流血",
     "ignite": "点燃",

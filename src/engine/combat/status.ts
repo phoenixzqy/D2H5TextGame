@@ -11,7 +11,7 @@
  *   freeze      — no stack, refresh duration (boss = ½ duration)
  *   stun        — no stack
  *   paralyze    — no stack; 50% chance to fail if reapplied within 5 turns
- *   mana-burn   — stacks but only effect is a flag
+ *   mana-burn   — direct-hit mana drain and combos; persists until mana restores
  *   armor-melt  — no stack, refresh duration
  *   plague      — special, behaves like poison but flagged for spread on death
  *   shatter     — instant flag (not a duration status)
@@ -22,6 +22,7 @@
 import type { Rng } from '../rng';
 import type { ActiveStatus, CombatUnit, MonsterTier } from './types';
 import { AMPLIFY_DAMAGE_DEFINITION } from './amplify-damage-definition';
+import { MANA_BURN_DEFINITION } from './mana-burn-definition';
 import { DRUID_SUMMON_DEFINITION } from '../skills/druid-summon-definition';
 
 /** Known status IDs handled with explicit defaults. */
@@ -61,7 +62,7 @@ export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.
   bleed: { duration: 3, maxStacks: 1 },
   poison: { duration: 5, maxStacks: 10 },
   plague: { duration: 5, maxStacks: 10 },
-  'mana-burn': { duration: 3, maxStacks: 1 },
+  'mana-burn': { duration: MANA_BURN_DEFINITION.durationSeconds, maxStacks: 1 },
   'armor-melt': { duration: 3, maxStacks: 1 },
   'amplify-damage': { duration: AMPLIFY_DAMAGE_DEFINITION.durationMs / 1000, maxStacks: 1 },
   shatter: { duration: 0, maxStacks: 1 }
@@ -175,7 +176,8 @@ export function applyStatus(
     CLEANSABLE_STATUS_IDS.has(id) ? input.cleansingDurationMultiplier : undefined;
   if (cleansing !== undefined && input.simClockMs !== undefined) unit = shortenCleansingStatuses(unit, input.simClockMs, cleansing);
   const cfg = lookupConfig(id, input.config);
-  const baseDur = input.duration ?? cfg.duration;
+  const baseDur = input.duration ??
+    (id === 'mana-burn' && input.durationMs !== undefined ? input.durationMs / 1000 : cfg.duration);
   const isBoss = unit.tier === 'boss' || unit.tier === 'chapter-boss';
   const bossDurationMult = isBoss ? cfg.bossDurationMult : undefined;
   const dur =
@@ -201,7 +203,7 @@ export function applyStatus(
 
   const idx = unit.statuses.findIndex((s) => canonicalStatusId(s.id) === id);
   const expiresAtMs =
-    input.simClockMs !== undefined
+    input.simClockMs !== undefined && !(id === 'mana-burn' && timedDurationMs < 0)
       ? input.simClockMs + timedDurationMs
       : undefined;
   let next: ActiveStatus[];
@@ -231,20 +233,21 @@ export function applyStatus(
     const stacks =
       cfg.maxStacks > 1 ? Math.min(cfg.maxStacks, prev.stacks + 1) : prev.stacks;
     // Undefined expiry is indefinite, including legacy combat-entry records.
-    const newExpiresAtMs = prev.expiresAtMs === undefined ? undefined
+    const indefiniteManaBurn = id === 'mana-burn' && timedDurationMs < 0;
+    const newExpiresAtMs = indefiniteManaBurn || prev.expiresAtMs === undefined ? undefined
       : expiresAtMs === undefined ? prev.expiresAtMs : Math.max(prev.expiresAtMs, expiresAtMs);
     const validRate = (rate: number | undefined): boolean =>
       typeof rate === 'number' && Number.isFinite(rate) && rate > 0;
     const promoteDot = !validRate(prev.dotPerStack) && validRate(input.dotPerStack);
     // A new unshortened refresh may replace the duration that the old marker described.
-    const { cleansingShortened: oldReduction, ...unmarked } = prev;
+    const { cleansingShortened: oldReduction, expiresAtMs: oldExpiry, ...unmarked } = prev;
     const retainReduction = newExpiresAtMs !== undefined && (cleansing !== undefined ||
-      oldReduction && newExpiresAtMs === prev.expiresAtMs);
+      oldReduction && newExpiresAtMs === oldExpiry);
     const updated: ActiveStatus = {
       ...unmarked,
       ...(retainReduction ? { cleansingShortened: true as const } : {}),
       stacks,
-      remaining: Math.max(prev.remaining, dur),
+      remaining: indefiniteManaBurn ? -1 : Math.max(prev.remaining, dur),
       ...(promoteDot ? {
         dotPerStack: input.dotPerStack,
         sourceId: input.sourceId,

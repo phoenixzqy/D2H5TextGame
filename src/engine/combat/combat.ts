@@ -37,6 +37,7 @@ import {
   shortenCleansingStatuses
 } from './status';
 import { CHILL_DEFINITION } from './chill-definition';
+import { MANA_BURN_DEFINITION } from './mana-burn-definition';
 import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
 import { isMercHolyFreezeSource, MERC_HOLY_FREEZE_DEFINITION } from '../skills/merc-holy-freeze';
 import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
@@ -148,7 +149,7 @@ export type BattleEvent =
   | { readonly kind: 'life-capacity'; readonly target: string; readonly lifeMax: number; readonly life: number; readonly vigorBaseLifeMax?: number;
       readonly druidFormState?: Pick<CombatUnit, 'druidForm' | 'druidFormLife'> }
   | { readonly kind: 'mana'; readonly target: string; readonly mana: number;
-      readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' | 'redemption' | 'energy-shield' | 'solar-creeper' }
+      readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' | 'redemption' | 'energy-shield' | 'solar-creeper' | 'mana-burn' }
   | { readonly kind: 'death'; readonly target: string }
   | { readonly kind: 'enrage'; readonly target: string }
   | { readonly kind: 'orb'; readonly target: string; readonly orb: Orb }
@@ -411,6 +412,10 @@ function commitMana(
   reason: ManaEvent['reason']
 ): ManaEvent | undefined {
   let next = candidate;
+  const restored = next.mana > before.mana && next.statuses.some(status =>
+    status.id === 'mana-burn' && statusActiveAt(status, state.simClockMs));
+  if (restored) next = { ...next, statuses: next.statuses.filter(status =>
+    status.id !== 'mana-burn' || !statusActiveAt(status, state.simClockMs)) };
   if (next.mana >= next.stats.manaMax) {
     state.manaRecovery.delete(next.id);
     if (next.manaRegenCarry !== undefined && next.manaRegenCarry !== 0) {
@@ -424,6 +429,7 @@ function commitMana(
     }
   }
   state.units.set(next.id, next);
+  if (restored) observeStatuses(state, next.id);
   return before.mana === next.mana ? undefined : {
     kind: 'mana', target: next.id, mana: next.mana, reason
   };
@@ -545,7 +551,9 @@ function buildDamageInput(
   skillLevel = 1,
   baseFlatBonus = 0
 ): DamageInput {
-  const combo = comboMultiplier(combatStatusView(state, defender), effect.damageType);
+  const activeDefender = combatStatusView(state, defender);
+  const combo = comboMultiplier(activeDefender, effect.damageType);
+  const emptyManaBurn = effect.damageType === 'arcane' && defender.mana === 0 && hasStatus(activeDefender, 'mana-burn');
   const stats = attacker.stats;
   const attackerAura = activeStatAura(state.statAura, attacker.id, state.units);
   const defenderAura = activeStatAura(state.statAura, defender.id, state.units);
@@ -588,6 +596,7 @@ function buildDamageInput(
       (effect.damageType === 'cold' && attacker.side === 'player' && alive(attacker) && holyFreezeSourceId(state) !== undefined
         ? MERC_HOLY_FREEZE_DEFINITION.coldDamagePct : 0),
     comboMult: combo,
+    ...(emptyManaBurn ? { manaBurnMult: MANA_BURN_DEFINITION.zeroManaArcaneMultiplier } : {}),
     ...((effect.damageType === 'physical' || effect.damageType === 'thorns') &&
       hasStatus(activeStatusView(attacker, state.simClockMs), 'blind')
       ? { hitChancePenalty: DRUID_SUMMON_DEFINITION.raven.physicalHitChancePenalty } : {}),
@@ -744,8 +753,13 @@ function applyDamageToUnit(
               state.rng
             );
           }
-          state.units.set(defenderId, updated);
+          const drain = status.id === 'mana-burn' && hostileHit
+            ? Math.min(updated.mana, Math.floor((defender.life - newLife) * MANA_BURN_DEFINITION.drainFraction)) : 0;
+          const manaEvent = drain > 0
+            ? commitMana(state, cur, { ...updated, mana: updated.mana - drain }, 'mana-burn') : undefined;
+          if (drain <= 0) state.units.set(defenderId, updated);
           emit(state, { kind: 'status', target: defenderId, statusId: status.id });
+          if (manaEvent) emit(state, manaEvent);
           observeStatuses(state, defenderId);
         }
       }
@@ -1121,6 +1135,8 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  if (inferKind(unit) === 'monster' && unit.mana === 0 &&
+    unit.statuses.some(status => status.id === 'mana-burn' && statusActiveAt(status, state.simClockMs))) return false;
   const conversion = CONVERSION_IDS.some(id => id === skillOrderId || id === skill.id) ||
     skill.effects.some(effect => effect.kind === 'damage' && effect.conversion === true);
   if (conversion && (!matchesConversion(skill) || conversionRank(unit) === 0 ||

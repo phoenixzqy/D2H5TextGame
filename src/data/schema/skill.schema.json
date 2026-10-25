@@ -8,6 +8,22 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-mind-blast" } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "appliesStatus"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "all-enemies" },
+          "requiredLevel": { "const": 24 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-assassin-cloak-of-shadows"] },
+          "damage": { "$ref": "#/properties/damage" },
+          "damageType": { "const": "arcane" }, "appliesStatus": { "const": ["mana-burn", "stun"] },
+          "aoeShape": false, "statusEffect": false, "additionalStatusEffects": false,
+          "hitSequence": false, "critChanceBonus": false, "damageComposition": false,
+          "onHitRecovery": false, "onHitSelfDamage": false
+        }
+      }
+    },
+    {
       "if": { "required": ["aoeShape"], "properties": { "aoeShape": { "const": "cone-2" } } },
       "then": { "properties": { "id": { "enum": ["skills-assassin-fire-blast", "skills-assassin-blade-fury"] } } }
     },

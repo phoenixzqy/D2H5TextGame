@@ -30,6 +30,7 @@
     "thorns": "Thorns Resist"
   },
   "status": {
+    "mana-burn": "Mana Burn",
     "converted": "Converted",
     "bleed": "Bleed",
     "ignite": "Ignite",

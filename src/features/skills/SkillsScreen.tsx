@@ -952,6 +952,16 @@ function StatSection({
           {stats.criticalBonusPoints !== undefined ? (
             <StatLine label={t('details.criticalBonus')} value={t('details.criticalBonusValue', { points: stats.criticalBonusPoints })} />
           ) : null}
+          {stats.manaBurn && stats.control ? (
+            <>
+              <StatLine label={t('details.manaBurnDrain')} value={t('details.manaBurnDrainValue', { percent: stats.manaBurn.drainPercent })} />
+              <StatLine label={t('details.manaBurnBonus')} value={t('details.manaBurnBonusValue', { percent: stats.manaBurn.zeroManaArcaneBonusPercent })} />
+              <StatLine label={t('details.manaBurnLifetime')} value={t('details.manaBurnLifetimeValue')} />
+              <StatLine label={t('details.manaBurnStun')} value={t('details.manaBurnStunValue', {
+                seconds: stats.control.durationSeconds, bossSeconds: stats.control.bossDurationSeconds
+              })} />
+            </>
+          ) : null}
           {stats.statuses.length > 0 ? (
             <StatLine
               label={t('details.statusEffects')}
@@ -1543,6 +1553,11 @@ function dynamicDescription(
       maxLife: Math.round(life * maxRank * 100), maxSpeed: speed * maxRank, cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && skill.id === 'skills-assassin-mind-blast' && stats.manaBurn && stats.control) {
+    return t('assassin.mind-blast.desc', { min: firstDamage.min, max: firstDamage.max,
+      drain: stats.manaBurn.drainPercent, bonus: stats.manaBurn.zeroManaArcaneBonusPercent,
+      seconds: stats.control.durationSeconds, bossSeconds: stats.control.bossDurationSeconds });
+  }
   if (firstDamage && skill.id === 'skills-amazon-jab' && stats.strikesPerCast !== undefined) {
     return t('amazon.jab.desc', { min: firstDamage.min, max: firstDamage.max, strikes: stats.strikesPerCast });
   }

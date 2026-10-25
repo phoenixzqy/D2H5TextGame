@@ -31,6 +31,8 @@ export interface DamageInput {
   readonly increasedPct: number;
   /** Combo multiplier (1 = none). */
   readonly comboMult: number;
+  /** Independent direct Arcane multiplier for an active Mana Burn target at zero MP. */
+  readonly manaBurnMult?: number;
   /** Damage type. */
   readonly type: DamageType;
   /** Attacker crit chance & damage multiplier. */
@@ -180,6 +182,7 @@ export function resolveRolledDamage(
   dmg = dmg + input.flatBonus;
   dmg = dmg * (1 + input.increasedPct);
   dmg = dmg * input.comboMult;
+  if (input.manaBurnMult !== undefined) dmg = dmg * input.manaBurnMult;
   if (roll.crit) dmg = dmg * roll.critMultiplier;
   return { hit: true, dodged: false, crit: roll.crit, ...mitigateDamage(dmg, input) };
 }

@@ -64,6 +64,14 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "manaBurnDrain": "Mana drain",
+    "manaBurnDrainValue": "{{percent}}% of actual HP removed, rounded down; capped at MP",
+    "manaBurnBonus": "At zero MP",
+    "manaBurnBonusValue": "+{{percent}}% direct Arcane damage while Mana Burn is active",
+    "manaBurnLifetime": "Mana Burn duration",
+    "manaBurnLifetimeValue": "Until mana is restored",
+    "manaBurnStun": "Stun duration",
+    "manaBurnStunValue": "{{seconds}} s; bosses {{bossSeconds}} s",
     "selfDamage": "Self damage",
     "selfDamageValue": "{{percentOfHpRemoved}}% of actual direct HP removed (min. {{minimumLifeLoss}} HP)",
     "descriptionSelfDamage": "After the hit and ordinary target-death, orb and reflection effects, a surviving caster loses {{percentOfHpRemoved}}% of actual enemy HP removed (rounded down, minimum {{minimumLifeLoss}} HP, capped at remaining life). Only a hit that removes enemy HP charges this cost. This bypasses your defenses and shields and can kill you. Absorption and overkill do not count. Misses, later basic attacks and damage over time cost no life; lethal reflection cannot be reversed.",
@@ -380,7 +388,7 @@
     },
     "mind-blast": {
       "name": "Mind Blast",
-      "desc": "Releases a psychic shockwave that burns mana and stuns all enemies."
+      "desc": "Deals {{min}} ~ {{max}} Arcane damage to every enemy. Each landed hit applies Mana Burn then Stun for {{seconds}} second ({{bossSeconds}} seconds on bosses). Drain {{drain}}% of actual HP removed after shields, rounded down and capped at remaining MP. Mana Burn lasts until mana is restored. While marked at zero MP before a hit, take {{bonus}}% more direct Arcane damage in addition to existing combos. Affected monsters at zero MP can use basic attacks but cannot use skills. Pay 30 MP and start one 3 s cooldown per cast."
     },
     "dragon-claw": {
       "name": "Dragon Claw",

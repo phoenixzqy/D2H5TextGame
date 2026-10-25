@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/mana-burn.json",
+  "title": "Combat Mana Burn Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "drainFraction", "zeroManaArcaneMultiplier", "durationSeconds"],
+  "properties": {
+    "id": { "const": "combat/mana-burn" },
+    "drainFraction": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+    "zeroManaArcaneMultiplier": { "type": "number", "exclusiveMinimum": 1 },
+    "durationSeconds": { "const": -1, "description": "Indefinite until actual MP restoration; explicit finite status overrides remain supported." }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "id": "combat/mana-burn",
+  "drainFraction": 0.2,
+  "zeroManaArcaneMultiplier": 1.5,
+  "durationSeconds": -1
+}

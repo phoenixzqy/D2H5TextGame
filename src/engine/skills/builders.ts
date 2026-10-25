@@ -12,7 +12,7 @@
  * @module engine/skills/builders
  */
 
-import type { RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
+import type { RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling, OnHitStatus } from './effects';
 import type { AoeShape } from '../combat/grid';
 import type { DamageType } from '../types/attributes';
 import type { SkillTarget, ComboTag, SkillRequirement } from '../types/skills';
@@ -29,6 +29,7 @@ interface BuildSpec {
   readonly base?: readonly [number, number];
   readonly perRank?: readonly [number, number];
   readonly status?: { readonly id: string; readonly chance?: number; readonly stacks?: number; readonly dotPct?: number };
+  readonly additionalStatuses?: readonly OnHitStatus[];
   readonly aoeShape?: AoeShape;
   readonly tags?: readonly ComboTag[];
   readonly buff?: { readonly id: string; readonly duration: number };
@@ -46,22 +47,20 @@ interface BuildSpec {
 function build(s: BuildSpec): RegisteredSkill {
   const effects: SkillEffect[] = [];
   if (s.damageType && s.base) {
+    const primary: OnHitStatus | undefined = s.status ? {
+      id: s.status.id,
+      ...(s.status.chance !== undefined ? { chance: s.status.chance } : {}),
+      ...(s.status.stacks !== undefined ? { stacksOnApply: s.status.stacks } : {}),
+      ...(s.status.dotPct !== undefined ? { dotPctOfDamage: s.status.dotPct } : {})
+    } : undefined;
     effects.push({
       kind: 'damage',
       damageType: s.damageType,
       base: s.base,
       ...(s.perRank ? { perRank: s.perRank } : {}),
       ...(s.tags ? { tags: s.tags } : {}),
-      ...(s.status
-        ? {
-            applyStatus: {
-              id: s.status.id,
-              ...(s.status.chance !== undefined ? { chance: s.status.chance } : {}),
-              ...(s.status.stacks !== undefined ? { stacksOnApply: s.status.stacks } : {}),
-              ...(s.status.dotPct !== undefined ? { dotPctOfDamage: s.status.dotPct } : {})
-            }
-          }
-        : {})
+      ...(primary ? (s.additionalStatuses ? { applyStatuses: [primary, ...s.additionalStatuses] }
+        : { applyStatus: primary }) : {})
     });
   }
   if (s.buff) {
@@ -191,7 +190,7 @@ export const DEFAULT_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   build({ id: 'assassin.shock_web', archetype: 'assassin', target: 'all-enemies', cooldown: 2, manaCost: 20, damageType: 'lightning', base: [30, 50], status: { id: 'paralyze', chance: 0.2 } }),
   build({ id: 'assassin.fire_blast', archetype: 'assassin', target: 'area-enemies', cooldown: 2, manaCost: 25, damageType: 'fire', base: [50, 70], status: { id: 'ignite', dotPct: 0.1 }, aoeShape: 'cone-2' }),
   build({ id: 'assassin.blade_fury', archetype: 'assassin', target: 'area-enemies', cooldown: 1, manaCost: 15, damageType: 'physical', base: [40, 60], aoeShape: 'cone-2' }),
-  build({ id: 'assassin.mind_blast', archetype: 'assassin', target: 'all-enemies', cooldown: 3, manaCost: 30, damageType: 'arcane', base: [50, 70], status: { id: 'mana-burn' } }),
+  build({ id: 'assassin.mind_blast', archetype: 'assassin', target: 'all-enemies', cooldown: 3, manaCost: 30, damageType: 'arcane', base: [50, 70], perRank: [5, 5], minLevel: 24, status: { id: 'mana-burn' }, additionalStatuses: [{ id: 'stun' }] }),
   build({ id: 'assassin.dragon_claw', archetype: 'assassin', target: 'single-enemy', cooldown: 1, manaCost: 20, damageType: 'physical', base: [70, 100] }),
   build({ id: 'assassin.phoenix_strike', archetype: 'assassin', target: 'single-enemy', cooldown: 3, manaCost: 40, damageType: 'fire', base: [40, 60], status: { id: 'ignite', dotPct: 0.1 } }),
   build({ id: 'assassin.claw_mastery', archetype: 'assassin', target: 'self', cooldown: 0, manaCost: 0, buff: { id: 'claw_mastery', duration: -1 } }),
