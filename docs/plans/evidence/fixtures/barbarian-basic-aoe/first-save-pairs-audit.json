@@ -1,0 +1,632 @@
+{
+  "ordinaryPairs": 32,
+  "offlinePairs": 16,
+  "pairs": [
+    {
+      "label": "en-1280-bash",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-en-1280/en-1280-bash-rank1-before-3.json",
+      "after": "first-browser-run/browser-en-1280/en-1280-bash-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-bash",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-en-1280/en-1280-bash-rank2-before-5.json",
+      "after": "first-browser-run/browser-en-1280/en-1280-bash-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-bash",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-en-1280/en-1280-bash-rank2-after-6.json",
+      "after": "first-browser-run/browser-en-1280/en-1280-bash-offline-continued-7.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-whirlwind",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-en-1280/en-1280-whirlwind-rank1-before-10.json",
+      "after": "first-browser-run/browser-en-1280/en-1280-whirlwind-rank1-after-11.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-whirlwind",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-en-1280/en-1280-whirlwind-rank2-before-12.json",
+      "after": "first-browser-run/browser-en-1280/en-1280-whirlwind-rank2-after-13.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-whirlwind",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-en-1280/en-1280-whirlwind-rank2-after-13.json",
+      "after": "first-browser-run/browser-en-1280/en-1280-whirlwind-offline-continued-14.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-leap-attack",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-en-1280/en-1280-leap-attack-rank1-before-17.json",
+      "after": "first-browser-run/browser-en-1280/en-1280-leap-attack-rank1-after-18.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-leap-attack",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-en-1280/en-1280-leap-attack-rank2-before-19.json",
+      "after": "first-browser-run/browser-en-1280/en-1280-leap-attack-rank2-after-20.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-leap-attack",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-en-1280/en-1280-leap-attack-rank2-after-20.json",
+      "after": "first-browser-run/browser-en-1280/en-1280-leap-attack-offline-continued-21.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-war-cry",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-en-1280/en-1280-war-cry-rank1-before-24.json",
+      "after": "first-browser-run/browser-en-1280/en-1280-war-cry-rank1-after-25.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-war-cry",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-en-1280/en-1280-war-cry-rank2-before-26.json",
+      "after": "first-browser-run/browser-en-1280/en-1280-war-cry-rank2-after-27.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-war-cry",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-en-1280/en-1280-war-cry-rank2-after-27.json",
+      "after": "first-browser-run/browser-en-1280/en-1280-war-cry-offline-continued-28.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-bash",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-en-360/en-360-bash-rank1-before-3.json",
+      "after": "first-browser-run/browser-en-360/en-360-bash-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-bash",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-en-360/en-360-bash-rank2-before-5.json",
+      "after": "first-browser-run/browser-en-360/en-360-bash-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-bash",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-en-360/en-360-bash-rank2-after-6.json",
+      "after": "first-browser-run/browser-en-360/en-360-bash-offline-continued-7.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-whirlwind",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-en-360/en-360-whirlwind-rank1-before-10.json",
+      "after": "first-browser-run/browser-en-360/en-360-whirlwind-rank1-after-11.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-whirlwind",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-en-360/en-360-whirlwind-rank2-before-12.json",
+      "after": "first-browser-run/browser-en-360/en-360-whirlwind-rank2-after-13.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-whirlwind",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-en-360/en-360-whirlwind-rank2-after-13.json",
+      "after": "first-browser-run/browser-en-360/en-360-whirlwind-offline-continued-14.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-leap-attack",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-en-360/en-360-leap-attack-rank1-before-17.json",
+      "after": "first-browser-run/browser-en-360/en-360-leap-attack-rank1-after-18.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-leap-attack",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-en-360/en-360-leap-attack-rank2-before-19.json",
+      "after": "first-browser-run/browser-en-360/en-360-leap-attack-rank2-after-20.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-leap-attack",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-en-360/en-360-leap-attack-rank2-after-20.json",
+      "after": "first-browser-run/browser-en-360/en-360-leap-attack-offline-continued-21.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-war-cry",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-en-360/en-360-war-cry-rank1-before-24.json",
+      "after": "first-browser-run/browser-en-360/en-360-war-cry-rank1-after-25.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-war-cry",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-en-360/en-360-war-cry-rank2-before-26.json",
+      "after": "first-browser-run/browser-en-360/en-360-war-cry-rank2-after-27.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-war-cry",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-en-360/en-360-war-cry-rank2-after-27.json",
+      "after": "first-browser-run/browser-en-360/en-360-war-cry-offline-continued-28.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-bash",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-rank1-before-3.json",
+      "after": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-bash",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-rank2-before-5.json",
+      "after": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-bash",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-rank2-after-6.json",
+      "after": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-offline-continued-7.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-whirlwind",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-rank1-before-10.json",
+      "after": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-rank1-after-11.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-whirlwind",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-rank2-before-12.json",
+      "after": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-rank2-after-13.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-whirlwind",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-rank2-after-13.json",
+      "after": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-offline-continued-14.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-leap-attack",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-rank1-before-17.json",
+      "after": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-rank1-after-18.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-leap-attack",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-rank2-before-19.json",
+      "after": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-rank2-after-20.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-leap-attack",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-rank2-after-20.json",
+      "after": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-offline-continued-21.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-war-cry",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-rank1-before-24.json",
+      "after": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-rank1-after-25.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-war-cry",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-rank2-before-26.json",
+      "after": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-rank2-after-27.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-war-cry",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-rank2-after-27.json",
+      "after": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-offline-continued-28.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-bash",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-rank1-before-3.json",
+      "after": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-bash",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-rank2-before-5.json",
+      "after": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-bash",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-rank2-after-6.json",
+      "after": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-offline-continued-7.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-whirlwind",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-rank1-before-10.json",
+      "after": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-rank1-after-11.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-whirlwind",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-rank2-before-12.json",
+      "after": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-rank2-after-13.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-whirlwind",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-rank2-after-13.json",
+      "after": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-offline-continued-14.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-leap-attack",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-rank1-before-17.json",
+      "after": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-rank1-after-18.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-leap-attack",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-rank2-before-19.json",
+      "after": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-rank2-after-20.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-leap-attack",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-rank2-after-20.json",
+      "after": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-offline-continued-21.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-war-cry",
+      "kind": "rank1",
+      "before": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-rank1-before-24.json",
+      "after": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-rank1-after-25.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-war-cry",
+      "kind": "rank2",
+      "before": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-rank2-before-26.json",
+      "after": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-rank2-after-27.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-war-cry",
+      "kind": "offline-fresh-page",
+      "before": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-rank2-after-27.json",
+      "after": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-offline-continued-28.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    }
+  ],
+  "saveVersion": 22,
+  "pass": true
+}

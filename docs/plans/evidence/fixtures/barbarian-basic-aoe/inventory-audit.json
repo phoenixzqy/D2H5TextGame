@@ -1,0 +1,22 @@
+{
+  "changedIds": [
+    "skills-barbarian-bash",
+    "skills-barbarian-whirlwind",
+    "skills-barbarian-leap-attack",
+    "skills-barbarian-war-cry"
+  ],
+  "beforeSha256": "a54722181eb17eba021c30b6dfcff6e098cd93c9b460fd8e13e8b5db84738723",
+  "afterSha256": "72f605c07a15baa871d536028b7a23b748c998aa09891bfdeff7f6a154c9e1d0",
+  "rows": 213,
+  "otherRowsByteExact": 209,
+  "idsOrderPreserved": true,
+  "counts": {
+    "unverified": 90,
+    "bounded-functional": 121,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "barbarianBoundedFunctional": 23,
+  "independentAcceptance": "open",
+  "earnedBalance": "open"
+}

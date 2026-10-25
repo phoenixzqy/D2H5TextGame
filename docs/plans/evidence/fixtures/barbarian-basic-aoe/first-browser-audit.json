@@ -1,0 +1,1455 @@
+{
+  "cases": [
+    {
+      "label": "en-1280-bash",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "bash",
+          "observedAttackLines": 1,
+          "expectedFirstCastAttempts": 1
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-1280-whirlwind",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.75,
+          "publicCast": true,
+          "selectedSkill": "whirlwind",
+          "observedAttackLines": 7,
+          "expectedFirstCastAttempts": 4
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-1280-leap-attack",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 100,
+          "publicCast": true,
+          "selectedSkill": "leap-attack",
+          "observedAttackLines": 8,
+          "expectedFirstCastAttempts": 4
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-1280-war-cry",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 100,
+          "publicCast": true,
+          "selectedSkill": "war-cry",
+          "observedAttackLines": 8,
+          "expectedFirstCastAttempts": 4
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-bash",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.62,
+          "publicCast": true,
+          "selectedSkill": "bash",
+          "observedAttackLines": 1,
+          "expectedFirstCastAttempts": 1
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-whirlwind",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.8,
+          "publicCast": true,
+          "selectedSkill": "whirlwind",
+          "observedAttackLines": 7,
+          "expectedFirstCastAttempts": 4
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-leap-attack",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 100,
+          "publicCast": true,
+          "selectedSkill": "leap-attack",
+          "observedAttackLines": 8,
+          "expectedFirstCastAttempts": 4
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-war-cry",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 100,
+          "publicCast": true,
+          "selectedSkill": "war-cry",
+          "observedAttackLines": 8,
+          "expectedFirstCastAttempts": 4
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-bash",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "bash",
+          "observedAttackLines": 1,
+          "expectedFirstCastAttempts": 1
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-whirlwind",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.8,
+          "publicCast": true,
+          "selectedSkill": "whirlwind",
+          "observedAttackLines": 7,
+          "expectedFirstCastAttempts": 4
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-leap-attack",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 100,
+          "publicCast": true,
+          "selectedSkill": "leap-attack",
+          "observedAttackLines": 8,
+          "expectedFirstCastAttempts": 4
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-war-cry",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 100,
+          "publicCast": true,
+          "selectedSkill": "war-cry",
+          "observedAttackLines": 8,
+          "expectedFirstCastAttempts": 4
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-bash",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.62,
+          "publicCast": true,
+          "selectedSkill": "bash",
+          "observedAttackLines": 1,
+          "expectedFirstCastAttempts": 1
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-whirlwind",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.75,
+          "publicCast": true,
+          "selectedSkill": "whirlwind",
+          "observedAttackLines": 7,
+          "expectedFirstCastAttempts": 4
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-leap-attack",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 100,
+          "publicCast": true,
+          "selectedSkill": "leap-attack",
+          "observedAttackLines": 8,
+          "expectedFirstCastAttempts": 4
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-war-cry",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 100,
+          "publicCast": true,
+          "selectedSkill": "war-cry",
+          "observedAttackLines": 8,
+          "expectedFirstCastAttempts": 4
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    }
+  ],
+  "geometry": [
+    {
+      "label": "en-1280-bash",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-bash",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-bash",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-bash",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-bash",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-whirlwind",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-whirlwind",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-whirlwind",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-whirlwind",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-whirlwind",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-leap-attack",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-leap-attack",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-leap-attack",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-leap-attack",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-leap-attack",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-war-cry",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-war-cry",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-war-cry",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-war-cry",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-war-cry",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-bash",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-bash",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-bash",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-bash",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-bash",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-whirlwind",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-whirlwind",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-whirlwind",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-whirlwind",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-whirlwind",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-leap-attack",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-leap-attack",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-leap-attack",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-leap-attack",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-leap-attack",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-war-cry",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-war-cry",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-war-cry",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-war-cry",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-war-cry",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-bash",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-bash",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-bash",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-bash",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-bash",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-whirlwind",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-whirlwind",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-whirlwind",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-whirlwind",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-whirlwind",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-leap-attack",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-leap-attack",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-leap-attack",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-leap-attack",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-leap-attack",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-war-cry",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-war-cry",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-war-cry",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-war-cry",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-war-cry",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-bash",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-bash",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-bash",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-bash",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-bash",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-whirlwind",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-whirlwind",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-whirlwind",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-whirlwind",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-whirlwind",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-leap-attack",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-leap-attack",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-leap-attack",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-leap-attack",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-leap-attack",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-war-cry",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-war-cry",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-war-cry",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-war-cry",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-war-cry",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    }
+  ],
+  "consolePageErrors": [],
+  "screenshots": 48,
+  "individuallyInspected": [
+    "first-browser-run/browser-en-360/en-360-bash-current-next.png",
+    "first-browser-run/browser-en-360/en-360-whirlwind-current-next.png",
+    "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-current-next.png",
+    "first-browser-run/browser-en-1280/en-1280-war-cry-current-next.png"
+  ],
+  "limits": "Synthetic imported L30/resources/helmet and fixed Date.now; no earned campaign or balance claim. Geometry covers selected skill allocation control; no full accessibility audit."
+}

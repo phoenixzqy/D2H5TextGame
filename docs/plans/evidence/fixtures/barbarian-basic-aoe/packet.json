@@ -1,0 +1,2485 @@
+{
+  "archive": "raw.tar.gz",
+  "archiveSha256": "fafa262f3ff139fc0e0a6ba5efff79b13a6e41c4b87d6e34ef3611b91daf4f81",
+  "archiveBytes": 9229788,
+  "members": [
+    {
+      "path": "audit.py",
+      "sha256": "f2f672f7998273248c00e44084ceb987b0d5b0a8c18ad413e04ed8466bc8cb45",
+      "bytes": 5972
+    },
+    {
+      "path": "browser-collector-observation.json",
+      "sha256": "098eca2c39d804e919007ca0b698c4a6af1c90a64db7ca61f31cfe4a42d22f11",
+      "bytes": 519
+    },
+    {
+      "path": "browser-en-1280/browser-report.json",
+      "sha256": "f826a62d4574a431d510a6893a049e394e4d2e8b0e60b16a0ffa1fea02036996",
+      "bytes": 7186
+    },
+    {
+      "path": "browser-en-1280/en-1280-bash-cast-visible.png",
+      "sha256": "04b289f293d39a196c610fba2f6b8fc3bf830d58aa53853387da8c4b855e14dd",
+      "bytes": 217415
+    },
+    {
+      "path": "browser-en-1280/en-1280-bash-combat.json",
+      "sha256": "94b54c69e56937eac18f623523893794347f0166782541867b5f59729e7b6127",
+      "bytes": 2382
+    },
+    {
+      "path": "browser-en-1280/en-1280-bash-current-next.png",
+      "sha256": "d4635fc8d81319d4989167c4188cfb6576651bdede9cf22b8f9e76f4b3ee86bf",
+      "bytes": 99859
+    },
+    {
+      "path": "browser-en-1280/en-1280-bash-details.png",
+      "sha256": "2f5652a5f8b2690fcd3661207b48e970025707627325bb5cbb5b25f023336aba",
+      "bytes": 101555
+    },
+    {
+      "path": "browser-en-1280/en-1280-bash-fresh-1.json",
+      "sha256": "e086a4aabeaf4393d54c0a59eab05e3ba3727a003e831f0dca795e83a328b68b",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-1280/en-1280-bash-imported-2.json",
+      "sha256": "1f13dcff48602777ac71447a93bb5d4906114674508f07354066bd8ed45840e4",
+      "bytes": 4785
+    },
+    {
+      "path": "browser-en-1280/en-1280-bash-offline-continued-7.json",
+      "sha256": "dccc9ade3a8ae43996cf67923f19c8a62f668764493bc9179c12e5f69ccb51fa",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-en-1280/en-1280-bash-rank1-after-4.json",
+      "sha256": "5921365d09062b05ff7c0806fcfb6c1c6fa522a09efeeb30297c9ff440190068",
+      "bytes": 4788
+    },
+    {
+      "path": "browser-en-1280/en-1280-bash-rank1-before-3.json",
+      "sha256": "168fa3861665bbdfc67ced7ba972a0b42df554523f2e85ca3167178c7c74d601",
+      "bytes": 4785
+    },
+    {
+      "path": "browser-en-1280/en-1280-bash-rank2-after-6.json",
+      "sha256": "dccc9ade3a8ae43996cf67923f19c8a62f668764493bc9179c12e5f69ccb51fa",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-en-1280/en-1280-bash-rank2-before-5.json",
+      "sha256": "dccc9ade3a8ae43996cf67923f19c8a62f668764493bc9179c12e5f69ccb51fa",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-en-1280/en-1280-bash-synthetic-input.json",
+      "sha256": "b27648769731272b1e253412b91eda708b057d1d1d611c9ac73e23a4a78f59ee",
+      "bytes": 3969
+    },
+    {
+      "path": "browser-en-1280/en-1280-leap-attack-cast-visible.png",
+      "sha256": "7fef1334afd05771db87a8cb6af790a291f6ca1dc9c66e7185797dd270f2066a",
+      "bytes": 194493
+    },
+    {
+      "path": "browser-en-1280/en-1280-leap-attack-combat.json",
+      "sha256": "00656521157b48bcefd1f41f6a8f903ed2cd7f8171b6c836f4ba5799e21fa4b3",
+      "bytes": 3765
+    },
+    {
+      "path": "browser-en-1280/en-1280-leap-attack-current-next.png",
+      "sha256": "436cad0850eb1b9518c02b3c297bf3f17c81e1babba446f74d0ecaf2ed3ef8b2",
+      "bytes": 106852
+    },
+    {
+      "path": "browser-en-1280/en-1280-leap-attack-details.png",
+      "sha256": "69bd8d123f7d9ca0cbf201087648d2d56b9baad347dc60e7ee382c7fe2e70f28",
+      "bytes": 108518
+    },
+    {
+      "path": "browser-en-1280/en-1280-leap-attack-fresh-15.json",
+      "sha256": "d2135f856cdb193da6342e7892ef88257757864c9e0821a23dfbaa6828195631",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-1280/en-1280-leap-attack-imported-16.json",
+      "sha256": "d6c62301b5938d050d8c5393fd0f1aa701d0c8141b37208800505eb96322d5c3",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-en-1280/en-1280-leap-attack-offline-continued-21.json",
+      "sha256": "40fcf6f9f827e14c1a33ec5c7deead0d45f374c348b12210f2d14f74a97b1467",
+      "bytes": 4874
+    },
+    {
+      "path": "browser-en-1280/en-1280-leap-attack-rank1-after-18.json",
+      "sha256": "baccedf0c1887dd46c3a3bf014dc749fb5995df880f94ce6d819625948985e2f",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-en-1280/en-1280-leap-attack-rank1-before-17.json",
+      "sha256": "85a2e5ede61bbb673979f21b73b0fb7f368d6dc3bc4a0f9aaf9c89facece8aa5",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-en-1280/en-1280-leap-attack-rank2-after-20.json",
+      "sha256": "40fcf6f9f827e14c1a33ec5c7deead0d45f374c348b12210f2d14f74a97b1467",
+      "bytes": 4874
+    },
+    {
+      "path": "browser-en-1280/en-1280-leap-attack-rank2-before-19.json",
+      "sha256": "40fcf6f9f827e14c1a33ec5c7deead0d45f374c348b12210f2d14f74a97b1467",
+      "bytes": 4874
+    },
+    {
+      "path": "browser-en-1280/en-1280-leap-attack-synthetic-input.json",
+      "sha256": "d445c0ef165cfcc549cbc2c3976b200206ffd248d4680cc7d47a79e9f6fa5ae6",
+      "bytes": 4003
+    },
+    {
+      "path": "browser-en-1280/en-1280-war-cry-cast-visible.png",
+      "sha256": "3a62528df005a0594540916020f36db7a5d81708ad0cb58e3efcf2e14d2513d3",
+      "bytes": 193185
+    },
+    {
+      "path": "browser-en-1280/en-1280-war-cry-combat.json",
+      "sha256": "399ee770ebcfbdf81a8789f76914176d8e9061acb4725358094212fe8a804a43",
+      "bytes": 3745
+    },
+    {
+      "path": "browser-en-1280/en-1280-war-cry-current-next.png",
+      "sha256": "425f680699e751b2de4d3f75883a303270ad185234d4fa811b3efcaec5a16362",
+      "bytes": 122340
+    },
+    {
+      "path": "browser-en-1280/en-1280-war-cry-details.png",
+      "sha256": "81ed021d68bfd5b993c039b69f56504ffd31d4b8a08c6d8f31dcb806547b0b00",
+      "bytes": 123919
+    },
+    {
+      "path": "browser-en-1280/en-1280-war-cry-fresh-22.json",
+      "sha256": "b76669c7097ff6f6faebbc87feac19e5f49b5644c6ac1aa83fedada3c90c1300",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-1280/en-1280-war-cry-imported-23.json",
+      "sha256": "47b503714aa25229eab024af0af9bf6dc5bdccfd88f51499c08c67b5ea109574",
+      "bytes": 4940
+    },
+    {
+      "path": "browser-en-1280/en-1280-war-cry-offline-continued-28.json",
+      "sha256": "c2529ed898113e11b4dd36771553b41b0b5290487d3b89e3a66c744f30e63800",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-en-1280/en-1280-war-cry-rank1-after-25.json",
+      "sha256": "4ef877f92e201a1d497e02b25d6ac7e0030df0a439ea618790e9fefe54e7ef37",
+      "bytes": 4943
+    },
+    {
+      "path": "browser-en-1280/en-1280-war-cry-rank1-before-24.json",
+      "sha256": "d430e3a48f346d381040219ad5c3572b65fa52eec39035121f19dc5740cd836e",
+      "bytes": 4940
+    },
+    {
+      "path": "browser-en-1280/en-1280-war-cry-rank2-after-27.json",
+      "sha256": "c2529ed898113e11b4dd36771553b41b0b5290487d3b89e3a66c744f30e63800",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-en-1280/en-1280-war-cry-rank2-before-26.json",
+      "sha256": "c2529ed898113e11b4dd36771553b41b0b5290487d3b89e3a66c744f30e63800",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-en-1280/en-1280-war-cry-synthetic-input.json",
+      "sha256": "3d85cfd62568305b7fd39ed6161e47fc83409feeec4f0ccf3a456663b4cabe43",
+      "bytes": 4124
+    },
+    {
+      "path": "browser-en-1280/en-1280-whirlwind-cast-visible.png",
+      "sha256": "7e877c1c38deaa07ac4a004fde6d2e1b9bea2ed615fb2e4e253c3dc8c7d92431",
+      "bytes": 206346
+    },
+    {
+      "path": "browser-en-1280/en-1280-whirlwind-combat.json",
+      "sha256": "f3060e1a17b8664425ea08ddaa55def9af0a34f1ae0af7f330ec58df45445e68",
+      "bytes": 3736
+    },
+    {
+      "path": "browser-en-1280/en-1280-whirlwind-current-next.png",
+      "sha256": "392728e4dc2299e542e1232bc0cbec1591b82047f07c9fa9a0cb8d639a1c934b",
+      "bytes": 119518
+    },
+    {
+      "path": "browser-en-1280/en-1280-whirlwind-details.png",
+      "sha256": "408890e248067edee9522456d468d4214c76d3212fb2bf9179e78db90bb900d1",
+      "bytes": 120384
+    },
+    {
+      "path": "browser-en-1280/en-1280-whirlwind-fresh-8.json",
+      "sha256": "fb18e1e7f461fda9f0f17f60fa34b261b138171a01a2bb4fb7029c83ce105ddc",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-1280/en-1280-whirlwind-imported-9.json",
+      "sha256": "fea6810cb93fd71375a71614a98c9d0454064af92e5dbbe573e02fdb4d478f63",
+      "bytes": 4939
+    },
+    {
+      "path": "browser-en-1280/en-1280-whirlwind-offline-continued-14.json",
+      "sha256": "b95ad216796a51d20b6f2c1aa2f8aee8932a82d966139f169f6ec93895f9c30c",
+      "bytes": 4992
+    },
+    {
+      "path": "browser-en-1280/en-1280-whirlwind-rank1-after-11.json",
+      "sha256": "df682f709af3a12b1686419221c1d8ea643603b8fa7dc9492d23c733c6a1d7ff",
+      "bytes": 4942
+    },
+    {
+      "path": "browser-en-1280/en-1280-whirlwind-rank1-before-10.json",
+      "sha256": "52d647c8971f85ca7ccf9a74f5f4368ce8d0182c697b998cdaf216af973a5d32",
+      "bytes": 4939
+    },
+    {
+      "path": "browser-en-1280/en-1280-whirlwind-rank2-after-13.json",
+      "sha256": "b95ad216796a51d20b6f2c1aa2f8aee8932a82d966139f169f6ec93895f9c30c",
+      "bytes": 4992
+    },
+    {
+      "path": "browser-en-1280/en-1280-whirlwind-rank2-before-12.json",
+      "sha256": "b95ad216796a51d20b6f2c1aa2f8aee8932a82d966139f169f6ec93895f9c30c",
+      "bytes": 4992
+    },
+    {
+      "path": "browser-en-1280/en-1280-whirlwind-synthetic-input.json",
+      "sha256": "988d922132c37865e3d3c80049f60b63ca51cf3face649221b632aa7017f8e66",
+      "bytes": 4123
+    },
+    {
+      "path": "browser-en-1280-live.json",
+      "sha256": "aa4ab2b0afa5a0c89e327dd5bb5b18c761b82a947eabf2f3d9f60d1ef2c58dbc",
+      "bytes": 468
+    },
+    {
+      "path": "browser-en-1280-result.json",
+      "sha256": "078de229790ed2b992c1624ad5dd73d7407794b5d818d8a5da88e6a6d560432d",
+      "bytes": 514
+    },
+    {
+      "path": "browser-en-1280.log",
+      "sha256": "2af1f23815e969f65f1d68aeebcc050a316e65f18810541a179c8c764485518c",
+      "bytes": 622
+    },
+    {
+      "path": "browser-en-360/browser-report.json",
+      "sha256": "6d360c58d738a64ccf0022c7c2626478b00327eba7d33f9795e529c51e642e91",
+      "bytes": 7162
+    },
+    {
+      "path": "browser-en-360/en-360-bash-cast-visible.png",
+      "sha256": "6424452147ccee327896f4cf611c020800a5b894230d0beec50489e00f6f0646",
+      "bytes": 54186
+    },
+    {
+      "path": "browser-en-360/en-360-bash-combat.json",
+      "sha256": "94b54c69e56937eac18f623523893794347f0166782541867b5f59729e7b6127",
+      "bytes": 2382
+    },
+    {
+      "path": "browser-en-360/en-360-bash-current-next.png",
+      "sha256": "b790d5768f781c3c08f9cdeda182cbe20b076245f034f3a122b0af8f7dfc3282",
+      "bytes": 46362
+    },
+    {
+      "path": "browser-en-360/en-360-bash-details.png",
+      "sha256": "ca9c267506b8dd64644bc9ef2006e98a49a0f7551dfe0da9f7496ceb4cfb1996",
+      "bytes": 47955
+    },
+    {
+      "path": "browser-en-360/en-360-bash-fresh-1.json",
+      "sha256": "091daceaece1b52bf43b0d767ab3a65f5ca35da199b08a4f423bc79d09c26f37",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-360/en-360-bash-imported-2.json",
+      "sha256": "52dcc4f060198dbe4c6429154b4d2b9032f453461fd322818240594cf4519d01",
+      "bytes": 4785
+    },
+    {
+      "path": "browser-en-360/en-360-bash-offline-continued-7.json",
+      "sha256": "b5eb221234d2776d03eaadcafcba6f353c02dfeb217433906653649a4b2a8860",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-en-360/en-360-bash-rank1-after-4.json",
+      "sha256": "de983c8f1d2f40132dcbf8183bc38a71008de13138c629a6a915f1bd80f20650",
+      "bytes": 4788
+    },
+    {
+      "path": "browser-en-360/en-360-bash-rank1-before-3.json",
+      "sha256": "07c4c615483e80931ea8147688c112e806abb20e8149a361481d2bc240845397",
+      "bytes": 4785
+    },
+    {
+      "path": "browser-en-360/en-360-bash-rank2-after-6.json",
+      "sha256": "b5eb221234d2776d03eaadcafcba6f353c02dfeb217433906653649a4b2a8860",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-en-360/en-360-bash-rank2-before-5.json",
+      "sha256": "b5eb221234d2776d03eaadcafcba6f353c02dfeb217433906653649a4b2a8860",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-en-360/en-360-bash-synthetic-input.json",
+      "sha256": "bfb822d55a635c35accc882cc10d03b2d0a9bf81e33b4b74ef532f84100084f7",
+      "bytes": 3969
+    },
+    {
+      "path": "browser-en-360/en-360-leap-attack-cast-visible.png",
+      "sha256": "ef00be6c324571ae3cba3cc0811900e1f599dc3c48e28ecfa56be04a0d0139a4",
+      "bytes": 54647
+    },
+    {
+      "path": "browser-en-360/en-360-leap-attack-combat.json",
+      "sha256": "0c0d6ff458a3b48fb8bcb75560d26e746473d189bffc33ed4809030af8e2b363",
+      "bytes": 3561
+    },
+    {
+      "path": "browser-en-360/en-360-leap-attack-current-next.png",
+      "sha256": "cdc044e0716c8d14c6ec069aac4801727a0d8d97942e06c8d0fc6cb7a79386ab",
+      "bytes": 50021
+    },
+    {
+      "path": "browser-en-360/en-360-leap-attack-details.png",
+      "sha256": "eb31109d10558e275eb73f3737d9b34e7a5906fff8eae8ada113180f707b28ab",
+      "bytes": 51205
+    },
+    {
+      "path": "browser-en-360/en-360-leap-attack-fresh-15.json",
+      "sha256": "ebf5db9ae11c98a7c52a3a99b9d9316d97c4e2ff6b763bb8771680cfd3e36abd",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-360/en-360-leap-attack-imported-16.json",
+      "sha256": "4883666e25ddc6532b0fdcf3a676b0a86380a259d270e071273600b60cd66b64",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-en-360/en-360-leap-attack-offline-continued-21.json",
+      "sha256": "a34530ce03ab8a5a53ba6b0d4e07664f638862fe6092fd5b3c5152050179b05d",
+      "bytes": 4874
+    },
+    {
+      "path": "browser-en-360/en-360-leap-attack-rank1-after-18.json",
+      "sha256": "ed6c719b8d669b32014e49927322956185dba975b6fe4aa7d45d5d616b9519ba",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-en-360/en-360-leap-attack-rank1-before-17.json",
+      "sha256": "eb4ee9a1cc37bf11613cf3304f95a5de37f6d248feecc7265a234256564c707c",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-en-360/en-360-leap-attack-rank2-after-20.json",
+      "sha256": "a34530ce03ab8a5a53ba6b0d4e07664f638862fe6092fd5b3c5152050179b05d",
+      "bytes": 4874
+    },
+    {
+      "path": "browser-en-360/en-360-leap-attack-rank2-before-19.json",
+      "sha256": "a34530ce03ab8a5a53ba6b0d4e07664f638862fe6092fd5b3c5152050179b05d",
+      "bytes": 4874
+    },
+    {
+      "path": "browser-en-360/en-360-leap-attack-synthetic-input.json",
+      "sha256": "1ebe4b753be46685037dde72654625932ecc0ccabf910ca9c0bd69273e72271f",
+      "bytes": 4003
+    },
+    {
+      "path": "browser-en-360/en-360-war-cry-cast-visible.png",
+      "sha256": "bb5ad76600f98ea68b7dae2f41c30679eaea467b7e188c4e86c291cf97db8f8c",
+      "bytes": 54435
+    },
+    {
+      "path": "browser-en-360/en-360-war-cry-combat.json",
+      "sha256": "e18d07bf9a68ce36b126e92301626e318d760b62dc3e9110b5296b25c631ceaa",
+      "bytes": 3541
+    },
+    {
+      "path": "browser-en-360/en-360-war-cry-current-next.png",
+      "sha256": "92939787189d88c60bee12f69067566b2122114c52f34ab9aed06cbbbee2d9b8",
+      "bytes": 49181
+    },
+    {
+      "path": "browser-en-360/en-360-war-cry-details.png",
+      "sha256": "ba6411062139cb4fecb7f13fc2ed640719fa95b056ca134e76f4d865fc8fd42e",
+      "bytes": 50821
+    },
+    {
+      "path": "browser-en-360/en-360-war-cry-fresh-22.json",
+      "sha256": "b8ab514d1c5f8e70682a4c35b8b1a76eb4a4337577a5b5566738b7470b2b99f5",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-360/en-360-war-cry-imported-23.json",
+      "sha256": "ca5cbba7d1f40cb96fa6fb05a50e45b2df2b43d2d26fe3edd69e4f0d1803f032",
+      "bytes": 4940
+    },
+    {
+      "path": "browser-en-360/en-360-war-cry-offline-continued-28.json",
+      "sha256": "636000157e269cf6af259fd058f697bdf365be21a8bf8adc0efad43908363524",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-en-360/en-360-war-cry-rank1-after-25.json",
+      "sha256": "d9128aa94ea27310944f4ac8534a07bfd85a91191dd608e83d7cebd649225d60",
+      "bytes": 4943
+    },
+    {
+      "path": "browser-en-360/en-360-war-cry-rank1-before-24.json",
+      "sha256": "b60f8b59a717540a47a4b94dac80ecb5b23d3161a0394c59fbab8c86f34f2e22",
+      "bytes": 4940
+    },
+    {
+      "path": "browser-en-360/en-360-war-cry-rank2-after-27.json",
+      "sha256": "636000157e269cf6af259fd058f697bdf365be21a8bf8adc0efad43908363524",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-en-360/en-360-war-cry-rank2-before-26.json",
+      "sha256": "636000157e269cf6af259fd058f697bdf365be21a8bf8adc0efad43908363524",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-en-360/en-360-war-cry-synthetic-input.json",
+      "sha256": "c65dba5bb722ca4f602a6b3e1a9dccf5785409aa78bdf14e6a4b4a3d0f35564e",
+      "bytes": 4124
+    },
+    {
+      "path": "browser-en-360/en-360-whirlwind-cast-visible.png",
+      "sha256": "091df006b05a719d590c3148f030876c7676b149f4f1717ac52ee3cfb78fb4dc",
+      "bytes": 56870
+    },
+    {
+      "path": "browser-en-360/en-360-whirlwind-combat.json",
+      "sha256": "f3060e1a17b8664425ea08ddaa55def9af0a34f1ae0af7f330ec58df45445e68",
+      "bytes": 3736
+    },
+    {
+      "path": "browser-en-360/en-360-whirlwind-current-next.png",
+      "sha256": "9d91c9907a50321f1eec831eee1f5ad2c904f36129b06d9b191d7fe6acceb2a5",
+      "bytes": 51251
+    },
+    {
+      "path": "browser-en-360/en-360-whirlwind-details.png",
+      "sha256": "201680f91a27003bd6a0c8d1d7e169094b3bec21e152ee9413e61f586d97e533",
+      "bytes": 52974
+    },
+    {
+      "path": "browser-en-360/en-360-whirlwind-fresh-8.json",
+      "sha256": "1abeb5440f2e0be33cd373b477aafbb3839b541bae356de7bde490529e4f0948",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-360/en-360-whirlwind-imported-9.json",
+      "sha256": "fe887c0583917b7a0d262d64babd53f06fec8df18a7ab1b24e69738080025d85",
+      "bytes": 4939
+    },
+    {
+      "path": "browser-en-360/en-360-whirlwind-offline-continued-14.json",
+      "sha256": "a1c009746e427a7b28feae446fa913ce6548568739ef83365ee62a33eb4fe26a",
+      "bytes": 4992
+    },
+    {
+      "path": "browser-en-360/en-360-whirlwind-rank1-after-11.json",
+      "sha256": "7559fe36895299c7b40208e115dc2c6f021338cf1d271aa4a88caa4ca2227d1d",
+      "bytes": 4942
+    },
+    {
+      "path": "browser-en-360/en-360-whirlwind-rank1-before-10.json",
+      "sha256": "f9011a3246a2edfba2f6ae97b64608df62767de7080cf017cab670895f510c34",
+      "bytes": 4939
+    },
+    {
+      "path": "browser-en-360/en-360-whirlwind-rank2-after-13.json",
+      "sha256": "a1c009746e427a7b28feae446fa913ce6548568739ef83365ee62a33eb4fe26a",
+      "bytes": 4992
+    },
+    {
+      "path": "browser-en-360/en-360-whirlwind-rank2-before-12.json",
+      "sha256": "a1c009746e427a7b28feae446fa913ce6548568739ef83365ee62a33eb4fe26a",
+      "bytes": 4992
+    },
+    {
+      "path": "browser-en-360/en-360-whirlwind-synthetic-input.json",
+      "sha256": "5f73f3b100a0a4614b874afb3364db2772de6d87ffa06211ac199af9e6f20b0a",
+      "bytes": 4123
+    },
+    {
+      "path": "browser-en-360-live.json",
+      "sha256": "38b1d73f23aa64c99f1219dd5b3eb070e5d0625b47d704ee139992ef9f23047d",
+      "bytes": 466
+    },
+    {
+      "path": "browser-en-360-result.json",
+      "sha256": "fc2caa8a3d2dd4dbfc851ebdf62b28a76b5fe87e31aada558fff77dd539074eb",
+      "bytes": 511
+    },
+    {
+      "path": "browser-en-360.log",
+      "sha256": "d614e855b0b2fe52b3ba59bc7d9acdc795cc3b8d9e334d088131cb7e7005adf7",
+      "bytes": 616
+    },
+    {
+      "path": "browser-final-live.json",
+      "sha256": "343fce88a08cf7722e559308ae5b28541f76e57597044b2684d1441c5f9f084f",
+      "bytes": 351
+    },
+    {
+      "path": "browser-final.log",
+      "sha256": "79805bef4a1b16814c3d2a486fec5bef4dbf9581cf1f3b0e0d7dbd24442b9a38",
+      "bytes": 932
+    },
+    {
+      "path": "browser-suite.py",
+      "sha256": "fd3814718ff2f6399634f024b6c4d3528f49641f149e02af7e114eae6d1aa4cc",
+      "bytes": 306
+    },
+    {
+      "path": "browser-zh-CN-1280/browser-report.json",
+      "sha256": "6d18fd5536fe3f3f53e1fb0dd9d2b2dca7509f099f622bed045bf8af955c9c3a",
+      "bytes": 6978
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-bash-cast-visible.png",
+      "sha256": "6f094557b5786f97443b6973bb7404cb6cdf6ffb355a3c41c7d3582b8cbf1c12",
+      "bytes": 221543
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-bash-combat.json",
+      "sha256": "18f789b23c8db409c102a7bb3e6426cf76c475993573176240b12f2213f92aa9",
+      "bytes": 2601
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-bash-current-next.png",
+      "sha256": "a7ff00b8dfe8aa749c584fee13cfeda918333aed36e967ede4c9d2f8f9251ce6",
+      "bytes": 98520
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-bash-details.png",
+      "sha256": "e6bc2f212b8fadf94801ae42d6922d044cd8e509860df477cf0886d71f83ef72",
+      "bytes": 100239
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-bash-fresh-1.json",
+      "sha256": "8ac5040819f4f01c80960668b780ab0c1bc56aeca7eb2f6de2d6aef98a5ab55b",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-bash-imported-2.json",
+      "sha256": "9c683e4b9e5dc9c6f46b698cad8ab10515611eeed74ede14fcfd37a5ca5d545c",
+      "bytes": 4788
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-bash-offline-continued-7.json",
+      "sha256": "e0ebad5becefc8f22431fbd356af13232b87a6467e9d2f47953ee12f0382b312",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-bash-rank1-after-4.json",
+      "sha256": "dd3eb28673f22fcded6716bfd3e81d72595ac4f7a3531fa4a8350335c98a5f8b",
+      "bytes": 4791
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-bash-rank1-before-3.json",
+      "sha256": "e55e094b1d6d7a8d283c5a7fc3e7225d5c8e4d36381a1784b139ef69cf829e6a",
+      "bytes": 4788
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-bash-rank2-after-6.json",
+      "sha256": "e0ebad5becefc8f22431fbd356af13232b87a6467e9d2f47953ee12f0382b312",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-bash-rank2-before-5.json",
+      "sha256": "e0ebad5becefc8f22431fbd356af13232b87a6467e9d2f47953ee12f0382b312",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-bash-synthetic-input.json",
+      "sha256": "2074649bb80a99fbbbbdc46da1a27e14713c822ef740de7c919c2d88c9862457",
+      "bytes": 3972
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-leap-attack-cast-visible.png",
+      "sha256": "a740c2f1b8213b276cddf5e689c27ff86390883c56497b0e8b7b563aac5bd1ff",
+      "bytes": 198304
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-leap-attack-combat.json",
+      "sha256": "37f20fb6aa2842631550432431abe56b80fba4f395efed887b5940ee994c42e6",
+      "bytes": 3969
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-leap-attack-current-next.png",
+      "sha256": "539c7a9de8cdb45e90e3a2150f29425ed935405928beea9e732138cd605f1fbc",
+      "bytes": 106384
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-leap-attack-details.png",
+      "sha256": "c0dfeb2b1ac80e061179cdccc33dc5e572c5f016619ba79866ca8ea74a758868",
+      "bytes": 108089
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-leap-attack-fresh-15.json",
+      "sha256": "a6070166ec1a665be453bd8bb7e27d3fd851d5b683cfb29435ce6963505de65f",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-leap-attack-imported-16.json",
+      "sha256": "11e1d879287f3e3cdf778c56892d450cdd129237d3551cf3d75b4ac749d3c413",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-leap-attack-offline-continued-21.json",
+      "sha256": "cd2e2ade616919d53863dda7a30e71d8ecb2498d7bf4f4a8f8ed2e2051d99d4e",
+      "bytes": 4877
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-leap-attack-rank1-after-18.json",
+      "sha256": "7d02bbb19ecd4862da82800a3c9f4d7b426a1d37af790afeb01986e3776733bc",
+      "bytes": 4825
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-leap-attack-rank1-before-17.json",
+      "sha256": "ebd91e021958fe71d4c0803855d195baf18a997689ae28d7a9081ce05b9a5102",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-leap-attack-rank2-after-20.json",
+      "sha256": "cd2e2ade616919d53863dda7a30e71d8ecb2498d7bf4f4a8f8ed2e2051d99d4e",
+      "bytes": 4877
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-leap-attack-rank2-before-19.json",
+      "sha256": "cd2e2ade616919d53863dda7a30e71d8ecb2498d7bf4f4a8f8ed2e2051d99d4e",
+      "bytes": 4877
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-leap-attack-synthetic-input.json",
+      "sha256": "b110a8c2f626a4ce2e57e50efb94e33f5890fec5e9c52b0afae9994e7c9cfb3f",
+      "bytes": 4006
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-war-cry-cast-visible.png",
+      "sha256": "e52393c5ae956d84a7334edf25cabe81a35c35b5c667955611513847d0484a83",
+      "bytes": 196680
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-war-cry-combat.json",
+      "sha256": "688f6da3f720a2b878ba754567259d9bcd7bd3fee5978fc4bb84f24d00f02447",
+      "bytes": 3947
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-war-cry-current-next.png",
+      "sha256": "7056aae236c54f9b50aa3c4192c0d00e2cf6f4a5cc4cce5a09775a9eb73e5dfd",
+      "bytes": 120129
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-war-cry-details.png",
+      "sha256": "f36bb06e788e4516cac6748779efef1578928a6e9edd331e1c651038b5847c4c",
+      "bytes": 121821
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-war-cry-fresh-22.json",
+      "sha256": "ea1a26176d939d343f682d62209aa8365781a183da52e18f5d1acb95abccb691",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-war-cry-imported-23.json",
+      "sha256": "bfd65cd77ab7140d3a8f476726d0d0a2212470ae89b2501f3067c14d6927fa2d",
+      "bytes": 4943
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-war-cry-offline-continued-28.json",
+      "sha256": "88e83025726de52e48cb5460819b451479f78e83186914935e1790f30240edd3",
+      "bytes": 4994
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-war-cry-rank1-after-25.json",
+      "sha256": "9d9cafc3d3b99ede944cdfcab07ca0a93aaf6e413380426256ab33551fa99c56",
+      "bytes": 4946
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-war-cry-rank1-before-24.json",
+      "sha256": "5daa06182c825acb585b55971cac50a333d8429387f4a202e9034f99932ceade",
+      "bytes": 4943
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-war-cry-rank2-after-27.json",
+      "sha256": "88e83025726de52e48cb5460819b451479f78e83186914935e1790f30240edd3",
+      "bytes": 4994
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-war-cry-rank2-before-26.json",
+      "sha256": "88e83025726de52e48cb5460819b451479f78e83186914935e1790f30240edd3",
+      "bytes": 4994
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-war-cry-synthetic-input.json",
+      "sha256": "5a167600989dab0eb79ff51fd07b8d570890f235cc103757e7a4509f1cb5f632",
+      "bytes": 4127
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-whirlwind-cast-visible.png",
+      "sha256": "d1013d1ddac856856ee9ad8c060b6e667747d3d9000d9fb85ccaec3719c0562a",
+      "bytes": 212556
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-whirlwind-combat.json",
+      "sha256": "eb44c6c70b84e5cbe8fd83f8bf965f26390e02b1251a7c8167974e5554040583",
+      "bytes": 4073
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-whirlwind-current-next.png",
+      "sha256": "1f441d3f7bb9d1aa9ec51e90051870b4b7000ad2405744519aaadc4f2a88a3c6",
+      "bytes": 119414
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-whirlwind-details.png",
+      "sha256": "9ed4aad53bcad8bf5b174f09b2fc0c6effdd051277acd2c7b96a2b121ca066c3",
+      "bytes": 121161
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-whirlwind-fresh-8.json",
+      "sha256": "570fc41b802f5a6adeb3a7d811cb3b55cc34c868bd2c749f557b97b899755b33",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-whirlwind-imported-9.json",
+      "sha256": "2fc6ccb09562a5337afe8c87d5bcd3c4587d2cc76a7b1a3b966c62049df2f16a",
+      "bytes": 4942
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-whirlwind-offline-continued-14.json",
+      "sha256": "0a0033d948e76df66f23973ae74c6340b3e3c1996f594dc34b78a77f507137a7",
+      "bytes": 4995
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-whirlwind-rank1-after-11.json",
+      "sha256": "01d4764f7fc659e8e46207227f7a745424f16e7450f558f6ae67b1cee924613b",
+      "bytes": 4945
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-whirlwind-rank1-before-10.json",
+      "sha256": "8a516c9b46d9155b895804404e2ba85f127f60f46bd7f9b369164b537ad5bcc6",
+      "bytes": 4942
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-whirlwind-rank2-after-13.json",
+      "sha256": "0a0033d948e76df66f23973ae74c6340b3e3c1996f594dc34b78a77f507137a7",
+      "bytes": 4995
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-whirlwind-rank2-before-12.json",
+      "sha256": "0a0033d948e76df66f23973ae74c6340b3e3c1996f594dc34b78a77f507137a7",
+      "bytes": 4995
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-whirlwind-synthetic-input.json",
+      "sha256": "48254a77e8a720bfc6665706fc876d1c66b3e15c1f21cc437a9e66b31e145473",
+      "bytes": 4126
+    },
+    {
+      "path": "browser-zh-CN-1280-live.json",
+      "sha256": "9f4efd93b859780f70f3d379ecd020e4ebfb0452d3b293da4a2a79693dad9bd4",
+      "bytes": 474
+    },
+    {
+      "path": "browser-zh-CN-1280-result.json",
+      "sha256": "62709ebf38b59e700086f6ab940c23fc1ce0f1928d70716dcc746d6bfe0e62dd",
+      "bytes": 520
+    },
+    {
+      "path": "browser-zh-CN-1280.log",
+      "sha256": "c5f454478249a7776feae7ddc9a8d4da313b37c383e79a460017b0657ff660be",
+      "bytes": 640
+    },
+    {
+      "path": "browser-zh-CN-360/browser-report.json",
+      "sha256": "1b4186a0ef0c8d0ec9c54eb2a3607e179fc818c530aca8e6918714a6a0e41d81",
+      "bytes": 6954
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-bash-cast-visible.png",
+      "sha256": "5011978a8eb7a73862c62f515b444c650c9ac1e21668e21671a88b97374cbf01",
+      "bytes": 60118
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-bash-combat.json",
+      "sha256": "18f789b23c8db409c102a7bb3e6426cf76c475993573176240b12f2213f92aa9",
+      "bytes": 2601
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-bash-current-next.png",
+      "sha256": "37588e8f23dee5a99fb5a87de616bed7539f1c6ed3cc4934893fabcbd78d2ecc",
+      "bytes": 45308
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-bash-details.png",
+      "sha256": "ce00f3462c211a7fb0ddf5859a9ecc0c36953c9fde069baba3e4d558814d148f",
+      "bytes": 45751
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-bash-fresh-1.json",
+      "sha256": "8651d4e33bb3a6ece4b2cfa0b43b3a30b260e8fd01c812bccbd66fdc33d352f5",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-bash-imported-2.json",
+      "sha256": "b95b5173dae31c0c8d3197398f57146b0af18b88bf7ffe06f016b54e38102b37",
+      "bytes": 4788
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-bash-offline-continued-7.json",
+      "sha256": "04eb9e029483d0ec57698c7c70871b2112293850bc1c7a9f3d208392d4566c12",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-bash-rank1-after-4.json",
+      "sha256": "cf6d4dc627b40c33b782a59119bb9cdcba4264545801aeb8afe590d139c44090",
+      "bytes": 4791
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-bash-rank1-before-3.json",
+      "sha256": "eae2987dd2d3be36b5972bf260eae0a1edb43ef92ef8149534e3644b320f6d3c",
+      "bytes": 4788
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-bash-rank2-after-6.json",
+      "sha256": "04eb9e029483d0ec57698c7c70871b2112293850bc1c7a9f3d208392d4566c12",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-bash-rank2-before-5.json",
+      "sha256": "04eb9e029483d0ec57698c7c70871b2112293850bc1c7a9f3d208392d4566c12",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-bash-synthetic-input.json",
+      "sha256": "2e52124c55245daa0f14b483fffc9509cd2b353b81138fd42c2df0a38c29c861",
+      "bytes": 3972
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-leap-attack-cast-visible.png",
+      "sha256": "0e3d660e46546fa19bf78626ce55bbb5b8c8c3e61304f3efeb2d901e65836902",
+      "bytes": 61788
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-leap-attack-combat.json",
+      "sha256": "2205dd9b882375aafb534bfbd9df83acfc9c303c55fd635c6abe48c79ca6f7b4",
+      "bytes": 3761
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-leap-attack-current-next.png",
+      "sha256": "8ba488d39d2ab997d470334914860ba2e3c45232ed8bc86f82526795a008ac89",
+      "bytes": 52262
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-leap-attack-details.png",
+      "sha256": "06e9298ec2bd808f466a10204edc30ac7ebead6f5187856ce5b96c21f8a97ce3",
+      "bytes": 53520
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-leap-attack-fresh-15.json",
+      "sha256": "533e39ee5ad4d043ba6cc4bf0cd3d0b337ff5787bea21160c54c0be6edc20166",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-leap-attack-imported-16.json",
+      "sha256": "cf9f3fc256accb79fa7dd8ae32c4d5bedd9c28ce2823aab801b41e232ae4ed65",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-leap-attack-offline-continued-21.json",
+      "sha256": "5ed42c1494feba934d4b7dee6c4bc83011e21646140e6c315594144c20198e02",
+      "bytes": 4877
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-leap-attack-rank1-after-18.json",
+      "sha256": "482c103429f3497ecde19951f3cbdc2420acbe8b4730d2222983da1bd9b1fb25",
+      "bytes": 4825
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-leap-attack-rank1-before-17.json",
+      "sha256": "fd0baa2c9bf547a0f7a91699a6fa5fd133407024b3ccb3ed788a6ff275352bd4",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-leap-attack-rank2-after-20.json",
+      "sha256": "5ed42c1494feba934d4b7dee6c4bc83011e21646140e6c315594144c20198e02",
+      "bytes": 4877
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-leap-attack-rank2-before-19.json",
+      "sha256": "5ed42c1494feba934d4b7dee6c4bc83011e21646140e6c315594144c20198e02",
+      "bytes": 4877
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-leap-attack-synthetic-input.json",
+      "sha256": "7240f87fca618a1ad9cc26ecb9d49f85be46046e6f2c0649b6832aa550c8d4cc",
+      "bytes": 4006
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-war-cry-cast-visible.png",
+      "sha256": "cc6cdd3350dbd5b7fc783f5d8c6fd4acaf71a248b998edd664d06f468b1cd048",
+      "bytes": 60791
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-war-cry-combat.json",
+      "sha256": "688f6da3f720a2b878ba754567259d9bcd7bd3fee5978fc4bb84f24d00f02447",
+      "bytes": 3947
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-war-cry-current-next.png",
+      "sha256": "4858e2180ac665523a6caa419cca1f16a02d2ccee4b61e0b999eae7fde3edfcb",
+      "bytes": 51057
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-war-cry-details.png",
+      "sha256": "6bc20e37f153f415cd2741f4a5a1b718f8689da5a4c5b239ee36e61548009079",
+      "bytes": 52555
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-war-cry-fresh-22.json",
+      "sha256": "7344dbdc275ccae4ac12a60c1808f2f396b1472f25378670ad0e8c7b8e43fc13",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-war-cry-imported-23.json",
+      "sha256": "1c5524061a931413470d488f0979d62f3d21744944b29259a5441be4dabce103",
+      "bytes": 4943
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-war-cry-offline-continued-28.json",
+      "sha256": "9baf7aa70904b144520808e651d7138b936c8737d226572e849ebc3d789cf2f4",
+      "bytes": 4994
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-war-cry-rank1-after-25.json",
+      "sha256": "95c6616ce30c2e4794e8b7b0ea3a5fedb7712bf35490264fa668df2b3edc7746",
+      "bytes": 4946
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-war-cry-rank1-before-24.json",
+      "sha256": "df6d09c40df6a82b37bdd308cb46daa373ba02a24e5f503064a492d7512396eb",
+      "bytes": 4943
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-war-cry-rank2-after-27.json",
+      "sha256": "9baf7aa70904b144520808e651d7138b936c8737d226572e849ebc3d789cf2f4",
+      "bytes": 4994
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-war-cry-rank2-before-26.json",
+      "sha256": "9baf7aa70904b144520808e651d7138b936c8737d226572e849ebc3d789cf2f4",
+      "bytes": 4994
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-war-cry-synthetic-input.json",
+      "sha256": "7dc24693361151d6ed2fc82dcbde444920220a986e241d73ae45164f9a1e78ce",
+      "bytes": 4127
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-whirlwind-cast-visible.png",
+      "sha256": "048cc23afa68655c20c8ef500a7388044d452e9a8614717a36a5df01a7cb7efe",
+      "bytes": 59914
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-whirlwind-combat.json",
+      "sha256": "eb44c6c70b84e5cbe8fd83f8bf965f26390e02b1251a7c8167974e5554040583",
+      "bytes": 4073
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-whirlwind-current-next.png",
+      "sha256": "60bfd29bc6b0b9aeb36e031efcd1b074236cc34a136a0ba97de536605064c3cb",
+      "bytes": 51694
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-whirlwind-details.png",
+      "sha256": "2a45241f5c5f9d32995b30df9cd776ee7e583cec1d1fa6d729b482196496d4d4",
+      "bytes": 52945
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-whirlwind-fresh-8.json",
+      "sha256": "4f69322dac92755c951ad071e746ccb27134f06a8f4e22f3efa848065c330cf4",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-whirlwind-imported-9.json",
+      "sha256": "3145e76a3f05a5022534aa1c22f6301453c0adb356fbc977d3be723265a7b11b",
+      "bytes": 4942
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-whirlwind-offline-continued-14.json",
+      "sha256": "8634f248cfe5b2627cf0adb349096b764ca00c6ce349717586d7d13c45bb15ae",
+      "bytes": 4995
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-whirlwind-rank1-after-11.json",
+      "sha256": "bc6464c79da5ed28d9f6eb5fe6db68f58cf70c88c9911e86edd6cfe5a814090a",
+      "bytes": 4945
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-whirlwind-rank1-before-10.json",
+      "sha256": "d205a91caf2a693b5831b2774e75a5e05b2e4f5a1a9e5b175e3934f981c3fcf7",
+      "bytes": 4942
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-whirlwind-rank2-after-13.json",
+      "sha256": "8634f248cfe5b2627cf0adb349096b764ca00c6ce349717586d7d13c45bb15ae",
+      "bytes": 4995
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-whirlwind-rank2-before-12.json",
+      "sha256": "8634f248cfe5b2627cf0adb349096b764ca00c6ce349717586d7d13c45bb15ae",
+      "bytes": 4995
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-whirlwind-synthetic-input.json",
+      "sha256": "77c6c99a5fd6e491b71e3ac91a366cc62610472cddf523424c6d033c1ee0d186",
+      "bytes": 4126
+    },
+    {
+      "path": "browser-zh-CN-360-live.json",
+      "sha256": "fa40001a7140143c77381ba9de9faf31efbe93ceb4e71f35dc9df4b5ca8da28b",
+      "bytes": 472
+    },
+    {
+      "path": "browser-zh-CN-360-result.json",
+      "sha256": "4395c109b5195a2bf69f4a7105ff39b15a488bdae5b66a9e1472db9ffea954be",
+      "bytes": 517
+    },
+    {
+      "path": "browser-zh-CN-360.log",
+      "sha256": "461c79f4ce9e1f93911f15689f47dda1b6fbb62e23e5082811c8588d6681f7e3",
+      "bytes": 634
+    },
+    {
+      "path": "browser.cjs",
+      "sha256": "376399e3faec15108f72d23c67c022d68c49199c502a453a2ee74648875d919f",
+      "bytes": 12310
+    },
+    {
+      "path": "build-final-live.json",
+      "sha256": "17cd73f21e84dc4182c3f70025f4343b38856a354a268adba016752387fa7225",
+      "bytes": 162
+    },
+    {
+      "path": "build-final-result.json",
+      "sha256": "7045bd985f206c5bbeef7d692582411a6bd15df032b55d27cfde5f157f9f388b",
+      "bytes": 208
+    },
+    {
+      "path": "build-final.log",
+      "sha256": "806568bba02fa95025668b9ec77dd8b92a1f5daf722821f6f098e21230983d88",
+      "bytes": 2454
+    },
+    {
+      "path": "causal-control-lifetime-live.json",
+      "sha256": "7bece27df8b62c01a9c2d8857a3c047843280b96dea0dad8cb98009cdae0932e",
+      "bytes": 113
+    },
+    {
+      "path": "causal-control-lifetime-result.json",
+      "sha256": "3ce95ea6a57ae4c7372a0a1f0ff9e46f5381d112d85879a412b7064e16253a56",
+      "bytes": 159
+    },
+    {
+      "path": "causal-control-lifetime.log",
+      "sha256": "4e7742be1f38ae6f602349a4d04e63b3f453c1b07f6dc438640fa9108c444475",
+      "bytes": 360
+    },
+    {
+      "path": "causal-controls-live.json",
+      "sha256": "1ac38a1019847fa4784a29bc3f1f5d5ef8304ca4db557cfecf087e64d5b13edf",
+      "bytes": 113
+    },
+    {
+      "path": "causal-controls-result.json",
+      "sha256": "9477f23089e1a9c7c0d1f212e4f5b6043a2387ff3f4a231feb798080ac071736",
+      "bytes": 158
+    },
+    {
+      "path": "causal-controls.log",
+      "sha256": "ce511d27550245f23bdf025199f50928881ed7b21a2f0b79bb61efb1cf297660",
+      "bytes": 3039
+    },
+    {
+      "path": "causal-initial-live.json",
+      "sha256": "a3b3b660c0b8069aa3aeaf59cd593a4d931342c5fd0187b9c10b31bd667f4c58",
+      "bytes": 113
+    },
+    {
+      "path": "causal-initial-result.json",
+      "sha256": "af17b5ca17d2eaf4653391cf0b650add73f56900d4cb2f30229422eaf8835616",
+      "bytes": 158
+    },
+    {
+      "path": "causal-initial.log",
+      "sha256": "1688c7195d27f0b0a9a3532b523db67e44164d133d9ba6303201adc5edf7f6ad",
+      "bytes": 359
+    },
+    {
+      "path": "cleanup.py",
+      "sha256": "1bd25f10b5dcd1d198a178dba4ab0eb45041073d23e28d0b3a8e754c0f66fb77",
+      "bytes": 2967
+    },
+    {
+      "path": "corrected-focused-live.json",
+      "sha256": "906882746fcf2511bd245a8d125316afbd7ec45d7cfab17d1e4aa1df9cfa771e",
+      "bytes": 227
+    },
+    {
+      "path": "corrected-focused-result.json",
+      "sha256": "790a0af77e59327e385b82ac414ab5577bc92fa67633d6bf432a2160f46dd782",
+      "bytes": 273
+    },
+    {
+      "path": "corrected-focused.log",
+      "sha256": "218fb239dfbd265f096eaa662fcf1ea9199b087cad87617636498c0fdc97f9b0",
+      "bytes": 526
+    },
+    {
+      "path": "credit.py",
+      "sha256": "5462c29e7b2a494a0c7db91025f12d3c01842b9cf8ea7d359052bcea2effce1a",
+      "bytes": 2254
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/browser-report.json",
+      "sha256": "f826a62d4574a431d510a6893a049e394e4d2e8b0e60b16a0ffa1fea02036996",
+      "bytes": 7186
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-bash-cast-visible.png",
+      "sha256": "9463cb5bfa10f0c4dfc94c544268ca4bde92321b64f17b843ee83883dac6d34b",
+      "bytes": 217428
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-bash-combat.json",
+      "sha256": "94b54c69e56937eac18f623523893794347f0166782541867b5f59729e7b6127",
+      "bytes": 2382
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-bash-current-next.png",
+      "sha256": "d4635fc8d81319d4989167c4188cfb6576651bdede9cf22b8f9e76f4b3ee86bf",
+      "bytes": 99859
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-bash-details.png",
+      "sha256": "2f5652a5f8b2690fcd3661207b48e970025707627325bb5cbb5b25f023336aba",
+      "bytes": 101555
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-bash-fresh-1.json",
+      "sha256": "c2ce3f9bef9523b5256b264ce69cdd3b34079e627635bbcbf8685669db24d9c9",
+      "bytes": 3172
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-bash-imported-2.json",
+      "sha256": "12355b62958d0bf17d8baeef32c98113995d32e294e47ad87b0f792097fd42bd",
+      "bytes": 4785
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-bash-offline-continued-7.json",
+      "sha256": "8b1ff01f6a9078b361326d28b1784e4e0f4d13cbb131eb2bfc6389b456311f99",
+      "bytes": 4833
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-bash-rank1-after-4.json",
+      "sha256": "aea8afaf7d5d2a5ec2dfd6c878ce9a20105991f3ee45a669978972a9d29888cc",
+      "bytes": 4788
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-bash-rank1-before-3.json",
+      "sha256": "871ff902ec17108456f6658ff94c293e9bc791810d5a5b10e35f59acb53d2ad2",
+      "bytes": 4785
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-bash-rank2-after-6.json",
+      "sha256": "8b1ff01f6a9078b361326d28b1784e4e0f4d13cbb131eb2bfc6389b456311f99",
+      "bytes": 4833
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-bash-rank2-before-5.json",
+      "sha256": "8b1ff01f6a9078b361326d28b1784e4e0f4d13cbb131eb2bfc6389b456311f99",
+      "bytes": 4833
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-bash-synthetic-input.json",
+      "sha256": "37e48f607e21383e3e121f78b8479ebf0e5b9a8796b29d759bff7748e2dc354e",
+      "bytes": 3969
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-leap-attack-cast-visible.png",
+      "sha256": "dd4d2774713be7daf2d7a1f382dfb452d413b167351980a254d8d5a8630d41cb",
+      "bytes": 194517
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-leap-attack-combat.json",
+      "sha256": "00656521157b48bcefd1f41f6a8f903ed2cd7f8171b6c836f4ba5799e21fa4b3",
+      "bytes": 3765
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-leap-attack-current-next.png",
+      "sha256": "436cad0850eb1b9518c02b3c297bf3f17c81e1babba446f74d0ecaf2ed3ef8b2",
+      "bytes": 106852
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-leap-attack-details.png",
+      "sha256": "69bd8d123f7d9ca0cbf201087648d2d56b9baad347dc60e7ee382c7fe2e70f28",
+      "bytes": 108518
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-leap-attack-fresh-15.json",
+      "sha256": "1dc3313e4d9bcc5b8951d86c1398ab87d49fd1ac980193c57b1273a9557d6cbb",
+      "bytes": 3172
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-leap-attack-imported-16.json",
+      "sha256": "75dd3fb7401a11a2aea486f500c574c99e4d2f814195f0eec268a0d45f4b6c69",
+      "bytes": 4819
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-leap-attack-offline-continued-21.json",
+      "sha256": "38b8804c42efb4af538745eafa2372f2b07971aa6a36f1db71780bc870fb9407",
+      "bytes": 4874
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-leap-attack-rank1-after-18.json",
+      "sha256": "89a7907f6a04da911d9efe16f03f79386172f50bdeb71fea2dcf9b82aee91ad4",
+      "bytes": 4822
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-leap-attack-rank1-before-17.json",
+      "sha256": "9956fd6290b3525ad62b1238d81acb7601127b358fd7c34db362727ba599990e",
+      "bytes": 4819
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-leap-attack-rank2-after-20.json",
+      "sha256": "38b8804c42efb4af538745eafa2372f2b07971aa6a36f1db71780bc870fb9407",
+      "bytes": 4874
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-leap-attack-rank2-before-19.json",
+      "sha256": "38b8804c42efb4af538745eafa2372f2b07971aa6a36f1db71780bc870fb9407",
+      "bytes": 4874
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-leap-attack-synthetic-input.json",
+      "sha256": "818541243e5254a761fafd8e4eb0e771bb6c4596f6c47c5f2cc2958f12f38107",
+      "bytes": 4003
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-war-cry-cast-visible.png",
+      "sha256": "2d5a663d5e6cfec68ae1e4cfa47f421888421a6933c54d1546a4ef12fd51c15c",
+      "bytes": 193196
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-war-cry-combat.json",
+      "sha256": "399ee770ebcfbdf81a8789f76914176d8e9061acb4725358094212fe8a804a43",
+      "bytes": 3745
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-war-cry-current-next.png",
+      "sha256": "425f680699e751b2de4d3f75883a303270ad185234d4fa811b3efcaec5a16362",
+      "bytes": 122340
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-war-cry-details.png",
+      "sha256": "81ed021d68bfd5b993c039b69f56504ffd31d4b8a08c6d8f31dcb806547b0b00",
+      "bytes": 123919
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-war-cry-fresh-22.json",
+      "sha256": "fadc6354372668408e24d9c8eb8f4f2dec963a320fd00da9263fdd96188490ca",
+      "bytes": 3172
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-war-cry-imported-23.json",
+      "sha256": "220e473359b4425e858289dfc5c2289afe0b8970f658862bb076bc33b097eff7",
+      "bytes": 4940
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-war-cry-offline-continued-28.json",
+      "sha256": "7ba102a1906acab94e02f340d16e606b2a78ea76a8c1f7f34a562ef9305314ce",
+      "bytes": 4991
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-war-cry-rank1-after-25.json",
+      "sha256": "118a6f1c08e70d5a13180ccb5ad91e7bb52f49c42bf521c629007826dd23a131",
+      "bytes": 4943
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-war-cry-rank1-before-24.json",
+      "sha256": "71853c97e124c24391cd7679870e140a1efefb904a9dc94bb270435b046cef13",
+      "bytes": 4940
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-war-cry-rank2-after-27.json",
+      "sha256": "7ba102a1906acab94e02f340d16e606b2a78ea76a8c1f7f34a562ef9305314ce",
+      "bytes": 4991
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-war-cry-rank2-before-26.json",
+      "sha256": "7ba102a1906acab94e02f340d16e606b2a78ea76a8c1f7f34a562ef9305314ce",
+      "bytes": 4991
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-war-cry-synthetic-input.json",
+      "sha256": "f81f3e8804748b3613e80a6a351335359b10bad615d0de69b25b9ba5a83577b7",
+      "bytes": 4124
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-whirlwind-cast-visible.png",
+      "sha256": "aa212eb759ebd87fde3ef3feb218e8c775f2ab7bde1d216feeed67d369392b77",
+      "bytes": 206346
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-whirlwind-combat.json",
+      "sha256": "f3060e1a17b8664425ea08ddaa55def9af0a34f1ae0af7f330ec58df45445e68",
+      "bytes": 3736
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-whirlwind-current-next.png",
+      "sha256": "392728e4dc2299e542e1232bc0cbec1591b82047f07c9fa9a0cb8d639a1c934b",
+      "bytes": 119518
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-whirlwind-details.png",
+      "sha256": "aa9b8456157796e490b03bb43354f27380f5764de0d5f15c033c26d9a176b3ab",
+      "bytes": 121102
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-whirlwind-fresh-8.json",
+      "sha256": "6d5212568d07f2c78d49b1a3f6004520f4f0e4890e80c08fc6a6f2aa31c5aa9f",
+      "bytes": 3172
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-whirlwind-imported-9.json",
+      "sha256": "5e1e154010bdaf6e1f04233c87b20fce20bea481e9f60656c2551ef5c4e7fb56",
+      "bytes": 4939
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-whirlwind-offline-continued-14.json",
+      "sha256": "8dd178ee4bb4b0507cc8281a613ce714aaf28157cb05d9ffa250a6d558287ba2",
+      "bytes": 4992
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-whirlwind-rank1-after-11.json",
+      "sha256": "78ae24680ea2e7a4d5aff41a9dc9b1e56ecd6bc94c6386b50ec26ac25d482b34",
+      "bytes": 4942
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-whirlwind-rank1-before-10.json",
+      "sha256": "3b79975c3c68b6b510e07689a979075f09bc115d23d2cd88ad36d08c42ee3c4e",
+      "bytes": 4939
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-whirlwind-rank2-after-13.json",
+      "sha256": "8dd178ee4bb4b0507cc8281a613ce714aaf28157cb05d9ffa250a6d558287ba2",
+      "bytes": 4992
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-whirlwind-rank2-before-12.json",
+      "sha256": "8dd178ee4bb4b0507cc8281a613ce714aaf28157cb05d9ffa250a6d558287ba2",
+      "bytes": 4992
+    },
+    {
+      "path": "first-browser-run/browser-en-1280/en-1280-whirlwind-synthetic-input.json",
+      "sha256": "212ebca64092613aa348c3301c4d28c6b467981b9a31b970d2895cd7953cf279",
+      "bytes": 4123
+    },
+    {
+      "path": "first-browser-run/browser-en-360/browser-report.json",
+      "sha256": "56be140bb8e408dc9ef6763c9e6a109c281ca234fb95f67a5c5ad3577464a71e",
+      "bytes": 7161
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-bash-cast-visible.png",
+      "sha256": "fc14e7a1707151b9e3d2f36aa2db32f6bbf03dfa21a7c746fef36bc7bc8b314e",
+      "bytes": 54181
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-bash-combat.json",
+      "sha256": "4be597072ace79d558b8ef8bcd60c8291423e87a3b38734d7f988216c1c2e098",
+      "bytes": 1944
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-bash-current-next.png",
+      "sha256": "b790d5768f781c3c08f9cdeda182cbe20b076245f034f3a122b0af8f7dfc3282",
+      "bytes": 46362
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-bash-details.png",
+      "sha256": "586fb14e2b5425eacf43f96453f1290f041e1b2ea11fe6f22efec2a2f9b8a5a5",
+      "bytes": 47955
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-bash-fresh-1.json",
+      "sha256": "89dd502a582761c1e804b6a9f55392be2d734d7be6598648c0b6d590241e3841",
+      "bytes": 3172
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-bash-imported-2.json",
+      "sha256": "4c6b3076925d78332e049a3c5f6275a88aafefb4d78150b5233a9267625937e3",
+      "bytes": 4785
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-bash-offline-continued-7.json",
+      "sha256": "458f250c4157506ddbfc00bc04b45a4f52ed643b38ade268a500f79d565a7ff2",
+      "bytes": 4833
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-bash-rank1-after-4.json",
+      "sha256": "01cdaa6b723fa7cacc1a590db71f0567fd785c1860d45688a196f234df49eb26",
+      "bytes": 4788
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-bash-rank1-before-3.json",
+      "sha256": "c970ce51fb2ae4adb65ca60c376b26abed95d34203b5bfc2430231c709002978",
+      "bytes": 4785
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-bash-rank2-after-6.json",
+      "sha256": "458f250c4157506ddbfc00bc04b45a4f52ed643b38ade268a500f79d565a7ff2",
+      "bytes": 4833
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-bash-rank2-before-5.json",
+      "sha256": "458f250c4157506ddbfc00bc04b45a4f52ed643b38ade268a500f79d565a7ff2",
+      "bytes": 4833
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-bash-synthetic-input.json",
+      "sha256": "14a51137dbbb3d4037541da66cdb777fd0c4da3c8e527bd901701d759b12e6b4",
+      "bytes": 3969
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-leap-attack-cast-visible.png",
+      "sha256": "b9bc1b6837b1d3039ec2ca93438fa4146ba50081046cde2970015ad227e8753c",
+      "bytes": 54647
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-leap-attack-combat.json",
+      "sha256": "0c0d6ff458a3b48fb8bcb75560d26e746473d189bffc33ed4809030af8e2b363",
+      "bytes": 3561
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-leap-attack-current-next.png",
+      "sha256": "cdc044e0716c8d14c6ec069aac4801727a0d8d97942e06c8d0fc6cb7a79386ab",
+      "bytes": 50021
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-leap-attack-details.png",
+      "sha256": "99c254a37677b8575c02cc1cb6ff853d2ac7c426189b055a6d667cc09a43eaa9",
+      "bytes": 51132
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-leap-attack-fresh-15.json",
+      "sha256": "806538defb38f3201cd9178d52135943d20589f0995d2bd7c567177a039ca28c",
+      "bytes": 3172
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-leap-attack-imported-16.json",
+      "sha256": "482eadc93cde68c52abf1b25ebfdcb598087a162593c1603efc9c5a0c82b7120",
+      "bytes": 4819
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-leap-attack-offline-continued-21.json",
+      "sha256": "06b6d3ce8cb7c553058b1a2454e4f158f892efd2763b14808933ccfa484efd45",
+      "bytes": 4874
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-leap-attack-rank1-after-18.json",
+      "sha256": "e9c5924510e8b219156c6df8a4ade461b5ee5be93d75d41dc62c277509f25b7d",
+      "bytes": 4822
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-leap-attack-rank1-before-17.json",
+      "sha256": "4f874207bd952ae6cc7638cfbd4c1bb967105622959ce71014ce46af05299ead",
+      "bytes": 4819
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-leap-attack-rank2-after-20.json",
+      "sha256": "06b6d3ce8cb7c553058b1a2454e4f158f892efd2763b14808933ccfa484efd45",
+      "bytes": 4874
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-leap-attack-rank2-before-19.json",
+      "sha256": "06b6d3ce8cb7c553058b1a2454e4f158f892efd2763b14808933ccfa484efd45",
+      "bytes": 4874
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-leap-attack-synthetic-input.json",
+      "sha256": "395e8dd5521d242c899159bb438c758d9e5f465af350046151027be80aebac8f",
+      "bytes": 4003
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-war-cry-cast-visible.png",
+      "sha256": "4a2f541c4d575f2d295fecec7aa54962f353040cc0836a03de84538faa43e94e",
+      "bytes": 54423
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-war-cry-combat.json",
+      "sha256": "e18d07bf9a68ce36b126e92301626e318d760b62dc3e9110b5296b25c631ceaa",
+      "bytes": 3541
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-war-cry-current-next.png",
+      "sha256": "92939787189d88c60bee12f69067566b2122114c52f34ab9aed06cbbbee2d9b8",
+      "bytes": 49181
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-war-cry-details.png",
+      "sha256": "b0e9cbffba353b71c701a80619882c13620ace27fd875eb6a6af7fa9bc6e1880",
+      "bytes": 50870
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-war-cry-fresh-22.json",
+      "sha256": "6eb16dea4f695cb9e41689165ac667f8353790fd3262a4926b7c765ef0ec15f6",
+      "bytes": 3172
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-war-cry-imported-23.json",
+      "sha256": "5e53153c1fb8a553cb8520b4974fd54ac2d1e3a842100e0c195981ba24fd2126",
+      "bytes": 4940
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-war-cry-offline-continued-28.json",
+      "sha256": "67588f1ebd4f2278a86077b5acb955492c151634f8a3a49bb31c2066260f1f59",
+      "bytes": 4991
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-war-cry-rank1-after-25.json",
+      "sha256": "a60873c508d0414f4846d47df3cc384dceb70ce6835e67dc5cdfa9ade89a1503",
+      "bytes": 4943
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-war-cry-rank1-before-24.json",
+      "sha256": "0856489342e49e02242ede6e54fdffd6cdb773ecdc5f451432030a43c9777f58",
+      "bytes": 4940
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-war-cry-rank2-after-27.json",
+      "sha256": "67588f1ebd4f2278a86077b5acb955492c151634f8a3a49bb31c2066260f1f59",
+      "bytes": 4991
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-war-cry-rank2-before-26.json",
+      "sha256": "67588f1ebd4f2278a86077b5acb955492c151634f8a3a49bb31c2066260f1f59",
+      "bytes": 4991
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-war-cry-synthetic-input.json",
+      "sha256": "6b2e9ce66019cb1c68dd5cdb3c38348cb01c19dfa8d79d689a2662634c5b1516",
+      "bytes": 4124
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-whirlwind-cast-visible.png",
+      "sha256": "091df006b05a719d590c3148f030876c7676b149f4f1717ac52ee3cfb78fb4dc",
+      "bytes": 56870
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-whirlwind-combat.json",
+      "sha256": "cc9f35fd92436726280d976adf3317d1597c41acca4b7481d9cd9d1623b6046f",
+      "bytes": 3297
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-whirlwind-current-next.png",
+      "sha256": "9d91c9907a50321f1eec831eee1f5ad2c904f36129b06d9b191d7fe6acceb2a5",
+      "bytes": 51251
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-whirlwind-details.png",
+      "sha256": "201680f91a27003bd6a0c8d1d7e169094b3bec21e152ee9413e61f586d97e533",
+      "bytes": 52974
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-whirlwind-fresh-8.json",
+      "sha256": "a7801c26bdd2fbd1132353fecdf3a576e6e14b23135aeef352d7a798d1835efc",
+      "bytes": 3172
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-whirlwind-imported-9.json",
+      "sha256": "2df84c23ac1a6ffba9df71475c89e26ed32f81730174fac7da2847fc933729dc",
+      "bytes": 4939
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-whirlwind-offline-continued-14.json",
+      "sha256": "216fa816a8b5171c886ee3203f575b0a40f8eef29c8679b9162363e7ed0ac3c7",
+      "bytes": 4992
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-whirlwind-rank1-after-11.json",
+      "sha256": "0d80d50177af8da301989a1b90f8664e15303af32800e413c68b5c96a6b384b6",
+      "bytes": 4942
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-whirlwind-rank1-before-10.json",
+      "sha256": "ac7897634c68e59556a4ac133f13ed3665091a638609e67c3d5a6a226f35940b",
+      "bytes": 4939
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-whirlwind-rank2-after-13.json",
+      "sha256": "216fa816a8b5171c886ee3203f575b0a40f8eef29c8679b9162363e7ed0ac3c7",
+      "bytes": 4992
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-whirlwind-rank2-before-12.json",
+      "sha256": "216fa816a8b5171c886ee3203f575b0a40f8eef29c8679b9162363e7ed0ac3c7",
+      "bytes": 4992
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-whirlwind-synthetic-input.json",
+      "sha256": "39ef7440a9b153859d6319a78a18d6a8ed16244f1ae8d68e79efc2130de8f144",
+      "bytes": 4123
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/browser-report.json",
+      "sha256": "ab56bf5b39998f810861cc0a3a51e2cc436fdad484eb56f6dee5d25900874308",
+      "bytes": 6977
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-cast-visible.png",
+      "sha256": "188c4da29f3823c0b75402551e8d4b5966ded48ac2fcf71e70ef7ffbacc0a520",
+      "bytes": 221543
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-combat.json",
+      "sha256": "18f789b23c8db409c102a7bb3e6426cf76c475993573176240b12f2213f92aa9",
+      "bytes": 2601
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-current-next.png",
+      "sha256": "a7ff00b8dfe8aa749c584fee13cfeda918333aed36e967ede4c9d2f8f9251ce6",
+      "bytes": 98520
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-details.png",
+      "sha256": "e6bc2f212b8fadf94801ae42d6922d044cd8e509860df477cf0886d71f83ef72",
+      "bytes": 100239
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-fresh-1.json",
+      "sha256": "d24bd6e4a501c46a2e099a3a29c6a9255ed1e2ec1c6aa8a9b1570c57638a53da",
+      "bytes": 3175
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-imported-2.json",
+      "sha256": "3ed71ae6ac601cec024013186605c60e0b8eca7e1bea267fba56a3eca8f14729",
+      "bytes": 4788
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-offline-continued-7.json",
+      "sha256": "eb7c82cc0cccc850dd50dc806034bce2e6c8902f9dac7283ace5b03e291cf111",
+      "bytes": 4836
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-rank1-after-4.json",
+      "sha256": "ba2492d84dc94a99f79890d4d97448fa6937531d9344e4583d9cee425d9c8d6a",
+      "bytes": 4791
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-rank1-before-3.json",
+      "sha256": "26f5f7bdb87c5a1fb9b82d276397b5413c58bfdc0b54f3e4e8fc8405eb94e4c9",
+      "bytes": 4788
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-rank2-after-6.json",
+      "sha256": "eb7c82cc0cccc850dd50dc806034bce2e6c8902f9dac7283ace5b03e291cf111",
+      "bytes": 4836
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-rank2-before-5.json",
+      "sha256": "eb7c82cc0cccc850dd50dc806034bce2e6c8902f9dac7283ace5b03e291cf111",
+      "bytes": 4836
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-bash-synthetic-input.json",
+      "sha256": "7af017c31c83d0f56b67c3f7c2b66f80c0aa7aa04e7b93e411d29b18ee8c2d6d",
+      "bytes": 3972
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-cast-visible.png",
+      "sha256": "53309b43a7173396ef2eb577e8e9dde9c6fdcee3a6f3e33b4e530af082f4f827",
+      "bytes": 198303
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-combat.json",
+      "sha256": "37f20fb6aa2842631550432431abe56b80fba4f395efed887b5940ee994c42e6",
+      "bytes": 3969
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-current-next.png",
+      "sha256": "539c7a9de8cdb45e90e3a2150f29425ed935405928beea9e732138cd605f1fbc",
+      "bytes": 106384
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-details.png",
+      "sha256": "c0dfeb2b1ac80e061179cdccc33dc5e572c5f016619ba79866ca8ea74a758868",
+      "bytes": 108089
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-fresh-15.json",
+      "sha256": "68be58e67d8cf45983c18835d00dfe52536bfb6aa84afca7fca5f43955aaaad9",
+      "bytes": 3175
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-imported-16.json",
+      "sha256": "89a650ff672e33aa7c51cdd70f6754ef3cc54adb3acd68bb4d56bcb58425666c",
+      "bytes": 4822
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-offline-continued-21.json",
+      "sha256": "2fbb8c19a7d9686b7ef2fda55ef4a0a4c70c2a02fcdfbab32eaddbd9dbf78d8f",
+      "bytes": 4877
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-rank1-after-18.json",
+      "sha256": "3e69d534149a01bba64e276594dd30d9821a8563c84eb9f91ff15d8dcddcf6e4",
+      "bytes": 4825
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-rank1-before-17.json",
+      "sha256": "6f5790a66d742f9bc07ac55aa09876667050f2435011e3bf2e5e640fdca2e0ae",
+      "bytes": 4822
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-rank2-after-20.json",
+      "sha256": "2fbb8c19a7d9686b7ef2fda55ef4a0a4c70c2a02fcdfbab32eaddbd9dbf78d8f",
+      "bytes": 4877
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-rank2-before-19.json",
+      "sha256": "2fbb8c19a7d9686b7ef2fda55ef4a0a4c70c2a02fcdfbab32eaddbd9dbf78d8f",
+      "bytes": 4877
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-leap-attack-synthetic-input.json",
+      "sha256": "ee32178e0717d41a7eafa4f0c410e391780f88f511219e33b7d084c87558084f",
+      "bytes": 4006
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-cast-visible.png",
+      "sha256": "f7399b91706e977ead7983c34f78f2a6cde26a84bc88f896f520cc130c9acd02",
+      "bytes": 196681
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-combat.json",
+      "sha256": "688f6da3f720a2b878ba754567259d9bcd7bd3fee5978fc4bb84f24d00f02447",
+      "bytes": 3947
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-current-next.png",
+      "sha256": "7056aae236c54f9b50aa3c4192c0d00e2cf6f4a5cc4cce5a09775a9eb73e5dfd",
+      "bytes": 120129
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-details.png",
+      "sha256": "f36bb06e788e4516cac6748779efef1578928a6e9edd331e1c651038b5847c4c",
+      "bytes": 121821
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-fresh-22.json",
+      "sha256": "ae592082671385927c377e4f6f0dbf8fedf9c6d71c872e19d1d276b2fc06502b",
+      "bytes": 3175
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-imported-23.json",
+      "sha256": "899d338ad4e2d6057db26028659845cd2e3d77ec7ba7e20b9c4dd1cc5e6af9ec",
+      "bytes": 4943
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-offline-continued-28.json",
+      "sha256": "97f8f66cbc0cdda387f9d1f5eadfafda29220da7fa1bb5db54630760b6739f25",
+      "bytes": 4994
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-rank1-after-25.json",
+      "sha256": "d56247285278c7cb66ff6fdc834e2c29a95e19fd88d54298947d273386262113",
+      "bytes": 4946
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-rank1-before-24.json",
+      "sha256": "15e00ee90a48a76488e55bde6503c65a7ffb7dbcf02c91fbb279291f105d4661",
+      "bytes": 4943
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-rank2-after-27.json",
+      "sha256": "97f8f66cbc0cdda387f9d1f5eadfafda29220da7fa1bb5db54630760b6739f25",
+      "bytes": 4994
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-rank2-before-26.json",
+      "sha256": "97f8f66cbc0cdda387f9d1f5eadfafda29220da7fa1bb5db54630760b6739f25",
+      "bytes": 4994
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-war-cry-synthetic-input.json",
+      "sha256": "8abf92d71e048417ef097b1f3adb634513a453d77356115456b2077e665c05f6",
+      "bytes": 4127
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-cast-visible.png",
+      "sha256": "e285c467315b322df11784a5329060aae5dd5a664aaf22e0f0b360cc2375203f",
+      "bytes": 211716
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-combat.json",
+      "sha256": "d61eb046bc1b5fbd48a62dbfbd8b9f508c418f6802f717e264eee82331529497",
+      "bytes": 3591
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-current-next.png",
+      "sha256": "1f441d3f7bb9d1aa9ec51e90051870b4b7000ad2405744519aaadc4f2a88a3c6",
+      "bytes": 119414
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-details.png",
+      "sha256": "9ed4aad53bcad8bf5b174f09b2fc0c6effdd051277acd2c7b96a2b121ca066c3",
+      "bytes": 121161
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-fresh-8.json",
+      "sha256": "6529d3a59e949578eb08666a7f5ccfdbeb15ced32e744306896cb6399dc7b963",
+      "bytes": 3175
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-imported-9.json",
+      "sha256": "112826783b07cc0fe1acd90b53d8a64c2714565fed616c065bba625f27e70401",
+      "bytes": 4942
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-offline-continued-14.json",
+      "sha256": "2e0ac5087e6039d6a423f11e832744f6f80485a316e1852d28421b7bb6acda95",
+      "bytes": 4995
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-rank1-after-11.json",
+      "sha256": "a7cdd5eb4867bbd9c072888c87f19c189fb19f369273d957ff447bc6ada9fb39",
+      "bytes": 4945
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-rank1-before-10.json",
+      "sha256": "bbc49b5ff515ab23d5e6684ff9d29c6430bc46f07adfd26a9defb938f356a90f",
+      "bytes": 4942
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-rank2-after-13.json",
+      "sha256": "2e0ac5087e6039d6a423f11e832744f6f80485a316e1852d28421b7bb6acda95",
+      "bytes": 4995
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-rank2-before-12.json",
+      "sha256": "2e0ac5087e6039d6a423f11e832744f6f80485a316e1852d28421b7bb6acda95",
+      "bytes": 4995
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-1280/zh-CN-1280-whirlwind-synthetic-input.json",
+      "sha256": "8d0a7e0f192bca4965fa8963d3d13b53aa63e7a11072cf078ba06c8a4fb7900e",
+      "bytes": 4126
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/browser-report.json",
+      "sha256": "6833de35de64453e5a79eacfea8c18396865ed6dd7765b2cc389a61ad732a340",
+      "bytes": 6954
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-cast-visible.png",
+      "sha256": "86c8fa4aff56540acf4964e5e5a0277aeae9c8acf7bb2ee53fa09aa93e4691c1",
+      "bytes": 60100
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-combat.json",
+      "sha256": "dbba73d9ad7a2c0ff1ba3a7adecacdd052cc7fca471cba5e91a3e628adbb76e2",
+      "bytes": 2120
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-current-next.png",
+      "sha256": "37588e8f23dee5a99fb5a87de616bed7539f1c6ed3cc4934893fabcbd78d2ecc",
+      "bytes": 45308
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-details.png",
+      "sha256": "e9076c45b06bbb7ada834fd9192ac56770a4063268e121dfaac283f726354f81",
+      "bytes": 46918
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-fresh-1.json",
+      "sha256": "f1564624b2d17ced10fe6d82f93277531389352ea3ff5ecfdcd29e9de3e6e491",
+      "bytes": 3175
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-imported-2.json",
+      "sha256": "52eba32b49d984001e27365c5e809d9360649838852156df7f98d3d719c80762",
+      "bytes": 4788
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-offline-continued-7.json",
+      "sha256": "0c5d9515c0cdb7ef77801070cf97596d95067fce46fde5db170ed842dc8a7283",
+      "bytes": 4836
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-rank1-after-4.json",
+      "sha256": "ae0e220d6bf126ee363e983528e9937cade2d24877c54a0c51fca1382029ae1c",
+      "bytes": 4791
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-rank1-before-3.json",
+      "sha256": "99ec06cdb498382afa278f7d27369ac9dac74b47415b688d0f19a531cdebb647",
+      "bytes": 4788
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-rank2-after-6.json",
+      "sha256": "0c5d9515c0cdb7ef77801070cf97596d95067fce46fde5db170ed842dc8a7283",
+      "bytes": 4836
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-rank2-before-5.json",
+      "sha256": "0c5d9515c0cdb7ef77801070cf97596d95067fce46fde5db170ed842dc8a7283",
+      "bytes": 4836
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-bash-synthetic-input.json",
+      "sha256": "841059d74663a1c72b775e918465aaf069555bd70e3f550f934dc0d895b11327",
+      "bytes": 3972
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-cast-visible.png",
+      "sha256": "9c9f5c0df23e0e65c6ef8ffba606244fe928619d12a0300e8748043b273692c6",
+      "bytes": 61784
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-combat.json",
+      "sha256": "2205dd9b882375aafb534bfbd9df83acfc9c303c55fd635c6abe48c79ca6f7b4",
+      "bytes": 3761
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-current-next.png",
+      "sha256": "8ba488d39d2ab997d470334914860ba2e3c45232ed8bc86f82526795a008ac89",
+      "bytes": 52262
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-details.png",
+      "sha256": "49b809fcdf191b6668a30d3bc2dc4322643a3671310628b36d7f6b880e2fa90b",
+      "bytes": 53964
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-fresh-15.json",
+      "sha256": "834c32a157968d3ea9fe1711033875fa00532dc15a4fa0b06608405e62082c67",
+      "bytes": 3175
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-imported-16.json",
+      "sha256": "1f837ed461de876c492c9ff4d322ef35d8ffe90ba0702fb5da58c6cffcc339a1",
+      "bytes": 4822
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-offline-continued-21.json",
+      "sha256": "89598482087b4541327672366fac48f5eafbec4f85bab3b9cd3688b2e45c2500",
+      "bytes": 4877
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-rank1-after-18.json",
+      "sha256": "d75f71698522b936780e60ecafab2bfc8ed72d9eec8397a07bf4214bdc130b41",
+      "bytes": 4825
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-rank1-before-17.json",
+      "sha256": "68fa27fbd3771a08e4cca235457dd51381061f374224b37ca3df67a2173b97de",
+      "bytes": 4822
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-rank2-after-20.json",
+      "sha256": "89598482087b4541327672366fac48f5eafbec4f85bab3b9cd3688b2e45c2500",
+      "bytes": 4877
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-rank2-before-19.json",
+      "sha256": "89598482087b4541327672366fac48f5eafbec4f85bab3b9cd3688b2e45c2500",
+      "bytes": 4877
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-leap-attack-synthetic-input.json",
+      "sha256": "d1f6daccc3d711974236e7f1836d5f2156271630e76460fbd7aeeab054ab6e14",
+      "bytes": 4006
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-cast-visible.png",
+      "sha256": "6df16f760d643f147cea01786d5e8385ec18e638669d0b5a0d6a72867faf8ab3",
+      "bytes": 60796
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-combat.json",
+      "sha256": "dd46595a056bda6c1e3f75377eb9c4b3b18310837c23a7f751255da895aeccdc",
+      "bytes": 3739
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-current-next.png",
+      "sha256": "4858e2180ac665523a6caa419cca1f16a02d2ccee4b61e0b999eae7fde3edfcb",
+      "bytes": 51057
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-details.png",
+      "sha256": "ee5781c90271768f76bd1dabb048ff23f4732094e6ecf99db4a731d71406d0fa",
+      "bytes": 51793
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-fresh-22.json",
+      "sha256": "f711535beb9be0058f58808e9417d3772b1fa237c10641f3e0f0349bdf5fdc1a",
+      "bytes": 3175
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-imported-23.json",
+      "sha256": "fa3420b64319d24cdef87838ea0d3d1a2e18b4295e0ff932053b69d713d315b7",
+      "bytes": 4943
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-offline-continued-28.json",
+      "sha256": "bb0adb3c21fc731b24e9379af0e4458bd28ea1ee1d12f9c5adb2cf899132e293",
+      "bytes": 4994
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-rank1-after-25.json",
+      "sha256": "cab6488713625b8839e2a89ffa78a61d57530bc20a34d013012413c0ff5de19b",
+      "bytes": 4946
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-rank1-before-24.json",
+      "sha256": "0e1e242f5ff957dd9a26e05ee8680c836f70acc9751c0dc48c0c47e4a2fd1216",
+      "bytes": 4943
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-rank2-after-27.json",
+      "sha256": "bb0adb3c21fc731b24e9379af0e4458bd28ea1ee1d12f9c5adb2cf899132e293",
+      "bytes": 4994
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-rank2-before-26.json",
+      "sha256": "bb0adb3c21fc731b24e9379af0e4458bd28ea1ee1d12f9c5adb2cf899132e293",
+      "bytes": 4994
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-war-cry-synthetic-input.json",
+      "sha256": "688f1d7290ad2832bf89f0661763354bb857d0e1f2ef35f1756228db71ec181c",
+      "bytes": 4127
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-cast-visible.png",
+      "sha256": "bca1d947b615ad6a22569885a1ab0b62b4f0f2ea9515bb3a4616bc318a084519",
+      "bytes": 59911
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-combat.json",
+      "sha256": "eb44c6c70b84e5cbe8fd83f8bf965f26390e02b1251a7c8167974e5554040583",
+      "bytes": 4073
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-current-next.png",
+      "sha256": "60bfd29bc6b0b9aeb36e031efcd1b074236cc34a136a0ba97de536605064c3cb",
+      "bytes": 51694
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-details.png",
+      "sha256": "0be505710cecf7655af77cd8ca610bda276b62b3c65c0ff13e62a41321879356",
+      "bytes": 53456
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-fresh-8.json",
+      "sha256": "159da2ad0a3d394242f51183a55d2c781c796758cc1c84911913f64dcae18352",
+      "bytes": 3175
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-imported-9.json",
+      "sha256": "f6d0542ee328d33374d0ca01d2302ce9cf859b6a50f338908ce63728ec3be99d",
+      "bytes": 4942
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-offline-continued-14.json",
+      "sha256": "cd2e48e17675bdc587bb547e89e2a03d91aa392030442d3c685a9770fa041042",
+      "bytes": 4995
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-rank1-after-11.json",
+      "sha256": "81e19fe35cdf78d03fa3ba08cf86d8a431ab8185f331b4099b9f9eef66638e71",
+      "bytes": 4945
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-rank1-before-10.json",
+      "sha256": "48058dd5ced11414dff48fab26c5ce73263f153973bba1b3be547c80821bba07",
+      "bytes": 4942
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-rank2-after-13.json",
+      "sha256": "cd2e48e17675bdc587bb547e89e2a03d91aa392030442d3c685a9770fa041042",
+      "bytes": 4995
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-rank2-before-12.json",
+      "sha256": "cd2e48e17675bdc587bb547e89e2a03d91aa392030442d3c685a9770fa041042",
+      "bytes": 4995
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-whirlwind-synthetic-input.json",
+      "sha256": "acd40584d843a84b2b8067d7b5804591070916a48d17202db1fd8cea43bcc2dc",
+      "bytes": 4126
+    },
+    {
+      "path": "first-frozen.json",
+      "sha256": "f71eae31597243757fba577458b8f3fb6fd015ac2151503297d1024535aa013f",
+      "bytes": 238815
+    },
+    {
+      "path": "focused-live.json",
+      "sha256": "df148e8ebc918e29a60a88aaadd4e5e623c8876ee6aa3ac909f15dcf53753ba8",
+      "bytes": 227
+    },
+    {
+      "path": "focused-result.json",
+      "sha256": "72393dac8c4ad5fc2f1f727c05e5f8c80d8657107412fbebed46674a98060b6d",
+      "bytes": 273
+    },
+    {
+      "path": "focused.log",
+      "sha256": "fcf36170eb642ff0ce9da9dc38ce626626524e10d6d61db08a2a27a9dd494a19",
+      "bytes": 525
+    },
+    {
+      "path": "freeze-correction.json",
+      "sha256": "7c7eedfd5fff4b8ec3a71167d59860063d8dd6149c90048998d712561ff6ffba",
+      "bytes": 1260
+    },
+    {
+      "path": "frozen.json",
+      "sha256": "7cf8fa6adc3c8c053da14829efb6364e2f5db73bc87347742ede2465089e3a62",
+      "bytes": 238815
+    },
+    {
+      "path": "full-corrected-live.json",
+      "sha256": "982c81de0f3a9bec04da9e20cbe5018f4d29b6b7085c6cf7ed7d59f6bb9e1ca6",
+      "bytes": 44
+    },
+    {
+      "path": "full-corrected-result.json",
+      "sha256": "6da560f1f389f6522d24d37b90ac27e77676a0424134fddb1a73acc81e6d45f6",
+      "bytes": 88
+    },
+    {
+      "path": "full-corrected.log",
+      "sha256": "514efba3b09410e8094296cf4b858dffff4dc44beb5f23e4e60c8ac883d88ef8",
+      "bytes": 161423
+    },
+    {
+      "path": "full-final-live.json",
+      "sha256": "b65553c96492e7368f0f92846be87350e8331c631cefd29d3a82f4f22fcf84eb",
+      "bytes": 44
+    },
+    {
+      "path": "full-final-result.json",
+      "sha256": "4801eada95e40ce6e4228bdae9755a5cb455d66f0a64e49fb543f6041945c42c",
+      "bytes": 91
+    },
+    {
+      "path": "full-final.log",
+      "sha256": "4168ebdf0b6e3d41423a795488b0fafd92ce24979fe92a89c57b6f840812e26f",
+      "bytes": 3046
+    },
+    {
+      "path": "full-stop.json",
+      "sha256": "4eae1e42e90ec4f9468d14df42c957e2f15d3548f74b62a3125a4be80f859fe0",
+      "bytes": 360
+    },
+    {
+      "path": "helper-lifecycle-live.json",
+      "sha256": "b407729e882dc67c89456abf9f3c1c754c723e76fa71e1e4e8b808026fa07950",
+      "bytes": 262
+    },
+    {
+      "path": "helper-lifecycle-result.json",
+      "sha256": "43a03082047c50a43b4d0171c44531d0ff67d49c7ffd92ca260b70192e3a5088",
+      "bytes": 308
+    },
+    {
+      "path": "helper-lifecycle.log",
+      "sha256": "471a7c28990f9368ca710a24b640d3e4c16978517ceef378063d9fb5048612f0",
+      "bytes": 296
+    },
+    {
+      "path": "inventory-before.csv",
+      "sha256": "a54722181eb17eba021c30b6dfcff6e098cd93c9b460fd8e13e8b5db84738723",
+      "bytes": 49596
+    },
+    {
+      "path": "lint-corrected-focused-live.json",
+      "sha256": "32e087f0b39b24af4e11ed1a9c38a1ae7c605f49fb4e06a59db79a0bba3486e7",
+      "bytes": 280
+    },
+    {
+      "path": "lint-corrected-focused-result.json",
+      "sha256": "1ac30a5a83218123a1b6a81f537d139189ecc084cd9324dead3394305cb00741",
+      "bytes": 326
+    },
+    {
+      "path": "lint-corrected-focused.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "lint-final-live.json",
+      "sha256": "5564efd780224144162ad3ba0693acc5d4770f33677ea3f61ed717f62a39652d",
+      "bytes": 51
+    },
+    {
+      "path": "lint-final-result.json",
+      "sha256": "6a4acbd535acccffe19ab2a526c03e86cb26d159b0c4fdfc9e7c22851fba9b25",
+      "bytes": 96
+    },
+    {
+      "path": "lint-final.log",
+      "sha256": "a73535207999fb674586b149fda248ea7d19c168019f70ead798fb99249157bd",
+      "bytes": 197
+    },
+    {
+      "path": "lint-focused-final-live.json",
+      "sha256": "62c22200b523a35183974d4947a05f838be8643f69952dc2b08a7fa61964a740",
+      "bytes": 280
+    },
+    {
+      "path": "lint-focused-final-result.json",
+      "sha256": "f81d186a7b1b53055a36573ad86a50e6ec345f87f0a941b6442f780e2535e012",
+      "bytes": 326
+    },
+    {
+      "path": "lint-focused-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "lint-focused-live.json",
+      "sha256": "4793b10f0fd58c05052c64cf5d604110a798c79713756b5a9752c237d02b30c3",
+      "bytes": 280
+    },
+    {
+      "path": "lint-focused-result.json",
+      "sha256": "242a2b07c1fea45b9b508cc47784d2f4ddf0066ccd8297fd3f85c1191a67bf51",
+      "bytes": 325
+    },
+    {
+      "path": "lint-focused.log",
+      "sha256": "bede3b9762f0886b106725f2c5182039f65373cac70fbcfe9f080614f5ff0c65",
+      "bytes": 1215
+    },
+    {
+      "path": "native-initial-live.json",
+      "sha256": "5559117471b1a05e0daf7011ed77e645c21b601f3395862e88bf85560c79429f",
+      "bytes": 113
+    },
+    {
+      "path": "native-initial-result.json",
+      "sha256": "a7497417572867c7af11a7cb967ce3cdf2456bccc2081c86fbba74d88099d035",
+      "bytes": 158
+    },
+    {
+      "path": "native-initial.log",
+      "sha256": "5859a89dd1e4802f0eeaeebf670f0ba0dfdf201a2be15fb87165d6e8423f108c",
+      "bytes": 355
+    },
+    {
+      "path": "next-warcries-active-caster-live.json",
+      "sha256": "6bf561c1a54bdee9cc04aeba8be04dc67a818fd2684415bdb7f46ec0de6ec440",
+      "bytes": 162
+    },
+    {
+      "path": "next-warcries-active-caster-result.json",
+      "sha256": "ec1da4b29877de8274ce62d9bd5d2e46a7861de6da08bafa344892721f6fdab7",
+      "bytes": 208
+    },
+    {
+      "path": "next-warcries-active-caster.log",
+      "sha256": "5b8465903b7d85f7631de3e84d8106c76cd93808500153050427cc6c0ca95654",
+      "bytes": 20189
+    },
+    {
+      "path": "next-warcries-live.json",
+      "sha256": "c0181c942ff80a86b17fc110b0a2d0d98b33a245936105a7cb19c30872bde53c",
+      "bytes": 162
+    },
+    {
+      "path": "next-warcries-result.json",
+      "sha256": "e61ec9d8dddfe713e085a9f44160f5e90b97e6ce662b8e03237462a76df21258",
+      "bytes": 207
+    },
+    {
+      "path": "next-warcries.log",
+      "sha256": "1b64d937683d958176aebf1fe4a03e28d8659a24e5ba921b17dadc2fd33c79df",
+      "bytes": 20121
+    },
+    {
+      "path": "precache-final-live.json",
+      "sha256": "95eae3ae3b3c35e963816928e33219a176c675748e063bbeec70fd727c3bc568",
+      "bytes": 167
+    },
+    {
+      "path": "precache-final-result.json",
+      "sha256": "9073b5d12d97659b4798c2f89d7742bf3948da6a63f016e36969a960571ac36c",
+      "bytes": 214
+    },
+    {
+      "path": "precache-final.log",
+      "sha256": "1cc68d7fa2282187ec0b2c18456229cf1913d59bd753fa699178f56010010802",
+      "bytes": 366
+    },
+    {
+      "path": "presentation-green-live.json",
+      "sha256": "90690e922554253463444a16223e8a51fe54c48a5a0a5351484c793746148015",
+      "bytes": 129
+    },
+    {
+      "path": "presentation-green-result.json",
+      "sha256": "8985b0bf13eb497c0cdc8bb52015d0637d636532faab89285c740fb8318c693e",
+      "bytes": 174
+    },
+    {
+      "path": "presentation-green.log",
+      "sha256": "28cea477b61928679cb85adb711270b794a16099a40830381740a4facd3032c2",
+      "bytes": 375
+    },
+    {
+      "path": "presentation-red-live.json",
+      "sha256": "fbfc1b4d0081404c3392d36170a935591f00b0e476165c9e68e79026c1576305",
+      "bytes": 129
+    },
+    {
+      "path": "presentation-red-result.json",
+      "sha256": "a8982e55a08acdd8130c8e75d6400338a8adf3f26f1371c373575e4f947a07c5",
+      "bytes": 174
+    },
+    {
+      "path": "presentation-red.log",
+      "sha256": "337ca9aebb3b0ce30124b555903b4a45782b34ea09f23b84ad11f1cd763c0011",
+      "bytes": 56397
+    },
+    {
+      "path": "recorded-processes.json",
+      "sha256": "d5e57722357f5785e0e1f9c1a8c12620f6f1dd0a209cb84296e12bb6bce7cac0",
+      "bytes": 12671
+    },
+    {
+      "path": "retain.py",
+      "sha256": "8371729aac90ad37a85839bd9ef8d27fae479f15d351d5a6f607b18c28a59dd6",
+      "bytes": 3373
+    },
+    {
+      "path": "run.py",
+      "sha256": "a97f6057539c7e7e00b87e0dc185355816c0b32b17744bbe240580f16c8843ec",
+      "bytes": 510
+    },
+    {
+      "path": "serve.py",
+      "sha256": "7899de6cbcba304bf7925c091eee6cee9d83fc6fc963c1e73aad68e5f49e3e91",
+      "bytes": 515
+    },
+    {
+      "path": "server-4504-live.json",
+      "sha256": "a4113be8cef81c9ff77dbc1e8d40376bf6dff48c638c007636fa7dc14fc772b9",
+      "bytes": 30
+    },
+    {
+      "path": "server-4505-live.json",
+      "sha256": "719cd31412f7a64bb8b6ffa41c37ade950dda352605299ba0220cc8e37f06c70",
+      "bytes": 30
+    },
+    {
+      "path": "server-live.json",
+      "sha256": "730e3ea6192be0e859cb22b0f806361c3d79f7d7b49883da30706dfc043a9f0d",
+      "bytes": 30
+    },
+    {
+      "path": "source-delivered.json",
+      "sha256": "6ecb489c72b83072ed83da461bcf64408661a4e87381c1ecfe79f42c21d15e43",
+      "bytes": 171
+    },
+    {
+      "path": "task.json",
+      "sha256": "1bbb7449087fbef9399d04ba8ab93fccc3a3a9f240e7ed77a6c57944848248dc",
+      "bytes": 191
+    },
+    {
+      "path": "types-corrected-live.json",
+      "sha256": "6a97f9f17d4cbc942d6ce90ecb124056d93a5f5b78d9b7fc0cf7bcebabf232eb",
+      "bytes": 56
+    },
+    {
+      "path": "types-corrected-result.json",
+      "sha256": "ecefe718eb09bf71f86cade72f9cc1cb138f3cfd854c3a42204593939205579c",
+      "bytes": 102
+    },
+    {
+      "path": "types-corrected.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "path": "types-final-live.json",
+      "sha256": "69800ae5499764f4faff5a23e5a7534b62a63d4dbefdce1f831e5f71ce5a5d72",
+      "bytes": 56
+    },
+    {
+      "path": "types-final-result.json",
+      "sha256": "ddd54d0e8911d8375a332c05130586bf54a01b758e4453a6c845c4db5dd94401",
+      "bytes": 102
+    },
+    {
+      "path": "types-final.log",
+      "sha256": "18a4cec6dc19ec2bcd68dd8d98c661002531329b6d0bfedbb28c8d1101db36ff",
+      "bytes": 1112
+    },
+    {
+      "path": "warcry-observations-initial.json",
+      "sha256": "47aebeb47017a1f50239fb1776750dc4e4884dba5229b947c5db5ee6480b980d",
+      "bytes": 18828
+    },
+    {
+      "path": "warcry-observations.json",
+      "sha256": "ac7a70914db777bdf97f47fbb4738911f12fda4a94739282de6f8ee5aa183615",
+      "bytes": 18896
+    },
+    {
+      "path": "warcry-probe-initial.ts",
+      "sha256": "4b019b1f632e2df75fbcf3d6c42f07cc4047669c2a3af3df8897f2850b134892",
+      "bytes": 3289
+    },
+    {
+      "path": "warcry-probe.ts",
+      "sha256": "8019b4c146fd398fd00eb4c57d0822df2488b11a855d26c8e2a754b181f26964",
+      "bytes": 3486
+    }
+  ],
+  "excludedDisposable": {
+    "build": "761 unchanged build assets represented by frozen hashes; no duplicate build copy"
+  },
+  "receiptNote": "Only finalPass entries are terminal passes. Initial collector terminated with143 after16case reports; rerun per-group receipts are retained separately. The initial type failure/stopped full and intentional warcry failures are not passes.",
+  "verification": {
+    "archiveMembers": 493,
+    "allMemberHashesMatch": true,
+    "sourceFiles": 1193,
+    "buildFiles": 761,
+    "fullFiles": 703,
+    "fullTests": 15329,
+    "skips": 2
+  }
+}

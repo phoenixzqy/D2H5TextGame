@@ -1,0 +1,47 @@
+{
+  "reviewer": "root author only; independent acceptance open",
+  "security": {
+    "verdict": "pass",
+    "scope": "Local presentation/tests and synthetic browser/native evidence",
+    "findings": [],
+    "constraints": [
+      "No dependency, saved-data schema or external action",
+      "No genuine campaign action",
+      "No runtime engine or game-data edits"
+    ]
+  },
+  "planReview": {
+    "verdict": "ready",
+    "contract": "docs/plans/decisions/D04-barbarian-basic-aoe-v1.md",
+    "requirements": [
+      "Existing single/all-hostile Physical attacks",
+      "Independent per-target HP loss with one payment",
+      "Exact on-hit ordinary/boss Stun and actual action interruption",
+      "Native authority/allocation/wave carry/save roundtrip",
+      "Bilingual current/next/MAX and mobile/desktop public flows"
+    ]
+  },
+  "codeReview": {
+    "verdict": "no blocking author finding",
+    "axes": {
+      "correctness": "Inspected 48 causal, eight native and 32 UI cases. Literal contract damage ranges/costs, actual HP/MP, replay/playback, dead/friendly targets, criticals/Defense/resistance, lethal reflection, exact control/expiry/resumption and native ownership/aliases are checked. Whirlwind exercises shared Chill/Burn/boss combo factors. War Cry prerequisite passives change next-wave stats without refilling current HP/MP.",
+      "readability": "One bounded dynamic-description branch uses existing computed display stats and i18n; test fixtures state synthetic provenance. No new runtime abstraction.",
+      "architecture": "Existing pure engine/targeting/mitigation/control paths are verified without replacing formulas. No game data/schema, persistence or save-version changes.",
+      "security": "Description keys come from an exact four-ID allowlist. No eval/network/credentials/dependencies; browser imports are explicit synthetic saves via public controls.",
+      "performance": "Production code adds one bounded four-ID check. No broad performance-budget claim; existing large-bundle/art-manifest warnings remain."
+    }
+  },
+  "retainedFailures": [
+    "32 presentation REDs",
+    "Four fixture failures incorrectly assuming a merc cannot receive enemy damage; corrected to actual hostile HP accounting while asserting no friendly targets",
+    "Eight template-expression lint errors corrected with String()",
+    "One optional skillLevels type error corrected with an explicit fixture guard",
+    "First full suite stopped on the exact owned Vitest PID and is not a pass",
+    "Initial combined browser collector terminated143 after16case reports and server shutdown; reason unresolved. All four final group receipts independently pass."
+  ],
+  "limits": [
+    "Independent design/QA and earned balance remain open",
+    "No earned builds, 30\u201350-hour pacing, complete campaign/endgame or C2\u2013C4/full G0\u2013G7 claim",
+    "Howl/Taunt probes intentionally fail and receive no credit"
+  ]
+}

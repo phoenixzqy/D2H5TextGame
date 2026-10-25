@@ -1,0 +1,272 @@
+{
+  "finalPass": {
+    "types-corrected": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1461983,
+      "exitCode": 0,
+      "seconds": 124.92344834003597
+    },
+    "lint-final": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1455689,
+      "exitCode": 0,
+      "seconds": 187.4219648760045
+    },
+    "full-corrected": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "pid": 1463835,
+      "exitCode": 0,
+      "seconds": 714.037435689941
+    },
+    "precache-final": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/build"
+      ],
+      "pid": 1456075,
+      "exitCode": 0,
+      "seconds": 0.06322384893428534
+    },
+    "build-final": {
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/build"
+      ],
+      "pid": 1455690,
+      "exitCode": 0,
+      "seconds": 14.046562641044147
+    },
+    "corrected-focused": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/barbarian-basic-aoe.causal.test.ts",
+        "src/stores/barbarian-basic-aoe-native.test.ts",
+        "src/features/skills/SkillsScreen.barbarian-basic-aoe.test.tsx"
+      ],
+      "pid": 1461020,
+      "exitCode": 0,
+      "seconds": 13.850956655107439
+    },
+    "lint-corrected-focused": {
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/stores/barbarian-basic-aoe.causal.test.ts",
+        "src/features/skills/SkillsScreen.barbarian-basic-aoe.test.tsx",
+        "src/stores/barbarian-basic-aoe-native.test.ts",
+        "src/features/skills/SkillsScreen.tsx",
+        "--max-warnings=0"
+      ],
+      "pid": 1461982,
+      "exitCode": 0,
+      "seconds": 13.373593610944226
+    },
+    "browser-en-360": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec env BROWSER_PORT=4504 python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/serve.py",
+        "--port",
+        "4504",
+        "--",
+        "env",
+        "BROWSER_WIDTH=360",
+        "BROWSER_LOCALE=en",
+        "BROWSER_RUN=browser-en-360",
+        "BROWSER_PORT=4504",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/browser.cjs"
+      ],
+      "pid": 1480514,
+      "exitCode": 0,
+      "seconds": 94.30005823203828
+    },
+    "browser-zh-CN-360": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec env BROWSER_PORT=4505 python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/serve.py",
+        "--port",
+        "4505",
+        "--",
+        "env",
+        "BROWSER_WIDTH=360",
+        "BROWSER_LOCALE=zh-CN",
+        "BROWSER_RUN=browser-zh-CN-360",
+        "BROWSER_PORT=4505",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/browser.cjs"
+      ],
+      "pid": 1480515,
+      "exitCode": 0,
+      "seconds": 94.04393080191221
+    },
+    "browser-en-1280": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec env BROWSER_PORT=4504 python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/serve.py",
+        "--port",
+        "4504",
+        "--",
+        "env",
+        "BROWSER_WIDTH=1280",
+        "BROWSER_LOCALE=en",
+        "BROWSER_RUN=browser-en-1280",
+        "BROWSER_PORT=4504",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/browser.cjs"
+      ],
+      "pid": 1490968,
+      "exitCode": 0,
+      "seconds": 102.53767260105815
+    },
+    "browser-zh-CN-1280": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec env BROWSER_PORT=4505 python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/serve.py",
+        "--port",
+        "4505",
+        "--",
+        "env",
+        "BROWSER_WIDTH=1280",
+        "BROWSER_LOCALE=zh-CN",
+        "BROWSER_RUN=browser-zh-CN-1280",
+        "BROWSER_PORT=4505",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/browser.cjs"
+      ],
+      "pid": 1490967,
+      "exitCode": 0,
+      "seconds": 102.54586961097084
+    },
+    "helper-lifecycle": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/serve.py",
+        "--port",
+        "4504",
+        "--",
+        "python",
+        "-c",
+        "pass"
+      ],
+      "pid": 1480010,
+      "exitCode": 0,
+      "seconds": 0.5712982119293883
+    }
+  },
+  "fullTests": 15329,
+  "fullFiles": 703,
+  "existingSkips": 2,
+  "failedOrStopped": {
+    "presentation-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/features/skills/SkillsScreen.barbarian-basic-aoe.test.tsx"
+      ],
+      "pid": 1453467,
+      "exitCode": 1,
+      "seconds": 9.558340911986306
+    },
+    "causal-controls": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/barbarian-basic-aoe.causal.test.ts"
+      ],
+      "pid": 1454396,
+      "exitCode": 1,
+      "seconds": 9.267903182073496
+    },
+    "lint-focused": {
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/stores/barbarian-basic-aoe.causal.test.ts",
+        "src/stores/barbarian-basic-aoe-native.test.ts",
+        "src/features/skills/SkillsScreen.barbarian-basic-aoe.test.tsx",
+        "src/features/skills/SkillsScreen.tsx",
+        "--max-warnings=0"
+      ],
+      "pid": 1455361,
+      "exitCode": 1,
+      "seconds": 8.781726422021165
+    },
+    "types-final": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1455687,
+      "exitCode": 2,
+      "seconds": 106.43573029304389
+    },
+    "full-final": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "pid": 1457647,
+      "exitCode": 143,
+      "seconds": 60.65985985402949
+    },
+    "next-warcries": {
+      "command": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/warcry-probe.ts"
+      ],
+      "pid": 1467665,
+      "exitCode": 1,
+      "seconds": 8.546805159072392
+    },
+    "next-warcries-active-caster": {
+      "command": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-basic-aoe-v0124dxi/warcry-probe.ts"
+      ],
+      "pid": 1469971,
+      "exitCode": 1,
+      "seconds": 7.7751648150151595
+    }
+  },
+  "collectorTermination": {
+    "toolSession": 84257,
+    "toolExitCode": 143,
+    "wrapperResultFileExists": false,
+    "helperPid": 1456084,
+    "helperPidAbsent": true,
+    "serverPid": 1456085,
+    "serverPidAbsent": true,
+    "caseReportsPassed": 16,
+    "allFourGroupsPrintedCompletion": true,
+    "port4504Closed": true,
+    "cause": "Unresolved external/collector termination after case completion; not treated as a successful terminal command.",
+    "action": "Preserve all outputs; verify helper lifecycle and rerun groups with separate terminal receipts."
+  },
+  "engine": "No engine/game-data edits. Existing engine cases are included in the full suite; no new separate engine run is claimed."
+}

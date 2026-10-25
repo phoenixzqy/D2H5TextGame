@@ -35,6 +35,8 @@ covering actual HP/MP/target counts; it did not itself grant skill credit.
 
 ## Local repair and verification
 
+Source/tests: `8a733496`. All1193frozen source blobs match that commit.
+
 The real Skills screen formats existing computed damage, costs, cooldowns and
 control durations in both locales for these four exact skill IDs. No engine,
 game-data, persistence or save-version changes. Corrected focused88/3 and
