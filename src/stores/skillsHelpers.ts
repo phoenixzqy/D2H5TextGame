@@ -3,7 +3,7 @@
  */
 
 import type { DamageType } from '@/engine/types/attributes';
-import type { ColdMasteryTuning, FeralRageTuning, OnHitRecoveryTuning, SkillHitSequence, StaticFieldTuning } from '@/engine/types/skills';
+import type { ColdMasteryTuning, FeralRageTuning, OnHitRecoveryTuning, SkillAdditionalStatusEffects, SkillHitSequence, StaticFieldTuning } from '@/engine/types/skills';
 
 // Define a skill template type that matches what's in JSON (without allocated level)
 export interface SkillTemplate {
@@ -38,6 +38,7 @@ export interface SkillTemplate {
     readonly stacksOnApply?: number;
     readonly dotPctOfDamage?: number;
   };
+  readonly additionalStatusEffects?: SkillAdditionalStatusEffects;
   readonly appliesTags?: readonly string[];
   readonly summonId?: string;
   readonly synergies?: Record<string, number>;

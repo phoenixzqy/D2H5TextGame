@@ -247,7 +247,7 @@
     },
     "freezing-arrow": {
       "name": "冰冻箭",
-      "desc": "射出在锥形区域爆裂的冰箭，造成减速并有几率冰封敌人。"
+      "desc": "对3×3区域内敌人造成冰冷伤害。每个命中目标受到冰冷持续{{chillSeconds}}秒（攻击速度减半），随后独立以{{chance}}%几率受到冰冻持续{{freezeSeconds}}秒（首领及章节首领为{{bossSeconds}}秒）。几率与持续时间不随等级提升。"
     },
     "lightning-fury": {
       "name": "闪电之怒",

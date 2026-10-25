@@ -1369,6 +1369,14 @@ function dynamicDescription(
       maxAbsorb: d.absorbPerRank * d.maxRank * 100, recovery: d.manaRegenPerRank * 100,
       cap: d.maxRank, level: d.requiredLevel });
   }
+  if (skill.id === 'skills-amazon-freezing-arrow') {
+    return t('amazon.freezing-arrow.desc', {
+      chance: (skill.additionalStatusEffects?.freeze?.chance ?? 0) * 100,
+      chillSeconds: STATUS_DEFAULTS.chill.duration,
+      freezeSeconds: STATUS_DEFAULTS.freeze.duration,
+      bossSeconds: STATUS_DEFAULTS.freeze.duration * (STATUS_DEFAULTS.freeze.bossDurationMult ?? 1)
+    });
+  }
   if (skill.id === CONVERSION_IDS[0]) {
     return t('paladin.conversion.desc', { seconds: CONVERSION_DEFINITION.durationMs / 1000 });
   }

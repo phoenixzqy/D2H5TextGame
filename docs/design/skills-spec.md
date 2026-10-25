@@ -142,7 +142,7 @@ independent design/QA and earned class/build balance remain open.
 |---|---|---|---|---|---|---|---|---|
 | `amazon.magic_arrow` | Magic Arrow / 魔法箭 | Arcane | Single | 35–50 | 1 | 5 | — | 0 ammo cost |
 | `amazon.multiple_shot` | Multiple Shot / 多重箭 | Physical | Cone | 40–60 | 2 | 15 | — | Hits 5 targets |
-| `amazon.freezing_arrow` | Freezing Arrow / 冰冻箭 | Cold | Cone | 50–70 | 2 | 20 | Chill + Freeze (15%) | Cold AOE |
+| `amazon.freezing_arrow` | Freezing Arrow / 冰冻箭 | Cold | 3×3 | 50–70 | 2 | 20 | Chill2s + independent15% Freeze1s (boss0.5s) | Preserves existing15%; authored shape and rank-invariant lifecycle under [D04](../plans/decisions/D04-freezing-arrow-v1.md). Independent/earned balance acceptance open. |
 | `amazon.lightning_fury` | Lightning Fury / 闪电标枪 | Lightning | All | 60–90 | 3 | 30 | Paralyze | Chain lightning effect |
 | `amazon.plague_javelin` | Plague Javelin / 瘟疫标枪 | Poison | Cone | 30–50 | 2 | 25 | Poison (3 stacks) + Plague | Spreads on kill |
 | `amazon.piercing_strike` | Strafe / 炮轰 | Physical | All | 35–55 | 2 | 20 | — | Rapid multi-hit |

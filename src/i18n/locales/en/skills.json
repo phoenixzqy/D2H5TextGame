@@ -247,7 +247,7 @@
     },
     "freezing-arrow": {
       "name": "Freezing Arrow",
-      "desc": "Fires a frozen arrow that explodes in a cone, chilling and sometimes freezing enemies."
+      "desc": "Hits enemies in a 3×3 area with Cold damage. Each landed target receives Chill for {{chillSeconds}} seconds (half attack speed), then independently has a {{chance}}% chance of Freeze for {{freezeSeconds}} second ({{bossSeconds}} seconds for bosses and chapter bosses). Chance and duration do not scale with rank."
     },
     "lightning-fury": {
       "name": "Lightning Fury",
