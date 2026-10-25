@@ -114,6 +114,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 | `paladin.holy_fire` | Holy Fire / 神圣之火 | Selected: 20 base fire damage every 1s to all living enemies; guaranteed mitigated-damage Burn; +3% fire damage/rank | First pulse after 1s; unlock L6/cap20; D05 aura-family contract |
 | `paladin.conviction` | Conviction / 信念 | Selected: -25 percentage points to all six enemy resistances; +2% elemental and +1% arcane damage per rank for hero/fielded merc | Unlocks L30, Sanctuary prerequisite; cap20; D05 aura-family contract |
 | `paladin.meditation` | Meditation / 冥想 | Per allocated rank: adds 3% of source hero normal mana regeneration per second; cap20 (+60%) | Explicit selection; living self + original living fielded merc, each retains own baseline; unlock L24 |
+| `paladin.concentration` | Concentration / 专注 | Selected: +3.5% physical damage/rank and scheduled actions protected against Stun | Living hero/original fielded merc; Stun remains real, Freeze/Paralyze still block; L18/Blessed Aim/cap20; D05 aura-family contract |
 | `paladin.prayer` | Prayer / 祈祷 | Selected: floor(20 × (1 + 3% × rank)) HP every 5s, capped to missing HP; ranks1/2/20 give20/21/32 | Living hero/original living fielded merc; first heal after 5s, no resurrection; unlock L1/cap20; provisional local interval; D05 aura-family contract |
 
 ---
@@ -263,11 +264,11 @@ Monsters use a simplified skill set. Examples:
 ### 6.2 Aura Skills (Paladin-specific)
 The implemented player selection supports **None, Might, Meditation, Thorns,
 Blessed Aim, Fanaticism, Defiance, Resist Fire, Resist Cold, Resist Lightning,
-Salvation, Holy Freeze, Conviction, Holy Fire, Holy Shock, Prayer, Cleansing, Redemption, Vigor and Sanctuary** in one
+Salvation, Holy Freeze, Conviction, Holy Fire, Holy Shock, Prayer, Cleansing, Redemption, Vigor, Sanctuary and Concentration** in one
 exclusive saved canonical slot. Stat, enemy, pulse and healing effects follow
 [the family contract](../plans/decisions/D05-paladin-aura-family-v1.md).
-Concentration still requires its distinct interruption-prevention mechanic;
-full aura-catalog and independent acceptance remain open.
+All twenty selected aura mechanics now have local implementations. Independent
+whole-family acceptance and earned class/build balance remain open.
 
 - **Selection:** None is physical absence of `selectedAuraId`. Runtime-supported
   selections use canonical `paladin.*` IDs. Each requires Paladin, its own unlock
@@ -286,6 +287,14 @@ full aura-catalog and independent acceptance remain open.
   elemental damage bonuses; Salvation adds fire/cold/lightning damage. Coefficients
   and authored unlocks remain in JSON. These effects apply over baseline views,
   never accumulating into persistent or carried combat stats.
+- **Concentration:** selected living hero/original living fielded merc gain
+  authored +3.5% physical increased damage per rank (unlock18, Blessed Aim
+  prerequisite, cap20). Scheduled attacks/ready skills continue during canonical
+  Stun; Stun remains real and expires normally. Freeze/Paralyze and ordinary
+  costs/readiness still block. Source death ends protection; changes apply next
+  wave. No extra action, proc RNG, mana or saved protection field. This immediate-
+  action adaptation follows the family contract, with
+  [bounded verification](../plans/evidence/d05-paladin-concentration.md).
 - **Vigor:** authored2% maximum life/0.5% attack speed per rank becomes temporary
   endurance/cadence, replacing nonexistent movement/stamina promises. Extra
   capacity floors once over the fresh maximum; selection grants no healing.

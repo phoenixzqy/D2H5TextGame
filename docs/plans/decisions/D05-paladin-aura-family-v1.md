@@ -289,16 +289,56 @@ explicit current-configuration replay uses original resources/teams/seed with
 no duplicate income. Both locales must describe actual undead targeting,
 Arcane bonus, pulse timing and Stun adaptation.
 
+## Concentration — explicit Stun-interruption adaptation
+
+Local rule for this immediate-action engine; independent design/QA and earned
+balance remain open. Preserve unlock18, Blessed Aim prerequisite, cap20 and
+JSON-authored physicalDamagePct0.035/rank. Selected Concentration adds ordinary
+physical increased damage to the living hero/original living fielded merc.
+
+There is no casting windup or damage-caused partial-cast system here. The
+explicit adaptation prevents canonical Stun from cancelling a scheduled action
+of an eligible recipient while the source lives. Both ordinary attacks and
+ready active skills can act. Stun remains a real applied status: do not remove,
+shorten, refresh, suppress its observations or bypass its other interactions.
+Freeze and Paralyze still block actions, including when combined with Stun.
+This is no general control immunity, damage immunity, resurrection or free cast.
+All ordinary mana/cooldown/level/weapon/target/effect readiness rules remain.
+
+Author exact Concentration-only metadata concentration.preventStunInterruption
+as literal true. Validate owner/passive/self/no-damage shape and reject missing,
+false, extra or foreign metadata. Capture the immutable primitive flag in the
+existing selected projection. At the single action interruption gate, exclude
+only Stun from the local blocking check when this living-source projection is
+active. Keep the original unit/status list for combat effects and persistence.
+Do not add a proc roll, movement, cast-time system or scheduled catch-up action.
+No extra action, tick, mana or cooldown is introduced by the protection itself.
+
+Source crowd control does not disable the ambient aura; a frozen living source
+may still protect the original merc against Stun. Source/recipient death and
+identity guards remain authoritative. Summons, bench/replaced mercs, enemies
+and forged/dead sources do not receive protection or physical rank bonuses.
+Normal changes apply next wave; explicit replay recomposes current selection
+from original teams/resources/seed without duplicate income. No flag, protected
+status view, potency or timer is saved; selection uses existing savev22.
+
+Both locales must explicitly explain Stun-protected actions, remaining Freeze/
+Paralyze blocking, normal costs, authored rank scaling and next-wave/source-life
+rules. A physical-only substitute does not satisfy this contract. Native
+integration must show a real applied Stun followed by an actual action under
+Concentration and a skipped action under None, plus exact replay/save behavior.
+
 ## Remaining required effects
 
 Vigor and Sanctuary follow their explicit contracts above and have
 [bounded Vigor verification](../evidence/d05-paladin-vigor.md) and
 [bounded Sanctuary verification](../evidence/d05-paladin-sanctuary.md).
-Nineteen of 20 selected Paladin auras now have supported effects. Concentration
-still requires an explicit interruption-prevention rule. Its JSON and older
-description must be reconciled before implementation; a physical-only substitute
-does not complete the promised mechanic. Independent design/QA and earned
-class/build balance remain open.
+All 20 selected Paladin auras now have supported local effects. Concentration's
+explicit Stun-interruption adaptation and authored physical scaling have
+[bounded verification](../evidence/d05-paladin-concentration.md). Its original
+status remains applied; Freeze/Paralyze, normal costs and source-life rules remain.
+Independent design/QA and earned class/build balance remain open; whole-family
+acceptance does not follow from local implementation alone.
 
 Other family evidence remains bounded:
 [stat auras](../evidence/d05-paladin-stat-auras.md),

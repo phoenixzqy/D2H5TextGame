@@ -1,7 +1,7 @@
 # BUG-181 — Complete advertised Paladin aura selection and effects
 
 Severity: High
-Status: Open; eighteen selected auras locally verified in bounded scope, two distinct aura mechanics outstanding
+Status: Open; all twenty selected aura effects locally verified in bounded scope; independent whole-family and earned-balance acceptance outstanding
 Owners: engine-dev, frontend-dev, content-designer; root sole writer this run
 
 ## Reproduction
@@ -179,3 +179,31 @@ absence and4469closure. Nineteen of20auras are supported; remaining one is
 Concentration's explicit interruption-prevention effect. A physical-only
 substitute is insufficient. Earned balance and independent whole-family
 acceptance remain open; BUG181 is not closed. No genuine campaign action.
+
+### Concentration reproduction at1338f6a
+
+Seed42, Node/Vitest deterministic engine fixture, no browser/locale dependency.
+Corrected causal RED:10failed/6controls across two files. An earlier14failed/2passed
+run also contained four erroneous spread-array fixtures; both outputs are retained
+in the task archive. Real Stun currently cancels scheduled hero/merc actions, the
+selected Concentration projection is absent, exact authored metadata is rejected,
+and a foreign primitive flag is silently discarded rather than rejecting its aura.
+Expected: unchanged3.5%physical/rank plus eligible scheduled actions during canonical
+Stun; preserve Stun state/expiry, Freeze/Paralyze blocking and paid readiness.
+Root causes: unsupported ID/metadata and unconditional shared interruption gate.
+Tests:src/engine/combat/concentration.test.ts and src/engine/skills/concentration.test.ts.
+No implementation credit or whole-family closure yet.
+
+Ninth batch `f7aec04` implements selected Concentration's explicit Stun-interruption
+adaptation and unchanged3.5%physical/rank. Exact authored/direct flag validation,
+living source/original merc guards, real Stun preservation, Freeze/Paralyze and
+normal paid readiness remain. Public synthetic native learning/real applied Stun/
+action-versus-None, exact replay/no duplicate income and v22/import/no transient
+protection are verified. Full12451/533 plus two existing skips, engine6269/222,
+types/lint/data/build/bridge PASS; production4/4, eight exact five-domain Continue
+pairs,20geometry samples and21radio labels. Source/build/HEAD/status/genuine stayed
+exact throughout the513.228s full run; committed source blobs separately checked.
+[Evidence](../../docs/plans/evidence/d05-paladin-concentration.md) preserves all
+original failures and verification. All20auras have supported local effects;
+independent whole-family/earned class-build acceptance remains open, so BUG181
+is not closed. No genuine campaign action or remote publication.
