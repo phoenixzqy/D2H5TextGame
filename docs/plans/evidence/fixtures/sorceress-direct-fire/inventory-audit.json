@@ -1,0 +1,16 @@
+{
+  "changedIds": [
+    "skills-sorceress-fire-bolt",
+    "skills-sorceress-fire-ball",
+    "skills-sorceress-meteor"
+  ],
+  "otherRowsByteExact": 210,
+  "idsAndOrderUnchanged": true,
+  "total": 213,
+  "boundedFunctional": 131,
+  "unverified": 80,
+  "engineOnly": 1,
+  "reviewNeeded": 1,
+  "sorceressBounded": 15,
+  "independentAndEarnedAcceptance": "open"
+}

@@ -1,0 +1,69 @@
+{
+  "scope": "Meteor All targeting + direct Fire Bolt/Fire Ball/Meteor previews and functional proof",
+  "verdict": "author-review-only",
+  "independentAcceptanceOpen": true,
+  "axes": {
+    "correctness": "Production JSON and legacy geometry use All. Existing shared targeting and damage/periodic/Melt paths retained. Numeric tuning, prerequisites, 20-rank cap and save22 preserved.",
+    "readability": "Six-line UI extension uses existing rank preview. No new lifecycle or duplication in production engine.",
+    "architecture": "Fix authored target at origin and require it in strict schema. Existing native projector and governed Fire Bolt authority remain.",
+    "security": "Pass; local first-party data/UI/tests, no dependencies, credentials, permissions, CI or remote actions.",
+    "performance": "All targeting iterates existing living hostiles; no extra attacks per target. Existing build/budget warnings remain open."
+  },
+  "resolvedFindings": [
+    "Nested Ajv required property uses existing metadata ref with strictRequired retained.",
+    "Stale registry box assertion updated to require All and no shape.",
+    "Test authority normalizes aliases before invalid-rank checks; valid alternate aliases remain legal.",
+    "Fire Mastery fixture corrected to authored 4% per rank.",
+    "Event type guards and present-only native modifier assignment satisfy strict TypeScript.",
+    "Browser pilot expects canonical governed Fire Bolt priority.",
+    "Loader regressions require optional legacy Melt metadata. New identity rule preserves this existing opt-out while all-enemy geometry stays mandatory. Earlier browser/build run is superseded by rebuilt delivery validation, four exit0 browser groups and exact production hashes.",
+    "Actual Chinese screenshot exposes raw armor-melt. Add exact shared combat translations with two literal event-rendering RED/GREEN controls; final browser explicitly requires localized Melt.",
+    "First broad full run found two obsolete exact Fire Bolt descriptions in shared SkillsScreen.test.tsx. Stopped only owned test PIDs after retaining two failures. Updated only exact en/zh prose expectations; existing damage/current/next/delta assertions remain. No production/build/browser changes; final quiet full reruns."
+  ],
+  "limits": [
+    "Independent design/QA not performed",
+    "No earned campaign actions or balance acceptance",
+    "C2-C4/fullG0-G7 incomplete"
+  ],
+  "visualReview": {
+    "inspected": [
+      "browser-final-en-360/en-360-fire-bolt-current-next.png",
+      "browser-final-en-1280/en-1280-fire-ball-details.png",
+      "browser-final-zh-CN-360/zh-CN-360-meteor-current-next.png",
+      "browser-final-zh-CN-360/zh-CN-360-meteor-cast-visible.png"
+    ],
+    "result": "Historical pre-label inspection found BUG230. See deliveryVisualReview for the completed post-fix observations."
+  },
+  "deliveryVisualReview": {
+    "screenshots": [
+      "browser-delivery-en-360/en-360-fire-bolt-current-next.png",
+      "browser-delivery-en-1280/en-1280-fire-ball-details.png",
+      "browser-delivery-zh-CN-360/zh-CN-360-meteor-cast-visible.png",
+      "browser-delivery-en-1280/en-1280-meteor-cast-visible.png"
+    ],
+    "findings": [
+      "Current damage/cost and Burn prose visible; mobile lower rows scroll.",
+      "Both Meteor logs show localized Armor Melt; no raw armor-melt.",
+      "Existing missing navigation glyphs remain; full accessibility acceptance open."
+    ],
+    "reviewer": "root author; independent acceptance open"
+  },
+  "finalRegression": {
+    "passed": 15743,
+    "files": 715,
+    "existingSkips": 2,
+    "terminal": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "pid": 1811778,
+      "exitCode": 0,
+      "seconds": 590.4341077329591
+    },
+    "sourceFiles": 1453,
+    "buildFiles": 761,
+    "committedBlobsVerified": true,
+    "sourceCommit": "5ef31577b1d7489b9f4c90a0d9a9ea92d404fa05"
+  }
+}

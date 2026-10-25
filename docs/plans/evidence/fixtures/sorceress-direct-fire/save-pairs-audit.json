@@ -1,0 +1,258 @@
+{
+  "ordinaryPairs": [
+    {
+      "label": "en-360-fire-bolt",
+      "rank": "rank1",
+      "before": "browser-delivery-en-360/en-360-fire-bolt-rank1-before-3.json",
+      "after": "browser-delivery-en-360/en-360-fire-bolt-rank1-after-4.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-360-fire-bolt",
+      "rank": "rank2",
+      "before": "browser-delivery-en-360/en-360-fire-bolt-rank2-before-5.json",
+      "after": "browser-delivery-en-360/en-360-fire-bolt-rank2-after-6.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-360-fire-ball",
+      "rank": "rank1",
+      "before": "browser-delivery-en-360/en-360-fire-ball-rank1-before-10.json",
+      "after": "browser-delivery-en-360/en-360-fire-ball-rank1-after-11.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-360-fire-ball",
+      "rank": "rank2",
+      "before": "browser-delivery-en-360/en-360-fire-ball-rank2-before-12.json",
+      "after": "browser-delivery-en-360/en-360-fire-ball-rank2-after-13.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-360-meteor",
+      "rank": "rank1",
+      "before": "browser-delivery-en-360/en-360-meteor-rank1-before-17.json",
+      "after": "browser-delivery-en-360/en-360-meteor-rank1-after-18.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-360-meteor",
+      "rank": "rank2",
+      "before": "browser-delivery-en-360/en-360-meteor-rank2-before-19.json",
+      "after": "browser-delivery-en-360/en-360-meteor-rank2-after-20.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-fire-bolt",
+      "rank": "rank1",
+      "before": "browser-delivery-en-1280/en-1280-fire-bolt-rank1-before-3.json",
+      "after": "browser-delivery-en-1280/en-1280-fire-bolt-rank1-after-4.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-fire-bolt",
+      "rank": "rank2",
+      "before": "browser-delivery-en-1280/en-1280-fire-bolt-rank2-before-5.json",
+      "after": "browser-delivery-en-1280/en-1280-fire-bolt-rank2-after-6.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-fire-ball",
+      "rank": "rank1",
+      "before": "browser-delivery-en-1280/en-1280-fire-ball-rank1-before-10.json",
+      "after": "browser-delivery-en-1280/en-1280-fire-ball-rank1-after-11.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-fire-ball",
+      "rank": "rank2",
+      "before": "browser-delivery-en-1280/en-1280-fire-ball-rank2-before-12.json",
+      "after": "browser-delivery-en-1280/en-1280-fire-ball-rank2-after-13.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-meteor",
+      "rank": "rank1",
+      "before": "browser-delivery-en-1280/en-1280-meteor-rank1-before-17.json",
+      "after": "browser-delivery-en-1280/en-1280-meteor-rank1-after-18.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-meteor",
+      "rank": "rank2",
+      "before": "browser-delivery-en-1280/en-1280-meteor-rank2-before-19.json",
+      "after": "browser-delivery-en-1280/en-1280-meteor-rank2-after-20.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-fire-bolt",
+      "rank": "rank1",
+      "before": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-rank1-before-3.json",
+      "after": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-rank1-after-4.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-fire-bolt",
+      "rank": "rank2",
+      "before": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-rank2-before-5.json",
+      "after": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-rank2-after-6.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-fire-ball",
+      "rank": "rank1",
+      "before": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-rank1-before-10.json",
+      "after": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-rank1-after-11.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-fire-ball",
+      "rank": "rank2",
+      "before": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-rank2-before-12.json",
+      "after": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-rank2-after-13.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-meteor",
+      "rank": "rank1",
+      "before": "browser-delivery-zh-CN-360/zh-CN-360-meteor-rank1-before-17.json",
+      "after": "browser-delivery-zh-CN-360/zh-CN-360-meteor-rank1-after-18.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-meteor",
+      "rank": "rank2",
+      "before": "browser-delivery-zh-CN-360/zh-CN-360-meteor-rank2-before-19.json",
+      "after": "browser-delivery-zh-CN-360/zh-CN-360-meteor-rank2-after-20.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-fire-bolt",
+      "rank": "rank1",
+      "before": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-rank1-before-3.json",
+      "after": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-rank1-after-4.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-fire-bolt",
+      "rank": "rank2",
+      "before": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-rank2-before-5.json",
+      "after": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-rank2-after-6.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-fire-ball",
+      "rank": "rank1",
+      "before": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-rank1-before-10.json",
+      "after": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-rank1-after-11.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-fire-ball",
+      "rank": "rank2",
+      "before": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-rank2-before-12.json",
+      "after": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-rank2-after-13.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-meteor",
+      "rank": "rank1",
+      "before": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-rank1-before-17.json",
+      "after": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-rank1-after-18.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-meteor",
+      "rank": "rank2",
+      "before": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-rank2-before-19.json",
+      "after": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-rank2-after-20.json",
+      "exactFiveDomains": true
+    }
+  ],
+  "offlineContinues": [
+    {
+      "label": "en-360-fire-bolt",
+      "file": "browser-delivery-en-360/en-360-fire-bolt-offline-continued-7.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "en-360-fire-ball",
+      "file": "browser-delivery-en-360/en-360-fire-ball-offline-continued-14.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "en-360-meteor",
+      "file": "browser-delivery-en-360/en-360-meteor-offline-continued-21.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "en-1280-fire-bolt",
+      "file": "browser-delivery-en-1280/en-1280-fire-bolt-offline-continued-7.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "en-1280-fire-ball",
+      "file": "browser-delivery-en-1280/en-1280-fire-ball-offline-continued-14.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "en-1280-meteor",
+      "file": "browser-delivery-en-1280/en-1280-meteor-offline-continued-21.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-360-fire-bolt",
+      "file": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-offline-continued-7.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-360-fire-ball",
+      "file": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-offline-continued-14.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-360-meteor",
+      "file": "browser-delivery-zh-CN-360/zh-CN-360-meteor-offline-continued-21.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-1280-fire-bolt",
+      "file": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-offline-continued-7.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-1280-fire-ball",
+      "file": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-offline-continued-14.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-1280-meteor",
+      "file": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-offline-continued-21.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    }
+  ]
+}

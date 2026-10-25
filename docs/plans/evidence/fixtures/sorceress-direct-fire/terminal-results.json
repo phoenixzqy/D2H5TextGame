@@ -1,0 +1,674 @@
+{
+  "finalPass": {
+    "full-quiet": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "pid": 1811778,
+      "exitCode": 0,
+      "seconds": 590.4341077329591
+    },
+    "typecheck-verified": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1793047,
+      "exitCode": 0,
+      "seconds": 106.46098035096657
+    },
+    "lint-verified": {
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/skills/registry.test.ts",
+        "src/engine/skills/sorceress-direct-fire.test.ts",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.sorceress-direct-fire.test.tsx",
+        "src/stores/sorceress-direct-fire-native.test.ts",
+        "src/stores/sorceress-direct-fire.causal.test.ts",
+        "src/stores/eventToLogI18n.test.ts",
+        "--max-warnings=0"
+      ],
+      "pid": 1793048,
+      "exitCode": 0,
+      "seconds": 10.704890699940734
+    },
+    "build-delivery": {
+      "command": [
+        "npx",
+        "vite",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/build",
+        "--emptyOutDir"
+      ],
+      "pid": 1792759,
+      "exitCode": 0,
+      "seconds": 12.613880514982156
+    },
+    "precache-delivery": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/build"
+      ],
+      "pid": 1793120,
+      "exitCode": 0,
+      "seconds": 0.04076036298647523
+    },
+    "shared-prose-corrected": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/features/skills/SkillsScreen.test.tsx",
+        "src/features/skills/SkillsScreen.sorceress-direct-fire.test.tsx"
+      ],
+      "pid": 1811595,
+      "exitCode": 0,
+      "seconds": 9.080300554982387
+    },
+    "shared-prose-lint": {
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/features/skills/SkillsScreen.test.tsx",
+        "--max-warnings=0"
+      ],
+      "pid": 1811716,
+      "exitCode": 0,
+      "seconds": 6.5364796499488875
+    },
+    "browser-delivery-en-360": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1793135,
+      "exitCode": 0,
+      "seconds": 57.35275396704674
+    },
+    "browser-delivery-en-1280": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1793136,
+      "exitCode": 0,
+      "seconds": 62.58601925196126
+    },
+    "browser-delivery-zh-CN-360": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1798753,
+      "exitCode": 0,
+      "seconds": 57.11363970302045
+    },
+    "browser-delivery-zh-CN-1280": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1799142,
+      "exitCode": 0,
+      "seconds": 60.195852858014405
+    }
+  },
+  "otherPass": {
+    "browser-final-en-1280": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1781050,
+      "exitCode": 0,
+      "seconds": 61.49594617297407
+    },
+    "browser-final-en-360": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1781051,
+      "exitCode": 0,
+      "seconds": 57.109600875061005
+    },
+    "browser-final-zh-CN-1280": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1786979,
+      "exitCode": 0,
+      "seconds": 62.36453394999262
+    },
+    "browser-final-zh-CN-360": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1786689,
+      "exitCode": 0,
+      "seconds": 58.6558277499862
+    },
+    "build-final": {
+      "command": [
+        "npx",
+        "vite",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/build",
+        "--emptyOutDir"
+      ],
+      "pid": 1780701,
+      "exitCode": 0,
+      "seconds": 12.322973381029442
+    },
+    "build": {
+      "command": [
+        "npx",
+        "vite",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/build",
+        "--emptyOutDir"
+      ],
+      "pid": 1764452,
+      "exitCode": 0,
+      "seconds": 16.185311455046758
+    },
+    "causal-authority-fixed": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/sorceress-direct-fire.causal.test.ts"
+      ],
+      "pid": 1758831,
+      "exitCode": 0,
+      "seconds": 11.561652395990677
+    },
+    "causal-final": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/sorceress-direct-fire.causal.test.ts",
+        "src/stores/sorceress-direct-fire-native.test.ts"
+      ],
+      "pid": 1762596,
+      "exitCode": 0,
+      "seconds": 10.284255235921592
+    },
+    "causal-matrix-fixed": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/sorceress-direct-fire.causal.test.ts"
+      ],
+      "pid": 1756709,
+      "exitCode": 0,
+      "seconds": 8.939430661033839
+    },
+    "causal-typed-final": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/sorceress-direct-fire.causal.test.ts"
+      ],
+      "pid": 1767205,
+      "exitCode": 0,
+      "seconds": 13.685841972008348
+    },
+    "changed-lint-delivery": {
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/skills/registry.test.ts",
+        "src/engine/skills/sorceress-direct-fire.test.ts",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.sorceress-direct-fire.test.tsx",
+        "src/stores/sorceress-direct-fire-native.test.ts",
+        "src/stores/sorceress-direct-fire.causal.test.ts",
+        "--max-warnings=0"
+      ],
+      "pid": 1780990,
+      "exitCode": 0,
+      "seconds": 10.503683360060677
+    },
+    "changed-lint-final": {
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/skills/registry.test.ts",
+        "src/engine/skills/sorceress-direct-fire.test.ts",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.sorceress-direct-fire.test.tsx",
+        "src/stores/sorceress-direct-fire-native.test.ts",
+        "src/stores/sorceress-direct-fire.causal.test.ts",
+        "--max-warnings=0"
+      ],
+      "pid": 1772901,
+      "exitCode": 0,
+      "seconds": 13.872834102017805
+    },
+    "engine-final": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1763010,
+      "exitCode": 0,
+      "seconds": 116.23732201301027
+    },
+    "legacy-corrected": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/data/loader.test.ts",
+        "--project",
+        "engine",
+        "src/engine/skills/sorceress-direct-fire.test.ts",
+        "src/engine/skills/armor-melt.test.ts",
+        "src/engine/skills/registry.test.ts"
+      ],
+      "pid": 1778699,
+      "exitCode": 0,
+      "seconds": 6.074566485942341
+    },
+    "lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1762667,
+      "exitCode": 0,
+      "seconds": 188.84498085000087
+    },
+    "melt-label-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/eventToLogI18n.test.ts",
+        "src/features/skills/SkillsScreen.sorceress-direct-fire.test.tsx"
+      ],
+      "pid": 1792702,
+      "exitCode": 0,
+      "seconds": 9.719322855002247
+    },
+    "native": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/sorceress-direct-fire-native.test.ts"
+      ],
+      "pid": 1758910,
+      "exitCode": 0,
+      "seconds": 9.314343105070293
+    },
+    "precache-final": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/build"
+      ],
+      "pid": 1781035,
+      "exitCode": 0,
+      "seconds": 0.05116881104186177
+    },
+    "precache": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/build"
+      ],
+      "pid": 1767206,
+      "exitCode": 0,
+      "seconds": 0.04815126501489431
+    },
+    "schema-fixed-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/skills/sorceress-direct-fire.test.ts",
+        "src/engine/skills/armor-melt.test.ts"
+      ],
+      "pid": 1756710,
+      "exitCode": 0,
+      "seconds": 2.770311428932473
+    },
+    "targeting-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/sorceress-direct-fire.causal.test.ts"
+      ],
+      "pid": 1755860,
+      "exitCode": 0,
+      "seconds": 6.942411000025459
+    },
+    "trace-compaction": {
+      "command": [
+        "python3",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/compact-traces.py"
+      ],
+      "pid": 1795090,
+      "exitCode": 0,
+      "seconds": 2.0122844389406964
+    },
+    "typecheck-delivery": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1780991,
+      "exitCode": 0,
+      "seconds": 114.20194929104764
+    },
+    "typecheck-final": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1767204,
+      "exitCode": 0,
+      "seconds": 113.37688610597979
+    },
+    "ui-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/features/skills/SkillsScreen.sorceress-direct-fire.test.tsx",
+        "src/features/skills/SkillsScreen.meteor.test.tsx"
+      ],
+      "pid": 1757190,
+      "exitCode": 0,
+      "seconds": 9.141504965024069
+    }
+  },
+  "failed": {
+    "browser-en-1280": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1769345,
+      "exitCode": 1,
+      "seconds": 60.762120544095524
+    },
+    "browser-en-360": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1769346,
+      "exitCode": 1,
+      "seconds": 56.351816990063526
+    },
+    "browser-pilot": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1767831,
+      "exitCode": 1,
+      "seconds": 20.34393889294006
+    },
+    "browser-zh-CN-1280": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1775325,
+      "exitCode": 1,
+      "seconds": 56.18648963305168
+    },
+    "browser-zh-CN-360": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-fire-w8d32c7u/browser.cjs"
+      ],
+      "pid": 1775044,
+      "exitCode": 1,
+      "seconds": 52.98342642595526
+    },
+    "causal-authority": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/sorceress-direct-fire.causal.test.ts"
+      ],
+      "pid": 1757265,
+      "exitCode": 1,
+      "seconds": 9.611551546957344
+    },
+    "causal-matrix": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/sorceress-direct-fire.causal.test.ts"
+      ],
+      "pid": 1756350,
+      "exitCode": 1,
+      "seconds": 3.76484104199335
+    },
+    "causal-periodic": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/sorceress-direct-fire.causal.test.ts"
+      ],
+      "pid": 1760243,
+      "exitCode": 1,
+      "seconds": 10.811883475980721
+    },
+    "engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1757367,
+      "exitCode": 1,
+      "seconds": 104.51565866800956
+    },
+    "full-before-prose-expectation": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "pid": 1804833,
+      "exitCode": -15,
+      "seconds": 373.48526771494653
+    },
+    "loader-final": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/data/loader.test.ts"
+      ],
+      "pid": 1769535,
+      "exitCode": 1,
+      "seconds": 7.154694964992814
+    },
+    "loader": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/data/loaders/skills.test.ts"
+      ],
+      "pid": 1767207,
+      "exitCode": 1,
+      "seconds": 1.568233652971685
+    },
+    "melt-label-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/eventToLogI18n.test.ts"
+      ],
+      "pid": 1792565,
+      "exitCode": 1,
+      "seconds": 3.178172430023551
+    },
+    "schema-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/skills/sorceress-direct-fire.test.ts",
+        "src/engine/skills/armor-melt.test.ts"
+      ],
+      "pid": 1756433,
+      "exitCode": 1,
+      "seconds": 1.9782595930155367
+    },
+    "schema-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/skills/sorceress-direct-fire.test.ts"
+      ],
+      "pid": 1756065,
+      "exitCode": 1,
+      "seconds": 2.652395055978559
+    },
+    "targeting-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/sorceress-direct-fire.causal.test.ts"
+      ],
+      "pid": 1755464,
+      "exitCode": 1,
+      "seconds": 7.654762613005005
+    },
+    "typecheck": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1762666,
+      "exitCode": 2,
+      "seconds": 105.47857320704497
+    },
+    "ui-prose-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/features/skills/SkillsScreen.sorceress-direct-fire.test.tsx"
+      ],
+      "pid": 1756708,
+      "exitCode": 1,
+      "seconds": 9.514832701999694
+    },
+    "ui-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/features/skills/SkillsScreen.sorceress-direct-fire.test.tsx"
+      ],
+      "pid": 1756582,
+      "exitCode": 1,
+      "seconds": 3.6402200739830732
+    }
+  },
+  "browserGroups": {
+    "groups": [
+      {
+        "label": "browser-delivery-en-360",
+        "wrapperPid": 1793132,
+        "exitCode": 0
+      },
+      {
+        "label": "browser-delivery-en-1280",
+        "wrapperPid": 1793134,
+        "exitCode": 0
+      },
+      {
+        "label": "browser-delivery-zh-CN-360",
+        "wrapperPid": 1798751,
+        "exitCode": 0
+      },
+      {
+        "label": "browser-delivery-zh-CN-1280",
+        "wrapperPid": 1799137,
+        "exitCode": 0
+      }
+    ],
+    "seconds": 122.86619227507617
+  },
+  "fullSuiteSummary": " 715 passed (715)\n      Tests  15743 passed | 2 skipped (15745)\n   Start at  13:52:45\n   Duration  589.12s (transform 18.46s, setup 64.52s, collect 1346.61s, tests 526.80s, environment 156.21s, prepare 66.07s)\n\n",
+  "limits": [
+    "Author review only; independent and earned acceptance open.",
+    "Earlier engine and supplemental receipts precede final compatibility/localization edits; final quiet full covers final source."
+  ]
+}

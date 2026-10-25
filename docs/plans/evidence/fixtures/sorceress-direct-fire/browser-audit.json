@@ -1,0 +1,40 @@
+{
+  "groups": [
+    {
+      "label": "browser-delivery-en-360",
+      "wrapperPid": 1793132,
+      "exitCode": 0
+    },
+    {
+      "label": "browser-delivery-en-1280",
+      "wrapperPid": 1793134,
+      "exitCode": 0
+    },
+    {
+      "label": "browser-delivery-zh-CN-360",
+      "wrapperPid": 1798751,
+      "exitCode": 0
+    },
+    {
+      "label": "browser-delivery-zh-CN-1280",
+      "wrapperPid": 1799137,
+      "exitCode": 0
+    }
+  ],
+  "cases": [
+    "en-360-fire-bolt",
+    "en-360-fire-ball",
+    "en-360-meteor",
+    "en-1280-fire-bolt",
+    "en-1280-fire-ball",
+    "en-1280-meteor",
+    "zh-CN-360-fire-bolt",
+    "zh-CN-360-fire-ball",
+    "zh-CN-360-meteor",
+    "zh-CN-1280-fire-bolt",
+    "zh-CN-1280-fire-ball",
+    "zh-CN-1280-meteor"
+  ],
+  "geometry": 60,
+  "screenshots": 36
+}

@@ -1,0 +1,3327 @@
+{
+  "archive": "raw.tar.gz",
+  "archiveSha256": "407db94c342289f8efc51619407b1c6c6a9c385d395e1394bdfb8b47566e374d",
+  "archiveBytes": 14582659,
+  "members": [
+    {
+      "path": "audit.py",
+      "sha256": "46f5f6eb1de8f93f4463cb0203a0f8c668a1d0727f63e7e8960e868effd85bb3",
+      "bytes": 3249
+    },
+    {
+      "path": "author-review.json",
+      "sha256": "2c4eefa5b5a1b213f944478e5f351f40fa5d6eef9455bb0fb35711ab7e8227e9",
+      "bytes": 3911
+    },
+    {
+      "path": "before-label-fix-browser-audit.json",
+      "sha256": "c2fb99108acd619f447dd5e012b71feed1e830bc4248b1eb32738c3d1aac86c9",
+      "bytes": 789
+    },
+    {
+      "path": "before-label-fix-freeze-audit.json",
+      "sha256": "006225e1bd504bd05d3138dc3aa158f64ebdd55b5770dba2b3f54bca98046491",
+      "bytes": 116
+    },
+    {
+      "path": "before-label-fix-save-pairs-audit.json",
+      "sha256": "e07aa24abdbb896397f1ee6413ecbeafc0575dcd6e927619b0a5a594e784775d",
+      "bytes": 8988
+    },
+    {
+      "path": "browser-audit.json",
+      "sha256": "a5ed7cb3d37e5cc81cacb0dbd90e72fd0e403732302bc2cf4fbb800ff48a0e40",
+      "bytes": 801
+    },
+    {
+      "path": "browser-before-label-fix.cjs",
+      "sha256": "196935007d8c78230a266b8d8691917e20f4f37feb00e956207c888acd211ae6",
+      "bytes": 12271
+    },
+    {
+      "path": "browser-delivery-en-1280/browser-report.json",
+      "sha256": "a139a6f2857de624e1611ca6cd0065a16825a47dce925d65d883885289b8bf78",
+      "bytes": 5468
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-ball-cast-visible.png",
+      "sha256": "64bbf5fc5d319c488ecb3404d26c6ab6d84cc73a4ddaf289eed4af2542e35f52",
+      "bytes": 249308
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-ball-combat.json",
+      "sha256": "33be390cc7b375f0ecd0c7674700fe727386778daa128d6f0c60b07c812916e2",
+      "bytes": 1154
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-ball-current-next.png",
+      "sha256": "a66b95660455d0eb64bd0d4264375278c3bf087fb0d3814e9fd78a7055b6d71d",
+      "bytes": 140444
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-ball-details.png",
+      "sha256": "8c9670c043d1c40697718e1cf857087eb5d7ffdf181bfd32f914c17ff5a3f78b",
+      "bytes": 141553
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-ball-fresh-8.json",
+      "sha256": "b9b0f9bf8b7dc82e4cb90fd6c22be2ffa9a7e75bf190ec3a4521a7af42975870",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-ball-imported-9.json",
+      "sha256": "f75b4a3bff3709ab25f14f1625c65f61377f1c32ce042add9c156312df88a147",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-ball-offline-continued-14.json",
+      "sha256": "d555c5a308df0aec388c1915bb350948d7ab62708ed0328b8b757d8336a98b7c",
+      "bytes": 4872
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-ball-rank1-after-11.json",
+      "sha256": "1f4a1aa3c628505817b8741fd79f28443009750464bdb456462dfd61ac7b0c56",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-ball-rank1-before-10.json",
+      "sha256": "a7ee321f45deeeb64462fe2ac04d93c7fa3a140bb7ccbbfb462fbceada53fef8",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-ball-rank2-after-13.json",
+      "sha256": "d555c5a308df0aec388c1915bb350948d7ab62708ed0328b8b757d8336a98b7c",
+      "bytes": 4872
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-ball-rank2-before-12.json",
+      "sha256": "d555c5a308df0aec388c1915bb350948d7ab62708ed0328b8b757d8336a98b7c",
+      "bytes": 4872
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-ball-synthetic-input.json",
+      "sha256": "b203f1d4d7036a81300ebf37b1b6176384e9489f5631a69c83f5e3f61272d1a8",
+      "bytes": 4005
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-bolt-cast-visible.png",
+      "sha256": "6997cde88d127a29748446bb5f3d8be3025566ea66d79955040a360cb734f8fb",
+      "bytes": 217896
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-bolt-combat.json",
+      "sha256": "99306f599e0eaa6944462d5a7cfdf5410992f8b877338fed4e34443cd8b936a3",
+      "bytes": 1373
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-bolt-current-next.png",
+      "sha256": "a7c8347f44731eedfec3b531958f77f390eaee9f0dfe6e6f2f473a83ef5ba5ad",
+      "bytes": 139270
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-bolt-details.png",
+      "sha256": "d30a766b8001673d4a086eacffc31f21a6b246eb3be62c2c7b4dc117f2746a43",
+      "bytes": 141057
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-bolt-fresh-1.json",
+      "sha256": "88a72168fa227cd78ecab102849b6dacb62402f556f9e4256166f357afe744f6",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-bolt-imported-2.json",
+      "sha256": "b47971cd8852e45029c52b464857a66d873944ff7bbf470ab8b005284be16dda",
+      "bytes": 4787
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-bolt-offline-continued-7.json",
+      "sha256": "69f8b99c316a776fe16716425f170fdf43e019a1f7a1597887235a88be02f52a",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-bolt-rank1-after-4.json",
+      "sha256": "210a4109b7137be20e0fc70c876258fe35c7c802487be7b205e61d5dccd16d37",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-bolt-rank1-before-3.json",
+      "sha256": "49c6bc7f35d06a0e48b07d02fe41f379263648a7e722a88139bdc2d5e504632d",
+      "bytes": 4787
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-bolt-rank2-after-6.json",
+      "sha256": "69f8b99c316a776fe16716425f170fdf43e019a1f7a1597887235a88be02f52a",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-bolt-rank2-before-5.json",
+      "sha256": "69f8b99c316a776fe16716425f170fdf43e019a1f7a1597887235a88be02f52a",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-fire-bolt-synthetic-input.json",
+      "sha256": "fcc2bed292eb3f5b01ce5dcdc329b869afaac0d940d53a92117dc7a756561d43",
+      "bytes": 3973
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-meteor-cast-visible.png",
+      "sha256": "2ea8c23cee3288534d76715f612cbb7888efe0f31d57513a672c556dd16ee6c4",
+      "bytes": 186954
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-meteor-combat.json",
+      "sha256": "402fb45266260c2dcccb063680af2718695bc7cf66473a68ba07e8ed96b9a78c",
+      "bytes": 2801
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-meteor-current-next.png",
+      "sha256": "c88eeb67309566d2f9c91859595591c08e53ee15d64c5af07d22ce58a44dcbfb",
+      "bytes": 156325
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-meteor-details.png",
+      "sha256": "2308c4009b83fd8067114c51faad85ffd6a409027da6216f3c968759f76785f2",
+      "bytes": 158242
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-meteor-fresh-15.json",
+      "sha256": "762ee296e258aef37e25c8dbf608a5149c59feed46cadd43fbbc0f94bed1001a",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-meteor-imported-16.json",
+      "sha256": "a11c29b2a9adc37a627c303c6153c622fb94fef51354685ad558c4044e0d9da9",
+      "bytes": 4938
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-meteor-offline-continued-21.json",
+      "sha256": "94ed84ab085c1b98fdbd6b7ba43a570d31091c9dd1a65b2bbad8b00c59fdfa4d",
+      "bytes": 4988
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-meteor-rank1-after-18.json",
+      "sha256": "255165e1822eaaa9f9584fa805ad536bff2c6ffbee51ae3c0c7269de66ef3b41",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-meteor-rank1-before-17.json",
+      "sha256": "5ba93aadc664ae8e02c8c8d53182ac0c4b58fef7fe2fda1030f928bb5ee788c8",
+      "bytes": 4938
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-meteor-rank2-after-20.json",
+      "sha256": "94ed84ab085c1b98fdbd6b7ba43a570d31091c9dd1a65b2bbad8b00c59fdfa4d",
+      "bytes": 4988
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-meteor-rank2-before-19.json",
+      "sha256": "94ed84ab085c1b98fdbd6b7ba43a570d31091c9dd1a65b2bbad8b00c59fdfa4d",
+      "bytes": 4988
+    },
+    {
+      "path": "browser-delivery-en-1280/en-1280-meteor-synthetic-input.json",
+      "sha256": "660bc486cd67a1eedb8b200219d375542c35215e893c1a9727cb0acf749528b5",
+      "bytes": 4124
+    },
+    {
+      "path": "browser-delivery-en-1280-live.json",
+      "sha256": "2db95dfe7a9d1593799f4262323b118bc33603c0c3d53371b99952b96fd6328e",
+      "bytes": 137
+    },
+    {
+      "path": "browser-delivery-en-1280-result.json",
+      "sha256": "11a6837cc4af9d1c00d61406b209a426930d5b18529ad23db9a78a2c7fe27499",
+      "bytes": 182
+    },
+    {
+      "path": "browser-delivery-en-1280.log",
+      "sha256": "498aa7b437ae0d9b5eb80b30957bed0a7028f9e9a174c06a294010149aa1ed46",
+      "bytes": 108
+    },
+    {
+      "path": "browser-delivery-en-360/browser-report.json",
+      "sha256": "38d7fb5e97e0036b1b7f36f4fbbeb2bc9a68fef5bf8205d38de0173007e9ee0b",
+      "bytes": 5450
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-ball-cast-visible.png",
+      "sha256": "453d82f7003423f7bbe0350cc61b2bf2a49328238dfd5c6104aa614220f54105",
+      "bytes": 51638
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-ball-combat.json",
+      "sha256": "33be390cc7b375f0ecd0c7674700fe727386778daa128d6f0c60b07c812916e2",
+      "bytes": 1154
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-ball-current-next.png",
+      "sha256": "dd8deffeaa6c24de33c47a2cfdfd20594561c17faa4d472d8224493368b3aed2",
+      "bytes": 55094
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-ball-details.png",
+      "sha256": "887060c88ac9d225189d3c617059ac2bf2088f2c214285799c30fcbd6cda0f3e",
+      "bytes": 56658
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-ball-fresh-8.json",
+      "sha256": "a2b5ddc4f09756800cc60dfdbfd881299440f6a67a8b6fdb1390583ff31891ab",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-ball-imported-9.json",
+      "sha256": "f93fd88fb89d935eed8b4a820972ca4e6995d101bb24bfa8e4b341689580c6c0",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-ball-offline-continued-14.json",
+      "sha256": "a1c0e854d260baaa925c7e4ed81d12bd69c4fee0bcbe9dc231ced670e1ad1b8f",
+      "bytes": 4872
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-ball-rank1-after-11.json",
+      "sha256": "a6edae4eab514ea297f83f25a9b382e7da9f0d734f5f28881df1beaf1c4ef4f5",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-ball-rank1-before-10.json",
+      "sha256": "75772131329a88369ad5192e4882cf314d4d14b72e4b0026d57da14029c517dc",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-ball-rank2-after-13.json",
+      "sha256": "a1c0e854d260baaa925c7e4ed81d12bd69c4fee0bcbe9dc231ced670e1ad1b8f",
+      "bytes": 4872
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-ball-rank2-before-12.json",
+      "sha256": "a1c0e854d260baaa925c7e4ed81d12bd69c4fee0bcbe9dc231ced670e1ad1b8f",
+      "bytes": 4872
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-ball-synthetic-input.json",
+      "sha256": "18952d000da1053386f468ec1f85c6d81011702181968e795d86c9ad160de238",
+      "bytes": 4005
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-bolt-cast-visible.png",
+      "sha256": "11d0312b52361ab7add64c69a3ec12b68a3548bc2c1e26ad5eb032297ef6f3ff",
+      "bytes": 51746
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-bolt-combat.json",
+      "sha256": "1507d13ba6cadf841c1cd25daca67cf08a512ebad3ccd0a39a9259ea4f106482",
+      "bytes": 1153
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-bolt-current-next.png",
+      "sha256": "09740f4d916ce46ad6eff33bacde703d92170d428fc00477be41a341eaf602c7",
+      "bytes": 53177
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-bolt-details.png",
+      "sha256": "6993ec0ecfe2ab051e2eb0df5dee4ba623be732ac4f0062e5ffa3156e7d8c43f",
+      "bytes": 53813
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-bolt-fresh-1.json",
+      "sha256": "1100d8e523a3e84c7752a217fa09c66f7bf86c48f7031212983837c6077375bb",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-bolt-imported-2.json",
+      "sha256": "338112157e7c9a2f96f2f65ebe240e91f736316181aa1ccfb661958ddb5d66e6",
+      "bytes": 4787
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-bolt-offline-continued-7.json",
+      "sha256": "c18b92e82604d6f55db297e6dfb1c9134d8093e4ff06936f784cd4151277b144",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-bolt-rank1-after-4.json",
+      "sha256": "1c27e63d7241d30a7515b6bdaaeb698fc25837e0ace03ce410d8ca36d3f120d1",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-bolt-rank1-before-3.json",
+      "sha256": "8288765669420c9c9449b33af6a89b782a9fdfd9791548598f12ef2279e95cc3",
+      "bytes": 4787
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-bolt-rank2-after-6.json",
+      "sha256": "c18b92e82604d6f55db297e6dfb1c9134d8093e4ff06936f784cd4151277b144",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-bolt-rank2-before-5.json",
+      "sha256": "c18b92e82604d6f55db297e6dfb1c9134d8093e4ff06936f784cd4151277b144",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-fire-bolt-synthetic-input.json",
+      "sha256": "ab40a79dc5f4a9da4538eecca4f84e79f89393ae78a8d1fc3e1fd2c80ea1713f",
+      "bytes": 3973
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-meteor-cast-visible.png",
+      "sha256": "c9eb380ffed4750cd5b9509210881ef361649536a0f58fe0bd4010cb70ac5779",
+      "bytes": 51223
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-meteor-combat.json",
+      "sha256": "402fb45266260c2dcccb063680af2718695bc7cf66473a68ba07e8ed96b9a78c",
+      "bytes": 2801
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-meteor-current-next.png",
+      "sha256": "38661443361aaa43424f93a21f6d399f43c5920993fab7157d6a4cc8c04cfe1c",
+      "bytes": 62898
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-meteor-details.png",
+      "sha256": "9cba86d630456b109e589f960d31c7bab5d7e50a292a33d4435d95f490f9519f",
+      "bytes": 64348
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-meteor-fresh-15.json",
+      "sha256": "cd9680ec405334400c3035defa2e0b07743137027700089d9bf3fa74c88d1734",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-meteor-imported-16.json",
+      "sha256": "255cd65862f2a63c643f0f5927c46b017852396bd69f502c2774e44153a15843",
+      "bytes": 4938
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-meteor-offline-continued-21.json",
+      "sha256": "f9366d129607cfab8e9da06b444200930347dd8916a77da235beb7e86acee30f",
+      "bytes": 4988
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-meteor-rank1-after-18.json",
+      "sha256": "ac37fb379d6cba5ef7752b4530c1bbe7e28b7f9847a9de9fd0db985b733a9ffb",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-meteor-rank1-before-17.json",
+      "sha256": "b381502b8255eec7e3370676889c8da3cc2288a69df9000578739597ea33f3ff",
+      "bytes": 4938
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-meteor-rank2-after-20.json",
+      "sha256": "f9366d129607cfab8e9da06b444200930347dd8916a77da235beb7e86acee30f",
+      "bytes": 4988
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-meteor-rank2-before-19.json",
+      "sha256": "f9366d129607cfab8e9da06b444200930347dd8916a77da235beb7e86acee30f",
+      "bytes": 4988
+    },
+    {
+      "path": "browser-delivery-en-360/en-360-meteor-synthetic-input.json",
+      "sha256": "ccab50e0835d6429bf407d5d8eca00591df6b6a937f3d911e07fd777557e2678",
+      "bytes": 4124
+    },
+    {
+      "path": "browser-delivery-en-360-live.json",
+      "sha256": "5a7ec2ef4ee8aa87bf024d6dd85e1153b00f9c497b06c601d62ae876d9b4707d",
+      "bytes": 137
+    },
+    {
+      "path": "browser-delivery-en-360-result.json",
+      "sha256": "bd73c94348a9d4e31314483a732b6491ad8c51186607e8e5e5735721468e50fd",
+      "bytes": 182
+    },
+    {
+      "path": "browser-delivery-en-360.log",
+      "sha256": "d11bc8833b60326b5522da1a155905b390bf7b76cb418902a2e88df73971dc22",
+      "bytes": 105
+    },
+    {
+      "path": "browser-delivery-groups-result.json",
+      "sha256": "1937b84fe22516b3b6743fccd466037834d6c8c2d213f8bad1c453ace663a6a1",
+      "bytes": 478
+    },
+    {
+      "path": "browser-delivery-groups.py",
+      "sha256": "b79172bc0387b387f215c7086bd0db39a3686c33ebb8d06667fd947a9a7443dd",
+      "bytes": 1012
+    },
+    {
+      "path": "browser-delivery-supervisor-live.json",
+      "sha256": "1e58999c87b7f3c09058ccc885642bac473bd1b192cfa5dc27dcc3517d545c61",
+      "bytes": 57
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/browser-report.json",
+      "sha256": "2fa8403843074be46cae503c223d6aceda9c2c976f98a7b858e995b3ee12678b",
+      "bytes": 5312
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-cast-visible.png",
+      "sha256": "e66d648a26f3b2295984c9ae4e930328ed86b702165d5bcdc842a51beeaf580f",
+      "bytes": 249479
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-combat.json",
+      "sha256": "7e7049b72dc46c577890de335bd080572ddd65fa0effe19cb8e130f339f4c239",
+      "bytes": 1249
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-current-next.png",
+      "sha256": "ce87bbd869483715d5fa4259b1408323032c76ce854d5b2e25e5e48411368f42",
+      "bytes": 148064
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-details.png",
+      "sha256": "e63b89b505af09fb8f1a27971d9968fe1683099e8800fe43bee34bed08e67ad6",
+      "bytes": 149329
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-fresh-8.json",
+      "sha256": "a0d3360aca36d82875527728f503f40c299006505ae2b8a54bcd24107c4d44a6",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-imported-9.json",
+      "sha256": "6e20009f253ceae779d940781f7ea7c0a185f2eb5b9e7e3695b01aec6abdea93",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-offline-continued-14.json",
+      "sha256": "8c8e720d776d1c8c6161db23f7b6ce94673b19490949e095ce73ec0553b80552",
+      "bytes": 4875
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-rank1-after-11.json",
+      "sha256": "db0c34f14d62a0dd9189f54068ea2d17bacb6a6973acb470ae5304b28e1aa6ed",
+      "bytes": 4825
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-rank1-before-10.json",
+      "sha256": "cf2953ff7f519f9e06c6b05cb7ec34c33bb49e13437748b8c7810456dc943d32",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-rank2-after-13.json",
+      "sha256": "8c8e720d776d1c8c6161db23f7b6ce94673b19490949e095ce73ec0553b80552",
+      "bytes": 4875
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-rank2-before-12.json",
+      "sha256": "8c8e720d776d1c8c6161db23f7b6ce94673b19490949e095ce73ec0553b80552",
+      "bytes": 4875
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-ball-synthetic-input.json",
+      "sha256": "96d17502a8b373bcede37763fa44828aa3b0e75d2e5d9c851f722d36fadd30f2",
+      "bytes": 4008
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-cast-visible.png",
+      "sha256": "d4253ec5e38d4265a0e0a43d65bef76be8b774126048fc86f95279e308b7da3c",
+      "bytes": 222677
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-combat.json",
+      "sha256": "72ba48b1ea98db48d48ca34fcb60784eb1c13135d451b14e56e00bb82f54daa9",
+      "bytes": 1487
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-current-next.png",
+      "sha256": "dcd16aa8f6c60ba20a0e3911c092c0526e11aab437d99d0eae347481c8b16058",
+      "bytes": 147288
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-details.png",
+      "sha256": "edb5e8bc1c4660d3a4144df487f7d9d84c944fe68b86b5abb8d1fd6a222c8400",
+      "bytes": 147437
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-fresh-1.json",
+      "sha256": "cddc54173036e44653b5e94f036efbcecdb1e417ff91c7d789a387f029b6f120",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-imported-2.json",
+      "sha256": "52d70e01d14bc8a8c35072622180f17d06a0629cb397bef93fe56d00d3320f55",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-offline-continued-7.json",
+      "sha256": "9d9a403e37842a338c1fb6c046ae63a21f10b2eded628e7cf35cd6b85e675be5",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-rank1-after-4.json",
+      "sha256": "d7ee4b5930ba548e8a9f69b02ad2f8382edb796f84fda6d954d62b600e6e3045",
+      "bytes": 4793
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-rank1-before-3.json",
+      "sha256": "b0d3792b4b122ad14d867bcdf0d845d6284a241bbac9ff21602656e67a8e2961",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-rank2-after-6.json",
+      "sha256": "9d9a403e37842a338c1fb6c046ae63a21f10b2eded628e7cf35cd6b85e675be5",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-rank2-before-5.json",
+      "sha256": "9d9a403e37842a338c1fb6c046ae63a21f10b2eded628e7cf35cd6b85e675be5",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-fire-bolt-synthetic-input.json",
+      "sha256": "39891b8217e37d69d2aa09592a48fe496ae52a4d2353587a396c20d28eacb0cd",
+      "bytes": 3976
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-cast-visible.png",
+      "sha256": "b474e8ae916bf9464402e47108698809b635250e4de36754ce63ad725d131646",
+      "bytes": 196347
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-combat.json",
+      "sha256": "d6af2f99b7ad08b08798fe7a4cbcf71403d2b9b72dcb0bcb8dfcb2871febc627",
+      "bytes": 3060
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-current-next.png",
+      "sha256": "ea653930d75d7bff2faed4f77ea3090a8129fbb16e821bfc752024809c6d36e3",
+      "bytes": 171689
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-details.png",
+      "sha256": "c07554ecc08e7f49bd99b2ab21d85d43a499785d3a83417e9c5f1931a4fc62a4",
+      "bytes": 173073
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-fresh-15.json",
+      "sha256": "3f8cf95093d528559892867f1eacc4409a6a0edcc6642290248eecccc16427bd",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-imported-16.json",
+      "sha256": "fa55aaa90d6e574b5714ade51ca9404f3d53ecef301de7ccd0bc559551e8d470",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-offline-continued-21.json",
+      "sha256": "7a431187599fe0e15728fe46f28623d7902d0fef14ea6e1765da71254bfd617a",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-rank1-after-18.json",
+      "sha256": "6bf2e7ce153ad207bf8be2e14d0b0009f97ae01aa89d571e997db864a78a35a2",
+      "bytes": 4944
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-rank1-before-17.json",
+      "sha256": "445e94d345e41c7d56c8ea772a2e3f0c7942ea0a361ea574109ad14b72f25176",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-rank2-after-20.json",
+      "sha256": "7a431187599fe0e15728fe46f28623d7902d0fef14ea6e1765da71254bfd617a",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-rank2-before-19.json",
+      "sha256": "7a431187599fe0e15728fe46f28623d7902d0fef14ea6e1765da71254bfd617a",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280/zh-CN-1280-meteor-synthetic-input.json",
+      "sha256": "fc1de57c134deee33ef280d77df454486d6dbe4cdb573f40c16b4ce58bae5225",
+      "bytes": 4127
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280-live.json",
+      "sha256": "9a4f387ad8f8df40ba684158a857ba5d15fb0779c3df6d4d3da0aef292d09c15",
+      "bytes": 137
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280-result.json",
+      "sha256": "c7e4f0cd422b1b9efa41bbc70b238247f59dd8db38fdf3794a0b83d63e65b602",
+      "bytes": 183
+    },
+    {
+      "path": "browser-delivery-zh-CN-1280.log",
+      "sha256": "9275a7197d1012de5abfe511d6f7f4065989aed6eddb8188f4bd0c190bd8d085",
+      "bytes": 117
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/browser-report.json",
+      "sha256": "9dfe1f8db4fa71a67a6095b2adf4cf13a018618d770fea9baca91d860866b7bb",
+      "bytes": 5294
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-cast-visible.png",
+      "sha256": "8bf1014deb0d0e67ce58c66a54c5e7bac88dc3d126712304c0321c2d6a125963",
+      "bytes": 62881
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-combat.json",
+      "sha256": "7e7049b72dc46c577890de335bd080572ddd65fa0effe19cb8e130f339f4c239",
+      "bytes": 1249
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-current-next.png",
+      "sha256": "81894a2e2b045264166ba8e8eda3fbbbc5fda79a4cafd2825ca33faef70dcfa2",
+      "bytes": 66058
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-details.png",
+      "sha256": "db8907ccc27b9ad0cdbf96e9c4bb7264edd247cbdc741511a73de280d701853b",
+      "bytes": 67458
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-fresh-8.json",
+      "sha256": "5e4a053dae78d8e05785aa544cbe17b0d50545b3f70c74f23455d9a34256804e",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-imported-9.json",
+      "sha256": "cbffb91e940df6fb4ac1194e8b643b67dc208b064f614ffa64de8e619a5be4b5",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-offline-continued-14.json",
+      "sha256": "d036ccffb4098c787c1dcfe6a7d63cfb225f3995219982af20ddd83bd0c9982e",
+      "bytes": 4875
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-rank1-after-11.json",
+      "sha256": "429a3e983cf23dd0704c2db4ef81c3cdc9be7588329053819fa6ac4849c1be7a",
+      "bytes": 4825
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-rank1-before-10.json",
+      "sha256": "769ae1522b14c2932b77c4bc63e27157a6028864e727503124ce3f40e9c1e8a9",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-rank2-after-13.json",
+      "sha256": "d036ccffb4098c787c1dcfe6a7d63cfb225f3995219982af20ddd83bd0c9982e",
+      "bytes": 4875
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-rank2-before-12.json",
+      "sha256": "d036ccffb4098c787c1dcfe6a7d63cfb225f3995219982af20ddd83bd0c9982e",
+      "bytes": 4875
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-ball-synthetic-input.json",
+      "sha256": "269cb803b8688eb1d1dedcb4c4107e87df7cb2ac3c6e1fc200158b3ac18cfe8f",
+      "bytes": 4008
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-cast-visible.png",
+      "sha256": "00775791afa2af7baad6b2833088bc5be10cddbacca19813444ae0fa5b87a23a",
+      "bytes": 62275
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-combat.json",
+      "sha256": "5b410489251142d256ec48696a545ac35afcf86181b614fac6b2ac0f92e445be",
+      "bytes": 1245
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-current-next.png",
+      "sha256": "c6476175766310e8dd17a1ed50941a5ee46776b9477f66d74eca00b1c2229a89",
+      "bytes": 64636
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-details.png",
+      "sha256": "42466c7e714d8fd329157a42a580c3d922309f052a428c519cc101b90e8f8602",
+      "bytes": 66085
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-fresh-1.json",
+      "sha256": "98e2fcedc87ddf041b058927eaf76290a51bc6fe1398820c16ae4e3fd4eaa1ea",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-imported-2.json",
+      "sha256": "cfeab14b0d51a77f08cf7b90b4aa6e7b1a29da00b7363df5cedcf6a5ac5339dd",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-offline-continued-7.json",
+      "sha256": "ac1ef8910c5a660499df0638b4093d0a5cbd21a4ee291dc96e1f27a234bada3b",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-rank1-after-4.json",
+      "sha256": "c409fc780ab42b7424ff34c9e312fc4bdf9e3b38a4ac127659d5c5463d3c7fc0",
+      "bytes": 4793
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-rank1-before-3.json",
+      "sha256": "1712d956644c63b449d0c8568d17f5cefd629d9d946aa1210b6afdf819b97706",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-rank2-after-6.json",
+      "sha256": "ac1ef8910c5a660499df0638b4093d0a5cbd21a4ee291dc96e1f27a234bada3b",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-rank2-before-5.json",
+      "sha256": "ac1ef8910c5a660499df0638b4093d0a5cbd21a4ee291dc96e1f27a234bada3b",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-fire-bolt-synthetic-input.json",
+      "sha256": "eb173d3814783032cab1e18cdd0e865bc7730f14e9efec98b63aba0d87260faa",
+      "bytes": 3976
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-meteor-cast-visible.png",
+      "sha256": "076ba059f086d2b1fb35403226a1b5b0a43f7a012e75828fd77581c9deedc07f",
+      "bytes": 60730
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-meteor-combat.json",
+      "sha256": "d6af2f99b7ad08b08798fe7a4cbcf71403d2b9b72dcb0bcb8dfcb2871febc627",
+      "bytes": 3060
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-meteor-current-next.png",
+      "sha256": "16d7d2b0cb16f72efad71e3040305b1e21f5c83db17381af5d35a26729aa0216",
+      "bytes": 74449
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-meteor-details.png",
+      "sha256": "dc81fb317533a5c1bcd72d63135abaeb9d977e7602ee841d881f354d812c6992",
+      "bytes": 75926
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-meteor-fresh-15.json",
+      "sha256": "a91f033185363abc874b2e3b93bc07590e28d6c6d069d737ad596622828eec4c",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-meteor-imported-16.json",
+      "sha256": "9eed587dbada2a0916fa3a54347238fc894feadce4b926285469fc40688fd045",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-meteor-offline-continued-21.json",
+      "sha256": "2831d5a1d4a39dddbb31e2f807f46f5b61c1d179a8cb766be2c07ce0f7bc8dbd",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-meteor-rank1-after-18.json",
+      "sha256": "e6ecfb9baee0b4e97e5cf4043d04d7c3977f8571e647c10787be13ea2260b741",
+      "bytes": 4944
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-meteor-rank1-before-17.json",
+      "sha256": "3b410fa57b292b867b780fbccfff82bbdad6e2804f4092d1dbeaf3a99f260928",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-meteor-rank2-after-20.json",
+      "sha256": "2831d5a1d4a39dddbb31e2f807f46f5b61c1d179a8cb766be2c07ce0f7bc8dbd",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-meteor-rank2-before-19.json",
+      "sha256": "2831d5a1d4a39dddbb31e2f807f46f5b61c1d179a8cb766be2c07ce0f7bc8dbd",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-delivery-zh-CN-360/zh-CN-360-meteor-synthetic-input.json",
+      "sha256": "41f5dd3f590bba3038a3a1c01c59dffdf1489100cefd237d957ab3a52bc08151",
+      "bytes": 4127
+    },
+    {
+      "path": "browser-delivery-zh-CN-360-live.json",
+      "sha256": "3f38bd333c5e764d59cc773d59cebbb14342f6cb7f9c9613fe1f9f7da6f01f4f",
+      "bytes": 137
+    },
+    {
+      "path": "browser-delivery-zh-CN-360-result.json",
+      "sha256": "6d2563244081e77c9dd79361128ddc8be493d9917418370c92a9087e5e3b8cb9",
+      "bytes": 182
+    },
+    {
+      "path": "browser-delivery-zh-CN-360.log",
+      "sha256": "a008fbf535ea66b3f543333df54194e05d0b68b482f471cd5ab85cb10b62614f",
+      "bytes": 114
+    },
+    {
+      "path": "browser-en-1280/browser-report.json",
+      "sha256": "df9a91483a285cbf424bdcb77ca24496020d031109e70c58bdf68b1db99d8582",
+      "bytes": 5306
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-ball-cast-visible.png",
+      "sha256": "69a4b954b31318fbc1fa51936aa5c928d2f3da333a103bb88550c081cc3b524e",
+      "bytes": 211037
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-ball-combat.json",
+      "sha256": "fc077989c648014b6baa206c19823e1ea1ea42e6dc5dc87e1013dc4497444d68",
+      "bytes": 1430
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-ball-current-next.png",
+      "sha256": "a66b95660455d0eb64bd0d4264375278c3bf087fb0d3814e9fd78a7055b6d71d",
+      "bytes": 140444
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-ball-details.png",
+      "sha256": "051879e1be74d7f555a93e6842f762f07868350591a3be86e07c0b2f4184a462",
+      "bytes": 141352
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-ball-fresh-8.json",
+      "sha256": "f5607256a90b02b777e5f2f731fa664180348c4b16c884cc921baa99f3f308c4",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-ball-imported-9.json",
+      "sha256": "928ccb5bea241c00b814f5a72d94d3a843d545129c452ecc35e71802cd610f95",
+      "bytes": 4823
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-ball-offline-continued-14.json",
+      "sha256": "c7b8322e9d534a8e8e2d891ede14ddfbd6ea60f3a92c912615105d0a3e3136a7",
+      "bytes": 4876
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-ball-rank1-after-11.json",
+      "sha256": "c0229b96e815a8c2baccf223a09271cec6989a11919d5d3aa010d7bb349c55a7",
+      "bytes": 4826
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-ball-rank1-before-10.json",
+      "sha256": "321d3fae932a062aecf63d12b0d47bd11ca1f0d0165147c4bfeb59e14837ecda",
+      "bytes": 4823
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-ball-rank2-after-13.json",
+      "sha256": "c7b8322e9d534a8e8e2d891ede14ddfbd6ea60f3a92c912615105d0a3e3136a7",
+      "bytes": 4876
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-ball-rank2-before-12.json",
+      "sha256": "c7b8322e9d534a8e8e2d891ede14ddfbd6ea60f3a92c912615105d0a3e3136a7",
+      "bytes": 4876
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-ball-synthetic-input.json",
+      "sha256": "304f49ba83b0d2b992a24ba4d64d56b92b53d2fe28ee930d8629872e547678b6",
+      "bytes": 4007
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-bolt-cast-visible.png",
+      "sha256": "67b801fa756b7548562c9596839363e944c7384e4b070eb2cc646c717e7ae595",
+      "bytes": 217878
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-bolt-combat.json",
+      "sha256": "118aea083d609b1e1703b2742fec24bda0863859254681a258f4c35933e86a7b",
+      "bytes": 1371
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-bolt-current-next.png",
+      "sha256": "a7c8347f44731eedfec3b531958f77f390eaee9f0dfe6e6f2f473a83ef5ba5ad",
+      "bytes": 139270
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-bolt-details.png",
+      "sha256": "c9b091ef19b94848aa34cf59edb3a7c8af1366a35c3f4d1c967cb57ff7cc58ba",
+      "bytes": 140211
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-bolt-fresh-1.json",
+      "sha256": "0f03871578f224c8568432f1bc4bed7435aa283e3a4ddad4a54d7fc677e266c3",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-bolt-imported-2.json",
+      "sha256": "4cb54f708ab634fd0456d47f368c8b28633c1a34fae13277aabc9fe61c7755c7",
+      "bytes": 4791
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-bolt-offline-continued-7.json",
+      "sha256": "90a3f4136fa56e029dfa0b809c876c98fb02f3a1305d5bf710f7c1353388b186",
+      "bytes": 4837
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-bolt-rank1-after-4.json",
+      "sha256": "20a3e572d94061afbe3112bcf73fc4d85b9f243e34e3c57ca758b434b1194674",
+      "bytes": 4794
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-bolt-rank1-before-3.json",
+      "sha256": "9895a641ba88e59c4aa4b2c9bf79452b90077244c136a9ab218dc887c0c89aae",
+      "bytes": 4791
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-bolt-rank2-after-6.json",
+      "sha256": "90a3f4136fa56e029dfa0b809c876c98fb02f3a1305d5bf710f7c1353388b186",
+      "bytes": 4837
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-bolt-rank2-before-5.json",
+      "sha256": "90a3f4136fa56e029dfa0b809c876c98fb02f3a1305d5bf710f7c1353388b186",
+      "bytes": 4837
+    },
+    {
+      "path": "browser-en-1280/en-1280-fire-bolt-synthetic-input.json",
+      "sha256": "cb08d05b5ae8bb1780d29299f9310ecb1b654897fdcdee82fe27694561d47d79",
+      "bytes": 3975
+    },
+    {
+      "path": "browser-en-1280/en-1280-meteor-current-next.png",
+      "sha256": "c88eeb67309566d2f9c91859595591c08e53ee15d64c5af07d22ce58a44dcbfb",
+      "bytes": 156325
+    },
+    {
+      "path": "browser-en-1280/en-1280-meteor-details.png",
+      "sha256": "2308c4009b83fd8067114c51faad85ffd6a409027da6216f3c968759f76785f2",
+      "bytes": 158242
+    },
+    {
+      "path": "browser-en-1280/en-1280-meteor-failed-trace-metadata.zip",
+      "sha256": "2e351760402ef5e0f9615f0b5f98d6abe7b59fdc1e78fc7f3c4eb2e80f05556e",
+      "bytes": 198248
+    },
+    {
+      "path": "browser-en-1280/en-1280-meteor-failed.png",
+      "sha256": "fec5f8570df1f49b5704af92c6997a5589be7c388fb1063607bc4b58e4e89356",
+      "bytes": 436063
+    },
+    {
+      "path": "browser-en-1280/en-1280-meteor-fresh-15.json",
+      "sha256": "7f6b04e9ec53a2dd26565bd22184d00d9f769748c865dbe21d82ba38fc2024c2",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-1280/en-1280-meteor-imported-16.json",
+      "sha256": "d63355142dacd87039e439f411e19a96860c24899dad3b1de9afcc39a546a8c6",
+      "bytes": 4942
+    },
+    {
+      "path": "browser-en-1280/en-1280-meteor-rank1-after-18.json",
+      "sha256": "51b0044f5e9fa750fba5581e621ebd5cc2872b03859759eda0f9687cef0a535d",
+      "bytes": 4945
+    },
+    {
+      "path": "browser-en-1280/en-1280-meteor-rank1-before-17.json",
+      "sha256": "bd9590c86d4f8a78eabd6143bf18ed1693f677d2ebb09817f50a12f4666023ae",
+      "bytes": 4942
+    },
+    {
+      "path": "browser-en-1280/en-1280-meteor-synthetic-input.json",
+      "sha256": "e0877a9ff96a1e60cbb416d1a54f6ce967a3a0dcf14125a5faf6dccc76878a88",
+      "bytes": 4126
+    },
+    {
+      "path": "browser-en-1280-live.json",
+      "sha256": "020bce2fa1f8fcad39256223eafafd2e0e7014796e3a2978226e7136ed8912bc",
+      "bytes": 137
+    },
+    {
+      "path": "browser-en-1280-result.json",
+      "sha256": "a1ee7d4e1c310dc24bac8b2f072574bdc18f55da5bfe498e4318f5edf9174839",
+      "bytes": 183
+    },
+    {
+      "path": "browser-en-1280.log",
+      "sha256": "9e1a6caad9bcb8de405a1dc1906485390e5f5439c07da94757e321f6353a62c0",
+      "bytes": 527
+    },
+    {
+      "path": "browser-en-360/browser-report.json",
+      "sha256": "a025a26558ba980be4ca430223412ce2c3955e24d767d434eaf95ed3fbf5ad2d",
+      "bytes": 5287
+    },
+    {
+      "path": "browser-en-360/en-360-fire-ball-cast-visible.png",
+      "sha256": "98b090d95b740ed12f789ddf18fc6cbaad1dfa3a3abd124dfade97bde5fdc6b2",
+      "bytes": 51637
+    },
+    {
+      "path": "browser-en-360/en-360-fire-ball-combat.json",
+      "sha256": "5ca82a13ea3e7c8d5c010695ee21b324928957698dd0873fac716ad98b31471d",
+      "bytes": 1154
+    },
+    {
+      "path": "browser-en-360/en-360-fire-ball-current-next.png",
+      "sha256": "dd8deffeaa6c24de33c47a2cfdfd20594561c17faa4d472d8224493368b3aed2",
+      "bytes": 55094
+    },
+    {
+      "path": "browser-en-360/en-360-fire-ball-details.png",
+      "sha256": "0995ddd4a6e73a41d0645869aa8c678af46ea9931aa44d3e8d1806994d89549e",
+      "bytes": 56755
+    },
+    {
+      "path": "browser-en-360/en-360-fire-ball-fresh-8.json",
+      "sha256": "37cb9e1aeaa783908d90ebf95651d58404d0bc36a81d897e22c45bca11103661",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-360/en-360-fire-ball-imported-9.json",
+      "sha256": "f3cadfd3bbb4a159d5f4dad89d4d1333c2423598e8fd84e9d0b16e02f5dcb324",
+      "bytes": 4823
+    },
+    {
+      "path": "browser-en-360/en-360-fire-ball-offline-continued-14.json",
+      "sha256": "c812f3481ee15f0c6d5e3519e67b31203469db8864641c09ce5edb1b76116fe6",
+      "bytes": 4876
+    },
+    {
+      "path": "browser-en-360/en-360-fire-ball-rank1-after-11.json",
+      "sha256": "bb2d40dbc63a6c347f21d3c503be4e805668f4f7ba1c943292719a975cc5ebdb",
+      "bytes": 4826
+    },
+    {
+      "path": "browser-en-360/en-360-fire-ball-rank1-before-10.json",
+      "sha256": "14f08fd08fcefecbe454830f5ad9642e4c6926c96b59c1b2cd7d2895955fc974",
+      "bytes": 4823
+    },
+    {
+      "path": "browser-en-360/en-360-fire-ball-rank2-after-13.json",
+      "sha256": "c812f3481ee15f0c6d5e3519e67b31203469db8864641c09ce5edb1b76116fe6",
+      "bytes": 4876
+    },
+    {
+      "path": "browser-en-360/en-360-fire-ball-rank2-before-12.json",
+      "sha256": "c812f3481ee15f0c6d5e3519e67b31203469db8864641c09ce5edb1b76116fe6",
+      "bytes": 4876
+    },
+    {
+      "path": "browser-en-360/en-360-fire-ball-synthetic-input.json",
+      "sha256": "d0fb1efa87d03cdfb6029c31461c07b5d934eccc69064e909be3b0b2b0e55613",
+      "bytes": 4007
+    },
+    {
+      "path": "browser-en-360/en-360-fire-bolt-cast-visible.png",
+      "sha256": "11d0312b52361ab7add64c69a3ec12b68a3548bc2c1e26ad5eb032297ef6f3ff",
+      "bytes": 51746
+    },
+    {
+      "path": "browser-en-360/en-360-fire-bolt-combat.json",
+      "sha256": "118aea083d609b1e1703b2742fec24bda0863859254681a258f4c35933e86a7b",
+      "bytes": 1371
+    },
+    {
+      "path": "browser-en-360/en-360-fire-bolt-current-next.png",
+      "sha256": "09740f4d916ce46ad6eff33bacde703d92170d428fc00477be41a341eaf602c7",
+      "bytes": 53177
+    },
+    {
+      "path": "browser-en-360/en-360-fire-bolt-details.png",
+      "sha256": "dd32db06549d3db4391a3054ded3fb26a46cb6fe168fadfdd70443c2eceb6aa8",
+      "bytes": 54773
+    },
+    {
+      "path": "browser-en-360/en-360-fire-bolt-fresh-1.json",
+      "sha256": "c55e4176abdd8621634bd12c85cd224f6ed962b2ae8d30065e34e82ba10eef11",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-360/en-360-fire-bolt-imported-2.json",
+      "sha256": "7627053575b0da05fbe3db90a5c7c1d66c4c9b39ebb01f6affdfd12401e334bf",
+      "bytes": 4791
+    },
+    {
+      "path": "browser-en-360/en-360-fire-bolt-offline-continued-7.json",
+      "sha256": "4dd2eaea3344bccfaf481b56fe18a4ce934d7af0d79ef5e7d66eb1f0ab0aadbb",
+      "bytes": 4837
+    },
+    {
+      "path": "browser-en-360/en-360-fire-bolt-rank1-after-4.json",
+      "sha256": "1ed809b2c1411f0c20ead377cc8ca334508d4a9b66ce4de561f648e9b58ca923",
+      "bytes": 4794
+    },
+    {
+      "path": "browser-en-360/en-360-fire-bolt-rank1-before-3.json",
+      "sha256": "f2f3aa702046c683d2000c6ebd0cfaae3c32a4ac0214de80e288185833c572bf",
+      "bytes": 4791
+    },
+    {
+      "path": "browser-en-360/en-360-fire-bolt-rank2-after-6.json",
+      "sha256": "4dd2eaea3344bccfaf481b56fe18a4ce934d7af0d79ef5e7d66eb1f0ab0aadbb",
+      "bytes": 4837
+    },
+    {
+      "path": "browser-en-360/en-360-fire-bolt-rank2-before-5.json",
+      "sha256": "4dd2eaea3344bccfaf481b56fe18a4ce934d7af0d79ef5e7d66eb1f0ab0aadbb",
+      "bytes": 4837
+    },
+    {
+      "path": "browser-en-360/en-360-fire-bolt-synthetic-input.json",
+      "sha256": "2a3c4ec1d3185743c7ac4a70e32612cf2d8d87a1bb026b9195874ae45a80be72",
+      "bytes": 3975
+    },
+    {
+      "path": "browser-en-360/en-360-meteor-current-next.png",
+      "sha256": "38661443361aaa43424f93a21f6d399f43c5920993fab7157d6a4cc8c04cfe1c",
+      "bytes": 62898
+    },
+    {
+      "path": "browser-en-360/en-360-meteor-details.png",
+      "sha256": "92028edffad49bd3e9af64cb6960ea135d342a22390ba75bcc2e2a9be31e00ae",
+      "bytes": 64458
+    },
+    {
+      "path": "browser-en-360/en-360-meteor-failed-trace-metadata.zip",
+      "sha256": "08f84014b1f50a88567581f3c10ef9376bc18007e553adfc84382f62d16377f5",
+      "bytes": 201295
+    },
+    {
+      "path": "browser-en-360/en-360-meteor-failed.png",
+      "sha256": "e4ddb18ac47f0192a30c25087803680fb7b6619cf512ee7b36e56975c20db9ab",
+      "bytes": 37969
+    },
+    {
+      "path": "browser-en-360/en-360-meteor-fresh-15.json",
+      "sha256": "a26aa212eca7963d25bc26d623dafde191eec563c30bfca7416ce93acdf66dc1",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-360/en-360-meteor-imported-16.json",
+      "sha256": "8832b42fb5eea5a64853e8fcdf62c7519e7dfffc21a053dc80eea13ef5ea2233",
+      "bytes": 4942
+    },
+    {
+      "path": "browser-en-360/en-360-meteor-rank1-after-18.json",
+      "sha256": "a9a8786f27dec1b97f6aefd1876fbe23055fbaf0ffff7a28659b541e73350e75",
+      "bytes": 4945
+    },
+    {
+      "path": "browser-en-360/en-360-meteor-rank1-before-17.json",
+      "sha256": "59b6bea68f810c1902e9f5d01e1d72f5a091884f79772d27d8bc1d902585d199",
+      "bytes": 4942
+    },
+    {
+      "path": "browser-en-360/en-360-meteor-synthetic-input.json",
+      "sha256": "86b43917905c93ff23b2b5f68eba4f22d5803c37ca728979ba370fa519732ed0",
+      "bytes": 4126
+    },
+    {
+      "path": "browser-en-360-live.json",
+      "sha256": "1207a6e3dde9ec6aa420a27edf14f4eaea33d17e47f9ff99308be0ec84e7d4eb",
+      "bytes": 137
+    },
+    {
+      "path": "browser-en-360-result.json",
+      "sha256": "bc5ffe3e412b699edd5001eeddfa972ef3488fe80cad8bbc4f156bd14c51e1bd",
+      "bytes": 183
+    },
+    {
+      "path": "browser-en-360.log",
+      "sha256": "92cbefab4ea4ee82ef480037dced39be6ea334795a3a8ee0953c7f91743815f5",
+      "bytes": 525
+    },
+    {
+      "path": "browser-excess-mana-failed.cjs",
+      "sha256": "02c35698053e0a9d8b4ab549315c04e043ca801ae200b0dee302c97ced26c681",
+      "bytes": 12273
+    },
+    {
+      "path": "browser-failure-analysis.json",
+      "sha256": "fe5a17fa04bc5b940a842601f8ae60164e2a2a800d399ab710d7c7715850609c",
+      "bytes": 633
+    },
+    {
+      "path": "browser-final-en-1280/browser-report.json",
+      "sha256": "6a3a73d350c5a2a4e5b80c1a4b4a31428c9672798214bdb8d190e6d7ff2d47cb",
+      "bytes": 5468
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-ball-cast-visible.png",
+      "sha256": "1043aa014e1268edfb7e8849561413c710f732118366fec729c5627549be6c87",
+      "bytes": 248513
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-ball-combat.json",
+      "sha256": "33be390cc7b375f0ecd0c7674700fe727386778daa128d6f0c60b07c812916e2",
+      "bytes": 1154
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-ball-current-next.png",
+      "sha256": "a66b95660455d0eb64bd0d4264375278c3bf087fb0d3814e9fd78a7055b6d71d",
+      "bytes": 140444
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-ball-details.png",
+      "sha256": "8c9670c043d1c40697718e1cf857087eb5d7ffdf181bfd32f914c17ff5a3f78b",
+      "bytes": 141553
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-ball-fresh-8.json",
+      "sha256": "582d6811d5daf4f6bc6c35e4f45de7282a4f1f50c622944d7822dbe660e8d0a9",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-ball-imported-9.json",
+      "sha256": "c3d5e30a998a3eacce23142529c61ecb12b708938c69e4104d2d9b89f22dd2d1",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-ball-offline-continued-14.json",
+      "sha256": "a7d378f2344051a0f0b01d4479405ac76b4bb76d7f42637586822848d4739114",
+      "bytes": 4872
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-ball-rank1-after-11.json",
+      "sha256": "93e650e17da97d57954f68827d4bc91c25c7704c3f71e3350be7bc9256c6a9a9",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-ball-rank1-before-10.json",
+      "sha256": "3eecd0333051d5545353e6161865ff8047cdcad868fb46c1f3a4eb757e1a13bd",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-ball-rank2-after-13.json",
+      "sha256": "a7d378f2344051a0f0b01d4479405ac76b4bb76d7f42637586822848d4739114",
+      "bytes": 4872
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-ball-rank2-before-12.json",
+      "sha256": "a7d378f2344051a0f0b01d4479405ac76b4bb76d7f42637586822848d4739114",
+      "bytes": 4872
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-ball-synthetic-input.json",
+      "sha256": "0042b5c19288224c37daf8a8decf52639de85604cb34cd617b78710890a9543b",
+      "bytes": 4005
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-bolt-cast-visible.png",
+      "sha256": "c89918a0cde77c012d922d00ec193f2a1152629f6807365fb8a2dac086c0aa28",
+      "bytes": 249156
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-bolt-combat.json",
+      "sha256": "1507d13ba6cadf841c1cd25daca67cf08a512ebad3ccd0a39a9259ea4f106482",
+      "bytes": 1153
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-bolt-current-next.png",
+      "sha256": "a7c8347f44731eedfec3b531958f77f390eaee9f0dfe6e6f2f473a83ef5ba5ad",
+      "bytes": 139270
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-bolt-details.png",
+      "sha256": "d30a766b8001673d4a086eacffc31f21a6b246eb3be62c2c7b4dc117f2746a43",
+      "bytes": 141057
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-bolt-fresh-1.json",
+      "sha256": "0ca7933b1bbae7487d063162e9d9960e715aca9fef0b1e75c5c716b4f05b2ec5",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-bolt-imported-2.json",
+      "sha256": "8d166b5dab30030fce1e1494e2503911f4bba3751fe9eade517e6b269ed4f8dd",
+      "bytes": 4787
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-bolt-offline-continued-7.json",
+      "sha256": "f24406ba673b25be4b1f81436c006387685c9e35cf11dc7e3282cd682b613b7a",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-bolt-rank1-after-4.json",
+      "sha256": "b4ef26bf28a8ae74331c9d3b769441930ea47fbf53371e17adaefec6a7cfad7e",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-bolt-rank1-before-3.json",
+      "sha256": "75571216d843a8a7596038b99022291aa62daf89d15d25155cf33ab7058cdac0",
+      "bytes": 4787
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-bolt-rank2-after-6.json",
+      "sha256": "f24406ba673b25be4b1f81436c006387685c9e35cf11dc7e3282cd682b613b7a",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-bolt-rank2-before-5.json",
+      "sha256": "f24406ba673b25be4b1f81436c006387685c9e35cf11dc7e3282cd682b613b7a",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-fire-bolt-synthetic-input.json",
+      "sha256": "780b4ab9ebcaf8870a084a0299bbc645e22ab32d1b33b506441f47ac87269367",
+      "bytes": 3973
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-meteor-cast-visible.png",
+      "sha256": "6e8cd15dc98d25bbaeb61ae76b8d855b8c0ff9cdaa36ba44090138b8e6a329dc",
+      "bytes": 186670
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-meteor-combat.json",
+      "sha256": "308bd752b8d0ec5f59d71d7653377f78bc3516f1d9a569624c371a3934662a82",
+      "bytes": 2801
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-meteor-current-next.png",
+      "sha256": "c88eeb67309566d2f9c91859595591c08e53ee15d64c5af07d22ce58a44dcbfb",
+      "bytes": 156325
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-meteor-details.png",
+      "sha256": "e23dc88e84d2f9195070243bb4bcb1064a0c848096818f27fed86a8fdbf5bf15",
+      "bytes": 157935
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-meteor-fresh-15.json",
+      "sha256": "bd21ab7230bc9a623912180c383d5ab07d9070efd94576836254ed5894a9919c",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-meteor-imported-16.json",
+      "sha256": "8dca12e14c41044a0da388cbf19ba0b2ec01ed899ea1f6dd698a56e0c436c04b",
+      "bytes": 4938
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-meteor-offline-continued-21.json",
+      "sha256": "f238435be7bb8c84418bd680c325a4388785eb26282bd9bb1fe9a3ae8296a0a7",
+      "bytes": 4988
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-meteor-rank1-after-18.json",
+      "sha256": "b99cd41f30e804638a279e66ae35b12976c237de5b45b94d56e807623ba71fd9",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-meteor-rank1-before-17.json",
+      "sha256": "8a8f54b20a024795e51ddf1c88d6cdec4006e47042bb3ce61d58fa2d8bdef73e",
+      "bytes": 4938
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-meteor-rank2-after-20.json",
+      "sha256": "f238435be7bb8c84418bd680c325a4388785eb26282bd9bb1fe9a3ae8296a0a7",
+      "bytes": 4988
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-meteor-rank2-before-19.json",
+      "sha256": "f238435be7bb8c84418bd680c325a4388785eb26282bd9bb1fe9a3ae8296a0a7",
+      "bytes": 4988
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-meteor-synthetic-input.json",
+      "sha256": "adedfb91079ad923a9d5692c0cbbe0321a9e468312525c056b51996102f05e28",
+      "bytes": 4124
+    },
+    {
+      "path": "browser-final-en-1280-live.json",
+      "sha256": "75b331893958ab603084d6f89a1d5fe5a8be90e426f92afe5ed226edbdb18893",
+      "bytes": 137
+    },
+    {
+      "path": "browser-final-en-1280-result.json",
+      "sha256": "8b4a154b94cfd16653714af16bf7ad39c0eecb9e027bcc5490455d9f90baca96",
+      "bytes": 182
+    },
+    {
+      "path": "browser-final-en-1280.log",
+      "sha256": "498aa7b437ae0d9b5eb80b30957bed0a7028f9e9a174c06a294010149aa1ed46",
+      "bytes": 108
+    },
+    {
+      "path": "browser-final-en-360/browser-report.json",
+      "sha256": "38d7fb5e97e0036b1b7f36f4fbbeb2bc9a68fef5bf8205d38de0173007e9ee0b",
+      "bytes": 5450
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-ball-cast-visible.png",
+      "sha256": "98b090d95b740ed12f789ddf18fc6cbaad1dfa3a3abd124dfade97bde5fdc6b2",
+      "bytes": 51637
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-ball-combat.json",
+      "sha256": "33be390cc7b375f0ecd0c7674700fe727386778daa128d6f0c60b07c812916e2",
+      "bytes": 1154
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-ball-current-next.png",
+      "sha256": "dd8deffeaa6c24de33c47a2cfdfd20594561c17faa4d472d8224493368b3aed2",
+      "bytes": 55094
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-ball-details.png",
+      "sha256": "af52a325aa1a7a2b3631c0dc5e5d7dd0864437c52efb8144d03b8665572e1cc4",
+      "bytes": 56655
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-ball-fresh-8.json",
+      "sha256": "989897962a0a77ac67391a9cf9a5812094c9596633c553ba715d6b963c7d417e",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-ball-imported-9.json",
+      "sha256": "030cf9079605486f8e2456c69aed6140e0d125029cd55248963aad2269e1e725",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-ball-offline-continued-14.json",
+      "sha256": "d81757818120368736c13ec1bb930b791c4affa2d83fa3defbea8155b320ad51",
+      "bytes": 4872
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-ball-rank1-after-11.json",
+      "sha256": "e06504b4dbe3a2544f9d27d1e67ee8a0beaa8c85cfaa06c27e2ba82f56a0aa2c",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-ball-rank1-before-10.json",
+      "sha256": "0848c6f7544bfd53d2af1226e1b1f55ea95af7ba4791265a0b05880504805471",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-ball-rank2-after-13.json",
+      "sha256": "d81757818120368736c13ec1bb930b791c4affa2d83fa3defbea8155b320ad51",
+      "bytes": 4872
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-ball-rank2-before-12.json",
+      "sha256": "d81757818120368736c13ec1bb930b791c4affa2d83fa3defbea8155b320ad51",
+      "bytes": 4872
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-ball-synthetic-input.json",
+      "sha256": "be8dbb7323b964701afe17a38cdba93045d07eb43f56ca495f94f4693cb63be3",
+      "bytes": 4005
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-bolt-cast-visible.png",
+      "sha256": "d4db0caa2cf9487f4e137e5369639935ade6a4670146effe8020060aaec4d73f",
+      "bytes": 51745
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-bolt-combat.json",
+      "sha256": "1507d13ba6cadf841c1cd25daca67cf08a512ebad3ccd0a39a9259ea4f106482",
+      "bytes": 1153
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-bolt-current-next.png",
+      "sha256": "09740f4d916ce46ad6eff33bacde703d92170d428fc00477be41a341eaf602c7",
+      "bytes": 53177
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-bolt-details.png",
+      "sha256": "8a0004e7c479c388917888c27463e2bd8a9ed981469f3c78c763a989eb659625",
+      "bytes": 54647
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-bolt-fresh-1.json",
+      "sha256": "907feabfd0562e0d7a811a29f55c95df419c6708f8133c2e9e3f7c7db520f250",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-bolt-imported-2.json",
+      "sha256": "a3539ad6c34f1db3cc37f5c202bfa01a41f604d6aa41db971cfe1702ac65c85d",
+      "bytes": 4787
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-bolt-offline-continued-7.json",
+      "sha256": "7a37c8e241af86e2bda950ea86a78babb20614542e6bf2ba617bad692f2780a1",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-bolt-rank1-after-4.json",
+      "sha256": "fb149603bbc7985ad7dcf915fe172128d9f74a2e9a8d94af5518db745f234feb",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-bolt-rank1-before-3.json",
+      "sha256": "f906017662210ea1d8b39a79dacb16ac072a05b2e5a2cac10be3569f2d413021",
+      "bytes": 4787
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-bolt-rank2-after-6.json",
+      "sha256": "7a37c8e241af86e2bda950ea86a78babb20614542e6bf2ba617bad692f2780a1",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-bolt-rank2-before-5.json",
+      "sha256": "7a37c8e241af86e2bda950ea86a78babb20614542e6bf2ba617bad692f2780a1",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-final-en-360/en-360-fire-bolt-synthetic-input.json",
+      "sha256": "2ccaa559d3898e519de263415b874201aaae4e1bfa0f71c9513af83bd16556dc",
+      "bytes": 3973
+    },
+    {
+      "path": "browser-final-en-360/en-360-meteor-cast-visible.png",
+      "sha256": "9e60d75bc784b897440624f2f65303780efd36e6e883919600dc2a17442fe7f4",
+      "bytes": 51154
+    },
+    {
+      "path": "browser-final-en-360/en-360-meteor-combat.json",
+      "sha256": "308bd752b8d0ec5f59d71d7653377f78bc3516f1d9a569624c371a3934662a82",
+      "bytes": 2801
+    },
+    {
+      "path": "browser-final-en-360/en-360-meteor-current-next.png",
+      "sha256": "38661443361aaa43424f93a21f6d399f43c5920993fab7157d6a4cc8c04cfe1c",
+      "bytes": 62898
+    },
+    {
+      "path": "browser-final-en-360/en-360-meteor-details.png",
+      "sha256": "92028edffad49bd3e9af64cb6960ea135d342a22390ba75bcc2e2a9be31e00ae",
+      "bytes": 64458
+    },
+    {
+      "path": "browser-final-en-360/en-360-meteor-fresh-15.json",
+      "sha256": "fc0e6acb00cbb2d45fae8546d87d82c8d5a89f89735b39fb1c0b75b23e8fa4f1",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-final-en-360/en-360-meteor-imported-16.json",
+      "sha256": "5dce4e33d70d78a79ea20abbc93863ba6e9e9a0173e9a9334a16b11f4e27386a",
+      "bytes": 4938
+    },
+    {
+      "path": "browser-final-en-360/en-360-meteor-offline-continued-21.json",
+      "sha256": "d10402b3ec60745e936bd656fd8d66c656d122c4c1e81ecd41717ff86896dc2f",
+      "bytes": 4988
+    },
+    {
+      "path": "browser-final-en-360/en-360-meteor-rank1-after-18.json",
+      "sha256": "57dd5b2e421e2dc41ef3ff0889dc79724d4622810de5b6c9d5f6d0b3e9ffe8a2",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-final-en-360/en-360-meteor-rank1-before-17.json",
+      "sha256": "aa509a0c1e27f06b78e538753fdab4a7c266e46f04c82ea880c57f2428cb7152",
+      "bytes": 4938
+    },
+    {
+      "path": "browser-final-en-360/en-360-meteor-rank2-after-20.json",
+      "sha256": "d10402b3ec60745e936bd656fd8d66c656d122c4c1e81ecd41717ff86896dc2f",
+      "bytes": 4988
+    },
+    {
+      "path": "browser-final-en-360/en-360-meteor-rank2-before-19.json",
+      "sha256": "d10402b3ec60745e936bd656fd8d66c656d122c4c1e81ecd41717ff86896dc2f",
+      "bytes": 4988
+    },
+    {
+      "path": "browser-final-en-360/en-360-meteor-synthetic-input.json",
+      "sha256": "bd2ccc0fbde4fd0b4ae7b8d7a71a7343d25446b0dc217dc7c28c39961a23930d",
+      "bytes": 4124
+    },
+    {
+      "path": "browser-final-en-360-live.json",
+      "sha256": "7ab0b89e6ea042471693aa55c30c24baca8a1a9a328133a81358d45f50d8c506",
+      "bytes": 137
+    },
+    {
+      "path": "browser-final-en-360-result.json",
+      "sha256": "f5dbc1c9f7092e173f28f1642a2e341679cf0518a832c3f7c94ecf01ea330bd0",
+      "bytes": 183
+    },
+    {
+      "path": "browser-final-en-360.log",
+      "sha256": "d11bc8833b60326b5522da1a155905b390bf7b76cb418902a2e88df73971dc22",
+      "bytes": 105
+    },
+    {
+      "path": "browser-final-groups-result.json",
+      "sha256": "6607f00b105fd8868e8c99a4c6563fc744b030e35f0fceb99c1028c9f926934d",
+      "bytes": 466
+    },
+    {
+      "path": "browser-final-groups.py",
+      "sha256": "94d1ec85c85d77124e208a04492fb58f15d9d0f6e98136abe9670c6674b8901c",
+      "bytes": 1006
+    },
+    {
+      "path": "browser-final-supervisor-live.json",
+      "sha256": "0ff32fad9c927bd607d878789c1201131e169bba81e9a6cce5ecf9d73deb79e7",
+      "bytes": 54
+    },
+    {
+      "path": "browser-final-zh-CN-1280/browser-report.json",
+      "sha256": "2fa8403843074be46cae503c223d6aceda9c2c976f98a7b858e995b3ee12678b",
+      "bytes": 5312
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-ball-cast-visible.png",
+      "sha256": "5af818eb6af84f899408c52953159228bc0124251a3f14bf7e7cef5cdbc58903",
+      "bytes": 250750
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-ball-combat.json",
+      "sha256": "7e7049b72dc46c577890de335bd080572ddd65fa0effe19cb8e130f339f4c239",
+      "bytes": 1249
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-ball-current-next.png",
+      "sha256": "ce87bbd869483715d5fa4259b1408323032c76ce854d5b2e25e5e48411368f42",
+      "bytes": 148064
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-ball-details.png",
+      "sha256": "e63b89b505af09fb8f1a27971d9968fe1683099e8800fe43bee34bed08e67ad6",
+      "bytes": 149329
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-ball-fresh-8.json",
+      "sha256": "ee1f5f4dbb693b291c5242429c1f4f4cf1238cae49e906e9f03c605c9343a3cc",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-ball-imported-9.json",
+      "sha256": "6b4d5c1a4868a45e6cba5bf0222b76c3675d1f1aae07fa8b8f2dded253e5cb8c",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-ball-offline-continued-14.json",
+      "sha256": "56526d328671b1ccb7acacc56d3bbf9895218848aab1718f9bd9bd1d09f32244",
+      "bytes": 4875
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-ball-rank1-after-11.json",
+      "sha256": "e01b4b8da06c9b60768d73f50d926fe5adf9ba4c07bbe61a14171ba62528d4fd",
+      "bytes": 4825
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-ball-rank1-before-10.json",
+      "sha256": "5c5e2c52c3bfb71c50b36f13cdfe737482ebcf55c5e385c9b98347ce401affbe",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-ball-rank2-after-13.json",
+      "sha256": "56526d328671b1ccb7acacc56d3bbf9895218848aab1718f9bd9bd1d09f32244",
+      "bytes": 4875
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-ball-rank2-before-12.json",
+      "sha256": "56526d328671b1ccb7acacc56d3bbf9895218848aab1718f9bd9bd1d09f32244",
+      "bytes": 4875
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-ball-synthetic-input.json",
+      "sha256": "96cdd8fc88b343afc392735848c287f3af23986b1336376e1a5a763f3de0d82b",
+      "bytes": 4008
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-bolt-cast-visible.png",
+      "sha256": "d4253ec5e38d4265a0e0a43d65bef76be8b774126048fc86f95279e308b7da3c",
+      "bytes": 222677
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-bolt-combat.json",
+      "sha256": "72ba48b1ea98db48d48ca34fcb60784eb1c13135d451b14e56e00bb82f54daa9",
+      "bytes": 1487
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-bolt-current-next.png",
+      "sha256": "dcd16aa8f6c60ba20a0e3911c092c0526e11aab437d99d0eae347481c8b16058",
+      "bytes": 147288
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-bolt-details.png",
+      "sha256": "a0cdebc8cb63b708da22862bc104d5f3e64dcf7bbce2e76dc9762a81341ab1df",
+      "bytes": 148458
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-bolt-fresh-1.json",
+      "sha256": "3921abbfb0708a5e9df97d0adae31a4234bfdd3a09ae56266de67389b2a7f852",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-bolt-imported-2.json",
+      "sha256": "e56f9e3b322066ac688732a4f64b8215734341e8fc063db8f9cea5943349b31c",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-bolt-offline-continued-7.json",
+      "sha256": "f520346ac2d715388876785144209c67bca167c6a335d743918d0997485f1b09",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-bolt-rank1-after-4.json",
+      "sha256": "507eff24df452e15e237ee23827104916b94a4821bf1c3dae613b7c4afcf06a6",
+      "bytes": 4793
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-bolt-rank1-before-3.json",
+      "sha256": "bf0b64a26860d806c709b0217ad126e21f666db84e2fc9cf24fc7c516f1ab5c7",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-bolt-rank2-after-6.json",
+      "sha256": "f520346ac2d715388876785144209c67bca167c6a335d743918d0997485f1b09",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-bolt-rank2-before-5.json",
+      "sha256": "f520346ac2d715388876785144209c67bca167c6a335d743918d0997485f1b09",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-fire-bolt-synthetic-input.json",
+      "sha256": "87b2b74829efa37d635c106ba27cfaad4026e57ef615d9d490415f66f6ff1024",
+      "bytes": 3976
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-meteor-cast-visible.png",
+      "sha256": "a6d271b255287561dd32e150e8e3c0f0b09c38f91168a91c95d6e5a0a29effda",
+      "bytes": 194485
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-meteor-combat.json",
+      "sha256": "60faf009c9a9b3dd4d3b65005b24bb1ea624a0f920a873d6f26d41cda2033322",
+      "bytes": 3046
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-meteor-current-next.png",
+      "sha256": "ea653930d75d7bff2faed4f77ea3090a8129fbb16e821bfc752024809c6d36e3",
+      "bytes": 171689
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-meteor-details.png",
+      "sha256": "d110deef4cae32016e7e2d23f7bafbee8bbd5608feccecdfa48f986e9903d858",
+      "bytes": 173021
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-meteor-fresh-15.json",
+      "sha256": "5d3617acc9b1a3d6ce4be818976432a749e304b2b163a7164703e41cdfee49cc",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-meteor-imported-16.json",
+      "sha256": "0029ceee382d651b3368bfdcdeb8126a60bf15549764713c155513e5b7bfcc69",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-meteor-offline-continued-21.json",
+      "sha256": "3aae9419278b1623f6a5b14cb16642c90ed2f10f9e922bcc5fc754de525eaf79",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-meteor-rank1-after-18.json",
+      "sha256": "cd09fff97a08b6c52d557ca56748401adc4bc03378a1d0e0220c801e0f1838f5",
+      "bytes": 4944
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-meteor-rank1-before-17.json",
+      "sha256": "d8d0d52c9f20a7196ab68cb261be5e11ad8f879c08a48de10930232e4d8a2644",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-meteor-rank2-after-20.json",
+      "sha256": "3aae9419278b1623f6a5b14cb16642c90ed2f10f9e922bcc5fc754de525eaf79",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-meteor-rank2-before-19.json",
+      "sha256": "3aae9419278b1623f6a5b14cb16642c90ed2f10f9e922bcc5fc754de525eaf79",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-meteor-synthetic-input.json",
+      "sha256": "2dbc6fc0baa45cf46752ed79198d472b91b1a1ec4541884df0a3b272f359bb61",
+      "bytes": 4127
+    },
+    {
+      "path": "browser-final-zh-CN-1280-live.json",
+      "sha256": "6ceddd1e9fe2e298485522d3aa3600b303e790de50049a3eb25b7ab2839c3408",
+      "bytes": 137
+    },
+    {
+      "path": "browser-final-zh-CN-1280-result.json",
+      "sha256": "df9060fa99ccea73f6dc9c24fce161082380f759ab3dcd079b39c54496637829",
+      "bytes": 182
+    },
+    {
+      "path": "browser-final-zh-CN-1280.log",
+      "sha256": "9275a7197d1012de5abfe511d6f7f4065989aed6eddb8188f4bd0c190bd8d085",
+      "bytes": 117
+    },
+    {
+      "path": "browser-final-zh-CN-360/browser-report.json",
+      "sha256": "9dfe1f8db4fa71a67a6095b2adf4cf13a018618d770fea9baca91d860866b7bb",
+      "bytes": 5294
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-ball-cast-visible.png",
+      "sha256": "70a5a024ed8aa1a51661cce77c811f7efd2b22ec47cfcd34ad6793041b262c96",
+      "bytes": 62883
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-ball-combat.json",
+      "sha256": "7e7049b72dc46c577890de335bd080572ddd65fa0effe19cb8e130f339f4c239",
+      "bytes": 1249
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-ball-current-next.png",
+      "sha256": "81894a2e2b045264166ba8e8eda3fbbbc5fda79a4cafd2825ca33faef70dcfa2",
+      "bytes": 66058
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-ball-details.png",
+      "sha256": "b5bf0abed28d7fc5ed98705adb5dfe53ea5f2fa63366e50a8392cee437b0c2f1",
+      "bytes": 67583
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-ball-fresh-8.json",
+      "sha256": "f744ca4d87e5bd615930176b155b7722fa7fbb05e25f27c37cafc55858af640b",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-ball-imported-9.json",
+      "sha256": "6c20b374ef9f01b8636c6613f80de7c65ce2fd3707899aede65deff73c0cbb84",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-ball-offline-continued-14.json",
+      "sha256": "a10829a0a8c074357fd57a4e5c8d856bafae6e39da59f3acecb4115ea7729540",
+      "bytes": 4875
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-ball-rank1-after-11.json",
+      "sha256": "65a9fefe87bcf4b725d141b63c05896c34770f18b82737e6635becfe9956f1e0",
+      "bytes": 4825
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-ball-rank1-before-10.json",
+      "sha256": "055ffba34415e38c8ad566031fb380510937cdc48f020aa5e0af6b546b11b3d2",
+      "bytes": 4822
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-ball-rank2-after-13.json",
+      "sha256": "a10829a0a8c074357fd57a4e5c8d856bafae6e39da59f3acecb4115ea7729540",
+      "bytes": 4875
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-ball-rank2-before-12.json",
+      "sha256": "a10829a0a8c074357fd57a4e5c8d856bafae6e39da59f3acecb4115ea7729540",
+      "bytes": 4875
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-ball-synthetic-input.json",
+      "sha256": "9dac451fe5a3a2839ddb335f6bd1f7fb8992a60d3ef2bd64f7c08f816086b2dc",
+      "bytes": 4008
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-bolt-cast-visible.png",
+      "sha256": "00775791afa2af7baad6b2833088bc5be10cddbacca19813444ae0fa5b87a23a",
+      "bytes": 62275
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-bolt-combat.json",
+      "sha256": "5b410489251142d256ec48696a545ac35afcf86181b614fac6b2ac0f92e445be",
+      "bytes": 1245
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-bolt-current-next.png",
+      "sha256": "c6476175766310e8dd17a1ed50941a5ee46776b9477f66d74eca00b1c2229a89",
+      "bytes": 64636
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-bolt-details.png",
+      "sha256": "684d983003ad5d6b20b05e07406e858f2fde84b05b547b16260e9cba0e701445",
+      "bytes": 66118
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-bolt-fresh-1.json",
+      "sha256": "77ef4d46e85935bc99d80d0f0639b095df4aebf8a548a0df820dbcebdaaae7ab",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-bolt-imported-2.json",
+      "sha256": "5778117f91711ba4dc81da9ad240bb8441729423a7cf135ae20a9d97465ad8cb",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-bolt-offline-continued-7.json",
+      "sha256": "698ddc177e1183f72ae924ed945111320c18b07c0e20a44c66dca9acbdf84e10",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-bolt-rank1-after-4.json",
+      "sha256": "8aa3b0a6a2c01551a8fa3a0d3070a8c14e065ff66fc3c683421a828f388e928f",
+      "bytes": 4793
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-bolt-rank1-before-3.json",
+      "sha256": "d844b2aac5f370e68c3b2ee449a56d95e0a07f430721bb11e167ffb0c6dbfe5a",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-bolt-rank2-after-6.json",
+      "sha256": "698ddc177e1183f72ae924ed945111320c18b07c0e20a44c66dca9acbdf84e10",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-bolt-rank2-before-5.json",
+      "sha256": "698ddc177e1183f72ae924ed945111320c18b07c0e20a44c66dca9acbdf84e10",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-fire-bolt-synthetic-input.json",
+      "sha256": "bb8a0b766c0ec7a3a8bb19d37bdd5bc6f3bedc39c69eba1e0e0244ccbd451f11",
+      "bytes": 3976
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-meteor-cast-visible.png",
+      "sha256": "020e0fa0abf4ac0ac2edb68990e3af63f0dae71ba2f6e5b51b033f2e95627d2d",
+      "bytes": 56157
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-meteor-combat.json",
+      "sha256": "60faf009c9a9b3dd4d3b65005b24bb1ea624a0f920a873d6f26d41cda2033322",
+      "bytes": 3046
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-meteor-current-next.png",
+      "sha256": "16d7d2b0cb16f72efad71e3040305b1e21f5c83db17381af5d35a26729aa0216",
+      "bytes": 74449
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-meteor-details.png",
+      "sha256": "1a80713c7006d500a15b779fb9118aa469bd21fd33b5d37d70db9f3e6b9a3464",
+      "bytes": 75967
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-meteor-fresh-15.json",
+      "sha256": "ea0c46ed3d9e1372a294579d19eb36da4a414f65ff7afe3cfa23ff9dff715841",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-meteor-imported-16.json",
+      "sha256": "151159207c53515fac00f7e111aaddedca512bc6ffbdf60a0198ae52d4e2a700",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-meteor-offline-continued-21.json",
+      "sha256": "ad8f7712384fec8b3e20e7e433abf69ee41a9179ee0f5c618bebb9c96ab08e42",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-meteor-rank1-after-18.json",
+      "sha256": "71bb91a9ab98cc37ed39c917571427eccd018e989877915fc025e5e05bdb62e8",
+      "bytes": 4944
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-meteor-rank1-before-17.json",
+      "sha256": "6540e76bfda7014baf30710c0e0326d220f262e4be67718b863aa369432216a2",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-meteor-rank2-after-20.json",
+      "sha256": "ad8f7712384fec8b3e20e7e433abf69ee41a9179ee0f5c618bebb9c96ab08e42",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-meteor-rank2-before-19.json",
+      "sha256": "ad8f7712384fec8b3e20e7e433abf69ee41a9179ee0f5c618bebb9c96ab08e42",
+      "bytes": 4991
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-meteor-synthetic-input.json",
+      "sha256": "858409c8b8ae3b5d0a6e4c8230b021c7490d9257fc30166e1a36f0c85cbae523",
+      "bytes": 4127
+    },
+    {
+      "path": "browser-final-zh-CN-360-live.json",
+      "sha256": "807191ed75031085f5dd10d934d49c3336ef4e6e8403ac5c6cf08fd9b536efa6",
+      "bytes": 137
+    },
+    {
+      "path": "browser-final-zh-CN-360-result.json",
+      "sha256": "c20f2ce6546f1b4c308b76575cb0be7b45e6e4005a8a0bd043b82de04e73ce6a",
+      "bytes": 181
+    },
+    {
+      "path": "browser-final-zh-CN-360.log",
+      "sha256": "a008fbf535ea66b3f543333df54194e05d0b68b482f471cd5ab85cb10b62614f",
+      "bytes": 114
+    },
+    {
+      "path": "browser-groups-result.json",
+      "sha256": "cfc7e43f38a9b85a073909719d4e212dd72d87c71e2db25a05a4ee04dacde83d",
+      "bytes": 441
+    },
+    {
+      "path": "browser-groups.py",
+      "sha256": "a131734276a12d6e21858b5e39b1296b6164a57f29f60c2fde8d30cc802ea23d",
+      "bytes": 994
+    },
+    {
+      "path": "browser-pilot-failed.cjs",
+      "sha256": "598507b115c751e38cb5d475d65c9a5acbf3e7f258daf24181d9b1122bce83d1",
+      "bytes": 12226
+    },
+    {
+      "path": "browser-pilot-live.json",
+      "sha256": "2cd6fa0bca730b1d0323127a47bd90073869725e7f61c17aeca3db43ce92988f",
+      "bytes": 137
+    },
+    {
+      "path": "browser-pilot-result.json",
+      "sha256": "62daeef2b584dad189ea8a149aa431fd20c2f2d11c003428554bf602aded4b47",
+      "bytes": 182
+    },
+    {
+      "path": "browser-pilot.log",
+      "sha256": "7c4ccfeeef182a176f55f30a99eac01b59d46b527e181656bb98397065dc6f67",
+      "bytes": 418
+    },
+    {
+      "path": "browser-supervisor-live.json",
+      "sha256": "df4d86cd12cd1a54a8c393efd7befeb6a2371230992baf7d7ae7e24a7440864d",
+      "bytes": 48
+    },
+    {
+      "path": "browser-zh-CN-1280/browser-report.json",
+      "sha256": "32f079239089ad06edbf4b0378aca5e990988fe329eb8c4ea42d4fc96d4d6c79",
+      "bytes": 5153
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-ball-cast-visible.png",
+      "sha256": "edf1019012204fb1c93971104759f7df171305f309595b656fbf961267028607",
+      "bytes": 251142
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-ball-combat.json",
+      "sha256": "9df16636663a322fc77e126dbe3c971064faf196259a914e36e70aac726e3c13",
+      "bytes": 1249
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-ball-current-next.png",
+      "sha256": "ce87bbd869483715d5fa4259b1408323032c76ce854d5b2e25e5e48411368f42",
+      "bytes": 148064
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-ball-details.png",
+      "sha256": "80830ac6086424df84451b952baf9d4270955b37f959ca1d149d801bb1956157",
+      "bytes": 148838
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-ball-fresh-8.json",
+      "sha256": "e2ff61098572482cbf83c8a7db9f8b9543058d5f7e2e55edab868668e9ce162c",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-ball-imported-9.json",
+      "sha256": "2e5da4de467f800b6fe58e680e6cb9d1ca625e051335a884d1fad727430fa040",
+      "bytes": 4826
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-ball-offline-continued-14.json",
+      "sha256": "05f60ab83501a56d838e7582b1eafb0a0bbed548d13ecf08d9eecc503a79f50c",
+      "bytes": 4879
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-ball-rank1-after-11.json",
+      "sha256": "6bb02584832a7bc224618e0020c37807b420c420e8f6f937dc6f8017ac710ae1",
+      "bytes": 4829
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-ball-rank1-before-10.json",
+      "sha256": "b1e5aa38356cb21ca8609fa967f1d9a20e0d8c658429f849f48011db0b95673c",
+      "bytes": 4826
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-ball-rank2-after-13.json",
+      "sha256": "05f60ab83501a56d838e7582b1eafb0a0bbed548d13ecf08d9eecc503a79f50c",
+      "bytes": 4879
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-ball-rank2-before-12.json",
+      "sha256": "05f60ab83501a56d838e7582b1eafb0a0bbed548d13ecf08d9eecc503a79f50c",
+      "bytes": 4879
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-ball-synthetic-input.json",
+      "sha256": "8f8d7e5a5b0efda823e7c207f54739aafaa6843dacf740828827aca04d2cd2be",
+      "bytes": 4010
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-bolt-cast-visible.png",
+      "sha256": "207f24dd5e66e655045e62bf52dd60b5a2b122ffda3ae0d7aeaa705c5dcce1ab",
+      "bytes": 250285
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-bolt-combat.json",
+      "sha256": "e373c9b0356a15771bb2ca8f6114757d6e042c8e2848f3f5e68a12083a39771a",
+      "bytes": 1245
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-bolt-current-next.png",
+      "sha256": "dcd16aa8f6c60ba20a0e3911c092c0526e11aab437d99d0eae347481c8b16058",
+      "bytes": 147288
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-bolt-details.png",
+      "sha256": "4e64033e3610b587a5f00065c9629d03c34fe0b6fabd2178759fdd2b3874ce05",
+      "bytes": 148756
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-bolt-fresh-1.json",
+      "sha256": "046977a61ee8700b13817fc36c5726bf51b6d1b43c6ffd1aeec8e9b046665e62",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-bolt-imported-2.json",
+      "sha256": "e581154aa1a93ca8c68c81cb4b7bdb4fc12aea2c9de9315bab971d2ea6f34419",
+      "bytes": 4794
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-bolt-offline-continued-7.json",
+      "sha256": "a042254739a7272dc92e15ff1c117c9d68d27d6c03d9778613a40e5145f754ee",
+      "bytes": 4840
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-bolt-rank1-after-4.json",
+      "sha256": "14e72008a59dbba8c782e8feee844795f58241b741e652c2caea36262a0de620",
+      "bytes": 4797
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-bolt-rank1-before-3.json",
+      "sha256": "5a95bf787d5e51d5a86ea4d27dbf5f5e3db9fc5d7f99d186bb5c8d550bc14fa2",
+      "bytes": 4794
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-bolt-rank2-after-6.json",
+      "sha256": "a042254739a7272dc92e15ff1c117c9d68d27d6c03d9778613a40e5145f754ee",
+      "bytes": 4840
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-bolt-rank2-before-5.json",
+      "sha256": "a042254739a7272dc92e15ff1c117c9d68d27d6c03d9778613a40e5145f754ee",
+      "bytes": 4840
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-fire-bolt-synthetic-input.json",
+      "sha256": "071ef74952f9f40f9426eb0b147ccd007dac479e9e2d7d9c486945ae17c0b0e0",
+      "bytes": 3978
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-meteor-current-next.png",
+      "sha256": "ea653930d75d7bff2faed4f77ea3090a8129fbb16e821bfc752024809c6d36e3",
+      "bytes": 171689
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-meteor-details.png",
+      "sha256": "4512ae12ca2f671b066aad8b1b0170415efadc92d59a3db5710f573a45d50a8b",
+      "bytes": 172909
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-meteor-failed-trace-metadata.zip",
+      "sha256": "21e49d5bc6ee60cb01b71403772e8d8accf8514c71299bb54c040c3c8bbe50c9",
+      "bytes": 198292
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-meteor-failed.png",
+      "sha256": "60bae07aef85650d92419927a66f03161c4062b5a8cb275b60a4e71518803b3f",
+      "bytes": 437469
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-meteor-fresh-15.json",
+      "sha256": "7fe43ff2ab1262522f84519ca757c091e04cb166ab2e65785a0583f482e9247d",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-meteor-imported-16.json",
+      "sha256": "b83226fb9ad11c97f85fcc3afd58278cf2043cd54352eb089592d7ae590b5f11",
+      "bytes": 4945
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-meteor-rank1-after-18.json",
+      "sha256": "9afb534c2e1923dbf7a4c5fcd2574c7b5f7364d7a437e3f2c1349b26d4fd9da3",
+      "bytes": 4948
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-meteor-rank1-before-17.json",
+      "sha256": "cea81674c99a92be8cc567fb7719e4b698a019a83820418ceb921ca188cfc77b",
+      "bytes": 4945
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-meteor-synthetic-input.json",
+      "sha256": "4f5416010e07893293f88a6d2d6171d5617d11f700eb758603cc529a6b62a482",
+      "bytes": 4129
+    },
+    {
+      "path": "browser-zh-CN-1280-live.json",
+      "sha256": "0822d8762eaaabae0cf10d6da497828bf4059cb8066fd97032b9b52ad676eab0",
+      "bytes": 137
+    },
+    {
+      "path": "browser-zh-CN-1280-result.json",
+      "sha256": "382ef791004a3d92607fe74857beeb27a641f9e50699e33d0e25addd239aa3cd",
+      "bytes": 182
+    },
+    {
+      "path": "browser-zh-CN-1280.log",
+      "sha256": "e7b0d5c5f67c4c7fc9150ad2f25bce5e782f7f66f0037e6b8109fe5873cad9bd",
+      "bytes": 533
+    },
+    {
+      "path": "browser-zh-CN-360/browser-report.json",
+      "sha256": "fd031b51436618fb599dc8b38fe6a2b540e1bfefb0a4087683620e8ad3fb743f",
+      "bytes": 5134
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-ball-cast-visible.png",
+      "sha256": "032a77669d56f305075da250145032e3f9306176969c589d69ed225120080b3d",
+      "bytes": 62880
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-ball-combat.json",
+      "sha256": "9df16636663a322fc77e126dbe3c971064faf196259a914e36e70aac726e3c13",
+      "bytes": 1249
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-ball-current-next.png",
+      "sha256": "81894a2e2b045264166ba8e8eda3fbbbc5fda79a4cafd2825ca33faef70dcfa2",
+      "bytes": 66058
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-ball-details.png",
+      "sha256": "8a3c70e0329f4b6df2d62db8faa270abc1eedeee2d0f8959650a9e8802b01152",
+      "bytes": 67531
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-ball-fresh-8.json",
+      "sha256": "f120cdf202cb310d2a3dd68a2d2355aeca3fadb7b9567692aaae0b5f4207414c",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-ball-imported-9.json",
+      "sha256": "5e3e22b52f68ec0777eea295b0d2025b94d87b932173b3acf78d0ddde05bc50d",
+      "bytes": 4826
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-ball-offline-continued-14.json",
+      "sha256": "90352f005d5e4250744e9631495c7d4df862184e53a6a380aa8156f2e580ed87",
+      "bytes": 4879
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-ball-rank1-after-11.json",
+      "sha256": "dc4c582b1840a837d2a8107c6f5d04d13727a13cf4604d42ef920c40c67b95a5",
+      "bytes": 4829
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-ball-rank1-before-10.json",
+      "sha256": "8658eecdb2ab2beda98e60337b14a322cd55b4d90d55e352bc3ae291c5bae387",
+      "bytes": 4826
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-ball-rank2-after-13.json",
+      "sha256": "90352f005d5e4250744e9631495c7d4df862184e53a6a380aa8156f2e580ed87",
+      "bytes": 4879
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-ball-rank2-before-12.json",
+      "sha256": "90352f005d5e4250744e9631495c7d4df862184e53a6a380aa8156f2e580ed87",
+      "bytes": 4879
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-ball-synthetic-input.json",
+      "sha256": "2fcc2044c58a223534219344c3176e8125131dd892c246b5d9a1c6013e83be3f",
+      "bytes": 4010
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-bolt-cast-visible.png",
+      "sha256": "2007e0c135a186898d9fca31f0456064cd90338a6beb3bf2e1ffd82202c02b87",
+      "bytes": 62275
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-bolt-combat.json",
+      "sha256": "e373c9b0356a15771bb2ca8f6114757d6e042c8e2848f3f5e68a12083a39771a",
+      "bytes": 1245
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-bolt-current-next.png",
+      "sha256": "c6476175766310e8dd17a1ed50941a5ee46776b9477f66d74eca00b1c2229a89",
+      "bytes": 64636
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-bolt-details.png",
+      "sha256": "684d983003ad5d6b20b05e07406e858f2fde84b05b547b16260e9cba0e701445",
+      "bytes": 66118
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-bolt-fresh-1.json",
+      "sha256": "2980a6dd67937212681669e8536567d19cdabea001fa9137db051ff4fed535c5",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-bolt-imported-2.json",
+      "sha256": "766e1c621dac6026d540f7ab698172d2d393e6b7b1618c07dac55028087de966",
+      "bytes": 4794
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-bolt-offline-continued-7.json",
+      "sha256": "caeaf792d8d8b51c0da12703d88e590b114c80df564e6f0f7eaf5a0c3390350a",
+      "bytes": 4840
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-bolt-rank1-after-4.json",
+      "sha256": "da857f943eb0b87dea5af1591d911a4693706dfd695ab8e67b6c3a560e25f31c",
+      "bytes": 4797
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-bolt-rank1-before-3.json",
+      "sha256": "9fd15f03c37d67b2e20dff2dcc9a5aab8a479e549ab42842b253069b08952995",
+      "bytes": 4794
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-bolt-rank2-after-6.json",
+      "sha256": "caeaf792d8d8b51c0da12703d88e590b114c80df564e6f0f7eaf5a0c3390350a",
+      "bytes": 4840
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-bolt-rank2-before-5.json",
+      "sha256": "caeaf792d8d8b51c0da12703d88e590b114c80df564e6f0f7eaf5a0c3390350a",
+      "bytes": 4840
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-fire-bolt-synthetic-input.json",
+      "sha256": "2e79839b1b1f2e4a45274f8a3952f6791fef8bc3f2f8686d860a3fc0444057dd",
+      "bytes": 3978
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-meteor-current-next.png",
+      "sha256": "16d7d2b0cb16f72efad71e3040305b1e21f5c83db17381af5d35a26729aa0216",
+      "bytes": 74449
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-meteor-details.png",
+      "sha256": "c3de54668122ca8dc50b350f9f8bb42782470f5e49e5ce60c69a340da0d5319c",
+      "bytes": 75956
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-meteor-failed-trace-metadata.zip",
+      "sha256": "080e7a3fd3868fb17625fbc234ae87e192d3d2c8516a62ea08885c6509172242",
+      "bytes": 201063
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-meteor-failed.png",
+      "sha256": "00826c1d3fd3f634c4ab0cdea3b891ed7258af9a70dfd9e82b38688fef41aed7",
+      "bytes": 37604
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-meteor-fresh-15.json",
+      "sha256": "ffaee7b4fe5859d46f9d308347a7a6eaf2d66c12973954d84abff818a17f6203",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-meteor-imported-16.json",
+      "sha256": "6ec0f081dada59ed734ab884a655cce8037c0f2860201a0467a15c924d45db60",
+      "bytes": 4945
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-meteor-rank1-after-18.json",
+      "sha256": "55e36cc09e4198d35f31eb4884278ffd922b6ca43b1562bcb4ad2c4363b13eb8",
+      "bytes": 4948
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-meteor-rank1-before-17.json",
+      "sha256": "af0c5e41789fb1d9735419ed7cc799f491e39cbbd4a7552f92cc26152e6880f9",
+      "bytes": 4945
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-meteor-synthetic-input.json",
+      "sha256": "88696a2fd8b24aa6b5eb54bf2a7094b455d9ead8a3a672bfac3834c457c66ae9",
+      "bytes": 4129
+    },
+    {
+      "path": "browser-zh-CN-360-live.json",
+      "sha256": "8087f115c2d1004c9dad99cd60e2f750ce739c7ace1650ee27de21fb28667c57",
+      "bytes": 137
+    },
+    {
+      "path": "browser-zh-CN-360-result.json",
+      "sha256": "1f50e8466c1297cef136dd2dfc02cbb4074e84cc0592ba45177589d95e684121",
+      "bytes": 182
+    },
+    {
+      "path": "browser-zh-CN-360.log",
+      "sha256": "bd59cc20721a1003548d386308d0d2940988901456de9e4b50abc3d52dc12857",
+      "bytes": 531
+    },
+    {
+      "path": "browser.cjs",
+      "sha256": "68d70d6da11b422b0df4c1ea9249d16f5c8821410b91b35a0d32356c1ef10102",
+      "bytes": 12433
+    },
+    {
+      "path": "build-delivery-live.json",
+      "sha256": "2cc9018e9a9de249712e077e9699c9a9d51339d2e48e82064803a0520bea0536",
+      "bytes": 176
+    },
+    {
+      "path": "build-delivery-result.json",
+      "sha256": "7f49d93a83bc13c7360ca4cd720af7a42bad4e25befb57c901b8f797923c81fd",
+      "bytes": 222
+    },
+    {
+      "path": "build-delivery.log",
+      "sha256": "b6a7968f6c605a8c44217a65481580578a353240cd6c1cf20d347365f8e845d0",
+      "bytes": 2148
+    },
+    {
+      "path": "build-final-live.json",
+      "sha256": "75a466e4a3fe737533f81f0fe0c571e9aca04db9a784634be2071ece7e9142d9",
+      "bytes": 176
+    },
+    {
+      "path": "build-final-result.json",
+      "sha256": "45978e732a34161695d8b6da771afbe4e2ff501f2a4d09b0ab31e3e5303e19ab",
+      "bytes": 222
+    },
+    {
+      "path": "build-final.log",
+      "sha256": "18c32df1b96f519f0980e1ffdf87ce1121e00c8e25d7bbfb571747d3cb77c3b1",
+      "bytes": 2148
+    },
+    {
+      "path": "build-live.json",
+      "sha256": "5caf8002f3919140c683e3aee0fde3bf48bfe2bb8038f1f04e491f316189bda9",
+      "bytes": 176
+    },
+    {
+      "path": "build-result.json",
+      "sha256": "1c78e3dde00fe446b07f572cdb1c4aa22c44baba7bb1afe02738d6422e175e3d",
+      "bytes": 222
+    },
+    {
+      "path": "build.log",
+      "sha256": "f9132d4f6e07c0af8ad8ab43d21bb2712839b628460f27d867ea85da7be81180",
+      "bytes": 2149
+    },
+    {
+      "path": "causal-authority-fixed-live.json",
+      "sha256": "ea4955e51048a0fc2131b88a017cc8096e6b755ea2fa3143d861461d86d31f5a",
+      "bytes": 123
+    },
+    {
+      "path": "causal-authority-fixed-result.json",
+      "sha256": "44352d5c463905b3957d9998e796469b76b00b8d9d8c7047a599139f83d6936a",
+      "bytes": 169
+    },
+    {
+      "path": "causal-authority-fixed.log",
+      "sha256": "7350d8adde8b633c1c382cef17be56ff5e548c66421aa762819f718505a9ac4e",
+      "bytes": 362
+    },
+    {
+      "path": "causal-authority-live.json",
+      "sha256": "2743c1cafb498971790e922c05d1c8fa5f8f3d9bb47724191d503469985dac91",
+      "bytes": 123
+    },
+    {
+      "path": "causal-authority-result.json",
+      "sha256": "21156633de79d241f8bec58f9522e5df3620c99e1f84377a828705d5ef963334",
+      "bytes": 168
+    },
+    {
+      "path": "causal-authority.log",
+      "sha256": "beaf4097e329c77240a8ff62fcfabc9e64c3eecb52692315c59e394fdd3660e3",
+      "bytes": 1565
+    },
+    {
+      "path": "causal-final-live.json",
+      "sha256": "3dfb1ab3368d36de472b6c477d4c13a6d40b3ac483a3986e0f06c4bf9bf311e7",
+      "bytes": 174
+    },
+    {
+      "path": "causal-final-result.json",
+      "sha256": "ea6be00828ac42d36e0edb48208b748674f990e8ed72c000c577d2a978d69b72",
+      "bytes": 220
+    },
+    {
+      "path": "causal-final.log",
+      "sha256": "10631dd81ba9b2c7262dc7873b55fdb6103d8e16b67ab2107fe73b6edc7de748",
+      "bytes": 438
+    },
+    {
+      "path": "causal-matrix-fixed-live.json",
+      "sha256": "5e8b40064bc86da5636db6c070f16fa81f9feea87a49f4746423382d4246a62a",
+      "bytes": 123
+    },
+    {
+      "path": "causal-matrix-fixed-result.json",
+      "sha256": "05f1d38235b4fb2cbd99cb9ca599db0e0f255d82300c47f5bc69ceeafed6e351",
+      "bytes": 168
+    },
+    {
+      "path": "causal-matrix-fixed.log",
+      "sha256": "50e1961877323472361d861bfc642e8631b983788ae1d934149089af31e8e995",
+      "bytes": 362
+    },
+    {
+      "path": "causal-matrix-live.json",
+      "sha256": "f7e8fb896734475ca99b652010329805e8249f28d7dece22be0675fdbb0cbba2",
+      "bytes": 123
+    },
+    {
+      "path": "causal-matrix-result.json",
+      "sha256": "62a7d883412b9c1e832b7410ff589635e88623c71a6d1505d28b31ce55e0068d",
+      "bytes": 167
+    },
+    {
+      "path": "causal-matrix.log",
+      "sha256": "ecb54084db7f8815171ef7a3869bfb00304757378dad43767a6e488c32c557d7",
+      "bytes": 1462
+    },
+    {
+      "path": "causal-periodic-live.json",
+      "sha256": "bf95f9f2b3eb5d90b403d0123b5a0e90daff7022b5ee72048d6d7fcd39188189",
+      "bytes": 123
+    },
+    {
+      "path": "causal-periodic-result.json",
+      "sha256": "fb2f7209d154fddbf15621ef40c2e9fe1b6ad4ce79f9305914fa6f3390446bed",
+      "bytes": 169
+    },
+    {
+      "path": "causal-periodic.log",
+      "sha256": "61b2b7e222368f97d62bb5069c04d0e04ed1b524bbf852d4b425483a83af6d0a",
+      "bytes": 2072
+    },
+    {
+      "path": "causal-typed-final-live.json",
+      "sha256": "5fbdfe63d47dbc1da1e51b2fe590dc622679296cad8ff51a8324464ce2acbaa6",
+      "bytes": 123
+    },
+    {
+      "path": "causal-typed-final-result.json",
+      "sha256": "4d1856e2851559bfccec0da16f9381cdffe2d01498aedabade29250c00122a06",
+      "bytes": 169
+    },
+    {
+      "path": "causal-typed-final.log",
+      "sha256": "a9992af80073da71cb97b81d99d7ef85152f8ed2b559f546d6326f98594818ed",
+      "bytes": 363
+    },
+    {
+      "path": "changed-lint-delivery-live.json",
+      "sha256": "8964c2b62ee292734291045d492715b4bfdcfd113536d781c9c68ef6932ffc6c",
+      "bytes": 364
+    },
+    {
+      "path": "changed-lint-delivery-result.json",
+      "sha256": "d3e59c2421619d900fb06d807d8876f1248a76857ce6c1be23fa201cc25421ee",
+      "bytes": 410
+    },
+    {
+      "path": "changed-lint-delivery.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "changed-lint-final-live.json",
+      "sha256": "68b33c5d41750c6edb5fc1bb81f869959299977d3ac37b7793b6521787b2b689",
+      "bytes": 364
+    },
+    {
+      "path": "changed-lint-final-result.json",
+      "sha256": "e8314b8f6efca38c6e93bad2ea681ddb51fbc0ae98238309e4bdc3adf110ebb2",
+      "bytes": 410
+    },
+    {
+      "path": "changed-lint-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "cleanup.py",
+      "sha256": "ec4ab5911cb11bc6d2ef2be1089a490f407889a7bed43c13bde4742310b2ac91",
+      "bytes": 3870
+    },
+    {
+      "path": "compact-traces.py",
+      "sha256": "44ed987fd6e1ff83c731bbb995040a9e16294b122432069ddd31552be9a83078",
+      "bytes": 2289
+    },
+    {
+      "path": "credit.py",
+      "sha256": "c40c0fa51b1ad94f8ee542bd9120aae6167f5afb4de1b335b0a4ef4ab9d4060f",
+      "bytes": 2728
+    },
+    {
+      "path": "engine-final-live.json",
+      "sha256": "651dcfb495ff8750eab13568d163830b203d1eaf12c2b7ec8cbbdbcc10187d14",
+      "bytes": 58
+    },
+    {
+      "path": "engine-final-result.json",
+      "sha256": "121ebed488253ed2db9eb18b361d9bc1601b4706cf9caad98271f33a96b79984",
+      "bytes": 104
+    },
+    {
+      "path": "engine-final.log",
+      "sha256": "7c7f023ebc88010ce60a1fe8494ec70580fbcc65cb0ec86724f45d62c7ef5cd2",
+      "bytes": 68574
+    },
+    {
+      "path": "engine-live.json",
+      "sha256": "54fcfac4f5fc67727a9ce95979714465e8023c417f2cf23eee98201b57e62327",
+      "bytes": 58
+    },
+    {
+      "path": "engine-result.json",
+      "sha256": "ebc7f5b7ec2154f817969f56e7d4f1011acac7f86dd06cbf640459f490137422",
+      "bytes": 104
+    },
+    {
+      "path": "engine-tests-before-legacy-fix.ts",
+      "sha256": "f80e3688b87900ead612806a335957f3fa840ecf614744934c9c91e0f1939f3f",
+      "bytes": 3638
+    },
+    {
+      "path": "engine.log",
+      "sha256": "46b61d0ff9b42502f8b1cc8d068eecfdaa1e2cf2b9d3f56c3ba08b4c72047756",
+      "bytes": 70433
+    },
+    {
+      "path": "freeze-audit.json",
+      "sha256": "006225e1bd504bd05d3138dc3aa158f64ebdd55b5770dba2b3f54bca98046491",
+      "bytes": 116
+    },
+    {
+      "path": "freeze.py",
+      "sha256": "5d9e156198f2c33ec4fc21f5f278f250d03cd8161155d9f8ae8eb4e180d90ace",
+      "bytes": 1366
+    },
+    {
+      "path": "frozen-before-label-fix.json",
+      "sha256": "870bc989769f2ca1fbc120b19e90fa1f69062556bc611ee707721ec4397b21bd",
+      "bytes": 268146
+    },
+    {
+      "path": "frozen-before-legacy-fix.json",
+      "sha256": "8ce6751e08243230223378a375fb7768df83c779f64787749b36eab7e7eb0835",
+      "bytes": 268146
+    },
+    {
+      "path": "frozen-before-shared-prose-test-fix.json",
+      "sha256": "a34df45a69c1b1c48ce614364017ed8de276d3c4200a57ac48efb2111513852a",
+      "bytes": 268146
+    },
+    {
+      "path": "frozen.json",
+      "sha256": "b14ca59ece656d8789e29b6b71206b067d21f297f77a6a064b84108d46217a5a",
+      "bytes": 268146
+    },
+    {
+      "path": "full-before-prose-expectation-live.json",
+      "sha256": "49532f22a3bf5ea2e9b1898fd4a84b081c71638b11a74fc8ce7d57183a5f84ba",
+      "bytes": 44
+    },
+    {
+      "path": "full-before-prose-expectation-result.json",
+      "sha256": "28730625bd8a029e7a00e8cdf5ad5b338f24470b3f3c0cd2cf55a6058e402915",
+      "bytes": 92
+    },
+    {
+      "path": "full-before-prose-expectation.log",
+      "sha256": "68d0d243ad9dbf26ac6b0c973823bdbb08614d1b0530a8ffb8cec9e8c2ae2ac1",
+      "bytes": 111115
+    },
+    {
+      "path": "full-prose-expectation-interruption.json",
+      "sha256": "f949e266dcb881e30b55874183256e193ef3725083c3df64064bcda6dc774544",
+      "bytes": 439
+    },
+    {
+      "path": "full-quiet-live.json",
+      "sha256": "04ad688e75c9b2488e731c8602df57d0812ae3a22f7d517a2867078dc776be2b",
+      "bytes": 44
+    },
+    {
+      "path": "full-quiet-result.json",
+      "sha256": "63cc634febbcb0db8018675e467803575ee44dafe5b34cc675b08f7c90dbfe0d",
+      "bytes": 89
+    },
+    {
+      "path": "full-quiet.log",
+      "sha256": "7c2f756c0c98e64a94d6ccb5fab511b851926b14bf13592d56ecbb6d621811e4",
+      "bytes": 162324
+    },
+    {
+      "path": "initial.json",
+      "sha256": "803f2b35d108b0bcdd6d2201c91e150a5964a927436d08dc0ff673080dbe0051",
+      "bytes": 75013
+    },
+    {
+      "path": "inventory-audit.json",
+      "sha256": "2d80de2338cdd387c108124acc1b9554c72a96f131fd85fdb2a0c69e4c88f904",
+      "bytes": 359
+    },
+    {
+      "path": "legacy-corrected-live.json",
+      "sha256": "d1c703ca8130b7f88fbe6e5cf686b8bdc438cb0ac3e4b12ef0e27af734b0969f",
+      "bytes": 251
+    },
+    {
+      "path": "legacy-corrected-result.json",
+      "sha256": "3dd6589a60ba93dcfa25b4ff4327fedffe7e252fb4728b2bf2998f441cc3ee7f",
+      "bytes": 296
+    },
+    {
+      "path": "legacy-corrected.log",
+      "sha256": "706101918113db7602c80aa9609f49c529e898cd3e3dd77208439daa0ecdf915",
+      "bytes": 556
+    },
+    {
+      "path": "lint-live.json",
+      "sha256": "e1838b815e090e4266d33688e7b7c0149e68e0f14353fa511fdc56994a722f38",
+      "bytes": 51
+    },
+    {
+      "path": "lint-result.json",
+      "sha256": "2f2893a65df5a0b7eddd64da1a9a40b2e5c3070a23aa0513af5eca3cccccb8a6",
+      "bytes": 97
+    },
+    {
+      "path": "lint-verified-live.json",
+      "sha256": "0d72659be3f9222a71ade49cedaa59ac9be7210c76c63823d0a3c9612b218f2f",
+      "bytes": 401
+    },
+    {
+      "path": "lint-verified-result.json",
+      "sha256": "1053d1a8f66343f2d7a38389731dc1d0ca6107a1acc5efe07a50493efa4c2d17",
+      "bytes": 447
+    },
+    {
+      "path": "lint-verified.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "lint.log",
+      "sha256": "400649e33bb88e3865953a35f7aad4054411dfbf1477662656bd07be2abe3b38",
+      "bytes": 197
+    },
+    {
+      "path": "loader-final-live.json",
+      "sha256": "6611751835b99e59c8fdcf9cd6426553a596420bea116b149bca610f4d695ec2",
+      "bytes": 99
+    },
+    {
+      "path": "loader-final-result.json",
+      "sha256": "ba531db9b7e35397760a6105bd273e7a260da3c57a61458f9fe0b2f743052e69",
+      "bytes": 144
+    },
+    {
+      "path": "loader-final.log",
+      "sha256": "807c4aad78cf8107334568145ad996eeb0f7fcd6a81c5947ea1b2c3f97da3728",
+      "bytes": 2700
+    },
+    {
+      "path": "loader-live.json",
+      "sha256": "afa9b8be68c85c2a54ee1e5a7f7d6acee0564991e784bb8b76800471e75119f7",
+      "bytes": 107
+    },
+    {
+      "path": "loader-result.json",
+      "sha256": "8212186f25c13c135f644ad38e66bf8833f9c8fc50306fad024361ae658444e0",
+      "bytes": 152
+    },
+    {
+      "path": "loader.log",
+      "sha256": "49d07747841d233fc67857ba51694faaa694923ad96fd49217c9600c353a50a5",
+      "bytes": 362
+    },
+    {
+      "path": "melt-label-green-live.json",
+      "sha256": "b2b42945f1f3d050164919e42785b9ec77ebde2a6f4633bcb964034a6290cf83",
+      "bytes": 176
+    },
+    {
+      "path": "melt-label-green-result.json",
+      "sha256": "fadbb015da182dbc7db99071e3ff3e13e6bf4aa93d29aee6c37a757fa0d05b4d",
+      "bytes": 221
+    },
+    {
+      "path": "melt-label-green.log",
+      "sha256": "d0b4702f46e2e90de25669c46348a5514bf93b531612ae0c3296949c75e87c51",
+      "bytes": 443
+    },
+    {
+      "path": "melt-label-red-live.json",
+      "sha256": "2de10a3429c49652fe77e72934b28e25a815ed2472faad1f34e83625178e85c8",
+      "bytes": 109
+    },
+    {
+      "path": "melt-label-red-result.json",
+      "sha256": "0ac583881e730c33427d1b5bb36a66579faa385b0bae7c13ee7d497fff7a122d",
+      "bytes": 154
+    },
+    {
+      "path": "melt-label-red.log",
+      "sha256": "01b61f6e9b7b8d6bb6942e8ff865e8d69d8dc6eaece8c62846fdb9190a3d3ff9",
+      "bytes": 1930
+    },
+    {
+      "path": "native-live.json",
+      "sha256": "2dceb211a2a959f6140f878b093661e4a8f65793cf24195760c1371c933213b1",
+      "bytes": 123
+    },
+    {
+      "path": "native-result.json",
+      "sha256": "99eb0dbcc067f59915c5b11f3e8d976d1a1d016404a0da4e56305ca57c008f02",
+      "bytes": 168
+    },
+    {
+      "path": "native.log",
+      "sha256": "c30c7e5f5d655655084d21af0090de521e7b1c147de0475b2aa13ef0b6f3e4e3",
+      "bytes": 358
+    },
+    {
+      "path": "pilot-en-360/browser-report.json",
+      "sha256": "510cf528dae7b34cc875577ad68add065ff32914b9249e4dde8a7ba07f4f67e7",
+      "bytes": 1882
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-cast-visible.png",
+      "sha256": "c2d5a4ff17e239b282c218ae45d72b58499f89824f69b7c554cb929f19670e3f",
+      "bytes": 51750
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-combat.json",
+      "sha256": "84a312f5513e542a9295220f2edbc1529e822410ec2a05b002c1e4fa7e217d21",
+      "bytes": 1153
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-current-next.png",
+      "sha256": "09740f4d916ce46ad6eff33bacde703d92170d428fc00477be41a341eaf602c7",
+      "bytes": 53177
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-details.png",
+      "sha256": "017c8b369ccd65c226bd121afe726d188cf69901e9c63570dfb38c4dae0c03af",
+      "bytes": 54372
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-failed-trace-metadata.zip",
+      "sha256": "839afe97f6be38a2b8834146c21196f6ce61d122071687925b3e26827744ba32",
+      "bytes": 218088
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-failed.png",
+      "sha256": "855e96ec2c323d0531f0f0441e9b71381c329f7736594e8dffa0bcafd647ffc3",
+      "bytes": 35460
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-fresh-1.json",
+      "sha256": "2947a3b881f107bc20d21609986606bde49aaa552f01b45f7cb56fd95c0603fc",
+      "bytes": 3244
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-imported-2.json",
+      "sha256": "274310f80c4485d22ae8cd802089a9cdbb1622bdc76a9f7cf74eefd2d52f2040",
+      "bytes": 4791
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-rank1-after-4.json",
+      "sha256": "e1562481f310f09e9fbe4fd8838b28c51cd1729ab4ab35161649982699bf13d9",
+      "bytes": 4794
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-rank1-before-3.json",
+      "sha256": "9b2a56a7484d3c4be587fb954f8ee8c9db8cfd3d21e3fa3fc2f01d5727cc8ae8",
+      "bytes": 4791
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-rank2-after-6.json",
+      "sha256": "384ec9fcd8b4fc845fd431a8a8a631d99c14dc77f27d4dbc3296f676d536715b",
+      "bytes": 4837
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-rank2-before-5.json",
+      "sha256": "384ec9fcd8b4fc845fd431a8a8a631d99c14dc77f27d4dbc3296f676d536715b",
+      "bytes": 4837
+    },
+    {
+      "path": "pilot-en-360/en-360-fire-bolt-synthetic-input.json",
+      "sha256": "75b974e5a3163718e40da64c0cd76c0c6f6f8844edd049e34426251692af254d",
+      "bytes": 3975
+    },
+    {
+      "path": "pre-full-quiet-final.json",
+      "sha256": "9bf90b82d0a8cc1e387ea7e0f9706d4a2ab625c99df072a5cd3136f0b5c6d35b",
+      "bytes": 165
+    },
+    {
+      "path": "pre-full-quiet.json",
+      "sha256": "90ccf80943f9be4bf48ae941cdefd51aff84274f8c01b4c4616996eaeb6d2e3e",
+      "bytes": 188
+    },
+    {
+      "path": "precache-delivery-live.json",
+      "sha256": "86231209b6fdff85be20634440d60228ad6f6b217ece273184ccb6fddfcaaceb",
+      "bytes": 169
+    },
+    {
+      "path": "precache-delivery-result.json",
+      "sha256": "7529b176ee0e680a7897b160a70f8c95a11c1ce2f0f5db97107e51fb92515b3b",
+      "bytes": 216
+    },
+    {
+      "path": "precache-delivery.log",
+      "sha256": "5219fd4966e76661e0cfe937c5fd3d37ecf7a8faaf49e7bab70ffda1a15d63b3",
+      "bytes": 368
+    },
+    {
+      "path": "precache-final-live.json",
+      "sha256": "282672248a08b90121836117a1a166e18d40f24fa4e3e22b62219164758966aa",
+      "bytes": 169
+    },
+    {
+      "path": "precache-final-result.json",
+      "sha256": "c07dd46661c5fbcf56eee75b3fc29db19ef0f701900d632139c9eec349912389",
+      "bytes": 216
+    },
+    {
+      "path": "precache-final.log",
+      "sha256": "c6503fca13cf30e2c83112d6c52b219245e516186773e3d9b4e8a9eac8a4b2e8",
+      "bytes": 368
+    },
+    {
+      "path": "precache-live.json",
+      "sha256": "66a742d241b18c072a11b3d4b40faff030a7a94a269324b620b2b53df7d135ab",
+      "bytes": 169
+    },
+    {
+      "path": "precache-result.json",
+      "sha256": "36d2ca5d6035c9bb41965b56389bd3fc38cc79504e41fd0f601496b157c4211c",
+      "bytes": 216
+    },
+    {
+      "path": "precache.log",
+      "sha256": "09452d963533f8576f0fad35679717c9f027321719191708fbc9966d55a8324e",
+      "bytes": 368
+    },
+    {
+      "path": "previous-browser.cjs",
+      "sha256": "63c6e6a310214d4d89ca93ef9e85f3778fcae012184db5734c0a5916c6c4e123",
+      "bytes": 12187
+    },
+    {
+      "path": "publish-docs.py",
+      "sha256": "909e1e06b28b2afca0b648df8c7dd7ea6b5c0fe94314d36992b189267f55955e",
+      "bytes": 11540
+    },
+    {
+      "path": "record-processes.py",
+      "sha256": "0f89cf197dcf933aaf8f99cb160af2101eb1b4fcf0a4b2a61f8f2ebc5a69f031",
+      "bytes": 1235
+    },
+    {
+      "path": "recorded-processes.json",
+      "sha256": "87aa8e8f51c041cbf2e4085b9239f442105fc0e0913e394e479c158dc957a397",
+      "bytes": 107097
+    },
+    {
+      "path": "retain.py",
+      "sha256": "df1ad89ffcc53c9deff4bd3e4fd83d260d514024f684209c47d2d3372d9be608",
+      "bytes": 3941
+    },
+    {
+      "path": "run.py",
+      "sha256": "a97f6057539c7e7e00b87e0dc185355816c0b32b17744bbe240580f16c8843ec",
+      "bytes": 510
+    },
+    {
+      "path": "save-pairs-audit.json",
+      "sha256": "dff534e61641c2b0a646e45df6d1f485886db36beb65fa83396f70437d8ea3e0",
+      "bytes": 9168
+    },
+    {
+      "path": "schema-before-legacy-fix.json",
+      "sha256": "0a65a3a83f3bfe5b287a68d4d95f818d2d3d430dcc2c662f32fbe2afb54254f1",
+      "bytes": 165127
+    },
+    {
+      "path": "schema-fixed-green-live.json",
+      "sha256": "d490dded2b3994afd8b9f2a20b6013e72fd1b49549c437665f8f1dab9520e18d",
+      "bytes": 167
+    },
+    {
+      "path": "schema-fixed-green-result.json",
+      "sha256": "53ae032c84b4bf56db747264780e4cca028f9b5876351de7f128a9ed0ac5a75e",
+      "bytes": 212
+    },
+    {
+      "path": "schema-fixed-green.log",
+      "sha256": "58c3a7456e4466c3f6d0950e545c59325a7a9d4827aa2d5e24d803bbc2393801",
+      "bytes": 427
+    },
+    {
+      "path": "schema-green-live.json",
+      "sha256": "77d454e9dedf138f095e4b53ef9c9b7923357701cf8c9a73c72489efc7d41a86",
+      "bytes": 167
+    },
+    {
+      "path": "schema-green-result.json",
+      "sha256": "3501cc2a6e76bd33bfefc5a4146e7a25c0f4faceff9937f73bfa1cab2c37fa3a",
+      "bytes": 213
+    },
+    {
+      "path": "schema-green.log",
+      "sha256": "d154c3e2ff675da589d882e7a42957bc47c1655382c84e1e4cdefe64a911322a",
+      "bytes": 1622
+    },
+    {
+      "path": "schema-red-live.json",
+      "sha256": "8fda00464486b1d309101e862874d79dfd034f3276613be61ba3e2359be091ea",
+      "bytes": 127
+    },
+    {
+      "path": "schema-red-result.json",
+      "sha256": "7d68f9ff0d2aa55cd1a0b0b217b10f054d76bea0f384257d11af1386b1b74bcc",
+      "bytes": 172
+    },
+    {
+      "path": "schema-red.log",
+      "sha256": "0e86674e1a378c68a3dc911d40005e7d1a841a982171e322942c68cd93e7a0ec",
+      "bytes": 3688
+    },
+    {
+      "path": "serve.py",
+      "sha256": "7899de6cbcba304bf7925c091eee6cee9d83fc6fc963c1e73aad68e5f49e3e91",
+      "bytes": 515
+    },
+    {
+      "path": "server-4512-live.json",
+      "sha256": "51968e988df094b0a949f5e79b18cc86b75e46d66e61be6d96007cdf046434c5",
+      "bytes": 30
+    },
+    {
+      "path": "shared-prose-corrected-live.json",
+      "sha256": "4ffec630230a135dfe257c6b65dba1ece56e8bf3059c7bf7e1861091c9b0c0ea",
+      "bytes": 176
+    },
+    {
+      "path": "shared-prose-corrected-result.json",
+      "sha256": "5004b3f69f1fe2f5d02141b5b1e36dfa19f7aba872361450304a25ae5014112e",
+      "bytes": 221
+    },
+    {
+      "path": "shared-prose-corrected.log",
+      "sha256": "b4988b03a7a6f5f2833973244827367e9092d229504fc184d402df968752c96b",
+      "bytes": 449
+    },
+    {
+      "path": "shared-prose-lint-live.json",
+      "sha256": "54126544a46357285f4bce7600a9c998ec4b4b6b847f1d62bded05376db4cfbd",
+      "bytes": 122
+    },
+    {
+      "path": "shared-prose-lint-result.json",
+      "sha256": "5af1b8c3e477939c99e8de50f66dc3c50ef180f4defd27ad5e50729f3b3070fd",
+      "bytes": 168
+    },
+    {
+      "path": "shared-prose-lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "shared-ui-before-prose-test-fix.tsx",
+      "sha256": "d2157ec03a66f44e7c9cf76c16215ef40e5c134f2fa55e237984266f6ce0fc19",
+      "bytes": 18805
+    },
+    {
+      "path": "source-delivered.json",
+      "sha256": "aa82e1d8e69ef277c8ec0da2558f3ffc9854364fbfa123f5767421541320ba67",
+      "bytes": 278
+    },
+    {
+      "path": "source-diff-audit.json",
+      "sha256": "b4370b58107497d333bf1b0615963f514ed6eb2d432fbc834b3dcc3fe02c48a0",
+      "bytes": 3428
+    },
+    {
+      "path": "targeting-green-live.json",
+      "sha256": "aedfda901a9e74cf105b5d6898b30e00feacd780df3cbfb5421a9d55792170d2",
+      "bytes": 123
+    },
+    {
+      "path": "targeting-green-result.json",
+      "sha256": "3befea64345773770652889c1b9853125ac76f3b0dad576318ce21a0ca4275e1",
+      "bytes": 168
+    },
+    {
+      "path": "targeting-green.log",
+      "sha256": "8ab93aefd97d8cadecd437feb1c13da27cabec6e490fa893720fff4095c8d48d",
+      "bytes": 357
+    },
+    {
+      "path": "targeting-red-live.json",
+      "sha256": "18dc6d59a3b75c6054536cb687a3a30cd90fca810bc9ee1774c6447dc750418f",
+      "bytes": 123
+    },
+    {
+      "path": "targeting-red-result.json",
+      "sha256": "2f374f1223020608e72c58217159ff0226bf43dd0e42949acd0a720236c5b7ee",
+      "bytes": 168
+    },
+    {
+      "path": "targeting-red.log",
+      "sha256": "44cb86ebb2577e1f280fc645f216cbffe3ddb6516e6864115eaa2967da19292e",
+      "bytes": 3160
+    },
+    {
+      "path": "terminal-results.json",
+      "sha256": "da294c8581b717a94c12a43736dcfe663077ff25d608016ab2a8521e0a00b597",
+      "bytes": 16887
+    },
+    {
+      "path": "test-only-refreeze.json",
+      "sha256": "7447a88eba2472268f07750baadaf4172992af48109b418208dc537e26a2cebe",
+      "bytes": 338
+    },
+    {
+      "path": "trace-compaction-live.json",
+      "sha256": "07f6c5153a4f490d97c60e4e46b3b34d9143974e95463d0f825ec7ea2de6a820",
+      "bytes": 146
+    },
+    {
+      "path": "trace-compaction-result.json",
+      "sha256": "ee35ba9de4f8370fa49f3d9655c86a2b430e493031f19b2b7e93ff5eb673a4e8",
+      "bytes": 192
+    },
+    {
+      "path": "trace-compaction.json",
+      "sha256": "3c3fefabb79a7b333554645eca6c8d41ce4123c33c04198a50762ebc1256abe6",
+      "bytes": 2368
+    },
+    {
+      "path": "trace-compaction.log",
+      "sha256": "9a177271da8f132ae081f3ec61f3c75e60323f234b75e0ad7bf9d079bb8315d8",
+      "bytes": 97
+    },
+    {
+      "path": "typecheck-delivery-live.json",
+      "sha256": "b48830d4a4bbe7ec055f5b40930f5f01d2d3b749eb5e556f6cda0459ad41aa2b",
+      "bytes": 56
+    },
+    {
+      "path": "typecheck-delivery-result.json",
+      "sha256": "3a05e4779a8cfca32fdb083d81dcfd59978ad3b16f786b007d90271fbfec48d6",
+      "bytes": 102
+    },
+    {
+      "path": "typecheck-delivery.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "path": "typecheck-final-live.json",
+      "sha256": "9b526a989897a93793c06a6f3f9bc1e8c2357634ad4df628df704e0044b2a38f",
+      "bytes": 56
+    },
+    {
+      "path": "typecheck-final-result.json",
+      "sha256": "eac9ba468962637bf7bdeea9a5200bb0e36a77b055d3618543a0456f458da313",
+      "bytes": 102
+    },
+    {
+      "path": "typecheck-final.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "path": "typecheck-live.json",
+      "sha256": "f3546785f93d38c8d0d0dce530319eba014ae4b6414aa8f2ed948f5e53169658",
+      "bytes": 56
+    },
+    {
+      "path": "typecheck-result.json",
+      "sha256": "6ce2cef26d98422ae45fdc41997333f6911ee3547ad18f20db205dd9e01d0b95",
+      "bytes": 102
+    },
+    {
+      "path": "typecheck-verified-live.json",
+      "sha256": "ad04b39c48585473398204fae323988cd2f3b0fd11a209608638b08cb8e6dfa9",
+      "bytes": 56
+    },
+    {
+      "path": "typecheck-verified-result.json",
+      "sha256": "c60924ba10e2d4af1a4c07bd3a64746f30aff50775b7e1d5565719d91714b648",
+      "bytes": 102
+    },
+    {
+      "path": "typecheck-verified.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "path": "typecheck.log",
+      "sha256": "1ac54cdf36bd60f399d8535b157465af0e1a1585b79a05e38e57e984f776a04d",
+      "bytes": 1926
+    },
+    {
+      "path": "ui-green-live.json",
+      "sha256": "6e061bb94c3534de7fdee85900e528b0d2811f0b5a63378257c5c734aae2fe11",
+      "bytes": 191
+    },
+    {
+      "path": "ui-green-result.json",
+      "sha256": "e6c3fca1663117a8a682884cf963ef76ccd231846e5655f4916be2a1f0146eea",
+      "bytes": 236
+    },
+    {
+      "path": "ui-green.log",
+      "sha256": "86392fdde07301f4a43995fc452f0e854b6da183ee77db923927426340f32d61",
+      "bytes": 456
+    },
+    {
+      "path": "ui-prose-red-live.json",
+      "sha256": "cb15bdf1cef38216ecf1af360f7baf91ee709509eced5eb3107619d9503208b2",
+      "bytes": 139
+    },
+    {
+      "path": "ui-prose-red-result.json",
+      "sha256": "4d2232c2982a4567c365f8c3accbe31df79f6167531382d8bab9ca3a786823df",
+      "bytes": 184
+    },
+    {
+      "path": "ui-prose-red.log",
+      "sha256": "7642c75642fc0ae499a7d476a0f59d8512d6e827e94aa5e66a5839230591a5d8",
+      "bytes": 57405
+    },
+    {
+      "path": "ui-red-live.json",
+      "sha256": "b02d40ffb33681b1ef86246a24fa222a42c96ef9371391f9dc7a8a3918a60ae6",
+      "bytes": 139
+    },
+    {
+      "path": "ui-red-result.json",
+      "sha256": "1b7806501f39c70cf140e3a318e13b2e04f9d415fb041a2607eeac0cc73e8f7d",
+      "bytes": 185
+    },
+    {
+      "path": "ui-red.log",
+      "sha256": "7620719110102d19c3c9469d28850ce4b44cc5c248b5364aadfd7b6bee792069",
+      "bytes": 1510
+    },
+    {
+      "path": "verify-delivery.py",
+      "sha256": "14f4bf4fb89248a4bea958a8076409d973b112b5310f971e7f5e424911b561c0",
+      "bytes": 1628
+    }
+  ],
+  "membersVerified": 663,
+  "sourceCommit": "5ef31577b1d7489b9f4c90a0d9a9ea92d404fa05",
+  "buildExcluded": "Disposable production build; all 761 asset hashes retained in frozen.json.",
+  "traceRetention": "Five diagnosed failure trace ZIPs compacted: original trace/network/stacks bytes retained with per-member hashes; redundant asset bodies omitted. See trace-compaction.json.",
+  "acceptance": "Local bounded-functional only; independent/earned/full-v1 acceptance open."
+}

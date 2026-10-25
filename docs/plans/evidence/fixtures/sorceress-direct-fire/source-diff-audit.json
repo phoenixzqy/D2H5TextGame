@@ -1,0 +1,45 @@
+{
+  "changedSorceressRows": [
+    "skills-sorceress-meteor"
+  ],
+  "unchangedSorceressRows": 29,
+  "meteorOnlyFields": [
+    "target",
+    "aoeShape"
+  ],
+  "inventoryUnchanged": true,
+  "genuineUnchanged": true,
+  "unchangedRowRawHashes": {
+    "skills-sorceress-ice-bolt": "4c827d6b945e7f44c193cb7ce41b5f7f855d1e9163b8a5cb11b3e71780e01fe1",
+    "skills-sorceress-frost-nova": "79b0e9445b0e79c1b5246d7474ccedf3cb6256ea774fa916702564ec7256f3fc",
+    "skills-sorceress-frozen-orb": "cc8a6ba70e8f41b73098b41bdd89c7516ca66a2d9cfa2e4055a42a3f11841779",
+    "skills-sorceress-chain-lightning": "4534936354369a28d501f35053899801b7fb2e7cf888797b04e0f8d1a922f244",
+    "skills-sorceress-fire-ball": "a7cd59c5c02c8bf2aedb8e75bdc0a6ebd14e9295348c85ffccd931545d3c8469",
+    "skills-sorceress-cold-mastery": "076f4dece85c75213fba428cab2edcbfa9cb58f59fa6c9b5036e181cda113d52",
+    "skills-sorceress-lightning-mastery": "5f659c0d53157e2295324fb3cbbd5cd175f866f0238adfde6ffb6d6ee1cae07b",
+    "skills-sorceress-fire-mastery": "03f29f6a279e04791045b8efe6714d7973274e1d90d1ff0064414437dfdf59bd",
+    "skills-sorceress-energy-shield": "089cfdbcb2bc70d62e313140b4472ecddb3d402427099c5bcfcc54b1c32e3ed6",
+    "skills-sorceress-frozen-armor": "1f5a84f61d9502299ada15b1f143cbb17072d8d60c31404ca3f4c64f8b04e1ce",
+    "skills-sorceress-ice-blast": "b8eaa9aab7f8d32dbe299ed82ce4d412b1214abf120a949a3917c58e34ff21e9",
+    "skills-sorceress-shiver-armor": "3e7a22e8b20169b19669ae5f46e43267796a6ba2911e07bce948619ce5631c0d",
+    "skills-sorceress-glacial-spike": "cd1886843adb39664689a5453592620f9e60dce29f18b62da54e6c9598193da0",
+    "skills-sorceress-blizzard": "c2088d8ab9ac4e0cead710d7da95b70931a1fde8e7221d62afa075fc8884aee0",
+    "skills-sorceress-chilling-armor": "d56492b19968ccc16eb0aad3f282a6d39e0df8eba9b6b9cfc7d586a545140028",
+    "skills-sorceress-charged-bolt": "9f1721838df60b188202859bb92e546fe4e704813fda14e91209680cc81bb4d6",
+    "skills-sorceress-static-field": "326533485b0ec53106f51f3544b1964a232170bbdec7571d3f7643d1bee8beec",
+    "skills-sorceress-telekinesis": "5d083bfff48a978952bf2f26d637d906534520f849c03d076a613efe978030b5",
+    "skills-sorceress-nova": "45d8bb6b1b420c271dc117bebed1c1bf1a5a93c9d6fad98bb13f41e6427c1cf3",
+    "skills-sorceress-lightning": "08f8fb1d0a753d91e64bbe89aa36f9d943e64a643ad50f1fd8a7042100b2e612",
+    "skills-sorceress-teleport": "1f83073467e728e4971cbc16ab410588dbf67e15695930062811531dce548a81",
+    "skills-sorceress-thunder-storm": "ff872c42c8e9521a0a3fb28c7321a1ad4aa24553dae5f93c752fd45ddb370934",
+    "skills-sorceress-fire-bolt": "22354c52a6e6348a50774834cb71b23d0eb8703d1ef07b5779d8c63f852f42a3",
+    "skills-sorceress-warmth": "6fe153412669b7b9fd34054f56badeda248d929c207b3c6cdc564901f8a80dbc",
+    "skills-sorceress-inferno": "beaabf677ae22586dbc0038b4693c131fc387f281f4465a0f418c0b8ef57577e",
+    "skills-sorceress-blaze": "65c4678e8aafaea6adbab091c5142c6aca3b25e492c9a752ad14953d056b0429",
+    "skills-sorceress-fire-wall": "d5421e05b0ddc0e695caa62b81ea9e5ebd16b5a05ef1268a456ae5987bdb1fcc",
+    "skills-sorceress-enchant": "50616a16f68a02a0d91a61674210e34a3467428b8ae9bfdbe4c51eb26c7e1833",
+    "skills-sorceress-hydra": "c27bcfe7185f48fbce11aeaa3be86aef6368dfeaebcfa26b683d9f83c9ebf011"
+  },
+  "unchangedSorceressRowsByteExact": 29,
+  "phase": "Before three skill credits; original inventory exact at this check. Final credit changes are verified separately in inventory-audit.json."
+}

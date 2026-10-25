@@ -1,0 +1,55 @@
+{
+  "verified": true,
+  "rows": [
+    {
+      "source": "pilot-en-360/en-360-fire-bolt-failed-trace.zip",
+      "originalSha256": "eb93736b06e77bd7622c864ae3e08de1b7936e46b98d8f3abd66aa88c8fe9c97",
+      "originalBytes": 43040636,
+      "retained": "pilot-en-360/en-360-fire-bolt-failed-trace-metadata.zip",
+      "retainedSha256": "839afe97f6be38a2b8834146c21196f6ce61d122071687925b3e26827744ba32",
+      "retainedBytes": 218088,
+      "traceEntries": 3,
+      "omittedAssetBodies": 983
+    },
+    {
+      "source": "browser-en-360/en-360-meteor-failed-trace.zip",
+      "originalSha256": "104a2f952147c7950b17344b4e69107a624fe56b3d98b1fc7d94735a0c671c57",
+      "originalBytes": 41757157,
+      "retained": "browser-en-360/en-360-meteor-failed-trace-metadata.zip",
+      "retainedSha256": "08f84014b1f50a88567581f3c10ef9376bc18007e553adfc84382f62d16377f5",
+      "retainedBytes": 201295,
+      "traceEntries": 3,
+      "omittedAssetBodies": 936
+    },
+    {
+      "source": "browser-en-1280/en-1280-meteor-failed-trace.zip",
+      "originalSha256": "e0c7fb30932e6e150015feb0c09724e97f2df6d28b9c88c8b59be8d793b0e34d",
+      "originalBytes": 41025803,
+      "retained": "browser-en-1280/en-1280-meteor-failed-trace-metadata.zip",
+      "retainedSha256": "2e351760402ef5e0f9615f0b5f98d6abe7b59fdc1e78fc7f3c4eb2e80f05556e",
+      "retainedBytes": 198248,
+      "traceEntries": 3,
+      "omittedAssetBodies": 896
+    },
+    {
+      "source": "browser-zh-CN-360/zh-CN-360-meteor-failed-trace.zip",
+      "originalSha256": "d964313533b32ca1d25691761e9dd07a55a096ed5046eb653d8ef6011f71c863",
+      "originalBytes": 41025834,
+      "retained": "browser-zh-CN-360/zh-CN-360-meteor-failed-trace-metadata.zip",
+      "retainedSha256": "080e7a3fd3868fb17625fbc234ae87e192d3d2c8516a62ea08885c6509172242",
+      "retainedBytes": 201063,
+      "traceEntries": 3,
+      "omittedAssetBodies": 919
+    },
+    {
+      "source": "browser-zh-CN-1280/zh-CN-1280-meteor-failed-trace.zip",
+      "originalSha256": "9f6f7e2ec39cb1c30a962442ec21938e589a4d293ed206939e2de9aa65755dcb",
+      "originalBytes": 40631517,
+      "retained": "browser-zh-CN-1280/zh-CN-1280-meteor-failed-trace-metadata.zip",
+      "retainedSha256": "21e49d5bc6ee60cb01b71403772e8d8accf8514c71299bb54c040c3c8bbe50c9",
+      "retainedBytes": 198292,
+      "traceEntries": 3,
+      "omittedAssetBodies": 895
+    }
+  ]
+}
