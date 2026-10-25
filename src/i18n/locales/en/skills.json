@@ -64,6 +64,9 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "selfDamage": "Self damage",
+    "selfDamageValue": "{{percentOfHpRemoved}}% of actual direct HP removed (min. {{minimumLifeLoss}} HP)",
+    "descriptionSelfDamage": "After the hit and ordinary target-death, orb and reflection effects, a surviving caster loses {{percentOfHpRemoved}}% of actual enemy HP removed (rounded down, minimum {{minimumLifeLoss}} HP, capped at remaining life). Only a hit that removes enemy HP charges this cost. This bypasses your defenses and shields and can kill you. Absorption and overkill do not count. Misses, later basic attacks and damage over time cost no life; lethal reflection cannot be reversed.",
     "magicResistBypass": "Magic resist bypass",
     "magicResistBypassValue": "Flat MR only",
     "compositeStrike": "Composite strike",
@@ -900,7 +903,7 @@
     },
     "sacrifice": {
       "name": "Sacrifice",
-      "desc": "Powerful melee attack that damages the caster."
+      "desc": "Deals {{min}} ~ {{max}} Physical base damage to one enemy. Costs no mana; a hit that removes enemy life also costs your life."
     },
     "smite": {
       "name": "Smite",

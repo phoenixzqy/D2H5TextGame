@@ -783,6 +783,9 @@ function SkillDetailPanel({
         {primaryStats?.recovery ? (
           <p className="text-sm text-d2-white/90">{t('details.descriptionRecovery', primaryStats.recovery)}</p>
         ) : null}
+        {primaryStats?.selfDamage ? (
+          <p className="text-sm text-d2-white/90">{t('details.descriptionSelfDamage', primaryStats.selfDamage)}</p>
+        ) : null}
         {primaryStats?.feralRage ? (
           <p className="text-sm text-d2-white/90">{t('details.descriptionFeralSpeed', primaryStats.feralRage)}</p>
         ) : null}
@@ -952,6 +955,9 @@ function StatSection({
           ) : null}
           {stats.recovery ? (
             <StatLine label={t('details.recovery')} value={t('details.recoveryValue', stats.recovery)} />
+          ) : null}
+          {stats.selfDamage ? (
+            <StatLine label={t('details.selfDamage')} value={t('details.selfDamageValue', stats.selfDamage)} />
           ) : null}
           {stats.ignoresMagicResist ? (
             <StatLine label={t('details.magicResistBypass')} value={t('details.magicResistBypassValue')} />
@@ -1505,6 +1511,9 @@ function dynamicDescription(
       maxLife: Math.round(life * maxRank * 100), maxSpeed: speed * maxRank, cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && skill.id === 'skills-paladin-sacrifice') {
+    return t('paladin.sacrifice.desc', { min: firstDamage.min, max: firstDamage.max });
+  }
   if (firstDamage && (skill.id === 'skills-paladin-holy-bolt' || skill.id === 'skills-paladin-blessed-hammer')) {
     return t('paladin.' + skill.id.slice('skills-paladin-'.length) + '.desc', {
       min: firstDamage.min, max: firstDamage.max

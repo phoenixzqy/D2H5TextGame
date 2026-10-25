@@ -9,7 +9,7 @@
  */
 
 import type { DamageType } from '../types/attributes';
-import type { ColdMasteryTuning, FeralRageTuning, OnHitRecoveryTuning, SkillHitSequence, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
+import type { ColdMasteryTuning, FeralRageTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
 import { STATUS_DEFAULTS } from '../combat/status';
 import { coldMasteryReductionAtRank } from './cold-mastery';
 import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
@@ -27,6 +27,7 @@ export interface DisplaySkillSource {
   readonly ignoresMagicResist?: true;
   readonly hitSequence?: SkillHitSequence;
   readonly onHitRecovery?: OnHitRecoveryTuning;
+  readonly onHitSelfDamage?: OnHitSelfDamageTuning;
   readonly feralRage?: FeralRageTuning;
   readonly coldMastery?: ColdMasteryTuning;
   readonly staticField?: StaticFieldTuning;
@@ -157,6 +158,8 @@ export interface SkillRankDisplayStats {
   readonly control?: { readonly durationSeconds: number; readonly bossDurationSeconds: number };
   /** A fixed fraction of actual direct HP removed, never promised healing from base damage. */
   readonly recovery?: { readonly percentOfHpRemoved: number };
+  /** Life tradeoff from actual enemy HP removed, never a static per-cast HP price. */
+  readonly selfDamage?: { readonly percentOfHpRemoved: number; readonly minimumLifeLoss: number };
   readonly feralRage?: { readonly percentPerStack: number; readonly maxStacks: number; readonly durationSeconds: number };
   /** Explicit primary Bleed/Poison rule; final damage depends on the actual landed hit. */
   readonly periodic?: {
@@ -484,6 +487,12 @@ export function computeSkillRankDisplayStats(
     (controlId === 'chill' || controlId === 'stun') ? STATUS_DEFAULTS[controlId] : undefined;
   const control = controlDefinition ? { durationSeconds: controlDefinition.duration,
     bossDurationSeconds: controlDefinition.duration * (controlDefinition.bossDurationMult ?? 1) } : undefined;
+  const selfCost = skill.onHitSelfDamage;
+  const selfDamage = skill.id === 'skills-paladin-sacrifice' && skill.trigger === 'active' &&
+    skill.damageType === 'physical' && selfCost && Number.isFinite(selfCost.lifeFraction) &&
+    selfCost.lifeFraction > 0 && selfCost.lifeFraction <= 1 &&
+    Number.isInteger(selfCost.minimumLifeLoss) && selfCost.minimumLifeLoss > 0
+    ? { percentOfHpRemoved: Number((selfCost.lifeFraction * 100).toFixed(4)), minimumLifeLoss: selfCost.minimumLifeLoss } : undefined;
   const fraction = skill.onHitRecovery?.lifeFraction;
   const recovery = skill.damage && skill.trigger === 'active' && fraction !== undefined &&
     Number.isFinite(fraction) && fraction > 0 && fraction <= 1
@@ -503,6 +512,7 @@ export function computeSkillRankDisplayStats(
     ...(strikesPerCast !== undefined ? { strikesPerCast } : {}),
     ...(control ? { control } : {}),
     ...(recovery ? { recovery } : {}),
+    ...(selfDamage ? { selfDamage } : {}),
     ...(feralRage ? { feralRage } : {}),
     ...(burn ? { burn } : {}),
     ...(periodic ? { periodic } : {}),

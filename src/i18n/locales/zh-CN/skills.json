@@ -64,6 +64,9 @@
     "minLevel": "需要等级 {{level}}"
   },
   "details": {
+    "selfDamage": "自身伤害",
+    "selfDamageValue": "直接实际生命损失的{{percentOfHpRemoved}}%（最低{{minimumLifeLoss}}点生命）",
+    "descriptionSelfDamage": "直接命中并结算通常的目标死亡、恢复球与反伤效果后，仍存活的施法者损失敌人直接实际生命损失的{{percentOfHpRemoved}}%（向下取整，最低{{minimumLifeLoss}}点生命，不超过自身剩余生命）。仅实际损失敌人生命的直接命中才扣除代价。此代价无视自身减伤与护盾，可能致死。吸收伤害和过量伤害不计入；未命中、后续普攻与持续伤害不扣生命，致命反伤无法逆转。",
     "magicResistBypass": "魔抗穿透",
     "magicResistBypassValue": "仅固定魔法抗性",
     "compositeStrike": "复合打击",
@@ -900,7 +903,7 @@
     },
     "sacrifice": {
       "name": "牺牲",
-      "desc": "强力近战攻击，伤害施法者自身。"
+      "desc": "对单体敌人造成 {{min}} ~ {{max}} 点物理基础伤害。不消耗法力；造成敌人实际生命损失时，也会损失自身生命。"
     },
     "smite": {
       "name": "重击",
