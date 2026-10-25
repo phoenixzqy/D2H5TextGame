@@ -61,6 +61,7 @@ import { DRUID_SHAPE_DEFINITIONS, DRUID_SHAPE_IDS, druidFormForId, resolveDruidS
 import { BURST_OF_SPEED_DEFINITION, BURST_OF_SPEED_IDS } from '@/engine/skills/burst-of-speed';
 import { BONE_ARMOR_DEFINITION, BONE_ARMOR_IDS } from '@/engine/skills/bone-armor';
 import { ENERGY_SHIELD_DEFINITION, ENERGY_SHIELD_IDS, resolveEnergyShieldRank } from '@/engine/skills/energy-shield';
+import { HOLY_SHIELD_DEFINITION, HOLY_SHIELD_IDS } from '@/engine/skills/holy-shield';
 import { CYCLONE_ARMOR_DEFINITION, CYCLONE_ARMOR_IDS } from '@/engine/skills/cyclone-armor';
 import { DAMAGE_MASTERY_DEFINITIONS, DAMAGE_MASTERY_IDENTITIES } from '@/engine/skills/damage-masteries';
 import { COLD_MASTERY_DEFINITION, coldMasteryReductionAtRank, resolveColdMasteryRank } from '@/engine/skills/cold-mastery';
@@ -951,6 +952,7 @@ function StatSection({
                 id === AMPLIFY_DAMAGE_DEFINITION.canonicalStatusId || id === AMPLIFY_DAMAGE_DEFINITION.legacyStatusId
                   ? t('necromancer.amplify-damage.name')
                   : id === 'burst-of-speed' ? t('assassin.burst-of-speed.name')
+                  : id === 'holy-shield' ? t('paladin.holy-shield.name')
                   : id === 'cyclone-armor' ? t('druid.cyclone-armor.name')
                   : id === 'werewolf' || id === 'werebear' ? t('druid.' + id + '.name')
                   : t(`damage-types:status.${id}`, { defaultValue: humanizeId(id) })).join(', ')}
@@ -1364,6 +1366,12 @@ function dynamicDescription(
     const d = ENERGY_SHIELD_DEFINITION;
     return t('sorceress.energy-shield.desc', { absorb: d.absorbPerRank * 100,
       maxAbsorb: d.absorbPerRank * d.maxRank * 100, recovery: d.manaRegenPerRank * 100,
+      cap: d.maxRank, level: d.requiredLevel });
+  }
+  if (skill.id === HOLY_SHIELD_IDS[0]) {
+    const d = HOLY_SHIELD_DEFINITION;
+    return t('paladin.holy-shield.desc', { defense: d.defensePerRank * 100,
+      reduction: d.absorbPerRank * 100, maxReduction: d.absorbPerRank * d.maxRank * 100,
       cap: d.maxRank, level: d.requiredLevel });
   }
   if (skill.id === CYCLONE_ARMOR_IDS[0]) {

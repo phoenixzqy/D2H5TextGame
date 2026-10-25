@@ -191,6 +191,7 @@
       "magicFindPct": "Magic Find",
       "shieldAbsorbPct": "Shield Absorb",
       "energyShieldAbsorbPct": "Damage Diverted to Mana",
+      "holyShieldReduction": "Damage Reduction",
       "cycloneArmorReduction": "Damage Reduction",
       "cycloneArmorResistance": "All Resistance Points",
       "boneArmorAbsorb": "Bone Armor Absorb",
@@ -916,7 +917,7 @@
     },
     "holy-shield": {
       "name": "Holy Shield",
-      "desc": "Enhances shields with holy power, increasing defense and blocking."
+      "desc": "Pay once to gain +{{defense}}% ordinary Defense and {{reduction}}% damage reduction per rank (up to {{maxReduction}}% at rank {{cap}}). Reduction applies after normal mitigation to hits, reflected damage and ongoing damage, rounded down cumulatively for ongoing damage. This v1 shield absorbs damage rather than rolling a separate block chance. No shield equipment is required. Lasts for this area run, carries across waves and does not heal or refill resources. Already active: no recast or payment. Rank changes apply next wave; losing class or prerequisites removes the effect. Fresh runs and imports start unpaid. Unlock level {{level}}."
     },
     "blessed-aim": {
       "name": "Blessed Aim",

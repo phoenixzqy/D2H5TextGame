@@ -97,7 +97,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 
 ### 3.3 Paladin (圣骑士 — 光环+近战)
 
-#### Active Skills (6)
+#### Active Skills
 | ID | Name (EN / ZH) | Element | Target | Base Dmg (L1) | CD | Mana | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
 | `paladin.zeal` | Zeal / 狂热 | Physical | Cleave | 40–60 | 1 | 10 | — | Hits 3 targets |
@@ -106,6 +106,13 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 | `paladin.vengeance` | Vengeance / 复仇 | Fire+Cold+Lightning | Single | 30–50 per element | 2 | 30 | Burn+Chill+Paralyze | Tri-element |
 | `paladin.charge` | Charge / 冲锋 | Physical | Single | 80–120 | 3 | 20 | Stun (1 turn) | High damage, repositions |
 | `paladin.fist_of_heavens` | Fist of the Heavens / 天堂之拳 | Lightning | All | 100–150 | 4 | 50 | Paralyze | Ultimate AOE |
+
+Paid `paladin.holy_shield` follows the [D05 contract](../plans/decisions/D05-holy-shield-v1.md):
++4% ordinary Defense and2% postmitigation absorption per rank (cap20/+80%/40%),
+one paid run-long cast, native Smite→Charge/unlock24 authority and qualified
+next-wave carry. This explicit v1 adaptation uses absorption rather than a
+separate block roll; no shield-equipment gate, resource refill or saved paid state.
+Independent design/QA and earned balance remain open.
 
 #### Passive Skills (Auras, only 1 active at a time)
 | ID | Name (EN / ZH) | Effect | Notes |

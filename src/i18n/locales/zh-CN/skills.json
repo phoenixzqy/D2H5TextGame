@@ -191,6 +191,7 @@
       "magicFindPct": "魔法寻获",
       "shieldAbsorbPct": "护盾吸收",
       "energyShieldAbsorbPct": "伤害转移至法力",
+      "holyShieldReduction": "伤害减免",
       "cycloneArmorReduction": "伤害减免",
       "cycloneArmorResistance": "全抗（百分点）",
       "boneArmorAbsorb": "骨甲吸收",
@@ -916,7 +917,7 @@
     },
     "holy-shield": {
       "name": "神圣之盾",
-      "desc": "用神圣之力强化盾牌，增加防御与格挡。"
+      "desc": "支付一次法力，每级增加 {{defense}}% 普通防御及 {{reduction}}% 伤害减免（{{cap}} 级最多 {{maxReduction}}%）。减免在常规减伤后作用于命中、反伤与持续伤害；持续伤害按累计额度向下取整。本作 v1 采用伤害吸收，不另掷格挡概率，无需装备盾牌。效果持续本次区域挑战并跨波保留，不会治疗或补充资源。生效后不重复施放或扣费；等级变化下波生效，失去职业或前置技能后移除。新挑战与导入存档从未付费状态开始。{{level}} 级解锁。"
     },
     "blessed-aim": {
       "name": "祝福瞄准",

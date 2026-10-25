@@ -40,10 +40,13 @@ function damageTypeLabel(type: string | undefined): string {
   return tx(`combat:damageType.${type}`, { defaultValue: type });
 }
 
-function preventionSuffix(event: { cycloneAbsorbed?: number; absorbed?: number }, target: string): string {
+function preventionSuffix(event: { cycloneAbsorbed?: number; holyShieldAbsorbed?: number; absorbed?: number }, target: string): string {
   let suffix = '';
   if ((event.cycloneAbsorbed ?? 0) > 0) {
     suffix += ' ' + tx('combat:event.cycloneArmorPrevented', { target, amount: event.cycloneAbsorbed });
+  }
+  if ((event.holyShieldAbsorbed ?? 0) > 0) {
+    suffix += ' ' + tx('combat:event.holyShieldPrevented', { target, amount: event.holyShieldAbsorbed });
   }
   if ((event.absorbed ?? 0) > 0) {
     suffix += ' ' + tx('combat:event.boneArmorAbsorbed', { target, amount: event.absorbed });

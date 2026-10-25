@@ -409,7 +409,9 @@ function passiveUtilityRows(skill: DisplaySkillSource, rank: number): readonly S
     rows.push({
       id,
       labelKey: id === 'shieldAbsorbPct' && skill.id === 'skills-sorceress-energy-shield'
-        ? 'details.passiveStat.energyShieldAbsorbPct' : `details.passiveStat.${id}`,
+        ? 'details.passiveStat.energyShieldAbsorbPct'
+        : id === 'shieldAbsorbPct' && skill.id === 'skills-paladin-holy-shield'
+          ? 'details.passiveStat.holyShieldReduction' : `details.passiveStat.${id}`,
       value: Number((perRank * multiplier).toFixed(4)),
       valueKind
     });

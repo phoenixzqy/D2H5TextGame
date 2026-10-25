@@ -145,6 +145,7 @@
       "blind": "Blinded"
     },
     "buff": {
+      "holy-shield": "Holy Shield",
       "cyclone-armor": "Cyclone Armor",
       "werewolf": "Werewolf",
       "werebear": "Werebear",
@@ -229,6 +230,7 @@
   },
   "event": {
     "boneArmorAbsorbed": "{{target}}'s Bone Armor absorbs {{amount}} damage.",
+    "holyShieldPrevented": "{{target}}'s Holy Shield prevents {{amount}} damage.",
     "cycloneArmorPrevented": "{{target}}'s Cyclone Armor prevents {{amount}} damage.",
     "system": "System",
     "turnStart": "Turn {{turn}} begins",
