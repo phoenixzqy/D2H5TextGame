@@ -1,0 +1,254 @@
+{
+  "cases": [
+    {
+      "label": "en-1280",
+      "pass": true,
+      "positive_attacks": 4,
+      "zeal_complete_cast_attempts": 3
+    },
+    {
+      "label": "en-360",
+      "pass": true,
+      "positive_attacks": 4,
+      "zeal_complete_cast_attempts": 3
+    },
+    {
+      "label": "zh-CN-1280",
+      "pass": true,
+      "positive_attacks": 4,
+      "zeal_complete_cast_attempts": 3
+    },
+    {
+      "label": "zh-CN-360",
+      "pass": true,
+      "positive_attacks": 4,
+      "zeal_complete_cast_attempts": 3
+    }
+  ],
+  "pairs": [
+    {
+      "label": "en-1280",
+      "rank": 1,
+      "domains_exact": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280",
+      "rank": 2,
+      "domains_exact": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360",
+      "rank": 1,
+      "domains_exact": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360",
+      "rank": 2,
+      "domains_exact": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280",
+      "rank": 1,
+      "domains_exact": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280",
+      "rank": 2,
+      "domains_exact": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360",
+      "rank": 1,
+      "domains_exact": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360",
+      "rank": 2,
+      "domains_exact": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    }
+  ],
+  "geometry_samples": 80,
+  "screenshots": [
+    {
+      "file": "browser-en-1280/en-1280-zeal-combat.png",
+      "sha256": "eca29009025ff2a2b34d1c8986720489d923c5f6a0cc05f811830490853ba644"
+    },
+    {
+      "file": "browser-en-1280/en-1280-zeal-details.png",
+      "sha256": "ef7e9c12d1e66b8000b5adb0d6b8b8f6106f66ac3b1def656c743f3d8083c93a"
+    },
+    {
+      "file": "browser-en-1280/en-1280-smite-combat.png",
+      "sha256": "d34d0b588574e9f5483938c42a455fe527c32c1bd8fa285ad0c74c228bf93481"
+    },
+    {
+      "file": "browser-en-1280/en-1280-smite-details.png",
+      "sha256": "653eba87afbfbf427d0238461b19edd3c7a84c8dd106b14280d10359bb5c1e74"
+    },
+    {
+      "file": "browser-en-1280/en-1280-charge-combat.png",
+      "sha256": "47af2fd79e8e207545906f7001d675d53869eb69b3f11a807a499c6d5ec51a21"
+    },
+    {
+      "file": "browser-en-1280/en-1280-charge-details.png",
+      "sha256": "7d37860c854fabf1776e94c99bebd27e3a3e433766b3ce000e276cca39c74470"
+    },
+    {
+      "file": "browser-en-1280/en-1280-fist-of-heavens-combat.png",
+      "sha256": "29cab53af144b9d1260538256f1c25f096d1315299127ee11c7fd0cd24779a71"
+    },
+    {
+      "file": "browser-en-1280/en-1280-fist-of-heavens-details.png",
+      "sha256": "b6db4d09ec98bbb77d164c95d973d87fcab7b8f5d12f899734aa385708065087"
+    },
+    {
+      "file": "browser-en-360/en-360-zeal-combat.png",
+      "sha256": "8aa93ceaf7fc413d8d363925f02d1f4bc442b93f1588b912a43ba7115ca1767f"
+    },
+    {
+      "file": "browser-en-360/en-360-zeal-details.png",
+      "sha256": "a4e727df3371a20a9f206a3edaa3f0bb6fce282dd81d28c31817321f028300ae"
+    },
+    {
+      "file": "browser-en-360/en-360-smite-combat.png",
+      "sha256": "786a1039f66141099a44628592e7c6214be0fec599003e3bd2b49d0b3ef27b33"
+    },
+    {
+      "file": "browser-en-360/en-360-smite-details.png",
+      "sha256": "c6bc1235d1d18bae02c9a463010365575e905d39577794c448d86043d89142e3"
+    },
+    {
+      "file": "browser-en-360/en-360-charge-combat.png",
+      "sha256": "707dce059dc8b81e5b65bca0b02545963e911044f24aed660a8fcb4a0cd9b70e"
+    },
+    {
+      "file": "browser-en-360/en-360-charge-details.png",
+      "sha256": "73af6351783854973a0ca71823a195c8cc39607e2398471ef375b52e2cb6192b"
+    },
+    {
+      "file": "browser-en-360/en-360-fist-of-heavens-combat.png",
+      "sha256": "6d76a22761b7036bf1ef44e3aa61e7c68e46064e5d6159f2cc2e88b3b108b37a"
+    },
+    {
+      "file": "browser-en-360/en-360-fist-of-heavens-details.png",
+      "sha256": "35a9d0088e3e6a4d56092a329a743c2114ff4eb34b202e7bd61c41ba58e2b91d"
+    },
+    {
+      "file": "browser-zh-CN-1280/zh-CN-1280-zeal-combat.png",
+      "sha256": "a8c968273117459ba3e8333c9d1791e657207e69f5605f9e0c110da48deb4f19"
+    },
+    {
+      "file": "browser-zh-CN-1280/zh-CN-1280-zeal-details.png",
+      "sha256": "b78c17f0c9164ead1f233feaac4e6b997db6ee388b381d582ef0f7819ec7a3ed"
+    },
+    {
+      "file": "browser-zh-CN-1280/zh-CN-1280-smite-combat.png",
+      "sha256": "3b5ad2b414ddbd7ee0b45be80699e087e623d266699c613e5800248d4335680f"
+    },
+    {
+      "file": "browser-zh-CN-1280/zh-CN-1280-smite-details.png",
+      "sha256": "fd8d091c8e6c57f837d34e32601643368a0b33cfcee8a912edd50ca42881fc47"
+    },
+    {
+      "file": "browser-zh-CN-1280/zh-CN-1280-charge-combat.png",
+      "sha256": "bafbdebcb054a4dd41c64c0b464c17dd93f8dc1667c380d44a08e7a427274df1"
+    },
+    {
+      "file": "browser-zh-CN-1280/zh-CN-1280-charge-details.png",
+      "sha256": "9af5a40bc8c2cc1ea2dba7d1d3912734dc1dadde1f7e41e5e275ac1ac3d59103"
+    },
+    {
+      "file": "browser-zh-CN-1280/zh-CN-1280-fist-of-heavens-combat.png",
+      "sha256": "28f90f5862ae989c12f17b4ff788f38b175e8fe09e4c9beb2c4c243be3ce90c3"
+    },
+    {
+      "file": "browser-zh-CN-1280/zh-CN-1280-fist-of-heavens-details.png",
+      "sha256": "65ef881942e4516cb10a2603301d717a03d5995b05b032ed88879cba9542e513"
+    },
+    {
+      "file": "browser-zh-CN-360/zh-CN-360-zeal-combat.png",
+      "sha256": "371fcb2d70bfca3f8025fde4274435f6d23c707b28f5e450bad4cd9525639822"
+    },
+    {
+      "file": "browser-zh-CN-360/zh-CN-360-zeal-details.png",
+      "sha256": "8363280bb785b5e315f474f436b61a40d94bb2ec815ecb6f00717260b2974323"
+    },
+    {
+      "file": "browser-zh-CN-360/zh-CN-360-smite-combat.png",
+      "sha256": "a47651c4f092992ccb80cd514a8fca445cdaf52e00476a341fc07a7ae8a0824c"
+    },
+    {
+      "file": "browser-zh-CN-360/zh-CN-360-smite-details.png",
+      "sha256": "3da10efd727ebee36798dc4979594311d8e4376f13205104f3ca715ce4a8bc42"
+    },
+    {
+      "file": "browser-zh-CN-360/zh-CN-360-charge-combat.png",
+      "sha256": "c7bd69b7a93815e20c98e4d0e875a7e6b942534825ce3c01723a23f507518857"
+    },
+    {
+      "file": "browser-zh-CN-360/zh-CN-360-charge-details.png",
+      "sha256": "82313d790aeb7e8cb005764216935dcb006e84f44f7e3bf056f431a69f45d9c9"
+    },
+    {
+      "file": "browser-zh-CN-360/zh-CN-360-fist-of-heavens-combat.png",
+      "sha256": "32e6e6a3dc6c1675bcd174b7378c47e8daf25873eff2ea68ef15618c878cd76f"
+    },
+    {
+      "file": "browser-zh-CN-360/zh-CN-360-fist-of-heavens-details.png",
+      "sha256": "9088cf4a3950c641525d36ba6033b4232c50c6aebe634b42aa1fcdccf1c4bb67"
+    }
+  ],
+  "page_errors": [],
+  "owned_preview_pids_absent": true,
+  "port4484_closed": true,
+  "synthetic_fixture": true,
+  "earned_acceptance": false
+}

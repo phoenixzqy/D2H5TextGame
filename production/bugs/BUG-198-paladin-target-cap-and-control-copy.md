@@ -1,7 +1,7 @@
 # BUG-198 — Honor Zeal's target limit and describe Paladin control accurately
 
 Severity: Medium — excess area damage and misleading duration/target promises.
-Status: Reproduced; repair pending. No new inventory credit.
+Status: Locally fixed and verified; independent/earned acceptance open.
 Owners: engine-dev / content-designer / frontend-dev; root sole writer.
 
 ## Reproduction
@@ -37,8 +37,22 @@ Charge uses static turn wording instead of the existing pure control duration.
 [Original exact native RED](../../docs/plans/evidence/fixtures/paladin-control-repro-198/raw.tar.gz)
 and [byte audit](../../docs/plans/evidence/fixtures/paladin-control-repro-198/packet.json).
 The eight-case probe exits 1 in 4.980 s, with exactly two Zeal cardinality failures.
-Active task scratch is owned by root and retained until integrated proof and
-archival; its exact path/removal condition is in the packet.
+The original reproduction packet records its task scratch provenance; integrated
+evidence and verified cleanup are recorded below.
+
+## Resolution
+
+Runtime/native tests `e2ea27c`; bilingual previews/UI tests `ed37092`. Zeal authors
+an exact-three cap after unchanged densest-cross selection. Smite/Charge/Fist
+retain their real timed control and now describe actual seconds, boss/miss/repeat
+rules.113 new cases; full14158/623/two existing skips, engine7392/265,
+types/lint/production build and four locale/viewport browser cases PASS.
+[Integrated evidence](../../docs/plans/evidence/d04-paladin-target-control.md)
+includes actual committed-blob proof, eight exact five-domain Continue pairs,
+80 geometry samples,190 byte-verified raw files/26 receipts and950 exact owned
+file removals. Scratch absent, port4484 closed, cleanup remaining[]/failures[].
+Exactly four local skill credits; Paladin28/30. Independent/earned acceptance,
+Conversion/Holy Shield, Baal and full private v1 remain open.
 
 Security check: pass — first-party local targeting/data/UI repair, with no
 credential, permission, network, dependency, CI or persistent save-field change.

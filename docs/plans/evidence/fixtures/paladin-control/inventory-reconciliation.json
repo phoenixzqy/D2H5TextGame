@@ -1,0 +1,26 @@
+{
+  "rows": 213,
+  "ids_order_preserved": true,
+  "changed_rows": [
+    "skills-paladin-zeal",
+    "skills-paladin-charge",
+    "skills-paladin-fist-of-heavens",
+    "skills-paladin-smite"
+  ],
+  "before_counts": {
+    "unverified": 118,
+    "bounded-functional": 93,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "after_counts": {
+    "unverified": 114,
+    "bounded-functional": 97,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "before_sha256": "61c6e7bab53e634441745e009ac233af792596b449420304ca3023c1cdd87b38",
+  "after_sha256": "f10035a2e814779af019363aba5d4bc00040bd1f1bd06e81823af26176a71005",
+  "independent_earned_acceptance_open": true,
+  "paladin_bounded_rows": 28
+}

@@ -1,0 +1,41 @@
+{
+  "reviewer": "root author self-review; no independent approval",
+  "scope": "BUG198 Zeal target cap and Smite/Charge/Fist control presentation",
+  "source_findings": [],
+  "axes": {
+    "correctness": "Strict authored exact-Zeal cap is forwarded unchanged into registration and applied once after the existing densest-cross resolver. No shared grid or RNG code changes. Existing ordinary hit, payment, cooldown, status timing and settlement paths remain authoritative. Native/playback and causal timing tests cover actual consequences, not markers alone.",
+    "readability": "One optional field follows the established data/type/catalog boundary. One slice caps only the resolved area list. Pure display stats supply authored cap and shared duration defaults; localized description branches remain presentation-only.",
+    "architecture": "No React/DOM/store imports in engine. Public optional metadata carries TSDoc. No alternate combat, save or targeting implementation. Uncapped Arctic Blast compatibility is exercised.",
+    "security": "First-party local JSON/schema/engine/UI and isolated synthetic browser proof. No dependency, credential, permission, networking, CI, persistence/version or genuine campaign expansion. Strict schema rejects foreign or malformed cap metadata.",
+    "performance": "Adds one bounded array slice per capped cast and constant preview lookups. Does not increase target count, add timers or create unbounded work. This is source review, not full game performance acceptance."
+  },
+  "known_test_corrections": [
+    "Charge seed7 inclusive 80..120 base draw is82, not81; original native-presentation RED retained.",
+    "Preview negative shape row was not a valid AoeShape; corrected to actual foreign line-3 without production changes. Original test text/typecheck failure retained.",
+    "One new React test callback needed braces under no-confusing-void-expression. No assertion weakening or suppression.",
+    "Earlier targeting fixture/timing corrections and interrupted edit remain preserved in original scratch logs and edit-attempt-note.json."
+  ],
+  "verification_pending": [
+    "Archival and exact owned cleanup are subsequent publication steps; see packet cleanup.json."
+  ],
+  "acceptance_limits": [
+    "Independent reviewer/QA/design acceptance remains open",
+    "Synthetic local functionality is not earned class/build/balance acceptance",
+    "C2-C4, all G0-G7, Baal and complete private v1 remain open"
+  ],
+  "verified": {
+    "full_tests": 14158,
+    "full_files": 623,
+    "existing_skips": 2,
+    "source_files_actual_committed": 1352,
+    "build_files_frozen": 760,
+    "engine": 7392,
+    "production_browser_cases": 4,
+    "save_domain_pairs": 8,
+    "geometry_samples": 80,
+    "visuals_inspected": 10,
+    "types": "pass",
+    "lint": "pass",
+    "build": "pass"
+  }
+}

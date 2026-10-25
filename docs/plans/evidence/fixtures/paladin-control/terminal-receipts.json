@@ -1,0 +1,334 @@
+{
+  "browser-en-1280": {
+    "argv": [
+      "env",
+      "BROWSER_RUN=browser-en-1280",
+      "BROWSER_LOCALE=en",
+      "BROWSER_WIDTH=1280",
+      "python3",
+      ".github/skills/webapp-testing/scripts/with_server.py",
+      "--server",
+      "exec python3 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/serve.py",
+      "--port",
+      "4484",
+      "--",
+      "node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/browser-current.cjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 33.781,
+    "finished": "2026-10-25T10:57:16.492054+00:00"
+  },
+  "browser-en-360": {
+    "argv": [
+      "env",
+      "BROWSER_RUN=browser-en-360",
+      "BROWSER_LOCALE=en",
+      "BROWSER_WIDTH=360",
+      "python3",
+      ".github/skills/webapp-testing/scripts/with_server.py",
+      "--server",
+      "exec python3 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/serve.py",
+      "--port",
+      "4484",
+      "--",
+      "node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/browser-current.cjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 32.905,
+    "finished": "2026-10-25T10:58:00.062641+00:00"
+  },
+  "browser-output-audit": {
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/browser-audit.py"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.059,
+    "finished": "2026-10-25T10:59:22.727008+00:00"
+  },
+  "browser-zh-CN-1280": {
+    "argv": [
+      "env",
+      "BROWSER_RUN=browser-zh-CN-1280",
+      "BROWSER_LOCALE=zh-CN",
+      "BROWSER_WIDTH=1280",
+      "python3",
+      ".github/skills/webapp-testing/scripts/with_server.py",
+      "--server",
+      "exec python3 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/serve.py",
+      "--port",
+      "4484",
+      "--",
+      "node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/browser-current.cjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 35.749,
+    "finished": "2026-10-25T10:58:35.854268+00:00"
+  },
+  "browser-zh-CN-360": {
+    "argv": [
+      "env",
+      "BROWSER_RUN=browser-zh-CN-360",
+      "BROWSER_LOCALE=zh-CN",
+      "BROWSER_WIDTH=360",
+      "python3",
+      ".github/skills/webapp-testing/scripts/with_server.py",
+      "--server",
+      "exec python3 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/serve.py",
+      "--port",
+      "4484",
+      "--",
+      "node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/browser-current.cjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 33.935,
+    "finished": "2026-10-25T10:59:09.838283+00:00"
+  },
+  "committed-blob-proof": {
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/committed-audit.py"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.812,
+    "finished": "2026-10-25T11:07:24.304852+00:00"
+  },
+  "corrected-final-lint": {
+    "argv": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 111.007,
+    "finished": "2026-10-25T11:00:22.385828+00:00"
+  },
+  "corrected-types": {
+    "argv": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 40.918,
+    "finished": "2026-10-25T10:57:00.765425+00:00"
+  },
+  "final-lint": {
+    "argv": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 94.538,
+    "finished": "2026-10-25T10:58:05.248219+00:00"
+  },
+  "frozen-full": {
+    "argv": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 506.191,
+    "finished": "2026-10-25T11:06:57.571462+00:00"
+  },
+  "native-green": {
+    "argv": [
+      "node_modules/.bin/vite-node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/native-green.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 6.899,
+    "finished": "2026-10-25T10:49:47.444904+00:00"
+  },
+  "native-presentation-red": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/paladin-target-control.causal.test.ts",
+      "src/features/skills/SkillsScreen.paladin-control.test.tsx"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 8.377,
+    "finished": "2026-10-25T10:51:40.328755+00:00"
+  },
+  "native-red": {
+    "argv": [
+      "node_modules/.bin/vite-node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/native-red.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 4.98,
+    "finished": "2026-10-25T10:45:42.170533+00:00"
+  },
+  "presentation-engine": {
+    "argv": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 85.795,
+    "finished": "2026-10-25T10:56:23.950547+00:00"
+  },
+  "presentation-focused-green": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/displayStats.paladin-control.test.ts",
+      "src/stores/paladin-target-control.causal.test.ts",
+      "src/features/skills/SkillsScreen.paladin-control.test.tsx"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 11.525,
+    "finished": "2026-10-25T10:55:09.680845+00:00"
+  },
+  "presentation-types": {
+    "argv": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 2,
+    "seconds": 43.941,
+    "finished": "2026-10-25T10:55:42.097579+00:00"
+  },
+  "preview-red": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/displayStats.paladin-control.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 2.089,
+    "finished": "2026-10-25T10:54:22.245141+00:00"
+  },
+  "production-build-audit": {
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/build-audit.py"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.287,
+    "finished": "2026-10-25T10:56:42.991897+00:00"
+  },
+  "production-build": {
+    "argv": [
+      "env",
+      "VITE_E2E=false",
+      "node_modules/.bin/vite",
+      "build",
+      "--outDir",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6/production-dist",
+      "--emptyOutDir"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 12.816,
+    "finished": "2026-10-25T10:56:32.665716+00:00"
+  },
+  "targeting-core-authored-green": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/paladin-target-control.test.ts",
+      "src/engine/skills/paladin-target-cap-schema.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 2.615,
+    "finished": "2026-10-25T10:48:56.872264+00:00"
+  },
+  "targeting-core-corrected-red": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/paladin-target-control.test.ts",
+      "src/engine/skills/paladin-target-cap-schema.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 2.755,
+    "finished": "2026-10-25T10:47:52.886358+00:00"
+  },
+  "targeting-core-final-green": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/paladin-target-control.test.ts",
+      "src/engine/skills/paladin-target-cap-schema.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 3.438,
+    "finished": "2026-10-25T10:49:35.107239+00:00"
+  },
+  "targeting-core-green": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/paladin-target-control.test.ts",
+      "src/engine/skills/paladin-target-cap-schema.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 2.778,
+    "finished": "2026-10-25T10:48:37.122370+00:00"
+  },
+  "targeting-core-red": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/paladin-target-control.test.ts",
+      "src/engine/skills/paladin-target-cap-schema.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 2.831,
+    "finished": "2026-10-25T10:47:35.696669+00:00"
+  },
+  "targeting-engine": {
+    "argv": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 85.361,
+    "finished": "2026-10-25T10:50:57.032235+00:00"
+  },
+  "targeting-types": {
+    "argv": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 44.259,
+    "finished": "2026-10-25T10:50:15.935635+00:00"
+  }
+}

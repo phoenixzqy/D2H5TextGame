@@ -1,0 +1,54 @@
+{
+  "reviewer": "root author; not independent UX/QA acceptance",
+  "inspected": [
+    {
+      "file": "browser-en-360/en-360-zeal-details.png",
+      "sha256": "a4e727df3371a20a9f206a3edaa3f0bb6fce282dd81d28c31817321f028300ae"
+    },
+    {
+      "file": "browser-en-360/en-360-smite-details.png",
+      "sha256": "c6bc1235d1d18bae02c9a463010365575e905d39577794c448d86043d89142e3"
+    },
+    {
+      "file": "browser-en-360/en-360-charge-details.png",
+      "sha256": "73af6351783854973a0ca71823a195c8cc39607e2398471ef375b52e2cb6192b"
+    },
+    {
+      "file": "browser-en-360/en-360-fist-of-heavens-details.png",
+      "sha256": "35a9d0088e3e6a4d56092a329a743c2114ff4eb34b202e7bd61c41ba58e2b91d"
+    },
+    {
+      "file": "browser-zh-CN-360/zh-CN-360-zeal-details.png",
+      "sha256": "8363280bb785b5e315f474f436b61a40d94bb2ec815ecb6f00717260b2974323"
+    },
+    {
+      "file": "browser-zh-CN-360/zh-CN-360-smite-details.png",
+      "sha256": "3da10efd727ebee36798dc4979594311d8e4376f13205104f3ca715ce4a8bc42"
+    },
+    {
+      "file": "browser-zh-CN-360/zh-CN-360-charge-details.png",
+      "sha256": "82313d790aeb7e8cb005764216935dcb006e84f44f7e3bf056f431a69f45d9c9"
+    },
+    {
+      "file": "browser-zh-CN-360/zh-CN-360-fist-of-heavens-details.png",
+      "sha256": "9088cf4a3950c641525d36ba6033b4232c50c6aebe634b42aa1fcdccf1c4bb67"
+    },
+    {
+      "file": "browser-zh-CN-1280/zh-CN-1280-zeal-combat.png",
+      "sha256": "a8c968273117459ba3e8333c9d1791e657207e69f5605f9e0c110da48deb4f19"
+    },
+    {
+      "file": "browser-zh-CN-1280/zh-CN-1280-fist-of-heavens-combat.png",
+      "sha256": "28f90f5862ae989c12f17b4ff788f38b175e8fe09e4c9beb2c4c243be3ce90c3"
+    }
+  ],
+  "findings": [],
+  "observations": [
+    "All eight mobile details show legible localized current damage and target/control text, intact allocation controls and bottom navigation. Longer Zeal/Fist details use the existing document scroll.",
+    "Chinese desktop Zeal/Fist combat screenshots show ordinary grid, HP/MP and pause/flee controls. Full-page log text is proven by retained JSON rather than assumed visible in the initial viewport."
+  ],
+  "limits": [
+    "Not a full-game accessibility/contrast/performance sign-off.",
+    "Synthetic functional fixtures; no earned class/build/campaign acceptance."
+  ]
+}
