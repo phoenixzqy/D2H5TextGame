@@ -23,7 +23,7 @@ it('plays real paid onset and expiry without retaining a permanent buff marker o
   const fresh = {
     ...createMockPlayer('Burst playback fixture', 'assassin'),
     level: 30,
-    skillLevels: { 'assassin.burst_of_speed': 1 },
+    skillLevels: { 'assassin.claw_mastery': 1, 'assassin.burst_of_speed': 1 },
     comboOrder: ['assassin.burst_of_speed']
   };
   const native = playerToCombatUnit(fresh);

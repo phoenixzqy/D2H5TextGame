@@ -103,6 +103,7 @@ import { resumeWaveDeferredSave } from './persistence';
 import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases, type SkillTemplate } from './skillsHelpers';
 import { projectGovernedActives, type GovernedActiveRanks } from '@/engine/skills/runeword-actives';
+import { projectPlayerClassActives } from '@/engine/skills/player-class-actives';
 import { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
 export { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
 
@@ -121,8 +122,9 @@ const CHALLENGE_ORDINAL_PERIOD = 360360;
 
 /**
  * Pure production configuration boundary shared by combat and presentation.
- * Validate class, level, rank and prerequisites before scoped summon slots enter
- * the engine. This does not qualify owner life, mana, item payment or preparation.
+ * Validate class, level, rank and prerequisites before authored class slots enter
+ * the engine. D06 summons retain direct prerequisites; ordinary actives require
+ * transitive learned ownership. This does not qualify resources or item payment.
  * Copies configuration without mutating the player or consulting transient state.
  */
 export function scopedSummonConfiguration(player: Player): Pick<CombatUnit, 'skillOrder' | 'skillLevels'> {
@@ -158,7 +160,7 @@ export function scopedSummonConfiguration(player: Player): Pick<CombatUnit, 'ski
     skillLevels[canonical] = allocated;
     return true;
   });
-  return { skillOrder, skillLevels };
+  return projectPlayerClassActives({ classId: player.class, level: player.level, skillOrder, skillLevels });
 }
 
 /**

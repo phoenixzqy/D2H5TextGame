@@ -539,9 +539,11 @@ describe('refreshActivePlayerCombatConfig', () => {
   it('freezes the recorded team until an explicit current-wave combo replay', () => {
     const player = {
       ...boostedSorceress(),
+      level: 12,
       comboOrder: ['sorceress.ice_bolt'],
       skillLevels: {
         'sorceress.ice_bolt': 1,
+        'sorceress.fire_bolt': 1,
         'sorceress.fire_ball': 1
       }
     };

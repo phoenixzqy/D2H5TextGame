@@ -390,7 +390,7 @@ describe('D06 v1c corpse-summon adapter boundary', () => {
       if (row.rank !== undefined) levels[prerequisite] = row.rank;
       expect(playerToCombatUnit({ ...p, skillLevels: levels }).skillOrder).toEqual([]);
     });
-  it('excludes scoped foreign-class skills while preserving every unrelated/excluded slot and rank', () => {
+  it('excludes foreign summons and normalizes the selected lawful ordinary active without changing stored ranks', () => {
     const p = eligible('druid', 'raven');
     const skillLevels = { ...p.skillLevels, 'amazon.valkyrie': 20,
       'necromancer.raise_skeleton': 12, 'necromancer.iron_golem': 1, 'fixture.summon': 7 };
@@ -400,7 +400,9 @@ describe('D06 v1c corpse-summon adapter boundary', () => {
     const before = structuredClone({ ...p, skillLevels, comboOrder: order });
     const result = playerToCombatUnit(before);
     expect(result.skillOrder).toEqual(['fixture.summon', 'druid.firestorm']);
-    expect(result.skillLevels).toEqual(skillLevels);
+    const expected = { ...skillLevels, 'druid.firestorm': 1 };
+    Reflect.deleteProperty(expected, 'skills-druid-firestorm');
+    expect(result.skillLevels).toEqual(expected);
     expect(before.skillLevels).toEqual(skillLevels);
     expect(before.comboOrder).toEqual(order);
   });
