@@ -106,6 +106,7 @@ afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); reset
 describe('D06 paid summon preparation through native recorded waves', () => {
   it('learns and upgrades for the next wave while preserving the current recording and event-array identity', () => {
     arrange(0); start(); expectBatch(0, 0);
+    expect(inputHero().druidSummonRanks).toEqual({});
     expect(pools(inputHero())).toEqual([900000, 300, 0, 0, '0']);
     const first = recording(), firstEvents = useCombatStore.getState().recordedEvents;
     const firstFinal = structuredClone(finalHero());
@@ -117,6 +118,7 @@ describe('D06 paid summon preparation through native recorded waves', () => {
     expect(recording()).toEqual(first);
     next(); expectBatch(1, 6);
     expect(inputHero().skillLevels?.[RAVEN]).toBe(1);
+    expect(inputHero().druidSummonRanks).toEqual({ raven: 1 });
     expect(pools(inputHero())).toEqual(pools(firstFinal));
     const second = recording(), secondEvents = useCombatStore.getState().recordedEvents;
     const secondFinal = structuredClone(finalHero());
@@ -128,6 +130,7 @@ describe('D06 paid summon preparation through native recorded waves', () => {
     expect(recording()).toEqual(second);
     next(); expectBatch(2, 6);
     expect(inputHero().skillLevels?.[RAVEN]).toBe(2);
+    expect(inputHero().druidSummonRanks).toEqual({ raven: 2 });
     expect(pools(inputHero())).toEqual(pools(secondFinal));
   });
 
@@ -171,11 +174,13 @@ describe('D06 paid summon preparation through native recorded waves', () => {
     refreshActivePlayerCombatConfig({ replayCurrentWave: true });
     expect(useCombatStore.getState().recordedEvents).not.toBe(originalEvents);
     expectBatch(0, 0); expect(pools(inputHero())).toEqual(originalPools);
+    expect(inputHero().druidSummonRanks).toEqual({});
     const without = useCombatStore.getState().recordedEvents;
     usePlayerStore.getState().setComboOrder([AUTHORED, FINISHER]);
     refreshActivePlayerCombatConfig({ replayCurrentWave: true });
     expect(useCombatStore.getState().recordedEvents).not.toBe(without);
     expectBatch(2, 6); expect(recording()).toEqual(original);
+    expect(inputHero().druidSummonRanks).toEqual({ raven: 2 });
     drain();
     refreshActivePlayerCombatConfig({ replayCurrentWave: true });
     expectBatch(2, 6); expect(pools(inputHero())).toEqual(originalPools);

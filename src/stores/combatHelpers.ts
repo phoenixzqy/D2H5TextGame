@@ -110,6 +110,7 @@ import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
 import { projectGovernedActives, type GovernedActiveRanks } from '@/engine/skills/runeword-actives';
 import { projectPlayerClassActives } from '@/engine/skills/player-class-actives';
 import { composeFeralRageRank } from '@/engine/skills/druid-sustain';
+import { composeDruidSummonRanks } from '@/engine/skills/druid-summon-authority';
 import { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
 export { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
 
@@ -256,6 +257,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     ...(player.class === 'druid' ? { druidShapeRanks: composeDruidShapeshifting(player) } : {}),
     ...(player.class === 'druid' ? { feralRageRank: composeFeralRageRank({ classId: player.class,
       level: player.level, ...configuration }) } : {}),
+    ...(player.class === 'druid' ? { druidSummonRanks: composeDruidSummonRanks(player) } : {}),
     burstOfSpeedRank: composeBurstOfSpeedRank(player),
     manaRegenCarry: 0,
     manaRegenCompensation: 0,
@@ -1188,6 +1190,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       burstOfSpeedRank: fresh.burstOfSpeedRank ?? 0,
       ...((unit.feralRageRank !== undefined || fresh.feralRageRank !== undefined)
         ? { feralRageRank: fresh.feralRageRank ?? 0 } : {}),
+      ...((unit.druidSummonRanks !== undefined || fresh.druidSummonRanks !== undefined)
+        ? { druidSummonRanks: fresh.druidSummonRanks ?? {} } : {}),
       physicalReflectionPct: fresh.physicalReflectionPct ?? 0,
       manaRegenCarry: capped ? 0 : unit.manaRegenCarry ?? 0,
       manaRegenCompensation: capped ? 0 : unit.manaRegenCompensation ?? 0,
