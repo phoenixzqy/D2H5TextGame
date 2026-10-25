@@ -33,3 +33,12 @@ is captured by the packet's delivery audit. Runtime6.62s; intentional exit1.
 Genuine L33/nextNormal402/Baal uncleared is unchanged. No genuine campaign or
 remote action. C2–C4/full G0–G7/all-class earned builds,30–50hour pacing/economy/
 endgame and complete privatev1 remain unfinished.
+
+
+## Subsequent local repair
+
+`0742a94f` implements the explicit [author contract](../decisions/D04-leap-v1.md).
+[Delivery verification](d04-leap.md) records actual paid control/Physical benefit,
+finite carry, native lifecycle, full checks and production browser evidence.
+This historical prepatch reproduction is unchanged; independent/earned acceptance
+remains open.

@@ -1,0 +1,1332 @@
+{
+  "archiveSha256": "f58d64620812758c52f10a81d1f7d04f29b80566bf2706667d3f1fd38eadc3fb",
+  "members": {
+    "author-review.json": {
+      "sha256": "81cc94dd590cb5200f91ab58ded33466a7ca54310c9d350029e0e7e7876db827",
+      "bytes": 1944
+    },
+    "browser-audit.json": {
+      "sha256": "b8529c5c9f39655b242332b89410cfda6a4e360c95497c024605e44cc5cc2252",
+      "bytes": 879
+    },
+    "browser-final-live.json": {
+      "sha256": "d14fc697a0b00b22479df59d9e947d5eb768a3418f57f1dcaa569cd708fc8b2a",
+      "bytes": 541
+    },
+    "browser-final.json": {
+      "sha256": "ede43b4c3d4576f7051ff2a374844dd2ae598d307ed7d32f544fdb0ce20bfa9f",
+      "bytes": 587
+    },
+    "browser-final.log": {
+      "sha256": "7bc9b4c7e3ac1a49c2f22ec368a77be251640570289f59e3c7845ba6c39b664c",
+      "bytes": 590
+    },
+    "browser-live.json": {
+      "sha256": "71327d062fc626d34b084ec743e5f123bb2a174a4f99e8f7643206f402cfc430",
+      "bytes": 534
+    },
+    "browser-suite.py": {
+      "sha256": "62ad2738f4c8b7b18f019ee713206978de0d3936d6136c5f95ae515137204937",
+      "bytes": 354
+    },
+    "browser.cjs": {
+      "sha256": "2c2141496c3c8ab783b74f2e9e909d61e54f6d533c7aa1853cfc388e485e6e7c",
+      "bytes": 11731
+    },
+    "browser.json": {
+      "sha256": "820a5e36f6a764a924b97db5551da1e74e70465cc6a4a568b74e49047d4895d7",
+      "bytes": 579
+    },
+    "browser.log": {
+      "sha256": "7bc9b4c7e3ac1a49c2f22ec368a77be251640570289f59e3c7845ba6c39b664c",
+      "bytes": 590
+    },
+    "build-audit.json": {
+      "sha256": "d55d86b8f32d247b0a2559d432e8b8c53ef608d78f40ad8f2bf536ef5b83d676",
+      "bytes": 603
+    },
+    "build-delivery-live.json": {
+      "sha256": "0ce0efffd29e5b31be92a4f022503820f8b16b7d1d38abe513b6bd6092e3156e",
+      "bytes": 356
+    },
+    "build-delivery.json": {
+      "sha256": "c529be2d9deee4a742dd7d4c92478d46a22dd532f89715a8ef21cce7d4d1408a",
+      "bytes": 402
+    },
+    "build-delivery.log": {
+      "sha256": "29e04a1f94bc50d77a759168a0bae600f4d93f7fb1167ccc44ea97ad5d88e2d5",
+      "bytes": 2109
+    },
+    "build-final-live.json": {
+      "sha256": "b3d26c921360f2d7b667e54163f10b978d8238992892465523c84a497e7ec670",
+      "bytes": 353
+    },
+    "build-final.json": {
+      "sha256": "6b6cb9d94f1051b77647e889e1496419482d8fe8065c714b4b25cbc55c6fe03e",
+      "bytes": 399
+    },
+    "build-final.log": {
+      "sha256": "ab4ebccd7ac8ef9a6d3b4c53fa45b39563288485ca4465e36d4535ab2ad43604",
+      "bytes": 2108
+    },
+    "build-live.json": {
+      "sha256": "c825bd8863c61674792353226cdd506e5c9157c85b5514c44a42632020d70403",
+      "bytes": 347
+    },
+    "build.json": {
+      "sha256": "beb586e0dc54ccf9cdb17df713d293a817a77d90d717651dbb416a02e42d399f",
+      "bytes": 393
+    },
+    "build.log": {
+      "sha256": "78caaa43c5daab4ba8cfd1a8349b96bdad6f8329a899a2a6ee47f79c81456369",
+      "bytes": 2109
+    },
+    "cancelled-first-full.json": {
+      "sha256": "fd262aec4decbea61c82f2199c10204a9ab62ab62b058a3cdb18aa9df2f2d50b",
+      "bytes": 601
+    },
+    "cleanup.py": {
+      "sha256": "5799646015049ae22995d33452b11a3df9e89b04bee08cecd8aaf14244013157",
+      "bytes": 3819
+    },
+    "corrections.json": {
+      "sha256": "c5c17e9533a1e789663c28e77b5775a57d49817d0046013637dff2c5feca8256",
+      "bytes": 405
+    },
+    "double-swing-contract-draft.md": {
+      "sha256": "65dfc94b140d893c9130fa65683a9f3fd2579a0aedb4f2a43d62223d85ca3e15",
+      "bytes": 2434
+    },
+    "double-swing-grid-review.json": {
+      "sha256": "86f019322495fb6d759f47822a503426de078a064a97016481925201f00dc884",
+      "bytes": 419
+    },
+    "double-swing-observations-corrected.json": {
+      "sha256": "d1c6f93d927aabb23ecb12c9a112ca87ade5f65ead0396a6ba9d71152a0a7f32",
+      "bytes": 522952
+    },
+    "double-swing-observations.json": {
+      "sha256": "d1c6f93d927aabb23ecb12c9a112ca87ade5f65ead0396a6ba9d71152a0a7f32",
+      "bytes": 522952
+    },
+    "double-swing-repro-corrected.ts": {
+      "sha256": "3805bb49efccd2d79ceaa6953e334fc9199b5f081b686dbf0923cc3e5ed1a5b3",
+      "bytes": 3441
+    },
+    "double-swing-repro.ts": {
+      "sha256": "d0027b431789907e607f2999a15cd3f3788e048740acabb81d39ef64ca79a1bb",
+      "bytes": 3415
+    },
+    "engine-delivery-live.json": {
+      "sha256": "778efb035f0464e2aee5c598beea8c967035b0ba24e504b401c1d1cfdee91bc4",
+      "bytes": 255
+    },
+    "engine-delivery.json": {
+      "sha256": "fdf8e4f55abccfaa15022bfb72d3e7a80a48f492edc4e17651025257a5b5add0",
+      "bytes": 301
+    },
+    "engine-delivery.log": {
+      "sha256": "fcc07656618f132c50a891e041195f55d0ebc3214a389636e53464d1f6cd406a",
+      "bytes": 67927
+    },
+    "engine-live.json": {
+      "sha256": "ac4de112f90ca4b830ff7bc66c47045772da200f6fa21fa53ca0761f4fcccd7f",
+      "bytes": 246
+    },
+    "engine.json": {
+      "sha256": "2749075f3470c14da3cd40f6a02d35a28c1324b3dee89f145e1a4e5989b59417",
+      "bytes": 292
+    },
+    "engine.log": {
+      "sha256": "025400e4965581f6d50c5a6b6aa4b370be87d4ee08a7b5049566509cd9842397",
+      "bytes": 67894
+    },
+    "final-browser-en-1280/browser-report.json": {
+      "sha256": "e080f0bf0c15074c0655512b89e9b08be72d9bc37de131bd425dc364c0bfcdc5",
+      "bytes": 1480
+    },
+    "final-browser-en-1280/en-1280-leap-cast-visible.png": {
+      "sha256": "7187dd350300b0c746ad4baabca9a8fb4e88bec82816af7062f70943126b71a0",
+      "bytes": 198924
+    },
+    "final-browser-en-1280/en-1280-leap-combat.json": {
+      "sha256": "5c1c8d0757375bfc97ed07ffee446b1a4b54beee3cbba36fc2e8c5191313714a",
+      "bytes": 2071
+    },
+    "final-browser-en-1280/en-1280-leap-current-next.png": {
+      "sha256": "cfa1d3bce7a823ca052af616f5434bff23aecea4da7212da272e65ecdf09e209",
+      "bytes": 105033
+    },
+    "final-browser-en-1280/en-1280-leap-description.png": {
+      "sha256": "cfa1d3bce7a823ca052af616f5434bff23aecea4da7212da272e65ecdf09e209",
+      "bytes": 105033
+    },
+    "final-browser-en-1280/en-1280-leap-details.png": {
+      "sha256": "7400dbdc3996c7b029a0e88edfeb4624065a781079e4c6b18b9f988955dc45bc",
+      "bytes": 106711
+    },
+    "final-browser-en-1280/en-1280-leap-fresh-1.json": {
+      "sha256": "27a31b898dde0afa4030a12b6ad044aa5a7b017348f825c5f3a1f67e08fc057c",
+      "bytes": 3170
+    },
+    "final-browser-en-1280/en-1280-leap-imported-2.json": {
+      "sha256": "1d1ba9d2bddd5aca484e9b2d256d5db07ce6e90fc2d8eefd149ed9f768808c7a",
+      "bytes": 4779
+    },
+    "final-browser-en-1280/en-1280-leap-observed-attempts.json": {
+      "sha256": "55c12aadd77b264f188a5fe27ae09dcb8bf4dd066fc35751c04a625dcf08affa",
+      "bytes": 1974
+    },
+    "final-browser-en-1280/en-1280-leap-rank1-after-4.json": {
+      "sha256": "4301dcc5a99ec09652f19b0d41296bb3b8558afc18f79a8172d5f897742d8aba",
+      "bytes": 4782
+    },
+    "final-browser-en-1280/en-1280-leap-rank1-before-3.json": {
+      "sha256": "50b1ab5ceaf3cead6305849d2b2a67a673cd162b822ef05cffbea74819821078",
+      "bytes": 4779
+    },
+    "final-browser-en-1280/en-1280-leap-rank2-after-6.json": {
+      "sha256": "3d70ce4918507a29a5b3a4d202eeede0d70ca8bf6acba03dc02e4e3aa1e9fb36",
+      "bytes": 4827
+    },
+    "final-browser-en-1280/en-1280-leap-rank2-before-5.json": {
+      "sha256": "3d70ce4918507a29a5b3a4d202eeede0d70ca8bf6acba03dc02e4e3aa1e9fb36",
+      "bytes": 4827
+    },
+    "final-browser-en-1280/en-1280-leap-synthetic-input.json": {
+      "sha256": "751726e2f55a8406462197218aac227ee78ece98a82240adff8ca6185ab86aaa",
+      "bytes": 3965
+    },
+    "final-browser-en-360/browser-report.json": {
+      "sha256": "5580da46069110309f115a19a1692381ded54e424d7d4541fca9c01c1ff45b10",
+      "bytes": 1474
+    },
+    "final-browser-en-360/en-360-leap-cast-visible.png": {
+      "sha256": "6a922777efec74a5e0aa32f774561805309b6d582e797766f2005ae09d956f58",
+      "bytes": 47280
+    },
+    "final-browser-en-360/en-360-leap-combat.json": {
+      "sha256": "5c1c8d0757375bfc97ed07ffee446b1a4b54beee3cbba36fc2e8c5191313714a",
+      "bytes": 2071
+    },
+    "final-browser-en-360/en-360-leap-current-next.png": {
+      "sha256": "4b410bd6cbddf14dee6a291772c183773daf77e250443b106e248c8a1c497553",
+      "bytes": 48065
+    },
+    "final-browser-en-360/en-360-leap-description.png": {
+      "sha256": "f0eda5ad1676441ba06a0246d03ac4cdce000d471aac5aacd9bba31cfdadb7f7",
+      "bytes": 48952
+    },
+    "final-browser-en-360/en-360-leap-details.png": {
+      "sha256": "a91dc43c347884fffffd57c524deccc226925ac96e28cdd0e54c1b3c3dc64ebf",
+      "bytes": 50656
+    },
+    "final-browser-en-360/en-360-leap-fresh-1.json": {
+      "sha256": "59e4ac4ecab0531385a06a057d42c31be60f65dadb4c55202ab84beece0c6ef0",
+      "bytes": 3170
+    },
+    "final-browser-en-360/en-360-leap-imported-2.json": {
+      "sha256": "6df86094ee687d4287cc6fd2d0a8a9ce3dab0b76a0c6e68d18c2f2954509ecc5",
+      "bytes": 4779
+    },
+    "final-browser-en-360/en-360-leap-observed-attempts.json": {
+      "sha256": "55c12aadd77b264f188a5fe27ae09dcb8bf4dd066fc35751c04a625dcf08affa",
+      "bytes": 1974
+    },
+    "final-browser-en-360/en-360-leap-rank1-after-4.json": {
+      "sha256": "0761280b7905595d04b25bd880d4285dd2c0c5d9f9fb73c4cf0fa11ea7eed959",
+      "bytes": 4782
+    },
+    "final-browser-en-360/en-360-leap-rank1-before-3.json": {
+      "sha256": "c6e36c72b0f29474a3ac3c2f0aae0e34d82742fb67951e72add841efad6d5fd8",
+      "bytes": 4779
+    },
+    "final-browser-en-360/en-360-leap-rank2-after-6.json": {
+      "sha256": "34cef58488a1d7420e05716221b138bd961b181713991ae3188d11c59bb6f9f6",
+      "bytes": 4827
+    },
+    "final-browser-en-360/en-360-leap-rank2-before-5.json": {
+      "sha256": "34cef58488a1d7420e05716221b138bd961b181713991ae3188d11c59bb6f9f6",
+      "bytes": 4827
+    },
+    "final-browser-en-360/en-360-leap-synthetic-input.json": {
+      "sha256": "38553025334583c9da23a792f4e6101ff8799100818846323df5ab237914488a",
+      "bytes": 3965
+    },
+    "final-browser-zh-CN-1280/browser-report.json": {
+      "sha256": "69f25d538271f1f2af871b15f55b2b48b41df35160442e580f98a7bae2db6ab6",
+      "bytes": 1428
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-cast-visible.png": {
+      "sha256": "88312ef7b52cff36fd3cda0e7d439d5a534076e6fbea350343b99c21ee911c23",
+      "bytes": 201327
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-combat.json": {
+      "sha256": "a3b0ce185069151942cbd2d6e930ce167a311134750a8cd242155adb0f3d506b",
+      "bytes": 2146
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-current-next.png": {
+      "sha256": "d68531b1d6f9c535f40721698eeab5db8fad21b2e1886269c60b09c4df782464",
+      "bytes": 103142
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-description.png": {
+      "sha256": "d68531b1d6f9c535f40721698eeab5db8fad21b2e1886269c60b09c4df782464",
+      "bytes": 103142
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-details.png": {
+      "sha256": "4ea402377a1e2d8cb54dd291f596c1b80975aca59c4bc8ccdab757a4ad4b6752",
+      "bytes": 104886
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-fresh-1.json": {
+      "sha256": "cf27a30cf9358b5d2365452109b698df9577d62e0a66721f53e5fd3fd0aed377",
+      "bytes": 3173
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-imported-2.json": {
+      "sha256": "cf71619819b6fc1d9d42b10e898ee7b7c803d562b9da7835392372bd4894c6b1",
+      "bytes": 4782
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-observed-attempts.json": {
+      "sha256": "400fe1a9dd515115e107eade8fe09d462f239bb71bf9f44d563e25e4664967d5",
+      "bytes": 2049
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-rank1-after-4.json": {
+      "sha256": "a88ce548ba7607b5717461ff24415b0baf928f3b46679371f03f52dbcc4cdfd9",
+      "bytes": 4785
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-rank1-before-3.json": {
+      "sha256": "8176ea2e24cfb8a000249b48c9872d95d7a63eaf68c892c9123f027ca4720c3b",
+      "bytes": 4782
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-rank2-after-6.json": {
+      "sha256": "beafdc5a5c1ba0a5507abd3c55409fa570b3cd64b1d14160c33bbdb39a0baa62",
+      "bytes": 4830
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-rank2-before-5.json": {
+      "sha256": "beafdc5a5c1ba0a5507abd3c55409fa570b3cd64b1d14160c33bbdb39a0baa62",
+      "bytes": 4830
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-leap-synthetic-input.json": {
+      "sha256": "1ab31a467274dec0a15192c495013ffea085c25c9ee41b3b55e1952230383a3e",
+      "bytes": 3968
+    },
+    "final-browser-zh-CN-360/browser-report.json": {
+      "sha256": "364a0cdb18215dd18194b35a23f3c6c07db149aad5b451d618b6662b71c81a1a",
+      "bytes": 1422
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-cast-visible.png": {
+      "sha256": "87a6df14d6deb472543d680b9462dc9cdd36e06e0b01534b034ccb64c8654ce9",
+      "bytes": 41464
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-combat.json": {
+      "sha256": "a3b0ce185069151942cbd2d6e930ce167a311134750a8cd242155adb0f3d506b",
+      "bytes": 2146
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-current-next.png": {
+      "sha256": "69ebf87123175ee131f55555458c5131bd84eff69f99cd3c8bea3c84a09c4af9",
+      "bytes": 50311
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-description.png": {
+      "sha256": "4ba33decc3827015a5dc90868437e6ccd8a7b891a5d7fdce9e9438c205d43160",
+      "bytes": 51033
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-details.png": {
+      "sha256": "5ac573582edc534d14462152f8a45ed6b353bc4a5fdcb1ad6a56ff675d925f04",
+      "bytes": 52764
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-fresh-1.json": {
+      "sha256": "7d5aa812e22ef25c43902d7d0c2521793dc64fd6d9c74655118d2a0da43c2423",
+      "bytes": 3173
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-imported-2.json": {
+      "sha256": "8c8b84607e35bf2c4c69947b649e69d2ab17fc25a61275179d2cfb3baf944404",
+      "bytes": 4782
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-observed-attempts.json": {
+      "sha256": "400fe1a9dd515115e107eade8fe09d462f239bb71bf9f44d563e25e4664967d5",
+      "bytes": 2049
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-rank1-after-4.json": {
+      "sha256": "88259c553dd561567bd79f491a18c7b39d9696d1ae23dff9b910a3e1c04bc082",
+      "bytes": 4785
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-rank1-before-3.json": {
+      "sha256": "69fa8bf9b4ad80d9028ec2c7d9db7b50eb8918ac363269b1125a3778fe5901b3",
+      "bytes": 4782
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-rank2-after-6.json": {
+      "sha256": "3d5c3d4c02c8e4b55b347cc17b8b731fcabd9f2b4cbf8aecae3e17ce7ebf7f18",
+      "bytes": 4830
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-rank2-before-5.json": {
+      "sha256": "3d5c3d4c02c8e4b55b347cc17b8b731fcabd9f2b4cbf8aecae3e17ce7ebf7f18",
+      "bytes": 4830
+    },
+    "final-browser-zh-CN-360/zh-CN-360-leap-synthetic-input.json": {
+      "sha256": "916f9ff81be400e0bb72b45178fde289eb7130f479c226e35eaf2686cb28c446",
+      "bytes": 3968
+    },
+    "final-validation-summary.json": {
+      "sha256": "2768fb117c36b169c10309a9bbeaf46a17f001c81d9d3e0fb9f715726bc8201e",
+      "bytes": 3362
+    },
+    "finalize-docs.py": {
+      "sha256": "451f342be581d53ab952bce9c0c9c18e03b07c152b6444d9b9065a86ec5b8d46",
+      "bytes": 16301
+    },
+    "focused-corrected-live.json": {
+      "sha256": "bf4da22ea4d59b376274e48eadb2e169c09d65818a0ae14f46aaf822b0ce3989",
+      "bytes": 418
+    },
+    "focused-corrected.json": {
+      "sha256": "6a4b1345aaab210cef4eac0be57f7849caff3222759447fb7008f2adc6b9cdbf",
+      "bytes": 463
+    },
+    "focused-corrected.log": {
+      "sha256": "3dccee214e791af2b16a745cc41abb96dd776110d5c5960c364865304719bb87",
+      "bytes": 723
+    },
+    "focused-delivery-live.json": {
+      "sha256": "11d6b3d7c46d9cb6ed2d0044979f793a252814789fa63db8f94d2b52962ed69a",
+      "bytes": 417
+    },
+    "focused-delivery.json": {
+      "sha256": "7c6ca5937a056e36b46ead833c12a097b96e3d9603c53ceae53cb773a69444d0",
+      "bytes": 462
+    },
+    "focused-delivery.log": {
+      "sha256": "904ddf9437c2046690aabf17c3618747461a356b2b0a4f4841890856526efef5",
+      "bytes": 723
+    },
+    "focused-final-live.json": {
+      "sha256": "6e66dd60b2c6657885f1835824c60e0526523520ec052906a77fc48bf8cd7e78",
+      "bytes": 413
+    },
+    "focused-final.json": {
+      "sha256": "6c46148a1f8cde32ee21687264a17e2d2e3d650437471ab746507e171cfd8b86",
+      "bytes": 459
+    },
+    "focused-final.log": {
+      "sha256": "4133e0bf7ebdaba0ca61d64b9e1f9f7dd8942f7f768ca869af94d91bd6830009",
+      "bytes": 725
+    },
+    "focused-green-live.json": {
+      "sha256": "fd54ba690bcd5d8914d6a42457cfb1c6f8ab0d8fbbcd831f1cf8bdd522c9a641",
+      "bytes": 375
+    },
+    "focused-green.json": {
+      "sha256": "fb71dfc8cd5da8c6acab10fae4e2b809265d2db80c3762fdd6e8e33aeb0cff66",
+      "bytes": 420
+    },
+    "focused-green.log": {
+      "sha256": "0f0f119ea1d9da7f59324780fac5eba3b74f1a1b4ea1a931dc7705606f10dd4c",
+      "bytes": 4036
+    },
+    "focused-verified-live.json": {
+      "sha256": "eb07591c65d77794220df7660a1110c26035b34c77590596e0580670783c945b",
+      "bytes": 417
+    },
+    "focused-verified.json": {
+      "sha256": "09486b4503eb3b0e9e74acbbe28b22ab09dd31090d84b85628b766d228b73daa",
+      "bytes": 462
+    },
+    "focused-verified.log": {
+      "sha256": "c54c2332fef4d8268fcedf5e77e71ee6cebbabf4e06dd56f9e84ae1caed0a38b",
+      "bytes": 723
+    },
+    "freeze-before-lint.json": {
+      "sha256": "2b150cc6a5491626f8bb91258954f5e5c9b5a9bb4edcece2362136b69c6edcc0",
+      "bytes": 236408
+    },
+    "freeze.json": {
+      "sha256": "7b4db3958b2c2475cbf07bc95997f1fb964fd6b9e5b01127cd45e375368d2422",
+      "bytes": 236408
+    },
+    "full-before-lint-live.json": {
+      "sha256": "6c8dae1639072b4f5204994e44953fb277628fe20cb35f1227d8eb855fe7aedb",
+      "bytes": 266
+    },
+    "full-before-lint.json": {
+      "sha256": "9ca95b21ee0c630a4dff6ead2daffafda38cb401a7754062d97b532feba2a5c8",
+      "bytes": 314
+    },
+    "full-before-lint.log": {
+      "sha256": "66f305d00caf6a35de470d40039f43b1a3a6d09c6823378e971c3f99ac5013ad",
+      "bytes": 5851
+    },
+    "full-live.json": {
+      "sha256": "3fc59279d2830d6b2d448944ab07637632e0632ba83716400292fe234fa5364f",
+      "bytes": 226
+    },
+    "full.json": {
+      "sha256": "fee893a17b773bc1c64bb5edf050b380b5216cd72f76096f1217f63d507b3300",
+      "bytes": 271
+    },
+    "full.log": {
+      "sha256": "e4e84756851c0c6a73f7d164f75bd160fb531dc88b5e61e873baaf8701ad5c2d",
+      "bytes": 159611
+    },
+    "initial-build-before-log-copy.json": {
+      "sha256": "ac56f8ff5c5294f5cb2900626e92f8d86657526f8fd5cfb9fd38d1953e1a9f8b",
+      "bytes": 103467
+    },
+    "inventory-audit.json": {
+      "sha256": "c6f57f052e902d63c8b40efcac928dfe74530cccf22824702d4a75cca231bd32",
+      "bytes": 550
+    },
+    "inventory-before.csv": {
+      "sha256": "6d5f29a1227bd85efea691e7d1ac88ce0ddf01c3318a2ab044ac5c08e1c8f06e",
+      "bytes": 48406
+    },
+    "lint-corrections-live.json": {
+      "sha256": "bfe3c714b52326672282a31e4db832172dfb1ccf28ac17afbb521e27cdf9cd8c",
+      "bytes": 426
+    },
+    "lint-corrections.json": {
+      "sha256": "8970aaa40b28886b32b9df53e3400f4b7b4104e63484af389a76da74132c1e70",
+      "bytes": 469
+    },
+    "lint-corrections.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "lint-delivery-live.json": {
+      "sha256": "89c5d012b6049c0117ec18920c019aa24a2fd76ca8bb6b78ab159cb89ca38c37",
+      "bytes": 247
+    },
+    "lint-delivery.json": {
+      "sha256": "5837ebb64e3daadf5e915811afde563044541a50efef8f61c52a8d7eee228ff8",
+      "bytes": 293
+    },
+    "lint-delivery.log": {
+      "sha256": "02c905005ac714cbc30c455222dcd7de0ce255a703cd6e9fb43b8e3090bf43f6",
+      "bytes": 197
+    },
+    "lint-live.json": {
+      "sha256": "dd0bb920ee571f50d9a102dcfbc10b92082c2b603086d9961cdbe6b443466255",
+      "bytes": 238
+    },
+    "lint.json": {
+      "sha256": "1d05b5288dcaaf77c8c417365a5b6fece9aba61547c8f17ed390b3128b6ad7a9",
+      "bytes": 284
+    },
+    "lint.log": {
+      "sha256": "66e78d7be897f302d3c5bcd84088ecc588c5544b2f0d58eb0b153955c72574e9",
+      "bytes": 1019
+    },
+    "log-copy-red-live.json": {
+      "sha256": "f5266a4badb7e6eca28d4273f4a6546777d89ceb57e183aff527fe42fa737db4",
+      "bytes": 299
+    },
+    "log-copy-red.json": {
+      "sha256": "f3dccef6082680b75f5ce88de18b7f788f543b7159e30f7cb266a8a901a43b01",
+      "bytes": 345
+    },
+    "log-copy-red.log": {
+      "sha256": "5d377f0ce916fbd909387b85ab725a373b526678155239284af5c2a0fe5e41f4",
+      "bytes": 4426
+    },
+    "native-red-live.json": {
+      "sha256": "07c802ee84c8f55f23de72310d7adfbfcd64dd5672bd95f2ab8dba458ebee69f",
+      "bytes": 319
+    },
+    "native-red.json": {
+      "sha256": "a585c9503e4b3c946b12a1aeafd3fe357dbc7b1ffd7b5701f48028534f9ffe0b",
+      "bytes": 365
+    },
+    "native-red.log": {
+      "sha256": "7b33dd04d5992a62cf6966020a2a5919900dd3e7be4b641313ca47674727586d",
+      "bytes": 79101
+    },
+    "next-double-swing-corrected-live.json": {
+      "sha256": "023dd44f91df49c76a9a5854d2f491b0eb0c17ec7d60dc2bd491c1c9dcc8f19e",
+      "bytes": 369
+    },
+    "next-double-swing-corrected.json": {
+      "sha256": "2ad44e363c8348ae5f8f0873b906b1d20394dc5b527c2b87f8184cb4d3a1a2d3",
+      "bytes": 413
+    },
+    "next-double-swing-corrected.log": {
+      "sha256": "5fbc6d98954ff891c10c9600c482de834aa5f665fd51b64f37b86c8ab84d6e80",
+      "bytes": 5453
+    },
+    "next-double-swing-live.json": {
+      "sha256": "179a5b83a6d831b162e6217eea66828fb10201534acd8e6639c40781fe8e5c17",
+      "bytes": 349
+    },
+    "next-double-swing.json": {
+      "sha256": "9cb39d3378ab7507d26341dcb947b3c7afe822157ae39d4b53344606538d413e",
+      "bytes": 395
+    },
+    "next-double-swing.log": {
+      "sha256": "8c8a80593352c55544c5e0b621f61341b11728a3efd6fab987636f038eb677af",
+      "bytes": 5443
+    },
+    "pre-lint-build-cleanup.json": {
+      "sha256": "1df22aa05285ef4e794833baccce025b9a93e4ba1fd2ad9e63ebead2d14713f9",
+      "bytes": 103376
+    },
+    "record.py": {
+      "sha256": "4c7bc657a5695df1a6ac100ba4bb5f4946e58ce6bb7fa9b1ba0a6496985d2df2",
+      "bytes": 741
+    },
+    "retain-hammer-reference.py": {
+      "sha256": "8dcfd4e97bd09b6ae0545674057aab0175806a19ea0a7a5f07b569f65ea92b4f",
+      "bytes": 4402
+    },
+    "retain.py": {
+      "sha256": "3d8e235b3080cd5651c2bbf527e595d06e04c34552bdfac53607051ea4a82e6e",
+      "bytes": 4487
+    },
+    "save-pairs-audit.json": {
+      "sha256": "ca51c39e7ee2aed63c0a4f2e3c0fb0b67a81373c456a38146b9a1dffa4019f75",
+      "bytes": 7368
+    },
+    "serve.py": {
+      "sha256": "7cbef27bec4a673ff9f8d46567bff7a3833b6cd491e4b091226d195fc891b53c",
+      "bytes": 510
+    },
+    "server-before-lint-live.json": {
+      "sha256": "d2201d3a86324d0093dee08eb006c5afa5bd13b05a76f08cdced06432a022cb1",
+      "bytes": 116
+    },
+    "server-live.json": {
+      "sha256": "835298897910c8efbcd15cb4b036b5a733f84cd8b2c5bac941393766b8e0e9c5",
+      "bytes": 116
+    },
+    "task.json": {
+      "sha256": "9f84c783561b06d9a8ebe080b28f1288d7b60c3dd24d387e736d1a2c4c9316d8",
+      "bytes": 338
+    },
+    "types-delivery-live.json": {
+      "sha256": "fe8444939b483eb7f27841f05f604739d9905983717c277ccb516d6c17d49933",
+      "bytes": 253
+    },
+    "types-delivery.json": {
+      "sha256": "3807e558ce38abc4dba7bca7371a5eb73839fa70037b4e3d6e882f77209414d3",
+      "bytes": 299
+    },
+    "types-delivery.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-final-live.json": {
+      "sha256": "409cfdaab1046e5f94c13f77b5d727c42402010de53f05db2cafb0b566ff39c8",
+      "bytes": 250
+    },
+    "types-final.json": {
+      "sha256": "33bf6c943f41d72c3025cf447fafef1ff535baa0f7f005d6a38bf4f4283ccaf0",
+      "bytes": 296
+    },
+    "types-final.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-live.json": {
+      "sha256": "b1de56aa7c9bec49c49c1652b7b4085427565d9a1b9459d01cddc3f0b4f6c7ce",
+      "bytes": 244
+    },
+    "types.json": {
+      "sha256": "4d72bf05198c1098e929b9f26360f5f484ccf96259767549aac8f91cb7cf0329",
+      "bytes": 289
+    },
+    "types.log": {
+      "sha256": "fc6845526105975199cca2bab4bbd34966177f3af9a662c51f08ae70bb9918ed",
+      "bytes": 1761
+    },
+    "ui-red-live.json": {
+      "sha256": "49b5f7120b0e3f89fa5aa10101957af03c361cf6d05533629b0dd87db6e5a4be",
+      "bytes": 293
+    },
+    "ui-red.json": {
+      "sha256": "92032773b68db98f78cdbe0897faee5063829ce03b3839f9f2cc4c02c7370bb5",
+      "bytes": 338
+    },
+    "ui-red.log": {
+      "sha256": "a1f96a2040709ae409e0c5496d84ae7e205b7bb9ab5e72dd8d2bf229ce14d9a5",
+      "bytes": 12457
+    },
+    "verified-browser-en-1280/browser-report.json": {
+      "sha256": "e080f0bf0c15074c0655512b89e9b08be72d9bc37de131bd425dc364c0bfcdc5",
+      "bytes": 1480
+    },
+    "verified-browser-en-1280/en-1280-leap-cast-visible.png": {
+      "sha256": "16d69f9a7517b9cc1d1592d4abb8af4564de2cb2c88add2d4872957b3cd62363",
+      "bytes": 198914
+    },
+    "verified-browser-en-1280/en-1280-leap-combat.json": {
+      "sha256": "5c1c8d0757375bfc97ed07ffee446b1a4b54beee3cbba36fc2e8c5191313714a",
+      "bytes": 2071
+    },
+    "verified-browser-en-1280/en-1280-leap-current-next.png": {
+      "sha256": "cfa1d3bce7a823ca052af616f5434bff23aecea4da7212da272e65ecdf09e209",
+      "bytes": 105033
+    },
+    "verified-browser-en-1280/en-1280-leap-description.png": {
+      "sha256": "cfa1d3bce7a823ca052af616f5434bff23aecea4da7212da272e65ecdf09e209",
+      "bytes": 105033
+    },
+    "verified-browser-en-1280/en-1280-leap-details.png": {
+      "sha256": "7400dbdc3996c7b029a0e88edfeb4624065a781079e4c6b18b9f988955dc45bc",
+      "bytes": 106711
+    },
+    "verified-browser-en-1280/en-1280-leap-fresh-1.json": {
+      "sha256": "f8bf2dee0d04792405dfd34f1b8d901953b56786ecf0cbed032e36f638fd4895",
+      "bytes": 3170
+    },
+    "verified-browser-en-1280/en-1280-leap-imported-2.json": {
+      "sha256": "7a28a37eeeec64c9eeb807f9cf0717fb17acf7c5c9212d058d7127633214bfae",
+      "bytes": 4779
+    },
+    "verified-browser-en-1280/en-1280-leap-observed-attempts.json": {
+      "sha256": "55c12aadd77b264f188a5fe27ae09dcb8bf4dd066fc35751c04a625dcf08affa",
+      "bytes": 1974
+    },
+    "verified-browser-en-1280/en-1280-leap-rank1-after-4.json": {
+      "sha256": "729923ab4abdfede387ae0663c4eb10bc4f391fb913812dc733277f9f000badb",
+      "bytes": 4782
+    },
+    "verified-browser-en-1280/en-1280-leap-rank1-before-3.json": {
+      "sha256": "bec78af2a20c9491391bc2af3d40accb4161d5e490f0ab8309fba296359d8eab",
+      "bytes": 4779
+    },
+    "verified-browser-en-1280/en-1280-leap-rank2-after-6.json": {
+      "sha256": "eac6b89c7a5a04a4f5bdbf113c6af64c43dda1907945529a9117219d15965744",
+      "bytes": 4827
+    },
+    "verified-browser-en-1280/en-1280-leap-rank2-before-5.json": {
+      "sha256": "eac6b89c7a5a04a4f5bdbf113c6af64c43dda1907945529a9117219d15965744",
+      "bytes": 4827
+    },
+    "verified-browser-en-1280/en-1280-leap-synthetic-input.json": {
+      "sha256": "5d912dc570b80d78373209022ef32ce51dd9ded985dc338db2bb54bed794ebbc",
+      "bytes": 3965
+    },
+    "verified-browser-en-360/browser-report.json": {
+      "sha256": "5580da46069110309f115a19a1692381ded54e424d7d4541fca9c01c1ff45b10",
+      "bytes": 1474
+    },
+    "verified-browser-en-360/en-360-leap-cast-visible.png": {
+      "sha256": "12eb993fc48d0f08e2528b8037694382440d9fc69d2301a1f034eb18cc3bbbe4",
+      "bytes": 47285
+    },
+    "verified-browser-en-360/en-360-leap-combat.json": {
+      "sha256": "5c1c8d0757375bfc97ed07ffee446b1a4b54beee3cbba36fc2e8c5191313714a",
+      "bytes": 2071
+    },
+    "verified-browser-en-360/en-360-leap-current-next.png": {
+      "sha256": "4b410bd6cbddf14dee6a291772c183773daf77e250443b106e248c8a1c497553",
+      "bytes": 48065
+    },
+    "verified-browser-en-360/en-360-leap-description.png": {
+      "sha256": "f0eda5ad1676441ba06a0246d03ac4cdce000d471aac5aacd9bba31cfdadb7f7",
+      "bytes": 48952
+    },
+    "verified-browser-en-360/en-360-leap-details.png": {
+      "sha256": "393cf4be7bd33dc5a72e34adadaf6fd6ab7c9cf07873f91435a125c7ac20f404",
+      "bytes": 50548
+    },
+    "verified-browser-en-360/en-360-leap-fresh-1.json": {
+      "sha256": "19dbb3d592caa3a2031ff083dc5c7730630af4993aab2edbb99a7095112aa984",
+      "bytes": 3170
+    },
+    "verified-browser-en-360/en-360-leap-imported-2.json": {
+      "sha256": "84a884fc96f2b9cc30094d458cd311f0f76bf21e834a590b103abbe8e7c3f956",
+      "bytes": 4779
+    },
+    "verified-browser-en-360/en-360-leap-observed-attempts.json": {
+      "sha256": "55c12aadd77b264f188a5fe27ae09dcb8bf4dd066fc35751c04a625dcf08affa",
+      "bytes": 1974
+    },
+    "verified-browser-en-360/en-360-leap-rank1-after-4.json": {
+      "sha256": "423c5f46ebf0b625d158b24c54cbcf1f6286ab1b7c1623a0b6908e3979b1c5bd",
+      "bytes": 4782
+    },
+    "verified-browser-en-360/en-360-leap-rank1-before-3.json": {
+      "sha256": "1114ab7a084183705d2739a317ebe5c0da355385667ca74fe46b0c4a968851dc",
+      "bytes": 4779
+    },
+    "verified-browser-en-360/en-360-leap-rank2-after-6.json": {
+      "sha256": "824385320fefc300ba0e17f63918eb4be5ee6ffe6ec5c677f039e1166aa13733",
+      "bytes": 4827
+    },
+    "verified-browser-en-360/en-360-leap-rank2-before-5.json": {
+      "sha256": "824385320fefc300ba0e17f63918eb4be5ee6ffe6ec5c677f039e1166aa13733",
+      "bytes": 4827
+    },
+    "verified-browser-en-360/en-360-leap-synthetic-input.json": {
+      "sha256": "03b7c77e22f346d5eb3f8b8bf056b998e5cf889adb4733e17d8648fd8ff15a8d",
+      "bytes": 3965
+    },
+    "verified-browser-zh-CN-1280/browser-report.json": {
+      "sha256": "69f25d538271f1f2af871b15f55b2b48b41df35160442e580f98a7bae2db6ab6",
+      "bytes": 1428
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-cast-visible.png": {
+      "sha256": "e97e70ca1a070c2e7cd171ecf302085764cedc4c49e7b54888199740cf6b07eb",
+      "bytes": 199867
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-combat.json": {
+      "sha256": "7fb1e49570b3d7e82961be7feaa42dbf2d1a86e8714f9ee622e0ae225b0d12ab",
+      "bytes": 1938
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-current-next.png": {
+      "sha256": "d68531b1d6f9c535f40721698eeab5db8fad21b2e1886269c60b09c4df782464",
+      "bytes": 103142
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-description.png": {
+      "sha256": "d68531b1d6f9c535f40721698eeab5db8fad21b2e1886269c60b09c4df782464",
+      "bytes": 103142
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-details.png": {
+      "sha256": "4ea402377a1e2d8cb54dd291f596c1b80975aca59c4bc8ccdab757a4ad4b6752",
+      "bytes": 104886
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-fresh-1.json": {
+      "sha256": "7da7c7a3bc7976a3f8472d10bdad67d2d628acd04760170af9a01f0ef1a839eb",
+      "bytes": 3173
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-imported-2.json": {
+      "sha256": "a3e07650c263e14e5b5614d2ef241f68fb36a636dfd02e1101e550ea13dcf229",
+      "bytes": 4782
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-observed-attempts.json": {
+      "sha256": "5d17483368b46f752818b21e0a404a19fec40cbf2261faf441d769852ec13b58",
+      "bytes": 1841
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-rank1-after-4.json": {
+      "sha256": "f9c78b86796221173e5abf27c1438f15e49f86f449bf0449f0de9091721aab49",
+      "bytes": 4785
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-rank1-before-3.json": {
+      "sha256": "18078c40e675e7ad64ab4b3291a2a5908859b7e2bf77fe827c9313242f762d72",
+      "bytes": 4782
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-rank2-after-6.json": {
+      "sha256": "14c37dfe56990f137adcc2b871ceddd9212e62b5685f94bf4266beb09886dc59",
+      "bytes": 4830
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-rank2-before-5.json": {
+      "sha256": "14c37dfe56990f137adcc2b871ceddd9212e62b5685f94bf4266beb09886dc59",
+      "bytes": 4830
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-leap-synthetic-input.json": {
+      "sha256": "c26242c5f9a4e25eb297f156153ea49749606738b9d8373be2ebe9ccd57f0701",
+      "bytes": 3968
+    },
+    "verified-browser-zh-CN-360/browser-report.json": {
+      "sha256": "364a0cdb18215dd18194b35a23f3c6c07db149aad5b451d618b6662b71c81a1a",
+      "bytes": 1422
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-cast-visible.png": {
+      "sha256": "5e7ec254d90091b89d907301ee9d0fcab5bce963238e3f7b43e0a7754bf5c580",
+      "bytes": 41473
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-combat.json": {
+      "sha256": "7fb1e49570b3d7e82961be7feaa42dbf2d1a86e8714f9ee622e0ae225b0d12ab",
+      "bytes": 1938
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-current-next.png": {
+      "sha256": "69ebf87123175ee131f55555458c5131bd84eff69f99cd3c8bea3c84a09c4af9",
+      "bytes": 50311
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-description.png": {
+      "sha256": "4ba33decc3827015a5dc90868437e6ccd8a7b891a5d7fdce9e9438c205d43160",
+      "bytes": 51033
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-details.png": {
+      "sha256": "5fd76ebc7b9c0449ed5361d1a2d191f5bb91754e443e42b725687289e9ccd9fc",
+      "bytes": 52100
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-fresh-1.json": {
+      "sha256": "4b7f2c7a2a1272ac88e4b02ab7e8012bd7cbfdb9510b39f6da66122a35d7aaf4",
+      "bytes": 3173
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-imported-2.json": {
+      "sha256": "37b184ed0dd2f04279ec385be25258ed79be8d028500f614d67ec8becf224df2",
+      "bytes": 4782
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-observed-attempts.json": {
+      "sha256": "5d17483368b46f752818b21e0a404a19fec40cbf2261faf441d769852ec13b58",
+      "bytes": 1841
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-rank1-after-4.json": {
+      "sha256": "80bdbbec3ef69a491e9d9a51ad99a724f4af75229b28a8fdc07c01c9b6a315ac",
+      "bytes": 4785
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-rank1-before-3.json": {
+      "sha256": "dc18d4133659981d6b0894ab87da2add7f4edcdac5abd9c0fae8a042efd44376",
+      "bytes": 4782
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-rank2-after-6.json": {
+      "sha256": "a0ee0a4da22c2427b49e76b80d90e7a6fa92c743397d6dc7b7e144029a7fd210",
+      "bytes": 4830
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-rank2-before-5.json": {
+      "sha256": "a0ee0a4da22c2427b49e76b80d90e7a6fa92c743397d6dc7b7e144029a7fd210",
+      "bytes": 4830
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-leap-synthetic-input.json": {
+      "sha256": "0c665e57b0d780d7d8a7905f9f76a0d367b8d0f68ca6b899d1db234a49cb01a8",
+      "bytes": 3968
+    }
+  },
+  "terminalReceipts": [
+    {
+      "name": "types-delivery",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1232129,
+      "wrapperPid": 1232124,
+      "started": 1792947091.9687293,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 151.76478242874146
+    },
+    {
+      "name": "lint-corrections",
+      "argv": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/skills/displayStats.ts",
+        "src/stores/leap.causal.test.ts",
+        "src/features/skills/SkillsScreen.leap.test.tsx",
+        "--max-warnings=0"
+      ],
+      "pid": 1231862,
+      "wrapperPid": 1231859,
+      "started": 1792947043.6069071,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 8.8063645362854
+    },
+    {
+      "name": "types",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1220683,
+      "wrapperPid": 1220677,
+      "started": 1792946753.9031627,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 2,
+      "seconds": 113.0075101852417
+    },
+    {
+      "name": "types-final",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1226263,
+      "wrapperPid": 1226260,
+      "started": 1792946899.4731493,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 116.88169193267822
+    },
+    {
+      "name": "focused-verified",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/leap.test.ts",
+        "src/stores/leap.causal.test.ts",
+        "src/stores/leap-native.test.ts",
+        "src/features/skills/SkillsScreen.leap.test.tsx"
+      ],
+      "pid": 1231863,
+      "wrapperPid": 1231860,
+      "started": 1792947043.6123753,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 9.227755546569824
+    },
+    {
+      "name": "build-delivery",
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-leap-2wsky0du/build"
+      ],
+      "pid": 1231864,
+      "wrapperPid": 1231861,
+      "started": 1792947043.6143699,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 13.452446222305298
+    },
+    {
+      "name": "full-before-lint",
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "pid": 1226262,
+      "wrapperPid": 1226259,
+      "started": 1792946899.4685392,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": -15,
+      "seconds": 105.00391721725464,
+      "originalName": "full"
+    },
+    {
+      "name": "full",
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "pid": 1232127,
+      "wrapperPid": 1232122,
+      "started": 1792947091.955651,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 625.9518554210663
+    },
+    {
+      "name": "build",
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-leap-2wsky0du/build"
+      ],
+      "pid": 1222022,
+      "wrapperPid": 1222006,
+      "started": 1792946786.6736712,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 15.608079433441162
+    },
+    {
+      "name": "browser",
+      "argv": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-leap-2wsky0du/serve.py",
+        "--port",
+        "4499",
+        "--",
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-leap-2wsky0du/browser-suite.py"
+      ],
+      "pid": 1226264,
+      "wrapperPid": 1226261,
+      "started": 1792946899.480267,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 77.60210704803467
+    },
+    {
+      "name": "log-copy-red",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/features/skills/SkillsScreen.leap.test.tsx"
+      ],
+      "pid": 1224207,
+      "wrapperPid": 1224206,
+      "started": 1792946833.3525507,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 10.511313915252686
+    },
+    {
+      "name": "focused-delivery",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/leap.test.ts",
+        "src/stores/leap.causal.test.ts",
+        "src/stores/leap-native.test.ts",
+        "src/features/skills/SkillsScreen.leap.test.tsx"
+      ],
+      "pid": 1225991,
+      "wrapperPid": 1225989,
+      "started": 1792946865.0257826,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 8.596511363983154
+    },
+    {
+      "name": "build-final",
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-leap-2wsky0du/build"
+      ],
+      "pid": 1225990,
+      "wrapperPid": 1225988,
+      "started": 1792946865.0169928,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 12.980355262756348
+    },
+    {
+      "name": "browser-final",
+      "argv": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-leap-2wsky0du/serve.py",
+        "--port",
+        "4499",
+        "--",
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-leap-2wsky0du/browser-suite.py"
+      ],
+      "pid": 1232135,
+      "wrapperPid": 1232125,
+      "started": 1792947091.9739647,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 102.57551908493042
+    },
+    {
+      "name": "lint-delivery",
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1232128,
+      "wrapperPid": 1232123,
+      "started": 1792947091.9655592,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 216.67898726463318
+    },
+    {
+      "name": "engine-delivery",
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1232136,
+      "wrapperPid": 1232126,
+      "started": 1792947091.975013,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 150.41884803771973
+    },
+    {
+      "name": "lint",
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1220682,
+      "wrapperPid": 1220678,
+      "started": 1792946753.9030104,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 188.83920216560364
+    },
+    {
+      "name": "native-red",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/leap.test.ts",
+        "src/stores/leap.causal.test.ts"
+      ],
+      "pid": 1219516,
+      "wrapperPid": 1219515,
+      "started": 1792946580.5111258,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.5514445304870605
+    },
+    {
+      "name": "next-double-swing",
+      "argv": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-leap-2wsky0du/double-swing-repro.ts"
+      ],
+      "pid": 1232088,
+      "wrapperPid": 1232087,
+      "started": 1792947074.1692147,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 5.1129677295684814
+    },
+    {
+      "name": "engine",
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1220680,
+      "wrapperPid": 1220679,
+      "started": 1792946753.902496,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 108.70724177360535
+    },
+    {
+      "name": "ui-red",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/features/skills/SkillsScreen.leap.test.tsx"
+      ],
+      "pid": 1219607,
+      "wrapperPid": 1219606,
+      "started": 1792946605.8499641,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.545198917388916
+    },
+    {
+      "name": "next-double-swing-corrected",
+      "argv": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-leap-2wsky0du/double-swing-repro-corrected.ts"
+      ],
+      "pid": 1240325,
+      "wrapperPid": 1240324,
+      "started": 1792947207.1393697,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.35198712348938
+    },
+    {
+      "name": "focused-final",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/leap.test.ts",
+        "src/stores/leap.causal.test.ts",
+        "src/stores/leap-native.test.ts",
+        "src/features/skills/SkillsScreen.leap.test.tsx"
+      ],
+      "pid": 1220681,
+      "wrapperPid": 1220676,
+      "started": 1792946753.902449,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 11.557826519012451
+    },
+    {
+      "name": "focused-green",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/leap.test.ts",
+        "src/stores/leap.causal.test.ts",
+        "src/features/skills/SkillsScreen.leap.test.tsx"
+      ],
+      "pid": 1219995,
+      "wrapperPid": 1219994,
+      "started": 1792946664.489483,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.582744121551514
+    },
+    {
+      "name": "focused-corrected",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/leap.test.ts",
+        "src/stores/leap.causal.test.ts",
+        "src/stores/leap-native.test.ts",
+        "src/features/skills/SkillsScreen.leap.test.tsx"
+      ],
+      "pid": 1220350,
+      "wrapperPid": 1220349,
+      "started": 1792946712.0673518,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 7.656256198883057
+    }
+  ],
+  "verifiedRawMembers": 217,
+  "recordedPids": [
+    1219515,
+    1219516,
+    1219606,
+    1219607,
+    1219994,
+    1219995,
+    1220349,
+    1220350,
+    1220676,
+    1220677,
+    1220678,
+    1220679,
+    1220680,
+    1220681,
+    1220682,
+    1220683,
+    1222006,
+    1222022,
+    1224206,
+    1224207,
+    1225988,
+    1225989,
+    1225990,
+    1225991,
+    1226259,
+    1226260,
+    1226261,
+    1226262,
+    1226263,
+    1226264,
+    1226277,
+    1226287,
+    1226289,
+    1226349,
+    1231859,
+    1231860,
+    1231861,
+    1231862,
+    1231863,
+    1231864,
+    1232087,
+    1232088,
+    1232122,
+    1232123,
+    1232124,
+    1232125,
+    1232126,
+    1232127,
+    1232128,
+    1232129,
+    1232135,
+    1232136,
+    1232155,
+    1240324,
+    1240325
+  ],
+  "allRecordedPidsAbsent": true,
+  "excludedDisposable": [
+    "build/"
+  ],
+  "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-leap-2wsky0du"
+}

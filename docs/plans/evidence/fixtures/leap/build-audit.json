@@ -1,0 +1,18 @@
+{
+  "chunks": {
+    "react-vendor-dRBhy6jq.js": "d023b474fbe60dec77510b20d3560e8a8c6b796e6d623cf648bf12800af453fb",
+    "index-Cu6Su5XD.js": "39b3c86957b63ee479654f08b70092d8d5c71ec5ab0a52212f1d0bed97d6b3a0",
+    "game-engine-CqIzUXqx.js": "1fa97c84cee8074c2e55d99513c68c552e06b85906d088e0014d0d2f29fe3506",
+    "i18n-Bxr3rY09.js": "cb3cefca3bda4b6da700c1dcd65dae18a27f3a44e5c831c09cacb7652a2505f8"
+  },
+  "bridgeNeedles": {
+    "__E2E__": [],
+    "__D2_TEST__": [],
+    "test-bridge": [],
+    "snapshotStores": [],
+    "__d2Test": [],
+    "__gameTest": []
+  },
+  "precacheURLs": 756,
+  "missing": []
+}

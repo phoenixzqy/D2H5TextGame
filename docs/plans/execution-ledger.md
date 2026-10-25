@@ -18,7 +18,8 @@ Current implementation evidence lives in `evidence/`.
 | D04 Mind Blast / BUG210 | locally fixed/verified; independent and earned acceptance open | Runtime/presentation/tests/contract `a1b847f9`: ordered Mana Burn/Stun, shared actual-HP20% MP debit, pre-hit zero-MP Arcane factor, restoration lifetime and affected monster skill lockout.98new cases; compatibility225/7, engine7705/284, full14875/666/two existing skips, types/lint/build PASS. Production4/4/eight exact five-domain Continue pairs/20geometry/16screenshots/four inspected. [Evidence](evidence/d04-mind-blast.md). All1152 frozen source/contract committed blobs exact; four bridge-free chunks/756precache URLs. Archive176raw/26terminal receipts verified;1700exact files removed including1520builds,32recorded PIDs absent/4496closed/scratch absent/remaining[]/failures[]. Only Mind Blast credited:108bounded/103unverified/one engine-only/one review-needed; Assassin11/30. GenuineL33/next402/Baal uncleared unchanged; C2-C4/fullG0-G7/privatev1/earned balance/independent gates open. |
 | D04 Cloak of Shadows / BUG211 | locally fixed/verified; independent and earned acceptance open | Runtime/presentation/tests/contract `f08311cb`: paid finite personal Defense/critical/magical dodge plus actual current-hostile Blind; strict native/carry authority, frozen respec/wave potency and truthful bilingual previews.53new cases; engine7734/286, full14928/671/two existing skips, types/lint/build PASS. Production4/4/eight exact player-inventory-map-mercs-formation Continue pairs/20geometry/16screenshots/four inspected. [Evidence](evidence/d04-cloak-of-shadows.md). All1164source committed blobs/760build exact; four bridge-free chunks/756precache URLs. Only Cloak credited:109bounded/102unverified/one engine-only/one review-needed; Assassin12/30. Provisional tuning; earned balance/independent gates and C2-C4/fullG0-G7/privatev1 open. GenuineL33/next402/Baal uncleared unchanged. |
 | D04 Psychic Hammer / BUG212 | locally fixed/verified; independent and earned acceptance open | Source/tests/contract `884b0839`: replace inert Knockback with existing on-hit Stun1s/boss0.5s, actual interruption without movement.37new cases; engine7753/287, full14965/675/two existing skips, types/lint/build PASS. Production4/4/eight exact five-domain Continue pairs/20geometry/16screenshots/four inspected. [Evidence](evidence/d04-psychic-hammer.md).1169source committed blobs/760build exact; four bridge-free chunks/756precache URLs. Archive153raw/21receipts verified;913exact files removed including760builds,43recorded PIDs absent/4498closed/scratch absent/remaining[]/failures[]. Only Hammer credited:110bounded/101unverified/one engine-only/one review-needed; Assassin13/30. Provisional author adaptation; earned balance/independent gates/C2-C4/fullG0-G7/privatev1 open; genuineL33/next402/Baal uncleared unchanged. |
-| D04 Leap / BUG213 | native control defect reproduced; author adaptation/repair open | Twelve native rank1/2/20 ×seed7/19/41/97 paired cases pay8/8/6MP once and emit three Knockback markers; all actual/control enemy action arrays2000..60000ms and explicit grid positions match. [Reproduction](evidence/d04-leap-repro.md). Physical-damage metadata also needs a contract; no Leap patch/credit or genuine/remote action. |
+| D04 Leap / BUG213 | locally fixed/verified; independent and earned acceptance open | Source/tests/contract `0742a94f`: shared all-hostile Stun1s/boss0.5s plus paid3s direct Physical+.01/rank, strict native/registry/carry authority and truthful bilingual previews.60new cases; engine7778/288, full15025/679/two existing skips, types/lint/build PASS. Production4/4/eight exact five-domain Continue pairs/20geometry/16screenshots/four inspected. [Evidence](evidence/d04-leap.md). All1175source committed blobs/760build/genuine checked; raw217/25receipts byte-verified. Cleanup977exact files plus1520prior build removals;55recorded PIDs absent/4499closed/scratch absent/remaining[]/failures[]. Only Leap credited:111bounded/100unverified/one engine-only/one review-needed; Barbarian13/30. New3s tuning/provisional adaptation, earned balance/independent gates/C2-C4/fullG0-G7/privatev1 remain open; genuineL33/next402/Baal uncleared unchanged. |
+| D04 Double Swing / BUG214 | missing second attempt reproduced; contract/repair open |24native rank1/2/20 ×four seeds ×one/four enemies cases pay10MP once. Single enemy receives one attempt; four enemies receive one attempt each on first two. Standard-grid rerun agrees; original col3 is accepted by engine but outside usual layout. [Reproduction](evidence/d04-double-swing-repro.md). No Double Swing patch/credit. |
 | D04 Assassin Fire / BUG205–206 | six Fire-hit/Burn paths locally repaired; other promises open | Runtime `ee952d1d`, presentation `6400adb0`; explicit10% Fire-only Burn and real shared-roll Phoenix components, generic bilingual composite summary.134new cases; final full14626/651/two skips (500.032s), engine7574/276, types/lint/build PASS.30production cases/60exact five-domain Continue pairs/50geometry/96screenshots/16inspected. [Evidence](evidence/d04-assassin-fire.md). Exact1383source/two design/760build freeze and committed blobs verified. Only Dragon Tail credited:104bounded/107unverified/one engine-only/one review-needed; Assassin7/30. Cone/charge/persistent traps and Death Sentry identity remain open; genuineL33/next402/Baal uncleared unchanged. Independent/earned acceptance/C2-C4/G0-G7/privatev1 open.512raw members/37terminal receipts verified;2032exact scratch files removed, all76owned PIDs absent/4492closed/remaining[]/failures[]. Umbrella worktree/claim active. |
 | D04 Dragon Talon / BUG204 | locally fixed/verified; independent and earned acceptance open | Runtime `5f9a2f8f`, presentation `2e132186`: actual authored three independent original-target attempts, one action/4MP/cooldown, ordinary miss/death/mitigation/shield/reflection/replay.49new cases; final full14492/648/two existing skips (495.830s), engine7553/275, compatibility148/12, data815/14, types/lint/build PASS. Production4/4; eight exact five-domain Continue pairs/20geometry/20screenshots/eight inspected. [Evidence](evidence/d04-dragon-talon.md). All1380source+two design+760build/Git/genuine exact through full; actual committed blobs verified. Only Talon credited:103bounded/108unverified/one engine-only/one review-needed, Assassin6/30. Seven Burn rows gain reproduction links only;205other rows exact. GenuineL33/next402/Baal uncleared; C2-C4/fullG0-G7/privatev1 open. |
 | D04 Amazon Impale / BUG202 | locally fixed/verified; independent and earned acceptance open | Runtime `229f0d2c`, presentation `1d1eca0f`. Explicit provisional10% final-hit/s Bleed and typed per-hit ordinary Defense bypass; shared mitigation/status/shield/reflection/death/native authority/replay retained.62new cases/3files; final full14394/640/two existing skips (498.865s), engine7517/271, focused62/3 and compatibility165/8/data234/12, types/lint/build/bridge/precache PASS. Production4/4, eight exact five-domain Continue pairs/20geometry/20screenshots/eight inspected. [Evidence](evidence/d04-impale.md); all1372source+two design+760build/Git/genuine hashes exact through full, actual committed blobs verified. Exactly one credit:213IDs/order,101bounded-functional/110unverified/one engine-only/one review-needed; Amazon8/30plus one engine-only, earned acceptance open.162raw members/24terminal receipts byte-verified;922exact files removed, scratch/all51recorded PIDs absent,4489closed,remaining[]/failures[]. GenuineL33/next402 unchanged/Baal uncleared; Jab reproduced separately/no credit. Root sole writer/local only; C2-C4/fullG0-G7/privatev1 and umbrella goal/worktree remain active. |
@@ -12114,3 +12115,49 @@ No genuine campaign or remote action. C0/C1 retain limited exits; C2 underway,
 C3/C4/fullG0-G7/all-class earned builds/30–50hour pacing/economy/endgame/
 independent acceptance and complete privatev1 remain unfinished. Root sole
 writer; umbrella goal/branch/worktree/claim active.
+
+
+## 2026-10-25 — Paid Leap control/Physical benefit verified; Double Swing reproduced
+
+Source/tests/contract `0742a94f` fixes BUG213 with explicit provisional shared
+Stun1s/boss0.5s plus a paid3s personal direct Physical bonus from existing
+.01/rank metadata.36rank/seed/tier scenarios show actual interruption and paid
+potency. Causal playback/rebase comparisons show126/127/145versus125Physical
+damage, expiry reversal and unchanged other types; real Bash shares the bonus.
+Native authority, no active refresh, carried potency/respec, immutable replay,
+next-wave allocation and save/import preserve resources and avoid saved combat
+payloads. [Evidence](evidence/d04-leap.md).
+
+Focused60/4, engine7778/288, full15025/679/two existing skips PASS; full624.48s
+Vitest (625.952s wrapper). Types/lint/build PASS. Final
+source/tests/build frozen before all final checks. Production4/4/eight exact
+five-domain Continue pairs/20geometry/16screenshots/four inspected pass, using
+declared synthetic L30/resources/imported helmet/fixed combat Date.now. All1175
+source committed blobs/760build/genuine bytes are checked; four bridge-free
+chunks/756present precache URLs. Original RED/type/lint failures, rounded-CD
+fixture correction and explicit source-correction cancellation of first full
+are retained. No earned balance or independent acceptance follows.
+
+Only Leap credited:213IDs/order,212other rows byte-exact;111bounded-functional/
+100unverified/one engine-only/one review-needed, Barbarian13/30. Retention and
+cleanup details are recorded in the linked delivery evidence/receipts.
+
+Double Swing independently reproduces one attempt instead of the advertised
+two in12single-enemy cases;12standard-grid four-enemy cases resolve one attempt
+on each of first two enemies. Original nonstandard column3 is accepted by
+engine validation; standard-layout rerun removes geometry ambiguity. Complete
+observations precede intentional exit1. BUG214/contract/repair remain open,
+with no Double Swing credit. Genuine Ancients/Rite remainsL33/XP149261/
+nextNormal402/Nightmare0/Baal uncleared and its exact hash is unchanged. C0/C1
+retain narrow exits; C2 underway, C3/C4/fullG0-G7/all-class earned builds/
+30–50hour pacing/economy/endgame/independent QA and complete privatev1 remain
+unfinished. No genuine campaign or remote action. Root sole writer/reviewer;
+umbrella goal/branch/worktree/claim remain active.
+
+
+Leap retention/cleanup terminal: raw217members/25receipts byte-verified; all1175
+committed source blobs and760build/genuine hashes exact.977current exact files
+removed plus1520previously verified build removals =2497task files/2280build
+files total. All55recorded PIDs absent,4499closed,scratch absent,remaining[]/
+failures[]. Shared caches/umbrella claim preserved. Independent acceptance and
+full privatev1 remain open.

@@ -1,0 +1,16 @@
+{
+  "scope": "Leap paid finite personal Physical follow-up, shared all-hostile Stun, strict native rank/registry/carry authority, schema/data/UI and 60 tests; author review only",
+  "securityCheck": "pass",
+  "correctness": "Actual paid cast captures immutable rank/potency, finite inclusive-start/exclusive-expiry clocks and no active recast. Real causal additive Physical damage, Bash, other-type controls, actual enemy interruption, allies/dead isolation, carry/respec/save and replay are covered. Existing one-decimal cooldown rounding preserved.",
+  "readability": "Narrow typed skill module follows existing Burst/Cloak paid-status pattern; engine changes connect exact readiness, payment, carry copy and direct Physical damage.",
+  "architecture": "JSON owns duration/scaling; existing shared Stun/status/scheduler/damage/playback pipelines and fresh native wave projection reused. No save-version, dependency or persisted combat field.",
+  "security": "First-party local gameplay. Closed schema, exact registry matching and source-owned validated carry prevent malformed markers from granting potency. No credentials, CI, network, remote operations or permission changes.",
+  "performance": "One bounded status scan per Physical input plus existing unit initialization/readiness; no additional battle or unbounded loop. Formal performance/bundle/PWA budgets remain open.",
+  "findings": [],
+  "limits": [
+    "Author adaptation and new 3-second duration are provisional; independent QA/design and earned balance remain open.",
+    "Browser resources, imported helmet, L30 and fixed combat Date.now are synthetic. No genuine campaign credit.",
+    "Final runtime/test/build bytes frozen before final full/engine/types/lint/browser start. Earlier full cancelled explicitly for production lint corrections; retained, not counted as a passing result.",
+    "Playback comparison matches living active-status views and all-unit HP/MP."
+  ]
+}

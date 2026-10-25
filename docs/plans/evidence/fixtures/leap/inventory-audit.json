@@ -1,0 +1,16 @@
+{
+  "creditedOnly": "skills-barbarian-leap",
+  "rows": 213,
+  "otherRowsByteExact": 212,
+  "orderPreserved": true,
+  "counts": {
+    "unverified": 100,
+    "bounded-functional;independent-acceptance-open": 108,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "barbarianBounded": 13,
+  "beforeSha256": "6d5f29a1227bd85efea691e7d1ac88ce0ddf01c3318a2ab044ac5c08e1c8f06e",
+  "afterSha256": "a87f43da71490f37a8fd120dc7ba841d694ef7eb21be7fe4295dea03b49da486"
+}

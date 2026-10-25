@@ -1,6 +1,6 @@
 # BUG-213 — Paid Leap has no observed control consequence
 
-- Status: reproduced; author adaptation contract and repair open.
+- Status: locally fixed in `0742a94f`; independent and earned acceptance open.
 - Severity: High — the skill's declared Knockback has no observed effect.
 - Owner: root; independent design/QA and earned balance remain open.
 - Environment: Node24.21.0; native L30 Barbarian, actual JSON/default registry,
@@ -36,3 +36,17 @@ benefit from the physical-damage metadata: the caster is held after Leap.
 The complete observations are written before the intentional exit1 assertion.
 Evidence: [native reproduction](../../docs/plans/evidence/d04-leap-repro.md).
 No Leap source patch/credit, genuine campaign or remote action.
+
+
+## Local repair
+
+`0742a94f` implements the explicit [author contract](../../docs/plans/decisions/D04-leap-v1.md):
+shared finite Stun and a paid3s personal Physical bonus from existing rank
+metadata, with no movement, active refresh or saved combat payload. Tests:
+`src/engine/skills/leap.test.ts`, `src/stores/leap.causal.test.ts`,
+`src/stores/leap-native.test.ts`, `src/features/skills/SkillsScreen.leap.test.tsx`.
+Focused60/4, engine7778/288, full15025/679/two existing skips and types/lint/build/
+four production browser cases pass. [Delivery evidence](../../docs/plans/evidence/d04-leap.md)
+records causal state/timing/damage, native save/wave behavior, disclosed synthetic
+fixtures, retained failures and exact task-owned cleanup. Independent design/QA
+and earned balance remain open; historical reproduction above is preserved.

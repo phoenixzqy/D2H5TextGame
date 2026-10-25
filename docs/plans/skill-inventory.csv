@@ -77,7 +77,7 @@ barbarian,skills-barbarian-throwing-mastery,barbarian.throwing_mastery,passive,b
 barbarian,skills-barbarian-spear-mastery,barbarian.spear_mastery,passive,buff-metadata+weapon-gated-fresh-player-composition,,src/data/skills/barbarian.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-remaining-weapon-masteries.md
 barbarian,skills-barbarian-increased-stamina,barbarian.increased_stamina,passive,buff-metadata+fresh-player-stat-composition,,src/data/skills/barbarian.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-barbarian-endurance.md
 barbarian,skills-barbarian-increased-speed,barbarian.increased_speed,passive,buff-metadata+fresh-player-stat-composition,,src/data/skills/barbarian.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-barbarian-endurance.md
-barbarian,skills-barbarian-leap,barbarian.leap,active,debuff,knockback,src/data/skills/barbarian.json,pure-debuff-consumer-not-found-in-audit,unverified,
+barbarian,skills-barbarian-leap,barbarian.leap,active,buff|debuff,leap|stun,src/data/skills/barbarian.json,provisional-control-adaptation|provisional-tuning|independent-acceptance-open|earned-balance-open,bounded-functional;independent-acceptance-open,docs/plans/decisions/D04-leap-v1.md;docs/plans/evidence/d04-leap.md
 barbarian,skills-barbarian-stun,barbarian.stun,active,damage,stun,src/data/skills/barbarian.json,,unverified,
 barbarian,skills-barbarian-double-throw,barbarian.double_throw,active,damage,,src/data/skills/barbarian.json,,unverified,
 barbarian,skills-barbarian-concentrate,barbarian.concentrate,active,damage,,src/data/skills/barbarian.json,,unverified,
