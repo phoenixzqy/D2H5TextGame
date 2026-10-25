@@ -184,7 +184,8 @@ without income, as in the shared contract.
 
 Holy Fire/Shock now follow the pulse contract above and have [bounded local verification](../evidence/d05-paladin-pulse-auras.md). Sanctuary requires undead damage
 and explicit no-movement repulsion adaptation. Cleansing follows the explicit
-duration/recovery contract above. Redemption consumes authoritative corpses for life/mana;
+duration/recovery contract above and has [bounded local verification](../evidence/d05-paladin-cleansing.md).
+Redemption consumes authoritative corpses for life/mana;
 Vigor requires a truthful no-movement/stamina adaptation;
 Concentration requires an explicit interruption-prevention rule. Existing JSON
 and older descriptions disagree for the remaining four: resolve their affected rules and

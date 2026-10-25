@@ -1,7 +1,7 @@
 # BUG-181 — Complete advertised Paladin aura selection and effects
 
 Severity: High
-Status: Open; fifteen selected auras locally verified in bounded scope, five distinct aura mechanics outstanding
+Status: Open; sixteen selected auras locally verified in bounded scope, four distinct aura mechanics outstanding
 Owners: engine-dev, frontend-dev, content-designer; root sole writer this run
 
 ## Reproduction
@@ -84,3 +84,20 @@ committed source blobs match. [Evidence and retained original failures](../../do
 Remaining five: Sanctuary, Cleansing, Redemption, Vigor and Concentration.
 Prayer's five-second interval remains provisional local tuning; earned balance,
 independent whole-family acceptance and the full private-v1 goal remain open.
+
+Fifth batch `dcaa59b` implements selected Cleansing's finite Poison/Plague and
+named curse duration reduction, independent periodic HP recovery and authored
+magical dodge. Status-local transient identity prevents repeated cross-wave
+shortening; refresh, boss scaling, source death and recipient-specific poison
+spread retain existing ownership/potency and settlement rules. Prayer-only
+top-level healing metadata stays separate. Focused100/5 and final full12346/523
+plus two existing skips pass; the final full engine project passes6181/213.
+Types/lint/build/bridge and production browser4/4 pass, with eight exact
+five-domain Continue pairs and20 geometry samples. All1237source/760build hashes,
+HEAD/Git and genuine save digest stayed exact through the full run; committed
+source blobs match. [Evidence and original failures](../../docs/plans/evidence/d05-paladin-cleansing.md).
+Remaining four: Sanctuary, Redemption, Vigor and Concentration. Cleansing's
+duration factor and independent healing base/interval are provisional local
+tuning. This verifies curse duration handling, not the other curse skills'
+still-unverified effects. Earned balance and independent whole-family acceptance
+remain open; the genuine campaign save/next402 is unchanged.
