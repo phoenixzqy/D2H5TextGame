@@ -27,6 +27,7 @@ import { DRUID_SUMMON_DEFINITION, DRUID_SUMMON_IDS } from './druid-summon-defini
 import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 
 export interface DisplaySkillSource {
+  readonly periodicSpell?: { readonly durationMs: number; readonly intervalMs: number };
   readonly armorRetaliation?: import('../types/skills').ArmorRetaliationTuning;
   readonly attackDamagePct?: number;
   readonly timedBuff?: { readonly durationMs: number };
@@ -162,6 +163,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Persistent spell damage rows are per pulse, not totals or a once-only cast. */
+  readonly periodicSpell?: { readonly durationSeconds: number; readonly intervalSeconds: number; readonly pulses: number };
   /** Counterattack range, distinct from direct damage at buff-cast time. */
   readonly coldArmor?: { readonly min: number; readonly max: number;
     readonly freezeSeconds: number; readonly bossFreezeSeconds: number };
@@ -604,6 +607,12 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(skill.periodicSpell && ['skills-sorceress-blaze', 'skills-sorceress-fire-wall',
+      'skills-sorceress-thunder-storm'].includes(skill.id) ? { periodicSpell: {
+      durationSeconds: skill.periodicSpell.durationMs / 1000,
+      intervalSeconds: skill.periodicSpell.intervalMs / 1000,
+      pulses: Math.ceil(skill.periodicSpell.durationMs / skill.periodicSpell.intervalMs)
+    } } : {}),
     ...(['skills-sorceress-shiver-armor', 'skills-sorceress-chilling-armor'].includes(skill.id) &&
       skill.trigger === 'active' && skill.armorRetaliation ? { coldArmor: {
         min: scaleValue(skill.armorRetaliation.min, skill.armorRetaliation.perRank, safeRank),

@@ -864,11 +864,15 @@ function StatSection({
           {stats.damage.map((row) => (
             <StatLine
               key={`damage-${row.type}`}
-              label={t('details.damageAttack', { type: t(`damage-types:type.${row.type}`) })}
+              label={t(stats.periodicSpell ? 'details.damagePerPulse' : 'details.damageAttack', { type: t(`damage-types:type.${row.type}`) })}
               value={t('details.flatRange', { min: row.min, max: row.max })}
               delta={damageDelta(row, compare, t)}
             />
           ))}
+          {stats.periodicSpell ? <StatLine label={t('details.spellTiming')} value={t('details.spellTimingValue', {
+            duration: stats.periodicSpell.durationSeconds, interval: stats.periodicSpell.intervalSeconds,
+            pulses: stats.periodicSpell.pulses
+          })} /> : null}
           {stats.damage.length > 1 && stats.totalDamage ? (
             <StatLine
               label={t('details.totalPower')}
@@ -1612,6 +1616,13 @@ function dynamicDescription(
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && stats.periodicSpell) {
+    return t('sorceress.' + skill.id.slice('skills-sorceress-'.length) + '.desc', {
+      min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown,
+      duration: stats.periodicSpell.durationSeconds, interval: stats.periodicSpell.intervalSeconds,
+      pulses: stats.periodicSpell.pulses
+    });
+  }
   if (stats?.coldArmor && ['skills-sorceress-shiver-armor', 'skills-sorceress-chilling-armor'].includes(skill.id)) {
     const bonusId = skill.id === 'skills-sorceress-shiver-armor' ? 'coldDamagePct' : 'magicDodgePct';
     return t('sorceress.' + skill.id.slice('skills-sorceress-'.length) + '.desc', {

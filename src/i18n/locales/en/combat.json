@@ -112,6 +112,9 @@
     "summon": "Summon",
     "death": "Down",
     "status": {
+      "blaze": "Blaze",
+      "fire-wall": "Fire Wall",
+      "thunder-storm": "Thunder Storm",
       "howl": "Fear",
       "taunt": "Taunted",
       "battle-cry": "Battle Cry",
@@ -155,6 +158,9 @@
       "converted": "Converted"
     },
     "buff": {
+      "blaze": "Blaze",
+      "fire-wall": "Fire Wall",
+      "thunder-storm": "Thunder Storm",
       "chilling-armor": "Chilling Armor",
       "shiver-armor": "Shiver Armor",
       "holy-shield": "Holy Shield",

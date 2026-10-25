@@ -64,6 +64,9 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "damagePerPulse": "{{type}} damage per pulse",
+    "spellTiming": "Persistent spell",
+    "spellTimingValue": "{{duration}} s; every {{interval}} s; {{pulses}} pulses, first immediately",
     "armorRetaliation": "Cold counterattack damage",
     "armorFreeze": "Counterattack Freeze",
     "armorFreezeValue": "{{seconds}} s (bosses: {{bossSeconds}} s)",
@@ -1110,7 +1113,7 @@
     },
     "thunder-storm": {
       "name": "Thunder Storm",
-      "desc": "Calls down lightning bolts on enemies periodically."
+      "desc": "Call a lightning storm for {{duration}} s. Deal {{min}}–{{max}} Lightning base damage per pulse to all living enemies, immediately then every {{interval}} s ({{pulses}} pulses). Pay {{mana}} MP and start a {{cooldown}} s cooldown in one payment. The spell continues through Stun/Freeze and stops on death; cannot recast while active. Landed hits attempt Paralyze for 1 s (bosses: 0.5 s); recent Paralyze has a 50% reapplication chance. Lightning resistance and magic resist apply."
     },
     "fire-bolt": {
       "name": "Fire Bolt",
@@ -1126,11 +1129,11 @@
     },
     "blaze": {
       "name": "Blaze",
-      "desc": "Leaves a trail of fire that burns enemies."
+      "desc": "Establish a fire trail for {{duration}} s. Deal {{min}}–{{max}} Fire base damage per pulse to all living enemies, immediately then every {{interval}} s ({{pulses}} pulses). Pay {{mana}} MP and start a {{cooldown}} s cooldown in one payment. The spell continues through Stun/Freeze and stops on death; cannot recast while active. Landed hits apply Burn for 3 s, up to 5 stacks, with each stack dealing 10% of that hit per second (minimum 1). Fire resistance and Defense apply."
     },
     "fire-wall": {
       "name": "Fire Wall",
-      "desc": "Creates a wall of flame that burns enemies passing through."
+      "desc": "Raise a fire wall for {{duration}} s. Deal {{min}}–{{max}} Fire base damage per pulse to all living enemies, immediately then every {{interval}} s ({{pulses}} pulses). Pay {{mana}} MP and start a {{cooldown}} s cooldown in one payment. The spell continues through Stun/Freeze and stops on death; cannot recast while active. Landed hits apply Burn for 3 s, up to 5 stacks, with each stack dealing 10% of that hit per second (minimum 1). Fire resistance and Defense apply."
     },
     "enchant": {
       "name": "Enchant",
