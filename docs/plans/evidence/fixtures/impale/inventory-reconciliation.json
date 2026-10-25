@@ -1,0 +1,24 @@
+{
+  "rows": 213,
+  "IDs_and_order_unchanged": true,
+  "credited": [
+    "skills-amazon-impale"
+  ],
+  "evidence_only_unverified": [
+    "skills-amazon-jab"
+  ],
+  "changed_rows": [
+    "skills-amazon-jab",
+    "skills-amazon-impale"
+  ],
+  "counts": {
+    "unverified": 110,
+    "bounded-functional;independent-acceptance-open": 98,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "baseline_sha256": "a7d21d79cbca6e85495957b84c47ef24390ce832054d9188002d500cc31f9d8f",
+  "final_sha256": "67f4291995c61632137c114c6791a453ddcb89698d443939c6c9c2df25f53a83",
+  "other211rows_exact": true
+}

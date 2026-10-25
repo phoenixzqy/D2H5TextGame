@@ -1,6 +1,6 @@
 # BUG-202 — Give Impale its declared Bleed and reconcile defense bypass
 
-- Status: reproduced and contracted; repair and functional credit open.
+- Status: fixed locally in229f0d2c, presentation1d1eca0f; independent/earned acceptance open. Historical reproduction below.
 - Severity: High — a declared damaging status causes no periodic HP loss.
 - Environment: Node24.21.0, real native Amazon projection/default registry via
   Vite Node. Reproduced on the separate final15% Freezing Arrow runtime, committed at
@@ -42,3 +42,16 @@ than `amount`); original source/error retained. All observed periodic arrays
 were empty, and the corrected diagnostic fails the same missing-HP assertion.
 The independent Defense comparison records actual values above. No runtime,
 tuning, functionality credit or genuine campaign action is claimed.
+
+## Local repair and verification
+
+[Final evidence](../../docs/plans/evidence/d04-impale.md) preserves the explicit
+provisional10% Bleed potency and ordinary Defense-only bypass under the prior
+contract. Actual native ranks1/2/20 lose real periodic HP; Defense0/100/500
+produce identical Impale outcomes while ordinary sibling Defense, resistance,
+dodge, shields, reflection, death/resource/cooldown and authority remain intact.
+New62cases/3files, engine7517/271, full14394/640/two existing skips, types/lint/
+build and four production browser cases pass. Eight exact five-domain Continue
+pairs/20geometry/20screenshots/eight inspected; final actual committed source/
+design blobs match the tested snapshot. No new saved field or earned campaign
+action. Independent design/QA and earned balance remain open.

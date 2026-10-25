@@ -12,6 +12,8 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D04 Amazon Impale / BUG202 | locally fixed/verified; independent and earned acceptance open | Runtime `229f0d2c`, presentation `1d1eca0f`. Explicit provisional10% final-hit/s Bleed and typed per-hit ordinary Defense bypass; shared mitigation/status/shield/reflection/death/native authority/replay retained.62new cases/3files; final full14394/640/two existing skips (498.865s), engine7517/271, focused62/3 and compatibility165/8/data234/12, types/lint/build/bridge/precache PASS. Production4/4, eight exact five-domain Continue pairs/20geometry/20screenshots/eight inspected. [Evidence](evidence/d04-impale.md); all1372source+two design+760build/Git/genuine hashes exact through full, actual committed blobs verified. Exactly one credit:213IDs/order,101bounded-functional/110unverified/one engine-only/one review-needed; Amazon8/30plus one engine-only, earned acceptance open.162raw members/24terminal receipts byte-verified;922exact files removed, scratch/all51recorded PIDs absent,4489closed,remaining[]/failures[]. GenuineL33/next402 unchanged/Baal uncleared; Jab reproduced separately/no credit. Root sole writer/local only; C2-C4/fullG0-G7/privatev1 and umbrella goal/worktree remain active. |
+| D04 Amazon Jab / BUG203 | missing repeated attacks reproduced and contracted; implementation open | Native ranks1/2/20 and seeds7/19/41/97: all12actual casts pay5MP but settle one attempt, contrary to both existing locale descriptions. FinalHP equals2000 minus that sole attempt; original target/resources/holds synthetic, exact replay/immutable inputs. [Evidence](evidence/d04-jab-repro.md), [contract](decisions/D04-jab-v1.md). Source matches actual committed1d1eca0f; Jab row unchanged from2d7cc6ce. Provisional three-attempt design uses existing bounded sequence runtime, single original target and one payment; no implementation or functionality credit. Impale sibling mitigation enumeration must follow the real future Jab sequence without weakening Defense sensitivity. No genuine campaign action. |
 | D04 Conversion / BUG200 | locally fixed/verified; independent and earned acceptance open | Runtime `2a37023d`, presentation `f93a4e23`. Paid8second effective allegiance covers actual attacks/registered damage/debuff/heal skills, hostile auras and recursive living summons while original identity preserves victory/deaths/corpses/orbs/rewards. Native rank1/20 now redirects100HP loss to former ally; heroHP2000/25MP paid, exact replay.63new cases/5files; final full14289/634/two existing skips (588.283s), engine7491/269, types/lint/build/bridge/precache PASS. Production4/4 plus two mobile visual supplements;12exact five-domain Continue pairs/30geometry/16screenshots/12inspected. [Evidence](evidence/d04-conversion.md); all1366source/760build/HEAD/genuine exact through final full; actual committed blobs verified. Exactly one credit:213IDs/order,112unverified/99bounded-functional/one engine-only/one review-needed; Paladin30/30 locally bounded, earned class/build acceptance open.244raw files/43terminal receipts byte-verified;915exact scratch files removed, root/PID675230 absent/4486closed/cleanup[]. Separate Freezing Arrow structural RED retained, no credit. GenuineL33/next402 unchanged/Baal uncleared. Independent/earned balance, remaining skills, C2-C4/fullG0-G7/privatev1 remain open. Root sole writer/local only; umbrella goal/worktree active. |
 | D04 Amazon Freezing Arrow / BUG201 | locally fixed/verified; independent and earned acceptance open | Runtime `32c5918c`, presentation `9104ea3c`; preserve existing15% independent secondary Freeze after landed Cold/Chill, actual3×3, ordinary1s/boss0.5s and truthful bilingual rank previews.43new cases/3files; final full14332/637/two existing skips (518.344s), engine7499/270, focused505/9, types/lint/build/bridge/precache PASS. Production4/4, eight exact five-domain Continue pairs/20geometry/20screenshots/eight inspected. [Evidence](evidence/d04-freezing-arrow.md); all1369source+two design+760build/Git/genuine hashes exact through full; actual committed blobs verified. Exactly one credit:213IDs/order,100bounded-functional/111unverified/one engine-only/one review-needed.286raw files/37terminal receipts byte-verified;1806exact scratch files removed, scratch/PIDs807924+851573 absent,4487/4488closed,remaining[]/failures[]. Synthetic proof only; genuineL33/next402 unchanged/Baal uncleared. Impale reproduced/contracted separately, no credit. Independent/earned balance, remaining skills, C2-C4/fullG0-G7/privatev1 remain open. Root sole writer/local only; umbrella goal/worktree active. |
 | D05 Holy Shield / BUG199 | locally fixed/verified; independent and earned acceptance open | Runtime `1c94a78`, presentation/contract `36fc086`. Real paid ordinary Defense +4%/rank and postmitigation absorption2%/rank, strict native source/prerequisite authority and run-long wave carry without saved paid state/refill. Native RED900/900 damage becomes879/492; 68new cases/six files; final full14226/629/two existing skips (481.414s), engine7440/267, types/lint/build/bridge/precache PASS. Production4/4, eight exact five-domain Continue pairs/20geometry/eight inspected screenshots. [Evidence](evidence/d05-holy-shield.md); all1359source/760build/Git/genuine hashes exact through full; committed blobs verified. Exactly one credit:213IDs/order,113unverified/98bounded-functional/one engine-only/one review-needed; Paladin29/30.128raw files/26terminal receipts byte-verified;1648exact scratch files removed, scratch absent/PID647027 absent/4485closed/cleanup[]. GenuineL33/next402 unchanged/Baal uncleared. Provisional adaptation; independent/earned balance, Conversion, C2–C4/fullG0–G7/privatev1 remain open. Root sole writer, local only; umbrella goal/worktree active. |
@@ -11863,3 +11865,46 @@ decompressed SHA256 stays
 C0/C1 keep narrow acceptance; C2 underway, C3/C4/fullG0-G7/all-class builds/
 30-50hour pacing/economy/endgame/independent acceptance remain unfinished.
 Root sole writer, local only; umbrella goal/branch/worktree/claim stay active.
+
+
+## 2026-10-25 — Impale verified; Jab repeated-attack defect reproduced
+
+Runtime `229f0d2c` gives the actual Impale JSON explicit provisional10% Bleed
+potency and a closed typed ordinary Defense-only bypass through the shared
+damage input. Presentation `1d1eca0f` explains real per-hit mitigation and shared
+three-second/one-stack/floor/refresh rules in both locales. Original native
+16cast/12positive-hit reproduction now has real periodic HP loss. Defense0/100/
+500 produces identical Impale outcomes while ordinary Jab stays Defense-sensitive.
+Ranks1/2/20, actual expiry, misses/resistance/crit/combo, finite shields, reflection/
+death, resource/cooldown and native authority/immutable replay are covered.
+
+[Evidence](evidence/d04-impale.md):62new cases/3files, final focused62/3, related
+compatibility165/8, data234/12, engine7517/271, full14394/640/two existing skips
+(498.865s wrapper). Types/lint/build/bridge/precache pass. Production4/4 en/zh-CN
+desktop/mobile, eight exact five-domain Continue pairs,20geometry/20screenshots/
+eight inspected. Synthetic L30/resource helmet and fixed combat Date.now are
+explicit; ordinary timers and public controls remain. No test bridge. Original
+fixture/type/lint errors and superseded lint stop are retained; no full run was
+interrupted for this mechanic. All1372source/test/config, two controlling design
+and760build hashes plus HEAD/genuine stay exact through full; actual committed
+blobs and disk bytes match1d1eca0f.
+
+Inventory keeps213IDs/order and credits only Impale:101bounded-functional,
+110unverified, one engine-only and one review-needed. Amazon8/30plus one engine-
+only is locally bounded, not earned class/build acceptance. Separate Jab RED
+confirms one actual attempt per paid cast at ranks1/2/20 across12cases despite
+the existing multiple-hit prose; its source bytes match actual1d1eca0f. Its
+three-attempt provisional contract/reproduction links gain no functionality
+credit; other211inventory rows remain exact.
+
+Archive162raw members/24terminal receipts is member-hash verified. Cleanup
+removed922exact task-owned files after all consumers finished; scratch and all
+51recorded owned PIDs absent,4489closed,remaining[]/failures[]. Older retained
+roots/shared caches are preserved.
+
+Genuine Ancients/Rite remainsL33/XP149261/nextNormal402/Nightmare0/Baal uncleared;
+decompressed SHA256 remains
+`c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577`.
+C0/C1 retain narrow acceptance; C2 underway, C3/C4/fullG0-G7/all-class builds/
+30–50hour pacing/economy/endgame/independent acceptance remain unfinished.
+Root sole writer/local only; umbrella goal/branch/worktree/claim stay active.

@@ -1,0 +1,9 @@
+{
+  "head": "1d1eca0f36768b965d4e5d5a7282bd5dc80d1ce8",
+  "source_files": 1372,
+  "design_files": 2,
+  "build_files": 760,
+  "genuine": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "actual_git_blobs_and_disk_exact": true,
+  "next_jab_repro_sources_exact": true
+}

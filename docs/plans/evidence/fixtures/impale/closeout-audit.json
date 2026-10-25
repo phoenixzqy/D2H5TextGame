@@ -1,0 +1,7 @@
+{
+  "initial_documented_PID_count": 52,
+  "first_closeout_count_assertion": "failed: receipt contains51, not52",
+  "actual_receipt_PID_count": 51,
+  "documentation_corrected_to_receipt": true,
+  "source_and_cleanup_receipt_unchanged": true
+}
