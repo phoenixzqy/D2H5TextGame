@@ -492,7 +492,9 @@ export function computeSkillRankDisplayStats(
     skill.damageComposition === 'weighted-components'
     ? { chillSeconds: STATUS_DEFAULTS.chill.duration, paralyzeSeconds: STATUS_DEFAULTS.paralyze.duration } : undefined;
   const strikes = skill.hitSequence?.strikes;
-  const strikesPerCast = skill.id === 'skills-druid-fury' && skill.trigger === 'active' && skill.damage &&
+  const supportsSequence = skill.id === 'skills-druid-fury' || (skill.id === 'skills-amazon-jab' &&
+    skill.target === 'single-enemy' && skill.damageType === 'physical');
+  const strikesPerCast = supportsSequence && skill.trigger === 'active' && skill.damage &&
     strikes !== undefined && Number.isInteger(strikes) && strikes >= 2 && strikes <= 8 ? strikes : undefined;
   const controlId = skill.appliesStatus?.[0];
   const controlDefinition = skill.damage && skill.trigger === 'active' &&

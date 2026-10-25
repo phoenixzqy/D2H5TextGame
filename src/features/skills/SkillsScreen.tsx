@@ -1537,6 +1537,9 @@ function dynamicDescription(
       maxLife: Math.round(life * maxRank * 100), maxSpeed: speed * maxRank, cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && skill.id === 'skills-amazon-jab' && stats.strikesPerCast !== undefined) {
+    return t('amazon.jab.desc', { min: firstDamage.min, max: firstDamage.max, strikes: stats.strikesPerCast });
+  }
   if (firstDamage && skill.id === 'skills-amazon-impale') {
     return t('amazon.impale.desc', { min: firstDamage.min, max: firstDamage.max });
   }

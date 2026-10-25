@@ -1,8 +1,9 @@
 # D04 — Jab bounded repeated attempts
 
 2026-10-25. Preimplementation author contract for reproduced BUG203. Root sole
-writer; independent design/QA and earned balance remain open. No Jab change or
-functionality credit yet. Separate Impale verification remains frozen.
+writer; independent design/QA and earned balance remain open. Implementation
+and verification status is tracked in [Jab evidence](../evidence/d04-jab.md).
+Separate historical Impale verification remains frozen.
 
 Preserve actual Physical30–45/+3rank, single enemy,5MP,1second cooldown,
 unlock1/cap20, no prerequisite, no weapon-stat contribution or equipment gate.

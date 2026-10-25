@@ -305,7 +305,7 @@
     },
     "jab": {
       "name": "Jab",
-      "desc": "A quick javelin thrust that hits multiple times."
+      "desc": "Up to {{strikes}} independent Physical attack attempts against the original target, dealing {{min}}–{{max}} damage per attempt. Misses consume attempts. Stop when the original target or caster dies; do not switch to another enemy. Pay mana and start cooldown once per cast."
     },
     "power-strike": {
       "name": "Power Strike",

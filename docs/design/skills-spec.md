@@ -137,7 +137,7 @@ independent design/QA and earned class/build balance remain open.
 
 ### 3.4 Amazon (亚马逊 — 弓+标枪)
 
-#### Active Skills (7)
+#### Active Skills (8)
 | ID | Name (EN / ZH) | Element | Target | Base Dmg (L1) | CD | Mana | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
 | `amazon.magic_arrow` | Magic Arrow / 魔法箭 | Arcane | Single | 35–50 | 1 | 5 | — | 0 ammo cost |
@@ -148,6 +148,7 @@ independent design/QA and earned class/build balance remain open.
 | `amazon.piercing_strike` | Strafe / 炮轰 | Physical | All | 35–55 | 2 | 20 | — | Rapid multi-hit |
 
 | `amazon.impale` | Impale / 刺入 | Physical | Single | 75–110 (+7/rank) | 2 | 10 | Bleed | Ignores ordinary Defense only; resistance/dodge/personal shields remain. Captures10% final-hit/s Bleed for3s, cap1, refresh keeps existing rate. Unlock12/cap20/Jab→Power Strike; provisional potency under [D04](../plans/decisions/D04-impale-v1.md), independent/earned balance open. |
+| `amazon.jab` | Jab / 戳刺 | Physical | Single original target | 30–45 (+3/rank) per attempt | 1 | 5 once | — | Up to3 independent attempts; misses consume attempts, stop on caster/original-target death, no retarget. Ordinary Defense/resistance/shields/reflection apply per attempt; no weapon Attack scaling. Unlock1/cap20/no prerequisite or equipment gate. Provisional count under [D04](../plans/decisions/D04-jab-v1.md); independent/earned balance open. |
 
 #### Passive and Summon Skills (7)
 | ID | Name (EN / ZH) | Effect | Notes |
