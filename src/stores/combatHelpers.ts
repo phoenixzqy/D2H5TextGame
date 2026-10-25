@@ -78,6 +78,7 @@ import { composeStatAura } from '@/engine/skills/stat-auras';
 import { vigorLifeMax, withoutVigorLife } from '@/engine/skills/vigor';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeBoneArmor } from '@/engine/skills/bone-armor';
+import { composeEnergyShield } from '@/engine/skills/energy-shield';
 import { composeBarbarianEndurance } from '@/engine/skills/barbarian-endurance';
 import { composeBarbarianWarcries } from '@/engine/skills/barbarian-warcries';
 import { composeBarbarianWeaponMasteries } from '@/engine/skills/barbarian-weapon-masteries';
@@ -194,6 +195,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
   const damageMasteries = composeDamageMasteries({ classId: player.class, level: player.level,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const shadow = composeAssassinShadowPassives(player);
+  const energyShield = composeEnergyShield(player);
   const allResistanceBonus = endurance.resistAllBonus + shadow.resistAllBonus;
   const warcries = composeBarbarianWarcries({ classId: player.class, level: player.level,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
@@ -241,9 +243,10 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     life: stats.life,
     mana: stats.mana,
     ...composeRunewordCombatModifiers(grants, { ...recovery,
-      manaRegenPerSecond: recovery.manaRegenPerSecond * (1 + warcries.manaRegenBonus), increasedDamagePct }),
+      manaRegenPerSecond: recovery.manaRegenPerSecond * (1 + warcries.manaRegenBonus + energyShield.manaRegenBonus), increasedDamagePct }),
     coldResistanceReductionPct: composeColdMastery(player),
     staticFieldRank: composeStaticField(player),
+    ...(energyShield.rank > 0 ? { energyShieldRank: energyShield.rank } : {}),
     burstOfSpeedRank: composeBurstOfSpeedRank(player),
     manaRegenCarry: 0,
     manaRegenCompensation: 0,
@@ -1163,6 +1166,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       increasedDamagePct: fresh.increasedDamagePct ?? { fire: 0 },
       coldResistanceReductionPct: fresh.coldResistanceReductionPct ?? 0,
       staticFieldRank: fresh.staticFieldRank ?? 0,
+      ...((unit.energyShieldRank !== undefined || fresh.energyShieldRank !== undefined)
+        ? { energyShieldRank: fresh.energyShieldRank ?? 0 } : {}),
       burstOfSpeedRank: fresh.burstOfSpeedRank ?? 0,
       physicalReflectionPct: fresh.physicalReflectionPct ?? 0,
       manaRegenCarry: capped ? 0 : unit.manaRegenCarry ?? 0,

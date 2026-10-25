@@ -11,6 +11,95 @@
       "if": {
         "properties": {
           "id": {
+            "const": "skills-sorceress-energy-shield"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "scaling",
+          "prerequisites"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "$ref": "#/properties/requiredLevel"
+          },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "passive": {
+            "const": true
+          },
+          "aura": {
+            "const": false
+          },
+          "summon": {
+            "const": false
+          },
+          "prerequisites": {
+            "const": [
+              "skills-sorceress-teleport"
+            ]
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "required": [
+                  "shieldAbsorbPct",
+                  "manaRegenPct"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "shieldAbsorbPct": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Fraction of mitigated damage diverted per allocated rank, paid one MP per prevented HP."
+                  },
+                  "manaRegenPct": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Additive ordinary Energy-based MP recovery fraction per allocated rank; never maximum MP."
+                  }
+                }
+              }
+            }
+          },
+          "cost": false,
+          "damage": false,
+          "damageType": false,
+          "appliesStatus": false,
+          "statusEffect": false,
+          "additionalStatusEffects": false,
+          "appliesTags": false,
+          "synergies": false,
+          "heal": false,
+          "summonId": false,
+          "aoeShape": false,
+          "requires": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
             "const": "skills-necromancer-bone-armor"
           }
         },

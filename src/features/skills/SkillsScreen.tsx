@@ -57,6 +57,7 @@ import { ASSASSIN_WEAPON_PASSIVE_DEFINITIONS, ASSASSIN_WEAPON_PASSIVE_IDENTITIES
 import { ASSASSIN_SHADOW_DEFINITIONS, ASSASSIN_SHADOW_IDENTITIES } from '@/engine/skills/assassin-shadow';
 import { BURST_OF_SPEED_DEFINITION, BURST_OF_SPEED_IDS } from '@/engine/skills/burst-of-speed';
 import { BONE_ARMOR_DEFINITION, BONE_ARMOR_IDS } from '@/engine/skills/bone-armor';
+import { ENERGY_SHIELD_DEFINITION, ENERGY_SHIELD_IDS, resolveEnergyShieldRank } from '@/engine/skills/energy-shield';
 import { DAMAGE_MASTERY_DEFINITIONS, DAMAGE_MASTERY_IDENTITIES } from '@/engine/skills/damage-masteries';
 import { COLD_MASTERY_DEFINITION, coldMasteryReductionAtRank, resolveColdMasteryRank } from '@/engine/skills/cold-mastery';
 import { resolveStaticFieldRank } from '@/engine/skills/static-field';
@@ -164,6 +165,11 @@ export function SkillsScreen() {
     const ironSkinRank = resolveIronSkinRank(levels);
     const coldRank = resolveColdMasteryRank(levels);
     const staticRank = resolveStaticFieldRank(levels);
+    const shieldRank = resolveEnergyShieldRank(levels);
+    for (const alias of ENERGY_SHIELD_IDS) {
+      if (shieldRank > 0) map.set(alias, shieldRank);
+      else map.delete(alias);
+    }
     for (const alias of ['sorceress.static_field', 'skills-sorceress-static-field']) {
       if (staticRank > 0) map.set(alias, staticRank);
       else map.delete(alias);
@@ -1212,6 +1218,12 @@ function dynamicDescription(
       burnMaxStacks: STATUS_DEFAULTS.ignite.maxStacks,
       chillSlowPct: (1 - CHILL_DEFINITION.attackSpeedMultiplier) * 100,
       enemyResistReductionPct: definition.enemyResistReductionPct });
+  }
+  if (skill.id === ENERGY_SHIELD_IDS[0]) {
+    const d = ENERGY_SHIELD_DEFINITION;
+    return t('sorceress.energy-shield.desc', { absorb: d.absorbPerRank * 100,
+      maxAbsorb: d.absorbPerRank * d.maxRank * 100, recovery: d.manaRegenPerRank * 100,
+      cap: d.maxRank, level: d.requiredLevel });
   }
   if (skill.id === BONE_ARMOR_IDS[0]) {
     const d = BONE_ARMOR_DEFINITION;

@@ -78,6 +78,8 @@ export interface CombatUnit {
   readonly holyFreezeAura?: true;
   /** Eligible learned Static Field rank captured per wave; explicit zero disables legacy fallback. */
   readonly staticFieldRank?: number;
+  /** Eligible personal Energy Shield allocation captured per wave; never persisted. */
+  readonly energyShieldRank?: number;
   /** Current Player-composed paid Burst eligibility; no implicit active-skill rank. */
   readonly burstOfSpeedRank?: number;
   /** Frozen equipment/learned active availability captured at the wave boundary; never persisted. */

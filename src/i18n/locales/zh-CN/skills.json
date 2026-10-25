@@ -168,6 +168,7 @@
       "manaRegenPct": "法力恢复",
       "magicFindPct": "魔法寻获",
       "shieldAbsorbPct": "护盾吸收",
+      "energyShieldAbsorbPct": "伤害转移至法力",
       "boneArmorAbsorb": "骨甲吸收",
       "golemLifePct": "石魔生命",
       "golemAttackSpeed": "石魔攻击速度"
@@ -978,7 +979,7 @@
     },
     "energy-shield": {
       "name": "能量护盾",
-      "desc": "30% 来袭伤害转由法力承受。"
+      "desc": "自动、仅自身：每级转移{{absorb}}%的减伤后伤害（{{cap}}级时{{maxAbsorb}}%），每抵消1点生命伤害消耗1点法力。转移量向下取整且受当前法力限制，无法支付的伤害由生命承受。每级另加{{recovery}}%普通精力法力回复，不增加法力上限。角色{{level}}级并学会心灵传动和传送后解锁。学习、升级或重置于下一波生效，不施法、不补充资源。"
     },
     "frozen-armor": {
       "name": "寒冰甲",
