@@ -1540,6 +1540,9 @@ function dynamicDescription(
   if (firstDamage && skill.id === 'skills-amazon-jab' && stats.strikesPerCast !== undefined) {
     return t('amazon.jab.desc', { min: firstDamage.min, max: firstDamage.max, strikes: stats.strikesPerCast });
   }
+  if (firstDamage && skill.id === 'skills-assassin-dragon-talon' && stats.strikesPerCast !== undefined) {
+    return t('assassin.dragon-talon.desc', { min: firstDamage.min, max: firstDamage.max, strikes: stats.strikesPerCast });
+  }
   if (firstDamage && skill.id === 'skills-amazon-impale') {
     return t('amazon.impale.desc', { min: firstDamage.min, max: firstDamage.max });
   }

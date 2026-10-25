@@ -221,7 +221,7 @@ Paid Werewolf/Werebear and Lycanthropy follow the [D05 form contract](../plans/d
 
 ### 3.7 Assassin (刺客 — 陷阱+武技)
 
-#### Active Skills (6)
+#### Active Skills (7)
 | ID | Name (EN / ZH) | Element | Target | Base Dmg (L1) | CD | Mana | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
 | `assassin.shock_web` | Shock Web / 电网 | Lightning | All | 30–50 | 2 | 20 | Paralyze | AOE lightning trap |
@@ -230,6 +230,7 @@ Paid Werewolf/Werebear and Lycanthropy follow the [D05 form contract](../plans/d
 | `assassin.mind_blast` | Mind Blast / 心灵震爆 | Arcane | All | 50–70 | 3 | 30 | Mana Burn + Stun | Arcane AOE |
 | `assassin.dragon_claw` | Dragon Claw / 龙爪 | Physical | Single | 70–100 | 1 | 20 | — | Dual-wield crit boost |
 | `assassin.phoenix_strike` | Phoenix Strike / 凤凰打击 | Fire+Cold+Lightning | Single | 40–60 per element | 3 | 40 | Burn+Chill+Paralyze | Tri-element combo |
+| `assassin.dragon_talon` | Dragon Talon / 龙爪踢 | Physical | Single original target | 40–60 (+4/rank) per attempt | 1 | 4 once | — | Up to3 independent attempts; misses consume attempts, stop on caster/original-target death, no retarget. Ordinary Defense/resistance/shields/reflection apply per attempt; no weapon Attack scaling. Unlock1/cap20/no prerequisite or equipment gate. Provisional count under [D04](../plans/decisions/D04-dragon-talon-v1.md); independent/earned balance open. |
 
 #### Passive Skills (4)
 | ID | Name (EN / ZH) | Effect | Notes |

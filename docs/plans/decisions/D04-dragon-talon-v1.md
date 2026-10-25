@@ -1,8 +1,8 @@
 # D04 — Dragon Talon bounded repeated kicks
 
 2026-10-25. Preimplementation author contract for reproduced BUG204. Root sole
-writer; independent design/QA and earned balance remain open. No Dragon Talon
-implementation or functionality credit yet.
+writer; independent design/QA and earned balance remain open. Implementation
+and verification status is tracked in [Dragon Talon evidence](../evidence/d04-dragon-talon.md).
 
 Preserve actual Physical40–60/+4rank, single enemy,4MP,1second cooldown,
 unlock1/cap20, no prerequisite, equipment gate or weapon-stat contribution.

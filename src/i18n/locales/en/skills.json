@@ -407,7 +407,7 @@
     },
     "dragon-talon": {
       "name": "Dragon Talon",
-      "desc": "A series of rapid kicks."
+      "desc": "Up to {{strikes}} independent Physical kick attempts against the original target, dealing {{min}}–{{max}} damage per attempt. Misses consume attempts. Stop when the original target or caster dies; do not switch to another enemy. Pay mana and start cooldown once per cast."
     },
     "fists-of-fire": {
       "name": "Fists of Fire",
