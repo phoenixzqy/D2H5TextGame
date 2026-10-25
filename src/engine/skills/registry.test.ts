@@ -53,7 +53,7 @@ describe('P08a04b authored player Frost Nova secondary Freeze', () => {
     expect(raw).toMatchObject({ additionalStatusEffects: { freeze: { chance: 0.1 } } });
     expect(Object.values(PLAYABLE_CLASS_SKILL_DATA).flat()
       .filter(row => row.additionalStatusEffects !== undefined).map(row => row.id))
-      .toEqual(['skills-sorceress-frost-nova', 'skills-sorceress-meteor']);
+      .toEqual(['skills-amazon-freezing-arrow', 'skills-sorceress-frost-nova', 'skills-sorceress-meteor']);
   });
 
   it('registers one damage effect and the complete ordered list through both actual identities', () => {
@@ -104,7 +104,7 @@ describe('P08a04b authored player Frost Nova secondary Freeze', () => {
     ]);
     expect(listSkills().filter(id => getSkill(id)?.effects.some(effect =>
       effect.kind === 'damage' && effect.applyStatuses !== undefined)).sort())
-      .toEqual(['amazon.ice_arrow', 'paladin.vengeance', 'sorceress.frost_nova', 'sorceress.glacial_spike',
+      .toEqual(['amazon.freezing_arrow', 'amazon.ice_arrow', 'paladin.vengeance', 'sorceress.frost_nova', 'sorceress.glacial_spike',
         'sorceress.ice_blast', 'sorceress.meteor']);
   });
 });
