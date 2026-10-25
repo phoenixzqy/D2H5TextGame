@@ -109,6 +109,8 @@
     "summon": "召唤",
     "death": "倒下",
     "status": {
+      "oak-sage": "橡树智者",
+      "heart-of-wolverine": "狼獾之心",
       "werewolf": "狼人变化",
       "werebear": "熊人变化",
       "bone-armor": "骨甲：{{amount}}",

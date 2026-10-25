@@ -4,7 +4,7 @@ import type { SkillDef } from '../types/skills';
 import type { CombatUnit } from '../combat/types';
 import type { RegisteredSkill } from './effects';
 import { createSkillValidator } from './skill-validator';
-import { integrateManaRecoveryWithContributionBetween } from '../combat/mana-recovery';
+import { projectLifeCapacity, restoreLifeCapacityLayer, withoutTemporaryLifeCapacity, type LifeCapacityBonus } from '../combat/life-capacity';
 
 export const DRUID_SHAPE_IDS = {
   werewolf: ['skills-druid-werewolf', 'druid.werewolf'],
@@ -122,7 +122,7 @@ export function composeDruidShapeshifting(
   });
 }
 
-function eligibleHero(unit: CombatUnit): boolean {
+function eligibleHero(unit: CombatUnit, retainDeadCapacity = false): boolean {
   return (
     unit.side === 'player' &&
     unit.kind === 'hero' &&
@@ -131,18 +131,17 @@ function eligibleHero(unit: CombatUnit): boolean {
     unit.summonOwnerId === undefined &&
     Number.isInteger(unit.level) &&
     Number.isFinite(unit.life) &&
-    unit.life > 0
+    (retainDeadCapacity || unit.life > 0)
   );
 }
 function validRank(value: unknown, max: number): value is number {
   return typeof value === 'number' && Number.isInteger(value) && value >= 0 && value <= max;
 }
-/** Explicit eligible living hero potency only; bear requires its independent Lycanthropy allocation. */
-export function druidFormRank(unit: CombatUnit, form: DruidForm): number {
+function resolveFormRank(unit: CombatUnit, form: DruidForm, retainDeadCapacity = false): number {
   const ranks = unit.druidShapeRanks,
     d = DRUID_SHAPE_DEFINITIONS[form];
   if (
-    !eligibleHero(unit) ||
+    !eligibleHero(unit, retainDeadCapacity) ||
     unit.level < d.requiredLevel ||
     !ranks ||
     !validRank(ranks[form], d.maxRank) ||
@@ -152,15 +151,22 @@ export function druidFormRank(unit: CombatUnit, form: DruidForm): number {
     return 0;
   return ranks[form];
 }
-/** One desired form per combo; unavailable/unlearned entries never mask a later eligible form. */
-export function selectedDruidForm(unit: CombatUnit): DruidForm | undefined {
+/** Explicit eligible living hero potency only; bear requires its independent Lycanthropy allocation. */
+export function druidFormRank(unit: CombatUnit, form: DruidForm): number {
+  return resolveFormRank(unit, form);
+}
+function resolveSelectedForm(unit: CombatUnit, retainDeadCapacity = false): DruidForm | undefined {
   for (const id of unit.skillOrder) {
     for (const form of ['werewolf', 'werebear'] as const) {
-      if (DRUID_SHAPE_IDS[form].some((alias) => alias === id) && druidFormRank(unit, form) > 0)
+      if (DRUID_SHAPE_IDS[form].some((alias) => alias === id) && resolveFormRank(unit, form, retainDeadCapacity) > 0)
         return form;
     }
   }
   return undefined;
+}
+/** One desired living form per combo; unavailable entries never mask a later eligible form. */
+export function selectedDruidForm(unit: CombatUnit): DruidForm | undefined {
+  return resolveSelectedForm(unit);
 }
 /** Match the complete authored paid effect before resource commitment. */
 export function matchesDruidForm(skill: RegisteredSkill, form: DruidForm): boolean {
@@ -213,16 +219,19 @@ function validPaidForm(value: unknown): value is PaidDruidForm {
     (value.form === 'werewolf' || value.lycanthropyRank === 0)
   );
 }
-/** Read one paid form, with no implicit rank or marker stacking. */
-export function activeDruidForm(unit: CombatUnit): PaidDruidForm | undefined {
+function resolvePaidForm(unit: CombatUnit, retainDeadCapacity = false): PaidDruidForm | undefined {
   const paid = unit.druidForm;
   return validPaidForm(paid) &&
     paid.sourceHeroId === unit.id &&
-    paid.form === selectedDruidForm(unit) &&
-    paid.rank === druidFormRank(unit, paid.form) &&
+    paid.form === resolveSelectedForm(unit, retainDeadCapacity) &&
+    paid.rank === resolveFormRank(unit, paid.form, retainDeadCapacity) &&
     paid.lycanthropyRank === (paid.form === 'werewolf' ? unit.druidShapeRanks?.lycanthropy : 0)
     ? paid
     : undefined;
+}
+/** Read one living paid form, with no implicit rank or marker stacking. */
+export function activeDruidForm(unit: CombatUnit): PaidDruidForm | undefined {
+  return resolvePaidForm(unit);
 }
 /** Add form/Lycanthropy coefficients once, before existing mitigation/cadence composition. */
 export function druidFormBonuses(unit: CombatUnit) {
@@ -240,34 +249,17 @@ export function druidFormBonuses(unit: CombatUnit) {
 }
 /** Restore a verified carried capacity baseline without clamping absolute HP before fresh projection. */
 export function withoutDruidFormLife(unit: CombatUnit): CombatUnit {
-  if (unit.druidFormLife === undefined) return unit;
-  const { druidFormLife: carried, ...base } = unit;
-  const cap: unknown = carried;
-  if (
-    typeof cap !== 'object' ||
-    cap === null ||
-    Object.keys(cap).length !== 2 ||
-    !('baseLifeMax' in cap) ||
-    !('appliedLifeMax' in cap)
-  )
-    return base;
-  return typeof cap.baseLifeMax === 'number' &&
-    Number.isFinite(cap.baseLifeMax) &&
-    cap.baseLifeMax > 0 &&
-    typeof cap.appliedLifeMax === 'number' &&
-    Number.isFinite(cap.appliedLifeMax) &&
-    cap.appliedLifeMax >= cap.baseLifeMax &&
-    unit.stats.lifeMax === cap.appliedLifeMax
-    ? { ...base, stats: { ...base.stats, lifeMax: cap.baseLifeMax } }
-    : base;
+  return restoreLifeCapacityLayer(unit, 'druidFormLife');
 }
 /** Recompose paid carry at a wave boundary, or install a newly paid form; never heal/refill. */
-export function refreshDruidForm(unit: CombatUnit, newlyPaid?: DruidForm): CombatUnit {
+export function refreshDruidFormState(unit: CombatUnit, newlyPaid?: DruidForm): CombatUnit {
+  if (unit.druidShapeRanks === undefined && unit.druidForm === undefined && unit.druidFormLife === undefined &&
+    !unit.statuses.some(s => s.id === 'werewolf' || s.id === 'werebear')) return unit;
   if (unit.druidShapeRanks !== undefined) {
     unit = { ...unit, druidShapeRanks: Object.freeze({ ...unit.druidShapeRanks }) };
   }
   const hadForm = unit.druidForm !== undefined || unit.druidFormLife !== undefined;
-  const base = withoutDruidFormLife(unit),
+  const base = withoutTemporaryLifeCapacity(unit),
     desired = selectedDruidForm(base);
   const form =
     newlyPaid ??
@@ -285,32 +277,26 @@ export function refreshDruidForm(unit: CombatUnit, newlyPaid?: DruidForm): Comba
     ),
     statuses: base.statuses.filter((s) => s.id !== 'werewolf' && s.id !== 'werebear')
   };
-  if (!shaped) return { ...clean, life: Math.min(base.life, base.stats.lifeMax) };
+  if (!shaped) return clean;
   const paid = Object.freeze({
     sourceHeroId: base.id,
     form,
     rank: druidFormRank(base, form),
     lycanthropyRank: form === 'werewolf' ? (base.druidShapeRanks?.lycanthropy ?? 0) : 0
   });
-  const next = { ...clean, druidForm: paid };
-  const lifeSource =
-    form === 'werewolf' ? DRUID_SHAPE_DEFINITIONS.lycanthropy : DRUID_SHAPE_DEFINITIONS.werebear;
-  const lifeRank = form === 'werewolf' ? paid.lycanthropyRank : paid.rank;
-  const extraLife = integrateManaRecoveryWithContributionBetween(
-    0,
-    {
-      sourceBaselinePerSecond: base.stats.lifeMax,
-      factors: [lifeSource.perRank.lifePct, lifeRank]
-    },
-    0,
-    1000
-  ).wholeGranted;
-  const lifeMax = base.stats.lifeMax + extraLife;
-  return {
-    ...next,
-    stats: { ...base.stats, lifeMax },
-    life: Math.min(base.life, lifeMax),
-    druidFormLife: Object.freeze({ baseLifeMax: base.stats.lifeMax, appliedLifeMax: lifeMax }),
-    statuses: [...clean.statuses, { id: form, sourceId: base.id, stacks: 1, remaining: -1 }]
-  };
+  return { ...clean, druidForm: paid,
+    statuses: [...clean.statuses, { id: form, sourceId: base.id, stacks: 1, remaining: -1 }] };
+}
+/** Retain verified paid capacity on death without granting dead-owner gameplay bonuses. */
+export function druidFormLifeBonus(unit: CombatUnit): LifeCapacityBonus | undefined {
+  const paid = resolvePaidForm(unit, true);
+  if (!paid) return undefined;
+  const definition = paid.form === 'werewolf' ? DRUID_SHAPE_DEFINITIONS.lycanthropy : DRUID_SHAPE_DEFINITIONS.werebear;
+  return { coefficient: definition.perRank.lifePct, rank: paid.form === 'werewolf' ? paid.lycanthropyRank : paid.rank };
+}
+/** Standalone form composition; native combat settles ambient and form capacity together. */
+export function refreshDruidForm(unit: CombatUnit, newlyPaid?: DruidForm): CombatUnit {
+  const next = refreshDruidFormState(unit, newlyPaid);
+  return next === unit && unit.druidShapeRanks === undefined && unit.druidForm === undefined
+    ? next : projectLifeCapacity(next, druidFormLifeBonus(next));
 }

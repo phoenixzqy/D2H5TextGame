@@ -109,6 +109,8 @@
     "summon": "Summon",
     "death": "Down",
     "status": {
+      "oak-sage": "Oak Sage",
+      "heart-of-wolverine": "Heart of Wolverine",
       "werewolf": "Werewolf",
       "werebear": "Werebear",
       "bone-armor": "Bone Armor: {{amount}}",

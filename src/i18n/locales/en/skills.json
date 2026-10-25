@@ -593,11 +593,11 @@
     },
     "heart-of-wolverine": {
       "name": "Heart of Wolverine",
-      "desc": "Aura: increases attack speed of self and allies by 30%."
+      "desc": "Automatic allied aura: each allocated rank adds {{attack}}% Attack and {{critical}} percentage point critical chance to you, your original fielded mercenary and your living summons. Requires learned Oak Sage and Druid level {{level}}, maximum {{cap}} ranks. Attack affects basic attacks and Attack-scaled skill portions; fixed skill damage stays independent. Effects end when the source dies. Changes apply next wave."
     },
     "oak-sage": {
       "name": "Oak Sage",
-      "desc": "Aura: increases max HP of self and allies by 50%."
+      "desc": "Automatic allied aura: each allocated rank adds {{life}}% life capacity to you, your original fielded mercenary and your living summons. Druid level {{level}}, maximum {{cap}} ranks. Increased capacity never heals; form and aura bonuses add over the same base. Effects end when the source dies. Learning and allocation changes apply next wave."
     },
     "molten-boulder": {
       "name": "Molten Boulder",

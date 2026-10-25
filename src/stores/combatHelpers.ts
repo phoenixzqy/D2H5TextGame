@@ -15,7 +15,7 @@ import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
 import i18n from '@/i18n';
 import type { BattleEvent } from '@/engine/combat/combat';
 import { rebaseStatusClock } from '@/engine/combat/status';
-import { composeDruidShapeshifting, refreshDruidForm, withoutDruidFormLife } from '@/engine/skills/druid-shapeshifting';
+import { composeDruidShapeshifting, refreshDruidFormState } from '@/engine/skills/druid-shapeshifting';
 import { composeBurstOfSpeedRank } from '@/engine/skills/burst-of-speed';
 import type { CombatUnit, MonsterTier } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
@@ -75,8 +75,9 @@ import { composeStaticField } from '@/engine/skills/static-field';
 import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeMightAura } from '@/engine/skills/might';
 import { composeMeditationAura } from '@/engine/skills/meditation';
-import { composeStatAura } from '@/engine/skills/stat-auras';
-import { vigorLifeMax, withoutVigorLife } from '@/engine/skills/vigor';
+import { activeStatAura, composeStatAura } from '@/engine/skills/stat-auras';
+import { activeDruidAllyAuras, composeDruidAllyAuras } from '@/engine/skills/druid-ally-auras';
+import { withoutTemporaryLifeCapacity } from '@/engine/combat/life-capacity';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeBoneArmor } from '@/engine/skills/bone-armor';
 import { composeEnergyShield } from '@/engine/skills/energy-shield';
@@ -1130,6 +1131,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const meditationAura = fresh && currentPlayer?.id === run.playerUnit.id
     ? composeMeditationAura(currentPlayer, fresh.manaRegenBaselinePerSecond ?? fresh.manaRegenPerSecond ?? 0,
       run.fieldedMercCombatId) : undefined;
+  const druidAllyAuras = currentPlayer?.id === run.playerUnit.id
+    ? composeDruidAllyAuras(currentPlayer, run.fieldedMercCombatId) : undefined;
   const summonPassives = currentPlayer?.id === run.playerUnit.id
     ? composeSummonPassives(currentPlayer) : undefined;
   const skeletonMastery = currentPlayer?.id === run.playerUnit.id
@@ -1142,13 +1145,13 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     ? composeAssassinVenom(currentPlayer) : undefined;
   const poisonExplosion = currentPlayer?.id === run.playerUnit.id
     ? composePoisonExplosion(currentPlayer) : undefined;
-  const playerTeam = carryPlayerTeam.map(carried => {
-    const unit = withoutVigorLife(withoutDruidFormLife(carried));
+  const refreshedTeam = carryPlayerTeam.map(carried => {
+    const unit = withoutTemporaryLifeCapacity(carried);
     if (freshMerc && unit.kind === 'merc' && unit.id === freshMerc.id) {
       // Equipment is authoritative at this wave boundary; current recording and
       // carried HP/MP remain untouched. Never project the bearer bonus onto summons.
       return { ...unit, level: freshMerc.level, stats: freshMerc.stats,
-        life: Math.min(unit.life, vigorLifeMax(freshMerc.stats.lifeMax, statAura?.bonuses.lifePct ?? 0)),
+        life: unit.life,
         mana: Math.min(unit.mana, freshMerc.stats.manaMax),
         manaRegenPerSecond: freshMerc.manaRegenPerSecond ?? 0,
         manaRegenBaselinePerSecond: freshMerc.manaRegenBaselinePerSecond ?? 0,
@@ -1161,8 +1164,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
     const capped = mana >= fresh.stats.manaMax;
-    const refreshed = refreshDruidForm({ ...unit, level: fresh.level, stats: fresh.stats,
-      life: unit.druidForm !== undefined ? unit.life : Math.min(unit.life, vigorLifeMax(fresh.stats.lifeMax, statAura?.bonuses.lifePct ?? 0)),
+    const refreshed = refreshDruidFormState({ ...unit, level: fresh.level, stats: fresh.stats,
+      life: unit.life,
       mana, ...((unit.druidShapeRanks !== undefined || fresh.druidShapeRanks !== undefined)
         ? { druidShapeRanks: fresh.druidShapeRanks } : {}),
       manaRegenPerSecond: fresh.manaRegenPerSecond ?? 0,
@@ -1188,6 +1191,18 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     void frozenArmor;
     return { ...unarmored, activeBuffIds: refreshed.activeBuffIds.filter(id =>
       id !== 'skills-sorceress-frozen-armor' && id !== 'sorceress.frozen_armor' && id !== 'frozen-armor') };
+  });
+
+  // Preserve the fresh-base snapshot and original absolute HP. The engine settles
+  // all pending capacity together after registering the complete party; ordinary
+  // units still clamp against fresh equipment when no temporary layer is pending.
+  const party = new Map([...refreshedTeam, ...enemies].map(unit => [unit.id, unit]));
+  const playerTeam = refreshedTeam.map(unit => {
+    const oakRank = activeDruidAllyAuras(druidAllyAuras, unit, party)?.oakRank ?? 0;
+    const aura = activeStatAura(statAura, unit.id, party);
+    const pending = oakRank > 0 || aura?.selectedAuraId === 'paladin.vigor' ||
+      unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined;
+    return pending ? unit : { ...unit, life: Math.min(unit.life, unit.stats.lifeMax) };
   });
 
   // Qualification comes from the filtered Player configuration, independently of
@@ -1223,6 +1238,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       ...(mightAura ? { mightAura } : {}),
       ...(meditationAura ? { meditationAura } : {}),
       ...(statAura ? { statAura } : {}),
+      ...(druidAllyAuras ? { druidAllyAuras } : {}),
       ...(skeletonMastery ? { skeletonMastery } : {}),
       ...(golemMastery ? { golemMastery } : {}),
       ...(summonPassives ? { summonPassives } : {}),

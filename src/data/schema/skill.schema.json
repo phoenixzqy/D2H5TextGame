@@ -3086,6 +3086,138 @@
           "appliesStatus": false
         }
       }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-druid-oak-sage"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "trigger",
+          "target",
+          "cooldown",
+          "minLevel",
+          "maxLevel",
+          "scaling"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 6
+          },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "properties": {
+              "passiveStatsPerLevel": {
+                "const": {
+                  "lifePct": 0.03
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "prerequisites": false,
+          "cost": false,
+          "effects": false,
+          "damage": false,
+          "appliesStatus": false,
+          "summonId": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-druid-heart-of-wolverine"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "trigger",
+          "target",
+          "cooldown",
+          "minLevel",
+          "maxLevel",
+          "scaling",
+          "prerequisites"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 18
+          },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "properties": {
+              "passiveStatsPerLevel": {
+                "const": {
+                  "attackPct": 0.03,
+                  "critChancePct": 0.005
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "prerequisites": {
+            "const": [
+              "skills-druid-oak-sage"
+            ]
+          },
+          "cost": false,
+          "effects": false,
+          "damage": false,
+          "appliesStatus": false,
+          "summonId": false
+        }
+      }
     }
   ],
   "if": {

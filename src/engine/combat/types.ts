@@ -77,7 +77,7 @@ export interface CombatUnit {
   readonly druidFormLife?: { readonly baseLifeMax: number; readonly appliedLifeMax: number };
   /** Factory-copied literal authored undead identity; names/IDs never grant this marker. */
   readonly undead?: true;
-  /** Transient exact Vigor base/applied capacity for wave carry; never persisted. */
+  /** Transient combined ambient (Vigor/Oak) capacity wrapping paid form capacity; never persisted. */
   readonly vigorLife?: { readonly baseLifeMax: number; readonly appliedLifeMax: number };
   /** Native mercenary factory-owned Holy Freeze presence; wave-local, never persisted. */
   readonly holyFreezeAura?: true;

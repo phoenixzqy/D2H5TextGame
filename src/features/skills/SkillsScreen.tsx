@@ -55,6 +55,7 @@ import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/eng
 import { composeSummonPassives, SUMMON_PASSIVE_IDENTITIES, SUMMON_PASSIVE_DEFINITIONS } from '@/engine/skills/summon-passives';
 import { ASSASSIN_WEAPON_PASSIVE_DEFINITIONS, ASSASSIN_WEAPON_PASSIVE_IDENTITIES } from '@/engine/skills/assassin-weapon-passives';
 import { ASSASSIN_SHADOW_DEFINITIONS, ASSASSIN_SHADOW_IDENTITIES } from '@/engine/skills/assassin-shadow';
+import { DRUID_ALLY_AURA_DEFINITIONS, DRUID_ALLY_AURA_IDS, druidAllyAuraRank } from '@/engine/skills/druid-ally-auras';
 import { DRUID_SHAPE_DEFINITIONS, DRUID_SHAPE_IDS, druidFormForId, resolveDruidShapeRank, type DruidShapeKey } from '@/engine/skills/druid-shapeshifting';
 import { BURST_OF_SPEED_DEFINITION, BURST_OF_SPEED_IDS } from '@/engine/skills/burst-of-speed';
 import { BONE_ARMOR_DEFINITION, BONE_ARMOR_IDS } from '@/engine/skills/bone-armor';
@@ -151,6 +152,13 @@ export function SkillsScreen() {
     for (const key of Object.keys(DRUID_SHAPE_IDS) as DruidShapeKey[]) {
       const rank = resolveDruidShapeRank(key, levels);
       for (const alias of DRUID_SHAPE_IDS[key]) {
+        if (rank > 0) map.set(alias, rank);
+        else map.delete(alias);
+      }
+    }
+    for (const key of ['oak', 'heart'] as const) {
+      const rank = druidAllyAuraRank(key, levels);
+      for (const alias of DRUID_ALLY_AURA_IDS[key]) {
         if (rank > 0) map.set(alias, rank);
         else map.delete(alias);
       }
@@ -1240,6 +1248,14 @@ function dynamicDescription(
       return t('druid.' + key + '.desc', { life: d.perRank.lifePct * 100,
         speed: d.perRank.attackSpeedPct * 100, dodge: d.perRank.physDodgePct * 100,
         defense: d.perRank.defensePct * 100, level: d.requiredLevel, cap: d.maxRank });
+    }
+  }
+  for (const key of ['oak', 'heart'] as const) {
+    if (skill.id === DRUID_ALLY_AURA_IDS[key][0]) {
+      const d = DRUID_ALLY_AURA_DEFINITIONS[key];
+      return t('druid.' + (key === 'oak' ? 'oak-sage' : 'heart-of-wolverine') + '.desc', {
+        life: d.lifePerRank * 100, attack: d.attackPerRank * 100, critical: d.critPerRank * 100,
+        level: d.requiredLevel, cap: d.maxRank });
     }
   }
   if (skill.id === ENERGY_SHIELD_IDS[0]) {

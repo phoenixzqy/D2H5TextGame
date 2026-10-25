@@ -41,10 +41,11 @@ import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { activeMightAura, type MightAuraProjection } from '../skills/might';
 import { activeMeditationAura, type MeditationAuraProjection } from '../skills/meditation';
 import { activeStatAura, copyStatAuraProjection, statAuraDamageBonus, type StatAuraProjection } from '../skills/stat-auras';
-import { vigorLifeMax, withoutVigorLife } from '../skills/vigor';
+import { projectLifeCapacity } from './life-capacity';
+import { activeDruidAllyAuras, copyDruidAllyAuras, DRUID_ALLY_AURA_DEFINITIONS, type DruidAllyAuraProjection } from '../skills/druid-ally-auras';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
 import { absorbBoneArmor, boneArmorPool, copyBoneArmorStatuses } from '../skills/bone-armor';
-import { activeDruidForm, druidFormBonuses, druidFormForId, druidFormRank, matchesDruidForm, refreshDruidForm, selectedDruidForm, DRUID_SHAPE_IDS } from '../skills/druid-shapeshifting';
+import { activeDruidForm, druidFormBonuses, druidFormForId, druidFormRank, matchesDruidForm, refreshDruidFormState, druidFormLifeBonus, selectedDruidForm, DRUID_SHAPE_IDS } from '../skills/druid-shapeshifting';
 import { availableEnergyShieldMana, divertEnergyShield } from '../skills/energy-shield';
 import { activeBurstOfSpeed, burstOfSpeedRank, copyBurstOfSpeedStatuses, matchesBurstOfSpeed,
   paidBurstOfSpeed, BURST_OF_SPEED_IDS, BURST_OF_SPEED_DEFINITION } from '../skills/burst-of-speed';
@@ -159,6 +160,8 @@ export interface CombatSnapshot {
   readonly meditationAura?: MeditationAuraProjection;
   /** Copied selected stat aura; mutually exclusive with Might and Meditation. */
   readonly statAura?: StatAuraProjection;
+  /** Copied automatic allied Druid passives, bound to the original hero and party. */
+  readonly druidAllyAuras?: DruidAllyAuraProjection;
   /** Eligible player Mastery copied at wave entry; applies only at fresh summon creation. */
   readonly skeletonMastery?: SkeletonMasteryProjection;
   /** Copied authoritative Golem Mastery for fresh summons in this wave. */
@@ -184,7 +187,7 @@ export interface CombatResult {
 }
 
 interface State {
-  readonly hasVigorLife: boolean;
+  readonly hasTemporaryLife: boolean;
   /** Factory-marked source IDs captured at registration; live eligibility is checked at use. */
   readonly holyFreezeSources: string[];
   readonly difficulty: 'normal' | 'nightmare';
@@ -198,6 +201,7 @@ interface State {
   readonly mightAura?: MightAuraProjection;
   readonly meditationAura?: MeditationAuraProjection;
   readonly statAura?: StatAuraProjection;
+  readonly druidAllyAuras?: DruidAllyAuraProjection;
   /** Next wave-local ambient pulse; never an action, cast or persisted timer. */
   nextAuraPulseAtMs?: number;
   readonly skeletonMastery?: SkeletonMasteryProjection;
@@ -285,7 +289,17 @@ function ambientChillSourceId(state: State): string | undefined {
 
 /** Shared derived view for presentation and direct-hit combos, never written to raw statuses. */
 function combatStatusView(state: State, unit: CombatUnit): CombatUnit {
-  const active = activeStatusView(unit, state.simClockMs);
+  const raw = activeStatusView(unit, state.simClockMs);
+  const aura = activeDruidAllyAuras(state.druidAllyAuras, unit, state.units);
+  let active = raw;
+  if (aura !== undefined || raw.statuses.some(s => s.id === 'oak-sage' || s.id === 'heart-of-wolverine')) {
+    const statuses = raw.statuses.filter(s => s.id !== 'oak-sage' && s.id !== 'heart-of-wolverine');
+    if (aura) {
+      if (aura.oakRank > 0) statuses.push({ id: 'oak-sage', sourceId: aura.sourceHeroId, stacks: 1, remaining: -1 });
+      if (aura.heartRank > 0) statuses.push({ id: 'heart-of-wolverine', sourceId: aura.sourceHeroId, stacks: 1, remaining: -1 });
+    }
+    active = { ...raw, statuses };
+  }
   if (unit.side !== 'enemy' || !alive(unit) || hasStatus(active, 'chill')) return active;
   const sourceId = ambientChillSourceId(state);
   return sourceId === undefined ? active : { ...active, statuses: [...active.statuses,
@@ -453,7 +467,7 @@ function pickDefender(
 
 function registerUnit(state: State, u: CombatUnit): void {
   const copied = copyBoneArmorStatuses(copyBurstOfSpeedStatuses(u));
-  const shaped = refreshDruidForm(copied);
+  const shaped = refreshDruidFormState(copied);
   state.units.set(u.id, shaped);
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
   if (!state.insertionIdx.has(u.id)) {
@@ -493,6 +507,7 @@ function buildDamageInput(
   const stats = attacker.stats;
   const attackerAura = activeStatAura(state.statAura, attacker.id, state.units);
   const defenderAura = activeStatAura(state.statAura, defender.id, state.units);
+  const heartRank = activeDruidAllyAuras(state.druidAllyAuras, attacker, state.units)?.heartRank ?? 0;
   const enemyAura = state.statAura && defender.side === 'enemy'
     ? activeStatAura(state.statAura, state.statAura.sourceHeroId, state.units) : undefined;
   const resistBonus = (defenderAura?.bonuses.resistAllPct ?? 0) * 100 - (enemyAura?.enemyResistReductionPct ?? 0);
@@ -521,7 +536,7 @@ function buildDamageInput(
     baseMin,
     baseMax,
     flatBonus: baseFlatBonus + (effect.attackDamagePct
-      ? stats.attack * (1 + (attackerAura?.bonuses.attackPct ?? 0)) * effect.attackDamagePct / 100 : 0),
+      ? stats.attack * (1 + (attackerAura?.bonuses.attackPct ?? 0) + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.attackPerRank) * effect.attackDamagePct / 100 : 0),
     increasedPct: (attacker.increasedDamagePct?.[effect.damageType] ?? 0) +
       statAuraDamageBonus(attackerAura, effect.damageType) +
       (effect.damageType === 'physical' ? activeMightAura(state.mightAura, attacker.id, state.units)?.physicalDamagePct ?? 0 : 0) +
@@ -529,7 +544,7 @@ function buildDamageInput(
         ? MERC_HOLY_FREEZE_DEFINITION.coldDamagePct : 0),
     comboMult: combo,
     type: effect.damageType,
-    critChance: stats.critChance,
+    critChance: stats.critChance + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.critPerRank,
     critMult: stats.critDamage,
     defenderResistances,
     defenderArmor: Math.max(0, defender.stats.defense * (1 + armorBonus + druidFormBonuses(defender).defensePct + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor),
@@ -691,28 +706,24 @@ function applyDamageToUnit(
 }
 
 /** Recompose temporary capacity once; removing it caps absolute HP without healing or damage. */
-function reconcileVigorLife(state: State): void {
-  if (!state.hasVigorLife) return;
-  const aura = state.statAura;
+function reconcileLifeCapacities(state: State, forceFormIds: readonly string[] = []): void {
+  if (!state.hasTemporaryLife) return;
   for (const unit of state.units.values()) {
-    const candidate = aura?.selectedAuraId === 'paladin.vigor' &&
-      (unit.id === aura.sourceHeroId || unit.id === aura.fieldedMercCombatId);
-    if (!candidate && unit.vigorLife === undefined) continue;
-    const base = withoutVigorLife(unit);
-    const active = activeStatAura(aura, unit.id, state.units);
-    const lifeMax = vigorLifeMax(base.stats.lifeMax, active?.bonuses.lifePct ?? 0);
-    if (!Number.isFinite(lifeMax) || lifeMax <= 0 || !Number.isFinite(base.life)) {
-      state.units.set(unit.id, base);
-      continue;
-    }
-    const life = Math.min(base.life, lifeMax);
-    const boosted = lifeMax !== base.stats.lifeMax;
-    const next = { ...base, stats: { ...base.stats, lifeMax }, life,
-      ...(boosted ? { vigorLife: Object.freeze({ baseLifeMax: base.stats.lifeMax, appliedLifeMax: lifeMax }) } : {}) };
+    const oakRank = activeDruidAllyAuras(state.druidAllyAuras, unit, state.units)?.oakRank ?? 0;
+    const aura = activeStatAura(state.statAura, unit.id, state.units);
+    const vigor = aura?.selectedAuraId === 'paladin.vigor' ? aura.bonuses.lifePct ?? 0 : 0;
+    const druid = forceFormIds.includes(unit.id) || unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined;
+    if (!druid && !oakRank && !vigor && unit.vigorLife === undefined) continue;
+    const next = projectLifeCapacity(unit, druidFormLifeBonus(unit), [
+      ...(oakRank ? [{ coefficient: DRUID_ALLY_AURA_DEFINITIONS.oak.lifePerRank, rank: oakRank }] : []),
+      ...(vigor ? [{ coefficient: vigor, rank: 1 }] : [])
+    ]);
     state.units.set(unit.id, next);
-    if (unit.stats.lifeMax !== lifeMax || unit.life !== life) {
-      emit(state, { kind: 'life-capacity', target: unit.id, lifeMax, life,
-        ...(boosted ? { vigorBaseLifeMax: base.stats.lifeMax } : {}) });
+    if (unit.stats.lifeMax !== next.stats.lifeMax || unit.life !== next.life || forceFormIds.includes(unit.id)) {
+      emit(state, { kind: 'life-capacity', target: unit.id, lifeMax: next.stats.lifeMax, life: next.life,
+        ...(next.vigorLife ? { vigorBaseLifeMax: next.vigorLife.baseLifeMax } : {}),
+        ...(druid ? { druidFormState: { ...(next.druidForm ? { druidForm: next.druidForm } : {}),
+          ...(next.druidFormLife ? { druidFormLife: next.druidFormLife } : {}) } } : {}) });
     }
   }
 }
@@ -745,7 +756,11 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
     observeStatuses(state, u.id);
     emit(state, { kind: 'death', target: u.id });
   }
-  reconcileVigorLife(state);
+  reconcileLifeCapacities(state);
+  // Derived allied auras disappear from survivors before any death-related recovery.
+  if (state.druidAllyAuras) {
+    for (const u of state.units.values()) if (alive(u)) observeStatuses(state, u.id);
+  }
   for (const u of dead) {
     const source = primary.get(u.id);
     if (source) deathEffects(state, source);
@@ -1064,11 +1079,8 @@ function applyEffect(
       const actor = state.units.get(actorId);
       if (!actor) return;
       if (effect.druidForm !== undefined && matchesDruidForm(skill, effect.druidForm)) {
-        const next = refreshDruidForm(actor, effect.druidForm);
-        state.units.set(actorId, next);
-        emit(state, { kind: 'life-capacity', target: actorId, lifeMax: next.stats.lifeMax, life: next.life,
-          druidFormState: { ...(next.druidForm ? { druidForm: next.druidForm } : {}),
-            ...(next.druidFormLife ? { druidFormLife: next.druidFormLife } : {}) } });
+        state.units.set(actorId, refreshDruidFormState(actor, effect.druidForm));
+        reconcileLifeCapacities(state, [actorId]);
         emit(state, { kind: 'buff', target: actorId, buffId: effect.id, statusBacked: true });
         observeStatuses(state, actorId);
         break;
@@ -1178,9 +1190,11 @@ function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: stri
   registerUnit(state, positionedSummon);
   scheduleNextAction(state, positionedSummon);
   state.cooldownExpiresAt.set(positionedSummon.id, new Map());
-  emit(state, { kind: 'summon', owner: owner.id, summonId: templateId, unit: positionedSummon });
+  reconcileLifeCapacities(state);
+  const committed = state.units.get(positionedSummon.id) ?? positionedSummon;
+  emit(state, { kind: 'summon', owner: owner.id, summonId: templateId, unit: committed });
   observeStatuses(state, positionedSummon.id);
-  return positionedSummon;
+  return committed;
 }
 
 function castSkill(
@@ -1252,7 +1266,8 @@ function basicAttack(state: State, actorId: string): void {
 
   emit(state, { kind: 'action', actor: actorId, skillId: null });
   const attackPct = (activeMightAura(state.mightAura, actorId, state.units)?.attackPct ?? 0) +
-    (activeStatAura(state.statAura, actorId, state.units)?.bonuses.attackPct ?? 0);
+    (activeStatAura(state.statAura, actorId, state.units)?.bonuses.attackPct ?? 0) +
+    (activeDruidAllyAuras(state.druidAllyAuras, actor, state.units)?.heartRank ?? 0) * DRUID_ALLY_AURA_DEFINITIONS.heart.attackPerRank;
   const ordinaryRange = actor.attackRange ?? [actor.stats.attack, actor.stats.attack];
   const projectAttack = (value: number): number => Math.max(1, Math.floor(value * (1 + attackPct)));
   const effect: DamageEffect = {
@@ -1813,6 +1828,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const aura = snapshot.mightAura;
   const meditation = snapshot.meditationAura;
   const statAura = copyStatAuraProjection(snapshot.statAura);
+  const druidAllyAuras = copyDruidAllyAuras(snapshot.druidAllyAuras);
   const auraIntervalMs = statAura?.pulse?.intervalMs ?? statAura?.healing?.intervalMs ?? statAura?.redemption?.intervalMs ?? statAura?.sanctuary?.intervalMs;
   const mastery = snapshot.skeletonMastery;
   const golemMastery = snapshot.golemMastery;
@@ -1820,8 +1836,9 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const global = snapshot.summonPassives;
   const assassinVenom = copyAssassinVenomProjection(snapshot.assassinVenom);
   const state: State = {
-    hasVigorLife: statAura?.selectedAuraId === 'paladin.vigor' ||
-      [...snapshot.playerTeam, ...snapshot.enemyTeam].some(unit => unit.vigorLife !== undefined),
+    hasTemporaryLife: statAura?.selectedAuraId === 'paladin.vigor' || druidAllyAuras !== undefined ||
+      [...snapshot.playerTeam, ...snapshot.enemyTeam].some(unit => unit.vigorLife !== undefined || unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined),
+    ...(druidAllyAuras ? { druidAllyAuras } : {}),
     holyFreezeSources: [],
     ...(statAura ? { statAura } : {}),
     ...(auraIntervalMs !== undefined ? { nextAuraPulseAtMs: auraIntervalMs } : {}),
@@ -1895,16 +1912,9 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
       .filter(([, remaining]) => Number.isFinite(remaining) && remaining > 0)));
   }
   for (const u of state.units.values()) observeStatuses(state, u.id, true);
-  // Preserve the required complete initial-status prefix before capacity observations.
-  for (const input of [...snapshot.playerTeam, ...snapshot.enemyTeam]) {
-    const unit = state.units.get(input.id);
-    if (unit && (unit.druidForm !== undefined || input.druidForm !== undefined || input.druidFormLife !== undefined)) {
-      emit(state, { kind: 'life-capacity', target: unit.id, lifeMax: unit.stats.lifeMax, life: unit.life,
-        druidFormState: { ...(unit.druidForm ? { druidForm: unit.druidForm } : {}),
-          ...(unit.druidFormLife ? { druidFormLife: unit.druidFormLife } : {}) } });
-    }
-  }
-  reconcileVigorLife(state);
+  // Rejected carried paid state still needs an explicit removal observation for playback.
+  reconcileLifeCapacities(state, [...snapshot.playerTeam, ...snapshot.enemyTeam]
+    .filter(unit => unit.druidForm !== undefined || unit.druidFormLife !== undefined).map(unit => unit.id));
   emitTurnBoundaries(state);
 
   const startOrder = [...state.units.values()]
