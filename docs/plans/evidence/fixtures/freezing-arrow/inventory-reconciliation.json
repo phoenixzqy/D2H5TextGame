@@ -1,0 +1,20 @@
+{
+  "total": 213,
+  "ids_and_order_preserved": true,
+  "changed_rows": [
+    "skills-amazon-freezing-arrow",
+    "skills-amazon-impale"
+  ],
+  "credited_rows": [
+    "skills-amazon-freezing-arrow"
+  ],
+  "counts": {
+    "unverified": 111,
+    "bounded-functional": 100,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "before_sha256": "2050e490e6092f4d621cb4bfe275b5eca7a0c4d016c7a50b3f2c69ae653d6190",
+  "after_sha256": "a7d21d79cbca6e85495957b84c47ef24390ce832054d9188002d500cc31f9d8f",
+  "independent_earned_acceptance": "open"
+}

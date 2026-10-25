@@ -1,0 +1,17 @@
+{
+  "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-freezing-arrow-uxt9vj2q",
+  "archive_members_verified": 286,
+  "removed_exact_files": 1806,
+  "root_absent": true,
+  "owned_pids_absent": [
+    807924,
+    851573
+  ],
+  "owned_ports_closed": [
+    4487,
+    4488
+  ],
+  "remaining": [],
+  "failures": [],
+  "older_roots_and_shared_caches": "preserved"
+}

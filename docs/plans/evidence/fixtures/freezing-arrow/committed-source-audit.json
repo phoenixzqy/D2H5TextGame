@@ -1,0 +1,9 @@
+{
+  "head": "9104ea3cebc2c51aca370113ccc0948d337c3331",
+  "source_files": 1369,
+  "design_files": 2,
+  "build_files": 760,
+  "genuine": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "actual_git_blobs_and_disk_exact": true,
+  "next_impale_repro_sources_exact": true
+}

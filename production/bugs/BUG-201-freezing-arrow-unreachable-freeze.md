@@ -1,6 +1,6 @@
 # BUG-201 — Preserve Freezing Arrow's advertised Freeze effect
 
-- Status: reproduced; repair/tuning contract and functionality credit open.
+- Status: Fixed locally in32c5918c (data/native regressions), presentation9104ea3c; independent/earned acceptance open. Historical reproduction below.
 - Severity: High — an advertised control effect has no reachable runtime effect.
 - Source: frozen Conversion runtime, now committed at `f93a4e23`. Actual
   committed source blobs match the reproduction hashes retained in the
@@ -47,3 +47,15 @@ or genuine campaign action is claimed.
 Next: author explicit secondary Freeze tuning and correct area/duration copy,
 then add rank1/20 native causal/control/expiry/miss/eligibility/replay coverage
 before a minimal JSON/schema/adapter repair and integrated browser verification.
+
+## Local repair and verification
+
+[Final evidence](../../docs/plans/evidence/d04-freezing-arrow.md) and
+[contract](../../docs/plans/decisions/D04-freezing-arrow-v1.md) preserve the
+existing skills-spec15% Freeze, actual3×3 shape and shared1s/boss0.5s lifecycle.
+Native causal/status/expiry/geometry/authority/replay27, schema/registration8 and
+bilingual UI8 new cases pass. Final full14332/637/two existing skips, engine7499/270,
+types/lint/build and four final production browser cases pass. Eight exact
+five-domain Continue pairs/20geometry samples; actual committed source/design
+blobs and build/genuine hashes match the final tested bytes. Initial10% draft
+and all failed/interrupted evidence remain superseded, not final proof.

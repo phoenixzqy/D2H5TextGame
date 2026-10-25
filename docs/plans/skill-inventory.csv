@@ -1,7 +1,7 @@
 class,data_id,runtime_id,trigger,adapter_route,declared_statuses,source,risk_flags,behavior_verification,contract_evidence
 amazon,skills-amazon-magic-arrow,amazon.magic_arrow,active,damage,,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-multiple-shot,amazon.multiple_shot,active,damage,,src/data/skills/amazon.json,,unverified,
-amazon,skills-amazon-freezing-arrow,amazon.freezing_arrow,active,damage,chill|freeze,src/data/skills/amazon.json,secondary-freeze-unreachable;proc-contract-open,unverified,docs/plans/evidence/d04-freezing-arrow-repro.md;production/bugs/BUG-201-freezing-arrow-unreachable-freeze.md
+amazon,skills-amazon-freezing-arrow,amazon.freezing_arrow,active,damage+explicit-secondary-freeze,chill|freeze,src/data/skills/amazon.json,independent-design-qa-and-earned-balance-open,bounded-functional;independent-acceptance-open,docs/plans/decisions/D04-freezing-arrow-v1.md;docs/plans/evidence/d04-freezing-arrow.md;production/bugs/BUG-201-freezing-arrow-unreachable-freeze.md
 amazon,skills-amazon-lightning-fury,amazon.lightning_fury,active,damage,paralyze,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-plague-javelin,amazon.plague_javelin,active,damage,poison|plague,src/data/skills/amazon.json,additional-statuses-truncated-by-adapter,unverified,
 amazon,skills-amazon-strafe,amazon.strafe,active,damage,,src/data/skills/amazon.json,,unverified,
@@ -12,7 +12,7 @@ amazon,skills-amazon-valkyrie,amazon.valkyrie,active,summon,,src/data/skills/ama
 amazon,skills-amazon-jab,amazon.jab,active,damage,,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-power-strike,amazon.power_strike,active,damage,,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-poison-javelin,amazon.poison_javelin,active,damage,poison,src/data/skills/amazon.json,,unverified,
-amazon,skills-amazon-impale,amazon.impale,active,damage,bleed,src/data/skills/amazon.json,dot-strength-metadata-missing,unverified,
+amazon,skills-amazon-impale,amazon.impale,active,damage,bleed,src/data/skills/amazon.json,dot-strength-metadata-missing;defense-bypass-description-contradiction,unverified,docs/plans/evidence/d04-impale-repro.md;docs/plans/decisions/D04-impale-v1.md;production/bugs/BUG-202-impale-inert-bleed-and-defense.md
 amazon,skills-amazon-lightning-bolt,amazon.lightning_bolt,active,damage,,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-charged-strike,amazon.charged_strike,active,damage,,src/data/skills/amazon.json,,unverified,
 amazon,skills-amazon-fend,amazon.fend,active,damage,,src/data/skills/amazon.json,,unverified,

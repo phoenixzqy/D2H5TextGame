@@ -13,7 +13,7 @@ Current implementation evidence lives in `evidence/`.
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
 | D04 Conversion / BUG200 | locally fixed/verified; independent and earned acceptance open | Runtime `2a37023d`, presentation `f93a4e23`. Paid8second effective allegiance covers actual attacks/registered damage/debuff/heal skills, hostile auras and recursive living summons while original identity preserves victory/deaths/corpses/orbs/rewards. Native rank1/20 now redirects100HP loss to former ally; heroHP2000/25MP paid, exact replay.63new cases/5files; final full14289/634/two existing skips (588.283s), engine7491/269, types/lint/build/bridge/precache PASS. Production4/4 plus two mobile visual supplements;12exact five-domain Continue pairs/30geometry/16screenshots/12inspected. [Evidence](evidence/d04-conversion.md); all1366source/760build/HEAD/genuine exact through final full; actual committed blobs verified. Exactly one credit:213IDs/order,112unverified/99bounded-functional/one engine-only/one review-needed; Paladin30/30 locally bounded, earned class/build acceptance open.244raw files/43terminal receipts byte-verified;915exact scratch files removed, root/PID675230 absent/4486closed/cleanup[]. Separate Freezing Arrow structural RED retained, no credit. GenuineL33/next402 unchanged/Baal uncleared. Independent/earned balance, remaining skills, C2-C4/fullG0-G7/privatev1 remain open. Root sole writer/local only; umbrella goal/worktree active. |
-| D04 Amazon Freezing Arrow / BUG201 | missing secondary effect reproduced; repair open | Native rank1/20, seeds7/19/41/97: six real positive Cold hits/Chill, two real misses, eight20MP payments. Declared[Chill,Freeze] becomes registered[Chill]; no reachable Freeze. [Evidence](evidence/d04-freezing-arrow-repro.md). Corrected diagnostic retains initial all-seeds-hit fixture assumption and decisive structural RED; actual source blobs matchf93a4e23. No chance/tuning contract, runtime change, mechanic credit or genuine campaign action. Explicit metadata/target-copy/native control/browser repair next. |
+| D04 Amazon Freezing Arrow / BUG201 | locally fixed/verified; independent and earned acceptance open | Runtime `32c5918c`, presentation `9104ea3c`; preserve existing15% independent secondary Freeze after landed Cold/Chill, actual3×3, ordinary1s/boss0.5s and truthful bilingual rank previews.43new cases/3files; final full14332/637/two existing skips (518.344s), engine7499/270, focused505/9, types/lint/build/bridge/precache PASS. Production4/4, eight exact five-domain Continue pairs/20geometry/20screenshots/eight inspected. [Evidence](evidence/d04-freezing-arrow.md); all1369source+two design+760build/Git/genuine hashes exact through full; actual committed blobs verified. Exactly one credit:213IDs/order,100bounded-functional/111unverified/one engine-only/one review-needed.286raw files/37terminal receipts byte-verified;1806exact scratch files removed, scratch/PIDs807924+851573 absent,4487/4488closed,remaining[]/failures[]. Synthetic proof only; genuineL33/next402 unchanged/Baal uncleared. Impale reproduced/contracted separately, no credit. Independent/earned balance, remaining skills, C2-C4/fullG0-G7/privatev1 remain open. Root sole writer/local only; umbrella goal/worktree active. |
 | D05 Holy Shield / BUG199 | locally fixed/verified; independent and earned acceptance open | Runtime `1c94a78`, presentation/contract `36fc086`. Real paid ordinary Defense +4%/rank and postmitigation absorption2%/rank, strict native source/prerequisite authority and run-long wave carry without saved paid state/refill. Native RED900/900 damage becomes879/492; 68new cases/six files; final full14226/629/two existing skips (481.414s), engine7440/267, types/lint/build/bridge/precache PASS. Production4/4, eight exact five-domain Continue pairs/20geometry/eight inspected screenshots. [Evidence](evidence/d05-holy-shield.md); all1359source/760build/Git/genuine hashes exact through full; committed blobs verified. Exactly one credit:213IDs/order,113unverified/98bounded-functional/one engine-only/one review-needed; Paladin29/30.128raw files/26terminal receipts byte-verified;1648exact scratch files removed, scratch absent/PID647027 absent/4485closed/cleanup[]. GenuineL33/next402 unchanged/Baal uncleared. Provisional adaptation; independent/earned balance, Conversion, C2–C4/fullG0–G7/privatev1 remain open. Root sole writer, local only; umbrella goal/worktree active. |
 | D04 Paladin target/control attacks / BUG198 | locally fixed/verified; independent and earned acceptance open | Runtime/native e2ea27c; presentation ed37092. Strict authored Zeal cap3 after unchanged densest cross; real Smite/Charge Stun1s/boss0.5s and Fist all-target Paralyze1s with causal timing/expiry/miss/repeat proof and truthful bilingual previews. Five new files/113cases; final full14158/623/two existing skips (506.191s), engine7392/265, types/lint/build/bridge/precache PASS. Production4/4,16positive attacks/four complete three-attempt Zeal casts/eight exact five-domain Continue pairs/80geometry/32screenshots/10inspected. [Evidence](evidence/d04-paladin-target-control.md); all1352source/760build/Git/genuine exact through full; actual committed blobs checked. Exactly four credits:213IDs/order,114unverified/97bounded-functional/one engine-only/one review-needed; Paladin28/30.190raw files/26terminal receipts byte-verified;950exact scratch files removed, scratch absent/4484closed/cleanup[]. GenuineL33/next402 unchanged/Baal uncleared. Conversion/Holy Shield, independent/earned class/build/balance, C2–C4/fullG0–G7/privatev1 remain open. Root sole writer, local only, umbrella goal/worktree active. |
 | D04 Paladin Sacrifice / BUG197 | locally fixed/verified; independent and earned acceptance open | Runtime/tests `4b07c98`, presentation/tests `89c12a1`; explicit provisional8%/minimum1 life debit from actual positive enemy HP loss, ordinary death/orb/reflection first, self-shield/MP bypass and lethal hero/orphan closure preserved. Five new files/60cases; final full14045/618/two existing skips (468.318s), engine7331/262, types/lint/build/bridge/precache PASS. Production4/4, four positive self-damage cases/eight exact five-domain Continue pairs/20geometry/eight inspected screenshots. [Evidence](evidence/d04-paladin-sacrifice.md); all1347source/760build/Git/genuine exact through full; actual committed source blobs checked. Exactly one credit:213IDs/order,118unverified/93bounded-functional/one engine-only/one review-needed. 142raw files/29terminal receipts byte-verified;902exact scratch files removed, scratch absent/4483closed/cleanup[]. GenuineL33/next402 unchanged/Baal uncleared. Other six Paladin actives, independent/earned balance, C2–C4/fullG0–G7/privatev1 remain open; root sole writer, local only, umbrella goal/worktree active. |
@@ -11824,3 +11824,42 @@ No genuine campaign action or remote operation. C0/C1 keep their narrow exits;
 C2 underway, C3/C4 and fullG0-G7, all-class earned builds/30-50hour pacing/
 economy/endgame/independent QA and existing mobile/a11y/PWA/performance remain
 unfinished. Root sole writer; umbrella goal/branch/worktree remain active.
+
+
+## 2026-10-25 — Freezing Arrow verified; Impale defects reproduced
+
+Runtime `32c5918c` and presentation `9104ea3c` restore the JSON-declared
+secondary Freeze through existing registration/status settlement, without a
+skill-specific runtime branch. Existing design15% chance is preserved; the
+initial10% draft and superseded validation remain explicitly historical. Real
+native rank1/20 positive hits apply Chill then independent Freeze; paired failed
+procs permit actual enemy HP damage while successful Freeze suppresses the
+actual enemy opportunity. Ordinary1s/boss0.5s exact expiry,3×3 target geometry,
+miss/cost/cooldown/death and native authority/replay are covered. Synthetic
+fixtures do not establish earned balance.
+
+[Evidence](evidence/d04-freezing-arrow.md):43new cases/3files, focused505/9,
+engine7499/270, full14332/637/two existing skips (518.344s); types/lint/build/
+bridge/precache pass. Production en/zh-CN desktop/mobile4/4, eight exact
+five-domain Continue pairs,20geometry samples,20screenshots/eight inspected.
+All1369source/test/config, two controlling design and760build hashes plus
+HEAD/genuine remain exact through full; actual committed blobs match9104ea3c.
+286raw members/37terminal receipts are hash-verified. Cleanup removed1806exact
+task-owned files; scratch/PIDs807924+851573 absent,4487/4488closed, no remaining
+paths or failures. Older roots and shared caches remain preserved.
+
+Inventory keeps213IDs/order and credits only Freezing Arrow:100bounded-functional,
+111unverified, one engine-only and one review-needed.
+[Impale reproduction](evidence/d04-impale-repro.md) separately establishes inert
+Bleed and missing promised Defense bypass:16paid native casts,12positive hits
+with zero periodic HP loss; ordinary Defense still reduces direct hits. Its
+[contract](decisions/D04-impale-v1.md) specifies explicit JSON potency and a
+closed typed ordinary-Defense bypass through the shared damage input. No Impale
+implementation or mechanic credit yet.
+
+Genuine Ancients/Rite remainsL33/XP149261/nextNormal402/Nightmare0/Baal uncleared;
+decompressed SHA256 stays
+`c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577`.
+C0/C1 keep narrow acceptance; C2 underway, C3/C4/fullG0-G7/all-class builds/
+30-50hour pacing/economy/endgame/independent acceptance remain unfinished.
+Root sole writer, local only; umbrella goal/branch/worktree/claim stay active.
