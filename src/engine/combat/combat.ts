@@ -842,6 +842,16 @@ function healingPotential(effect: HealEffect, target: CombatUnit): number {
     Math.floor(target.stats.lifeMax * (effect.pctOfMaxLife ?? 0));
 }
 
+/** Commit only actual positive HP restoration; ambient and ordinary healing share playback. */
+function commitHealing(state: State, target: CombatUnit, amount: number): void {
+  if (!Number.isFinite(target.life) || target.life <= 0 || !Number.isFinite(target.stats.lifeMax) ||
+    !Number.isFinite(amount) || amount <= 0) return;
+  const restored = Math.min(target.stats.lifeMax - target.life, amount);
+  if (restored <= 0) return;
+  state.units.set(target.id, { ...target, life: target.life + restored });
+  emit(state, { kind: 'heal', target: target.id, amount: restored });
+}
+
 /** Select fresh, same-side recipients, retaining insertion order for ratio ties. */
 function healingTargets(state: State, actorId: string, effect: HealEffect): CombatUnit[] {
   const actor = state.units.get(actorId);
@@ -1063,10 +1073,7 @@ function applyEffect(
         ? state.rng.nextInt(heal.amountRange[0], heal.amountRange[1]) : undefined);
       for (const t of targets) {
         const amount = rolledAmount ?? Math.floor(t.stats.lifeMax * (heal.pctOfMaxLife ?? 0));
-        const restored = Math.min(t.stats.lifeMax - t.life, amount);
-        if (restored <= 0) continue;
-        state.units.set(t.id, { ...t, life: t.life + restored });
-        emit(state, { kind: 'heal', target: t.id, amount: restored });
+        commitHealing(state, t, amount);
       }
       break;
     }
@@ -1268,12 +1275,21 @@ function settleManaRecovery(state: State, fromMs: number, toMs: number,
   }
 }
 
-/** Ambient pulses share normal mitigation, status and exact-once death settlement. */
+/** Ambient pulses share normal healing, mitigation, status and exact-once death settlement. */
 function settleAuraPulse(state: State): void {
   const aura = state.statAura;
   if (!aura || state.nextAuraPulseAtMs !== state.simClockMs ||
-    !activeStatAura(aura, aura.sourceHeroId, state.units) || !aura.pulse) return;
+    !activeStatAura(aura, aura.sourceHeroId, state.units)) return;
+  if (aura.healing) {
+    state.nextAuraPulseAtMs += aura.healing.intervalMs;
+    const amount = Math.floor(aura.healing.amount * (1 + (aura.bonuses.lifeRegenPct ?? 0)));
+    for (const target of state.units.values()) {
+      if (activeStatAura(aura, target.id, state.units)) commitHealing(state, target, amount);
+    }
+    return;
+  }
   const pulse = aura.pulse;
+  if (!pulse) return;
   state.nextAuraPulseAtMs += pulse.intervalMs;
   const effect: DamageEffect = { kind: 'damage', damageType: pulse.damageType,
     base: [pulse.damage, pulse.damage],
@@ -1656,6 +1672,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const aura = snapshot.mightAura;
   const meditation = snapshot.meditationAura;
   const statAura = copyStatAuraProjection(snapshot.statAura);
+  const auraIntervalMs = statAura?.pulse?.intervalMs ?? statAura?.healing?.intervalMs;
   const mastery = snapshot.skeletonMastery;
   const golemMastery = snapshot.golemMastery;
   const iron = snapshot.ironGolem;
@@ -1664,7 +1681,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const state: State = {
     holyFreezeSources: [],
     ...(statAura ? { statAura } : {}),
-    ...(statAura?.pulse ? { nextAuraPulseAtMs: statAura.pulse.intervalMs } : {}),
+    ...(auraIntervalMs !== undefined ? { nextAuraPulseAtMs: auraIntervalMs } : {}),
     ...(assassinVenom ? { assassinVenom } : {}),
     ...(global ? { summonPassives: Object.freeze({ sourceHeroId: global.sourceHeroId,
       masteryRank: global.masteryRank, resistRank: global.resistRank,

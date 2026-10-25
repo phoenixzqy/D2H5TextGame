@@ -2455,6 +2455,21 @@
       }]
     },
     "else": { "properties": { "auraPulse": false } }
+  }, {
+    "if": {
+      "properties": { "id": { "const": "skills-paladin-prayer" } },
+      "required": ["id"]
+    },
+    "then": {
+      "required": ["aura", "auraHealing"],
+      "properties": {
+        "aura": { "const": true }, "trigger": { "const": "passive" },
+        "target": { "const": "self" }, "cooldown": { "const": 0 },
+        "damage": false, "appliesStatus": false, "heal": false,
+        "auraHealing": { "$ref": "#/properties/auraHealing" }
+      }
+    },
+    "else": { "properties": { "auraHealing": false } }
   }],
   "if": {
     "properties": { "id": { "const": "skills-necromancer-amplify-damage" } },
@@ -2474,6 +2489,16 @@
     }
   },
   "properties": {
+    "auraHealing": {
+      "type": "object",
+      "description": "Exact selected Prayer periodic healing, copied at each wave boundary without persisted timers.",
+      "additionalProperties": false,
+      "required": ["intervalMs", "amount"],
+      "properties": {
+        "intervalMs": { "type": "integer", "minimum": 1000, "maximum": 60000, "description": "Simulation milliseconds between heals, including the first full interval after wave entry." },
+        "amount": { "type": "number", "exclusiveMinimum": 0, "description": "Finite positive base HP before the allocated-rank lifeRegenPct modifier, integer floor and missing-HP cap." }
+      }
+    },
     "auraPulse": {
       "type": "object",
       "description": "Exact selected player Holy Fire/Shock deterministic pulse; copied at the wave boundary.",

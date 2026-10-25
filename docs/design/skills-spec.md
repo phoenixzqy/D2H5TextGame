@@ -261,10 +261,12 @@ Monsters use a simplified skill set. Examples:
 
 ### 6.2 Aura Skills (Paladin-specific)
 The implemented player selection supports **None, Might, Meditation, Thorns,
-Blessed Aim, Fanaticism, Defiance, Resist Fire, Resist Cold, Resist Lightning and
-Salvation** in one exclusive saved canonical slot. The eight additional stat
-effects follow [the family contract](../plans/decisions/D05-paladin-aura-family-v1.md).
-The remaining ten auras require distinct pulse/control/recovery contracts;
+Blessed Aim, Fanaticism, Defiance, Resist Fire, Resist Cold, Resist Lightning,
+Salvation, Holy Freeze, Conviction, Holy Fire, Holy Shock and Prayer** in one
+exclusive saved canonical slot. Stat, enemy, pulse and healing effects follow
+[the family contract](../plans/decisions/D05-paladin-aura-family-v1.md).
+Sanctuary, Cleansing, Redemption, Vigor and Concentration still require their
+distinct remaining mechanics;
 full aura-catalog and independent acceptance remain open.
 
 - **Selection:** None is physical absence of `selectedAuraId`. Runtime-supported
@@ -288,8 +290,9 @@ full aura-catalog and independent acceptance remain open.
   increased damage (+3%) and Attack (+1%), capped at rank20. Basic Attack100
   therefore gives104/192 at ranks1/20; fixed physical100 gives103/160, without new
   weapon scaling.
-- **Timing:** Freeze selection, rank and authored strengths at wave input, active
-  from simulation0ms. Meditation also freezes the source's authoritative fresh
+- **Timing:** Freeze selection, rank and authored strengths at wave input. Stat
+  and enemy effects begin at simulation0ms; damage/healing pulses start after
+  their first full authored interval. Meditation also freezes the source's authoritative fresh
   `playerToCombatUnit` numeric `manaRegenPerSecond` baseline; equipment and
   effective Energy have already been applied once. Selection, upgrades, equipment
   changes and respec affect the next wave. Explicit replay recomposes current
@@ -297,7 +300,17 @@ full aura-catalog and independent acceptance remain open.
   inputs, preserving recorded history; there is no action, mana payment or CD.
 - **Recipients:** The exact source hero and exact original living fielded
   mercenary at any position. Summons, enemies and unfielded/replaced mercs receive
-  no player aura effect. Existing baseline recovery eligibility remains independent.
+  no recipient rank bonuses or Prayer healing. Enemy aura effects retain the
+  family's enemy-target rules, including Conviction benefiting allied summon
+  damage. Existing baseline recovery eligibility remains independent.
+- **Prayer:** JSON-owned20 base HP every5000ms, first heal one full interval
+  after wave entry. Heal floor(base × (1 + 3% × allocated rank)), capped to
+  missing HP: ranks1/2/20 give20/21/32. Living hero/original living fielded merc
+  only; living source required, crowd control does not suppress. Periodic deaths
+  precede healing, healing precedes surviving tied actions, and due60000ms healing
+  is included. No resurrection, banking, RNG, mana/cast/action slot, saved timer
+  or implicit Vitality baseline regeneration. The interval is provisional local
+  tuning; earned balance and independent acceptance remain open.
 - **Meditation strength:** Each allocated rank adds3% of the source hero's normal
   mana-regeneration baseline per second to each recipient, capped at rank20/60%.
   Each recipient retains its own existing baseline. Source baseline4 therefore

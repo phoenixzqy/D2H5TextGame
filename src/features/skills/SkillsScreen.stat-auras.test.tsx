@@ -23,9 +23,9 @@ beforeEach(() => {
   useHydrationStore.getState().setStatus('ready');
 });
 afterEach(() => { cleanup(); abortSubAreaRun(); useHydrationStore.getState().setStatus('idle'); });
-function mount(learned: boolean) {
+function mount(learned: boolean, level = 30) {
   const base = createMockPlayer('AuraUI', 'paladin');
-  act(() => { usePlayerStore.getState().setPlayer({ ...base, level: 30,
+  act(() => { usePlayerStore.getState().setPlayer({ ...base, level,
     skillLevels: learned ? Object.fromEntries(STAT_AURA_IDS.map(id => [id.replace(/-/g, '_'), 1])) : {} }); });
   render(<I18nextProvider i18n={i18n}><Suspense fallback={null}>
     <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><SkillsScreen /></MemoryRouter>
@@ -89,6 +89,30 @@ for (const locale of ['en', 'zh-CN'] as const) {
         }
         expect(detail).not.toHaveTextContent('{{');
       }
+    });
+    it('explains actual Prayer healing, first interval, rank scaling and living recipient restrictions', () => {
+      mount(true);
+      fireEvent.click(screen.getByTestId('skill-node-skills-paladin-prayer'));
+      const detail = screen.getByTestId('skill-detail-panel');
+      for (const text of (locale === 'en'
+        ? ['every 5 seconds', '20 base HP', '+3% per rank', 'living fielded mercenary', 'first heal after 5 seconds', 'rounded down', 'missing HP']
+        : ['每5秒', '20点基础生命', '每级+3%', '存活的上阵佣兵', '首次治疗在5秒后', '向下取整', '已损失生命'])) expect(detail).toHaveTextContent(text);
+      expect(detail).not.toHaveTextContent('{{');
+    });
+    it('lets a fresh level-one Paladin learn then explicitly select Prayer without a refill or automatic selection', () => {
+      mount(false, 1);
+      const before = structuredClone(usePlayerStore.getState().player);
+      const radio = screen.getByRole('radio', { name: locale === 'en' ? 'Prayer' : '祈祷' });
+      expect(radio).toBeDisabled();
+      fireEvent.click(screen.getByTestId('skill-node-skills-paladin-prayer'));
+      fireEvent.click(within(screen.getByTestId('skill-detail-panel')).getByRole('button'));
+      expect(usePlayerStore.getState().player?.skillLevels).toEqual({ 'paladin.prayer': 1 });
+      expect(usePlayerStore.getState().player?.skillPoints).toBe(0);
+      expect(usePlayerStore.getState().player).not.toHaveProperty('selectedAuraId');
+      expect(usePlayerStore.getState().player?.derivedStats).toEqual(before?.derivedStats);
+      expect(radio).toBeEnabled(); fireEvent.click(radio);
+      expect(usePlayerStore.getState().player?.selectedAuraId).toBe('paladin.prayer');
+      expect(usePlayerStore.getState().player?.derivedStats).toEqual(before?.derivedStats);
     });
   });
 }

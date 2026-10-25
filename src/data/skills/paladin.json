@@ -625,6 +625,7 @@
     "tree": "Defensive Auras",
     "requiredLevel": 1,
     "aura": true,
+    "auraHealing": { "intervalMs": 5000, "amount": 20 },
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,

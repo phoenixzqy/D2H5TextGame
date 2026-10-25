@@ -106,6 +106,38 @@ payload; savev22 already permits both canonical selection IDs. Native edits appl
 next wave and explicit replay starts from original inputs with no duplicate income.
 Dream's item-granted Holy Shock remains governed by its separate D10 contract.
 
+## Healing batch: Prayer
+
+Local implementation decision; independent design/QA and earned balance open.
+The old formula's20 HP/turn and authored3% lifeRegenPct/rank have no HP consumer.
+Define explicit JSON-owned20 base healing every5000 simulation milliseconds,
+starting one full interval after wave entry. The five-second interval is a new
+provisional local default, not inferred from presentation turn markers. Each
+recipient restores floor(baseAmount × (1 + allocated-rank lifeRegenPct)), capped
+to actual missing HP: rank1 gives20, rank2 gives21 and rank20 gives32 per pulse.
+Do not activate the old unused Vitality baseline or percentage-of-max-life regen.
+
+Only the living selected hero and original living fielded merc heal, in unit
+registration order. Crowd control does not suppress the aura. Dead units never
+resurrect; full units skip without banking, fractional carry or a heal event.
+Settle existing periodic damage/deaths first; source death prevents a same-time
+pulse, then heal before surviving tied actions. Include a due60000ms pulse;
+action-cap/battle-end stops never fabricate future healing. Healing consumes
+no mana, cast/cooldown, action slot, or RNG. Emit only actual positive restored HP
+through the normal heal settlement and playback path, with no saved-stat mutation.
+
+Require exact Prayer-only `auraHealing` metadata with exactly `amount` (finite
+positive base HP) and `intervalMs` (integer1000–60000), plus aura/passive/self/CD0
+and no ordinary damage/status/effects. Copy/freeze metadata into the existing
+selected wave projection and reject missing/foreign/invalid direct-engine tuning.
+Learning never selects or refills. Ordinary native edits take effect next wave.
+Explicit diagnostic configuration replay retains original wave teams, resources
+and seed, composes current selected configuration under existing replay rules,
+and grants no income; identical configuration reproduces the exact recording.
+Every wave starts its own full interval.
+Preserve unlock1/cap20/no prerequisites. Savev22 already permits Prayer; selection
+alone persists, with no healing timers, potency, carry or save migration.
+
 ## Remaining required effects
 
 Holy Fire/Shock now follow the pulse contract above and have [bounded local verification](../evidence/d05-paladin-pulse-auras.md). Sanctuary requires undead damage

@@ -47,10 +47,11 @@ function player(): Player {
 }
 /** Synthetic configuration projection retains the run; public hero replacement clears it. */
 function configure(patch: Partial<Player>): void { usePlayerStore.setState({ player: { ...player(), ...patch } }); }
-function gear(mana = 100, attackSpeed = 0): void {
+function gear(mana = 100, attackSpeed = 0, attack?: number): void {
   const cap: Item = { id: `fixture-might-cap-${String(++gearSequence)}`, baseId: 'items/base/helm-cap', socketCapacity: 0,
     rarity: 'rare', level: 1, identified: true, equipped: false, affixes: [{ affixId: 'fixture-imported',
-      values: new Map([['statMods.life', 999880], ['statMods.defense', 99973], ['statMods.mana', mana], ['statMods.attackSpeed', attackSpeed]]) }] };
+      values: new Map([['statMods.life', 999880], ['statMods.defense', 99973], ['statMods.mana', mana], ['statMods.attackSpeed', attackSpeed],
+        ...(attack === undefined ? [] : [['statMods.attack', attack] as [string, number]])]) }] };
   useInventoryStore.getState().addItem(cap);
   expect(useInventoryStore.getState().equipItem(cap)).toEqual({ ok: true });
 }
@@ -146,6 +147,47 @@ beforeEach(() => {
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('native selected Might wave composition', () => {
+  it('restores actual native HP with publicly allocated Prayer and replays its original input without income', async () => {
+    arrange(0); gear(100, 0, -10000);
+    configure({ comboOrder: [], derivedStats: { ...player().derivedStats, life: 500000 } });
+    const before = structuredClone(player().derivedStats);
+    expect(usePlayerStore.getState().allocateSkillPoint('skills-paladin-prayer')).toBe('ok');
+    expect(usePlayerStore.getState().allocateSkillPoint('skills-paladin-prayer')).toBe('ok');
+    expect(player()).not.toHaveProperty('selectedAuraId');
+    expect(player().derivedStats).toEqual(before);
+    expect(usePlayerStore.getState().selectAura('paladin.prayer')).toBe('ok');
+    expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })?.totalWaves).toBeGreaterThan(2);
+    const original = structuredClone(latest()), first = recording();
+    const heals = first.events.filter(e => e.kind === 'heal' && e.target === player().id);
+    expect(heals).toContainEqual(expect.objectContaining({ target: player().id, amount: 21, simClockMs: 5000 }));
+    expect(heals.every(e => e.simClockMs >= 5000 && e.simClockMs % 5000 === 0)).toBe(true);
+    const losses = first.events.reduce((sum, e) => sum + ((e.kind === 'damage' || e.kind === 'dot') && e.target === player().id ? e.amount : 0), 0);
+    const restored = heals.reduce((sum, e) => sum + (e.kind === 'heal' ? e.amount : 0), 0);
+    expect(finalHero().life).toBe(hero(original).life + restored - losses);
+    const { statAura: _projection, ...none } = original;
+    const control = runControl(none).result.playerTeam.find(u => u.id === player().id);
+    expect(finalHero().life).toBe((control?.life ?? NaN) + restored);
+    const income = structuredClone({ items: useInventoryStore.getState().backpack,
+      currencies: useInventoryStore.getState().currencies, xp: player().experience });
+    expect(usePlayerStore.getState().selectAura(null)).toBe('ok');
+    expect(recording()).toEqual(first);
+    replay();
+    expect(latest().playerTeam).toEqual(original.playerTeam); expect(latest().statAura).toBeUndefined();
+    expect(useCombatStore.getState().recordedEvents.some(e => e.kind === 'heal')).toBe(false);
+    expect(usePlayerStore.getState().selectAura('paladin.prayer')).toBe('ok');
+    replay();
+    expect(latest().playerTeam).toEqual(original.playerTeam); expect(latest().statAura).toEqual(original.statAura);
+    expect(useCombatStore.getState().recordedEvents).toEqual(first.events);
+    expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies,
+      xp: player().experience }).toEqual(income);
+    expect(usePlayerStore.getState().selectAura('paladin.prayer')).toBe('ok');
+    const save = snapshotStores(); if (!save) throw new Error('Missing Prayer save');
+    expect(save.player.selectedAuraId).toBe('paladin.prayer');
+    expect(save.player).not.toHaveProperty('statAura'); expect(save.player).not.toHaveProperty('auraHealing');
+    abortSubAreaRun(); await importIntoStores(JSON.stringify(toJsonSafe(save)));
+    expect(player().selectedAuraId).toBe('paladin.prayer');
+    expect(player().derivedStats).toEqual(save.player.derivedStats);
+  });
   it.each(['paladin.holy-fire', 'paladin.holy-shock'] as const)('runs real selected %s pulses after public allocation and replays without income', selectedAuraId => {
     arrange(0);
     const dataId = selectedAuraId.replace('paladin.', 'skills-paladin-');

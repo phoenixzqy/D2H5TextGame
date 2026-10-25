@@ -2,16 +2,16 @@ import paladinSkills from '../../data/skills/paladin.json';
 import { inferKind, type CombatUnit } from '../combat/types';
 import type { DamageType } from '../types/attributes';
 import type { Player } from '../types/entities';
-import type { AuraPulseTuning, SkillDef } from '../types/skills';
+import type { AuraHealingTuning, AuraPulseTuning, SkillDef } from '../types/skills';
 import { createSkillValidator } from './skill-validator';
 
 /** Selected stat auras, including their derived enemy Chill and resistance effects. */
 export const STAT_AURA_IDS = Object.freeze(['paladin.thorns', 'paladin.blessed-aim', 'paladin.fanaticism',
   'paladin.defiance', 'paladin.resist-fire', 'paladin.resist-cold', 'paladin.resist-lightning', 'paladin.salvation',
-  'paladin.holy-freeze', 'paladin.conviction', 'paladin.holy-fire', 'paladin.holy-shock'] as const);
+  'paladin.holy-freeze', 'paladin.conviction', 'paladin.holy-fire', 'paladin.holy-shock', 'paladin.prayer'] as const);
 export type StatAuraId = typeof STAT_AURA_IDS[number];
 type BonusKey = 'thornsPct' | 'attackPct' | 'physicalDamagePct' | 'attackSpeedPct' | 'defensePct'
-  | 'resistAllPct' | 'fireDamagePct' | 'coldDamagePct' | 'lightningDamagePct' | 'elementalDamagePct' | 'physDodgePct' | 'arcaneDamagePct';
+  | 'resistAllPct' | 'fireDamagePct' | 'coldDamagePct' | 'lightningDamagePct' | 'elementalDamagePct' | 'physDodgePct' | 'arcaneDamagePct' | 'lifeRegenPct';
 type Bonuses = Readonly<Partial<Record<BonusKey, number>>>;
 const keys: Readonly<Record<StatAuraId, readonly BonusKey[]>> = {
   'paladin.thorns': ['thornsPct'], 'paladin.blessed-aim': ['attackPct'],
@@ -19,7 +19,7 @@ const keys: Readonly<Record<StatAuraId, readonly BonusKey[]>> = {
   'paladin.resist-fire': ['resistAllPct', 'fireDamagePct'], 'paladin.resist-cold': ['resistAllPct', 'coldDamagePct'],
   'paladin.resist-lightning': ['resistAllPct', 'lightningDamagePct'], 'paladin.salvation': ['resistAllPct', 'elementalDamagePct'],
   'paladin.holy-freeze': ['coldDamagePct', 'physDodgePct'], 'paladin.conviction': ['elementalDamagePct', 'arcaneDamagePct'],
-  'paladin.holy-fire': ['fireDamagePct'], 'paladin.holy-shock': ['lightningDamagePct']
+  'paladin.holy-fire': ['fireDamagePct'], 'paladin.holy-shock': ['lightningDamagePct'], 'paladin.prayer': ['lifeRegenPct']
 };
 export interface StatAuraDefinition {
   readonly requiredLevel: number;
@@ -27,6 +27,7 @@ export interface StatAuraDefinition {
   readonly perRank: Bonuses;
   readonly enemyResistReductionPct?: number;
   readonly pulse?: AuraPulseTuning;
+  readonly healing?: AuraHealingTuning;
 }
 export interface StatAuraProjection {
   readonly selectedAuraId: StatAuraId;
@@ -37,8 +38,22 @@ export interface StatAuraProjection {
   readonly bonuses: Bonuses;
   readonly enemyResistReductionPct?: number;
   readonly pulse?: AuraPulseTuning;
+  readonly healing?: AuraHealingTuning;
 }
 const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number; readonly aura?: boolean; readonly effects?: unknown }>();
+
+function validHealing(id: StatAuraId, input: unknown): boolean {
+  if (id !== 'paladin.prayer') return input === undefined;
+  if (typeof input !== 'object' || input === null) return false;
+  const healing = input as AuraHealingTuning;
+  return Object.keys(healing).length === 2 && Object.hasOwn(healing, 'intervalMs') && Object.hasOwn(healing, 'amount') &&
+    Number.isInteger(healing.intervalMs) && healing.intervalMs >= 1000 && healing.intervalMs <= 60000 &&
+    Number.isFinite(healing.amount) && healing.amount > 0;
+}
+
+function copyHealing(healing: AuraHealingTuning): AuraHealingTuning {
+  return Object.freeze({ intervalMs: healing.intervalMs, amount: healing.amount });
+}
 
 function validPulse(id: StatAuraId, input: unknown): boolean {
   if (id !== 'paladin.holy-fire' && id !== 'paladin.holy-shock') return input === undefined;
@@ -85,6 +100,7 @@ export function resolveStatAuraDefinitions(rows: readonly unknown[]): Readonly<R
     return [id, Object.freeze({ requiredLevel: row.requiredLevel, maxRank: row.maxLevel,
       ...(row.conviction ? { enemyResistReductionPct: row.conviction.enemyResistReductionPct } : {}),
       ...(row.auraPulse ? { pulse: copyPulse(row.auraPulse) } : {}),
+      ...(row.auraHealing ? { healing: copyHealing(row.auraHealing) } : {}),
       perRank: Object.freeze(Object.fromEntries(keys[id].map(key => [key, perRank[key]]))) })];
   })) as Record<StatAuraId, StatAuraDefinition>);
 }
@@ -113,6 +129,7 @@ export function composeStatAura(player: Pick<Player, 'id' | 'class' | 'level' | 
   return Object.freeze({ selectedAuraId: id, sourceHeroId: player.id, rank, maxRank: definition.maxRank,
     ...(definition.enemyResistReductionPct !== undefined ? { enemyResistReductionPct: definition.enemyResistReductionPct } : {}),
     ...(definition.pulse ? { pulse: copyPulse(definition.pulse) } : {}),
+    ...(definition.healing ? { healing: copyHealing(definition.healing) } : {}),
     bonuses: Object.freeze(Object.fromEntries(keys[id].map(key => [key, (definition.perRank[key] ?? 0) * rank]))),
     ...(fieldedMercCombatId && fieldedMercCombatId !== player.id ? { fieldedMercCombatId } : {}) });
 }
@@ -121,6 +138,7 @@ function valid(aura: StatAuraProjection): boolean {
   const bonuses: unknown = aura.bonuses;
   return isStatAuraId(aura.selectedAuraId) && typeof aura.sourceHeroId === 'string' && aura.sourceHeroId.length > 0 &&
     validPulse(aura.selectedAuraId, aura.pulse) &&
+    validHealing(aura.selectedAuraId, aura.healing) &&
     (aura.selectedAuraId === 'paladin.conviction'
       ? typeof aura.enemyResistReductionPct === 'number' && Number.isFinite(aura.enemyResistReductionPct) &&
         aura.enemyResistReductionPct >= 0 && aura.enemyResistReductionPct <= 100
@@ -138,6 +156,7 @@ export function copyStatAuraProjection(aura: StatAuraProjection | undefined): St
   return Object.freeze({ selectedAuraId: aura.selectedAuraId, sourceHeroId: aura.sourceHeroId,
     ...(aura.enemyResistReductionPct !== undefined ? { enemyResistReductionPct: aura.enemyResistReductionPct } : {}),
     ...(aura.pulse ? { pulse: copyPulse(aura.pulse) } : {}),
+    ...(aura.healing ? { healing: copyHealing(aura.healing) } : {}),
     rank: aura.rank, maxRank: aura.maxRank, bonuses: Object.freeze({ ...aura.bonuses }),
     ...(typeof aura.fieldedMercCombatId === 'string' && aura.fieldedMercCombatId !== aura.sourceHeroId
       ? { fieldedMercCombatId: aura.fieldedMercCombatId } : {}) });

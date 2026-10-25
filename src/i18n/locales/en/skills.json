@@ -900,7 +900,7 @@
     },
     "prayer": {
       "name": "Prayer",
-      "desc": "Aura: slowly heals you and nearby allies."
+      "desc": "Selected aura: restores {{healAmount}} base HP every {{healSeconds}} seconds to you and your living fielded mercenary, first heal after {{healSeconds}} seconds of each wave. Healing gains +{{lifeRegenPct}}% per rank, is rounded down and capped to missing HP. Requires a living hero; never revives dead allies. Unlocks at character level {{level}}, rank cap {{cap}}."
     },
     "resist-fire": {
       "name": "Resist Fire",

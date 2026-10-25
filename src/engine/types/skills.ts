@@ -179,8 +179,16 @@ export interface AuraPulseTuning {
   readonly burn?: { readonly durationMs: number; readonly dotPctOfDamage: number };
 }
 
+/** JSON-owned selected Prayer healing, independent of action cadence and maximum life. */
+export interface AuraHealingTuning {
+  readonly intervalMs: number;
+  readonly amount: number;
+}
+
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Frozen selected Prayer interval and base healing; no timer is saved. */
+  readonly auraHealing?: AuraHealingTuning;
   /** Frozen selected player pulse timing and damage, independent of action cadence. */
   readonly auraPulse?: AuraPulseTuning;
   /** JSON-owned nonlethal current-health damage; exact player Static Field only. */
