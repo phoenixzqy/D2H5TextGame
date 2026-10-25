@@ -3218,6 +3218,97 @@
           "summonId": false
         }
       }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-druid-spirit-of-barbs"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "passive",
+          "trigger",
+          "target",
+          "cooldown",
+          "minLevel",
+          "maxLevel",
+          "prerequisites",
+          "scaling",
+          "passiveSummon"
+        ],
+        "properties": {
+          "passiveSummon": { "$ref": "#/properties/passiveSummon" },
+          "requiredLevel": {
+            "const": 30
+          },
+          "passive": {
+            "const": true
+          },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "prerequisites": {
+            "const": [
+              "skills-druid-heart-of-wolverine"
+            ]
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "const": {
+                  "thornsPct": 0.04,
+                  "summonDefensePct": 0.02
+                }
+              }
+            }
+          },
+          "cost": false,
+          "damage": false,
+          "effects": false,
+          "appliesStatus": false,
+          "summonId": false,
+          "summon": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "passiveSummon": {} },
+        "required": [
+          "passiveSummon"
+        ]
+      },
+      "then": {
+        "properties": {
+          "id": {
+            "const": "skills-druid-spirit-of-barbs"
+          }
+        }
+      }
     }
   ],
   "if": {
@@ -3238,6 +3329,41 @@
     }
   },
   "properties": {
+    "passiveSummon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summonId",
+        "stats"
+      ],
+      "properties": {
+        "summonId": {
+          "const": "spirit_of_barbs"
+        },
+        "stats": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "life",
+            "attack",
+            "defense"
+          ],
+          "properties": {
+            "life": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "attack": {
+              "const": 0
+            },
+            "defense": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
     "concentration": {
       "type": "object", "additionalProperties": false,
       "description": "Exact selected Concentration interruption adaptation; Stun remains applied while eligible scheduled actions continue. Freeze and Paralyze still block.",

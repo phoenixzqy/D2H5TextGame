@@ -201,6 +201,11 @@ export interface AuraSanctuaryTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Exact Spirit of Barbs passive support template; ordinary summon defaults remain shared. */
+  readonly passiveSummon?: {
+    readonly summonId: 'spirit_of_barbs';
+    readonly stats: { readonly life: number; readonly attack: 0; readonly defense: number };
+  };
   /** Concentration-only scheduled action protection; canonical Stun remains real. */
   readonly concentration?: { readonly preventStunInterruption: true };
   /** Sanctuary-only undead damage/control, copied without persisted timers. */

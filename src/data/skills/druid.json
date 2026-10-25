@@ -933,6 +933,10 @@
     "cooldown": 0,
     "minLevel": 1,
     "maxLevel": 20,
+    "passiveSummon": {
+      "summonId": "spirit_of_barbs",
+      "stats": { "life": 80, "attack": 0, "defense": 10 }
+    },
     "scaling": {
       "passiveStatsPerLevel": {
         "thornsPct": 0.04,
