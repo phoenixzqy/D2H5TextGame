@@ -1,0 +1,14 @@
+{
+  "head": "f93a4e235048390e3b8b5b5378c775f8bfbabcba",
+  "implementation_commits": [
+    "2a37023d86d9f154fd2cac343165ccb86f9a5848",
+    "f93a4e235048390e3b8b5b5378c775f8bfbabcba"
+  ],
+  "actual_committed_source_blobs": 1366,
+  "source_disk_exact": true,
+  "source_commit_exact": true,
+  "build_files_exact": 760,
+  "genuine": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "next_freezing_arrow_reproduction_source_exact": true,
+  "all_exact": true
+}

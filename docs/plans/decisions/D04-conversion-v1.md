@@ -1,7 +1,8 @@
 # D04 — Conversion effective combat allegiance
 
 2026-10-25. Repair contract for BUG200. Root is sole writer/author reviewer;
-independent design/QA and earned balance remain open. No skill credit yet.
+independent design/QA and earned balance remain open. One bounded local
+mechanic credit follows final verification at2a37023d/f93a4e23.
 
 ## Behavior and tuning
 

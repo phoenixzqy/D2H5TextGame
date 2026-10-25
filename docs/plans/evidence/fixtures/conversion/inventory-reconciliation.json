@@ -1,0 +1,84 @@
+{
+  "ids_and_order_preserved": true,
+  "rows": 213,
+  "changed_rows": [
+    {
+      "runtime_id": "amazon.freezing_arrow",
+      "fields": [
+        "risk_flags",
+        "contract_evidence"
+      ],
+      "before": {
+        "class": "amazon",
+        "data_id": "skills-amazon-freezing-arrow",
+        "runtime_id": "amazon.freezing_arrow",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "chill|freeze",
+        "source": "src/data/skills/amazon.json",
+        "risk_flags": "additional-statuses-truncated-by-adapter",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "amazon",
+        "data_id": "skills-amazon-freezing-arrow",
+        "runtime_id": "amazon.freezing_arrow",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "chill|freeze",
+        "source": "src/data/skills/amazon.json",
+        "risk_flags": "secondary-freeze-unreachable;proc-contract-open",
+        "behavior_verification": "unverified",
+        "contract_evidence": "docs/plans/evidence/d04-freezing-arrow-repro.md;production/bugs/BUG-201-freezing-arrow-unreachable-freeze.md"
+      }
+    },
+    {
+      "runtime_id": "paladin.conversion",
+      "fields": [
+        "adapter_route",
+        "risk_flags",
+        "behavior_verification",
+        "contract_evidence"
+      ],
+      "before": {
+        "class": "paladin",
+        "data_id": "skills-paladin-conversion",
+        "runtime_id": "paladin.conversion",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "converted",
+        "source": "src/data/skills/paladin.json",
+        "risk_flags": "converted-marker-no-allegiance-consumer;duration-and-tier-contract-open",
+        "behavior_verification": "unverified",
+        "contract_evidence": "docs/plans/evidence/d04-conversion-repro.md;production/bugs/BUG-200-conversion-inert-allegiance.md"
+      },
+      "after": {
+        "class": "paladin",
+        "data_id": "skills-paladin-conversion",
+        "runtime_id": "paladin.conversion",
+        "trigger": "active",
+        "adapter_route": "paid-native-damage+wave-local-effective-allegiance",
+        "declared_statuses": "converted",
+        "source": "src/data/skills/paladin.json",
+        "risk_flags": "independent-design-qa-and-earned-balance-open;provisional-duration-and-tier-tuning",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D04-conversion-v1.md;docs/plans/evidence/d04-conversion.md;production/bugs/BUG-200-conversion-inert-allegiance.md"
+      }
+    }
+  ],
+  "mechanic_credits": [
+    "paladin.conversion"
+  ],
+  "verification_counts": {
+    "unverified": 112,
+    "bounded-functional;independent-acceptance-open": 96,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "paladin_bounded_rows": 30,
+  "paladin_earned_build_acceptance": false,
+  "before_sha256": "3c65fc190c25871d868c03b543045cfae4acae00821958d9c7df333864980f60",
+  "after_sha256": "2050e490e6092f4d621cb4bfe275b5eca7a0c4d016c7a50b3f2c69ae653d6190"
+}
