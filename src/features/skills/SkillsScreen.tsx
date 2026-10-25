@@ -848,6 +848,7 @@ function StatSection({
   readonly emptyText: string;
   readonly t: Translate;
 }) {
+  const summonEffect = stats?.summonUnit?.effect;
   return (
     <section className="rounded border border-d2-border/70 bg-black/25 p-3">
       <h3 className="mb-2 font-serif text-sm text-d2-gold">{title}</h3>
@@ -877,6 +878,10 @@ function StatSection({
           ) : null}
           {stats.summonUnit ? (
             <>
+              {stats.summonUnit.attackType ? (
+                <StatLine label={t('details.summonAttackType')}
+                  value={t(`damage-types:type.${stats.summonUnit.attackType}`)} />
+              ) : null}
               <StatLine
                 label={t('details.summonedUnit')}
                 value={t(stats.summonUnit.nameKey, { defaultValue: humanizeId(stats.summonUnit.summonId) })}
@@ -890,6 +895,29 @@ function StatSection({
                 />
               ))}
             </>
+          ) : null}
+          {summonEffect?.kind === 'blind' ? (
+            <>
+              <StatLine label={t('details.summonBlindPenalty')}
+                value={t('details.summonBlindPenaltyValue', summonEffect)} />
+              <StatLine label={t('details.summonBlindDuration')}
+                value={t('details.seconds', { seconds: summonEffect.durationSeconds })} />
+            </>
+          ) : null}
+          {summonEffect?.kind === 'poison' ? (
+            <>
+              <StatLine label={t('details.periodicRate', { status: t('combat:effect.status.poison') })}
+                value={t('details.burnRateValue', summonEffect)} />
+              <StatLine label={t('details.periodicDuration', { status: t('combat:effect.status.poison') })}
+                value={t('details.seconds', { seconds: summonEffect.durationSeconds })} />
+              <StatLine label={t('details.periodicMaxStacks', { status: t('combat:effect.status.poison') })}
+                value={String(summonEffect.maxStacks)} />
+            </>
+          ) : null}
+          {summonEffect?.kind === 'corpseRecovery' ? (
+            <StatLine label={t('details.summonRecovery')}
+              value={t('details.summonRecoveryValue', { ...summonEffect,
+                resource: t(`details.summonResource.${summonEffect.resource}`) })} />
           ) : null}
           {stats.utility.map((row) => (
             <StatLine
@@ -1528,6 +1556,9 @@ function dynamicDescription(
       const preparation = t('details.descriptionSummonPreparation', {
         skill: skillName, count: stats.summonCap, mana: stats.manaCost
       });
+      if (stats.summonUnit?.attackType && skill.description) {
+        return `${t(skill.description.replace('skills.', ''), stats.summonUnit.effect ?? {})} ${t('details.descriptionDruidSummon')} ${preparation}`;
+      }
       if (['necromancer.raise_skeleton', 'necromancer.raise_skeletal_mage', 'necromancer.revive'].includes(canonicalId) && skill.description) {
         return `${tDataKey(t, skill.description)} ${preparation}`;
       }

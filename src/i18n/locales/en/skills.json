@@ -127,7 +127,8 @@
       "defense": "Defense",
       "attackSpeed": "Attack Speed",
       "physDodge": "Physical Dodge",
-      "magicDodge": "Magic Dodge"
+      "magicDodge": "Magic Dodge",
+      "magicResist": "Magic Resist"
     },
     "summonName": {
       "spirit_of_barbs": "Spirit of Barbs",
@@ -211,7 +212,18 @@
     "feralCap": "Maximum speed stacks",
     "feralDuration": "Speed refresh duration",
     "descriptionRecovery": "After its direct hit and ordinary death/reflection effects, a living caster restores {{percentOfHpRemoved}}% of actual enemy HP removed (rounded down, capped at missing life). Absorbed damage and overkill do not count. No healing from later basic attacks or damage over time; lethal reflection cannot be reversed.",
-    "descriptionFeralSpeed": "Each Feral hit that removes enemy HP adds {{percentPerStack}}% self attack speed, up to {{maxStacks}} additive stacks, and refreshes all stacks for {{durationSeconds}} s, including at the cap or full life. Remaining duration carries between waves. Losing valid allocation, prerequisites or active priority clears speed on the next wave or explicit configuration replay. Fresh runs/imports start without stacks."
+    "descriptionFeralSpeed": "Each Feral hit that removes enemy HP adds {{percentPerStack}}% self attack speed, up to {{maxStacks}} additive stacks, and refreshes all stacks for {{durationSeconds}} s, including at the cap or full life. Remaining duration carries between waves. Losing valid allocation, prerequisites or active priority clears speed on the next wave or explicit configuration replay. Fresh runs/imports start without stacks.",
+    "summonAttackType": "Summon attack type",
+    "summonBlindPenalty": "Blind hit penalty",
+    "summonBlindPenaltyValue": "{{hitPenaltyPoints}} percentage points",
+    "summonBlindDuration": "Blind duration",
+    "summonRecovery": "Corpse recovery",
+    "summonRecoveryValue": "{{percentOfOwnerMax}}% of owner’s maximum {{resource}}",
+    "summonResource": {
+      "life": "life",
+      "mana": "mana"
+    },
+    "descriptionDruidSummon": "Different summon templates coexist. Special effects require the living original owner; the rows show base rank stats before temporary allied buffs."
   },
   "amazon": {
     "magic-arrow": {
@@ -594,7 +606,7 @@
     },
     "summon-dire-wolf": {
       "name": "Summon Dire Wolf",
-      "desc": "Summons a fierce dire wolf companion to fight at your side (max 3)."
+      "desc": "Dire wolves fight with ordinary Physical attacks. Ranks increase their life, Attack and defense, and the displayed summon cap."
     },
     "werewolf-maul": {
       "name": "Werewolf: Maul",
@@ -682,23 +694,23 @@
     },
     "raven": {
       "name": "Raven",
-      "desc": "Summons ravens to blind and attack enemies."
+      "desc": "Ravens make ordinary Physical attacks. A landed hit applies Blind for {{durationSeconds}} s, reducing ordinary Physical and thorns hit chance by {{hitPenaltyPoints}} percentage points, with the existing 5% minimum. Repeated hits refresh one Blind; bosses keep its full duration. Blind does not affect magical hits or attack speed."
     },
     "poison-creeper": {
       "name": "Poison Creeper",
-      "desc": "Summons a vine that poisons enemies."
+      "desc": "The creeper keeps its ordinary Physical hit and applies Poison: each stack deals {{percentOfHit}}% of the final mitigated hit per second (rounded down, minimum {{minDps}}), for {{durationSeconds}} s, up to {{maxStacks}} stacks. Repeated hits refresh duration and add a stack up to the cap; an existing damaging status keeps its original rate. Misses apply no Poison."
     },
     "summon-spirit-wolf": {
       "name": "Summon Spirit Wolf",
-      "desc": "Summons spirit wolves to fight for you."
+      "desc": "Spirit wolves fight with ordinary Physical attacks. Ranks increase their life, Attack and defense, and the displayed summon cap."
     },
     "carrion-vine": {
       "name": "Carrion Vine",
-      "desc": "Summons a vine that consumes corpses to restore life."
+      "desc": "On its scheduled action, the vine consumes the oldest eligible monster corpse to restore {{percentOfOwnerMax}}% of its living owner’s current maximum life, rounded down and capped by missing life. Recovery replaces its scheduled attack. The corpse pool is shared with corpse explosions, Redemption and other vines. With full life, no corpse, a dead owner or zero recovery it consumes nothing; an eligible vine attacks normally instead. Stun, Freeze and Paralyze prevent recovery. Corpses do not carry between waves."
     },
     "solar-creeper": {
       "name": "Solar Creeper",
-      "desc": "Summons a vine that consumes corpses to restore mana."
+      "desc": "On its scheduled action, the vine consumes the oldest eligible monster corpse to restore {{percentOfOwnerMax}}% of its living owner’s current maximum mana, rounded down and capped by missing mana. Recovery replaces its scheduled attack. The corpse pool is shared with corpse explosions, Redemption and other vines. With full mana, no corpse, a dead owner or zero recovery it consumes nothing; an eligible vine attacks normally instead. Stun, Freeze and Paralyze prevent recovery. Corpses do not carry between waves."
     },
     "spirit-of-barbs": {
       "name": "Spirit of Barbs",
@@ -706,7 +718,7 @@
     },
     "summon-grizzly": {
       "name": "Summon Grizzly",
-      "desc": "Summons a powerful grizzly bear."
+      "desc": "One grizzly fights with ordinary Physical attacks. Ranks increase its life, Attack and defense; the cap stays one."
     }
   },
   "necromancer": {

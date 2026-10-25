@@ -127,7 +127,8 @@
       "defense": "防御",
       "attackSpeed": "攻击速度",
       "physDodge": "物理闪避",
-      "magicDodge": "魔法闪避"
+      "magicDodge": "魔法闪避",
+      "magicResist": "魔法防御"
     },
     "summonName": {
       "spirit_of_barbs": "棘灵",
@@ -211,7 +212,18 @@
     "feralCap": "速度层数上限",
     "feralDuration": "速度刷新持续",
     "descriptionRecovery": "直接命中并结算通常的死亡与反伤效果后，仍存活的施法者恢复敌人直接实际生命损失的{{percentOfHpRemoved}}%（向下取整，不超过自身已损失生命）。吸收伤害和过量伤害不计入；后续普攻与持续伤害不回血，致命反伤无法逆转。",
-    "descriptionFeralSpeed": "每次野性狂暴命中并实际扣除敌人生命，获得{{percentPerStack}}%自身攻击速度，最多{{maxStacks}}层相加；每次刷新全部层数的{{durationSeconds}}秒持续时间，满层或满血时仍可刷新。剩余时间可跨波次保留；失去有效加点、前置或主动优先级配置后，下波或明确重放配置时清除。新战斗与导入后不保留层数。"
+    "descriptionFeralSpeed": "每次野性狂暴命中并实际扣除敌人生命，获得{{percentPerStack}}%自身攻击速度，最多{{maxStacks}}层相加；每次刷新全部层数的{{durationSeconds}}秒持续时间，满层或满血时仍可刷新。剩余时间可跨波次保留；失去有效加点、前置或主动优先级配置后，下波或明确重放配置时清除。新战斗与导入后不保留层数。",
+    "summonAttackType": "召唤物攻击类型",
+    "summonBlindPenalty": "致盲命中惩罚",
+    "summonBlindPenaltyValue": "{{hitPenaltyPoints}}个百分点",
+    "summonBlindDuration": "致盲持续",
+    "summonRecovery": "尸体恢复",
+    "summonRecoveryValue": "主人{{resource}}上限的{{percentOfOwnerMax}}%",
+    "summonResource": {
+      "life": "生命",
+      "mana": "法力"
+    },
+    "descriptionDruidSummon": "不同模板的召唤物可共存。特殊效果要求原主人存活；面板显示技能等级基础属性，尚未计入临时友方增益。"
   },
   "amazon": {
     "magic-arrow": {
@@ -594,7 +606,7 @@
     },
     "summon-dire-wolf": {
       "name": "召唤恶狼",
-      "desc": "召唤一只凶猛的恶狼伴随作战 (上限 3)。"
+      "desc": "恶狼进行普通物理攻击。技能升级提高生命、攻击、防御与面板所示的召唤上限。"
     },
     "werewolf-maul": {
       "name": "狼人：重伤",
@@ -682,23 +694,23 @@
     },
     "raven": {
       "name": "乌鸦",
-      "desc": "召唤乌鸦致盲并攻击敌人。"
+      "desc": "乌鸦进行普通物理攻击。命中施加致盲，持续{{durationSeconds}} 秒，使普通物理与荆棘攻击的命中率降低{{hitPenaltyPoints}}个百分点，保留原有最低5%命中率。再次命中刷新单层致盲；首领保留完整持续时间。致盲不影响魔法命中或攻击速度。"
     },
     "poison-creeper": {
       "name": "猛毒花藤",
-      "desc": "召唤毒化敌人的藤蔓。"
+      "desc": "花藤保留普通物理命中并施加毒素：每层每秒造成最终减伤后命中伤害的{{percentOfHit}}%（向下取整，最低{{minDps}}点），持续{{durationSeconds}} 秒，最多{{maxStacks}}层。再次命中刷新持续时间并增加层数，达到上限后不再增加；已有伤害的状态保留原伤害率。未命中不施加毒素。"
     },
     "summon-spirit-wolf": {
       "name": "召唤灵狼",
-      "desc": "召唤灵狼为你而战。"
+      "desc": "灵狼进行普通物理攻击。技能升级提高生命、攻击、防御与面板所示的召唤上限。"
     },
     "carrion-vine": {
       "name": "食尸藤",
-      "desc": "召唤消耗尸体恢复生命的藤蔓。"
+      "desc": "每次预定行动时，消耗最早的合格怪物尸体，恢复存活主人当前生命上限的{{percentOfOwnerMax}}%（向下取整，不超过已损失生命），替代本次预定攻击。尸体与尸体爆炸、救赎和其他藤蔓共享。生命已满、没有尸体、主人死亡或恢复量为零时不消耗尸体；仍可行动的藤蔓改为普通攻击。眩晕、冰冻与麻痹会阻止恢复。尸体不跨波保留。"
     },
     "solar-creeper": {
       "name": "日光藤",
-      "desc": "召唤消耗尸体恢复法力的藤蔓。"
+      "desc": "每次预定行动时，消耗最早的合格怪物尸体，恢复存活主人当前法力上限的{{percentOfOwnerMax}}%（向下取整，不超过已损失法力），替代本次预定攻击。尸体与尸体爆炸、救赎和其他藤蔓共享。法力已满、没有尸体、主人死亡或恢复量为零时不消耗尸体；仍可行动的藤蔓改为普通攻击。眩晕、冰冻与麻痹会阻止恢复。尸体不跨波保留。"
     },
     "spirit-of-barbs": {
       "name": "棘灵",
@@ -706,7 +718,7 @@
     },
     "summon-grizzly": {
       "name": "召唤灰熊",
-      "desc": "召唤强大的灰熊。"
+      "desc": "一只灰熊进行普通物理攻击。技能升级提高生命、攻击与防御，上限始终为一只。"
     }
   },
   "necromancer": {

@@ -19,6 +19,8 @@ import { applyIronGolemItemStats, isIronGolemSkill, type IronGolemInput } from '
 import { applyGolemMasteryStats, type GolemMasteryProjection } from './golem-mastery';
 import { applySummonPassiveStats, type SummonPassiveProjection } from './summon-passives';
 import { SPIRIT_OF_BARBS_DEFINITION, SPIRIT_OF_BARBS_IDS } from './spirit-of-barbs';
+import { DRUID_SUMMON_DEFINITION, DRUID_SUMMON_IDS } from './druid-summon-definition';
+import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 
 export interface DisplaySkillSource {
   readonly hitSequence?: SkillHitSequence;
@@ -102,7 +104,7 @@ export interface SkillDamageDisplayRow {
 }
 
 export interface SkillSummonStatDisplayRow {
-  readonly id: 'lifeMax' | 'attack' | 'defense' | 'attackSpeed' | 'physDodge' | 'magicDodge' | 'physicalResistance' | 'fireResistance' | 'coldResistance' | 'lightningResistance' | 'arcaneResistance' | 'poisonResistance';
+  readonly id: 'lifeMax' | 'attack' | 'defense' | 'magicResist' | 'attackSpeed' | 'physDodge' | 'magicDodge' | 'physicalResistance' | 'fireResistance' | 'coldResistance' | 'lightningResistance' | 'arcaneResistance' | 'poisonResistance';
   readonly labelKey: string;
   readonly value: number;
   readonly valueKind: 'flat' | 'percent';
@@ -112,6 +114,28 @@ export interface SkillSummonDisplayStats {
   readonly summonId: string;
   readonly nameKey: string;
   readonly stats: readonly SkillSummonStatDisplayRow[];
+  /** Ordinary unmodified template attacks; this preview grants no runtime authority. */
+  readonly attackType?: 'physical';
+  readonly effect?: SkillSummonEffectDisplay;
+}
+
+/** Authored summon rules, rather than promised damage or recovery from base stats. */
+export type SkillSummonEffectDisplay =
+  | { readonly kind: 'blind'; readonly hitPenaltyPoints: number; readonly durationSeconds: number }
+  | { readonly kind: 'poison'; readonly percentOfHit: number; readonly durationSeconds: number;
+      readonly maxStacks: number; readonly minDps: number }
+  | { readonly kind: 'corpseRecovery'; readonly resource: 'life' | 'mana'; readonly percentOfOwnerMax: number };
+
+function druidSummonEffect(template: string): SkillSummonEffectDisplay | undefined {
+  const d = DRUID_SUMMON_DEFINITION;
+  if (template === 'raven') return { kind: 'blind', hitPenaltyPoints: d.raven.physicalHitChancePenalty * 100,
+    durationSeconds: STATUS_DEFAULTS.blind.duration };
+  if (template === 'poison_creeper') return { kind: 'poison', percentOfHit: d.poison.dotPctOfDamage * 100,
+    durationSeconds: STATUS_DEFAULTS.poison.duration, maxStacks: STATUS_DEFAULTS.poison.maxStacks, minDps: 1 };
+  if (template === 'carrion_vine' || template === 'solar_creeper') return { kind: 'corpseRecovery',
+    resource: template === 'carrion_vine' ? 'life' : 'mana',
+    percentOfOwnerMax: (template === 'carrion_vine' ? d.vines.lifeFraction : d.vines.manaFraction) * 100 };
+  return undefined;
 }
 
 export interface SkillUtilityDisplayRow {
@@ -269,6 +293,13 @@ function summonUnit(
 ): SkillSummonDisplayStats | undefined {
   const summonId = inferSummonId(skill);
   if (!summonId) return undefined;
+  const canonical = skill.id.startsWith('skills-druid-')
+    ? 'druid.' + skill.id.slice('skills-druid-'.length).replaceAll('-', '_') : skill.id;
+  const druid = canonical.startsWith('druid.') && skill.trigger === 'active' &&
+    skill.target === 'summon' && skill.summon === true &&
+    SUMMON_PREPARATION_TEMPLATES[canonical] === summonId &&
+    DRUID_SUMMON_IDS.some(id => id === summonId);
+  const effect = druid ? druidSummonEffect(summonId) : undefined;
   const baseStats = getSummonStats(summonId, {
     skillLevel: rank,
     statScaling: skill.scaling?.summonStatsPerLevel
@@ -301,20 +332,27 @@ function summonUnit(
     if (!combined) return undefined;
     stats = combined;
   }
-  const resistanceRows: SkillSummonStatDisplayRow[] = exactNecromancer && global?.resistRank
+  const resistanceRows: SkillSummonStatDisplayRow[] = druid || (exactNecromancer && global?.resistRank)
     ? (['physical', 'fire', 'cold', 'lightning', 'arcane', 'poison'] as const).map(type => ({
       id: `${type}Resistance`, labelKey: `details.summonStat.${type}Resistance`,
       value: stats.resistances[type] / 100, valueKind: 'percent' })) : [];
   return {
     summonId,
     nameKey: `details.summonName.${summonId}`,
+    ...(druid ? { attackType: 'physical' as const } : {}),
+    ...(effect ? { effect } : {}),
     stats: [
       ...resistanceRows,
       { id: 'lifeMax', labelKey: 'details.summonStat.lifeMax', value: stats.lifeMax, valueKind: 'flat' },
       { id: 'attack', labelKey: 'details.summonStat.attack', value: stats.attack, valueKind: 'flat' },
       { id: 'defense', labelKey: 'details.summonStat.defense', value: stats.defense, valueKind: 'flat' },
-      ...(exactGolem ? [{ id: 'attackSpeed' as const, labelKey: 'details.summonStat.attackSpeed',
-        value: stats.attackSpeed, valueKind: 'flat' as const }] : [])
+      ...(exactGolem || druid ? [{ id: 'attackSpeed' as const, labelKey: 'details.summonStat.attackSpeed',
+        value: stats.attackSpeed, valueKind: 'flat' as const }] : []),
+      ...(druid ? [
+        { id: 'magicResist' as const, labelKey: 'details.summonStat.magicResist', value: stats.magicResist, valueKind: 'flat' as const },
+        { id: 'physDodge' as const, labelKey: 'details.summonStat.physDodge', value: stats.physDodge, valueKind: 'percent' as const },
+        { id: 'magicDodge' as const, labelKey: 'details.summonStat.magicDodge', value: stats.magicDodge, valueKind: 'percent' as const }
+      ] : [])
     ]
   };
 }
