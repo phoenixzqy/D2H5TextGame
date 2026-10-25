@@ -9,7 +9,7 @@
  */
 
 import type { DamageType } from '../types/attributes';
-import type { ColdMasteryTuning, FeralRageTuning, OnHitRecoveryTuning, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
+import type { ColdMasteryTuning, FeralRageTuning, OnHitRecoveryTuning, SkillHitSequence, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
 import { STATUS_DEFAULTS } from '../combat/status';
 import { coldMasteryReductionAtRank } from './cold-mastery';
 import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
@@ -21,6 +21,7 @@ import { applySummonPassiveStats, type SummonPassiveProjection } from './summon-
 import { SPIRIT_OF_BARBS_DEFINITION, SPIRIT_OF_BARBS_IDS } from './spirit-of-barbs';
 
 export interface DisplaySkillSource {
+  readonly hitSequence?: SkillHitSequence;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   readonly feralRage?: FeralRageTuning;
   readonly coldMastery?: ColdMasteryTuning;
@@ -121,6 +122,9 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Independent attack attempts; the displayed damage range remains per strike. */
+  readonly strikesPerCast?: number;
+  readonly control?: { readonly durationSeconds: number; readonly bossDurationSeconds: number };
   /** A fixed fraction of actual direct HP removed, never promised healing from base damage. */
   readonly recovery?: { readonly percentOfHpRemoved: number };
   readonly feralRage?: { readonly percentPerStack: number; readonly maxStacks: number; readonly durationSeconds: number };
@@ -419,6 +423,14 @@ export function computeSkillRankDisplayStats(
   const lifeCost = scaleCost(skill.cost?.life, skill.scaling?.costPerLevel ?? 0, safeRank);
   const burn = burnDisplay(skill);
   const periodic = periodicDisplay(skill);
+  const strikes = skill.hitSequence?.strikes;
+  const strikesPerCast = skill.id === 'skills-druid-fury' && skill.trigger === 'active' && skill.damage &&
+    strikes !== undefined && Number.isInteger(strikes) && strikes >= 2 && strikes <= 8 ? strikes : undefined;
+  const controlId = skill.appliesStatus?.[0];
+  const controlDefinition = skill.damage && skill.trigger === 'active' &&
+    (controlId === 'chill' || controlId === 'stun') ? STATUS_DEFAULTS[controlId] : undefined;
+  const control = controlDefinition ? { durationSeconds: controlDefinition.duration,
+    bossDurationSeconds: controlDefinition.duration * (controlDefinition.bossDurationMult ?? 1) } : undefined;
   const fraction = skill.onHitRecovery?.lifeFraction;
   const recovery = skill.damage && skill.trigger === 'active' && fraction !== undefined &&
     Number.isFinite(fraction) && fraction > 0 && fraction <= 1
@@ -433,6 +445,8 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(strikesPerCast !== undefined ? { strikesPerCast } : {}),
+    ...(control ? { control } : {}),
     ...(recovery ? { recovery } : {}),
     ...(feralRage ? { feralRage } : {}),
     ...(burn ? { burn } : {}),

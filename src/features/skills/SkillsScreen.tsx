@@ -906,6 +906,9 @@ function StatSection({
             <StatLine label={t('details.lifeCost')} value={String(stats.lifeCost)} />
           ) : null}
           <StatLine label={t('details.cooldown')} value={t('details.seconds', { seconds: stats.cooldown })} />
+          {stats.strikesPerCast !== undefined ? (
+            <StatLine label={t('details.strikesPerCast')} value={String(stats.strikesPerCast)} />
+          ) : null}
           {stats.statuses.length > 0 ? (
             <StatLine
               label={t('details.statusEffects')}
@@ -1502,6 +1505,14 @@ function dynamicDescription(
   }
   if (firstDamage && (skill.id === 'skills-druid-feral-rage' || skill.id === 'skills-druid-hunger')) {
     return t('druid.' + skill.id.slice('skills-druid-'.length) + '.desc', { min: firstDamage.min, max: firstDamage.max });
+  }
+  if (firstDamage && ['skills-druid-fury', 'skills-druid-arctic-blast', 'skills-druid-tornado',
+    'skills-druid-hurricane', 'skills-druid-twister', 'skills-druid-shock-wave'].includes(skill.id)) {
+    return t('druid.' + skill.id.slice('skills-druid-'.length) + '.desc', {
+      min: firstDamage.min, max: firstDamage.max, strikes: stats.strikesPerCast,
+      duration: t('details.seconds', { seconds: stats.control?.durationSeconds }),
+      bossDuration: t('details.seconds', { seconds: stats.control?.bossDurationSeconds })
+    });
   }
   if (firstDamage) {
     return t('details.descriptionDamage', {

@@ -64,6 +64,7 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "strikesPerCast": "Attack attempts per cast",
     "periodicRate": "{{status}} per stack",
     "periodicDuration": "{{status}} duration",
     "periodicMaxStacks": "Maximum {{status}} stacks",
@@ -585,11 +586,11 @@
     },
     "arctic-blast": {
       "name": "Arctic Blast",
-      "desc": "Exhales a cone of freezing wind, chilling enemies hit."
+      "desc": "One Cold hit deals {{min}}–{{max}} damage to enemies in the best cross on their grid and applies Chill for {{duration}}. The cross covers its center and four neighboring cells; it does not hit the entire field."
     },
     "tornado": {
       "name": "Tornado",
-      "desc": "Summons a swirling tornado that tears through enemies in a cone."
+      "desc": "One Physical hit deals {{min}}–{{max}} damage to enemies in the best horizontal three-cell line. This is one area attack with no additional control effect."
     },
     "summon-dire-wolf": {
       "name": "Summon Dire Wolf",
@@ -601,7 +602,7 @@
     },
     "hurricane": {
       "name": "Hurricane",
-      "desc": "Summons a hurricane that batters all enemies with cold winds."
+      "desc": "One Cold pulse deals {{min}}–{{max}} damage to all living enemies and applies Chill for {{duration}}. Each cast pulses once."
     },
     "elemental-mastery": {
       "name": "Elemental Mastery",
@@ -633,7 +634,7 @@
     },
     "twister": {
       "name": "Twister",
-      "desc": "Summons small tornadoes that knock back enemies."
+      "desc": "One Physical hit deals {{min}}–{{max}} damage to the first two prioritized enemies and applies Stun for {{duration}} ({{bossDuration}} against bosses)."
     },
     "volcano": {
       "name": "Volcano",
@@ -673,11 +674,11 @@
     },
     "shock-wave": {
       "name": "Shock Wave",
-      "desc": "Slams the ground, stunning all nearby enemies."
+      "desc": "One Physical hit deals {{min}}–{{max}} damage to all living enemies and applies Stun for {{duration}} ({{bossDuration}} against bosses). Works in any form after learning Maul and its prerequisites; preserves your current form."
     },
     "fury": {
       "name": "Fury",
-      "desc": "A rapid series of werewolf attacks."
+      "desc": "Up to {{strikes}} independent Physical attack attempts, each dealing {{min}}–{{max}} damage. Rotate within the original two-enemy pool; a lone survivor can take every remaining attempt. Stop when the pool is defeated or the caster dies. Pay mana and start cooldown once per cast. Works in any form after learning Rabies and its prerequisites; preserves your current form."
     },
     "raven": {
       "name": "Raven",
