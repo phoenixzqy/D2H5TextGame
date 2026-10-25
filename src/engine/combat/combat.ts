@@ -1,3 +1,5 @@
+import { activeConversion, effectiveSide, opponentsOf, type ConversionBinding } from './allegiance';
+import { CONVERSION_DEFINITION, CONVERSION_IDS, conversionRank, isConversionTarget, matchesConversion } from '../skills/conversion';
 import { assassinVenomRawDps, copyAssassinVenomProjection, ASSASSIN_SHADOW_DEFINITIONS,
   type AssassinVenomProjection } from '../skills/assassin-shadow';
 /**
@@ -205,6 +207,8 @@ export interface CombatResult {
 }
 
 interface State {
+  /** Actual paid hits only; never copied from snapshot/status fields. */
+  readonly conversions: Map<string, ConversionBinding>;
   readonly spiritOfBarbs?: SpiritOfBarbsProjection;
   /** Set only when this battle commits the actual passive support summon. Never copied from input. */
   barbsSpiritId?: string;
@@ -317,7 +321,9 @@ function ambientChillSourceId(state: State): string | undefined {
 
 /** Shared derived view for presentation and direct-hit combos, never written to raw statuses. */
 function combatStatusView(state: State, unit: CombatUnit): CombatUnit {
-  const raw = activeStatusView(unit, state.simClockMs);
+  const view = activeStatusView(unit, state.simClockMs);
+  const raw = activeConversion(state, unit) === undefined && view.statuses.some(s => s.id === 'converted')
+    ? { ...view, statuses: view.statuses.filter(s => s.id !== 'converted') } : view;
   const aura = activeDruidAllyAuras(state.druidAllyAuras, unit, state.units);
   const barbs = activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, unit, state.units);
   let active = raw;
@@ -330,7 +336,7 @@ function combatStatusView(state: State, unit: CombatUnit): CombatUnit {
     if (barbs) statuses.push({ id: 'spirit-of-barbs', sourceId: barbs.sourceHeroId, stacks: 1, remaining: -1 });
     active = { ...raw, statuses };
   }
-  if (unit.side !== 'enemy' || !alive(unit) || hasStatus(active, 'chill')) return active;
+  if (effectiveSide(state, unit) !== 'enemy' || !alive(unit) || hasStatus(active, 'chill')) return active;
   const sourceId = ambientChillSourceId(state);
   return sourceId === undefined ? active : { ...active, statuses: [...active.statuses,
     { id: 'chill', stacks: 1, remaining: -1, sourceId, tags: ['cold', 'chill'] }] };
@@ -351,7 +357,7 @@ function observeStatuses(state: State, target: string, initial = false): void {
 /** Keep base stats intact; active Chill changes the stat before cadence/clamps. */
 function effectiveActionPeriod(state: State, unit: CombatUnit): number {
   const chilled = unit.statuses.some(s => s.id === 'chill' && statusActiveAt(s, state.simClockMs)) ||
-    (unit.side === 'enemy' && ambientChillSourceId(state) !== undefined);
+    (effectiveSide(state, unit) === 'enemy' && ambientChillSourceId(state) !== undefined);
   const enrage = unit.enraged ? unit.enrage?.attackSpeedMultiplier ?? 1 : 1;
   const speedBonus = druidFormBonuses(unit).attackSpeedPct + (activeBurstOfSpeed(unit, state.simClockMs)?.attackSpeedPct ?? 0) +
     (activeStatAura(state.statAura, unit.id, state.units)?.bonuses.attackSpeedPct ?? 0);
@@ -483,7 +489,7 @@ function pickDefender(
   if (candidates.length === 0) return undefined;
   if (candidates.length === 1) return candidates[0];
 
-  if (attacker.side === 'player') {
+  if (effectiveSide(state, attacker) === 'player') {
     const sorted = targetPriority(state, candidates);
     return sorted[0];
   }
@@ -544,7 +550,7 @@ function buildDamageInput(
   const attackerAura = activeStatAura(state.statAura, attacker.id, state.units);
   const defenderAura = activeStatAura(state.statAura, defender.id, state.units);
   const heartRank = activeDruidAllyAuras(state.druidAllyAuras, attacker, state.units)?.heartRank ?? 0;
-  const enemyAura = state.statAura && defender.side === 'enemy'
+  const enemyAura = state.statAura && effectiveSide(state, defender) === 'enemy'
     ? activeStatAura(state.statAura, state.statAura.sourceHeroId, state.units) : undefined;
   const resistBonus = (defenderAura?.bonuses.resistAllPct ?? 0) * 100 + cycloneArmorResistance(defender) -
     (enemyAura?.enemyResistReductionPct ?? 0);
@@ -641,6 +647,7 @@ function applyDamageToUnit(
   const defender = state.units.get(defenderId);
   if (!attacker || !defender || !alive(attacker) || !alive(defender)) return;
 
+  const hostileHit = effectiveSide(state, attacker) !== effectiveSide(state, defender);
   const activeDefender = activeStatusView(defender, state.simClockMs);
   const retaliates = hasPaidFrozenArmor(activeDefender);
   const input = buildDamageInput(state, attacker, activeDefender, effect, skillLevel);
@@ -705,6 +712,22 @@ function applyDamageToUnit(
             : undefined;
         const cur = state.units.get(defenderId);
         if (cur) {
+          // Only the exact paid, eligible real hit can authenticate temporary allegiance.
+          if (status.id === 'converted') {
+            if (effect.conversion !== true || conversionRank(attacker) === 0 ||
+              !hostileHit || !isConversionTarget(cur) || cur.life >= defender.life) continue;
+            const expiresAtMs = state.simClockMs + CONVERSION_DEFINITION.durationMs;
+            state.conversions.set(cur.id, { sourceId: attackerId, expiresAtMs });
+            const updated: CombatUnit = { ...cur, statuses: [...cur.statuses.filter(s => s.id !== 'converted'), {
+              id: 'converted', sourceId: attackerId, stacks: 1,
+              remaining: CONVERSION_DEFINITION.durationMs / SECONDS,
+              appliedAtMs: state.simClockMs, expiresAtMs
+            }] };
+            state.units.set(cur.id, updated);
+            emit(state, { kind: 'status', target: defenderId, statusId: 'converted' });
+            observeStatuses(state, defenderId);
+            continue;
+          }
           let updated = cur;
           for (let i = 0; i < stacks; i++) {
             updated = applyStatus(
@@ -761,7 +784,7 @@ function applyDamageToUnit(
     (after ? activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, after, state.units)?.rank ?? 0 : 0) * SPIRIT_OF_BARBS_DEFINITION.thornsPerRank;
   if (after && !alive(after)) {
     finishDeaths(state, [activeStatusView(after, state.simClockMs)]);
-  } else if (after && attacker.side !== defender.side && effect.damageType === 'physical' &&
+  } else if (after && hostileHit && effect.damageType === 'physical' &&
     defender.life > newLife && reflectionPct > 0) {
     const target = state.units.get(attackerId);
     if (!target || !alive(target)) return;
@@ -786,7 +809,7 @@ function applyDamageToUnit(
   // Explicit skill-hit recovery observes actual HP removed, after ordinary death/orb/reflection settlement.
   const hpRemoved = defender.life - newLife;
   const owner = state.units.get(attackerId);
-  if (!basicHit && !auraPulse && attacker.side !== defender.side && hpRemoved > 0 && owner && alive(owner)) {
+  if (!basicHit && !auraPulse && hostileHit && hpRemoved > 0 && owner && alive(owner)) {
     const fraction = effect.onHitRecovery?.lifeFraction;
     if (fraction !== undefined && Number.isFinite(fraction) && fraction > 0 && fraction <= 1) {
       commitHealing(state, owner, Math.floor(hpRemoved * fraction));
@@ -861,13 +884,20 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
     state.manaRecovery.delete(u.id);
     if (inferKind(u) === 'hero') state.heroDead = true;
   }
+  const hadConversions = state.conversions.size > 0;
+  for (const [id] of state.conversions) {
+    const unit = state.units.get(id);
+    if (unit && activeConversion(state, unit) !== undefined) continue;
+    state.conversions.delete(id);
+    if (unit) state.units.set(id, { ...unit, statuses: unit.statuses.filter(s => s.id !== 'converted') });
+  }
   for (const u of dead) {
     observeStatuses(state, u.id);
     emit(state, { kind: 'death', target: u.id });
   }
   reconcileLifeCapacities(state);
   // Derived allied auras disappear from survivors before any death-related recovery.
-  if (state.druidAllyAuras !== undefined || state.spiritOfBarbs !== undefined) {
+  if (state.druidAllyAuras !== undefined || state.spiritOfBarbs !== undefined || hadConversions) {
     for (const u of state.units.values()) if (alive(u)) observeStatuses(state, u.id);
   }
   for (const u of dead) {
@@ -991,6 +1021,7 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
+  if (CONVERSION_IDS.some(id => id === skill.id)) return conversionRank(unit);
   if (HOLY_SHIELD_IDS.some(id => id === skill.id)) return holyShieldRank(unit);
   if (CYCLONE_ARMOR_IDS.some(id => id === skill.id)) return cycloneArmorRank(unit);
   const form = druidFormForId(skill.id);
@@ -1054,7 +1085,7 @@ function healingTargets(state: State, actorId: string, effect: HealEffect): Comb
   const actor = state.units.get(actorId);
   if (!actor) return [];
   const candidates = effect.target === 'self' ? [actor] : [...state.units.values()];
-  const eligible = candidates.filter(target => target.side === actor.side &&
+  const eligible = candidates.filter(target => effectiveSide(state, target) === effectiveSide(state, actor) &&
     target.stats.lifeMax > 0 && target.life > 0 && target.life < target.stats.lifeMax &&
     healingPotential(effect, target) > 0);
   if (effect.target !== 'ally') return eligible;
@@ -1070,7 +1101,7 @@ function healingTargets(state: State, actorId: string, effect: HealEffect): Comb
 function hasAvailableEffect(state: State, actorId: string, skill: RegisteredSkill, skillLevel: number): boolean {
   if (matchesStaticField(skill)) {
     const actor = state.units.get(actorId);
-    return actor !== undefined && aliveOf(state, actor.side === 'player' ? 'enemy' : 'player')
+    return actor !== undefined && opponentsOf(state, actor)
       .some(target => staticFieldDamage(target, state.difficulty) > 0);
   }
   if (skill.effects.length > 0 && skill.effects.every((effect) => effect.kind === 'heal')) {
@@ -1090,6 +1121,10 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  const conversion = CONVERSION_IDS.some(id => id === skillOrderId || id === skill.id) ||
+    skill.effects.some(effect => effect.kind === 'damage' && effect.conversion === true);
+  if (conversion && (!matchesConversion(skill) || conversionRank(unit) === 0 ||
+    !Number.isFinite(unit.mana) || CONVERSION_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   const holy = HOLY_SHIELD_IDS.some(id => id === skillOrderId || id === skill.id) ||
     skill.effects.some(effect => effect.kind === 'buff' && effect.holyShield === true);
   if (holy && (!matchesHolyShield(skill) || holyShieldRank(unit) === 0 ||
@@ -1376,7 +1411,7 @@ function castSkill(
   const pe = isPoisonExplosionId(skillOrderId) || isPoisonExplosionId(skill.id);
   const consumesCorpse = ce || pe;
   if (consumesCorpse && !canUseSkillForState(state, actor, skill, skillOrderId,
-    aliveOf(state, actor.side === 'player' ? 'enemy' : 'player').length > 0)) return;
+    opponentsOf(state, actor).length > 0)) return;
   const skillLevel = ce ? corpseExplosionRank(actor, state.corpseExplosion)
     : pe ? poisonExplosionRank(actor, state.poisonExplosion)
     : prepared?.skillLevel ?? effectiveSkillLevel(actor, skill);
@@ -1405,8 +1440,7 @@ function castSkill(
     return prepared.units.map(candidate => registerSpawnedSummon(state, actor, prepared.summonId, candidate));
   }
 
-  const enemySide: CombatSide = actor.side === 'player' ? 'enemy' : 'player';
-  const enemiesAliveRaw = aliveOf(state, enemySide);
+  const enemiesAliveRaw = opponentsOf(state, actor);
   const enemies = targetPriority(state, enemiesAliveRaw);
 
   let targetEnemies: CombatUnit[] = enemies;
@@ -1427,8 +1461,7 @@ function castSkill(
 function basicAttack(state: State, actorId: string): void {
   const actor = state.units.get(actorId);
   if (!actor) return;
-  const enemySide: CombatSide = actor.side === 'player' ? 'enemy' : 'player';
-  const enemiesAlive = aliveOf(state, enemySide);
+  const enemiesAlive = opponentsOf(state, actor);
   const target = pickDefender(state, actor, enemiesAlive);
   if (!target) return;
 
@@ -1598,7 +1631,7 @@ function settleAuraPulse(state: State): void {
     state.nextAuraPulseAtMs += tuning.intervalMs;
     const effect: DamageEffect = { kind: 'damage', damageType: 'arcane', base: [tuning.damage, tuning.damage] };
     for (const target of state.units.values()) {
-      if (target.side !== 'enemy' || target.undead !== true || !alive(target)) continue;
+      if (effectiveSide(state, target) !== 'enemy' || target.undead !== true || !alive(target)) continue;
       applyDamageToUnit(state, aura.sourceHeroId, target.id, effect, 1, false, true);
       const survivor = state.units.get(target.id);
       if (!survivor || !alive(survivor)) continue;
@@ -1630,7 +1663,7 @@ function settleAuraPulse(state: State): void {
     ...(pulse.burn ? { applyStatus: { id: 'burn', durationMs: pulse.burn.durationMs,
       dotPctOfDamage: pulse.burn.dotPctOfDamage } } : {}) };
   for (const target of state.units.values()) {
-    if (target.side === 'enemy' && alive(target)) {
+    if (effectiveSide(state, target) === 'enemy' && alive(target)) {
       applyDamageToUnit(state, aura.sourceHeroId, target.id, effect, 1, false, true);
     }
   }
@@ -1874,8 +1907,7 @@ function prepareIronGolem(state: State, owner: CombatUnit, skill: RegisteredSkil
 function castSummonsOnStart(state: State, unitId: string): void {
   let unit = state.units.get(unitId);
   if (!unit) return;
-  const enemySide: CombatSide = unit.side === 'player' ? 'enemy' : 'player';
-  const hasEnemy = aliveOf(state, enemySide).length > 0;
+  const hasEnemy = opponentsOf(state, unit).length > 0;
   const prepared = new Set<string>();
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
@@ -1884,7 +1916,7 @@ function castSummonsOnStart(state: State, unitId: string): void {
     unit = state.units.get(unitId);
     if (!unit || !alive(unit)) return;
     if (isIronGolemSkill(skill)) {
-      if (aliveOf(state, enemySide).length > 0 && !state.heroDead && !prepared.has(IRON_GOLEM_SKILL_ID)) {
+      if (opponentsOf(state, unit).length > 0 && !state.heroDead && !prepared.has(IRON_GOLEM_SKILL_ID)) {
         prepared.add(IRON_GOLEM_SKILL_ID);
         prepareIronGolem(state, unit, skill);
       }
@@ -1920,8 +1952,7 @@ function takeAction(state: State, unitId: string): void {
 
   if (recoverDruidVine(state, unitId)) return;
 
-  const enemySide: CombatSide = unit.side === 'player' ? 'enemy' : 'player';
-  const hasEnemy = aliveOf(state, enemySide).length > 0;
+  const hasEnemy = opponentsOf(state, unit).length > 0;
   const skill = chooseSkillForState(state, unit, hasEnemy);
   if (skill) {
     castSkill(state, unitId, skill.skill, undefined, skill.orderId);
@@ -2083,6 +2114,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const global = snapshot.summonPassives;
   const assassinVenom = copyAssassinVenomProjection(snapshot.assassinVenom);
   const state: State = {
+    conversions: new Map(),
     ...(spiritOfBarbs ? { spiritOfBarbs } : {}),
     hasTemporaryLife: statAura?.selectedAuraId === 'paladin.vigor' || druidAllyAuras !== undefined ||
       [...snapshot.playerTeam, ...snapshot.enemyTeam].some(unit => unit.vigorLife !== undefined || unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined),

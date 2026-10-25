@@ -8,6 +8,31 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["conversion"], "properties": { "conversion": {} } },
+      "then": { "properties": { "id": { "const": "skills-paladin-conversion" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-paladin-conversion" } } },
+      "then": {
+        "required": ["conversion", "requiredLevel", "prerequisites", "damage", "damageType", "appliesStatus", "cost"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "conversion": { "$ref": "#/properties/conversion" },
+          "cost": { "type": "object", "required": ["mana"], "additionalProperties": false,
+            "properties": { "mana": { "type": "number", "exclusiveMinimum": 0 } } },
+          "cooldown": { "type": "number", "minimum": 1 },
+          "damage": { "$ref": "#/properties/damage" },
+          "requiredLevel": { "const": 24 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-paladin-vengeance"] },
+          "damageType": { "const": "physical" }, "appliesStatus": { "const": ["converted"] },
+          "statusEffect": false, "additionalStatusEffects": false, "onHitRecovery": false,
+          "onHitSelfDamage": false, "hitSequence": false, "damageComposition": false,
+          "ignoresMagicResist": false, "feralRage": false, "summon": false, "summonId": false,
+          "timedBuff": false, "aoeShape": false, "maxTargets": false
+        }
+      }
+    },
+    {
       "if": { "required": ["maxTargets"], "properties": { "maxTargets": {} } },
       "then": { "properties": { "id": { "const": "skills-paladin-zeal" } } }
     },
@@ -3722,6 +3747,14 @@
     }
   },
   "properties": {
+    "conversion": {
+      "description": "Conversion-only finite allegiance and eligible original monster tiers.",
+      "type": "object", "additionalProperties": false, "required": ["durationMs", "eligibleTiers"],
+      "properties": {
+        "durationMs": { "type": "integer", "minimum": 1000, "maximum": 60000 },
+        "eligibleTiers": { "const": ["trash", "rare-minion"] }
+      }
+    },
     "maxTargets": {
       "type": "integer", "const": 3,
       "description": "Explicit Zeal limit applied after resolving its deterministic densest cross; each selected living target receives one ordinary hit."

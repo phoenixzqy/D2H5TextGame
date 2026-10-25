@@ -224,8 +224,15 @@ export interface AuraSanctuaryTuning {
   readonly repulseDurationMs: number;
 }
 
+/** JSON-owned finite allegiance; elite and boss tiers retain ordinary damage only. */
+export interface ConversionTuning {
+  readonly durationMs: number;
+  readonly eligibleTiers: readonly ('trash' | 'rare-minion')[];
+}
+
 /** Immutable template for a skill. */
 export interface SkillDef {
+  readonly conversion?: ConversionTuning;
   /** Normalize authored breakdown weights into one shared-roll composite strike. */
   readonly damageComposition?: 'weighted-components';
   /** Explicit hit-only flat magic-resist bypass; percentage resistance still applies. */

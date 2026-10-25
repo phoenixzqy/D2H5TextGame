@@ -72,6 +72,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Fresh native legal Conversion rank; paid bindings exist only inside each battle. */
+  readonly conversionRank?: number;
   /** Selected native Druid summon ranks, copied at registration; never persisted. */
   readonly druidSummonRanks?: import('../skills/druid-summon-authority').DruidSummonRanks;
   /** Fresh native configured Feral authority, captured per wave; never persisted. */

@@ -394,6 +394,7 @@
     "prerequisites": [
       "skills-paladin-vengeance"
     ],
+    "conversion": { "durationMs": 8000, "eligibleTiers": ["trash", "rare-minion"] },
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 3,

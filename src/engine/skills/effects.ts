@@ -38,6 +38,8 @@ export interface WeightedDamageComponent {
 }
 
 interface DamageEffectBase {
+  /** Exact paid Conversion hit; bare converted statuses never confer allegiance. */
+  readonly conversion?: true;
   /** Opt-in shares of one hit/base/crit roll, settled before one death/retaliation closure. */
   readonly components?: readonly [WeightedDamageComponent, ...WeightedDamageComponent[]];
   /** Bypass only the target's flat magic-resist stat, never percentage resistance or absorption. */

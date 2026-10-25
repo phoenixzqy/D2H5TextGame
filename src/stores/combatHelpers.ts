@@ -82,6 +82,7 @@ import { withoutTemporaryLifeCapacity } from '@/engine/combat/life-capacity';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeBoneArmor } from '@/engine/skills/bone-armor';
 import { composeEnergyShield } from '@/engine/skills/energy-shield';
+import { composeConversionRank } from '@/engine/skills/conversion';
 import { composeHolyShieldRank, refreshHolyShieldState } from '@/engine/skills/holy-shield';
 import { composeCycloneArmorRank, refreshCycloneArmorState } from '@/engine/skills/cyclone-armor';
 import { composeBarbarianEndurance } from '@/engine/skills/barbarian-endurance';
@@ -255,7 +256,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     staticFieldRank: composeStaticField(player),
     ...(energyShield.rank > 0 ? { energyShieldRank: energyShield.rank } : {}),
     ...(player.class === 'druid' ? { cycloneArmorRank: composeCycloneArmorRank(player) } : {}),
-    ...(player.class === 'paladin' ? { holyShieldRank: composeHolyShieldRank(player) } : {}),
+    ...(player.class === 'paladin' ? { holyShieldRank: composeHolyShieldRank(player), conversionRank: composeConversionRank(player) } : {}),
     ...(player.class === 'druid' ? { druidShapeRanks: composeDruidShapeshifting(player) } : {}),
     ...(player.class === 'druid' ? { feralRageRank: composeFeralRageRank({ classId: player.class,
       level: player.level, ...configuration }) } : {}),
@@ -1188,6 +1189,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       manaRegenBaselinePerSecond: fresh.manaRegenBaselinePerSecond ?? 0,
       increasedDamagePct: fresh.increasedDamagePct ?? { fire: 0 },
       coldResistanceReductionPct: fresh.coldResistanceReductionPct ?? 0,
+      ...((unit.conversionRank !== undefined || fresh.conversionRank !== undefined)
+        ? { conversionRank: fresh.conversionRank ?? 0 } : {}),
       staticFieldRank: fresh.staticFieldRank ?? 0,
       ...((unit.energyShieldRank !== undefined || fresh.energyShieldRank !== undefined)
         ? { energyShieldRank: fresh.energyShieldRank ?? 0 } : {}),
