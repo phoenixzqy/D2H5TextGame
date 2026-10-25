@@ -122,6 +122,7 @@
     "flatRange": "{{min}} ~ {{max}}",
     "flatRangeDelta": "(+{{min}} ~ +{{max}})",
     "totalPower": "Total Power",
+    "maxTargets": "Max targets",
     "summonCap": "Summon Cap",
     "summonedUnit": "Summoned Unit",
     "summonStat": {
@@ -863,7 +864,7 @@
   "paladin": {
     "zeal": {
       "name": "Zeal",
-      "desc": "A flurry of melee strikes that hits up to 3 nearby enemies."
+      "desc": "Deals {{min}} ~ {{max}} Physical base damage once to each of up to {{maxTargets}} living enemies in the densest cross. Ties choose the lowest row then column; take the first targets in row order, then column order. Each target has an independent hit and critical roll; misses and kills do not add replacement targets. One mana payment and cooldown per cast."
     },
     "holy-bolt": {
       "name": "Holy Bolt",
@@ -879,11 +880,11 @@
     },
     "charge": {
       "name": "Charge",
-      "desc": "Charges a target, dealing heavy physical damage and stunning for 1 turn."
+      "desc": "Deals {{min}} ~ {{max}} Physical base damage to one enemy. A landed hit applies Stun for {{duration}} (bosses: {{bossDuration}}). Your position stays the same. Misses apply no Stun."
     },
     "fist-of-heavens": {
       "name": "Fist of the Heavens",
-      "desc": "Calls down lightning from the heavens, paralyzing all enemies."
+      "desc": "Deals {{min}} ~ {{max}} Lightning base damage once to every living enemy. A landed hit applies Paralyze for {{duration}}, including bosses. Misses apply no Paralyze. Repeated Paralyze can fail. One mana payment and cooldown per cast."
     },
     "might": {
       "name": "Might",
@@ -907,7 +908,7 @@
     },
     "smite": {
       "name": "Smite",
-      "desc": "Shield bash that stuns the target."
+      "desc": "Deals {{min}} ~ {{max}} Physical base damage to one enemy. A landed hit applies Stun for {{duration}} (bosses: {{bossDuration}}). Misses apply no Stun."
     },
     "conversion": {
       "name": "Conversion",

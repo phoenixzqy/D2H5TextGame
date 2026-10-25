@@ -880,6 +880,9 @@ function StatSection({
               delta={compare?.summonCap !== undefined ? numberDelta(stats.summonCap, compare.summonCap, t) : null}
             />
           ) : null}
+          {stats.maxTargets !== undefined ? (
+            <StatLine label={t('details.maxTargets')} value={String(stats.maxTargets)} />
+          ) : null}
           {stats.summonUnit ? (
             <>
               {stats.summonUnit.attackType ? (
@@ -1511,6 +1514,16 @@ function dynamicDescription(
       maxLife: Math.round(life * maxRank * 100), maxSpeed: speed * maxRank, cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && skill.id === 'skills-paladin-zeal' && stats.maxTargets !== undefined) {
+    return t('paladin.zeal.desc', { min: firstDamage.min, max: firstDamage.max, maxTargets: stats.maxTargets });
+  }
+  if (firstDamage && stats.control && ['skills-paladin-smite', 'skills-paladin-charge', 'skills-paladin-fist-of-heavens'].includes(skill.id)) {
+    return t('paladin.' + skill.id.slice('skills-paladin-'.length) + '.desc', {
+      min: firstDamage.min, max: firstDamage.max,
+      duration: t('details.seconds', { seconds: stats.control.durationSeconds }),
+      bossDuration: t('details.seconds', { seconds: stats.control.bossDurationSeconds })
+    });
+  }
   if (firstDamage && skill.id === 'skills-paladin-sacrifice') {
     return t('paladin.sacrifice.desc', { min: firstDamage.min, max: firstDamage.max });
   }

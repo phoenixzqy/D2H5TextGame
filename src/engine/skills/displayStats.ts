@@ -9,6 +9,7 @@
  */
 
 import type { DamageType } from '../types/attributes';
+import type { AoeShape } from '../combat/grid';
 import type { ColdMasteryTuning, FeralRageTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
 import { STATUS_DEFAULTS } from '../combat/status';
 import { coldMasteryReductionAtRank } from './cold-mastery';
@@ -23,6 +24,8 @@ import { DRUID_SUMMON_DEFINITION, DRUID_SUMMON_IDS } from './druid-summon-defini
 import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 
 export interface DisplaySkillSource {
+  readonly aoeShape?: AoeShape;
+  readonly maxTargets?: number;
   readonly damageComposition?: 'weighted-components';
   readonly ignoresMagicResist?: true;
   readonly hitSequence?: SkillHitSequence;
@@ -149,6 +152,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Authored limit after resolving the full area and its ordinary target order. */
+  readonly maxTargets?: number;
   /** Explicit flat MR bypass; percentage resistance and personal absorption remain. */
   readonly ignoresMagicResist?: true;
   /** One shared hit/critical decision with ordinary matching elemental control durations. */
@@ -484,9 +489,12 @@ export function computeSkillRankDisplayStats(
     strikes !== undefined && Number.isInteger(strikes) && strikes >= 2 && strikes <= 8 ? strikes : undefined;
   const controlId = skill.appliesStatus?.[0];
   const controlDefinition = skill.damage && skill.trigger === 'active' &&
-    (controlId === 'chill' || controlId === 'stun') ? STATUS_DEFAULTS[controlId] : undefined;
+    (controlId === 'chill' || controlId === 'stun' || controlId === 'paralyze') ? STATUS_DEFAULTS[controlId] : undefined;
   const control = controlDefinition ? { durationSeconds: controlDefinition.duration,
     bossDurationSeconds: controlDefinition.duration * (controlDefinition.bossDurationMult ?? 1) } : undefined;
+  const maxTargets = skill.id === 'skills-paladin-zeal' && skill.trigger === 'active' &&
+    skill.target === 'area-enemies' && skill.aoeShape === 'cross' && skill.maxTargets === 3
+    ? skill.maxTargets : undefined;
   const selfCost = skill.onHitSelfDamage;
   const selfDamage = skill.id === 'skills-paladin-sacrifice' && skill.trigger === 'active' &&
     skill.damageType === 'physical' && selfCost && Number.isFinite(selfCost.lifeFraction) &&
@@ -507,6 +515,7 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(maxTargets !== undefined ? { maxTargets } : {}),
     ...(ignoresMagicResist ? { ignoresMagicResist: true as const } : {}),
     ...(composite ? { composite } : {}),
     ...(strikesPerCast !== undefined ? { strikesPerCast } : {}),
