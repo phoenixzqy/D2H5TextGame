@@ -253,20 +253,24 @@ configuration over original resources/teams/seed without duplicate income.
 
 ## Remaining required effects
 
-Holy Fire/Shock now follow the pulse contract above and have [bounded local verification](../evidence/d05-paladin-pulse-auras.md). Sanctuary requires undead damage
-and explicit no-movement repulsion adaptation. Cleansing follows the explicit
-duration/recovery contract above and has [bounded local verification](../evidence/d05-paladin-cleansing.md).
-Redemption follows the explicit shared-corpse recovery contract above and has
-[bounded local verification](../evidence/d05-paladin-redemption.md);
-Vigor requires a truthful no-movement/stamina adaptation;
-Concentration requires an explicit interruption-prevention rule. Existing JSON
-and older descriptions disagree for the remaining three: resolve their affected rules and
-data explicitly before implementing their remaining mechanics. Holy Freeze/Conviction follow the resolved
-contract above and have [bounded local verification](../evidence/d05-paladin-enemy-auras.md).
-Prayer follows the healing contract above and has [bounded local verification](../evidence/d05-paladin-prayer.md).
+Vigor follows the explicit temporary endurance/cadence contract above and has
+[bounded local verification](../evidence/d05-paladin-vigor.md). Eighteen of20
+selected Paladin auras now have supported effects. Sanctuary still requires
+an authoritative undead classification, undead damage and an explicit
+no-movement repulsion adaptation. Concentration still requires an explicit
+interruption-prevention rule. Existing JSON and older descriptions disagree
+for these two: resolve their affected rules and data explicitly before
+implementing the remaining mechanics. Do not count stat-only substitutes as
+completion of those effects.
+
+Other family evidence remains bounded:
+[stat auras](../evidence/d05-paladin-stat-auras.md),
+[Holy Freeze/Conviction](../evidence/d05-paladin-enemy-auras.md),
+[Holy Fire/Shock](../evidence/d05-paladin-pulse-auras.md),
+[Prayer](../evidence/d05-paladin-prayer.md),
+[Cleansing](../evidence/d05-paladin-cleansing.md) and
+[Redemption](../evidence/d05-paladin-redemption.md).
 Independent design/QA and earned class/build balance remain open.
-Do not expose or count stat-only
-substitutes as completion of those effects.
 
 Save v22 follows [ADR-011](../../decisions/ADR-011-version-player-aura-selection.md).
 No campaign action or diagnostic-save promotion is authorized by these tests.

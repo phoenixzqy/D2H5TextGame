@@ -1,7 +1,7 @@
 # BUG-181 — Complete advertised Paladin aura selection and effects
 
 Severity: High
-Status: Open; seventeen selected auras locally verified in bounded scope, three distinct aura mechanics outstanding
+Status: Open; eighteen selected auras locally verified in bounded scope, two distinct aura mechanics outstanding
 Owners: engine-dev, frontend-dev, content-designer; root sole writer this run
 
 ## Reproduction
@@ -119,3 +119,23 @@ failures](../../docs/plans/evidence/d05-paladin-redemption.md).
 Remaining three: Sanctuary, Vigor and Concentration. Recovery base/interval are
 provisional local tuning; earned balance and independent whole-family acceptance
 remain open. Genuine campaign save/next402 is unchanged.
+
+
+Seventh batch `4cc9c5b` implements selected Vigor's temporary endurance and
+attack cadence using unchanged authored2% life/0.5% speed per rank. Capacity
+floors once over the fresh base; admission/selection/upgrade never grants HP.
+Actual healing/orbs can fill the extra capacity, a transient exact base/applied
+identity prevents wave compounding, and source death removes it before orb
+settlement. BUG182's causal native prefix/initial-frame failures are repaired
+at observation order and initial publication without relaxing prefix validation.
+Public allocation, native healing/carry/original-resource replay/no duplicate
+income, savev22 and bilingual UI pass. Final full12396/528 plus two existing
+skips, corrected-source engine6222/217, types/lint/build/bridge and production
+browser4/4 pass, with eight exact five-domain Continue pairs,20 geometry samples
+and19radio labels>=44×44. All1243source/760build hashes, HEAD/Git state and
+genuine save digest stayed exact through the426.170s full process; committed
+source blobs match. [Evidence and retained original failures](../../docs/plans/evidence/d05-paladin-vigor.md).
+182raw files/29terminal process records are byte-verified; exact cleanup removed
+942owned files, scratch is absent and4468closed, with no failures/remaining paths.
+Remaining two: Sanctuary and Concentration. Earned balance and independent
+whole-family acceptance remain open. Genuine campaign save/next402 is unchanged.

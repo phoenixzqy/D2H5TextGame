@@ -22,8 +22,9 @@ throws `Malformed recorded status initial prefix`, preventing native combat.
 
 ## Evidence and root cause
 
-Retained task output: red-ui-native.log in the task-owned
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-vigor-z2ud_jiv`.
+Retained original output: `red-ui-native.log` in the byte-verified
+[Vigor evidence archive](../../docs/plans/evidence/fixtures/paladin-vigor/manifest.json).
+The disposable task root was removed after verification.
 Regression: src/stores/combatHelpers.might.test.ts public Vigor test and generated
 Vigor family case. Engine reconciliation currently runs immediately after unit
 registration; its capacity observations therefore precede observeStatuses.
@@ -62,3 +63,11 @@ production build and bridge scan pass. Final production browser en/zh-CN ×
 HEAD/Git state and genuine save digest stayed exact through the426.170s full
 process. The original causal failures are retained for the final evidence.
 This is local verification; earned balance and independent acceptance remain open.
+
+
+Runtime fix: `4cc9c5b`. [Final evidence](../../docs/plans/evidence/d05-paladin-vigor.md)
+retains182raw files/29terminal process records, including
+`red-initial-capacity.log`. Cleanup removed942exact task-owned files and verified
+scratch absence/4468closure with no failures or remaining paths. The original
+reproduction section records the defect before this fix; current behavior is
+covered by the verified regressions above.
