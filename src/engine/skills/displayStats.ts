@@ -238,7 +238,7 @@ function burnDisplay(skill: DisplaySkillSource): SkillRankDisplayStats['burn'] {
     !Number.isFinite(fraction) || fraction <= 0 ||
     (skill.statusEffect?.chance ?? 1) !== 1 || (skill.statusEffect?.stacksOnApply ?? 1) !== 1) return undefined;
   return { percentOfHit: Number((fraction * 100).toFixed(4)),
-    ...(skill.id === 'skills-paladin-vengeance' && skill.damageComposition === 'weighted-components'
+    ...(['skills-paladin-vengeance', 'skills-assassin-phoenix-strike'].includes(skill.id) && skill.damageComposition === 'weighted-components'
       ? { component: 'fire' as const } : {}),
     durationSeconds: STATUS_DEFAULTS.ignite.duration, maxStacks: STATUS_DEFAULTS.ignite.maxStacks, minDps: 1 };
 }
@@ -488,7 +488,7 @@ export function computeSkillRankDisplayStats(
     skill.damageType === 'arcane' && skill.ignoresMagicResist === true;
   const ignoresDefense = skill.id === 'skills-amazon-impale' && skill.trigger === 'active' &&
     skill.damageType === 'physical' && skill.ignoresDefense === true;
-  const composite = skill.id === 'skills-paladin-vengeance' && skill.trigger === 'active' &&
+  const composite = ['skills-paladin-vengeance', 'skills-assassin-phoenix-strike'].includes(skill.id) && skill.trigger === 'active' &&
     skill.damageComposition === 'weighted-components'
     ? { chillSeconds: STATUS_DEFAULTS.chill.duration, paralyzeSeconds: STATUS_DEFAULTS.paralyze.duration } : undefined;
   const strikes = skill.hitSequence?.strikes;

@@ -63,6 +63,9 @@
       }
     },
     "damageType": "fire",
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesStatus": [
       "burn"
     ],
@@ -207,6 +210,10 @@
       }
     },
     "damageType": "fire",
+    "damageComposition": "weighted-components",
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesStatus": [
       "burn",
       "chill",
@@ -412,6 +419,9 @@
       }
     },
     "damageType": "fire",
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesStatus": [
       "burn"
     ],
@@ -522,6 +532,9 @@
       }
     },
     "damageType": "fire",
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesStatus": [
       "burn"
     ],
@@ -821,6 +834,9 @@
       }
     },
     "damageType": "fire",
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesStatus": [
       "burn"
     ],
@@ -922,6 +938,9 @@
       }
     },
     "damageType": "fire",
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesStatus": [
       "burn"
     ],

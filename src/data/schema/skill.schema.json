@@ -96,7 +96,7 @@
     },
     {
       "if": { "required": ["damageComposition"], "properties": { "damageComposition": {} } },
-      "then": { "properties": { "id": { "const": "skills-paladin-vengeance" } } }
+      "then": { "properties": { "id": { "enum": ["skills-paladin-vengeance", "skills-assassin-phoenix-strike"] } } }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-paladin-vengeance" } } },
@@ -128,6 +128,122 @@
             "properties": { "dotPctOfDamage": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 } }
           },
           "ignoresMagicResist": false, "onHitRecovery": false, "hitSequence": false, "additionalStatusEffects": false
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "const": "skills-assassin-phoenix-strike"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "prerequisites",
+          "damage",
+          "damageType",
+          "damageComposition",
+          "appliesStatus",
+          "statusEffect"
+        ],
+        "properties": {
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "single-enemy"
+          },
+          "requiredLevel": {
+            "const": 30
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "prerequisites": {
+            "const": [
+              "skills-assassin-cobra-strike",
+              "skills-assassin-blades-of-ice"
+            ]
+          },
+          "damageType": {
+            "const": "fire"
+          },
+          "damageComposition": {
+            "$ref": "#/properties/damageComposition"
+          },
+          "damage": {
+            "type": "object",
+            "required": [
+              "min",
+              "max",
+              "breakdown"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "min": {
+                "type": "number",
+                "minimum": 0
+              },
+              "max": {
+                "type": "number",
+                "minimum": 0
+              },
+              "breakdown": {
+                "type": "object",
+                "required": [
+                  "fire",
+                  "cold",
+                  "lightning"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "fire": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "cold": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  },
+                  "lightning": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                  }
+                }
+              }
+            }
+          },
+          "appliesStatus": {
+            "const": [
+              "burn",
+              "chill",
+              "paralyze"
+            ]
+          },
+          "statusEffect": {
+            "type": "object",
+            "required": [
+              "dotPctOfDamage"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "dotPctOfDamage": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1
+              }
+            }
+          },
+          "ignoresMagicResist": false,
+          "onHitRecovery": false,
+          "hitSequence": false,
+          "additionalStatusEffects": false
         }
       }
     },
@@ -443,7 +559,7 @@
     {
       "if": {
         "properties": {
-          "id": { "enum": ["skills-druid-firestorm", "skills-druid-molten-boulder", "skills-druid-fissure", "skills-druid-volcano", "skills-druid-armageddon"] }
+          "id": { "enum": ["skills-druid-firestorm", "skills-druid-molten-boulder", "skills-druid-fissure", "skills-druid-volcano", "skills-druid-armageddon", "skills-assassin-fire-blast", "skills-assassin-fists-of-fire", "skills-assassin-dragon-tail", "skills-assassin-wake-of-fire", "skills-assassin-wake-of-inferno"] }
         },
         "required": ["id"]
       },
@@ -458,7 +574,7 @@
             "type": "object",
             "required": ["dotPctOfDamage"],
             "properties": {
-              "dotPctOfDamage": { "type": "number", "exclusiveMinimum": 0, "description": "Explicit positive on-hit Burn DPS fraction for the five Druid fire spells; no implicit runtime fallback." }
+              "dotPctOfDamage": { "type": "number", "exclusiveMinimum": 0, "description": "Explicit positive on-hit Burn DPS fraction for the explicitly named Druid/Assassin Fire spells; no implicit runtime fallback." }
             }
           }
         }
@@ -3809,7 +3925,7 @@
     },
     "damageComposition": {
       "const": "weighted-components",
-      "description": "Explicit Vengeance composite strike: one shared hit/base/crit roll, with ordered per-element mitigation of normalized breakdown weights."
+      "description": "Explicit Vengeance/Phoenix composite strike: one shared hit/base/crit roll, with ordered per-element mitigation of normalized breakdown weights."
     },
     "ignoresMagicResist": {
       "const": true,

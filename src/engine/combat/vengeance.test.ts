@@ -119,7 +119,7 @@ afterEach(() => {
 });
 
 describe('Vengeance one shared-roll composite strike', () => {
-  it('registers one effect with typed components and statuses; other mixed skills stay scalar', () => {
+  it('registers one typed effect; only explicit Vengeance and Phoenix opt in to components', () => {
     const actual = getSkill('paladin.vengeance');
     expect(getSkill('skills-paladin-vengeance')).toBe(actual);
     expect(actual?.effects).toEqual([
@@ -146,7 +146,7 @@ describe('Vengeance one shared-roll composite strike', () => {
       listSkills().filter((id) =>
         getSkill(id)?.effects.some((e) => e.kind === 'damage' && 'components' in e)
       )
-    ).toEqual(['paladin.vengeance']);
+    ).toEqual(['paladin.vengeance', 'assassin.phoenix_strike']);
   });
   it.each([1, 2, 20])(
     'rank%i pays once and emits three same-clock real typed hits, without self-combo',

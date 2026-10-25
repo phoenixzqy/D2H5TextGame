@@ -138,12 +138,12 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
   if (skill.id === 'skills-sorceress-static-field' && skill.staticField) return [{ kind: 'static-field' }];
   const effects: SkillEffect[] = [];
   if (skill.damage && skill.damageType) {
-    const composite = skill.id === 'skills-paladin-vengeance' && skill.damageComposition === 'weighted-components';
+    const composite = ['skills-paladin-vengeance', 'skills-assassin-phoenix-strike'].includes(skill.id) && skill.damageComposition === 'weighted-components';
     const weights = skill.damage.breakdown;
     const componentWeight = (type: DamageType): number => {
       const weight = weights?.[type];
       if (typeof weight !== 'number' || !Number.isFinite(weight) || weight <= 0) {
-        throw new Error('Invalid authored Vengeance component weights');
+        throw new Error('Invalid authored elemental component weights');
       }
       return weight;
     };
