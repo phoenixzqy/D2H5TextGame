@@ -69,6 +69,8 @@
     "descriptionSelfDamage": "After the hit and ordinary target-death, orb and reflection effects, a surviving caster loses {{percentOfHpRemoved}}% of actual enemy HP removed (rounded down, minimum {{minimumLifeLoss}} HP, capped at remaining life). Only a hit that removes enemy HP charges this cost. This bypasses your defenses and shields and can kill you. Absorption and overkill do not count. Misses, later basic attacks and damage over time cost no life; lethal reflection cannot be reversed.",
     "magicResistBypass": "Magic resist bypass",
     "magicResistBypassValue": "Flat MR only",
+    "defenseBypass": "Defense bypass",
+    "defenseBypassValue": "Ordinary Defense only",
     "compositeStrike": "Composite strike",
     "compositeStrikeValue": "Shared hit and critical roll",
     "burnComponentRateValue": "{{percentOfHit}}% of final Fire component/s (min. {{minDps}})",
@@ -315,7 +317,7 @@
     },
     "impale": {
       "name": "Impale",
-      "desc": "A powerful javelin thrust that ignores defense."
+      "desc": "Thrust at one enemy for {{min}}–{{max}} Physical damage, ignoring ordinary Defense; resistance and dodge still apply. A successful hit inflicts Bleed."
     },
     "lightning-bolt": {
       "name": "Lightning Bolt",

@@ -69,6 +69,8 @@
     "descriptionSelfDamage": "直接命中并结算通常的目标死亡、恢复球与反伤效果后，仍存活的施法者损失敌人直接实际生命损失的{{percentOfHpRemoved}}%（向下取整，最低{{minimumLifeLoss}}点生命，不超过自身剩余生命）。仅实际损失敌人生命的直接命中才扣除代价。此代价无视自身减伤与护盾，可能致死。吸收伤害和过量伤害不计入；未命中、后续普攻与持续伤害不扣生命，致命反伤无法逆转。",
     "magicResistBypass": "魔抗穿透",
     "magicResistBypassValue": "仅固定魔法抗性",
+    "defenseBypass": "防御穿透",
+    "defenseBypassValue": "仅普通防御",
     "compositeStrike": "复合打击",
     "compositeStrikeValue": "共用命中与暴击判定",
     "burnComponentRateValue": "最终火焰分量的{{percentOfHit}}%/秒（最低{{minDps}}点）",
@@ -315,7 +317,7 @@
     },
     "impale": {
       "name": "刺入",
-      "desc": "强力标枪突刺，无视防御。"
+      "desc": "突刺一个敌人，造成{{min}}–{{max}}点物理伤害，无视普通防御；抗性和闪避仍然生效。命中后施加流血。"
     },
     "lightning-bolt": {
       "name": "雷电箭",

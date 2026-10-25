@@ -968,6 +968,9 @@ function StatSection({
           {stats.ignoresMagicResist ? (
             <StatLine label={t('details.magicResistBypass')} value={t('details.magicResistBypassValue')} />
           ) : null}
+          {stats.ignoresDefense ? (
+            <StatLine label={t('details.defenseBypass')} value={t('details.defenseBypassValue')} />
+          ) : null}
           {stats.composite ? (
             <StatLine label={t('details.compositeStrike')} value={t('details.compositeStrikeValue')} />
           ) : null}
@@ -1534,6 +1537,9 @@ function dynamicDescription(
       maxLife: Math.round(life * maxRank * 100), maxSpeed: speed * maxRank, cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && skill.id === 'skills-amazon-impale') {
+    return t('amazon.impale.desc', { min: firstDamage.min, max: firstDamage.max });
+  }
   if (firstDamage && skill.id === 'skills-paladin-zeal' && stats.maxTargets !== undefined) {
     return t('paladin.zeal.desc', { min: firstDamage.min, max: firstDamage.max, maxTargets: stats.maxTargets });
   }
