@@ -1,6 +1,8 @@
 # D04 — Native Dragon Talon repeated-kick reproduction
 
-2026-10-25. Reproduced only; no implementation or functionality credit.
+2026-10-25. Historical preimplementation reproduction. Now locally fixed and
+verified at5f9a2f8f/2e132186; see [final evidence](d04-dragon-talon.md).
+The original observations below grant no functionality credit on their own.
 Root sole writer. Independent design/QA and earned balance remain open.
 
 Retained in the Jab packet `fixtures/jab/raw.tar.gz`: `scratch/dragon-talon-native-repro.ts`,

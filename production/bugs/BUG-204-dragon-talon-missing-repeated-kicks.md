@@ -1,6 +1,7 @@
 # BUG-204 — Dragon Talon promises repeated kicks but attempts one hit
 
-- Status: reproduced and contracted; implementation and functionality credit open.
+- Status: fixed and verified locally in runtime5f9a2f8f/presentation2e132186;
+  independent design/QA and earned balance remain open.
 - Severity: High — both locales advertise a series of attacks absent from runtime.
 - Environment: Node24.21.0, actual native Assassin/default registry via Vite Node.
   Synthetic L30/resources/holds/opponent; no genuine campaign action.
@@ -27,9 +28,24 @@ seeds7/19/41/97 is41/46/0miss/44; rank2 is45/50/0miss/48; rank20 is117/122/
 
 Root cause: the actual JSON authors one ordinary Physical damage effect and no
 sequence metadata; the schema confines sequence ownership to Fury and Jab.
-Localized prose cannot add a combat attempt. No runtime fix has been applied.
+Localized prose cannot add a combat attempt. This describes the original failure.
 
 Evidence: [native reproduction](../../docs/plans/evidence/d04-dragon-talon-repro.md)
 and [contract](../../docs/plans/decisions/D04-dragon-talon-v1.md). The reproduction
 uses the frozen Jab verification source; this is a separate failing diagnostic,
 not a failure of the required unit suite or a new functionality credit.
+
+## Local repair and verification
+
+Actual JSON now authors three independent original-target attempts through the
+existing bounded runtime, with one action/4MP payment/cooldown. Misses spend
+attempts; target/caster death stops remaining attempts without retargeting.
+Native HP, mitigation, independent criticals, shields, reflection, eligibility,
+cooldown and immutable replay are covered; no combat-loop/adapter/save change.
+
+[Final evidence](../../docs/plans/evidence/d04-dragon-talon.md) records49new
+cases, full14492passed/648files/two existing skips, engine7553/275, focused
+compatibility148/12, data815/14, types/lint/build and four bilingual production
+desktop/mobile cases with eight exact five-domain Continue pairs. Actual
+committed blobs match the tested frozen snapshot. Three attempts are provisional
+tuning; synthetic fixtures establish no earned or independent acceptance.

@@ -1,0 +1,35 @@
+{
+  "rows": 213,
+  "IDs_and_order_unchanged": true,
+  "credited": [
+    "skills-assassin-dragon-talon"
+  ],
+  "evidence_only_unverified": [
+    "skills-assassin-death-sentry",
+    "skills-assassin-dragon-tail",
+    "skills-assassin-fire-blast",
+    "skills-assassin-fists-of-fire",
+    "skills-assassin-phoenix-strike",
+    "skills-assassin-wake-of-fire",
+    "skills-assassin-wake-of-inferno"
+  ],
+  "changed_rows": [
+    "skills-assassin-fire-blast",
+    "skills-assassin-phoenix-strike",
+    "skills-assassin-dragon-talon",
+    "skills-assassin-fists-of-fire",
+    "skills-assassin-dragon-tail",
+    "skills-assassin-wake-of-fire",
+    "skills-assassin-wake-of-inferno",
+    "skills-assassin-death-sentry"
+  ],
+  "counts": {
+    "unverified": 108,
+    "bounded-functional": 103,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "baseline_sha256": "6a3fed31dd4a67aafeaf82b92e1a0325f04ec925840457f2e300c9c968e7b7ad",
+  "final_sha256": "7bbb4c253eb9a2113b168d72127a112b53268fd602a701647f66cfa76d83c6ee",
+  "other205rows_exact": true
+}
