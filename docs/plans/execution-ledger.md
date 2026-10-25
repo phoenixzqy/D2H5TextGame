@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D05 Energy Shield / BUG186 | locally fixed/verified; independent and earned acceptance open | Runtime5004f4d preserves authored3%diversion/2%ordinary recovery per rank, unlock24/cap20, exact aliases/prerequisites and native wave authority. Shared exact MP splitter covers damage/periodic/reflection/Static; Bone/Shatter/lethal/RNG/playback/save22 retained. Focused172/9, engine6613/226, full12868/545/two existing skips, types/lint/build/bridge PASS. Production4/4/eight exact five-domain Continue pairs/20geometry/eight inspected screenshots; all1263source/760build/HEAD/Git/genuine hashes exact through425.229s full. [Evidence](evidence/d05-energy-shield.md). Only one skill credit:213IDs,152unverified/59bounded-functional/one engine-only/one review-needed. GenuineL33/next402 unchanged; Baal/C2-C4/fullG0-G7/privatev1 and independent QA remain open. |
 | Golem Mastery inventory reconciliation | one stale row corrected; no new implementation credit | Historical engine44376bc/native d542275/preview2f3f5bc/Skills a615431/Iron1760c4d packet audit:899support entries/58command-output hashes/five review+publication chains exact; commits are ancestors. Current engine/native/Skills/Iron/shared-display tests pass in full12822/540. [Evidence](evidence/d05-golem-mastery-reconciliation.md). Only one row changes:213IDs/order preserved;153unverified/58bounded-functional/one engine-only/one review-needed. Historical independent approvals remain historical; current independent and earned acceptance open. |
 | D04 native class-active ownership / BUG185 | locally fixed/verified; independent acceptance open | Runtime70be381; current-class/unlock/rank/MAX aliases/transitive prerequisites at fresh Player boundary; undefined class stubs/passive/aura priorities cannot cast. Stored configuration, D06 specialized authority and D10 equipped grants preserved. Final full12822/540 plus two existing skips, engine6585/224, types/lint/build/bridge PASS; production4/4/eight exact five-domain Continue pairs/20geometry samples. [Evidence](evidence/d04-player-class-active-ownership.md). All1257source/760build hashes, HEAD/Git/genuine exact through515.519s full; committed blobs checked. Ownership adds no individual mechanic credit:213IDs,154unverified/57bounded-functional/one engine-only/one review-needed before separate Golem correction. GenuineL33/next402 unchanged; Baal/C2-C4/fullG0-G7 and fullv1 remain unfinished; local only. |
 | D05 Concentration / BUG181 | interruption/physical scaling locally verified; all20auras have supported effects | Runtimef7aec04; unchanged3.5%physical/rank, explicit scheduled-action Stun protection with real Stun/expiry preserved, Freeze/Paralyze and normal paid readiness unchanged. Focused121/6, data322/2, engine6269/222, full12451/533 plus two existing skips; types/lint/build/bridge PASS. Production4/4, eight exact five-domain Continue pairs,20geometry samples and21radio labels. [Evidence](evidence/d05-paladin-concentration.md); all1248source/760build hashes, HEAD/Git/genuine exact through513.228s full, committed source blobs checked. All original test/fixture failures retained;114raw files/19terminal records byte-verified,874owned files removed, scratch absent/4470closed/no failures.213IDs:156unverified/55bounded-functional/one bounded-engine-functional/one review-needed;56bounded records have differing scopes. All20auras supported locally; independent whole-family/earned balance and BUG181 remain open. GenuineL33/next402 unchanged; Baal/C2-C4/fullG0-G7 remain unfinished; local only, umbrella goal/worktree active. |
@@ -11554,3 +11555,34 @@ one engine-only/one review-needed. GenuineL33/next402 unchanged; no earned build
 Baal, C2-C4/fullG0-G7 or complete private-v1 acceptance is established. Original
 Iron-root evidence remains owned by root for ongoing consumers, with no new
 disposable files/processes created by this correction. Umbrella claim continues.
+
+
+## D05 — Personal automatic Energy Shield / BUG186
+
+Runtime5004f4d connects authored3%damage diversion/2%ordinary recovery per rank
+to actual native hero composition and all personal damage writes. Exact MAX
+aliases, level24/cap20 and the full Teleport→Telekinesis chain govern a transient
+wave rank. Shared exact decimal quota and finite-MP splitting precede Bone Armor;
+periodic settlement/lethal prediction agree, unfunded quota is lost, and Shatter,
+mitigation/status potency/reflection/RNG/original-resource replay remain intact.
+No cast, timer, max-MP/refill, saved field or save-version change. Both locales
+show actual current/next/payment/exhaustion/next-wave rules.
+
+[Evidence](evidence/d05-energy-shield.md): original nativeRED5fail/4controls→9GREEN;
+focused172/9, engine6613/226, full12868/545/two existing skips, final types/lint/
+explicit-false build/bridge PASS. Production4/4 with eight separately audited exact
+five-domain Continue pairs,20geometry samples and eight inspected screenshots.
+All1263source/test/config and760build hashes, HEAD/Git status and genuine save
+digest stayed exact through425.229s full; committed source blobs verified. All
+original fixture/type/UI/lint/browser observer failures and interrupted browser
+observation retained without weakened assertions, new skips or timeout changes.
+192raw files/24terminal receipts are byte-verified;952owned disposable files
+removed, scratch absent/4473closed, no remaining paths or cleanup failures.
+
+Only Energy Shield gains bounded-functional credit:213IDs/order unchanged,
+152unverified/59bounded-functional/one engine-only/one review-needed. These records
+have different proof scopes. Genuine Ancients401 remainsL33/XP149261/23682gear/
+nextNormal402/Nightmare0/Baal uncleared; no genuine campaign or remote actions.
+All-class builds/economy/pacing/endgame/PWA/performance, independent acceptance,
+C2-C4/fullG0-G7 and complete privatev1 remain open. Umbrella claim/branch/goal
+continue.
