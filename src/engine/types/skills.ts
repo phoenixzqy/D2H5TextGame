@@ -40,12 +40,15 @@ export interface SkillHitSequence {
   readonly targetMode?: 'each-original';
 }
 
-/** JSON-owned self attack-speed stacks earned by damaging Feral Rage hits. */
-export interface FeralRageTuning {
+/** JSON-owned finite self attack-speed stacks earned by qualifying direct hits. */
+export interface HitSpeedStackTuning {
   readonly attackSpeedPctPerStack: number;
   readonly maxStacks: number;
   readonly durationMs: number;
 }
+
+/** Existing Feral tuning contract; both skills share only the numeric shape. */
+export type FeralRageTuning = HitSpeedStackTuning;
 
 /**
  * Skill target type
@@ -247,6 +250,7 @@ export interface SkillDef {
   readonly onHitRecovery?: OnHitRecoveryTuning;
   readonly onHitSelfDamage?: OnHitSelfDamageTuning;
   readonly feralRage?: FeralRageTuning;
+  readonly frenzy?: HitSpeedStackTuning;
   /** Exact Spirit of Barbs passive support template; ordinary summon defaults remain shared. */
   readonly passiveSummon?: {
     readonly summonId: 'spirit_of_barbs';

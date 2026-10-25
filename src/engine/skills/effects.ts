@@ -56,6 +56,8 @@ interface DamageEffectBase {
   readonly onHitSelfDamage?: OnHitSelfDamageTuning;
   /** Exact Feral Rage opts into independently authenticated self speed stacks. */
   readonly feralRage?: true;
+  /** Exact Frenzy opts into its independently authorized finite speed stacks. */
+  readonly frenzy?: true;
   readonly kind: 'damage';
   readonly damageType: DamageType;
   /** [min, max] base at skill rank 1. */

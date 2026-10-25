@@ -63,6 +63,7 @@ import { activeCloakOfShadows, cloakOfShadowsRank, copyCloakOfShadowsStatuses, m
 import { activeLeap, leapRank, copyLeapStatuses, matchesLeap,
   paidLeap, LEAP_IDS, LEAP_DEFINITION } from '../skills/leap';
 import { activeFeralRage, copyFeralRageStatuses, FERAL_RAGE_DEFINITION, gainFeralRageStack } from '../skills/druid-sustain';
+import { activeFrenzy, copyFrenzyStatuses, FRENZY_DEFINITION, gainFrenzyStack } from '../skills/frenzy';
 import { copyDruidSummonRanks, isDruidSummonBody, qualifyDruidSummon } from '../skills/druid-summon-authority';
 import { DRUID_SUMMON_DEFINITION, type DruidSummonId } from '../skills/druid-summon-definition';
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
@@ -370,7 +371,9 @@ function effectiveActionPeriod(state: State, unit: CombatUnit): number {
   // whereas 100 * (1 + .05 * 3) loses one speed point to binary rounding.
   const feralSpeed = unit.stats.attackSpeed * (activeFeralRage(unit, state.simClockMs)?.stacks ?? 0) *
     FERAL_RAGE_DEFINITION.attackSpeedPctPerStack;
-  return actionPeriodMs((unit.stats.attackSpeed * (1 + speedBonus) + feralSpeed) * enrage * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
+  const frenzySpeed = unit.stats.attackSpeed * (activeFrenzy(unit, state.simClockMs)?.stacks ?? 0) *
+    FRENZY_DEFINITION.attackSpeedPctPerStack;
+  return actionPeriodMs((unit.stats.attackSpeed * (1 + speedBonus) + feralSpeed + frenzySpeed) * enrage * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
 }
 
 /** All new attempts start one full effective period after the current clock. */
@@ -518,7 +521,7 @@ function pickDefender(
 
 function registerUnit(state: State, u: CombatUnit): void {
   const native = u.druidSummonRanks === undefined ? u : { ...u, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
-  const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyLeapStatuses(copyCloakOfShadowsStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(native))))));
+  const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyLeapStatuses(copyCloakOfShadowsStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(copyFrenzyStatuses(native)))))));
   const shaped = refreshHolyShieldState(refreshDruidFormState(copied));
   state.units.set(u.id, shaped);
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
@@ -852,6 +855,15 @@ function applyDamageToUnit(
       if (updated !== current) {
         state.units.set(attackerId, updated);
         emit(state, { kind: 'buff', target: attackerId, buffId: 'feral-rage', statusBacked: true });
+        observeStatuses(state, attackerId);
+      }
+    }
+    const frenzyOwner = state.units.get(attackerId);
+    if (effect.frenzy === true && frenzyOwner) {
+      const updated = gainFrenzyStack(frenzyOwner, state.simClockMs);
+      if (updated !== frenzyOwner) {
+        state.units.set(attackerId, updated);
+        emit(state, { kind: 'buff', target: attackerId, buffId: 'frenzy', statusBacked: true });
         observeStatuses(state, attackerId);
       }
     }

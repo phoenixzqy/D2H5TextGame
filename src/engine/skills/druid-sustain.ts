@@ -1,7 +1,7 @@
 import skills from '../../data/skills/druid.json';
 import type { FeralRageTuning, SkillDef } from '../types/skills';
 import type { ActiveStatus, CombatUnit } from '../combat/types';
-import { statusActiveAt } from '../combat/status';
+import { activeHitSpeedStack, copyHitSpeedStackStatuses, gainHitSpeedStack } from './hit-speed-stacks';
 import { createSkillValidator } from './skill-validator';
 
 export const FERAL_RAGE_IDS = ['skills-druid-feral-rage', 'druid.feral_rage'] as const;
@@ -49,101 +49,17 @@ export function composeFeralRageRank(
       : rank;
   }, 0);
 }
-/** Only the living native original player hero may use carried speed. */
-function eligible(unit: CombatUnit): boolean {
-  const rank = unit.feralRageRank,
-    d = FERAL_RAGE_DEFINITION;
-  return (
-    unit.side === 'player' &&
-    unit.kind === 'hero' &&
-    unit.summon !== true &&
-    unit.ownerId === undefined &&
-    unit.summonOwnerId === undefined &&
-    Number.isFinite(unit.life) &&
-    unit.life > 0 &&
-    Number.isInteger(unit.level) &&
-    unit.level >= d.requiredLevel &&
-    typeof rank === 'number' &&
-    Number.isInteger(rank) &&
-    rank > 0 &&
-    rank <= d.maxRank
-  );
-}
-function validStatus(unit: CombatUnit, status: ActiveStatus): boolean {
-  const start = status.appliedAtMs,
-    end = status.expiresAtMs,
-    d = FERAL_RAGE_DEFINITION;
-  if (
-    !eligible(unit) ||
-    status.id !== 'feral-rage' ||
-    status.feralRage !== true ||
-    status.sourceId !== unit.id ||
-    !Number.isInteger(status.stacks) ||
-    status.stacks < 1 ||
-    status.stacks > d.maxStacks ||
-    status.remaining !== d.durationMs / 1000 ||
-    start === undefined ||
-    end === undefined ||
-    !Number.isFinite(start) ||
-    !Number.isFinite(end) ||
-    end <= start ||
-    Object.keys(status).some(
-      (key) =>
-        ![
-          'id',
-          'sourceId',
-          'stacks',
-          'remaining',
-          'appliedAtMs',
-          'expiresAtMs',
-          'feralRage'
-        ].includes(key)
-    )
-  )
-    return false;
-  const tolerance = Math.min(
-    0.000001,
-    8 * Number.EPSILON * Math.max(d.durationMs, Math.abs(start), Math.abs(end))
-  );
-  return Math.abs(end - start - d.durationMs) <= tolerance;
-}
+const speedDefinition = { ...FERAL_RAGE_DEFINITION,
+  id: 'feral-rage', marker: 'feralRage', rankField: 'feralRageRank' } as const;
 /** At most one authenticated active record counts; duplicate markers never add. */
 export function activeFeralRage(unit: CombatUnit, clock: number): ActiveStatus | undefined {
-  if (!Number.isFinite(clock)) return undefined;
-  return unit.statuses.find((status) => validStatus(unit, status) && statusActiveAt(status, clock));
+  return activeHitSpeedStack(unit, clock, speedDefinition);
 }
 /** Copy valid carried records and reject marker-only or malformed external potency. */
 export function copyFeralRageStatuses(unit: CombatUnit): CombatUnit {
-  if (!unit.statuses.some((s) => s.id === 'feral-rage' || s.feralRage !== undefined)) return unit;
-  return {
-    ...unit,
-    statuses: unit.statuses.flatMap((status) =>
-      status.id !== 'feral-rage' && status.feralRage === undefined
-        ? [status]
-        : validStatus(unit, status)
-          ? [{ ...status }]
-          : []
-    )
-  };
+  return copyHitSpeedStackStatuses(unit, speedDefinition);
 }
-/** Grant/refresh one stack only after the caller has committed positive hostile direct HP loss. */
+/** Grant/refresh one stack only after positive hostile direct HP loss. */
 export function gainFeralRageStack(unit: CombatUnit, clock: number): CombatUnit {
-  if (!eligible(unit) || !Number.isFinite(clock)) return unit;
-  const d = FERAL_RAGE_DEFINITION,
-    old = activeFeralRage(unit, clock);
-  return {
-    ...unit,
-    statuses: [
-      ...unit.statuses.filter((s) => s.id !== 'feral-rage'),
-      {
-        id: 'feral-rage',
-        feralRage: true,
-        sourceId: unit.id,
-        stacks: Math.min(d.maxStacks, (old?.stacks ?? 0) + 1),
-        remaining: d.durationMs / 1000,
-        appliedAtMs: clock,
-        expiresAtMs: clock + d.durationMs
-      }
-    ]
-  };
+  return gainHitSpeedStack(unit, clock, speedDefinition);
 }

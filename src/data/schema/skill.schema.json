@@ -387,7 +387,7 @@
     },
     {
       "if": { "required": ["hitSequence"], "properties": { "hitSequence": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw", "skills-barbarian-double-swing", "skills-barbarian-double-throw"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw", "skills-barbarian-double-swing", "skills-barbarian-double-throw", "skills-barbarian-frenzy"] } } }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-double-throw" } } },
@@ -517,6 +517,31 @@
           "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "arcane" },
           "ignoresMagicResist": { "$ref": "#/properties/ignoresMagicResist" },
           "appliesStatus": false, "statusEffect": false
+        }
+      }
+    },
+    {
+      "if": { "required": ["frenzy"], "properties": { "frenzy": {} } },
+      "then": { "properties": { "id": { "const": "skills-barbarian-frenzy" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-frenzy" } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "hitSequence", "frenzy"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "requiredLevel": { "const": 24 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-barbarian-double-throw"] },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "cost": { "const": { "mana": 12 } }, "cooldown": { "const": 1 },
+          "hitSequence": { "$ref": "#/properties/hitSequence", "const": { "strikes": 2 } },
+          "frenzy": { "$ref": "#/properties/frenzy" },
+          "passive": { "const": false }, "aura": { "const": false }, "summon": { "const": false },
+          "aoeShape": false, "maxTargets": false, "feralRage": false,
+          "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false,
+          "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false,
+          "damageComposition": false, "ignoresDefense": false, "ignoresMagicResist": false,
+          "timedBuff": false, "requires": false, "heal": false, "summonId": false
         }
       }
     },
@@ -4156,6 +4181,10 @@
       "type": "object", "additionalProperties": false, "required": ["lifeFraction"],
       "description": "Explicit fraction of actual direct enemy HP removed restored to the surviving caster; no global drain fallback.",
       "properties": { "lifeFraction": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 } }
+    },
+    "frenzy": {
+      "$ref": "#/properties/feralRage",
+      "description": "Frenzy-only finite self speed stacks from actual positive hostile direct HP loss."
     },
     "feralRage": {
       "type": "object", "additionalProperties": false,

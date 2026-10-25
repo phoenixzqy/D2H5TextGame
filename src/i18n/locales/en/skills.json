@@ -237,6 +237,9 @@
     "noPointsButton": "No Points",
     "recovery": "Life recovery",
     "recoveryValue": "{{percentOfHpRemoved}}% of actual direct HP removed",
+    "frenzySpeed": "Attack Speed per Frenzy stack",
+    "frenzyCap": "Frenzy stack cap",
+    "frenzyDuration": "Frenzy refresh duration",
     "feralSpeed": "Attack speed per stack",
     "percentValue": "{{value}}%",
     "feralCap": "Maximum speed stacks",
@@ -558,7 +561,7 @@
     },
     "frenzy": {
       "name": "Frenzy",
-      "desc": "Dual-wield attack that increases speed with each hit."
+      "desc": "{{strikes}} independent attempts against the same original enemy, {{min}}–{{max}} Physical base damage per attempt. Each damaging hit grants {{percent}}% attack speed, up to {{cap}} stacks, and refreshes all stacks for {{seconds}} s. Misses and hits that remove no HP grant no stacks. Stop if the caster or original target dies; no replacement. Basic attacks benefit from active speed but never refresh it. Pay 12 MP and start the 1 s cooldown once per cast. Rank and priority changes apply next wave; unconfiguring Frenzy removes carried speed next wave."
     },
     "sword-mastery": {
       "name": "Sword Mastery",

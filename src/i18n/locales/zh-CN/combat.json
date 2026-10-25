@@ -143,6 +143,7 @@
       "attract": "吸引",
       "lower-resist": "降低抵抗",
       "mana-burn": "法力燃烧",
+      "frenzy": "狂乱",
       "feral-rage": "野性狂暴",
       "blind": "致盲",
       "converted": "已转化"
@@ -181,6 +182,7 @@
       "frozen_armor": "冰封装甲",
       "inner_sight": "内视",
       "enrage": "狂怒",
+      "frenzy": "狂乱",
       "feral-rage": "野性狂暴"
     }
   },

@@ -603,6 +603,8 @@
     ],
     "trigger": "active",
     "target": "single-enemy",
+    "hitSequence": { "strikes": 2 },
+    "frenzy": { "attackSpeedPctPerStack": 0.05, "maxStacks": 5, "durationMs": 6000 },
     "cooldown": 1,
     "minLevel": 1,
     "maxLevel": 20,

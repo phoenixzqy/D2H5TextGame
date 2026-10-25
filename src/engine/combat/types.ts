@@ -33,6 +33,8 @@ export interface ActiveStatus {
     readonly critChancePct: number; readonly magicDodgePct: number };
   /** Authenticated finite self Feral speed; bare enemy markers confer no power. */
   readonly feralRage?: true;
+  /** Authenticated finite self Frenzy speed; never persisted. */
+  readonly frenzy?: true;
   /** Transient one-time Cleansing reduction; follows this record across waves, never saved. */
   readonly cleansingShortened?: true;
   readonly id: string;
@@ -87,6 +89,8 @@ export interface CombatUnit {
   readonly druidSummonRanks?: import('../skills/druid-summon-authority').DruidSummonRanks;
   /** Fresh native configured Feral authority, captured per wave; never persisted. */
   readonly feralRageRank?: number;
+  /** Fresh native configured Frenzy authority, captured per wave; never persisted. */
+  readonly frenzyRank?: number;
   /** Fresh native Holy Shield eligibility and source-bound paid run-local power; never persisted. */
   readonly holyShieldRank?: number;
   readonly holyShield?: { readonly sourceHeroId: string; readonly rank: number };

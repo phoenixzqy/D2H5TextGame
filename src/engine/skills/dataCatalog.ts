@@ -16,7 +16,7 @@ import paladinSkills from '../../data/skills/paladin.json';
 import sorceressSkills from '../../data/skills/sorceress.json';
 import type { AoeShape } from '../combat/grid';
 import type { DamageType } from '../types/attributes';
-import type { ComboTag, ConversionTuning, FeralRageTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
+import type { ComboTag, ConversionTuning, FeralRageTuning, HitSpeedStackTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
 import type { OnHitStatus, RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
 
 export type PlayableSkillClass =
@@ -39,6 +39,7 @@ interface JsonSkill {
   /** Explicit life debit after a real enemy HP loss; independent of personal shields. */
   readonly onHitSelfDamage?: OnHitSelfDamageTuning;
   readonly feralRage?: FeralRageTuning;
+  readonly frenzy?: HitSpeedStackTuning;
   readonly staticField?: StaticFieldTuning;
   readonly timedBuff?: { readonly durationMs: number };
   readonly id: string;
@@ -200,6 +201,7 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
         minimumLifeLoss: skill.onHitSelfDamage.minimumLifeLoss
       }) } : {}),
       ...(skill.id === 'skills-druid-feral-rage' && skill.feralRage ? { feralRage: true as const } : {}),
+      ...(skill.id === 'skills-barbarian-frenzy' && skill.frenzy ? { frenzy: true as const } : {}),
       damageType: skill.damageType,
       base: [skill.damage.min, skill.damage.max],
       ...(skill.scaling?.damagePerLevel !== undefined

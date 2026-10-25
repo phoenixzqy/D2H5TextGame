@@ -1002,6 +1002,13 @@ function StatSection({
           {stats.composite ? (
             <StatLine label={t('details.compositeStrike')} value={t('details.compositeStrikeValue')} />
           ) : null}
+          {stats.frenzy ? (
+            <>
+              <StatLine label={t('details.frenzySpeed')} value={t('details.percentValue', { value: stats.frenzy.percentPerStack })} />
+              <StatLine label={t('details.frenzyCap')} value={String(stats.frenzy.maxStacks)} />
+              <StatLine label={t('details.frenzyDuration')} value={t('details.seconds', { seconds: stats.frenzy.durationSeconds })} />
+            </>
+          ) : null}
           {stats.feralRage ? (
             <>
               <StatLine label={t('details.feralSpeed')} value={t('details.percentValue', { value: stats.feralRage.percentPerStack })} />
@@ -1591,6 +1598,11 @@ function dynamicDescription(
   if (firstDamage && skill.id === 'skills-barbarian-double-swing' && stats.strikesPerTarget !== undefined) {
     return t('barbarian.double-swing.desc', { min: firstDamage.min, max: firstDamage.max,
       strikes: stats.strikesPerTarget, maxTargets: stats.maxTargets });
+  }
+  if (firstDamage && skill.id === 'skills-barbarian-frenzy' && stats.frenzy && stats.strikesPerCast !== undefined) {
+    return t('barbarian.frenzy.desc', { min: firstDamage.min, max: firstDamage.max,
+      strikes: stats.strikesPerCast, percent: stats.frenzy.percentPerStack,
+      cap: stats.frenzy.maxStacks, seconds: stats.frenzy.durationSeconds });
   }
   if (firstDamage && skill.id === 'skills-barbarian-double-throw' && stats.strikesPerCast !== undefined) {
     return t('barbarian.double-throw.desc', { min: firstDamage.min, max: firstDamage.max,

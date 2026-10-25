@@ -10,7 +10,7 @@
 
 import type { DamageType } from '../types/attributes';
 import type { AoeShape } from '../combat/grid';
-import type { ColdMasteryTuning, FeralRageTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
+import type { ColdMasteryTuning, FeralRageTuning, HitSpeedStackTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
 import { STATUS_DEFAULTS } from '../combat/status';
 import { MANA_BURN_DEFINITION } from '../combat/mana-burn-definition';
 import { coldMasteryReductionAtRank } from './cold-mastery';
@@ -36,6 +36,7 @@ export interface DisplaySkillSource {
   readonly onHitRecovery?: OnHitRecoveryTuning;
   readonly onHitSelfDamage?: OnHitSelfDamageTuning;
   readonly feralRage?: FeralRageTuning;
+  readonly frenzy?: HitSpeedStackTuning;
   readonly coldMastery?: ColdMasteryTuning;
   readonly staticField?: StaticFieldTuning;
   readonly id: string;
@@ -185,6 +186,7 @@ export interface SkillRankDisplayStats {
   /** Life tradeoff from actual enemy HP removed, never a static per-cast HP price. */
   readonly selfDamage?: { readonly percentOfHpRemoved: number; readonly minimumLifeLoss: number };
   readonly feralRage?: { readonly percentPerStack: number; readonly maxStacks: number; readonly durationSeconds: number };
+  readonly frenzy?: { readonly percentPerStack: number; readonly maxStacks: number; readonly durationSeconds: number };
   /** Explicit primary Bleed/Poison rule; final damage depends on the actual landed hit. */
   readonly periodic?: {
     readonly statusId: 'bleed' | 'poison';
@@ -509,6 +511,8 @@ export function computeSkillRankDisplayStats(
     ? { chillSeconds: STATUS_DEFAULTS.chill.duration, paralyzeSeconds: STATUS_DEFAULTS.paralyze.duration } : undefined;
   const strikes = skill.hitSequence?.strikes;
   const supportsSequence = skill.id === 'skills-druid-fury' ||
+    (skill.id === 'skills-barbarian-frenzy' && skill.target === 'single-enemy' && skill.damageType === 'physical' &&
+      skill.aoeShape === undefined && skill.hitSequence?.targetMode === undefined && strikes === 2) ||
     (skill.id === 'skills-barbarian-double-throw' && skill.target === 'area-enemies' &&
       skill.damageType === 'physical' && skill.aoeShape === undefined &&
       skill.hitSequence?.targetMode === undefined && strikes === 2) ||
@@ -553,6 +557,14 @@ export function computeSkillRankDisplayStats(
   const recovery = skill.damage && skill.trigger === 'active' && fraction !== undefined &&
     Number.isFinite(fraction) && fraction > 0 && fraction <= 1
     ? { percentOfHpRemoved: Number((fraction * 100).toFixed(4)) } : undefined;
+  const frenzyTuning = skill.frenzy;
+  const frenzy = skill.id === 'skills-barbarian-frenzy' && skill.trigger === 'active' &&
+    strikesPerCast === 2 && skill.damage && frenzyTuning &&
+    Number.isFinite(frenzyTuning.attackSpeedPctPerStack) && frenzyTuning.attackSpeedPctPerStack > 0 && frenzyTuning.attackSpeedPctPerStack <= 1 &&
+    Number.isInteger(frenzyTuning.maxStacks) && frenzyTuning.maxStacks >= 1 && frenzyTuning.maxStacks <= 20 &&
+    Number.isInteger(frenzyTuning.durationMs) && frenzyTuning.durationMs >= 1000
+    ? { percentPerStack: Number((frenzyTuning.attackSpeedPctPerStack * 100).toFixed(4)),
+      maxStacks: frenzyTuning.maxStacks, durationSeconds: frenzyTuning.durationMs / 1000 } : undefined;
   const tuning = skill.feralRage;
   const feralRage = recovery && skill.id === 'skills-druid-feral-rage' && tuning &&
     Number.isFinite(tuning.attackSpeedPctPerStack) && tuning.attackSpeedPctPerStack > 0 &&
@@ -582,6 +594,7 @@ export function computeSkillRankDisplayStats(
     ...(recovery ? { recovery } : {}),
     ...(selfDamage ? { selfDamage } : {}),
     ...(feralRage ? { feralRage } : {}),
+    ...(frenzy ? { frenzy } : {}),
     ...(burn ? { burn } : {}),
     ...(periodic ? { periodic } : {}),
     damage,
