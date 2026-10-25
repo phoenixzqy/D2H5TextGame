@@ -1,0 +1,33 @@
+{
+  "pass": true,
+  "source_commit": "a1b847f95d634ffed9ab303619652c4bb1d8ccdf",
+  "frozen_source_and_contract_files": 1152,
+  "actual_committed_blobs_and_disk_exact": true,
+  "verified_raw_members": 176,
+  "terminal_receipts": 26,
+  "archive_sha256": "5eec8f72c56525bd0ff75d96767025c2c8f5873cb2d4043525ff3200a201f621",
+  "full_tests": 14875,
+  "full_files": 666,
+  "existing_skips": 2,
+  "full_wrapper_seconds": 598.6574167429935,
+  "new_tests": 98,
+  "engine_tests": 7705,
+  "browser_cases": 4,
+  "exact_five_domain_continue_pairs": 8,
+  "geometry_checks": 20,
+  "individually_inspected_screenshots": 4,
+  "changed_inventory_rows": [
+    "skills-assassin-mind-blast"
+  ],
+  "inventory_rows": 213,
+  "removed_exact_files": 1700,
+  "recorded_pids_absent": 32,
+  "scratch_absent": true,
+  "port4496_closed": true,
+  "remaining": [],
+  "failures": [],
+  "local_document_links_checked": 18,
+  "genuine_decompressed_sha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "independent_and_earned_acceptance_open": true,
+  "umbrella_goal": "active; C2-C4/full G0-G7 unfinished"
+}

@@ -1,0 +1,119 @@
+{
+  "commit": "a1b847f95d634ffed9ab303619652c4bb1d8ccdf",
+  "changed_files": [
+    "docs/plans/decisions/D04-mind-blast-mana-burn-v1.md",
+    "src/data/combat/mana-burn.json",
+    "src/data/schema/mana-burn.schema.json",
+    "src/data/schema/skill.schema.json",
+    "src/engine/combat/combat.ts",
+    "src/engine/combat/damage.ts",
+    "src/engine/combat/mana-burn-definition.test.ts",
+    "src/engine/combat/mana-burn-definition.ts",
+    "src/engine/combat/mana-burn.test.ts",
+    "src/engine/combat/status.ts",
+    "src/engine/skills/builders.ts",
+    "src/engine/skills/dataCatalog.ts",
+    "src/engine/skills/displayStats.ts",
+    "src/engine/skills/mind-blast.test.ts",
+    "src/engine/skills/registry.test.ts",
+    "src/features/skills/SkillsScreen.mind-blast.test.tsx",
+    "src/features/skills/SkillsScreen.tsx",
+    "src/i18n/locales/en/damage-types.json",
+    "src/i18n/locales/en/skills.json",
+    "src/i18n/locales/zh-CN/damage-types.json",
+    "src/i18n/locales/zh-CN/skills.json",
+    "src/stores/mind-blast.causal.test.ts"
+  ],
+  "frozen_source_files": 1152,
+  "actual_committed_blobs_exact": true,
+  "required_receipts": {
+    "full-final": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "pid": 1131973,
+      "exit_code": 0,
+      "seconds": 598.6574167429935
+    },
+    "engine-final": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1131975,
+      "exit_code": 0,
+      "seconds": 138.16361478797626
+    },
+    "types-frozen": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1131976,
+      "exit_code": 0,
+      "seconds": 67.2032531920122
+    },
+    "lint-final": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1131974,
+      "exit_code": 0,
+      "seconds": 155.73458611103706
+    },
+    "build-final": {
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/tmp/d2h5-mind-blast-t1fuehnc/dist-final"
+      ],
+      "pid": 1131992,
+      "exit_code": 0,
+      "seconds": 19.219587375060655
+    },
+    "browser-final": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec python /tmp/d2h5-mind-blast-t1fuehnc/serve.py",
+        "--port",
+        "4496",
+        "--",
+        "python",
+        "/tmp/d2h5-mind-blast-t1fuehnc/browser-suite.py"
+      ],
+      "pid": 1135453,
+      "exit_code": 0,
+      "seconds": 86.20815049193334
+    },
+    "compatibility": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/boss-duration.test.ts",
+        "src/engine/skills/registry.test.ts",
+        "src/engine/combat/mana-burn.test.ts",
+        "src/engine/combat/mana-burn-definition.test.ts",
+        "src/engine/skills/mind-blast.test.ts",
+        "src/stores/mind-blast.causal.test.ts",
+        "src/features/skills/SkillsScreen.mind-blast.test.tsx"
+      ],
+      "pid": 1131735,
+      "exit_code": 0,
+      "seconds": 13.29565331095364
+    }
+  },
+  "full_tests": 14875,
+  "full_files": 666,
+  "existing_skips": 2
+}

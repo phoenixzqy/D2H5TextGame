@@ -1,0 +1,40 @@
+{
+  "rows": 213,
+  "changed_rows": [
+    "skills-assassin-mind-blast"
+  ],
+  "unchanged_other_rows_byte_exact": 212,
+  "before_sha256": "787bd57a3db8b555db664e7cc3c5771d79e23f3921cf9095cd0a9a05e3d32cbc",
+  "after_sha256": "a680fda75b5e7804c985055d27bfdac9be2cea11a3cb803296b97df5875c7f65",
+  "before_row": {
+    "class": "assassin",
+    "data_id": "skills-assassin-mind-blast",
+    "runtime_id": "assassin.mind_blast",
+    "trigger": "active",
+    "adapter_route": "damage",
+    "declared_statuses": "mana-burn|stun",
+    "source": "src/data/skills/assassin.json",
+    "risk_flags": "additional-statuses-truncated-by-adapter",
+    "behavior_verification": "unverified",
+    "contract_evidence": ""
+  },
+  "after_row": {
+    "class": "assassin",
+    "data_id": "skills-assassin-mind-blast",
+    "runtime_id": "assassin.mind_blast",
+    "trigger": "active",
+    "adapter_route": "arcane-damage+shared-mana-burn+ordered-stun",
+    "declared_statuses": "mana-burn|stun",
+    "source": "src/data/skills/assassin.json",
+    "risk_flags": "stun-mana-loss-locally-repaired|independent-design-qa-and-earned-balance-open",
+    "behavior_verification": "bounded-functional;independent-acceptance-open",
+    "contract_evidence": "docs/plans/decisions/D04-mind-blast-mana-burn-v1.md|docs/plans/evidence/d04-mind-blast.md|production/bugs/BUG-210-mind-blast-missing-stun-and-mana-loss.md"
+  },
+  "counts": {
+    "unverified": 103,
+    "bounded-functional": 108,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "assassin_bounded": 11
+}

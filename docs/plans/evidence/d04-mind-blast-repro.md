@@ -1,5 +1,8 @@
 # D04 — Mind Blast native missing-effect reproduction
 
+Historical pre-repair evidence. The subsequent shared repair and its current
+validation are recorded in [Mind Blast](d04-mind-blast.md).
+
 2026-10-25. Reproduction only; no implementation or functionality credit.
 [BUG210](../../../production/bugs/BUG-210-mind-blast-missing-stun-and-mana-loss.md)
 records both defects before any repair.

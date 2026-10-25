@@ -1,0 +1,111 @@
+{
+  "pass": true,
+  "cases": 4,
+  "exact_five_domain_pairs": [
+    {
+      "case": "final-browser-en-1280",
+      "rank": "2",
+      "before": "en-1280-mind-blast-rank2-before-5.json",
+      "after": "en-1280-mind-blast-rank2-after-6.json",
+      "five_domains_exact": true
+    },
+    {
+      "case": "final-browser-en-1280",
+      "rank": "1",
+      "before": "en-1280-mind-blast-rank1-before-3.json",
+      "after": "en-1280-mind-blast-rank1-after-4.json",
+      "five_domains_exact": true
+    },
+    {
+      "case": "final-browser-en-360",
+      "rank": "2",
+      "before": "en-360-mind-blast-rank2-before-5.json",
+      "after": "en-360-mind-blast-rank2-after-6.json",
+      "five_domains_exact": true
+    },
+    {
+      "case": "final-browser-en-360",
+      "rank": "1",
+      "before": "en-360-mind-blast-rank1-before-3.json",
+      "after": "en-360-mind-blast-rank1-after-4.json",
+      "five_domains_exact": true
+    },
+    {
+      "case": "final-browser-zh-CN-1280",
+      "rank": "2",
+      "before": "zh-CN-1280-mind-blast-rank2-before-5.json",
+      "after": "zh-CN-1280-mind-blast-rank2-after-6.json",
+      "five_domains_exact": true
+    },
+    {
+      "case": "final-browser-zh-CN-1280",
+      "rank": "1",
+      "before": "zh-CN-1280-mind-blast-rank1-before-3.json",
+      "after": "zh-CN-1280-mind-blast-rank1-after-4.json",
+      "five_domains_exact": true
+    },
+    {
+      "case": "final-browser-zh-CN-360",
+      "rank": "2",
+      "before": "zh-CN-360-mind-blast-rank2-before-5.json",
+      "after": "zh-CN-360-mind-blast-rank2-after-6.json",
+      "five_domains_exact": true
+    },
+    {
+      "case": "final-browser-zh-CN-360",
+      "rank": "1",
+      "before": "zh-CN-360-mind-blast-rank1-before-3.json",
+      "after": "zh-CN-360-mind-blast-rank1-after-4.json",
+      "five_domains_exact": true
+    }
+  ],
+  "casts": [
+    {
+      "case": "final-browser-en-1280",
+      "mana_percent": 99.9442,
+      "attacks_in_first_cast": 7
+    },
+    {
+      "case": "final-browser-en-360",
+      "mana_percent": 99.9442,
+      "attacks_in_first_cast": 7
+    },
+    {
+      "case": "final-browser-zh-CN-1280",
+      "mana_percent": 99.9422,
+      "attacks_in_first_cast": 7
+    },
+    {
+      "case": "final-browser-zh-CN-360",
+      "mana_percent": 99.9422,
+      "attacks_in_first_cast": 7
+    }
+  ],
+  "geometry_checks": 20,
+  "screenshots": [
+    "final-browser-en-1280/en-1280-mind-blast-cast-visible.png",
+    "final-browser-en-1280/en-1280-mind-blast-description.png",
+    "final-browser-en-1280/en-1280-mind-blast-details.png",
+    "final-browser-en-1280/en-1280-mind-blast-mana-stun-stats.png",
+    "final-browser-en-360/en-360-mind-blast-cast-visible.png",
+    "final-browser-en-360/en-360-mind-blast-description.png",
+    "final-browser-en-360/en-360-mind-blast-details.png",
+    "final-browser-en-360/en-360-mind-blast-mana-stun-stats.png",
+    "final-browser-zh-CN-1280/zh-CN-1280-mind-blast-cast-visible.png",
+    "final-browser-zh-CN-1280/zh-CN-1280-mind-blast-description.png",
+    "final-browser-zh-CN-1280/zh-CN-1280-mind-blast-details.png",
+    "final-browser-zh-CN-1280/zh-CN-1280-mind-blast-mana-stun-stats.png",
+    "final-browser-zh-CN-360/zh-CN-360-mind-blast-cast-visible.png",
+    "final-browser-zh-CN-360/zh-CN-360-mind-blast-description.png",
+    "final-browser-zh-CN-360/zh-CN-360-mind-blast-details.png",
+    "final-browser-zh-CN-360/zh-CN-360-mind-blast-mana-stun-stats.png"
+  ],
+  "individually_inspected": [
+    "final-browser-en-360/en-360-mind-blast-description.png",
+    "final-browser-zh-CN-360/zh-CN-360-mind-blast-mana-stun-stats.png",
+    "final-browser-en-1280/en-1280-mind-blast-cast-visible.png",
+    "final-browser-zh-CN-1280/zh-CN-1280-mind-blast-description.png"
+  ],
+  "visual_findings": "Bilingual descriptions and rank rows readable; no horizontal overflow. Actual Arcane casts and both status logs/chips visible. Existing icon fallback and broader a11y/device acceptance remain open.",
+  "synthetic_only": true
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "author review; independent acceptance remains open",
+  "correctness": [
+    "Exact ordered Mind Blast Mana Burn/Stun registration in actual JSON adapter and legacy builder",
+    "Direct actual-HP drain floors, caps after MP shields and excludes periodic/reflection/misses/full absorption",
+    "Independent pre-hit zero-MP Arcane factor keeps existing ordinary/boss combos and scalar arithmetic order",
+    "Only active markers clear on actual whole-MP increases; fractional carry/spending/future markers preserved",
+    "Original affected monsters retain basic fallback and regain skills on actual restoration"
+  ],
+  "architecture": [
+    "Shared closed Ajv-validated combat JSON policy",
+    "Shared damage/status/commitMana integration; no skill-specific resource patch",
+    "Existing absolute MP and status observation transport; no saved field or version"
+  ],
+  "presentation": [
+    "Pure rank model with shared coefficients and existing Stun durations",
+    "Bilingual unlearned/current/next/MAX UI and localized Mana Burn status name"
+  ],
+  "security": "First-party local gameplay only; no new dependency, credentials, permissions, CI or remote actions",
+  "performance": "No per-hit new RNG draw for the drain; existing two status applications consume ordinary draws. Full test/bundle/PWA performance gates remain open.",
+  "corrections": [
+    "Initial negative-duration suppression was too broad; narrowed to Mana Burn after four unchanged boss-duration tests failed",
+    "Explicit registry ordered-status list now includes Mind Blast",
+    "Separate damage multiplier avoids precombination underflow for 50\u00d71.2\u00d71.5",
+    "Fixture fixes use actual rebaseStatusClock, summoned lifeMax/refund cost, complete Redemption aura and readonly playback types",
+    "Browser zh status assertions use existing combat labels and full-width brackets; two forbidden test assertions replaced by checked access"
+  ]
+}

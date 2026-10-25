@@ -1,6 +1,6 @@
 # BUG-210 — Mind Blast drops Stun and Mana Burn never consumes mana
 
-- Status: reproduced; contract and repair open.
+- Status: locally repaired and verified; independent design/QA and earned balance open.
 - Severity: High — two advertised effects have no corresponding native result.
 - Environment: Node24.21.0; actual default registry/native L30 Assassin,
   synthetic opponents/resources and fixed seeds; pure engine, no viewport.
@@ -42,3 +42,15 @@ unlock24/cap20 and Cloak of Shadows prerequisite. No source patch or skill credi
 is included in this reproduction.
 
 See [evidence](../../docs/plans/evidence/d04-mind-blast-repro.md).
+
+## Local repair and verification
+
+Runtime/presentation/tests/contract commit a1b847f9 forwards ordered Mana Burn/
+Stun and implements shared JSON-owned actual-HP mana loss, pre-hit zero-MP
+Arcane amplification, restoration lifetime and affected monster skill lockout.
+The separate existing combo and boss scaling remain. All98 new cases and the
+225-case compatibility set pass; engine7705, full14875/666files/two existing
+skips, types/lint/build and four production locale/viewport cases pass. Eight
+exact five-domain Save-close-Continue pairs and20geometry checks are retained.
+Synthetic fixtures earn no class/build/balance credit. See
+[repair evidence](../../docs/plans/evidence/d04-mind-blast.md).
