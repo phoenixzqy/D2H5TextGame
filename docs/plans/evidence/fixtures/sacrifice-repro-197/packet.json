@@ -1,0 +1,45 @@
+{
+  "head": "38a7bc4e97b1c4d87cd69c9cb937cfc59bdf4c37",
+  "native_only": true,
+  "synthetic": true,
+  "cases": 2,
+  "passing_controls": 12,
+  "advertised_behavior_failures": 4,
+  "archive_sha256": "6f41d19317b18637ff3ee92ca138defd98a2fcfc0cae0308fc87af537def7721",
+  "all_members_byte_verified": true,
+  "files": {
+    "native-red-result.json": {
+      "bytes": 2555,
+      "sha256": "89b2e40862adda2f5ac76a9f9a0a012835938a0389b936d0e6a62a2db2142944"
+    },
+    "native-red.ts": {
+      "bytes": 4422,
+      "sha256": "e580cf5b173ae4acf7c456647714c6fbc59e7fa1abee27b9d4d5da6c8f878459"
+    },
+    "ownership.json": {
+      "bytes": 417,
+      "sha256": "503d0d896d7525167d09dfee10c4f1388a12995c89a678ba97b50a114722f0c8"
+    },
+    "run.py": {
+      "bytes": 708,
+      "sha256": "3b5e0ae4821d7e2c9dbbc426db49ca423c53f983dbad3775c64dfaf185110df7"
+    },
+    "sacrifice-native-red.json": {
+      "bytes": 323,
+      "sha256": "9d6e25aba2d532098f0acb1413c4ec87b6914acb6b39ec859d41e2faa1bc585b"
+    },
+    "sacrifice-native-red.log": {
+      "bytes": 4326,
+      "sha256": "d961b9f45a3ed64c71306820a0be129eb8640ceb1947d84739f32b54b6b15afe"
+    }
+  },
+  "cleanup": {
+    "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-_rpinmv9",
+    "scratch_absent": true,
+    "removed_files": 6,
+    "failures": [],
+    "remaining_paths": []
+  },
+  "independent_acceptance": false,
+  "inventory_credit": 0
+}

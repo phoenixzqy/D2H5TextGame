@@ -1,0 +1,107 @@
+{
+  "fixture": "Synthetic native L30 Paladin, ranks1/20, seed7, zero MP/ordinary regeneration, no gear/aura; target held, hero held after first real action. No earned campaign claim.",
+  "cases": [
+    {
+      "rank": 1,
+      "controls": {
+        "nativeSelection": true,
+        "oneCast": true,
+        "positiveEnemyDamage": true,
+        "zeroManaRetained": true,
+        "immutable": true,
+        "replay": true
+      },
+      "requirements": {
+        "actualCasterHpLoss": false,
+        "selfDamagePlayback": false
+      },
+      "observations": {
+        "attacks": [
+          {
+            "kind": "damage",
+            "source": "probe-hero",
+            "target": "probe-target",
+            "damageType": "physical",
+            "amount": 41,
+            "crit": false,
+            "dodged": false,
+            "simClockMs": 1700,
+            "uiDelayMs": 50
+          }
+        ],
+        "selfDamage": [],
+        "heroLife": 5000,
+        "enemyLife": 99959,
+        "actions": [
+          {
+            "kind": "action",
+            "actor": "probe-hero",
+            "skillId": "paladin.sacrifice",
+            "simClockMs": 1700,
+            "uiDelayMs": 50
+          }
+        ]
+      }
+    },
+    {
+      "rank": 20,
+      "controls": {
+        "nativeSelection": true,
+        "oneCast": true,
+        "positiveEnemyDamage": true,
+        "zeroManaRetained": true,
+        "immutable": true,
+        "replay": true
+      },
+      "requirements": {
+        "actualCasterHpLoss": false,
+        "selfDamagePlayback": false
+      },
+      "observations": {
+        "attacks": [
+          {
+            "kind": "damage",
+            "source": "probe-hero",
+            "target": "probe-target",
+            "damageType": "physical",
+            "amount": 117,
+            "crit": false,
+            "dodged": false,
+            "simClockMs": 1700,
+            "uiDelayMs": 50
+          }
+        ],
+        "selfDamage": [],
+        "heroLife": 5000,
+        "enemyLife": 99883,
+        "actions": [
+          {
+            "kind": "action",
+            "actor": "probe-hero",
+            "skillId": "paladin.sacrifice",
+            "simClockMs": 1700,
+            "uiDelayMs": 50
+          }
+        ]
+      }
+    }
+  ],
+  "failures": [
+    {
+      "rank": 1,
+      "requirement": "actualCasterHpLoss"
+    },
+    {
+      "rank": 1,
+      "requirement": "selfDamagePlayback"
+    },
+    {
+      "rank": 20,
+      "requirement": "actualCasterHpLoss"
+    },
+    {
+      "rank": 20,
+      "requirement": "selfDamagePlayback"
+    }
+  ]
+}

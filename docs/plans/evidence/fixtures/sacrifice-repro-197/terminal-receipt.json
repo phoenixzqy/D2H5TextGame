@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "node_modules/.bin/vite-node",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-_rpinmv9/native-red.ts"
+  ],
+  "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+  "exit": 1,
+  "seconds": 4.763,
+  "finished": "2026-10-25T10:20:58.440937+00:00"
+}
