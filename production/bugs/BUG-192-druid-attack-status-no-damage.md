@@ -1,7 +1,8 @@
 # BUG-192 — Give Maul, Rabies and Fire Claws damaging statuses
 
 Severity: High — three advertised attack statuses cause no periodic damage.
-Status: Reproduced; local repair in progress.
+Status: Fixed locally in `3ab831d` (data/schema) and `91056a5` (bilingual display);
+independent acceptance and earned balance remain open.
 Owners: content-designer / engine-dev / frontend-dev; root sole writer.
 
 ## Reproduction
@@ -27,7 +28,17 @@ adapter and shared periodic runtime consume explicit potency and supply no
 implicit fallback. Maul and Fire Claws also have misleading stale prose.
 No workaround; using a different skill does not repair these skills.
 
-Evidence: src/stores/druid-attack-dot.causal.test.ts; original causal-red.log/json
-under owned scratch /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8.
-Retain original failures and final evidence before disposal. No genuine campaign
-or remote action. Independent design/QA and earned class/build balance open.
+Evidence: [final packet](../../docs/plans/evidence/d04-druid-attack-dot.md),
+[retained manifest](../../docs/plans/evidence/fixtures/druid-attack-dot/manifest.json)
+and [original RED/final raw evidence](../../docs/plans/evidence/fixtures/druid-attack-dot/raw.tar.gz).
+Regressions: `src/stores/druid-attack-dot.causal.test.ts`,
+`src/engine/combat/druid-attack-dot.test.ts`,
+`src/engine/skills/druid-attack-dot-schema.test.ts`,
+`src/engine/skills/displayStats.periodic.test.ts` and
+`src/features/skills/SkillsScreen.druid-attack-dot.test.tsx`.
+Final full13405/582/two existing skips, engine6955/242, types/lint/build/bridge,
+production4/4 and eight exact five-domain Continue pairs pass. All1305 source
+and760 build hashes, HEAD/Git state and genuine digest remained frozen; actual
+committed HEAD blobs match. Retained original failures and introduced-duration
+review correction are disclosed in the final packet. No genuine campaign or
+remote action. Independent design/QA and earned class/build balance remain open.

@@ -93,7 +93,7 @@ druid,skills-druid-firestorm,druid.firestorm,active,damage+explicit-on-hit-burn,
 druid,skills-druid-arctic-blast,druid.arctic_blast,active,damage,chill,src/data/skills/druid.json,,unverified,
 druid,skills-druid-tornado,druid.tornado,active,damage,,src/data/skills/druid.json,,unverified,
 druid,skills-druid-summon-dire-wolf,druid.summon_dire_wolf,active,summon,,src/data/skills/druid.json,,unverified,
-druid,skills-druid-werewolf-maul,druid.werewolf_maul,active,damage,bleed,src/data/skills/druid.json,dot-strength-metadata-missing,unverified,
+druid,skills-druid-werewolf-maul,druid.werewolf_maul,active,damage+explicit-on-hit-bleed+form-preservation,bleed,src/data/skills/druid.json,provisional-dot-tuning-balance-open|earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d04-druid-attack-dot.md
 druid,skills-druid-hurricane,druid.hurricane,active,damage,chill,src/data/skills/druid.json,,unverified,
 druid,skills-druid-elemental-mastery,druid.elemental_mastery,passive,buff,,src/data/skills/druid.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,bounded-functional;independent-acceptance-open,decisions/D05-poison-elemental-masteries-v1.md; evidence/d05-poison-elemental-masteries.md
 druid,skills-druid-lycanthropy,druid.lycanthropy,passive,automatic-paid-wolf-life+cadence+next-wave-authority,,src/data/skills/druid.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-druid-shapeshifting.md
@@ -108,8 +108,8 @@ druid,skills-druid-armageddon,druid.armageddon,active,damage+explicit-on-hit-bur
 druid,skills-druid-werewolf,druid.werewolf,active,paid-native-form+run-carry+next-wave-authority,werewolf,src/data/skills/druid.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-druid-shapeshifting.md
 druid,skills-druid-werebear,druid.werebear,active,paid-native-form+run-carry+next-wave-authority,werebear,src/data/skills/druid.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-druid-shapeshifting.md
 druid,skills-druid-feral-rage,druid.feral_rage,active,damage,feral-rage|bleed,src/data/skills/druid.json,additional-statuses-truncated-by-adapter,unverified,
-druid,skills-druid-rabies,druid.rabies,active,damage,poison,src/data/skills/druid.json,dot-strength-metadata-missing,unverified,
-druid,skills-druid-fire-claws,druid.fire_claws,active,damage,burn,src/data/skills/druid.json,dot-strength-metadata-missing|burn-ignite-vocabulary-mismatch,unverified,
+druid,skills-druid-rabies,druid.rabies,active,damage+explicit-on-hit-poison+death-chain,poison,src/data/skills/druid.json,provisional-dot-tuning-balance-open|earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d04-druid-attack-dot.md
+druid,skills-druid-fire-claws,druid.fire_claws,active,damage+explicit-on-hit-burn,burn,src/data/skills/druid.json,provisional-dot-tuning-balance-open|earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d04-druid-attack-dot.md
 druid,skills-druid-hunger,druid.hunger,active,damage,hunger,src/data/skills/druid.json,,unverified,
 druid,skills-druid-shock-wave,druid.shock_wave,active,damage,stun,src/data/skills/druid.json,,unverified,
 druid,skills-druid-fury,druid.fury,active,damage,,src/data/skills/druid.json,,unverified,

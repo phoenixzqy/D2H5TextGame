@@ -1,0 +1,18 @@
+{
+  "pass": true,
+  "archiveByteVerifiedRawFiles": 264,
+  "commandReceipts": 37,
+  "unchangedSourceFiles": 1305,
+  "inventoryIdsOrderPreserved": 213,
+  "changedSkillIds": [
+    "skills-druid-werewolf-maul",
+    "skills-druid-rabies",
+    "skills-druid-fire-claws"
+  ],
+  "localEvidenceLinksChecked": 7,
+  "scratchAbsent": true,
+  "port4478Closed": true,
+  "genuineSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "cleanupFailures": [],
+  "independentAcceptance": false
+}

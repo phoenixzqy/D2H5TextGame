@@ -1,0 +1,2020 @@
+{
+  "scope": "Maul/Rabies/Fire Claws explicit periodic damage and truthful bilingual details. Local synthetic verification only; independent QA and earned balance remain open.",
+  "owner": "root",
+  "session": "01a1577a-5af4-70e3-8699-50a906877d8f",
+  "worktree": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+  "base": "7fa95c77a2bef4305dd2032fada3287192c19f4c",
+  "runtime": "91056a58ec0c51de062711cecbbfd117f3cae5dd",
+  "archiveSha256": "61fe6e1239b843618dd5573c4ae3b4f68e30a6da33db3a9a527375a7e58fcb9c",
+  "rawFiles": 264,
+  "files": {
+    "attachment-audit-command.json": {
+      "sha256": "8e685e6d2889b86e5f889958f8305214d5f2414efa97add25b53720a59ffd24c",
+      "bytes": 232
+    },
+    "attachment-audit-command.log": {
+      "sha256": "0d9dd97b33ab3286c11eb292f5b212bd370f0e57226a4d045baabccebb564d3f",
+      "bytes": 105
+    },
+    "attachment-audit-receipt-collision.json": {
+      "sha256": "30f491e8c6f12a96ca98185ebf0fd026dd8f49b70f7afb3bc4e5ec8358a0e12a",
+      "bytes": 617
+    },
+    "audit-browser.py": {
+      "sha256": "f7d4fb0c56da7039f1c2e15cef1238bad7b350cf8dde4cbfa35ee883a1bd30e9",
+      "bytes": 3013
+    },
+    "before-display-correction-audit-browser.py": {
+      "sha256": "ce7e039e1cb439bbee9cd1656aa3991a8e0ab51a7c6345d4c0f0c8eb2aa615ee",
+      "bytes": 2704
+    },
+    "before-display-correction-browser-attachment-audit.json": {
+      "sha256": "f907c4436940581ea631d2a1ba3d05414ec4e6cfd30032636109004ee2062cc2",
+      "bytes": 11278
+    },
+    "before-display-correction-server-process.json": {
+      "sha256": "bb1236020922cc8f5b2445c5c1cd738c116e1bd88307cb656797261171f8a588",
+      "bytes": 81
+    },
+    "before-display-correction-server-terminal.json": {
+      "sha256": "f08219e8a25dc77120d8d45f697c6100bd08007a910c26f45911d724d46e0b24",
+      "bytes": 58
+    },
+    "before-display-correction-visual-review.json": {
+      "sha256": "ab19f3c6c30f3a3a6c6de130bf0f1f18751c12f544b8e8aa88f78b3b0f3b3b59",
+      "bytes": 6917
+    },
+    "bridge-clean.json": {
+      "sha256": "58e3517a3b3061bc3b88916313e16f0ba824aaaaa1d9da7b7e53644adc68f5c0",
+      "bytes": 305
+    },
+    "bridge-clean.log": {
+      "sha256": "eec491543ea807893bec5ab669e444de342217a64e19e46342d5a503b15891aa",
+      "bytes": 144
+    },
+    "bridge-current.json": {
+      "sha256": "239575ff8d1d80f5eb0234356bbb4afd58d57cbb3852b4d1becc2c368c258e6f",
+      "bytes": 305
+    },
+    "bridge-current.log": {
+      "sha256": "eec491543ea807893bec5ab669e444de342217a64e19e46342d5a503b15891aa",
+      "bytes": 144
+    },
+    "bridge.json": {
+      "sha256": "a9b5cdad6e6cbc8087dcecc3bfaf45fc3e032c6e0c5f44adb977b5004e1b2a1b",
+      "bytes": 305
+    },
+    "bridge.log": {
+      "sha256": "d8168ea9bdc78989b66d5e83a19241ca82f37ef0782d3bce585f5a3669ee46a1",
+      "bytes": 222
+    },
+    "bridge.py": {
+      "sha256": "19b074e6b2c73adae41f8f0500ebe3259bd4ad5bef4281aaf2dc49ae64f12a41",
+      "bytes": 463
+    },
+    "browser-attachment-audit.json": {
+      "sha256": "61dbfd6024864d4a7244ddb68a85dbd743eb96b4f50e814bd348cdd9e09810b5",
+      "bytes": 11743
+    },
+    "browser-attachment-audit.log": {
+      "sha256": "0d9dd97b33ab3286c11eb292f5b212bd370f0e57226a4d045baabccebb564d3f",
+      "bytes": 105
+    },
+    "browser-audit.json": {
+      "sha256": "5dfa138d0aedba878d22cd5acd3b1bc7d7526d33b85772264578c552ad5d1ecf",
+      "bytes": 312
+    },
+    "browser-audit.log": {
+      "sha256": "0d9dd97b33ab3286c11eb292f5b212bd370f0e57226a4d045baabccebb564d3f",
+      "bytes": 105
+    },
+    "browser-current-en-1280/browser-report.json": {
+      "sha256": "aaeb55007bdde19114832d9420ca2443f93002b56c143c030c32a81cd045a4e6",
+      "bytes": 1689
+    },
+    "browser-current-en-1280/en-1280-fire-claws-combat.json": {
+      "sha256": "913bef7221a3e946ffa105f65cd2c02bc4f84f16b354e577e847116860133595",
+      "bytes": 2542
+    },
+    "browser-current-en-1280/en-1280-fire-claws-details.png": {
+      "sha256": "463f7fbe69e6d68a13d238d8c8905349eb4eea7e00a8fa5b9e66e311dbd76a97",
+      "bytes": 143327
+    },
+    "browser-current-en-1280/en-1280-fresh-1.json": {
+      "sha256": "d22df11af4b6f47e3c167398afeddbefb6d43df5b81542fdb2cb21ac27de0ff2",
+      "bytes": 3237
+    },
+    "browser-current-en-1280/en-1280-imported-2.json": {
+      "sha256": "326f0533009939782f70fad7fbee4b698b9fe0bb12790c0110b1d3d6e4b76d92",
+      "bytes": 5002
+    },
+    "browser-current-en-1280/en-1280-rabies-combat.json": {
+      "sha256": "ef883c9812ca2b15a6b4aa035ca07ddf35c6388caf960d809fd9ee4f60ef8242",
+      "bytes": 3372
+    },
+    "browser-current-en-1280/en-1280-rabies-combat.png": {
+      "sha256": "29a627acda7c3a2dcf7cecae0cb89d9744a5ff85789f5f972ad55b071faa16ce",
+      "bytes": 424531
+    },
+    "browser-current-en-1280/en-1280-rabies-details.png": {
+      "sha256": "03ae9de9fec03a8bcc69191d60682de64aa217c2127f9057bcd9710c5f148673",
+      "bytes": 150148
+    },
+    "browser-current-en-1280/en-1280-rank1-after-4.json": {
+      "sha256": "aa4fa13aa547895d1bf8509849cebf4740b1e6bd6e0c4840b9f0e19271b737fd",
+      "bytes": 5005
+    },
+    "browser-current-en-1280/en-1280-rank1-before-3.json": {
+      "sha256": "5655f223a65cafd2ce7f5b4b5e724f07e834707817f2de0ab951135e5eff63de",
+      "bytes": 5002
+    },
+    "browser-current-en-1280/en-1280-rank2-after-6.json": {
+      "sha256": "ae6c648dab79466551930fa18afe21cdc684126cfdee205015af821b9e265b36",
+      "bytes": 5020
+    },
+    "browser-current-en-1280/en-1280-rank2-before-5.json": {
+      "sha256": "0e5ef1cb6b709f160b325379dfd60a676085a4cc766f14d5834bf3e028238e2e",
+      "bytes": 5019
+    },
+    "browser-current-en-1280/en-1280-synthetic-input.json": {
+      "sha256": "97b0abe1354f8ab681ca82d98590b27b1e39d100b523abc1d91bfe9654b82763",
+      "bytes": 4178
+    },
+    "browser-current-en-1280/en-1280-werewolf-maul-combat.json": {
+      "sha256": "40f7546c6339e4dae29b4883df694052a16043e192f7e0e197e0572e842022f8",
+      "bytes": 2141
+    },
+    "browser-current-en-1280/en-1280-werewolf-maul-details.png": {
+      "sha256": "7b3fba78435ba1bec3649b36e9490718db2355ec3a82ab7ea96229e51d76e0be",
+      "bytes": 149628
+    },
+    "browser-current-en-1280.json": {
+      "sha256": "2f064b16906de27885ef877179076e2a51e543aa23fcdb5c203dd341f92ba87c",
+      "bytes": 314
+    },
+    "browser-current-en-1280.log": {
+      "sha256": "f526245ae6ff7d5c6dae986c43efc13282e1bd3bbf99e132f494a5da175228ed",
+      "bytes": 64
+    },
+    "browser-current-en-360/browser-report.json": {
+      "sha256": "5236e333b671136e954a610979f979273ef531ee4048488c5b881be5f1620b52",
+      "bytes": 1683
+    },
+    "browser-current-en-360/en-360-fire-claws-combat.json": {
+      "sha256": "05e4b9d426c3e4564ad64db9c45c21a8028a913f83d9afc4965ca04781eab77f",
+      "bytes": 2499
+    },
+    "browser-current-en-360/en-360-fire-claws-details.png": {
+      "sha256": "1c6cd7285e7a0c187ba9b7762016cce81cf6399625b39a46e75f0c1405bef5df",
+      "bytes": 54144
+    },
+    "browser-current-en-360/en-360-fresh-1.json": {
+      "sha256": "2f19835c60bf946ca7a10c9606c6b792eb4cd155071627d51acb443d42a107a8",
+      "bytes": 3237
+    },
+    "browser-current-en-360/en-360-imported-2.json": {
+      "sha256": "1af99f546f50129ced2b3b5ba735c154323cf447d3f744950fe58cd8a98478ac",
+      "bytes": 5002
+    },
+    "browser-current-en-360/en-360-rabies-combat.json": {
+      "sha256": "00c931cfdfcb673f4a96d56a0c70434245b4948a9fbd5b98b01a4b5e68a4df70",
+      "bytes": 3165
+    },
+    "browser-current-en-360/en-360-rabies-combat.png": {
+      "sha256": "dba88568f4bffcf0df69c4b592e534609614e4fa3e0e0de6c7ddacb5e8dda88e",
+      "bytes": 38016
+    },
+    "browser-current-en-360/en-360-rabies-details.png": {
+      "sha256": "441e1dd217b7397dc59410a1a59cfaddcfc2a134e94adf5846d1b7669ff3231a",
+      "bytes": 55626
+    },
+    "browser-current-en-360/en-360-rank1-after-4.json": {
+      "sha256": "4bc638a411d798a7c37c9f4abcae7807f31be79531605018f81601523fe2298e",
+      "bytes": 5005
+    },
+    "browser-current-en-360/en-360-rank1-before-3.json": {
+      "sha256": "cd5d6681b8cea8d0af9a4db0dbba77920fb5848b284f21043b3ea696d8929754",
+      "bytes": 5002
+    },
+    "browser-current-en-360/en-360-rank2-after-6.json": {
+      "sha256": "e76841944cd6d1026c69902b75a59ce7a5fab9171184b756e0b4ebe35a95c1c7",
+      "bytes": 5019
+    },
+    "browser-current-en-360/en-360-rank2-before-5.json": {
+      "sha256": "a8b8bd6ea0d6badc7dee69578cde462e456390934cccbb39f24f0d6a03f7716e",
+      "bytes": 5019
+    },
+    "browser-current-en-360/en-360-synthetic-input.json": {
+      "sha256": "0c4a06a8a9b39d26839b60291e0b04ed587dd27f2d29bbdad25d2a3c28f8d912",
+      "bytes": 4178
+    },
+    "browser-current-en-360/en-360-werewolf-maul-combat.json": {
+      "sha256": "d5e55ae80f6ab650e7a65b27383934e65f5db20fb4640d510414d61e552c4cce",
+      "bytes": 2912
+    },
+    "browser-current-en-360/en-360-werewolf-maul-details.png": {
+      "sha256": "123ab09a0eae10e4e5ff3d952726be486ccaffd249b03765e31b0f7d666f4a55",
+      "bytes": 52147
+    },
+    "browser-current-en-360-interruption.json": {
+      "sha256": "c0693615a1b5b4db91b1d84994d6e6a4a700459f1494dba12d82c902d7890eb2",
+      "bytes": 286
+    },
+    "browser-current-en-360-recovered/browser-report.json": {
+      "sha256": "5236e333b671136e954a610979f979273ef531ee4048488c5b881be5f1620b52",
+      "bytes": 1683
+    },
+    "browser-current-en-360-recovered/en-360-fire-claws-combat.json": {
+      "sha256": "d5489a02122650d0645570f2a0f04fd1cbf6b9e96c58f897c7a68df1ce9a6817",
+      "bytes": 2512
+    },
+    "browser-current-en-360-recovered/en-360-fire-claws-details.png": {
+      "sha256": "1c6cd7285e7a0c187ba9b7762016cce81cf6399625b39a46e75f0c1405bef5df",
+      "bytes": 54144
+    },
+    "browser-current-en-360-recovered/en-360-fresh-1.json": {
+      "sha256": "209843b94a8c2c449dbbae5dde218dfe82c5cc177f9eebd88348a6115c688f72",
+      "bytes": 3237
+    },
+    "browser-current-en-360-recovered/en-360-imported-2.json": {
+      "sha256": "22338481d83218fea8f199afdee72c24012c24fb313f98a45f443bf2bd441bbc",
+      "bytes": 5002
+    },
+    "browser-current-en-360-recovered/en-360-rabies-combat.json": {
+      "sha256": "b102010e8ba3e4fadd7a264b24790566654f926384ce528d830a5167bfbd72ed",
+      "bytes": 3158
+    },
+    "browser-current-en-360-recovered/en-360-rabies-combat.png": {
+      "sha256": "74f29d4c7c25e96793ef0e1b000d82a914322e2fdabbc42d62f04c5c4aee75bb",
+      "bytes": 38004
+    },
+    "browser-current-en-360-recovered/en-360-rabies-details.png": {
+      "sha256": "441e1dd217b7397dc59410a1a59cfaddcfc2a134e94adf5846d1b7669ff3231a",
+      "bytes": 55626
+    },
+    "browser-current-en-360-recovered/en-360-rank1-after-4.json": {
+      "sha256": "192269b9d65115b75a4d74c3ba25fdbac909bf40d7dc96371ddd71f2e452dc13",
+      "bytes": 5005
+    },
+    "browser-current-en-360-recovered/en-360-rank1-before-3.json": {
+      "sha256": "24686c27e625936b1cda8e9602467539d3df93c51426a5ec09175c13e79767e8",
+      "bytes": 5002
+    },
+    "browser-current-en-360-recovered/en-360-rank2-after-6.json": {
+      "sha256": "80d4d678ce85047c2d88a6b5c3ed52ec1865a16609dafcf65d97a652168a7b41",
+      "bytes": 5019
+    },
+    "browser-current-en-360-recovered/en-360-rank2-before-5.json": {
+      "sha256": "f7fcd132a5c5bee69bd3665f5ad3db4e58ba55b589e4ac1d3ea6de2817a64400",
+      "bytes": 5019
+    },
+    "browser-current-en-360-recovered/en-360-synthetic-input.json": {
+      "sha256": "10f6452e112f73df008bc6eceb4d00b87e99b303d6f49b06fe9b01c20766fd5b",
+      "bytes": 4178
+    },
+    "browser-current-en-360-recovered/en-360-werewolf-maul-combat.json": {
+      "sha256": "cd638957f3d249a548c3664fd7a677cb5d817d06f0572fff37147bae7a18396f",
+      "bytes": 2789
+    },
+    "browser-current-en-360-recovered/en-360-werewolf-maul-details.png": {
+      "sha256": "123ab09a0eae10e4e5ff3d952726be486ccaffd249b03765e31b0f7d666f4a55",
+      "bytes": 52147
+    },
+    "browser-current-en-360-recovered-process.json": {
+      "sha256": "d4b60ddce17af294f2843337a835fe16f0dd89134d64ef1287aab3e4ec6c181e",
+      "bytes": 256
+    },
+    "browser-current-en-360-recovered.json": {
+      "sha256": "750e9bad616a47ad39290b7e8f715bb61f0737d3930d8a1824f0560707425228",
+      "bytes": 336
+    },
+    "browser-current-en-360-recovered.log": {
+      "sha256": "74f553201246abfecd3e8d4eb80ff1f7476b50397e1c5b2161600639a948cdbe",
+      "bytes": 63
+    },
+    "browser-current-en-360.log": {
+      "sha256": "74f553201246abfecd3e8d4eb80ff1f7476b50397e1c5b2161600639a948cdbe",
+      "bytes": 63
+    },
+    "browser-current-zh-CN-1280/browser-report.json": {
+      "sha256": "409aaf87b96fa5110ef5fa6cccd550e956e8a9e0c9a7165c783f82e726414e76",
+      "bytes": 1645
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-fire-claws-combat.json": {
+      "sha256": "3f2fe895f276b33054a36e8a9019dc69b19dc9078e26d09860c5225af445b7b1",
+      "bytes": 3789
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-fire-claws-details.png": {
+      "sha256": "5e96b7034ebda5197b3e1cd37478049b4a56052b232141984579a84beb525708",
+      "bytes": 150900
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-fresh-1.json": {
+      "sha256": "187d67e3e60df877b3ffc9382394d4ad7ec41ec19d87584ca0ae219723b6918e",
+      "bytes": 3240
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-imported-2.json": {
+      "sha256": "99b59d70fd468bf0dc85f216a33c26df8cc33c996c9986953d6841ed14e8c279",
+      "bytes": 5005
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-rabies-combat.json": {
+      "sha256": "35fbd7d4d714525c78b60d501771d6675d73269695a1b3b5e9a76b61d33b5f37",
+      "bytes": 4858
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-rabies-combat.png": {
+      "sha256": "a78528e1c6797ed973f372a86dde1f7b120aa60d139c46ae6dfb28d56c034db9",
+      "bytes": 421988
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-rabies-details.png": {
+      "sha256": "50a18f382dc6e15dfee26eef4ecdbba2c47168783d34804759000990d25bdfe6",
+      "bytes": 152414
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-rank1-after-4.json": {
+      "sha256": "8ef5f8e682c54e3ba7c3b019a5c5b67b7bbf5c2ce31a4d68300e9bc1a1331be2",
+      "bytes": 5008
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-rank1-before-3.json": {
+      "sha256": "fc2becdba725b0ff4d4534a6f75fd74e41d141f61b7464fe0fe241a38b000a4f",
+      "bytes": 5005
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-rank2-after-6.json": {
+      "sha256": "81ae34a8176bcd62c481e0272da45276884980f5601adda9589e60b07933e464",
+      "bytes": 5022
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-rank2-before-5.json": {
+      "sha256": "3c00a07086a7e053ebc12336e8be618c730f72ef7ebf8335c8f7fef4641e30eb",
+      "bytes": 5022
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-synthetic-input.json": {
+      "sha256": "05b3e68912e3ae88b52565005d78efc3f1d679c3c4100b4a24bf82c77b1b43fc",
+      "bytes": 4181
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-werewolf-maul-combat.json": {
+      "sha256": "88f62cef6c9b9ac330164dab83208c1874718c52ee54e603cc0a4fb2bccac925",
+      "bytes": 3163
+    },
+    "browser-current-zh-CN-1280/zh-CN-1280-werewolf-maul-details.png": {
+      "sha256": "14048b4f18b90fc368c3b5c41a26b680f87ace781b9dee95e3f7d0b6ddc31edc",
+      "bytes": 153064
+    },
+    "browser-current-zh-CN-1280.json": {
+      "sha256": "0a150ad95fa89538fa590f27e3d4256864af281e71598d74a77ed0fb8937f4f7",
+      "bytes": 314
+    },
+    "browser-current-zh-CN-1280.log": {
+      "sha256": "6c93dcd8bb75a821d61d2dacf4af8fe30ab8c7fa077ee69997ef16e348b832f5",
+      "bytes": 67
+    },
+    "browser-current-zh-CN-360/browser-report.json": {
+      "sha256": "c63ecb166625766275aca92b9144545d823c84601e1b71faea1be01a74c2a79c",
+      "bytes": 1639
+    },
+    "browser-current-zh-CN-360/zh-CN-360-fire-claws-combat.json": {
+      "sha256": "23289cbe2c45c4e8c8186f807116e17f5b0a518c76a2eb016f9838e92e0959ba",
+      "bytes": 2650
+    },
+    "browser-current-zh-CN-360/zh-CN-360-fire-claws-details.png": {
+      "sha256": "ad4dcc351d8182369de2ed4a3d19366c7f8678759d6824e910e4e8967235e918",
+      "bytes": 60692
+    },
+    "browser-current-zh-CN-360/zh-CN-360-fresh-1.json": {
+      "sha256": "0605c69421cd26d908a2d67cca97a92b9712c9d5c4b2a4bf9dfd7a2ca288e533",
+      "bytes": 3240
+    },
+    "browser-current-zh-CN-360/zh-CN-360-imported-2.json": {
+      "sha256": "fcc6bd04a7d533a325869eff1b0604006f28d6c0d56d0c60fbc4c94b08e48b94",
+      "bytes": 5005
+    },
+    "browser-current-zh-CN-360/zh-CN-360-rabies-combat.json": {
+      "sha256": "6c9942e0e03039e3818d2df32125064593f8c6739e44b9768a3f643a744c36ca",
+      "bytes": 3408
+    },
+    "browser-current-zh-CN-360/zh-CN-360-rabies-combat.png": {
+      "sha256": "e791f256436a05425ece4c38b2193f4bad9fc05bbbd081420ff5f5dcd49c1521",
+      "bytes": 37454
+    },
+    "browser-current-zh-CN-360/zh-CN-360-rabies-details.png": {
+      "sha256": "222e5fc8e2a588b713075c730f42213c435b97783954be3c1d1b330c1048b1f9",
+      "bytes": 64988
+    },
+    "browser-current-zh-CN-360/zh-CN-360-rank1-after-4.json": {
+      "sha256": "5aaeb3e7b0385c733f8ff6fff2adc00b158e906ccbcdda71c50b32a0d5c75131",
+      "bytes": 5008
+    },
+    "browser-current-zh-CN-360/zh-CN-360-rank1-before-3.json": {
+      "sha256": "5cadfc63916ec808d50af4564afd48c8bdc7a6f157ef3926d9081f8dfb8bea1b",
+      "bytes": 5005
+    },
+    "browser-current-zh-CN-360/zh-CN-360-rank2-after-6.json": {
+      "sha256": "abb0f7b326b8524acd48073352f913e0e1723f98460f09b0eb10e507fa7c970a",
+      "bytes": 5022
+    },
+    "browser-current-zh-CN-360/zh-CN-360-rank2-before-5.json": {
+      "sha256": "1e67498eb94d417d59cb01194c8010b856c12eec8cd326b5402a77fc41ad7b49",
+      "bytes": 5022
+    },
+    "browser-current-zh-CN-360/zh-CN-360-synthetic-input.json": {
+      "sha256": "4c59ea7f8ea21ed6c020a5bb181077335a4ae4efbe58cc18911ca0bb1bce26b6",
+      "bytes": 4181
+    },
+    "browser-current-zh-CN-360/zh-CN-360-werewolf-maul-combat.json": {
+      "sha256": "842955b1b2ebe17ef549ae64471c4469e65ffc45e1a7207e0dac299218b69481",
+      "bytes": 2962
+    },
+    "browser-current-zh-CN-360/zh-CN-360-werewolf-maul-details.png": {
+      "sha256": "3774c46e20eb1c8a76d8fb72941dfd666bcdc18eeb3dd183cf301fbc0e046f59",
+      "bytes": 64682
+    },
+    "browser-current-zh-CN-360.json": {
+      "sha256": "43cf8880699e3f8cc4048e847d30ae56dc525136769508192d34d2232f9ee158",
+      "bytes": 314
+    },
+    "browser-current-zh-CN-360.log": {
+      "sha256": "ab644981e1b099f9f4dfc3f2e4878e8988b73d35349951ff66857e4b8a770521",
+      "bytes": 66
+    },
+    "browser-current.cjs": {
+      "sha256": "85d5c3c63db31febdba186c9467d853d1a96232ec0adab8ab779dcf4335c20d7",
+      "bytes": 9317
+    },
+    "browser-final/browser-report.json": {
+      "sha256": "ad1ab33f60d10db41d9640d6b9fc0dfcc2fea79e30b7f5ea156244c0e7bafd8d",
+      "bytes": 4903
+    },
+    "browser-final/en-1280-fire-claws-combat.json": {
+      "sha256": "4c54179fdd98514faadc55af594a20c6dd4f89bfc0b9f1382ba3c41e0d932375",
+      "bytes": 3594
+    },
+    "browser-final/en-1280-fire-claws-details.png": {
+      "sha256": "d3f58b55af458b294bc2d123788b5e6113fa02b8cdbca873b0591b074e42c74a",
+      "bytes": 143337
+    },
+    "browser-final/en-1280-fresh-1.json": {
+      "sha256": "7405fbcbdd88f4d3c94d62d7bbbc1c8288983951ff75806eabba3b2b5dc915df",
+      "bytes": 3237
+    },
+    "browser-final/en-1280-imported-2.json": {
+      "sha256": "c6b15bb1aef8528f50bca10583707ed46c04c12c5e1b513be59d0f9ee3e42c6a",
+      "bytes": 5002
+    },
+    "browser-final/en-1280-rabies-combat.json": {
+      "sha256": "c0cdfcfa1e02334f53f1ffc26074ff286adc20696ba25f1af82035bb42a038a5",
+      "bytes": 3178
+    },
+    "browser-final/en-1280-rabies-combat.png": {
+      "sha256": "9043ce901fc39b305da4f3f08b4d505a9db408a5ca8986d9a24c58daee371d2a",
+      "bytes": 457916
+    },
+    "browser-final/en-1280-rabies-details.png": {
+      "sha256": "03ae9de9fec03a8bcc69191d60682de64aa217c2127f9057bcd9710c5f148673",
+      "bytes": 150148
+    },
+    "browser-final/en-1280-rank1-after-4.json": {
+      "sha256": "5b197e1a27a745b6ae7d58e4f76e8c29634e5cb3df1bcde41331afae5dc3f638",
+      "bytes": 5005
+    },
+    "browser-final/en-1280-rank1-before-3.json": {
+      "sha256": "0f2db01bb4f635ad84a731fbfc16af36763b7f2e1484f19e5f035c9357df0e88",
+      "bytes": 5002
+    },
+    "browser-final/en-1280-rank2-after-6.json": {
+      "sha256": "908d878321e8d6c855dfb937427e3f1da53ec1a5d4c8dcda370cc0a35a49f0f0",
+      "bytes": 5019
+    },
+    "browser-final/en-1280-rank2-before-5.json": {
+      "sha256": "defbf5bad84498de121a905c17131643d36902cf915dc7de037986026369ad24",
+      "bytes": 5019
+    },
+    "browser-final/en-1280-synthetic-input.json": {
+      "sha256": "dbe9358684a8dec1a361e41739044e8dd57c2dc086c5ba000be5451aa7f52ff6",
+      "bytes": 4178
+    },
+    "browser-final/en-1280-werewolf-maul-combat.json": {
+      "sha256": "19144d580c79a0e6048f12f90c20fa3adda9411dd69d9c99a054821ad2eaace7",
+      "bytes": 2069
+    },
+    "browser-final/en-1280-werewolf-maul-details.png": {
+      "sha256": "7b3fba78435ba1bec3649b36e9490718db2355ec3a82ab7ea96229e51d76e0be",
+      "bytes": 149628
+    },
+    "browser-final/en-360-fire-claws-combat.json": {
+      "sha256": "b6814f907774461ee516eb93ceb96eee041c027557b3be498e4045830d34f805",
+      "bytes": 2520
+    },
+    "browser-final/en-360-fire-claws-details.png": {
+      "sha256": "d24f265be9a103924ba6c81ea456f6663f8740419567e0194018dbbbc2c71628",
+      "bytes": 54109
+    },
+    "browser-final/en-360-fresh-7.json": {
+      "sha256": "5f025ae1917ffb7005d07699874f7d4f78c414e010b2d09495c07a8121f15c00",
+      "bytes": 3237
+    },
+    "browser-final/en-360-imported-8.json": {
+      "sha256": "f16ce6770b34ac863f3ebca4c93a13a8c4fc14b907ec94b618bd52ffcf48e9d1",
+      "bytes": 5002
+    },
+    "browser-final/en-360-rabies-combat.json": {
+      "sha256": "3192a193bf74a22dd6f2aeeaa3ef67d2860a09bd5d96879b6a1f876bafcbede1",
+      "bytes": 3200
+    },
+    "browser-final/en-360-rabies-combat.png": {
+      "sha256": "3686f8ba3303f149d48f1c247e42f6bbd9674e66baaa9fdcdcfcd867b6240c42",
+      "bytes": 37801
+    },
+    "browser-final/en-360-rabies-details.png": {
+      "sha256": "441e1dd217b7397dc59410a1a59cfaddcfc2a134e94adf5846d1b7669ff3231a",
+      "bytes": 55626
+    },
+    "browser-final/en-360-rank1-after-10.json": {
+      "sha256": "b199633add5f84ede15bdcef228fbb3a74fed503ec84a11ab41371c2435dea52",
+      "bytes": 5005
+    },
+    "browser-final/en-360-rank1-before-9.json": {
+      "sha256": "9249cc1b03e1cbfbfed0b2fe9ce61073e289e285b2d4c65f2958b1422c67b54c",
+      "bytes": 5002
+    },
+    "browser-final/en-360-rank2-after-12.json": {
+      "sha256": "45d73caa65c3b70286acd133164277c751ccaf2c6cdaec54a7017da32a11ae98",
+      "bytes": 5019
+    },
+    "browser-final/en-360-rank2-before-11.json": {
+      "sha256": "fa2073b8b8bbd9230ba2b4ba4a43116b79a1f1a85340671be6ebeb778d267109",
+      "bytes": 5019
+    },
+    "browser-final/en-360-synthetic-input.json": {
+      "sha256": "5ebab4a75a699e984264ccb06e2a68c3bb69f811c3b45a1e49c8ebdc2f76aecb",
+      "bytes": 4178
+    },
+    "browser-final/en-360-werewolf-maul-combat.json": {
+      "sha256": "aa184222fa4656e584686955f0b027c30824dd91797b0ae1754a4fbc167138ad",
+      "bytes": 2034
+    },
+    "browser-final/en-360-werewolf-maul-details.png": {
+      "sha256": "123ab09a0eae10e4e5ff3d952726be486ccaffd249b03765e31b0f7d666f4a55",
+      "bytes": 52147
+    },
+    "browser-final/zh-CN-1280-fire-claws-combat.json": {
+      "sha256": "6ddfd5061a77a055ff87aa235710dd8dbbb8d62ccdac453c48d6f657d7016280",
+      "bytes": 2664
+    },
+    "browser-final/zh-CN-1280-fire-claws-details.png": {
+      "sha256": "5e96b7034ebda5197b3e1cd37478049b4a56052b232141984579a84beb525708",
+      "bytes": 150900
+    },
+    "browser-final/zh-CN-1280-fresh-13.json": {
+      "sha256": "471cc46a0bd365f2426f912b7dd86309ffeda882bd58c746b0b704ba984cc8f9",
+      "bytes": 3240
+    },
+    "browser-final/zh-CN-1280-imported-14.json": {
+      "sha256": "86a9907cddfd8edaaf0f412f36f0ba905c87fd50e7f62c495293b6a4e58fa64b",
+      "bytes": 5005
+    },
+    "browser-final/zh-CN-1280-rabies-combat.json": {
+      "sha256": "2b47d6cc4d7da00f6a38649d5ad4b6c545b65b65120a71cdbd5570e53f03ae7a",
+      "bytes": 3455
+    },
+    "browser-final/zh-CN-1280-rabies-combat.png": {
+      "sha256": "c8875000758636624370cf81de8a1ac53a5c14a4184b958c9b9239b89acbd5c3",
+      "bytes": 425624
+    },
+    "browser-final/zh-CN-1280-rabies-details.png": {
+      "sha256": "50a18f382dc6e15dfee26eef4ecdbba2c47168783d34804759000990d25bdfe6",
+      "bytes": 152414
+    },
+    "browser-final/zh-CN-1280-rank1-after-16.json": {
+      "sha256": "c1472970a686e21a3f3c9483ab2772611e868956dd0d9bbbb94b6bd97b13975b",
+      "bytes": 5008
+    },
+    "browser-final/zh-CN-1280-rank1-before-15.json": {
+      "sha256": "41306720a8a0559908279f96aaf200a9e2a89cf16c06c9ba273f5174a1f5b868",
+      "bytes": 5005
+    },
+    "browser-final/zh-CN-1280-rank2-after-18.json": {
+      "sha256": "4b60c6b43c6b33c10d8d14618722cbcb998e1360dc5ee08aa77efbe7d5a119d1",
+      "bytes": 5022
+    },
+    "browser-final/zh-CN-1280-rank2-before-17.json": {
+      "sha256": "6c18a693c2f3113e1ec495de5f1bd570ab65402be5cd0219616356c483a4396a",
+      "bytes": 5022
+    },
+    "browser-final/zh-CN-1280-synthetic-input.json": {
+      "sha256": "3077eaadc59e12c55d2c563fbbc013d8fb7c2be49f86bc413c3a94fc541a2201",
+      "bytes": 4181
+    },
+    "browser-final/zh-CN-1280-werewolf-maul-combat.json": {
+      "sha256": "a0d2bda5c7ef76dbeedc0a684fdb6f46d50ed66a832c91752b536595cf86eccb",
+      "bytes": 4006
+    },
+    "browser-final/zh-CN-1280-werewolf-maul-details.png": {
+      "sha256": "14048b4f18b90fc368c3b5c41a26b680f87ace781b9dee95e3f7d0b6ddc31edc",
+      "bytes": 153064
+    },
+    "browser-interruption.json": {
+      "sha256": "abbb199650c3de43eb85a84bd674706b007ab1e2cb28fccb1c5a0928ae00c2fb",
+      "bytes": 458
+    },
+    "browser-missing-mobile/browser-report.json": {
+      "sha256": "c63ecb166625766275aca92b9144545d823c84601e1b71faea1be01a74c2a79c",
+      "bytes": 1639
+    },
+    "browser-missing-mobile/zh-CN-360-fire-claws-combat.json": {
+      "sha256": "6767a86984329466280f5da2ad71f6973a2e6934cc569752cb420af383a76d2c",
+      "bytes": 2712
+    },
+    "browser-missing-mobile/zh-CN-360-fire-claws-details.png": {
+      "sha256": "89615b70f56238ff24059d8f69b999e71ad9819b2aedbde9f786673bf1405932",
+      "bytes": 60695
+    },
+    "browser-missing-mobile/zh-CN-360-fresh-1.json": {
+      "sha256": "cf86222428c6d51c6a43613d807527b50eb1d57e975831a0f238bee0a696f706",
+      "bytes": 3240
+    },
+    "browser-missing-mobile/zh-CN-360-imported-2.json": {
+      "sha256": "bfc75196861859c0d488c50acfb042e195f70be127fbef05825a9373282856ca",
+      "bytes": 5005
+    },
+    "browser-missing-mobile/zh-CN-360-rabies-combat.json": {
+      "sha256": "766010031da72a6ce286b8fd0d62a8f259cfed06923e283c18c756ea33d0743f",
+      "bytes": 3381
+    },
+    "browser-missing-mobile/zh-CN-360-rabies-combat.png": {
+      "sha256": "c8ba611aa200c4de22ae91c4023c0fcfedea05e0c91de330d2725f4ae98ac46e",
+      "bytes": 37802
+    },
+    "browser-missing-mobile/zh-CN-360-rabies-details.png": {
+      "sha256": "222e5fc8e2a588b713075c730f42213c435b97783954be3c1d1b330c1048b1f9",
+      "bytes": 64988
+    },
+    "browser-missing-mobile/zh-CN-360-rank1-after-4.json": {
+      "sha256": "2c26b87f35bc38cdca7e313fef86a4bcf764279722582d6b3a4fb4732dcc02a2",
+      "bytes": 5008
+    },
+    "browser-missing-mobile/zh-CN-360-rank1-before-3.json": {
+      "sha256": "f8f4a4c16ad673e3f3eea710c1a45ec8195f3d31ad69e87f1771dd990bf9f4a9",
+      "bytes": 5005
+    },
+    "browser-missing-mobile/zh-CN-360-rank2-after-6.json": {
+      "sha256": "a21882b4ada8b3d2f39aea9a18d3f9c980628b32881593532a3f2e6cfd496fe4",
+      "bytes": 5022
+    },
+    "browser-missing-mobile/zh-CN-360-rank2-before-5.json": {
+      "sha256": "108e3758b5f3dcc2df09f08bf25cec2b712b50703a10a76996d3fbdfc8bdb69e",
+      "bytes": 5022
+    },
+    "browser-missing-mobile/zh-CN-360-synthetic-input.json": {
+      "sha256": "bd32b5cf1ef9659a402cd85d1db997036b30cfca92876d6258c015a8faa3ad8c",
+      "bytes": 4181
+    },
+    "browser-missing-mobile/zh-CN-360-werewolf-maul-combat.json": {
+      "sha256": "46a96242fa98b510519ffc60e33cf3a8d325032e164719ee01e5afa53baaf865",
+      "bytes": 3117
+    },
+    "browser-missing-mobile/zh-CN-360-werewolf-maul-details.png": {
+      "sha256": "3774c46e20eb1c8a76d8fb72941dfd666bcdc18eeb3dd183cf301fbc0e046f59",
+      "bytes": 64682
+    },
+    "browser-missing-mobile.cjs": {
+      "sha256": "cd69cf08f9184023fd8969c8358ca93468a8651ce32cf15697fd250bb8fcc6d5",
+      "bytes": 9200
+    },
+    "browser-missing-mobile.json": {
+      "sha256": "648fc5e53c587134bc02476a2786757e3172850e8a0366149f1c372e3c9162ef",
+      "bytes": 320
+    },
+    "browser-missing-mobile.log": {
+      "sha256": "0114c11e666c617927c7857a50a9486c1381cffec16936d57ccde63c02c22e54",
+      "bytes": 75
+    },
+    "browser.cjs": {
+      "sha256": "a95a47181f5e192a25295dfcf5210c77503d9dc3780442a3a783092cfa96da43",
+      "bytes": 9216
+    },
+    "browser.log": {
+      "sha256": "5b1014e3319316db4da6497a8114e1268170009246b90d704b5c83ad635e8eca",
+      "bytes": 41
+    },
+    "build-clean.json": {
+      "sha256": "81cb51b8bbd2b7a858e96f370685f23f5fd07f499767a8189b8467f60ba34070",
+      "bytes": 355
+    },
+    "build-clean.log": {
+      "sha256": "5756f7cc35fdbed1c65899f6534a658a8c0368111dd884bf080d198eca3c76bd",
+      "bytes": 2325
+    },
+    "build-current.json": {
+      "sha256": "db1080780a45ffd20ef30051baf1554410164acd760042a5707c502a8a617af5",
+      "bytes": 355
+    },
+    "build-current.log": {
+      "sha256": "05e7120e0a5123423c9cb2c6c86be28fff9719b9c30b676ef6242e6c81d234ae",
+      "bytes": 2325
+    },
+    "build-final.json": {
+      "sha256": "56840edacd47472b7c0e7cb08399874078d69a94cba97c46aa44410d8f0b8278",
+      "bytes": 355
+    },
+    "build-final.log": {
+      "sha256": "e145ddcc89f0848352582a330548afdedda15bc1813940133f1d6a9c066c4015",
+      "bytes": 2325
+    },
+    "build-staging-correction.json": {
+      "sha256": "781984565a76b0fb8344c8582cb2462771e8aba5c425949cda2a5105e6e7380b",
+      "bytes": 374
+    },
+    "build-superseded-hashes.json": {
+      "sha256": "55b85dec873f344142c222038623bbfa85cda3b38b8b2a63fc0d6d0fbc807b34",
+      "bytes": 101771
+    },
+    "build.json": {
+      "sha256": "a720be89002419ebb449afcac48bd9c66bb93ebc6919bc03ab2d9f23e1e5a3b7",
+      "bytes": 355
+    },
+    "build.log": {
+      "sha256": "752da7ac4bd5b45d820574fc13d15f07f65a29d093941578c05867fb306f4cdc",
+      "bytes": 2325
+    },
+    "causal-red.json": {
+      "sha256": "3230420d0577b761eac49559ba219dffd049156a12acf396452cb5b2e0860fcd",
+      "bytes": 280
+    },
+    "causal-red.log": {
+      "sha256": "475c4beee2e89e38c03f1a88307ce7576e9e1c48479fe2dd3cef5d71170ce3fb",
+      "bytes": 6658
+    },
+    "causal-red.test.ts.txt": {
+      "sha256": "8e1f502e6bbcf254e6b17ce9d02a96df353b2518d1ad631ab728da90851d0d5f",
+      "bytes": 3829
+    },
+    "combat-corrected.json": {
+      "sha256": "d85e8a050bbedd62cc70ba8782f792490eee86ef293ca35130723c27fe5671e0",
+      "bytes": 386
+    },
+    "combat-corrected.log": {
+      "sha256": "edb506a96742dec11a6a3a5e59b1223d663f9b3dbd1f9681185233cc82811392",
+      "bytes": 5817
+    },
+    "combat-focused.json": {
+      "sha256": "773a7e3332a4816dce99e4be043841f5c44f941a3358c7ab2974940e2f2eca44",
+      "bytes": 387
+    },
+    "combat-focused.log": {
+      "sha256": "c9aaedbbf085ae332aa2e511d6cb6a6582eb7593d1b37d8d8fe4a2f589990ba8",
+      "bytes": 8558
+    },
+    "committed-source-command.json": {
+      "sha256": "f5ee88abac64512f12952d078921c4dc0339a4c5958e94d4f441e018ec503b0b",
+      "bytes": 315
+    },
+    "committed-source-command.log": {
+      "sha256": "d60d2f380fe167dd9683780d422bbef480fff0b1447a153c14f7bbee7e15cba2",
+      "bytes": 260
+    },
+    "committed-source-verification.json": {
+      "sha256": "304010dc511fb80b4913b8f25bca5dae69450eea313d30fdcf51142bb653830d",
+      "bytes": 258249
+    },
+    "corrected-initial-green.json": {
+      "sha256": "677a98f1b6f6abc5c9d98cbd66339d423c6aef9cd197c57fcb3c6a72970a58ba",
+      "bytes": 337
+    },
+    "corrected-initial-green.log": {
+      "sha256": "405b34e912570fc8453446fb7d304eba4cde39605af78b693d67a30bfd6e580f",
+      "bytes": 436
+    },
+    "display-before-duration-correction.ts.txt": {
+      "sha256": "45153ad60f2568ecbdb356609a72bd2471689560b5953aaff7b0802c755f8980",
+      "bytes": 19496
+    },
+    "display-tests-before-duration-correction.ts.txt": {
+      "sha256": "e94054c96fc94a703e6443a7bcbf8c98629a99a5f81286f73242fb12a60bfc39",
+      "bytes": 3179
+    },
+    "display-ui-red.json": {
+      "sha256": "50a81278b9a53002dd4ad99b8658d5c8dbfa755ad0f967175ff926cc8a53119d",
+      "bytes": 351
+    },
+    "display-ui-red.log": {
+      "sha256": "6954e3849874e69a04b249d91c7412cf2c38062f948bb5179f3195dd2d539541",
+      "bytes": 235591
+    },
+    "duration-display-green.json": {
+      "sha256": "2a8990101d6bf5ec17943bf8e8c97da92c17ad6a25555a4a103c89efc51533ce",
+      "bytes": 363
+    },
+    "duration-display-green.log": {
+      "sha256": "643bee9eae72a850d4392a1ee1c9d93948bb7befc7de052cfbdb747bc67daba2",
+      "bytes": 167
+    },
+    "duration-display-red.json": {
+      "sha256": "d7b32eaac315fb3814599bbdb429801be29f6472ebac2a1b7296b59d6513353d",
+      "bytes": 363
+    },
+    "duration-display-red.log": {
+      "sha256": "ed2aaa3a2618345bf7ba7e6a047b170a2167cc47f444d0b26edc08727b269778",
+      "bytes": 1802
+    },
+    "duration-display-repro.ts": {
+      "sha256": "19d2f38ce8ba6eb96b608478caaefe8b1c6f6de6c1ec135f52557d0ddee79432",
+      "bytes": 1128
+    },
+    "engine-final.json": {
+      "sha256": "e44d787929e48a873a3361b85fe82f331647cec240b2e0389e2146e54d2e7e1b",
+      "bytes": 236
+    },
+    "engine-final.log": {
+      "sha256": "41985c711ccbd7617e75f3d7e17664c57806bd91ea78ad9abb86b63adb6b99bf",
+      "bytes": 64546
+    },
+    "engine.json": {
+      "sha256": "21e157232f200dc6f2ea0c97fd3514491d55309378f36193d66fe3c19a68fc8e",
+      "bytes": 236
+    },
+    "engine.log": {
+      "sha256": "93499162dac05afe0a05fe5ced7f25f19d247d54a2fff6ff1e6c252e79a56616",
+      "bytes": 64485
+    },
+    "evidence-draft.md": {
+      "sha256": "9aa47c22379a97c4b63c994a7c99ab58d054f6952317f0a8da3bd7509130044e",
+      "bytes": 9409
+    },
+    "focused-green.json": {
+      "sha256": "4945795af6adb4e0bb3872aeeface421fde763b0f8c27c685e06ae2c8f15737f",
+      "bytes": 620
+    },
+    "focused-green.log": {
+      "sha256": "2c56582f42245dd22fa5a9dc3483b8b0cc31d66257f06e4b73a87d959ee3764a",
+      "bytes": 843
+    },
+    "full-freeze-command.json": {
+      "sha256": "f6d9d49e96b6496bd54656eced9135dd94add5abe2643d3c6d12d973923b1da3",
+      "bytes": 312
+    },
+    "full-freeze-command.log": {
+      "sha256": "555e825a1d15f55d094c7ca2e62ce106ee9a95c96be2c391048f5c7ddfebf764",
+      "bytes": 753
+    },
+    "full-freeze-verification.json": {
+      "sha256": "307dfb21282be97a00becb541ef65fa27010b62d6ba81d8a87e56333cea6a74d",
+      "bytes": 581
+    },
+    "full.json": {
+      "sha256": "441d4c78cc3aee30f7b889c53b272305b554741e1697fbd0176b135ad4c92bc3",
+      "bytes": 219
+    },
+    "full.log": {
+      "sha256": "1d33d296eab6b424c75b6c6ad569c2317238d1916e6641323545bf8e9868408e",
+      "bytes": 152511
+    },
+    "http-access.log": {
+      "sha256": "ddd1b410abcdb6aa7c5b37c532b1b0b088822934266a9cb30779eb9292cdf026",
+      "bytes": 732315
+    },
+    "initial-green.json": {
+      "sha256": "838f78d5e8311bfb30c85ca115985b87fd1a5e572e045ea83ebabae79efc3f4c",
+      "bytes": 336
+    },
+    "initial-green.log": {
+      "sha256": "7279578c18df772be6159b359ca1dfa0b46d9f9fa95f7822d9b66145bb5de44b",
+      "bytes": 2512
+    },
+    "initial-server-process.json": {
+      "sha256": "ee07611b12f0eb5407274a2cae42a25edce825fb324a4f90c163f144b144c9e8",
+      "bytes": 81
+    },
+    "initial-server-terminal.json": {
+      "sha256": "b56ab112e8f6789a609fff6193e72edfddc975ad684069fa1a5d65a9c580e71b",
+      "bytes": 59
+    },
+    "lint-current.json": {
+      "sha256": "50863f5605ee79e91b0d8547f5d74537e44565a698015dd10fb28995b5531759",
+      "bytes": 230
+    },
+    "lint-current.log": {
+      "sha256": "921bfd295c86ca0d067af82965d5bcd536ec832164cacb2266718229f64964b9",
+      "bytes": 197
+    },
+    "lint-final.json": {
+      "sha256": "686e77664fc3a0fffec9d74fbe116bd796e5a26d9bda72132ab34b44dbf45cf5",
+      "bytes": 230
+    },
+    "lint-final.log": {
+      "sha256": "921bfd295c86ca0d067af82965d5bcd536ec832164cacb2266718229f64964b9",
+      "bytes": 197
+    },
+    "lint.json": {
+      "sha256": "f7bd226f5a3f0a197e841e01de11539d7312f0d0f6793dbd108b07b4e9595294",
+      "bytes": 230
+    },
+    "lint.log": {
+      "sha256": "2a8d26a2f504dfebc8ae008858a017044c17dd6dffd8d4a43c5cf372c38aaa70",
+      "bytes": 857
+    },
+    "next-investigation.json": {
+      "sha256": "d1a8dd3eed2a42ff3a878fd1acd36d87474e0f1a3fc9605d49d4e6f654e2dd50",
+      "bytes": 1227
+    },
+    "ownership.json": {
+      "sha256": "5d6294cc713461bf1e350a432427dc2fdd2afc47eaa78ecbf9dea5bbfe63e813",
+      "bytes": 355
+    },
+    "post-full.json": {
+      "sha256": "902f458f7bcf730b3101972f3896342f5d5f888e14a9eeb66aadef8c3f558e9d",
+      "bytes": 250943
+    },
+    "pre-full.json": {
+      "sha256": "902f458f7bcf730b3101972f3896342f5d5f888e14a9eeb66aadef8c3f558e9d",
+      "bytes": 250943
+    },
+    "reference-audit-browser.py": {
+      "sha256": "4e0af3b5a896952526f9de4ac7ba638901c9e4963b73f600eac7f21684b1b214",
+      "bytes": 1555
+    },
+    "reference-browser.cjs": {
+      "sha256": "30f4c22a4fb0a35e76ba4f0067553525b6443771f27dceb7ca6bb4a366f3e7b8",
+      "bytes": 8878
+    },
+    "reference-retain-cleanup.py": {
+      "sha256": "c746f9aa6702014474484fa5a78b5b6e3e3fb491255d2d1b664a37a6b5cd200b",
+      "bytes": 4267
+    },
+    "retain-cleanup.py": {
+      "sha256": "012d650707a27a93d4b2d0b4be6abb4e4b12c0ee1539aa22abccbe710e684702",
+      "bytes": 5680
+    },
+    "run.py": {
+      "sha256": "56968ac8b6b674a739d3b40340605952cc3fcc8aeff2a02bb559fdaac5614d9a",
+      "bytes": 640
+    },
+    "schema-red.json": {
+      "sha256": "436e5e2a7c4a5a4b3419b9b79687de5f4f52d23b9ab6747115ca676425f9729a",
+      "bytes": 287
+    },
+    "schema-red.log": {
+      "sha256": "7592420a236c7836884a5d9113f3c9c8331352312e21ac5f07ac297404aa07f9",
+      "bytes": 18990
+    },
+    "schema-red.test.ts.txt": {
+      "sha256": "4437cbf1d14e0ae8110f759a2f262744e3451bc9fe8da88013cc8151e354bce2",
+      "bytes": 1574
+    },
+    "self-review.json": {
+      "sha256": "79c9cedf66f7db15718465b5628946ba954d628e3933963e320ee0e628f5e02c",
+      "bytes": 3504
+    },
+    "serve.py": {
+      "sha256": "ca4e030c1ed42683beb1050303ca00c88710fcb736ae73cfab13134394186eb7",
+      "bytes": 1068
+    },
+    "server-process.json": {
+      "sha256": "cff4a1a4da7f83951c1a779fc4b1da125dd4c8c9914da68bf159d53c42bd479f",
+      "bytes": 81
+    },
+    "server-terminal.json": {
+      "sha256": "3015c813edd0dc8d5b68be057d8da570df3940cd7115ce1c5919e4e0d8ca8f71",
+      "bytes": 173
+    },
+    "snapshot.py": {
+      "sha256": "51eea22057228baf4fc3079f139f68731783abbe249c870ccf8c6d6d5529bf81",
+      "bytes": 1163
+    },
+    "stop-full-guard-correction.json": {
+      "sha256": "402c0147f06ceadead531bbbd7976faff03be90803c81d312a9f4b156c1ade2e",
+      "bytes": 220
+    },
+    "stop-server.py": {
+      "sha256": "8ca5b13dd9a22023ed3fe7a5e627b09fafa2c96b64122989a7b368ce7a68a5fc",
+      "bytes": 363
+    },
+    "superseded-full-freeze.json": {
+      "sha256": "933f184141c938cf15f589644d9c2b841e0f65c964c194a58f9e1cd25942853f",
+      "bytes": 255
+    },
+    "superseded-full-interruption.json": {
+      "sha256": "bef6cf831ac9b9e4f99b7501492fe7a3db25cf5c8ed49adcbb047c5bd05a093e",
+      "bytes": 1102
+    },
+    "superseded-full.json": {
+      "sha256": "6ec736016b0472665c1bf6ab140f647ff2191b7c2cc19dfa08b6d819cb96b59b",
+      "bytes": 221
+    },
+    "superseded-full.log": {
+      "sha256": "3ebbc02cd235e37e67f568663c58a08ad3a5ec0ccf8d218c1429bfec0fde89dc",
+      "bytes": 86928
+    },
+    "superseded-post-full.json": {
+      "sha256": "ebd50d457c64ad47006cee5abc5f2d09872ba26af1d24a5b68abf36052b685d1",
+      "bytes": 250943
+    },
+    "superseded-pre-full.json": {
+      "sha256": "ebd50d457c64ad47006cee5abc5f2d09872ba26af1d24a5b68abf36052b685d1",
+      "bytes": 250943
+    },
+    "tracked-browser-launch.json": {
+      "sha256": "aadfdd88c678d8901d477c1da0490aa6b300e1df79a6708d6b64a7ae14c56007",
+      "bytes": 323
+    },
+    "tracked-browser-wrapper.log": {
+      "sha256": "343ddd6717ddf951b72d99e770532dfc69b70a34006ae33338ad7ebbd9f2c10b",
+      "bytes": 308
+    },
+    "tracked-browser.py": {
+      "sha256": "02f3a97ef36eabdb09e9e5b4d92436517a1a77c30ae5c812db7de9acba6d9811",
+      "bytes": 1050
+    },
+    "typecheck-current.json": {
+      "sha256": "a5ceacad5ed858e21cf0e0b356eafa785da7974d440c8ec3ab267a61b2769b0e",
+      "bytes": 234
+    },
+    "typecheck-current.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "typecheck-final.json": {
+      "sha256": "acd84ad766aef13cb828d363186981ef6e0223c1499785fb1e48f4f6a283b10f",
+      "bytes": 234
+    },
+    "typecheck-final.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "typecheck-first.json": {
+      "sha256": "cf087073a25fb42ee50488bbbccfb9c4223799122585edbfe2091ee972f5522d",
+      "bytes": 234
+    },
+    "typecheck-first.log": {
+      "sha256": "9a1d981b987126380406857fbc0287967ffd955b3b4d8efa5b410d26b00651f0",
+      "bytes": 1197
+    },
+    "typecheck.json": {
+      "sha256": "3774b3481ca815b658f07d920dc5b22d37850cc82ca6736a16008090ef68cf82",
+      "bytes": 234
+    },
+    "typecheck.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "verify-committed.py": {
+      "sha256": "43462039b34f1ff0aaa6e426f4609817f7b962a58c9f6a326fc28023ddbae47c",
+      "bytes": 1570
+    },
+    "verify-freeze.py": {
+      "sha256": "92b66816f402ee6379a87f48cff5fde83aea441b28cd1a6262268ecaac8581a4",
+      "bytes": 1076
+    },
+    "visual-review.json": {
+      "sha256": "6300a0612b763ea271eac7ee7b9a992e716b9c5121189e83548e88b9a7d77a3c",
+      "bytes": 3817
+    }
+  },
+  "commandReceipts": {
+    "attachment-audit-command.json": {
+      "argv": [
+        "python",
+        "audit-browser.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8",
+      "exit": 0,
+      "seconds": 0.105,
+      "finished": "2026-10-25T07:22:32.216096+00:00"
+    },
+    "bridge-clean.json": {
+      "argv": [
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/bridge.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 0.211,
+      "finished": "2026-10-25T07:04:56.815102+00:00"
+    },
+    "bridge-current.json": {
+      "argv": [
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/bridge.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 0.523,
+      "finished": "2026-10-25T07:15:56.898290+00:00"
+    },
+    "bridge.json": {
+      "argv": [
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/bridge.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 0.044,
+      "finished": "2026-10-25T07:04:23.308714+00:00"
+    },
+    "browser-audit.json": {
+      "argv": [
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/audit-browser.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 0.091,
+      "finished": "2026-10-25T07:08:29.340832+00:00"
+    },
+    "browser-current-en-1280.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/browser-current.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 61.644,
+      "finished": "2026-10-25T07:17:01.682533+00:00"
+    },
+    "browser-current-en-360-recovered.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/browser-current.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "pid": 284585,
+      "exit": 0,
+      "timedOut": false,
+      "seconds": 32.924,
+      "finished": 1792912806.9975054
+    },
+    "browser-current-zh-CN-1280.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/browser-current.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 40.743,
+      "finished": "2026-10-25T07:18:56.365969+00:00"
+    },
+    "browser-current-zh-CN-360.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/browser-current.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 31.923,
+      "finished": "2026-10-25T07:20:23.869852+00:00"
+    },
+    "browser-missing-mobile.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/browser-missing-mobile.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 36.66,
+      "finished": "2026-10-25T07:07:58.321382+00:00"
+    },
+    "build-clean.json": {
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/build-final"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 14.447,
+      "finished": "2026-10-25T07:04:51.051919+00:00"
+    },
+    "build-current.json": {
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/build-final"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 22.238,
+      "finished": "2026-10-25T07:15:45.864285+00:00"
+    },
+    "build-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/build-final"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 16.679,
+      "finished": "2026-10-25T07:04:13.127796+00:00"
+    },
+    "build.json": {
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/build-final"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 17.585,
+      "finished": "2026-10-25T07:03:29.132880+00:00"
+    },
+    "causal-red.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/druid-attack-dot.causal.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.526,
+      "finished": "2026-10-25T06:55:15.021038+00:00"
+    },
+    "combat-corrected.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/druid-attack-dot.test.ts",
+        "src/engine/skills/druid-attack-dot-schema.test.ts",
+        "src/stores/druid-attack-dot.causal.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.49,
+      "finished": "2026-10-25T07:00:35.341606+00:00"
+    },
+    "combat-focused.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/druid-attack-dot.test.ts",
+        "src/engine/skills/druid-attack-dot-schema.test.ts",
+        "src/stores/druid-attack-dot.causal.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.645,
+      "finished": "2026-10-25T06:59:45.958177+00:00"
+    },
+    "committed-source-command.json": {
+      "argv": [
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/verify-committed.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 0.436,
+      "finished": "2026-10-25T07:27:09.562352+00:00"
+    },
+    "corrected-initial-green.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/druid-attack-dot-schema.test.ts",
+        "src/stores/druid-attack-dot.causal.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 11.13,
+      "finished": "2026-10-25T06:59:01.970131+00:00"
+    },
+    "display-ui-red.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/displayStats.periodic.test.ts",
+        "src/features/skills/SkillsScreen.druid-attack-dot.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 9.823,
+      "finished": "2026-10-25T07:01:03.526388+00:00"
+    },
+    "duration-display-green.json": {
+      "argv": [
+        "node",
+        "node_modules/vite-node/vite-node.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/duration-display-repro.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 2.437,
+      "finished": "2026-10-25T07:15:06.247109+00:00"
+    },
+    "duration-display-red.json": {
+      "argv": [
+        "node",
+        "node_modules/vite-node/vite-node.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/duration-display-repro.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 3.003,
+      "finished": "2026-10-25T07:13:24.675433+00:00"
+    },
+    "engine-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 175.22,
+      "finished": "2026-10-25T07:18:18.841249+00:00"
+    },
+    "engine.json": {
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 92.843,
+      "finished": "2026-10-25T07:04:44.385611+00:00"
+    },
+    "focused-green.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/druid-attack-dot.test.ts",
+        "src/engine/skills/druid-attack-dot-schema.test.ts",
+        "src/stores/druid-attack-dot.causal.test.ts",
+        "src/engine/skills/displayStats.periodic.test.ts",
+        "src/features/skills/SkillsScreen.druid-attack-dot.test.tsx",
+        "src/engine/skills/displayStats.burn.test.ts",
+        "src/features/skills/SkillsScreen.druid-fire.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 27.254,
+      "finished": "2026-10-25T07:02:18.750167+00:00"
+    },
+    "full-freeze-command.json": {
+      "argv": [
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-attack-dot-4fv2tl_8/verify-freeze.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 0.348,
+      "finished": "2026-10-25T07:26:56.337025+00:00"
+    },
+    "full.json": {
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 653.485,
+      "finished": "2026-10-25T07:26:52.305804+00:00"
+    },
+    "initial-green.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/druid-attack-dot-schema.test.ts",
+        "src/stores/druid-attack-dot.causal.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 6.57,
+      "finished": "2026-10-25T06:58:46.037007+00:00"
+    },
+    "lint-current.json": {
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 217.878,
+      "finished": "2026-10-25T07:19:01.503483+00:00"
+    },
+    "lint-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 160.864,
+      "finished": "2026-10-25T07:08:32.963369+00:00"
+    },
+    "lint.json": {
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 127.729,
+      "finished": "2026-10-25T07:05:19.269786+00:00"
+    },
+    "schema-red.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/druid-attack-dot-schema.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 2.388,
+      "finished": "2026-10-25T06:56:17.148533+00:00"
+    },
+    "superseded-full.json": {
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": -15,
+      "seconds": 528.865,
+      "finished": "2026-10-25T07:14:40.954837+00:00"
+    },
+    "typecheck-current.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 109.32,
+      "finished": "2026-10-25T07:17:12.955059+00:00"
+    },
+    "typecheck-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 62.868,
+      "finished": "2026-10-25T07:06:54.971878+00:00"
+    },
+    "typecheck-first.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 2,
+      "seconds": 59.151,
+      "finished": "2026-10-25T07:03:17.331174+00:00"
+    },
+    "typecheck.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 53.181,
+      "finished": "2026-10-25T07:04:44.399495+00:00"
+    }
+  },
+  "fullFreeze": {
+    "pass": true,
+    "head": "fef799b6824e57e2bd707d036237e23fee1ef489",
+    "checks": {
+      "sources": true,
+      "build": true,
+      "genuine": true,
+      "head": true,
+      "status": true
+    },
+    "sourceFiles": 1305,
+    "buildFiles": 760,
+    "genuineSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "fullWallSeconds": 653.485,
+    "summary": [
+      "Test Files  582 passed (582)",
+      "Tests  13405 passed | 2 skipped (13407)",
+      "Duration  651.20s (transform 28.58s, setup 79.45s, collect 1370.39s, tests 696.08s, environment 176.78s, prepare 71.37s)"
+    ]
+  },
+  "genuineSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "buildFiles": 760,
+  "omitted": "Disposable final and superseded production build bytes only; complete final and superseded hash maps retained.",
+  "supersededBuildFiles": 761,
+  "interimBuildFiles": 760,
+  "browserInterruption": {
+    "toolSession": 32943,
+    "terminalExit": 143,
+    "wrapperReceiptPresent": false,
+    "confirmedLiveWrapperOrBrowserScript": false,
+    "completedCases": [
+      "en-1280",
+      "en-360",
+      "zh-CN-1280"
+    ],
+    "incompleteCase": "zh-CN-360",
+    "cause": "Unestablished. No terminal four-case pass or timeout inference.",
+    "action": "Retain original partial directory/log; run only missing case in a separate owned directory against unchanged production bytes."
+  },
+  "browserAudit": {
+    "pass": true,
+    "cases": [
+      {
+        "directory": "browser-current-en-1280",
+        "label": "en-1280",
+        "errors": [],
+        "pairs": [
+          "rank1",
+          "rank2"
+        ],
+        "combat": [
+          {
+            "slug": "werewolf-maul",
+            "periodicLog": true,
+            "damagedLivingEnemy": true
+          },
+          {
+            "slug": "rabies",
+            "periodicLog": true,
+            "damagedLivingEnemy": true
+          },
+          {
+            "slug": "fire-claws",
+            "periodicLog": true,
+            "damagedLivingEnemy": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "directory": "browser-current-en-360-recovered",
+        "label": "en-360",
+        "errors": [],
+        "pairs": [
+          "rank1",
+          "rank2"
+        ],
+        "combat": [
+          {
+            "slug": "werewolf-maul",
+            "periodicLog": true,
+            "damagedLivingEnemy": true
+          },
+          {
+            "slug": "rabies",
+            "periodicLog": true,
+            "damagedLivingEnemy": true
+          },
+          {
+            "slug": "fire-claws",
+            "periodicLog": true,
+            "damagedLivingEnemy": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "directory": "browser-current-zh-CN-1280",
+        "label": "zh-CN-1280",
+        "errors": [],
+        "pairs": [
+          "rank1",
+          "rank2"
+        ],
+        "combat": [
+          {
+            "slug": "werewolf-maul",
+            "periodicLog": true,
+            "damagedLivingEnemy": true
+          },
+          {
+            "slug": "rabies",
+            "periodicLog": true,
+            "damagedLivingEnemy": true
+          },
+          {
+            "slug": "fire-claws",
+            "periodicLog": true,
+            "damagedLivingEnemy": true
+          }
+        ],
+        "pass": true
+      },
+      {
+        "directory": "browser-current-zh-CN-360",
+        "label": "zh-CN-360",
+        "errors": [],
+        "pairs": [
+          "rank1",
+          "rank2"
+        ],
+        "combat": [
+          {
+            "slug": "werewolf-maul",
+            "periodicLog": true,
+            "damagedLivingEnemy": true
+          },
+          {
+            "slug": "rabies",
+            "periodicLog": true,
+            "damagedLivingEnemy": true
+          },
+          {
+            "slug": "fire-claws",
+            "periodicLog": true,
+            "damagedLivingEnemy": true
+          }
+        ],
+        "pass": true
+      }
+    ],
+    "combatEntries": 12,
+    "geometry": [
+      {
+        "label": "en-1280",
+        "width": 360,
+        "height": 640,
+        "overflow": 0,
+        "allocate": {
+          "x": 30,
+          "y": 329,
+          "width": 120.921875,
+          "height": 48
+        }
+      },
+      {
+        "label": "en-1280",
+        "width": 412,
+        "height": 915,
+        "overflow": 0,
+        "allocate": {
+          "x": 261.078125,
+          "y": 260,
+          "width": 120.921875,
+          "height": 48
+        }
+      },
+      {
+        "label": "en-1280",
+        "width": 640,
+        "height": 360,
+        "overflow": 0,
+        "allocate": {
+          "x": 489.078125,
+          "y": 233,
+          "width": 120.921875,
+          "height": 48
+        }
+      },
+      {
+        "label": "en-1280",
+        "width": 1280,
+        "height": 800,
+        "overflow": 0,
+        "allocate": {
+          "x": 1117.078125,
+          "y": 466,
+          "width": 120.921875,
+          "height": 48
+        }
+      },
+      {
+        "label": "en-1280",
+        "width": 1920,
+        "height": 1080,
+        "overflow": 0,
+        "allocate": {
+          "x": 1501.078125,
+          "y": 746,
+          "width": 120.921875,
+          "height": 48
+        }
+      },
+      {
+        "label": "en-360",
+        "width": 360,
+        "height": 640,
+        "overflow": 0,
+        "allocate": {
+          "x": 30,
+          "y": 329,
+          "width": 120.921875,
+          "height": 48
+        }
+      },
+      {
+        "label": "en-360",
+        "width": 412,
+        "height": 915,
+        "overflow": 0,
+        "allocate": {
+          "x": 261.078125,
+          "y": 260,
+          "width": 120.921875,
+          "height": 48
+        }
+      },
+      {
+        "label": "en-360",
+        "width": 640,
+        "height": 360,
+        "overflow": 0,
+        "allocate": {
+          "x": 489.078125,
+          "y": 233,
+          "width": 120.921875,
+          "height": 48
+        }
+      },
+      {
+        "label": "en-360",
+        "width": 1280,
+        "height": 800,
+        "overflow": 0,
+        "allocate": {
+          "x": 1117.078125,
+          "y": 466,
+          "width": 120.921875,
+          "height": 48
+        }
+      },
+      {
+        "label": "en-360",
+        "width": 1920,
+        "height": 1080,
+        "overflow": 0,
+        "allocate": {
+          "x": 1501.078125,
+          "y": 746,
+          "width": 120.921875,
+          "height": 48
+        }
+      },
+      {
+        "label": "zh-CN-1280",
+        "width": 360,
+        "height": 640,
+        "overflow": 0,
+        "allocate": {
+          "x": 210,
+          "y": 329,
+          "width": 120,
+          "height": 48
+        }
+      },
+      {
+        "label": "zh-CN-1280",
+        "width": 412,
+        "height": 915,
+        "overflow": 0,
+        "allocate": {
+          "x": 262,
+          "y": 293,
+          "width": 120,
+          "height": 48
+        }
+      },
+      {
+        "label": "zh-CN-1280",
+        "width": 640,
+        "height": 360,
+        "overflow": 0,
+        "allocate": {
+          "x": 490,
+          "y": 255,
+          "width": 120,
+          "height": 48
+        }
+      },
+      {
+        "label": "zh-CN-1280",
+        "width": 1280,
+        "height": 800,
+        "overflow": 0,
+        "allocate": {
+          "x": 1118,
+          "y": 466,
+          "width": 120,
+          "height": 48
+        }
+      },
+      {
+        "label": "zh-CN-1280",
+        "width": 1920,
+        "height": 1080,
+        "overflow": 0,
+        "allocate": {
+          "x": 1502,
+          "y": 746,
+          "width": 120,
+          "height": 48
+        }
+      },
+      {
+        "label": "zh-CN-360",
+        "width": 360,
+        "height": 640,
+        "overflow": 0,
+        "allocate": {
+          "x": 210,
+          "y": 329,
+          "width": 120,
+          "height": 48
+        }
+      },
+      {
+        "label": "zh-CN-360",
+        "width": 412,
+        "height": 915,
+        "overflow": 0,
+        "allocate": {
+          "x": 262,
+          "y": 293,
+          "width": 120,
+          "height": 48
+        }
+      },
+      {
+        "label": "zh-CN-360",
+        "width": 640,
+        "height": 360,
+        "overflow": 0,
+        "allocate": {
+          "x": 490,
+          "y": 255,
+          "width": 120,
+          "height": 48
+        }
+      },
+      {
+        "label": "zh-CN-360",
+        "width": 1280,
+        "height": 800,
+        "overflow": 0,
+        "allocate": {
+          "x": 1118,
+          "y": 466,
+          "width": 120,
+          "height": 48
+        }
+      },
+      {
+        "label": "zh-CN-360",
+        "width": 1920,
+        "height": 1080,
+        "overflow": 0,
+        "allocate": {
+          "x": 1502,
+          "y": 746,
+          "width": 120,
+          "height": 48
+        }
+      }
+    ],
+    "pairs": [
+      {
+        "label": "en-1280-rank1",
+        "before": "browser-current-en-1280/en-1280-rank1-before-3.json",
+        "after": "browser-current-en-1280/en-1280-rank1-after-4.json",
+        "fiveDomainsExact": true,
+        "rank": 1
+      },
+      {
+        "label": "en-1280-rank2",
+        "before": "browser-current-en-1280/en-1280-rank2-before-5.json",
+        "after": "browser-current-en-1280/en-1280-rank2-after-6.json",
+        "fiveDomainsExact": true,
+        "rank": 2
+      },
+      {
+        "label": "en-360-rank1",
+        "before": "browser-current-en-360-recovered/en-360-rank1-before-3.json",
+        "after": "browser-current-en-360-recovered/en-360-rank1-after-4.json",
+        "fiveDomainsExact": true,
+        "rank": 1
+      },
+      {
+        "label": "en-360-rank2",
+        "before": "browser-current-en-360-recovered/en-360-rank2-before-5.json",
+        "after": "browser-current-en-360-recovered/en-360-rank2-after-6.json",
+        "fiveDomainsExact": true,
+        "rank": 2
+      },
+      {
+        "label": "zh-CN-1280-rank1",
+        "before": "browser-current-zh-CN-1280/zh-CN-1280-rank1-before-3.json",
+        "after": "browser-current-zh-CN-1280/zh-CN-1280-rank1-after-4.json",
+        "fiveDomainsExact": true,
+        "rank": 1
+      },
+      {
+        "label": "zh-CN-1280-rank2",
+        "before": "browser-current-zh-CN-1280/zh-CN-1280-rank2-before-5.json",
+        "after": "browser-current-zh-CN-1280/zh-CN-1280-rank2-after-6.json",
+        "fiveDomainsExact": true,
+        "rank": 2
+      },
+      {
+        "label": "zh-CN-360-rank1",
+        "before": "browser-current-zh-CN-360/zh-CN-360-rank1-before-3.json",
+        "after": "browser-current-zh-CN-360/zh-CN-360-rank1-after-4.json",
+        "fiveDomainsExact": true,
+        "rank": 1
+      },
+      {
+        "label": "zh-CN-360-rank2",
+        "before": "browser-current-zh-CN-360/zh-CN-360-rank2-before-5.json",
+        "after": "browser-current-zh-CN-360/zh-CN-360-rank2-after-6.json",
+        "fiveDomainsExact": true,
+        "rank": 2
+      }
+    ],
+    "screenshots": [
+      {
+        "path": "browser-current-en-1280/en-1280-werewolf-maul-details.png",
+        "sha256": "7b3fba78435ba1bec3649b36e9490718db2355ec3a82ab7ea96229e51d76e0be"
+      },
+      {
+        "path": "browser-current-en-1280/en-1280-rabies-details.png",
+        "sha256": "03ae9de9fec03a8bcc69191d60682de64aa217c2127f9057bcd9710c5f148673"
+      },
+      {
+        "path": "browser-current-en-1280/en-1280-fire-claws-details.png",
+        "sha256": "463f7fbe69e6d68a13d238d8c8905349eb4eea7e00a8fa5b9e66e311dbd76a97"
+      },
+      {
+        "path": "browser-current-en-1280/en-1280-rabies-combat.png",
+        "sha256": "29a627acda7c3a2dcf7cecae0cb89d9744a5ff85789f5f972ad55b071faa16ce"
+      },
+      {
+        "path": "browser-current-en-360-recovered/en-360-werewolf-maul-details.png",
+        "sha256": "123ab09a0eae10e4e5ff3d952726be486ccaffd249b03765e31b0f7d666f4a55"
+      },
+      {
+        "path": "browser-current-en-360-recovered/en-360-rabies-details.png",
+        "sha256": "441e1dd217b7397dc59410a1a59cfaddcfc2a134e94adf5846d1b7669ff3231a"
+      },
+      {
+        "path": "browser-current-en-360-recovered/en-360-fire-claws-details.png",
+        "sha256": "1c6cd7285e7a0c187ba9b7762016cce81cf6399625b39a46e75f0c1405bef5df"
+      },
+      {
+        "path": "browser-current-en-360-recovered/en-360-rabies-combat.png",
+        "sha256": "74f29d4c7c25e96793ef0e1b000d82a914322e2fdabbc42d62f04c5c4aee75bb"
+      },
+      {
+        "path": "browser-current-zh-CN-1280/zh-CN-1280-werewolf-maul-details.png",
+        "sha256": "14048b4f18b90fc368c3b5c41a26b680f87ace781b9dee95e3f7d0b6ddc31edc"
+      },
+      {
+        "path": "browser-current-zh-CN-1280/zh-CN-1280-rabies-details.png",
+        "sha256": "50a18f382dc6e15dfee26eef4ecdbba2c47168783d34804759000990d25bdfe6"
+      },
+      {
+        "path": "browser-current-zh-CN-1280/zh-CN-1280-fire-claws-details.png",
+        "sha256": "5e96b7034ebda5197b3e1cd37478049b4a56052b232141984579a84beb525708"
+      },
+      {
+        "path": "browser-current-zh-CN-1280/zh-CN-1280-rabies-combat.png",
+        "sha256": "a78528e1c6797ed973f372a86dde1f7b120aa60d139c46ae6dfb28d56c034db9"
+      },
+      {
+        "path": "browser-current-zh-CN-360/zh-CN-360-werewolf-maul-details.png",
+        "sha256": "3774c46e20eb1c8a76d8fb72941dfd666bcdc18eeb3dd183cf301fbc0e046f59"
+      },
+      {
+        "path": "browser-current-zh-CN-360/zh-CN-360-rabies-details.png",
+        "sha256": "222e5fc8e2a588b713075c730f42213c435b97783954be3c1d1b330c1048b1f9"
+      },
+      {
+        "path": "browser-current-zh-CN-360/zh-CN-360-fire-claws-details.png",
+        "sha256": "ad4dcc351d8182369de2ed4a3d19366c7f8678759d6824e910e4e8967235e918"
+      },
+      {
+        "path": "browser-current-zh-CN-360/zh-CN-360-rabies-combat.png",
+        "sha256": "e791f256436a05425ece4c38b2193f4bad9fc05bbbd081420ff5f5dcd49c1521"
+      }
+    ],
+    "scope": "Disclosed synthetic L30 fixtures; all four accepted cases have actual terminal exit0 against the final build, including the separately tracked English mobile recovery. Earlier pre-correction and current English mobile exit143 records are retained. Root audit only, not independent QA or earned progress."
+  },
+  "independentAcceptance": false,
+  "earnedCampaignActions": false
+}
