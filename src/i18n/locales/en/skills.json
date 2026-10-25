@@ -64,6 +64,9 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "armorRetaliation": "Cold counterattack damage",
+    "armorFreeze": "Counterattack Freeze",
+    "armorFreezeValue": "{{seconds}} s (bosses: {{bossSeconds}} s)",
     "coldChillDuration": "Chill duration",
     "coldChillSlow": "Attack Speed reduction",
     "coldFreeze": "Secondary Freeze",
@@ -1067,7 +1070,7 @@
     },
     "shiver-armor": {
       "name": "Shiver Armor",
-      "desc": "An icy shield that freezes and damages melee attackers."
+      "desc": "Costs {{mana}} MP; {{cooldown}} s cooldown. Until this run ends: +{{defense}}% Defense and +{{bonus}}% direct Cold damage. Each landed direct Physical hit attempts a counter for {{min}}–{{max}} Cold base damage. Landed counters apply Freeze for {{seconds}} s (bosses: {{bossSeconds}} s). Missed counters do not Freeze. Cold resistance, magic resist and shields mitigate counters. Periodic damage and other counters do not trigger retaliation. Cast once; can coexist with other ice armors."
     },
     "glacial-spike": {
       "name": "Glacial Spike",
@@ -1079,7 +1082,7 @@
     },
     "chilling-armor": {
       "name": "Chilling Armor",
-      "desc": "The ultimate ice shield that freezes and heavily damages attackers."
+      "desc": "Costs {{mana}} MP; {{cooldown}} s cooldown. Until this run ends: +{{defense}}% Defense and +{{bonus}} percentage points of magic dodge. Each landed direct hostile hit attempts a counter for {{min}}–{{max}} Cold base damage. Landed counters apply Freeze for {{seconds}} s (bosses: {{bossSeconds}} s). Missed counters do not Freeze. Cold resistance, magic resist and shields mitigate counters. Periodic damage and other counters do not trigger retaliation. Cast once; can coexist with other ice armors."
     },
     "charged-bolt": {
       "name": "Charged Bolt",

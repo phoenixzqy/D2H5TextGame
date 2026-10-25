@@ -947,6 +947,12 @@ function StatSection({
             <StatLine label={t('details.lifeCost')} value={String(stats.lifeCost)} />
           ) : null}
           <StatLine label={t('details.cooldown')} value={t('details.seconds', { seconds: stats.cooldown })} />
+          {stats.coldArmor ? <>
+            <StatLine label={t('details.armorRetaliation')} value={`${String(stats.coldArmor.min)} ~ ${String(stats.coldArmor.max)}`} />
+            <StatLine label={t('details.armorFreeze')} value={t('details.armorFreezeValue', {
+              seconds: stats.coldArmor.freezeSeconds, bossSeconds: stats.coldArmor.bossFreezeSeconds
+            })} />
+          </> : null}
           {stats.coldAttack ? <>
             <StatLine label={t('details.coldChillDuration')} value={t('details.seconds', { seconds: stats.coldAttack.durationSeconds })} />
             <StatLine label={t('details.coldChillSlow')} value={t('details.percentValue', { value: stats.coldAttack.slowPercent })} />
@@ -1003,6 +1009,7 @@ function StatSection({
                   : id === 'leap' ? t('barbarian.leap.name')
                   : id === 'holy-shield' ? t('paladin.holy-shield.name')
                   : id === 'cyclone-armor' ? t('druid.cyclone-armor.name')
+                  : id === 'shiver-armor' || id === 'chilling-armor' ? t('sorceress.' + id + '.name')
                   : id === 'werewolf' || id === 'werebear' ? t('druid.' + id + '.name')
                   : t(`damage-types:status.${id}`, { defaultValue: humanizeId(id) })).join(', ')}
             />
@@ -1605,6 +1612,15 @@ function dynamicDescription(
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
+  if (stats?.coldArmor && ['skills-sorceress-shiver-armor', 'skills-sorceress-chilling-armor'].includes(skill.id)) {
+    const bonusId = skill.id === 'skills-sorceress-shiver-armor' ? 'coldDamagePct' : 'magicDodgePct';
+    return t('sorceress.' + skill.id.slice('skills-sorceress-'.length) + '.desc', {
+      min: stats.coldArmor.min, max: stats.coldArmor.max, mana: stats.manaCost, cooldown: stats.cooldown,
+      defense: Number(((stats.utility.find(row => row.id === 'defensePct')?.value ?? 0) * 100).toFixed(4)),
+      bonus: Number(((stats.utility.find(row => row.id === bonusId)?.value ?? 0) * 100).toFixed(4)),
+      seconds: stats.coldArmor.freezeSeconds, bossSeconds: stats.coldArmor.bossFreezeSeconds
+    });
+  }
   if (firstDamage && ['skills-sorceress-charged-bolt', 'skills-sorceress-lightning',
     'skills-sorceress-nova', 'skills-sorceress-chain-lightning'].includes(skill.id)) {
     return t('sorceress.' + skill.id.slice('skills-sorceress-'.length) + '.desc', {

@@ -64,6 +64,9 @@
     "minLevel": "需要等级 {{level}}"
   },
   "details": {
+    "armorRetaliation": "冰冷反击伤害",
+    "armorFreeze": "反击冻结",
+    "armorFreezeValue": "{{seconds}} 秒（首领：{{bossSeconds}} 秒）",
     "coldChillDuration": "减速持续时间",
     "coldChillSlow": "攻击速度降低",
     "coldFreeze": "额外冰封",
@@ -1067,7 +1070,7 @@
     },
     "shiver-armor": {
       "name": "颤栗甲",
-      "desc": "冰冷之盾，冰封并伤害近战攻击者。"
+      "desc": "消耗 {{mana}} 点法力；冷却 {{cooldown}} 秒。持续至本轮结束：防御提高 {{defense}}%，直接冰冷伤害提高 {{bonus}}%。每次受到命中的直接物理攻击，尝试反击，造成 {{min}}～{{max}} 点冰冷基础伤害。反击命中施加冻结 {{seconds}} 秒（首领：{{bossSeconds}} 秒）；反击未命中不施加冻结。冰冷抗性、魔法抵抗及护盾减免反击伤害。持续伤害及其他反击不会触发。施放一次，可与其他冰甲共存。"
     },
     "glacial-spike": {
       "name": "冰尖柱",
@@ -1079,7 +1082,7 @@
     },
     "chilling-armor": {
       "name": "寒冰装甲",
-      "desc": "终极冰盾，冰封并重创攻击者。"
+      "desc": "消耗 {{mana}} 点法力；冷却 {{cooldown}} 秒。持续至本轮结束：防御提高 {{defense}}%，魔法闪避提高 {{bonus}} 个百分点。每次受到命中的直接敌方攻击，尝试反击，造成 {{min}}～{{max}} 点冰冷基础伤害。反击命中施加冻结 {{seconds}} 秒（首领：{{bossSeconds}} 秒）；反击未命中不施加冻结。冰冷抗性、魔法抵抗及护盾减免反击伤害。持续伤害及其他反击不会触发。施放一次，可与其他冰甲共存。"
     },
     "charged-bolt": {
       "name": "充能弹",
