@@ -1589,6 +1589,17 @@ function dynamicDescription(
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && ['skills-barbarian-bash', 'skills-barbarian-whirlwind',
+    'skills-barbarian-leap-attack', 'skills-barbarian-war-cry'].includes(skill.id)) {
+    return t(`barbarian.${skill.id.slice('skills-barbarian-'.length)}.desc`, {
+      min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost,
+      cooldown: stats.cooldown,
+      ...(stats.control ? {
+        duration: t('details.seconds', { seconds: stats.control.durationSeconds }),
+        bossDuration: t('details.seconds', { seconds: stats.control.bossDurationSeconds })
+      } : {})
+    });
+  }
   if (firstDamage && skill.id === 'skills-barbarian-concentrate' && stats.concentrate) {
     return t('barbarian.concentrate.desc', { min: firstDamage.min, max: firstDamage.max,
       defense: Number(((stats.utility.find(row => row.id === 'defensePct')?.value ?? 0) * 100).toFixed(4)),

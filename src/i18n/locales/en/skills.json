@@ -507,7 +507,7 @@
   "barbarian": {
     "bash": {
       "name": "Bash",
-      "desc": "A powerful single-target strike with the equipped weapon."
+      "desc": "One single-target {{min}}–{{max}} Physical base-damage attempt. Physical bonuses, critical hits, Defense and Physical resistance apply normally. Pay {{mana}} MP and start the {{cooldown}} s cooldown once. Changes apply next wave."
     },
     "double-swing": {
       "name": "Double Swing",
@@ -515,11 +515,11 @@
     },
     "whirlwind": {
       "name": "Whirlwind",
-      "desc": "Spins through enemies, dealing physical damage to all targets."
+      "desc": "One independent attempt per living enemy, each dealing {{min}}–{{max}} Physical base damage. Each target rolls hit and critical separately; Physical bonuses, Defense, resistance and shared status combos apply normally. Pay {{mana}} MP and start the {{cooldown}} s cooldown once. Changes apply next wave."
     },
     "leap-attack": {
       "name": "Leap Attack",
-      "desc": "Leaps to a new position and lands with crushing force, stunning all nearby enemies."
+      "desc": "One independent attempt per living enemy, each dealing {{min}}–{{max}} Physical base damage. Successful hits apply Stun for {{duration}} (bosses: {{bossDuration}}), interrupting scheduled actions. Misses do not stun. Pay {{mana}} MP and start the {{cooldown}} s cooldown once. Changes apply next wave."
     },
     "berserk": {
       "name": "Berserk",
@@ -527,7 +527,7 @@
     },
     "war-cry": {
       "name": "War Cry",
-      "desc": "A devastating shout that damages and stuns all enemies."
+      "desc": "One independent attempt per living enemy, each dealing {{min}}–{{max}} Physical base damage. Successful hits apply Stun for {{duration}} (bosses: {{bossDuration}}), interrupting scheduled actions. Misses do not stun. Pay {{mana}} MP and start the {{cooldown}} s cooldown once. Changes apply next wave."
     },
     "iron-skin": {
       "name": "Iron Skin",
