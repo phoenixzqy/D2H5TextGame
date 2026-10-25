@@ -18,6 +18,10 @@
       "minLength": 1,
       "description": "Display name"
     },
+    "undead": {
+      "type": "boolean",
+      "description": "Explicit authored undead identity. Only literal true qualifies for undead effects; absent legacy definitions remain unclassified. Never infer from names or IDs."
+    },
     "life": {
       "$ref": "#/$defs/range",
       "description": "Base life at level 1 [min, max]"

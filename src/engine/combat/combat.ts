@@ -1325,6 +1325,22 @@ function settleAuraPulse(state: State): void {
   const aura = state.statAura;
   if (!aura || state.nextAuraPulseAtMs !== state.simClockMs ||
     !activeStatAura(aura, aura.sourceHeroId, state.units)) return;
+  if (aura.sanctuary) {
+    const tuning = aura.sanctuary;
+    state.nextAuraPulseAtMs += tuning.intervalMs;
+    const effect: DamageEffect = { kind: 'damage', damageType: 'arcane', base: [tuning.damage, tuning.damage] };
+    for (const target of state.units.values()) {
+      if (target.side !== 'enemy' || target.undead !== true || !alive(target)) continue;
+      applyDamageToUnit(state, aura.sourceHeroId, target.id, effect, 1, false, true);
+      const survivor = state.units.get(target.id);
+      if (!survivor || !alive(survivor)) continue;
+      state.units.set(target.id, applyStatus(survivor, { id: 'stun', sourceId: aura.sourceHeroId,
+        simClockMs: state.simClockMs, durationMs: tuning.repulseDurationMs }, state.rng));
+      emit(state, { kind: 'status', target: target.id, statusId: 'stun' });
+      observeStatuses(state, target.id);
+    }
+    return;
+  }
   if (aura.redemption) {
     state.nextAuraPulseAtMs += aura.redemption.intervalMs;
     settleRedemption(state, aura);
@@ -1750,7 +1766,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const aura = snapshot.mightAura;
   const meditation = snapshot.meditationAura;
   const statAura = copyStatAuraProjection(snapshot.statAura);
-  const auraIntervalMs = statAura?.pulse?.intervalMs ?? statAura?.healing?.intervalMs ?? statAura?.redemption?.intervalMs;
+  const auraIntervalMs = statAura?.pulse?.intervalMs ?? statAura?.healing?.intervalMs ?? statAura?.redemption?.intervalMs ?? statAura?.sanctuary?.intervalMs;
   const mastery = snapshot.skeletonMastery;
   const golemMastery = snapshot.golemMastery;
   const iron = snapshot.ironGolem;

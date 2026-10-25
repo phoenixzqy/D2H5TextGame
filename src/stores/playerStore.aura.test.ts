@@ -39,7 +39,7 @@ describe('explicit single player aura selection', () => {
     } finally { observed.unsubscribe(); }
   });
   it.each([undefined, '', 'skills-paladin-might', 'aura-might', 'paladin.Might',
-    'paladin.sanctuary', 0, true, [], {}, ['paladin.might']])('refuses unsupported request %# without mutation/publication', request => {
+    'paladin.unknown-aura', 0, true, [], {}, ['paladin.might']])('refuses unsupported request %# without mutation/publication', request => {
     const input = player(); usePlayerStore.getState().setPlayer(input);
     const basis = usePlayerStore.getState(); const original = structuredClone(input); const observed = observe();
     try {

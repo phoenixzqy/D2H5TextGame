@@ -1,6 +1,7 @@
 [
   {
     "id": "monsters/act1.fallen",
+    "undead": false,
     "attack": [32, 32],
     "attackGrowth": [5, 5],
     "name": "monsters.fallen",
@@ -17,6 +18,7 @@
   },
   {
     "id": "monsters/act1.zombie",
+    "undead": true,
     "attack": [28.8, 28.8],
     "attackGrowth": [4.5, 4.5],
     "name": "monsters.zombie",
@@ -33,6 +35,7 @@
   },
   {
     "id": "monsters/act1.corpsefire",
+    "undead": true,
     "name": "monsters.corpsefire",
     "life": [320, 420],
     "lifeGrowth": [32, 42],
@@ -46,6 +49,7 @@
   },
   {
     "id": "monsters/act1.quill-rat",
+    "undead": false,
     "attack": [27.2, 27.2],
     "attackGrowth": [4.25, 4.25],
     "name": "monsters.quillRat",
@@ -62,6 +66,7 @@
   },
   {
     "id": "monsters/act1.spike-fiend",
+    "undead": false,
     "name": "monsters.spikeFiend",
     "life": [35, 55],
     "lifeGrowth": [3, 6],
@@ -76,6 +81,7 @@
   },
   {
     "id": "monsters/act1.dark-one",
+    "undead": false,
     "name": "monsters.darkOne",
     "life": [35, 55],
     "lifeGrowth": [4, 6],
@@ -90,6 +96,7 @@
   },
   {
     "id": "monsters/act1.carver",
+    "undead": false,
     "attack": [33.6, 33.6],
     "attackGrowth": [5.25, 5.25],
     "name": "monsters.carver",
@@ -106,6 +113,7 @@
   },
   {
     "id": "monsters/act1.misshapen",
+    "undead": false,
     "name": "monsters.misshapen",
     "life": [55, 80],
     "lifeGrowth": [5, 8],
@@ -120,6 +128,7 @@
   },
   {
     "id": "monsters/act1.disfigured",
+    "undead": false,
     "name": "monsters.disfigured",
     "life": [70, 95],
     "lifeGrowth": [7, 10],
@@ -134,6 +143,7 @@
   },
   {
     "id": "monsters/act1.devilkin",
+    "undead": false,
     "name": "monsters.devilkin",
     "life": [55, 75],
     "lifeGrowth": [5, 8],
@@ -148,6 +158,7 @@
   },
   {
     "id": "monsters/act1.fallen-shaman",
+    "undead": false,
     "attack": [13, 13],
     "attackGrowth": [2, 2],
     "name": "monsters.fallenShaman",
@@ -164,6 +175,7 @@
   },
   {
     "id": "monsters/act1.carver-shaman",
+    "undead": false,
     "name": "monsters.carverShaman",
     "life": [70, 100],
     "lifeGrowth": [7, 11],
@@ -178,6 +190,7 @@
   },
   {
     "id": "monsters/act1.devilkin-shaman",
+    "undead": false,
     "name": "monsters.devilkinShaman",
     "life": [85, 115],
     "lifeGrowth": [8, 12],
@@ -192,6 +205,7 @@
   },
   {
     "id": "monsters/act1.bishibosh",
+    "undead": false,
     "name": "monsters.bishibosh",
     "life": [280, 380],
     "lifeGrowth": [28, 38],
@@ -205,6 +219,7 @@
   },
   {
     "id": "monsters/act1.rakanishu",
+    "undead": false,
     "name": "monsters.rakanishu",
     "life": [320, 420],
     "lifeGrowth": [32, 42],
@@ -218,6 +233,7 @@
   },
   {
     "id": "monsters/act1.tainted",
+    "undead": false,
     "attack": [32, 32],
     "attackGrowth": [5, 5],
     "name": "monsters.tainted",
@@ -234,6 +250,7 @@
   },
   {
     "id": "monsters/act1.afflicted",
+    "undead": false,
     "name": "monsters.afflicted",
     "life": [70, 95],
     "lifeGrowth": [7, 10],
@@ -248,6 +265,7 @@
   },
   {
     "id": "monsters/act1.hungry-dead",
+    "undead": true,
     "name": "monsters.hungryDead",
     "life": [70, 95],
     "lifeGrowth": [6, 9],
@@ -262,6 +280,7 @@
   },
   {
     "id": "monsters/act1.ghoul",
+    "undead": true,
     "name": "monsters.ghoul",
     "life": [90, 120],
     "lifeGrowth": [9, 13],
@@ -276,6 +295,7 @@
   },
   {
     "id": "monsters/act1.ghost",
+    "undead": true,
     "name": "monsters.ghost",
     "life": [60, 90],
     "lifeGrowth": [6, 10],
@@ -290,6 +310,7 @@
   },
   {
     "id": "monsters/act1.wraith",
+    "undead": true,
     "name": "monsters.wraith",
     "life": [85, 115],
     "lifeGrowth": [8, 13],
@@ -304,6 +325,7 @@
   },
   {
     "id": "monsters/act1.dark-archer",
+    "undead": false,
     "attack": [35.2, 35.2],
     "attackGrowth": [5.5, 5.5],
     "name": "monsters.darkArcher",
@@ -320,6 +342,7 @@
   },
   {
     "id": "monsters/act1.dark-ranger",
+    "undead": false,
     "name": "monsters.darkRanger",
     "life": [70, 95],
     "lifeGrowth": [7, 10],
@@ -334,6 +357,7 @@
   },
   {
     "id": "monsters/act1.vile-hunter",
+    "undead": false,
     "name": "monsters.vileHunter",
     "life": [110, 145],
     "lifeGrowth": [11, 15],
@@ -348,6 +372,7 @@
   },
   {
     "id": "monsters/act1.dark-stalker",
+    "undead": false,
     "name": "monsters.darkStalker",
     "life": [100, 150],
     "lifeGrowth": [10, 15],
@@ -362,6 +387,7 @@
   },
   {
     "id": "monsters/act1.coldcrow",
+    "undead": false,
     "name": "monsters.coldcrow",
     "life": [340, 460],
     "lifeGrowth": [34, 46],
@@ -375,6 +401,7 @@
   },
   {
     "id": "monsters/act1.brute",
+    "undead": false,
     "name": "monsters.brute",
     "life": [120, 160],
     "lifeGrowth": [12, 16],
@@ -389,6 +416,7 @@
   },
   {
     "id": "monsters/act1.yeti",
+    "undead": false,
     "name": "monsters.yeti",
     "life": [160, 210],
     "lifeGrowth": [16, 21],
@@ -403,6 +431,7 @@
   },
   {
     "id": "monsters/act1.crusher",
+    "undead": false,
     "name": "monsters.crusher",
     "life": [220, 280],
     "lifeGrowth": [22, 28],
@@ -417,6 +446,7 @@
   },
   {
     "id": "monsters/act1.treehead-woodfist",
+    "undead": false,
     "name": "monsters.treeheadWoodfist",
     "life": [620, 780],
     "lifeGrowth": [60, 78],
@@ -430,6 +460,7 @@
   },
   {
     "id": "monsters/act1.pitspawn-fouldog",
+    "undead": false,
     "name": "monsters.pitspawnFouldog",
     "life": [520, 680],
     "lifeGrowth": [52, 68],
@@ -443,6 +474,7 @@
   },
   {
     "id": "monsters/act1.returned",
+    "undead": true,
     "name": "monsters.returned",
     "life": [85, 115],
     "lifeGrowth": [8, 12],
@@ -457,6 +489,7 @@
   },
   {
     "id": "monsters/act1.bone-warrior",
+    "undead": true,
     "attack": [35.2, 35.2],
     "attackGrowth": [5.5, 5.5],
     "name": "monsters.boneWarrior",
@@ -473,6 +506,7 @@
   },
   {
     "id": "monsters/act1.returned-archer",
+    "undead": true,
     "name": "monsters.returnedArcher",
     "life": [80, 110],
     "lifeGrowth": [8, 11],
@@ -487,6 +521,7 @@
   },
   {
     "id": "monsters/act1.burning-dead-mage",
+    "undead": true,
     "name": "monsters.burningDeadMage",
     "life": [110, 150],
     "lifeGrowth": [11, 15],
@@ -501,6 +536,7 @@
   },
   {
     "id": "monsters/act1.bone-ash",
+    "undead": true,
     "name": "monsters.boneAsh",
     "life": [580, 740],
     "lifeGrowth": [58, 74],
@@ -514,6 +550,7 @@
   },
   {
     "id": "monsters/act1.the-countess",
+    "undead": false,
     "name": "monsters.theCountess",
     "life": [700, 880],
     "lifeGrowth": [70, 88],
@@ -527,6 +564,7 @@
   },
   {
     "id": "monsters/act1.griswold",
+    "undead": true,
     "name": "monsters.griswold",
     "life": [760, 920],
     "lifeGrowth": [76, 92],
@@ -540,6 +578,7 @@
   },
   {
     "id": "monsters/act1.the-smith",
+    "undead": false,
     "name": "monsters.theSmith",
     "life": [820, 1000],
     "lifeGrowth": [82, 100],
@@ -553,6 +592,7 @@
   },
   {
     "id": "monsters/act1.blood-raven",
+    "undead": true,
     "name": "monsters.bloodRaven",
     "life": [100, 140],
     "lifeGrowth": [10, 14],
@@ -568,6 +608,7 @@
   },
   {
     "id": "monsters/act1.andariel",
+    "undead": false,
     "name": "monsters.andariel",
     "life": [2200, 2800],
     "lifeGrowth": [220, 280],

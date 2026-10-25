@@ -2,13 +2,13 @@ import paladinSkills from '../../data/skills/paladin.json';
 import { inferKind, type CombatUnit } from '../combat/types';
 import type { DamageType } from '../types/attributes';
 import type { Player } from '../types/entities';
-import type { AuraHealingTuning, AuraPulseTuning, AuraRedemptionTuning, SkillDef } from '../types/skills';
+import type { AuraHealingTuning, AuraPulseTuning, AuraRedemptionTuning, AuraSanctuaryTuning, SkillDef } from '../types/skills';
 import { createSkillValidator } from './skill-validator';
 
 /** Selected stat auras, including their derived enemy Chill and resistance effects. */
 export const STAT_AURA_IDS = Object.freeze(['paladin.thorns', 'paladin.blessed-aim', 'paladin.fanaticism',
   'paladin.defiance', 'paladin.resist-fire', 'paladin.resist-cold', 'paladin.resist-lightning', 'paladin.salvation',
-  'paladin.holy-freeze', 'paladin.conviction', 'paladin.holy-fire', 'paladin.holy-shock', 'paladin.prayer', 'paladin.cleansing', 'paladin.redemption', 'paladin.vigor'] as const);
+  'paladin.holy-freeze', 'paladin.conviction', 'paladin.holy-fire', 'paladin.holy-shock', 'paladin.prayer', 'paladin.cleansing', 'paladin.redemption', 'paladin.vigor', 'paladin.sanctuary'] as const);
 export type StatAuraId = typeof STAT_AURA_IDS[number];
 type BonusKey = 'thornsPct' | 'attackPct' | 'physicalDamagePct' | 'attackSpeedPct' | 'defensePct'
   | 'resistAllPct' | 'fireDamagePct' | 'coldDamagePct' | 'lightningDamagePct' | 'elementalDamagePct' | 'physDodgePct' | 'arcaneDamagePct' | 'lifeRegenPct' | 'magicDodgePct' | 'manaRegenPct' | 'lifePct';
@@ -20,9 +20,10 @@ const keys: Readonly<Record<StatAuraId, readonly BonusKey[]>> = {
   'paladin.resist-lightning': ['resistAllPct', 'lightningDamagePct'], 'paladin.salvation': ['resistAllPct', 'elementalDamagePct'],
   'paladin.holy-freeze': ['coldDamagePct', 'physDodgePct'], 'paladin.conviction': ['elementalDamagePct', 'arcaneDamagePct'],
   'paladin.holy-fire': ['fireDamagePct'], 'paladin.holy-shock': ['lightningDamagePct'], 'paladin.prayer': ['lifeRegenPct'],
-  'paladin.cleansing': ['lifeRegenPct', 'magicDodgePct'], 'paladin.redemption': ['lifeRegenPct', 'manaRegenPct'], 'paladin.vigor': ['lifePct', 'attackSpeedPct']
+  'paladin.cleansing': ['lifeRegenPct', 'magicDodgePct'], 'paladin.redemption': ['lifeRegenPct', 'manaRegenPct'], 'paladin.vigor': ['lifePct', 'attackSpeedPct'], 'paladin.sanctuary': ['arcaneDamagePct']
 };
 export interface StatAuraDefinition {
+  readonly sanctuary?: AuraSanctuaryTuning;
   readonly redemption?: AuraRedemptionTuning;
   readonly requiredLevel: number;
   readonly maxRank: number;
@@ -33,6 +34,7 @@ export interface StatAuraDefinition {
   readonly cleansingDurationMultiplier?: number;
 }
 export interface StatAuraProjection {
+  readonly sanctuary?: AuraSanctuaryTuning;
   readonly redemption?: AuraRedemptionTuning;
   readonly selectedAuraId: StatAuraId;
   readonly sourceHeroId: string;
@@ -46,6 +48,20 @@ export interface StatAuraProjection {
   readonly cleansingDurationMultiplier?: number;
 }
 const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number; readonly aura?: boolean; readonly effects?: unknown }>();
+
+function validSanctuary(id: StatAuraId, input: unknown): boolean {
+  if (id !== 'paladin.sanctuary') return input === undefined;
+  if (typeof input !== 'object' || input === null) return false;
+  const tuning = input as AuraSanctuaryTuning;
+  return Object.keys(tuning).length === 3 && ['intervalMs', 'damage', 'repulseDurationMs'].every(key => Object.hasOwn(tuning, key)) &&
+    Number.isInteger(tuning.intervalMs) && tuning.intervalMs >= 1000 && tuning.intervalMs <= 60000 &&
+    Number.isFinite(tuning.damage) && tuning.damage > 0 && Number.isInteger(tuning.repulseDurationMs) &&
+    tuning.repulseDurationMs >= 1 && tuning.repulseDurationMs <= 60000;
+}
+
+function copySanctuary(tuning: AuraSanctuaryTuning): AuraSanctuaryTuning {
+  return Object.freeze({ intervalMs: tuning.intervalMs, damage: tuning.damage, repulseDurationMs: tuning.repulseDurationMs });
+}
 
 function validRedemption(id: StatAuraId, input: unknown): boolean {
   if (id !== 'paladin.redemption') return input === undefined;
@@ -120,6 +136,7 @@ export function resolveStatAuraDefinitions(rows: readonly unknown[]): Readonly<R
       ...(row.auraPulse ? { pulse: copyPulse(row.auraPulse) } : {}),
       ...(row.auraHealing ? { healing: copyHealing(row.auraHealing) } : {}),
       ...(row.redemption ? { redemption: copyRedemption(row.redemption) } : {}),
+      ...(row.sanctuary ? { sanctuary: copySanctuary(row.sanctuary) } : {}),
       ...(row.cleansing ? { cleansingDurationMultiplier: row.cleansing.durationMultiplier, healing: copyHealing(row.cleansing.healing) } : {}),
       perRank: Object.freeze(Object.fromEntries(keys[id].map(key => [key, perRank[key]]))) })];
   })) as Record<StatAuraId, StatAuraDefinition>);
@@ -151,6 +168,7 @@ export function composeStatAura(player: Pick<Player, 'id' | 'class' | 'level' | 
     ...(definition.pulse ? { pulse: copyPulse(definition.pulse) } : {}),
     ...(definition.healing ? { healing: copyHealing(definition.healing) } : {}),
     ...(definition.redemption ? { redemption: copyRedemption(definition.redemption) } : {}),
+    ...(definition.sanctuary ? { sanctuary: copySanctuary(definition.sanctuary) } : {}),
     ...(definition.cleansingDurationMultiplier !== undefined ? { cleansingDurationMultiplier: definition.cleansingDurationMultiplier } : {}),
     bonuses: Object.freeze(Object.fromEntries(keys[id].map(key => [key, (definition.perRank[key] ?? 0) * rank]))),
     ...(fieldedMercCombatId && fieldedMercCombatId !== player.id ? { fieldedMercCombatId } : {}) });
@@ -162,6 +180,7 @@ function valid(aura: StatAuraProjection): boolean {
     validPulse(aura.selectedAuraId, aura.pulse) &&
     validHealing(aura.selectedAuraId, aura.healing) &&
     validRedemption(aura.selectedAuraId, aura.redemption) &&
+    validSanctuary(aura.selectedAuraId, aura.sanctuary) &&
     (aura.selectedAuraId === 'paladin.cleansing'
       ? typeof aura.cleansingDurationMultiplier === 'number' && Number.isFinite(aura.cleansingDurationMultiplier) &&
         aura.cleansingDurationMultiplier > 0 && aura.cleansingDurationMultiplier < 1
@@ -185,6 +204,7 @@ export function copyStatAuraProjection(aura: StatAuraProjection | undefined): St
     ...(aura.pulse ? { pulse: copyPulse(aura.pulse) } : {}),
     ...(aura.healing ? { healing: copyHealing(aura.healing) } : {}),
     ...(aura.redemption ? { redemption: copyRedemption(aura.redemption) } : {}),
+    ...(aura.sanctuary ? { sanctuary: copySanctuary(aura.sanctuary) } : {}),
     ...(aura.cleansingDurationMultiplier !== undefined ? { cleansingDurationMultiplier: aura.cleansingDurationMultiplier } : {}),
     rank: aura.rank, maxRank: aura.maxRank, bonuses: Object.freeze({ ...aura.bonuses }),
     ...(typeof aura.fieldedMercCombatId === 'string' && aura.fieldedMercCombatId !== aura.sourceHeroId

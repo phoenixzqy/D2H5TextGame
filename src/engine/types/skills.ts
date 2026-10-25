@@ -192,8 +192,17 @@ export interface AuraRedemptionTuning {
   readonly mana: number;
 }
 
+/** JSON-owned Sanctuary undead pulse and no-movement canonical Stun adaptation. */
+export interface AuraSanctuaryTuning {
+  readonly intervalMs: number;
+  readonly damage: number;
+  readonly repulseDurationMs: number;
+}
+
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Sanctuary-only undead damage/control, copied without persisted timers. */
+  readonly sanctuary?: AuraSanctuaryTuning;
   /** Redemption-only HP/MP recovery from one shared wave-local corpse per useful pulse. */
   readonly redemption?: AuraRedemptionTuning;
   /** Cleansing-only duration factor and independent recovery, copied at each wave boundary. */

@@ -1,6 +1,7 @@
 [
   {
     "id": "monsters/act3.jungle-hunter",
+    "undead": false,
     "name": "monsters.jungleHunter",
     "life": [
       100,
@@ -35,6 +36,7 @@
   },
   {
     "id": "monsters/act3.fetish",
+    "undead": false,
     "name": "monsters.fetish",
     "life": [
       80,
@@ -71,6 +73,7 @@
   },
   {
     "id": "monsters/act3.spider",
+    "undead": false,
     "name": "monsters.spider",
     "life": [
       90,
@@ -107,6 +110,7 @@
   },
   {
     "id": "monsters/act3.flayer",
+    "undead": false,
     "name": "monsters.flayer",
     "life": [
       110,
@@ -140,6 +144,7 @@
   },
   {
     "id": "monsters/act3.thorned-hulk",
+    "undead": false,
     "name": "monsters.thornedHulk",
     "life": [
       200,
@@ -176,6 +181,7 @@
   },
   {
     "id": "monsters/act3.swamp-dweller",
+    "undead": false,
     "name": "monsters.swampDweller",
     "life": [
       120,
@@ -212,6 +218,7 @@
   },
   {
     "id": "monsters/act3.doom-ape",
+    "undead": false,
     "name": "monsters.doomApe",
     "life": [
       250,
@@ -252,6 +259,7 @@
   },
   {
     "id": "monsters/act3.infector",
+    "undead": false,
     "name": "monsters.infector",
     "life": [
       180,
@@ -288,6 +296,7 @@
   },
   {
     "id": "monsters/act3.serpent-magus",
+    "undead": false,
     "name": "monsters.serpentMagus",
     "life": [
       150,
@@ -325,6 +334,7 @@
   },
   {
     "id": "monsters/act3.mephisto",
+    "undead": false,
     "name": "monsters.mephisto",
     "life": [
       2000,

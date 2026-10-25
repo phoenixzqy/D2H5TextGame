@@ -147,6 +147,43 @@ beforeEach(() => {
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('native selected Might wave composition', () => {
+  it('uses publicly learned Sanctuary on real native undead and replays original inputs without income or saved potency', async () => {
+    arrange(0); gear(100, -1000); configure({ skillPoints: 2 });
+    const before = structuredClone(player().derivedStats);
+    for (const id of ['thorns', 'sanctuary']) {
+      expect(usePlayerStore.getState().allocateSkillPoint('skills-paladin-' + id)).toBe('ok');
+    }
+    expect(player().derivedStats).toEqual(before); expect(player()).not.toHaveProperty('selectedAuraId');
+    expect(usePlayerStore.getState().selectAura('paladin.sanctuary')).toBe('ok');
+    start();
+    expect(latest().enemyTeam.every(enemy => enemy.undead !== true)).toBe(true);
+    advance();
+    const undead = latest().enemyTeam.filter(enemy => enemy.undead === true);
+    expect(undead.length).toBeGreaterThan(0);
+    expect(latest().statAura).toMatchObject({ selectedAuraId: 'paladin.sanctuary',
+      bonuses: { arcaneDamagePct: .03 }, sanctuary: { intervalMs: 2000, damage: 20, repulseDurationMs: 500 } });
+    for (const enemy of undead) {
+      const damage = recording().events.find(event => event.kind === 'damage' && event.source === player().id && event.target === enemy.id && event.damageType === 'arcane');
+      expect(damage?.kind === 'damage' ? damage.amount : 0).toBeGreaterThan(0);
+      expect(damage?.simClockMs).toBe(2000);
+      expect(recording().events).toContainEqual(expect.objectContaining({ kind: 'status', target: enemy.id, statusId: 'stun', simClockMs: 2000 }));
+    }
+    const original = structuredClone(latest()), first = recording();
+    const income = structuredClone({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies, xp: player().experience });
+    expect(usePlayerStore.getState().selectAura(null)).toBe('ok'); expect(recording()).toEqual(first);
+    replay();
+    expect(recording().events.some(event => event.kind === 'damage' && event.source === player().id && event.damageType === 'arcane')).toBe(false);
+    expect(usePlayerStore.getState().selectAura('paladin.sanctuary')).toBe('ok'); replay();
+    expect(latest().playerTeam).toEqual(original.playerTeam); expect(latest().enemyTeam).toEqual(original.enemyTeam);
+    expect(latest().statAura).toEqual(original.statAura); expect(recording().events).toEqual(first.events);
+    expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies, xp: player().experience }).toEqual(income);
+    const saved = snapshotStores(); if (!saved) throw new Error('Missing Sanctuary save');
+    expect(saved.version).toBe(22); expect(saved.player.selectedAuraId).toBe('paladin.sanctuary');
+    expect(saved.player.derivedStats).toEqual(before);
+    for (const field of ['statAura', 'sanctuary', 'undead']) expect(saved.player).not.toHaveProperty(field);
+    abortSubAreaRun(); await importIntoStores(JSON.stringify(toJsonSafe(saved)));
+    expect(player().selectedAuraId).toBe('paladin.sanctuary'); expect(player().derivedStats).toEqual(before);
+  });
   it('carries publicly allocated Vigor capacity over fresh bases, preserves original replay pools and saves no bonus', async () => {
     arrange(0); configure({ skillPoints: 4 });
     const finisher = 'fixture.vigor-finisher';

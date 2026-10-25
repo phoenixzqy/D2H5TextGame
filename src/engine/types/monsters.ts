@@ -10,6 +10,8 @@
 export interface MonsterDef {
   readonly id: string;
   readonly name: string;
+  /** Explicit authored undead identity; absent legacy definitions remain unclassified. */
+  readonly undead?: boolean;
   
   /** Base life at level 1 [min, max] */
   readonly life: readonly [number, number];

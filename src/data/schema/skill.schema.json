@@ -2483,6 +2483,18 @@
     },
     "else": { "properties": { "cleansing": false } }
   }, {
+    "if": { "properties": { "id": { "const": "skills-paladin-sanctuary" } }, "required": ["id"] },
+    "then": {
+      "required": ["aura", "sanctuary"],
+      "properties": {
+        "aura": { "const": true }, "trigger": { "const": "passive" },
+        "target": { "const": "self" }, "cooldown": { "const": 0 },
+        "damage": false, "appliesStatus": false,
+        "sanctuary": { "$ref": "#/properties/sanctuary" }
+      }
+    },
+    "else": { "properties": { "sanctuary": false } }
+  }, {
     "if": { "properties": { "id": { "const": "skills-paladin-redemption" } }, "required": ["id"] },
     "then": {
       "required": ["aura", "redemption"],
@@ -2513,6 +2525,16 @@
     }
   },
   "properties": {
+    "sanctuary": {
+      "type": "object", "additionalProperties": false,
+      "description": "Exact selected Sanctuary undead-only Arcane damage and canonical Stun repulsion adaptation; no movement or saved timer.",
+      "required": ["intervalMs", "damage", "repulseDurationMs"],
+      "properties": {
+        "intervalMs": { "type": "integer", "minimum": 1000, "maximum": 60000, "description": "Simulation milliseconds between pulses, including the first full interval after wave entry." },
+        "damage": { "type": "number", "exclusiveMinimum": 0, "description": "Finite positive base Arcane damage before ordinary source increases, combos and mitigation." },
+        "repulseDurationMs": { "type": "integer", "minimum": 1, "maximum": 60000, "description": "Canonical Stun duration after pulse damage on surviving undead; existing boss multiplier applies." }
+      }
+    },
     "redemption": {
       "type": "object", "additionalProperties": false,
       "description": "Exact selected Redemption recovery from one shared FIFO corpse per useful pulse; no saved corpses or timers.",

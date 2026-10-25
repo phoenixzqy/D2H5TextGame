@@ -87,10 +87,11 @@ for (const locale of ['en', 'zh-CN'] as const) {
       const none = within(group).getByRole('radio', { name: copy[locale].none });
       const meditation = within(group).getByRole('radio', { name: copy[locale].meditation });
       const might = within(group).getByRole('radio', { name: copy[locale].might });
-      expect(within(group).getAllByRole('radio')).toHaveLength(19);
+      expect(within(group).getAllByRole('radio')).toHaveLength(20);
       expect(within(group).getByRole('radio', { name: locale === 'en' ? 'Cleansing' : '净化' })).toBeEnabled();
       expect(within(group).getByRole('radio', { name: locale === 'en' ? 'Redemption' : '救赎' })).toBeDisabled();
       expect(within(group).getByRole('radio', { name: locale === 'en' ? 'Vigor' : '活力' })).toBeDisabled();
+      expect(within(group).getByRole('radio', { name: locale === 'en' ? 'Sanctuary' : '庇护所' })).toBeDisabled();
       expect(none).toBeChecked(); expect(meditation).toBeEnabled(); expect(might).toBeEnabled();
       fireEvent.click(meditation); expect(player()).toEqual({ ...before, selectedAuraId: AURA });
       expect(meditation).toBeChecked(); expect(none).not.toBeChecked(); expect(might).not.toBeChecked();

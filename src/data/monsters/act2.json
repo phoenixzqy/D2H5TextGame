@@ -1,6 +1,7 @@
 [
   {
     "id": "monsters/act2.sand-raider",
+    "undead": false,
     "name": "monsters.sandRaider",
     "life": [60, 80],
     "lifeGrowth": [6, 8],
@@ -15,6 +16,7 @@
   },
   {
     "id": "monsters/act2.marauder",
+    "undead": false,
     "name": "monsters.marauder",
     "life": [85, 110],
     "lifeGrowth": [8, 11],
@@ -29,6 +31,7 @@
   },
   {
     "id": "monsters/act2.invader",
+    "undead": false,
     "name": "monsters.invader",
     "life": [120, 160],
     "lifeGrowth": [12, 16],
@@ -43,6 +46,7 @@
   },
   {
     "id": "monsters/act2.infidel",
+    "undead": false,
     "name": "monsters.infidel",
     "life": [170, 220],
     "lifeGrowth": [17, 22],
@@ -57,6 +61,7 @@
   },
   {
     "id": "monsters/act2.fire-eye",
+    "undead": false,
     "name": "monsters.fireEye",
     "life": [620, 780],
     "lifeGrowth": [62, 78],
@@ -70,6 +75,7 @@
   },
   {
     "id": "monsters/act2.sand-maggot",
+    "undead": false,
     "name": "monsters.sandMaggot",
     "life": [80, 120],
     "lifeGrowth": [8, 12],
@@ -84,6 +90,7 @@
   },
   {
     "id": "monsters/act2.sand-maggot-young",
+    "undead": false,
     "name": "monsters.sandMaggotYoung",
     "life": [25, 40],
     "lifeGrowth": [3, 5],
@@ -98,6 +105,7 @@
   },
   {
     "id": "monsters/act2.rock-worm",
+    "undead": false,
     "name": "monsters.rockWorm",
     "life": [95, 135],
     "lifeGrowth": [9, 13],
@@ -112,6 +120,7 @@
   },
   {
     "id": "monsters/act2.devourer",
+    "undead": false,
     "name": "monsters.devourer",
     "life": [140, 190],
     "lifeGrowth": [14, 19],
@@ -126,6 +135,7 @@
   },
   {
     "id": "monsters/act2.coldworm-the-burrower",
+    "undead": false,
     "name": "monsters.coldwormTheBurrower",
     "life": [580, 740],
     "lifeGrowth": [58, 74],
@@ -139,6 +149,7 @@
   },
   {
     "id": "monsters/act2.dune-beast",
+    "undead": false,
     "name": "monsters.duneBeast",
     "life": [180, 230],
     "lifeGrowth": [18, 23],
@@ -153,6 +164,7 @@
   },
   {
     "id": "monsters/act2.saber-cat",
+    "undead": false,
     "name": "monsters.saberCat",
     "life": [110, 150],
     "lifeGrowth": [11, 15],
@@ -167,6 +179,7 @@
   },
   {
     "id": "monsters/act2.bloodhawk",
+    "undead": false,
     "name": "monsters.bloodhawk",
     "life": [55, 80],
     "lifeGrowth": [5, 8],
@@ -181,6 +194,7 @@
   },
   {
     "id": "monsters/act2.claw-viper",
+    "undead": false,
     "name": "monsters.clawViper",
     "life": [50, 70],
     "lifeGrowth": [5, 8],
@@ -195,6 +209,7 @@
   },
   {
     "id": "monsters/act2.salamander",
+    "undead": false,
     "name": "monsters.salamander",
     "life": [110, 145],
     "lifeGrowth": [11, 15],
@@ -209,6 +224,7 @@
   },
   {
     "id": "monsters/act2.pit-viper",
+    "undead": false,
     "name": "monsters.pitViper",
     "life": [130, 170],
     "lifeGrowth": [13, 17],
@@ -223,6 +239,7 @@
   },
   {
     "id": "monsters/act2.fangskin",
+    "undead": false,
     "name": "monsters.fangskin",
     "life": [560, 720],
     "lifeGrowth": [56, 72],
@@ -236,6 +253,7 @@
   },
   {
     "id": "monsters/act2.mummy",
+    "undead": true,
     "name": "monsters.mummy",
     "life": [70, 100],
     "lifeGrowth": [7, 10],
@@ -250,6 +268,7 @@
   },
   {
     "id": "monsters/act2.greater-mummy",
+    "undead": true,
     "name": "monsters.greaterMummy",
     "life": [150, 200],
     "lifeGrowth": [15, 20],
@@ -264,6 +283,7 @@
   },
   {
     "id": "monsters/act2.burning-dead-archer",
+    "undead": true,
     "name": "monsters.burningDeadArcher",
     "life": [100, 135],
     "lifeGrowth": [10, 14],
@@ -278,6 +298,7 @@
   },
   {
     "id": "monsters/act2.horadrim-ancient",
+    "undead": true,
     "name": "monsters.horadrimAncient",
     "life": [220, 290],
     "lifeGrowth": [22, 29],
@@ -292,6 +313,7 @@
   },
   {
     "id": "monsters/act2.ancient-kaa",
+    "undead": true,
     "name": "monsters.ancientKaa",
     "life": [700, 880],
     "lifeGrowth": [70, 88],
@@ -305,6 +327,7 @@
   },
   {
     "id": "monsters/act2.radament",
+    "undead": true,
     "name": "monsters.radament",
     "life": [500, 620],
     "lifeGrowth": [50, 62],
@@ -318,6 +341,7 @@
   },
   {
     "id": "monsters/act2.horror-mage",
+    "undead": true,
     "name": "monsters.horrorMage",
     "life": [80, 120],
     "lifeGrowth": [8, 12],
@@ -332,6 +356,7 @@
   },
   {
     "id": "monsters/act2.cantor",
+    "undead": true,
     "name": "monsters.cantor",
     "life": [150, 190],
     "lifeGrowth": [15, 19],
@@ -346,6 +371,7 @@
   },
   {
     "id": "monsters/act2.dark-elder",
+    "undead": true,
     "name": "monsters.darkElder",
     "life": [540, 700],
     "lifeGrowth": [54, 70],
@@ -359,6 +385,7 @@
   },
   {
     "id": "monsters/act2.scarab",
+    "undead": false,
     "name": "monsters.scarab",
     "life": [40, 60],
     "lifeGrowth": [4, 6],
@@ -373,6 +400,7 @@
   },
   {
     "id": "monsters/act2.steel-scarab",
+    "undead": false,
     "name": "monsters.steelScarab",
     "life": [120, 160],
     "lifeGrowth": [12, 16],
@@ -387,6 +415,7 @@
   },
   {
     "id": "monsters/act2.plague-bug",
+    "undead": false,
     "name": "monsters.plagueBug",
     "life": [100, 140],
     "lifeGrowth": [10, 14],
@@ -401,6 +430,7 @@
   },
   {
     "id": "monsters/act2.death-beetle",
+    "undead": false,
     "name": "monsters.deathBeetle",
     "life": [160, 210],
     "lifeGrowth": [16, 21],
@@ -415,6 +445,7 @@
   },
   {
     "id": "monsters/act2.beetleburst",
+    "undead": false,
     "name": "monsters.beetleburst",
     "life": [560, 720],
     "lifeGrowth": [56, 72],
@@ -428,6 +459,7 @@
   },
   {
     "id": "monsters/act2.sand-leaper",
+    "undead": false,
     "name": "monsters.sandLeaper",
     "life": [85, 115],
     "lifeGrowth": [8, 12],
@@ -442,6 +474,7 @@
   },
   {
     "id": "monsters/act2.cave-leaper",
+    "undead": false,
     "name": "monsters.caveLeaper",
     "life": [125, 165],
     "lifeGrowth": [12, 16],
@@ -456,6 +489,7 @@
   },
   {
     "id": "monsters/act2.vulture-demon",
+    "undead": false,
     "name": "monsters.vultureDemon",
     "life": [90, 130],
     "lifeGrowth": [9, 13],
@@ -470,6 +504,7 @@
   },
   {
     "id": "monsters/act2.undead-scavenger",
+    "undead": true,
     "name": "monsters.undeadScavenger",
     "life": [140, 180],
     "lifeGrowth": [14, 18],
@@ -484,6 +519,7 @@
   },
   {
     "id": "monsters/act2.undead-flayer",
+    "undead": true,
     "name": "monsters.undeadFlayer",
     "life": [100, 140],
     "lifeGrowth": [10, 14],
@@ -498,6 +534,7 @@
   },
   {
     "id": "monsters/act2.the-summoner",
+    "undead": false,
     "name": "monsters.theSummoner",
     "life": [450, 550],
     "lifeGrowth": [45, 55],
@@ -511,6 +548,7 @@
   },
   {
     "id": "monsters/act2.duriel",
+    "undead": false,
     "name": "monsters.duriel",
     "life": [1200, 1500],
     "lifeGrowth": [100, 150],

@@ -251,6 +251,44 @@ The marker and capacity never enter persistent Player/Merc stats or saves;
 save remainsv22. Ordinary edits apply next wave; explicit replay uses current
 configuration over original resources/teams/seed without duplicate income.
 
+## Sanctuary: authored undead pulses and repulsion adaptation
+
+Local contract; implementation/independent design/QA and earned balance open.
+[Explicit monster classification](D05-monster-undead-v1.md) is the sole undead
+identity authority. Literal true marks an eligible living hostile unit; absent,
+false or malformed truthy identity never qualifies. Allied units never qualify.
+Apply to all currently living hostile units with that explicit marker, including
+reinforcements admitted after wave start; do not infer from names or IDs.
+
+Preserve unlock24, Thorns prerequisite, cap20 and authored3% arcane damage per
+rank for the living hero/original living fielded merc. Sanctuary-only JSON tuning
+owns intervalMs2000, damage20 and repulseDurationMs500. These pulse/control values
+are provisional local defaults; they do not establish earned balance.
+The selected living hero emits deterministic Arcane pulses to eligible undead
+in registration order, starting one complete interval after each wave entry.
+Use existing source increases, combos, independent magical mitigation and
+resistances. No resistance bypass, crit, dodge or extra damage/status RNG.
+
+The game has no movement/range system. Repulsion explicitly becomes canonical
+Stun on each surviving eligible target after pulse damage, independently of
+final HP loss under existing mitigation/absorption rules. Base duration500ms; existing boss/chapter-boss multiplier
+halves it to250ms. Use the existing exact timed status/refresh/action-skipping
+rules and truthful Stun observations. Never move targets or invent knockback.
+Lethal damage closes death before any repulsion; existing death/orb/corpse
+machinery remains authoritative. Source crowd control alone does not suppress
+pulses; source death stops future pulses. An already applied Stun keeps its
+normal remaining duration after source death. Periodic deaths settle before a
+due pulse, which precedes surviving tied actions; existing deadline/action-cap/
+battle-end rules remain. Do not bank missed pulses or frontload wave entry.
+
+Copy/freeze exact finite tuning at definition, native and direct-engine
+boundaries. Missing/foreign/invalid tuning gives no selected effect. Keep Holy
+Fire/Shock pulse metadata closed to its existing owners. No saved aura timer,
+undead marker, status or potency; save remainsv22. Normal changes next wave;
+explicit current-configuration replay uses original resources/teams/seed with
+no duplicate income. Both locales must describe actual undead targeting,
+Arcane bonus, pulse timing and Stun adaptation.
+
 ## Remaining required effects
 
 Vigor follows the explicit temporary endurance/cadence contract above and has

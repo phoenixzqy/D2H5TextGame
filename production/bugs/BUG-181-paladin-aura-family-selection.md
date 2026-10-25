@@ -139,3 +139,25 @@ source blobs match. [Evidence and retained original failures](../../docs/plans/e
 942owned files, scratch is absent and4468closed, with no failures/remaining paths.
 Remaining two: Sanctuary and Concentration. Earned balance and independent
 whole-family acceptance remain open. Genuine campaign save/next402 is unchanged.
+
+
+Sanctuary identity prerequisite at `a03fed2`: causal
+`src/engine/combat/monster-undead.test.ts` reproduces two genuine schema/factory failures, one incorrect corpus-count
+assertion and seven controls passing (seed42, engine/schema path, locale/viewport independent). All109current
+archetypes lack explicit classification, the schema rejects literal boolean
+identity, and buildMonsterUnit discards authored true. Original output is
+`red-identity.log` in the task-owned Sanctuary evidence root. Repair the schema,
+authored corpus and factory boundary before implementing undead damage/control;
+never infer identity from display names or archetype strings. This prerequisite
+alone does not complete Sanctuary or change the supported-aura/skill counts.
+
+
+Sanctuary runtime follow-up: exact definition/schema RED3failures/one control
+became24passing definition/shared-aura tests. Corrected causal combat RED now
+has9failures/three controls at seed42: no undead HP loss, no canonical repulsion,
+no action interruption/recovery and no pulse kill. A separate initial fixture
+allowed an ordinary1700ms attack to pre-empt its intended2000ms poison death;
+that enemy is now explicitly held. A subsequent extra-parenthesis transform
+error is retained but is not causal gameplay evidence. Repair the shared aura
+interval/settlement consumer, reusing normal Arcane mitigation, timed Stun and
+exact-once death closure; do not create movement or weaken validation.

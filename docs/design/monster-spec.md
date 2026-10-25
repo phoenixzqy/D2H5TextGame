@@ -70,12 +70,12 @@ When a monster spawns, its base stats are multiplied by tier:
 | `act1.fallen` | Fallen / 沉沦魔 | Trash | 30–50 | 3–5 | 8–12 | `weak_melee`, `panic_flee` | 0 | `act1.trash` | Small cowardly demons |
 | `act1.zombie` | Zombie / 僵尸 | Trash | 50–70 | 5–7 | 10–15 | `weak_melee` | 0 fire, +25 cold | `act1.trash` | Slow undead |
 | `act1.quill_rat` | Quill Rat / 刺鼠 | Trash | 20–40 | 2–4 | 6–10 | `weak_melee` | 0 | `act1.trash` | Fast rodents |
-| `act1.dark_archer` | Dark Archer / 黑暗弓手 | Trash | 40–60 | 4–6 | 12–18 | `monster.weak_ranged` | 0 | `act1.trash` | Ranged skeleton |
+| `act1.dark_archer` | Dark Archer / 黑暗弓手 | Trash | 40–60 | 4–6 | 12–18 | `monster.weak_ranged` | 0 | `act1.trash` | Corrupt Rogue archer (non-undead; D05 classification) |
 | `act1.fallen_shaman` | Fallen Shaman / 沉沦魔巫师 | Elite | 60–90 | 6–10 | 10–15 | `monster.fire_bolt`, `monster.resurrect_fallen` | +25 fire | `act1.elite` | Resurrects fallen allies |
 | `act1.carver` | Carver / 切割者 | Trash | 40–60 | 4–6 | 10–14 | `weak_melee` | 0 | `act1.trash` | Upgraded fallen |
-| `act1.tainted` | Tainted / 污染者 | Trash | 50–70 | 5–7 | 12–16 | `weak_melee`, `monster.poison_spit` | +25 poison | `act1.trash` | Poisonous undead |
+| `act1.tainted` | Tainted / 污染者 | Trash | 50–70 | 5–7 | 12–16 | `weak_melee`, `monster.poison_spit` | +25 poison | `act1.trash` | Poisonous demon (non-undead; D05 classification) |
 | `act1.bone_warrior` | Bone Warrior / 骨战士 | Elite | 70–100 | 7–10 | 15–20 | `strong_melee` | +25 physical | `act1.elite` | Skeleton knight |
-| `act1.dark_stalker` | Dark Stalker / 黑暗追猎者 | Champion | 100–150 | 10–15 | 18–25 | `strong_melee`, `monster.charge` | +25 all | `act1.champion` | Fast assassin undead |
+| `act1.dark_stalker` | Dark Stalker / 黑暗追猎者 | Champion | 100–150 | 10–15 | 18–25 | `strong_melee`, `monster.charge` | +25 all | `act1.champion` | Corrupt Rogue spearwoman (non-undead; D05 classification) |
 | `act1.blood_raven` | Blood Raven / 血鸦 | Boss | 500–700 | 50–70 | 30–50 | `monster.fire_arrow`, `monster.summon_adds` | +50 fire, -25 cold | `act1.boss` | Act I boss (corrupted Rogue) |
 
 **Boss Notes — Blood Raven:**
@@ -259,3 +259,12 @@ See `docs/design/drop-tables.md` for full loot logic. Summary:
 | Version | Date | Author | Notes |
 |---|---|---|---|
 | 1.0 | 2025-01-01 | game-designer | Initial v1 catalog (~50 monsters, 5 bosses) |
+
+
+## Explicit undead identity
+
+[D05 authored classification](../plans/decisions/D05-monster-undead-v1.md)
+controls undead-specific effects for the current109archetypes. Each JSON row
+explicitly states true/false; names and historical lore shorthand are never
+runtime classifiers. The current canonical mapping resolves the older Dark
+Archer, Tainted and Dark Stalker undead hints as recorded in that decision.

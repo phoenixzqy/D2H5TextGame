@@ -1191,6 +1191,10 @@ function dynamicDescription(
       healAmount: definition.healing?.amount,
       redemptionSeconds: definition.redemption ? definition.redemption.intervalMs / 1000 : undefined,
       redemptionLife: definition.redemption?.life, redemptionMana: definition.redemption?.mana,
+      sanctuarySeconds: definition.sanctuary ? definition.sanctuary.intervalMs / 1000 : undefined,
+      sanctuaryDamage: definition.sanctuary?.damage, repulseMs: definition.sanctuary?.repulseDurationMs,
+      bossRepulseMs: definition.sanctuary
+        ? Math.max(1, Math.floor(definition.sanctuary.repulseDurationMs * (STATUS_DEFAULTS.stun.bossDurationMult ?? 1))) : undefined,
       durationReductionPct: definition.cleansingDurationMultiplier !== undefined ? (1 - definition.cleansingDurationMultiplier) * 100 : undefined,
       pulseSeconds: definition.pulse ? definition.pulse.intervalMs / 1000 : undefined,
       pulseDamage: definition.pulse?.damage,

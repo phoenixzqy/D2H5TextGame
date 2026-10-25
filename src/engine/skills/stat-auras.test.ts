@@ -41,7 +41,7 @@ describe('authored stat aura composition and authority', () => {
     expect(resolveStatAuraDefinitions(changed)['paladin.thorns'].perRank.thornsPct).toBe(0.125);
     expect(definitions['paladin.thorns'].perRank.thornsPct).toBe(0.04);
     expect(isStatAuraId('paladin.holy-fire')).toBe(true);
-    expect(isStatAuraId('paladin.sanctuary')).toBe(false);
+    expect(isStatAuraId('paladin.sanctuary')).toBe(true);
   });
   it('copies only valid selected potency without retaining a mutable bonus map', () => {
     const input = { selectedAuraId: 'paladin.thorns' as const, sourceHeroId: 'hero', rank: 2, maxRank: 20, bonuses: { thornsPct: 0.08 } };

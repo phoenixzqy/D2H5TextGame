@@ -90,6 +90,15 @@ for (const locale of ['en', 'zh-CN'] as const) {
         expect(detail).not.toHaveTextContent('{{');
       }
     });
+    it('explains Sanctuary undead-only pulses, recipient Arcane scaling and timed Stun instead of movement', () => {
+      mount(true);
+      fireEvent.click(screen.getByTestId('skill-node-skills-paladin-sanctuary'));
+      const detail = screen.getByTestId('skill-detail-panel');
+      for (const text of locale === 'en'
+        ? ['arcane damage +3%', 'Every 2 seconds', '20 base Arcane', '500 ms', 'bosses: 250 ms', 'living undead enemies only', 'living fielded mercenary', 'no movement']
+        : ['奥术伤害+3%', '每2秒', '20点基础奥术', '500毫秒', '首领250毫秒', '仅对存活的亡灵敌人', '存活的上阵佣兵', '不产生位移']) expect(detail).toHaveTextContent(text);
+      expect(detail).not.toHaveTextContent('{{');
+    });
     it('explains Vigor temporary capacity and cadence without promising movement, stamina or free healing', () => {
       mount(true);
       fireEvent.click(screen.getByTestId('skill-node-skills-paladin-vigor'));

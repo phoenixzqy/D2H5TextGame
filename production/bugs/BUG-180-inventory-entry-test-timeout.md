@@ -61,3 +61,6 @@ original failed full run (`aura-full.*`), isolated diagnostic
 audits. Status remains unresolved: no import-cycle/stat assertion failure or
 gameplay defect is established, and no timing/source workaround was introduced.
 Profile the cold import path under the full workload before proposing a source fix.
+
+
+Sanctuary first-full recurrence over a03fed2: player-first entry case timed out at unchanged5000ms (13-case file, one failure). The complete full also retains76historical-byte failures and one stale aura assertion, reported separately under BUG183/BUG181. No timeout, worker, discovery or import assertion is changed. Original full-final.log/result and exact before/after integrity live in the Sanctuary task evidence root; isolated reproduction and corrected-source full remain pending.

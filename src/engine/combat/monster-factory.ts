@@ -239,6 +239,7 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
     level,
     tier,
     monsterArchetypeId: def.id,
+    ...(def.undead === true ? { undead: true as const } : {}),
     stats: {
       life: lifeMaxStat,
       lifeMax: lifeMaxStat,

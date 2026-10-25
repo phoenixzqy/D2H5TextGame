@@ -70,6 +70,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Factory-copied literal authored undead identity; names/IDs never grant this marker. */
+  readonly undead?: true;
   /** Transient exact Vigor base/applied capacity for wave carry; never persisted. */
   readonly vigorLife?: { readonly baseLifeMax: number; readonly appliedLifeMax: number };
   /** Native mercenary factory-owned Holy Freeze presence; wave-local, never persisted. */

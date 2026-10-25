@@ -568,6 +568,7 @@
   },
   {
     "id": "skills-paladin-sanctuary",
+    "sanctuary": { "intervalMs": 2000, "damage": 20, "repulseDurationMs": 500 },
     "name": "skills.paladin.sanctuary.name",
     "description": "skills.paladin.sanctuary.desc",
     "icon": "skills/paladin/sanctuary.png",

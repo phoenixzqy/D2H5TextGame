@@ -892,7 +892,7 @@
     },
     "sanctuary": {
       "name": "Sanctuary",
-      "desc": "Aura: damages and repels undead enemies."
+      "desc": "Selected aura: while the hero lives, you and your living fielded mercenary gain arcane damage +{{arcaneDamagePct}}% per rank. Every {{sanctuarySeconds}} seconds, the hero deals {{sanctuaryDamage}} base Arcane damage to living undead enemies only, then stuns survivors for {{repulseMs}} ms (bosses: {{bossRepulseMs}} ms). Repulsion is a short Stun with no movement. Pulses use normal mitigation, cannot crit or be dodged, and spend no mana. The first pulse waits one full interval after wave entry; hero death stops future pulses. Changes apply next wave and never become permanent stats."
     },
     "fanaticism": {
       "name": "Fanaticism",
