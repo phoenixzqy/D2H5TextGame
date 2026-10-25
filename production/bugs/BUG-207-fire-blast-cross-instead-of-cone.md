@@ -1,6 +1,6 @@
 # BUG-207 — Fire Blast selects a cross instead of its promised cone
 
-- Status: reproduced; cone contract/implementation and whole-skill credit open.
+- Status: fixed and verified locally; independent design/QA and earned balance remain open.
 - Severity: Medium — paid area targeting differs from the advertised shape.
 - Environment: Node24.21.0, real default registry/native L30 Assassin, rank1 seed7.
 - Owner: root; independent design/QA and earned balance remain open.
@@ -27,6 +27,14 @@ Chinese: “投掷锥形爆裂的火焰陷阱，灼烧敌人。”
 skills-spec.md row `assassin.fire_blast` says Cone/Cone fire trap.
 
 See [native reproduction](../../docs/plans/evidence/d04-fire-blast-cone-repro.md).
-This report precedes cone code/data repair. The separate Burn patch preserves
+This historical reproduction precedes cone code/data repair. The separate Burn patch preserves
 cross while repairing potency; it neither waives this defect nor credits the
 whole skill. No earned campaign action or remote publication.
+
+## Local repair continuation
+
+The explicit provisional two-row cone now uses a real triangular footprint,
+with truthful bilingual thrown-trap/one-explosion details. Final full14671/654/
+two existing skips, types/lint/build and four public production cases pass.
+Only Fire Blast receives bounded local functionality credit; earned balance
+and independent acceptance remain open. See [verification](../../docs/plans/evidence/d04-fire-blast-cone.md).

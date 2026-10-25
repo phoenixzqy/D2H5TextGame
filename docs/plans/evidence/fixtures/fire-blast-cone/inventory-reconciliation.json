@@ -1,0 +1,19 @@
+{
+  "rows": 213,
+  "IDs_and_order_unchanged": true,
+  "credited": [
+    "skills-assassin-fire-blast"
+  ],
+  "changed_rows": [
+    "skills-assassin-fire-blast"
+  ],
+  "other212rows_exact": true,
+  "counts": {
+    "unverified": 106,
+    "bounded-functional": 105,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "baseline_sha256": "f647dbb8221f7546ce32fde9426f6f5ee03b89a76a3d21b55eafe05dacabe0e7",
+  "final_sha256": "1b3c539cff98ac846012517c901c57ca91faecf58a34fe6d9474c2a0044579bc"
+}

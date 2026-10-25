@@ -21,3 +21,10 @@ implement cross. Numeric cone geometry needs an explicit contract before code.
 Held enemies, later caster hold and resources are synthetic. This establishes
 actual targeting, not earned balance, trap lifecycle or whole-skill acceptance.
 Genuine retainedL33/next402/Baal-uncleared state/digest remains unchanged.
+
+## Repair continuation
+
+The original cross result above is historical. A real triangular preset and
+truthful public details are now locally verified in [cone evidence](d04-fire-blast-cone.md).
+The [explicit contract](../decisions/D04-fire-blast-cone-v1.md) records provisional
+numeric geometry before implementation; independent/earned acceptance stays open.

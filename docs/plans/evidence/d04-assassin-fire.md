@@ -141,3 +141,10 @@ All512raw members/37terminal receipts are byte-hash verified. Cleanup removed
 4492closed, remaining[]/failures[]. Both disposable production builds are
 removed after matching their respective frozen hash maps. Shared caches and
 the active umbrella worktree/branch/claim remain preserved.
+
+## Fire Blast targeting continuation
+
+The cone mismatch listed above is now locally repaired and verified under the
+[separate targeting contract/evidence](d04-fire-blast-cone.md). Its additional
+credit raises the inventory to105bounded/106unverified/one engine-only/one
+review-needed. Charge, persistent-trap and earned/independent requirements stay open.

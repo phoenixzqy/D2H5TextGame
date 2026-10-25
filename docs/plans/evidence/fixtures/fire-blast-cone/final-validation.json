@@ -1,0 +1,30 @@
+{
+  "pass": true,
+  "committed_source": "82668826f8aaaddb4a47603aa313a7bd0ae0b44f",
+  "source_files": 1386,
+  "design_files": 3,
+  "actual_committed_blobs_and_disk_exact": true,
+  "raw_archive_sha256": "9ebe3a7d14e359b64a3cb73cb2d89e8d2fac1946f8586d0d80be19be5bd0d94a",
+  "verified_raw_members": 148,
+  "terminal_receipts": 20,
+  "cleaned_exact_files": 908,
+  "recorded_owned_pids_absent": 41,
+  "scratch_absent": true,
+  "remaining": [],
+  "failures": [],
+  "inventory_rows": 213,
+  "IDs_order_unchanged": true,
+  "changed_rows": [
+    "skills-assassin-fire-blast"
+  ],
+  "counts": {
+    "unverified": 106,
+    "bounded-functional": 105,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "local_document_links_checked": 307,
+  "genuine_decompressed_sha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "independent_and_earned_acceptance_open": true,
+  "umbrella_goal": "active; C2-C4 and full G0-G7 unfinished"
+}
