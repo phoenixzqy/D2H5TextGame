@@ -41,6 +41,7 @@ import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { activeMightAura, type MightAuraProjection } from '../skills/might';
 import { activeMeditationAura, type MeditationAuraProjection } from '../skills/meditation';
 import { activeStatAura, copyStatAuraProjection, statAuraDamageBonus, type StatAuraProjection } from '../skills/stat-auras';
+import { vigorLifeMax, withoutVigorLife } from '../skills/vigor';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
 import { absorbBoneArmor, boneArmorPool, copyBoneArmorStatuses } from '../skills/bone-armor';
 import { activeBurstOfSpeed, burstOfSpeedRank, copyBurstOfSpeedStatuses, matchesBurstOfSpeed,
@@ -124,6 +125,7 @@ export type BattleEvent =
       readonly unit: CombatUnit;
     }
   | { readonly kind: 'heal'; readonly target: string; readonly amount: number }
+  | { readonly kind: 'life-capacity'; readonly target: string; readonly lifeMax: number; readonly life: number; readonly vigorBaseLifeMax?: number }
   | { readonly kind: 'mana'; readonly target: string; readonly mana: number;
       readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' | 'redemption' }
   | { readonly kind: 'death'; readonly target: string }
@@ -179,6 +181,7 @@ export interface CombatResult {
 }
 
 interface State {
+  readonly hasVigorLife: boolean;
   /** Factory-marked source IDs captured at registration; live eligibility is checked at use. */
   readonly holyFreezeSources: string[];
   readonly difficulty: 'normal' | 'nightmare';
@@ -666,6 +669,33 @@ function applyDamageToUnit(
   }
 }
 
+/** Recompose temporary capacity once; removing it caps absolute HP without healing or damage. */
+function reconcileVigorLife(state: State): void {
+  if (!state.hasVigorLife) return;
+  const aura = state.statAura;
+  for (const unit of state.units.values()) {
+    const candidate = aura?.selectedAuraId === 'paladin.vigor' &&
+      (unit.id === aura.sourceHeroId || unit.id === aura.fieldedMercCombatId);
+    if (!candidate && unit.vigorLife === undefined) continue;
+    const base = withoutVigorLife(unit);
+    const active = activeStatAura(aura, unit.id, state.units);
+    const lifeMax = vigorLifeMax(base.stats.lifeMax, active?.bonuses.lifePct ?? 0);
+    if (!Number.isFinite(lifeMax) || lifeMax <= 0 || !Number.isFinite(base.life)) {
+      state.units.set(unit.id, base);
+      continue;
+    }
+    const life = Math.min(base.life, lifeMax);
+    const boosted = lifeMax !== base.stats.lifeMax;
+    const next = { ...base, stats: { ...base.stats, lifeMax }, life,
+      ...(boosted ? { vigorLife: Object.freeze({ baseLifeMax: base.stats.lifeMax, appliedLifeMax: lifeMax }) } : {}) };
+    state.units.set(unit.id, next);
+    if (unit.stats.lifeMax !== lifeMax || unit.life !== life) {
+      emit(state, { kind: 'life-capacity', target: unit.id, lifeMax, life,
+        ...(boosted ? { vigorBaseLifeMax: base.stats.lifeMax } : {}) });
+    }
+  }
+}
+
 /** Close and mark the whole death set before any spread/refund/orb side effect. */
 function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void {
   const primary = new Map(primarySources.filter(u => !state.deathsHandled.has(u.id)).map(u => [u.id, u]));
@@ -694,6 +724,7 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
     observeStatuses(state, u.id);
     emit(state, { kind: 'death', target: u.id });
   }
+  reconcileVigorLife(state);
   for (const u of dead) {
     const source = primary.get(u.id);
     if (source) deathEffects(state, source);
@@ -1726,6 +1757,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const global = snapshot.summonPassives;
   const assassinVenom = copyAssassinVenomProjection(snapshot.assassinVenom);
   const state: State = {
+    hasVigorLife: statAura?.selectedAuraId === 'paladin.vigor' ||
+      [...snapshot.playerTeam, ...snapshot.enemyTeam].some(unit => unit.vigorLife !== undefined),
     holyFreezeSources: [],
     ...(statAura ? { statAura } : {}),
     ...(auraIntervalMs !== undefined ? { nextAuraPulseAtMs: auraIntervalMs } : {}),
@@ -1799,6 +1832,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
       .filter(([, remaining]) => Number.isFinite(remaining) && remaining > 0)));
   }
   for (const u of state.units.values()) observeStatuses(state, u.id, true);
+  reconcileVigorLife(state);
   emitTurnBoundaries(state);
 
   const startOrder = [...state.units.values()]

@@ -70,6 +70,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Transient exact Vigor base/applied capacity for wave carry; never persisted. */
+  readonly vigorLife?: { readonly baseLifeMax: number; readonly appliedLifeMax: number };
   /** Native mercenary factory-owned Holy Freeze presence; wave-local, never persisted. */
   readonly holyFreezeAura?: true;
   /** Eligible learned Static Field rank captured per wave; explicit zero disables legacy fallback. */

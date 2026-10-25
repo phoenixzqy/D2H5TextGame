@@ -8,10 +8,10 @@ import { createSkillValidator } from './skill-validator';
 /** Selected stat auras, including their derived enemy Chill and resistance effects. */
 export const STAT_AURA_IDS = Object.freeze(['paladin.thorns', 'paladin.blessed-aim', 'paladin.fanaticism',
   'paladin.defiance', 'paladin.resist-fire', 'paladin.resist-cold', 'paladin.resist-lightning', 'paladin.salvation',
-  'paladin.holy-freeze', 'paladin.conviction', 'paladin.holy-fire', 'paladin.holy-shock', 'paladin.prayer', 'paladin.cleansing', 'paladin.redemption'] as const);
+  'paladin.holy-freeze', 'paladin.conviction', 'paladin.holy-fire', 'paladin.holy-shock', 'paladin.prayer', 'paladin.cleansing', 'paladin.redemption', 'paladin.vigor'] as const);
 export type StatAuraId = typeof STAT_AURA_IDS[number];
 type BonusKey = 'thornsPct' | 'attackPct' | 'physicalDamagePct' | 'attackSpeedPct' | 'defensePct'
-  | 'resistAllPct' | 'fireDamagePct' | 'coldDamagePct' | 'lightningDamagePct' | 'elementalDamagePct' | 'physDodgePct' | 'arcaneDamagePct' | 'lifeRegenPct' | 'magicDodgePct' | 'manaRegenPct';
+  | 'resistAllPct' | 'fireDamagePct' | 'coldDamagePct' | 'lightningDamagePct' | 'elementalDamagePct' | 'physDodgePct' | 'arcaneDamagePct' | 'lifeRegenPct' | 'magicDodgePct' | 'manaRegenPct' | 'lifePct';
 type Bonuses = Readonly<Partial<Record<BonusKey, number>>>;
 const keys: Readonly<Record<StatAuraId, readonly BonusKey[]>> = {
   'paladin.thorns': ['thornsPct'], 'paladin.blessed-aim': ['attackPct'],
@@ -20,7 +20,7 @@ const keys: Readonly<Record<StatAuraId, readonly BonusKey[]>> = {
   'paladin.resist-lightning': ['resistAllPct', 'lightningDamagePct'], 'paladin.salvation': ['resistAllPct', 'elementalDamagePct'],
   'paladin.holy-freeze': ['coldDamagePct', 'physDodgePct'], 'paladin.conviction': ['elementalDamagePct', 'arcaneDamagePct'],
   'paladin.holy-fire': ['fireDamagePct'], 'paladin.holy-shock': ['lightningDamagePct'], 'paladin.prayer': ['lifeRegenPct'],
-  'paladin.cleansing': ['lifeRegenPct', 'magicDodgePct'], 'paladin.redemption': ['lifeRegenPct', 'manaRegenPct']
+  'paladin.cleansing': ['lifeRegenPct', 'magicDodgePct'], 'paladin.redemption': ['lifeRegenPct', 'manaRegenPct'], 'paladin.vigor': ['lifePct', 'attackSpeedPct']
 };
 export interface StatAuraDefinition {
   readonly redemption?: AuraRedemptionTuning;

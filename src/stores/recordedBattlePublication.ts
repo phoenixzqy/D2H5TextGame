@@ -4,7 +4,7 @@ import { withDefaultGridPositions } from '@/engine/combat/grid';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { KillRewards } from '@/engine/loot/award';
 import type { CombatLogEntry, RecordedBattleOutcome, UnitNameMap } from './combatStore';
-import { overlayStatusPresentation, stageStatusPlayback, type StatusPlaybackState } from './combatPlayback';
+import { applyEventToTeams, overlayStatusPresentation, stageStatusPlayback, type StatusPlaybackState } from './combatPlayback';
 
 /** Existing recorded-battle input; omitted wave/run values retain captured defaults. */
 export interface RecordedBattleInput {
@@ -74,8 +74,17 @@ export function stageRecordedBattle(
   defaults: RecordedBattleDefaults
 ): RecordedBattlePublication {
   const statusPlayback = stageStatusPlayback(input.initialPlayerTeam, input.initialEnemyTeam, input.events);
-  const playerTeam = withDefaultGridPositions(input.initialPlayerTeam);
-  const enemyTeam = withDefaultGridPositions(input.initialEnemyTeam);
+  let playerTeam = withDefaultGridPositions(input.initialPlayerTeam);
+  let enemyTeam = withDefaultGridPositions(input.initialEnemyTeam);
+  // Time-zero capacity is visible on the first frame; its absolute observation
+  // remains in the unchanged recording and reapplying it never grants more HP.
+  for (const event of input.events) {
+    if (event.kind === 'status-state' && event.initial === true ||
+      event.kind === 'message' && event.messageKey === 'combat:bossIntro' && event.simClockMs === 0) continue;
+    if (event.kind !== 'life-capacity' || event.simClockMs !== 0) break;
+    const teams = applyEventToTeams(playerTeam, enemyTeam, event);
+    playerTeam = [...teams.playerTeam]; enemyTeam = [...teams.enemyTeam];
+  }
   return Object.freeze({
     statusPlayback,
     inCombat: true,

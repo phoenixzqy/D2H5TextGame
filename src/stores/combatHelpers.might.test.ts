@@ -147,6 +147,46 @@ beforeEach(() => {
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('native selected Might wave composition', () => {
+  it('carries publicly allocated Vigor capacity over fresh bases, preserves original replay pools and saves no bonus', async () => {
+    arrange(0); configure({ skillPoints: 4 });
+    const finisher = 'fixture.vigor-finisher';
+    registerSkill({ id: finisher, archetype: 'fixture', target: 'all-enemies', minLevel: 1,
+      cooldown: 1, manaCost: 8, effects: [{ kind: 'heal', target: 'self', amount: 100000 },
+        { kind: 'damage', damageType: 'physical', base: [100000, 100000] }] });
+    configure({ comboOrder: [finisher] });
+    const before = structuredClone(player().derivedStats);
+    for (const id of ['prayer', 'cleansing', 'defiance', 'vigor']) {
+      expect(usePlayerStore.getState().allocateSkillPoint('skills-paladin-' + id)).toBe('ok');
+    }
+    expect(player().derivedStats).toEqual(before); expect(player()).not.toHaveProperty('selectedAuraId');
+    expect(usePlayerStore.getState().selectAura('paladin.vigor')).toBe('ok');
+    start();
+    const base = hero().stats.lifeMax, cap = base + Math.floor(base * .02);
+    expect(useCombatStore.getState().playerTeam.find(u => u.id === player().id)).toMatchObject({ life: before.life, stats: { lifeMax: cap } });
+    expect(latest().statAura).toMatchObject({ selectedAuraId: 'paladin.vigor', bonuses: { lifePct: .02, attackSpeedPct: .005 } });
+    expect(hero().life).toBe(before.life); expect(finalHero()).toMatchObject({ life: cap, stats: { lifeMax: cap }, vigorLife: { baseLifeMax: base, appliedLifeMax: cap } });
+    const healing = recording().events.find(event => event.kind === 'heal' && event.target === player().id);
+    expect(healing?.kind === 'heal' ? healing.amount : 0).toBeGreaterThan(0);
+    advance();
+    expect(hero()).toMatchObject({ life: cap, stats: { lifeMax: base } });
+    expect(useCombatStore.getState().playerTeam.find(u => u.id === player().id)).toMatchObject({ life: cap, stats: { lifeMax: cap } });
+    expect(hero()).not.toHaveProperty('vigorLife');
+    expect(finalHero()).toMatchObject({ life: cap, stats: { lifeMax: cap }, vigorLife: { baseLifeMax: base, appliedLifeMax: cap } });
+    const original = structuredClone(latest()), recorded = recording();
+    const income = structuredClone({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies, xp: player().experience });
+    expect(usePlayerStore.getState().selectAura(null)).toBe('ok'); expect(recording()).toEqual(recorded);
+    replay(); expect(hero().life).toBe(base); expect(finalHero().stats.lifeMax).toBe(base);
+    expect(usePlayerStore.getState().selectAura('paladin.vigor')).toBe('ok'); replay();
+    expect(latest().playerTeam).toEqual(original.playerTeam); expect(latest().statAura).toEqual(original.statAura);
+    expect(recording().events).toEqual(recorded.events);
+    expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies, xp: player().experience }).toEqual(income);
+    const save = snapshotStores(); if (!save) throw new Error('Missing Vigor save');
+    expect(save.version).toBe(22); expect(save.player.selectedAuraId).toBe('paladin.vigor');
+    expect(save.player.derivedStats.lifeMax).toBe(before.lifeMax);
+    expect(save.player).not.toHaveProperty('vigorLife'); expect(save.player).not.toHaveProperty('statAura');
+    abortSubAreaRun(); await importIntoStores(JSON.stringify(toJsonSafe(save)));
+    expect(player().selectedAuraId).toBe('paladin.vigor'); expect(player().derivedStats.lifeMax).toBe(before.lifeMax);
+  });
   it('runs publicly allocated Redemption against real native corpses and replays original resources without income', async () => {
     arrange(0); gear(100, 0, -10000);
     const killer = 'fixture.redemption-kill';

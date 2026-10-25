@@ -75,6 +75,7 @@ import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeMightAura } from '@/engine/skills/might';
 import { composeMeditationAura } from '@/engine/skills/meditation';
 import { composeStatAura } from '@/engine/skills/stat-auras';
+import { vigorLifeMax, withoutVigorLife } from '@/engine/skills/vigor';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeBoneArmor } from '@/engine/skills/bone-armor';
 import { composeBarbarianEndurance } from '@/engine/skills/barbarian-endurance';
@@ -1130,12 +1131,13 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     ? composeAssassinVenom(currentPlayer) : undefined;
   const poisonExplosion = currentPlayer?.id === run.playerUnit.id
     ? composePoisonExplosion(currentPlayer) : undefined;
-  const playerTeam = carryPlayerTeam.map(unit => {
+  const playerTeam = carryPlayerTeam.map(carried => {
+    const unit = withoutVigorLife(carried);
     if (freshMerc && unit.kind === 'merc' && unit.id === freshMerc.id) {
       // Equipment is authoritative at this wave boundary; current recording and
       // carried HP/MP remain untouched. Never project the bearer bonus onto summons.
       return { ...unit, level: freshMerc.level, stats: freshMerc.stats,
-        life: Math.min(unit.life, freshMerc.stats.lifeMax),
+        life: Math.min(unit.life, vigorLifeMax(freshMerc.stats.lifeMax, statAura?.bonuses.lifePct ?? 0)),
         mana: Math.min(unit.mana, freshMerc.stats.manaMax),
         manaRegenPerSecond: freshMerc.manaRegenPerSecond ?? 0,
         manaRegenBaselinePerSecond: freshMerc.manaRegenBaselinePerSecond ?? 0,
@@ -1149,7 +1151,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
     const capped = mana >= fresh.stats.manaMax;
     const refreshed = { ...unit, level: fresh.level, stats: fresh.stats,
-      life: Math.min(unit.life, fresh.stats.lifeMax), mana,
+      life: Math.min(unit.life, vigorLifeMax(fresh.stats.lifeMax, statAura?.bonuses.lifePct ?? 0)), mana,
       manaRegenPerSecond: fresh.manaRegenPerSecond ?? 0,
       manaRegenBaselinePerSecond: fresh.manaRegenBaselinePerSecond ?? 0,
       increasedDamagePct: fresh.increasedDamagePct ?? { fire: 0 },

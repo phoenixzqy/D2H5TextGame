@@ -223,6 +223,34 @@ provides no effect. Existing Prayer-only healing and Cleansing-only metadata
 remain separate. Bilingual descriptions must explain consumption, recipients,
 timing, rank scaling and full-resource preservation.
 
+## Vigor: temporary endurance and attack cadence
+
+Local implementation decision; independent design/QA and earned balance open.
+The game has no movement or stamina resource. Replace those old copy promises
+with explicit endurance and attack cadence using the existing unchanged JSON:
+lifePct2% and attackSpeedPct0.5% per rank, unlock18, Defiance+Cleansing
+prerequisites and cap20. No invented movement, stamina or additional dodge bonus.
+Only the living hero and exact original living fielded merc qualify while the
+source hero lives; crowd control alone does not suppress the aura.
+
+Temporary capacity is base maximum life + floor(base maximum life × lifePct ×
+rank), composed over fresh equipment/passives once. Preserve absolute HP, capped
+to that capacity. Selection, admission and rank changes grant no HP, percentage
+refill or resurrection. The existing fresh-run base-full initialization stays
+base-full. Actual existing heals and HP orbs use and may fill the temporary
+capacity; attack cadence uses the shared phase-preserving speed consumer.
+
+One transient base/applied maximum record prevents compounding when combat units
+carry into another wave. Recompose from the original base; preserve actual HP
+up to the current eligible capacity. Native fresh equipment replaces the base
+without prematurely clamping carried HP to the smaller unboosted maximum.
+Source/recipient death removes the capacity, caps HP to the base without a damage
+or healing cue, and settles before death-orb effects. Authoritative capacity
+observations keep playback HP bars, healing and caps aligned with the engine.
+The marker and capacity never enter persistent Player/Merc stats or saves;
+save remainsv22. Ordinary edits apply next wave; explicit replay uses current
+configuration over original resources/teams/seed without duplicate income.
+
 ## Remaining required effects
 
 Holy Fire/Shock now follow the pulse contract above and have [bounded local verification](../evidence/d05-paladin-pulse-auras.md). Sanctuary requires undead damage

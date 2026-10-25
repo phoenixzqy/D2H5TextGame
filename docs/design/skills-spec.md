@@ -263,10 +263,10 @@ Monsters use a simplified skill set. Examples:
 ### 6.2 Aura Skills (Paladin-specific)
 The implemented player selection supports **None, Might, Meditation, Thorns,
 Blessed Aim, Fanaticism, Defiance, Resist Fire, Resist Cold, Resist Lightning,
-Salvation, Holy Freeze, Conviction, Holy Fire, Holy Shock, Prayer, Cleansing and Redemption** in one
+Salvation, Holy Freeze, Conviction, Holy Fire, Holy Shock, Prayer, Cleansing, Redemption and Vigor** in one
 exclusive saved canonical slot. Stat, enemy, pulse and healing effects follow
 [the family contract](../plans/decisions/D05-paladin-aura-family-v1.md).
-Sanctuary, Vigor and Concentration still require their
+Sanctuary and Concentration still require their
 distinct remaining mechanics;
 full aura-catalog and independent acceptance remain open.
 
@@ -287,6 +287,11 @@ full aura-catalog and independent acceptance remain open.
   elemental damage bonuses; Salvation adds fire/cold/lightning damage. Coefficients
   and authored unlocks remain in JSON. These effects apply over baseline views,
   never accumulating into persistent or carried combat stats.
+- **Vigor:** authored2% maximum life/0.5% attack speed per rank becomes temporary
+  endurance/cadence, replacing nonexistent movement/stamina promises. Extra
+  capacity floors once over the fresh maximum; selection grants no healing.
+  Existing healing/orbs can fill it; source death removes it and caps actual HP.
+  Transient carry identity prevents compounding and is never persisted.
 - **Might strength:** Each allocated rank supplies separate additive physical
   increased damage (+3%) and Attack (+1%), capped at rank20. Basic Attack100
   therefore gives104/192 at ranks1/20; fixed physical100 gives103/160, without new

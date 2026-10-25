@@ -90,6 +90,15 @@ for (const locale of ['en', 'zh-CN'] as const) {
         expect(detail).not.toHaveTextContent('{{');
       }
     });
+    it('explains Vigor temporary capacity and cadence without promising movement, stamina or free healing', () => {
+      mount(true);
+      fireEvent.click(screen.getByTestId('skill-node-skills-paladin-vigor'));
+      const detail = screen.getByTestId('skill-detail-panel');
+      for (const text of locale === 'en'
+        ? ['maximum life +2%', 'Attack Speed +0.5%', 'rounded down', 'does not heal', 'living fielded mercenary']
+        : ['最大生命+2%', '攻击速度+0.5%', '向下取整', '不会治疗', '存活的上阵佣兵']) expect(detail).toHaveTextContent(text);
+      expect(detail).not.toHaveTextContent('{{');
+    });
     it('explains Redemption actual corpse cost, life/mana recovery, timing, scaling and full-resource preservation', () => {
       mount(true);
       fireEvent.click(screen.getByTestId('skill-node-skills-paladin-redemption'));

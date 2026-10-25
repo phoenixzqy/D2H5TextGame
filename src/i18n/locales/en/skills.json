@@ -924,7 +924,7 @@
     },
     "vigor": {
       "name": "Vigor",
-      "desc": "Aura: increases stamina and movement speed."
+      "desc": "Selected aura: while the hero lives, you and your living fielded mercenary gain maximum life +{{lifePct}}% and Attack Speed +{{attackSpeedPct}}% per rank. The extra life capacity is rounded down over the fresh maximum; selecting or upgrading this aura does not heal. Existing healing and HP orbs can fill the extra capacity. When the aura ends, current HP is capped to the base maximum. Bonuses apply at the next wave and never become permanent stats."
     },
     "redemption": {
       "name": "Redemption",

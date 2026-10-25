@@ -115,6 +115,15 @@ export function applyEventToTeams(
   let teams = { player: playerTeam, enemy: enemyTeam };
 
   switch (ev.kind) {
+    case 'life-capacity': {
+      teams = patchUnit(teams, ev.target, (unit) => {
+        const { vigorLife: _previous, ...base } = unit;
+        return { ...base, stats: { ...base.stats, lifeMax: ev.lifeMax }, life: ev.life,
+          ...(ev.vigorBaseLifeMax !== undefined
+            ? { vigorLife: { baseLifeMax: ev.vigorBaseLifeMax, appliedLifeMax: ev.lifeMax } } : {}) };
+      });
+      break;
+    }
     case 'mana': {
       teams = patchUnit(teams, ev.target, (u) => ({ ...u, mana: ev.mana }));
       break;
