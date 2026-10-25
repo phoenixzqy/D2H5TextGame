@@ -18,6 +18,7 @@ import { scaleSummonStats } from './scaling';
 import { buildMonsterUnit } from '../combat/monster-factory';
 import type { MonsterDef } from '../types/monsters';
 import type { Rng } from '../rng';
+import { SPIRIT_OF_BARBS_DEFINITION } from './spirit-of-barbs';
 
 /** @deprecated Templates are pure; battles now own their summon identity. */
 export function resetSummonCounters(): void {
@@ -198,6 +199,10 @@ function baseStatsForSummon(summonId: string): DerivedStats | undefined {
       return { ...baseSummonStats(), life: 200, lifeMax: 200, attack: 40, defense: 20 };
     case 'raven':
       return { ...baseSummonStats(), life: 45, lifeMax: 45, attack: 18, attackSpeed: 95, physDodge: 0.15 };
+    case 'spirit_of_barbs': {
+      const { life, attack, defense } = SPIRIT_OF_BARBS_DEFINITION.stats;
+      return { ...baseSummonStats(), life, lifeMax: life, attack, defense };
+    }
     case 'spirit_wolf':
       return { ...baseSummonStats(), life: 80, lifeMax: 80, attack: 20, attackSpeed: 85, physDodge: 0.1 };
     case 'dire_wolf':
@@ -272,6 +277,7 @@ registerSummon('skeletal_mage', (owner) => summonUnitFromTemplate(owner, 'skelet
 registerSummon('revived', (owner) => summonUnitFromTemplate(owner, 'revived', 'Revived Minion'));
 registerSummon('valkyrie', (owner) => summonUnitFromTemplate(owner, 'valkyrie', 'Valkyrie'));
 registerSummon('raven', (owner) => summonUnitFromTemplate(owner, 'raven', 'Raven'));
+registerSummon('spirit_of_barbs', (owner) => summonUnitFromTemplate(owner, 'spirit_of_barbs', 'Spirit of Barbs'));
 registerSummon('spirit_wolf', (owner) => summonUnitFromTemplate(owner, 'spirit_wolf', 'Spirit Wolf'));
 registerSummon('dire_wolf', (owner) => summonUnitFromTemplate(owner, 'dire_wolf', 'Dire Wolf'));
 registerSummon('grizzly', (owner) => summonUnitFromTemplate(owner, 'grizzly', 'Grizzly'));

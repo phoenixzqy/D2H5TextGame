@@ -77,6 +77,7 @@ import { composeMightAura } from '@/engine/skills/might';
 import { composeMeditationAura } from '@/engine/skills/meditation';
 import { activeStatAura, composeStatAura } from '@/engine/skills/stat-auras';
 import { activeDruidAllyAuras, composeDruidAllyAuras } from '@/engine/skills/druid-ally-auras';
+import { composeSpiritOfBarbs } from '@/engine/skills/spirit-of-barbs';
 import { withoutTemporaryLifeCapacity } from '@/engine/combat/life-capacity';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeBoneArmor } from '@/engine/skills/bone-armor';
@@ -1133,6 +1134,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       run.fieldedMercCombatId) : undefined;
   const druidAllyAuras = currentPlayer?.id === run.playerUnit.id
     ? composeDruidAllyAuras(currentPlayer, run.fieldedMercCombatId) : undefined;
+  const spiritOfBarbs = currentPlayer?.id === run.playerUnit.id
+    ? composeSpiritOfBarbs(currentPlayer, run.fieldedMercCombatId) : undefined;
   const summonPassives = currentPlayer?.id === run.playerUnit.id
     ? composeSummonPassives(currentPlayer) : undefined;
   const skeletonMastery = currentPlayer?.id === run.playerUnit.id
@@ -1239,6 +1242,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       ...(meditationAura ? { meditationAura } : {}),
       ...(statAura ? { statAura } : {}),
       ...(druidAllyAuras ? { druidAllyAuras } : {}),
+      ...(spiritOfBarbs ? { spiritOfBarbs } : {}),
       ...(skeletonMastery ? { skeletonMastery } : {}),
       ...(golemMastery ? { golemMastery } : {}),
       ...(summonPassives ? { summonPassives } : {}),

@@ -43,6 +43,7 @@ import { activeMeditationAura, type MeditationAuraProjection } from '../skills/m
 import { activeStatAura, copyStatAuraProjection, statAuraDamageBonus, type StatAuraProjection } from '../skills/stat-auras';
 import { projectLifeCapacity } from './life-capacity';
 import { activeDruidAllyAuras, copyDruidAllyAuras, DRUID_ALLY_AURA_DEFINITIONS, type DruidAllyAuraProjection } from '../skills/druid-ally-auras';
+import { activeSpiritOfBarbs, copySpiritOfBarbs, SPIRIT_OF_BARBS_DEFINITION, type SpiritOfBarbsProjection } from '../skills/spirit-of-barbs';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
 import { absorbBoneArmor, boneArmorPool, copyBoneArmorStatuses } from '../skills/bone-armor';
 import { activeDruidForm, druidFormBonuses, druidFormForId, druidFormRank, matchesDruidForm, refreshDruidFormState, druidFormLifeBonus, selectedDruidForm, DRUID_SHAPE_IDS } from '../skills/druid-shapeshifting';
@@ -162,6 +163,8 @@ export interface CombatSnapshot {
   readonly statAura?: StatAuraProjection;
   /** Copied automatic allied Druid passives, bound to the original hero and party. */
   readonly druidAllyAuras?: DruidAllyAuraProjection;
+  /** Native passive allocation only; actual support-spirit identity is authenticated inside combat. */
+  readonly spiritOfBarbs?: SpiritOfBarbsProjection;
   /** Eligible player Mastery copied at wave entry; applies only at fresh summon creation. */
   readonly skeletonMastery?: SkeletonMasteryProjection;
   /** Copied authoritative Golem Mastery for fresh summons in this wave. */
@@ -187,6 +190,9 @@ export interface CombatResult {
 }
 
 interface State {
+  readonly spiritOfBarbs?: SpiritOfBarbsProjection;
+  /** Set only when this battle commits the actual passive support summon. Never copied from input. */
+  barbsSpiritId?: string;
   readonly hasTemporaryLife: boolean;
   /** Factory-marked source IDs captured at registration; live eligibility is checked at use. */
   readonly holyFreezeSources: string[];
@@ -291,13 +297,15 @@ function ambientChillSourceId(state: State): string | undefined {
 function combatStatusView(state: State, unit: CombatUnit): CombatUnit {
   const raw = activeStatusView(unit, state.simClockMs);
   const aura = activeDruidAllyAuras(state.druidAllyAuras, unit, state.units);
+  const barbs = activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, unit, state.units);
   let active = raw;
-  if (aura !== undefined || raw.statuses.some(s => s.id === 'oak-sage' || s.id === 'heart-of-wolverine')) {
-    const statuses = raw.statuses.filter(s => s.id !== 'oak-sage' && s.id !== 'heart-of-wolverine');
+  if (aura !== undefined || barbs !== undefined || raw.statuses.some(s => s.id === 'oak-sage' || s.id === 'heart-of-wolverine' || s.id === 'spirit-of-barbs')) {
+    const statuses = raw.statuses.filter(s => s.id !== 'oak-sage' && s.id !== 'heart-of-wolverine' && s.id !== 'spirit-of-barbs');
     if (aura) {
       if (aura.oakRank > 0) statuses.push({ id: 'oak-sage', sourceId: aura.sourceHeroId, stacks: 1, remaining: -1 });
       if (aura.heartRank > 0) statuses.push({ id: 'heart-of-wolverine', sourceId: aura.sourceHeroId, stacks: 1, remaining: -1 });
     }
+    if (barbs) statuses.push({ id: 'spirit-of-barbs', sourceId: barbs.sourceHeroId, stacks: 1, remaining: -1 });
     active = { ...raw, statuses };
   }
   if (unit.side !== 'enemy' || !alive(unit) || hasStatus(active, 'chill')) return active;
@@ -330,6 +338,7 @@ function effectiveActionPeriod(state: State, unit: CombatUnit): number {
 
 /** All new attempts start one full effective period after the current clock. */
 function scheduleNextAction(state: State, unit: CombatUnit): void {
+  if (unit.id === state.barbsSpiritId) return;
   const period = effectiveActionPeriod(state, unit);
   state.actionSchedule.set(unit.id, { at: state.simClockMs + period, period });
 }
@@ -531,7 +540,9 @@ function buildDamageInput(
     ? 1 - METEOR_ARMOR_MELT_DEFINITION.defenseReductionPct / 100 : 1;
   const innerSightFactor = hasStatus(defender, MERC_INNER_SIGHT_DEFINITION.statusId)
     ? 1 - MERC_INNER_SIGHT_DEFINITION.defenseReductionPct / 100 : 1;
-  const armorBonus = hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0;
+  const barbsDefense = defender.kind === 'summon'
+    ? (activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, defender, state.units)?.rank ?? 0) * SPIRIT_OF_BARBS_DEFINITION.summonDefensePerRank : 0;
+  const armorBonus = (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + barbsDefense;
   return {
     baseMin,
     baseMax,
@@ -681,7 +692,8 @@ function applyDamageToUnit(
 
   const after = state.units.get(defenderId);
   const reflectionPct = (after?.physicalReflectionPct ?? 0) +
-    (activeStatAura(state.statAura, defenderId, state.units)?.bonuses.thornsPct ?? 0);
+    (activeStatAura(state.statAura, defenderId, state.units)?.bonuses.thornsPct ?? 0) +
+    (after ? activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, after, state.units)?.rank ?? 0 : 0) * SPIRIT_OF_BARBS_DEFINITION.thornsPerRank;
   if (after && !alive(after)) {
     finishDeaths(state, [activeStatusView(after, state.simClockMs)]);
   } else if (after && attacker.side !== defender.side && effect.damageType === 'physical' &&
@@ -758,7 +770,7 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
   }
   reconcileLifeCapacities(state);
   // Derived allied auras disappear from survivors before any death-related recovery.
-  if (state.druidAllyAuras) {
+  if (state.druidAllyAuras !== undefined || state.spiritOfBarbs !== undefined) {
     for (const u of state.units.values()) if (alive(u)) observeStatuses(state, u.id);
   }
   for (const u of dead) {
@@ -1177,7 +1189,7 @@ function applyEffect(
 }
 
 /** Registration is the commit boundary; candidate building never allocates battle identity. */
-function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: string, template: CombatUnit): CombatUnit {
+function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: string, template: CombatUnit, passiveSpirit = false): CombatUnit {
   const summon = { ...template, id: nextSummonId(state, owner.id, templateId) };
   const preferredPosition = firstOpenSummonPosition(owner, aliveOf(state, owner.side));
   const summonWithPreferredPosition = preferredPosition
@@ -1187,6 +1199,7 @@ function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: stri
     ...aliveOf(state, owner.side),
     summonWithPreferredPosition
   ]).find((u) => u.id === summon.id) ?? summonWithPreferredPosition;
+  if (passiveSpirit) state.barbsSpiritId = positionedSummon.id;
   registerUnit(state, positionedSummon);
   scheduleNextAction(state, positionedSummon);
   state.cooldownExpiresAt.set(positionedSummon.id, new Map());
@@ -1549,6 +1562,27 @@ function validPreparationCandidate(unit: CombatUnit): boolean {
       stats.resistances.lightning, stats.resistances.arcane, stats.resistances.poison].every(Number.isFinite);
 }
 
+/** A learned passive creates one real support body; only this registration grants aura authority. */
+function prepareSpiritOfBarbs(state: State): void {
+  const projection = state.spiritOfBarbs;
+  if (!projection || state.barbsSpiritId !== undefined || winnerOf(state) !== null) return;
+  const owner = state.units.get(projection.sourceHeroId);
+  if (!owner || owner.side !== 'player' || inferKind(owner) !== 'hero' || !alive(owner) ||
+    owner.summon === true || owner.ownerId !== undefined || owner.summonOwnerId !== undefined ||
+    !Number.isInteger(owner.level) || owner.level < SPIRIT_OF_BARBS_DEFINITION.requiredLevel) return;
+  const definition = SPIRIT_OF_BARBS_DEFINITION;
+  const template = buildSummon(owner, definition.summonId);
+  if (!template || !validPreparationCandidate(template) || template.skillOrder.length !== 0 ||
+    template.stats.lifeMax !== definition.stats.life || template.stats.attack !== definition.stats.attack ||
+    template.stats.defense !== definition.stats.defense) return;
+  let templates = state.preparationTemplates.get(owner.id);
+  if (!templates) { templates = new Set(); state.preparationTemplates.set(owner.id, templates); }
+  // This free passive must never refund an unrelated active summoning spell.
+  templates.add(definition.summonId);
+  registerSpawnedSummon(state, owner, definition.summonId, template, true);
+  for (const unit of state.units.values()) if (alive(unit)) observeStatuses(state, unit.id);
+}
+
 /** Stage the complete missing batch before payment, IDs, scheduler or RNG can change. */
 function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill): void {
   const effect = preparationEffect(skill);
@@ -1829,6 +1863,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const meditation = snapshot.meditationAura;
   const statAura = copyStatAuraProjection(snapshot.statAura);
   const druidAllyAuras = copyDruidAllyAuras(snapshot.druidAllyAuras);
+  const spiritOfBarbs = copySpiritOfBarbs(snapshot.spiritOfBarbs);
   const auraIntervalMs = statAura?.pulse?.intervalMs ?? statAura?.healing?.intervalMs ?? statAura?.redemption?.intervalMs ?? statAura?.sanctuary?.intervalMs;
   const mastery = snapshot.skeletonMastery;
   const golemMastery = snapshot.golemMastery;
@@ -1836,6 +1871,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const global = snapshot.summonPassives;
   const assassinVenom = copyAssassinVenomProjection(snapshot.assassinVenom);
   const state: State = {
+    ...(spiritOfBarbs ? { spiritOfBarbs } : {}),
     hasTemporaryLife: statAura?.selectedAuraId === 'paladin.vigor' || druidAllyAuras !== undefined ||
       [...snapshot.playerTeam, ...snapshot.enemyTeam].some(unit => unit.vigorLife !== undefined || unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined),
     ...(druidAllyAuras ? { druidAllyAuras } : {}),
@@ -1917,6 +1953,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     .filter(unit => unit.druidForm !== undefined || unit.druidFormLife !== undefined).map(unit => unit.id));
   emitTurnBoundaries(state);
 
+  prepareSpiritOfBarbs(state);
   const startOrder = [...state.units.values()]
     .sort(
       (a, b) =>
