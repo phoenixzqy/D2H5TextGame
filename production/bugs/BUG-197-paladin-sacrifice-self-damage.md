@@ -1,7 +1,7 @@
 # BUG-197 — Apply Sacrifice's advertised self damage
 
 Severity: High — the advertised resource tradeoff has no combat consequence.
-Status: Reproduced; repair in progress. No inventory credit.
+Status: Locally repaired/verified; independent and earned acceptance open.
 Owners: engine-dev / content-designer / frontend-dev; root sole writer.
 
 ## Reproduction
@@ -45,9 +45,15 @@ Original RED output must remain untouched when running a future GREEN probe.
 Security check: pass — first-party local combat/data/UI repair, no credential,
 permission, network, dependency, CI or persistent save-field request.
 
-Next: define the explicit life tradeoff and settlement order, preserve unrelated
-scalar behavior, add pre-fix regressions, implement native/presentation consumers,
-then run required automated and production-browser checks before inventory credit.
+Repair: `4b07c98` authors validated 8%/minimum 1 life cost from actual enemy HP
+removed and debits after ordinary settlement; `89c12a1` explains lethal risk and
+current/next rules in both locales. Five new test files/60 cases; final full
+14,045 passed/618 files/two existing skips, engine 7,331/262, types/lint/build and
+four production browser cases pass. All 1,347 tested committed source blobs match.
+[Full evidence](../../docs/plans/evidence/d04-paladin-sacrifice.md) retains the
+original failures, terminal checks, exact save pairs and artifact/cleanup audit.
+Only Sacrifice receives bounded-functional credit; provisional tuning is not
+independent design or earned balance approval.
 The other six unverified Paladin actives, independent/earned acceptance, Baal,
 C2–C4/full G0–G7 and complete private v1 remain in scope and unfinished.
 

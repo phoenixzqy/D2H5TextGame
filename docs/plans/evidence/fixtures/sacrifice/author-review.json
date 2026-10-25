@@ -1,0 +1,44 @@
+{
+  "kind": "author self-review; independent review/QA remains open",
+  "contract": "docs/plans/decisions/D04-paladin-sacrifice-v1.md",
+  "correctness": {
+    "blocking_findings": [],
+    "evidence": "15 deterministic combat cases and 9 native/playback cases cover actual positive HP basis, rank1/2/20, minimum, overkill/orbs, miss/basic/DoT/CD exclusions, personal pools/MP bypass, reflection ordering, lethal hero/orphan closure and deterministic immutable replay. Strict schema prohibits valid self-cost/recovery composition, avoiding stale-owner overwrite."
+  },
+  "readability": {
+    "blocking_findings": [],
+    "evidence": "Authored readonly OnHitSelfDamageTuning copied to registered damage payload; bounded direct debit at the existing real-HP post-hit boundary. UI uses pure display model and existing i18n stat/paragraph patterns."
+  },
+  "architecture": {
+    "blocking_findings": [],
+    "evidence": "Pure TS engine remains DOM/React-free; numerical tuning stays in validated JSON. Existing death/playback/save22/native class/rank/selection authority retained; no global rates, migrations, dependencies or CI changes."
+  },
+  "security": {
+    "blocking_findings": [],
+    "evidence": "Finite positive schema metadata, exact Sacrifice identity, foreign/contradictory rejection and native authority tests; no credential/permission/network or persistence expansion."
+  },
+  "performance": {
+    "blocking_findings": [],
+    "evidence": "Constant-time arithmetic and one shallow unit copy/event per eligible hit; no new RNG, recursive damage, unbounded collection or render subscription."
+  },
+  "visuals": {
+    "inspected": 8,
+    "evidence": "All four detail and four combat screenshots viewed. Changed bilingual rule text wraps and remains readable. Mobile log is below the viewport; exact retained log JSON proves actual cast/self damage. Existing navigation icon fallback and broader UI polish are outside this bounded acceptance."
+  },
+  "limitations": [
+    "Provisional8%/minimum1 tuning is not earned balance acceptance.",
+    "Synthetic L30/50k equipment browser fixtures do not prove class builds, campaign or pacing.",
+    "No independent reviewer/QA or whole-v1 signoff."
+  ],
+  "author_verdict": "No blocking author finding; required bounded local checks pass. Independent/earned and whole-v1 evidence remains INCOMPLETE.",
+  "final_validation": {
+    "full_passed": 14045,
+    "full_files": 618,
+    "existing_skips": 2,
+    "engine_passed": 7331,
+    "types": "pass",
+    "lint": "pass",
+    "browser_cases": 4,
+    "committed_source_files_exact": 1347
+  }
+}

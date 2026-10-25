@@ -1,0 +1,17 @@
+{
+  "created": "2026-10-25T10:43:44.510515+00:00",
+  "owned_root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u",
+  "removed_files": 902,
+  "removed_directories": 18,
+  "raw_files_byte_verified": 142,
+  "build_files_hash_verified": 760,
+  "archive_sha256_verified": true,
+  "all_consumers_finished": true,
+  "scratch_absent": true,
+  "port_4483_closed": true,
+  "genuine_save_unchanged": true,
+  "failures": [],
+  "remaining": [],
+  "retained_evidence": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/sacrifice",
+  "retention": "Requested durable source/evidence preserved in repository; umbrella worktree/claim retained."
+}

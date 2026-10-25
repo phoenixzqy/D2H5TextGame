@@ -1,0 +1,19 @@
+{
+  "source_head": "89c12a12ae032187779bfa8d630fb55033e040ea",
+  "frozen_source_files_still_exact": 1347,
+  "inventory_counts": {
+    "unverified": 118,
+    "bounded-functional": 93,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "new_evidence_links_exist": true,
+  "original_failures_retained": true,
+  "raw_files": 142,
+  "terminal_receipts": 29,
+  "scratch_absent": true,
+  "cleanup_failures": [],
+  "genuine_save_unchanged": true,
+  "full_v1_complete": false,
+  "independent_earned_acceptance_open": true
+}

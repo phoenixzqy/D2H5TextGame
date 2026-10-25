@@ -162,7 +162,7 @@ paladin,skills-paladin-might,paladin.might,passive,exclusive-selected-living-par
 paladin,skills-paladin-holy-fire,paladin.holy_fire,passive,exclusive-selected-living-source-fire-pulse-burn-party-fire,burn,src/data/skills/paladin.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-paladin-pulse-auras.md
 paladin,skills-paladin-conviction,paladin.conviction,passive,exclusive-selected-living-source-enemy-resistance-party-damage,,src/data/skills/paladin.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-paladin-enemy-auras.md
 paladin,skills-paladin-meditation,paladin.meditation,passive,exclusive-selected-living-party-exact-mana-recovery,,src/data/skills/paladin.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/p07b03-meditation.md
-paladin,skills-paladin-sacrifice,paladin.sacrifice,active,damage,,src/data/skills/paladin.json,,unverified,
+paladin,skills-paladin-sacrifice,paladin.sacrifice,active,damage+actual-enemy-HP-self-life-debit,,src/data/skills/paladin.json,provisional-self-damage-tuning|earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/decisions/D04-paladin-sacrifice-v1.md|docs/plans/evidence/d04-paladin-sacrifice.md
 paladin,skills-paladin-smite,paladin.smite,active,damage,stun,src/data/skills/paladin.json,,unverified,
 paladin,skills-paladin-conversion,paladin.conversion,active,damage,converted,src/data/skills/paladin.json,,unverified,
 paladin,skills-paladin-holy-shield,paladin.holy_shield,active,buff,holy-shield,src/data/skills/paladin.json,buff-mechanics-not-applied-in-audited-handler,unverified,

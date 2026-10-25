@@ -1,0 +1,373 @@
+{
+  "browser-en-1280.json": {
+    "argv": [
+      "env",
+      "BROWSER_RUN=browser-en-1280",
+      "BROWSER_LOCALE=en",
+      "BROWSER_WIDTH=1280",
+      "python3",
+      ".github/skills/webapp-testing/scripts/with_server.py",
+      "--server",
+      "exec python3 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/serve.py",
+      "--port",
+      "4483",
+      "--",
+      "node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/browser-current.cjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 15.794,
+    "finished": "2026-10-25T10:32:28.768357+00:00"
+  },
+  "browser-en-360.json": {
+    "argv": [
+      "env",
+      "BROWSER_RUN=browser-en-360",
+      "BROWSER_LOCALE=en",
+      "BROWSER_WIDTH=360",
+      "python3",
+      ".github/skills/webapp-testing/scripts/with_server.py",
+      "--server",
+      "exec python3 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/serve.py",
+      "--port",
+      "4483",
+      "--",
+      "node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/browser-current.cjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 20.819,
+    "finished": "2026-10-25T10:33:04.021671+00:00"
+  },
+  "browser-evidence-review.json": {
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/browser-output-audit.py"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.059,
+    "finished": "2026-10-25T10:33:54.860829+00:00"
+  },
+  "browser-remaining-batch.json": {
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/browser-batch.py"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 59.409,
+    "finished": "2026-10-25T10:33:42.521912+00:00"
+  },
+  "browser-zh-CN-1280.json": {
+    "argv": [
+      "env",
+      "BROWSER_RUN=browser-zh-CN-1280",
+      "BROWSER_LOCALE=zh-CN",
+      "BROWSER_WIDTH=1280",
+      "python3",
+      ".github/skills/webapp-testing/scripts/with_server.py",
+      "--server",
+      "exec python3 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/serve.py",
+      "--port",
+      "4483",
+      "--",
+      "node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/browser-current.cjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 19.93,
+    "finished": "2026-10-25T10:33:23.999523+00:00"
+  },
+  "browser-zh-CN-360.json": {
+    "argv": [
+      "env",
+      "BROWSER_RUN=browser-zh-CN-360",
+      "BROWSER_LOCALE=zh-CN",
+      "BROWSER_WIDTH=360",
+      "python3",
+      ".github/skills/webapp-testing/scripts/with_server.py",
+      "--server",
+      "exec python3 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/serve.py",
+      "--port",
+      "4483",
+      "--",
+      "node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/browser-current.cjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 18.466,
+    "finished": "2026-10-25T10:33:42.505398+00:00"
+  },
+  "committed-source-review.json": {
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/committed-source-audit.py"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.554,
+    "finished": "2026-10-25T10:42:49.600061+00:00"
+  },
+  "inventory-review.json": {
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/inventory-update.py"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.05,
+    "finished": "2026-10-25T10:42:49.715674+00:00"
+  },
+  "post-full-freeze.json": {
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/freeze.py",
+      "after"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.319,
+    "finished": "2026-10-25T10:42:35.536147+00:00"
+  },
+  "pre-full-freeze.json": {
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/freeze.py",
+      "before"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.334,
+    "finished": "2026-10-25T10:34:42.689236+00:00"
+  },
+  "production-build-review.json": {
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/build-audit.py"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.282,
+    "finished": "2026-10-25T10:32:36.965425+00:00"
+  },
+  "sacrifice-core-authored-green.json": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/sacrifice-schema.test.ts",
+      "src/engine/combat/sacrifice.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 1.357,
+    "finished": "2026-10-25T10:25:32.369132+00:00"
+  },
+  "sacrifice-core-green.json": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/sacrifice-schema.test.ts",
+      "src/engine/combat/sacrifice.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 2.425,
+    "finished": "2026-10-25T10:25:05.509673+00:00"
+  },
+  "sacrifice-core-red.json": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/sacrifice-schema.test.ts",
+      "src/engine/combat/sacrifice.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 2.536,
+    "finished": "2026-10-25T10:24:31.846920+00:00"
+  },
+  "sacrifice-core-strict-green.json": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/sacrifice-schema.test.ts",
+      "src/engine/combat/sacrifice.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 2.517,
+    "finished": "2026-10-25T10:25:49.782643+00:00"
+  },
+  "sacrifice-corrected-engine.json": {
+    "argv": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 98.88,
+    "finished": "2026-10-25T10:34:15.564066+00:00"
+  },
+  "sacrifice-corrected-lint.json": {
+    "argv": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 116.122,
+    "finished": "2026-10-25T10:34:32.810113+00:00"
+  },
+  "sacrifice-corrected-types.json": {
+    "argv": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 56.344,
+    "finished": "2026-10-25T10:33:33.027679+00:00"
+  },
+  "sacrifice-engine.json": {
+    "argv": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 81.961,
+    "finished": "2026-10-25T10:27:29.239360+00:00"
+  },
+  "sacrifice-final-engine.json": {
+    "argv": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 89.901,
+    "finished": "2026-10-25T10:31:41.246389+00:00"
+  },
+  "sacrifice-final-full.json": {
+    "argv": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 468.318,
+    "finished": "2026-10-25T10:42:31.073350+00:00"
+  },
+  "sacrifice-final-lint.json": {
+    "argv": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 106.238,
+    "finished": "2026-10-25T10:31:57.583916+00:00"
+  },
+  "sacrifice-final-types.json": {
+    "argv": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 2,
+    "seconds": 48.64,
+    "finished": "2026-10-25T10:30:59.983345+00:00"
+  },
+  "sacrifice-integrated-green.json": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/sacrifice-schema.test.ts",
+      "src/engine/combat/sacrifice.test.ts",
+      "src/engine/skills/displayStats.sacrifice.test.ts",
+      "src/features/skills/SkillsScreen.sacrifice.test.tsx",
+      "src/stores/sacrifice.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 10.821,
+    "finished": "2026-10-25T10:29:25.009090+00:00"
+  },
+  "sacrifice-native-green.json": {
+    "argv": [
+      "node_modules/.bin/vite-node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/native-green.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 5.02,
+    "finished": "2026-10-25T10:29:58.454194+00:00"
+  },
+  "sacrifice-presentation-red.json": {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/displayStats.sacrifice.test.ts",
+      "src/features/skills/SkillsScreen.sacrifice.test.tsx",
+      "src/stores/sacrifice.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 6.992,
+    "finished": "2026-10-25T10:28:41.375949+00:00"
+  },
+  "sacrifice-production-build.json": {
+    "argv": [
+      "env",
+      "VITE_E2E=false",
+      "npm",
+      "run",
+      "build",
+      "--",
+      "--outDir",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sacrifice-repair-4hsgvq1u/production-dist"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 15.706,
+    "finished": "2026-10-25T10:30:27.050736+00:00"
+  },
+  "sacrifice-runtime-types.json": {
+    "argv": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 42.371,
+    "finished": "2026-10-25T10:26:49.648632+00:00"
+  },
+  "sacrifice-test-format.json": {
+    "argv": [
+      "node_modules/.bin/prettier",
+      "--write",
+      "src/engine/skills/displayStats.sacrifice.test.ts",
+      "src/stores/sacrifice.causal.test.ts",
+      "src/engine/skills/sacrifice-schema.test.ts",
+      "src/engine/combat/sacrifice.test.ts",
+      "src/features/skills/SkillsScreen.sacrifice.test.tsx"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.482,
+    "finished": "2026-10-25T10:32:29.047399+00:00"
+  }
+}

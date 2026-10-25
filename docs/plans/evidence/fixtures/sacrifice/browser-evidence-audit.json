@@ -1,0 +1,146 @@
+{
+  "synthetic": true,
+  "cases": [
+    {
+      "label": "en-1280",
+      "pairs": [
+        {
+          "rank": 1,
+          "domains_exact": 5,
+          "before": "en-1280-rank1-before-3.json",
+          "after": "en-1280-rank1-after-4.json"
+        },
+        {
+          "rank": 2,
+          "domains_exact": 5,
+          "before": "en-1280-rank2-before-5.json",
+          "after": "en-1280-rank2-after-6.json"
+        }
+      ],
+      "positive_self_damage": [
+        "PaladinCheck attacks PaladinCheck for 3 physical damage."
+      ],
+      "geometry": 5,
+      "page_errors": [],
+      "server_pid": 579685,
+      "server_absent": true,
+      "screenshots": [
+        {
+          "path": "browser-en-1280/en-1280-sacrifice-details.png",
+          "sha256": "d1334e7cbc2ab3bf4bb463740895facc0feba4d9e145c8d315f33f6102ece2ed"
+        },
+        {
+          "path": "browser-en-1280/en-1280-sacrifice-combat.png",
+          "sha256": "3370afebdaabe7c60b81fc40933a5bfd9051a633006fe9d1de07d6942fdad66f"
+        }
+      ]
+    },
+    {
+      "label": "en-360",
+      "pairs": [
+        {
+          "rank": 1,
+          "domains_exact": 5,
+          "before": "en-360-rank1-before-3.json",
+          "after": "en-360-rank1-after-4.json"
+        },
+        {
+          "rank": 2,
+          "domains_exact": 5,
+          "before": "en-360-rank2-before-5.json",
+          "after": "en-360-rank2-after-6.json"
+        }
+      ],
+      "positive_self_damage": [
+        "PaladinCheck attacks PaladinCheck for 3 physical damage."
+      ],
+      "geometry": 5,
+      "page_errors": [],
+      "server_pid": 581028,
+      "server_absent": true,
+      "screenshots": [
+        {
+          "path": "browser-en-360/en-360-sacrifice-details.png",
+          "sha256": "823b70cbafd9c58d40c63152c0ad80609ef857f71f5139c295135f5c01bec834"
+        },
+        {
+          "path": "browser-en-360/en-360-sacrifice-combat.png",
+          "sha256": "cede15a07344820ed5ed5ce617f1efbd4ffd65d4c847dea03812eb65d6bf742a"
+        }
+      ]
+    },
+    {
+      "label": "zh-CN-1280",
+      "pairs": [
+        {
+          "rank": 1,
+          "domains_exact": 5,
+          "before": "zh-CN-1280-rank1-before-3.json",
+          "after": "zh-CN-1280-rank1-after-4.json"
+        },
+        {
+          "rank": 2,
+          "domains_exact": 5,
+          "before": "zh-CN-1280-rank2-before-5.json",
+          "after": "zh-CN-1280-rank2-after-6.json"
+        }
+      ],
+      "positive_self_damage": [
+        "PaladinCheck 普攻 PaladinCheck，造成 3 点物理伤害。"
+      ],
+      "geometry": 5,
+      "page_errors": [],
+      "server_pid": 582626,
+      "server_absent": true,
+      "screenshots": [
+        {
+          "path": "browser-zh-CN-1280/zh-CN-1280-sacrifice-details.png",
+          "sha256": "4e879e7340c525ba5d6be9f7d158b26e28b47e9095e24ec015d61f25a8a2bd40"
+        },
+        {
+          "path": "browser-zh-CN-1280/zh-CN-1280-sacrifice-combat.png",
+          "sha256": "0e67b18b7b91ef79f4dd44acf4dd1d21432486191952f3dd5629b7af26920293"
+        }
+      ]
+    },
+    {
+      "label": "zh-CN-360",
+      "pairs": [
+        {
+          "rank": 1,
+          "domains_exact": 5,
+          "before": "zh-CN-360-rank1-before-3.json",
+          "after": "zh-CN-360-rank1-after-4.json"
+        },
+        {
+          "rank": 2,
+          "domains_exact": 5,
+          "before": "zh-CN-360-rank2-before-5.json",
+          "after": "zh-CN-360-rank2-after-6.json"
+        }
+      ],
+      "positive_self_damage": [
+        "PaladinCheck 普攻 PaladinCheck，造成 3 点物理伤害。"
+      ],
+      "geometry": 5,
+      "page_errors": [],
+      "server_pid": 584376,
+      "server_absent": true,
+      "screenshots": [
+        {
+          "path": "browser-zh-CN-360/zh-CN-360-sacrifice-details.png",
+          "sha256": "365c8de1535055984c58144f3e4d55afb20d805b7b060a23c2c8c7260cb200ae"
+        },
+        {
+          "path": "browser-zh-CN-360/zh-CN-360-sacrifice-combat.png",
+          "sha256": "2ad54a2419709e1fe24c151971b06417205471c678d0462d8212934cf5fa78cf"
+        }
+      ]
+    }
+  ],
+  "continue_pairs": 8,
+  "positive_self_damage_cases": 4,
+  "geometry_samples": 20,
+  "screenshots": 8,
+  "port_4483_closed": true
+}

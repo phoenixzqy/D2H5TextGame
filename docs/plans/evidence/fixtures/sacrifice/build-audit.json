@@ -1,0 +1,30 @@
+{
+  "chunks": [
+    {
+      "file": "react-vendor-dRBhy6jq.js",
+      "sha256": "d023b474fbe60dec77510b20d3560e8a8c6b796e6d623cf648bf12800af453fb"
+    },
+    {
+      "file": "game-engine-CqIzUXqx.js",
+      "sha256": "1fa97c84cee8074c2e55d99513c68c552e06b85906d088e0014d0d2f29fe3506"
+    },
+    {
+      "file": "i18n-Bxr3rY09.js",
+      "sha256": "cb3cefca3bda4b6da700c1dcd65dae18a27f3a44e5c831c09cacb7652a2505f8"
+    },
+    {
+      "file": "index-DlEz_jBi.js",
+      "sha256": "9932f9673477c6ead55f05b4ea65800d2d5b603d420f006ad9000a71e80552c8"
+    }
+  ],
+  "forbidden_patterns": [
+    "__GAME__",
+    "\\bseedItem\\b",
+    "\\bseedMerc\\b",
+    "\\binstallTestBridge\\b",
+    "[,{]flushSave:"
+  ],
+  "violations": [],
+  "precache_references": 756,
+  "missing": []
+}

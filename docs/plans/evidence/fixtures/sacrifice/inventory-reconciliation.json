@@ -1,0 +1,34 @@
+{
+  "rows": 213,
+  "ids_order_preserved": true,
+  "changed_rows": [
+    "skills-paladin-sacrifice"
+  ],
+  "before_counts": {
+    "unverified": 119,
+    "bounded-functional": 92,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "after_counts": {
+    "unverified": 118,
+    "bounded-functional": 93,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "before_sha256": "a34b648b43576b144dd298c92747b2f09e34f071cd8f1b523186187e2a534cb9",
+  "after_sha256": "61c6e7bab53e634441745e009ac233af792596b449420304ca3023c1cdd87b38",
+  "new_record": {
+    "class": "paladin",
+    "data_id": "skills-paladin-sacrifice",
+    "runtime_id": "paladin.sacrifice",
+    "trigger": "active",
+    "adapter_route": "damage+actual-enemy-HP-self-life-debit",
+    "declared_statuses": "",
+    "source": "src/data/skills/paladin.json",
+    "risk_flags": "provisional-self-damage-tuning|earned-class-build-balance-open",
+    "behavior_verification": "bounded-functional;independent-acceptance-open",
+    "contract_evidence": "docs/plans/decisions/D04-paladin-sacrifice-v1.md|docs/plans/evidence/d04-paladin-sacrifice.md"
+  },
+  "independent_earned_acceptance_open": true
+}
