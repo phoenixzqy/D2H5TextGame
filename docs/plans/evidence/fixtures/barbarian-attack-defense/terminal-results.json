@@ -1,0 +1,117 @@
+{
+  "finalPass": {
+    "engine-final": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1402063,
+      "exitCode": 0,
+      "seconds": 167.64033625205047
+    },
+    "types-final": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1402065,
+      "exitCode": 0,
+      "seconds": 159.18909743300173
+    },
+    "lint-final": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1402062,
+      "exitCode": 0,
+      "seconds": 256.77033075201325
+    },
+    "full-final": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "pid": 1403840,
+      "exitCode": 0,
+      "seconds": 709.9198926939862
+    },
+    "browser-final": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-attacks-9kb72ug4/serve.py",
+        "--port",
+        "4503",
+        "--",
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-attacks-9kb72ug4/browser-suite.py"
+      ],
+      "pid": 1403841,
+      "exitCode": 0,
+      "seconds": 317.0096747960197
+    },
+    "precache-final": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-attacks-9kb72ug4/build"
+      ],
+      "pid": 1442142,
+      "exitCode": 0,
+      "seconds": 0.05712566792499274
+    },
+    "next-attacks": {
+      "command": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-attacks-9kb72ug4/next-attacks-probe.ts"
+      ],
+      "pid": 1439409,
+      "exitCode": 0,
+      "seconds": 6.921439792960882
+    }
+  },
+  "fullTests": 15241,
+  "fullFiles": 700,
+  "existingSkips": 2,
+  "failedOrStopped": {
+    "full": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "pid": 1385978,
+      "exitCode": 143,
+      "seconds": 88.32648703397717
+    },
+    "browser": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-attacks-9kb72ug4/serve.py",
+        "--port",
+        "4503",
+        "--",
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-attacks-9kb72ug4/browser-suite.py"
+      ],
+      "pid": 1385979,
+      "exitCode": 1,
+      "seconds": 61.45115621492732
+    },
+    "next-battle-cry": {
+      "command": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-attacks-9kb72ug4/battle-cry-repro.ts"
+      ],
+      "pid": 1412182,
+      "exitCode": 1,
+      "seconds": 10.380573646980338
+    }
+  }
+}

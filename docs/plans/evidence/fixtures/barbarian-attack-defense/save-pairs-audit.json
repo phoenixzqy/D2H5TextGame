@@ -1,0 +1,476 @@
+{
+  "ordinaryPairs": 24,
+  "offlinePairs": 12,
+  "pairs": [
+    {
+      "label": "en-1280-concentrate",
+      "kind": "rank1",
+      "before": "browser-en-1280/en-1280-concentrate-rank1-before-3.json",
+      "after": "browser-en-1280/en-1280-concentrate-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-concentrate",
+      "kind": "rank2",
+      "before": "browser-en-1280/en-1280-concentrate-rank2-before-5.json",
+      "after": "browser-en-1280/en-1280-concentrate-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-concentrate",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-1280/en-1280-concentrate-rank2-after-6.json",
+      "after": "browser-en-1280/en-1280-concentrate-offline-continued-7.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-berserk",
+      "kind": "rank1",
+      "before": "browser-en-1280/en-1280-berserk-rank1-before-10.json",
+      "after": "browser-en-1280/en-1280-berserk-rank1-after-11.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-berserk",
+      "kind": "rank2",
+      "before": "browser-en-1280/en-1280-berserk-rank2-before-12.json",
+      "after": "browser-en-1280/en-1280-berserk-rank2-after-13.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-berserk",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-1280/en-1280-berserk-rank2-after-13.json",
+      "after": "browser-en-1280/en-1280-berserk-offline-continued-14.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-stun",
+      "kind": "rank1",
+      "before": "browser-en-1280/en-1280-stun-rank1-before-17.json",
+      "after": "browser-en-1280/en-1280-stun-rank1-after-18.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-stun",
+      "kind": "rank2",
+      "before": "browser-en-1280/en-1280-stun-rank2-before-19.json",
+      "after": "browser-en-1280/en-1280-stun-rank2-after-20.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-stun",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-1280/en-1280-stun-rank2-after-20.json",
+      "after": "browser-en-1280/en-1280-stun-offline-continued-21.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-concentrate",
+      "kind": "rank1",
+      "before": "browser-en-360/en-360-concentrate-rank1-before-3.json",
+      "after": "browser-en-360/en-360-concentrate-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-concentrate",
+      "kind": "rank2",
+      "before": "browser-en-360/en-360-concentrate-rank2-before-5.json",
+      "after": "browser-en-360/en-360-concentrate-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-concentrate",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-360/en-360-concentrate-rank2-after-6.json",
+      "after": "browser-en-360/en-360-concentrate-offline-continued-7.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-berserk",
+      "kind": "rank1",
+      "before": "browser-en-360/en-360-berserk-rank1-before-10.json",
+      "after": "browser-en-360/en-360-berserk-rank1-after-11.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-berserk",
+      "kind": "rank2",
+      "before": "browser-en-360/en-360-berserk-rank2-before-12.json",
+      "after": "browser-en-360/en-360-berserk-rank2-after-13.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-berserk",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-360/en-360-berserk-rank2-after-13.json",
+      "after": "browser-en-360/en-360-berserk-offline-continued-14.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-stun",
+      "kind": "rank1",
+      "before": "browser-en-360/en-360-stun-rank1-before-17.json",
+      "after": "browser-en-360/en-360-stun-rank1-after-18.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-stun",
+      "kind": "rank2",
+      "before": "browser-en-360/en-360-stun-rank2-before-19.json",
+      "after": "browser-en-360/en-360-stun-rank2-after-20.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-stun",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-360/en-360-stun-rank2-after-20.json",
+      "after": "browser-en-360/en-360-stun-offline-continued-21.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-concentrate",
+      "kind": "rank1",
+      "before": "browser-zh-CN-1280/zh-CN-1280-concentrate-rank1-before-3.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-concentrate-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-concentrate",
+      "kind": "rank2",
+      "before": "browser-zh-CN-1280/zh-CN-1280-concentrate-rank2-before-5.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-concentrate-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-concentrate",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-1280/zh-CN-1280-concentrate-rank2-after-6.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-concentrate-offline-continued-7.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-berserk",
+      "kind": "rank1",
+      "before": "browser-zh-CN-1280/zh-CN-1280-berserk-rank1-before-10.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-berserk-rank1-after-11.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-berserk",
+      "kind": "rank2",
+      "before": "browser-zh-CN-1280/zh-CN-1280-berserk-rank2-before-12.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-berserk-rank2-after-13.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-berserk",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-1280/zh-CN-1280-berserk-rank2-after-13.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-berserk-offline-continued-14.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-stun",
+      "kind": "rank1",
+      "before": "browser-zh-CN-1280/zh-CN-1280-stun-rank1-before-17.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-stun-rank1-after-18.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-stun",
+      "kind": "rank2",
+      "before": "browser-zh-CN-1280/zh-CN-1280-stun-rank2-before-19.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-stun-rank2-after-20.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-stun",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-1280/zh-CN-1280-stun-rank2-after-20.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-stun-offline-continued-21.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-concentrate",
+      "kind": "rank1",
+      "before": "browser-zh-CN-360/zh-CN-360-concentrate-rank1-before-3.json",
+      "after": "browser-zh-CN-360/zh-CN-360-concentrate-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-concentrate",
+      "kind": "rank2",
+      "before": "browser-zh-CN-360/zh-CN-360-concentrate-rank2-before-5.json",
+      "after": "browser-zh-CN-360/zh-CN-360-concentrate-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-concentrate",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-360/zh-CN-360-concentrate-rank2-after-6.json",
+      "after": "browser-zh-CN-360/zh-CN-360-concentrate-offline-continued-7.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-berserk",
+      "kind": "rank1",
+      "before": "browser-zh-CN-360/zh-CN-360-berserk-rank1-before-10.json",
+      "after": "browser-zh-CN-360/zh-CN-360-berserk-rank1-after-11.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-berserk",
+      "kind": "rank2",
+      "before": "browser-zh-CN-360/zh-CN-360-berserk-rank2-before-12.json",
+      "after": "browser-zh-CN-360/zh-CN-360-berserk-rank2-after-13.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-berserk",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-360/zh-CN-360-berserk-rank2-after-13.json",
+      "after": "browser-zh-CN-360/zh-CN-360-berserk-offline-continued-14.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-stun",
+      "kind": "rank1",
+      "before": "browser-zh-CN-360/zh-CN-360-stun-rank1-before-17.json",
+      "after": "browser-zh-CN-360/zh-CN-360-stun-rank1-after-18.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-stun",
+      "kind": "rank2",
+      "before": "browser-zh-CN-360/zh-CN-360-stun-rank2-before-19.json",
+      "after": "browser-zh-CN-360/zh-CN-360-stun-rank2-after-20.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-stun",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-360/zh-CN-360-stun-rank2-after-20.json",
+      "after": "browser-zh-CN-360/zh-CN-360-stun-offline-continued-21.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    }
+  ],
+  "saveVersion": 22,
+  "pass": true
+}

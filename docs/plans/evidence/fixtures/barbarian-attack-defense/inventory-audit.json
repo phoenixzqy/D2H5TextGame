@@ -1,0 +1,21 @@
+{
+  "changedIds": [
+    "skills-barbarian-berserk",
+    "skills-barbarian-stun",
+    "skills-barbarian-concentrate"
+  ],
+  "beforeSha256": "73f4ab14d16c39c47405ee9101abb2e4d929e63a63689cbd68ab7520cbc043ba",
+  "afterSha256": "a54722181eb17eba021c30b6dfcff6e098cd93c9b460fd8e13e8b5db84738723",
+  "rows": 213,
+  "otherRowsByteExact": 210,
+  "idsOrderPreserved": true,
+  "counts": {
+    "unverified": 94,
+    "bounded-functional": 117,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "barbarianBoundedFunctional": 19,
+  "independentAcceptance": "open",
+  "earnedBalance": "open"
+}

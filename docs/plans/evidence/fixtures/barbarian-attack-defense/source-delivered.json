@@ -1,0 +1,11 @@
+{
+  "commit": "9e4de15788ec382da19034e980150201d3956c61",
+  "frozenBase": "5d5524b685d03744b464e417b51899829cc1f77a",
+  "sourceFiles": 1190,
+  "allCommittedSourceBlobsExact": true,
+  "buildFiles": 761,
+  "buildDrift": [],
+  "outsideSrcRuntimeConfigAndHarnessDiff": "unchanged from frozen base",
+  "genuine": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "independentAcceptance": "open"
+}

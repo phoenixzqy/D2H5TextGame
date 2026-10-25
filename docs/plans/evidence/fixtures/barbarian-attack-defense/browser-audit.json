@@ -1,0 +1,1096 @@
+{
+  "cases": [
+    {
+      "label": "en-1280-concentrate",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "concentrate",
+          "observedAttackLines": 1,
+          "positiveConcentrateChip": true
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-1280-berserk",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "berserk",
+          "observedAttackLines": 1,
+          "positiveConcentrateChip": false
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-1280-stun",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.62,
+          "publicCast": true,
+          "selectedSkill": "stun",
+          "observedAttackLines": 1,
+          "positiveConcentrateChip": false
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-concentrate",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "concentrate",
+          "observedAttackLines": 1,
+          "positiveConcentrateChip": true
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-berserk",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "berserk",
+          "observedAttackLines": 1,
+          "positiveConcentrateChip": false
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-stun",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.62,
+          "publicCast": true,
+          "selectedSkill": "stun",
+          "observedAttackLines": 1,
+          "positiveConcentrateChip": false
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-concentrate",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "concentrate",
+          "observedAttackLines": 1,
+          "positiveConcentrateChip": true
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-berserk",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "berserk",
+          "observedAttackLines": 1,
+          "positiveConcentrateChip": false
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-stun",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.62,
+          "publicCast": true,
+          "selectedSkill": "stun",
+          "observedAttackLines": 1,
+          "positiveConcentrateChip": false
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-concentrate",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "concentrate",
+          "observedAttackLines": 1,
+          "positiveConcentrateChip": true
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-berserk",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "berserk",
+          "observedAttackLines": 1,
+          "positiveConcentrateChip": false
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-stun",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.62,
+          "publicCast": true,
+          "selectedSkill": "stun",
+          "observedAttackLines": 1,
+          "positiveConcentrateChip": false
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    }
+  ],
+  "geometry": [
+    {
+      "label": "en-1280-concentrate",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-concentrate",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-concentrate",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-concentrate",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-concentrate",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-berserk",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-berserk",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-berserk",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-berserk",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-berserk",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-stun",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-stun",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-stun",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-stun",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-stun",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-concentrate",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-concentrate",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-concentrate",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-concentrate",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-concentrate",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-berserk",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-berserk",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-berserk",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-berserk",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-berserk",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-stun",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-stun",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-stun",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-stun",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-stun",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-concentrate",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-concentrate",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-concentrate",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-concentrate",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-concentrate",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-berserk",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-berserk",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-berserk",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-berserk",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-berserk",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-stun",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-stun",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-stun",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-stun",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-stun",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-concentrate",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-concentrate",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-concentrate",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-concentrate",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-concentrate",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-berserk",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-berserk",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-berserk",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-berserk",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-berserk",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-stun",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-stun",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-stun",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-stun",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-stun",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    }
+  ],
+  "consolePageErrors": [],
+  "screenshots": 36,
+  "individuallyInspected": [
+    "browser-en-360/en-360-concentrate-current-next.png",
+    "browser-en-360/en-360-berserk-current-next.png",
+    "browser-zh-CN-360/zh-CN-360-concentrate-cast-visible.png",
+    "browser-zh-CN-360/zh-CN-360-stun-current-next.png",
+    "browser-en-1280/en-1280-berserk-current-next.png"
+  ],
+  "limits": "Synthetic imported L30/resources/helmet and fixed Date.now; no earned campaign or balance claim. Geometry covers selected skill allocation control; no full accessibility audit."
+}

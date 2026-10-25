@@ -1,6 +1,6 @@
 # BUG-220 — Berserk ignores the Attack it promises to convert
 
-- Status: reproduced; repair and independent acceptance open.
+- Status: Fixed locally in `9e4de157`; independent design/QA and earned balance open.
 - Severity: High — advertised weapon/Attack conversion does not exist.
 - Owner: root, engine/data/UI; independent design/QA and earned balance open.
 - Build: `5d5524b6`, Node24/Vitest1.6.1, native combat; no browser viewport.
@@ -24,3 +24,13 @@ fixed Arcane range; no Attack coefficient is authored or forwarded.
 Evidence: `src/stores/barbarian-attacks.causal.test.ts` produced three Berserk
 REDs alongside three Concentrate REDs; both Stun controls passed (8total).
 No synthetic state becomes earned progress; no genuine campaign or remote action.
+
+## Local resolution
+
+`9e4de157` implements the [attack/Defense contract](../../docs/plans/decisions/D04-barbarian-attack-defense-v1.md).
+Regression paths: `src/stores/barbarian-attacks.causal.test.ts`,
+`src/stores/barbarian-attacks-native.test.ts` and
+`src/engine/skills/barbarian-attack-defense.test.ts`, plus bilingual UI/chip tests.
+Final full15241/700/two existing skips, engine7849/294, types/lint/build and12
+production browser cases pass. [Retained evidence](../../docs/plans/evidence/d04-barbarian-attack-defense.md).
+Functional local credit only; independent and earned acceptance remain open.

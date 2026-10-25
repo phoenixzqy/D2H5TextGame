@@ -1,0 +1,39 @@
+{
+  "reviewer": "root author only; no independent acceptance",
+  "security": {
+    "verdict": "pass",
+    "scope": "Current local source/tests and synthetic evidence scripts",
+    "findings": [],
+    "constraints": [
+      "No external action or new dependency",
+      "No persisted combat payload or save migration",
+      "Native class/unlock/prerequisite/rank and paid source-bound transient authority checked"
+    ]
+  },
+  "planReview": {
+    "verdict": "ready",
+    "contract": "docs/plans/decisions/D04-barbarian-attack-defense-v1.md",
+    "scope": "Three-skill attack/defense batch; preserved full private-v1 objective",
+    "requirements": [
+      "Paid finite Defense even on miss",
+      "Arcane Attack contribution uses existing primitive and magical defenses",
+      "Shared on-hit Stun interruption",
+      "Native wave/save/playback integration and truthful bilingual current/next/MAX presentation"
+    ]
+  },
+  "codeReview": {
+    "verdict": "no blocking author finding",
+    "axes": {
+      "correctness": "Inspected all five new test files, paid/native concentration match and timing, existing attack-scaled damage, canonical on-hit control, wave authority refresh and no transient save fields. Actual HP/MP and replay assertions accompany marker assertions.",
+      "readability": "One bounded paid-status module follows existing Leap/Cloak pattern; tuning remains JSON. Presentation derives Defense/Attack rows from authored metadata.",
+      "architecture": "Pure TS engine with existing scheduler/mitigation/typed status playback. Additive Defense bonus; no base-stat mutation or independent simulation.",
+      "security": "Source-owned registry shape and native class/allocation authority precede payment. Invalid/foreign potency is stripped on registration; no eval, credentials, network export, schema relaxation or dependency.",
+      "performance": "No new unbounded loop; status checks use existing bounded status lists. Full performance budgets not measured; large application/art manifest warnings stay open."
+    }
+  },
+  "limits": [
+    "Independent design/QA and earned balance remain open",
+    "30\u201350-hour campaign, two earned builds per class, full G0\u2013G7/C2\u2013C4 remain unproved",
+    "Retained fixture corrections and failed/terminated runs are not counted as passes"
+  ]
+}

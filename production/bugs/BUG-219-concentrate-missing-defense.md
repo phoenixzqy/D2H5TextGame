@@ -1,6 +1,6 @@
 # BUG-219 — Concentrate grants none of its advertised defense
 
-- Status: reproduced; numerical/lifetime contract and repair open.
+- Status: Fixed locally in `9e4de157`; independent design/QA and earned balance open.
 - Severity: High — advertised defensive benefit is absent from actual combat.
 - Owner: root; independent design/QA and earned balance remain open.
 - Build: `f208b176` plus the frozen Frenzy/BUG217/BUG218 changes; Concentrate unchanged.
@@ -32,5 +32,15 @@ paired mitigation evidence. Landed damage and the missing capability establish
 the defect. Terminal assertion fails after all observations are written.
 
 Evidence: [native probe](../../docs/plans/evidence/d04-concentrate-repro.md),
-retained in the Frenzy raw packet. No Concentrate fix or inventory
-credit; genuine Ancients/Rite L33/next402/Baal uncleared unchanged. Local only.
+retained in the Frenzy raw packet. At reproduction there was no fix or credit.
+The genuine Ancients/Rite L33/next402/Baal uncleared save remains unchanged. Local only.
+
+## Local resolution
+
+`9e4de157` implements the [attack/Defense contract](../../docs/plans/decisions/D04-barbarian-attack-defense-v1.md).
+Regression paths: `src/stores/barbarian-attacks.causal.test.ts`,
+`src/stores/barbarian-attacks-native.test.ts` and
+`src/engine/skills/barbarian-attack-defense.test.ts`, plus bilingual UI/chip tests.
+Final full15241/700/two existing skips, engine7849/294, types/lint/build and12
+production browser cases pass. [Retained evidence](../../docs/plans/evidence/d04-barbarian-attack-defense.md).
+Functional local credit only; independent and earned acceptance remain open.
