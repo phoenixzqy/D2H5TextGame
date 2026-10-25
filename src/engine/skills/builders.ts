@@ -31,6 +31,7 @@ interface BuildSpec {
   readonly status?: { readonly id: string; readonly chance?: number; readonly stacks?: number; readonly dotPct?: number };
   readonly additionalStatuses?: readonly OnHitStatus[];
   readonly aoeShape?: AoeShape;
+  readonly maxTargets?: number;
   readonly tags?: readonly ComboTag[];
   readonly buff?: { readonly id: string; readonly duration: number };
   readonly summon?: {
@@ -86,6 +87,7 @@ function build(s: BuildSpec): RegisteredSkill {
     effects,
     minLevel: s.minLevel ?? 1,
     ...(s.aoeShape ? { aoeShape: s.aoeShape } : {}),
+    ...(s.maxTargets !== undefined ? { maxTargets: s.maxTargets } : {}),
     ...(s.buff ? { isBuff: true } : {}),
     ...(s.summon?.onStart ? { summonOnStart: true } : {}),
     ...(s.requires ? { requires: s.requires } : {})
@@ -101,7 +103,7 @@ export const DEFAULT_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   build({ id: 'sorceress.ice_bolt', archetype: 'sorceress', target: 'single-enemy', cooldown: 1, manaCost: 10, damageType: 'cold', base: [30, 45], status: { id: 'chill' } }),
   build({ id: 'sorceress.frost_nova', archetype: 'sorceress', target: 'all-enemies', cooldown: 3, manaCost: 20, damageType: 'cold', base: [25, 35], status: { id: 'chill' } }),
   build({ id: 'sorceress.frozen_orb', archetype: 'sorceress', target: 'area-enemies', cooldown: 2, manaCost: 30, damageType: 'cold', base: [60, 90], status: { id: 'chill' }, aoeShape: 'cone-2' }),
-  build({ id: 'sorceress.chain_lightning', archetype: 'sorceress', target: 'area-enemies', cooldown: 2, manaCost: 25, damageType: 'lightning', base: [50, 70], status: { id: 'paralyze', chance: 0.2 }, aoeShape: 'line-3' }),
+  build({ id: 'sorceress.chain_lightning', archetype: 'sorceress', target: 'area-enemies', cooldown: 2, manaCost: 25, damageType: 'lightning', base: [50, 70], status: { id: 'paralyze' }, aoeShape: 'chain', maxTargets: 5 }),
   build({ id: 'sorceress.fire_ball', archetype: 'sorceress', target: 'single-enemy', cooldown: 1, manaCost: 20, damageType: 'fire', base: [70, 100], status: { id: 'ignite', dotPct: 0.1 } }),
   build({ id: 'sorceress.meteor', archetype: 'sorceress', target: 'all-enemies', cooldown: 4, manaCost: 50, damageType: 'fire', base: [100, 150], status: { id: 'ignite', dotPct: 0.1 } }),
   build({ id: 'sorceress.blizzard', archetype: 'sorceress', target: 'all-enemies', cooldown: 3, manaCost: 45, damageType: 'cold', base: [80, 120], status: { id: 'chill' }, minLevel: 24 }),

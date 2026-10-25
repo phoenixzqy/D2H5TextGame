@@ -136,11 +136,13 @@ describe('P07a03B allocated Lightning Mastery direct damage', () => {
   });
 
   it.each([0, 20])('preserves Paralyze initial timing, stacks and cooldown at allocated%s', rank => {
-    const apply = vi.spyOn(statusModule, 'applyStatus');
+    const apply = vi.spyOn(statusModule, 'applyStatusWithResult');
     runBattleRecorded(snapshot(rank));
+    const application = apply.mock.results[0]?.value as statusModule.StatusApplicationResult | undefined;
     expect(apply).toHaveBeenCalledTimes(1);
     expect(apply.mock.calls[0]?.[1]).toEqual({ id: 'paralyze', sourceId: 'sorceress', simClockMs: 1700, damageType: 'lightning' });
-    expect(apply.mock.results[0]?.value).toHaveProperty('statuses', [hold(),
+    expect(application?.applied).toBe(true);
+    expect(application?.unit).toHaveProperty('statuses', [hold(),
       { id: 'paralyze', stacks: 1, remaining: 1, sourceId: 'sorceress', appliedAtMs: 1700,
         expiresAtMs: 2700, damageType: 'lightning' },
       { id: 'paralyze-cd', stacks: 1, remaining: 5, sourceId: 'sorceress', appliedAtMs: 1700, expiresAtMs: 6700 }]);
@@ -148,15 +150,17 @@ describe('P07a03B allocated Lightning Mastery direct damage', () => {
 
   it.each([0, 20])('preserves Paralyze reapplication failure and RNG at allocated%s', rank => {
     const cd: ActiveStatus = { id: 'paralyze-cd', stacks: 1, remaining: 100, sourceId: 'old', appliedAtMs: 0, expiresAtMs: 100000 };
-    const apply = vi.spyOn(statusModule, 'applyStatus');
+    const apply = vi.spyOn(statusModule, 'applyStatusWithResult');
     const random = rngModule.createRng(7), chance = vi.spyOn(random, 'chance');
     vi.spyOn(rngModule, 'createRng').mockReturnValue(random);
     runBattleRecorded(withTarget(snapshot(rank), { statuses: [hold(), cd] }));
+    const application = apply.mock.results[0]?.value as statusModule.StatusApplicationResult | undefined;
     expect(chance.mock.calls).toEqual([[0.85], [0], [1], [0.5]]);
     // Fifth seed7 draw .5214452685 fails the existing 50% reapplication check.
     expect(apply).toHaveBeenCalledTimes(1);
-    expect(apply.mock.results[0]?.value).toBe(apply.mock.calls[0]?.[0]);
-    expect(apply.mock.results[0]?.value).toHaveProperty('statuses', [hold(), cd]);
+    expect(application?.applied).toBe(false);
+    expect(application?.unit).toBe(apply.mock.calls[0]?.[0]);
+    expect(application?.unit).toHaveProperty('statuses', [hold(), cd]);
   });
 
   it('does not inherit the hero modifier on an allied real Thunder Storm', () => {

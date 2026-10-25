@@ -1605,6 +1605,14 @@ function dynamicDescription(
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && ['skills-sorceress-charged-bolt', 'skills-sorceress-lightning',
+    'skills-sorceress-nova', 'skills-sorceress-chain-lightning'].includes(skill.id)) {
+    return t('sorceress.' + skill.id.slice('skills-sorceress-'.length) + '.desc', {
+      min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown,
+      maxTargets: stats.maxTargets,
+      ...(stats.control ? { duration: t('details.seconds', { seconds: stats.control.durationSeconds }) } : {})
+    });
+  }
   if (firstDamage && ['skills-sorceress-fire-bolt', 'skills-sorceress-fire-ball'].includes(skill.id)) {
     return t('sorceress.' + skill.id.slice('skills-sorceress-'.length) + '.desc', {
       min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown

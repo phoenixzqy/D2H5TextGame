@@ -103,6 +103,13 @@ export interface ApplyStatusInput {
   readonly config?: StatusConfig;
 }
 
+/** An accepted application may refresh an existing status without changing its potency. */
+export interface StatusApplicationResult {
+  readonly unit: CombatUnit;
+  /** False when the status application was rejected; separate state updates are retained in unit. */
+  readonly applied: boolean;
+}
+
 /** Fire and Amplify Damage each accept their legacy status alias. */
 function canonicalStatusId(id: string): string {
   if (id === 'burn') return 'ignite';
@@ -176,6 +183,15 @@ export function applyStatus(
   input: ApplyStatusInput,
   rng: Rng
 ): CombatUnit {
+  return applyStatusWithResult(unit, input, rng).unit;
+}
+
+/** Apply the same status rules while exposing acceptance for truthful combat feedback. */
+export function applyStatusWithResult(
+  unit: CombatUnit,
+  input: ApplyStatusInput,
+  rng: Rng
+): StatusApplicationResult {
   const id = canonicalStatusId(input.id);
   const cleansing = input.simClockMs !== undefined && validCleansingMultiplier(input.cleansingDurationMultiplier) &&
     CLEANSABLE_STATUS_IDS.has(id) ? input.cleansingDurationMultiplier : undefined;
@@ -202,7 +218,7 @@ export function applyStatus(
     const cdActive = unit.statuses.some((s) => s.id === 'paralyze-cd' &&
       (input.simClockMs === undefined || statusActiveAt(s, input.simClockMs)));
     if (cdActive && !rng.chance(0.5)) {
-      return unit; // Failed application
+      return { unit, applied: false };
     }
   }
 
@@ -238,7 +254,7 @@ export function applyStatus(
       : unit.statuses.map((s, i) => i === idx ? newStatus : s);
   } else {
     const prev = unit.statuses[idx];
-    if (!prev) return unit;
+    if (!prev) return { unit, applied: false };
     const stacks =
       cfg.maxStacks > 1 ? Math.min(cfg.maxStacks, prev.stacks + 1) : prev.stacks;
     // Undefined expiry is indefinite, including legacy combat-entry records.
@@ -285,7 +301,7 @@ export function applyStatus(
         : next.map((s, i) => (i === existingCdIdx ? cdMarker : s));
   }
 
-  return { ...unit, statuses: next };
+  return { unit: { ...unit, statuses: next }, applied: true };
 }
 
 /** Whether a stored status is active at an exact simulation boundary. */

@@ -44,7 +44,7 @@ describe.each(['hero', 'merc'] as const)('actual equipped active casts for %s', 
   it.each([
     { grant: fire, mp: 8, cd: 1200, targets: 1, type: 'fire', min: 38, max: 53, status: 'burn' },
     { grant: blaze, mp: 22, cd: 3200, targets: 4, type: 'fire', min: 80, max: 105, status: 'burn' },
-    { grant: chain, mp: 25, cd: 2000, targets: 3, type: 'lightning', min: 70, max: 90, status: 'paralyze' }
+    { grant: chain, mp: 25, cd: 2000, targets: 4, type: 'lightning', min: 70, max: 90, status: 'paralyze' }
   ])('uses the real $grant.skillId rank, MP, CD, targeting and status', row => {
     const caster = actor([row.grant], kind);
     const before = structuredClone(caster), result = battle(caster);

@@ -4,7 +4,6 @@ import type { ActiveStatus, CombatUnit } from './types';
 import type { DamageType, DerivedStats } from '../types/attributes';
 import { composeDamageMasteries } from '../skills/damage-masteries';
 import { getSkill, loadDefaultSkills, registerSkill, resetRegistry } from '../skills/registry';
-import * as status from './status';
 
 const stats: DerivedStats = { life: 10000, lifeMax: 10000, mana: 25, manaMax: 25,
   attack: 1, defense: 0, magicResist: 0, attackSpeed: 100, critChance: 0, critDamage: 2,
@@ -47,16 +46,16 @@ describe('damage masteries use the existing combat pipeline once', () => {
   it.each([0, 1, 20])('snapshots real ranked Poison Nova DoT once after the rank%s increased hit', rank => {
     const spell = 'skills-necromancer-poison-nova';
     const original = structuredClone(getSkill(spell));
-    const apply = vi.spyOn(status, 'applyStatus');
     const input = snapshot('necromancer', rank, spell), before = structuredClone(input);
     const result = runBattleRecorded(input);
     const hit = result.events.find(e => e.kind === 'damage');
     if (hit?.kind !== 'damage') throw new Error('Missing real Poison Nova hit');
     expect(hit).toMatchObject({ damageType: 'poison', amount: Math.floor(96 * (1 + rank * 0.04)), crit: false });
-    expect(apply.mock.calls.map(call => call[1])).toEqual([
-      expect.objectContaining({ id: 'poison', dotPerStack: Math.max(1, Math.floor(hit.amount * 0.05)) }),
-      expect.objectContaining({ id: 'poison', dotPerStack: Math.max(1, Math.floor(hit.amount * 0.05)) }),
-    ]);
+    const applied = result.events.flatMap(event => event.kind === 'status-state' && event.target === 'fixture-target' && event.simClockMs === 1700
+      ? event.statuses.filter(value => value.id === 'poison') : []);
+    expect(applied).toEqual([expect.objectContaining({ id: 'poison', stacks: 2,
+      dotPerStack: Math.max(1, Math.floor(hit.amount * 0.05)), sourceId: 'fixture-hero',
+      appliedAtMs: 1700, expiresAtMs: 6700 })]);
     expect(result.events.some(e => e.kind === 'dot' && e.amount > 0)).toBe(true);
     expect(result.events.filter(e => e.kind === 'action')).toEqual([
       expect.objectContaining({ actor: 'fixture-hero', skillId: 'necromancer.poison_nova' })]);

@@ -7,6 +7,7 @@ export type AoeShape =
   | 'column-3'
   | 'cross'
   | 'cone-2'
+  | 'chain'
   | 'box-3x3'
   | 'all-enemies';
 
@@ -70,7 +71,7 @@ export function withDefaultGridPositions(units: readonly CombatUnit[]): CombatUn
   });
 }
 
-/** Cells covered by an AOE shape anchored at a grid position. */
+/** Fixed shape cells; all-enemy and chain footprints depend on the target roster. */
 export function cellsForAoeShape(anchor: GridPosition, shape: AoeShape): readonly GridPosition[] {
   switch (shape) {
     case 'single':
@@ -112,6 +113,7 @@ export function cellsForAoeShape(anchor: GridPosition, shape: AoeShape): readonl
       }
       return cells;
     }
+    case 'chain':
     case 'all-enemies':
       return [];
   }
@@ -142,7 +144,7 @@ function compareByGrid(a: CombatUnit, b: CombatUnit): number {
  * Missing shapes and candidates without positions fall back to the previous
  * first-two area behavior so legacy skills and synthetic callers still work.
  */
-export function resolveAoeTargets(
+function shapedTargets(
   candidates: readonly CombatUnit[],
   shape?: AoeShape
 ): CombatUnit[] {
@@ -174,4 +176,43 @@ export function resolveAoeTargets(
   }
 
   return bestTargets.sort(compareByGrid);
+}
+
+function chainTargets(candidates: readonly CombatUnit[], limit: number): CombatUnit[] {
+  const seen = new Set<string>();
+  const remaining = candidates.filter(unit => {
+    if (seen.has(unit.id)) return false;
+    seen.add(unit.id);
+    return true;
+  });
+  const selected: CombatUnit[] = [];
+  while (remaining.length > 0 && selected.length < limit) {
+    const previous = selected.at(-1)?.gridPosition;
+    let nextIndex = 0, nearest = Infinity;
+    for (let index = 0; index < remaining.length; index++) {
+      const position = remaining[index]?.gridPosition;
+      const distance = isValidGridPosition(previous) && isValidGridPosition(position)
+        ? Math.abs(previous.row - position.row) + Math.abs(previous.col - position.col) : Infinity;
+      if (distance < nearest) { nearest = distance; nextIndex = index; }
+    }
+    const next = remaining.splice(nextIndex, 1)[0];
+    if (next) selected.push(next);
+  }
+  return selected;
+}
+
+/**
+ * Resolve prioritized targets without mutation or RNG. The optional cap follows
+ * geometric selection; chains stop at the cap and never revisit an ID. A chain
+ * starts at target priority, then chooses the nearest Manhattan-grid neighbor,
+ * preserving priority on ties and placing unknown distances after finite ones.
+ */
+export function resolveAoeTargets(
+  candidates: readonly CombatUnit[],
+  shape?: AoeShape,
+  maxTargets?: number
+): CombatUnit[] {
+  const targets = shape === 'chain' ? chainTargets(candidates, maxTargets ?? candidates.length)
+    : shapedTargets(candidates, shape);
+  return maxTargets === undefined ? targets : targets.slice(0, maxTargets);
 }

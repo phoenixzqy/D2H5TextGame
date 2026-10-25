@@ -28,6 +28,7 @@ import { inferKind } from './types';
 import { resolveDamage, rollDamage, resolveRolledDamage, mitigateDamage, type DamageInput } from './damage';
 import {
   applyStatus,
+  applyStatusWithResult,
   expireStatuses,
   hasStatus,
   isStunned,
@@ -759,8 +760,9 @@ function applyDamageToUnit(
             continue;
           }
           let updated = cur;
+          let applied = false;
           for (let i = 0; i < stacks; i++) {
-            updated = applyStatus(
+            const application = applyStatusWithResult(
               updated,
               {
                 id: status.id,
@@ -773,13 +775,15 @@ function applyDamageToUnit(
               },
               state.rng
             );
+            updated = application.unit;
+            applied = applied || application.applied;
           }
           const drain = status.id === 'mana-burn' && hostileHit
             ? Math.min(updated.mana, Math.floor((defender.life - newLife) * MANA_BURN_DEFINITION.drainFraction)) : 0;
           const manaEvent = drain > 0
             ? commitMana(state, cur, { ...updated, mana: updated.mana - drain }, 'mana-burn') : undefined;
           if (drain <= 0) state.units.set(defenderId, updated);
-          emit(state, { kind: 'status', target: defenderId, statusId: status.id });
+          if (applied) emit(state, { kind: 'status', target: defenderId, statusId: status.id });
           if (manaEvent) emit(state, manaEvent);
           observeStatuses(state, defenderId);
         }
@@ -1442,7 +1446,7 @@ function applyEffect(
     }
     case 'debuff': {
       for (const t of enemySideAlive) {
-        const updated = applyStatus(
+        const application = applyStatusWithResult(
           t,
           {
             id: effect.statusId,
@@ -1457,8 +1461,8 @@ function applyEffect(
           },
           state.rng
         );
-        state.units.set(t.id, updated);
-        emit(state, { kind: 'status', target: t.id, statusId: effect.statusId });
+        state.units.set(t.id, application.unit);
+        if (application.applied) emit(state, { kind: 'status', target: t.id, statusId: effect.statusId });
         observeStatuses(state, t.id);
       }
       break;
@@ -1568,8 +1572,7 @@ function castSkill(
     const picked = pickDefender(state, actor, enemiesAliveRaw);
     if (picked) targetEnemies = [picked];
   } else if (skill.target === 'area-enemies') {
-    targetEnemies = resolveAoeTargets(enemies, skill.aoeShape);
-    if (skill.maxTargets !== undefined) targetEnemies = targetEnemies.slice(0, skill.maxTargets);
+    targetEnemies = resolveAoeTargets(enemies, skill.aoeShape, skill.maxTargets);
   }
 
   for (const effect of skill.effects) {

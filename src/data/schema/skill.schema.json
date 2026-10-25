@@ -340,7 +340,27 @@
     },
     {
       "if": { "required": ["maxTargets"], "properties": { "maxTargets": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-paladin-zeal", "skills-barbarian-double-swing"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-paladin-zeal", "skills-barbarian-double-swing", "skills-sorceress-chain-lightning"] } } }
+    },
+    {
+      "if": { "required": ["aoeShape"], "properties": { "aoeShape": { "const": "chain" } } },
+      "then": { "properties": { "id": { "const": "skills-sorceress-chain-lightning" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-sorceress-chain-lightning" } } },
+      "then": {
+        "required": ["aoeShape", "maxTargets", "requiredLevel", "prerequisites", "damage", "damageType", "appliesStatus", "cost"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "area-enemies" },
+          "aoeShape": { "const": "chain" }, "maxTargets": { "const": 5 },
+          "requiredLevel": { "const": 18 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-sorceress-lightning"] },
+          "damageType": { "const": "lightning" }, "appliesStatus": { "const": ["paralyze"] },
+          "statusEffect": false, "additionalStatusEffects": false,
+          "hitSequence": false, "damageComposition": false, "attackDamagePct": false,
+          "onHitRecovery": false, "onHitSelfDamage": false
+        }
+      }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-paladin-zeal" } } },
@@ -4284,8 +4304,8 @@
       }
     },
     "maxTargets": {
-      "type": "integer", "const": 3,
-      "description": "Explicit Zeal/Double Swing limit applied after resolving the deterministic densest cross, before any direct-hit attempts."
+      "type": "integer", "enum": [3, 5],
+      "description": "Identity-restricted cap: Zeal/Double Swing use three cross targets; Chain Lightning uses five distinct bouncing targets. Applied before direct-hit attempts."
     },
     "onHitSelfDamage": {
       "type": "object", "additionalProperties": false,
@@ -4566,8 +4586,8 @@
     },
     "aoeShape": {
       "type": "string",
-      "enum": ["single", "line-3", "column-3", "cross", "cone-2", "box-3x3", "all-enemies"],
-      "description": "Optional AOE shape on the 3-column battle grid. Does not imply attack range or movement."
+      "enum": ["single", "line-3", "column-3", "cross", "cone-2", "chain", "box-3x3", "all-enemies"],
+      "description": "Optional area targeting pattern on the 3-column battle grid. Chain chooses nearest unvisited neighbors up to maxTargets; it has no fixed cell footprint. Does not imply attack range or movement."
     },
     "cooldown": {
       "type": "number",

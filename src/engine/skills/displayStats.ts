@@ -568,8 +568,9 @@ export function computeSkillRankDisplayStats(
     (controlId === 'chill' || controlId === 'stun' || controlId === 'paralyze' || controlId === 'howl') ? STATUS_DEFAULTS[controlId] : undefined;
   const control = controlDefinition ? { durationSeconds: controlDefinition.duration,
     bossDurationSeconds: controlDefinition.duration * (controlDefinition.bossDurationMult ?? 1) } : undefined;
-  const maxTargets = (skill.id === 'skills-paladin-zeal' || strikesPerTarget !== undefined) && skill.trigger === 'active' &&
-    skill.target === 'area-enemies' && skill.aoeShape === 'cross' && skill.maxTargets === 3
+  const maxTargets = skill.trigger === 'active' && skill.target === 'area-enemies' &&
+    (((skill.id === 'skills-paladin-zeal' || strikesPerTarget !== undefined) && skill.aoeShape === 'cross' && skill.maxTargets === 3) ||
+      (skill.id === 'skills-sorceress-chain-lightning' && skill.aoeShape === 'chain' && skill.maxTargets === 5))
     ? skill.maxTargets : undefined;
   const selfCost = skill.onHitSelfDamage;
   const selfDamage = skill.id === 'skills-paladin-sacrifice' && skill.trigger === 'active' &&

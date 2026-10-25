@@ -1031,7 +1031,7 @@
     },
     "chain-lightning": {
       "name": "Chain Lightning",
-      "desc": "Releases a chain of lightning that bounces between up to 5 enemies, paralyzing them."
+      "desc": "Bounces between up to {{maxTargets}} distinct living enemies, starting with the first prioritized enemy and then the nearest unvisited enemy. Each takes one attempt for {{min}}–{{max}} Lightning base damage. Misses and lethal hits do not stop the chain. Pay {{mana}} MP and start a {{cooldown}} s cooldown once per cast. Lightning resistance and magic resist apply. A fresh landed hit applies Paralyze for {{duration}}, including bosses. Reapplication during its 5 s residual window has a 50% chance to succeed. Misses apply no Paralyze."
     },
     "fire-ball": {
       "name": "Fire Ball",
@@ -1083,7 +1083,7 @@
     },
     "charged-bolt": {
       "name": "Charged Bolt",
-      "desc": "Releases multiple erratic bolts of electricity."
+      "desc": "One bolt attempt at each of the first two prioritized living enemies deals {{min}}–{{max}} Lightning base damage per enemy. Pay {{mana}} MP and start a {{cooldown}} s cooldown once per cast. Lightning resistance and magic resist apply."
     },
     "static-field": {
       "name": "Static Field",
@@ -1095,11 +1095,11 @@
     },
     "nova": {
       "name": "Nova",
-      "desc": "A ring of lightning that damages all nearby enemies."
+      "desc": "One independent attempt per living enemy, including separated and overflow targets, deals {{min}}–{{max}} Lightning base damage. Pay {{mana}} MP and start a {{cooldown}} s cooldown once per cast. Lightning resistance and magic resist apply."
     },
     "lightning": {
       "name": "Lightning",
-      "desc": "A powerful bolt of lightning that strikes the target."
+      "desc": "One single-target attempt deals {{min}}–{{max}} Lightning base damage. Pay {{mana}} MP and start a {{cooldown}} s cooldown once per cast. Lightning resistance and magic resist apply."
     },
     "teleport": {
       "name": "Teleport",
