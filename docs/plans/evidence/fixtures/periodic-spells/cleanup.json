@@ -1,0 +1,22 @@
+{
+  "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-periodic-spells-nk5fzu2y",
+  "verifiedFilesRemoved": 1560,
+  "rawFiles": 799,
+  "disposableBuildFiles": 761,
+  "exactFileManifests": [
+    "all-task-raw-members.json",
+    "archived build-frozen.json"
+  ],
+  "recordedPidsAbsent": 26,
+  "observedBrowserProfilesAbsent": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-73OuRH",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-zBCtHl"
+  ],
+  "port4515Closed": true,
+  "genuineSaveExact": true,
+  "scratchAbsent": true,
+  "remaining": [],
+  "failures": [],
+  "retainedEvidence": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/periodic-spells",
+  "sharedCachesAndWorktreePreserved": true
+}

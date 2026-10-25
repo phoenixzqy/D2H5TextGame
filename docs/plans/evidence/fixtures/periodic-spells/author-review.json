@@ -1,0 +1,46 @@
+{
+  "reviewer": "root author; no independent review",
+  "scope": "BUG234/235, periodic spells, schema/native carry/UI and compatibility changes",
+  "axes": {
+    "correctness": "Finite paid source/rank/phase, independent ordinary RNG, current hostiles, no recast, expiry/death/tie ordering and strict native hero/merc source invalidation inspected; shared terminal cooldown publication matches expiry map.",
+    "readability": "Three explicit spell identities and one scheduler/definition path; phase uses existing status clocks.",
+    "architecture": "Pure engine; definition module avoids catalog/projector runtime imports; fresh authority module sits above definitions; no new save fields or version.",
+    "security": "pass: validated closed authored schema and strict paid payloads; no new dependency, credential, permission, external write or durable save mutation.",
+    "performance": "Finite duration and interval bounds; three spells per living unit at existing boundaries. Production bundle/cache warnings and actual test-budget breaches retained; no broad performance acceptance."
+  },
+  "findingsResolved": [
+    "Optional catalog indexed type incorrectly included explicit undefined; corrected at declaration.",
+    "Two union-event assertions needed discriminant narrowing; governed Blaze grant fixture now uses exact typed id/canonical skill and asserts rank.",
+    "New coexistence fixture omitted legal learned spell ranks; corrected fixture, not engine.",
+    "Browser payment scenario concealed debit via immediate kill-orb refunds; Catacombs fixture observes exact payment.",
+    "Chinese browser assertion guessed a noncanonical Burn label; uses existing translation.",
+    "Native Mage WAIT cooldown oracle now asserts cast2000/end5820 and actual180ms remaining.",
+    "Runeword source-removal oracle invalidates only paid Blaze, preserves unrelated carry, and asserts prior paid source/rank."
+  ],
+  "acceptanceStillOpen": [
+    "Independent design/QA",
+    "Earned balance and builds",
+    "C2-C4/G0-G7/private v1"
+  ],
+  "browserVerification": {
+    "cases": 12,
+    "exactSixDomainSavePairs": 24,
+    "actualOfflineContinues": 12,
+    "geometryChecks": 60,
+    "screenshots": 24,
+    "inspected": 4,
+    "visualLimits": "Desktop Blaze title and paid combat chip/MP visible; mobile Thunder Storm chip/MP visible near viewport edge. Skill-detail prose lies below tree captures; text/geometry assertions and component cases cover it separately. Existing missing navigation/lock glyphs and broad accessibility acceptance remain."
+  },
+  "previousGoalTurn": "Status-only turn: no implementation progress. Current state revalidated; type/lint failures fixed and runtime/browser evidence completed in this continuation.",
+  "verification": {
+    "fullTestsPassed": 16236,
+    "filesPassed": 730,
+    "existingSkippedTests": 2,
+    "seconds": 766.16,
+    "independentReview": false
+  },
+  "sourceCommits": {
+    "engine": "b1cfe5e8",
+    "presentation": "f683dfadfa64f05915751ff0447c50ef7388e5a1"
+  }
+}

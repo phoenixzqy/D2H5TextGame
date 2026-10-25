@@ -1,0 +1,72 @@
+{
+  "focused": {
+    "handle": 8243,
+    "exit": 0,
+    "log": "focused-delivery.log",
+    "testsPassed": 730,
+    "filesPassed": 14
+  },
+  "engine": {
+    "handle": 41204,
+    "exit": 0,
+    "log": "engine-final.log",
+    "testsPassed": 8088,
+    "filesPassed": 302
+  },
+  "full": {
+    "handle": 53081,
+    "exit": 0,
+    "log": "full-delivery.log",
+    "testsPassed": 16236,
+    "filesPassed": 730,
+    "existingSkippedTests": 2,
+    "seconds": 766.16
+  },
+  "types": {
+    "handle": 58721,
+    "exit": 0,
+    "log": "types-final-delivery.log"
+  },
+  "repositoryLint": {
+    "handle": 68068,
+    "exit": 0,
+    "log": "lint-delivery.log"
+  },
+  "changedNativeCompatibilityLint": {
+    "handle": 81218,
+    "exit": 0,
+    "log": "native-compatibility-lint.log"
+  },
+  "browserLint": {
+    "handle": 41990,
+    "exit": 0,
+    "log": "browser-lint-frozen.log"
+  },
+  "build": {
+    "handle": 90639,
+    "exit": 0,
+    "log": "build-final.log"
+  },
+  "precache": {
+    "exit": 0,
+    "log": "precache-final.log"
+  },
+  "bridge": {
+    "exit": 0,
+    "report": "bridge-scan.json",
+    "chunks": 5
+  },
+  "browser": {
+    "handle": 64076,
+    "exit": 0,
+    "log": "browser-final.log",
+    "casesPassed": 12,
+    "report": "browser-report-final.json"
+  },
+  "supersededInterruptedFull": {
+    "handle": 38643,
+    "exit": 130,
+    "log": "full-final.log",
+    "reason": "Two known incorrect compatibility oracles; verified task runner interrupted; corrected tests and complete quiet rerun pass."
+  }
+}

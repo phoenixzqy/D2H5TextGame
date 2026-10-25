@@ -1,0 +1,28 @@
+{
+  "totalIds": 213,
+  "idsAndOrderExact": true,
+  "changedIds": [
+    "skills-sorceress-blaze",
+    "skills-sorceress-fire-wall",
+    "skills-sorceress-thunder-storm"
+  ],
+  "unchangedRawRows": 210,
+  "changedColumns": [
+    "behavior_verification",
+    "contract_evidence"
+  ],
+  "boundedFunctional": 140,
+  "unverified": 71,
+  "engineOnly": 1,
+  "reviewNeeded": 1,
+  "classBounded": {
+    "amazon": 9,
+    "assassin": 13,
+    "barbarian": 26,
+    "druid": 31,
+    "necromancer": 7,
+    "paladin": 30,
+    "sorceress": 24
+  },
+  "limits": "Independent review, earned builds and balance remain open."
+}

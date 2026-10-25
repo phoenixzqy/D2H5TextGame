@@ -3,3 +3,4 @@
 /docs/plans/evidence/fixtures/dragon-claw/raw.tar.gz filter=lfs diff=lfs merge=lfs -text
 /docs/plans/evidence/fixtures/sorceress-direct-lightning/raw.tar.gz filter=lfs diff=lfs merge=lfs -text
 /docs/plans/evidence/fixtures/cold-armors/raw.tar.xz filter=lfs diff=lfs merge=lfs -text
+/docs/plans/evidence/fixtures/periodic-spells/raw.tar.xz filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,17 @@
+{
+  "commit": "f683dfadfa64f05915751ff0447c50ef7388e5a1",
+  "exactCommittedSourceBlobs": 1479,
+  "exactBuildFiles": 761,
+  "genuineDecompressedSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "full": {
+    "filesPassed": 730,
+    "testsPassed": 16236,
+    "existingSkippedTests": 2
+  },
+  "sourceManifest": "source-final.json",
+  "buildManifest": "build-frozen.json",
+  "amendments": [
+    "freeze-amendments.json",
+    "full-correction-amendments.json"
+  ]
+}

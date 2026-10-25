@@ -1,0 +1,162 @@
+{
+  "cases": [
+    {
+      "title": "blaze public allocation/field/save/offline en",
+      "project": "spell-desktop",
+      "status": "passed",
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "observedMana": [
+        1316,
+        1294
+      ],
+      "logSha256": "ca805bad83cad74620fe37231e145bab449f0ac8ca3ba6d5a2c87abf6434d9e3"
+    },
+    {
+      "title": "fire-wall public allocation/field/save/offline en",
+      "project": "spell-desktop",
+      "status": "passed",
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "observedMana": [
+        1316,
+        1291
+      ],
+      "logSha256": "8e4a389c943cdc4be1014040ab89872a2bad9d4d7eb240cae9f7e85cc82378eb"
+    },
+    {
+      "title": "thunder-storm public allocation/field/save/offline en",
+      "project": "spell-desktop",
+      "status": "passed",
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "observedMana": [
+        1316,
+        1286
+      ],
+      "logSha256": "01c4c906457db643cefd4711c473ccdb75ebf20b8d50aa7716f841a56e1d2f66"
+    },
+    {
+      "title": "blaze public allocation/field/save/offline zh-CN",
+      "project": "spell-desktop",
+      "status": "passed",
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "observedMana": [
+        1316,
+        1294
+      ],
+      "logSha256": "64bc06fe57212dd08d7f1f50bdb59f06bcafbe437ece76ed54c6018fd14c6e4a"
+    },
+    {
+      "title": "fire-wall public allocation/field/save/offline zh-CN",
+      "project": "spell-desktop",
+      "status": "passed",
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "observedMana": [
+        1316,
+        1291
+      ],
+      "logSha256": "d1e1e794e97c0f85433600f346b60e37461febd7436c86b5ea3b016679cb32ab"
+    },
+    {
+      "title": "thunder-storm public allocation/field/save/offline zh-CN",
+      "project": "spell-desktop",
+      "status": "passed",
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "observedMana": [
+        1316,
+        1286
+      ],
+      "logSha256": "c0d95de7ccc052f304912ab9500efe42d9f17c9e7afc1f6ce9ad036b367e3dd2"
+    },
+    {
+      "title": "blaze public allocation/field/save/offline en",
+      "project": "spell-mobile",
+      "status": "passed",
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "observedMana": [
+        1316,
+        1294
+      ],
+      "logSha256": "ca805bad83cad74620fe37231e145bab449f0ac8ca3ba6d5a2c87abf6434d9e3"
+    },
+    {
+      "title": "fire-wall public allocation/field/save/offline en",
+      "project": "spell-mobile",
+      "status": "passed",
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "observedMana": [
+        1316,
+        1291
+      ],
+      "logSha256": "8e4a389c943cdc4be1014040ab89872a2bad9d4d7eb240cae9f7e85cc82378eb"
+    },
+    {
+      "title": "thunder-storm public allocation/field/save/offline en",
+      "project": "spell-mobile",
+      "status": "passed",
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "observedMana": [
+        1316,
+        1286
+      ],
+      "logSha256": "01c4c906457db643cefd4711c473ccdb75ebf20b8d50aa7716f841a56e1d2f66"
+    },
+    {
+      "title": "blaze public allocation/field/save/offline zh-CN",
+      "project": "spell-mobile",
+      "status": "passed",
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "observedMana": [
+        1316,
+        1294
+      ],
+      "logSha256": "64bc06fe57212dd08d7f1f50bdb59f06bcafbe437ece76ed54c6018fd14c6e4a"
+    },
+    {
+      "title": "fire-wall public allocation/field/save/offline zh-CN",
+      "project": "spell-mobile",
+      "status": "passed",
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "observedMana": [
+        1316,
+        1291,
+        1299
+      ],
+      "logSha256": "c4d5797091753326ad5a4a73baae710599de0e580e536ad3d69993ec676d7264"
+    },
+    {
+      "title": "thunder-storm public allocation/field/save/offline zh-CN",
+      "project": "spell-mobile",
+      "status": "passed",
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "observedMana": [
+        1316,
+        1286,
+        1294
+      ],
+      "logSha256": "2cf5bab77524176a1db957a3f7a90bf861b70d1b6f91364789a6117dd7a8c836"
+    }
+  ],
+  "passedCases": 12,
+  "savePairs": 24,
+  "offlineContinues": 12,
+  "geometryChecks": 60,
+  "screenshots": 24,
+  "visualInspectionFiles": [
+    "visual-spell-desktop-skill-preview.png",
+    "visual-spell-desktop-combat.png",
+    "visual-spell-mobile-skill-preview.png",
+    "visual-spell-mobile-combat.png"
+  ],
+  "limits": "Synthetic imported mechanics only; no earned build/campaign/pacing/balance acceptance."
+}

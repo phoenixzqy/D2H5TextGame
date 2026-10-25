@@ -1,0 +1,10 @@
+{
+  "unchangedSkillSpans": 27,
+  "changedSkillIds": [
+    "skills-sorceress-blaze",
+    "skills-sorceress-fire-wall",
+    "skills-sorceress-thunder-storm"
+  ],
+  "onlySelectedAddition": "periodicSpell",
+  "allOriginalFieldsExact": true
+}

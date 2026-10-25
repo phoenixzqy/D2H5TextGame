@@ -1,6 +1,6 @@
 # BUG-234 — Make paid fire fields and Thunder Storm recur
 
-Severity: High. Status: reproduced at `1ffcc55c`; implementation pending.
+Severity: High. Status: Fixed in `b1cfe5e8`; locally verified.
 Owners: engine/content/frontend; root sole writer and author reviewer.
 
 Environment: deterministic Vitest/Node engine, no browser or locale dependency.
@@ -19,8 +19,13 @@ All three corrected RED assertions fail. Original Thunder Storm fixture missed
 Static Field (Nova prerequisite), so its first failure was an invalid setup;
 the original report is retained separately from the corrected three-skill RED.
 
-Evidence: task scratch `d2h5-periodic-spells-nk5fzu2y/red.log` and
-`red-corrected.log`, to be retained with final evidence before scratch cleanup.
+Evidence: retained `red.log` and `red-corrected.log` members in the
+[raw packet](../../docs/plans/evidence/fixtures/periodic-spells/packet.json).
 Root cause: generic one-shot damage adapter and no paid recurring-spell
 scheduler/state consumer. Workaround: ordinary recasts do damage, but cannot
 deliver persistent effects while the caster is controlled.
+
+Final validation: 176 new tests; focused730/14, engine8088/302, full16236/730
+with two existing skips, types/lint/build/precache and12production browser cases
+pass. [Delivery evidence](../../docs/plans/evidence/d04-sorceress-periodic-spells.md).
+Independent design/QA and earned balance remain open; no full-v1 acceptance.

@@ -1,0 +1,14 @@
+{
+  "archive": "raw.tar.xz",
+  "sha256": "a99c83af7f50bf8e726bb0e9208b1b3c6cfcd88df5c48d5f63be21440efd17b9",
+  "bytes": 77087236,
+  "rawMembers": 95,
+  "memberManifest": "raw-members.json",
+  "allRetainedMembersVerified": true,
+  "excludedDisposableBuildFiles": 761,
+  "rawIncludes": "Every non-build raw task file retained directly or byte-exact inside two original failed trace ZIPs. Reports, original failures, scripts, hashes and four inspected extracts retained.",
+  "scope": "Bounded local mechanics/persistence; independent and earned acceptance open.",
+  "allTaskRawFiles": 799,
+  "omittedDuplicateUnpackedTraceFiles": 704,
+  "deduplicationProof": "trace-deduplication.json"
+}
