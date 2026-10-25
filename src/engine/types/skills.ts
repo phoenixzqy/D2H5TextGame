@@ -20,6 +20,18 @@ export interface ColdMasteryTuning {
   readonly resistanceReductionPerRankPct: number;
 }
 
+/** Fraction of actual direct enemy HP loss restored after reflection/death settlement. */
+export interface OnHitRecoveryTuning {
+  readonly lifeFraction: number;
+}
+
+/** JSON-owned self attack-speed stacks earned by damaging Feral Rage hits. */
+export interface FeralRageTuning {
+  readonly attackSpeedPctPerStack: number;
+  readonly maxStacks: number;
+  readonly durationMs: number;
+}
+
 /**
  * Skill target type
  */
@@ -201,6 +213,8 @@ export interface AuraSanctuaryTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  readonly onHitRecovery?: OnHitRecoveryTuning;
+  readonly feralRage?: FeralRageTuning;
   /** Exact Spirit of Barbs passive support template; ordinary summon defaults remain shared. */
   readonly passiveSummon?: {
     readonly summonId: 'spirit_of_barbs';

@@ -61,8 +61,9 @@ immutable tuning preserve original inputs and deterministic replay.
 Actual speed stacks and remaining duration carry through the existing qualified
 next-wave clock rebasing, without another cast/payment or a new8s grant. New
 allocation, prerequisite loss, removal/reorder and class changes apply next wave;
-loss of valid Feral configuration removes carried speed. Replays keep their
-original captured rank/resources/statuses. Fresh runs/imports have no stacks;
+loss of valid Feral configuration removes carried speed. Issued recordings stay unchanged until an explicit ordinary configuration
+replay. That existing path uses current eligible configuration over the original
+resource/status baseline; Iron-locked replay retains its captured input. Fresh runs/imports have no stacks;
 Save22 retains allocations and combo only, with no transient combat field.
 
 ## Ordered proof
@@ -93,3 +94,15 @@ explicit Feral Bleed, finite residual wave carry and native next-wave authority.
 These are author self-reviews, not independent acceptance. C2-C4/fullG0-G7,
 earned all-class builds/pacing/economy/endgame and complete mobile/a11y/PWA/
 performance remain open. No push, PR, merge, deployment or campaign action.
+
+## Replay clarification after native verification
+
+The initial wording incorrectly implied all explicit replays freeze allocation.
+Existing D04-status-playback-v1 and the native replay implementation require
+current-configuration recomputation for ordinary explicit replay. This repair
+preserves that controlling policy, original starting resources and finite
+residual clocks. Unchanged configuration repeats exactly; loss of Feral authority
+clears residual speed on explicit replay or next wave. `setPlayer` is hero
+replacement and aborts a run, so adversarial mid-run class/prerequisite tests
+inject configuration directly and do not claim a public class-change flow.
+Original failing test and terminal output are retained.

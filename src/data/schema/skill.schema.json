@@ -8,6 +8,47 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["onHitRecovery"], "properties": { "onHitRecovery": {} } },
+      "then": { "properties": { "id": { "enum": ["skills-druid-feral-rage", "skills-druid-hunger"] } } }
+    },
+    {
+      "if": { "required": ["feralRage"], "properties": { "feralRage": {} } },
+      "then": { "properties": { "id": { "const": "skills-druid-feral-rage" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-druid-feral-rage" } } },
+      "then": {
+        "required": ["requiredLevel", "damage", "damageType", "onHitRecovery", "feralRage", "appliesStatus", "statusEffect", "prerequisites"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "requiredLevel": { "const": 12 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-druid-werewolf"] },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "onHitRecovery": { "$ref": "#/properties/onHitRecovery" },
+          "feralRage": { "$ref": "#/properties/feralRage" },
+          "appliesStatus": { "const": ["bleed"] },
+          "statusEffect": {
+            "type": "object", "additionalProperties": false, "required": ["dotPctOfDamage"],
+            "properties": { "dotPctOfDamage": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 } }
+          }
+        }
+      }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-druid-hunger" } } },
+      "then": {
+        "required": ["requiredLevel", "damage", "damageType", "onHitRecovery", "prerequisites"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "requiredLevel": { "const": 24 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-druid-feral-rage"] },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "onHitRecovery": { "$ref": "#/properties/onHitRecovery" },
+          "appliesStatus": false, "statusEffect": false, "feralRage": false
+        }
+      }
+    },
+    {
       "if": {
         "properties": {
           "id": {
@@ -3530,6 +3571,21 @@
     }
   },
   "properties": {
+    "onHitRecovery": {
+      "type": "object", "additionalProperties": false, "required": ["lifeFraction"],
+      "description": "Explicit fraction of actual direct enemy HP removed restored to the surviving caster; no global drain fallback.",
+      "properties": { "lifeFraction": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 } }
+    },
+    "feralRage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["attackSpeedPctPerStack", "maxStacks", "durationMs"],
+      "description": "Feral Rage self speed stacks, refreshed only by a landed direct hit that removes enemy HP.",
+      "properties": {
+        "attackSpeedPctPerStack": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+        "maxStacks": { "type": "integer", "minimum": 1, "maximum": 20 },
+        "durationMs": { "type": "integer", "minimum": 1000 }
+      }
+    },
     "passiveSummon": {
       "type": "object",
       "additionalProperties": false,

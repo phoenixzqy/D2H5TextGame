@@ -601,10 +601,12 @@
       }
     },
     "damageType": "physical",
+    "onHitRecovery": { "lifeFraction": 0.1 },
+    "feralRage": { "attackSpeedPctPerStack": 0.05, "maxStacks": 5, "durationMs": 8000 },
     "appliesStatus": [
-      "feral-rage",
       "bleed"
     ],
+    "statusEffect": { "dotPctOfDamage": 0.1 },
     "appliesTags": [
       "physical",
       "bleed"
@@ -719,9 +721,7 @@
       }
     },
     "damageType": "physical",
-    "appliesStatus": [
-      "hunger"
-    ],
+    "onHitRecovery": { "lifeFraction": 0.5 },
     "appliesTags": [
       "physical",
       "bleed"

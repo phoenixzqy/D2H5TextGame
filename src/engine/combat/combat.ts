@@ -53,6 +53,7 @@ import { activeDruidForm, druidFormBonuses, druidFormForId, druidFormRank, match
 import { availableEnergyShieldMana, divertEnergyShield } from '../skills/energy-shield';
 import { activeBurstOfSpeed, burstOfSpeedRank, copyBurstOfSpeedStatuses, matchesBurstOfSpeed,
   paidBurstOfSpeed, BURST_OF_SPEED_IDS, BURST_OF_SPEED_DEFINITION } from '../skills/burst-of-speed';
+import { activeFeralRage, copyFeralRageStatuses, FERAL_RAGE_DEFINITION, gainFeralRageStack } from '../skills/druid-sustain';
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
@@ -341,7 +342,11 @@ function effectiveActionPeriod(state: State, unit: CombatUnit): number {
   const enrage = unit.enraged ? unit.enrage?.attackSpeedMultiplier ?? 1 : 1;
   const speedBonus = druidFormBonuses(unit).attackSpeedPct + (activeBurstOfSpeed(unit, state.simClockMs)?.attackSpeedPct ?? 0) +
     (activeStatAura(state.statAura, unit.id, state.units)?.bonuses.attackSpeedPct ?? 0);
-  return actionPeriodMs(unit.stats.attackSpeed * (1 + speedBonus) * enrage * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
+  // Add the new stack contribution before cadence flooring: 100 + 15 stays 115,
+  // whereas 100 * (1 + .05 * 3) loses one speed point to binary rounding.
+  const feralSpeed = unit.stats.attackSpeed * (activeFeralRage(unit, state.simClockMs)?.stacks ?? 0) *
+    FERAL_RAGE_DEFINITION.attackSpeedPctPerStack;
+  return actionPeriodMs((unit.stats.attackSpeed * (1 + speedBonus) + feralSpeed) * enrage * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
 }
 
 /** All new attempts start one full effective period after the current clock. */
@@ -483,7 +488,7 @@ function pickDefender(
 }
 
 function registerUnit(state: State, u: CombatUnit): void {
-  const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyBurstOfSpeedStatuses(u)));
+  const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(u))));
   const shaped = refreshDruidFormState(copied);
   state.units.set(u.id, shaped);
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
@@ -729,6 +734,25 @@ function applyDamageToUnit(
     if (manaEvent) emit(state, manaEvent);
     if (reflectionAbsorption.absorbed > 0) observeStatuses(state, attackerId);
     if (!alive(damaged)) finishDeaths(state, [activeStatusView(damaged, state.simClockMs)]);
+  }
+
+  // Explicit skill-hit recovery observes actual HP removed, after ordinary death/orb/reflection settlement.
+  const hpRemoved = defender.life - newLife;
+  const owner = state.units.get(attackerId);
+  if (!basicHit && !auraPulse && attacker.side !== defender.side && hpRemoved > 0 && owner && alive(owner)) {
+    const fraction = effect.onHitRecovery?.lifeFraction;
+    if (fraction !== undefined && Number.isFinite(fraction) && fraction > 0 && fraction <= 1) {
+      commitHealing(state, owner, Math.floor(hpRemoved * fraction));
+    }
+    const current = state.units.get(attackerId);
+    if (effect.feralRage === true && current) {
+      const updated = gainFeralRageStack(current, state.simClockMs);
+      if (updated !== current) {
+        state.units.set(attackerId, updated);
+        emit(state, { kind: 'buff', target: attackerId, buffId: 'feral-rage', statusBacked: true });
+        observeStatuses(state, attackerId);
+      }
+    }
   }
 }
 

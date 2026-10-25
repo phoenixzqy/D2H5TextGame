@@ -26,6 +26,8 @@ export interface GridPosition {
 
 /** Active status effect on a combat unit. */
 export interface ActiveStatus {
+  /** Authenticated finite self Feral speed; bare enemy markers confer no power. */
+  readonly feralRage?: true;
   /** Transient one-time Cleansing reduction; follows this record across waves, never saved. */
   readonly cleansingShortened?: true;
   readonly id: string;
@@ -70,6 +72,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Fresh native configured Feral authority, captured per wave; never persisted. */
+  readonly feralRageRank?: number;
   /** Fresh native Cyclone eligibility and source-bound paid run-local power; never persisted. */
   readonly cycloneArmorRank?: number;
   readonly cycloneArmor?: { readonly sourceHeroId: string; readonly rank: number };
