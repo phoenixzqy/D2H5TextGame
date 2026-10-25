@@ -1,0 +1,551 @@
+[
+  {
+    "path": "bolt-hammer-engine.json",
+    "sha256": "8d0ca5d509163e46437fd4f301680a77a1550de75fe84136dfe6b47e4d57fe42",
+    "argv": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 80.373,
+    "finished": "2026-10-25T09:52:54.741827+00:00"
+  },
+  {
+    "path": "bolt-hammer-green.json",
+    "sha256": "f9715250f5aa361a7d3c054907e651be989404dfdf96ce5e4c119f1d1c824dbc",
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/paladin-active-attacks-schema.test.ts",
+      "src/stores/paladin-active-attacks.causal.test.ts",
+      "src/engine/skills/druid-sustain-schema.test.ts",
+      "src/engine/combat/hit-recovery.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 6.43,
+    "finished": "2026-10-25T09:51:02.301001+00:00"
+  },
+  {
+    "path": "bolt-hammer-recovery-green.json",
+    "sha256": "173f5732a331d1d030f8927339fef1ac38d04816e27449f528dca483af5b5a2d",
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/paladin-active-attacks.causal.test.ts",
+      "src/engine/combat/druid-sustain.test.ts",
+      "src/stores/druid-sustain.causal.test.ts",
+      "src/engine/skills/dataCatalog.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 8.951,
+    "finished": "2026-10-25T09:51:42.190527+00:00"
+  },
+  {
+    "path": "bolt-hammer-red.json",
+    "sha256": "538d99e6316f862f67e4c134eb2602cf5cb06571ed33dcb8b181de7f469566a2",
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/paladin-active-attacks-schema.test.ts",
+      "src/stores/paladin-active-attacks.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 6.48,
+    "finished": "2026-10-25T09:50:20.490279+00:00"
+  },
+  {
+    "path": "bolt-hammer-types.json",
+    "sha256": "d59efb96ec0db478310f0788917a5b1033fab940e131f38e7b6dacd28fd907cc",
+    "argv": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 43.299,
+    "finished": "2026-10-25T09:52:17.673273+00:00"
+  },
+  {
+    "path": "browser-audit.json",
+    "sha256": "c2fc63fcca38e78ebeabc37e7ce079d1650a2c11222c6c5d8c9cd01673747ae2",
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/browser-audit.py"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.055,
+    "finished": "2026-10-25T10:11:11.224389+00:00"
+  },
+  {
+    "path": "browser-en-1280.json",
+    "sha256": "857d8c07aeff5d01edb55834cdaed06f058de2056b1bb3593741988a95d94f1f",
+    "argv": [
+      "env",
+      "BROWSER_RUN=browser-en-1280",
+      "BROWSER_LOCALE=en",
+      "BROWSER_WIDTH=1280",
+      "python3",
+      ".github/skills/webapp-testing/scripts/with_server.py",
+      "--server",
+      "exec python3 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/serve.py",
+      "--port",
+      "4482",
+      "--",
+      "node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/browser-current.cjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 23.929,
+    "finished": "2026-10-25T10:08:03.477586+00:00"
+  },
+  {
+    "path": "browser-en-360.json",
+    "sha256": "a4a12c2267afe963e2b4db3567391192f4b9934ff3a4d97de20e1f19a0ff822d",
+    "argv": [
+      "env",
+      "BROWSER_RUN=browser-en-360",
+      "BROWSER_LOCALE=en",
+      "BROWSER_WIDTH=360",
+      "python3",
+      ".github/skills/webapp-testing/scripts/with_server.py",
+      "--server",
+      "exec python3 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/serve.py",
+      "--port",
+      "4482",
+      "--",
+      "node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/browser-current.cjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 28.888,
+    "finished": "2026-10-25T10:09:13.682256+00:00"
+  },
+  {
+    "path": "browser-evidence-review.json",
+    "sha256": "683cd06cf20256b1d670f9894cf03cbfa5cf723aea5a6ef6b6a4895ac77f2283",
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/browser-audit-distinct.py"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.049,
+    "finished": "2026-10-25T10:15:19.538038+00:00"
+  },
+  {
+    "path": "browser-zh-CN-1280.json",
+    "sha256": "d5bf5329c723a459a08f70297c6afeb8a3b5907fe27d7cac090496da0d1eead2",
+    "argv": [
+      "env",
+      "BROWSER_RUN=browser-zh-CN-1280",
+      "BROWSER_LOCALE=zh-CN",
+      "BROWSER_WIDTH=1280",
+      "python3",
+      ".github/skills/webapp-testing/scripts/with_server.py",
+      "--server",
+      "exec python3 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/serve.py",
+      "--port",
+      "4482",
+      "--",
+      "node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/browser-current.cjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 31.589,
+    "finished": "2026-10-25T10:09:45.345287+00:00"
+  },
+  {
+    "path": "browser-zh-CN-360.json",
+    "sha256": "9251c0643a0c04948fafa4dd072676663a523222ad00568941bd3899708edc23",
+    "argv": [
+      "env",
+      "BROWSER_RUN=browser-zh-CN-360",
+      "BROWSER_LOCALE=zh-CN",
+      "BROWSER_WIDTH=360",
+      "python3",
+      ".github/skills/webapp-testing/scripts/with_server.py",
+      "--server",
+      "exec python3 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/serve.py",
+      "--port",
+      "4482",
+      "--",
+      "node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/browser-current.cjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 27.461,
+    "finished": "2026-10-25T10:10:12.851429+00:00"
+  },
+  {
+    "path": "damage-roll-green.json",
+    "sha256": "0026796ad6fb090157840115205a46f1a786a0956d6323e9ec498dcb51a1cc80",
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/damage-roll.test.ts",
+      "src/engine/combat/damage.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 1.095,
+    "finished": "2026-10-25T09:54:16.384889+00:00"
+  },
+  {
+    "path": "damage-roll-red.json",
+    "sha256": "abad0c6a45437e755f219cd5cc64de9f159d918035e8bab24e0ae79f63aed3f6",
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/damage-roll.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 1.118,
+    "finished": "2026-10-25T09:53:52.064484+00:00"
+  },
+  {
+    "path": "native-green.json",
+    "sha256": "0ee89d9504c5301ea92b7a5bbe7a1102110e855ff6dbc850e42ba6c4098772be",
+    "argv": [
+      "node_modules/.bin/vite-node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/native-green.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 5.463,
+    "finished": "2026-10-25T10:03:15.111729+00:00"
+  },
+  {
+    "path": "native-red.json",
+    "sha256": "97f61f69fc6d809858ad512ff06850e9662f2c6fec6c58f4e53509646274f319",
+    "argv": [
+      "node_modules/.bin/vite-node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/native-repro.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 4.745,
+    "finished": "2026-10-25T09:46:49.490151+00:00"
+  },
+  {
+    "path": "paladin-boundaries.json",
+    "sha256": "bf62856dfd040170192ec37df995529f4e99c6b2e74754518f698a4f9ef31251",
+    "argv": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/combat/paladin-active-attacks.test.ts",
+      "src/engine/combat/vengeance.test.ts",
+      "src/engine/skills/registry.test.ts",
+      "src/stores/paladin-active-attacks.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 6.983,
+    "finished": "2026-10-25T10:04:18.158262+00:00"
+  },
+  {
+    "path": "paladin-final-full.json",
+    "sha256": "bb7c91f499f36a7e170b5446e1f76a38a36a9fc70ca4187e28ffdc7609c0bf79",
+    "argv": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 506.111,
+    "finished": "2026-10-25T10:17:10.863675+00:00"
+  },
+  {
+    "path": "paladin-final-lint.json",
+    "sha256": "18e591a8389d6aafd84b08c82c94273ac1d77e834cbb113c5ff586e8abce2471",
+    "argv": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 115.852,
+    "finished": "2026-10-25T10:10:40.613732+00:00"
+  },
+  {
+    "path": "paladin-final-types.json",
+    "sha256": "799401f8b80ada0e3ab742b6cc953d6473038dec14a111e5425f86d1033f1f88",
+    "argv": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 55.547,
+    "finished": "2026-10-25T10:09:40.311227+00:00"
+  },
+  {
+    "path": "paladin-presentation-green.json",
+    "sha256": "9303a3a06392957521b4fb60d06f5283b08c97e229f9adf3b1c0c06bc85c6448",
+    "argv": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/displayStats.paladin-attacks.test.ts",
+      "src/features/skills/SkillsScreen.paladin-attacks.test.tsx",
+      "src/features/skills/SkillsScreen.test.tsx",
+      "src/engine/combat/vengeance.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 9.385,
+    "finished": "2026-10-25T10:05:54.820667+00:00"
+  },
+  {
+    "path": "paladin-presentation-red.json",
+    "sha256": "2014a62f8f550dc34843747d142808b43eba6255227f7f6ac131c52c9efb2880",
+    "argv": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/displayStats.paladin-attacks.test.ts",
+      "src/features/skills/SkillsScreen.paladin-attacks.test.tsx"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 8.544,
+    "finished": "2026-10-25T10:05:16.373240+00:00"
+  },
+  {
+    "path": "paladin-production-build.json",
+    "sha256": "ce7050b85339898a375cc13491c72f0243593dfe796f60d5dd108e342a5a8d84",
+    "argv": [
+      "env",
+      "VITE_E2E=false",
+      "npm",
+      "run",
+      "build",
+      "--",
+      "--outDir",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/production-dist"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 15.801,
+    "finished": "2026-10-25T10:06:22.015013+00:00"
+  },
+  {
+    "path": "paladin-runtime-engine.json",
+    "sha256": "01b8ed16317058c82c54d09ee89273d3638f5e9c9a1c4e43923f05eb9302e44b",
+    "argv": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 85.936,
+    "finished": "2026-10-25T10:07:32.156147+00:00"
+  },
+  {
+    "path": "paladin-runtime-lint.json",
+    "sha256": "7fbe89fbc5d8f39004782d440d5badd2b3fcc6fc33ccfa40aa3660dde3dc2a91",
+    "argv": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 103.913,
+    "finished": "2026-10-25T10:07:38.391777+00:00"
+  },
+  {
+    "path": "paladin-runtime-types.json",
+    "sha256": "b943f800ebdde487531b15fbe09a0d2c80bea2043af741fd0868790568d9dbba",
+    "argv": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 43.953,
+    "finished": "2026-10-25T10:06:38.412432+00:00"
+  },
+  {
+    "path": "production-build-audit.json",
+    "sha256": "489411a29ff914795940ad73abf85076122e8676f67df62e666b48843e8e4fa8",
+    "argv": [
+      "python3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/build-audit.py"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.367,
+    "finished": "2026-10-25T10:09:38.075307+00:00"
+  },
+  {
+    "path": "scalar-after.json",
+    "sha256": "d0f6da362c92e00e5a0976e126398b8a0c55c19a587f2122555e6927ffefc932",
+    "argv": [
+      "node_modules/.bin/vite-node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/scalar-corpus.ts",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/scalar-after-result.json"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.863,
+    "finished": "2026-10-25T09:54:17.286415+00:00"
+  },
+  {
+    "path": "scalar-before.json",
+    "sha256": "99060371dce03fb415f243aee2784902702e2d2afe67455d473085923ad756ab",
+    "argv": [
+      "node_modules/.bin/vite-node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/scalar-corpus.ts",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/scalar-before-result.json"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.896,
+    "finished": "2026-10-25T09:53:37.069966+00:00"
+  },
+  {
+    "path": "scalar-composite.json",
+    "sha256": "f6128bcbcc1a3aa8392b794183f1af81538964d3e6267deb53879ff3c246eb16",
+    "argv": [
+      "node_modules/.bin/vite-node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/scalar-corpus.ts",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/scalar-composite-result.json"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 0.903,
+    "finished": "2026-10-25T10:03:10.551306+00:00"
+  },
+  {
+    "path": "shared-roll-engine.json",
+    "sha256": "6c3ec7cd8785a457d0c33d0cdc17ddf971eee60a33ea55f36ced19954b9f9b6a",
+    "argv": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 82.025,
+    "finished": "2026-10-25T09:55:56.249740+00:00"
+  },
+  {
+    "path": "shared-roll-types.json",
+    "sha256": "c963fa3b91476ef2d1cee754a040358c479fa65ef5208d35856080f0efe3a7bd",
+    "argv": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 44.036,
+    "finished": "2026-10-25T09:55:19.430916+00:00"
+  },
+  {
+    "path": "vengeance-boundaries.json",
+    "sha256": "2eb95b705c0e827509c7cf3dcddc78e02af104b491e4ce2651a9ee3095219750",
+    "argv": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/combat/vengeance.test.ts",
+      "src/engine/skills/registry.test.ts",
+      "src/stores/paladin-active-attacks.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 6.852,
+    "finished": "2026-10-25T10:03:50.290278+00:00"
+  },
+  {
+    "path": "vengeance-first-engine.json",
+    "sha256": "54e2ef12280a7f01d9005266eee6bb8a7fe4c7414c33c25e775ac5eac4798d9c",
+    "argv": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 79.883,
+    "finished": "2026-10-25T10:03:09.093955+00:00"
+  },
+  {
+    "path": "vengeance-first-green.json",
+    "sha256": "cf61957e678f27895689e0611b1932257139dc86b10f48f9a462ff993e7be131",
+    "argv": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/vengeance-schema.test.ts",
+      "src/engine/combat/vengeance.test.ts",
+      "src/stores/paladin-active-attacks.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 0,
+    "seconds": 6.971,
+    "finished": "2026-10-25T10:01:41.849334+00:00"
+  },
+  {
+    "path": "vengeance-first-types.json",
+    "sha256": "c4bfb26abd16910a180365b250556daf63222a135e4cb652844a199b0b7e3843",
+    "argv": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 2,
+    "seconds": 40.552,
+    "finished": "2026-10-25T10:02:20.453451+00:00"
+  },
+  {
+    "path": "vengeance-native-red.json",
+    "sha256": "d328ba793ea3a624cfc4e7339f281136e164001e2358c07c315a8a715ea46575",
+    "argv": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/vengeance-schema.test.ts",
+      "src/engine/combat/vengeance.test.ts",
+      "src/stores/paladin-active-attacks.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 7.035,
+    "finished": "2026-10-25T10:00:11.919875+00:00"
+  },
+  {
+    "path": "vengeance-red.json",
+    "sha256": "32ebcca8617ba405f84b55494fb912d6494674f4298329e259239d08635d7a4f",
+    "argv": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/vengeance-schema.test.ts",
+      "src/engine/combat/vengeance.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 2.887,
+    "finished": "2026-10-25T09:59:29.284842+00:00"
+  }
+]

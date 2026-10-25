@@ -1,0 +1,11 @@
+{
+  "evidence_links_verified": 17,
+  "ids": 213,
+  "changed_rows": 3,
+  "inventory_sha256": "a34b648b43576b144dd298c92747b2f09e34f071cd8f1b523186187e2a534cb9",
+  "current_source_files_exact": 1342,
+  "archive_sha256": "752a3ea8012ca958e6e4c1b367e83e8097f759381244df0021142e5dc498b2f2",
+  "genuine_save_sha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "scratch_absent": true,
+  "cleanup_failures": []
+}

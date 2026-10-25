@@ -1,0 +1,6 @@
+{
+  "head": "f8294589db5f23aba082531fde8b9d10e7b792b1",
+  "tested_source_files": 1342,
+  "all_exact": true,
+  "comparison": "Every frozen file SHA256 equals actual committed HEAD blob and disk bytes"
+}

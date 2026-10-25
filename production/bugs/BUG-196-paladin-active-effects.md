@@ -1,7 +1,7 @@
 # BUG-196 — Resolve the advertised Paladin active effects
 
 Severity: High — three active skills lack advertised combat consequences.
-Status: Reproduced; repair in progress. No new inventory credit.
+Status: Locally fixed in `7b129df`; presentation `f829458`. Independent design/QA and earned balance remain open.
 Owners: engine-dev / content-designer / frontend-dev; root sole writer.
 
 ## Reproduction
@@ -34,10 +34,10 @@ Eight behavior assertions fail across six rank/skill cases:
   Chill/Paralyze are absent. Its later Burn is real but does not substitute for
   the missing direct components or controls.
 
-Reproduction exits1 in4.745s; exact script, result, log and terminal receipt at
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/`.
-Root retains this exact task-owned path while repair consumers run, then
-archives required diagnostics and removes disposable scratch after validation.
+Reproduction exits 1 in 4.745 s. Exact original script, result, log and terminal
+receipt are retained in the [raw packet](../../docs/plans/evidence/fixtures/paladin-active-attacks/raw.tar.gz).
+The former task scratch `d2h5-paladin-actives-8zm0aycd` is removed after
+byte-verification; the [cleanup receipt](../../docs/plans/evidence/fixtures/paladin-active-attacks/cleanup.json) records exact ownership and removal.
 No genuine campaign, external message, remote or deployment action.
 
 ## Root cause
@@ -53,3 +53,25 @@ Contract: [D04 Paladin active attacks](../../docs/plans/decisions/D04-paladin-ac
 Independent design/QA and earned balance remain open; C2-C4/fullG0-G7/privatev1
 are unchanged and unfinished. Remaining seven Paladin actives still need their
 own audited behavior; this packet does not redefine the class scope.
+
+
+## Local repair and verification
+
+`4cde6fc` extracts one immutable hit/base/crit roll without scalar result/RNG
+changes. `7b129df` authors the exact three-skill JSON metadata and consumes it
+through shared recovery, narrow MR bypass and ordered typed Vengeance settlement.
+`ccf6631` proves native authority and real composite/status/resource/death effects;
+`f829458` supplies bilingual current/next/unlearned/MAX presentation.
+
+Eight new files add 120 regression cases. The original six-case native probe now
+passes all 36 controls and eight formerly failing requirements. Final engine
+7,288/259; full 13,985/613/two existing skips; types/lint/production build PASS.
+Four synthetic public production-browser cases, eight exact five-domain Continue
+pairs and 20 geometry samples pass. All 1,342 tested source blobs equal committed
+HEAD and disk. This closes only the three bounded functional gaps; no earned
+campaign or whole-class acceptance is claimed.
+
+[Evidence and author-review limitations](../../docs/plans/evidence/d04-paladin-active-attacks.md).
+Inventory preserves all 213 IDs/order, with exactly three credits: 119 unverified,
+92 bounded-functional, one engine-only and one review-needed. Seven other Paladin
+actives, independent/earned acceptance, Baal, C2–C4 and full G0–G7 remain open.

@@ -1,0 +1,407 @@
+{
+  "cases": [
+    {
+      "label": "browser-en-1280",
+      "public_positive_entries": 3,
+      "positive_holy_bolt_heals": [
+        7
+      ],
+      "save_pairs": [
+        {
+          "rank": 1,
+          "five_domains_exact": true,
+          "before": "browser-en-1280/en-1280-rank1-before-3.json",
+          "after": "browser-en-1280/en-1280-rank1-after-4.json"
+        },
+        {
+          "rank": 2,
+          "five_domains_exact": true,
+          "before": "browser-en-1280/en-1280-rank2-before-5.json",
+          "after": "browser-en-1280/en-1280-rank2-after-6.json"
+        }
+      ],
+      "geometry": [
+        {
+          "label": "en-1280",
+          "width": 360,
+          "height": 640,
+          "overflow": 0,
+          "allocate": {
+            "x": 209.078125,
+            "y": 329,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "label": "en-1280",
+          "width": 412,
+          "height": 915,
+          "overflow": 0,
+          "allocate": {
+            "x": 261.078125,
+            "y": 293,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "label": "en-1280",
+          "width": 640,
+          "height": 360,
+          "overflow": 0,
+          "allocate": {
+            "x": 489.078125,
+            "y": 255,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "label": "en-1280",
+          "width": 1280,
+          "height": 800,
+          "overflow": 0,
+          "allocate": {
+            "x": 1117.078125,
+            "y": 466,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "label": "en-1280",
+          "width": 1920,
+          "height": 1080,
+          "overflow": 0,
+          "allocate": {
+            "x": 1501.078125,
+            "y": 746,
+            "width": 120.921875,
+            "height": 48
+          }
+        }
+      ],
+      "screenshots": 6,
+      "errors": []
+    },
+    {
+      "label": "browser-en-360",
+      "public_positive_entries": 3,
+      "positive_holy_bolt_heals": [
+        12
+      ],
+      "save_pairs": [
+        {
+          "rank": 1,
+          "five_domains_exact": true,
+          "before": "browser-en-360/en-360-rank1-before-3.json",
+          "after": "browser-en-360/en-360-rank1-after-4.json"
+        },
+        {
+          "rank": 2,
+          "five_domains_exact": true,
+          "before": "browser-en-360/en-360-rank2-before-5.json",
+          "after": "browser-en-360/en-360-rank2-after-6.json"
+        }
+      ],
+      "geometry": [
+        {
+          "label": "en-360",
+          "width": 360,
+          "height": 640,
+          "overflow": 0,
+          "allocate": {
+            "x": 209.078125,
+            "y": 329,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "label": "en-360",
+          "width": 412,
+          "height": 915,
+          "overflow": 0,
+          "allocate": {
+            "x": 261.078125,
+            "y": 293,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "label": "en-360",
+          "width": 640,
+          "height": 360,
+          "overflow": 0,
+          "allocate": {
+            "x": 489.078125,
+            "y": 255,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "label": "en-360",
+          "width": 1280,
+          "height": 800,
+          "overflow": 0,
+          "allocate": {
+            "x": 1117.078125,
+            "y": 466,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "label": "en-360",
+          "width": 1920,
+          "height": 1080,
+          "overflow": 0,
+          "allocate": {
+            "x": 1501.078125,
+            "y": 746,
+            "width": 120.921875,
+            "height": 48
+          }
+        }
+      ],
+      "screenshots": 6,
+      "errors": []
+    },
+    {
+      "label": "browser-zh-CN-1280",
+      "public_positive_entries": 3,
+      "positive_holy_bolt_heals": [
+        4
+      ],
+      "save_pairs": [
+        {
+          "rank": 1,
+          "five_domains_exact": true,
+          "before": "browser-zh-CN-1280/zh-CN-1280-rank1-before-3.json",
+          "after": "browser-zh-CN-1280/zh-CN-1280-rank1-after-4.json"
+        },
+        {
+          "rank": 2,
+          "five_domains_exact": true,
+          "before": "browser-zh-CN-1280/zh-CN-1280-rank2-before-5.json",
+          "after": "browser-zh-CN-1280/zh-CN-1280-rank2-after-6.json"
+        }
+      ],
+      "geometry": [
+        {
+          "label": "zh-CN-1280",
+          "width": 360,
+          "height": 640,
+          "overflow": 0,
+          "allocate": {
+            "x": 210,
+            "y": 329,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "label": "zh-CN-1280",
+          "width": 412,
+          "height": 915,
+          "overflow": 0,
+          "allocate": {
+            "x": 262,
+            "y": 293,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "label": "zh-CN-1280",
+          "width": 640,
+          "height": 360,
+          "overflow": 0,
+          "allocate": {
+            "x": 490,
+            "y": 255,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "label": "zh-CN-1280",
+          "width": 1280,
+          "height": 800,
+          "overflow": 0,
+          "allocate": {
+            "x": 1118,
+            "y": 466,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "label": "zh-CN-1280",
+          "width": 1920,
+          "height": 1080,
+          "overflow": 0,
+          "allocate": {
+            "x": 1502,
+            "y": 746,
+            "width": 120,
+            "height": 48
+          }
+        }
+      ],
+      "screenshots": 6,
+      "errors": []
+    },
+    {
+      "label": "browser-zh-CN-360",
+      "public_positive_entries": 3,
+      "positive_holy_bolt_heals": [
+        5
+      ],
+      "save_pairs": [
+        {
+          "rank": 1,
+          "five_domains_exact": true,
+          "before": "browser-zh-CN-360/zh-CN-360-rank1-before-3.json",
+          "after": "browser-zh-CN-360/zh-CN-360-rank1-after-4.json"
+        },
+        {
+          "rank": 2,
+          "five_domains_exact": true,
+          "before": "browser-zh-CN-360/zh-CN-360-rank2-before-5.json",
+          "after": "browser-zh-CN-360/zh-CN-360-rank2-after-6.json"
+        }
+      ],
+      "geometry": [
+        {
+          "label": "zh-CN-360",
+          "width": 360,
+          "height": 640,
+          "overflow": 0,
+          "allocate": {
+            "x": 210,
+            "y": 329,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "label": "zh-CN-360",
+          "width": 412,
+          "height": 915,
+          "overflow": 0,
+          "allocate": {
+            "x": 262,
+            "y": 293,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "label": "zh-CN-360",
+          "width": 640,
+          "height": 360,
+          "overflow": 0,
+          "allocate": {
+            "x": 490,
+            "y": 255,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "label": "zh-CN-360",
+          "width": 1280,
+          "height": 800,
+          "overflow": 0,
+          "allocate": {
+            "x": 1118,
+            "y": 466,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "label": "zh-CN-360",
+          "width": 1920,
+          "height": 1080,
+          "overflow": 0,
+          "allocate": {
+            "x": 1502,
+            "y": 746,
+            "width": 120,
+            "height": 48
+          }
+        }
+      ],
+      "screenshots": 6,
+      "errors": []
+    }
+  ],
+  "public_positive_entries": 12,
+  "five_domain_pairs": 8,
+  "geometry_samples": 20,
+  "screenshots": 24,
+  "visual_inspection": [
+    {
+      "path": "browser-en-360/en-360-vengeance-details.png",
+      "sha256": "2cc4c09b8a4dec40990d096d55f4d40b4a2d60f1a61de010cb49f6a388d32c38"
+    },
+    {
+      "path": "browser-en-360/en-360-holy-bolt-combat.png",
+      "sha256": "83f57ace6e78339835bfa23426448706be0e59a846c58b0283eb667604fbc0a3"
+    },
+    {
+      "path": "browser-en-1280/en-1280-blessed-hammer-details.png",
+      "sha256": "f69abcbdf4af0dd1c9aacab373838421de70d89d9b5794b69566a2677e916e83"
+    },
+    {
+      "path": "browser-en-1280/en-1280-vengeance-combat.png",
+      "sha256": "09d3f76929814c9889e2aae23b1fd0a64eb73f6c8ee2889ae4de2adb1b66fb68"
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-holy-bolt-details.png",
+      "sha256": "04c45b5b65a0db8b02474056989c5258731e6823eba9cb4a72a1a00d0504bf08"
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blessed-hammer-combat.png",
+      "sha256": "e0c44865e267dedb0222b411388364c99a041e8cebd4ee7ed7c4e1676fd4a4c2"
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-vengeance-details.png",
+      "sha256": "8723e49581c47b3c406092075f01fc5c01d18c7ea78cb96265602f19aa862e6e"
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-vengeance-combat.png",
+      "sha256": "7e3ca19133d061e45aa96c477fce7b6b3abb703054ece2f8b42daf6840867d1d"
+    }
+  ],
+  "server_processes_stopped": [
+    {
+      "pid": 549774,
+      "port": 4482,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/production-dist"
+    },
+    {
+      "pid": 551195,
+      "port": 4482,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/production-dist"
+    },
+    {
+      "pid": 548347,
+      "port": 4482,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/production-dist"
+    },
+    {
+      "pid": 552944,
+      "port": 4482,
+      "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-actives-8zm0aycd/production-dist"
+    }
+  ],
+  "port_4482_closed": true,
+  "synthetic_fixture": true,
+  "earned_campaign_or_balance_acceptance": false
+}

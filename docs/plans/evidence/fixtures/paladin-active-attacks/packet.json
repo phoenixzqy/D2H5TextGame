@@ -1,0 +1,819 @@
+{
+  "created": "2026-10-25T10:18:04.091270+00:00",
+  "archive": "raw.tar.gz",
+  "sha256": "752a3ea8012ca958e6e4c1b367e83e8097f759381244df0021142e5dc498b2f2",
+  "raw_files": 202,
+  "terminal_receipts": 37,
+  "all_members_byte_verified": true,
+  "files": {
+    "archive-packet.py": {
+      "size": 2831,
+      "sha256": "132573bee71a96bd437d0ad5a591fbf19f3f508898cbb496042a6964552c85ec"
+    },
+    "author-review.json": {
+      "size": 2485,
+      "sha256": "b9828b992097e45195a5df924d381361a75020d165a451fb96081905608d2448"
+    },
+    "before-bolt-hammer-source.json": {
+      "size": 621,
+      "sha256": "0155f0eedeef23e0a262659673389daf5e931cb253770cec006acc0fe12611d7"
+    },
+    "bolt-hammer-engine.json": {
+      "size": 236,
+      "sha256": "8d0ca5d509163e46437fd4f301680a77a1550de75fe84136dfe6b47e4d57fe42"
+    },
+    "bolt-hammer-engine.log": {
+      "size": 65391,
+      "sha256": "a931af23eb5bee8311bf37d5eb3e578c1d25dcb77c587e93e7a842d971502330"
+    },
+    "bolt-hammer-green.json": {
+      "size": 455,
+      "sha256": "f9715250f5aa361a7d3c054907e651be989404dfdf96ce5e4c119f1d1c824dbc"
+    },
+    "bolt-hammer-green.log": {
+      "size": 525,
+      "sha256": "7da3e53e00fa8314edbd0116c6bef7abf9ab2b4d3543c8e67511f34be3e20c9d"
+    },
+    "bolt-hammer-recovery-green.json": {
+      "size": 432,
+      "sha256": "173f5732a331d1d030f8927339fef1ac38d04816e27449f528dca483af5b5a2d"
+    },
+    "bolt-hammer-recovery-green.log": {
+      "size": 501,
+      "sha256": "55b1861d37d120a4128415be4a35164ea43dd0358d7c7aa0e68991c842c7b792"
+    },
+    "bolt-hammer-red.json": {
+      "size": 355,
+      "sha256": "538d99e6316f862f67e4c134eb2602cf5cb06571ed33dcb8b181de7f469566a2"
+    },
+    "bolt-hammer-red.log": {
+      "size": 9625,
+      "sha256": "29fa75043648a3e17d7e515c811c07394c026f3ade3b88c0b3f25ab221717c41"
+    },
+    "bolt-hammer-types.json": {
+      "size": 234,
+      "sha256": "d59efb96ec0db478310f0788917a5b1033fab940e131f38e7b6dacd28fd907cc"
+    },
+    "bolt-hammer-types.log": {
+      "size": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "browser-audit-distinct.py": {
+      "size": 3374,
+      "sha256": "8adeafe6e5d4b16891c58610ff203704ca67416b61463b342aa52f2a9f40fc58"
+    },
+    "browser-audit.json": {
+      "size": 312,
+      "sha256": "c2fc63fcca38e78ebeabc37e7ce079d1650a2c11222c6c5d8c9cd01673747ae2"
+    },
+    "browser-audit.log": {
+      "size": 200,
+      "sha256": "a9153aafeb8748ba7ba895952dcfef13188c98a4e7fb4dba0ac7b12e49325a15"
+    },
+    "browser-audit.py": {
+      "size": 3365,
+      "sha256": "c0faadf1bb67da917e0cbb6355574d5762e5b82c13e80ff3832ea261546369db"
+    },
+    "browser-batch.py": {
+      "size": 469,
+      "sha256": "1114c5bab42e5548e4132ecc5240c37c0e95cb5e41f4b327c1d59d3e0ba7c3fc"
+    },
+    "browser-current.cjs": {
+      "size": 10149,
+      "sha256": "5bf0e260f962d45e1fd64ed0ac63e079ac7ac6ec61d7c1efd699c63c948d0988"
+    },
+    "browser-en-1280/browser-report.json": {
+      "size": 10054,
+      "sha256": "e0b132ef44a7391ab5c625d85ac1d9d729ed4e0959cf345549337b63e32bd76b"
+    },
+    "browser-en-1280/en-1280-blessed-hammer-combat.json": {
+      "size": 2592,
+      "sha256": "567893b84113f2aab5e7a13a87941a693b33aae962191be50717df19a47a232b"
+    },
+    "browser-en-1280/en-1280-blessed-hammer-combat.png": {
+      "size": 328289,
+      "sha256": "64120384cbeb8a80d3ea2a24298273483a586227463b97700d84802413c86516"
+    },
+    "browser-en-1280/en-1280-blessed-hammer-details.png": {
+      "size": 111997,
+      "sha256": "f69abcbdf4af0dd1c9aacab373838421de70d89d9b5794b69566a2677e916e83"
+    },
+    "browser-en-1280/en-1280-blessed-hammer-details.txt": {
+      "size": 459,
+      "sha256": "7250b5b120737dc59cf567141299866c70fd1d64fefae02d347f3e9e94518a34"
+    },
+    "browser-en-1280/en-1280-fresh-1.json": {
+      "size": 3224,
+      "sha256": "394a8f8a0a5c3171ca173bf1a9a187a464813d84d64bbd3ebe1b5a6fea39dbe0"
+    },
+    "browser-en-1280/en-1280-holy-bolt-combat.json": {
+      "size": 1838,
+      "sha256": "c608a4334bf26a65b3f73480c951c564f044dd8f1f8e00ff2a1b86699d47e066"
+    },
+    "browser-en-1280/en-1280-holy-bolt-combat.png": {
+      "size": 387107,
+      "sha256": "42a7076a7694a28f0ce6ae5ea5692aaee662fda26e61f4b27d3c0cf58d936980"
+    },
+    "browser-en-1280/en-1280-holy-bolt-details.png": {
+      "size": 125150,
+      "sha256": "fa2310e61fb2bd86286b70bf8eb0e6dece1f2fd0b13fe718ec9a0b37ada41864"
+    },
+    "browser-en-1280/en-1280-holy-bolt-details.txt": {
+      "size": 721,
+      "sha256": "728855d0f339593f749979abf1206f37addfba02a470be6068fd4143bf8ce79a"
+    },
+    "browser-en-1280/en-1280-imported-2.json": {
+      "size": 4590,
+      "sha256": "757b24ad37cda937e77d77de2a36e8789ec41e13aa7df388ce70c6d58b424a04"
+    },
+    "browser-en-1280/en-1280-rank1-after-4.json": {
+      "size": 4593,
+      "sha256": "6c610e292573ceb4dbe32135b689bb24a7d3ede8ac9d5837b6b6a854f17d71aa"
+    },
+    "browser-en-1280/en-1280-rank1-before-3.json": {
+      "size": 4590,
+      "sha256": "cc455ea79bff5a8fd4ceecd65e809aed4de371b3c4a26feb4d13cbb2d82a8427"
+    },
+    "browser-en-1280/en-1280-rank2-after-6.json": {
+      "size": 4611,
+      "sha256": "6ad3320df044283fc87621124750e8c2b36e2b962bba6e7413541220acf5e01a"
+    },
+    "browser-en-1280/en-1280-rank2-before-5.json": {
+      "size": 4611,
+      "sha256": "a0443451bf873deaf26931934c5e9ede8324f802a309a9c19668158b8aad6e30"
+    },
+    "browser-en-1280/en-1280-synthetic-input.json": {
+      "size": 3948,
+      "sha256": "fa4d3e5b2d6d0d55140a47da75f1f00176dcbcf14de751e4c0d2a04bab95a528"
+    },
+    "browser-en-1280/en-1280-vengeance-combat.json": {
+      "size": 2411,
+      "sha256": "8f5df1b26ed3f700f6d006e9472c62a23504c313c2e1744267ea020aea4224da"
+    },
+    "browser-en-1280/en-1280-vengeance-combat.png": {
+      "size": 421994,
+      "sha256": "09d3f76929814c9889e2aae23b1fd0a64eb73f6c8ee2889ae4de2adb1b66fb68"
+    },
+    "browser-en-1280/en-1280-vengeance-details.png": {
+      "size": 137260,
+      "sha256": "b11af747e81dc96635aa1e4e0dc4a7d4417336894e3256d8d7ce3983575e9bc0"
+    },
+    "browser-en-1280/en-1280-vengeance-details.txt": {
+      "size": 1248,
+      "sha256": "be23af8ee812e9bcb56da418afa04d8578206276f59d7bc4906b65d21bae1766"
+    },
+    "browser-en-1280-server-access.log": {
+      "size": 67966,
+      "sha256": "b0fc7d974132ce44ad45c376d07ac792665abf95ddeae8b59bff49d2379dc5b7"
+    },
+    "browser-en-1280-server-owner.json": {
+      "size": 135,
+      "sha256": "dc2f7c5e9a93f6357b88b22460c8d6baa86a7245983840541b3e37e2bea3c45e"
+    },
+    "browser-en-1280.json": {
+      "size": 645,
+      "sha256": "857d8c07aeff5d01edb55834cdaed06f058de2056b1bb3593741988a95d94f1f"
+    },
+    "browser-en-1280.log": {
+      "size": 491,
+      "sha256": "c80d0ce5bc70ce90689e0446dcf71a6116052a54d514964457571a1f62f79b67"
+    },
+    "browser-en-360/browser-report.json": {
+      "size": 11213,
+      "sha256": "60e0a5f1bd4e86bcab1a0877143d95e98cf018154cd57a120b6e79e1db7f2ff5"
+    },
+    "browser-en-360/en-360-blessed-hammer-combat.json": {
+      "size": 2592,
+      "sha256": "fac0affb1d044912597fa33f47dd288041d915d22ed3bfdaa5badeeaa86c8401"
+    },
+    "browser-en-360/en-360-blessed-hammer-combat.png": {
+      "size": 34784,
+      "sha256": "eb49c5a409d4dd92615b3e05260578d1a680d1cdec5740acaf360e3638f4cdcf"
+    },
+    "browser-en-360/en-360-blessed-hammer-details.png": {
+      "size": 44876,
+      "sha256": "aed74e5146bfaf5e5350836c6e5a672dc004421023a0b6b389146b3c74c9d56d"
+    },
+    "browser-en-360/en-360-blessed-hammer-details.txt": {
+      "size": 459,
+      "sha256": "7250b5b120737dc59cf567141299866c70fd1d64fefae02d347f3e9e94518a34"
+    },
+    "browser-en-360/en-360-fresh-1.json": {
+      "size": 3224,
+      "sha256": "264f7b70c815628dc3b6d8dfdd6eb25f9f28f5f3577bfc6174ac29251c037dc2"
+    },
+    "browser-en-360/en-360-holy-bolt-combat.json": {
+      "size": 2841,
+      "sha256": "b6103e64d30f7e629d7d18151889168524872eed09c2bb41c6239e288b0d9943"
+    },
+    "browser-en-360/en-360-holy-bolt-combat.png": {
+      "size": 38583,
+      "sha256": "83f57ace6e78339835bfa23426448706be0e59a846c58b0283eb667604fbc0a3"
+    },
+    "browser-en-360/en-360-holy-bolt-details.png": {
+      "size": 56399,
+      "sha256": "79ac6f7223f52f8ef0773cef152fb6bd1770eb0d09b95f769d9fb86d8325e54c"
+    },
+    "browser-en-360/en-360-holy-bolt-details.txt": {
+      "size": 721,
+      "sha256": "728855d0f339593f749979abf1206f37addfba02a470be6068fd4143bf8ce79a"
+    },
+    "browser-en-360/en-360-imported-2.json": {
+      "size": 4590,
+      "sha256": "e98353fb606d1f3f8a60f49d3e8c7a9db2afd1cbc54c9ba379aeec6c1c6328e3"
+    },
+    "browser-en-360/en-360-rank1-after-4.json": {
+      "size": 4593,
+      "sha256": "320ef6aeec632912e28277a9b4f71148a771a0bd83f32062760fad421d4ed9c0"
+    },
+    "browser-en-360/en-360-rank1-before-3.json": {
+      "size": 4590,
+      "sha256": "17471ac14155908dec524346fe55e0e9394f541fe460094321887ecee93014d1"
+    },
+    "browser-en-360/en-360-rank2-after-6.json": {
+      "size": 4611,
+      "sha256": "8267493d221f6fee5c2830b30aff9b7c7ed2229e23e7b635248beb9c58727e46"
+    },
+    "browser-en-360/en-360-rank2-before-5.json": {
+      "size": 4611,
+      "sha256": "745543bdc833a3b2730031fcd74aaae57622dd77d622adb71ddfbd2ddef90de2"
+    },
+    "browser-en-360/en-360-synthetic-input.json": {
+      "size": 3948,
+      "sha256": "7a400b5a5a1c182bbc69e53b66c0f5840cf9ee89e8c92ee7b4b817fa2c50d4ea"
+    },
+    "browser-en-360/en-360-vengeance-combat.json": {
+      "size": 2397,
+      "sha256": "e223f8df85ca81e1c8388336f16ba4cf9a1e1110bf1f40e4da273c7c9e21d419"
+    },
+    "browser-en-360/en-360-vengeance-combat.png": {
+      "size": 34763,
+      "sha256": "a5e606caa0398d252caa1ba67ef417d95b23305c2a0c8858a65f087ccd474e07"
+    },
+    "browser-en-360/en-360-vengeance-details.png": {
+      "size": 57321,
+      "sha256": "2cc4c09b8a4dec40990d096d55f4d40b4a2d60f1a61de010cb49f6a388d32c38"
+    },
+    "browser-en-360/en-360-vengeance-details.txt": {
+      "size": 1248,
+      "sha256": "be23af8ee812e9bcb56da418afa04d8578206276f59d7bc4906b65d21bae1766"
+    },
+    "browser-en-360-server-access.log": {
+      "size": 67966,
+      "sha256": "3838d4ac9181de42448d2a350c790c60a6f742aaea346aef3ba7f95a1e5777fe"
+    },
+    "browser-en-360-server-owner.json": {
+      "size": 135,
+      "sha256": "9ccb558c66baf42c07d023ed1dd071e66544ac4aaaa33392181929c014db4f9f"
+    },
+    "browser-en-360.json": {
+      "size": 643,
+      "sha256": "a4a12c2267afe963e2b4db3567391192f4b9934ff3a4d97de20e1f19a0ff822d"
+    },
+    "browser-en-360.log": {
+      "size": 490,
+      "sha256": "039dd95f55490c40b72da9d8a620c348a70fca5f318ce8ba8deae75f1778f012"
+    },
+    "browser-evidence-audit.json": {
+      "size": 10233,
+      "sha256": "ea255193011b37111698135d3a8743031e7a0e6114140e473faa87796e8dfb5e"
+    },
+    "browser-evidence-review.json": {
+      "size": 321,
+      "sha256": "683cd06cf20256b1d670f9894cf03cbfa5cf723aea5a6ef6b6a4895ac77f2283"
+    },
+    "browser-evidence-review.log": {
+      "size": 200,
+      "sha256": "a9153aafeb8748ba7ba895952dcfef13188c98a4e7fb4dba0ac7b12e49325a15"
+    },
+    "browser-zh-CN-1280/browser-report.json": {
+      "size": 12043,
+      "sha256": "eafbf32d7a3acd6ba82cb37b31e4876dd3ead3d70583f8a887b5484022bc5e87"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-blessed-hammer-combat.json": {
+      "size": 2950,
+      "sha256": "36824e20d3693853316b1499ae55f05965bb4d75f44d70d0e02d7577e4a9868f"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-blessed-hammer-combat.png": {
+      "size": 327801,
+      "sha256": "e0c44865e267dedb0222b411388364c99a041e8cebd4ee7ed7c4e1676fd4a4c2"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-blessed-hammer-details.png": {
+      "size": 112234,
+      "sha256": "8a006f28f12495d551d772ff9ac5e29198c240fdcf9c780fd6fb9cb11e3736b3"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-blessed-hammer-details.txt": {
+      "size": 452,
+      "sha256": "18689235679544446892e06a57ad67ecaebaeac6791c0ad039180133e37d60c6"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-fresh-1.json": {
+      "size": 3227,
+      "sha256": "e13d665667ba3ba00b92b2a8a6161d25a76adea77e3f9df49c1eb87fb77760d1"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-holy-bolt-combat.json": {
+      "size": 3107,
+      "sha256": "542cbb743763b7a97200242a10e9501523f7ebe180155e09bdf10c57dbb4270b"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-holy-bolt-combat.png": {
+      "size": 398822,
+      "sha256": "589cdd0508fb105c236d70c0fadd08163402876633826c694de9575d79b1a9cf"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-holy-bolt-details.png": {
+      "size": 129128,
+      "sha256": "04c45b5b65a0db8b02474056989c5258731e6823eba9cb4a72a1a00d0504bf08"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-holy-bolt-details.txt": {
+      "size": 707,
+      "sha256": "337d9be25ad94748146fa027139a16f5a2cb2e1c61b0ee18a23621af929f1dff"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-imported-2.json": {
+      "size": 4593,
+      "sha256": "0dc97c002cfab8472bd5510e7e0ca7ea120b34406c396c4b20dfea680d210f1b"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-rank1-after-4.json": {
+      "size": 4596,
+      "sha256": "0908009f33e994f5f63808ddf7dff6144100edc00d688dcc25e4738eda245407"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-rank1-before-3.json": {
+      "size": 4593,
+      "sha256": "a8cb72a942fb5045fda6afe03d1cb490adbbc90ce65f48b8601a649d20921781"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-rank2-after-6.json": {
+      "size": 4614,
+      "sha256": "05f3ca11424b7db1f2e1872d9ed1f68727cfb10bbacf97a25c4827b5ee1df755"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-rank2-before-5.json": {
+      "size": 4614,
+      "sha256": "e85b80cbaec2d238ff471964fa5cb642cb5a8282954b540acf9c46505292a7dc"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-synthetic-input.json": {
+      "size": 3951,
+      "sha256": "3565cde69867e238daf058f4ae963598bb79130b45af19247b522479b85a2a30"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-vengeance-combat.json": {
+      "size": 2657,
+      "sha256": "b384f4c27f843b6fd99a1ee7d843367547bdefd95af05ed56420f61b4002a44a"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-vengeance-combat.png": {
+      "size": 432420,
+      "sha256": "da3bddeacf36c4603523528aca9422856a1e5b6cc87e019a4b3299f9b80b888b"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-vengeance-details.png": {
+      "size": 141318,
+      "sha256": "09483af0fe840a5369ee5cb15454c872baf86dc095620f85d256beb904a6dd7e"
+    },
+    "browser-zh-CN-1280/zh-CN-1280-vengeance-details.txt": {
+      "size": 1266,
+      "sha256": "44e5e97a2d6daf825ff53e28d93f4dc34e1a40e2ce7516a09f8ca10e95abfb8f"
+    },
+    "browser-zh-CN-1280-server-access.log": {
+      "size": 67966,
+      "sha256": "a6bf1e035501de400323041de1c5013cd6e0ea32d98c0488282ebb8ecc3874a4"
+    },
+    "browser-zh-CN-1280-server-owner.json": {
+      "size": 135,
+      "sha256": "7968e51cccd2b1b0db2e711bff8ff7585bf85c899436210699b6d26b0f8496f5"
+    },
+    "browser-zh-CN-1280.json": {
+      "size": 651,
+      "sha256": "d5bf5329c723a459a08f70297c6afeb8a3b5907fe27d7cac090496da0d1eead2"
+    },
+    "browser-zh-CN-1280.log": {
+      "size": 494,
+      "sha256": "7aca9d5de419cfa164fe5280c2f4244e1fc859aba798e6a6c06c6cdccb03b3ca"
+    },
+    "browser-zh-CN-360/browser-report.json": {
+      "size": 10132,
+      "sha256": "696d62a19fb7e2d9d88c53599525b18521f394c1997f05dda28c72c225d93748"
+    },
+    "browser-zh-CN-360/zh-CN-360-blessed-hammer-combat.json": {
+      "size": 1123,
+      "sha256": "26ea7e0c71ef5f96c0a4ee6d5bd3b93b2b9371590592bd152a40438dfe6e7349"
+    },
+    "browser-zh-CN-360/zh-CN-360-blessed-hammer-combat.png": {
+      "size": 35221,
+      "sha256": "5fd3f97d53ac9aaf177fe4e8b1a753e52fef8b47c74b719a0ad8c5b73e20fcb5"
+    },
+    "browser-zh-CN-360/zh-CN-360-blessed-hammer-details.png": {
+      "size": 49632,
+      "sha256": "3ad77730cb5d0a2eb8866b6f629aa9792e8aa486921689083a9e18e90f23219f"
+    },
+    "browser-zh-CN-360/zh-CN-360-blessed-hammer-details.txt": {
+      "size": 452,
+      "sha256": "18689235679544446892e06a57ad67ecaebaeac6791c0ad039180133e37d60c6"
+    },
+    "browser-zh-CN-360/zh-CN-360-fresh-1.json": {
+      "size": 3227,
+      "sha256": "d7dbc7b9dfbe0ffe615603291b2efebee434aae84fcea2f6c23852dfd930cbbf"
+    },
+    "browser-zh-CN-360/zh-CN-360-holy-bolt-combat.json": {
+      "size": 2004,
+      "sha256": "4d98766d13aae21ff95a7204eb4cbb68cb9271c34010b5a6bd5382dad883da86"
+    },
+    "browser-zh-CN-360/zh-CN-360-holy-bolt-combat.png": {
+      "size": 34745,
+      "sha256": "55fd25aa6c491a31e8ab9c8d212b7d3adc99aab474fb1be7b0bbff4a9a7246c3"
+    },
+    "browser-zh-CN-360/zh-CN-360-holy-bolt-details.png": {
+      "size": 58934,
+      "sha256": "5fa9665104fee19d10c4494d53ce8ec0b4758a414f2803dc9f7016b4c41a1e60"
+    },
+    "browser-zh-CN-360/zh-CN-360-holy-bolt-details.txt": {
+      "size": 707,
+      "sha256": "337d9be25ad94748146fa027139a16f5a2cb2e1c61b0ee18a23621af929f1dff"
+    },
+    "browser-zh-CN-360/zh-CN-360-imported-2.json": {
+      "size": 4593,
+      "sha256": "d52b973e208ceaf50e668192737ae51d99011b9ac760de1d2b4d39569347def7"
+    },
+    "browser-zh-CN-360/zh-CN-360-rank1-after-4.json": {
+      "size": 4596,
+      "sha256": "7da6a5845725e4a1454c4fa06c7abac7dd975b14bbc2976d444bbde5e281e36b"
+    },
+    "browser-zh-CN-360/zh-CN-360-rank1-before-3.json": {
+      "size": 4593,
+      "sha256": "6d4c2f6ebc62b32edc4da600dfb930e24b09763a6d2f22aa13f4d30756e8ee20"
+    },
+    "browser-zh-CN-360/zh-CN-360-rank2-after-6.json": {
+      "size": 5704,
+      "sha256": "0b593f26a3011f8697f86b604be6e119d9b98f8b2cbb7f010e67042120425a5e"
+    },
+    "browser-zh-CN-360/zh-CN-360-rank2-before-5.json": {
+      "size": 5704,
+      "sha256": "06230077376588ade64fcf32ce3cf07d17661f33920d98040f237aab00f79d21"
+    },
+    "browser-zh-CN-360/zh-CN-360-synthetic-input.json": {
+      "size": 3951,
+      "sha256": "67250b6a8ee7e03c76abf550268bff9ab4486bb83ce8549eae57e4b880701883"
+    },
+    "browser-zh-CN-360/zh-CN-360-vengeance-combat.json": {
+      "size": 3930,
+      "sha256": "dcff656c86f8e6b0e22be4f6d3e177b08f91ef13124fe156a17a6d99224c1609"
+    },
+    "browser-zh-CN-360/zh-CN-360-vengeance-combat.png": {
+      "size": 34545,
+      "sha256": "7e3ca19133d061e45aa96c477fce7b6b3abb703054ece2f8b42daf6840867d1d"
+    },
+    "browser-zh-CN-360/zh-CN-360-vengeance-details.png": {
+      "size": 65429,
+      "sha256": "8723e49581c47b3c406092075f01fc5c01d18c7ea78cb96265602f19aa862e6e"
+    },
+    "browser-zh-CN-360/zh-CN-360-vengeance-details.txt": {
+      "size": 1266,
+      "sha256": "44e5e97a2d6daf825ff53e28d93f4dc34e1a40e2ce7516a09f8ca10e95abfb8f"
+    },
+    "browser-zh-CN-360-server-access.log": {
+      "size": 67966,
+      "sha256": "8060aca19cb6e1a788eb7d8980c92b0c3741e4209c434d1ee529c25db80dafb7"
+    },
+    "browser-zh-CN-360-server-owner.json": {
+      "size": 135,
+      "sha256": "c6f103348acbe71c3055c24feeb1b0ede1e8bf39b6943ee3b7a3ca4121147ddb"
+    },
+    "browser-zh-CN-360.json": {
+      "size": 649,
+      "sha256": "9251c0643a0c04948fafa4dd072676663a523222ad00568941bd3899708edc23"
+    },
+    "browser-zh-CN-360.log": {
+      "size": 493,
+      "sha256": "3b9afb0332f8ce7fbafa6424f1c8675da5158e63ed8794fe4423aab656733300"
+    },
+    "build-audit.json": {
+      "size": 767,
+      "sha256": "efcd6670ed3b1c1b5cf1649f0b9e5903025ae6be8002b49caeccc5de1612a9a5"
+    },
+    "build-audit.py": {
+      "size": 929,
+      "sha256": "68c9286519dba1665277edd4681720bb9411f958ae9ccfa7250d988d67fe0bdb"
+    },
+    "commit-slices.json": {
+      "size": 1610,
+      "sha256": "22aa4d0638e82efcfca2f02568160c06a3cf14e10e706efcf41abe58fb65d23b"
+    },
+    "commit-slices.log": {
+      "size": 2676,
+      "sha256": "634ef9ff6d843dc97eb65bef40801b431ba91033804213a00592cf53b13567d7"
+    },
+    "committed-source-audit.json": {
+      "size": 202,
+      "sha256": "03ae4ebe90a54210e2e8176d61b759e63d2318d48825e3b23cc7ddecc2d4d96d"
+    },
+    "damage-before-roll-refactor.txt": {
+      "size": 5726,
+      "sha256": "8d41c78b116db3ebe0c899d98e6cca623afedf133ac491d57337b68bc72b42ad"
+    },
+    "damage-roll-green.json": {
+      "size": 322,
+      "sha256": "0026796ad6fb090157840115205a46f1a786a0956d6323e9ec498dcb51a1cc80"
+    },
+    "damage-roll-green.log": {
+      "size": 408,
+      "sha256": "c3a416c04ede1582ada2c415e875eb4d629b7d75586cb2b823f4d296f8ab2573"
+    },
+    "damage-roll-red.json": {
+      "size": 282,
+      "sha256": "abad0c6a45437e755f219cd5cc64de9f159d918035e8bab24e0ae79f63aed3f6"
+    },
+    "damage-roll-red.log": {
+      "size": 4303,
+      "sha256": "9712a7b42405a1c98923a588e76aa67e3b306cfda816e8f1ecfac609f24e3be9"
+    },
+    "damage-roll-test-original-red.txt": {
+      "size": 3514,
+      "sha256": "4b06ffd786469ad416f21e9c40db5608aa233e5296bc7fee8d975936c9cb237f"
+    },
+    "druid-browser-reference.cjs": {
+      "size": 12301,
+      "sha256": "4e25be0684955822ca3f37a7dce4d0e150de0a4e984f9df0286460f51f5711e9"
+    },
+    "druid-browser-reference.py": {
+      "size": 566,
+      "sha256": "91c0901ce61619876d308ac1bb4934dda772a6a2e95654e297048c2e7274bbf1"
+    },
+    "druid-serve-reference.py": {
+      "size": 844,
+      "sha256": "a19e710079bd891445f14ed0faa3f00822ec7bc23a096e7e586fcb60a186aa81"
+    },
+    "evidence-draft.md": {
+      "size": 7649,
+      "sha256": "6c3fb0bd6e46c5ad2dbbd0ab85b332dd4fd2b182d4197f166276e870134d6df3"
+    },
+    "freeze.py": {
+      "size": 1773,
+      "sha256": "26977e79681e7bebb0e34d44aa0fec335d6a740cdcef59b26ed2951d8d1bd7d0"
+    },
+    "frozen-inputs.json": {
+      "size": 255709,
+      "sha256": "adbd067c0e84577cac5e09101a4fdfd3dce925c99213ed3c7a744a15a10667d6"
+    },
+    "inventory-reconciliation.json": {
+      "size": 3716,
+      "sha256": "5dce75dd54c45da52cd450dcf09c10034eef5265b55f146cde996cc24ddc754d"
+    },
+    "native-green-result.json": {
+      "size": 8574,
+      "sha256": "d8807b301f4228832b9a6285bb1a71e84e5356d7c32e9519d8d099fe8eb5f15a"
+    },
+    "native-green.json": {
+      "size": 331,
+      "sha256": "0ee89d9504c5301ea92b7a5bbe7a1102110e855ff6dbc850e42ba6c4098772be"
+    },
+    "native-green.log": {
+      "size": 6073,
+      "sha256": "eba558a8598e35ec80ab5d881cd8c12451d34745395358b8ba62946e49ec1b12"
+    },
+    "native-green.ts": {
+      "size": 5658,
+      "sha256": "7d5c8c16209953202b0f59c824c6d24d39325fd977afa78ac3908cace1887c2e"
+    },
+    "native-red-result.json": {
+      "size": 7063,
+      "sha256": "6ab442523faa10cca5d509715c930807ff09d6ac2ae051ba3d4ef6879c79b90d"
+    },
+    "native-red.json": {
+      "size": 331,
+      "sha256": "97f61f69fc6d809858ad512ff06850e9662f2c6fec6c58f4e53509646274f319"
+    },
+    "native-red.log": {
+      "size": 7580,
+      "sha256": "6ac7075574f417e923d98e127add92eb5730fa30e6ab6bfd04fe024d9384e134"
+    },
+    "native-repro.ts": {
+      "size": 5656,
+      "sha256": "fdc6a1c8c077e78fdeb8639e83b497dae7a428edf9b935c42c37b8fae2ad062b"
+    },
+    "ownership.json": {
+      "size": 524,
+      "sha256": "92640b9015b54d0431a590c631443427d4642aff511ffca35cd02184aa7d15f3"
+    },
+    "paladin-active-attacks-schema.test.ts.before-fix.txt": {
+      "size": 2282,
+      "sha256": "9bd526fd97bce66350ff42c5330c99f8d3b0b8148ad2cfde8ff21a1ea610a1dc"
+    },
+    "paladin-active-attacks.causal.test.ts.before-fix.txt": {
+      "size": 4799,
+      "sha256": "aeb0c56e15dd2f679cd0f743cce6dad144b63489674dc7e5413db93041f0cf39"
+    },
+    "paladin-boundaries.json": {
+      "size": 427,
+      "sha256": "bf62856dfd040170192ec37df995529f4e99c6b2e74754518f698a4f9ef31251"
+    },
+    "paladin-boundaries.log": {
+      "size": 579,
+      "sha256": "a2cf0a491a3f128eafef15ba6f44ca5806206e621d8d19185dcf8bd29638d56b"
+    },
+    "paladin-final-full.json": {
+      "size": 219,
+      "sha256": "bb7c91f499f36a7e170b5446e1f76a38a36a9fc70ca4187e28ffdc7609c0bf79"
+    },
+    "paladin-final-full.log": {
+      "size": 154843,
+      "sha256": "c332059fa4033ac13776fbba6ef2bb235bc674108e0af07cd19d59060ee0590a"
+    },
+    "paladin-final-lint.json": {
+      "size": 230,
+      "sha256": "18e591a8389d6aafd84b08c82c94273ac1d77e834cbb113c5ff586e8abce2471"
+    },
+    "paladin-final-lint.log": {
+      "size": 197,
+      "sha256": "d41bf9b84d892faddb9482b7924860a6c6a5de704831742c45153acc08789ee1"
+    },
+    "paladin-final-types.json": {
+      "size": 234,
+      "sha256": "799401f8b80ada0e3ab742b6cc953d6473038dec14a111e5425f86d1033f1f88"
+    },
+    "paladin-final-types.log": {
+      "size": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "paladin-presentation-green.json": {
+      "size": 449,
+      "sha256": "9303a3a06392957521b4fb60d06f5283b08c97e229f9adf3b1c0c06bc85c6448"
+    },
+    "paladin-presentation-green.log": {
+      "size": 597,
+      "sha256": "019752ad1ac2fac87a19c49f561cc86bf5fb6e5bbb2aae29fbe4b2ea0a3a67ef"
+    },
+    "paladin-presentation-red.json": {
+      "size": 357,
+      "sha256": "2014a62f8f550dc34843747d142808b43eba6255227f7f6ac131c52c9efb2880"
+    },
+    "paladin-presentation-red.log": {
+      "size": 129761,
+      "sha256": "07f623a5445fcf3a4ddcf11f7b107fa73ff802ca2c5c6ded738df7292e3d146d"
+    },
+    "paladin-production-build.json": {
+      "size": 391,
+      "sha256": "ce7050b85339898a375cc13491c72f0243593dfe796f60d5dd108e342a5a8d84"
+    },
+    "paladin-production-build.log": {
+      "size": 2361,
+      "sha256": "6767a8df5e2b244d6dd6b0f90c2644eacef09a4ebc4a2fef50ab561518ab8d71"
+    },
+    "paladin-runtime-engine.json": {
+      "size": 236,
+      "sha256": "01b8ed16317058c82c54d09ee89273d3638f5e9c9a1c4e43923f05eb9302e44b"
+    },
+    "paladin-runtime-engine.log": {
+      "size": 65771,
+      "sha256": "93484522e69fbacffedb3fb478112bcf14a0266f3e45ba22479cd1c14e246042"
+    },
+    "paladin-runtime-lint.json": {
+      "size": 230,
+      "sha256": "7fbe89fbc5d8f39004782d440d5badd2b3fcc6fc33ccfa40aa3660dde3dc2a91"
+    },
+    "paladin-runtime-lint.log": {
+      "size": 3149,
+      "sha256": "eb8c2341d7c9863218b992adaf1112343aed3f849f5528eded803d587736988e"
+    },
+    "paladin-runtime-types.json": {
+      "size": 234,
+      "sha256": "b943f800ebdde487531b15fbe09a0d2c80bea2043af741fd0868790568d9dbba"
+    },
+    "paladin-runtime-types.log": {
+      "size": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "post-full-freeze-audit.json": {
+      "size": 205,
+      "sha256": "3bd0f4d37ad9820b73dac14222c649e88c0d027a15491289f483582891b2e295"
+    },
+    "production-build-audit.json": {
+      "size": 310,
+      "sha256": "489411a29ff914795940ad73abf85076122e8676f67df62e666b48843e8e4fa8"
+    },
+    "production-build-audit.log": {
+      "size": 639,
+      "sha256": "2a2f6b85e8ce556dd0483360f398b517951ae6efedaebe203e37a667d703954f"
+    },
+    "run.py": {
+      "size": 708,
+      "sha256": "3b5e0ae4821d7e2c9dbbc426db49ca423c53f983dbad3775c64dfaf185110df7"
+    },
+    "scalar-after-result.json": {
+      "size": 250072,
+      "sha256": "6c2897bf4e46761dd7c9b54b45d2ec3860c3316a8e64fa25463b0064399c303d"
+    },
+    "scalar-after.json": {
+      "size": 443,
+      "sha256": "d0f6da362c92e00e5a0976e126398b8a0c55c19a587f2122555e6927ffefc932"
+    },
+    "scalar-after.log": {
+      "size": 89,
+      "sha256": "e6d822411c3139e183cbbc0b8ff536416b16de76eff4acc4d89a394108e44fdc"
+    },
+    "scalar-before-result.json": {
+      "size": 250072,
+      "sha256": "6c2897bf4e46761dd7c9b54b45d2ec3860c3316a8e64fa25463b0064399c303d"
+    },
+    "scalar-before.json": {
+      "size": 444,
+      "sha256": "99060371dce03fb415f243aee2784902702e2d2afe67455d473085923ad756ab"
+    },
+    "scalar-before.log": {
+      "size": 89,
+      "sha256": "e6d822411c3139e183cbbc0b8ff536416b16de76eff4acc4d89a394108e44fdc"
+    },
+    "scalar-compatibility-audit.json": {
+      "size": 243,
+      "sha256": "1d8cea114982cc352019554b0cba323b9d79c350d2f398db7e9f31d76995a272"
+    },
+    "scalar-composite-audit.json": {
+      "size": 133,
+      "sha256": "92e59c91476329fc83e0c7d218eb5112fb61be159aecf6cfeabfe4b50ab0b7d7"
+    },
+    "scalar-composite-result.json": {
+      "size": 250072,
+      "sha256": "6c2897bf4e46761dd7c9b54b45d2ec3860c3316a8e64fa25463b0064399c303d"
+    },
+    "scalar-composite.json": {
+      "size": 447,
+      "sha256": "f6128bcbcc1a3aa8392b794183f1af81538964d3e6267deb53879ff3c246eb16"
+    },
+    "scalar-composite.log": {
+      "size": 89,
+      "sha256": "e6d822411c3139e183cbbc0b8ff536416b16de76eff4acc4d89a394108e44fdc"
+    },
+    "scalar-corpus.ts": {
+      "size": 1462,
+      "sha256": "2ffb857ef5aeaf7ceefda1d2deb401eaba59cbe0bd64522734f9f4c5e6f1ea0d"
+    },
+    "serve.py": {
+      "size": 842,
+      "sha256": "53c06084df6a45cc2e55372ea5574b21d6b8d6160ec00fdef6bc3df572294964"
+    },
+    "shared-roll-engine.json": {
+      "size": 236,
+      "sha256": "6c3ec7cd8785a457d0c33d0cdc17ddf971eee60a33ea55f36ced19954b9f9b6a"
+    },
+    "shared-roll-engine.log": {
+      "size": 65461,
+      "sha256": "72e5d9adba1a023d1b3b4d00dd453e385a12341c1239881687cd903c9c1486ce"
+    },
+    "shared-roll-types.json": {
+      "size": 234,
+      "sha256": "c963fa3b91476ef2d1cee754a040358c479fa65ef5208d35856080f0efe3a7bd"
+    },
+    "shared-roll-types.log": {
+      "size": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "vengeance-boundaries.json": {
+      "size": 371,
+      "sha256": "2eb95b705c0e827509c7cf3dcddc78e02af104b491e4ce2651a9ee3095219750"
+    },
+    "vengeance-boundaries.log": {
+      "size": 499,
+      "sha256": "67e8451e3aacbf301b16d993574e395460b59c2b7836e6485f02d4c06906103a"
+    },
+    "vengeance-first-engine.json": {
+      "size": 236,
+      "sha256": "54e2ef12280a7f01d9005266eee6bb8a7fe4c7414c33c25e775ac5eac4798d9c"
+    },
+    "vengeance-first-engine.log": {
+      "size": 66926,
+      "sha256": "6cbf5ed9980458d0ed53dc17365ec1f13fb0b0cf013e6e6b53f026b6a8d5a07b"
+    },
+    "vengeance-first-green.json": {
+      "size": 379,
+      "sha256": "cf61957e678f27895689e0611b1932257139dc86b10f48f9a462ff993e7be131"
+    },
+    "vengeance-first-green.log": {
+      "size": 505,
+      "sha256": "f632da98b62b476d55f36ac4dfc5f4f068733830c4d05051e4ac1af26703b6b1"
+    },
+    "vengeance-first-types.json": {
+      "size": 234,
+      "sha256": "c4bfb26abd16910a180365b250556daf63222a135e4cb652844a199b0b7e3843"
+    },
+    "vengeance-first-types.log": {
+      "size": 1205,
+      "sha256": "63116262451012fa38839960f62a69f32719656a6e3e302f82aeae0d7f335707"
+    },
+    "vengeance-native-red.json": {
+      "size": 379,
+      "sha256": "d328ba793ea3a624cfc4e7339f281136e164001e2358c07c315a8a715ea46575"
+    },
+    "vengeance-native-red.log": {
+      "size": 20506,
+      "sha256": "fe9f1854b358a8892e24d5d84dbd62c53d9a4db2eb0604fdaa54ef3aeb7ea9d9"
+    },
+    "vengeance-red.json": {
+      "size": 323,
+      "sha256": "32ebcca8617ba405f84b55494fb912d6494674f4298329e259239d08635d7a4f"
+    },
+    "vengeance-red.log": {
+      "size": 17625,
+      "sha256": "8ea13e8e3714daeb1b59cdef9ac24085b27b727e1ce13b74dd5048f7658c663b"
+    },
+    "vengeance-schema.test.ts.original-red.txt": {
+      "size": 2469,
+      "sha256": "c876bac60c5b389a4a6aa3d9e5504fd4c048c282a5db87db21bc05dcbac64147"
+    },
+    "vengeance.test.ts.original-red.txt": {
+      "size": 10972,
+      "sha256": "67ed3c27c5c31cf74fe48f4f769ab3ef5f3871aeac7052731dd25cb9e888a62f"
+    }
+  },
+  "omitted": "Disposable production-dist bytes; complete build hash map retained in frozen-inputs.json. No trace or screenshot omitted."
+}

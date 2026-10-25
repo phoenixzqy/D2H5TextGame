@@ -1,0 +1,97 @@
+{
+  "ids": 213,
+  "ids_order_exact": true,
+  "changed_rows": 3,
+  "counts": {
+    "unverified": 119,
+    "bounded-functional;independent-acceptance-open": 89,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "before_sha256": "3f00eefb9e1611d4b4962005ec7432320e27f662a2292026680002f43fbd741c",
+  "after_sha256": "a34b648b43576b144dd298c92747b2f09e34f071cd8f1b523186187e2a534cb9",
+  "changes": [
+    {
+      "id": "skills-paladin-holy-bolt",
+      "before": {
+        "class": "paladin",
+        "data_id": "skills-paladin-holy-bolt",
+        "runtime_id": "paladin.holy_bolt",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "",
+        "source": "src/data/skills/paladin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "paladin",
+        "data_id": "skills-paladin-holy-bolt",
+        "runtime_id": "paladin.holy_bolt",
+        "trigger": "active",
+        "adapter_route": "damage+explicit-actual-HP-recovery",
+        "declared_statuses": "",
+        "source": "src/data/skills/paladin.json",
+        "risk_flags": "earned-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D04-paladin-active-attacks-v1.md|docs/plans/evidence/d04-paladin-active-attacks.md"
+      }
+    },
+    {
+      "id": "skills-paladin-blessed-hammer",
+      "before": {
+        "class": "paladin",
+        "data_id": "skills-paladin-blessed-hammer",
+        "runtime_id": "paladin.blessed_hammer",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "",
+        "source": "src/data/skills/paladin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "paladin",
+        "data_id": "skills-paladin-blessed-hammer",
+        "runtime_id": "paladin.blessed_hammer",
+        "trigger": "active",
+        "adapter_route": "damage+flat-MR-bypass",
+        "declared_statuses": "",
+        "source": "src/data/skills/paladin.json",
+        "risk_flags": "earned-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D04-paladin-active-attacks-v1.md|docs/plans/evidence/d04-paladin-active-attacks.md"
+      }
+    },
+    {
+      "id": "skills-paladin-vengeance",
+      "before": {
+        "class": "paladin",
+        "data_id": "skills-paladin-vengeance",
+        "runtime_id": "paladin.vengeance",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "burn|chill|paralyze",
+        "source": "src/data/skills/paladin.json",
+        "risk_flags": "additional-statuses-truncated-by-adapter|burn-ignite-vocabulary-mismatch",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "paladin",
+        "data_id": "skills-paladin-vengeance",
+        "runtime_id": "paladin.vengeance",
+        "trigger": "active",
+        "adapter_route": "shared-roll-typed-components+real-statuses",
+        "declared_statuses": "burn|chill|paralyze",
+        "source": "src/data/skills/paladin.json",
+        "risk_flags": "earned-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D04-paladin-active-attacks-v1.md|docs/plans/evidence/d04-paladin-active-attacks.md"
+      }
+    }
+  ]
+}

@@ -153,9 +153,9 @@ necromancer,skills-necromancer-iron-golem,necromancer.iron_golem,active,summon,,
 necromancer,skills-necromancer-fire-golem,necromancer.fire_golem,active,summon,,src/data/skills/necromancer.json,,unverified,
 necromancer,skills-necromancer-revive,necromancer.revive,active,summon,,src/data/skills/necromancer.json,,unverified,
 paladin,skills-paladin-zeal,paladin.zeal,active,damage,,src/data/skills/paladin.json,,unverified,
-paladin,skills-paladin-holy-bolt,paladin.holy_bolt,active,damage,,src/data/skills/paladin.json,,unverified,
-paladin,skills-paladin-blessed-hammer,paladin.blessed_hammer,active,damage,,src/data/skills/paladin.json,,unverified,
-paladin,skills-paladin-vengeance,paladin.vengeance,active,damage,burn|chill|paralyze,src/data/skills/paladin.json,additional-statuses-truncated-by-adapter|burn-ignite-vocabulary-mismatch,unverified,
+paladin,skills-paladin-holy-bolt,paladin.holy_bolt,active,damage+explicit-actual-HP-recovery,,src/data/skills/paladin.json,earned-balance-open,bounded-functional;independent-acceptance-open,docs/plans/decisions/D04-paladin-active-attacks-v1.md|docs/plans/evidence/d04-paladin-active-attacks.md
+paladin,skills-paladin-blessed-hammer,paladin.blessed_hammer,active,damage+flat-MR-bypass,,src/data/skills/paladin.json,earned-balance-open,bounded-functional;independent-acceptance-open,docs/plans/decisions/D04-paladin-active-attacks-v1.md|docs/plans/evidence/d04-paladin-active-attacks.md
+paladin,skills-paladin-vengeance,paladin.vengeance,active,shared-roll-typed-components+real-statuses,burn|chill|paralyze,src/data/skills/paladin.json,earned-balance-open,bounded-functional;independent-acceptance-open,docs/plans/decisions/D04-paladin-active-attacks-v1.md|docs/plans/evidence/d04-paladin-active-attacks.md
 paladin,skills-paladin-charge,paladin.charge,active,damage,stun,src/data/skills/paladin.json,,unverified,
 paladin,skills-paladin-fist-of-heavens,paladin.fist_of_heavens,active,damage,paralyze,src/data/skills/paladin.json,,unverified,
 paladin,skills-paladin-might,paladin.might,passive,exclusive-selected-living-party-physical-damage+attack,,src/data/skills/paladin.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/p07b02-selected-might.md
