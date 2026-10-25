@@ -8,6 +8,30 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["ignoresDefense"], "properties": { "ignoresDefense": {} } },
+      "then": { "properties": { "id": { "const": "skills-amazon-impale" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-amazon-impale" } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "ignoresDefense", "appliesStatus", "statusEffect"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "requiredLevel": { "const": 12 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-amazon-power-strike"] },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "ignoresDefense": { "$ref": "#/properties/ignoresDefense" },
+          "appliesStatus": { "const": ["bleed"] },
+          "statusEffect": {
+            "type": "object", "additionalProperties": false, "required": ["dotPctOfDamage"],
+            "properties": { "dotPctOfDamage": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 } }
+          },
+          "ignoresMagicResist": false, "damageComposition": false, "hitSequence": false,
+          "onHitRecovery": false, "onHitSelfDamage": false, "additionalStatusEffects": false
+        }
+      }
+    },
+    {
       "if": { "required": ["conversion"], "properties": { "conversion": {} } },
       "then": { "properties": { "id": { "const": "skills-paladin-conversion" } } }
     },
@@ -3775,6 +3799,10 @@
     "ignoresMagicResist": {
       "const": true,
       "description": "Explicit Blessed Hammer flat magic-resist bypass; percentage resistance, dodge and personal absorption still apply."
+    },
+    "ignoresDefense": {
+      "const": true,
+      "description": "Explicit Impale ordinary Defense bypass for this hit only; resistance, dodge, critical rolls and personal absorption still apply."
     },
     "hitSequence": {
       "description": "Explicit bounded sequential attempts, paid once and rotating within the original target pool; currently authored only by Fury.",

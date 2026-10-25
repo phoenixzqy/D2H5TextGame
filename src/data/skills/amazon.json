@@ -447,6 +447,10 @@
       }
     },
     "damageType": "physical",
+    "ignoresDefense": true,
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesStatus": [
       "bleed"
     ],

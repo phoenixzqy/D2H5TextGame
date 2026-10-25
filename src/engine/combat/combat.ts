@@ -595,7 +595,7 @@ function buildDamageInput(
     critChance: stats.critChance + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.critPerRank,
     critMult: stats.critDamage,
     defenderResistances,
-    defenderArmor: Math.max(0, defender.stats.defense * (1 + armorBonus + druidFormBonuses(defender).defensePct + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor),
+    defenderArmor: effect.ignoresDefense === true ? 0 : Math.max(0, defender.stats.defense * (1 + armorBonus + druidFormBonuses(defender).defensePct + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor),
     defenderMagicResist: effect.ignoresMagicResist === true ? 0 : defender.stats.magicResist,
     defenderDodge:
       effect.damageType === 'physical' || effect.damageType === 'thorns'

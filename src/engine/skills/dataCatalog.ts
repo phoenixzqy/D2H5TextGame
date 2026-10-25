@@ -32,6 +32,7 @@ interface JsonSkill {
   readonly conversion?: ConversionTuning;
   readonly damageComposition?: 'weighted-components';
   readonly ignoresMagicResist?: true;
+  readonly ignoresDefense?: true;
   readonly hitSequence?: SkillHitSequence;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   /** Explicit life debit after a real enemy HP loss; independent of personal shields. */
@@ -186,6 +187,7 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       ...(skill.id === 'skills-paladin-conversion' && skill.conversion ? { conversion: true as const } : {}),
       ...(components ? { components } : {}),
       ...(skill.ignoresMagicResist === true ? { ignoresMagicResist: true as const } : {}),
+      ...(skill.ignoresDefense === true ? { ignoresDefense: true as const } : {}),
       ...(skill.hitSequence ? { hitSequence: { strikes: skill.hitSequence.strikes } } : {}),
       ...(skill.onHitRecovery ? { onHitRecovery: { lifeFraction: skill.onHitRecovery.lifeFraction } } : {}),
       ...(skill.onHitSelfDamage ? { onHitSelfDamage: Object.freeze({

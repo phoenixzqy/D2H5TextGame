@@ -28,6 +28,7 @@ export interface DisplaySkillSource {
   readonly maxTargets?: number;
   readonly damageComposition?: 'weighted-components';
   readonly ignoresMagicResist?: true;
+  readonly ignoresDefense?: true;
   readonly hitSequence?: SkillHitSequence;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   readonly onHitSelfDamage?: OnHitSelfDamageTuning;
@@ -156,6 +157,8 @@ export interface SkillRankDisplayStats {
   readonly maxTargets?: number;
   /** Explicit flat MR bypass; percentage resistance and personal absorption remain. */
   readonly ignoresMagicResist?: true;
+  /** Explicit ordinary Defense bypass; hit rolls and percentage resistance remain. */
+  readonly ignoresDefense?: true;
   /** One shared hit/critical decision with ordinary matching elemental control durations. */
   readonly composite?: { readonly chillSeconds: number; readonly paralyzeSeconds: number };
   /** Independent attack attempts; the displayed damage range remains per strike. */
@@ -483,6 +486,8 @@ export function computeSkillRankDisplayStats(
   const periodic = periodicDisplay(skill);
   const ignoresMagicResist = skill.id === 'skills-paladin-blessed-hammer' && skill.trigger === 'active' &&
     skill.damageType === 'arcane' && skill.ignoresMagicResist === true;
+  const ignoresDefense = skill.id === 'skills-amazon-impale' && skill.trigger === 'active' &&
+    skill.damageType === 'physical' && skill.ignoresDefense === true;
   const composite = skill.id === 'skills-paladin-vengeance' && skill.trigger === 'active' &&
     skill.damageComposition === 'weighted-components'
     ? { chillSeconds: STATUS_DEFAULTS.chill.duration, paralyzeSeconds: STATUS_DEFAULTS.paralyze.duration } : undefined;
@@ -519,6 +524,7 @@ export function computeSkillRankDisplayStats(
     rank: safeRank,
     ...(maxTargets !== undefined ? { maxTargets } : {}),
     ...(ignoresMagicResist ? { ignoresMagicResist: true as const } : {}),
+    ...(ignoresDefense ? { ignoresDefense: true as const } : {}),
     ...(composite ? { composite } : {}),
     ...(strikesPerCast !== undefined ? { strikesPerCast } : {}),
     ...(control ? { control } : {}),
