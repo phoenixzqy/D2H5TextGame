@@ -1,0 +1,594 @@
+{
+  "pass": true,
+  "historicalOnly": true,
+  "sourceHead": "65b6b85846d7c4f8b7535d3dc07918bcaf977417",
+  "historyRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les",
+  "parts": [
+    {
+      "part": "engine",
+      "implementation": "44376bc",
+      "scope": [
+        {
+          "path": "src/engine/skills/golem-mastery.ts",
+          "historicalSha256": "b0a3d4272f5bb1d02c137d8a166de994440af055ec71af4338e333c6823ceeea",
+          "committedExact": true,
+          "currentSha256": "7a3f0f17004f558e246fce64f519bcfe8bacdcc3068c156624c8bce9248e6119"
+        },
+        {
+          "path": "src/engine/skills/golem-mastery.test.ts",
+          "historicalSha256": "676e221742b788b86b9392a93b1674b5cb6c2f4090600d6d89f3255aa6763446",
+          "committedExact": true,
+          "currentSha256": "f209e3d2e1a76729f4981cead667b9f34268e6429d6746e948b2d7335573db33"
+        },
+        {
+          "path": "src/engine/combat/combat.ts",
+          "historicalSha256": "0eec789be886c2035fc4014b9abb41c1c37273fbb1db4cb2492fbb63bc2b27c7",
+          "committedExact": true,
+          "currentSha256": "ea3a0ccd2c6104e02712a75694f258dd67ff78a84bb0844e6ab6b4dfa702f18c"
+        },
+        {
+          "path": "docs/plans/execution-ledger.md",
+          "historicalSha256": "6d56ea94c448d985453071382f7b5731ef48465f8936ce1ae26066e06a85a926",
+          "committedExact": true,
+          "currentSha256": "dd146a4e78b825c2b446280431453a833a7882a5eca281884c33cc0e6502c3d8"
+        }
+      ],
+      "supportFilesVerified": 190,
+      "commands": [
+        {
+          "label": "golem-engine-api-red",
+          "receiptSha256": "2395ae0a88188833fcf129d3f2412710cd75599b3fbb881589837c4210c87e31",
+          "outputSha256": "2a1e323defe35654a8ae4f250866439727bab39a2ed2e265ff9da1493e417ca5",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-engine-definition-green",
+          "receiptSha256": "22deed32fd3df802e9a0ef6b2bffebaa223f80e3aaa5db68d1513529d92969eb",
+          "outputSha256": "2427f0ae48ebb1342ed5216a2480716f62dd4211769347d0baec8dffb3ca1264",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-engine-engine1",
+          "receiptSha256": "442f4fab5544cd99bb756068d94e52ff7b8a617d24f189b0384a46b925bd71a1",
+          "outputSha256": "42f06409d638e996463c53790636345c29c8b44ca1f5b2fcead39f453519ba1f",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-engine-final-build",
+          "receiptSha256": "79407f98da8796bb256a8485fff4836e85521d0ad01b9245e0fe2688b4612d49",
+          "outputSha256": "7c42a37f7772285edb63859e6b8fb71324bfbdc3cd7539ea67605a61d02f344c",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-engine-final-engine",
+          "receiptSha256": "0988bb576a7f111a45ddbc1882af2c89a288cf1a8449dcd60d1414ef83dc1319",
+          "outputSha256": "a2db3dc353a49855acb739ddb78183fa031c31f66ab0a0e4cca1eac8633bf631",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-engine-final-fullunit",
+          "receiptSha256": "873e6037276fe0b3915f7f29f44bca4fd4dd3753c47b08ef16c4db3d667239c2",
+          "outputSha256": "a39edfbb3fc599bd7d1508077bb3082f245bfec4ae5ae54fb731ba9ead3d92d8",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-engine-final-lint",
+          "receiptSha256": "e82b90fe945a636e4274606be48a2f65daf18a8f522b5ede9e1bdd543538fba3",
+          "outputSha256": "43a2f19943bad1b0c03edcf294ce0eb948edd23dda2e552b7593b4a55bd684f2",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-engine-final-types",
+          "receiptSha256": "c1cbc54fc5c184bdfe376dad4ce7d51efb68e42d7cfbb6944fcce52d65e7d14a",
+          "outputSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-engine-focused2",
+          "receiptSha256": "3993ab1b55e3d4ce83d184692ebccdb03dbca97b9e39eda83d447d3f3ce5ebcd",
+          "outputSha256": "bb62b98090216ad62d060086fbbf5af80e9a38102ec47def18e895a2bad7f710",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-engine-focused3",
+          "receiptSha256": "f5b214d8de7198d5b7e7c0d7801c845102758d5cf2593d98edc28f8f1f6c07ab",
+          "outputSha256": "ff6c3b21fe9c87b3bf40355211300228668c5f6e0346ab0c29133cf027e67fb5",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-engine-focused4",
+          "receiptSha256": "e813af73ba799c01b0f9bc6eba7b4b51b200a60b5fd13cb526b9be436d5f3ba8",
+          "outputSha256": "7963ff1f74c2a053294d028c611bf44634f73a44d20ddd28da15a2b3328772be",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-engine-runtime-green",
+          "receiptSha256": "3d16af3d6baabadaf12b9fc3d10049f11e79f438410e23067645a31b15cbbb57",
+          "outputSha256": "b9b64407f26c8dccfe8722d231c2a111979c293fdcc45629c10b5d7eded27383",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-engine-runtime-red",
+          "receiptSha256": "4e692f8cc0a55bdb90f2617d56cb3c9722be05e8ae6729901db0ea4ef679de91",
+          "outputSha256": "feccfd575c7c7ad5dc917f0322285bdaf8f203e429bc55b45be2e8bc1c35a82d",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-engine-types1",
+          "receiptSha256": "2f676e8ef1b8d5d055b5e2dc72ce671232d1cacc1ef00b93f4d50e7ddef44f3c",
+          "outputSha256": "0db44fd231b614cd2c5d4c0b67313f03d0d405f0599cd6d1575309b4c2d24ddf",
+          "exitCode": 2
+        },
+        {
+          "label": "golem-engine-types2",
+          "receiptSha256": "696b5193983c6b209a5681adb4cf85aa1270547c7c14858ad4713da4f59de7a1",
+          "outputSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+          "exitCode": 0
+        }
+      ],
+      "historicalReviews": {
+        "QA": "APPROVE",
+        "testEvidence": "ADEQUATE",
+        "TD": "APPROVE",
+        "fiveAxis": "APPROVE"
+      },
+      "readersReleased": true,
+      "cleanupEmpty": true,
+      "publicationSha256": "069c0418c58d358b27ae9448d158d5024bd9e16afea18c7805dfa825112eb404",
+      "reviewManifestSha256": "d9f4f97f460f0b1114941d86040526b14ccfdc602bb76f13e47c93e580c8e98e",
+      "supportManifestSha256": "0d9a85dd946698d2f73c2a78a6809ad99dce2a476b7ede2f573293e801fdb779"
+    },
+    {
+      "part": "native",
+      "implementation": "d542275",
+      "scope": [
+        {
+          "path": "src/stores/combatHelpers.ts",
+          "historicalSha256": "21d12eda31071af4624fbbfafada006afc0e18adabd3f04b28caa4f4a75b0449",
+          "committedExact": true,
+          "currentSha256": "b018b2627e1292c03914ccda4792cf8f83a6f3ea324def08dd29cf6143c65a61"
+        },
+        {
+          "path": "src/stores/golem-mastery-native.test.ts",
+          "historicalSha256": "324a1425decd45d7bd40a548bf35628ad20c96ad28d81d0fc3f3e6c4b51db1d0",
+          "committedExact": true,
+          "currentSha256": "a46b5a648837d17ab073e511a83d26b03673faef9db4cb5d77efed7a4d4e6ac9"
+        },
+        {
+          "path": "docs/plans/execution-ledger.md",
+          "historicalSha256": "a7fe1e699d1fd738a45f0bf2b2d2b9247a0b2b2312fe1329ae1a2e5eec999e95",
+          "committedExact": true,
+          "currentSha256": "dd146a4e78b825c2b446280431453a833a7882a5eca281884c33cc0e6502c3d8"
+        }
+      ],
+      "supportFilesVerified": 129,
+      "commands": [
+        {
+          "label": "golem-native-final-build",
+          "receiptSha256": "94a039ef7797ed43d6d6ebb2d2e4c0b455ab9fa39ecf2dda9ecc83ee790e3ea1",
+          "outputSha256": "eaf78ba3bed8c24af52925d7ae5a8531532438493947e093a61aee259c760abb",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-native-final-focused",
+          "receiptSha256": "cd4cf4aafca27099011cde255ebd830052d22c7ce3df932a5639c02c00eeb697",
+          "outputSha256": "e17fc52f3e6985e19e7313e1f0c6c176992f44907c0587d35d9525de3598d078",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-native-final-fullunit",
+          "receiptSha256": "ebde9e1f063aef89dc22ecfc0216c9b32cf284b36080b739edbb2127e6d434e9",
+          "outputSha256": "508874610921837bf0b992c0d0aca8c271dfbc2a80b8124c60bcfa6cf161069f",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-native-final-lint",
+          "receiptSha256": "c6f8d22868e99f859b4e9fad24034bd010af4ea8d43ebf07d59810c86497cdca",
+          "outputSha256": "43a2f19943bad1b0c03edcf294ce0eb948edd23dda2e552b7593b4a55bd684f2",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-native-final-types",
+          "receiptSha256": "d5345c061a1310c1a5c0e4366509f59e013d8563bb4d8d0d15030a408d470b7b",
+          "outputSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-native-green1",
+          "receiptSha256": "c1e9ad3647385db59d61e0e144a547414609afd18bc280c88f2f19666a401032",
+          "outputSha256": "9c4600f5df755c8aa90013f57f7a65efc3fc4cddec54dafc7470280695157896",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-native-green2",
+          "receiptSha256": "d36e2dfaa9d9c5f1ea1c326660d3bc58ccf8905851c64eb84591c9ba59d90240",
+          "outputSha256": "3562bb453e361beb955b7c926cd392dc7ede41305a550a69fc0aa3624208c36e",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-native-green3",
+          "receiptSha256": "e8478dba98040962444b9fa6f484b3c252b9e64411f32cf8468487ed38926011",
+          "outputSha256": "00104d11a8d3e12445fe18f5439ed14b6bd7350ea67cfe7e0c0cf4abfea5d584",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-native-green4",
+          "receiptSha256": "936228247df9e6bef3414261ebe11981c0efcfd69c0f73d6db02af33c3210aaa",
+          "outputSha256": "b1b0c025ffe8b0a9f123fe435d529a051759950dddda116e45b53b1f4c5d9872",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-native-red",
+          "receiptSha256": "0b0ac547a937cdcfad2d68c2437b6bf1257bb51d83bd63d50f1cf16f0c87fec4",
+          "outputSha256": "ac8e5c7f3aa4a720fb0387921ff76c1542051313df00415191f7752cc4e4ec3c",
+          "exitCode": 1
+        }
+      ],
+      "historicalReviews": {
+        "QA": "APPROVE",
+        "testEvidence": "ADEQUATE",
+        "TD": "APPROVE",
+        "fiveAxis": "APPROVE"
+      },
+      "readersReleased": true,
+      "cleanupEmpty": true,
+      "publicationSha256": "17ea5615feb9d15c97c5bb556704839643a2bb8dbf965e482e118b3972532b56",
+      "reviewManifestSha256": "6b4ea2e1a6810ecdf15e0b353edc4ede6863982dcbac73a994a9e98e9af22f25",
+      "supportManifestSha256": "bf4710c113e2b807e13c4a51168fc636cf29a0cb66edd338caeca65735368cdc"
+    },
+    {
+      "part": "display",
+      "implementation": "2f3f5bc",
+      "scope": [
+        {
+          "path": "src/engine/skills/golem-mastery.ts",
+          "historicalSha256": "9b0782acae764d69f260805f578222f91e9df7c0c6d681b9679530dd6fd4eadb",
+          "committedExact": true,
+          "currentSha256": "7a3f0f17004f558e246fce64f519bcfe8bacdcc3068c156624c8bce9248e6119"
+        },
+        {
+          "path": "src/engine/skills/golem-mastery.test.ts",
+          "historicalSha256": "f209e3d2e1a76729f4981cead667b9f34268e6429d6746e948b2d7335573db33",
+          "committedExact": true,
+          "currentSha256": "f209e3d2e1a76729f4981cead667b9f34268e6429d6746e948b2d7335573db33"
+        },
+        {
+          "path": "src/engine/skills/displayStats.ts",
+          "historicalSha256": "4c9b987a2a2ea7b41880444b25b0d467ef1fbc490d4b5564390d91bbb58fdf91",
+          "committedExact": true,
+          "currentSha256": "222f0b558542ec06068e35386e9d8f2765ca5356aa20813478522300677b8111"
+        },
+        {
+          "path": "src/engine/skills/displayStats.test.ts",
+          "historicalSha256": "071b3360e2cfc52b5757b08c7daa02e71e7430bea46362d4dbfa453b571e5e62",
+          "committedExact": true,
+          "currentSha256": "071b3360e2cfc52b5757b08c7daa02e71e7430bea46362d4dbfa453b571e5e62"
+        },
+        {
+          "path": "docs/plans/execution-ledger.md",
+          "historicalSha256": "6cf8b317dd59194803f117635057f7be39029936c47531f773896716d0d9d802",
+          "committedExact": true,
+          "currentSha256": "dd146a4e78b825c2b446280431453a833a7882a5eca281884c33cc0e6502c3d8"
+        }
+      ],
+      "supportFilesVerified": 131,
+      "commands": [
+        {
+          "label": "golem-display-engine1",
+          "receiptSha256": "fe03bf61885ce914723939b712f79f0e5b28cbfa6336e3e4cf930e97fb1f8af8",
+          "outputSha256": "acdc139dcd25854210bfbfb4b3d16dfab6b5ee4bc8e6bc707e76b6edb4d92a22",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-display-final-build",
+          "receiptSha256": "62edeeb6766ff6d69a30620dbfa927cddf722f9fbde875ebfdc843eb96110583",
+          "outputSha256": "5086b4de96f9d8a809bf19925666e243bec1778fb467a4d8c900f5fcbea38006",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-display-final-engine",
+          "receiptSha256": "75ead53b8740e06a0be7923500ce4cb83e761571d5ed65bc49d2869571c21855",
+          "outputSha256": "965393bad3b6b19cb25d1ce6825d0b104ecc256dec270462e9d017ab7c2a19c2",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-display-final-focused",
+          "receiptSha256": "82678f551d2d69c0a0b67f208a11ca17b3afadca4fdb244bd6b5b673891605f4",
+          "outputSha256": "c7a86bb240209ad24fd21c2e19da7ea5f35f7e82c5d9eba4a438657597b43ecb",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-display-final-fullunit",
+          "receiptSha256": "4ce77b0848e6b40cc2a643d697fb9343ebf557ece73cc40fffd411cc597ffef2",
+          "outputSha256": "5cf1d5b7115c19e7e2130befe8be46045d86e772d19ba0eeb2bbd33317fe18d5",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-display-final-lint",
+          "receiptSha256": "26e94cf7b03e7282c03d97acb6f87d1da4f409fd2fda2b5abfe14ac2a78c79ac",
+          "outputSha256": "43a2f19943bad1b0c03edcf294ce0eb948edd23dda2e552b7593b4a55bd684f2",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-display-final-types",
+          "receiptSha256": "f259f03a19feacbc695797c479614eb86d2bda5af83b5675d01b46b49881080b",
+          "outputSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-display-green1",
+          "receiptSha256": "affc47c5e01453dda668a3a121d79f2153208e89a37614baeec7f0a0c67b6aee",
+          "outputSha256": "c6c8798f5930b030e71dc88de5d48db0b3b381c28f852d1cd325e5594fb5c366",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-display-red",
+          "receiptSha256": "82dfaffd08655a0b6e5619d9e1888bd60b0cbbf5857014e4f0d4b5a2d2b46456",
+          "outputSha256": "f6685d841c241fb090a36fc3458b18065034185671c3443268ccfd762bb97299",
+          "exitCode": 1
+        }
+      ],
+      "historicalReviews": {
+        "QA": "APPROVE",
+        "testEvidence": "ADEQUATE",
+        "TD": "APPROVE",
+        "fiveAxis": "APPROVE"
+      },
+      "readersReleased": true,
+      "cleanupEmpty": true,
+      "publicationSha256": "794a9d4fdf5ccdb43d87122623c2dd9024ed1576e875a344fe0d9d32f1f6b0d8",
+      "reviewManifestSha256": "00b0bcf2e54538366cfdfc1bd0ed0b22c4496c53217c16e096ba93f8ce001331",
+      "supportManifestSha256": "9a625623a49a1df3c21bdf0ba8035ae21321bfcca0d99280b6ac7248f160dd36"
+    },
+    {
+      "part": "skills",
+      "implementation": "a615431",
+      "scope": [
+        {
+          "path": "src/features/skills/SkillsScreen.tsx",
+          "historicalSha256": "af8a6374ecdf54dc57baf593103ae8ab803a88ce385b403d809bce1cc5933290",
+          "committedExact": true,
+          "currentSha256": "11fb57ea751adfa5719740cbf307e1cfd4494c8173d24090f6ce43f1d90e9ab0"
+        },
+        {
+          "path": "src/features/skills/SkillsScreen.golem-mastery.test.tsx",
+          "historicalSha256": "11a94cf2f18570b084008e1d1c595c7d3455a5d79bce978c6f23c3de179a836a",
+          "committedExact": true,
+          "currentSha256": "11a94cf2f18570b084008e1d1c595c7d3455a5d79bce978c6f23c3de179a836a"
+        },
+        {
+          "path": "src/i18n/locales/en/skills.json",
+          "historicalSha256": "931a187a95ee8c62dfa8f83794493929fe83a7968696bc39fc6970f4f893050d",
+          "committedExact": true,
+          "currentSha256": "cc016bf6c7117eae49034a590d842d629400a6c2749f42e4e74dc77c211a65f2"
+        },
+        {
+          "path": "src/i18n/locales/zh-CN/skills.json",
+          "historicalSha256": "d9be7393c99a4144d4ff623354896c5ddfa4b91e11f2e684d75991b383f4f84f",
+          "committedExact": true,
+          "currentSha256": "8b3fe0b88aacaacd0965bfc85ec801373ed8f76b244da841ac288c5ae3796682"
+        },
+        {
+          "path": "docs/plans/execution-ledger.md",
+          "historicalSha256": "d3520093bdc1792fc2a5ddecdc88d29e81dfd95b5ed1f61404e36c74452f0a35",
+          "committedExact": true,
+          "currentSha256": "dd146a4e78b825c2b446280431453a833a7882a5eca281884c33cc0e6502c3d8"
+        }
+      ],
+      "supportFilesVerified": 238,
+      "commands": [
+        {
+          "label": "golem-skills-browser1",
+          "receiptSha256": "92939ac092d86ee91ba12cbe67700fbbcab8d1d1a8c1d10fdc7b9b300c779798",
+          "outputSha256": "8fe775e2f0805bdae12001f57338f251f709bb24f62b6a430c7a903d4c6713b6",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-skills-browser2",
+          "receiptSha256": "78d6870455fd2e2d90121294aba912fd2b2d82543c81afd57017e3b9cb790e8c",
+          "outputSha256": "0a1f48fce92db2f0d4dabacff6401f9ba4cf33f7957fd349908856c14ba9fa43",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-skills-browser3",
+          "receiptSha256": "f37a9c8c33e63e291efd834948141c489500f58638b2de478875c8bc8bc8c1df",
+          "outputSha256": "1ae5365f3dd005b7b209032fba6bd0cca5f4b841e66b61f3340378ba919ae8a0",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-skills-final-build",
+          "receiptSha256": "bed6da78647050a5b976be6a0df8e1f1ad9fb714c53faa8cc75374ce2834a409",
+          "outputSha256": "8747982abc3b57213a71a15e630736cb9316890906d5246ab48ba3ff6df21496",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-skills-final-focused",
+          "receiptSha256": "e763483c78a8ea3bf9a439e47917334895787bfe971cd4d94b754f1d89a5ed51",
+          "outputSha256": "3eec00df5a112aca2c44675593483f1dd8252ba46bab80c2a7b15ff1ad64e20b",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-skills-final-focused2",
+          "receiptSha256": "246391277cd26b90ea6d37535771544c92bf728e22d178d134aadeb12dc6679d",
+          "outputSha256": "44a8b3a5acd552e7f32afff82b22866864c7b40a7befbef41b9ed26ad697a97f",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-skills-final-fullunit",
+          "receiptSha256": "cb6aa1655b2142f33b3ac39d6beaf0d280430deb46fc7870935e50a0de115dd7",
+          "outputSha256": "5c9e7a91c10b77bec05ddb113a9b252cbf03fe5575fc8856e627a8445b00d9fd",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-skills-final-lint",
+          "receiptSha256": "ff77579b144309f9de2ca4a13f4e7c11cfbb08a8f59f3b9f85d9c83809772d45",
+          "outputSha256": "c6d36b78a9f1ca74098864c53adf32fb0f0a45ff27dfe7cb2d0a99aed28fb0c0",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-skills-final-lint2",
+          "receiptSha256": "5282f15b8ecc7f6ad61f483908eebd26a28d24acde5020e09a3d9cc2250a761e",
+          "outputSha256": "43a2f19943bad1b0c03edcf294ce0eb948edd23dda2e552b7593b4a55bd684f2",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-skills-final-types",
+          "receiptSha256": "2fdc4460cbc211d0b994cd72cddde9b2a73b3580e3a084f6d0f289af51cd876a",
+          "outputSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-skills-final-types2",
+          "receiptSha256": "bb171b4f7eb90a9e3e3d4d44a6f435b1176f891549256b643742ee197b5d73b6",
+          "outputSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-skills-green1",
+          "receiptSha256": "80593ca324077041a4a107dd16a2912159ab0c309c9b1f038d5deee3bff6bdc9",
+          "outputSha256": "0e7f24f21ba1c2c3c9e4478ceb39240081003a66aac1617683d777d81d9240e1",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-skills-red",
+          "receiptSha256": "bbd9527aa434fa42c6ea2a77bb42cea044bd920027a0ad3acd4fb127de1f2406",
+          "outputSha256": "ff53126e979d8417c0e87693b5b4ecae18eace6ea202501007d83d284ee78ce3",
+          "exitCode": 1
+        }
+      ],
+      "historicalReviews": {
+        "QA": "APPROVE",
+        "testEvidence": "ADEQUATE",
+        "TD": "APPROVE",
+        "fiveAxis": "APPROVE"
+      },
+      "readersReleased": true,
+      "cleanupEmpty": true,
+      "publicationSha256": "2e7cd1e8b70b879ab41c8aa14fd5f206597d70f4641ac2f16d124b56bb5d7e7f",
+      "reviewManifestSha256": "c58a21b19d292bb8f5b8889c85556c32ccb70c400cc7f69acea4de554df45bb2",
+      "supportManifestSha256": "4d962d7bf2f3097688186d3dfa15f4ea7d2e5ef94a36f00a857b695f8eef2233"
+    },
+    {
+      "part": "iron",
+      "implementation": "1760c4d",
+      "scope": [
+        {
+          "path": "src/features/skills/IronGolemPanel.tsx",
+          "historicalSha256": "d353b4d8b3c8baba85211202cae0a8d2a1757969b92c1d075da4f398eb45d4aa",
+          "committedExact": true,
+          "currentSha256": "d353b4d8b3c8baba85211202cae0a8d2a1757969b92c1d075da4f398eb45d4aa"
+        },
+        {
+          "path": "src/features/skills/IronGolemPanel.test.tsx",
+          "historicalSha256": "5f7d335082abfcfc8301bc5e3289a3c03a75f708d68799f52d17b3bfa57e74d7",
+          "committedExact": true,
+          "currentSha256": "b66061b08e6681e4a6ec6a9b4961b7d5201db28c186b37b9a876da8b737accc9"
+        },
+        {
+          "path": "src/i18n/locales/en/skills.json",
+          "historicalSha256": "e9e3d4bfcbe44285a2803330d4cf186fb5fdbcfc49622a8277748fd2f446a072",
+          "committedExact": true,
+          "currentSha256": "cc016bf6c7117eae49034a590d842d629400a6c2749f42e4e74dc77c211a65f2"
+        },
+        {
+          "path": "src/i18n/locales/zh-CN/skills.json",
+          "historicalSha256": "7e1e76ae0f4aa8b16f80dc137393a9ed7f37d6d097d38d48c35238f58e4aad91",
+          "committedExact": true,
+          "currentSha256": "8b3fe0b88aacaacd0965bfc85ec801373ed8f76b244da841ac288c5ae3796682"
+        },
+        {
+          "path": "docs/plans/execution-ledger.md",
+          "historicalSha256": "5ee6efc9bb994d999ddda9dca87b5cb935dd95832ed36d593eeef23dcf2dd09b",
+          "committedExact": true,
+          "currentSha256": "dd146a4e78b825c2b446280431453a833a7882a5eca281884c33cc0e6502c3d8"
+        }
+      ],
+      "supportFilesVerified": 211,
+      "commands": [
+        {
+          "label": "golem-iron-browser",
+          "receiptSha256": "f3fd6576c438c28163f701f61a7edc28ab1021ecc456257a16667a10d128dbbe",
+          "outputSha256": "71cd10df4deb67d9f14606340fcadab36c8262693a3b9ebc2f6de65b19f4b8f5",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-iron-browser2",
+          "receiptSha256": "40ea497bae860e40090e7f832e2b5ed11511288775375e8b859c43c5bb2439e0",
+          "outputSha256": "46d8498288a2bad6505c70eb45e9790f6ac8507f5d09cbd880af39c1830b2d25",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-iron-build",
+          "receiptSha256": "71b9760cbdee00d41b02dda481e1d699a1bffd683a28a406bbf9b6bcc6a0e62a",
+          "outputSha256": "3a42c0381a77fe086d4eea14c69764ec8725c14aa2231da0ee8860127477d415",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-iron-focused",
+          "receiptSha256": "8a5fa77c215135acb32ee7fdadc836dcccbfc5d2c65097978656aef79400dc1b",
+          "outputSha256": "45994b36b24162a6fd589a307833b8c129a3a3433a98ebfb70c57235cfb7886e",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-iron-focused2",
+          "receiptSha256": "d926d2eff22ccd6574bd0d5a36cdefc916e2e575eb2ccab5270ee3cced90dd0d",
+          "outputSha256": "b4bc299200ae3750451ebd519ecc6e3090b804f4c8d63255e316c4b3df7be1f6",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-iron-full",
+          "receiptSha256": "23b59fec67b573efb4fd780e70a5d82c2d1dfffc53619dd88b8e5685f44b10d0",
+          "outputSha256": "f423f2c9209ea572ebe6e283bace64080f56c9ae7237b15bd1004ddf80bcf52b",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-iron-green",
+          "receiptSha256": "b62d8ffec578c5e45a1ae3d9e94bfe9000a3f97323ca6882db58a84f7d7c7120",
+          "outputSha256": "c1c321838bf9d9b451fed2cee0bfb0ff72a1cd02e921af82ac4882c02e6afc3d",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-iron-green2",
+          "receiptSha256": "803822ec4c221b9fd427e9df02a0bb4cfd0ad08faf749b54becc6360c8fa020d",
+          "outputSha256": "ddeb0455bdcdf2c4c6946194589f856eff58356c0442c57b93ae44ff66ba630c",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-iron-lint",
+          "receiptSha256": "9a70aa82d11e3f2c022312b2732d5bc29cbecc2afb48ab1652afbacbd0c23eb5",
+          "outputSha256": "43a2f19943bad1b0c03edcf294ce0eb948edd23dda2e552b7593b4a55bd684f2",
+          "exitCode": 0
+        },
+        {
+          "label": "golem-iron-red",
+          "receiptSha256": "d175a040c1356cf016efa5e3dd8a2653737aeb7a7b99b16ec844a4e9553812b1",
+          "outputSha256": "9ac2db4332eeab566acd7582eaf3174613dfb321cb03571f91bca41fa50aa514",
+          "exitCode": 1
+        },
+        {
+          "label": "golem-iron-types",
+          "receiptSha256": "6a35721d051ff014a440fda9c06c06b7e735b5413ef5c1b55eedd324ee40c020",
+          "outputSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+          "exitCode": 0
+        }
+      ],
+      "historicalReviews": {
+        "QA": "APPROVE",
+        "testEvidence": "ADEQUATE",
+        "TD": "APPROVE",
+        "fiveAxis": "APPROVE"
+      },
+      "readersReleased": true,
+      "cleanupEmpty": true,
+      "publicationSha256": "7486dc045bdbe0169216a0fd999c6f307f887b5248b89b36436bf68f00ba8ea7",
+      "reviewManifestSha256": "5cec57cd855f4f6188d729b1e2ea8c57d43350fd45547e63135e1dfe6ef993b0",
+      "supportManifestSha256": "2c24d152b86bf259c817366944e2a485df926fa8d7be9dec178c4c8ae532dffe"
+    }
+  ],
+  "currentDiffReview": [
+    "Golem Mastery module differs from its display implementation only by the reviewed shared skill-validator refactor.",
+    "Native test adds the existing synthetic-entry-pools fixture.",
+    "Current combat/native/display/Skills/Iron consumers still use the same explicit source projection; current tests must pass separately."
+  ],
+  "acceptanceLimit": "Historical independent approvals are not current integrated independent acceptance. Synthetic imported eligibility is not earned build viability. No new implementation credit."
+}

@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| Golem Mastery inventory reconciliation | one stale row corrected; no new implementation credit | Historical engine44376bc/native d542275/preview2f3f5bc/Skills a615431/Iron1760c4d packet audit:899support entries/58command-output hashes/five review+publication chains exact; commits are ancestors. Current engine/native/Skills/Iron/shared-display tests pass in full12822/540. [Evidence](evidence/d05-golem-mastery-reconciliation.md). Only one row changes:213IDs/order preserved;153unverified/58bounded-functional/one engine-only/one review-needed. Historical independent approvals remain historical; current independent and earned acceptance open. |
 | D04 native class-active ownership / BUG185 | locally fixed/verified; independent acceptance open | Runtime70be381; current-class/unlock/rank/MAX aliases/transitive prerequisites at fresh Player boundary; undefined class stubs/passive/aura priorities cannot cast. Stored configuration, D06 specialized authority and D10 equipped grants preserved. Final full12822/540 plus two existing skips, engine6585/224, types/lint/build/bridge PASS; production4/4/eight exact five-domain Continue pairs/20geometry samples. [Evidence](evidence/d04-player-class-active-ownership.md). All1257source/760build hashes, HEAD/Git/genuine exact through515.519s full; committed blobs checked. Ownership adds no individual mechanic credit:213IDs,154unverified/57bounded-functional/one engine-only/one review-needed before separate Golem correction. GenuineL33/next402 unchanged; Baal/C2-C4/fullG0-G7 and fullv1 remain unfinished; local only. |
 | D05 Concentration / BUG181 | interruption/physical scaling locally verified; all20auras have supported effects | Runtimef7aec04; unchanged3.5%physical/rank, explicit scheduled-action Stun protection with real Stun/expiry preserved, Freeze/Paralyze and normal paid readiness unchanged. Focused121/6, data322/2, engine6269/222, full12451/533 plus two existing skips; types/lint/build/bridge PASS. Production4/4, eight exact five-domain Continue pairs,20geometry samples and21radio labels. [Evidence](evidence/d05-paladin-concentration.md); all1248source/760build hashes, HEAD/Git/genuine exact through513.228s full, committed source blobs checked. All original test/fixture failures retained;114raw files/19terminal records byte-verified,874owned files removed, scratch absent/4470closed/no failures.213IDs:156unverified/55bounded-functional/one bounded-engine-functional/one review-needed;56bounded records have differing scopes. All20auras supported locally; independent whole-family/earned balance and BUG181 remain open. GenuineL33/next402 unchanged; Baal/C2-C4/fullG0-G7 remain unfinished; local only, umbrella goal/worktree active. |
 | D05 Sanctuary / BUG181 / BUG183 | undead damage/repulsion locally verified; Concentration remains | Runtime5586d34; explicit109-row undead identity,29positive/80other; unchanged3% Arcane/rank, JSON2000ms/20base and canonical500ms Stun (boss250ms), original-source/merc and next-wave/replay/save boundaries. Final corrected full12430/531 plus two existing skips, engine6252/220, corrected types/lint and identical production build/bridge/browser PASS. Four browser cases/eight exact five-domain Continue pairs/20geometry samples/20radio labels. [Evidence](evidence/d05-paladin-sanctuary.md); all1246source/760build hashes, HEAD/Git/genuine exact through426.676s final full; committed source blobs checked. Original full78failures retained:76historical-byte fixtures repaired without changing hashes, one stale input corrected, BUG180timeout remains unresolved after isolated13PASS and corrected full PASS.156raw files/29terminal records byte-verified;916owned files removed, scratch absent/4469closed/no failures.213IDs:157unverified/54bounded-functional/one bounded-engine-functional/one review-needed;55bounded records have different proof scopes. Nineteen of20auras supported. Concentration, earned balance, independent acceptance, Baal/C2-C4/fullG0-G7 remain open. GenuineL33/next402 unchanged; local only, umbrella goal/worktree active. |
@@ -11536,3 +11537,20 @@ open. Ownership adds no skill-mechanic credit;154unverified remains before the
 separate Golem bookkeeping correction. GenuineL33/next402/Baal uncleared remains;
 no campaign/remote actions, fullC2-C4/G0-G7/privatev1 unfinished. Umbrella claim
 and branch continue. Raw retention/cleanup receipts accompany the evidence.
+
+
+## D05 — Golem Mastery inventory reconciliation
+
+One stale unverified entry now cites its existing fresh owned-golem runtime,
+native/Skills/Iron previews and retained evidence. This is bookkeeping, not a
+new implementation. [Audit](evidence/d05-golem-mastery-reconciliation.md) verifies
+five historical publication/review/support chains,899support file entries,
+58command/output receipts and committed scope hashes. Current Golem module
+changes since the preview commit are only the reviewed shared validator; current
+engine/native/Skills/Iron/shared-display suites pass within full12822/540.
+Historical independent approvals are not current integrated independent acceptance.
+Only Golem Mastery changes:213IDs/order remain,153unverified/58bounded-functional/
+one engine-only/one review-needed. GenuineL33/next402 unchanged; no earned build,
+Baal, C2-C4/fullG0-G7 or complete private-v1 acceptance is established. Original
+Iron-root evidence remains owned by root for ongoing consumers, with no new
+disposable files/processes created by this correction. Umbrella claim continues.

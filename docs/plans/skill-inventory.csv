@@ -146,7 +146,7 @@ necromancer,skills-necromancer-bone-prison,necromancer.bone_prison,active,debuff
 necromancer,skills-necromancer-bone-spirit,necromancer.bone_spirit,active,damage,,src/data/skills/necromancer.json,,unverified,
 necromancer,skills-necromancer-skeleton-mastery,necromancer.skeleton_mastery,passive,fresh-owned-skeleton-creation,,src/data/skills/necromancer.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/p07a05-skeleton-mastery.md
 necromancer,skills-necromancer-clay-golem,necromancer.clay_golem,active,summon,,src/data/skills/necromancer.json,,unverified,
-necromancer,skills-necromancer-golem-mastery,necromancer.golem_mastery,passive,buff,,src/data/skills/necromancer.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+necromancer,skills-necromancer-golem-mastery,necromancer.golem_mastery,passive,fresh-owned-golem-creation-and-shared-previews,,src/data/skills/necromancer.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-golem-mastery-reconciliation.md
 necromancer,skills-necromancer-raise-skeletal-mage,necromancer.raise_skeletal_mage,active,summon,,src/data/skills/necromancer.json,,unverified,
 necromancer,skills-necromancer-summon-resist,necromancer.summon_resist,passive,buff-metadata+fresh-owned-summon-composition,,src/data/skills/necromancer.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-global-summon-passives.md
 necromancer,skills-necromancer-iron-golem,necromancer.iron_golem,active,summon,,src/data/skills/necromancer.json,,unverified,
