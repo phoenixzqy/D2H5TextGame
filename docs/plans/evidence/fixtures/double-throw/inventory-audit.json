@@ -1,0 +1,16 @@
+{
+  "creditedOnly": "skills-barbarian-double-throw",
+  "rows": 213,
+  "otherRowsByteExact": 212,
+  "orderPreserved": true,
+  "counts": {
+    "unverified": 98,
+    "bounded-functional;independent-acceptance-open": 110,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "barbarianBounded": 15,
+  "beforeSha256": "8811bf3eb0be2e2dab0752a4b2c7ee47181a5e509c67bc926c19b641f405f380",
+  "afterSha256": "bfd091ed14047f82507bce6b01950339baa097cde9f9df1a7a6403c2cc7218e0"
+}

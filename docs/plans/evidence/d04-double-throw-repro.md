@@ -34,3 +34,8 @@ No Double Throw source repair or inventory credit. Genuine Ancients/Rite
 L33/XP149261/nextNormal402/Nightmare0/Baal uncleared remains unchanged. No genuine
 campaign or remote action. C2–C4/fullG0–G7/all-class earned builds/30–50hour
 pacing/economy/endgame/independent acceptance and complete privatev1 remain open.
+
+
+## Subsequent local repair
+
+`25ae9b20` implements the [author contract](../decisions/D04-double-throw-v1.md). [Delivery verification](d04-double-throw.md) records actual independent original-pool throws, one payment, native save/wave lifecycle and production browser proof. Historical prepatch evidence is preserved; independent/earned acceptance remains open.

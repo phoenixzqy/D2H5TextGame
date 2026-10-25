@@ -1,6 +1,6 @@
 # BUG-215 — Double Throw loses its second throw against a lone enemy
 
-- Status: reproduced; repeated-throw/target-pool contract and repair open.
+- Status: locally fixed in `25ae9b20`; independent/earned acceptance open.
 - Severity: High — the advertised two-throw skill resolves one singleton attempt.
 - Owner: root; independent design/QA and earned balance remain open.
 - Build: `7229ffcf` plus the frozen Double Swing repair; Double Throw data and
@@ -38,3 +38,8 @@ the literal authored12MP cost and reproduces all24scenarios.
 
 Evidence: [native reproduction](../../docs/plans/evidence/d04-double-throw-repro.md).
 No Double Throw repair/credit, genuine campaign or remote action.
+
+
+## Local repair
+
+`25ae9b20` opts into two total original-pool attempts under the [author contract](../../docs/plans/decisions/D04-double-throw-v1.md).40new regressions, production4/4, full15103/687/two existing skips and final types/lint/build pass. [Delivery evidence](../../docs/plans/evidence/d04-double-throw.md) retains original RED/type failure, synthetic limits, committed-source hashes and cleanup. Historical reproduction remains; independent design/QA and earned balance open.

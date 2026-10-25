@@ -20,7 +20,8 @@ Current implementation evidence lives in `evidence/`.
 | D04 Psychic Hammer / BUG212 | locally fixed/verified; independent and earned acceptance open | Source/tests/contract `884b0839`: replace inert Knockback with existing on-hit Stun1s/boss0.5s, actual interruption without movement.37new cases; engine7753/287, full14965/675/two existing skips, types/lint/build PASS. Production4/4/eight exact five-domain Continue pairs/20geometry/16screenshots/four inspected. [Evidence](evidence/d04-psychic-hammer.md).1169source committed blobs/760build exact; four bridge-free chunks/756precache URLs. Archive153raw/21receipts verified;913exact files removed including760builds,43recorded PIDs absent/4498closed/scratch absent/remaining[]/failures[]. Only Hammer credited:110bounded/101unverified/one engine-only/one review-needed; Assassin13/30. Provisional author adaptation; earned balance/independent gates/C2-C4/fullG0-G7/privatev1 open; genuineL33/next402/Baal uncleared unchanged. |
 | D04 Leap / BUG213 | locally fixed/verified; independent and earned acceptance open | Source/tests/contract `0742a94f`: shared all-hostile Stun1s/boss0.5s plus paid3s direct Physical+.01/rank, strict native/registry/carry authority and truthful bilingual previews.60new cases; engine7778/288, full15025/679/two existing skips, types/lint/build PASS. Production4/4/eight exact five-domain Continue pairs/20geometry/16screenshots/four inspected. [Evidence](evidence/d04-leap.md). All1175source committed blobs/760build/genuine checked; raw217/25receipts byte-verified. Cleanup977exact files plus1520prior build removals;55recorded PIDs absent/4499closed/scratch absent/remaining[]/failures[]. Only Leap credited:111bounded/100unverified/one engine-only/one review-needed; Barbarian13/30. New3s tuning/provisional adaptation, earned balance/independent gates/C2-C4/fullG0-G7/privatev1 remain open; genuineL33/next402/Baal uncleared unchanged. |
 | D04 Double Swing / BUG214 | locally fixed/verified; independent and earned acceptance open | Source/tests/contract `0269609e`: two fixed-original passes across densest cross/cap3, no replacement/redistribution, one10MP/CD1 and truthful per-target previews.38new cases; earlier engine7787/289, focused38/4, compatibility129/6, loader1/1, full15063/683/two existing skips/types/lint/build PASS. Production4/4/eight exact five-domain Continue pairs/20geometry/16screenshots/four inspected, six first-cast attempts each. [Evidence](evidence/d04-double-swing.md). All1180source committed blobs/760build/genuine audited. Only Swing credited:112bounded/99unverified/one engine-only/one review-needed; Barbarian14/30. Cross adaptation/provisional balance, independent gates/C2-C4/fullG0-G7/privatev1 open; genuineL33/next402/Baal uncleared unchanged. |
-| D04 Double Throw / BUG215 | singleton second throw missing; contract/repair open |24native rank1/2/20 ×four seeds ×one/four enemies cases pay12MP once. Singleton gets one attempt; four enemies get one attempt on each of first two. Complete corrected observations precede intentional exit1. [Reproduction](evidence/d04-double-throw-repro.md). No Throw repair/credit. |
+| D04 Double Throw / BUG215 | locally fixed/verified; independent and earned acceptance open | Source/tests/contract `25ae9b20`: two total independent attempts rotate in existing original up-to-two pool; singleton can receive both, one12MP/CD1, truthful bilingual per-attempt/per-cast UI.40new cases; focused40/4, engine7798/290, compatibility84/7, full15103/687/two existing skips/final types/lint/build PASS. Production4/4/eight exact five-domain Continue pairs/20geometry/16screenshots/four inspected. [Evidence](evidence/d04-double-throw.md).1185source committed blobs/760build/genuine audited. Only Throw credited:113bounded/98unverified/one engine-only/one review-needed, Barbarian15/30. Independent/earned gates and full privatev1 open; genuineL33/next402/Baal uncleared unchanged. |
+| D04 Frenzy / BUG216 | hit-earned speed missing; contract/repair open |12native rank/seed pairs:35paid casts,27–30positive hits each, unchanged1700ms cadence matching basic controls; only scalar damage registered. [Reproduction](evidence/d04-frenzy-repro.md). No Frenzy patch/credit. |
 | D04 Assassin Fire / BUG205–206 | six Fire-hit/Burn paths locally repaired; other promises open | Runtime `ee952d1d`, presentation `6400adb0`; explicit10% Fire-only Burn and real shared-roll Phoenix components, generic bilingual composite summary.134new cases; final full14626/651/two skips (500.032s), engine7574/276, types/lint/build PASS.30production cases/60exact five-domain Continue pairs/50geometry/96screenshots/16inspected. [Evidence](evidence/d04-assassin-fire.md). Exact1383source/two design/760build freeze and committed blobs verified. Only Dragon Tail credited:104bounded/107unverified/one engine-only/one review-needed; Assassin7/30. Cone/charge/persistent traps and Death Sentry identity remain open; genuineL33/next402/Baal uncleared unchanged. Independent/earned acceptance/C2-C4/G0-G7/privatev1 open.512raw members/37terminal receipts verified;2032exact scratch files removed, all76owned PIDs absent/4492closed/remaining[]/failures[]. Umbrella worktree/claim active. |
 | D04 Dragon Talon / BUG204 | locally fixed/verified; independent and earned acceptance open | Runtime `5f9a2f8f`, presentation `2e132186`: actual authored three independent original-target attempts, one action/4MP/cooldown, ordinary miss/death/mitigation/shield/reflection/replay.49new cases; final full14492/648/two existing skips (495.830s), engine7553/275, compatibility148/12, data815/14, types/lint/build PASS. Production4/4; eight exact five-domain Continue pairs/20geometry/20screenshots/eight inspected. [Evidence](evidence/d04-dragon-talon.md). All1380source+two design+760build/Git/genuine exact through full; actual committed blobs verified. Only Talon credited:103bounded/108unverified/one engine-only/one review-needed, Assassin6/30. Seven Burn rows gain reproduction links only;205other rows exact. GenuineL33/next402/Baal uncleared; C2-C4/fullG0-G7/privatev1 open. |
 | D04 Amazon Impale / BUG202 | locally fixed/verified; independent and earned acceptance open | Runtime `229f0d2c`, presentation `1d1eca0f`. Explicit provisional10% final-hit/s Bleed and typed per-hit ordinary Defense bypass; shared mitigation/status/shield/reflection/death/native authority/replay retained.62new cases/3files; final full14394/640/two existing skips (498.865s), engine7517/271, focused62/3 and compatibility165/8/data234/12, types/lint/build/bridge/precache PASS. Production4/4, eight exact five-domain Continue pairs/20geometry/20screenshots/eight inspected. [Evidence](evidence/d04-impale.md); all1372source+two design+760build/Git/genuine hashes exact through full, actual committed blobs verified. Exactly one credit:213IDs/order,101bounded-functional/110unverified/one engine-only/one review-needed; Amazon8/30plus one engine-only, earned acceptance open.162raw members/24terminal receipts byte-verified;922exact files removed, scratch/all51recorded PIDs absent,4489closed,remaining[]/failures[]. GenuineL33/next402 unchanged/Baal uncleared; Jab reproduced separately/no credit. Root sole writer/local only; C2-C4/fullG0-G7/privatev1 and umbrella goal/worktree remain active. |
@@ -12204,3 +12205,42 @@ Cleanup removed 883 exact task-owned files, including 760 disposable build
 files. All 33 recorded PIDs are absent, port 4500 is closed, scratch is
 absent, and remaining/failures are empty. Shared caches and the umbrella
 worktree/branch/claim are preserved. Independent acceptance remains open.
+
+
+## 2026-10-25 — Double Throw pair verified; Frenzy speed defect reproduced
+
+Source/tests/contract `25ae9b20` implements two total default-sequence attempts
+inside the existing original up-to-two pool. Singleton receives both; misses,
+mitigation, reflection/shields, target/caster death, actual HP/MP and immutable
+resource/living-status playback pass. Native eligibility/allocation-current-wave/
+next-wave/save and truthful bilingual current/next/MAX UI verified.
+[Evidence](evidence/d04-double-throw.md).
+
+Focused40/4, engine7798/290, compatibility84/7 including real loader1/1,
+final types/lint/build/browser PASS; full15103/687/two existing skips,
+Vitest555.62s/wrapper557.012s. A negative-preview
+fixture's explicit undefined was replaced by omission after full began; final
+focused/typecheck/surgical lint cover delivered test bytes. Runtime/build stay
+frozen.1185source/config/contract committed blobs,760build and genuine hashes
+audited. Production4/4/eight exact five-domain Continue pairs/20geometry/
+16screenshots/four inspected. Two first-cast attacks do1HP each; synthetic L30/
+pools/helmet/fixed combat Date.now establish mechanics, not earned balance.
+
+Only Throw credited:113bounded/98unverified/one engine-only/one review-needed,
+Barbarian15/30;213IDs/order and212other rows byte-exact. Cleanup terminal
+is recorded below and in delivery evidence. Frenzy separately reproduces
+unchanged1700ms paid-hit cadence across12rank/seed pairs and35casts each,
+27–30landed hits; no speed status/capability and no patch/credit.
+
+GenuineL33/XP149261/nextNormal402/Nightmare0/Ancients-Rite claimed/Baal uncleared
+and exact hash unchanged. C0/C1 retain narrow exits; C2–C4/fullG0–G7/all-class
+earned builds/30–50hour pacing/economy/endgame/independent acceptance/privatev1
+unfinished. No genuine campaign/remote action. Root sole writer/reviewer;
+umbrella goal/branch/worktree/claim active.
+
+
+Double Throw retention/cleanup terminal: Raw 121 archive members/14 terminal receipts are byte-verified.
+Cleanup removed 881 exact task-owned files, including 760 disposable build
+files. All 29 recorded PIDs are absent, port4501 is closed and scratch is
+absent, with remaining/failures empty. Shared caches and the umbrella
+worktree/branch/claim are preserved; independent acceptance remains open.

@@ -1,0 +1,14 @@
+{
+  "scope": "Double Throw author review of schema/data/display/bilingual UI and four test files",
+  "securityCheck": "pass",
+  "correctness": "Two total attempts inside original up-to-two pool; singleton/two/four-enemy native ranks/seeds; independent misses/criticals, actual HP/MP, mitigation/reflection/shield, priority/death, one CD/payment and resource/cooldown failures; lifecycle/save and immutable playback.",
+  "architecture": "Existing default shared sequence runtime is reused without modification. Closed JSON skill ownership rejects conflicting shape, per-original mode, status or recovery payloads. No API/dependency/save-version change.",
+  "readability": "One JSON opt-in and a bounded display branch, shared UI row and native bilingual description.",
+  "performance": "Two attempts per paid cast; no new combat loop. Existing full test/bundle/PWA budgets remain open.",
+  "findings": [],
+  "limits": [
+    "Author review only; independent design/QA and earned balance remain open.",
+    "Initial typecheck found a negative test fixture explicitly assigning optional undefined; final fixture omits the property, preserving expected behavior. Full started before that test-only correction; final focused/typecheck cover final test bytes.",
+    "Shield/corpse probes use synthetic shared-consumer states; browser imported L30/pools/helmet and1HP hits establish no earned build viability."
+  ]
+}

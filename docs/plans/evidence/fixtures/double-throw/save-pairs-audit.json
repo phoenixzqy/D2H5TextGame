@@ -1,0 +1,94 @@
+{
+  "pairs": [
+    {
+      "before": "final-browser-en-1280/en-1280-double-throw-rank1-before-3.json",
+      "after": "final-browser-en-1280/en-1280-double-throw-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "before": "final-browser-en-1280/en-1280-double-throw-rank2-before-5.json",
+      "after": "final-browser-en-1280/en-1280-double-throw-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "before": "final-browser-en-360/en-360-double-throw-rank1-before-3.json",
+      "after": "final-browser-en-360/en-360-double-throw-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "before": "final-browser-en-360/en-360-double-throw-rank2-before-5.json",
+      "after": "final-browser-en-360/en-360-double-throw-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "before": "final-browser-zh-CN-1280/zh-CN-1280-double-throw-rank1-before-3.json",
+      "after": "final-browser-zh-CN-1280/zh-CN-1280-double-throw-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "before": "final-browser-zh-CN-1280/zh-CN-1280-double-throw-rank2-before-5.json",
+      "after": "final-browser-zh-CN-1280/zh-CN-1280-double-throw-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "before": "final-browser-zh-CN-360/zh-CN-360-double-throw-rank1-before-3.json",
+      "after": "final-browser-zh-CN-360/zh-CN-360-double-throw-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "before": "final-browser-zh-CN-360/zh-CN-360-double-throw-rank2-before-5.json",
+      "after": "final-browser-zh-CN-360/zh-CN-360-double-throw-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    }
+  ],
+  "exactPairs": 8,
+  "scope": "Five domains; meta idle clocks may advance at real reopen."
+}
