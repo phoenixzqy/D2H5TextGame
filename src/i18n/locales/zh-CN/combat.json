@@ -37,7 +37,9 @@
     "available": "敌人倒下，留下一具尸体。可用尸体：{{count}}。",
     "consumed": "尸体爆炸消耗一具尸体。剩余尸体：{{count}}。",
     "consumedPoison": "尸体剧毒爆破消耗一具尸体。剩余尸体：{{count}}。",
-    "consumedRedemption": "救赎消耗一具尸体。剩余尸体：{{count}}。"
+    "consumedRedemption": "救赎消耗一具尸体。剩余尸体：{{count}}。",
+    "consumedCarrion": "食尸藤消耗一具尸体恢复主人生命。剩余尸体：{{count}}。",
+    "consumedSolar": "太阳藤消耗一具尸体恢复主人法力。剩余尸体：{{count}}。"
   },
   "allies": "我方",
   "enemies": "敌人",
@@ -139,7 +141,8 @@
       "attract": "吸引",
       "lower-resist": "降低抵抗",
       "mana-burn": "法力燃烧",
-      "feral-rage": "野性狂暴"
+      "feral-rage": "野性狂暴",
+      "blind": "致盲"
     },
     "buff": {
       "cyclone-armor": "旋风装甲",
@@ -252,7 +255,8 @@
     "waveStart": "第 {{wave}} 波 — {{enemies}} 出现！",
     "bossArrives": "{{boss}} 出现了！",
     "lootGained": "获得 {{item}}。",
-    "goldGained": "获得 {{amount}} 金币。"
+    "goldGained": "获得 {{amount}} 金币。",
+    "vineRecoveryAction": "{{actor}} 从尸体中汲取恢复之力。"
   },
   "bossIntro": "令人窒息的恐惧笼罩战场——{{boss}} 现身，阻断通往下一章的道路。",
   "tier": {

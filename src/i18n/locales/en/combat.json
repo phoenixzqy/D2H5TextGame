@@ -37,7 +37,9 @@
     "available": "A fallen enemy leaves a corpse. Available: {{count}}.",
     "consumed": "Corpse Explosion consumes a corpse. Remaining: {{count}}.",
     "consumedPoison": "Poison Explosion consumes a corpse. Remaining: {{count}}.",
-    "consumedRedemption": "Redemption consumes a corpse. Remaining: {{count}}."
+    "consumedRedemption": "Redemption consumes a corpse. Remaining: {{count}}.",
+    "consumedCarrion": "Carrion Vine consumes a corpse to restore its owner’s life. Remaining: {{count}}.",
+    "consumedSolar": "Solar Creeper consumes a corpse to restore its owner’s mana. Remaining: {{count}}."
   },
   "allies": "Allies",
   "enemies": "Enemies",
@@ -139,7 +141,8 @@
       "attract": "Attract",
       "lower-resist": "Lower Resist",
       "mana-burn": "Mana Burn",
-      "feral-rage": "Feral Rage"
+      "feral-rage": "Feral Rage",
+      "blind": "Blinded"
     },
     "buff": {
       "cyclone-armor": "Cyclone Armor",
@@ -252,7 +255,8 @@
     "waveStart": "Wave {{wave}} — {{enemies}} appear!",
     "bossArrives": "{{boss}} arrives!",
     "lootGained": "Obtained {{item}}.",
-    "goldGained": "Obtained {{amount}} gold."
+    "goldGained": "Obtained {{amount}} gold.",
+    "vineRecoveryAction": "{{actor}} draws recovery from a corpse."
   },
   "bossIntro": "A suffocating dread fills the air — {{boss}} steps forward to bar the road to the next Act.",
   "tier": {

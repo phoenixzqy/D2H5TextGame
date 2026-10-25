@@ -44,6 +44,8 @@ export interface DamageInput {
   readonly defenderDodge: number;
   /** Hit chance (default 0.85). Spectral/thorns ignore dodge — set ignoreDodge=true. */
   readonly hitChance?: number;
+  /** Additive hit-probability penalty, applied before the ordinary dodge/minimum floor. */
+  readonly hitChancePenalty?: number;
   readonly ignoreDodge?: boolean;
   /** Act IV/V resistance pierce (subtracted from defender resist before clamp). */
   readonly resistPenalty?: number;
@@ -118,7 +120,7 @@ export function resolveDamage(input: DamageInput, rng: Rng): DamageOutcome {
 
   // 1) Dodge / hit roll
   if (!input.ignoreDodge) {
-    const effectiveHit = Math.max(0.05, hitChance - input.defenderDodge);
+    const effectiveHit = Math.max(0.05, hitChance - (input.hitChancePenalty ?? 0) - input.defenderDodge);
     if (!rng.chance(effectiveHit)) {
       return MISS;
     }

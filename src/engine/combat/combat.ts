@@ -54,6 +54,8 @@ import { availableEnergyShieldMana, divertEnergyShield } from '../skills/energy-
 import { activeBurstOfSpeed, burstOfSpeedRank, copyBurstOfSpeedStatuses, matchesBurstOfSpeed,
   paidBurstOfSpeed, BURST_OF_SPEED_IDS, BURST_OF_SPEED_DEFINITION } from '../skills/burst-of-speed';
 import { activeFeralRage, copyFeralRageStatuses, FERAL_RAGE_DEFINITION, gainFeralRageStack } from '../skills/druid-sustain';
+import { copyDruidSummonRanks, isDruidSummonBody, qualifyDruidSummon } from '../skills/druid-summon-authority';
+import { DRUID_SUMMON_DEFINITION, type DruidSummonId } from '../skills/druid-summon-definition';
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
@@ -107,7 +109,9 @@ export function actionPeriodMs(attackSpeed: number): number {
 export type BattleEvent =
   | { readonly kind: 'message'; readonly messageKey: string; readonly params?: Readonly<Record<string, string | number>> }
   | { readonly kind: 'turn-start'; readonly turn: number }
-  | { readonly kind: 'action'; readonly actor: string; readonly skillId: string | null }
+  | { readonly kind: 'action'; readonly actor: string; readonly skillId: string | null;
+      /** This scheduled action restores the owner instead of attempting an attack. */
+      readonly corpseRecovery?: true }
   | {
       readonly kind: 'damage';
       readonly source: string;
@@ -138,7 +142,7 @@ export type BattleEvent =
   | { readonly kind: 'life-capacity'; readonly target: string; readonly lifeMax: number; readonly life: number; readonly vigorBaseLifeMax?: number;
       readonly druidFormState?: Pick<CombatUnit, 'druidForm' | 'druidFormLife'> }
   | { readonly kind: 'mana'; readonly target: string; readonly mana: number;
-      readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' | 'redemption' | 'energy-shield' }
+      readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' | 'redemption' | 'energy-shield' | 'solar-creeper' }
   | { readonly kind: 'death'; readonly target: string }
   | { readonly kind: 'enrage'; readonly target: string }
   | { readonly kind: 'orb'; readonly target: string; readonly orb: Orb }
@@ -209,6 +213,9 @@ interface State {
   readonly poisonExplosion: Map<string, number>;
   readonly assassinVenom?: AssassinVenomProjection;
   readonly corpses: string[];
+  /** Only IDs committed/accepted by qualified preparation in this battle may use Druid effects. */
+  readonly druidSummons: Map<string, { readonly ownerId: string; readonly template: DruidSummonId;
+    readonly skillId: string; readonly rank: number }>;
   readonly ironGolem?: IronGolemInput;
   ironGolemPreparation?: IronGolemPreparationAttestation;
   readonly mightAura?: MightAuraProjection;
@@ -488,7 +495,8 @@ function pickDefender(
 }
 
 function registerUnit(state: State, u: CombatUnit): void {
-  const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(u))));
+  const native = u.druidSummonRanks === undefined ? u : { ...u, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
+  const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(native))));
   const shaped = refreshDruidFormState(copied);
   state.units.set(u.id, shaped);
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
@@ -568,6 +576,9 @@ function buildDamageInput(
       (effect.damageType === 'cold' && attacker.side === 'player' && alive(attacker) && holyFreezeSourceId(state) !== undefined
         ? MERC_HOLY_FREEZE_DEFINITION.coldDamagePct : 0),
     comboMult: combo,
+    ...((effect.damageType === 'physical' || effect.damageType === 'thorns') &&
+      hasStatus(activeStatusView(attacker, state.simClockMs), 'blind')
+      ? { hitChancePenalty: DRUID_SUMMON_DEFINITION.raven.physicalHitChancePenalty } : {}),
     type: effect.damageType,
     critChance: stats.critChance + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.critPerRank,
     critMult: stats.critDamage,
@@ -671,7 +682,7 @@ function applyDamageToUnit(
               simClockMs: state.simClockMs,
               ...(status.durationMs !== undefined ? { durationMs: status.durationMs } : {}),
               ...(dotPerStack !== undefined ? { dotPerStack } : {}),
-              damageType: effect.damageType
+              damageType: status.damageType ?? effect.damageType
             },
             state.rng
           );
@@ -820,7 +831,11 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
   // Keep every outcome unit and handled death intact for rewards and replay.
   const aura = state.statAura;
   if (state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0 ||
-    (aura?.redemption && activeStatAura(aura, aura.sourceHeroId, state.units))) {
+    (aura?.redemption !== undefined && activeStatAura(aura, aura.sourceHeroId, state.units) !== undefined) ||
+    [...state.druidSummons.keys()].some(id => {
+      const bound = activeDruidSummon(state, id);
+      return bound !== undefined && (bound.template === 'carrion_vine' || bound.template === 'solar_creeper');
+    })) {
     for (const u of dead) {
       if (!primary.has(u.id) || u.side !== 'enemy' || inferKind(u) !== 'monster' ||
         u.summon === true || u.ownerId !== undefined || u.summonOwnerId !== undefined) continue;
@@ -1359,13 +1374,53 @@ function basicAttack(state: State, actorId: string): void {
     (activeStatAura(state.statAura, actorId, state.units)?.bonuses.attackPct ?? 0) +
     (activeDruidAllyAuras(state.druidAllyAuras, actor, state.units)?.heartRank ?? 0) * DRUID_ALLY_AURA_DEFINITIONS.heart.attackPerRank;
   const ordinaryRange = actor.attackRange ?? [actor.stats.attack, actor.stats.attack];
+  const damageType = actor.basicAttack?.damageType ?? state.skeletalMageElements.get(actorId) ?? 'physical';
+  const druid = damageType === 'physical' ? activeDruidSummon(state, actorId) : undefined;
   const projectAttack = (value: number): number => Math.max(1, Math.floor(value * (1 + attackPct)));
   const effect: DamageEffect = {
     kind: 'damage',
-    damageType: actor.basicAttack?.damageType ?? state.skeletalMageElements.get(actorId) ?? 'physical',
-    base: actor.basicAttack?.damage ?? [projectAttack(ordinaryRange[0]), projectAttack(ordinaryRange[1])]
+    damageType,
+    base: actor.basicAttack?.damage ?? [projectAttack(ordinaryRange[0]), projectAttack(ordinaryRange[1])],
+    ...(druid?.template === 'raven' ? { applyStatus: { id: 'blind' } }
+      : druid?.template === 'poison_creeper' ? { applyStatus: { id: 'poison', damageType: 'poison' as const,
+        dotPctOfDamage: DRUID_SUMMON_DEFINITION.poison.dotPctOfDamage } } : {})
   };
   applyDamageToUnit(state, actorId, target.id, effect, 1, true);
+}
+
+/** Revalidate the original living owner and exact registered body on each use. */
+function activeDruidSummon(state: State, bodyId: string) {
+  const binding = state.druidSummons.get(bodyId);
+  if (!binding) return undefined;
+  const body = state.units.get(bodyId), owner = state.units.get(binding.ownerId), skill = getSkill(binding.skillId);
+  if (!body || !owner || !skill || !isDruidSummonBody(body, owner.id, binding.template) ||
+    qualifyDruidSummon(owner, skill, binding.rank) !== binding.template) return undefined;
+  return { ...binding, body, owner };
+}
+
+/** Stage useful owner recovery before taking one shared FIFO token; a recovery uses this one action. */
+function recoverDruidVine(state: State, bodyId: string): boolean {
+  if (state.corpses.length === 0) return false;
+  const bound = activeDruidSummon(state, bodyId);
+  if (!bound || (bound.template !== 'carrion_vine' && bound.template !== 'solar_creeper')) return false;
+  const life = bound.template === 'carrion_vine', owner = bound.owner;
+  const maximum = life ? owner.stats.lifeMax : owner.stats.manaMax,
+    current = life ? owner.life : owner.mana,
+    fraction = life ? DRUID_SUMMON_DEFINITION.vines.lifeFraction : DRUID_SUMMON_DEFINITION.vines.manaFraction;
+  if (!Number.isFinite(maximum) || maximum <= 0 || !Number.isFinite(current) || current < 0) return false;
+  const amount = Math.min(maximum - current, Math.floor(maximum * fraction));
+  if (!Number.isFinite(amount) || amount <= 0) return false;
+  const corpseId = state.corpses.shift();
+  if (corpseId === undefined) return false;
+  emit(state, { kind: 'action', actor: bodyId, skillId: null, corpseRecovery: true });
+  emit(state, { kind: 'message', messageKey: life ? 'combat:corpses.consumedCarrion' : 'combat:corpses.consumedSolar',
+    params: { count: state.corpses.length, corpseId } });
+  if (life) commitHealing(state, owner, amount);
+  else {
+    const event = commitMana(state, owner, { ...owner, mana: current + amount }, 'solar-creeper');
+    if (event) emit(state, event);
+  }
+  return true;
 }
 
 /** Integrate exactly the overlap; compensated HP-ms avoids repeated fractional-HP loss. */
@@ -1690,8 +1745,18 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
     state.preparationTemplates.set(owner.id, templates);
   }
   templates.add(effect.summonId);
-  if (missing === 0 || cost > owner.mana) return;
+  const druidTemplate = qualifyDruidSummon(owner, skill, rank);
+  const bindDruidBodies = () => {
+    if (!druidTemplate) return;
+    for (const body of summonsOf(state, owner.id, druidTemplate).slice(0, cap)) {
+      if (isDruidSummonBody(body, owner.id, druidTemplate)) state.druidSummons.set(body.id,
+        { ownerId: owner.id, template: druidTemplate, skillId: skill.id, rank });
+    }
+  };
+  if (missing === 0) { bindDruidBodies(); return; }
+  if (cost > owner.mana) return;
   const registered = castSkill(state, owner.id, skill, { summonId: effect.summonId, units: candidates });
+  if (registered?.length === candidates.length) bindDruidBodies();
   // Generic preparation/payment stays intact; elemental authority requires explicit provenance.
   if (!registered || registered.length !== candidates.length ||
     skill.id !== 'necromancer.raise_skeletal_mage' || skill.archetype !== 'necromancer' ||
@@ -1787,6 +1852,8 @@ function takeAction(state: State, unitId: string): void {
     emit(state, { kind: 'stunned', target: unitId });
     return;
   }
+
+  if (recoverDruidVine(state, unitId)) return;
 
   const enemySide: CombatSide = unit.side === 'player' ? 'enemy' : 'player';
   const hasEnemy = aliveOf(state, enemySide).length > 0;
@@ -1967,6 +2034,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     corpseExplosion: new Map(copyCorpseExplosionProjections(snapshot.corpseExplosion).map(p => [p.sourceHeroId, p.rank])),
     poisonExplosion: new Map(copyPoisonExplosionProjections(snapshot.poisonExplosion).map(p => [p.sourceHeroId, p.rank])),
     corpses: [],
+    druidSummons: new Map(),
     ...(golemMastery ? { golemMastery: Object.freeze({ sourceHeroId: golemMastery.sourceHeroId,
       rank: golemMastery.rank, maxRank: golemMastery.maxRank, golemLifePct: golemMastery.golemLifePct,
       golemAttackSpeed: golemMastery.golemAttackSpeed }) } : {}),

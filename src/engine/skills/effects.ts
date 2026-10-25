@@ -21,6 +21,8 @@ export type SummonStatScaling = Partial<Record<
 /** One ordered status application after a successful damage hit. */
 export interface OnHitStatus {
   readonly id: string;
+  /** Explicit DoT type when a physical carrier applies a different elemental payload. */
+  readonly damageType?: DamageType;
   /** Base simulation milliseconds, before canonical status/boss-duration resolution. */
   readonly durationMs?: number;
   readonly chance?: number; // 0..1, default 1

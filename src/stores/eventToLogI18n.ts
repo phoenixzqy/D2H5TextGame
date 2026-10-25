@@ -85,6 +85,10 @@ export function eventToLocalizedLogEntry(
       };
     case 'action': {
       const actorName = getName(event.actor);
+      if (event.corpseRecovery) return {
+        type: 'skill', actorId: event.actor, actorName,
+        message: tx('combat:event.vineRecoveryAction', { actor: actorName })
+      };
       if (event.skillId) {
         const fallbackName = i18n.t(`skills:${event.skillId}.name`, {
           defaultValue: event.skillId

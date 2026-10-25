@@ -22,10 +22,12 @@
 import type { Rng } from '../rng';
 import type { ActiveStatus, CombatUnit, MonsterTier } from './types';
 import { AMPLIFY_DAMAGE_DEFINITION } from './amplify-damage-definition';
+import { DRUID_SUMMON_DEFINITION } from '../skills/druid-summon-definition';
 
 /** Known status IDs handled with explicit defaults. */
 export type StatusId =
   | 'chill'
+  | 'blind'
   | 'freeze'
   | 'stun'
   | 'paralyze'
@@ -51,6 +53,7 @@ export interface StatusConfig {
 /** Default per-status configuration table, derived from §9. */
 export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.freeze({
   chill: { duration: 2, maxStacks: 1 },
+  blind: { duration: DRUID_SUMMON_DEFINITION.raven.durationMs / 1000, maxStacks: 1 },
   freeze: { duration: 1, maxStacks: 1, bossDurationMult: 0.5 },
   stun: { duration: 1, maxStacks: 1, bossDurationMult: 0.5 },
   paralyze: { duration: 1, maxStacks: 1 },

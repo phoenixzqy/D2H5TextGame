@@ -27,6 +27,20 @@ function baseInput(overrides: Partial<DamageInput> = {}): DamageInput {
 }
 
 describe('damage pipeline', () => {
+  it('subtracts an explicit 20-point hit penalty from the default 85% chance', () => {
+    const { hitChance: _explicit, ...input } = baseInput();
+    for (let seed = 1; seed <= 64; seed++) {
+      const roll = createRng(seed).next();
+      expect(resolveDamage({ ...input, hitChancePenalty: 0.2 }, createRng(seed)).hit).toBe(roll < 0.65);
+    }
+  });
+  it('keeps the 5% floor and respects the explicitly supplied hit chance', () => {
+    for (let seed = 1; seed <= 64; seed++) {
+      const roll = createRng(seed).next();
+      expect(resolveDamage(baseInput({ hitChance: 0.1, defenderDodge: 0.9, hitChancePenalty: 0.2 }), createRng(seed)).hit).toBe(roll < 0.05);
+      expect(resolveDamage(baseInput({ hitChance: 1, hitChancePenalty: 0.2 }), createRng(seed)).hit).toBe(roll < 0.8);
+    }
+  });
   it('floor at 1 minimum', () => {
     const out = resolveDamage(baseInput({ baseMin: 1, baseMax: 1, defenderArmor: 9999 }), createRng(1));
     expect(out.final).toBe(1);
