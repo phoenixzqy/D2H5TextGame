@@ -1,9 +1,9 @@
 # BUG-227 — Use the advertised cone for Frozen Orb
 
-- Status: reproduced; cone contract and repair open.
+- Status: locally fixed/verified; independent design/QA and earned balance open.
 - Severity: Medium — a paid cold attack works, but its advertised target shape is wrong.
 - Owner: root, engine/data/UI; independent design/QA and earned balance open.
-- Build: `eeaaa48d`; Frozen Orb data, targeting and descriptions unchanged by that commit.
+- Reproduction build: `eeaaa48d`; Frozen Orb data, targeting and descriptions unchanged by that commit.
 - Environment: Node24 native combat; seeds7/19/41/97, legal native L30Sorceress
   rank1/2/20 with the complete Ice Bolt→Ice Blast→Glacial Spike→Blizzard chain.
   No browser viewport. Both locales and skills-spec §3.1 promise a cone.
@@ -45,3 +45,13 @@ intact and yields the complete12-case intentional geometry failure.
 This does not establish that geometry causes Baal's timeout. Preserve existing
 damage/rank/cost/cooldown/Chill and mitigation until a separate reviewed change
 is supported. Genuine L33/Ancients complete/Baal uncleared remains unchanged.
+
+
+## Local delivery — 2026-10-25
+
+Source dc489cb1 repairs authored and legacy target geometry and adds an
+identity/schema guard. Ranks1/2/20 ×four seeds prove actual paid recipients,
+HP/MP conservation and Chill. Full15610/711/two existing skips, engine7933/296,
+loader292/1, types/lint/build/precache and16public browser cases pass.
+[Delivered evidence](../../docs/plans/evidence/d04-sorceress-cold-attacks.md).
+Independent design/QA and earned campaign/balance acceptance remain open.

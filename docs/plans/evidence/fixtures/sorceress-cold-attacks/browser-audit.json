@@ -1,0 +1,1535 @@
+{
+  "cases": [
+    {
+      "label": "en-1280-ice-bolt",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.53,
+          "publicCast": true,
+          "selectedSkill": "ice-bolt",
+          "enemyChips": [
+            "Chill"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-1280-frost-nova",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.5,
+          "publicCast": true,
+          "selectedSkill": "frost-nova",
+          "enemyChips": [
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-1280-frozen-orb",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.64,
+          "publicCast": true,
+          "selectedSkill": "frozen-orb",
+          "enemyChips": [
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-1280-blizzard",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.75,
+          "publicCast": true,
+          "selectedSkill": "blizzard",
+          "enemyChips": [
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-ice-bolt",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "ice-bolt",
+          "enemyChips": [
+            "Chill"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-frost-nova",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.5,
+          "publicCast": true,
+          "selectedSkill": "frost-nova",
+          "enemyChips": [
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-frozen-orb",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.64,
+          "publicCast": true,
+          "selectedSkill": "frozen-orb",
+          "enemyChips": [
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-blizzard",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.78,
+          "publicCast": true,
+          "selectedSkill": "blizzard",
+          "enemyChips": [
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill",
+            "Chill"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-ice-bolt",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "ice-bolt",
+          "enemyChips": [
+            "\u51b0\u51b7"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-frost-nova",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.5,
+          "publicCast": true,
+          "selectedSkill": "frost-nova",
+          "enemyChips": [
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-frozen-orb",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.64,
+          "publicCast": true,
+          "selectedSkill": "frozen-orb",
+          "enemyChips": [
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-blizzard",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.78,
+          "publicCast": true,
+          "selectedSkill": "blizzard",
+          "enemyChips": [
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-ice-bolt",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.58,
+          "publicCast": true,
+          "selectedSkill": "ice-bolt",
+          "enemyChips": [
+            "\u51b0\u51b7"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-frost-nova",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.5,
+          "publicCast": true,
+          "selectedSkill": "frost-nova",
+          "enemyChips": [
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-frozen-orb",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.64,
+          "publicCast": true,
+          "selectedSkill": "frozen-orb",
+          "enemyChips": [
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-blizzard",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.78,
+          "publicCast": true,
+          "selectedSkill": "blizzard",
+          "enemyChips": [
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7",
+            "\u51b0\u51b7"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    }
+  ],
+  "geometry": [
+    {
+      "label": "en-1280-ice-bolt",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-ice-bolt",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-ice-bolt",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-ice-bolt",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-ice-bolt",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frost-nova",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frost-nova",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frost-nova",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frost-nova",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frost-nova",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frozen-orb",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frozen-orb",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frozen-orb",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frozen-orb",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frozen-orb",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-blizzard",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-blizzard",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-blizzard",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-blizzard",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-blizzard",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-ice-bolt",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-ice-bolt",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-ice-bolt",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-ice-bolt",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-ice-bolt",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frost-nova",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frost-nova",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frost-nova",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frost-nova",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frost-nova",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frozen-orb",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frozen-orb",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frozen-orb",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frozen-orb",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frozen-orb",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-blizzard",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-blizzard",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-blizzard",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-blizzard",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-blizzard",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-ice-bolt",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-ice-bolt",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-ice-bolt",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-ice-bolt",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-ice-bolt",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frost-nova",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frost-nova",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frost-nova",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frost-nova",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frost-nova",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frozen-orb",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frozen-orb",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frozen-orb",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frozen-orb",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frozen-orb",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-blizzard",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-blizzard",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-blizzard",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-blizzard",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-blizzard",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-ice-bolt",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-ice-bolt",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-ice-bolt",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-ice-bolt",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-ice-bolt",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frost-nova",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frost-nova",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frost-nova",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frost-nova",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frost-nova",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frozen-orb",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frozen-orb",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frozen-orb",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frozen-orb",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frozen-orb",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-blizzard",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-blizzard",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-blizzard",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-blizzard",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-blizzard",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    }
+  ],
+  "consolePageErrors": [],
+  "screenshots": 48,
+  "individuallyInspected": [
+    "browser-en-360/en-360-frozen-orb-current-next.png",
+    "browser-en-360/en-360-frost-nova-current-next.png",
+    "browser-zh-CN-360/zh-CN-360-blizzard-current-next.png",
+    "browser-en-1280/en-1280-ice-bolt-current-next.png"
+  ],
+  "limits": "Synthetic imported L30/resources/helmet and fixed Date.now; no earned campaign or balance claim. Geometry covers selected skill allocation control; no full accessibility audit."
+}

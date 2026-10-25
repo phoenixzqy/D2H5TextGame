@@ -1,0 +1,632 @@
+{
+  "ordinaryPairs": 32,
+  "offlinePairs": 16,
+  "pairs": [
+    {
+      "label": "en-1280-ice-bolt",
+      "kind": "rank1",
+      "before": "browser-en-1280/en-1280-ice-bolt-rank1-before-3.json",
+      "after": "browser-en-1280/en-1280-ice-bolt-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-ice-bolt",
+      "kind": "rank2",
+      "before": "browser-en-1280/en-1280-ice-bolt-rank2-before-5.json",
+      "after": "browser-en-1280/en-1280-ice-bolt-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-ice-bolt",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-1280/en-1280-ice-bolt-rank2-after-6.json",
+      "after": "browser-en-1280/en-1280-ice-bolt-offline-continued-7.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-frost-nova",
+      "kind": "rank1",
+      "before": "browser-en-1280/en-1280-frost-nova-rank1-before-10.json",
+      "after": "browser-en-1280/en-1280-frost-nova-rank1-after-11.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-frost-nova",
+      "kind": "rank2",
+      "before": "browser-en-1280/en-1280-frost-nova-rank2-before-12.json",
+      "after": "browser-en-1280/en-1280-frost-nova-rank2-after-13.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-frost-nova",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-1280/en-1280-frost-nova-rank2-after-13.json",
+      "after": "browser-en-1280/en-1280-frost-nova-offline-continued-14.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-frozen-orb",
+      "kind": "rank1",
+      "before": "browser-en-1280/en-1280-frozen-orb-rank1-before-17.json",
+      "after": "browser-en-1280/en-1280-frozen-orb-rank1-after-18.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-frozen-orb",
+      "kind": "rank2",
+      "before": "browser-en-1280/en-1280-frozen-orb-rank2-before-19.json",
+      "after": "browser-en-1280/en-1280-frozen-orb-rank2-after-20.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-frozen-orb",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-1280/en-1280-frozen-orb-rank2-after-20.json",
+      "after": "browser-en-1280/en-1280-frozen-orb-offline-continued-21.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-blizzard",
+      "kind": "rank1",
+      "before": "browser-en-1280/en-1280-blizzard-rank1-before-24.json",
+      "after": "browser-en-1280/en-1280-blizzard-rank1-after-25.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-blizzard",
+      "kind": "rank2",
+      "before": "browser-en-1280/en-1280-blizzard-rank2-before-26.json",
+      "after": "browser-en-1280/en-1280-blizzard-rank2-after-27.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-1280-blizzard",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-1280/en-1280-blizzard-rank2-after-27.json",
+      "after": "browser-en-1280/en-1280-blizzard-offline-continued-28.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-ice-bolt",
+      "kind": "rank1",
+      "before": "browser-en-360/en-360-ice-bolt-rank1-before-3.json",
+      "after": "browser-en-360/en-360-ice-bolt-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-ice-bolt",
+      "kind": "rank2",
+      "before": "browser-en-360/en-360-ice-bolt-rank2-before-5.json",
+      "after": "browser-en-360/en-360-ice-bolt-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-ice-bolt",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-360/en-360-ice-bolt-rank2-after-6.json",
+      "after": "browser-en-360/en-360-ice-bolt-offline-continued-7.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-frost-nova",
+      "kind": "rank1",
+      "before": "browser-en-360/en-360-frost-nova-rank1-before-10.json",
+      "after": "browser-en-360/en-360-frost-nova-rank1-after-11.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-frost-nova",
+      "kind": "rank2",
+      "before": "browser-en-360/en-360-frost-nova-rank2-before-12.json",
+      "after": "browser-en-360/en-360-frost-nova-rank2-after-13.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-frost-nova",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-360/en-360-frost-nova-rank2-after-13.json",
+      "after": "browser-en-360/en-360-frost-nova-offline-continued-14.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-frozen-orb",
+      "kind": "rank1",
+      "before": "browser-en-360/en-360-frozen-orb-rank1-before-17.json",
+      "after": "browser-en-360/en-360-frozen-orb-rank1-after-18.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-frozen-orb",
+      "kind": "rank2",
+      "before": "browser-en-360/en-360-frozen-orb-rank2-before-19.json",
+      "after": "browser-en-360/en-360-frozen-orb-rank2-after-20.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-frozen-orb",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-360/en-360-frozen-orb-rank2-after-20.json",
+      "after": "browser-en-360/en-360-frozen-orb-offline-continued-21.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-blizzard",
+      "kind": "rank1",
+      "before": "browser-en-360/en-360-blizzard-rank1-before-24.json",
+      "after": "browser-en-360/en-360-blizzard-rank1-after-25.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-blizzard",
+      "kind": "rank2",
+      "before": "browser-en-360/en-360-blizzard-rank2-before-26.json",
+      "after": "browser-en-360/en-360-blizzard-rank2-after-27.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "en-360-blizzard",
+      "kind": "offline-fresh-page",
+      "before": "browser-en-360/en-360-blizzard-rank2-after-27.json",
+      "after": "browser-en-360/en-360-blizzard-offline-continued-28.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-ice-bolt",
+      "kind": "rank1",
+      "before": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank1-before-3.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-ice-bolt",
+      "kind": "rank2",
+      "before": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank2-before-5.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-ice-bolt",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank2-after-6.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-offline-continued-7.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-frost-nova",
+      "kind": "rank1",
+      "before": "browser-zh-CN-1280/zh-CN-1280-frost-nova-rank1-before-10.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-frost-nova-rank1-after-11.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-frost-nova",
+      "kind": "rank2",
+      "before": "browser-zh-CN-1280/zh-CN-1280-frost-nova-rank2-before-12.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-frost-nova-rank2-after-13.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-frost-nova",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-1280/zh-CN-1280-frost-nova-rank2-after-13.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-frost-nova-offline-continued-14.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-frozen-orb",
+      "kind": "rank1",
+      "before": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank1-before-17.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank1-after-18.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-frozen-orb",
+      "kind": "rank2",
+      "before": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank2-before-19.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank2-after-20.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-frozen-orb",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank2-after-20.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-offline-continued-21.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-blizzard",
+      "kind": "rank1",
+      "before": "browser-zh-CN-1280/zh-CN-1280-blizzard-rank1-before-24.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-blizzard-rank1-after-25.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-blizzard",
+      "kind": "rank2",
+      "before": "browser-zh-CN-1280/zh-CN-1280-blizzard-rank2-before-26.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-blizzard-rank2-after-27.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-1280-blizzard",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-1280/zh-CN-1280-blizzard-rank2-after-27.json",
+      "after": "browser-zh-CN-1280/zh-CN-1280-blizzard-offline-continued-28.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-ice-bolt",
+      "kind": "rank1",
+      "before": "browser-zh-CN-360/zh-CN-360-ice-bolt-rank1-before-3.json",
+      "after": "browser-zh-CN-360/zh-CN-360-ice-bolt-rank1-after-4.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-ice-bolt",
+      "kind": "rank2",
+      "before": "browser-zh-CN-360/zh-CN-360-ice-bolt-rank2-before-5.json",
+      "after": "browser-zh-CN-360/zh-CN-360-ice-bolt-rank2-after-6.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-ice-bolt",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-360/zh-CN-360-ice-bolt-rank2-after-6.json",
+      "after": "browser-zh-CN-360/zh-CN-360-ice-bolt-offline-continued-7.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-frost-nova",
+      "kind": "rank1",
+      "before": "browser-zh-CN-360/zh-CN-360-frost-nova-rank1-before-10.json",
+      "after": "browser-zh-CN-360/zh-CN-360-frost-nova-rank1-after-11.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-frost-nova",
+      "kind": "rank2",
+      "before": "browser-zh-CN-360/zh-CN-360-frost-nova-rank2-before-12.json",
+      "after": "browser-zh-CN-360/zh-CN-360-frost-nova-rank2-after-13.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-frost-nova",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-360/zh-CN-360-frost-nova-rank2-after-13.json",
+      "after": "browser-zh-CN-360/zh-CN-360-frost-nova-offline-continued-14.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-frozen-orb",
+      "kind": "rank1",
+      "before": "browser-zh-CN-360/zh-CN-360-frozen-orb-rank1-before-17.json",
+      "after": "browser-zh-CN-360/zh-CN-360-frozen-orb-rank1-after-18.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-frozen-orb",
+      "kind": "rank2",
+      "before": "browser-zh-CN-360/zh-CN-360-frozen-orb-rank2-before-19.json",
+      "after": "browser-zh-CN-360/zh-CN-360-frozen-orb-rank2-after-20.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-frozen-orb",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-360/zh-CN-360-frozen-orb-rank2-after-20.json",
+      "after": "browser-zh-CN-360/zh-CN-360-frozen-orb-offline-continued-21.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-blizzard",
+      "kind": "rank1",
+      "before": "browser-zh-CN-360/zh-CN-360-blizzard-rank1-before-24.json",
+      "after": "browser-zh-CN-360/zh-CN-360-blizzard-rank1-after-25.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-blizzard",
+      "kind": "rank2",
+      "before": "browser-zh-CN-360/zh-CN-360-blizzard-rank2-before-26.json",
+      "after": "browser-zh-CN-360/zh-CN-360-blizzard-rank2-after-27.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    },
+    {
+      "label": "zh-CN-360-blizzard",
+      "kind": "offline-fresh-page",
+      "before": "browser-zh-CN-360/zh-CN-360-blizzard-rank2-after-27.json",
+      "after": "browser-zh-CN-360/zh-CN-360-blizzard-offline-continued-28.json",
+      "exactDomains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ]
+    }
+  ],
+  "saveVersion": 22,
+  "pass": true
+}

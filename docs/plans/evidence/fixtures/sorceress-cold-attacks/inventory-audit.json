@@ -1,0 +1,17 @@
+{
+  "changedIds": [
+    "skills-sorceress-ice-bolt",
+    "skills-sorceress-frost-nova",
+    "skills-sorceress-frozen-orb",
+    "skills-sorceress-blizzard"
+  ],
+  "otherRowsByteExact": 209,
+  "idsAndOrderUnchanged": true,
+  "total": 213,
+  "boundedFunctional": 128,
+  "unverified": 83,
+  "engineOnly": 1,
+  "reviewNeeded": 1,
+  "sorceressBounded": 12,
+  "independentAndEarnedAcceptance": "open"
+}

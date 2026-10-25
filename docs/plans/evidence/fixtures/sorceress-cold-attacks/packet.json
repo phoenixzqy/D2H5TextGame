@@ -1,0 +1,2716 @@
+{
+  "archive": "raw.tar.gz",
+  "archiveSha256": "50d2c7cb8d20e2d14ea4dca3ee970aa5d9375f7859c31d2af4c8ab0c496b91a6",
+  "archiveBytes": 48630968,
+  "members": [
+    {
+      "path": "audit.py",
+      "sha256": "70623adf82da203107dab087112b9c75d59a9b2622d75f0f8fc6af25c7ddd381",
+      "bytes": 3406
+    },
+    {
+      "path": "boundaries-one-live.json",
+      "sha256": "6233493103a22cadb6406cacdd16fb32501001c25733b24ac32e5bbe3ca01038",
+      "bytes": 116
+    },
+    {
+      "path": "boundaries-one-result.json",
+      "sha256": "1354709cadd98dd4aba61e0e1eb3c2489be63d78b7ac337a92e1dfc8e07b7dcc",
+      "bytes": 161
+    },
+    {
+      "path": "boundaries-one.log",
+      "sha256": "f759dd1c609c1646cd5b2d00f0c2e85ab41c74f4200d43dadddc96cd90631367",
+      "bytes": 362
+    },
+    {
+      "path": "boundaries-three-live.json",
+      "sha256": "de9df47abbff101d3033bb4a68bb2b32e8354e57f7c763968658339e2c1974dd",
+      "bytes": 116
+    },
+    {
+      "path": "boundaries-three-result.json",
+      "sha256": "de8b00162f69394af943e11d74cf8b31cc84a66619fd7a3073597be97b15b9d1",
+      "bytes": 160
+    },
+    {
+      "path": "boundaries-three.log",
+      "sha256": "bec01be8d9113398a0f57bf2fe8c1f51068809c39a68520ac6be183899fa656e",
+      "bytes": 362
+    },
+    {
+      "path": "boundaries-two-live.json",
+      "sha256": "5b4c345e8348acbf93644e4103d3eeca4dc9d724fa84b718bedf9635f81c302c",
+      "bytes": 116
+    },
+    {
+      "path": "boundaries-two-result.json",
+      "sha256": "176aae78381993f5da224f7ebd75f1e8d29fc3636ac2c43d22ba662e29a1cfac",
+      "bytes": 162
+    },
+    {
+      "path": "boundaries-two.log",
+      "sha256": "3499fc544ccf84e49d0240623cbfa014d8e85bf32b45f6b0d6e7c2e4e6ffa624",
+      "bytes": 363
+    },
+    {
+      "path": "browser-en-1280/browser-report.json",
+      "sha256": "aa2740f4a18f6a2e4fa42f4e256b0c85e08dd38f4d118fe71e5991b57de2ca31",
+      "bytes": 7484
+    },
+    {
+      "path": "browser-en-1280/en-1280-blizzard-cast-visible.png",
+      "sha256": "bfc40ada0ff6e48ee96a7a0407ccfab74d670f4e537f39a50a1817bda8f0ae2d",
+      "bytes": 194442
+    },
+    {
+      "path": "browser-en-1280/en-1280-blizzard-combat.json",
+      "sha256": "74bb4fe28c544dff71453192430eb4deec833f141c55897c1586a6062f721d73",
+      "bytes": 2293
+    },
+    {
+      "path": "browser-en-1280/en-1280-blizzard-current-next.png",
+      "sha256": "fa77c87c0355f5e1cb7471700d527babbd3da50c7b2f2d4aecd51f00fb0b3c61",
+      "bytes": 136838
+    },
+    {
+      "path": "browser-en-1280/en-1280-blizzard-details.png",
+      "sha256": "883787b08606af5492ac0bd30a573c62230e63f601455524619eda636d5b02a5",
+      "bytes": 138622
+    },
+    {
+      "path": "browser-en-1280/en-1280-blizzard-fresh-22.json",
+      "sha256": "ad62bcf5458760ed29fd39a424ce03f9e6071bb63b8035a044504ef781a45f27",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-1280/en-1280-blizzard-imported-23.json",
+      "sha256": "0bdacbe9538318bf6d20812a0e1e0c11a2413163083c5d2e6185a9ad08b37897",
+      "bytes": 4889
+    },
+    {
+      "path": "browser-en-1280/en-1280-blizzard-offline-continued-28.json",
+      "sha256": "1052ebf335a7ef90d1325f0db71696077721912a33f71883dde277868b0b2d0f",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-en-1280/en-1280-blizzard-rank1-after-25.json",
+      "sha256": "7b8a7ae301da6402f7ab5f8446139fd9fa7074a6b4ab97d86b230dd3b6b4f637",
+      "bytes": 4892
+    },
+    {
+      "path": "browser-en-1280/en-1280-blizzard-rank1-before-24.json",
+      "sha256": "294d56dab2deefd2694f0a17e1b32b87b6885514a440cf0d3ec1ca1ee12c2e90",
+      "bytes": 4889
+    },
+    {
+      "path": "browser-en-1280/en-1280-blizzard-rank2-after-27.json",
+      "sha256": "1052ebf335a7ef90d1325f0db71696077721912a33f71883dde277868b0b2d0f",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-en-1280/en-1280-blizzard-rank2-before-26.json",
+      "sha256": "1052ebf335a7ef90d1325f0db71696077721912a33f71883dde277868b0b2d0f",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-en-1280/en-1280-blizzard-synthetic-input.json",
+      "sha256": "af8f6ffb7bb97edc621ff9a7297040f25ec293231ba0f154e0e4298d8f69df6c",
+      "bytes": 4073
+    },
+    {
+      "path": "browser-en-1280/en-1280-frost-nova-cast-visible.png",
+      "sha256": "c9824ff46a3f895cf237af9d8504f68d5f2a9a0952c16079ec505ea150a8a1fc",
+      "bytes": 196798
+    },
+    {
+      "path": "browser-en-1280/en-1280-frost-nova-combat.json",
+      "sha256": "9302609d802cc49a6187a332d96fea202eedb2bf5b4d87f23b20c430d0a0b0ec",
+      "bytes": 2263
+    },
+    {
+      "path": "browser-en-1280/en-1280-frost-nova-current-next.png",
+      "sha256": "12d088465f234eb04f57ba437d0e1356e778bf9349989ae3aae4155049d6c8a7",
+      "bytes": 138096
+    },
+    {
+      "path": "browser-en-1280/en-1280-frost-nova-details.png",
+      "sha256": "6ee3165577e9634d1955fcca7f53094b3a20ee78007f78887ac0bbc47d7740c7",
+      "bytes": 138723
+    },
+    {
+      "path": "browser-en-1280/en-1280-frost-nova-fresh-8.json",
+      "sha256": "d6e4f8f6a427398602fb3e9070389288059e119c2d1dff3b7c381470bba7c3a9",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-1280/en-1280-frost-nova-imported-9.json",
+      "sha256": "fe490cafdbdd6dba838cb618d97871daee59aaaa65c3d641c7c52d91a0c7a353",
+      "bytes": 4823
+    },
+    {
+      "path": "browser-en-1280/en-1280-frost-nova-offline-continued-14.json",
+      "sha256": "d04867a4d0ac2e354b382784875478b5c6bcf20e84f5d780adb2d2640fb1c502",
+      "bytes": 4877
+    },
+    {
+      "path": "browser-en-1280/en-1280-frost-nova-rank1-after-11.json",
+      "sha256": "adc13921147af692f55627e9da4833e32c090736611905379186a606db72f7a3",
+      "bytes": 4826
+    },
+    {
+      "path": "browser-en-1280/en-1280-frost-nova-rank1-before-10.json",
+      "sha256": "6891d2883cde19c34712a45b5c6a0e4b53e77c09f542b7b77d2a6a92e917bdbe",
+      "bytes": 4823
+    },
+    {
+      "path": "browser-en-1280/en-1280-frost-nova-rank2-after-13.json",
+      "sha256": "d04867a4d0ac2e354b382784875478b5c6bcf20e84f5d780adb2d2640fb1c502",
+      "bytes": 4877
+    },
+    {
+      "path": "browser-en-1280/en-1280-frost-nova-rank2-before-12.json",
+      "sha256": "d04867a4d0ac2e354b382784875478b5c6bcf20e84f5d780adb2d2640fb1c502",
+      "bytes": 4877
+    },
+    {
+      "path": "browser-en-1280/en-1280-frost-nova-synthetic-input.json",
+      "sha256": "a317ee81811c64e1cbeb49d568a28b13af0f1c296d64b45bf89bca54b9704adc",
+      "bytes": 4007
+    },
+    {
+      "path": "browser-en-1280/en-1280-frozen-orb-cast-visible.png",
+      "sha256": "cfa95a75a7b4d1eb973946c5992fa14368d3e16479319129225f10edd42569e1",
+      "bytes": 205225
+    },
+    {
+      "path": "browser-en-1280/en-1280-frozen-orb-combat.json",
+      "sha256": "85f4dbea2184695216d9fa7d119ea60fd1371b9b5df313d2a61bc02a3324717e",
+      "bytes": 1561
+    },
+    {
+      "path": "browser-en-1280/en-1280-frozen-orb-current-next.png",
+      "sha256": "18345e8a4e392de9912ef3cf04a3276fc8f334b357af38d2498f37e65a374cef",
+      "bytes": 152080
+    },
+    {
+      "path": "browser-en-1280/en-1280-frozen-orb-details.png",
+      "sha256": "dbe9baa3a6767c2b58983a9d19e09e5974b526637e160ded7dc0c5c4fe2a6d2f",
+      "bytes": 153952
+    },
+    {
+      "path": "browser-en-1280/en-1280-frozen-orb-fresh-15.json",
+      "sha256": "f5b4ea50453e8e0084cdae749873169ac88a178c0b5ca16488e2637a74dabb88",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-1280/en-1280-frozen-orb-imported-16.json",
+      "sha256": "429b987954e9d797ec297eb6357ec35b3e6d33274b5400d57a48a32f973f98b7",
+      "bytes": 4922
+    },
+    {
+      "path": "browser-en-1280/en-1280-frozen-orb-offline-continued-21.json",
+      "sha256": "df57477f545bd4176578499345fcec2812f5bf46d650bb99cc4f4f7ae8d974b7",
+      "bytes": 4976
+    },
+    {
+      "path": "browser-en-1280/en-1280-frozen-orb-rank1-after-18.json",
+      "sha256": "80514adce02d5e945b33347de374ae6039669de79997aa998ff8875b89d213b9",
+      "bytes": 4925
+    },
+    {
+      "path": "browser-en-1280/en-1280-frozen-orb-rank1-before-17.json",
+      "sha256": "cfb33ebe22af59e7c350bc0cada022f400c4e244261ecabb775469bd0ee713da",
+      "bytes": 4922
+    },
+    {
+      "path": "browser-en-1280/en-1280-frozen-orb-rank2-after-20.json",
+      "sha256": "df57477f545bd4176578499345fcec2812f5bf46d650bb99cc4f4f7ae8d974b7",
+      "bytes": 4976
+    },
+    {
+      "path": "browser-en-1280/en-1280-frozen-orb-rank2-before-19.json",
+      "sha256": "df57477f545bd4176578499345fcec2812f5bf46d650bb99cc4f4f7ae8d974b7",
+      "bytes": 4976
+    },
+    {
+      "path": "browser-en-1280/en-1280-frozen-orb-synthetic-input.json",
+      "sha256": "7f5e4653907db87be6d51773a65c24b052df3e24677e167deb31072fb078ca68",
+      "bytes": 4106
+    },
+    {
+      "path": "browser-en-1280/en-1280-ice-bolt-cast-visible.png",
+      "sha256": "6e57bd66487a16232fd6a14d44b478e3244cef0ff003bc87abb732e825a14a86",
+      "bytes": 218296
+    },
+    {
+      "path": "browser-en-1280/en-1280-ice-bolt-combat.json",
+      "sha256": "bbbfc47ed3072ad9c708709586a45e085de79eb8d6b290c9766497d0733fad20",
+      "bytes": 1372
+    },
+    {
+      "path": "browser-en-1280/en-1280-ice-bolt-current-next.png",
+      "sha256": "5e88ffb8c1765272d4111d9e52db2db585319b0308f79341ec02499b1d9c8582",
+      "bytes": 128571
+    },
+    {
+      "path": "browser-en-1280/en-1280-ice-bolt-details.png",
+      "sha256": "1a0e66debd71dbfe5c278391ab4fd7c346513a79220bdfc02e08b1cdd33ea9bf",
+      "bytes": 130156
+    },
+    {
+      "path": "browser-en-1280/en-1280-ice-bolt-fresh-1.json",
+      "sha256": "e06f0e6831f1d0935a83632317d29b6bfa783cb4a43b4891b67a5ea46e048099",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-1280/en-1280-ice-bolt-imported-2.json",
+      "sha256": "8b3724656d59b6ebbf791a3a8ed92bb2120c991b952b9fc755534bc5ac167589",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-en-1280/en-1280-ice-bolt-offline-continued-7.json",
+      "sha256": "b1d9c4fb587ea96f42283a33610b23e16661709c2931065f3c6d5caaab4beceb",
+      "bytes": 4842
+    },
+    {
+      "path": "browser-en-1280/en-1280-ice-bolt-rank1-after-4.json",
+      "sha256": "927c0ac29098b3681cd0198ea09cd68ea30c41cdafd751461278fb4299e52587",
+      "bytes": 4793
+    },
+    {
+      "path": "browser-en-1280/en-1280-ice-bolt-rank1-before-3.json",
+      "sha256": "23f677044220b89f698530ab1838eb6770fc00c251a9016dc701270e7ce31328",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-en-1280/en-1280-ice-bolt-rank2-after-6.json",
+      "sha256": "b1d9c4fb587ea96f42283a33610b23e16661709c2931065f3c6d5caaab4beceb",
+      "bytes": 4842
+    },
+    {
+      "path": "browser-en-1280/en-1280-ice-bolt-rank2-before-5.json",
+      "sha256": "b1d9c4fb587ea96f42283a33610b23e16661709c2931065f3c6d5caaab4beceb",
+      "bytes": 4842
+    },
+    {
+      "path": "browser-en-1280/en-1280-ice-bolt-synthetic-input.json",
+      "sha256": "f3338ec38ec546ca3f34333b54629c7e68403f35e0becd55c613f41579df10ad",
+      "bytes": 3974
+    },
+    {
+      "path": "browser-en-1280-final-live.json",
+      "sha256": "f0356124afb493367bda78836d4eaa52f055e943f711c8a29bc78a4629e4f63f",
+      "bytes": 138
+    },
+    {
+      "path": "browser-en-1280-final-result.json",
+      "sha256": "6e786139077973f263e59ba1474402a3052ef9de1bc961ced2d1e1dbee72b592",
+      "bytes": 182
+    },
+    {
+      "path": "browser-en-1280-final.log",
+      "sha256": "c533cae964570b8f2244007de385ab729dcba69aa9d5291b71cf2a29a7cbdbdc",
+      "bytes": 139
+    },
+    {
+      "path": "browser-en-360/browser-report.json",
+      "sha256": "0589d993fe98dd3be9c3861a8661d50d95bd604d0011297f040641efc4d088fb",
+      "bytes": 7460
+    },
+    {
+      "path": "browser-en-360/en-360-blizzard-cast-visible.png",
+      "sha256": "3ecb8ea39fee185969e3e1c023715f87621315dcf9c7af355f0efbe64257a3d5",
+      "bytes": 53741
+    },
+    {
+      "path": "browser-en-360/en-360-blizzard-combat.json",
+      "sha256": "ed158e47104d5e5e58eccd86fa3081c7fd43b51be031db1c89fa0a6725df5a7d",
+      "bytes": 2081
+    },
+    {
+      "path": "browser-en-360/en-360-blizzard-current-next.png",
+      "sha256": "1d70f5adfa6f91f94cc81ba1438dd28e18fda779152b1d8fa207a775e4596294",
+      "bytes": 48548
+    },
+    {
+      "path": "browser-en-360/en-360-blizzard-details.png",
+      "sha256": "ddcdd707957e9e838a475f35cefb027bd7e6aa7f8f8c02cb8760e946f69d3e4d",
+      "bytes": 50363
+    },
+    {
+      "path": "browser-en-360/en-360-blizzard-fresh-22.json",
+      "sha256": "f4879efa60119d3e85b38241e4f9fce1d3b633b669dff05e3594d36e72574206",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-360/en-360-blizzard-imported-23.json",
+      "sha256": "09f08f3d9eb8c604beb04c48fb8a642e713cd055bb9d89c6835ba6ab8d3626ef",
+      "bytes": 4889
+    },
+    {
+      "path": "browser-en-360/en-360-blizzard-offline-continued-28.json",
+      "sha256": "12928ffa1741c9021806de3390295ce462ecf001dd1aa47bfd40b0d6c4ff1dbb",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-en-360/en-360-blizzard-rank1-after-25.json",
+      "sha256": "38e93ea1623ff95e048198036d63d771ee65c5799b5e9fb356dd7d909637093e",
+      "bytes": 4892
+    },
+    {
+      "path": "browser-en-360/en-360-blizzard-rank1-before-24.json",
+      "sha256": "27c4f0bc2ac1a0d65c79dab9d5b700f9192762bc5617f0184869f2eeb80b6f42",
+      "bytes": 4889
+    },
+    {
+      "path": "browser-en-360/en-360-blizzard-rank2-after-27.json",
+      "sha256": "12928ffa1741c9021806de3390295ce462ecf001dd1aa47bfd40b0d6c4ff1dbb",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-en-360/en-360-blizzard-rank2-before-26.json",
+      "sha256": "12928ffa1741c9021806de3390295ce462ecf001dd1aa47bfd40b0d6c4ff1dbb",
+      "bytes": 4941
+    },
+    {
+      "path": "browser-en-360/en-360-blizzard-synthetic-input.json",
+      "sha256": "a8726227afd92b2849e7ecc66a4d1ac80888803d8facd6905221011913cde88c",
+      "bytes": 4073
+    },
+    {
+      "path": "browser-en-360/en-360-frost-nova-cast-visible.png",
+      "sha256": "de710bb20974b79f1ae897fa5955480d0674f74e0fad94c5a89cafeb4b80dc4b",
+      "bytes": 52785
+    },
+    {
+      "path": "browser-en-360/en-360-frost-nova-combat.json",
+      "sha256": "9302609d802cc49a6187a332d96fea202eedb2bf5b4d87f23b20c430d0a0b0ec",
+      "bytes": 2263
+    },
+    {
+      "path": "browser-en-360/en-360-frost-nova-current-next.png",
+      "sha256": "1d4a7ad58b553fc2ad66f0b06a760608d93bcea55ea083e098a49a781fd0f05a",
+      "bytes": 53569
+    },
+    {
+      "path": "browser-en-360/en-360-frost-nova-details.png",
+      "sha256": "c427d8bc62ed49c0ba4268a15b69c5ddc6a36e82985f9349c7394ac3c61b423c",
+      "bytes": 54285
+    },
+    {
+      "path": "browser-en-360/en-360-frost-nova-fresh-8.json",
+      "sha256": "c73ca5bbfccbf16c445eb9360866d5b8ae4180b919fb607733ff393ac5681ed1",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-360/en-360-frost-nova-imported-9.json",
+      "sha256": "1e1bac5d4f6c084c43226d07b1d658169b7f3681ac7d153588a0179a89c0ea8b",
+      "bytes": 4823
+    },
+    {
+      "path": "browser-en-360/en-360-frost-nova-offline-continued-14.json",
+      "sha256": "89c75d47529b73260d4eb1f2f8ec06630c4729c06fffd2a1dcf4c1d3ed947d38",
+      "bytes": 4877
+    },
+    {
+      "path": "browser-en-360/en-360-frost-nova-rank1-after-11.json",
+      "sha256": "b67d718d5541d4b8ff66b7efb796c7129e1927da0bae25e441ff1d3ad27a5c4b",
+      "bytes": 4826
+    },
+    {
+      "path": "browser-en-360/en-360-frost-nova-rank1-before-10.json",
+      "sha256": "fb6212d4cbdff94192812b634b4286742a1015863c9a0432aaa7512dcfdb12a9",
+      "bytes": 4823
+    },
+    {
+      "path": "browser-en-360/en-360-frost-nova-rank2-after-13.json",
+      "sha256": "89c75d47529b73260d4eb1f2f8ec06630c4729c06fffd2a1dcf4c1d3ed947d38",
+      "bytes": 4877
+    },
+    {
+      "path": "browser-en-360/en-360-frost-nova-rank2-before-12.json",
+      "sha256": "89c75d47529b73260d4eb1f2f8ec06630c4729c06fffd2a1dcf4c1d3ed947d38",
+      "bytes": 4877
+    },
+    {
+      "path": "browser-en-360/en-360-frost-nova-synthetic-input.json",
+      "sha256": "6d80c8c738fc0f51e5c366eed813257e5ad7af863e03bc62749aa2923bb656df",
+      "bytes": 4007
+    },
+    {
+      "path": "browser-en-360/en-360-frozen-orb-cast-visible.png",
+      "sha256": "b35677e41727bd46763127f85b76a5d721f72b6c6d1b7b12f5647a1b04e1cc7f",
+      "bytes": 53199
+    },
+    {
+      "path": "browser-en-360/en-360-frozen-orb-combat.json",
+      "sha256": "85f4dbea2184695216d9fa7d119ea60fd1371b9b5df313d2a61bc02a3324717e",
+      "bytes": 1561
+    },
+    {
+      "path": "browser-en-360/en-360-frozen-orb-current-next.png",
+      "sha256": "c4791855e40177ac2aacd61a2f64eed83b435ace05036eecdc9271db40cac894",
+      "bytes": 56252
+    },
+    {
+      "path": "browser-en-360/en-360-frozen-orb-details.png",
+      "sha256": "0dcf191ce5eb2901675a0455c4ce18fd751121ae9828c11149a4a1737adbd762",
+      "bytes": 57636
+    },
+    {
+      "path": "browser-en-360/en-360-frozen-orb-fresh-15.json",
+      "sha256": "cf3374ff930e93b3660bb8573bfea95d40a11a48bb69d63c214147d7dea4348f",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-360/en-360-frozen-orb-imported-16.json",
+      "sha256": "1a19f44568db9f33f135e47e09b47b81dfdcbc690f4114b9dbf1486a4c9c2789",
+      "bytes": 4922
+    },
+    {
+      "path": "browser-en-360/en-360-frozen-orb-offline-continued-21.json",
+      "sha256": "514d6e454c7581aa8958250f8970859daa54da5f5624b27f22209b428688fe5b",
+      "bytes": 4976
+    },
+    {
+      "path": "browser-en-360/en-360-frozen-orb-rank1-after-18.json",
+      "sha256": "4e13214747cb7a039b85c7dfbee6bc29b5588bddeb5bd08087d53a746b01448f",
+      "bytes": 4925
+    },
+    {
+      "path": "browser-en-360/en-360-frozen-orb-rank1-before-17.json",
+      "sha256": "80c8a92be333d379dd9db04b2ab8effe3d67988d7b0bbd67032f8061bf2a1b82",
+      "bytes": 4922
+    },
+    {
+      "path": "browser-en-360/en-360-frozen-orb-rank2-after-20.json",
+      "sha256": "514d6e454c7581aa8958250f8970859daa54da5f5624b27f22209b428688fe5b",
+      "bytes": 4976
+    },
+    {
+      "path": "browser-en-360/en-360-frozen-orb-rank2-before-19.json",
+      "sha256": "514d6e454c7581aa8958250f8970859daa54da5f5624b27f22209b428688fe5b",
+      "bytes": 4976
+    },
+    {
+      "path": "browser-en-360/en-360-frozen-orb-synthetic-input.json",
+      "sha256": "24cb66cebfb73d8f3c085c44b98d3f9a0f58f249c607fcc814df3480deaa7550",
+      "bytes": 4106
+    },
+    {
+      "path": "browser-en-360/en-360-ice-bolt-cast-visible.png",
+      "sha256": "e361b37a2752256857021f521ff6e88b3cb3c2774dc64c0fc7604e3fd15c9224",
+      "bytes": 51789
+    },
+    {
+      "path": "browser-en-360/en-360-ice-bolt-combat.json",
+      "sha256": "61afcf63ec0aaf5d8818afbd1ad65d984b340c79d4f9a04966461501cc9e86e8",
+      "bytes": 1152
+    },
+    {
+      "path": "browser-en-360/en-360-ice-bolt-current-next.png",
+      "sha256": "eb9ecfdc42fa12d4e16845adfe228c394e3266dc6e6590730fda3aa287808c60",
+      "bytes": 48323
+    },
+    {
+      "path": "browser-en-360/en-360-ice-bolt-details.png",
+      "sha256": "2ec66d7c555c1dad043008bb165556b00cfbfd2018dd0c35e9c4e63d46f7cdd5",
+      "bytes": 49439
+    },
+    {
+      "path": "browser-en-360/en-360-ice-bolt-fresh-1.json",
+      "sha256": "9b96e5e4ab62358550e968d92a8b4f4f61a18b42f2e302cf38b89204d9fb0339",
+      "bytes": 3244
+    },
+    {
+      "path": "browser-en-360/en-360-ice-bolt-imported-2.json",
+      "sha256": "0ba167d5b93bee584fcf2e5eb20ef548a460a604ae77e2333f8c4590307030e7",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-en-360/en-360-ice-bolt-offline-continued-7.json",
+      "sha256": "12df9eb1aea0fd11e190622e3b28400c2d72950225658640f03b8a8ccdc0a944",
+      "bytes": 4842
+    },
+    {
+      "path": "browser-en-360/en-360-ice-bolt-rank1-after-4.json",
+      "sha256": "7350eded28c9577f57fd600395d98074dc428b4162bfd34e1a6a0598975af0b7",
+      "bytes": 4793
+    },
+    {
+      "path": "browser-en-360/en-360-ice-bolt-rank1-before-3.json",
+      "sha256": "43414a50d3edfa326aa46b97fe33f537255ad311260d439b95c6a626bfc5045e",
+      "bytes": 4790
+    },
+    {
+      "path": "browser-en-360/en-360-ice-bolt-rank2-after-6.json",
+      "sha256": "12df9eb1aea0fd11e190622e3b28400c2d72950225658640f03b8a8ccdc0a944",
+      "bytes": 4842
+    },
+    {
+      "path": "browser-en-360/en-360-ice-bolt-rank2-before-5.json",
+      "sha256": "12df9eb1aea0fd11e190622e3b28400c2d72950225658640f03b8a8ccdc0a944",
+      "bytes": 4842
+    },
+    {
+      "path": "browser-en-360/en-360-ice-bolt-synthetic-input.json",
+      "sha256": "3ab9447336d9fbddc0e19dc3c407a62de0eb3e7b1407d558741980a945ddb5bf",
+      "bytes": 3974
+    },
+    {
+      "path": "browser-en-360-final-live.json",
+      "sha256": "6671cd909f1c5ff34691ad509c5a440e2ad402605a1c6c22da86fcb65b985bdf",
+      "bytes": 138
+    },
+    {
+      "path": "browser-en-360-final-result.json",
+      "sha256": "97885bf6eeaa6d0cb1bffde0c8f44b748c7d18a2f499dba222ff358d81d435bb",
+      "bytes": 182
+    },
+    {
+      "path": "browser-en-360-final.log",
+      "sha256": "fdc08f5494ea8bfa173e9ecc404eea109ed6916208d954596c3a1d00fc863ea4",
+      "bytes": 135
+    },
+    {
+      "path": "browser-en-360-live.json",
+      "sha256": "63e7cb3d2382a162d6d626d43482ebfa0f02af0846f0a2080ce5514e91309960",
+      "bytes": 138
+    },
+    {
+      "path": "browser-en-360-result.json",
+      "sha256": "1dde0ad609244e1a54f06b60c28935014da93b4d3829611a141d2026e71169cf",
+      "bytes": 184
+    },
+    {
+      "path": "browser-en-360.log",
+      "sha256": "e3766e968deb45c0dc3c4e7f3d08c97fc360f43c44e76481e00a505458e5cbba",
+      "bytes": 3245
+    },
+    {
+      "path": "browser-groups-live.json",
+      "sha256": "100f22da6d76c15f4765f561b914ccb6a867e5431a2af44cb349c76230c8c25c",
+      "bytes": 147
+    },
+    {
+      "path": "browser-groups-result.json",
+      "sha256": "9e7946f81d1c49e8cf635d0c2f42315f1b3a8f47f1c2800bb9946a907e1df330",
+      "bytes": 193
+    },
+    {
+      "path": "browser-groups.log",
+      "sha256": "5606e095647fb372b0055c3e864f273d067c5e4b0ca61ca280fd2be004e893fd",
+      "bytes": 76
+    },
+    {
+      "path": "browser-groups.py",
+      "sha256": "66dbafadd344ed46da0156b5dcf2ec23b37dd29b9e31745b771133520ba9d155",
+      "bytes": 605
+    },
+    {
+      "path": "browser-harness-correction.json",
+      "sha256": "661a999364550cbaa1bbdef94b2e1bf7f1b3a4dd14629ebe775bef3a13e98b98",
+      "bytes": 477
+    },
+    {
+      "path": "browser-warcry-copy-failed.cjs",
+      "sha256": "573bad68cc2cdc8fd45edb80e674edd92f8b87233fa76cc1ee4a7035db10c2e5",
+      "bytes": 12240
+    },
+    {
+      "path": "browser-zh-CN-1280/browser-report.json",
+      "sha256": "47d433ca102c52a486b5be2e22897782aea7b0089ffb6d59d2f7121fb6a644bf",
+      "bytes": 7296
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blizzard-cast-visible.png",
+      "sha256": "ba640363bb0e2856d2e1ac2f4697b794c66fe85e417257833b8ef6f1760f5161",
+      "bytes": 201520
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blizzard-combat.json",
+      "sha256": "176010feb7fd72e99bfc3e59e5c9dca9fecc614f65a2412a9ed35cee9b711765",
+      "bytes": 2261
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blizzard-current-next.png",
+      "sha256": "558a660088820f44b0e70e38d44a7951baedb98d10f32846b443a33121563841",
+      "bytes": 140187
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blizzard-details.png",
+      "sha256": "50073213e09043d018dc8ff9a9906d491d32cc964e3947f6ceba5b1bf486273a",
+      "bytes": 141973
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blizzard-fresh-22.json",
+      "sha256": "09a010d518cca7e354eac0822528a601671df92cf4600574ac4a42940975d2f1",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blizzard-imported-23.json",
+      "sha256": "ba9850675da1db406c0d6d2e88440d37b28a5be168c128ca6851f47f0788e4ef",
+      "bytes": 4892
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blizzard-offline-continued-28.json",
+      "sha256": "4044bba426a21207ed98d2224b5c96c09f251595d4a9f9f7cea180cd8e5c3616",
+      "bytes": 4944
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blizzard-rank1-after-25.json",
+      "sha256": "ab282ba3d42b2ea4cb6f8507e5c45eabcaddc4f1b49e04569c0cc3daa7932114",
+      "bytes": 4895
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blizzard-rank1-before-24.json",
+      "sha256": "557f8b0c83bf987a909742b307dfc10b478ac38d1092b019ce273ac15e7bc195",
+      "bytes": 4892
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blizzard-rank2-after-27.json",
+      "sha256": "4044bba426a21207ed98d2224b5c96c09f251595d4a9f9f7cea180cd8e5c3616",
+      "bytes": 4944
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blizzard-rank2-before-26.json",
+      "sha256": "4044bba426a21207ed98d2224b5c96c09f251595d4a9f9f7cea180cd8e5c3616",
+      "bytes": 4944
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-blizzard-synthetic-input.json",
+      "sha256": "417846bdf683f865d6ed8b5615e94c0def70b782149156e50a72648f3527b2ce",
+      "bytes": 4076
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frost-nova-cast-visible.png",
+      "sha256": "c24b4bc7cc34ee2ef0647531c408b3df6c67b493a41d8f46d90d424b1e37a494",
+      "bytes": 204962
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frost-nova-combat.json",
+      "sha256": "be2bdf74a1bde37054029ac4b3fdc6bbc6f84b046f971a3cc1655495c648dd99",
+      "bytes": 2457
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frost-nova-current-next.png",
+      "sha256": "e57ee110f2de144bc7f42d5afbb052720afafda71b833d7c139453e1cdf3e021",
+      "bytes": 143665
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frost-nova-details.png",
+      "sha256": "3c4703fce7224b9bbf3d8031eb966192a93f38c513bcf8c5f73701ab516e9c69",
+      "bytes": 144545
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frost-nova-fresh-8.json",
+      "sha256": "b30e10ab1d4967fe7d022742a0f2260a1269836d2cad1cac508e2697b09ae95a",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frost-nova-imported-9.json",
+      "sha256": "f9972d4099ba182abb590a5c5b2025b54759acee01bf207ae6b6c2cb7347b055",
+      "bytes": 4826
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frost-nova-offline-continued-14.json",
+      "sha256": "b78530051b0b802efb6d97e5ecf220d265952237591d1964fe98a36879ef1d77",
+      "bytes": 4880
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frost-nova-rank1-after-11.json",
+      "sha256": "7962f5ebc9e37733981f467892310121827889bd6b9fa49a4d53fbd6372464a9",
+      "bytes": 4829
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frost-nova-rank1-before-10.json",
+      "sha256": "bc75afb9b6907f4a5a22bb472428072f9f231c468379f35235c64b86cff74cc6",
+      "bytes": 4826
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frost-nova-rank2-after-13.json",
+      "sha256": "b78530051b0b802efb6d97e5ecf220d265952237591d1964fe98a36879ef1d77",
+      "bytes": 4880
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frost-nova-rank2-before-12.json",
+      "sha256": "b78530051b0b802efb6d97e5ecf220d265952237591d1964fe98a36879ef1d77",
+      "bytes": 4880
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frost-nova-synthetic-input.json",
+      "sha256": "aaed5833ac948b2b81cf91b369ba18757ef85c6d5e35100b36a95ea86222b995",
+      "bytes": 4010
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-cast-visible.png",
+      "sha256": "808c4444e252a44ab71f69983bd3e5a665d216b10be687ca7fe588e233bceac5",
+      "bytes": 211919
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-combat.json",
+      "sha256": "aff315a860fa05ca79624e5584c834775161b6ea87735062c10ac92266ebc986",
+      "bytes": 1691
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-current-next.png",
+      "sha256": "8aa1113faa1c3e068ecac94e43666d0ac817d2a6ca5e2308da59434f7ccb3daf",
+      "bytes": 155105
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-details.png",
+      "sha256": "5e2e5cf952a1b41f76908ac2ba3dd67a20e4d90064883d7cbbac6647dd6dbaf3",
+      "bytes": 156972
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-fresh-15.json",
+      "sha256": "62e7eaabe1fa9c83116567c01ceea60e2e6facf780cc3abbb5830021e351e87f",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-imported-16.json",
+      "sha256": "4541c91c19b2bfdec2a45d9554be2fc730c9c0a1863bd87b5272227084d5c28a",
+      "bytes": 4925
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-offline-continued-21.json",
+      "sha256": "c4169694330e35c5da46b921a3c24606556ee09b8b7ab245cfdea557c1b81e19",
+      "bytes": 4979
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank1-after-18.json",
+      "sha256": "fb552f5fe5413a55b2f9f7a8021d7a82e9dec118424bb65b86ed90df40fd57f6",
+      "bytes": 4928
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank1-before-17.json",
+      "sha256": "5e069af3004fff397e7c6cf4b47bf5ba3521f5a459c2f5e975f0f62e7c7b7b3f",
+      "bytes": 4925
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank2-after-20.json",
+      "sha256": "c4169694330e35c5da46b921a3c24606556ee09b8b7ab245cfdea557c1b81e19",
+      "bytes": 4979
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank2-before-19.json",
+      "sha256": "c4169694330e35c5da46b921a3c24606556ee09b8b7ab245cfdea557c1b81e19",
+      "bytes": 4979
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-frozen-orb-synthetic-input.json",
+      "sha256": "88d5041aa3f928cdb4964236b5a64c89c41e24ce48caf121ac3b1916b554cccd",
+      "bytes": 4109
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-cast-visible.png",
+      "sha256": "ad7b9360e47c28bbcd4655e0a32144826e89514dbe9baf6f574bf8a53650c6bb",
+      "bytes": 238703
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-combat.json",
+      "sha256": "bc8020438f8af939aea1bfb9a366ca049110c4031bac2ebd802dce8585c9aa30",
+      "bytes": 1248
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-current-next.png",
+      "sha256": "06ffe2ebb98c37583596e5360a2f6b7d1b967091e6b2d990b71500b953fd30eb",
+      "bytes": 131403
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-details.png",
+      "sha256": "b8794e5794c4c93c630ca36801b973a77a44a11fb4203b285d71ac5cf356aace",
+      "bytes": 133147
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-fresh-1.json",
+      "sha256": "f0f8597e5007166808633e355ddbf9ddc840f5bce37ac0bc3d5141ae994854f8",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-imported-2.json",
+      "sha256": "4a52cdf59d8f0ad7fe15f05908f03097cfccd3c7721ca6d085350227a4f18ee2",
+      "bytes": 4793
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-offline-continued-7.json",
+      "sha256": "8a515d49b6fb5714ba14dc358538ed271d3f923bd49d3271a5bb6199db82b0e2",
+      "bytes": 4845
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank1-after-4.json",
+      "sha256": "de95095ba497ead971221129bf6f2883ee8f26fc21b399e3055cf43cbdd20893",
+      "bytes": 4796
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank1-before-3.json",
+      "sha256": "d4eaa12ff09191db6229def12cb2f2d4b9a964d2ae92ffd312922913eccfe5aa",
+      "bytes": 4793
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank2-after-6.json",
+      "sha256": "8a515d49b6fb5714ba14dc358538ed271d3f923bd49d3271a5bb6199db82b0e2",
+      "bytes": 4845
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank2-before-5.json",
+      "sha256": "8a515d49b6fb5714ba14dc358538ed271d3f923bd49d3271a5bb6199db82b0e2",
+      "bytes": 4845
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-ice-bolt-synthetic-input.json",
+      "sha256": "72a51cf0def8b9440c4ad5ceac42aea58f216b39f6e647bcc8eadecbf2d45d4e",
+      "bytes": 3977
+    },
+    {
+      "path": "browser-zh-CN-1280-final-live.json",
+      "sha256": "7596d54ee14ad63f1e0b9bdc73d883cc10a7926c162e53d8e07269893c0dfb9b",
+      "bytes": 138
+    },
+    {
+      "path": "browser-zh-CN-1280-final-result.json",
+      "sha256": "e27ed2534f710dffc62b2d9ead7cb2f20c1582b496611d29a6b8b7229acdbab2",
+      "bytes": 183
+    },
+    {
+      "path": "browser-zh-CN-1280-final.log",
+      "sha256": "c71ce4957a3e131682507b4d6290907b7ea145f9a2ac48ad7b56cdc1e7f5fd30",
+      "bytes": 151
+    },
+    {
+      "path": "browser-zh-CN-360/browser-report.json",
+      "sha256": "37370d293bcb7aa77c72c42b4c1cbd9ebeb142e562462ff9e67fe37f5f425e46",
+      "bytes": 7272
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-blizzard-cast-visible.png",
+      "sha256": "615b90b4f65ce54dbf2c5aa24fc60cb7d5355ba56c7a67737218dab1bc194089",
+      "bytes": 62970
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-blizzard-combat.json",
+      "sha256": "176010feb7fd72e99bfc3e59e5c9dca9fecc614f65a2412a9ed35cee9b711765",
+      "bytes": 2261
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-blizzard-current-next.png",
+      "sha256": "f28a5746ddb8cbfb94248332ab0b9c25a8e75cbcbead3ed24db677faaea7d9c0",
+      "bytes": 54054
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-blizzard-details.png",
+      "sha256": "5b2251cd254a2b66259c840f93219d3497cc7e9ce23e02ad26f3f105b2413a5c",
+      "bytes": 55104
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-blizzard-fresh-22.json",
+      "sha256": "746d117238ac54a3497df62816feb70e62d2b32581749e17c5eb39c924da7a01",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-blizzard-imported-23.json",
+      "sha256": "e828a4efeef3438ee1b2985ada86b55a0d59b5c1500431337c59adc44fb8d85a",
+      "bytes": 4892
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-blizzard-offline-continued-28.json",
+      "sha256": "1bb591178d64faf6c886abaeccfe5f2562d68ba53c415435d0fb00f3eefbf803",
+      "bytes": 4944
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-blizzard-rank1-after-25.json",
+      "sha256": "4f924d14cd9d4ab16a44da228e618af3a58924c946d25b1b7a3db1348a736b7b",
+      "bytes": 4895
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-blizzard-rank1-before-24.json",
+      "sha256": "1f4f5b6a8e476d92cfde2a10d43308d8571f4dfffa0fa39186b2ee81622920f6",
+      "bytes": 4892
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-blizzard-rank2-after-27.json",
+      "sha256": "1bb591178d64faf6c886abaeccfe5f2562d68ba53c415435d0fb00f3eefbf803",
+      "bytes": 4944
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-blizzard-rank2-before-26.json",
+      "sha256": "1bb591178d64faf6c886abaeccfe5f2562d68ba53c415435d0fb00f3eefbf803",
+      "bytes": 4944
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-blizzard-synthetic-input.json",
+      "sha256": "a0a15055cf7069c971f477c80e5ca415b87c9fd00da7e42f88389241ed637b1c",
+      "bytes": 4076
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frost-nova-cast-visible.png",
+      "sha256": "86d053b66c1b8bb4e7f877a031fe6d5d6c23c6f2830627180967a28507c3e681",
+      "bytes": 62668
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frost-nova-combat.json",
+      "sha256": "be2bdf74a1bde37054029ac4b3fdc6bbc6f84b046f971a3cc1655495c648dd99",
+      "bytes": 2457
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frost-nova-current-next.png",
+      "sha256": "5338f73f9faff34e85fa7abc440ca8545449a03934f9f3195ea81cc61efd2557",
+      "bytes": 59699
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frost-nova-details.png",
+      "sha256": "5b852c3afa3fc775ce8b4d02d079a748c124df17d61954ca30d4718003860bee",
+      "bytes": 61359
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frost-nova-fresh-8.json",
+      "sha256": "7e6d70fd2b25a205473ff6d2d5a3258540a4a47cbd26fd46b1a0a861f5e5c087",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frost-nova-imported-9.json",
+      "sha256": "995d2184392aa8f603b5af9a666fd7561a6622bd76ab45842ea1eb946970dfc5",
+      "bytes": 4826
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frost-nova-offline-continued-14.json",
+      "sha256": "a175be810ee84bab8e60c2fcd0ced81e12a6d612f2f6df5f1936c0f16b434b59",
+      "bytes": 4880
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frost-nova-rank1-after-11.json",
+      "sha256": "b146b327fe24ef6b0818813b2f41513c3a85c99e38d54aa1de5faabf4689374f",
+      "bytes": 4829
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frost-nova-rank1-before-10.json",
+      "sha256": "9feb5502583384687f2d9680f8511d722cacf0e2f2cc07ee3f2c341e2dbe5b73",
+      "bytes": 4826
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frost-nova-rank2-after-13.json",
+      "sha256": "a175be810ee84bab8e60c2fcd0ced81e12a6d612f2f6df5f1936c0f16b434b59",
+      "bytes": 4880
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frost-nova-rank2-before-12.json",
+      "sha256": "a175be810ee84bab8e60c2fcd0ced81e12a6d612f2f6df5f1936c0f16b434b59",
+      "bytes": 4880
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frost-nova-synthetic-input.json",
+      "sha256": "f856b3b8307cff953a491326522855b5bcf6650493e982c30a1f746528a6c419",
+      "bytes": 4010
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frozen-orb-cast-visible.png",
+      "sha256": "26cb8494b51a806b469ad273c77ab63fdf966b6fce4c07d28dc71fbc31f27ba7",
+      "bytes": 62632
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frozen-orb-combat.json",
+      "sha256": "aff315a860fa05ca79624e5584c834775161b6ea87735062c10ac92266ebc986",
+      "bytes": 1691
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frozen-orb-current-next.png",
+      "sha256": "e8d87ee53e417ef7eb10d6fdbf8eaa34f8f03749fa8b88adfb16cf9f6fed54e8",
+      "bytes": 61777
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frozen-orb-details.png",
+      "sha256": "a97f52ff081976a60b94130236e091cfdcad6303a1093dae83be62c6b42f147e",
+      "bytes": 63416
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frozen-orb-fresh-15.json",
+      "sha256": "6cbdf0d6faf134a9d471c80dab84adce8d00dfc946f98eeeb020bb350bf9a750",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frozen-orb-imported-16.json",
+      "sha256": "3c52c4c4b12a6b0271e5159c8c2b639fe122ed9599e1d309028b3fd3732b6332",
+      "bytes": 4925
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frozen-orb-offline-continued-21.json",
+      "sha256": "22cbf7a7dde64c429d7146ae317ff700b7fa0c382a139df56027dcf86e8876aa",
+      "bytes": 4979
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frozen-orb-rank1-after-18.json",
+      "sha256": "271a1b94aafef6d11877bfe2e81ca8c4ecd5b85b038103cb2857ca045e1e8446",
+      "bytes": 4928
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frozen-orb-rank1-before-17.json",
+      "sha256": "6bfac13014ea7acf332827fb85bcd8c48c2fa56abb9459efff7130a045c9e80f",
+      "bytes": 4925
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frozen-orb-rank2-after-20.json",
+      "sha256": "22cbf7a7dde64c429d7146ae317ff700b7fa0c382a139df56027dcf86e8876aa",
+      "bytes": 4979
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frozen-orb-rank2-before-19.json",
+      "sha256": "22cbf7a7dde64c429d7146ae317ff700b7fa0c382a139df56027dcf86e8876aa",
+      "bytes": 4979
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-frozen-orb-synthetic-input.json",
+      "sha256": "bfee2058510dbe7272a22e5c67b95d4a9ac9849e4eba7359eaa481ccdb4e08de",
+      "bytes": 4109
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-ice-bolt-cast-visible.png",
+      "sha256": "843da7acf92bf2db980e6f4904caebfa35c157779a9eed6be8b83da015ec34b7",
+      "bytes": 62570
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-ice-bolt-combat.json",
+      "sha256": "bc8020438f8af939aea1bfb9a366ca049110c4031bac2ebd802dce8585c9aa30",
+      "bytes": 1248
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-ice-bolt-current-next.png",
+      "sha256": "55b1791ca11e2dfec63b94a597bc23bed1ee2de8ab0f67580cd97fb42f5a6352",
+      "bytes": 53624
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-ice-bolt-details.png",
+      "sha256": "fa23e94e36f2194833b349582e1aa4f9ae135d417ea2c195b95673c4c0a20c81",
+      "bytes": 55022
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-ice-bolt-fresh-1.json",
+      "sha256": "8b4a2c22e138a4afc7c9d023f9598a39cae014ff5fc9196ff9cb6e231e462624",
+      "bytes": 3247
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-ice-bolt-imported-2.json",
+      "sha256": "f9c53b05bfeda0aeb08fae9b94942ab4415aa60448e90198f814e8d9a1b51e66",
+      "bytes": 4793
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-ice-bolt-offline-continued-7.json",
+      "sha256": "f66e29cc71cd051f10394c27c976fa864e0f34bbda2b43da33b61d627d52e6bf",
+      "bytes": 4845
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-ice-bolt-rank1-after-4.json",
+      "sha256": "613524cd42b47072b43ff5ba66d60e70131a5349412907819fca969041b40fae",
+      "bytes": 4796
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-ice-bolt-rank1-before-3.json",
+      "sha256": "b209833f337d892c6874566acd58325a83fc0cbb9b83af609c437266d18ca2b4",
+      "bytes": 4793
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-ice-bolt-rank2-after-6.json",
+      "sha256": "f66e29cc71cd051f10394c27c976fa864e0f34bbda2b43da33b61d627d52e6bf",
+      "bytes": 4845
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-ice-bolt-rank2-before-5.json",
+      "sha256": "f66e29cc71cd051f10394c27c976fa864e0f34bbda2b43da33b61d627d52e6bf",
+      "bytes": 4845
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-ice-bolt-synthetic-input.json",
+      "sha256": "2f6f6a060507e4456cf5fe71ae8295cdbac52e197f0acbb93d80166379423af3",
+      "bytes": 3977
+    },
+    {
+      "path": "browser-zh-CN-360-final-live.json",
+      "sha256": "c1f023e18520735376c5f4fd9c1739dd43f8ae4bb9de25f5a5114b9ea0ad5e03",
+      "bytes": 138
+    },
+    {
+      "path": "browser-zh-CN-360-final-result.json",
+      "sha256": "3b8b08cb83c564f2bfb6042acbb89ee00b6e31cd9f8fa7f0eb8314e601d9ca45",
+      "bytes": 183
+    },
+    {
+      "path": "browser-zh-CN-360-final.log",
+      "sha256": "0366aa9b05266a8fa7ede2363f818e8619c5857c09d28394a2de6768f276095c",
+      "bytes": 147
+    },
+    {
+      "path": "browser.cjs",
+      "sha256": "63c6e6a310214d4d89ca93ef9e85f3778fcae012184db5734c0a5916c6c4e123",
+      "bytes": 12187
+    },
+    {
+      "path": "build-final-green-live.json",
+      "sha256": "b6544862f2714ee18ebb4a29f1397b379810d0b2d4fa22ba6dab3e9c54f69b19",
+      "bytes": 165
+    },
+    {
+      "path": "build-final-green-result.json",
+      "sha256": "d6cb0f0477cf29ad1a99694fea686620025b8de29cf8492cd87a1c82de6b611a",
+      "bytes": 211
+    },
+    {
+      "path": "build-final-green.log",
+      "sha256": "d7df12d06dc1d4a529d24b4a7fac3de6a76ef7ef154855df10671f2a54a7d57a",
+      "bytes": 2493
+    },
+    {
+      "path": "build-final-live.json",
+      "sha256": "92b0f799ca74c185f00d6499bec9f032297351e70acfee80687e5a2c35ab96b0",
+      "bytes": 165
+    },
+    {
+      "path": "build-final-result.json",
+      "sha256": "a482ab10fdcc044406a6594e170fb29b7b06b88e291c4ec94ae0bc3d5115bf6c",
+      "bytes": 210
+    },
+    {
+      "path": "build-final.log",
+      "sha256": "1d134f2dcecbf5bf94819d5d7b5315b8352c3ab6df64172e96e0c406b8acef44",
+      "bytes": 2493
+    },
+    {
+      "path": "causal-before-test-types.test.ts",
+      "sha256": "184da0864768c33d551658e7ae519732ee8bf89d34feaeaf0fd50e4913ddec17",
+      "bytes": 16606
+    },
+    {
+      "path": "causal-final-live.json",
+      "sha256": "1e8e0b53a032b2b0d42cd3cd96ee95d13d3f9df94d63b8bf553c465f4dcf398f",
+      "bytes": 116
+    },
+    {
+      "path": "causal-final-result.json",
+      "sha256": "0323bda34285c2a63893cfaf8e190c4444d500fb5b16702070d4bcd363d4a871",
+      "bytes": 161
+    },
+    {
+      "path": "causal-final.log",
+      "sha256": "0051db56f677c687e15511790c6821a9b1f8cd824facfd3fb986869b32606cf1",
+      "bytes": 364
+    },
+    {
+      "path": "causal-types-corrected-live.json",
+      "sha256": "9cca21bf3c465952e617749e2ebf1ffc0a16396dfc135fd7270cd8c32a3afe74",
+      "bytes": 116
+    },
+    {
+      "path": "causal-types-corrected-result.json",
+      "sha256": "99d1c7db3806e431bd0f988e52f725ef3116a97eaae0a9878d4768cfdbfe4a4e",
+      "bytes": 162
+    },
+    {
+      "path": "causal-types-corrected.log",
+      "sha256": "dc75a186574f6a3779792b73790fa20fb8f7033439205a954f6957b694b869c0",
+      "bytes": 365
+    },
+    {
+      "path": "cleanup.py",
+      "sha256": "00bf63955b8ddb73628a4b470891a4983c5477e5d40f66fad5cc334052e050b1",
+      "bytes": 3464
+    },
+    {
+      "path": "collector-observations.json",
+      "sha256": "56e05ccd6430fa180df82cbd92aee1f7e063f8c0732eefa148e081e693024f60",
+      "bytes": 440
+    },
+    {
+      "path": "contract-corrected-red-live.json",
+      "sha256": "c5c7ea71aa169a091874bcb15570377d24bba92f529c4e7342c1f55358d41520",
+      "bytes": 116
+    },
+    {
+      "path": "contract-corrected-red-result.json",
+      "sha256": "5a73643d89527e1d0940119b1680a01dde037472876c54926fe6bafa05cfe5a2",
+      "bytes": 162
+    },
+    {
+      "path": "contract-corrected-red.log",
+      "sha256": "a5ad754998e6cc41c332a3e1c67520fceef169b7967102d5b8b868759bb81647",
+      "bytes": 10654
+    },
+    {
+      "path": "contract-initial-field-assumptions.test.ts",
+      "sha256": "da3d90c8e1fd2a86f9103ade9a83866203a7ce5e118de8bb96c8d680efb878b2",
+      "bytes": 3244
+    },
+    {
+      "path": "contract-red-live.json",
+      "sha256": "53c221abdeeca37d6f6250a503a5803b52bf2dcc41a8548b930e863c538ee23f",
+      "bytes": 116
+    },
+    {
+      "path": "contract-red-result.json",
+      "sha256": "ad106add8a73477c0ca1a000bedb171f5f81328101ae038f54768f71cb098833",
+      "bytes": 162
+    },
+    {
+      "path": "contract-red.log",
+      "sha256": "6e7f658dcf21a27af41b0f806a0cb314eca40831cb767253b8cab61d5d75abd2",
+      "bytes": 12675
+    },
+    {
+      "path": "credit.py",
+      "sha256": "e04e6c6b8290f0b8987ad1ddbcb97c7aabbe3009e9f9c4f1ae36e9224a7baf4b",
+      "bytes": 2284
+    },
+    {
+      "path": "engine-final-live.json",
+      "sha256": "b175d01c1c507fe36d105effef84d8470d0800cff72cd8ce9a0a5ec9d53539f0",
+      "bytes": 58
+    },
+    {
+      "path": "engine-final-result.json",
+      "sha256": "bc20f0af6e2d94a87e44365fe34d0bf48bea527e8860a3e48f7cdf441e817a84",
+      "bytes": 104
+    },
+    {
+      "path": "engine-final.log",
+      "sha256": "62fb738bee67dd247126863e271b9b0ade53f2ed82c95bf54e21638fcb846a49",
+      "bytes": 68533
+    },
+    {
+      "path": "failed-warcry-copy-en-360/browser-report.json",
+      "sha256": "b419c2a79b27162350de75726211f7242584679d83f928ede8e06b58f6902e4b",
+      "bytes": 1491
+    },
+    {
+      "path": "failed-warcry-copy-en-360/en-360-ice-bolt-failed-trace.zip",
+      "sha256": "2320e4b03b3cc4fe43a1328020511ac5d82e6f20f082c9c3eb48edeeadd5c22b",
+      "bytes": 38678173
+    },
+    {
+      "path": "failed-warcry-copy-en-360/en-360-ice-bolt-failed.png",
+      "sha256": "90a043aeb00069022654633b53a27030615e294a13543e70231f5322fe105725",
+      "bytes": 80333
+    },
+    {
+      "path": "failed-warcry-copy-en-360/en-360-ice-bolt-fresh-1.json",
+      "sha256": "a65eed3bdfd89e7b27d0e68102411c3d8e3ff304e105dfc3ba427719875da0f6",
+      "bytes": 3244
+    },
+    {
+      "path": "failed-warcry-copy-en-360/en-360-ice-bolt-imported-2.json",
+      "sha256": "88d5030d40137b87fabd63b4c889fe57b212d78c09c3c74f267483b19196f345",
+      "bytes": 4790
+    },
+    {
+      "path": "failed-warcry-copy-en-360/en-360-ice-bolt-rank1-after-4.json",
+      "sha256": "e6f38a8269df2f7aed0f8c1c54d54c5c752b3a5129a9d7ad159f89d4165c924d",
+      "bytes": 4793
+    },
+    {
+      "path": "failed-warcry-copy-en-360/en-360-ice-bolt-rank1-before-3.json",
+      "sha256": "a0a27dbb6fa59b7b1fc59baa0db54122709f9dc8e9cac34e91cd3f5a3103954e",
+      "bytes": 4790
+    },
+    {
+      "path": "failed-warcry-copy-en-360/en-360-ice-bolt-synthetic-input.json",
+      "sha256": "eb075c70f5a6102712af5f6e7e05a7050e89f17fcf64efb501d05b06df675374",
+      "bytes": 3974
+    },
+    {
+      "path": "focused-corrected-live.json",
+      "sha256": "e18eb92d0c0ca91bc567cf3e04a74df7ab7a16343ceea389c6661d70c74f942d",
+      "bytes": 184
+    },
+    {
+      "path": "focused-corrected-result.json",
+      "sha256": "b8033abda2f19411c880539ce49a0e7df62db524e02dcc441ab91eef4fffdf22",
+      "bytes": 230
+    },
+    {
+      "path": "focused-corrected.log",
+      "sha256": "00d15e898df135dad1d2ec9ea980977ed98d395e1b202c668d87d9323e097863",
+      "bytes": 461
+    },
+    {
+      "path": "focused-final-live.json",
+      "sha256": "622a50627b2e4ff07bde4921849e7239c725c16df7bc07a524f22740383543a8",
+      "bytes": 288
+    },
+    {
+      "path": "focused-final-result.json",
+      "sha256": "487cdadcd2d5c54f7c8539ce24aa0c253477e50f72a025d928fd5533e655481b",
+      "bytes": 334
+    },
+    {
+      "path": "focused-final.log",
+      "sha256": "a3dabe89b91803fdad81a763086ef5bb74cb6f2a1ff3ad71531ae70c6087c9ee",
+      "bytes": 617
+    },
+    {
+      "path": "freeze.py",
+      "sha256": "5ac1370ea333999a596140aad7bffb1c834b53557ecdca9ddab1f21fef995ac1",
+      "bytes": 1367
+    },
+    {
+      "path": "frozen-before-test-types.json",
+      "sha256": "2b1cd49d039f8e1544d30b1f95952d080a8f66e3282b72cf014e72e4ff2162a4",
+      "bytes": 267639
+    },
+    {
+      "path": "frozen.json",
+      "sha256": "c757134fe4b425026f540deaf6d7dff7c0cc7b1cc8c4f92ddd289a5e600e7cda",
+      "bytes": 267639
+    },
+    {
+      "path": "full-quiet-live.json",
+      "sha256": "f122e916b157b74cdc90b8c3a4bfd254b24b7a0fbc4409633eab927117d6d955",
+      "bytes": 44
+    },
+    {
+      "path": "full-quiet-result.json",
+      "sha256": "18d349d25c1ee7157473be7d695f3c52fb551ce613d7e0bbbb476d40a3080c68",
+      "bytes": 88
+    },
+    {
+      "path": "full-quiet.log",
+      "sha256": "d8b6eb7ab09dc5da7ceb23945eead0477d3fea7951bd849ee357f71ddee843b2",
+      "bytes": 161998
+    },
+    {
+      "path": "geometry-green-live.json",
+      "sha256": "c78137419581e71cf7978e9e33c3195d30aa8d4da9fb1af71e0aceac5467c5a7",
+      "bytes": 168
+    },
+    {
+      "path": "geometry-green-result.json",
+      "sha256": "eafe8297873a7f76cb8bf0e572acecf62a3fc6f1a281f06a51f9cb3ad229e1dc",
+      "bytes": 212
+    },
+    {
+      "path": "geometry-green.log",
+      "sha256": "8d87c4272165d91c15c76115b6352854afbfb0939d89c01bfd7fcf1240915945",
+      "bytes": 445
+    },
+    {
+      "path": "geometry-red-live.json",
+      "sha256": "d07b1718ccda093aa643e6c387f75213cfff737973059f2d7678c8688f0529b8",
+      "bytes": 116
+    },
+    {
+      "path": "geometry-red-result.json",
+      "sha256": "0df1f77f1de088635b2e2e628dd4007fb53ee153ce332aa54425ac022dcdb626",
+      "bytes": 161
+    },
+    {
+      "path": "geometry-red.log",
+      "sha256": "9b51bb87bba7210a4b2b3e4bf29b2a49acdeecad057349031e79dd5ad3255c69",
+      "bytes": 10961
+    },
+    {
+      "path": "lint-corrected-live.json",
+      "sha256": "059f415796106d97fbf805aa0187bc944316579dabc149c3d1b003a9bcebad69",
+      "bytes": 51
+    },
+    {
+      "path": "lint-corrected-result.json",
+      "sha256": "d6f9d228be911a6ef57b546a7db35631ed5a621abc22e73c4eb9ccd077d4183c",
+      "bytes": 96
+    },
+    {
+      "path": "lint-corrected.log",
+      "sha256": "24bbddde7461c0de48d4550d139d52d00b5bf45734b9745d794978c851c0d22f",
+      "bytes": 197
+    },
+    {
+      "path": "lint-final-live.json",
+      "sha256": "8aeee8620c01d91bf250a3095f093bc2e446386946cc9d31f3a0637491bc962e",
+      "bytes": 51
+    },
+    {
+      "path": "lint-final-result.json",
+      "sha256": "a7f4b06c9c584b05d0f5194f56ebd53546ffeb54183b5616b726df05fa859a47",
+      "bytes": 97
+    },
+    {
+      "path": "lint-final.log",
+      "sha256": "e410d18901fa9b06893f95caeaf09629979148cc08a195d8ebcdd32c6b31f5bc",
+      "bytes": 856
+    },
+    {
+      "path": "lint-tail-live.json",
+      "sha256": "f26596be0bfd41fa81f25c0417f696b3ae3fb9adb58a15f8e17b694b8c40dd4d",
+      "bytes": 169
+    },
+    {
+      "path": "lint-tail-result.json",
+      "sha256": "29a0d73182af949e771c21d0dfff94d522d1ffd4e716c8f7866ddbf116cb7218",
+      "bytes": 215
+    },
+    {
+      "path": "lint-tail.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "loader-final-live.json",
+      "sha256": "a7046ad065eef92cca5c59482d774f55a158ade0a4f252a444ee31d6eda19cb7",
+      "bytes": 91
+    },
+    {
+      "path": "loader-final-result.json",
+      "sha256": "c5b0a3152931c34cd42436bbf8f8420c7b685fd9f7bfb85aeb4efd32f6a7af80",
+      "bytes": 137
+    },
+    {
+      "path": "loader-final.log",
+      "sha256": "efa07110491f2e2eb9d6214c3b7c7b70a5e9acbc47d997bd40b522a2f183999c",
+      "bytes": 341
+    },
+    {
+      "path": "native-display-green-live.json",
+      "sha256": "9128cc1f37b9a056bcc029175ebf82a70cbf886bb0525f90f96cb12c22efc7b8",
+      "bytes": 168
+    },
+    {
+      "path": "native-display-green-result.json",
+      "sha256": "be0575f75135ae2f7231dcf1b3a2f8b49dadd5948709100925a24500d68e59e5",
+      "bytes": 213
+    },
+    {
+      "path": "native-display-green.log",
+      "sha256": "ca8ee982a1a3a06ff74e9c9592364bcfaceae8354ea6b3e2c323ab5e4483b7c7",
+      "bytes": 441
+    },
+    {
+      "path": "obsolete-build-cleanup.json",
+      "sha256": "d993e134a924cb0f2e51494efe2d83b9a27873e4361a048b4cadefec25bae4bf",
+      "bytes": 156
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/browser-report.json",
+      "sha256": "ba1c6cc83d602f132a43dce0ac34b25cbcfea3edf7dc4e2b711c4a4e872754d2",
+      "bytes": 7484
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-blizzard-cast-visible.png",
+      "sha256": "6d641c78b5b56fbc741069e56b08a6a10010abec91437c20b9cdc54f53399044",
+      "bytes": 194433
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-blizzard-combat.json",
+      "sha256": "74bb4fe28c544dff71453192430eb4deec833f141c55897c1586a6062f721d73",
+      "bytes": 2293
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-blizzard-current-next.png",
+      "sha256": "fa77c87c0355f5e1cb7471700d527babbd3da50c7b2f2d4aecd51f00fb0b3c61",
+      "bytes": 136838
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-blizzard-details.png",
+      "sha256": "883787b08606af5492ac0bd30a573c62230e63f601455524619eda636d5b02a5",
+      "bytes": 138622
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-blizzard-fresh-22.json",
+      "sha256": "4590e12f18131ccba40a4ec8cc78ae90414092ab135d199f6526756fc3819557",
+      "bytes": 3244
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-blizzard-imported-23.json",
+      "sha256": "9ec9207039a39bea5f4944f2f7f225c8386b8a54926c7ef89da0207a534d922e",
+      "bytes": 4889
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-blizzard-offline-continued-28.json",
+      "sha256": "f322c968c03d3b4b9c403b9141dd11ab5d771d6e514d2bff0d97ef69f7157b07",
+      "bytes": 4941
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-blizzard-rank1-after-25.json",
+      "sha256": "5f35c631c6bf717c9beab3f9f87a159f70443bb65867e12abb3dff9f81c4170b",
+      "bytes": 4892
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-blizzard-rank1-before-24.json",
+      "sha256": "64801a93173547037b9e3ae08ae30d074fdd6a122d9ef5114e1cdd3b7483c5ab",
+      "bytes": 4889
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-blizzard-rank2-after-27.json",
+      "sha256": "f322c968c03d3b4b9c403b9141dd11ab5d771d6e514d2bff0d97ef69f7157b07",
+      "bytes": 4941
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-blizzard-rank2-before-26.json",
+      "sha256": "f322c968c03d3b4b9c403b9141dd11ab5d771d6e514d2bff0d97ef69f7157b07",
+      "bytes": 4941
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-blizzard-synthetic-input.json",
+      "sha256": "20cb74ee9eda81005bc8b5fe6959b940e00ab8394f4d0aaa88ca95f3e7e30e46",
+      "bytes": 4073
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frost-nova-cast-visible.png",
+      "sha256": "3585aa9ed2bddfdfedecbcfae55739f5b7172718b104335ef734be0fec241924",
+      "bytes": 196812
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frost-nova-combat.json",
+      "sha256": "9302609d802cc49a6187a332d96fea202eedb2bf5b4d87f23b20c430d0a0b0ec",
+      "bytes": 2263
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frost-nova-current-next.png",
+      "sha256": "12d088465f234eb04f57ba437d0e1356e778bf9349989ae3aae4155049d6c8a7",
+      "bytes": 138096
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frost-nova-details.png",
+      "sha256": "3d563e676c735070177c7c371804baa620ad9ab5396ff93793f756faab56b897",
+      "bytes": 139046
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frost-nova-fresh-8.json",
+      "sha256": "ed16d849071e4682ce2476682422f7812e4190f032e27d461add279dc0de4ada",
+      "bytes": 3244
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frost-nova-imported-9.json",
+      "sha256": "65efb5a63c4b5cb84394322d525d02b24ad721474f06073d374ef3dbce9bdecb",
+      "bytes": 4823
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frost-nova-offline-continued-14.json",
+      "sha256": "04c74af79620a9101a89895b7600de5e309db7a815ee8a8897b1720de16337c9",
+      "bytes": 4877
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frost-nova-rank1-after-11.json",
+      "sha256": "8995380db5ef0169d1e050490f82a90a320b234adc8ef45c86a202b447b539d3",
+      "bytes": 4826
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frost-nova-rank1-before-10.json",
+      "sha256": "9b65c884f0b4e2331edd9849eeb71bec9822c6c07e8648267024b8ec395f82b6",
+      "bytes": 4823
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frost-nova-rank2-after-13.json",
+      "sha256": "04c74af79620a9101a89895b7600de5e309db7a815ee8a8897b1720de16337c9",
+      "bytes": 4877
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frost-nova-rank2-before-12.json",
+      "sha256": "04c74af79620a9101a89895b7600de5e309db7a815ee8a8897b1720de16337c9",
+      "bytes": 4877
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frost-nova-synthetic-input.json",
+      "sha256": "65f29f2c962187d91432a1d87964e47a56de166e0bb6ffd49d9aa2472d53809b",
+      "bytes": 4007
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frozen-orb-cast-visible.png",
+      "sha256": "2c3351084ffbce3afdca7c7aaad5e6b52769a28f516c01437de0c08a34f1121f",
+      "bytes": 206231
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frozen-orb-combat.json",
+      "sha256": "7e4f8112418d729518fec722212c3ff5c6ece5ba48b50884c5dafee6f73cd1a0",
+      "bytes": 1766
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frozen-orb-current-next.png",
+      "sha256": "18345e8a4e392de9912ef3cf04a3276fc8f334b357af38d2498f37e65a374cef",
+      "bytes": 152080
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frozen-orb-details.png",
+      "sha256": "dbe9baa3a6767c2b58983a9d19e09e5974b526637e160ded7dc0c5c4fe2a6d2f",
+      "bytes": 153952
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frozen-orb-fresh-15.json",
+      "sha256": "0fc63e87ae1f89cbbaccdd9fee728ced723bb349322313259ce61efe0799f89c",
+      "bytes": 3244
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frozen-orb-imported-16.json",
+      "sha256": "da57a4ef3651b78810441bc78a8ba8804a505f806a521246c3174cd8c4bdd7c0",
+      "bytes": 4922
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frozen-orb-offline-continued-21.json",
+      "sha256": "fc2b119b3a1b092ec634127aaf1c826bf05ffdfad02f1935c95936b9ff6df085",
+      "bytes": 4976
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frozen-orb-rank1-after-18.json",
+      "sha256": "e49a5f582c074c031ba9860decaccdef0e7d2c9abf56012dcbd24a08053c305c",
+      "bytes": 4925
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frozen-orb-rank1-before-17.json",
+      "sha256": "865e7d80abb8fd62da33af781dd1f0d7b47e03ab897cf349069fae8cb79b4e55",
+      "bytes": 4922
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frozen-orb-rank2-after-20.json",
+      "sha256": "fc2b119b3a1b092ec634127aaf1c826bf05ffdfad02f1935c95936b9ff6df085",
+      "bytes": 4976
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frozen-orb-rank2-before-19.json",
+      "sha256": "fc2b119b3a1b092ec634127aaf1c826bf05ffdfad02f1935c95936b9ff6df085",
+      "bytes": 4976
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-frozen-orb-synthetic-input.json",
+      "sha256": "32525cf8f9cf2674cb3a9e0a70068c67b2d32a799360e4f11b34faa8b7c673f1",
+      "bytes": 4106
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-ice-bolt-cast-visible.png",
+      "sha256": "94b8f3503c14d96b77aa238269542bbc83600b051ea4a08d1a59cc84492c3ad6",
+      "bytes": 218294
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-ice-bolt-combat.json",
+      "sha256": "bbbfc47ed3072ad9c708709586a45e085de79eb8d6b290c9766497d0733fad20",
+      "bytes": 1372
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-ice-bolt-current-next.png",
+      "sha256": "5e88ffb8c1765272d4111d9e52db2db585319b0308f79341ec02499b1d9c8582",
+      "bytes": 128571
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-ice-bolt-details.png",
+      "sha256": "1a0e66debd71dbfe5c278391ab4fd7c346513a79220bdfc02e08b1cdd33ea9bf",
+      "bytes": 130156
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-ice-bolt-fresh-1.json",
+      "sha256": "4a232dbfaa4d6b1964f1a9a308802b19f04990f5f664d30e27fd1cb86fb0699b",
+      "bytes": 3244
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-ice-bolt-imported-2.json",
+      "sha256": "1fd039ae288e0980a25e271942ead8ffb5753cbb114d2882b44e32a0299631f6",
+      "bytes": 4790
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-ice-bolt-offline-continued-7.json",
+      "sha256": "fa1a5cfb68ea1442312aa75a1d1139ec5febf6b628ba4ffedea0b31d349c4bd4",
+      "bytes": 4842
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-ice-bolt-rank1-after-4.json",
+      "sha256": "24ff339d6e6488d7f634732a69898a31707c4105343ca7496c37cebfe7287284",
+      "bytes": 4793
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-ice-bolt-rank1-before-3.json",
+      "sha256": "40b66fe4310594c905153463ad9a9410c8479d91792e4224569aee700f760f00",
+      "bytes": 4790
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-ice-bolt-rank2-after-6.json",
+      "sha256": "fa1a5cfb68ea1442312aa75a1d1139ec5febf6b628ba4ffedea0b31d349c4bd4",
+      "bytes": 4842
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-ice-bolt-rank2-before-5.json",
+      "sha256": "fa1a5cfb68ea1442312aa75a1d1139ec5febf6b628ba4ffedea0b31d349c4bd4",
+      "bytes": 4842
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280/en-1280-ice-bolt-synthetic-input.json",
+      "sha256": "5dc14f1f221e159d0b32046a720f51b7bc4c9e32a653218a57e678b7f459d670",
+      "bytes": 3974
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280-live.json",
+      "sha256": "eb890294327afc658d6b7fc60384d7a5b5a1dcc1ebfff3d2bd0522ae65b2e172",
+      "bytes": 138
+    },
+    {
+      "path": "pre-lint-fix-browser-en-1280.log",
+      "sha256": "c533cae964570b8f2244007de385ab729dcba69aa9d5291b71cf2a29a7cbdbdc",
+      "bytes": 139
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/browser-report.json",
+      "sha256": "1cf1f19b013750a238cd84422f52bbbc1c2423f2e7cc9e0898fd4b439b457b5e",
+      "bytes": 7461
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-blizzard-cast-visible.png",
+      "sha256": "79d406fce036ae130b8c0a5150f23782f07ee1f70555610de08a7d66e0fddf0b",
+      "bytes": 53754
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-blizzard-combat.json",
+      "sha256": "74bb4fe28c544dff71453192430eb4deec833f141c55897c1586a6062f721d73",
+      "bytes": 2293
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-blizzard-current-next.png",
+      "sha256": "1d70f5adfa6f91f94cc81ba1438dd28e18fda779152b1d8fa207a775e4596294",
+      "bytes": 48548
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-blizzard-details.png",
+      "sha256": "9c1593305c610022307dd5e45342b4d873adcf7a4522ea74e273c2f3a6105a9a",
+      "bytes": 50247
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-blizzard-fresh-22.json",
+      "sha256": "1a11d06ae0632f167136cb2da0804c3cce13ff4ceb78654f5b36f0c5f8a60235",
+      "bytes": 3244
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-blizzard-imported-23.json",
+      "sha256": "9e1d4b97d9a602bf1f68b260d1d18f3f5499e0d2f40434e64c054e46b9181753",
+      "bytes": 4889
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-blizzard-offline-continued-28.json",
+      "sha256": "c6a50abab23101b11cfe0be0177dd8ab84e371182dfb3bdd536b101f489b6b09",
+      "bytes": 4941
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-blizzard-rank1-after-25.json",
+      "sha256": "e91512c2905837f3f9b870fb34a8896bc5bd4e79f4fc13c11b0f903a466041ff",
+      "bytes": 4892
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-blizzard-rank1-before-24.json",
+      "sha256": "0927d104e42ffce34c8c356fc6d37e1089d08e0d4887140b6c3ba58b56d9c8ef",
+      "bytes": 4889
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-blizzard-rank2-after-27.json",
+      "sha256": "c6a50abab23101b11cfe0be0177dd8ab84e371182dfb3bdd536b101f489b6b09",
+      "bytes": 4941
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-blizzard-rank2-before-26.json",
+      "sha256": "c6a50abab23101b11cfe0be0177dd8ab84e371182dfb3bdd536b101f489b6b09",
+      "bytes": 4941
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-blizzard-synthetic-input.json",
+      "sha256": "579b384383f3c8cb3c275e5e7b2af774e72b67a5a55fe8450667e7e7c8d38f82",
+      "bytes": 4073
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frost-nova-cast-visible.png",
+      "sha256": "85ab0c0cbcfbbec395d1c97744f221465fb1014b100e909643e7f458ea5425c3",
+      "bytes": 52787
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frost-nova-combat.json",
+      "sha256": "ae39cee3665cad305e1fd7b76aef9b007ad41bded1f9fb90114bb884eaeb2110",
+      "bytes": 2059
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frost-nova-current-next.png",
+      "sha256": "1d4a7ad58b553fc2ad66f0b06a760608d93bcea55ea083e098a49a781fd0f05a",
+      "bytes": 53569
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frost-nova-details.png",
+      "sha256": "0407120f3221656024744a2b0e332da6be7dfcdbd727f938fb5e3d4852fd8596",
+      "bytes": 54667
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frost-nova-fresh-8.json",
+      "sha256": "e0311a090bbe7632b686d6da059407d31c5f03aaf4670d5ecaf690fe91c40ba9",
+      "bytes": 3244
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frost-nova-imported-9.json",
+      "sha256": "945e492925d033b0196be4a1e11edcb3e8de0e0ea025c634e93460f506ce77d1",
+      "bytes": 4823
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frost-nova-offline-continued-14.json",
+      "sha256": "1dc657cc671a0b819dcba9f8638914dd4feab73685c5a02e60d9cf1c702904aa",
+      "bytes": 4877
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frost-nova-rank1-after-11.json",
+      "sha256": "ed26256819f857f6bb2a8c29a5a4db2c5a33bd75b80c701bdd792acc7b63a23a",
+      "bytes": 4826
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frost-nova-rank1-before-10.json",
+      "sha256": "babda111d3c5d8f8e7ecbcb2ca08061c88b4d7391a42cedad2090fbb52129fee",
+      "bytes": 4823
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frost-nova-rank2-after-13.json",
+      "sha256": "1dc657cc671a0b819dcba9f8638914dd4feab73685c5a02e60d9cf1c702904aa",
+      "bytes": 4877
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frost-nova-rank2-before-12.json",
+      "sha256": "1dc657cc671a0b819dcba9f8638914dd4feab73685c5a02e60d9cf1c702904aa",
+      "bytes": 4877
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frost-nova-synthetic-input.json",
+      "sha256": "bae1fde4d28ca6daa9350e68e818a9d09f8780fec86a7bee58c0d94a79463b50",
+      "bytes": 4007
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frozen-orb-cast-visible.png",
+      "sha256": "e374ffd7438e7f19e4990830db3e7eefaec51a583e49bce04e1165d155a707ef",
+      "bytes": 53180
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frozen-orb-combat.json",
+      "sha256": "85f4dbea2184695216d9fa7d119ea60fd1371b9b5df313d2a61bc02a3324717e",
+      "bytes": 1561
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frozen-orb-current-next.png",
+      "sha256": "c4791855e40177ac2aacd61a2f64eed83b435ace05036eecdc9271db40cac894",
+      "bytes": 56252
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frozen-orb-details.png",
+      "sha256": "c6f9e8fa155d3d4effaf753d76501688e7c21c11812a612f8d96a5557c818e9a",
+      "bytes": 57537
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frozen-orb-fresh-15.json",
+      "sha256": "3c2dcf442464712c136598ba10ef0ad0296b4a2cc762e295acc16e6a8728b348",
+      "bytes": 3244
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frozen-orb-imported-16.json",
+      "sha256": "9bddbae85fb3ed5b5e6612dd9a0066d2c44429029c7d63ba2bd334b25a8b4fab",
+      "bytes": 4922
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frozen-orb-offline-continued-21.json",
+      "sha256": "bc5624cfcc6c4ccf49bc7d537f4ad8a5df49494acb00dc2fc31b5a9f64c3ea0c",
+      "bytes": 4976
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frozen-orb-rank1-after-18.json",
+      "sha256": "e98a2ce28da0d7f679ef8543bf6130f7a301a9a2f622148dfe712263cc83c45a",
+      "bytes": 4925
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frozen-orb-rank1-before-17.json",
+      "sha256": "8c874116c0500419cb75f48f7c862d08b210aaf6f640fb0eb2e0d5189c761a29",
+      "bytes": 4922
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frozen-orb-rank2-after-20.json",
+      "sha256": "bc5624cfcc6c4ccf49bc7d537f4ad8a5df49494acb00dc2fc31b5a9f64c3ea0c",
+      "bytes": 4976
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frozen-orb-rank2-before-19.json",
+      "sha256": "bc5624cfcc6c4ccf49bc7d537f4ad8a5df49494acb00dc2fc31b5a9f64c3ea0c",
+      "bytes": 4976
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-frozen-orb-synthetic-input.json",
+      "sha256": "8ca0fd5a2de065af8039827faefbc9e0f17010b7a83413af7d92030e3467bf38",
+      "bytes": 4106
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-ice-bolt-cast-visible.png",
+      "sha256": "4392027f02263ed0ce03a94ddce673a1552a4c8c9f2739bcd20b2619883f8ede",
+      "bytes": 51787
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-ice-bolt-combat.json",
+      "sha256": "bbbfc47ed3072ad9c708709586a45e085de79eb8d6b290c9766497d0733fad20",
+      "bytes": 1372
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-ice-bolt-current-next.png",
+      "sha256": "eb9ecfdc42fa12d4e16845adfe228c394e3266dc6e6590730fda3aa287808c60",
+      "bytes": 48323
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-ice-bolt-details.png",
+      "sha256": "19de28876afbe29959fe4a50df1803594624aa941e381bd62a4a7e43fe0b4c84",
+      "bytes": 48533
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-ice-bolt-fresh-1.json",
+      "sha256": "013eaa6051f121af5909db70d2c90a75bc1193e122e6d514c528dcb99cd65e80",
+      "bytes": 3244
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-ice-bolt-imported-2.json",
+      "sha256": "2160c3a108b9bd3fbad425820f2218b989c01b3707596c35df29f933c6df76d4",
+      "bytes": 4790
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-ice-bolt-offline-continued-7.json",
+      "sha256": "e0ba0d89977d6165a4fe62dfc1348e092e543f648d53aad140f4f9b18eb183ec",
+      "bytes": 4842
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-ice-bolt-rank1-after-4.json",
+      "sha256": "7673a64226ba7924c7f6557279f73ee10410986e25091df95f289003eb7ffa41",
+      "bytes": 4793
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-ice-bolt-rank1-before-3.json",
+      "sha256": "838884ec82f960ac651bb03c3dcc99ea7c843a27043b205f5120e44e31b0a3ad",
+      "bytes": 4790
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-ice-bolt-rank2-after-6.json",
+      "sha256": "e0ba0d89977d6165a4fe62dfc1348e092e543f648d53aad140f4f9b18eb183ec",
+      "bytes": 4842
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-ice-bolt-rank2-before-5.json",
+      "sha256": "e0ba0d89977d6165a4fe62dfc1348e092e543f648d53aad140f4f9b18eb183ec",
+      "bytes": 4842
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360/en-360-ice-bolt-synthetic-input.json",
+      "sha256": "4ba0c1806419942171938562e384d6f1335e6286b284edcda5bfc15d03a9240f",
+      "bytes": 3974
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360-corrected-live.json",
+      "sha256": "b8f312b1ceb1fe93f5d00d602cf20162bcea626695de3c417746b44dad0b29aa",
+      "bytes": 138
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360-corrected-result.json",
+      "sha256": "ceaa3927a883d4d7b5035562f007088c84fa0726fe47f040e84deeca8ee6d18e",
+      "bytes": 184
+    },
+    {
+      "path": "pre-lint-fix-browser-en-360-corrected.log",
+      "sha256": "fdc08f5494ea8bfa173e9ecc404eea109ed6916208d954596c3a1d00fc863ea4",
+      "bytes": 135
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/browser-report.json",
+      "sha256": "a4549e86d0d5361549c8656097fca0ab0a56bb4ac486a5eb414e2dd8bc1bb0e4",
+      "bytes": 7296
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-blizzard-cast-visible.png",
+      "sha256": "b3424b09b9688584d084e1400607aaddd3c4aca192073af6537944206793e247",
+      "bytes": 201519
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-blizzard-combat.json",
+      "sha256": "176010feb7fd72e99bfc3e59e5c9dca9fecc614f65a2412a9ed35cee9b711765",
+      "bytes": 2261
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-blizzard-current-next.png",
+      "sha256": "558a660088820f44b0e70e38d44a7951baedb98d10f32846b443a33121563841",
+      "bytes": 140187
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-blizzard-details.png",
+      "sha256": "59f7c7a9bc0c4c72ad2d83625f19b6f8e74c89e50ff1aa08df477d199fcffd5b",
+      "bytes": 141112
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-blizzard-fresh-22.json",
+      "sha256": "aa8db7de2c6b465c676ef4fdde1b0263354ed421789e19b532d94395729c2798",
+      "bytes": 3247
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-blizzard-imported-23.json",
+      "sha256": "b5062ecd5cc234bc33497b1dd9b4ee1623fa426b3cbfcb854fccdb1b326ae363",
+      "bytes": 4892
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-blizzard-offline-continued-28.json",
+      "sha256": "5b9e6174999168a7cfb0c9bd3212edc3fa87d476cce84ef4fe23bf59222c5ebf",
+      "bytes": 4944
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-blizzard-rank1-after-25.json",
+      "sha256": "03bd1e9f8df326711b38614d872ed3cceeedf61cb857d6569b3c098228a9d393",
+      "bytes": 4895
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-blizzard-rank1-before-24.json",
+      "sha256": "1664e91a8d724a8366e420b27458ff2a24be29cf74a6c5895c4ad1d314a71d9c",
+      "bytes": 4892
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-blizzard-rank2-after-27.json",
+      "sha256": "5b9e6174999168a7cfb0c9bd3212edc3fa87d476cce84ef4fe23bf59222c5ebf",
+      "bytes": 4944
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-blizzard-rank2-before-26.json",
+      "sha256": "5b9e6174999168a7cfb0c9bd3212edc3fa87d476cce84ef4fe23bf59222c5ebf",
+      "bytes": 4944
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-blizzard-synthetic-input.json",
+      "sha256": "979409d3134a369d0f10d7ee9e262b8e92e219cc0b912bce10a91ed74cd82673",
+      "bytes": 4076
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frost-nova-cast-visible.png",
+      "sha256": "a53bd8ccd2ba6d4666f04fcf838b3198585469b4234bd936506aca0d2d4857f5",
+      "bytes": 204965
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frost-nova-combat.json",
+      "sha256": "be2bdf74a1bde37054029ac4b3fdc6bbc6f84b046f971a3cc1655495c648dd99",
+      "bytes": 2457
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frost-nova-current-next.png",
+      "sha256": "e57ee110f2de144bc7f42d5afbb052720afafda71b833d7c139453e1cdf3e021",
+      "bytes": 143665
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frost-nova-details.png",
+      "sha256": "6b034b7cdcdbaebd3b851a67dd61e77a531dc09a1fd7ce271ddc7c973775c182",
+      "bytes": 144855
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frost-nova-fresh-8.json",
+      "sha256": "36ccc84f7f7d8ceba13bb4344133e2c38da4c4abeede57c52a72cfc10e43e39a",
+      "bytes": 3247
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frost-nova-imported-9.json",
+      "sha256": "cbad806cc623e4069da958ccc6fe81b104a7d00b804ec4829c9c947cf38cd980",
+      "bytes": 4826
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frost-nova-offline-continued-14.json",
+      "sha256": "51473f7cc0b7d08b9868b70f5017201fb0acbb6b89d006166717745e32023954",
+      "bytes": 4880
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frost-nova-rank1-after-11.json",
+      "sha256": "6344cb04b6d1ad60eeda755f23914530ec691a19a1dcb9c7d2fa4cdb9dc9c3c8",
+      "bytes": 4829
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frost-nova-rank1-before-10.json",
+      "sha256": "cac194906d029614156c9e07d98d7eb41985134376152a437baaa5a13e65af51",
+      "bytes": 4826
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frost-nova-rank2-after-13.json",
+      "sha256": "51473f7cc0b7d08b9868b70f5017201fb0acbb6b89d006166717745e32023954",
+      "bytes": 4880
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frost-nova-rank2-before-12.json",
+      "sha256": "51473f7cc0b7d08b9868b70f5017201fb0acbb6b89d006166717745e32023954",
+      "bytes": 4880
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frost-nova-synthetic-input.json",
+      "sha256": "4c1c9e2f55d317b0765e45dd1d5591d77959d9e7ead038da74e0fd56b1a589e9",
+      "bytes": 4010
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frozen-orb-cast-visible.png",
+      "sha256": "36b5e5fd279c830b17907d0521cdb25e503bf4979e63f7cba9734ed4a1d73a31",
+      "bytes": 211920
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frozen-orb-combat.json",
+      "sha256": "aff315a860fa05ca79624e5584c834775161b6ea87735062c10ac92266ebc986",
+      "bytes": 1691
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frozen-orb-current-next.png",
+      "sha256": "8aa1113faa1c3e068ecac94e43666d0ac817d2a6ca5e2308da59434f7ccb3daf",
+      "bytes": 155105
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frozen-orb-details.png",
+      "sha256": "5e2e5cf952a1b41f76908ac2ba3dd67a20e4d90064883d7cbbac6647dd6dbaf3",
+      "bytes": 156972
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frozen-orb-fresh-15.json",
+      "sha256": "4d2cc5e64660a4c106c251f59211712046b2829dce391db9909624486eb58cb0",
+      "bytes": 3247
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frozen-orb-imported-16.json",
+      "sha256": "1c71abb3d5bc808c6e2035eb51bfb90e92d1c209b363e7c7dfafae9388ba4112",
+      "bytes": 4925
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frozen-orb-offline-continued-21.json",
+      "sha256": "0432cd9f6e4cb8a0f189d93876e62f03083a9a3dfb9e731eb644278a4acb7d30",
+      "bytes": 4979
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank1-after-18.json",
+      "sha256": "90a4b0e3701b7fd540f532357f8b0e790e964c16acf82002dbf5965a9b7f3aa1",
+      "bytes": 4928
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank1-before-17.json",
+      "sha256": "5a3cddcd58942d3ff46dc854c298bcadbc26d0c475c21a5c276d85c82a36526e",
+      "bytes": 4925
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank2-after-20.json",
+      "sha256": "0432cd9f6e4cb8a0f189d93876e62f03083a9a3dfb9e731eb644278a4acb7d30",
+      "bytes": 4979
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frozen-orb-rank2-before-19.json",
+      "sha256": "0432cd9f6e4cb8a0f189d93876e62f03083a9a3dfb9e731eb644278a4acb7d30",
+      "bytes": 4979
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-frozen-orb-synthetic-input.json",
+      "sha256": "6adc68498715ee3b4d087988ce9b44b118b98cef7b4498b47a2d725bfb21520a",
+      "bytes": 4109
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-ice-bolt-cast-visible.png",
+      "sha256": "3133ae171c263486f414b56f59a54e7eb012b9cacf7ec31d95b6a59ec69e6b61",
+      "bytes": 223105
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-ice-bolt-combat.json",
+      "sha256": "f53eb04d1b133fcc2cca4798df0fcf114deaa16076cd1a7bbbdbd79f9d9d7a05",
+      "bytes": 1490
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-ice-bolt-current-next.png",
+      "sha256": "88e390c9a3e39298cb3cc15a2b05f28377a9c62887ab7478e5d72ab3b056eca6",
+      "bytes": 131439
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-ice-bolt-details.png",
+      "sha256": "4ca197a0fafd8302fd58fd19f9621aec3502815893e2d179df6047f4f19486f0",
+      "bytes": 131649
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-ice-bolt-fresh-1.json",
+      "sha256": "4451e05d1f790b29ff5fccb627f2f22868c620b53f64127ceae044d360943a07",
+      "bytes": 3247
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-ice-bolt-imported-2.json",
+      "sha256": "139696c27753bd1049e123c27ef298806e1b048645e511671b7448bc4a457362",
+      "bytes": 4793
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-ice-bolt-offline-continued-7.json",
+      "sha256": "7f40c77e88035b6d9e52c38bf22aa0225e7f416a8a8fef16027e15d62fdda833",
+      "bytes": 4845
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank1-after-4.json",
+      "sha256": "0c8902fc4d5b2804906013e02e5fe702edbb7bb5b6957660224a2d64a3306349",
+      "bytes": 4796
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank1-before-3.json",
+      "sha256": "9308a5721db319f34a7ec285213536c6a21e6be7ee7564b7cee8000b33917001",
+      "bytes": 4793
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank2-after-6.json",
+      "sha256": "7f40c77e88035b6d9e52c38bf22aa0225e7f416a8a8fef16027e15d62fdda833",
+      "bytes": 4845
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-ice-bolt-rank2-before-5.json",
+      "sha256": "7f40c77e88035b6d9e52c38bf22aa0225e7f416a8a8fef16027e15d62fdda833",
+      "bytes": 4845
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280/zh-CN-1280-ice-bolt-synthetic-input.json",
+      "sha256": "b91376fcd18078847d106134af5acb9f5d4c5c3ad07a6dd15e72a453e9bfafb1",
+      "bytes": 3977
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280-live.json",
+      "sha256": "cd46461173620083b1e4e1e0b75359a5e96675d78dbe5b251060919ece9517d0",
+      "bytes": 138
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280-result.json",
+      "sha256": "09ca41d01c729408d4264ec8a5cecb5001f519b757bb1570735cf165701bdb39",
+      "bytes": 183
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-1280.log",
+      "sha256": "c71ce4957a3e131682507b4d6290907b7ea145f9a2ac48ad7b56cdc1e7f5fd30",
+      "bytes": 151
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/browser-report.json",
+      "sha256": "7cacaf6d8f675fb1b8334203fa641dc8c55931d5117fa074dbbaf8b191006b37",
+      "bytes": 7272
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-blizzard-cast-visible.png",
+      "sha256": "36eeadc11112086c615f64125f475a8e1e2e2ad9f59de979e097b4220aa2e7ef",
+      "bytes": 62976
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-blizzard-combat.json",
+      "sha256": "21c3c98d6e80665e4f3527066ba9e4e9cdd74a6a0c788c64e0af043b6a380e05",
+      "bytes": 2492
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-blizzard-current-next.png",
+      "sha256": "f28a5746ddb8cbfb94248332ab0b9c25a8e75cbcbead3ed24db677faaea7d9c0",
+      "bytes": 54054
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-blizzard-details.png",
+      "sha256": "b1a8fbe4fe02094c0fd29d3920a1cb2d573ff0d112ab7b6b419f3d7a41d35249",
+      "bytes": 54795
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-blizzard-fresh-22.json",
+      "sha256": "80e87314cd42ffefa095ab371788481181801a802baf5e725993b92db35d9170",
+      "bytes": 3247
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-blizzard-imported-23.json",
+      "sha256": "c09addb7621afeac9c0f68371c021bfef0ee213d6c6d4f78b15a4768f65b8405",
+      "bytes": 4892
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-blizzard-offline-continued-28.json",
+      "sha256": "1b8ddea70aaa09a210461775e56df6eab93a62a8039aff4e217d0c5a644059ca",
+      "bytes": 4944
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-blizzard-rank1-after-25.json",
+      "sha256": "77795193a0647daa48142882a9a91d48f0ca9d975fb30dc43afa34f0cfcd3224",
+      "bytes": 4895
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-blizzard-rank1-before-24.json",
+      "sha256": "562c0cecc08e1ccf145abcb6516af130692403533065cec8242003bc2ccf1e89",
+      "bytes": 4892
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-blizzard-rank2-after-27.json",
+      "sha256": "1b8ddea70aaa09a210461775e56df6eab93a62a8039aff4e217d0c5a644059ca",
+      "bytes": 4944
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-blizzard-rank2-before-26.json",
+      "sha256": "1b8ddea70aaa09a210461775e56df6eab93a62a8039aff4e217d0c5a644059ca",
+      "bytes": 4944
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-blizzard-synthetic-input.json",
+      "sha256": "6120582eb642c0fc65b769b5982b739159514a8c254155c642af8fc80c7e47de",
+      "bytes": 4076
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frost-nova-cast-visible.png",
+      "sha256": "9f9f3dd8510db2c4fc48ff0be5b6fd8e44966e5bc6488b30bb5dce68d5ef4987",
+      "bytes": 62669
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frost-nova-combat.json",
+      "sha256": "be2bdf74a1bde37054029ac4b3fdc6bbc6f84b046f971a3cc1655495c648dd99",
+      "bytes": 2457
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frost-nova-current-next.png",
+      "sha256": "5338f73f9faff34e85fa7abc440ca8545449a03934f9f3195ea81cc61efd2557",
+      "bytes": 59699
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frost-nova-details.png",
+      "sha256": "8c51e0e15586449c1c4e9f32c18f71ade1c5119699e7c9592b3c53473ac73148",
+      "bytes": 60776
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frost-nova-fresh-8.json",
+      "sha256": "902ca611664b374add001ae9227a1142010d72d896a47ef946d8caec65eb832d",
+      "bytes": 3247
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frost-nova-imported-9.json",
+      "sha256": "2e264888b7bbc3b3ad7d81d585b91fe723163cb851ec1283043b1ff651c8c89d",
+      "bytes": 4826
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frost-nova-offline-continued-14.json",
+      "sha256": "627e07f485d12438a18d98f2dc458762ef530c26923d808c0cb16b56f23b213f",
+      "bytes": 4880
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frost-nova-rank1-after-11.json",
+      "sha256": "96d8efe33193e3e44e3fa634a4c9704a3549ab67d79e6e6701ee9dc65ed5a6ad",
+      "bytes": 4829
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frost-nova-rank1-before-10.json",
+      "sha256": "d910a1606fd0c72d7028d98df875867ee5eea50307dac16ae236642cfba90bfa",
+      "bytes": 4826
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frost-nova-rank2-after-13.json",
+      "sha256": "627e07f485d12438a18d98f2dc458762ef530c26923d808c0cb16b56f23b213f",
+      "bytes": 4880
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frost-nova-rank2-before-12.json",
+      "sha256": "627e07f485d12438a18d98f2dc458762ef530c26923d808c0cb16b56f23b213f",
+      "bytes": 4880
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frost-nova-synthetic-input.json",
+      "sha256": "1fd54d50dbcf10db1ed5a0126a6258c92da2750290430aaa0c74e83397ed9bc6",
+      "bytes": 4010
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frozen-orb-cast-visible.png",
+      "sha256": "021c8c841ea9c8ea8f9f295e2ee9d015a12853b4d96b05f6dc8d7354fe5e9901",
+      "bytes": 62640
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frozen-orb-combat.json",
+      "sha256": "9da1369000d86e3431703a8400171d1bbce8a2d07a89acf0efad7bc2830acb74",
+      "bytes": 1918
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frozen-orb-current-next.png",
+      "sha256": "e8d87ee53e417ef7eb10d6fdbf8eaa34f8f03749fa8b88adfb16cf9f6fed54e8",
+      "bytes": 61777
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frozen-orb-details.png",
+      "sha256": "9dd0afba8ddaa06a5d3b746537a17ef423d06687c77464a447b43e44fd1143c0",
+      "bytes": 63456
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frozen-orb-fresh-15.json",
+      "sha256": "fa025ef424556537601832daece39939adf41dfb9f42a4e4a2c007492d8daa80",
+      "bytes": 3247
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frozen-orb-imported-16.json",
+      "sha256": "4a816ec2c10a2d08c710075b8cf4a656e3932c8f7bbb7b47d49602e53f87a214",
+      "bytes": 4925
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frozen-orb-offline-continued-21.json",
+      "sha256": "5ef83ecaff00282cca7e872446a0b4513e34a9c73ac7210040c6d01fb6123f90",
+      "bytes": 4979
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frozen-orb-rank1-after-18.json",
+      "sha256": "11d2e70279e123d72b6b83c396442276cf29a47c7abae3d221a6828916320e7e",
+      "bytes": 4928
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frozen-orb-rank1-before-17.json",
+      "sha256": "523d04b9bbd7230a0f20ff726183484c34ec0eb84a64fff1db7b6a199e7f4630",
+      "bytes": 4925
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frozen-orb-rank2-after-20.json",
+      "sha256": "5ef83ecaff00282cca7e872446a0b4513e34a9c73ac7210040c6d01fb6123f90",
+      "bytes": 4979
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frozen-orb-rank2-before-19.json",
+      "sha256": "5ef83ecaff00282cca7e872446a0b4513e34a9c73ac7210040c6d01fb6123f90",
+      "bytes": 4979
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-frozen-orb-synthetic-input.json",
+      "sha256": "95ab3622c733d0d9724500b9745e68fd312433bf57e11087ed15c6033cd54cc6",
+      "bytes": 4109
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-ice-bolt-cast-visible.png",
+      "sha256": "b10e29403ec96cbc76c8bfcf410065ff643d9ae2229434842bf385d87abe987e",
+      "bytes": 62562
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-ice-bolt-combat.json",
+      "sha256": "bc8020438f8af939aea1bfb9a366ca049110c4031bac2ebd802dce8585c9aa30",
+      "bytes": 1248
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-ice-bolt-current-next.png",
+      "sha256": "55b1791ca11e2dfec63b94a597bc23bed1ee2de8ab0f67580cd97fb42f5a6352",
+      "bytes": 53624
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-ice-bolt-details.png",
+      "sha256": "61f3025bc340f815f64a6fea4137a5d2e811f835672c19253c026a4efdc6ace4",
+      "bytes": 54382
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-ice-bolt-fresh-1.json",
+      "sha256": "ebc336c5abced99ff99bd0350b7a9b007f12f9eb59c840d649a954cea406a5e2",
+      "bytes": 3247
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-ice-bolt-imported-2.json",
+      "sha256": "801569f1c421852b71d9007e5644a07e2221c96f30cfdfcb2302a47ecaae5c28",
+      "bytes": 4793
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-ice-bolt-offline-continued-7.json",
+      "sha256": "aa21b69e6edcf93c41e08eb0c4f7f8abda05483adaed1cec7df4382cb2f82a9d",
+      "bytes": 4845
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-ice-bolt-rank1-after-4.json",
+      "sha256": "a8c832bf5b3e29e2160d54aaa8da4de3106ee26ccde1370bd3ffd686b2692695",
+      "bytes": 4796
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-ice-bolt-rank1-before-3.json",
+      "sha256": "fb40c626b39ae29d6a492b7709210a3dd0ee41f0f1f7dd6bfd53044691b8c3ef",
+      "bytes": 4793
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-ice-bolt-rank2-after-6.json",
+      "sha256": "aa21b69e6edcf93c41e08eb0c4f7f8abda05483adaed1cec7df4382cb2f82a9d",
+      "bytes": 4845
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-ice-bolt-rank2-before-5.json",
+      "sha256": "aa21b69e6edcf93c41e08eb0c4f7f8abda05483adaed1cec7df4382cb2f82a9d",
+      "bytes": 4845
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360/zh-CN-360-ice-bolt-synthetic-input.json",
+      "sha256": "e01c434238635c881bd7fe5f1d65d894147b7e19f5db3f4884b5e33f74589aeb",
+      "bytes": 3977
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360-live.json",
+      "sha256": "a1586a17da5bdf7855c1696566be73dc66ca028d8c9a002177b5f2de26e6da17",
+      "bytes": 138
+    },
+    {
+      "path": "pre-lint-fix-browser-zh-CN-360.log",
+      "sha256": "0366aa9b05266a8fa7ede2363f818e8619c5857c09d28394a2de6768f276095c",
+      "bytes": 147
+    },
+    {
+      "path": "precache-final-green-live.json",
+      "sha256": "e4b6b34971c0f77f29dbe020bad0085cfc8012c0e843d933ca5da5f1770db4d0",
+      "bytes": 170
+    },
+    {
+      "path": "precache-final-green-result.json",
+      "sha256": "652bc22dbef57fe8931ef84d37c1013eb5602effc2b1e649aa47ffde48603506",
+      "bytes": 218
+    },
+    {
+      "path": "precache-final-green.log",
+      "sha256": "68b3a2bcdda9960dec93ed4b242009cd7342b2e4b2c6111d32c710e71d61ab58",
+      "bytes": 369
+    },
+    {
+      "path": "precache-final-live.json",
+      "sha256": "41ffb47ed1d1c2490aab4038598471412fe95ef50c29d3f0d52fb33426c58dce",
+      "bytes": 170
+    },
+    {
+      "path": "precache-final-result.json",
+      "sha256": "f6de50b972f24ce08920129e17f866a59145adc348a0029835ccd0ac96de72f2",
+      "bytes": 218
+    },
+    {
+      "path": "precache-final.log",
+      "sha256": "1b62a08c9c9a335adaa0ebf702da0fa70a22e7c2aa27fd0eea7f11b9662ada21",
+      "bytes": 369
+    },
+    {
+      "path": "presentation-green-live.json",
+      "sha256": "5cbe35b82ecba85c65b3bcd96a3c7eb91a4e42b327ed60149c184e35e358b642",
+      "bytes": 236
+    },
+    {
+      "path": "presentation-green-result.json",
+      "sha256": "de1a485b982c912ced284a2c9fcff100cc3c9fdba90f4049a8c84c6f1b87cf7e",
+      "bytes": 281
+    },
+    {
+      "path": "presentation-green.log",
+      "sha256": "65e9a64e11b902e71b8aea08c032e52ab5f64e6ce81de3341a82637cce1aa99b",
+      "bytes": 540
+    },
+    {
+      "path": "previous-audit.py",
+      "sha256": "bca4f7cd40529680b6171e7c7a22f363649ec9d8201843edb0683cedf1565864",
+      "bytes": 3401
+    },
+    {
+      "path": "previous-browser.cjs",
+      "sha256": "a4d3b0b93d0826f9d1bee6a6ee6566ea182dcc6f0fa3c047cbeda13c4e1408db",
+      "bytes": 12130
+    },
+    {
+      "path": "previous-cleanup.py",
+      "sha256": "8a6eaffd9a3857848a45569f5d5962b50b14ef7de962f5fd629904e1b3bea73b",
+      "bytes": 3486
+    },
+    {
+      "path": "previous-retain.py",
+      "sha256": "5660f8d1e72303f9b35bc53b69ae2f534e6d2509d7ff4bde33307048442f63b7",
+      "bytes": 4045
+    },
+    {
+      "path": "previous-serve.py",
+      "sha256": "7899de6cbcba304bf7925c091eee6cee9d83fc6fc963c1e73aad68e5f49e3e91",
+      "bytes": 515
+    },
+    {
+      "path": "publish-docs.py",
+      "sha256": "78dde4e0df7ae18b237e8e49508d88c1068eae2dd0bd51976741a60c50951b43",
+      "bytes": 9802
+    },
+    {
+      "path": "quiet-before-full.json",
+      "sha256": "3af18265feb9d4262ee9be3dd1ccb6b7cfa6d35d9fe5bfd33244068c901bc795",
+      "bytes": 125
+    },
+    {
+      "path": "record-processes.py",
+      "sha256": "0f89cf197dcf933aaf8f99cb160af2101eb1b4fcf0a4b2a61f8f2ebc5a69f031",
+      "bytes": 1235
+    },
+    {
+      "path": "recorded-processes.json",
+      "sha256": "e66bcd1d4dc1fd7d2583922d3827f7e5b7ddfced9175a106a880d05f91d9a9b1",
+      "bytes": 76876
+    },
+    {
+      "path": "retain.py",
+      "sha256": "b8e980ac9ca822038f98db2657905f5e8e3a0a7608b8c9360da396d351a4134e",
+      "bytes": 4089
+    },
+    {
+      "path": "run.py",
+      "sha256": "a97f6057539c7e7e00b87e0dc185355816c0b32b17744bbe240580f16c8843ec",
+      "bytes": 510
+    },
+    {
+      "path": "serve.py",
+      "sha256": "7899de6cbcba304bf7925c091eee6cee9d83fc6fc963c1e73aad68e5f49e3e91",
+      "bytes": 515
+    },
+    {
+      "path": "server-4510-live.json",
+      "sha256": "143d5b48023b21b1c536d116d647f02d6f637814c0e8b011f7ecdcbfc51157fc",
+      "bytes": 30
+    },
+    {
+      "path": "source-diff-audit.json",
+      "sha256": "7791deaa694e52c1f97f3e0f3cc76f24e603ec64741b7d3f0e04475eb7e8c9eb",
+      "bytes": 256
+    },
+    {
+      "path": "task.json",
+      "sha256": "ade1c43020b53ab2bc92d0b86cd9e3fc7814d542ee45f6f2ab3e32aefe587ba7",
+      "bytes": 331
+    },
+    {
+      "path": "types-corrected-live.json",
+      "sha256": "c68ef19ea6788beed9e99e2bdf27439fb35481de249ce26145d49964d56fd8b3",
+      "bytes": 56
+    },
+    {
+      "path": "types-corrected-result.json",
+      "sha256": "08bb38b412d12a7d961df268a48be521ce8f53c4ace6bc9118d1bcef84c26393",
+      "bytes": 101
+    },
+    {
+      "path": "types-corrected.log",
+      "sha256": "835d9c6da527ef736c9fc584bbf946f5919328450a90e5ce68becd8503c9ee11",
+      "bytes": 724
+    },
+    {
+      "path": "types-final-green-live.json",
+      "sha256": "897fc8d06310dc5edda8eb15129ec49e62cb1990c06dfee00bf1a25d795972df",
+      "bytes": 56
+    },
+    {
+      "path": "types-final-green-result.json",
+      "sha256": "3d4be334815cedbe1ca2452bf7e555bf1f8c2b5e9cc3609604a1d68b431f80c1",
+      "bytes": 102
+    },
+    {
+      "path": "types-final-green.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "path": "types-final-live.json",
+      "sha256": "a6baf25f8575256ccff07dfc2d0ad7a0291bf28277f18299367846a16ea6670a",
+      "bytes": 56
+    },
+    {
+      "path": "types-final-result.json",
+      "sha256": "4e79d96ed6696f72308243cd6fb85128f0c2229d9e8a9c9070ac7aacc0d0350d",
+      "bytes": 102
+    },
+    {
+      "path": "types-final.log",
+      "sha256": "299a91346a3b748b962d2ec01a73e57613e3da37e378d51d75421ba729fb16c0",
+      "bytes": 12102
+    },
+    {
+      "path": "ui-red-live.json",
+      "sha256": "42a443ff55eb8a37c6ba7478b25e20dd79c5fb829bb1e80ce9e6efe66580c752",
+      "bytes": 132
+    },
+    {
+      "path": "ui-red-result.json",
+      "sha256": "709a57d1d8bcd2aef44e935b822924c3cf806630f41e68642c416b17695e117d",
+      "bytes": 177
+    },
+    {
+      "path": "ui-red.log",
+      "sha256": "4c76319d62e630d8df2e11d6c367bd0b7bd5bd7a6e413be12ca813b3734d5ed4",
+      "bytes": 53728
+    },
+    {
+      "path": "verify-delivery.py",
+      "sha256": "a273abd66a3a01daa7b747c44842229dc8c69cbe0f55ece47f5d215d88e96337",
+      "bytes": 3140
+    }
+  ],
+  "excludedDisposable": {
+    "build": "761build assets represented by frozen hashes; no duplicate build copy"
+  },
+  "traceRetention": "Original browser failure screenshot and full trace zip retained byte-exact.",
+  "receiptNote": "Only finalPass entries establish the final handoff checks. All original failures and intermediate passes remain separate.",
+  "verification": {
+    "archiveMembers": 539,
+    "allMemberHashesMatch": true,
+    "sourceFiles": 1449,
+    "buildFiles": 761,
+    "fullFiles": 711,
+    "fullTests": 15610,
+    "skips": 2
+  }
+}

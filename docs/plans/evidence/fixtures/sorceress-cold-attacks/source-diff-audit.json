@@ -1,0 +1,10 @@
+{
+  "base": "abf86f5c",
+  "changedObjects": [
+    "skills-sorceress-frozen-orb",
+    "skills-sorceress-blizzard"
+  ],
+  "unchangedByteExact": 28,
+  "idsAndOrderUnchanged": true,
+  "scope": "data only; damage/cost/cooldown and 28 other objects unchanged"
+}

@@ -1,0 +1,368 @@
+{
+  "finalPass": {
+    "focused-final": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-cold-attacks.causal.test.ts",
+        "src/stores/sorceress-cold-attacks-native.test.ts",
+        "src/engine/skills/sorceress-cold-attacks.test.ts",
+        "src/features/skills/SkillsScreen.sorceress-cold-attacks.test.tsx"
+      ],
+      "pid": 1657561,
+      "exitCode": 0,
+      "seconds": 11.176510332035832
+    },
+    "causal-final": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-cold-attacks.causal.test.ts"
+      ],
+      "pid": 1703290,
+      "exitCode": 0,
+      "seconds": 13.55711037304718
+    },
+    "engine-final": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1659085,
+      "exitCode": 0,
+      "seconds": 180.62703874800354
+    },
+    "types-final-green": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1703288,
+      "exitCode": 0,
+      "seconds": 127.33735495700967
+    },
+    "lint-corrected": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1701897,
+      "exitCode": 0,
+      "seconds": 222.0336964969756
+    },
+    "lint-tail": {
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/stores/sorceress-cold-attacks.causal.test.ts",
+        "src/features/skills/SkillsScreen.tsx",
+        "--max-warnings=0"
+      ],
+      "pid": 1703289,
+      "exitCode": 0,
+      "seconds": 12.386784940958023
+    },
+    "loader-final": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/data/loader.test.ts"
+      ],
+      "pid": 1664256,
+      "exitCode": 0,
+      "seconds": 10.320104505051859
+    },
+    "build-final-green": {
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-cold-attacks-qhgb4h5d/build"
+      ],
+      "pid": 1703287,
+      "exitCode": 0,
+      "seconds": 15.660081411944702
+    },
+    "precache-final-green": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-cold-attacks-qhgb4h5d/build"
+      ],
+      "pid": 1703998,
+      "exitCode": 0,
+      "seconds": 0.042036877013742924
+    },
+    "full-quiet": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "pid": 1732106,
+      "exitCode": 0,
+      "seconds": 622.937584534986
+    },
+    "browser-en-360-final": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-cold-attacks-qhgb4h5d/browser.cjs"
+      ],
+      "pid": 1704012,
+      "exitCode": 0,
+      "seconds": 90.8425969769014
+    },
+    "browser-zh-CN-360-final": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-cold-attacks-qhgb4h5d/browser.cjs"
+      ],
+      "pid": 1704011,
+      "exitCode": 0,
+      "seconds": 90.42302684602328
+    },
+    "browser-en-1280-final": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-cold-attacks-qhgb4h5d/browser.cjs"
+      ],
+      "pid": 1713343,
+      "exitCode": 0,
+      "seconds": 93.5555511439452
+    },
+    "browser-zh-CN-1280-final": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-cold-attacks-qhgb4h5d/browser.cjs"
+      ],
+      "pid": 1713352,
+      "exitCode": 0,
+      "seconds": 95.15982073999476
+    }
+  },
+  "otherPass": {
+    "boundaries-one": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-cold-attacks.causal.test.ts"
+      ],
+      "pid": 1646758,
+      "exitCode": 0,
+      "seconds": 9.709998465026729
+    },
+    "boundaries-three": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-cold-attacks.causal.test.ts"
+      ],
+      "pid": 1656387,
+      "exitCode": 0,
+      "seconds": 9.82361637800932
+    },
+    "boundaries-two": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-cold-attacks.causal.test.ts"
+      ],
+      "pid": 1646996,
+      "exitCode": 0,
+      "seconds": 12.640545392991044
+    },
+    "browser-groups": {
+      "command": [
+        "python3",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-cold-attacks-qhgb4h5d/browser-groups.py"
+      ],
+      "pid": 1704006,
+      "exitCode": 0,
+      "seconds": 186.16496194305364
+    },
+    "build-final": {
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-cold-attacks-qhgb4h5d/build"
+      ],
+      "pid": 1662962,
+      "exitCode": 0,
+      "seconds": 21.34644016996026
+    },
+    "causal-types-corrected": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-cold-attacks.causal.test.ts"
+      ],
+      "pid": 1688889,
+      "exitCode": 0,
+      "seconds": 20.897348669008352
+    },
+    "focused-corrected": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-cold-attacks.causal.test.ts",
+        "src/features/skills/SkillsScreen.sorceress-cold-attacks.test.tsx"
+      ],
+      "pid": 1701896,
+      "exitCode": 0,
+      "seconds": 11.736625764053315
+    },
+    "geometry-green": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/sorceress-cold-attacks.test.ts",
+        "src/stores/sorceress-cold-attacks.causal.test.ts"
+      ],
+      "pid": 1625287,
+      "exitCode": 0,
+      "seconds": 11.8529513690155
+    },
+    "native-display-green": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/sorceress-cold-attacks.test.ts",
+        "src/stores/sorceress-cold-attacks-native.test.ts"
+      ],
+      "pid": 1645803,
+      "exitCode": 0,
+      "seconds": 7.379170694970526
+    },
+    "pre-lint-fix-browser-en-360-corrected": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-cold-attacks-qhgb4h5d/browser.cjs"
+      ],
+      "pid": 1677437,
+      "exitCode": 0,
+      "seconds": 114.15499841794372
+    },
+    "pre-lint-fix-browser-zh-CN-1280": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-cold-attacks-qhgb4h5d/browser.cjs"
+      ],
+      "pid": 1692426,
+      "exitCode": 0,
+      "seconds": 97.08728881692514
+    },
+    "precache-final": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-cold-attacks-qhgb4h5d/build"
+      ],
+      "pid": 1666116,
+      "exitCode": 0,
+      "seconds": 0.052678221953101456
+    },
+    "presentation-green": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/features/skills/SkillsScreen.sorceress-cold-attacks.test.tsx",
+        "src/engine/skills/sorceress-cold-attacks.test.ts",
+        "src/stores/sorceress-cold-attacks.causal.test.ts"
+      ],
+      "pid": 1641029,
+      "exitCode": 0,
+      "seconds": 9.015277073951438
+    }
+  },
+  "failed": {
+    "browser-en-360": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-cold-attacks-qhgb4h5d/browser.cjs"
+      ],
+      "pid": 1666208,
+      "exitCode": 1,
+      "seconds": 26.312635346897878
+    },
+    "contract-corrected-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/sorceress-cold-attacks.test.ts"
+      ],
+      "pid": 1621922,
+      "exitCode": 1,
+      "seconds": 2.1632615230046213
+    },
+    "contract-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/sorceress-cold-attacks.test.ts"
+      ],
+      "pid": 1621162,
+      "exitCode": 1,
+      "seconds": 2.0109090380137786
+    },
+    "geometry-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-cold-attacks.causal.test.ts"
+      ],
+      "pid": 1619406,
+      "exitCode": 1,
+      "seconds": 8.803626887034625
+    },
+    "lint-final": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1659098,
+      "exitCode": 1,
+      "seconds": 303.89935987396166
+    },
+    "types-corrected": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1688890,
+      "exitCode": 2,
+      "seconds": 139.4520943009993
+    },
+    "types-final": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1659084,
+      "exitCode": 2,
+      "seconds": 176.05330473103095
+    },
+    "ui-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/features/skills/SkillsScreen.sorceress-cold-attacks.test.tsx"
+      ],
+      "pid": 1638155,
+      "exitCode": 1,
+      "seconds": 9.567446219967678
+    }
+  },
+  "fullTests": 15610,
+  "fullFiles": 711,
+  "existingSkips": 2,
+  "correctionNotes": "Original geometry/schema/UI REDs, initial contract field assumptions, copied browser warcry prose expectation, and test-only TypeScript corrections are retained separately. No weakened combat assertions or timeouts."
+}

@@ -1,0 +1,21 @@
+{
+  "reviewer": "root author only; no independent approval",
+  "commit": "dc489cb113cd55b4a76c63e98466b7211f28cdbd",
+  "verdict": "local author review pass",
+  "security": "pass: first-party local game data/UI/tests; no credentials, dependencies, save version, CI, permission or remote changes",
+  "correctness": "Actual Orb cone and Blizzard all-hostile targeting, native eligibility/payment/control/mitigation/replay/playback/save and truthful current/next/MAX values verified. Existing tuning preserved.",
+  "readability": "Uses existing selectors/projectors and pure display resolver; no new combat loop or ad hoc target patch.",
+  "architecture": "JSON owns tuning, schemas guard skill identity, engine has no React/DOM imports, UI formats engine values, save22 unchanged.",
+  "performance": "Existing bounded cone selector reused; no new hot-path loops or dependency. Production entry/chunks precached. Existing test-speed and broad bundle/art-manifest warnings remain open.",
+  "resolvedFindings": [
+    "Readonly fixture/event narrowing and optional-property typing corrected without casts or assertion weakening",
+    "Unsafe matcher assignments and redundant UI guard corrected",
+    "Copied warcry prose browser expectation corrected to cold contract; original failure retained",
+    "Two receiptless143collectors retained separately; final groups all terminal0"
+  ],
+  "limitations": [
+    "Provisional four-cell cone adaptation",
+    "Independent design/QA and earned balance remain open",
+    "No earned campaign/pacing/endgame or full a11y acceptance"
+  ]
+}
