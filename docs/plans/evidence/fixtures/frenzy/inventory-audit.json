@@ -1,0 +1,21 @@
+{
+  "beforeSha256": "bfd091ed14047f82507bce6b01950339baa097cde9f9df1a7a6403c2cc7218e0",
+  "afterSha256": "73f4ab14d16c39c47405ee9101abb2e4d929e63a63689cbd68ab7520cbc043ba",
+  "rows": 213,
+  "idsOrderPreserved": true,
+  "changedId": "skills-barbarian-frenzy",
+  "changedRows": 1,
+  "other212RowsByteExact": true,
+  "counts": {
+    "unverified": 97,
+    "bounded-functional;independent-acceptance-open": 111,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "boundedFunctional": 114,
+  "barbarianBounded": 16,
+  "barbarianTotal": 30,
+  "independentAcceptance": "open",
+  "earnedBalance": "open"
+}

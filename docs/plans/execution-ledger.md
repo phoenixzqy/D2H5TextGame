@@ -21,7 +21,8 @@ Current implementation evidence lives in `evidence/`.
 | D04 Leap / BUG213 | locally fixed/verified; independent and earned acceptance open | Source/tests/contract `0742a94f`: shared all-hostile Stun1s/boss0.5s plus paid3s direct Physical+.01/rank, strict native/registry/carry authority and truthful bilingual previews.60new cases; engine7778/288, full15025/679/two existing skips, types/lint/build PASS. Production4/4/eight exact five-domain Continue pairs/20geometry/16screenshots/four inspected. [Evidence](evidence/d04-leap.md). All1175source committed blobs/760build/genuine checked; raw217/25receipts byte-verified. Cleanup977exact files plus1520prior build removals;55recorded PIDs absent/4499closed/scratch absent/remaining[]/failures[]. Only Leap credited:111bounded/100unverified/one engine-only/one review-needed; Barbarian13/30. New3s tuning/provisional adaptation, earned balance/independent gates/C2-C4/fullG0-G7/privatev1 remain open; genuineL33/next402/Baal uncleared unchanged. |
 | D04 Double Swing / BUG214 | locally fixed/verified; independent and earned acceptance open | Source/tests/contract `0269609e`: two fixed-original passes across densest cross/cap3, no replacement/redistribution, one10MP/CD1 and truthful per-target previews.38new cases; earlier engine7787/289, focused38/4, compatibility129/6, loader1/1, full15063/683/two existing skips/types/lint/build PASS. Production4/4/eight exact five-domain Continue pairs/20geometry/16screenshots/four inspected, six first-cast attempts each. [Evidence](evidence/d04-double-swing.md). All1180source committed blobs/760build/genuine audited. Only Swing credited:112bounded/99unverified/one engine-only/one review-needed; Barbarian14/30. Cross adaptation/provisional balance, independent gates/C2-C4/fullG0-G7/privatev1 open; genuineL33/next402/Baal uncleared unchanged. |
 | D04 Double Throw / BUG215 | locally fixed/verified; independent and earned acceptance open | Source/tests/contract `25ae9b20`: two total independent attempts rotate in existing original up-to-two pool; singleton can receive both, one12MP/CD1, truthful bilingual per-attempt/per-cast UI.40new cases; focused40/4, engine7798/290, compatibility84/7, full15103/687/two existing skips/final types/lint/build PASS. Production4/4/eight exact five-domain Continue pairs/20geometry/16screenshots/four inspected. [Evidence](evidence/d04-double-throw.md).1185source committed blobs/760build/genuine audited. Only Throw credited:113bounded/98unverified/one engine-only/one review-needed, Barbarian15/30. Independent/earned gates and full privatev1 open; genuineL33/next402/Baal uncleared unchanged. |
-| D04 Frenzy / BUG216 | hit-earned speed missing; contract/repair open |12native rank/seed pairs:35paid casts,27–30positive hits each, unchanged1700ms cadence matching basic controls; only scalar damage registered. [Reproduction](evidence/d04-frenzy-repro.md). No Frenzy patch/credit. |
+| D04 Frenzy / BUG216 | locally fixed/verified; independent and earned acceptance open | Source/tests/contract `bca26202`: two original-target attempts, actual hit-earned5%base-speed/cap5/6s, exact finite expiry/carry/removal and truthful bilingual UI/chip. Focused52/7, Feral115/10, loader292/1, engine7817/293, full15158/695/two existing skips, final types/lint/build/browser PASS. [Evidence](evidence/d04-frenzy.md). BUG217 vendor split/actual precache guard `99fda510` restores required application caching; BUG218 available-only NPC portrait/fallback `ae556b86` removes404requests. Production4/4/eight exact five-domain pairs/four actual offline fresh-page Continues/20geometry/16screenshots/four inspected.1197source/761build/genuine hashes exact, all source blobs committed. Raw200members/30receipts retained;961current+760prior exact files removed,62recorded PIDs absent/4502closed/scratch absent/remaining[]/failures[]. Only Frenzy credited:114bounded/97unverified/one engine-only/one review-needed, Barbarian16/30;212other rows byte-exact. GenuineL33/next402/Baal uncleared unchanged; C2-C4/fullG0-G7/privatev1/independent and earned gates open. |
+| D04 Concentrate / BUG219 | missing defensive benefit reproduced; contract/repair open | Twelve native rank/seed cases pay10MP once, grant no defensive capability and take100HP per landed enemy hit, matching basic-first controls. Complete dodge schedules differ9/12and are not paired mitigation proof. [Reproduction](evidence/d04-concentrate-repro.md). No fix or credit; next attack-family slice needs an explicit numerical/lifetime contract. |
 | D04 Assassin Fire / BUG205–206 | six Fire-hit/Burn paths locally repaired; other promises open | Runtime `ee952d1d`, presentation `6400adb0`; explicit10% Fire-only Burn and real shared-roll Phoenix components, generic bilingual composite summary.134new cases; final full14626/651/two skips (500.032s), engine7574/276, types/lint/build PASS.30production cases/60exact five-domain Continue pairs/50geometry/96screenshots/16inspected. [Evidence](evidence/d04-assassin-fire.md). Exact1383source/two design/760build freeze and committed blobs verified. Only Dragon Tail credited:104bounded/107unverified/one engine-only/one review-needed; Assassin7/30. Cone/charge/persistent traps and Death Sentry identity remain open; genuineL33/next402/Baal uncleared unchanged. Independent/earned acceptance/C2-C4/G0-G7/privatev1 open.512raw members/37terminal receipts verified;2032exact scratch files removed, all76owned PIDs absent/4492closed/remaining[]/failures[]. Umbrella worktree/claim active. |
 | D04 Dragon Talon / BUG204 | locally fixed/verified; independent and earned acceptance open | Runtime `5f9a2f8f`, presentation `2e132186`: actual authored three independent original-target attempts, one action/4MP/cooldown, ordinary miss/death/mitigation/shield/reflection/replay.49new cases; final full14492/648/two existing skips (495.830s), engine7553/275, compatibility148/12, data815/14, types/lint/build PASS. Production4/4; eight exact five-domain Continue pairs/20geometry/20screenshots/eight inspected. [Evidence](evidence/d04-dragon-talon.md). All1380source+two design+760build/Git/genuine exact through full; actual committed blobs verified. Only Talon credited:103bounded/108unverified/one engine-only/one review-needed, Assassin6/30. Seven Burn rows gain reproduction links only;205other rows exact. GenuineL33/next402/Baal uncleared; C2-C4/fullG0-G7/privatev1 open. |
 | D04 Amazon Impale / BUG202 | locally fixed/verified; independent and earned acceptance open | Runtime `229f0d2c`, presentation `1d1eca0f`. Explicit provisional10% final-hit/s Bleed and typed per-hit ordinary Defense bypass; shared mitigation/status/shield/reflection/death/native authority/replay retained.62new cases/3files; final full14394/640/two existing skips (498.865s), engine7517/271, focused62/3 and compatibility165/8/data234/12, types/lint/build/bridge/precache PASS. Production4/4, eight exact five-domain Continue pairs/20geometry/20screenshots/eight inspected. [Evidence](evidence/d04-impale.md); all1372source+two design+760build/Git/genuine hashes exact through full, actual committed blobs verified. Exactly one credit:213IDs/order,101bounded-functional/110unverified/one engine-only/one review-needed; Amazon8/30plus one engine-only, earned acceptance open.162raw members/24terminal receipts byte-verified;922exact files removed, scratch/all51recorded PIDs absent,4489closed,remaining[]/failures[]. GenuineL33/next402 unchanged/Baal uncleared; Jab reproduced separately/no credit. Root sole writer/local only; C2-C4/fullG0-G7/privatev1 and umbrella goal/worktree remain active. |
@@ -12244,3 +12245,56 @@ Cleanup removed 881 exact task-owned files, including 760 disposable build
 files. All 29 recorded PIDs are absent, port4501 is closed and scratch is
 absent, with remaining/failures empty. Shared caches and the umbrella
 worktree/branch/claim are preserved; independent acceptance remains open.
+
+
+## 2026-10-25 — Frenzy verified; offline entry and NPC requests repaired; Concentrate reproduced
+
+Frenzy source/tests/contract `bca26202` adds two independent original-target
+attempts with one12MP/CD1 payment and actual damaging-hit speed stacks.
+Provisional JSON5%base Attack Speed per stack, cap5,6s refresh; no base-stat
+mutation. Native class/unlock/prerequisites/rank/priority authority is captured
+fresh each wave; carried paid stacks disappear when unconfigured, without saved
+combat payload or refill. Feral Rage preserves exports/data/8s lifecycle through
+the shared finite helper. Exact expiry, second-action3400→3320ms timing,
+miss/crit/Defense/resistance/reflection/death, cooldown/Chill/Stun, immutable
+replay and living-status/resource playback are proved. Both locales show real
+per-attempt/current/next values and a positive combat chip.
+
+Production validation uncovered BUG217: the first2,098,900-byte application
+exceeded Workbox's unchanged2MiB cache limit and was excluded. `99fda510` splits
+existing Ajv vendors, reduces it to1,981,972bytes and adds the actual-output
+precache guard. All five application chunks/CSS are now cached;757entries/
+755unique present URLs. Existing broad bundle/art-manifest warnings remain.
+BUG218 `ae556b86` uses registered current-act NPC art or existing immediate
+fallback instead of requesting a nonexistent Warriv portrait. The first strict
+browser failure and actual precache/NPC/chip REDs remain in the evidence.
+
+Final focused52/7, Feral compatibility115/10, real loader292/1, NPC/town18/3,
+engine7817/293 and full15158/695/two existing skips PASS; full592.62s Vitest/
+594.070s wrapper. Final types/lint/build pass. All1197source/config/test/contract
+files and761corrected build files were frozen before full, with no subsequent
+source/test/build changes; committed source blobs match. Production en/zh×
+360/1280passes4/4, eight exact five-domain durable pairs and four additional
+actual network-disabled fresh-page Continues.20geometry/16screenshots/four
+individually inspected; corrected page/console errors0. SyntheticL30/pools/
+helmet/ranks/fixed combat Date.now establish mechanics, not earned balance.
+[Delivered evidence](evidence/d04-frenzy.md).
+
+Only Frenzy gains credit:213IDs/order and212other rows byte-exact. Inventory
+114bounded-functional/97unverified/one engine-only/one review-needed;
+Barbarian16/30. Root author review only; independent/earned acceptance open.
+Concentrate is separately reproduced in12native cases: one10MP debit, no defense
+capability and100HP per landed incoming hit.9/12full dodge schedules differ
+from basic controls due RNG draws; normalized landed damage is retained without
+claiming paired schedules. BUG219 has no repair or credit.
+
+Retention verifies200raw members/30terminal receipts. Cleanup removes961current
+exact files plus760previously verified obsolete build files,1721task files/
+1521build files total. All62recorded PIDs absent,4502closed,scratch absent,
+remaining[]/failures[]. Source/history, evidence, shared caches and umbrella
+worktree/branch/claim preserved. Genuine Ancients/Rite remainsL33/XP149261/
+nextNormal402/Nightmare0/Baal uncleared; decompressed hash stays
+`c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577`.
+No genuine campaign or remote action. C0/C1 retain narrow exits; C2–C4/fullG0–G7/
+all-class earned builds/30–50hour pacing/economy/endgame/independent acceptance
+and complete privatev1 remain unfinished. Umbrella goal remains active.

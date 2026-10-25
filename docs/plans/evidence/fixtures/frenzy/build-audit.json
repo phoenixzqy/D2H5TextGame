@@ -1,0 +1,27 @@
+{
+  "chunks": {
+    "assets/game-engine-CqIzUXqx.js": 99977,
+    "assets/i18n-Bxr3rY09.js": 60804,
+    "assets/index-CeULk7Uj.js": 1981972,
+    "assets/react-vendor-dRBhy6jq.js": 163933,
+    "assets/validation-vendor-BvSW52Nz.js": 116339
+  },
+  "bridgeMarkersAbsent": [
+    "__GAME__",
+    "__E2E__",
+    "seedItem",
+    "seedMerc",
+    "installTestBridge",
+    "flushSave property"
+  ],
+  "precacheEntries": 757,
+  "uniquePrecacheUrls": 755,
+  "missingPrecacheUrls": [],
+  "VITE_E2E": false,
+  "knownBudgetWarnings": [
+    "large main bundle",
+    "generated asset manifest not precached"
+  ],
+  "mainApplicationPrecached": true,
+  "cacheSizeLimitUnchanged": 2097152
+}

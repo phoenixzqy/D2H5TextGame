@@ -81,7 +81,7 @@ barbarian,skills-barbarian-leap,barbarian.leap,active,buff|debuff,leap|stun,src/
 barbarian,skills-barbarian-stun,barbarian.stun,active,damage,stun,src/data/skills/barbarian.json,,unverified,
 barbarian,skills-barbarian-double-throw,barbarian.double_throw,active,damage,,src/data/skills/barbarian.json,author-pool-contract|independent-acceptance-open|earned-balance-open,bounded-functional;independent-acceptance-open,docs/plans/decisions/D04-double-throw-v1.md;docs/plans/evidence/d04-double-throw.md
 barbarian,skills-barbarian-concentrate,barbarian.concentrate,active,damage,,src/data/skills/barbarian.json,,unverified,
-barbarian,skills-barbarian-frenzy,barbarian.frenzy,active,damage,,src/data/skills/barbarian.json,,unverified,
+barbarian,skills-barbarian-frenzy,barbarian.frenzy,active,damage+finite-self-speed,,src/data/skills/barbarian.json,author-dual-attempt-and-speed-tuning|independent-acceptance-open|earned-balance-open,bounded-functional;independent-acceptance-open,docs/plans/decisions/D04-frenzy-v1.md;docs/plans/evidence/d04-frenzy.md
 barbarian,skills-barbarian-howl,barbarian.howl,active,debuff,howl,src/data/skills/barbarian.json,pure-debuff-consumer-not-found-in-audit,unverified,
 barbarian,skills-barbarian-find-potion,barbarian.find_potion,active,buff,find-potion,src/data/skills/barbarian.json,buff-mechanics-not-applied-in-audited-handler,unverified,
 barbarian,skills-barbarian-taunt,barbarian.taunt,active,debuff,taunt,src/data/skills/barbarian.json,pure-debuff-consumer-not-found-in-audit,unverified,

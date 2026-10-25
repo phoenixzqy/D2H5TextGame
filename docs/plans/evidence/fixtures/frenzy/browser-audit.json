@@ -1,0 +1,405 @@
+{
+  "cases": [
+    {
+      "label": "en-1280-frenzy",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.63,
+          "publicCast": true,
+          "selectedSkill": "frenzy",
+          "firstCastAttempts": 2,
+          "sameOriginalTarget": "Bone Warrior A",
+          "positiveFrenzyChip": true
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-frenzy",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.63,
+          "publicCast": true,
+          "selectedSkill": "frenzy",
+          "firstCastAttempts": 2,
+          "sameOriginalTarget": "Bone Warrior A",
+          "positiveFrenzyChip": true
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-frenzy",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.63,
+          "publicCast": true,
+          "selectedSkill": "frenzy",
+          "firstCastAttempts": 2,
+          "sameOriginalTarget": "\u9ab8\u9aa8\u6218\u58eb A",
+          "positiveFrenzyChip": true
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-frenzy",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.63,
+          "publicCast": true,
+          "selectedSkill": "frenzy",
+          "firstCastAttempts": 2,
+          "sameOriginalTarget": "\u9ab8\u9aa8\u6218\u58eb A",
+          "positiveFrenzyChip": true
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    }
+  ],
+  "geometry": [
+    {
+      "label": "en-1280-frenzy",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frenzy",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frenzy",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frenzy",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-frenzy",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frenzy",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frenzy",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frenzy",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frenzy",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-frenzy",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frenzy",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frenzy",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frenzy",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frenzy",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-frenzy",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frenzy",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frenzy",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frenzy",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frenzy",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-frenzy",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    }
+  ],
+  "screenshots": [
+    "corrected-browser-en-1280/en-1280-frenzy-cast-visible.png",
+    "corrected-browser-en-1280/en-1280-frenzy-current-next.png",
+    "corrected-browser-en-1280/en-1280-frenzy-description.png",
+    "corrected-browser-en-1280/en-1280-frenzy-details.png",
+    "corrected-browser-en-360/en-360-frenzy-cast-visible.png",
+    "corrected-browser-en-360/en-360-frenzy-current-next.png",
+    "corrected-browser-en-360/en-360-frenzy-description.png",
+    "corrected-browser-en-360/en-360-frenzy-details.png",
+    "corrected-browser-zh-CN-1280/zh-CN-1280-frenzy-cast-visible.png",
+    "corrected-browser-zh-CN-1280/zh-CN-1280-frenzy-current-next.png",
+    "corrected-browser-zh-CN-1280/zh-CN-1280-frenzy-description.png",
+    "corrected-browser-zh-CN-1280/zh-CN-1280-frenzy-details.png",
+    "corrected-browser-zh-CN-360/zh-CN-360-frenzy-cast-visible.png",
+    "corrected-browser-zh-CN-360/zh-CN-360-frenzy-current-next.png",
+    "corrected-browser-zh-CN-360/zh-CN-360-frenzy-description.png",
+    "corrected-browser-zh-CN-360/zh-CN-360-frenzy-details.png"
+  ],
+  "inspected": [
+    "corrected-browser-en-360/en-360-frenzy-cast-visible.png",
+    "corrected-browser-en-1280/en-1280-frenzy-current-next.png",
+    "corrected-browser-zh-CN-360/zh-CN-360-frenzy-details.png",
+    "corrected-browser-zh-CN-1280/zh-CN-1280-frenzy-description.png"
+  ],
+  "inspectionNotes": [
+    "Mobile en real two hits20/24 on Bone Warrior A plus two Frenzy buff logs; readable scroll layout.",
+    "Desktop en per-attempt93\u2013128 current and101\u2013136 next; two attempts,5%,5cap,6s.",
+    "Mobile zh description wraps within360; current rows readable via vertical scroll.",
+    "Desktop zh current/next/requirements and full rank2 description fit without horizontal overflow."
+  ],
+  "limits": [
+    "Synthetic L30, imported resource helmet and prerequisite ranks; no earned balance.",
+    "Fixed combat Date.now for reproducible first public cast.",
+    "No full accessibility, Lighthouse or performance acceptance."
+  ]
+}

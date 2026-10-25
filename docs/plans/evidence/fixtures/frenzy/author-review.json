@@ -1,0 +1,63 @@
+{
+  "reviewer": "root author self-review",
+  "independentAcceptance": "open",
+  "security": {
+    "verdict": "pass",
+    "scope": "Local combat/schema/presentation, registered NPC assets and existing vendor chunk boundaries; no network credentials, dependency or permission changes.",
+    "findings": []
+  },
+  "planReview": {
+    "verdict": "ready",
+    "scope": "Frenzy native lifecycle and separately documented BUG217/218 fixes",
+    "rationale": "Preserve Feral exports/data/lifetime; preserve Workbox cap with vendor split and verify actual offline restart; resolve absent art through existing fallback. Separate source commits and RED evidence."
+  },
+  "axes": {
+    "correctness": "Native two-attempt settlement preserves original-target/caster death, resources and ordinary mitigation. Qualifying hostile positive HP loss grants surviving authorized hero one bounded stack. Existing scheduler reconciles additive base-speed contributions and finite expiry.",
+    "readability": "Finite hit-speed lifecycle shares existing Feral validation; wrappers retain separate identity/rank/tuning. No unrelated engine behavior added.",
+    "architecture": "JSON tuning/closed skill schema, native configured authority each wave, transient marker and immutable playback. No save version or stored combat payload. NPC resolver uses existing availability map.",
+    "security": "Strict owner/kind/rank/lifetime and extra-payload checks; native configuration validates class/unlock/prerequisites before capability. Guard reads local emitted build only.",
+    "performance": "Bounded five-stack/status work; shared schema validator retained. Existing Ajv vendor chunk moved out of main application without new dependencies. Main still breaches500k warning; no broad perf acceptance."
+  },
+  "resolvedFindings": [
+    {
+      "id": "BUG216-chip",
+      "red": "chip-red:2fail",
+      "fix": "Classify authenticated Frenzy as positive buff, localized label and removal covered."
+    },
+    {
+      "id": "BUG217",
+      "red": "precache-red rejects actual missing application chunk after build warning",
+      "fix": "validation-vendor chunk and actual precache guard; all four browser cases include fresh-page offline Continue."
+    },
+    {
+      "id": "BUG218",
+      "red": "browser HTTP404/console failure and npc-red3fail",
+      "fix": "Known available portrait for this act or immediate GameImage fallback; all five authored towns checked."
+    }
+  ],
+  "proofLimits": [
+    "All constructed skill/browser level/pool/helmet/ranks are mechanical fixtures, not earned builds.",
+    "Frenzy5%/stack,cap5,6s and dual-attempt interpretation are provisional authored tuning; earned balance and independent design remain open.",
+    "No trusted hostile BoneArmor absorption fixture is claimed: native personal shield authority is player-only. Positive-HP-loss gate is shared and inspected; actual misses and lethal reflection are covered.",
+    "No complete C2-C4,G0-G7,performance,Lighthouse or full-v1 acceptance.",
+    "Full unit result must be terminal before delivery credit."
+  ],
+  "testFixtureCorrections": [
+    "Frenzy6s rebase remaining3500ms replaces copied Feral8s expectation5500ms; both original and correction retained.",
+    "Post-expiry action intervals differ from1700 by3.6e-12 due existing scheduler floating math; assertion requires at least three later actions and eight-decimal closeness; runtime timing unchanged.",
+    "Attempted typed ESLint invocation on plain mjs is outside existing TSConfig coverage; preserve failure, use repository full lint for TS/TSX and node syntax/execution checks for existing-style mjs."
+  ],
+  "fullUnit": {
+    "tests": 15158,
+    "files": 695,
+    "existingSkips": 2,
+    "exit": 0,
+    "vitestSeconds": 592.62,
+    "wrapperSeconds": 594.0699017047882
+  },
+  "sourceCommits": {
+    "Frenzy": "bca26202",
+    "offlineBuild": "99fda510",
+    "npcFallback": "ae556b86"
+  }
+}

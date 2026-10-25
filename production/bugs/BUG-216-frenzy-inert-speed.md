@@ -1,6 +1,6 @@
 # BUG-216 — Frenzy never gains its advertised speed after hits
 
-- Status: reproduced; speed-stack/dual-attack contract and repair open.
+- Status: fixed locally in `bca26202`; independent design/QA and earned balance open.
 - Severity: High — the named skill's advertised speed mechanic has no effect.
 - Owner: root; independent design/QA and earned balance remain open.
 - Build: source base `5f771707` plus frozen Double Throw repair; Frenzy itself unchanged.
@@ -30,4 +30,21 @@ registered effect is only Physical85–120/+8rank damage; no speed-stack capabil
 The final intentional assertion exits1 after retaining all observations.
 
 Evidence: [native reproduction](../../docs/plans/evidence/d04-frenzy-repro.md).
-No Frenzy patch/credit, genuine campaign action or remote action.
+At reproduction: no Frenzy patch/credit, genuine campaign action or remote action.
+
+## Integration finding — positive combat chip
+
+During implementation review, the new authenticated Frenzy status was rendered
+as a purple debuff because the combat card's positive-status classification
+omitted Frenzy. Before correcting it, both en/zh-CN regressions in
+`CombatScreen.frenzy.test.tsx` failed the existing blue-buff assertion; the
+localized label and playback removal were already correct. Retain `chip-red`
+with the delivery evidence. This is part of BUG216's presentation scope.
+
+## Local verification
+
+[Delivered evidence](../../docs/plans/evidence/d04-frenzy.md) retains RED/GREEN,
+actual production checks and full15158/695/two-existing-skips PASS. Final types/
+lint/build pass; four locale×viewport public cases/eight exact five-domain durable
+pairs/four actual offline fresh-page Continues pass. Root author review only;
+full-v1, independent review and earned balance remain open.

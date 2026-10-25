@@ -1,0 +1,132 @@
+{
+  "pairs": [
+    {
+      "before": "corrected-browser-en-1280/en-1280-frenzy-rank1-before-3.json",
+      "after": "corrected-browser-en-1280/en-1280-frenzy-rank1-after-4.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "before": "corrected-browser-en-1280/en-1280-frenzy-rank2-before-5.json",
+      "after": "corrected-browser-en-1280/en-1280-frenzy-rank2-after-6.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "before": "corrected-browser-en-360/en-360-frenzy-rank1-before-3.json",
+      "after": "corrected-browser-en-360/en-360-frenzy-rank1-after-4.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "before": "corrected-browser-en-360/en-360-frenzy-rank2-before-5.json",
+      "after": "corrected-browser-en-360/en-360-frenzy-rank2-after-6.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "before": "corrected-browser-zh-CN-1280/zh-CN-1280-frenzy-rank1-before-3.json",
+      "after": "corrected-browser-zh-CN-1280/zh-CN-1280-frenzy-rank1-after-4.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "before": "corrected-browser-zh-CN-1280/zh-CN-1280-frenzy-rank2-before-5.json",
+      "after": "corrected-browser-zh-CN-1280/zh-CN-1280-frenzy-rank2-after-6.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "before": "corrected-browser-zh-CN-360/zh-CN-360-frenzy-rank1-before-3.json",
+      "after": "corrected-browser-zh-CN-360/zh-CN-360-frenzy-rank1-after-4.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    },
+    {
+      "before": "corrected-browser-zh-CN-360/zh-CN-360-frenzy-rank2-before-5.json",
+      "after": "corrected-browser-zh-CN-360/zh-CN-360-frenzy-rank2-after-6.json",
+      "domains": [
+        "player",
+        "inventory",
+        "map",
+        "mercs",
+        "formation"
+      ],
+      "exact": true
+    }
+  ],
+  "offlineContinue": [
+    {
+      "before": "corrected-browser-en-1280/en-1280-frenzy-rank2-after-6.json",
+      "after": "corrected-browser-en-1280/en-1280-frenzy-offline-continued-7.json",
+      "exact": true,
+      "networkOffline": true,
+      "freshPage": true
+    },
+    {
+      "before": "corrected-browser-en-360/en-360-frenzy-rank2-after-6.json",
+      "after": "corrected-browser-en-360/en-360-frenzy-offline-continued-7.json",
+      "exact": true,
+      "networkOffline": true,
+      "freshPage": true
+    },
+    {
+      "before": "corrected-browser-zh-CN-1280/zh-CN-1280-frenzy-rank2-after-6.json",
+      "after": "corrected-browser-zh-CN-1280/zh-CN-1280-frenzy-offline-continued-7.json",
+      "exact": true,
+      "networkOffline": true,
+      "freshPage": true
+    },
+    {
+      "before": "corrected-browser-zh-CN-360/zh-CN-360-frenzy-rank2-after-6.json",
+      "after": "corrected-browser-zh-CN-360/zh-CN-360-frenzy-offline-continued-7.json",
+      "exact": true,
+      "networkOffline": true,
+      "freshPage": true
+    }
+  ],
+  "exactFiveDomainPairs": 8,
+  "exactOfflineComparisons": 4
+}
