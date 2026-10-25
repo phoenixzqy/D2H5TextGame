@@ -8,6 +8,39 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-leap" } } },
+      "then": {
+        "required": ["requiredLevel", "appliesStatus", "timedBuff", "scaling", "cost"],
+        "properties": {
+          "requiredLevel": { "const": 6 }, "maxLevel": { "const": 20 },
+          "trigger": { "const": "active" }, "target": { "const": "all-enemies" },
+          "prerequisites": { "const": [] }, "appliesStatus": { "const": ["leap", "stun"] },
+          "timedBuff": { "$ref": "#/properties/timedBuff" },
+          "cooldown": { "type": "number", "minimum": 1 },
+          "cost": { "type": "object", "additionalProperties": false, "required": ["mana"],
+            "properties": { "mana": { "type": "number", "exclusiveMinimum": 0 } } },
+          "scaling": {
+            "type": "object", "additionalProperties": false,
+            "required": ["costPerLevel", "cooldownPerLevel", "passiveStatsPerLevel"],
+            "properties": {
+              "costPerLevel": { "type": "number" }, "cooldownPerLevel": { "type": "number" },
+              "passiveStatsPerLevel": {
+                "type": "object", "additionalProperties": false, "required": ["physicalDamagePct"],
+                "properties": { "physicalDamagePct": { "type": "number", "exclusiveMinimum": 0, "maximum": 1,
+                  "description": "Paid finite personal direct Physical damage increase per allocated Leap rank." } }
+              }
+            }
+          },
+          "passive": { "const": false }, "aura": { "const": false }, "summon": { "const": false },
+          "damage": false, "damageType": false, "statusEffect": false, "additionalStatusEffects": false,
+          "synergies": false, "heal": false, "summonId": false, "aoeShape": false, "maxTargets": false,
+          "requires": false, "appliesTags": false, "hitSequence": false, "critChanceBonus": false,
+          "onHitRecovery": false, "onHitSelfDamage": false, "damageComposition": false,
+          "ignoresDefense": false, "ignoresMagicResist": false
+        }
+      }
+    },
+    {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-psychic-hammer" } } },
       "then": {
         "required": ["requiredLevel", "damage", "damageType", "cost", "scaling", "appliesStatus"],
@@ -1001,7 +1034,7 @@
       "then": {
         "properties": {
           "id": {
-            "enum": ["skills-assassin-burst-of-speed", "skills-assassin-cloak-of-shadows"]
+            "enum": ["skills-assassin-burst-of-speed", "skills-assassin-cloak-of-shadows", "skills-barbarian-leap"]
           }
         }
       }

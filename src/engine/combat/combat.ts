@@ -60,6 +60,8 @@ import { activeBurstOfSpeed, burstOfSpeedRank, copyBurstOfSpeedStatuses, matches
   paidBurstOfSpeed, BURST_OF_SPEED_IDS, BURST_OF_SPEED_DEFINITION } from '../skills/burst-of-speed';
 import { activeCloakOfShadows, cloakOfShadowsRank, copyCloakOfShadowsStatuses, matchesCloakOfShadows,
   paidCloakOfShadows, CLOAK_OF_SHADOWS_IDS, CLOAK_OF_SHADOWS_DEFINITION } from '../skills/cloak-of-shadows';
+import { activeLeap, leapRank, copyLeapStatuses, matchesLeap,
+  paidLeap, LEAP_IDS, LEAP_DEFINITION } from '../skills/leap';
 import { activeFeralRage, copyFeralRageStatuses, FERAL_RAGE_DEFINITION, gainFeralRageStack } from '../skills/druid-sustain';
 import { copyDruidSummonRanks, isDruidSummonBody, qualifyDruidSummon } from '../skills/druid-summon-authority';
 import { DRUID_SUMMON_DEFINITION, type DruidSummonId } from '../skills/druid-summon-definition';
@@ -516,7 +518,7 @@ function pickDefender(
 
 function registerUnit(state: State, u: CombatUnit): void {
   const native = u.druidSummonRanks === undefined ? u : { ...u, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
-  const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyCloakOfShadowsStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(native)))));
+  const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyLeapStatuses(copyCloakOfShadowsStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(native))))));
   const shaped = refreshHolyShieldState(refreshDruidFormState(copied));
   state.units.set(u.id, shaped);
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
@@ -595,6 +597,7 @@ function buildDamageInput(
     flatBonus: baseFlatBonus + (effect.attackDamagePct
       ? stats.attack * (1 + (attackerAura?.bonuses.attackPct ?? 0) + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.attackPerRank) * effect.attackDamagePct / 100 : 0),
     increasedPct: (attacker.increasedDamagePct?.[effect.damageType] ?? 0) +
+      (effect.damageType === 'physical' ? activeLeap(attacker, state.simClockMs)?.physicalDamagePct ?? 0 : 0) +
       statAuraDamageBonus(attackerAura, effect.damageType) +
       (effect.damageType === 'physical' ? activeMightAura(state.mightAura, attacker.id, state.units)?.physicalDamagePct ?? 0 : 0) +
       (effect.damageType === 'cold' && attacker.side === 'player' && alive(attacker) && holyFreezeSourceId(state) !== undefined
@@ -1046,6 +1049,7 @@ function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
   if (form) return druidFormRank(unit, form);
   if (BURST_OF_SPEED_IDS.some(id => id === skill.id)) return burstOfSpeedRank(unit);
   if (CLOAK_OF_SHADOWS_IDS.some(id => id === skill.id)) return cloakOfShadowsRank(unit);
+  if (LEAP_IDS.some(id => id === skill.id)) return leapRank(unit);
   if (isStaticFieldId(skill.id)) return staticFieldRank(unit);
   const governed = governedActiveId(skill.id);
   if (governed) {
@@ -1165,6 +1169,11 @@ function canUseSkillForState(
     skill.effects.some(effect => effect.kind === 'buff' && effect.timedStatBuff === 'burst-of-speed');
   const cloak = CLOAK_OF_SHADOWS_IDS.some(id => id === skillOrderId || id === skill.id) ||
     skill.effects.some(effect => effect.kind === 'buff' && effect.timedStatBuff === 'cloak-of-shadows');
+  const leap = LEAP_IDS.some(id => id === skillOrderId || id === skill.id) ||
+    skill.effects.some(effect => effect.kind === 'buff' && effect.timedStatBuff === 'leap');
+  if (leap && (!matchesLeap(skill) || leapRank(unit) === 0 || !Number.isFinite(unit.mana) ||
+    activeLeap(unit, state.simClockMs) !== undefined ||
+    LEAP_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   if (cloak && (!matchesCloakOfShadows(skill) || cloakOfShadowsRank(unit) === 0 || !Number.isFinite(unit.mana) ||
     activeCloakOfShadows(unit, state.simClockMs) !== undefined ||
     CLOAK_OF_SHADOWS_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
@@ -1191,7 +1200,7 @@ function canUseSkillForState(
   if (unit.level < skill.minLevel) return false;
   if (isPaidFrozenArmorSkill(skill)) {
     if (hasPaidFrozenArmor(unit)) return false;
-  } else if (!burst && !cloak && !form &&
+  } else if (!burst && !cloak && !leap && !form &&
     skill.isBuff &&
     (unit.activeBuffIds.includes(skill.id) || activeBuffIdsForSkill(skill).some((id) => unit.activeBuffIds.includes(id)))
   ) return false;
@@ -1337,6 +1346,20 @@ function applyEffect(
             id: 'cloak-of-shadows', sourceId: actorId, stacks: 1, remaining: duration / 1000,
             appliedAtMs: state.simClockMs, expiresAtMs: state.simClockMs + duration,
             cloakOfShadows: paidCloakOfShadows(skillLevel)
+          }] });
+        emit(state, { kind: 'buff', target: actorId, buffId: effect.id, statusBacked: true });
+        observeStatuses(state, actorId);
+        break;
+      }
+      if (matchesLeap(skill) && effect.timedStatBuff === 'leap') {
+        if (leapRank(actor) === 0 || activeLeap(actor, state.simClockMs)) return;
+        const markers: readonly string[] = [...LEAP_IDS, 'leap'], duration = LEAP_DEFINITION.durationMs;
+        state.units.set(actorId, { ...actor,
+          activeBuffIds: actor.activeBuffIds.filter(id => !markers.includes(id)),
+          statuses: [...actor.statuses.filter(status => !markers.includes(status.id)), {
+            id: 'leap', sourceId: actorId, stacks: 1, remaining: duration / 1000,
+            appliedAtMs: state.simClockMs, expiresAtMs: state.simClockMs + duration,
+            leap: paidLeap(skillLevel)
           }] });
         emit(state, { kind: 'buff', target: actorId, buffId: effect.id, statusBacked: true });
         observeStatuses(state, actorId);

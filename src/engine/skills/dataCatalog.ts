@@ -225,6 +225,11 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
   }
 
   if (!skill.damage && !skill.summon && skill.appliesStatus?.[0]) {
+    if (skill.id === 'skills-barbarian-leap' && skill.timedBuff) {
+      effects.push({ kind: 'buff', id: 'leap', timedStatBuff: 'leap',
+        duration: skill.timedBuff.durationMs / 1000 }, { kind: 'debuff', statusId: 'stun' });
+      return effects;
+    }
     if (skill.id === 'skills-assassin-cloak-of-shadows' && skill.timedBuff) {
       effects.push({ kind: 'buff', id: 'cloak-of-shadows', timedStatBuff: 'cloak-of-shadows',
         duration: skill.timedBuff.durationMs / 1000 },
@@ -290,7 +295,7 @@ export function registeredSkillFromJson(skill: JsonSkill): RegisteredSkill {
     ...(skill.maxTargets !== undefined ? { maxTargets: skill.maxTargets } : {}),
     ...(skill.target === 'summon' && skill.trigger === 'active' ? { summonOnStart: true } : {}),
     ...(skill.trigger === 'passive' || skill.trigger === 'aura' || (
-      (skill.target === 'self' || skill.id === 'skills-assassin-cloak-of-shadows') && skill.appliesStatus?.[0] !== undefined
+      (skill.target === 'self' || skill.id === 'skills-assassin-cloak-of-shadows' || skill.id === 'skills-barbarian-leap') && skill.appliesStatus?.[0] !== undefined
     ) ? { isBuff: true } : {}),
     ...(skill.requires ? { requires: skill.requires } : {})
   };

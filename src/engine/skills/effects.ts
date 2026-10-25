@@ -98,7 +98,7 @@ export interface BuffEffect {
   /** Exact player Frozen Armor opts into an independently tuned paid combat snapshot. */
   readonly frozenArmor?: true;
   /** Exact paid finite stat-buff consumer; bare markers never establish potency. */
-  readonly timedStatBuff?: 'burst-of-speed' | 'cloak-of-shadows';
+  readonly timedStatBuff?: 'burst-of-speed' | 'cloak-of-shadows' | 'leap';
   /** Paid mutually exclusive native Druid transformation. */
   readonly druidForm?: import('./druid-shapeshifting').DruidForm;
 }

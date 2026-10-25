@@ -156,6 +156,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Paid finite personal Leap physical follow-up. */
+  readonly leap?: { readonly durationSeconds: number };
   /** Paid personal bonuses and enemy Blind share this explicit finite duration. */
   readonly cloak?: { readonly durationSeconds: number; readonly blindHitPenaltyPoints: number };
   /** Explicit authored cone footprint; it counts covered cells, not enemy slots. */
@@ -520,8 +522,11 @@ export function computeSkillRankDisplayStats(
     zeroManaArcaneBonusPercent: (MANA_BURN_DEFINITION.zeroManaArcaneMultiplier - 1) * 100,
     untilManaRestored: true as const
   } : undefined;
-  const controlId = mindBlast ? 'stun' : skill.appliesStatus?.[0];
-  const controlDefinition = skill.damage && skill.trigger === 'active' &&
+  const leap = skill.id === 'skills-barbarian-leap' && skill.trigger === 'active' &&
+    skill.target === 'all-enemies' && skill.appliesStatus?.length === 2 &&
+    skill.appliesStatus[0] === 'leap' && skill.appliesStatus[1] === 'stun' && skill.timedBuff !== undefined;
+  const controlId = mindBlast || leap ? 'stun' : skill.appliesStatus?.[0];
+  const controlDefinition = (skill.damage !== undefined || leap) && skill.trigger === 'active' &&
     (controlId === 'chill' || controlId === 'stun' || controlId === 'paralyze') ? STATUS_DEFAULTS[controlId] : undefined;
   const control = controlDefinition ? { durationSeconds: controlDefinition.duration,
     bossDurationSeconds: controlDefinition.duration * (controlDefinition.bossDurationMult ?? 1) } : undefined;
@@ -548,6 +553,7 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(leap ? { leap: { durationSeconds: skill.timedBuff.durationMs / 1000 } } : {}),
     ...(skill.id === 'skills-assassin-cloak-of-shadows' && skill.timedBuff
       ? { cloak: { durationSeconds: skill.timedBuff.durationMs / 1000,
         blindHitPenaltyPoints: DRUID_SUMMON_DEFINITION.raven.physicalHitChancePenalty * 100 } } : {}),

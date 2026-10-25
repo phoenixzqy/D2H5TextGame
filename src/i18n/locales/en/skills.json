@@ -541,7 +541,7 @@
     },
     "leap": {
       "name": "Leap",
-      "desc": "Leaps to a new position."
+      "desc": "Applies Stun for {{stun}} to all living enemies (bosses: {{bossStun}}), without moving them. Increases your direct Physical damage by {{bonus}}% for {{duration}}. Leap deals no direct damage and cannot be recast while its personal bonus is active. Rank changes apply next wave."
     },
     "stun": {
       "name": "Stun",

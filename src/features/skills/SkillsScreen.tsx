@@ -977,6 +977,7 @@ function StatSection({
                   : id === 'cloak-of-shadows' ? t('assassin.cloak-of-shadows.name')
                   : id === 'blind' ? t('combat:effect.status.blind')
                   : id === 'stun' ? t('combat:effect.status.stun')
+                  : id === 'leap' ? t('barbarian.leap.name')
                   : id === 'holy-shield' ? t('paladin.holy-shield.name')
                   : id === 'cyclone-armor' ? t('druid.cyclone-armor.name')
                   : id === 'werewolf' || id === 'werebear' ? t('druid.' + id + '.name')
@@ -1565,6 +1566,13 @@ function dynamicDescription(
     const { golemLifePctPerRank: life, golemAttackSpeedPerRank: speed, maxRank, requiredLevel } = GOLEM_MASTERY_DEFINITION;
     return t('necromancer.golem-mastery.desc', { life: Math.round(life * 100), speed,
       maxLife: Math.round(life * maxRank * 100), maxSpeed: speed * maxRank, cap: maxRank, level: requiredLevel });
+  }
+  if (skill.id === 'skills-barbarian-leap' && stats?.leap && stats.control) {
+    const physical = stats.utility.find(row => row.id === 'physicalDamagePct')?.value ?? 0;
+    return t('barbarian.leap.desc', { bonus: Number((physical * 100).toFixed(4)),
+      duration: t('details.seconds', { seconds: stats.leap.durationSeconds }),
+      stun: t('details.seconds', { seconds: stats.control.durationSeconds }),
+      bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
   if (firstDamage && skill.id === 'skills-assassin-psychic-hammer' && stats.control) {

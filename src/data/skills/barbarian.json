@@ -473,8 +473,10 @@
       "mana": 8
     },
     "appliesStatus": [
-      "knockback"
+      "leap",
+      "stun"
     ],
+    "timedBuff": { "durationMs": 3000 },
     "scaling": {
       "cooldownPerLevel": -0.05,
       "costPerLevel": -0.1,
