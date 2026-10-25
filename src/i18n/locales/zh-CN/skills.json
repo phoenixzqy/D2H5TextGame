@@ -451,7 +451,7 @@
     },
     "psychic-hammer": {
       "name": "心灵战锤",
-      "desc": "用精神力量击退敌人。"
+      "desc": "念力对一名敌人造成{{min}} ~ {{max}}点奥术基础伤害。命中后使其眩晕{{duration}}（首领{{bossDuration}}），中断行动且位置不变。未命中不附加眩晕。加点变化从下一波生效。"
     },
     "burst-of-speed": {
       "name": "速度爆发",

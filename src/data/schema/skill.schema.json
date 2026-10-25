@@ -8,6 +8,25 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-psychic-hammer" } } },
+      "then": {
+        "required": ["requiredLevel", "damage", "damageType", "cost", "scaling", "appliesStatus"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "requiredLevel": { "const": 1 }, "maxLevel": { "const": 20 },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "arcane" },
+          "cost": { "$ref": "#/properties/cost" }, "scaling": { "$ref": "#/properties/scaling" },
+          "appliesStatus": { "const": ["stun"],
+            "description": "Psychic Hammer uses shared Stun to interrupt actions without movement." },
+          "prerequisites": { "const": [] },
+          "statusEffect": false, "additionalStatusEffects": false, "aoeShape": false,
+          "hitSequence": false, "maxTargets": false, "onHitRecovery": false,
+          "onHitSelfDamage": false, "damageComposition": false, "ignoresDefense": false,
+          "ignoresMagicResist": false, "critChanceBonus": false
+        }
+      }
+    },
+    {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-cloak-of-shadows" } } },
       "then": {
         "required": ["requiredLevel", "prerequisites", "appliesStatus", "timedBuff", "scaling", "cost"],

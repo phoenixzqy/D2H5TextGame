@@ -976,6 +976,7 @@ function StatSection({
                   : id === 'burst-of-speed' ? t('assassin.burst-of-speed.name')
                   : id === 'cloak-of-shadows' ? t('assassin.cloak-of-shadows.name')
                   : id === 'blind' ? t('combat:effect.status.blind')
+                  : id === 'stun' ? t('combat:effect.status.stun')
                   : id === 'holy-shield' ? t('paladin.holy-shield.name')
                   : id === 'cyclone-armor' ? t('druid.cyclone-armor.name')
                   : id === 'werewolf' || id === 'werebear' ? t('druid.' + id + '.name')
@@ -1566,6 +1567,11 @@ function dynamicDescription(
       maxLife: Math.round(life * maxRank * 100), maxSpeed: speed * maxRank, cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && skill.id === 'skills-assassin-psychic-hammer' && stats.control) {
+    return t('assassin.psychic-hammer.desc', { min: firstDamage.min, max: firstDamage.max,
+      duration: t('details.seconds', { seconds: stats.control.durationSeconds }),
+      bossDuration: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
+  }
   if (firstDamage && skill.id === 'skills-assassin-mind-blast' && stats.manaBurn && stats.control) {
     return t('assassin.mind-blast.desc', { min: firstDamage.min, max: firstDamage.max,
       drain: stats.manaBurn.drainPercent, bonus: stats.manaBurn.zeroManaArcaneBonusPercent,

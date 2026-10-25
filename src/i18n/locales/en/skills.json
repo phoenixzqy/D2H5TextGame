@@ -451,7 +451,7 @@
     },
     "psychic-hammer": {
       "name": "Psychic Hammer",
-      "desc": "Knocks back enemies with psychic force."
+      "desc": "Psychic force deals {{min}} ~ {{max}} Arcane base damage to one enemy. A landed hit applies Stun for {{duration}} (bosses: {{bossDuration}}). This control effect interrupts actions without moving the target. Misses apply no Stun. Rank changes apply next wave."
     },
     "burst-of-speed": {
       "name": "Burst of Speed",

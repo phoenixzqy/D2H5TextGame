@@ -644,7 +644,7 @@
     },
     "damageType": "arcane",
     "appliesStatus": [
-      "knockback"
+      "stun"
     ],
     "appliesTags": [
       "arcane"
