@@ -26,6 +26,8 @@ export interface GridPosition {
 
 /** Active status effect on a combat unit. */
 export interface ActiveStatus {
+  /** Transient one-time Cleansing reduction; follows this record across waves, never saved. */
+  readonly cleansingShortened?: true;
   readonly id: string;
   readonly stacks: number;
   /**

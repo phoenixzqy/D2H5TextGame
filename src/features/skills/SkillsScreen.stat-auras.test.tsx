@@ -90,6 +90,17 @@ for (const locale of ['en', 'zh-CN'] as const) {
         expect(detail).not.toHaveTextContent('{{');
       }
     });
+    it('explains Cleansing finite one-time duration reduction, independent recovery and magical dodge', () => {
+      mount(true);
+      fireEvent.click(screen.getByTestId('skill-node-skills-paladin-cleansing'));
+      const detail = screen.getByTestId('skill-detail-panel');
+      for (const text of locale === 'en'
+        ? ['50%', 'finite', 'once', 'Poison', 'Plague', 'Amplify Damage', 'every 5 seconds', '20 base HP', '+1.5% per rank', 'Magical Dodge +0.5', 'living fielded mercenary']
+        : ['50%', '有限', '一次', '中毒', '瘟疫', '伤害加深', '每5秒', '20点基础生命', '每级+1.5%', '魔法闪避+0.5', '存活的上阵佣兵']) {
+        expect(detail).toHaveTextContent(text);
+      }
+      expect(detail).not.toHaveTextContent('{{');
+    });
     it('explains actual Prayer healing, first interval, rank scaling and living recipient restrictions', () => {
       mount(true);
       fireEvent.click(screen.getByTestId('skill-node-skills-paladin-prayer'));

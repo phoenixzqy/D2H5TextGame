@@ -916,7 +916,7 @@
     },
     "cleansing": {
       "name": "净化",
-      "desc": "光环：缩短中毒和诅咒持续时间。"
+      "desc": "选择此光环后，中毒、瘟疫和诅咒（含伤害加深）的有限持续时间在施加或首次进入波次时缩短{{durationReductionPct}}%，每次施加只缩短一次。永久效果不变，光环结束后已缩短的时间不会延长。英雄存活时，自身与存活的上阵佣兵每级获得魔法闪避+{{magicDodgePct}}个百分点，并每{{healSeconds}}秒恢复{{healAmount}}点基础生命，每波首次治疗在{{healSeconds}}秒后。治疗量每级+{{lifeRegenPct}}%，向下取整，最多恢复已损失生命，不会复活阵亡盟友。"
     },
     "resist-lightning": {
       "name": "抗电",

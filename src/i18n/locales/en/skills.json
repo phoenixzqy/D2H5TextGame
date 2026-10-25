@@ -916,7 +916,7 @@
     },
     "cleansing": {
       "name": "Cleansing",
-      "desc": "Aura: reduces duration of poison and curses."
+      "desc": "Selected aura: reduces finite Poison, Plague and curse durations (including Amplify Damage) by {{durationReductionPct}}% once when applied or first entering a wave. Permanent effects are unchanged; shortened durations stay shortened after the aura ends. While the hero lives, you and your living fielded mercenary gain Magical Dodge +{{magicDodgePct}} percentage point per rank and restore {{healAmount}} base HP every {{healSeconds}} seconds, first heal after {{healSeconds}} seconds of each wave. Healing gains +{{lifeRegenPct}}% per rank, rounded down and capped to missing HP; never revives."
     },
     "resist-lightning": {
       "name": "Resist Lightning",

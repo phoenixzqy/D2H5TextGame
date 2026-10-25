@@ -138,14 +138,56 @@ Every wave starts its own full interval.
 Preserve unlock1/cap20/no prerequisites. Savev22 already permits Prayer; selection
 alone persists, with no healing timers, potency, carry or save migration.
 
+## Cleansing: finite duration reduction and independent recovery
+
+Local implementation decision; independent design/QA and earned balance open.
+Preserve unlock12, Prayer prerequisite, cap20, authored lifeRegenPct1.5% and
+magical dodge0.5 percentage point per rank. Cleansing-only JSON `cleansing`
+owns durationMultiplier0.5 and independent healing `{ intervalMs:5000, amount:20 }`.
+The factor and healing base/interval are explicit provisional local defaults.
+Do not infer them from D2, turn markers, a Prayer synergy or a general Vitality
+regeneration baseline. Prayer-only top-level `auraHealing` remains forbidden on
+Cleansing; only the generic selected projection/healing settlement is shared.
+
+While the source hero lives, the eligible hero/original living fielded merc
+shorten finite Poison, Plague and named Necromancer curse status durations by50%.
+The exact curse set is Amplify Damage (including legacy `amplify`), Decrepify,
+Dim Vision, Weaken, Iron Maiden, Terror, Confuse, Life Tap, Attract and Lower
+Resist. This changes their duration only; it does not establish implementation
+or acceptance of the other skills' still-unverified effects.
+
+For incoming timed applications, multiply the original duration after boss
+scaling, then floor once to at least1ms. On first eligible wave admission or
+refresh of an unmarked active record, shorten only its remaining finite duration;
+future records keep their start and shorten the full future duration. Preserve
+source, DoT potency, stacks, start, legacy remaining counter and max-expiry
+refresh identity. A transient status-local `cleansingShortened` marker follows
+the same record across waves and prevents repeated admission reduction.
+Incoming refresh duration is independently reduced once; a fresh application
+after expiry is a new record. A later unshortened refresh that extends expiry
+clears the old marker. Poison death spread consults each recipient independently
+and never inherits the source's marker. Missing/indefinite expiry and unrelated
+statuses remain unchanged. Source death suppresses future effects but never
+lengthens a duration already shortened. Crowd control alone does not suppress.
+
+Independent recovery uses floor(20 × (1 +1.5% × rank)), giving20/20/26HP at
+ranks1/2/20 every5000ms, first heal one full interval after each wave entry.
+Preserve Prayer's shared living-recipient, periodic-death/tie/deadline/cap,
+missing-HP floor/cap, no-resurrection/no-banking/no-RNG/no-action/mana rules.
+Magical dodge adds through ordinary damage resolution; physical dodge is unchanged.
+Savev22 already admits selection; no combat status marker, recovery timer or
+potency is persisted. Native ordinary edits apply next wave; explicit unlocked
+configuration replay uses current selection over original teams/resources/seed
+without income, as in the shared contract.
+
 ## Remaining required effects
 
 Holy Fire/Shock now follow the pulse contract above and have [bounded local verification](../evidence/d05-paladin-pulse-auras.md). Sanctuary requires undead damage
-and explicit no-movement repulsion adaptation. Cleansing requires poison/curse
-duration reduction; Redemption consumes authoritative corpses for life/mana;
+and explicit no-movement repulsion adaptation. Cleansing follows the explicit
+duration/recovery contract above. Redemption consumes authoritative corpses for life/mana;
 Vigor requires a truthful no-movement/stamina adaptation;
 Concentration requires an explicit interruption-prevention rule. Existing JSON
-and older descriptions disagree for the remaining five: resolve their affected rules and
+and older descriptions disagree for the remaining four: resolve their affected rules and
 data explicitly before implementing their remaining mechanics. Holy Freeze/Conviction follow the resolved
 contract above and have [bounded local verification](../evidence/d05-paladin-enemy-auras.md).
 Prayer follows the healing contract above and has [bounded local verification](../evidence/d05-paladin-prayer.md).

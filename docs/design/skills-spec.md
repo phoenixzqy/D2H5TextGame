@@ -263,10 +263,10 @@ Monsters use a simplified skill set. Examples:
 ### 6.2 Aura Skills (Paladin-specific)
 The implemented player selection supports **None, Might, Meditation, Thorns,
 Blessed Aim, Fanaticism, Defiance, Resist Fire, Resist Cold, Resist Lightning,
-Salvation, Holy Freeze, Conviction, Holy Fire, Holy Shock and Prayer** in one
+Salvation, Holy Freeze, Conviction, Holy Fire, Holy Shock, Prayer and Cleansing** in one
 exclusive saved canonical slot. Stat, enemy, pulse and healing effects follow
 [the family contract](../plans/decisions/D05-paladin-aura-family-v1.md).
-Sanctuary, Cleansing, Redemption, Vigor and Concentration still require their
+Sanctuary, Redemption, Vigor and Concentration still require their
 distinct remaining mechanics;
 full aura-catalog and independent acceptance remain open.
 
@@ -301,7 +301,7 @@ full aura-catalog and independent acceptance remain open.
   inputs, preserving recorded history; there is no action, mana payment or CD.
 - **Recipients:** The exact source hero and exact original living fielded
   mercenary at any position. Summons, enemies and unfielded/replaced mercs receive
-  no recipient rank bonuses or Prayer healing. Enemy aura effects retain the
+  no recipient rank bonuses or periodic aura healing. Enemy aura effects retain the
   family's enemy-target rules, including Conviction benefiting allied summon
   damage. Existing baseline recovery eligibility remains independent.
 - **Prayer:** JSON-owned20 base HP every5000ms, first heal one full interval
@@ -312,6 +312,16 @@ full aura-catalog and independent acceptance remain open.
   is included. No resurrection, banking, RNG, mana/cast/action slot, saved timer
   or implicit Vitality baseline regeneration. The interval is provisional local
   tuning; earned balance and independent acceptance remain open.
+- **Cleansing:** Independent JSON-owned50% finite Poison/Plague/curse duration
+  reduction once per application/first eligible admission; the transient status
+  marker prevents repeated cross-wave shortening. Preserve source/potency/stack
+  identity and indefinite legacy effects. Source death never lengthens a duration
+  already shortened. Independent20-base HP/5000ms recovery uses1.5%/rank,
+  floor/cap and the same living-recipient/timeline rules as Prayer; no Prayer
+  synergy or Vitality regeneration. Authored magical dodge adds0.5 percentage
+  point/rank. These duration/recovery numbers are provisional local defaults;
+  earned balance and independent acceptance remain open. Full details in the
+  [family contract](../plans/decisions/D05-paladin-aura-family-v1.md).
 - **Meditation strength:** Each allocated rank adds3% of the source hero's normal
   mana-regeneration baseline per second to each recipient, capped at rank20/60%.
   Each recipient retains its own existing baseline. Source baseline4 therefore

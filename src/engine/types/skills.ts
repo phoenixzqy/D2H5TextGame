@@ -187,6 +187,8 @@ export interface AuraHealingTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Cleansing-only duration factor and independent recovery, copied at each wave boundary. */
+  readonly cleansing?: { readonly durationMultiplier: number; readonly healing: AuraHealingTuning };
   /** Frozen selected Prayer interval and base healing; no timer is saved. */
   readonly auraHealing?: AuraHealingTuning;
   /** Frozen selected player pulse timing and damage, independent of action cadence. */

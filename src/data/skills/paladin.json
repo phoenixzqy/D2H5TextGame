@@ -704,6 +704,10 @@
   },
   {
     "id": "skills-paladin-cleansing",
+    "cleansing": {
+      "durationMultiplier": 0.5,
+      "healing": { "intervalMs": 5000, "amount": 20 }
+    },
     "name": "skills.paladin.cleansing.name",
     "description": "skills.paladin.cleansing.desc",
     "icon": "skills/paladin/cleansing.png",

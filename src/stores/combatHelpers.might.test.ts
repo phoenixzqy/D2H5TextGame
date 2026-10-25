@@ -147,6 +147,42 @@ beforeEach(() => {
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('native selected Might wave composition', () => {
+  it('runs publicly allocated Cleansing recovery, freezes ordinary edits and replays original resources without duplicate income', async () => {
+    arrange(0); gear(100, 0, -10000);
+    configure({ comboOrder: [], derivedStats: { ...player().derivedStats, life: 500000 } });
+    const before = structuredClone(player().derivedStats);
+    expect(usePlayerStore.getState().allocateSkillPoint('skills-paladin-prayer')).toBe('ok');
+    expect(usePlayerStore.getState().allocateSkillPoint('skills-paladin-cleansing')).toBe('ok');
+    expect(player()).not.toHaveProperty('selectedAuraId'); expect(player().derivedStats).toEqual(before);
+    expect(usePlayerStore.getState().selectAura('paladin.cleansing')).toBe('ok');
+    expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })?.totalWaves).toBeGreaterThan(2);
+    const original = structuredClone(latest()), first = recording();
+    expect(original.statAura).toMatchObject({ selectedAuraId: 'paladin.cleansing', rank: 1,
+      bonuses: { lifeRegenPct: .015, magicDodgePct: .005 }, cleansingDurationMultiplier: .5,
+      healing: { intervalMs: 5000, amount: 20 } });
+    expect(Object.isFrozen(latest().statAura?.healing)).toBe(true);
+    const heals = first.events.filter(e => e.kind === 'heal' && e.target === player().id);
+    expect(heals).toContainEqual(expect.objectContaining({ amount: 20, simClockMs: 5000 }));
+    const restored = heals.reduce((sum, e) => sum + (e.kind === 'heal' ? e.amount : 0), 0);
+    const lost = first.events.reduce((sum, e) => sum + ((e.kind === 'damage' || e.kind === 'dot') && e.target === player().id ? e.amount : 0), 0);
+    expect(finalHero().life).toBe(hero(original).life + restored - lost);
+    const income = structuredClone({ items: useInventoryStore.getState().backpack,
+      currencies: useInventoryStore.getState().currencies, xp: player().experience });
+    expect(usePlayerStore.getState().selectAura(null)).toBe('ok'); expect(recording()).toEqual(first);
+    replay(); expect(latest().playerTeam).toEqual(original.playerTeam); expect(latest().statAura).toBeUndefined();
+    expect(useCombatStore.getState().recordedEvents.some(e => e.kind === 'heal')).toBe(false);
+    expect(usePlayerStore.getState().selectAura('paladin.cleansing')).toBe('ok');
+    replay(); expect(latest().playerTeam).toEqual(original.playerTeam); expect(latest().statAura).toEqual(original.statAura);
+    expect(useCombatStore.getState().recordedEvents).toEqual(first.events);
+    expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies,
+      xp: player().experience }).toEqual(income);
+    const save = snapshotStores(); if (!save) throw new Error('Missing Cleansing save');
+    expect(save.version).toBe(22); expect(save.player.selectedAuraId).toBe('paladin.cleansing');
+    expect(save.player).not.toHaveProperty('cleansing'); expect(save.player).not.toHaveProperty('statAura');
+    expect(JSON.stringify(toJsonSafe(save))).not.toContain('cleansingShortened');
+    abortSubAreaRun(); await importIntoStores(JSON.stringify(toJsonSafe(save)));
+    expect(player().selectedAuraId).toBe('paladin.cleansing'); expect(player().derivedStats).toEqual(save.player.derivedStats);
+  });
   it('restores actual native HP with publicly allocated Prayer and replays its original input without income', async () => {
     arrange(0); gear(100, 0, -10000);
     configure({ comboOrder: [], derivedStats: { ...player().derivedStats, life: 500000 } });

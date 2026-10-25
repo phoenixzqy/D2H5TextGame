@@ -2470,6 +2470,18 @@
       }
     },
     "else": { "properties": { "auraHealing": false } }
+  }, {
+    "if": { "properties": { "id": { "const": "skills-paladin-cleansing" } }, "required": ["id"] },
+    "then": {
+      "required": ["aura", "cleansing"],
+      "properties": {
+        "aura": { "const": true }, "trigger": { "const": "passive" },
+        "target": { "const": "self" }, "cooldown": { "const": 0 },
+        "damage": false, "appliesStatus": false, "heal": false,
+        "cleansing": { "$ref": "#/properties/cleansing" }
+      }
+    },
+    "else": { "properties": { "cleansing": false } }
   }],
   "if": {
     "properties": { "id": { "const": "skills-necromancer-amplify-damage" } },
@@ -2489,6 +2501,15 @@
     }
   },
   "properties": {
+    "cleansing": {
+      "type": "object", "additionalProperties": false,
+      "description": "Exact selected Cleansing finite poison/curse duration reduction and independent recovery; Prayer-only auraHealing remains separate.",
+      "required": ["durationMultiplier", "healing"],
+      "properties": {
+        "durationMultiplier": { "type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1, "description": "Finite duration factor applied once per status application or first eligible wave admission; a transient status marker prevents repeated carry reduction." },
+        "healing": { "$ref": "#/properties/auraHealing", "description": "Independent Cleansing base healing and interval; no Prayer rank or implicit Vitality baseline." }
+      }
+    },
     "auraHealing": {
       "type": "object",
       "description": "Exact selected Prayer periodic healing, copied at each wave boundary without persisted timers.",

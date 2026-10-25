@@ -66,6 +66,8 @@ export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.
 
 /** Description of a status to apply. */
 export interface ApplyStatusInput {
+  /** Eligible recipient's selected Cleansing factor; affects finite timed poison/curse applications only. */
+  readonly cleansingDurationMultiplier?: number;
   readonly id: string;
   readonly sourceId: string;
   /** Override default duration in turns (legacy callers). */
@@ -97,6 +99,30 @@ function canonicalStatusId(id: string): string {
   if (id === 'burn') return 'ignite';
   return id === AMPLIFY_DAMAGE_DEFINITION.legacyStatusId
     ? AMPLIFY_DAMAGE_DEFINITION.canonicalStatusId : id;
+}
+
+const CLEANSABLE_STATUS_IDS: ReadonlySet<string> = new Set(['poison', 'plague', 'amplify-damage',
+  'decrepify', 'dim-vision', 'weaken', 'iron-maiden', 'terror', 'confuse', 'life-tap', 'attract', 'lower-resist']);
+
+function validCleansingMultiplier(value: number | undefined): value is number {
+  return value !== undefined && Number.isFinite(value) && value > 0 && value < 1;
+}
+
+/** Shorten finite remaining/future duration once; preserve original source, potency, start and indefinite legacy identity. */
+export function shortenCleansingStatuses(unit: CombatUnit, simClockMs: number, multiplier: number | undefined): CombatUnit {
+  if (!validCleansingMultiplier(multiplier) || !Number.isFinite(simClockMs)) return unit;
+  let changed = false;
+  const statuses: ActiveStatus[] = [];
+  for (const status of unit.statuses) {
+    const start = Math.max(simClockMs, status.appliedAtMs ?? 0), expiry = status.expiresAtMs;
+    if (status.cleansingShortened === true || !CLEANSABLE_STATUS_IDS.has(canonicalStatusId(status.id)) ||
+      expiry === undefined || !Number.isFinite(expiry) || !Number.isFinite(start) || expiry <= start) {
+      statuses.push(status); continue;
+    }
+    changed = true;
+    statuses.push({ ...status, expiresAtMs: start + Math.max(1, Math.floor((expiry - start) * multiplier)), cleansingShortened: true });
+  }
+  return changed ? { ...unit, statuses } : unit;
 }
 
 /**
@@ -142,6 +168,9 @@ export function applyStatus(
   rng: Rng
 ): CombatUnit {
   const id = canonicalStatusId(input.id);
+  const cleansing = input.simClockMs !== undefined && validCleansingMultiplier(input.cleansingDurationMultiplier) &&
+    CLEANSABLE_STATUS_IDS.has(id) ? input.cleansingDurationMultiplier : undefined;
+  if (cleansing !== undefined && input.simClockMs !== undefined) unit = shortenCleansingStatuses(unit, input.simClockMs, cleansing);
   const cfg = lookupConfig(id, input.config);
   const baseDur = input.duration ?? cfg.duration;
   const isBoss = unit.tier === 'boss' || unit.tier === 'chapter-boss';
@@ -154,8 +183,9 @@ export function applyStatus(
   const baseDurationMs = input.durationMs ?? baseDur * 1000;
   const scaledDurationMs = bossDurationMult === undefined
     ? baseDurationMs : baseDurationMs * bossDurationMult;
-  const timedDurationMs = bossDurationMult !== undefined && scaledDurationMs > 0
-    ? Math.max(1, Math.floor(scaledDurationMs)) : scaledDurationMs;
+  const reducedDurationMs = scaledDurationMs * (cleansing ?? 1);
+  const timedDurationMs = (bossDurationMult !== undefined || cleansing !== undefined) && reducedDurationMs > 0
+    ? Math.max(1, Math.floor(reducedDurationMs)) : reducedDurationMs;
 
   // Paralyze diminishing returns
   if (input.id === 'paralyze') {
@@ -182,6 +212,7 @@ export function applyStatus(
       sourceId: input.sourceId,
       ...(input.simClockMs !== undefined ? { appliedAtMs: input.simClockMs } : {}),
       ...(expiresAtMs !== undefined ? { expiresAtMs } : {}),
+      ...(cleansing !== undefined && Number.isFinite(expiresAtMs) ? { cleansingShortened: true as const } : {}),
       ...(id === AMPLIFY_DAMAGE_DEFINITION.canonicalStatusId ? {
         physicalResistReductionPct: input.physicalResistReductionPct ??
           AMPLIFY_DAMAGE_DEFINITION.physicalResistReductionPct
@@ -202,8 +233,13 @@ export function applyStatus(
     const validRate = (rate: number | undefined): boolean =>
       typeof rate === 'number' && Number.isFinite(rate) && rate > 0;
     const promoteDot = !validRate(prev.dotPerStack) && validRate(input.dotPerStack);
+    // A new unshortened refresh may replace the duration that the old marker described.
+    const { cleansingShortened: oldReduction, ...unmarked } = prev;
+    const retainReduction = newExpiresAtMs !== undefined && (cleansing !== undefined ||
+      oldReduction && newExpiresAtMs === prev.expiresAtMs);
     const updated: ActiveStatus = {
-      ...prev,
+      ...unmarked,
+      ...(retainReduction ? { cleansingShortened: true as const } : {}),
       stacks,
       remaining: Math.max(prev.remaining, dur),
       ...(promoteDot ? {
@@ -348,7 +384,8 @@ export function spreadPlague(
   others: readonly CombatUnit[],
   fraction: number,
   rng: Rng,
-  simClockMs?: number
+  simClockMs?: number,
+  cleansingMultiplierFor?: (recipient: CombatUnit) => number | undefined
 ): readonly CombatUnit[] {
   const stacks = getStacks(source, 'plague') || getStacks(source, 'poison');
   if (stacks <= 0) return others;
@@ -359,10 +396,12 @@ export function spreadPlague(
   return others.map((u) => {
     let updated = u;
     for (let i = 0; i < toSpread; i++) {
+      const cleansingDurationMultiplier = cleansingMultiplierFor?.(updated);
       updated = applyStatus(
         updated,
         {
           id: 'poison',
+          ...(cleansingDurationMultiplier !== undefined ? { cleansingDurationMultiplier } : {}),
           sourceId: source.id,
           ...(simClockMs !== undefined ? { simClockMs } : {}),
           ...(dot?.dotPerStack !== undefined ? { dotPerStack: dot.dotPerStack } : {}),

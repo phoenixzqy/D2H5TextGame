@@ -31,7 +31,8 @@ import {
   spreadPlague,
   activeStatusView,
   amplifyDamageReduction,
-  statusActiveAt
+  statusActiveAt,
+  shortenCleansingStatuses
 } from './status';
 import { CHILL_DEFINITION } from './chill-definition';
 import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
@@ -529,9 +530,15 @@ function buildDamageInput(
       effect.damageType === 'physical' || effect.damageType === 'thorns'
         ? defender.stats.physDodge + (activeBurstOfSpeed(defender, state.simClockMs)?.physDodgePct ?? 0) +
           (defenderAura?.bonuses.physDodgePct ?? 0)
-        : defender.stats.magicDodge,
+        : defender.stats.magicDodge + (defenderAura?.bonuses.magicDodgePct ?? 0),
     ...(defender.resistPenalty !== undefined ? { resistPenalty: defender.resistPenalty } : {})
   };
+}
+
+/** Supply duration authority only for the current eligible recipient; absence preserves ordinary application. */
+function cleansingDurationInput(state: State, recipientId: string): { readonly cleansingDurationMultiplier?: number } {
+  const multiplier = activeStatAura(state.statAura, recipientId, state.units)?.cleansingDurationMultiplier;
+  return multiplier === undefined ? {} : { cleansingDurationMultiplier: multiplier };
 }
 
 function applyDamageToUnit(
@@ -591,6 +598,7 @@ function applyDamageToUnit(
             updated,
             {
               id: status.id,
+              ...cleansingDurationInput(state, defenderId),
               sourceId: attackerId,
               simClockMs: state.simClockMs,
               ...(status.durationMs !== undefined ? { durationMs: status.durationMs } : {}),
@@ -615,6 +623,7 @@ function applyDamageToUnit(
     const current = state.units.get(defenderId);
     if (current) {
       state.units.set(defenderId, applyStatus(current, { id: 'poison', sourceId: attackerId,
+        ...cleansingDurationInput(state, defenderId),
         simClockMs: state.simClockMs, durationMs: ASSASSIN_SHADOW_DEFINITIONS.venom.coatingDurationMs,
         dotPerStack, damageType: 'poison' }, state.rng));
       emit(state, { kind: 'status', target: defenderId, statusId: 'poison' });
@@ -625,6 +634,7 @@ function applyDamageToUnit(
   const survivingAttacker = state.units.get(attackerId);
   if (retaliates && outcome.hit && amount > 0 && survivingAttacker && alive(survivingAttacker)) {
     state.units.set(attackerId, applyStatus(survivingAttacker, {
+      ...cleansingDurationInput(state, attackerId),
       id: 'chill', sourceId: defenderId, simClockMs: state.simClockMs
     }, state.rng));
     emit(state, { kind: 'status', target: attackerId, statusId: 'chill' });
@@ -704,7 +714,8 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
 function deathEffects(state: State, dead: CombatUnit): void {
   if (hasStatus(dead, 'plague') || hasStatus(dead, 'poison')) {
     const recipients = [...state.units.values()].filter(u => u.side === dead.side && alive(u));
-    for (const u of spreadPlague(dead, recipients, 0.5, state.rng, state.simClockMs)) {
+    for (const u of spreadPlague(dead, recipients, 0.5, state.rng, state.simClockMs,
+      recipient => activeStatAura(state.statAura, recipient.id, state.units)?.cleansingDurationMultiplier)) {
       state.units.set(u.id, u);
       observeStatuses(state, u.id);
     }
@@ -1031,6 +1042,7 @@ function applyEffect(
           t,
           {
             id: effect.statusId,
+            ...cleansingDurationInput(state, t.id),
             sourceId: actorId,
             simClockMs: state.simClockMs,
             ...(effect.duration !== undefined ? { duration: effect.duration } : {}),
@@ -1731,6 +1743,10 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
 
   for (const u of withDefaultGridPositions(snapshot.playerTeam)) registerUnit(state, u);
   for (const u of withDefaultGridPositions(snapshot.enemyTeam)) registerUnit(state, u);
+  for (const unit of state.units.values()) {
+    const factor = activeStatAura(state.statAura, unit.id, state.units)?.cleansingDurationMultiplier;
+    if (factor !== undefined) state.units.set(unit.id, shortenCleansingStatuses(unit, 0, factor));
+  }
   // Feedback requires an actual eligible runtime hero, never an unbound projection alone.
   for (const id of state.corpseExplosion.keys()) {
     const hero = state.units.get(id);
