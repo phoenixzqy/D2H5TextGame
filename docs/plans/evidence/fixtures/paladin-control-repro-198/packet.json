@@ -1,0 +1,24 @@
+{
+  "head": "e4c66fd606c30a65932522f1ee60e61a5eb1d0c3",
+  "files": {
+    "native-red.ts": "b30a98393f777bba3c46349da0970d9e7ae7b60f8f2b5b808b7554e92dc778de",
+    "native-red-result.json": "1ddcdc7c8ed7d3ab81ec511036bbbec0b7a981e268317c73d84bc35f1324f36f",
+    "native-red.log": "ac7314f4b670e40dfd2d657549676c6cd98438cc7ab6952d32af22eef4b7b067",
+    "native-red.json": "d75958f96b9f4772a9653519bed0f21fbf90f43695ea327630e4cc0aaafa4571"
+  },
+  "all_byte_verified": true,
+  "active_scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-paladin-control-ekpj8kx6",
+  "owner": "root; remove after current packet proof/archival and all processes finish",
+  "failures": [
+    {
+      "slug": "zeal",
+      "rank": 1,
+      "requirement": "targetCardinality"
+    },
+    {
+      "slug": "zeal",
+      "rank": 20,
+      "requirement": "targetCardinality"
+    }
+  ]
+}
