@@ -11908,3 +11908,44 @@ decompressed SHA256 remains
 C0/C1 retain narrow acceptance; C2 underway, C3/C4/fullG0-G7/all-class builds/
 30–50hour pacing/economy/endgame/independent acceptance remain unfinished.
 Root sole writer/local only; umbrella goal/branch/worktree/claim stay active.
+
+
+## 2026-10-25 — Jab verified; Dragon Talon repeated-kick defect reproduced
+
+Runtime `9f7f6ef0` authors actual Jab three independent attempts through the
+existing shared sequence runtime; presentation `e99ad3b3` explains damage per
+attempt, original target and one payment/cooldown in both locales. Preserve
+Physical30–45/+3rank,5MP,1second,unlock1/cap20/no equipment gate or prerequisite.
+Original12native cases now make three attempts; seed7 rank1/2/20 actual HP loss
+is101/110/272. Misses, criticals, Defense/resistance/combo, target/reflected
+shield depletion, caster/target death, one corpse/orb settlement, resource and
+exact cooldown/native authority/immutable replay are covered. Fury remains five
+rotating attempts; Impale's Jab control verifies every attempt stays Defense-
+sensitive. Provisional count is not earned balance or independent acceptance.
+
+[Evidence](evidence/d04-jab.md):49new cases/4files; focused49/4, compatibility/
+data948/23, engine7535/273, full14443/644/two existing skips,495.004s wrapper.
+Types/lint/build/bridge/precache pass. Final production4/4 locale/viewport,
+eight exact five-domain Continue pairs/20geometry; two supplemental mobile
+captures bring retained totals to12pairs/30geometry/30screenshots/10inspected.
+Original invalid-alias/type failures and initial mobile log-scroll captures
+remain retained. All1376source/test/config, two design and760build/Git/genuine
+hashes stay exact through full; actual committed blobs match `e99ad3b3`.
+
+Only Jab gains credit:213IDs/order preserved;102bounded-functional,
+109unverified, one engine-only/one review-needed. Amazon9/30plus one engine-only
+is locally bounded. Separate [Dragon Talon reproduction](evidence/d04-dragon-talon-repro.md)
+confirms one actual attempt/action/4MP payment at ranks1/2/20 across12cases;
+its source bytes match the same actual committed snapshot. BUG204 and its
+preimplementation contract give no functionality credit; other211rows stay exact.
+
+Archive213raw members/32terminal receipts verified. Cleanup removes
+973exact task-owned files; scratch/all65recorded owned PIDs absent,
+4490closed,remaining[]/failures[]. Older roots/shared caches are preserved.
+
+Genuine Ancients/Rite remainsL33/XP149261/nextNormal402/Nightmare0/Baal uncleared;
+decompressed SHA256 remains
+`c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577`.
+C0/C1 keep narrow exits; C2 underway,C3/C4/fullG0-G7/all-class earned builds/
+30–50hour pacing/economy/endgame/independent acceptance remain unfinished.
+Root sole writer, local only; umbrella goal/branch/worktree/claim stay active.

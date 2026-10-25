@@ -1,0 +1,23 @@
+{
+  "rows": 213,
+  "IDs_and_order_unchanged": true,
+  "credited": [
+    "skills-amazon-jab"
+  ],
+  "evidence_only_unverified": [
+    "skills-assassin-dragon-talon"
+  ],
+  "changed_rows": [
+    "skills-amazon-jab",
+    "skills-assassin-dragon-talon"
+  ],
+  "counts": {
+    "unverified": 109,
+    "bounded-functional": 102,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "baseline_sha256": "67f4291995c61632137c114c6791a453ddcb89698d443939c6c9c2df25f53a83",
+  "final_sha256": "6a3fed31dd4a67aafeaf82b92e1a0325f04ec925840457f2e300c9c968e7b7ad",
+  "other211rows_exact": true
+}

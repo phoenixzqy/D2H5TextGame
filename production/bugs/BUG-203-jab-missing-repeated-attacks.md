@@ -1,6 +1,7 @@
 # BUG-203 — Give Jab its promised repeated attack attempts
 
-- Status: reproduced and contracted; implementation and functionality credit open.
+- Status: fixed and verified locally in runtime9f7f6ef0 and presentatione99ad3b3;
+  independent design/QA and earned balance remain open.
 - Severity: High — the advertised multiple-hit mechanic has no runtime sequence.
 - Environment: Node24.21.0, actual native Amazon projection/default registry via
   Vite Node. Synthetic resources and held opponents, no genuine campaign action.
@@ -39,3 +40,17 @@ skill name nor the two locale descriptions can create additional attempts.
 Evidence: [native reproduction](../../docs/plans/evidence/d04-jab-repro.md),
 [contract](../../docs/plans/decisions/D04-jab-v1.md). The structural/native RED
 is retained separately from the passing Impale verification; no Jab credit.
+
+## Local repair and verification
+
+The preceding reproduction describes the original failure. Actual Jab now
+authors three independent original-target attempts through the existing shared
+runtime, with one5MP payment/action/cooldown. Early target/caster death stops
+remaining attempts; misses, mitigation, finite shields and reflection settle
+independently. No combat-loop rewrite, weapon scaling or save-version change.
+
+[Final Jab evidence](../../docs/plans/evidence/d04-jab.md) records49new cases,
+full14443passed/644files/two existing skips, engine7535/273, types/lint/build,
+bilingual desktop/mobile public controls, actual three-attempt logs and exact
+five-domain Continue pairs. Actual committed bytes match the tested snapshot.
+Synthetic verification does not establish earned or independent acceptance.

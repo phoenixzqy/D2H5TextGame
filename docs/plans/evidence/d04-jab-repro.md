@@ -1,7 +1,8 @@
 # D04 — Native Jab repeated-attack reproduction
 
-Status: reproduced, not implemented or credited. Root sole writer. The separate
-Impale source stayed frozen through its passing final full suite.
+Historical status at reproduction: not implemented or credited. Root sole
+writer. The separate Impale source stayed frozen through its passing final full
+suite. The later repair and bounded credit are recorded in [Jab evidence](d04-jab.md).
 
 Source: `fixtures/impale/raw.tar.gz` members `scratch/jab-native-repro.ts`,
 `scratch/jab-native-observed.json`, `scratch/next-jab-repro.json/.log` and
