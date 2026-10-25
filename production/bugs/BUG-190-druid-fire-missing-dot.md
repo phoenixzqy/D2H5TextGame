@@ -1,7 +1,7 @@
 # BUG-190 — Give the five Druid fire spells actual Burn damage
 
 Severity: High — declared damage-over-time feature has no runtime potency.
-Status: Reproduced; local fix in progress.
+Status: Locally fixed and verified; independent QA/design and earned balance open.
 Owners: content-designer / engine-dev / frontend-dev; root sole writer.
 
 ## Reproduction
@@ -30,3 +30,24 @@ Evidence: `src/engine/combat/druid-fire.test.ts`; original `causal-red.log/json`
 will be retained in `docs/plans/evidence/fixtures/druid-fire/`.
 Contract: [D04 Druid fire](../../docs/plans/decisions/D04-druid-fire-dot-v1.md).
 Independent design/QA and earned balance remain open.
+
+## Local fix and verification
+
+Runtime `67cdf76` explicitly authors 0.1 final-hit/second potency on only these
+five JSON rows and adds strict schema/native/actual-HP regressions. Existing
+Burn/Ignite identity and periodic runtime remain unchanged. Presentation `435ceba`
+shows authored rate/duration/stack/floor rules in both locales without claiming
+fixed final DPS. The 10% reference is provisional local tuning.
+
+Final focused 535/14, engine 6813/237, full 13198/571 plus two existing skips;
+types/lint/production build/four-chunk bridge scan pass. Production browser 4/4,
+20 actual spell entries, eight exact five-domain Continue pairs, 20 geometry
+samples and 16 individually inspected screenshots. Browser high-level/resource
+fixtures are synthetic and earn no campaign credit. All1293 source/config/test
+and760 build hashes, HEAD/Git/genuine digest stay exact through the496.436s full
+run; committed source blobs match. Original failures and fixture corrections
+remain retained. [Evidence and limitations](../../docs/plans/evidence/d04-druid-fire.md).
+
+Only these five inventory rows gain bounded local functional credit. Independent
+QA/design, earned class/build balance, Baal, C2–C4/fullG0–G7 remain open. No new
+test skips or weakened assertions/timeouts; no campaign or remote actions.

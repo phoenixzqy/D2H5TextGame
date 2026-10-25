@@ -76,7 +76,9 @@ Do not present base-hit-derived DPS as guaranteed post-mitigation damage.
 4. Run focused `npx vitest run <changed tests>`, `npm run test:engine`,
    `npm test`, `npm run typecheck`, `npm run lint`, production
    `VITE_E2E=false npm run build -- --outDir <task-owned-path>` and
-   `node scripts/check-test-bridge-shaken.mjs <build-path>` where supported.
+   retained task-owned `bridge.py` with the repository forbidden patterns. The
+   repository bridge script does not accept a custom output path and forcibly
+   rebuilds `dist`; it was not used for this isolated production build.
    `validate:data` is absent; schema/data tests provide actual validation.
 5. Review the complete diff, retain original failures and exact command results,
    update only proven inventory rows, archive/verify required evidence and

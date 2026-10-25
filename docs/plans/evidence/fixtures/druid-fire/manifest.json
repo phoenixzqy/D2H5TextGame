@@ -1,0 +1,869 @@
+{
+  "scope": "Five Druid fire spells, local synthetic verification; independent QA and earned balance remain open.",
+  "owner": "root",
+  "session": "01a1577a-5af4-70e3-8699-50a906877d8f",
+  "worktree": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+  "base": "ccf9762852af073dd72cedfb6db97564e94883ea",
+  "runtime": "435ceba0c1a166bfcf08af8ded8f359f6518d42f",
+  "archiveSha256": "f71e2a4ffd547edc7f840b32c1d83413a85c778ba5f17d0ab2dd56574bef2408",
+  "rawFiles": 143,
+  "files": {
+    "audit-browser.py": {
+      "sha256": "4e0af3b5a896952526f9de4ac7ba638901c9e4963b73f600eac7f21684b1b214",
+      "bytes": 1555
+    },
+    "bridge.json": {
+      "sha256": "3bf53edcff07f00c0877b42fedece3b6e50819d79b41a40dfc08fd58dc35d072",
+      "bytes": 299
+    },
+    "bridge.log": {
+      "sha256": "eec491543ea807893bec5ab669e444de342217a64e19e46342d5a503b15891aa",
+      "bytes": 144
+    },
+    "bridge.py": {
+      "sha256": "19b074e6b2c73adae41f8f0500ebe3259bd4ad5bef4281aaf2dc49ae64f12a41",
+      "bytes": 463
+    },
+    "browser-attachment-audit.json": {
+      "sha256": "c31d13271814a68dfc4bffd82cda8e37359d6893e98287282a4c304c0b1f70c8",
+      "bytes": 1710
+    },
+    "browser-audit-final.json": {
+      "sha256": "dd716ad06b893caa1f4bf29e8e539664718f2744e29a7c6b577525b83111b3ba",
+      "bytes": 306
+    },
+    "browser-audit-final.log": {
+      "sha256": "5b38ad56ab3d9e7d3e098aca9761939cfe88a30cb8976c99e682fe532586f85d",
+      "bytes": 86
+    },
+    "browser-audit.json": {
+      "sha256": "029be839c1f43bc1c41ed14270bc14a8d3d4a70bf97b17471502f7c683d62a41",
+      "bytes": 306
+    },
+    "browser-audit.log": {
+      "sha256": "5b38ad56ab3d9e7d3e098aca9761939cfe88a30cb8976c99e682fe532586f85d",
+      "bytes": 86
+    },
+    "browser-corrected/browser-report.json": {
+      "sha256": "cc2fc4352740b17292d97564b7dc4832bd856a3adabcf7b370a372e6c00a4593",
+      "bytes": 7461
+    },
+    "browser-corrected/en-1280-armageddon-combat.json": {
+      "sha256": "1845c3d3f10707bdf0a31cde00c097c8007239b6f2e5b9e56ee2e4084ae2dca1",
+      "bytes": 4952
+    },
+    "browser-corrected/en-1280-armageddon-combat.png": {
+      "sha256": "86896365f81692eae0c75f6347c403c3ddf1ae09603da1b001b2186e5a0b268d",
+      "bytes": 446660
+    },
+    "browser-corrected/en-1280-armageddon-details.png": {
+      "sha256": "e046a78c10503291a79f2d037f1077db3010a0efbe9196123373b4adbe27a09d",
+      "bytes": 148733
+    },
+    "browser-corrected/en-1280-firestorm-combat.json": {
+      "sha256": "1e3bb3593eb9a2502ae8a45f7a46bd584491ea8745d02b849f6c39680e6bcd80",
+      "bytes": 4138
+    },
+    "browser-corrected/en-1280-firestorm-combat.png": {
+      "sha256": "65a9d47bee4517d5e01332cc4fd8394810afa2aa6bc13f32c90c07261db4fba2",
+      "bytes": 449604
+    },
+    "browser-corrected/en-1280-firestorm-details.png": {
+      "sha256": "8565075cf69f315834388c6a99aa79532233b6fd7d0b0fccab45467464ba93e3",
+      "bytes": 137699
+    },
+    "browser-corrected/en-1280-fissure-combat.json": {
+      "sha256": "6802dd9fe778ad7fc83338eaf1ffe34f0776afd3fa3eaff8585fad39d84ce9ef",
+      "bytes": 3708
+    },
+    "browser-corrected/en-1280-fresh-1.json": {
+      "sha256": "09438d85cc0b081577ee57c3be3e6d72bee31a54027e71d7bf878089013a6a19",
+      "bytes": 3235
+    },
+    "browser-corrected/en-1280-imported-2.json": {
+      "sha256": "497a040268f3f52bed7b682a8ec788c3e5967023c82094985f205d0257995fb8",
+      "bytes": 4927
+    },
+    "browser-corrected/en-1280-molten-boulder-combat.json": {
+      "sha256": "ae58c0ef51851ebb39097769d36d89f0d457153229fbc2e4c9c8bbab6268c662",
+      "bytes": 3336
+    },
+    "browser-corrected/en-1280-rank1-after-4.json": {
+      "sha256": "71783bc8a2c9788be622a6bd34423cd7949b1f93667ae2187d104d3ae8b277c4",
+      "bytes": 4930
+    },
+    "browser-corrected/en-1280-rank1-before-3.json": {
+      "sha256": "6068ac8eaeefbac1a2c4d0eca90253f0f4faee6c0fb300479547ba1a117ecd00",
+      "bytes": 4927
+    },
+    "browser-corrected/en-1280-rank2-after-6.json": {
+      "sha256": "7d05fa087dde6e98350700ea9d1e369c76958f3e83d698e21532ca3efbdeba68",
+      "bytes": 4948
+    },
+    "browser-corrected/en-1280-rank2-before-5.json": {
+      "sha256": "60f1229326f52c1368d0c4b12e0abb0aeee4828fb8ca84f751cc9ebfb086b490",
+      "bytes": 4948
+    },
+    "browser-corrected/en-1280-synthetic-input.json": {
+      "sha256": "3e9e21892039a5be7fc0db325aed25a4e50843d947500d478c97086fc53ea283",
+      "bytes": 4109
+    },
+    "browser-corrected/en-1280-volcano-combat.json": {
+      "sha256": "16779e10669c63371590a9d3205116a27c79f802121f1b63e9c41a85d7dfa1e9",
+      "bytes": 4253
+    },
+    "browser-corrected/en-360-armageddon-combat.json": {
+      "sha256": "5f60ee6749cd1a965d8567f172b755e2ab995fd5e14da47c1479036cecd6d64f",
+      "bytes": 5687
+    },
+    "browser-corrected/en-360-armageddon-combat.png": {
+      "sha256": "49ed8099919129df284debf592bbffa3484412ee4212e7c59da8467681ca3e7f",
+      "bytes": 35001
+    },
+    "browser-corrected/en-360-armageddon-details.png": {
+      "sha256": "70a005e6e9efbabd7b25d2d8f96cc42034ea7c77d252a2f9212567a4f6d9d589",
+      "bytes": 50077
+    },
+    "browser-corrected/en-360-firestorm-combat.json": {
+      "sha256": "7406b8463620776f614fa8aa79db685b404b36298ec396d9b62b117c0804a83d",
+      "bytes": 4157
+    },
+    "browser-corrected/en-360-firestorm-combat.png": {
+      "sha256": "7752ba2481dc9ba5d535d42bbfa83bd5634e4a054f3196b915d925c50a6bfaf9",
+      "bytes": 38568
+    },
+    "browser-corrected/en-360-firestorm-details.png": {
+      "sha256": "5fa49ef550aec82f2f55e6968f8566cb53ca7d183e758de9c41a28f4300c9ffb",
+      "bytes": 50721
+    },
+    "browser-corrected/en-360-fissure-combat.json": {
+      "sha256": "59874787abd70290515748e208e0a27d46409c2f6bbf2da9622cebd0c278cc40",
+      "bytes": 3424
+    },
+    "browser-corrected/en-360-fresh-7.json": {
+      "sha256": "f1a970f325336e4ae5351d9e5e08b4229f2e8aae637ae783615902bf778b516e",
+      "bytes": 3235
+    },
+    "browser-corrected/en-360-imported-8.json": {
+      "sha256": "fa22e61c6a765bf8cab35b5181c88f17d9b2ee3e90adb72451371377eea3540d",
+      "bytes": 4927
+    },
+    "browser-corrected/en-360-molten-boulder-combat.json": {
+      "sha256": "bcdbe4e73cbc96640e9808b07905dca204ad5eb2ebb22109133cfdcb55db6faf",
+      "bytes": 3372
+    },
+    "browser-corrected/en-360-rank1-after-10.json": {
+      "sha256": "bb77935133fab9e3f0cfc7730b35af21ae6f153d3d76bc10fe7ca69d40725229",
+      "bytes": 4930
+    },
+    "browser-corrected/en-360-rank1-before-9.json": {
+      "sha256": "e8d3eb88e0b1a55ac7185a277c028bce3ff750f30b8e8a57dfff13bff51ae185",
+      "bytes": 4927
+    },
+    "browser-corrected/en-360-rank2-after-12.json": {
+      "sha256": "c1274d8d50a47c608284e2e605ff6b2f4e42eff3946c8a272e5b03380d41d647",
+      "bytes": 4948
+    },
+    "browser-corrected/en-360-rank2-before-11.json": {
+      "sha256": "30a35316c45c27decdbf1db7105f06d9fb26524f767236d5c2781c15c1552a47",
+      "bytes": 4948
+    },
+    "browser-corrected/en-360-synthetic-input.json": {
+      "sha256": "98df2589afad2bd253d404248b412db341dda110fbebb875553e6a051b9458a4",
+      "bytes": 4109
+    },
+    "browser-corrected/en-360-volcano-combat.json": {
+      "sha256": "bc6fbeafdb5b2daf1fe7cc7e82f238dfc6612a04f045e34fef6886883c049802",
+      "bytes": 4432
+    },
+    "browser-corrected/zh-CN-1280-armageddon-combat.json": {
+      "sha256": "9556858acc36114abc4e0969eb2a67d147755ef5ee0839fe6b47a55033df30fd",
+      "bytes": 4899
+    },
+    "browser-corrected/zh-CN-1280-armageddon-combat.png": {
+      "sha256": "ccd68c733c7d177f9e8c00a0e016a782db63e0d582f165ee48371f7f364731ab",
+      "bytes": 438671
+    },
+    "browser-corrected/zh-CN-1280-armageddon-details.png": {
+      "sha256": "56076d107e357322fdacc04191171ca4d74ba17169fdc377dd8a6ed4e7c4b097",
+      "bytes": 153500
+    },
+    "browser-corrected/zh-CN-1280-firestorm-combat.json": {
+      "sha256": "aca361dd4a0769659e018d094e7beb79d02393d6f998109aa1806f954dc78537",
+      "bytes": 2892
+    },
+    "browser-corrected/zh-CN-1280-firestorm-combat.png": {
+      "sha256": "271865c64c63a5d965efc073e03a5f99f58eec61aadc882cdbfdb4a35648b95d",
+      "bytes": 457734
+    },
+    "browser-corrected/zh-CN-1280-firestorm-details.png": {
+      "sha256": "2b7349431c8c3831d81f732ce8ea7dd02f98b46172ee20e3a70c137f2be82d51",
+      "bytes": 144294
+    },
+    "browser-corrected/zh-CN-1280-fissure-combat.json": {
+      "sha256": "7ec923e78b3650ad53104b17299f638c4b4beea68d224b5be7715cec58540de5",
+      "bytes": 3774
+    },
+    "browser-corrected/zh-CN-1280-fresh-13.json": {
+      "sha256": "451420b90c2c5b45c6a08116576ace0c08840762d30512e390bd2493a9b5d46e",
+      "bytes": 3238
+    },
+    "browser-corrected/zh-CN-1280-imported-14.json": {
+      "sha256": "0c9e06dd182f9b896f536de6832337b3a3b1b78058b3cf162fa230eae37a60a5",
+      "bytes": 4930
+    },
+    "browser-corrected/zh-CN-1280-molten-boulder-combat.json": {
+      "sha256": "788442a23bb6b770335554a6a9259c0d9cdbbbf5e8aaf9022ef2a88e0252bb70",
+      "bytes": 3475
+    },
+    "browser-corrected/zh-CN-1280-rank1-after-16.json": {
+      "sha256": "a939e4f225adb60782bcf7d467ad5876ffc67bb9694fdb3a6b09ad166362b1c8",
+      "bytes": 4933
+    },
+    "browser-corrected/zh-CN-1280-rank1-before-15.json": {
+      "sha256": "6ed2999005bba4b8fe9f5c2264ded78772af47d26848dcb28a7843fe5ef93b73",
+      "bytes": 4930
+    },
+    "browser-corrected/zh-CN-1280-rank2-after-18.json": {
+      "sha256": "018a4ba583978192c7be29c49fbb695b5c795f745f0668a5b99a71673992282b",
+      "bytes": 4951
+    },
+    "browser-corrected/zh-CN-1280-rank2-before-17.json": {
+      "sha256": "c312f4e9d3bd6f88d7fb99f6568b7fcd5f8bc78375992d322baddb79fe714d6a",
+      "bytes": 4951
+    },
+    "browser-corrected/zh-CN-1280-synthetic-input.json": {
+      "sha256": "f0d0cac188023ee9ac355c90c5086bb8e57109bec49ae24b324c8c81ea8de1b4",
+      "bytes": 4112
+    },
+    "browser-corrected/zh-CN-1280-volcano-combat.json": {
+      "sha256": "b1ccbc24ee12453700b32e8afd612758a183ebd92f3fa3537bb9cf805a638426",
+      "bytes": 4517
+    },
+    "browser-corrected/zh-CN-360-armageddon-combat.json": {
+      "sha256": "08ea39ec7f8800b44b175159c714a2d8cae02f22de1edee34de3d4725a776231",
+      "bytes": 5268
+    },
+    "browser-corrected/zh-CN-360-armageddon-combat.png": {
+      "sha256": "4b3369b28e126c663462e3785be2de4d28d444646059022c86dfd003757b7e98",
+      "bytes": 38196
+    },
+    "browser-corrected/zh-CN-360-armageddon-details.png": {
+      "sha256": "bd59adea413a42b8c8d8aa159f8e71c04a19754396cc3cc1ae83d0eeee41a439",
+      "bytes": 55921
+    },
+    "browser-corrected/zh-CN-360-firestorm-combat.json": {
+      "sha256": "2437b6708816fa391c830093e61e6230f1fbedc3e5f387c0183334b1b1112005",
+      "bytes": 2964
+    },
+    "browser-corrected/zh-CN-360-firestorm-combat.png": {
+      "sha256": "377a583e383ac6acf21783e6fb4bfb63cb57e1ff727f53e377f97243423a9acc",
+      "bytes": 38035
+    },
+    "browser-corrected/zh-CN-360-firestorm-details.png": {
+      "sha256": "964216a5722ba86c88573496ae8322a6fdf8a8272425b21cba21353ea6b9392c",
+      "bytes": 55607
+    },
+    "browser-corrected/zh-CN-360-fissure-combat.json": {
+      "sha256": "65d103db42d42919e62bfc51abfb84b7dcdbacbdbf1bbb130a0ccc9d098f7698",
+      "bytes": 4103
+    },
+    "browser-corrected/zh-CN-360-fresh-19.json": {
+      "sha256": "2abfe3db10386bb58a719226ad584e9282810b7d04ca8718c41159a03446316c",
+      "bytes": 3238
+    },
+    "browser-corrected/zh-CN-360-imported-20.json": {
+      "sha256": "f95b3265b73715ca4dcf7515518bf1cfe06fd158f64f892c7afa9d4ccdd17eb9",
+      "bytes": 4930
+    },
+    "browser-corrected/zh-CN-360-molten-boulder-combat.json": {
+      "sha256": "7641dfc1d7623cf918f5f9ff909f7291792c81302cf87cefa629261046a60443",
+      "bytes": 3625
+    },
+    "browser-corrected/zh-CN-360-rank1-after-22.json": {
+      "sha256": "155cff3bd5e1bc37d716b740d001a73499af0dbaa5d31656539c3d6f46bed7a9",
+      "bytes": 4933
+    },
+    "browser-corrected/zh-CN-360-rank1-before-21.json": {
+      "sha256": "b406fa32a5ab9301396bfe60ddc55406eabe693f46313a6e0464aca1357bd64e",
+      "bytes": 4930
+    },
+    "browser-corrected/zh-CN-360-rank2-after-24.json": {
+      "sha256": "74fe4e85b080b4dad1452a0f12224248c1a5c60f57044f304546e5af43b2e123",
+      "bytes": 4951
+    },
+    "browser-corrected/zh-CN-360-rank2-before-23.json": {
+      "sha256": "31c4e1891a8740a4a4da660ac0b9f9ded65844f374dde6f51b7daa87112d999f",
+      "bytes": 4951
+    },
+    "browser-corrected/zh-CN-360-synthetic-input.json": {
+      "sha256": "f436b7eef5e35f44cd7ca887b5be2d1b7dbb0825c56e9fe57d9715aab848477c",
+      "bytes": 4112
+    },
+    "browser-corrected/zh-CN-360-volcano-combat.json": {
+      "sha256": "c895ef2bff6ee7f3c53c089ed4f4dbc6903174a5fa20d2e825a9f55b4203365d",
+      "bytes": 4939
+    },
+    "browser-corrected.json": {
+      "sha256": "449b0f9d9786bf850b4b4febc03e859451bdf66ffb0902fbfc2bbe62b9a08a77",
+      "bytes": 349
+    },
+    "browser-corrected.log": {
+      "sha256": "789174f8791d3c1285af6b33d1c314cadd00833a1de7a9b005d85f9f5c6dc537",
+      "bytes": 102
+    },
+    "browser-final/browser-report.json": {
+      "sha256": "cb32619c2766d1187e1d412520e0f3e40d68382ff5e5cfe3f4c7340f0efa2c12",
+      "bytes": 2596
+    },
+    "browser-final/en-1280-failed-trace.zip": {
+      "sha256": "e612ccec406e83a5196798807fc271084fc9832dc0d70c5b41b7c1c329c65aa1",
+      "bytes": 39695565
+    },
+    "browser-final/en-1280-failed.png": {
+      "sha256": "1822d0b1a1c640ffcb8f73390041e386ab434fe38962f17214bc48ae7ed489a5",
+      "bytes": 52825
+    },
+    "browser-final/en-1280-firestorm-details.png": {
+      "sha256": "8565075cf69f315834388c6a99aa79532233b6fd7d0b0fccab45467464ba93e3",
+      "bytes": 137699
+    },
+    "browser-final/en-1280-fresh-1.json": {
+      "sha256": "53107f3fa5b7b654fc4054151e176cd9170270e368b5bd1200e2d8ccc9dc6ab8",
+      "bytes": 3235
+    },
+    "browser-final/en-1280-imported-2.json": {
+      "sha256": "df80fcf8f5d9146b4a3710d7a61768496e6a26d3b792988c71f9ad9412a367ef",
+      "bytes": 4927
+    },
+    "browser-final/en-1280-rank1-after-4.json": {
+      "sha256": "cdd60b9034b4ae74aa33db9d0ad89e70e5c7afdd6e7187e1698a3d22498a09c0",
+      "bytes": 4930
+    },
+    "browser-final/en-1280-rank1-before-3.json": {
+      "sha256": "edfa571f686283e9646eeb6f27cf3b56ea0e44b6fa2d1abec4584a1b91c220af",
+      "bytes": 4927
+    },
+    "browser-final/en-1280-synthetic-input.json": {
+      "sha256": "a5a04ee375d5cddcca9279aab652fbc06e5eeafb5b6d9cb2de76c35ed6d9307f",
+      "bytes": 4109
+    },
+    "browser-first-fixture.cjs": {
+      "sha256": "b372966b45fec60b5874d8a4ca24cb079004af455f4befaacb6b0e5d518f176d",
+      "bytes": 8877
+    },
+    "browser-first.json": {
+      "sha256": "ad6422b5f5b1e49e9f0e75eaba0d81b69e9265dd42933b396572f57e62f49102",
+      "bytes": 300
+    },
+    "browser-first.log": {
+      "sha256": "766e4f9e80a194e94e0375c268b08d7f4eeb88000b78b68faeb594c85d9c1271",
+      "bytes": 1103
+    },
+    "browser.cjs": {
+      "sha256": "30f4c22a4fb0a35e76ba4f0067553525b6443771f27dceb7ca6bb4a366f3e7b8",
+      "bytes": 8878
+    },
+    "build.json": {
+      "sha256": "2ce494a1f58ed499b6833376309e5c87d3dcde3b7ad808d78df4176655c239ab",
+      "bytes": 382
+    },
+    "build.log": {
+      "sha256": "3522d7cea3f7fcfea1b934a6fc5fe774f693bdf929e61cd384958a4c05ad16f0",
+      "bytes": 2253
+    },
+    "causal-red.json": {
+      "sha256": "5373f3e7ef4580c8fea2ad01dd79573e8a85e98b9ad5b8b26bfb6beac00e2551",
+      "bytes": 274
+    },
+    "causal-red.log": {
+      "sha256": "3c0aa85fa989bc6b8b280e96a6f0246da4d9893c5f3a73579655c51701412e3e",
+      "bytes": 11017
+    },
+    "committed-source-verification.json": {
+      "sha256": "41400ebcbc72914c040cc33b996b5ceef3ad2ff5042c19245d03d04567cef908",
+      "bytes": 255787
+    },
+    "compatibility.json": {
+      "sha256": "8fb1f15d5aeb2252d01c7cec54fb05652d1e9483e49db8ebbe330d43d11238bf",
+      "bytes": 604
+    },
+    "compatibility.log": {
+      "sha256": "5a39910bc661fa58f9a4c5a0cc4928d4f45cbb9b58a37ed59e263e344df6e21c",
+      "bytes": 54424
+    },
+    "engine.json": {
+      "sha256": "4f45e104fbbd19067d674e2b62013047eeec0fd29d82181e6a2393a71a0fd93e",
+      "bytes": 236
+    },
+    "engine.log": {
+      "sha256": "52523069d9084fe8ab0e07b43aa36898309b1377a094373cf918112720d076cf",
+      "bytes": 64095
+    },
+    "evidence-audit-note.md": {
+      "sha256": "2863500e8d48aa042394e036c96488e31ecf6316b088ce519f08ae884801908c",
+      "bytes": 400
+    },
+    "evidence-draft.md": {
+      "sha256": "3cec8d2f9ee192e0980f79ca784dd8530ce191e287eab412da8f0b04b762c7f2",
+      "bytes": 7653
+    },
+    "final-focused.json": {
+      "sha256": "314f0c3f0a72cac6087193b4ab42196739d8301626d91b9711266cb2988a9a99",
+      "bytes": 908
+    },
+    "final-focused.log": {
+      "sha256": "c9a73179374ba62f96e540b31c85672c2d3967bd1bd1e6e965f492562ce7668b",
+      "bytes": 1295
+    },
+    "first-green.json": {
+      "sha256": "78b1766588cc70ee0c6ccf11785c08bc6c913adabad3c64b43d627c383050cf7",
+      "bytes": 436
+    },
+    "first-green.log": {
+      "sha256": "37aaa00dd7d0c293bf918cf37b52d9a0daa35a54bfc090b75626fc3135394027",
+      "bytes": 2855
+    },
+    "focused-green.json": {
+      "sha256": "e679d91b15233f064535e258373e1cf46b9f82f272e1b7ebaa3592f623aa9d0a",
+      "bytes": 437
+    },
+    "focused-green.log": {
+      "sha256": "6aac7b8577f0de24234e0b6fc73cd4c4f24b276d8a64f55b5a6a828269869cc1",
+      "bytes": 587
+    },
+    "full-freeze-verification.json": {
+      "sha256": "6a25563e06bd58a63df61a21032cbfb18974fa8bc25e0bd471992b0ed0da9246",
+      "bytes": 581
+    },
+    "full.json": {
+      "sha256": "47ab0818233d7139a249ead40354c45f7c934f3bbf28073b6bfa12329c074235",
+      "bytes": 219
+    },
+    "full.log": {
+      "sha256": "07b9d8257ce9423bd3f529b96848155a71b39e3354cc56c1e3450c91c8d6c2cc",
+      "bytes": 151600
+    },
+    "lint-final.json": {
+      "sha256": "fea7a0826f4140aa25ec4181d0e7f23222f5e3079240204ccbc1eab166cca5dd",
+      "bytes": 228
+    },
+    "lint-final.log": {
+      "sha256": "e252f66aec47bde6fda452b822c323e3dc9cebb00f3bd68233578d67d113302b",
+      "bytes": 197
+    },
+    "lint.json": {
+      "sha256": "3b84da660df83d0324c224e6d250b72266c400985e4141f6ecf0ddb7334b3266",
+      "bytes": 230
+    },
+    "lint.log": {
+      "sha256": "9b9c48010a65243afdc3a73c5c21c563f79d118d1dcfb3ebbf1753762bcf214d",
+      "bytes": 2584
+    },
+    "native.json": {
+      "sha256": "e1faf0cd4db49f9fd354d2872b85d23c8ade960f173f8bd249d6e497b0068f63",
+      "bytes": 372
+    },
+    "native.log": {
+      "sha256": "7c52ee2f93005c600a8e13d09a87131a87a98c23f154cd507a2b496176ec7ab7",
+      "bytes": 25340
+    },
+    "ownership.json": {
+      "sha256": "bfe4ba36913e4c6f7ae228903fe253e1a2a7204d1f394cea97071762bd97f0d8",
+      "bytes": 337
+    },
+    "post-full.json": {
+      "sha256": "0c89e11949849fc49ec1c34e9646a2960908e371439311a513269c9ef4083677",
+      "bytes": 249482
+    },
+    "pre-full.json": {
+      "sha256": "0c89e11949849fc49ec1c34e9646a2960908e371439311a513269c9ef4083677",
+      "bytes": 249482
+    },
+    "reference-audit-browser.py": {
+      "sha256": "49c60eeaec91b41c40e1644a326aed5f09924dfa00db73721ba4827555170bb8",
+      "bytes": 1518
+    },
+    "reference-bridge.py": {
+      "sha256": "19b074e6b2c73adae41f8f0500ebe3259bd4ad5bef4281aaf2dc49ae64f12a41",
+      "bytes": 463
+    },
+    "reference-browser.cjs": {
+      "sha256": "e9d62c4d371e18510150d839c2b3754f5bc132806b1f37605703725885ae7aab",
+      "bytes": 8803
+    },
+    "reference-serve.py": {
+      "sha256": "499df0f2cea47f870a5d66ed6e83cf05ff030efcee2f126b118a06af081c838d",
+      "bytes": 927
+    },
+    "reference-snapshot.py": {
+      "sha256": "51eea22057228baf4fc3079f139f68731783abbe249c870ccf8c6d6d5529bf81",
+      "bytes": 1163
+    },
+    "reference-verify-freeze.py": {
+      "sha256": "e7583bf2d92d76a8b04d0ea1ab446e101b951dc5e4167ffe3fb218c7e55f9f89",
+      "bytes": 1133
+    },
+    "retain-cleanup.py": {
+      "sha256": "c746f9aa6702014474484fa5a78b5b6e3e3fb491255d2d1b664a37a6b5cd200b",
+      "bytes": 4267
+    },
+    "run.py": {
+      "sha256": "56968ac8b6b674a739d3b40340605952cc3fcc8aeff2a02bb559fdaac5614d9a",
+      "bytes": 640
+    },
+    "schema-display-red.json": {
+      "sha256": "d8c4a12f5871ae7fceb65224ea01367563888e889fe20bb67b288047236cd228",
+      "bytes": 332
+    },
+    "schema-display-red.log": {
+      "sha256": "7299437df28aba756ed96259aff66e1ec3a16a6da46480eea7a2d6fca1c8adb4",
+      "bytes": 27832
+    },
+    "self-review.md": {
+      "sha256": "19be7c5c9a05337598e761a3bb7d5d03f1d867d803a63e56725098274061a90d",
+      "bytes": 2548
+    },
+    "serve.py": {
+      "sha256": "b5ff8081514efd2b1e913a3ba5e440b2f180401982c0f515657c499d18d29d90",
+      "bytes": 927
+    },
+    "server-process.json": {
+      "sha256": "469d9f385eb8134518eeb58161f3cd440b552051753deedc9fe46dcdf9be68f1",
+      "bytes": 80
+    },
+    "server-stop-receipt.json": {
+      "sha256": "6821cfdaf69b845879398d3da5eeb978b5c0e93426eba4d4d5fc941b9d970455",
+      "bytes": 186
+    },
+    "server-terminal.json": {
+      "sha256": "8567b8f4d55e6398a5306da6a0b5ceba587a6a31a5340ae08a2f7edd3aeea6bc",
+      "bytes": 57
+    },
+    "snapshot.py": {
+      "sha256": "51eea22057228baf4fc3079f139f68731783abbe249c870ccf8c6d6d5529bf81",
+      "bytes": 1163
+    },
+    "types-final.json": {
+      "sha256": "5e081bd563b020da022eec3efceabfb299abf974dd0b30fa436b13ce3d2f1808",
+      "bytes": 234
+    },
+    "types-final.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types.json": {
+      "sha256": "099442739fa79cc73b5997f2d14d55c10f8c64e857035e37456bd744ff9920b1",
+      "bytes": 234
+    },
+    "types.log": {
+      "sha256": "164de29892878d363b50a9cb8d7883ed682bf7458381ece37169d6375c143670",
+      "bytes": 2978
+    },
+    "ui-red.json": {
+      "sha256": "da76297dc780035f1604cc8a63ba74c9fad4b4c2bfc9a491cb8ad0536314c4a7",
+      "bytes": 291
+    },
+    "ui-red.log": {
+      "sha256": "5fb93a62f5c0ed6e3a41ed881fdbc09fa910edb97595dbfd1e7cb07ee68acd67",
+      "bytes": 229555
+    },
+    "verify-committed.py": {
+      "sha256": "7acadce6328d41067b6646663d997d931c323c4ac313c8fd98867297123e33a9",
+      "bytes": 1568
+    },
+    "verify-freeze.py": {
+      "sha256": "92b66816f402ee6379a87f48cff5fde83aea441b28cd1a6262268ecaac8581a4",
+      "bytes": 1076
+    },
+    "visual-review.json": {
+      "sha256": "90a395c8ec86390c1c8ab5ebee6aee6cce4f4a3e3b71df5e1337c1a4ca6ac964",
+      "bytes": 2553
+    }
+  },
+  "commandReceipts": {
+    "bridge.json": {
+      "argv": [
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fire-i1zfnxeg/bridge.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 0.222,
+      "finished": "2026-10-25T06:19:31.396885+00:00"
+    },
+    "browser-audit-final.json": {
+      "argv": [
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fire-i1zfnxeg/audit-browser.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 0.043,
+      "finished": "2026-10-25T06:19:51.938778+00:00"
+    },
+    "browser-audit.json": {
+      "argv": [
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fire-i1zfnxeg/audit-browser.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 0.044,
+      "finished": "2026-10-25T06:17:30.975165+00:00"
+    },
+    "browser-corrected.json": {
+      "argv": [
+        "env",
+        "BROWSER_RUN=browser-corrected",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fire-i1zfnxeg/browser.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 150.219,
+      "finished": "2026-10-25T06:17:20.923351+00:00"
+    },
+    "browser-first.json": {
+      "argv": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fire-i1zfnxeg/browser.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 42.975,
+      "finished": "2026-10-25T06:14:16.749606+00:00"
+    },
+    "build.json": {
+      "argv": [
+        "env",
+        "VITE_E2E=false",
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-fire-i1zfnxeg/build-final"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 18.809,
+      "finished": "2026-10-25T06:12:11.391418+00:00"
+    },
+    "causal-red.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/druid-fire.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 8.244,
+      "finished": "2026-10-25T06:06:49.153181+00:00"
+    },
+    "compatibility.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/druid-fire.test.ts",
+        "src/engine/combat/skill-resolution.test.ts",
+        "src/engine/combat/periodic-timing.test.ts",
+        "src/engine/combat/status.test.ts",
+        "src/engine/combat/combo.test.ts",
+        "src/engine/skills/displayStats.test.ts",
+        "src/features/skills/SkillsScreen.test.tsx",
+        "src/features/skills/SkillsScreen.meteor.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 10.921,
+      "finished": "2026-10-25T06:10:25.614235+00:00"
+    },
+    "engine.json": {
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 82.062,
+      "finished": "2026-10-25T06:13:14.645053+00:00"
+    },
+    "final-focused.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/druid-fire.test.ts",
+        "src/engine/combat/skill-resolution.test.ts",
+        "src/engine/combat/periodic-timing.test.ts",
+        "src/engine/combat/status.test.ts",
+        "src/engine/combat/combo.test.ts",
+        "src/engine/skills/druid-fire-schema.test.ts",
+        "src/engine/skills/displayStats.burn.test.ts",
+        "src/engine/skills/displayStats.test.ts",
+        "src/features/skills/SkillsScreen.test.tsx",
+        "src/features/skills/SkillsScreen.meteor.test.tsx",
+        "src/features/skills/SkillsScreen.druid-fire.test.tsx",
+        "src/stores/druid-fire.test.ts",
+        "src/stores/player-skill-ownership-native.test.ts",
+        "src/stores/player-skill-ownership.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 41.172,
+      "finished": "2026-10-25T06:11:41.985393+00:00"
+    },
+    "first-green.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/druid-fire.test.ts",
+        "src/engine/skills/druid-fire-schema.test.ts",
+        "src/engine/skills/displayStats.burn.test.ts",
+        "src/features/skills/SkillsScreen.druid-fire.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 3.936,
+      "finished": "2026-10-25T06:09:01.957543+00:00"
+    },
+    "focused-green.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/druid-fire.test.ts",
+        "src/engine/skills/druid-fire-schema.test.ts",
+        "src/engine/skills/displayStats.burn.test.ts",
+        "src/features/skills/SkillsScreen.druid-fire.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 10.519,
+      "finished": "2026-10-25T06:09:22.009286+00:00"
+    },
+    "full.json": {
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 496.436,
+      "finished": "2026-10-25T06:23:08.632643+00:00"
+    },
+    "lint-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 99.84,
+      "finished": "2026-10-25T06:15:31.348895+00:00"
+    },
+    "lint.json": {
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 113.321,
+      "finished": "2026-10-25T06:13:18.484180+00:00"
+    },
+    "native.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/druid-fire.test.ts",
+        "src/stores/player-skill-ownership-native.test.ts",
+        "src/stores/player-skill-ownership.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.795,
+      "finished": "2026-10-25T06:10:39.505028+00:00"
+    },
+    "schema-display-red.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/druid-fire-schema.test.ts",
+        "src/engine/skills/displayStats.burn.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 5.538,
+      "finished": "2026-10-25T06:07:41.425151+00:00"
+    },
+    "types-final.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 36.829,
+      "finished": "2026-10-25T06:14:28.333807+00:00"
+    },
+    "types.json": {
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 2,
+      "seconds": 51.198,
+      "finished": "2026-10-25T06:12:16.354198+00:00"
+    },
+    "ui-red.json": {
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.druid-fire.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 28.997,
+      "finished": "2026-10-25T06:08:33.578305+00:00"
+    }
+  },
+  "fullFreeze": {
+    "pass": true,
+    "head": "4ec68b27beaabc30d6933737af52ae930318b98c",
+    "checks": {
+      "sources": true,
+      "build": true,
+      "genuine": true,
+      "head": true,
+      "status": true
+    },
+    "sourceFiles": 1293,
+    "buildFiles": 760,
+    "genuineSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "fullWallSeconds": 496.436,
+    "summary": [
+      "Test Files  571 passed (571)",
+      "Tests  13198 passed | 2 skipped (13200)",
+      "Duration  495.07s (transform 19.70s, setup 57.41s, collect 1037.62s, tests 526.63s, environment 135.46s, prepare 58.11s)"
+    ]
+  },
+  "genuineSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "buildFiles": 760,
+  "omitted": "Only disposable production build bytes; all 760 build hashes retained in frozen snapshots.",
+  "independentAcceptance": false,
+  "earnedCampaignActions": false
+}
