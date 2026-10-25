@@ -1605,6 +1605,11 @@ function dynamicDescription(
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && ['skills-sorceress-fire-bolt', 'skills-sorceress-fire-ball'].includes(skill.id)) {
+    return t('sorceress.' + skill.id.slice('skills-sorceress-'.length) + '.desc', {
+      min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown
+    });
+  }
   if (firstDamage && stats.coldAttack && ['skills-sorceress-ice-bolt', 'skills-sorceress-frost-nova',
     'skills-sorceress-frozen-orb', 'skills-sorceress-blizzard'].includes(skill.id)) {
     const cold = stats.coldAttack;
@@ -1745,6 +1750,7 @@ function dynamicDescription(
       type: t(`damage-types:type.${firstDamage.type}`),
       burn: t('damage-types:status.burn'),
       melt: t(`damage-types:status.${statusId}`),
+      mana: stats.manaCost, cooldown: stats.cooldown,
       reduction: defenseReductionPct,
       duration: t('details.seconds', { seconds: durationMs / 1000 })
     });

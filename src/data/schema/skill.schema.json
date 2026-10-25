@@ -240,6 +240,28 @@
       }
     },
     {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-sorceress-meteor" } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "appliesStatus", "statusEffect", "cost"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "all-enemies" },
+          "aoeShape": false, "requiredLevel": { "const": 24 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-sorceress-fire-ball", "skills-sorceress-fire-wall"] },
+          "damageType": { "const": "fire" }, "appliesStatus": { "const": ["burn", "armor-melt"] },
+          "statusEffect": {
+            "type": "object", "required": ["dotPctOfDamage"], "additionalProperties": false,
+            "properties": { "dotPctOfDamage": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 } }
+          },
+          "additionalStatusEffects": {
+            "type": "object", "required": ["armor-melt"],
+            "properties": { "armor-melt": { "$ref": "#/properties/additionalStatusEffects/properties/armor-melt" } }
+          },
+          "hitSequence": false, "damageComposition": false, "attackDamagePct": false,
+          "onHitRecovery": false, "onHitSelfDamage": false
+        }
+      }
+    },
+    {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-fire-blast" } } },
       "then": {
         "required": ["aoeShape", "requiredLevel", "damage", "damageType", "appliesStatus"],

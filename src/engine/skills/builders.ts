@@ -103,7 +103,7 @@ export const DEFAULT_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   build({ id: 'sorceress.frozen_orb', archetype: 'sorceress', target: 'area-enemies', cooldown: 2, manaCost: 30, damageType: 'cold', base: [60, 90], status: { id: 'chill' }, aoeShape: 'cone-2' }),
   build({ id: 'sorceress.chain_lightning', archetype: 'sorceress', target: 'area-enemies', cooldown: 2, manaCost: 25, damageType: 'lightning', base: [50, 70], status: { id: 'paralyze', chance: 0.2 }, aoeShape: 'line-3' }),
   build({ id: 'sorceress.fire_ball', archetype: 'sorceress', target: 'single-enemy', cooldown: 1, manaCost: 20, damageType: 'fire', base: [70, 100], status: { id: 'ignite', dotPct: 0.1 } }),
-  build({ id: 'sorceress.meteor', archetype: 'sorceress', target: 'area-enemies', cooldown: 4, manaCost: 50, damageType: 'fire', base: [100, 150], status: { id: 'ignite', dotPct: 0.1 }, aoeShape: 'box-3x3' }),
+  build({ id: 'sorceress.meteor', archetype: 'sorceress', target: 'all-enemies', cooldown: 4, manaCost: 50, damageType: 'fire', base: [100, 150], status: { id: 'ignite', dotPct: 0.1 } }),
   build({ id: 'sorceress.blizzard', archetype: 'sorceress', target: 'all-enemies', cooldown: 3, manaCost: 45, damageType: 'cold', base: [80, 120], status: { id: 'chill' }, minLevel: 24 }),
   build({ id: 'sorceress.cold_mastery', archetype: 'sorceress', target: 'self', cooldown: 0, manaCost: 0, buff: { id: 'cold_mastery', duration: -1 } }),
   build({ id: 'sorceress.lightning_mastery', archetype: 'sorceress', target: 'self', cooldown: 0, manaCost: 0, buff: { id: 'lightning_mastery', duration: -1 } }),

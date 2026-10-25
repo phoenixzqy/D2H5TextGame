@@ -392,7 +392,9 @@ describe.each(['en', 'zh-CN'] as const)('<SkillsScreen> truthful units (%s)', (l
     expect.soft(value(next, label)).toHaveTextContent(/^34 ~ 49\(\+4 ~ \+4\)$/);
     expect.soft(value(next, label).querySelector('span')).toHaveTextContent(/^\(\+4 ~ \+4\)$/);
     expect.soft(within(screen.getByTestId('skill-detail-panel')).getByText(
-      english ? 'Fire Bolt: 30 ~ 45 Fire damage.' : '火弹：造成 30 ~ 45 点火焰伤害。',
+      english
+        ? 'One single-target attempt deals 30–45 Fire base damage. Pay 8 MP and start a 1 s cooldown once per cast. A landed hit applies Burn. Misses apply no Burn. Fire resistance and Defense apply.'
+        : '单体独立判定一次，造成30～45 点火焰基础伤害。每次施放支付8 点法力并启动1 秒冷却；命中后施加燃烧。未命中不施加燃烧。火焰抗性与普通防御正常生效。',
       { exact: true }
     )).toBeInTheDocument();
   });

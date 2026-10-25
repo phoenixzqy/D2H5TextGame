@@ -207,8 +207,7 @@
       "skills-sorceress-fire-wall"
     ],
     "trigger": "active",
-    "target": "area-enemies",
-    "aoeShape": "box-3x3",
+    "target": "all-enemies",
     "cooldown": 4,
     "minLevel": 1,
     "maxLevel": 20,

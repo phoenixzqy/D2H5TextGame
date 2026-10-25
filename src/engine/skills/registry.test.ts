@@ -22,17 +22,18 @@ import {
 } from './dataCatalog';
 
 describe('P08a08 authored player Meteor Armor Melt', () => {
-  it('authors only the reviewed secondary while preserving Meteor and Burn tuning', () => {
+  it('preserves Meteor and Burn tuning with the corrected All target and reviewed secondary', () => {
     const raw = sorceressSkills.find(row => row.id === 'skills-sorceress-meteor');
     const validate = new Ajv2020({ strict: true }).compile(skillSchema);
     expect(validate(raw), JSON.stringify(validate.errors)).toBe(true);
     expect(raw).toMatchObject({
-      requiredLevel: 24, target: 'area-enemies', aoeShape: 'box-3x3', cooldown: 4,
+      requiredLevel: 24, target: 'all-enemies', cooldown: 4,
       cost: { mana: 50 }, damageType: 'fire', damage: { min: 100, max: 150 },
       appliesStatus: ['burn', 'armor-melt'], statusEffect: { dotPctOfDamage: 0.1 },
       scaling: { damagePerLevel: 10 },
       additionalStatusEffects: { 'armor-melt': { chance: 1, defenseReductionPct: 30, durationMs: 3000 } }
     });
+    expect(raw).not.toHaveProperty('aoeShape');
   });
 });
 

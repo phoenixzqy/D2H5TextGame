@@ -1035,11 +1035,11 @@
     },
     "fire-ball": {
       "name": "Fire Ball",
-      "desc": "Lobs an exploding fireball that deals high single-target fire damage and burns the target."
+      "desc": "One single-target attempt explodes on the target for {{min}}–{{max}} Fire base damage. Pay {{mana}} MP and start a {{cooldown}} s cooldown once per cast. A landed hit applies Burn. Misses apply no Burn. Fire resistance and Defense apply."
     },
     "meteor": {
       "name": "Meteor",
-      "desc": "A meteor deals {{min}}–{{max}} {{type}} damage over an area. On a successful hit, applies {{burn}} then {{melt}}. {{melt}} reduces ordinary Defense by {{reduction}}% for {{duration}} at every skill rank."
+      "desc": "A meteor deals {{min}}–{{max}} {{type}} damage over an area. On a successful hit, applies {{burn}} then {{melt}}. {{melt}} reduces ordinary Defense by {{reduction}}% for {{duration}} at every skill rank. One independent attempt per living enemy, including separated and overflow targets. Pay {{mana}} MP and start a {{cooldown}} s cooldown once per cast. Misses apply no Burn or Armor Melt. Fire resistance and Defense apply to the initial hit before Armor Melt."
     },
     "cold-mastery": {
       "name": "Cold Mastery",
@@ -1111,7 +1111,7 @@
     },
     "fire-bolt": {
       "name": "Fire Bolt",
-      "desc": "Hurls a small bolt of fire at the target."
+      "desc": "One single-target attempt deals {{min}}–{{max}} Fire base damage. Pay {{mana}} MP and start a {{cooldown}} s cooldown once per cast. A landed hit applies Burn. Misses apply no Burn. Fire resistance and Defense apply."
     },
     "warmth": {
       "name": "Warmth",
