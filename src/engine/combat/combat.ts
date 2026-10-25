@@ -60,6 +60,8 @@ import { activeBurstOfSpeed, burstOfSpeedRank, copyBurstOfSpeedStatuses, matches
   paidBurstOfSpeed, BURST_OF_SPEED_IDS, BURST_OF_SPEED_DEFINITION } from '../skills/burst-of-speed';
 import { activeCloakOfShadows, cloakOfShadowsRank, copyCloakOfShadowsStatuses, matchesCloakOfShadows,
   paidCloakOfShadows, CLOAK_OF_SHADOWS_IDS, CLOAK_OF_SHADOWS_DEFINITION } from '../skills/cloak-of-shadows';
+import { activeConcentrate, concentrateRank, copyConcentrateStatuses, matchesConcentrate,
+  paidConcentrate, CONCENTRATE_IDS, CONCENTRATE_DEFINITION } from '../skills/concentrate';
 import { activeLeap, leapRank, copyLeapStatuses, matchesLeap,
   paidLeap, LEAP_IDS, LEAP_DEFINITION } from '../skills/leap';
 import { activeFeralRage, copyFeralRageStatuses, FERAL_RAGE_DEFINITION, gainFeralRageStack } from '../skills/druid-sustain';
@@ -521,7 +523,7 @@ function pickDefender(
 
 function registerUnit(state: State, u: CombatUnit): void {
   const native = u.druidSummonRanks === undefined ? u : { ...u, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
-  const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyLeapStatuses(copyCloakOfShadowsStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(copyFrenzyStatuses(native)))))));
+  const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyConcentrateStatuses(copyLeapStatuses(copyCloakOfShadowsStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(copyFrenzyStatuses(native))))))));
   const shaped = refreshHolyShieldState(refreshDruidFormState(copied));
   state.units.set(u.id, shaped);
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
@@ -593,7 +595,7 @@ function buildDamageInput(
     ? 1 - MERC_INNER_SIGHT_DEFINITION.defenseReductionPct / 100 : 1;
   const barbsDefense = defender.kind === 'summon'
     ? (activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, defender, state.units)?.rank ?? 0) * SPIRIT_OF_BARBS_DEFINITION.summonDefensePerRank : 0;
-  const armorBonus = (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + barbsDefense + holyShieldDefense(defender) + (defendingCloak?.defensePct ?? 0);
+  const armorBonus = (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + barbsDefense + holyShieldDefense(defender) + (defendingCloak?.defensePct ?? 0) + (activeConcentrate(defender, state.simClockMs)?.defensePct ?? 0);
   return {
     baseMin,
     baseMax,
@@ -1062,6 +1064,7 @@ function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
   if (BURST_OF_SPEED_IDS.some(id => id === skill.id)) return burstOfSpeedRank(unit);
   if (CLOAK_OF_SHADOWS_IDS.some(id => id === skill.id)) return cloakOfShadowsRank(unit);
   if (LEAP_IDS.some(id => id === skill.id)) return leapRank(unit);
+  if (CONCENTRATE_IDS.some(id => id === skill.id)) return concentrateRank(unit);
   if (isStaticFieldId(skill.id)) return staticFieldRank(unit);
   const governed = governedActiveId(skill.id);
   if (governed) {
@@ -1181,6 +1184,11 @@ function canUseSkillForState(
     skill.effects.some(effect => effect.kind === 'buff' && effect.timedStatBuff === 'burst-of-speed');
   const cloak = CLOAK_OF_SHADOWS_IDS.some(id => id === skillOrderId || id === skill.id) ||
     skill.effects.some(effect => effect.kind === 'buff' && effect.timedStatBuff === 'cloak-of-shadows');
+  const concentrate = CONCENTRATE_IDS.some(id => id === skillOrderId || id === skill.id) ||
+    skill.effects.some(effect => effect.kind === 'buff' && effect.timedStatBuff === 'concentrate');
+  if (concentrate && (!matchesConcentrate(skill) || concentrateRank(unit) === 0 ||
+    !Number.isFinite(unit.mana) || activeConcentrate(unit, state.simClockMs) !== undefined ||
+    CONCENTRATE_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   const leap = LEAP_IDS.some(id => id === skillOrderId || id === skill.id) ||
     skill.effects.some(effect => effect.kind === 'buff' && effect.timedStatBuff === 'leap');
   if (leap && (!matchesLeap(skill) || leapRank(unit) === 0 || !Number.isFinite(unit.mana) ||
@@ -1212,7 +1220,7 @@ function canUseSkillForState(
   if (unit.level < skill.minLevel) return false;
   if (isPaidFrozenArmorSkill(skill)) {
     if (hasPaidFrozenArmor(unit)) return false;
-  } else if (!burst && !cloak && !leap && !form &&
+  } else if (!burst && !cloak && !leap && !concentrate && !form &&
     skill.isBuff &&
     (unit.activeBuffIds.includes(skill.id) || activeBuffIdsForSkill(skill).some((id) => unit.activeBuffIds.includes(id)))
   ) return false;
@@ -1369,6 +1377,21 @@ function applyEffect(
             id: 'cloak-of-shadows', sourceId: actorId, stacks: 1, remaining: duration / 1000,
             appliedAtMs: state.simClockMs, expiresAtMs: state.simClockMs + duration,
             cloakOfShadows: paidCloakOfShadows(skillLevel)
+          }] });
+        emit(state, { kind: 'buff', target: actorId, buffId: effect.id, statusBacked: true });
+        observeStatuses(state, actorId);
+        break;
+      }
+      if (matchesConcentrate(skill) && effect.timedStatBuff === 'concentrate') {
+        if (concentrateRank(actor) === 0 || activeConcentrate(actor, state.simClockMs)) return;
+        const markers: readonly string[] = [...CONCENTRATE_IDS, 'concentrate'];
+        const duration = CONCENTRATE_DEFINITION.durationMs;
+        state.units.set(actorId, { ...actor,
+          activeBuffIds: actor.activeBuffIds.filter(id => !markers.includes(id)),
+          statuses: [...actor.statuses.filter(status => !markers.includes(status.id)), {
+            id: 'concentrate', sourceId: actorId, stacks: 1, remaining: duration / 1000,
+            appliedAtMs: state.simClockMs, expiresAtMs: state.simClockMs + duration,
+            concentrate: paidConcentrate(skillLevel)
           }] });
         emit(state, { kind: 'buff', target: actorId, buffId: effect.id, statusBacked: true });
         observeStatuses(state, actorId);

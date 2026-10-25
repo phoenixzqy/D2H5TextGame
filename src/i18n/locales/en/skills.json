@@ -64,6 +64,8 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "concentrateDuration": "Defense duration",
+    "convertedAttack": "Attack converted to Arcane",
     "cloakDuration": "Cloak / Blind Duration",
     "cloakBlindPenalty": "Blind Physical / thorns hit penalty",
     "cloakBlindPenaltyValue": "−{{points}} percentage points",
@@ -521,7 +523,7 @@
     },
     "berserk": {
       "name": "Berserk",
-      "desc": "An arcane-fueled rage strike that converts physical damage to arcane."
+      "desc": "One {{min}}–{{max}} base-damage attempt plus {{attack}}% of Attack, converting the entire hit as Arcane. Arcane modifiers and magical defenses apply; Physical damage bonuses, Defense and Physical resistance do not. Pay 20 MP and start the 2 s cooldown once. Changes apply next wave."
     },
     "war-cry": {
       "name": "War Cry",
@@ -549,7 +551,7 @@
     },
     "stun": {
       "name": "Stun",
-      "desc": "A stunning blow that knocks back the target."
+      "desc": "One {{min}}–{{max}} Physical base-damage attempt. Successful hits apply Stun for {{duration}} (bosses: {{bossDuration}}), interrupting scheduled actions. Misses do not stun. Pay 8 MP and start the 2 s cooldown once. Changes apply next wave."
     },
     "double-throw": {
       "name": "Double Throw",
@@ -557,7 +559,7 @@
     },
     "concentrate": {
       "name": "Concentrate",
-      "desc": "A focused attack with increased damage and defense."
+      "desc": "One {{min}}–{{max}} Physical base-damage attempt. The paid cast increases your Defense by {{defense}}% for {{duration}}, even if the attack misses. It never stacks or extends an active stance. Pay 10 MP and start the 1 s cooldown once. Changes apply next wave; paid Defense lasts until expiry."
     },
     "frenzy": {
       "name": "Frenzy",

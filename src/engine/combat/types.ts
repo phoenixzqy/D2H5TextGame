@@ -26,6 +26,8 @@ export interface GridPosition {
 
 /** Active status effect on a combat unit. */
 export interface ActiveStatus {
+  /** Source-bound paid finite Concentrate Defense; never persisted. */
+  readonly concentrate?: { readonly rank: number; readonly defensePct: number };
   /** Source-bound paid Leap potency; finite, personal and never persisted. */
   readonly leap?: { readonly rank: number; readonly physicalDamagePct: number };
   /** Source-bound finite personal Cloak potency, independent of Burst's paid payload. */
@@ -79,6 +81,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Fresh native Concentrate authority, independent of carried paid potency. */
+  readonly concentrateRank?: number;
   /** Fresh native learned Leap authority, independent of carried paid potency. */
   readonly leapRank?: number;
   /** Fresh native learned Cloak authority; its paid status is run-local and never saved. */

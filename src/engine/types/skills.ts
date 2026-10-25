@@ -302,7 +302,7 @@ export interface SkillDef {
   
   /** Base damage (if any) */
   readonly damage?: DamageInfo;
-  /** Finite nonnegative snapshot Attack percentage; exact Basic/Pierce mercenary rows only. */
+  /** Finite nonnegative snapshot Attack percentage; exact Basic/Pierce mercenary and Berserk rows only. */
   readonly attackDamagePct?: number;
   
   /** Damage type (primary) */

@@ -25,6 +25,7 @@ import { DRUID_SUMMON_DEFINITION, DRUID_SUMMON_IDS } from './druid-summon-defini
 import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 
 export interface DisplaySkillSource {
+  readonly attackDamagePct?: number;
   readonly timedBuff?: { readonly durationMs: number };
   readonly aoeShape?: AoeShape;
   readonly maxTargets?: number;
@@ -157,6 +158,9 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Paid personal Defense interval and Attack converted into an Arcane hit. */
+  readonly concentrate?: { readonly durationSeconds: number };
+  readonly convertedAttackPercent?: number;
   /** Paid finite personal Leap physical follow-up. */
   readonly leap?: { readonly durationSeconds: number };
   /** Paid personal bonuses and enemy Blind share this explicit finite duration. */
@@ -575,6 +579,10 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(skill.id === 'skills-barbarian-concentrate' && skill.timedBuff
+      ? { concentrate: { durationSeconds: skill.timedBuff.durationMs / 1000 } } : {}),
+    ...(skill.id === 'skills-barbarian-berserk' && skill.attackDamagePct !== undefined
+      ? { convertedAttackPercent: skill.attackDamagePct } : {}),
     ...(leap ? { leap: { durationSeconds: skill.timedBuff.durationMs / 1000 } } : {}),
     ...(skill.id === 'skills-assassin-cloak-of-shadows' && skill.timedBuff
       ? { cloak: { durationSeconds: skill.timedBuff.durationMs / 1000,

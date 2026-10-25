@@ -8,6 +8,53 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-concentrate" } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "timedBuff"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "requiredLevel": { "const": 18 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-barbarian-stun"] },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "cost": { "$ref": "#/properties/cost" }, "cooldown": { "type": "number", "minimum": 1 },
+          "timedBuff": { "type": "object", "additionalProperties": false, "required": ["durationMs"],
+            "properties": { "durationMs": { "type": "integer", "minimum": 1, "maximum": 1000,
+              "description": "Paid personal Defense interval, bounded by the minimum attack cooldown." } } },
+          "scaling": { "type": "object", "additionalProperties": false,
+            "required": ["damagePerLevel", "passiveStatsPerLevel"],
+            "properties": { "damagePerLevel": { "type": "number", "minimum": 0 },
+              "passiveStatsPerLevel": { "type": "object", "additionalProperties": false, "required": ["defensePct"],
+                "properties": { "defensePct": { "type": "number", "exclusiveMinimum": 0, "maximum": 1,
+                  "description": "Finite paid Concentrate Defense bonus per rank, added to the original Defense baseline." } } } } },
+          "passive": { "const": false }, "aura": { "const": false }, "summon": { "const": false },
+          "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false,
+          "hitSequence": false, "critChanceBonus": false, "onHitRecovery": false,
+          "onHitSelfDamage": false, "damageComposition": false, "ignoresDefense": false,
+          "ignoresMagicResist": false, "requires": false, "aoeShape": false,
+          "maxTargets": false, "heal": false, "summonId": false
+        }
+      }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-berserk" } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "attackDamagePct"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "requiredLevel": { "const": 30 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-barbarian-concentrate"] },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "arcane" },
+          "attackDamagePct": { "type": "number", "exclusiveMinimum": 0, "maximum": 1000 },
+          "cost": { "$ref": "#/properties/cost" }, "scaling": { "$ref": "#/properties/scaling" },
+          "cooldown": { "type": "number", "minimum": 1 },
+          "timedBuff": false, "appliesStatus": false, "statusEffect": false,
+          "additionalStatusEffects": false, "hitSequence": false, "damageComposition": false,
+          "onHitRecovery": false, "onHitSelfDamage": false, "ignoresDefense": false,
+          "ignoresMagicResist": false, "critChanceBonus": false, "aoeShape": false, "maxTargets": false
+        }
+      }
+    },
+    {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-leap" } } },
       "then": {
         "required": ["requiredLevel", "appliesStatus", "timedBuff", "scaling", "cost"],
@@ -1105,7 +1152,7 @@
       "then": {
         "properties": {
           "id": {
-            "enum": ["skills-assassin-burst-of-speed", "skills-assassin-cloak-of-shadows", "skills-barbarian-leap"]
+            "enum": ["skills-assassin-burst-of-speed", "skills-assassin-cloak-of-shadows", "skills-barbarian-leap", "skills-barbarian-concentrate"]
           }
         }
       }
@@ -2803,9 +2850,8 @@
       }
     },
     "else": {
-      "properties": {
-        "attackDamagePct": false
-      }
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-berserk" } } },
+      "else": { "properties": { "attackDamagePct": false } }
     }
   }, {
     "if": {
@@ -4356,7 +4402,7 @@
     },
     "attackDamagePct": {
       "type": "number", "minimum": 0,
-      "description": "Finite nonnegative percentage of snapshot Attack added before damage multipliers and mitigation; exact Basic/Pierce mercenary rows only."
+      "description": "Finite nonnegative percentage of snapshot Attack added before damage multipliers and mitigation; exact Basic/Pierce mercenary and Berserk rows only."
     },
     "id": {
       "type": "string",

@@ -947,6 +947,10 @@ function StatSection({
             <StatLine label={t('details.lifeCost')} value={String(stats.lifeCost)} />
           ) : null}
           <StatLine label={t('details.cooldown')} value={t('details.seconds', { seconds: stats.cooldown })} />
+          {stats.concentrate ? <StatLine label={t('details.concentrateDuration')}
+            value={t('details.seconds', { seconds: stats.concentrate.durationSeconds })} /> : null}
+          {stats.convertedAttackPercent !== undefined ? <StatLine label={t('details.convertedAttack')}
+            value={t('details.percentValue', { value: stats.convertedAttackPercent })} /> : null}
           {stats.cloak ? <>
             <StatLine label={t('details.cloakDuration')} value={t('details.seconds', { seconds: stats.cloak.durationSeconds })} />
             <StatLine label={t('details.cloakBlindPenalty')} value={t('details.cloakBlindPenaltyValue', { points: stats.cloak.blindHitPenaltyPoints })} />
@@ -1585,6 +1589,19 @@ function dynamicDescription(
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && skill.id === 'skills-barbarian-concentrate' && stats.concentrate) {
+    return t('barbarian.concentrate.desc', { min: firstDamage.min, max: firstDamage.max,
+      defense: Number(((stats.utility.find(row => row.id === 'defensePct')?.value ?? 0) * 100).toFixed(4)),
+      duration: t('details.seconds', { seconds: stats.concentrate.durationSeconds }) });
+  }
+  if (firstDamage && skill.id === 'skills-barbarian-berserk' && stats.convertedAttackPercent !== undefined) {
+    return t('barbarian.berserk.desc', { min: firstDamage.min, max: firstDamage.max, attack: stats.convertedAttackPercent });
+  }
+  if (firstDamage && skill.id === 'skills-barbarian-stun' && stats.control) {
+    return t('barbarian.stun.desc', { min: firstDamage.min, max: firstDamage.max,
+      duration: t('details.seconds', { seconds: stats.control.durationSeconds }),
+      bossDuration: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
+  }
   if (firstDamage && skill.id === 'skills-assassin-psychic-hammer' && stats.control) {
     return t('assassin.psychic-hammer.desc', { min: firstDamage.min, max: firstDamage.max,
       duration: t('details.seconds', { seconds: stats.control.durationSeconds }),

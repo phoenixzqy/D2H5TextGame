@@ -750,6 +750,7 @@ function UnitCard({
         (status.id === 'burst-of-speed' && status.statBuff !== undefined) ||
         (status.id === 'feral-rage' && status.feralRage === true) ||
         (status.id === 'frenzy' && status.frenzy === true) ||
+        (status.id === 'concentrate' && status.concentrate !== undefined) ||
         (status.id === 'bone-armor' && status.boneArmor !== undefined) ? 'buff' as const
         : status.dotPerStack !== undefined || status.id.includes('poison') || status.id.includes('ignite') || status.id.includes('plague') ? 'dot' as const : 'debuff' as const
     }))

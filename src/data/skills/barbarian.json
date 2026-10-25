@@ -165,6 +165,7 @@
       }
     },
     "damageType": "arcane",
+    "attackDamagePct": 100,
     "appliesTags": [
       "arcane"
     ],
@@ -571,6 +572,7 @@
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 1,
+    "timedBuff": { "durationMs": 1000 },
     "minLevel": 1,
     "maxLevel": 20,
     "cost": {
@@ -588,7 +590,8 @@
       "physical"
     ],
     "scaling": {
-      "damagePerLevel": 7
+      "damagePerLevel": 7,
+      "passiveStatsPerLevel": { "defensePct": 0.05 }
     }
   },
   {

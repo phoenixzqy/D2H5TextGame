@@ -29,6 +29,7 @@ export type PlayableSkillClass =
   | 'sorceress';
 
 interface JsonSkill {
+  readonly attackDamagePct?: number;
   readonly conversion?: ConversionTuning;
   readonly damageComposition?: 'weighted-components';
   readonly ignoresMagicResist?: true;
@@ -139,6 +140,10 @@ function summonMaxForKind(kind: SummonMaxCountScalingKind | undefined): number {
 function effectsForSkill(skill: JsonSkill): SkillEffect[] {
   if (skill.id === 'skills-sorceress-static-field' && skill.staticField) return [{ kind: 'static-field' }];
   const effects: SkillEffect[] = [];
+  if (skill.id === 'skills-barbarian-concentrate' && skill.timedBuff) {
+    effects.push({ kind: 'buff', id: 'concentrate', timedStatBuff: 'concentrate',
+      duration: skill.timedBuff.durationMs / 1000 });
+  }
   if (skill.damage && skill.damageType) {
     const composite = ['skills-paladin-vengeance', 'skills-assassin-phoenix-strike'].includes(skill.id) && skill.damageComposition === 'weighted-components';
     const weights = skill.damage.breakdown;
@@ -202,6 +207,7 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       }) } : {}),
       ...(skill.id === 'skills-druid-feral-rage' && skill.feralRage ? { feralRage: true as const } : {}),
       ...(skill.id === 'skills-barbarian-frenzy' && skill.frenzy ? { frenzy: true as const } : {}),
+      ...(skill.attackDamagePct !== undefined ? { attackDamagePct: skill.attackDamagePct } : {}),
       damageType: skill.damageType,
       base: [skill.damage.min, skill.damage.max],
       ...(skill.scaling?.damagePerLevel !== undefined
