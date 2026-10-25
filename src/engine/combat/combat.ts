@@ -54,6 +54,9 @@ import { absorbHolyShield, activeHolyShield, HOLY_SHIELD_IDS, holyShieldDefense,
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
 import { COLD_ARMOR_IDS, coldArmorId, coldArmorRank, coldArmorBonuses, coldArmorCounterattack,
   matchesColdArmor, paidColdArmorRank, payColdArmor } from '../skills/cold-armors';
+import { PERIODIC_SPELL_IDS, PERIODIC_SPELL_DEFINITIONS, periodicSpellId, periodicSpellRank,
+  matchesPeriodicSpell, paidPeriodicSpell, payPeriodicSpell, refreshPeriodicSpells,
+  nextPeriodicSpellPulse, type PeriodicSpellId } from '../skills/periodic-spells';
 import { absorbBoneArmor, boneArmorPool, copyBoneArmorStatuses } from '../skills/bone-armor';
 import { absorbCycloneArmor, activeCycloneArmor, CYCLONE_ARMOR_IDS, cycloneArmorLethalBound,
   cycloneArmorQuota, cycloneArmorRank, cycloneArmorResistance, matchesCycloneArmor,
@@ -219,6 +222,8 @@ export interface CombatResult {
 }
 
 interface State {
+  /** Wave-local duplicate guard; paid phase itself is stored in standard status clocks. */
+  readonly periodicSpellPulses: Map<string, Partial<Record<PeriodicSpellId, number>>>;
   /** Actual paid hits only; never copied from snapshot/status fields. */
   readonly conversions: Map<string, ConversionBinding>;
   readonly spiritOfBarbs?: SpiritOfBarbsProjection;
@@ -533,7 +538,7 @@ function pickDefender(
 function registerUnit(state: State, u: CombatUnit): void {
   const native = u.druidSummonRanks === undefined ? u : { ...u, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
   const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyConcentrateStatuses(copyLeapStatuses(copyCloakOfShadowsStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(copyFrenzyStatuses(native))))))));
-  const shaped = refreshHolyShieldState(refreshDruidFormState(copied));
+  const shaped = refreshPeriodicSpells(refreshHolyShieldState(refreshDruidFormState(copied)));
   state.units.set(u.id, shaped);
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
   if (!state.insertionIdx.has(u.id)) {
@@ -676,7 +681,8 @@ function applyDamageToUnit(
   skillLevel = 1,
   basicHit = false,
   auraPulse = false,
-  armorReaction = false
+  armorReaction = false,
+  periodicSpell = false
 ): void {
   const attacker = state.units.get(attackerId);
   const defender = state.units.get(defenderId);
@@ -684,8 +690,8 @@ function applyDamageToUnit(
 
   const hostileHit = effectiveSide(state, attacker) !== effectiveSide(state, defender);
   const activeDefender = activeStatusView(defender, state.simClockMs);
-  const retaliates = !armorReaction && hasPaidFrozenArmor(activeDefender);
-  const coldReactions = !armorReaction && !auraPulse && hostileHit
+  const retaliates = !armorReaction && !periodicSpell && hasPaidFrozenArmor(activeDefender);
+  const coldReactions = !armorReaction && !auraPulse && !periodicSpell && hostileHit
     ? COLD_ARMOR_IDS.map(id => ({ id, rank: paidColdArmorRank(activeDefender, id) }))
       .filter(({ id, rank }) => rank > 0 && (id === 'chilling-armor' || effect.damageType === 'physical')) : [];
   const input = buildDamageInput(state, attacker, activeDefender, effect, skillLevel);
@@ -861,7 +867,7 @@ function applyDamageToUnit(
   // Explicit skill-hit recovery observes actual HP removed, after ordinary death/orb/reflection settlement.
   const hpRemoved = defender.life - newLife;
   const owner = state.units.get(attackerId);
-  if (!basicHit && !auraPulse && !armorReaction && hostileHit && hpRemoved > 0 && owner && alive(owner)) {
+  if (!basicHit && !auraPulse && !armorReaction && !periodicSpell && hostileHit && hpRemoved > 0 && owner && alive(owner)) {
     const fraction = effect.onHitRecovery?.lifeFraction;
     if (fraction !== undefined && Number.isFinite(fraction) && fraction > 0 && fraction <= 1) {
       commitHealing(state, owner, Math.floor(hpRemoved * fraction));
@@ -1082,6 +1088,8 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
+  const periodic = periodicSpellId(skill.id);
+  if (periodic) return periodicSpellRank(unit, periodic);
   if (CONVERSION_IDS.some(id => id === skill.id)) return conversionRank(unit);
   if (HOLY_SHIELD_IDS.some(id => id === skill.id)) return holyShieldRank(unit);
   if (CYCLONE_ARMOR_IDS.some(id => id === skill.id)) return cycloneArmorRank(unit);
@@ -1187,6 +1195,12 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  const periodicEffect = skill.effects.find(effect => effect.kind === 'periodic-spell');
+  const periodic = periodicSpellId(skillOrderId) ?? periodicSpellId(skill.id) ??
+    (periodicEffect?.kind === 'periodic-spell' ? periodicEffect.spell : undefined);
+  if (periodic && (!matchesPeriodicSpell(skill, periodic) || periodicSpellRank(unit, periodic) === 0 ||
+    !Number.isFinite(unit.mana) || paidPeriodicSpell(unit, periodic, state.simClockMs) !== undefined ||
+    [skill.id, skillOrderId].some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   if (inferKind(unit) === 'monster' && unit.mana === 0 &&
     unit.statuses.some(status => status.id === 'mana-burn' && statusActiveAt(status, state.simClockMs))) return false;
   const conversion = CONVERSION_IDS.some(id => id === skillOrderId || id === skill.id) ||
@@ -1296,6 +1310,14 @@ function applyEffect(
   const acting = state.units.get(actorId);
   if (!acting || !alive(acting)) return;
   switch (effect.kind) {
+    case 'periodic-spell': {
+      if (!matchesPeriodicSpell(skill, effect.spell) || periodicSpellRank(acting, effect.spell) === 0) break;
+      state.units.set(actorId, payPeriodicSpell(acting, effect.spell, skillLevel, state.simClockMs));
+      emit(state, { kind: 'buff', target: actorId, buffId: effect.spell, statusBacked: true });
+      observeStatuses(state, actorId);
+      pulsePaidSpell(state, actorId, effect.spell);
+      break;
+    }
     case 'static-field': {
       if (!matchesStaticField(skill) || staticFieldRank(acting) === 0) break;
       for (const candidate of enemySideAlive) {
@@ -1768,6 +1790,38 @@ function settleManaRecovery(state: State, fromMs: number, toMs: number,
   }
 }
 
+/** Each paid pulse selects current hostiles and uses ordinary seeded damage/status/death resolution. */
+function pulsePaidSpell(state: State, actorId: string, id: PeriodicSpellId): void {
+  const actor = state.units.get(actorId);
+  if (!actor || !alive(actor)) return;
+  const paid = paidPeriodicSpell(actor, id, state.simClockMs);
+  if (!paid) return;
+  const last = state.periodicSpellPulses.get(actorId) ?? {};
+  if (last[id] === state.simClockMs) return;
+  state.periodicSpellPulses.set(actorId, { ...last, [id]: state.simClockMs });
+  for (const target of targetPriority(state, opponentsOf(state, actor))) {
+    applyDamageToUnit(state, actorId, target.id, PERIODIC_SPELL_DEFINITIONS[id].pulse,
+      paid.periodicSpell?.rank ?? 0, false, false, false, true);
+  }
+}
+
+/** Periodic deaths/expiry and ambient auras precede spells; spells precede same-time ordinary actions. */
+function settlePaidSpells(state: State): void {
+  if (state.simClockMs === 0) return; // previous wave already settled its endpoint
+  for (const actor of state.units.values()) {
+    if (!alive(actor)) continue;
+    for (const id of PERIODIC_SPELL_IDS) {
+      const paid = paidPeriodicSpell(actor, id, state.simClockMs);
+      if (!paid) continue;
+      const age = state.simClockMs - (paid.appliedAtMs ?? 0);
+      if (age > 0 && age % PERIODIC_SPELL_DEFINITIONS[id].intervalMs === 0) {
+        pulsePaidSpell(state, actor.id, id);
+        if (winnerOf(state) !== null) return;
+      }
+    }
+  }
+}
+
 /** Ambient pulses share normal healing, mitigation, status and exact-once death settlement. */
 function settleAuraPulse(state: State): void {
   const aura = state.statAura;
@@ -1853,6 +1907,10 @@ function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   }
   for (const unit of state.units.values()) {
     if (!alive(unit)) continue;
+    for (const id of PERIODIC_SPELL_IDS) {
+      const at = nextPeriodicSpellPulse(unit, id, state.simClockMs);
+      if (at !== undefined) boundary = Math.min(boundary, at);
+    }
     for (const status of unit.statuses) {
       for (const at of [status.appliedAtMs, status.expiresAtMs]) {
         if (at !== undefined && at > state.simClockMs) boundary = Math.min(boundary, at);
@@ -2261,6 +2319,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const global = snapshot.summonPassives;
   const assassinVenom = copyAssassinVenomProjection(snapshot.assassinVenom);
   const state: State = {
+    periodicSpellPulses: new Map(),
     conversions: new Map(),
     ...(spiritOfBarbs ? { spiritOfBarbs } : {}),
     hasTemporaryLife: statAura?.selectedAuraId === 'paladin.vigor' || druidAllyAuras !== undefined ||
@@ -2372,6 +2431,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     if (winnerOf(state) !== null) break;
     settleAuraPulse(state);
     if (winnerOf(state) !== null) break;
+    settlePaidSpells(state);
+    if (winnerOf(state) !== null) break;
     reconcileActionPeriods(state);
     // Status settlement may change the next actor or its pending timestamp.
     const next = pickNextActor(state);
@@ -2393,6 +2454,9 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   }
 
   const winner = winnerOf(state);
+  // Native wave carry consumes this view; a terminal cast may have no later
+  // actor refresh to publish the cooldown already paid into the expiry map.
+  for (const unitId of state.units.keys()) refreshCooldowns(state, unitId);
   emit(state, { kind: 'end', winner });
 
   const all = [...state.units.values()].sort(

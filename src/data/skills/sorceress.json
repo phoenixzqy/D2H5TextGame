@@ -726,6 +726,7 @@
   },
   {
     "id": "skills-sorceress-thunder-storm",
+    "periodicSpell": { "durationMs": 3000, "intervalMs": 1000 },
     "name": "skills.sorceress.thunder-storm.name",
     "description": "skills.sorceress.thunder-storm.desc",
     "icon": "skills/sorceress/thunder-storm.png",
@@ -858,6 +859,7 @@
   },
   {
     "id": "skills-sorceress-blaze",
+    "periodicSpell": { "durationMs": 3000, "intervalMs": 1000 },
     "name": "skills.sorceress.blaze.name",
     "description": "skills.sorceress.blaze.desc",
     "icon": "skills/sorceress/blaze.png",
@@ -898,6 +900,7 @@
   },
   {
     "id": "skills-sorceress-fire-wall",
+    "periodicSpell": { "durationMs": 3000, "intervalMs": 1000 },
     "name": "skills.sorceress.fire-wall.name",
     "description": "skills.sorceress.fire-wall.desc",
     "icon": "skills/sorceress/fire-wall.png",

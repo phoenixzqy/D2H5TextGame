@@ -29,6 +29,7 @@ export type PlayableSkillClass =
   | 'sorceress';
 
 interface JsonSkill {
+  readonly periodicSpell?: NonNullable<import('../types/skills').SkillDef['periodicSpell']>;
   readonly armorRetaliation?: import('../types/skills').ArmorRetaliationTuning;
   readonly attackDamagePct?: number;
   readonly conversion?: ConversionTuning;
@@ -139,6 +140,11 @@ function summonMaxForKind(kind: SummonMaxCountScalingKind | undefined): number {
 }
 
 function effectsForSkill(skill: JsonSkill): SkillEffect[] {
+  if (skill.periodicSpell) {
+    const spell = (['blaze', 'fire-wall', 'thunder-storm'] as const)
+      .find(id => skill.id === 'skills-sorceress-' + id);
+    if (spell) return [{ kind: 'periodic-spell', spell }];
+  }
   if (skill.id === 'skills-sorceress-static-field' && skill.staticField) return [{ kind: 'static-field' }];
   const effects: SkillEffect[] = [];
   if (skill.id === 'skills-barbarian-concentrate' && skill.timedBuff) {

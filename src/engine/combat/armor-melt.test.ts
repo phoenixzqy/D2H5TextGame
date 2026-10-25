@@ -233,10 +233,14 @@ describe('Armor Melt shared pre-hit defense and single fire-combo bonus', () => 
     expect(r.events.filter(e => e.kind === 'dot')).toEqual(replay(control).events.filter(e => e.kind === 'dot'));
     expect(r.events.reduce((sum, e) => sum + (e.kind === 'dot' && e.target === 'target' ? e.amount : 0), 0)).toBe(6);
   });
-  it('preserves the complete prepatch no-Melt/no-fire-status control recording', () => {
+  it('preserves the prepatch no-Melt control apart from corrected terminal cooldown publication', () => {
     const r = replay(direct('fire', []));
-    // Full pre-runtime recording captured by focused-c-red at0353da5 (seed7).
-    expect(createHash('sha256').update(JSON.stringify(legacyRecording(r))).digest('hex'))
+    expect(r.result.playerTeam[0]?.cooldowns).toEqual({ 'fixture.melt-hit': 99700 });
+    const hero = r.result.playerTeam[0];
+    if (!hero) throw new Error('Missing golden hero');
+    const control = { ...r, result: { ...r.result, playerTeam: [{ ...hero, cooldowns: {} }] } };
+    // Preserve all other fields of the full original recording; BUG235 changes only this cache.
+    expect(createHash('sha256').update(JSON.stringify(legacyRecording(control))).digest('hex'))
       .toBe('bc410c62608c3265818f4f00473705edca576549f4fc6321574ac5e7c05d3484');
     expect(hits(r)[0]?.amount).toBe(80);
   });

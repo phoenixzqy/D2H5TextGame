@@ -26,6 +26,8 @@ export interface GridPosition {
 
 /** Active status effect on a combat unit. */
 export interface ActiveStatus {
+  /** Paid rank of a finite persistent spell; source and phase use this status's standard fields. */
+  readonly periodicSpell?: { readonly rank: number };
   /** Copied finite enemy debuff potency, captured by one paid Battle Cry. */
   readonly battleCry?: { readonly rank: number; readonly damageReductionPct: number; readonly defenseReductionPct: number };
   /** Source-bound paid finite Concentrate Defense; never persisted. */
@@ -83,6 +85,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Fresh legal learned authority; governed equipment/native Blaze has its separate projection. */
+  readonly periodicSpellRanks?: Readonly<Record<'fire-wall' | 'thunder-storm', number>>;
   /** Fresh native Concentrate authority, independent of carried paid potency. */
   readonly concentrateRank?: number;
   /** Fresh native learned Leap authority, independent of carried paid potency. */

@@ -10,6 +10,192 @@
     {
       "if": {
         "required": [
+          "periodicSpell"
+        ],
+        "properties": { "periodicSpell": {} }
+      },
+      "then": {
+        "properties": {
+          "id": {
+            "enum": [
+              "skills-sorceress-blaze",
+              "skills-sorceress-fire-wall",
+              "skills-sorceress-thunder-storm"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "skills-sorceress-blaze",
+              "skills-sorceress-fire-wall",
+              "skills-sorceress-thunder-storm"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "periodicSpell",
+          "damage",
+          "damageType"
+        ],
+        "properties": {
+          "periodicSpell": {},
+          "damage": {},
+          "damageType": {},
+          "heal": false,
+          "summonId": false,
+          "aoeShape": false,
+          "maxTargets": false,
+          "timedBuff": false,
+          "additionalStatusEffects": false,
+          "damageComposition": false,
+          "attackDamagePct": false,
+          "hitSequence": false,
+          "ignoresDefense": false,
+          "ignoresMagicResist": false,
+          "critChanceBonus": false,
+          "onHitRecovery": false,
+          "onHitSelfDamage": false,
+
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "all-enemies"
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "isPassive": false,
+          "isAura": false,
+          "isSummon": false
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "const": "skills-sorceress-blaze"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "prerequisites",
+          "appliesStatus"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 12
+          },
+          "prerequisites": {
+            "const": [
+              "skills-sorceress-inferno"
+            ]
+          },
+          "appliesStatus": {
+            "const": [
+              "burn"
+            ]
+          },
+          "damageType": {
+            "const": "fire"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "const": "skills-sorceress-fire-wall"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "prerequisites",
+          "appliesStatus"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 18
+          },
+          "prerequisites": {
+            "const": [
+              "skills-sorceress-blaze"
+            ]
+          },
+          "appliesStatus": {
+            "const": [
+              "burn"
+            ]
+          },
+          "damageType": {
+            "const": "fire"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "const": "skills-sorceress-thunder-storm"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "prerequisites",
+          "appliesStatus"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 24
+          },
+          "prerequisites": {
+            "const": [
+              "skills-sorceress-chain-lightning",
+              "skills-sorceress-nova"
+            ]
+          },
+          "appliesStatus": {
+            "const": [
+              "paralyze"
+            ]
+          },
+          "damageType": {
+            "const": "lightning"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
           "id"
         ],
         "properties": {
@@ -4509,6 +4695,27 @@
     }
   },
   "properties": {
+    "periodicSpell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "durationMs",
+        "intervalMs"
+      ],
+      "description": "Exact paid Blaze, Fire Wall and Thunder Storm duration/interval in simulation milliseconds; immediate first pulse and half-open expiry.",
+      "properties": {
+        "durationMs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60000
+        },
+        "intervalMs": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 60000
+        }
+      }
+    },
     "armorRetaliation": {
       "type": "object",
       "additionalProperties": false,

@@ -731,8 +731,13 @@ describe('P07a05B creation-only native Skeleton Mastery', () => {
     const source = getSkill('necromancer.raise_skeleton');
     if (!source) throw new Error('Missing actual Skeleton source');
     registerSkill({ ...source, id: 'fixture.mastery-skeleton', archetype: 'fixture' });
-    expect(legacyRecording(record(LEGACY_PREPATCH.input))).toEqual(LEGACY_PREPATCH.actual);
-    expect(legacyRecording(record({ ...LEGACY_PREPATCH.input, skeletonMastery: projection(0) }))).toEqual(LEGACY_PREPATCH.actual);
+    // BUG235 publishes the last paid1000ms cooldown at the actual1940ms end,
+    // rather than retaining the actor's stale pre-cast cache. All other fields remain golden.
+    const expected = { ...LEGACY_PREPATCH.actual, result: { ...LEGACY_PREPATCH.actual.result,
+      playerTeam: LEGACY_PREPATCH.actual.result.playerTeam.map(unit => unit.id === 'hero'
+        ? { ...unit, cooldowns: { 'fixture.mastery-skeleton': 1700 + 1000 - 1940 } } : unit) } };
+    expect(legacyRecording(record(LEGACY_PREPATCH.input))).toEqual(expected);
+    expect(legacyRecording(record({ ...LEGACY_PREPATCH.input, skeletonMastery: projection(0) }))).toEqual(expected);
     const actual = record(LEGACY_PREPATCH.input);
     const spawned = summons(actual);
     expect(spawned.map(e => [e.unit.id, e.simClockMs, e.unit.gridPosition])).toEqual([
@@ -744,7 +749,7 @@ describe('P07a05B creation-only native Skeleton Mastery', () => {
       { kind: 'mana', target: 'hero', mana: 30, reason: 'cast', simClockMs: 1700, uiDelayMs: 50 }
     ]);
     expect(getSkill('necromancer.raise_skeleton')).toMatchObject({ manaCost: 15, cooldown: 1 });
-    expect(actual.result.playerTeam.find(u => u.id === 'hero')?.cooldowns).toEqual({});
+    expect(actual.result.playerTeam.find(u => u.id === 'hero')?.cooldowns).toEqual({ 'fixture.mastery-skeleton': 760 });
   });
 
   it.each([

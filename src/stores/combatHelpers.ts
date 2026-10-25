@@ -77,6 +77,8 @@ import { composeColdMastery } from '@/engine/skills/cold-mastery';
 import { composeStaticField } from '@/engine/skills/static-field';
 import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeColdArmorRanks, refreshColdArmorState } from '@/engine/skills/cold-armors';
+import { composePeriodicSpellRanks } from '@/engine/skills/periodic-spell-authority';
+import { refreshPeriodicSpells } from '@/engine/skills/periodic-spells';
 import { composeMightAura } from '@/engine/skills/might';
 import { composeMeditationAura } from '@/engine/skills/meditation';
 import { activeStatAura, composeStatAura } from '@/engine/skills/stat-auras';
@@ -260,6 +262,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     coldResistanceReductionPct: composeColdMastery(player),
     staticFieldRank: composeStaticField(player),
     coldArmorRanks: composeColdArmorRanks(player),
+    periodicSpellRanks: composePeriodicSpellRanks(player),
     ...(energyShield.rank > 0 ? { energyShieldRank: energyShield.rank } : {}),
     ...(player.class === 'druid' ? { cycloneArmorRank: composeCycloneArmorRank(player) } : {}),
     ...(player.class === 'paladin' ? { holyShieldRank: composeHolyShieldRank(player), conversionRank: composeConversionRank(player) } : {}),
@@ -1174,7 +1177,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     if (freshMerc && unit.kind === 'merc' && unit.id === freshMerc.id) {
       // Equipment is authoritative at this wave boundary; current recording and
       // carried HP/MP remain untouched. Never project the bearer bonus onto summons.
-      return { ...unit, level: freshMerc.level, stats: freshMerc.stats,
+      return refreshPeriodicSpells({ ...unit, level: freshMerc.level, stats: freshMerc.stats,
         life: unit.life,
         mana: Math.min(unit.mana, freshMerc.stats.manaMax),
         manaRegenPerSecond: freshMerc.manaRegenPerSecond ?? 0,
@@ -1183,16 +1186,17 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
         physicalReflectionPct: freshMerc.physicalReflectionPct ?? 0,
         skillOrder: freshMerc.skillOrder,
         governedActiveRanks: freshMerc.governedActiveRanks,
-        equippedWeapon: freshMerc.equippedWeapon ?? {} };
+        equippedWeapon: freshMerc.equippedWeapon ?? {} });
     }
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
     const capped = mana >= fresh.stats.manaMax;
-    const refreshed = refreshColdArmorState(refreshHolyShieldState(refreshCycloneArmorState(refreshDruidFormState({ ...unit, level: fresh.level, stats: fresh.stats,
+    const refreshed = refreshPeriodicSpells(refreshColdArmorState(refreshHolyShieldState(refreshCycloneArmorState(refreshDruidFormState({ ...unit, level: fresh.level, stats: fresh.stats,
       life: unit.life,
       mana, ...((unit.druidShapeRanks !== undefined || fresh.druidShapeRanks !== undefined)
         ? { druidShapeRanks: fresh.druidShapeRanks } : {}),
       coldArmorRanks: fresh.coldArmorRanks ?? { 'shiver-armor': 0, 'chilling-armor': 0 },
+      periodicSpellRanks: fresh.periodicSpellRanks ?? { 'fire-wall': 0, 'thunder-storm': 0 },
       ...((unit.cycloneArmorRank !== undefined || fresh.cycloneArmorRank !== undefined)
         ? { cycloneArmorRank: fresh.cycloneArmorRank ?? 0 } : {}),
       ...((unit.holyShieldRank !== undefined || fresh.holyShieldRank !== undefined)
@@ -1226,7 +1230,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       skillLevels: fresh.skillLevels ?? {},
       governedActiveRanks: fresh.governedActiveRanks,
       equippedWeapon: fresh.equippedWeapon ?? {},
-      summonGridPositions: fresh.summonGridPositions ?? [] }))));
+      summonGridPositions: fresh.summonGridPositions ?? [] })))));
     if (resolveFrozenArmorRank(fresh.skillLevels) > 0) return refreshed;
     // Invalidate only this new input; replay retains the original paid baseline.
     const { frozenArmor, ...unarmored } = refreshed;

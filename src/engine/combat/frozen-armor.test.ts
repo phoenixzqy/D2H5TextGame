@@ -84,7 +84,7 @@ describe('P07b01 paid actual Frozen Armor cast', () => {
     expect(Object.isFrozen(hero?.frozenArmor)).toBe(true);
     expect(hero?.stats).toEqual(input.playerTeam[0]?.stats);
     expect(hero?.activeBuffIds).toEqual([buffId]);
-    expect(hero?.cooldowns[skillId]).toBe(rank === 1 ? 2300 : 1300);
+    expect(hero?.cooldowns[skillId]).toBe(rank === 1 ? 1700 : 700);
   });
 
   it.each([1, 20])('carries an actual paid rank%s cast into an incoming hit in the same recording', rank => {
@@ -107,7 +107,7 @@ describe('P07b01 paid actual Frozen Armor cast', () => {
     const r = replay(cast({ [dataId]: 20, [skillId]: 1 }, order));
     expect(r.result.playerTeam[0]?.frozenArmor).toEqual(armor());
     expect(r.result.playerTeam[0]?.mana).toBe(5);
-    expect(r.result.playerTeam[0]?.cooldowns[skillId]).toBe(1300);
+    expect(r.result.playerTeam[0]?.cooldowns[skillId]).toBe(700);
   });
 
   it.each([undefined, 0, -1, 1.5, NaN, Infinity, -Infinity])('does not grant armor or spend MP for invalid allocation %s', rank => {
@@ -205,7 +205,7 @@ describe('P07b01 runtime definition independence', () => {
       const r = replay(cast({ [dataId]: 99 }));
       expect(r.result.playerTeam[0]?.frozenArmor).toEqual(armor());
       expect(r.result.playerTeam[0]?.mana).toBe(5);
-      expect(r.result.playerTeam[0]?.cooldowns[skillId]).toBe(1300);
+      expect(r.result.playerTeam[0]?.cooldowns[skillId]).toBe(700);
     } finally {
       row.maxLevel = originalCap;
       row.scaling.passiveStatsPerLevel = originalStats;
@@ -394,9 +394,14 @@ describe('P07b01 shared direct defense projection and retaliation', () => {
       expect(chills(r)).toEqual([]);
     });
 
-  it('preserves the complete unaffected prepatch recording byte for byte', () => {
+  it('preserves the unaffected prepatch recording apart from corrected terminal cooldown publication', () => {
     const r = replay(incoming('fire', false));
-    const serialized = JSON.stringify(legacyRecording(r));
+    expect(r.result.enemyTeam[0]?.cooldowns).toEqual({ 'fixture.armor-hit': 99700 });
+    const enemy = r.result.enemyTeam[0];
+    if (!enemy) throw new Error('Missing golden enemy');
+    // BUG235 publishes the final cooldown; every other historical field is exact.
+    const control = { ...r, result: { ...r.result, enemyTeam: [{ ...enemy, cooldowns: {} }] } };
+    const serialized = JSON.stringify(legacyRecording(control));
     expect(damages(r)[0]?.amount).toBe(80);
     expect(createHash('sha256').update(serialized).digest('hex')).toBe('7ca6d4c9d59d6d74ad9b50e86895acc855f8dccc6f241ddb1e4827f8e4b5c91a');
   });

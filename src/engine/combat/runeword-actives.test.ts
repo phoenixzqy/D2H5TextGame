@@ -6,6 +6,7 @@ import type { RunewordGrant } from '../types/items';
 import { projectGovernedActives } from '../skills/runeword-actives';
 import { getSkill, loadDefaultSkills, registerSkill, resetRegistry } from '../skills/registry';
 import * as rngModule from '../rng';
+import { PERIODIC_SPELL_DEFINITIONS } from '../skills/periodic-spells';
 
 const stats: DerivedStats = {
   life: 100000, lifeMax: 100000, mana: 100000, manaMax: 100000, attack: 1,
@@ -70,7 +71,10 @@ describe.each(['hero', 'merc'] as const)('actual equipped active casts for %s', 
       event.simClockMs === 400 && event.statusId === row.status);
     expect(statuses).toHaveLength(row.targets);
     const definition = getSkill(row.grant.skillId);
-    expect(definition?.effects.find(effect => effect.kind === 'damage')).toMatchObject({
+    const pulse = row.grant === blaze ? PERIODIC_SPELL_DEFINITIONS.blaze.pulse
+      : definition?.effects.find(effect => effect.kind === 'damage');
+    if (row.grant === blaze) expect(definition?.effects).toEqual([{ kind: 'periodic-spell', spell: 'blaze' }]);
+    expect(pulse).toMatchObject({
       tags: row.type === 'fire' ? ['fire', 'burn'] : ['lightning', 'shock']
     });
     const { governedActiveRanks: _ranks, ...legacy } = caster;

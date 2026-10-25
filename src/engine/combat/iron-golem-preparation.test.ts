@@ -109,8 +109,10 @@ describe('D06 selected-item Iron Golem engine preparation', () => {
       statuses: [{ id: 'poison', sourceId: 'fixture', stacks: 1, remaining: 1, dotPerStack: 1000 }] };
     const out = record({ ...base, enemyTeam: [enemy], playerTeam: [{ ...hero, statuses: [],
       stats: { ...hero.stats, attackSpeed: 263 }, cooldowns: { [IRON]: 9000, unrelated: 7000 } }] });
+    const elapsed = out.events.at(-1)?.simClockMs ?? 0;
+    expect(elapsed).toBe(599);
     expect(required(out.result.playerTeam.find(u => u.id === 'hero')).cooldowns)
-      .toEqual({ [IRON]: 3600, unrelated: 6600 });
+      .toEqual({ [IRON]: 4000 - elapsed, unrelated: 7000 - elapsed });
     expect(casts(out.events)).toHaveLength(1);
   });
 

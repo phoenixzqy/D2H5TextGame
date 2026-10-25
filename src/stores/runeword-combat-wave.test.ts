@@ -120,7 +120,14 @@ describe('native wave-frozen runeword combat effects (constructed integration ch
       expect(next.equippedWeapon).toEqual({});
       expect(next.life).toBe(Math.min(final.life, next.stats.lifeMax));
       expect(next.mana).toBe(Math.min(final.mana, next.stats.manaMax));
-      expect(next.statuses).toEqual(rebased.statuses);
+      // A paid Blaze is tied to its current equipped/native source. Removal
+      // invalidates only that field; unrelated carried statuses remain exact.
+      expect(next.statuses).toEqual(row.id === 'sorceress.blaze'
+        ? rebased.statuses.filter(status => status.id !== 'blaze') : rebased.statuses);
+      if (row.id === 'sorceress.blaze' && owner === 'hero') {
+        expect(rebased.statuses.find(status => status.id === 'blaze'))
+          .toMatchObject({ sourceId: id, periodicSpell: { rank: row.rank } });
+      }
       expect(next.cooldowns).toEqual(final.cooldowns);
       expect(next.manaRegenExactCarry).toEqual(final.manaRegenExactCarry);
       expect(inputs[0]).toEqual(original);

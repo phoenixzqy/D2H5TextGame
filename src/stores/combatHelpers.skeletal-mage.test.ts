@@ -194,9 +194,14 @@ it('settles once then carries real resources and creates a newly paid cycle from
   expect(published().receipt).toBe(first.receipt); expect(durable()).toEqual(unpaid);
   const finalHero = first.binding.recording.outcome.finalPlayerTeam.find(u => u.id === HERO);
   if (!finalHero) throw new Error('Missing real terminal hero');
+  // BUG235 publishes the actual remaining cooldown at the terminal boundary,
+  // rather than retaining the actor's earlier pre-action cache.
+  expect(first.binding.recording.events.find(e => e.kind === 'action' && e.skillId === WAIT))
+    .toMatchObject({ simClockMs: 2000 });
+  expect(first.binding.recording.events.at(-1)).toMatchObject({ simClockMs: 5820 });
   expect(finalHero).toMatchObject({ life: 1000372, mana: 220, manaRegenCarry: 0.444,
     manaRegenCompensation: 0, manaRegenExactCarry: '0.444', statuses: [],
-    cooldowns: { [WAIT]: 2000 }, activeBuffIds: [WAIT] });
+    cooldowns: { [WAIT]: 2000 + 4000 - 5820 }, activeBuffIds: [WAIT] });
   drain(); expect(durable()).toEqual(unpaid);
   expect(advanceWaveOrFinish()).toBe('next-wave');
   const second = published(), { binding } = second;
