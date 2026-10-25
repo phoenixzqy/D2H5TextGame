@@ -72,6 +72,8 @@
     "defenseBypass": "防御穿透",
     "defenseBypassValue": "仅普通防御",
     "compositeStrike": "复合打击",
+    "areaShape": "作用范围",
+    "cone2Value": "锥形：1格，下一排3格",
     "compositeStrikeValue": "共用命中与暴击判定",
     "burnComponentRateValue": "最终火焰分量的{{percentOfHit}}%/秒（最低{{minDps}}点）",
     "descriptionComposite": "一次打击造成 {{fireMin}} ~ {{fireMax}} 点火焰、{{coldMin}} ~ {{coldMax}} 点冰冷及{{lightningMin}} ~ {{lightningMax}} 点闪电基础伤害。三个分量共用一次命中与暴击判定，分别计算增益和减伤。火焰附加燃烧，冰冷附加冰缓 {{chillSeconds}} 秒，闪电附加麻痹 {{paralyzeSeconds}} 秒；重复麻痹可能失败。未命中不附加任何效果。",
@@ -368,7 +370,7 @@
     },
     "fire-blast": {
       "name": "烈焰冲击",
-      "desc": "投掷锥形爆裂的火焰陷阱，灼烧敌人。"
+      "desc": "投掷火焰陷阱并爆炸一次，对锥形范围内每个敌人造成 {{min}} ~ {{max}} 点火焰伤害：覆盖一个顶点格及下一排的三个相邻格。自动选择覆盖最多敌人的锥形；数量相同时优先最前排，再选最左列。每个目标分别判定命中，命中可附加燃烧。"
     },
     "blade-fury": {
       "name": "刀锋之怒",

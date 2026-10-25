@@ -72,6 +72,8 @@
     "defenseBypass": "Defense bypass",
     "defenseBypassValue": "Ordinary Defense only",
     "compositeStrike": "Composite strike",
+    "areaShape": "Area shape",
+    "cone2Value": "Cone: 1 cell, then 3 in the next row",
     "compositeStrikeValue": "Shared hit and critical roll",
     "burnComponentRateValue": "{{percentOfHit}}% of final Fire component/s (min. {{minDps}})",
     "descriptionComposite": "One strike deals {{fireMin}} ~ {{fireMax}} Fire, {{coldMin}} ~ {{coldMax}} Cold and {{lightningMin}} ~ {{lightningMax}} Lightning base damage. The components share one hit and critical roll, with separate modifiers and mitigation. Fire applies Burn, Cold applies Chill for {{chillSeconds}} s and Lightning applies Paralyze for {{paralyzeSeconds}} s; repeated Paralyze can fail. A miss applies none.",
@@ -368,7 +370,7 @@
     },
     "fire-blast": {
       "name": "Fire Blast",
-      "desc": "Throws an explosive fire trap that bursts in a cone, burning enemies."
+      "desc": "Throws a fire trap that explodes once for {{min}} ~ {{max}} Fire damage per enemy in a two-row cone: one apex cell, then three adjacent cells in the next row. Chooses the cone with the most enemies, breaking ties by the foremost row then leftmost column. Each hit rolls separately and can apply Burn."
     },
     "blade-fury": {
       "name": "Blade Fury",

@@ -885,6 +885,9 @@ function StatSection({
           {stats.maxTargets !== undefined ? (
             <StatLine label={t('details.maxTargets')} value={String(stats.maxTargets)} />
           ) : null}
+          {stats.areaShape === 'cone-2' ? (
+            <StatLine label={t('details.areaShape')} value={t('details.cone2Value')} />
+          ) : null}
           {stats.summonUnit ? (
             <>
               {stats.summonUnit.attackType ? (
@@ -1542,6 +1545,9 @@ function dynamicDescription(
   }
   if (firstDamage && skill.id === 'skills-assassin-dragon-talon' && stats.strikesPerCast !== undefined) {
     return t('assassin.dragon-talon.desc', { min: firstDamage.min, max: firstDamage.max, strikes: stats.strikesPerCast });
+  }
+  if (firstDamage && stats.areaShape === 'cone-2') {
+    return t('assassin.fire-blast.desc', { min: firstDamage.min, max: firstDamage.max });
   }
   if (firstDamage && skill.id === 'skills-amazon-impale') {
     return t('amazon.impale.desc', { min: firstDamage.min, max: firstDamage.max });

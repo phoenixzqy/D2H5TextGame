@@ -183,6 +183,23 @@ for (const locale of ['en', 'zh-CN'] as const) {
 }
 
 for (const locale of ['en', 'zh-CN'] as const) {
+  it.each([0, 1, 2, 20])(`BUG207 Fire Blast cone summary and rank rows (${locale}, rank%i)`, async rank => {
+    await i18n.changeLanguage(locale);
+    arrange('fire-blast', rank);
+    const panel = mount('fire-blast'), summary = panel.querySelector('p.rounded'), text = copy[locale];
+    const min = 50 + 5 * Math.max(0, rank - 1), max = 70 + 5 * Math.max(0, rank - 1);
+    for (const phrase of locale === 'en'
+      ? ['fire trap', 'explodes once', `${String(min)} ~ ${String(max)} Fire damage per enemy`,
+        'one apex cell', 'three adjacent cells in the next row', 'most enemies', 'foremost row', 'leftmost column']
+      : ['火焰陷阱', '爆炸一次', `每个敌人造成 ${String(min)} ~ ${String(max)} 点火焰伤害`,
+        '一个顶点格', '下一排的三个相邻格', '最多敌人', '最前排', '最左列'])
+      expect(summary).toHaveTextContent(phrase);
+    const label = locale === 'en' ? 'Area shape' : '作用范围';
+    const value = locale === 'en' ? 'Cone: 1 cell, then 3 in the next row' : '锥形：1格，下一排3格';
+    expect(row(section(panel, rank === 0 ? text.preview : text.current), label)).toHaveTextContent(value);
+    if (rank > 0 && rank < 20) expect(row(section(panel, text.next), label)).toHaveTextContent(value);
+    expect(panel.textContent).not.toMatch(/\{\{|details\.cone|cone-2/);
+  });
   it.each([0, 1, 2, 20])(
     `BUG206 Phoenix main summary includes every component (${locale}, rank%i)`,
     async (rank) => {
