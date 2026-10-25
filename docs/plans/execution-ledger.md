@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D05 Oak Sage / Heart of Wolverine / BUG188 | locally fixed/verified; independent and earned acceptance open | Runtime5e1532e uses authored allied life/Attack/critical ranks for the living original hero/merc/owned summons. Shared form+Oak+Vigor fresh-base capacity preserves absolute HP; source death/spawn/status/playback/native replay/Save22 boundaries retained. Final full12962/559/two existing skips, engine6656/231, native compatibility79/7, types/lint/build/bridge PASS; production4/4/eight exact five-domain Continue pairs/20geometry/eight inspected screenshots. [Evidence](evidence/d05-druid-ally-auras.md); all1280source/760build/HEAD/Git/genuine hashes exact through707.801s full; committed source blobs checked. Only two credits:213IDs,147unverified/64bounded-functional/one engine-only/one review-needed. Barbs spirit, mobile occlusion, independent/earned acceptance, Baal/C2-C4/fullG0-G7/privatev1 remain open; genuineL33/next402 unchanged, local only. |
 | D05 Druid shapeshifting / BUG187 | locally fixed/verified; independent and earned acceptance open | Runtime3c41154 implements paid, mutually exclusive Werewolf/Werebear and wolf-only Lycanthropy with unchanged authored coefficients/costs/unlocks/cap20. Actual cadence/dodge/defense/capacity, no refill/recast, source-bound wave carry and next-wave configuration; Save22 unchanged. Focused350/9, engine6629/228, full12913/551/two existing skips, types/lint/build/bridge PASS; production4/4/eight exact five-domain Continue pairs/20geometry/eight inspected screenshots. [Evidence](evidence/d05-druid-shapeshifting.md); all1270source/760build/HEAD/Git/genuine hashes exact through442.873s full, committed source blobs checked. Exactly three skill credits:213IDs,149unverified/62bounded-functional/one engine-only/one review-needed. Spirit/ally promises, earned class/build balance, independent QA, Baal/C2-C4/fullG0-G7/privatev1 remain open. GenuineL33/next402 unchanged; local only; umbrella worktree/goal active. |
 | D05 Energy Shield / BUG186 | locally fixed/verified; independent and earned acceptance open | Runtime5004f4d preserves authored3%diversion/2%ordinary recovery per rank, unlock24/cap20, exact aliases/prerequisites and native wave authority. Shared exact MP splitter covers damage/periodic/reflection/Static; Bone/Shatter/lethal/RNG/playback/save22 retained. Focused172/9, engine6613/226, full12868/545/two existing skips, types/lint/build/bridge PASS. Production4/4/eight exact five-domain Continue pairs/20geometry/eight inspected screenshots; all1263source/760build/HEAD/Git/genuine hashes exact through425.229s full. [Evidence](evidence/d05-energy-shield.md). Only one skill credit:213IDs,152unverified/59bounded-functional/one engine-only/one review-needed. GenuineL33/next402 unchanged; Baal/C2-C4/fullG0-G7/privatev1 and independent QA remain open. |
 | Golem Mastery inventory reconciliation | one stale row corrected; no new implementation credit | Historical engine44376bc/native d542275/preview2f3f5bc/Skills a615431/Iron1760c4d packet audit:899support entries/58command-output hashes/five review+publication chains exact; commits are ancestors. Current engine/native/Skills/Iron/shared-display tests pass in full12822/540. [Evidence](evidence/d05-golem-mastery-reconciliation.md). Only one row changes:213IDs/order preserved;153unverified/58bounded-functional/one engine-only/one review-needed. Historical independent approvals remain historical; current independent and earned acceptance open. |
@@ -11587,3 +11588,27 @@ nextNormal402/Nightmare0/Baal uncleared; no genuine campaign or remote actions.
 All-class builds/economy/pacing/endgame/PWA/performance, independent acceptance,
 C2-C4/fullG0-G7 and complete privatev1 remain open. Umbrella claim/branch/goal
 continue.
+
+
+## D05 — Oak Sage and Heart of Wolverine / BUG188
+
+Runtime5e1532e connects the authored automatic allied passives to actual life
+capacity, Attack and critical chance. One engine-owned form+ambient projection
+adds independent floored bonuses over the fresh base, retains absolute HP until
+the final cap, and preserves source death/orbs, prepared spawn events, native
+next-wave authority, original-resource replay and Save22. Both locales show real
+current/next values and derived positive chips; stale skill-spec rows are corrected.
+[Evidence](evidence/d05-druid-ally-auras.md): full12962/559/two existing skips,
+engine6656/231, unchanged native-capacity compatibility79/7, types/lint/explicitfalse
+build/bridge PASS. Production4/4, eight independently audited exact five-domain
+Continue pairs,20geometry samples,12screenshots/eight inspected. All1280source and
+760build hashes, HEAD/status/genuine digest stay exact through707.801s full;
+committed blobs checked. Root self-review is not independent QA; original fixture,
+UI, dead-capacity, rejected-carry, Vigor and interrupted-full failures are retained.
+Retention/cleanup receipts accompany the byte-verified raw packet. Only Oak/Heart
+gain credit:213IDs/order unchanged,147unverified/64bounded-functional/one engine-only/
+one review-needed. Spirit of Barbs still owes a summoned spirit. Genuine claimed
+Rite save staysL33/XP149261/23682gear/next402/Nightmare0/Baal uncleared; no campaign
+or remote action. Mobile occlusion, test-loop/performance budgets, independent
+acceptance, earned builds/economy/pacing/endgame/PWA, C2-C4/fullG0-G7/privatev1
+remain open. Umbrella goal/worktree/branch continue with root as sole writer.

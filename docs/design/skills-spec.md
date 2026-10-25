@@ -176,7 +176,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 
 ### 3.6 Druid (德鲁伊 — 元素+变形)
 
-Paid Werewolf/Werebear and Lycanthropy follow the [D05 form contract](../plans/decisions/D05-druid-shapeshifting-v1.md): first eligible combo form, mutually exclusive run-local carry, next-wave reconfiguration, no life refill. Werewolf uses authored speed/physical dodge (replacing vague damage prose); Werebear uses authored life/defense. Spirit/ally passives remain separate open work.
+Paid Werewolf/Werebear and Lycanthropy follow the [D05 form contract](../plans/decisions/D05-druid-shapeshifting-v1.md): first eligible combo form, mutually exclusive run-local carry, next-wave reconfiguration, no life refill. Werewolf uses authored speed/physical dodge (replacing vague damage prose); Werebear uses authored life/defense. Oak Sage and Heart of Wolverine follow the [allied aura contract](../plans/decisions/D05-druid-ally-auras-v1.md): automatic living original party/owned-summon effects, source-death removal and next-wave allocation changes. Spirit of Barbs still requires its advertised summoned spirit; earned balance and independent acceptance remain open.
 
 #### Active Skills (8)
 | ID | Name (EN / ZH) | Element | Target | Base Dmg (L1) | CD | Mana | Status | Notes |
@@ -195,8 +195,8 @@ Paid Werewolf/Werebear and Lycanthropy follow the [D05 form contract](../plans/d
 |---|---|---|---|
 | `druid.elemental_mastery` | Elemental Mastery / 元素精通 | Per rank: +3% fire/cold damage and +0.5pp magical dodge; unlock30/cap20; hero only, next-wave ([D05](../plans/decisions/D05-poison-elemental-masteries-v1.md)) | |
 | `druid.lycanthropy` | Lycanthropy / 兽形变换 | Per rank: +3% max HP and +1% attack speed only in paid wolf form; unlock1/cap20 ([D05](../plans/decisions/D05-druid-shapeshifting-v1.md)) | |
-| `druid.heart_of_wolverine` | Heart of Wolverine / 狼獾之心 | +30% attack speed (aura) | |
-| `druid.oak_sage` | Oak Sage / 橡木智者 | +50% max HP (aura) | Unlocks L18 |
+| `druid.heart_of_wolverine` | Heart of Wolverine / 狼獾之心 | Allied aura, per rank: +3% Attack and +0.5pp critical chance; unlock18/cap20 | Requires learned Oak; no speed bonus. |
+| `druid.oak_sage` | Oak Sage / 橡树智者 | Allied aura, per rank: +3% life capacity; unlock6/cap20 | Adds with form capacity over one fresh base; never heals. |
 
 ---
 
