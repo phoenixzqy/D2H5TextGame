@@ -1,7 +1,7 @@
 # BUG-181 — Complete advertised Paladin aura selection and effects
 
 Severity: High
-Status: Open; fourteen selected auras locally verified in bounded scope, six distinct aura mechanics outstanding
+Status: Open; fifteen selected auras locally verified in bounded scope, five distinct aura mechanics outstanding
 Owners: engine-dev, frontend-dev, content-designer; root sole writer this run
 
 ## Reproduction
@@ -71,3 +71,16 @@ browser4/4,12 exact five-domain Continue pairs and40 geometry samples pass.
 Remaining six: Sanctuary, Cleansing, Redemption, Prayer, Vigor and Concentration.
 Earned balance and independent whole-family acceptance remain open. Genuine
 campaign save/next402 is unchanged; no actual campaign action occurred.
+
+Fourth batch `96a67cb` implements selected Prayer with actual JSON-owned20-base
+HP/5000ms healing, authored3%/rank scaling and missing-HP caps for the living hero
+and original living fielded merc. Periodic deaths/ties/CC/deadline/action-cap rules,
+strict copied metadata, public allocation, native HP/replay/import, and bilingual
+fresh-L1 browser selection/persistence pass. Full12309/521 plus two existing skips,
+engine6148/211, types/lint/build/bridge pass. Final browser4/4, eight exact
+five-domain Continue pairs and20 geometry samples pass. All1235source/760build
+hashes, HEAD/Git state and genuine save digest stayed exact through the full run;
+committed source blobs match. [Evidence and retained original failures](../../docs/plans/evidence/d05-paladin-prayer.md).
+Remaining five: Sanctuary, Cleansing, Redemption, Vigor and Concentration.
+Prayer's five-second interval remains provisional local tuning; earned balance,
+independent whole-family acceptance and the full private-v1 goal remain open.
