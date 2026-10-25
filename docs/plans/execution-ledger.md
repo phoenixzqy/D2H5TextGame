@@ -11492,3 +11492,25 @@ base/timing are provisional local design defaults; earned balance and independen
 acceptance remain open. GenuineL33/XP149261/23682gear/nextNormal402 is unchanged;
 no campaign action or diagnostic-save promotion. Baal/C2-C4/fullG0-G7 and complete
 privatev1 remain incomplete. Local only; umbrella goal/branch/worktree stay active.
+
+
+## D05 — Automatic personal Barbarian warcries / BUG184
+
+Runtime4045681 applies authored Shout defense and Orders life/ordinary Energy
+recovery at fresh hero composition. Like bonuses add over fresh equipment/quest
+stats; Orders precedes item recovery, with no max-MP, timer, action, refill or save
+change. Both locales show actual current/next values and automatic self-only rules.
+[Evidence](evidence/d05-barbarian-warcries.md): focused79/7, engine6296/223,
+corpus322/2, full12505/537/two existing skips; types/lint/build/bridge pass.
+Production browser4/4, eight separately audited exact five-domain Continue pairs,
+40 geometry samples; eight screenshots inspected with existing mobile occlusion
+and icon/font fallback limits retained. Full-run1253 source/760 build hashes,
+HEAD/status and genuine save digest remain exact. All original fixture/schema/
+type/lint/premature-auditor failures and interrupted lint observation retained.
+135 raw files/25 terminal records archived/byte-verified;
+exact task cleanup receipt accompanies evidence. No new skip or gate weakening.
+Only two new bounded-functional rows:213 IDs/order unchanged,154 unverified/
+57 bounded-functional/one engine-only/one review-needed. Genuine claimed Rite
+save remainsL33/XP149261/23682gear/next402; no campaign replay or remote action.
+C2-C4/fullG0-G7, earned Baal/all-class builds/economy/pacing/endgame/PWA/performance
+and independent acceptance remain open. Existing umbrella goal/worktree active.

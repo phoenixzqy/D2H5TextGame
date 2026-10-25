@@ -1,7 +1,7 @@
 # BUG-184 — Apply automatic personal Barbarian warcries
 
 Severity: High
-Status: reproduced; implementation in progress
+Status: fixed locally in `4045681a76e79a6cfe8558a91479bf5d3a414566`; independent acceptance/earned balance open
 Owners: engine-dev, frontend-dev, content-designer
 
 Baseline98c3d817ff5372c217165120514e03ae2688aace; local Vitest/jsdom,
@@ -25,3 +25,9 @@ field, hit the damage floor, and then redeclared a variable; corrected causal
 failures distinguish these test errors from the missing production effects.
 Root cause: missing fresh hero consumer for these authored passive stat rows.
 No gameplay workaround. Independent whole-build/earned acceptance remains open.
+
+Regression: src/stores/barbarian-warcries-composition.test.ts,
+src/stores/barbarian-warcries-native.test.ts,
+src/engine/skills/barbarian-warcries.test.ts and
+src/features/skills/SkillsScreen.barbarian-warcries.test.tsx.
+Current verification: docs/plans/evidence/d05-barbarian-warcries.md.
