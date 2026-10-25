@@ -36,6 +36,8 @@ export interface OnHitRecoveryTuning {
 /** Bounded sequential attempts shared by one paid cast and its original target pool. */
 export interface SkillHitSequence {
   readonly strikes: number;
+  /** Opted-in passes across fixed originals; omitted means total rotated attempts. */
+  readonly targetMode?: 'each-original';
 }
 
 /** JSON-owned self attack-speed stacks earned by damaging Feral Rage hits. */

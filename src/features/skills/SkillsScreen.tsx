@@ -954,6 +954,9 @@ function StatSection({
           {stats.strikesPerCast !== undefined ? (
             <StatLine label={t('details.strikesPerCast')} value={String(stats.strikesPerCast)} />
           ) : null}
+          {stats.strikesPerTarget !== undefined ? (
+            <StatLine label={t('details.strikesPerTarget')} value={String(stats.strikesPerTarget)} />
+          ) : null}
           {stats.criticalBonusPoints !== undefined ? (
             <StatLine label={t('details.criticalBonus')} value={t('details.criticalBonusValue', { points: stats.criticalBonusPoints })} />
           ) : null}
@@ -1584,6 +1587,10 @@ function dynamicDescription(
     return t('assassin.mind-blast.desc', { min: firstDamage.min, max: firstDamage.max,
       drain: stats.manaBurn.drainPercent, bonus: stats.manaBurn.zeroManaArcaneBonusPercent,
       seconds: stats.control.durationSeconds, bossSeconds: stats.control.bossDurationSeconds });
+  }
+  if (firstDamage && skill.id === 'skills-barbarian-double-swing' && stats.strikesPerTarget !== undefined) {
+    return t('barbarian.double-swing.desc', { min: firstDamage.min, max: firstDamage.max,
+      strikes: stats.strikesPerTarget, maxTargets: stats.maxTargets });
   }
   if (firstDamage && skill.id === 'skills-amazon-jab' && stats.strikesPerCast !== undefined) {
     return t('amazon.jab.desc', { min: firstDamage.min, max: firstDamage.max, strikes: stats.strikesPerCast });

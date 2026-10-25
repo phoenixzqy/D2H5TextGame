@@ -90,6 +90,7 @@
     "descriptionComposite": "One strike deals {{fireMin}} ~ {{fireMax}} Fire, {{coldMin}} ~ {{coldMax}} Cold and {{lightningMin}} ~ {{lightningMax}} Lightning base damage. The components share one hit and critical roll, with separate modifiers and mitigation. Fire applies Burn, Cold applies Chill for {{chillSeconds}} s and Lightning applies Paralyze for {{paralyzeSeconds}} s; repeated Paralyze can fail. A miss applies none.",
     "descriptionComponentBurn": "Burn uses only the Fire component after mitigation: {{percentOfHit}}% per second per stack (rounded down, minimum {{minDps}}) for {{durationSeconds}} s, up to {{maxStacks}} stacks. Refreshing adds a stack and extends duration; an existing damaging Burn keeps its original rate.",
     "strikesPerCast": "Attack attempts per cast",
+    "strikesPerTarget": "Attack attempts per target",
     "criticalBonus": "Critical bonus per attempt",
     "criticalBonusValue": "+{{points}} percentage points",
     "periodicRate": "{{status}} per stack",
@@ -505,7 +506,7 @@
     },
     "double-swing": {
       "name": "Double Swing",
-      "desc": "Two cleaving strikes that hit up to 3 enemies."
+      "desc": "Two cleaving passes over the same up to {{maxTargets}} living enemies in the densest cross. Ties choose the lowest row then column; targets are ordered by row, then column. Each original target gets up to {{strikes}} independent attempts, {{min}}–{{max}} Physical base damage per attempt. Misses consume attempts; skip dead originals without replacements or redistributing their attempts. Stop if the caster dies. Pay 10 MP and start the 1 s cooldown once per cast. Rank changes apply next wave."
     },
     "whirlwind": {
       "name": "Whirlwind",

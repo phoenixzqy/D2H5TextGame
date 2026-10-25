@@ -196,7 +196,7 @@
     },
     {
       "if": { "required": ["maxTargets"], "properties": { "maxTargets": {} } },
-      "then": { "properties": { "id": { "const": "skills-paladin-zeal" } } }
+      "then": { "properties": { "id": { "enum": ["skills-paladin-zeal", "skills-barbarian-double-swing"] } } }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-paladin-zeal" } } },
@@ -387,7 +387,33 @@
     },
     {
       "if": { "required": ["hitSequence"], "properties": { "hitSequence": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw", "skills-barbarian-double-swing"] } } }
+    },
+    {
+      "if": { "required": ["hitSequence"], "properties": { "hitSequence": {
+        "type": "object", "required": ["targetMode"], "properties": { "targetMode": {} }
+      } } },
+      "then": { "properties": { "id": { "const": "skills-barbarian-double-swing" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-double-swing" } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "hitSequence", "aoeShape", "maxTargets", "cost"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "area-enemies" },
+          "requiredLevel": { "const": 6 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-barbarian-bash"] },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "hitSequence": { "$ref": "#/properties/hitSequence", "const": { "strikes": 2, "targetMode": "each-original" } },
+          "aoeShape": { "const": "cross" }, "maxTargets": { "const": 3 },
+          "cost": { "const": { "mana": 10 } }, "cooldown": { "const": 1 },
+          "passive": { "const": false }, "aura": { "const": false }, "summon": { "const": false },
+          "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false,
+          "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false,
+          "damageComposition": false, "ignoresDefense": false, "ignoresMagicResist": false,
+          "timedBuff": false, "requires": false, "heal": false, "summonId": false
+        }
+      }
     },
     {
       "if": { "required": ["critChanceBonus"], "properties": { "critChanceBonus": {} } },
@@ -4071,7 +4097,7 @@
     },
     "maxTargets": {
       "type": "integer", "const": 3,
-      "description": "Explicit Zeal limit applied after resolving its deterministic densest cross; each selected living target receives one ordinary hit."
+      "description": "Explicit Zeal/Double Swing limit applied after resolving the deterministic densest cross, before any direct-hit attempts."
     },
     "onHitSelfDamage": {
       "type": "object", "additionalProperties": false,
@@ -4095,9 +4121,12 @@
       "description": "Explicit Impale ordinary Defense bypass for this hit only; resistance, dodge, critical rolls and personal absorption still apply."
     },
     "hitSequence": {
-      "description": "Explicit bounded sequential attempts, paid once within the original target pool; authored by Fury and single-target Jab/Dragon Talon/Dragon Claw.",
+      "description": "Explicit bounded sequential attempts paid once. Default rotates a total attempt count within the original pool; Double Swing opts into passes across each original target.",
       "type": "object", "additionalProperties": false, "required": ["strikes"],
-      "properties": { "strikes": { "type": "integer", "minimum": 2, "maximum": 8 } }
+      "properties": {
+        "strikes": { "type": "integer", "minimum": 2, "maximum": 8 },
+        "targetMode": { "const": "each-original", "description": "Double Swing-only ordered passes; dead originals are skipped without replacement or redistributed attempts." }
+      }
     },
     "critChanceBonus": {
       "description": "Dragon Claw-only additive critical chance for each direct attempt; uses ordinary critical overflow and never changes attacker stats.",

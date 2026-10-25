@@ -1272,6 +1272,17 @@ function applyEffect(
         if (!Number.isInteger(strikes) || strikes < 2 || strikes > 8) {
           throw new Error('Invalid damage hit sequence: expected 2–8 attempts');
         }
+        if (effect.hitSequence.targetMode === 'each-original') {
+          for (let pass = 0; pass < strikes; pass++) {
+            for (const original of enemySideAlive) {
+              const actor = state.units.get(actorId);
+              if (!actor || !alive(actor)) return;
+              const target = state.units.get(original.id);
+              if (target && alive(target)) applyDamageToUnit(state, actorId, target.id, effect, skillLevel);
+            }
+          }
+          break;
+        }
         let cursor = 0;
         for (let strike = 0; strike < strikes; strike++) {
           const actor = state.units.get(actorId);

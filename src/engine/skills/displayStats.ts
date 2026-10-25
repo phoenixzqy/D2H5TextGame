@@ -172,6 +172,8 @@ export interface SkillRankDisplayStats {
   readonly composite?: { readonly chillSeconds: number; readonly paralyzeSeconds: number };
   /** Independent attack attempts; the displayed damage range remains per strike. */
   readonly strikesPerCast?: number;
+  /** Independent attempts per original target; actual cast total depends on the pool. */
+  readonly strikesPerTarget?: number;
   /** Percentage points added by this skill, not the attacker's total critical chance. */
   readonly criticalBonusPoints?: number;
   readonly control?: { readonly durationSeconds: number; readonly bossDurationSeconds: number };
@@ -510,6 +512,10 @@ export function computeSkillRankDisplayStats(
     skill.target === 'single-enemy' && skill.damageType === 'physical');
   const strikesPerCast = supportsSequence && skill.trigger === 'active' && skill.damage &&
     strikes !== undefined && Number.isInteger(strikes) && strikes >= 2 && strikes <= 8 ? strikes : undefined;
+  const strikesPerTarget = skill.id === 'skills-barbarian-double-swing' && skill.trigger === 'active' &&
+    skill.target === 'area-enemies' && skill.aoeShape === 'cross' && skill.maxTargets === 3 &&
+    skill.damageType === 'physical' && skill.damage !== undefined &&
+    skill.hitSequence?.targetMode === 'each-original' && strikes === 2 ? strikes : undefined;
   const bonus = skill.critChanceBonus;
   const criticalBonusPoints = skill.id === 'skills-assassin-dragon-claw' && strikesPerCast === 2 &&
     bonus !== undefined && Number.isFinite(bonus) && bonus > 0 && bonus <= 1
@@ -530,7 +536,7 @@ export function computeSkillRankDisplayStats(
     (controlId === 'chill' || controlId === 'stun' || controlId === 'paralyze') ? STATUS_DEFAULTS[controlId] : undefined;
   const control = controlDefinition ? { durationSeconds: controlDefinition.duration,
     bossDurationSeconds: controlDefinition.duration * (controlDefinition.bossDurationMult ?? 1) } : undefined;
-  const maxTargets = skill.id === 'skills-paladin-zeal' && skill.trigger === 'active' &&
+  const maxTargets = (skill.id === 'skills-paladin-zeal' || strikesPerTarget !== undefined) && skill.trigger === 'active' &&
     skill.target === 'area-enemies' && skill.aoeShape === 'cross' && skill.maxTargets === 3
     ? skill.maxTargets : undefined;
   const selfCost = skill.onHitSelfDamage;
@@ -565,6 +571,7 @@ export function computeSkillRankDisplayStats(
     ...(ignoresDefense ? { ignoresDefense: true as const } : {}),
     ...(composite ? { composite } : {}),
     ...(strikesPerCast !== undefined ? { strikesPerCast } : {}),
+    ...(strikesPerTarget !== undefined ? { strikesPerTarget } : {}),
     ...(criticalBonusPoints !== undefined ? { criticalBonusPoints } : {}),
     ...(control ? { control } : {}),
     ...(manaBurn ? { manaBurn } : {}),

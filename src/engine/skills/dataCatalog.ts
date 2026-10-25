@@ -191,7 +191,8 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       ...(components ? { components } : {}),
       ...(skill.ignoresMagicResist === true ? { ignoresMagicResist: true as const } : {}),
       ...(skill.ignoresDefense === true ? { ignoresDefense: true as const } : {}),
-      ...(skill.hitSequence ? { hitSequence: { strikes: skill.hitSequence.strikes } } : {}),
+      ...(skill.hitSequence ? { hitSequence: { strikes: skill.hitSequence.strikes,
+        ...(skill.hitSequence.targetMode ? { targetMode: skill.hitSequence.targetMode } : {}) } } : {}),
       ...(skill.critChanceBonus !== undefined ? { critChanceBonus: skill.critChanceBonus } : {}),
       ...(skill.onHitRecovery ? { onHitRecovery: { lifeFraction: skill.onHitRecovery.lifeFraction } } : {}),
       ...(skill.onHitSelfDamage ? { onHitSelfDamage: Object.freeze({

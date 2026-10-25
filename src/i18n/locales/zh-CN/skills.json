@@ -90,6 +90,7 @@
     "descriptionComposite": "一次打击造成 {{fireMin}} ~ {{fireMax}} 点火焰、{{coldMin}} ~ {{coldMax}} 点冰冷及{{lightningMin}} ~ {{lightningMax}} 点闪电基础伤害。三个分量共用一次命中与暴击判定，分别计算增益和减伤。火焰附加燃烧，冰冷附加冰缓 {{chillSeconds}} 秒，闪电附加麻痹 {{paralyzeSeconds}} 秒；重复麻痹可能失败。未命中不附加任何效果。",
     "descriptionComponentBurn": "燃烧仅按减伤后的火焰分量计算：每层每秒造成其{{percentOfHit}}%伤害（向下取整，最低{{minDps}}点），持续{{durationSeconds}} 秒，最多{{maxStacks}}层。再次施加会增加层数并延长持续时间；已有伤害的燃烧保留原伤害率。",
     "strikesPerCast": "每次施放攻击次数",
+    "strikesPerTarget": "每名目标攻击次数",
     "criticalBonus": "每次尝试暴击率加成",
     "criticalBonusValue": "+{{points}}个百分点",
     "periodicRate": "每层{{status}}",
@@ -505,7 +506,7 @@
     },
     "double-swing": {
       "name": "双手挥击",
-      "desc": "两次挥砍，命中最多 3 个敌人。"
+      "desc": "对最密集十字范围内原先选定的最多{{maxTargets}}名存活敌人进行两轮挥砍。中心并列时优先较小行号、再较小列号；目标按行、再按列排序。每名原目标最多独立判定{{strikes}}次攻击，每次造成{{min}}～{{max}}点物理基础伤害。未命中消耗次数；跳过已死原目标，不补选或转移其次数。施法者死亡即停止。每次施放仅支付10点法力并进入一次1秒冷却。加点变化从下一波生效。"
     },
     "whirlwind": {
       "name": "旋风斩",
