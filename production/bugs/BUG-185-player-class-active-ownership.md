@@ -1,6 +1,6 @@
 # BUG-185 — Require learned ownership before native class-active combat
 
-Severity: High. Status: implemented and locally verified; source SHA recorded in follow-up evidence.
+Severity: High. Status: Fixed locally in `70be381240aed745897271964448d1dbb950ca3b`.
 Independent acceptance remains open.
 Owner: engine-dev / store integration (root sole writer this session).
 
@@ -48,3 +48,11 @@ extensions. Existing registered `amazon.piercing_strike` casts on both Barbarian
 and Amazon from an imported allocation, paying20MP despite no authoritative JSON
 definition. Added seed7 native/engine RED: five failures /309 controls pass.
 Reject class namespaces without definitions; retain truly non-class extensions.
+
+## Final local verification
+
+Full standard suite12822 passed/540 files, two existing skips; final engine6585/224,
+types/lint/production build/bridge pass. Production en/zh desktop/mobile4/4 and
+eight separately audited exact five-domain Save/Continue pairs.
+[Evidence](../../docs/plans/evidence/d04-player-class-active-ownership.md).
+Independent acceptance and full private-v1 remain open.

@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D04 native class-active ownership / BUG185 | locally fixed/verified; independent acceptance open | Runtime70be381; current-class/unlock/rank/MAX aliases/transitive prerequisites at fresh Player boundary; undefined class stubs/passive/aura priorities cannot cast. Stored configuration, D06 specialized authority and D10 equipped grants preserved. Final full12822/540 plus two existing skips, engine6585/224, types/lint/build/bridge PASS; production4/4/eight exact five-domain Continue pairs/20geometry samples. [Evidence](evidence/d04-player-class-active-ownership.md). All1257source/760build hashes, HEAD/Git/genuine exact through515.519s full; committed blobs checked. Ownership adds no individual mechanic credit:213IDs,154unverified/57bounded-functional/one engine-only/one review-needed before separate Golem correction. GenuineL33/next402 unchanged; Baal/C2-C4/fullG0-G7 and fullv1 remain unfinished; local only. |
 | D05 Concentration / BUG181 | interruption/physical scaling locally verified; all20auras have supported effects | Runtimef7aec04; unchanged3.5%physical/rank, explicit scheduled-action Stun protection with real Stun/expiry preserved, Freeze/Paralyze and normal paid readiness unchanged. Focused121/6, data322/2, engine6269/222, full12451/533 plus two existing skips; types/lint/build/bridge PASS. Production4/4, eight exact five-domain Continue pairs,20geometry samples and21radio labels. [Evidence](evidence/d05-paladin-concentration.md); all1248source/760build hashes, HEAD/Git/genuine exact through513.228s full, committed source blobs checked. All original test/fixture failures retained;114raw files/19terminal records byte-verified,874owned files removed, scratch absent/4470closed/no failures.213IDs:156unverified/55bounded-functional/one bounded-engine-functional/one review-needed;56bounded records have differing scopes. All20auras supported locally; independent whole-family/earned balance and BUG181 remain open. GenuineL33/next402 unchanged; Baal/C2-C4/fullG0-G7 remain unfinished; local only, umbrella goal/worktree active. |
 | D05 Sanctuary / BUG181 / BUG183 | undead damage/repulsion locally verified; Concentration remains | Runtime5586d34; explicit109-row undead identity,29positive/80other; unchanged3% Arcane/rank, JSON2000ms/20base and canonical500ms Stun (boss250ms), original-source/merc and next-wave/replay/save boundaries. Final corrected full12430/531 plus two existing skips, engine6252/220, corrected types/lint and identical production build/bridge/browser PASS. Four browser cases/eight exact five-domain Continue pairs/20geometry samples/20radio labels. [Evidence](evidence/d05-paladin-sanctuary.md); all1246source/760build hashes, HEAD/Git/genuine exact through426.676s final full; committed source blobs checked. Original full78failures retained:76historical-byte fixtures repaired without changing hashes, one stale input corrected, BUG180timeout remains unresolved after isolated13PASS and corrected full PASS.156raw files/29terminal records byte-verified;916owned files removed, scratch absent/4469closed/no failures.213IDs:157unverified/54bounded-functional/one bounded-engine-functional/one review-needed;55bounded records have different proof scopes. Nineteen of20auras supported. Concentration, earned balance, independent acceptance, Baal/C2-C4/fullG0-G7 remain open. GenuineL33/next402 unchanged; local only, umbrella goal/worktree active. |
 | D05 Vigor / BUG181 / BUG182 | temporary endurance/cadence locally verified; two distinct auras remain | Runtime4cc9c5b; unchanged authored2%life/0.5%speed per rank, one floored fresh-base capacity, absolute HP/no refill, real healing/orbs, non-compounding carry and pre-orb death removal. Initial status prefix and first-visible capacity repaired without weakening validation. Finalfull12396/528 plus two existing skips, engine6222/217, types/lint/build/bridge PASS. Production browser4/4, eight exact five-domain Continue pairs,20geometry samples and19radio labels. [Evidence](evidence/d05-paladin-vigor.md); all1243source/760build hashes, HEAD/Git and genuine Rite digest exact through426.170s full run; committed source blobs checked.182raw files/29terminal records byte-verified;942owned files removed, scratch absent/4468closed, no failures/remaining paths.213IDs:158unverified/53bounded-functional/one bounded-engine-functional/one review-needed;54bounded records have differing proof scopes. Eighteen of20 auras supported; Sanctuary/Concentration, earned balance, independent acceptance, Baal/C2–C4/fullG0–G7 remain open. GenuineL33/next402 unchanged; local only, umbrella goal/worktree active. |
@@ -11514,3 +11515,24 @@ Only two new bounded-functional rows:213 IDs/order unchanged,154 unverified/
 save remainsL33/XP149261/23682gear/next402; no campaign replay or remote action.
 C2-C4/fullG0-G7, earned Baal/all-class builds/economy/pacing/endgame/PWA/performance
 and independent acceptance remain open. Existing umbrella goal/worktree active.
+
+
+## D04 — Native class-active ownership / BUG185
+
+Runtime70be381 filters only copied ordinary class-active configuration at the
+fresh Player boundary, preserving persisted priorities/allocations, D06 direct
+summon/corpse authority and D10 equipped grants. Undefined class stubs and known
+passive/aura priorities cannot acquire implicit-rank combat authority. Exact
+class/unlock/rank/MAX aliases and transitive prerequisites are required.
+Existing Skills-screen sanitizer remains; save22 and all damage/action/resource/
+RNG rules are unchanged. [Evidence](evidence/d04-player-class-active-ownership.md)
+records causal RED, corrected fixtures, native next-wave/reset/replay/import and
+all original failures. Final full12822/540/two existing skips, engine6585/224,
+types/lint/build/bridge pass. Production4/4, eight separately audited exact
+five-domain Save/Continue pairs,20geometry samples and eight inspected screenshots.
+All1257source/760build hashes, HEAD/Git/genuine are exact through515.519s full;
+committed source blobs match. Independent design/QA and earned balance remain
+open. Ownership adds no skill-mechanic credit;154unverified remains before the
+separate Golem bookkeeping correction. GenuineL33/next402/Baal uncleared remains;
+no campaign/remote actions, fullC2-C4/G0-G7/privatev1 unfinished. Umbrella claim
+and branch continue. Raw retention/cleanup receipts accompany the evidence.
