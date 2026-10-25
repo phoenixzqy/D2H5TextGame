@@ -1,7 +1,7 @@
 # BUG-191 — Apply the paid Cyclone Armor defensive bonuses
 
 Severity: High — paid advertised defense has no effect.
-Status: Reproduced; local fix in progress.
+Status: Locally fixed/verified; independent and earned acceptance open.
 Owners: engine-dev / frontend-dev; root sole writer.
 
 ## Reproduction
@@ -22,7 +22,9 @@ The two actual-HP regressions fail at the damage assertion.
 
 Cause: catalog registers an ordinary marker-only buff; the combat damage path
 never reads authored shieldAbsorbPct/resistAllPct for it. No workaround.
-Evidence: `src/stores/cyclone-armor.causal.test.ts`, original `causal-red.log/json`
-under task scratch `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cyclone-hihak566`.
-Final evidence/cleanup will retain the original failures. Independent design/QA
+Evidence: `src/stores/cyclone-armor.causal.test.ts`; original causal RED and all
+corrections are retained in the [evidence packet](../../docs/plans/evidence/d05-cyclone-armor.md).
+Runtime `ac9eb7e` and presentation `568b833` pass full 13263/577/two existing
+skips, engine 6858/239, types/lint/build and production browser 4/4 with eight
+exact five-domain Continue pairs. Genuine campaign remains L33/next402. Independent design/QA
 and earned build balance remain open; no genuine campaign action.

@@ -16,7 +16,9 @@ consistent with the fractional damage split used by Energy Shield. It is not
 a finite HP pool: the JSON authors no pool capacity. All six resistances gain
 one percentage point per rank before existing act penalties/clamps. Absorption
 covers all direct damage types, reflected Thorns, Static Field and already
-mitigated periodic damage. This explicit broad adaptation and existing 2.5%
+mitigated periodic damage. Static shares the splitter/forwarding branch; current
+valid native source/target scopes cannot oppose an eligible player Cyclone hero,
+so native pairing verification is not claimed. This explicit broad adaptation and existing 2.5%
 coefficient are provisional until earned balance, not canonical D2 claims.
 
 ## Authority, lifecycle and damage
