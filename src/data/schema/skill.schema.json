@@ -8,6 +8,25 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["onHitSelfDamage"], "properties": { "onHitSelfDamage": {} } },
+      "then": { "properties": { "id": { "const": "skills-paladin-sacrifice" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-paladin-sacrifice" } } },
+      "then": {
+        "required": ["requiredLevel", "damage", "damageType", "onHitSelfDamage"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "requiredLevel": { "const": 1 }, "maxLevel": { "const": 20 },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "onHitSelfDamage": { "$ref": "#/properties/onHitSelfDamage" },
+          "onHitRecovery": false, "damageComposition": false, "hitSequence": false,
+          "ignoresMagicResist": false, "feralRage": false, "appliesStatus": false,
+          "statusEffect": false, "additionalStatusEffects": false
+        }
+      }
+    },
+    {
       "if": { "required": ["damageComposition"], "properties": { "damageComposition": {} } },
       "then": { "properties": { "id": { "const": "skills-paladin-vengeance" } } }
     },
@@ -3657,6 +3676,15 @@
     }
   },
   "properties": {
+    "onHitSelfDamage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["lifeFraction", "minimumLifeLoss"],
+      "description": "Explicit Sacrifice life debit after positive actual direct enemy HP loss; bypasses own defenses and can kill the surviving caster.",
+      "properties": {
+        "lifeFraction": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+        "minimumLifeLoss": { "type": "integer", "minimum": 1 }
+      }
+    },
     "damageComposition": {
       "const": "weighted-components",
       "description": "Explicit Vengeance composite strike: one shared hit/base/crit roll, with ordered per-element mitigation of normalized breakdown weights."

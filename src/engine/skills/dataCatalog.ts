@@ -16,7 +16,7 @@ import paladinSkills from '../../data/skills/paladin.json';
 import sorceressSkills from '../../data/skills/sorceress.json';
 import type { AoeShape } from '../combat/grid';
 import type { DamageType } from '../types/attributes';
-import type { ComboTag, FeralRageTuning, OnHitRecoveryTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
+import type { ComboTag, FeralRageTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
 import type { OnHitStatus, RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
 
 export type PlayableSkillClass =
@@ -33,6 +33,8 @@ interface JsonSkill {
   readonly ignoresMagicResist?: true;
   readonly hitSequence?: SkillHitSequence;
   readonly onHitRecovery?: OnHitRecoveryTuning;
+  /** Explicit life debit after a real enemy HP loss; independent of personal shields. */
+  readonly onHitSelfDamage?: OnHitSelfDamageTuning;
   readonly feralRage?: FeralRageTuning;
   readonly staticField?: StaticFieldTuning;
   readonly timedBuff?: { readonly durationMs: number };
@@ -182,6 +184,10 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       ...(skill.ignoresMagicResist === true ? { ignoresMagicResist: true as const } : {}),
       ...(skill.hitSequence ? { hitSequence: { strikes: skill.hitSequence.strikes } } : {}),
       ...(skill.onHitRecovery ? { onHitRecovery: { lifeFraction: skill.onHitRecovery.lifeFraction } } : {}),
+      ...(skill.onHitSelfDamage ? { onHitSelfDamage: Object.freeze({
+        lifeFraction: skill.onHitSelfDamage.lifeFraction,
+        minimumLifeLoss: skill.onHitSelfDamage.minimumLifeLoss
+      }) } : {}),
       ...(skill.id === 'skills-druid-feral-rage' && skill.feralRage ? { feralRage: true as const } : {}),
       damageType: skill.damageType,
       base: [skill.damage.min, skill.damage.max],

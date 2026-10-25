@@ -9,7 +9,7 @@
  * @module engine/skills/effects
  */
 
-import type { ComboTag, SkillTarget, SkillRequirement, OnHitRecoveryTuning, SkillHitSequence } from '../types/skills';
+import type { ComboTag, SkillTarget, SkillRequirement, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence } from '../types/skills';
 import type { DamageType } from '../types/attributes';
 import type { AoeShape } from '../combat/grid';
 
@@ -46,6 +46,8 @@ interface DamageEffectBase {
   readonly hitSequence?: SkillHitSequence;
   /** Explicit direct-hit recovery only; never inherited by ordinary/basic/periodic damage. */
   readonly onHitRecovery?: OnHitRecoveryTuning;
+  /** Explicit life debit after a real enemy HP loss; independent of personal shields. */
+  readonly onHitSelfDamage?: OnHitSelfDamageTuning;
   /** Exact Feral Rage opts into independently authenticated self speed stacks. */
   readonly feralRage?: true;
   readonly kind: 'damage';

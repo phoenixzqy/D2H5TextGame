@@ -347,7 +347,8 @@
     ],
     "scaling": {
       "damagePerLevel": 4
-    }
+    },
+    "onHitSelfDamage": { "lifeFraction": 0.08, "minimumLifeLoss": 1 }
   },
   {
     "id": "skills-paladin-smite",

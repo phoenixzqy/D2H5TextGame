@@ -20,7 +20,15 @@ export interface ColdMasteryTuning {
   readonly resistanceReductionPerRankPct: number;
 }
 
-/** Fraction of actual direct enemy HP loss restored after reflection/death settlement. */
+/** Authored life debit after a surviving caster removes actual direct enemy HP. */
+export interface OnHitSelfDamageTuning {
+  /** Fraction of actual direct enemy HP removed debited from a surviving caster. */
+  readonly lifeFraction: number;
+  /** Authored positive minimum life loss for a hit that removes enemy HP. */
+  readonly minimumLifeLoss: number;
+}
+
+/** Explicit direct-hit recovery; ordinary attacks and periodic damage never inherit it. */
 export interface OnHitRecoveryTuning {
   readonly lifeFraction: number;
 }
@@ -224,6 +232,7 @@ export interface SkillDef {
   readonly ignoresMagicResist?: true;
   readonly hitSequence?: SkillHitSequence;
   readonly onHitRecovery?: OnHitRecoveryTuning;
+  readonly onHitSelfDamage?: OnHitSelfDamageTuning;
   readonly feralRage?: FeralRageTuning;
   /** Exact Spirit of Barbs passive support template; ordinary summon defaults remain shared. */
   readonly passiveSummon?: {

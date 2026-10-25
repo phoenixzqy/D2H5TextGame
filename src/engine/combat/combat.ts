@@ -778,6 +778,17 @@ function applyDamageToUnit(
     if (fraction !== undefined && Number.isFinite(fraction) && fraction > 0 && fraction <= 1) {
       commitHealing(state, owner, Math.floor(hpRemoved * fraction));
     }
+    const selfCost = effect.onHitSelfDamage;
+    if (selfCost && Number.isFinite(selfCost.lifeFraction) && selfCost.lifeFraction > 0 && selfCost.lifeFraction <= 1 &&
+      Number.isInteger(selfCost.minimumLifeLoss) && selfCost.minimumLifeLoss > 0) {
+      // A life tradeoff, not a hostile hit: never dodge, absorb, reflect or recurse.
+      const loss = Math.min(owner.life, Math.max(selfCost.minimumLifeLoss, Math.floor(hpRemoved * selfCost.lifeFraction)));
+      const damaged = { ...owner, life: owner.life - loss };
+      state.units.set(attackerId, damaged);
+      emit(state, { kind: 'damage', source: attackerId, target: attackerId,
+        damageType: 'physical', amount: loss, crit: false, dodged: false });
+      if (!alive(damaged)) finishDeaths(state, [activeStatusView(damaged, state.simClockMs)]);
+    }
     const current = state.units.get(attackerId);
     if (effect.feralRage === true && current) {
       const updated = gainFeralRageStack(current, state.simClockMs);
