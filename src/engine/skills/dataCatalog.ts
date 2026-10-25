@@ -186,6 +186,8 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
         kind: 'buff',
         id: skill.appliesStatus[0],
         duration: skill.timedBuff ? skill.timedBuff.durationMs / 1000 : -1,
+        ...((skill.id === 'skills-druid-werewolf' || skill.id === 'skills-druid-werebear') && skill.trigger === 'active'
+          ? { druidForm: skill.id === 'skills-druid-werewolf' ? 'werewolf' as const : 'werebear' as const } : {}),
         ...(skill.id === 'skills-assassin-burst-of-speed' && skill.timedBuff
           ? { timedStatBuff: 'burst-of-speed' as const } : {}),
         ...(skill.id === 'skills-sorceress-frozen-armor' && skill.trigger === 'active' &&

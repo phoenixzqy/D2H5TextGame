@@ -70,6 +70,11 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Native Druid allocation authority and paid run-local form; never persisted. */
+  readonly druidShapeRanks?: import('../skills/druid-shapeshifting').DruidShapeRanks;
+  readonly druidForm?: import('../skills/druid-shapeshifting').PaidDruidForm;
+  /** Exact temporary capacity baseline, removed before fresh wave projection. */
+  readonly druidFormLife?: { readonly baseLifeMax: number; readonly appliedLifeMax: number };
   /** Factory-copied literal authored undead identity; names/IDs never grant this marker. */
   readonly undead?: true;
   /** Transient exact Vigor base/applied capacity for wave carry; never persisted. */

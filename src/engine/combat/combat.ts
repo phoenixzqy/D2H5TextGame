@@ -44,6 +44,7 @@ import { activeStatAura, copyStatAuraProjection, statAuraDamageBonus, type StatA
 import { vigorLifeMax, withoutVigorLife } from '../skills/vigor';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
 import { absorbBoneArmor, boneArmorPool, copyBoneArmorStatuses } from '../skills/bone-armor';
+import { activeDruidForm, druidFormBonuses, druidFormForId, druidFormRank, matchesDruidForm, refreshDruidForm, selectedDruidForm, DRUID_SHAPE_IDS } from '../skills/druid-shapeshifting';
 import { availableEnergyShieldMana, divertEnergyShield } from '../skills/energy-shield';
 import { activeBurstOfSpeed, burstOfSpeedRank, copyBurstOfSpeedStatuses, matchesBurstOfSpeed,
   paidBurstOfSpeed, BURST_OF_SPEED_IDS, BURST_OF_SPEED_DEFINITION } from '../skills/burst-of-speed';
@@ -126,7 +127,8 @@ export type BattleEvent =
       readonly unit: CombatUnit;
     }
   | { readonly kind: 'heal'; readonly target: string; readonly amount: number }
-  | { readonly kind: 'life-capacity'; readonly target: string; readonly lifeMax: number; readonly life: number; readonly vigorBaseLifeMax?: number }
+  | { readonly kind: 'life-capacity'; readonly target: string; readonly lifeMax: number; readonly life: number; readonly vigorBaseLifeMax?: number;
+      readonly druidFormState?: Pick<CombatUnit, 'druidForm' | 'druidFormLife'> }
   | { readonly kind: 'mana'; readonly target: string; readonly mana: number;
       readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' | 'redemption' | 'energy-shield' }
   | { readonly kind: 'death'; readonly target: string }
@@ -307,7 +309,7 @@ function effectiveActionPeriod(state: State, unit: CombatUnit): number {
   const chilled = unit.statuses.some(s => s.id === 'chill' && statusActiveAt(s, state.simClockMs)) ||
     (unit.side === 'enemy' && ambientChillSourceId(state) !== undefined);
   const enrage = unit.enraged ? unit.enrage?.attackSpeedMultiplier ?? 1 : 1;
-  const speedBonus = (activeBurstOfSpeed(unit, state.simClockMs)?.attackSpeedPct ?? 0) +
+  const speedBonus = druidFormBonuses(unit).attackSpeedPct + (activeBurstOfSpeed(unit, state.simClockMs)?.attackSpeedPct ?? 0) +
     (activeStatAura(state.statAura, unit.id, state.units)?.bonuses.attackSpeedPct ?? 0);
   return actionPeriodMs(unit.stats.attackSpeed * (1 + speedBonus) * enrage * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
 }
@@ -450,7 +452,9 @@ function pickDefender(
 }
 
 function registerUnit(state: State, u: CombatUnit): void {
-  state.units.set(u.id, copyBoneArmorStatuses(copyBurstOfSpeedStatuses(u)));
+  const copied = copyBoneArmorStatuses(copyBurstOfSpeedStatuses(u));
+  const shaped = refreshDruidForm(copied);
+  state.units.set(u.id, shaped);
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
   if (!state.insertionIdx.has(u.id)) {
     state.insertionIdx.set(u.id, state.insertionCounter++);
@@ -528,11 +532,11 @@ function buildDamageInput(
     critChance: stats.critChance,
     critMult: stats.critDamage,
     defenderResistances,
-    defenderArmor: Math.max(0, defender.stats.defense * (1 + armorBonus + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor),
+    defenderArmor: Math.max(0, defender.stats.defense * (1 + armorBonus + druidFormBonuses(defender).defensePct + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor),
     defenderMagicResist: defender.stats.magicResist,
     defenderDodge:
       effect.damageType === 'physical' || effect.damageType === 'thorns'
-        ? defender.stats.physDodge + (activeBurstOfSpeed(defender, state.simClockMs)?.physDodgePct ?? 0) +
+        ? defender.stats.physDodge + druidFormBonuses(defender).physDodgePct + (activeBurstOfSpeed(defender, state.simClockMs)?.physDodgePct ?? 0) +
           (defenderAura?.bonuses.physDodgePct ?? 0)
         : defender.stats.magicDodge + (defenderAura?.bonuses.magicDodgePct ?? 0),
     ...(defender.resistPenalty !== undefined ? { resistPenalty: defender.resistPenalty } : {})
@@ -859,6 +863,8 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
+  const form = druidFormForId(skill.id);
+  if (form) return druidFormRank(unit, form);
   if (BURST_OF_SPEED_IDS.some(id => id === skill.id)) return burstOfSpeedRank(unit);
   if (isStaticFieldId(skill.id)) return staticFieldRank(unit);
   const governed = governedActiveId(skill.id);
@@ -954,6 +960,11 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  const formEffect = skill.effects.find((effect): effect is BuffEffect => effect.kind === 'buff' && effect.druidForm !== undefined);
+  const form = druidFormForId(skillOrderId) ?? druidFormForId(skill.id) ?? formEffect?.druidForm;
+  if (form && (!matchesDruidForm(skill, form) || druidFormRank(unit, form) === 0 ||
+    selectedDruidForm(unit) !== form || activeDruidForm(unit)?.form === form || !Number.isFinite(unit.mana) ||
+    DRUID_SHAPE_IDS[form].some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   const burst = BURST_OF_SPEED_IDS.some(id => id === skillOrderId || id === skill.id) ||
     skill.effects.some(effect => effect.kind === 'buff' && effect.timedStatBuff === 'burst-of-speed');
   const ce = isCorpseExplosionId(skillOrderId) || isCorpseExplosionId(skill.id);
@@ -979,7 +990,7 @@ function canUseSkillForState(
   if (unit.level < skill.minLevel) return false;
   if (isPaidFrozenArmorSkill(skill)) {
     if (hasPaidFrozenArmor(unit)) return false;
-  } else if (!burst &&
+  } else if (!burst && !form &&
     skill.isBuff &&
     (unit.activeBuffIds.includes(skill.id) || activeBuffIdsForSkill(skill).some((id) => unit.activeBuffIds.includes(id)))
   ) return false;
@@ -1052,6 +1063,16 @@ function applyEffect(
     case 'buff': {
       const actor = state.units.get(actorId);
       if (!actor) return;
+      if (effect.druidForm !== undefined && matchesDruidForm(skill, effect.druidForm)) {
+        const next = refreshDruidForm(actor, effect.druidForm);
+        state.units.set(actorId, next);
+        emit(state, { kind: 'life-capacity', target: actorId, lifeMax: next.stats.lifeMax, life: next.life,
+          druidFormState: { ...(next.druidForm ? { druidForm: next.druidForm } : {}),
+            ...(next.druidFormLife ? { druidFormLife: next.druidFormLife } : {}) } });
+        emit(state, { kind: 'buff', target: actorId, buffId: effect.id, statusBacked: true });
+        observeStatuses(state, actorId);
+        break;
+      }
       if (matchesBurstOfSpeed(skill) && effect.timedStatBuff === 'burst-of-speed') {
         if (burstOfSpeedRank(actor) === 0 || activeBurstOfSpeed(actor, state.simClockMs)) return;
         const exactMarkers: readonly string[] = [...BURST_OF_SPEED_IDS, 'burst-of-speed'];
@@ -1874,6 +1895,15 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
       .filter(([, remaining]) => Number.isFinite(remaining) && remaining > 0)));
   }
   for (const u of state.units.values()) observeStatuses(state, u.id, true);
+  // Preserve the required complete initial-status prefix before capacity observations.
+  for (const input of [...snapshot.playerTeam, ...snapshot.enemyTeam]) {
+    const unit = state.units.get(input.id);
+    if (unit && (unit.druidForm !== undefined || input.druidForm !== undefined || input.druidFormLife !== undefined)) {
+      emit(state, { kind: 'life-capacity', target: unit.id, lifeMax: unit.stats.lifeMax, life: unit.life,
+        druidFormState: { ...(unit.druidForm ? { druidForm: unit.druidForm } : {}),
+          ...(unit.druidFormLife ? { druidFormLife: unit.druidFormLife } : {}) } });
+    }
+  }
   reconcileVigorLife(state);
   emitTurnBoundaries(state);
 

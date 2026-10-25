@@ -2768,7 +2768,326 @@
           }
         ]
       }
-    }],
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-druid-werewolf"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "minLevel",
+          "maxLevel",
+          "trigger",
+          "target",
+          "cooldown",
+          "scaling",
+          "cost",
+          "appliesStatus"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 1
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 60
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel",
+              "cooldownPerLevel",
+              "costPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "required": [
+                  "attackSpeedPct",
+                  "physDodgePct"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "attackSpeedPct": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                  },
+                  "physDodgePct": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                  }
+                }
+              },
+              "cooldownPerLevel": {
+                "type": "number",
+                "minimum": -1,
+                "maximum": 0
+              },
+              "costPerLevel": {
+                "type": "number",
+                "minimum": -1,
+                "maximum": 0
+              }
+            }
+          },
+          "passive": false,
+        "timedBuff": false,
+          "damage": false,
+          "damageType": false,
+          "summon": false,
+          "summonId": false,
+          "prerequisites": {
+            "type": "array",
+            "maxItems": 0
+          },
+          "cost": {
+            "type": "object",
+            "required": [
+              "mana"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "mana": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          },
+          "appliesStatus": {
+            "const": [
+              "werewolf"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-druid-werebear"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "minLevel",
+          "maxLevel",
+          "trigger",
+          "target",
+          "cooldown",
+          "scaling",
+          "cost",
+          "appliesStatus",
+          "prerequisites"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 6
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 60
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel",
+              "cooldownPerLevel",
+              "costPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "required": [
+                  "lifePct",
+                  "defensePct"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "lifePct": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                  },
+                  "defensePct": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                  }
+                }
+              },
+              "cooldownPerLevel": {
+                "type": "number",
+                "minimum": -1,
+                "maximum": 0
+              },
+              "costPerLevel": {
+                "type": "number",
+                "minimum": -1,
+                "maximum": 0
+              }
+            }
+          },
+          "passive": false,
+        "timedBuff": false,
+          "damage": false,
+          "damageType": false,
+          "summon": false,
+          "summonId": false,
+          "prerequisites": {
+            "const": [
+              "skills-druid-lycanthropy"
+            ]
+          },
+          "cost": {
+            "type": "object",
+            "required": [
+              "mana"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "mana": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          },
+          "appliesStatus": {
+            "const": [
+              "werebear"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-druid-lycanthropy"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "minLevel",
+          "maxLevel",
+          "trigger",
+          "target",
+          "cooldown",
+          "scaling"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 1
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "required": [
+                  "lifePct",
+                  "attackSpeedPct"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "lifePct": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                  },
+                  "attackSpeedPct": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            }
+          },
+          "passive": { "const": true },
+        "timedBuff": false,
+          "damage": false,
+          "damageType": false,
+          "summon": false,
+          "summonId": false,
+          "prerequisites": {
+            "type": "array",
+            "maxItems": 0
+          },
+          "cost": false,
+          "appliesStatus": false
+        }
+      }
+    }
+  ],
   "if": {
     "properties": { "id": { "const": "skills-necromancer-amplify-damage" } },
     "required": ["id"]

@@ -176,13 +176,17 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 
 ### 3.6 Druid (德鲁伊 — 元素+变形)
 
-#### Active Skills (6)
+Paid Werewolf/Werebear and Lycanthropy follow the [D05 form contract](../plans/decisions/D05-druid-shapeshifting-v1.md): first eligible combo form, mutually exclusive run-local carry, next-wave reconfiguration, no life refill. Werewolf uses authored speed/physical dodge (replacing vague damage prose); Werebear uses authored life/defense. Spirit/ally passives remain separate open work.
+
+#### Active Skills (8)
 | ID | Name (EN / ZH) | Element | Target | Base Dmg (L1) | CD | Mana | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
 | `druid.firestorm` | Firestorm / 火焰风暴 | Fire | All | 40–60 | 2 | 20 | Burn | AOE fire |
 | `druid.arctic_blast` | Arctic Blast / 极地风暴 | Cold | Cone | 50–70 | 2 | 25 | Chill | Cone cold |
 | `druid.tornado` | Tornado / 龙卷风 | Physical | Cone | 60–90 | 2 | 30 | — | Physical AOE |
 | `druid.summon_dire_wolf` | Summon Dire Wolf / 召唤狼 | — | Self | — | — | 20 | Summon | Existing authored cap: L1/2/3/6/20→1/2/3/4/8; see D06 v1b (no new tuning). |
+| `druid.werewolf` | Werewolf / 狼人变化 | — | Self | — | 4 | 5 | Form | Per rank: +2% attack speed, +0.5pp physical dodge; paid mutually exclusive run-local form; cap20 ([D05](../plans/decisions/D05-druid-shapeshifting-v1.md)). |
+| `druid.werebear` | Werebear / 熊人变化 | — | Self | — | 4 | 5 | Form | Per rank: +2.5% life capacity, +2% defense; unlock6, learned Lycanthropy, cap20; no healing. |
 | `druid.werewolf_maul` | Werewolf: Maul / 狼人：撕咬 | Physical | Single | 80–120 | 1 | 15 | Bleed | High single-target |
 | `druid.hurricane` | Hurricane / 飓风 | Cold | All | 70–100 | 4 | 50 | Chill | Ultimate cold AOE |
 
@@ -190,7 +194,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 | ID | Name (EN / ZH) | Effect | Notes |
 |---|---|---|---|
 | `druid.elemental_mastery` | Elemental Mastery / 元素精通 | Per rank: +3% fire/cold damage and +0.5pp magical dodge; unlock30/cap20; hero only, next-wave ([D05](../plans/decisions/D05-poison-elemental-masteries-v1.md)) | |
-| `druid.lycanthropy` | Lycanthropy / 变形术 | +50% max HP in werewolf form | |
+| `druid.lycanthropy` | Lycanthropy / 兽形变换 | Per rank: +3% max HP and +1% attack speed only in paid wolf form; unlock1/cap20 ([D05](../plans/decisions/D05-druid-shapeshifting-v1.md)) | |
 | `druid.heart_of_wolverine` | Heart of Wolverine / 狼獾之心 | +30% attack speed (aura) | |
 | `druid.oak_sage` | Oak Sage / 橡木智者 | +50% max HP (aura) | Unlocks L18 |
 

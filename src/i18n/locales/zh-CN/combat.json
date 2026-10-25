@@ -109,6 +109,8 @@
     "summon": "召唤",
     "death": "倒下",
     "status": {
+      "werewolf": "狼人变化",
+      "werebear": "熊人变化",
       "bone-armor": "骨甲：{{amount}}",
       "burst-of-speed": "速度爆发",
       "merc-inner-sight": "心眼",
@@ -135,6 +137,8 @@
       "mana-burn": "法力燃烧"
     },
     "buff": {
+      "werewolf": "狼人变化",
+      "werebear": "熊人变化",
       "burst-of-speed": "速度爆发",
       "might": "力量",
       "holy_fire": "圣火",

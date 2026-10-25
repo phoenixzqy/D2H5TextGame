@@ -118,7 +118,9 @@ export function applyEventToTeams(
     case 'life-capacity': {
       teams = patchUnit(teams, ev.target, (unit) => {
         const { vigorLife: _previous, ...base } = unit;
-        return { ...base, stats: { ...base.stats, lifeMax: ev.lifeMax }, life: ev.life,
+        const { druidForm: _form, druidFormLife: _capacity, ...human } = base;
+        return { ...(ev.druidFormState !== undefined ? { ...human, ...ev.druidFormState } : base),
+          stats: { ...base.stats, lifeMax: ev.lifeMax }, life: ev.life,
           ...(ev.vigorBaseLifeMax !== undefined
             ? { vigorLife: { baseLifeMax: ev.vigorBaseLifeMax, appliedLifeMax: ev.lifeMax } } : {}) };
       });

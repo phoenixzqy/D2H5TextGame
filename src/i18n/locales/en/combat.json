@@ -109,6 +109,8 @@
     "summon": "Summon",
     "death": "Down",
     "status": {
+      "werewolf": "Werewolf",
+      "werebear": "Werebear",
       "bone-armor": "Bone Armor: {{amount}}",
       "burst-of-speed": "Burst of Speed",
       "merc-inner-sight": "Inner Sight",
@@ -135,6 +137,8 @@
       "mana-burn": "Mana Burn"
     },
     "buff": {
+      "werewolf": "Werewolf",
+      "werebear": "Werebear",
       "burst-of-speed": "Burst of Speed",
       "might": "Might",
       "holy_fire": "Holy Fire",

@@ -589,7 +589,7 @@
     },
     "lycanthropy": {
       "name": "Lycanthropy",
-      "desc": "Increases max HP by 50% while in werewolf form."
+      "desc": "Automatic only while in paid werewolf form: gain {{life}}% maximum life and {{speed}}% attack speed per allocated rank, added to Werewolf bonuses. No effect in human or bear form. Druid level {{level}}, maximum {{cap}} ranks. Changes apply next wave; increased life capacity never heals you."
     },
     "heart-of-wolverine": {
       "name": "Heart of Wolverine",
@@ -625,11 +625,11 @@
     },
     "werewolf": {
       "name": "Werewolf",
-      "desc": "Transforms into a werewolf, gaining attack speed and damage."
+      "desc": "Paid cast: transform into a werewolf, gaining {{speed}}% attack speed and {{dodge}} percentage point physical dodge per rank. Druid level {{level}}, maximum {{cap}} ranks. The first eligible form in your active priority is chosen; it carries between waves without recasting. Changing the chosen form requires another paid cast. Learning, removing or reordering forms applies next wave. Increased life capacity never heals you."
     },
     "werebear": {
       "name": "Werebear",
-      "desc": "Transforms into a bear, gaining life and defense."
+      "desc": "Paid cast: transform into a bear, gaining {{life}}% maximum life and {{defense}}% defense per rank. Requires learned Lycanthropy and Druid level {{level}}, maximum {{cap}} ranks. The first eligible form in your active priority is chosen; forms cannot stack and carry between waves without recasting. Changes apply next wave; changing form requires another paid cast. Increased life capacity never heals you. Lycanthropy bonuses apply only in wolf form."
     },
     "feral-rage": {
       "name": "Feral Rage",

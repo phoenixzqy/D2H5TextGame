@@ -15,6 +15,7 @@ import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
 import i18n from '@/i18n';
 import type { BattleEvent } from '@/engine/combat/combat';
 import { rebaseStatusClock } from '@/engine/combat/status';
+import { composeDruidShapeshifting, refreshDruidForm, withoutDruidFormLife } from '@/engine/skills/druid-shapeshifting';
 import { composeBurstOfSpeedRank } from '@/engine/skills/burst-of-speed';
 import type { CombatUnit, MonsterTier } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
@@ -247,6 +248,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     coldResistanceReductionPct: composeColdMastery(player),
     staticFieldRank: composeStaticField(player),
     ...(energyShield.rank > 0 ? { energyShieldRank: energyShield.rank } : {}),
+    ...(player.class === 'druid' ? { druidShapeRanks: composeDruidShapeshifting(player) } : {}),
     burstOfSpeedRank: composeBurstOfSpeedRank(player),
     manaRegenCarry: 0,
     manaRegenCompensation: 0,
@@ -1141,7 +1143,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const poisonExplosion = currentPlayer?.id === run.playerUnit.id
     ? composePoisonExplosion(currentPlayer) : undefined;
   const playerTeam = carryPlayerTeam.map(carried => {
-    const unit = withoutVigorLife(carried);
+    const unit = withoutVigorLife(withoutDruidFormLife(carried));
     if (freshMerc && unit.kind === 'merc' && unit.id === freshMerc.id) {
       // Equipment is authoritative at this wave boundary; current recording and
       // carried HP/MP remain untouched. Never project the bearer bonus onto summons.
@@ -1159,8 +1161,10 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
     const capped = mana >= fresh.stats.manaMax;
-    const refreshed = { ...unit, level: fresh.level, stats: fresh.stats,
-      life: Math.min(unit.life, vigorLifeMax(fresh.stats.lifeMax, statAura?.bonuses.lifePct ?? 0)), mana,
+    const refreshed = refreshDruidForm({ ...unit, level: fresh.level, stats: fresh.stats,
+      life: unit.druidForm !== undefined ? unit.life : Math.min(unit.life, vigorLifeMax(fresh.stats.lifeMax, statAura?.bonuses.lifePct ?? 0)),
+      mana, ...((unit.druidShapeRanks !== undefined || fresh.druidShapeRanks !== undefined)
+        ? { druidShapeRanks: fresh.druidShapeRanks } : {}),
       manaRegenPerSecond: fresh.manaRegenPerSecond ?? 0,
       manaRegenBaselinePerSecond: fresh.manaRegenBaselinePerSecond ?? 0,
       increasedDamagePct: fresh.increasedDamagePct ?? { fire: 0 },
@@ -1177,7 +1181,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       skillLevels: fresh.skillLevels ?? {},
       governedActiveRanks: fresh.governedActiveRanks,
       equippedWeapon: fresh.equippedWeapon ?? {},
-      summonGridPositions: fresh.summonGridPositions ?? [] };
+      summonGridPositions: fresh.summonGridPositions ?? [] });
     if (resolveFrozenArmorRank(fresh.skillLevels) > 0) return refreshed;
     // Invalidate only this new input; replay retains the original paid baseline.
     const { frozenArmor, ...unarmored } = refreshed;

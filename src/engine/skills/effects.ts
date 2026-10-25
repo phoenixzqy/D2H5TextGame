@@ -68,6 +68,8 @@ export interface BuffEffect {
   readonly frozenArmor?: true;
   /** Exact paid finite stat-buff consumer; bare markers never establish potency. */
   readonly timedStatBuff?: 'burst-of-speed';
+  /** Paid mutually exclusive native Druid transformation. */
+  readonly druidForm?: import('./druid-shapeshifting').DruidForm;
 }
 
 /** Debuff primitive (applies a status to enemies, no damage). */

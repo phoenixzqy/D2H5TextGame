@@ -55,6 +55,7 @@ import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/eng
 import { composeSummonPassives, SUMMON_PASSIVE_IDENTITIES, SUMMON_PASSIVE_DEFINITIONS } from '@/engine/skills/summon-passives';
 import { ASSASSIN_WEAPON_PASSIVE_DEFINITIONS, ASSASSIN_WEAPON_PASSIVE_IDENTITIES } from '@/engine/skills/assassin-weapon-passives';
 import { ASSASSIN_SHADOW_DEFINITIONS, ASSASSIN_SHADOW_IDENTITIES } from '@/engine/skills/assassin-shadow';
+import { DRUID_SHAPE_DEFINITIONS, DRUID_SHAPE_IDS, druidFormForId, resolveDruidShapeRank, type DruidShapeKey } from '@/engine/skills/druid-shapeshifting';
 import { BURST_OF_SPEED_DEFINITION, BURST_OF_SPEED_IDS } from '@/engine/skills/burst-of-speed';
 import { BONE_ARMOR_DEFINITION, BONE_ARMOR_IDS } from '@/engine/skills/bone-armor';
 import { ENERGY_SHIELD_DEFINITION, ENERGY_SHIELD_IDS, resolveEnergyShieldRank } from '@/engine/skills/energy-shield';
@@ -146,6 +147,13 @@ export function SkillsScreen() {
         const level = 'level' in skill && typeof skill.level === 'number' ? skill.level : 1;
         addAllocatedLevelAlias(map, skill.id, level);
       });
+    }
+    for (const key of Object.keys(DRUID_SHAPE_IDS) as DruidShapeKey[]) {
+      const rank = resolveDruidShapeRank(key, levels);
+      for (const alias of DRUID_SHAPE_IDS[key]) {
+        if (rank > 0) map.set(alias, rank);
+        else map.delete(alias);
+      }
     }
     const mightRank = resolveMightRank(levels);
     for (const alias of ['paladin.might', 'skills-paladin-might']) {
@@ -285,6 +293,12 @@ export function SkillsScreen() {
 
   const saveComboOrder = useCallback((order: readonly string[]): void => {
     setComboOrder(order.filter(Boolean));
+    // Keep a paid form and its current recording intact; form priorities take effect next wave.
+    if (playerClass === 'druid' && [...(player?.comboOrder ?? []), ...order]
+      .some(id => druidFormForId(id) !== undefined)) {
+      setReplayRefused(false);
+      return;
+    }
     try {
       refreshActivePlayerCombatConfig({ replayCurrentWave: true });
       setReplayRefused(false);
@@ -292,7 +306,7 @@ export function SkillsScreen() {
       if (!(error instanceof WaveGuardError) && !(error instanceof RecordedWaveAccessError)) throw error;
       setReplayRefused(true);
     }
-  }, [setComboOrder]);
+  }, [playerClass, player?.comboOrder, setComboOrder]);
 
   useEffect(() => {
     if (!player) return;
@@ -870,6 +884,7 @@ function StatSection({
                 id === AMPLIFY_DAMAGE_DEFINITION.canonicalStatusId || id === AMPLIFY_DAMAGE_DEFINITION.legacyStatusId
                   ? t('necromancer.amplify-damage.name')
                   : id === 'burst-of-speed' ? t('assassin.burst-of-speed.name')
+                  : id === 'werewolf' || id === 'werebear' ? t('druid.' + id + '.name')
                   : t(`damage-types:status.${id}`, { defaultValue: humanizeId(id) })).join(', ')}
             />
           ) : null}
@@ -1218,6 +1233,14 @@ function dynamicDescription(
       burnMaxStacks: STATUS_DEFAULTS.ignite.maxStacks,
       chillSlowPct: (1 - CHILL_DEFINITION.attackSpeedMultiplier) * 100,
       enemyResistReductionPct: definition.enemyResistReductionPct });
+  }
+  for (const key of Object.keys(DRUID_SHAPE_IDS) as DruidShapeKey[]) {
+    if (skill.id === DRUID_SHAPE_IDS[key][0]) {
+      const d = DRUID_SHAPE_DEFINITIONS[key];
+      return t('druid.' + key + '.desc', { life: d.perRank.lifePct * 100,
+        speed: d.perRank.attackSpeedPct * 100, dodge: d.perRank.physDodgePct * 100,
+        defense: d.perRank.defensePct * 100, level: d.requiredLevel, cap: d.maxRank });
+    }
   }
   if (skill.id === ENERGY_SHIELD_IDS[0]) {
     const d = ENERGY_SHIELD_DEFINITION;
