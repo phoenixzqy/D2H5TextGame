@@ -79,6 +79,8 @@
     "descriptionComposite": "One strike deals {{fireMin}} ~ {{fireMax}} Fire, {{coldMin}} ~ {{coldMax}} Cold and {{lightningMin}} ~ {{lightningMax}} Lightning base damage. The components share one hit and critical roll, with separate modifiers and mitigation. Fire applies Burn, Cold applies Chill for {{chillSeconds}} s and Lightning applies Paralyze for {{paralyzeSeconds}} s; repeated Paralyze can fail. A miss applies none.",
     "descriptionComponentBurn": "Burn uses only the Fire component after mitigation: {{percentOfHit}}% per second per stack (rounded down, minimum {{minDps}}) for {{durationSeconds}} s, up to {{maxStacks}} stacks. Refreshing adds a stack and extends duration; an existing damaging Burn keeps its original rate.",
     "strikesPerCast": "Attack attempts per cast",
+    "criticalBonus": "Critical bonus per attempt",
+    "criticalBonusValue": "+{{points}} percentage points",
     "periodicRate": "{{status}} per stack",
     "periodicDuration": "{{status}} duration",
     "periodicMaxStacks": "Maximum {{status}} stacks",
@@ -382,7 +384,7 @@
     },
     "dragon-claw": {
       "name": "Dragon Claw",
-      "desc": "A pair of swift claw strikes against a single target with bonus crit chance."
+      "desc": "Up to {{strikes}} independent Physical claw attempts against the original target, {{min}} ~ {{max}} base damage per attempt, with +{{critical}} percentage points of critical chance per attempt. Misses consume attempts; stop if the original target or caster dies. Pay 20 MP and start the 1 s cooldown once per cast. Defense, resistance, absorption and reflection apply to each attempt; weapon Attack adds no damage."
     },
     "phoenix-strike": {
       "name": "Phoenix Strike",

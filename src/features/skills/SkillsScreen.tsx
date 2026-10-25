@@ -949,6 +949,9 @@ function StatSection({
           {stats.strikesPerCast !== undefined ? (
             <StatLine label={t('details.strikesPerCast')} value={String(stats.strikesPerCast)} />
           ) : null}
+          {stats.criticalBonusPoints !== undefined ? (
+            <StatLine label={t('details.criticalBonus')} value={t('details.criticalBonusValue', { points: stats.criticalBonusPoints })} />
+          ) : null}
           {stats.statuses.length > 0 ? (
             <StatLine
               label={t('details.statusEffects')}
@@ -1545,6 +1548,10 @@ function dynamicDescription(
   }
   if (firstDamage && skill.id === 'skills-assassin-dragon-talon' && stats.strikesPerCast !== undefined) {
     return t('assassin.dragon-talon.desc', { min: firstDamage.min, max: firstDamage.max, strikes: stats.strikesPerCast });
+  }
+  if (firstDamage && skill.id === 'skills-assassin-dragon-claw' && stats.strikesPerCast !== undefined && stats.criticalBonusPoints !== undefined) {
+    return t('assassin.dragon-claw.desc', { min: firstDamage.min, max: firstDamage.max,
+      strikes: stats.strikesPerCast, critical: stats.criticalBonusPoints });
   }
   if (firstDamage && stats.areaShape === 'cone-2') {
     return t('assassin.fire-blast.desc', { min: firstDamage.min, max: firstDamage.max });

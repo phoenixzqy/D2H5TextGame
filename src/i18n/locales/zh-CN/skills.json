@@ -79,6 +79,8 @@
     "descriptionComposite": "一次打击造成 {{fireMin}} ~ {{fireMax}} 点火焰、{{coldMin}} ~ {{coldMax}} 点冰冷及{{lightningMin}} ~ {{lightningMax}} 点闪电基础伤害。三个分量共用一次命中与暴击判定，分别计算增益和减伤。火焰附加燃烧，冰冷附加冰缓 {{chillSeconds}} 秒，闪电附加麻痹 {{paralyzeSeconds}} 秒；重复麻痹可能失败。未命中不附加任何效果。",
     "descriptionComponentBurn": "燃烧仅按减伤后的火焰分量计算：每层每秒造成其{{percentOfHit}}%伤害（向下取整，最低{{minDps}}点），持续{{durationSeconds}} 秒，最多{{maxStacks}}层。再次施加会增加层数并延长持续时间；已有伤害的燃烧保留原伤害率。",
     "strikesPerCast": "每次施放攻击次数",
+    "criticalBonus": "每次尝试暴击率加成",
+    "criticalBonusValue": "+{{points}}个百分点",
     "periodicRate": "每层{{status}}",
     "periodicDuration": "{{status}}持续",
     "periodicMaxStacks": "{{status}}层数上限",
@@ -382,7 +384,7 @@
     },
     "dragon-claw": {
       "name": "龙爪",
-      "desc": "对单体目标连续两次爪击，附加额外暴击率。"
+      "desc": "对原目标最多{{strikes}}次独立物理爪击尝试，每次尝试造成{{min}} ~ {{max}}点基础伤害，每次尝试增加{{critical}}个百分点暴击率。未命中也消耗次数；原目标或施法者死亡即停止。每次施放仅支付20点法力并触发一次1秒冷却。每次尝试分别结算防御、抗性、吸收与反伤；武器攻击不增加伤害。"
     },
     "phoenix-strike": {
       "name": "凤凰攻击",
