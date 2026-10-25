@@ -1,0 +1,685 @@
+{
+  "roots": [
+    1828354,
+    1829096,
+    1829307,
+    1829719,
+    1829930,
+    1830873,
+    1831487,
+    1831629,
+    1832204,
+    1832968,
+    1833264,
+    1833363,
+    1833469,
+    1833577,
+    1833772,
+    1833773,
+    1833774,
+    1834305,
+    1835464,
+    1835610,
+    1837359,
+    1838735,
+    1841376,
+    1841476,
+    1841503,
+    1841544,
+    1841545,
+    1841553,
+    1847932,
+    1852719,
+    1852798,
+    1852799,
+    1853909,
+    1857743,
+    1861770,
+    1861782,
+    1861919,
+    1861920,
+    1863100
+  ],
+  "processes": [
+    {
+      "pid": 1828354,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1829096,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1829307,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1829719,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1829930,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1830873,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1831487,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1831629,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1832204,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1832968,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1833264,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1833363,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1833469,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1833577,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1833772,
+      "parent": 1833768,
+      "startTicks": "87719373",
+      "command": "npm run test:engine                                                      "
+    },
+    {
+      "pid": 1833773,
+      "parent": 1833769,
+      "startTicks": "87719374",
+      "command": "npm run typecheck                                                      "
+    },
+    {
+      "pid": 1833774,
+      "parent": 1833770,
+      "startTicks": "87719374",
+      "command": "npm run lint                                                      "
+    },
+    {
+      "pid": 1833807,
+      "parent": 1833773,
+      "startTicks": "87719388",
+      "command": "sh -c tsc --noEmit "
+    },
+    {
+      "pid": 1833808,
+      "parent": 1833807,
+      "startTicks": "87719388",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.bin/tsc --noEmit "
+    },
+    {
+      "pid": 1833809,
+      "parent": 1833772,
+      "startTicks": "87719388",
+      "command": "sh -c vitest run --project engine "
+    },
+    {
+      "pid": 1833810,
+      "parent": 1833809,
+      "startTicks": "87719388",
+      "command": "node (vitest)                                                                                                                      "
+    },
+    {
+      "pid": 1833811,
+      "parent": 1833774,
+      "startTicks": "87719388",
+      "command": "sh -c node scripts/check-engine-purity.mjs && eslint . --ext .ts,.tsx --max-warnings=0 "
+    },
+    {
+      "pid": 1833831,
+      "parent": 1833811,
+      "startTicks": "87719396",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.bin/eslint . --ext .ts,.tsx --max-warnings=0 "
+    },
+    {
+      "pid": 1833862,
+      "parent": 1833810,
+      "startTicks": "87719431",
+      "command": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@esbuild/linux-x64/bin/esbuild --service=0.21.5 --ping "
+    },
+    {
+      "pid": 1834305,
+      "parent": 1834304,
+      "startTicks": "87721290",
+      "command": "node node_modules/.bin/vite build --outDir /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/build "
+    },
+    {
+      "pid": 1834313,
+      "parent": 1834305,
+      "startTicks": "87721349",
+      "command": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@esbuild/linux-x64/bin/esbuild --service=0.21.5 --ping "
+    },
+    {
+      "pid": 1835464,
+      "parent": 316587,
+      "startTicks": "87725272",
+      "command": "python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/serve.py "
+    },
+    {
+      "pid": 1835610,
+      "parent": 1835596,
+      "startTicks": "87725398",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs "
+    },
+    {
+      "pid": 1835648,
+      "parent": 1835610,
+      "startTicks": "87725454",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-Ihu4iN --remote-debugging-pipe --no-startup-window "
+    },
+    {
+      "pid": 1835650,
+      "parent": 1835648,
+      "startTicks": "87725461",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-zygote-sandbox --no-sandbox --headless "
+    },
+    {
+      "pid": 1835651,
+      "parent": 1835648,
+      "startTicks": "87725461",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-sandbox --headless "
+    },
+    {
+      "pid": 1835666,
+      "parent": 1835650,
+      "startTicks": "87725466",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=gpu-process --no-sandbox --disable-dev-shm-usage --disable-breakpad --headless --ozone-platform=headless --use-angle=swiftshader-webgl --enable-unsafe-swiftshader --gpu-preferences=UAAAAAAAAAAgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAYAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --use-gl=angle --shared-files --field-trial-handle=3,i,3544827213665237443,8915595216953596234,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,3321486819325673677,5155198721539719539,4 --trace-process-track-uuid=3190708988185955192 "
+    },
+    {
+      "pid": 1835668,
+      "parent": 1835648,
+      "startTicks": "87725467",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --no-sandbox --disable-dev-shm-usage --use-angle=swiftshader-webgl --use-gl=angle --mute-audio --headless=old --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,3544827213665237443,8915595216953596234,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,3321486819325673677,5155198721539719539,4 --trace-process-track-uuid=3190708989122997041 "
+    },
+    {
+      "pid": 1835685,
+      "parent": 1835651,
+      "startTicks": "87725474",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=renderer --headless=old --no-sandbox --disable-dev-shm-usage --disable-back-forward-cache --disable-background-timer-throttling --disable-breakpad --enable-automation --force-color-profile=srgb --remote-debugging-pipe --allow-pre-commit-input --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --ozone-platform=headless --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=4 --time-ticks-at-unix-epoch=-1792086095652567 --launch-time-ticks=877254741598 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,3544827213665237443,8915595216953596234,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,3321486819325673677,5155198721539719539,4 --trace-process-track-uuid=3190708990060038890 "
+    },
+    {
+      "pid": 1836030,
+      "parent": 1835651,
+      "startTicks": "87725998",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=renderer --headless=old --no-sandbox --disable-dev-shm-usage --disable-back-forward-cache --disable-background-timer-throttling --disable-breakpad --enable-automation --force-color-profile=srgb --remote-debugging-pipe --allow-pre-commit-input --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --ozone-platform=headless --disable-gpu-compositing --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1792086095652567 --launch-time-ticks=877259979602 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,3544827213665237443,8915595216953596234,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,3321486819325673677,5155198721539719539,4 --trace-process-track-uuid=3190708990997080739 "
+    },
+    {
+      "pid": 1836773,
+      "parent": 1833810,
+      "startTicks": "87726784",
+      "command": "/bin/sh -c cat /proc/cpuinfo | grep \"core id\" | sort | uniq | wc -l "
+    },
+    {
+      "pid": 1836775,
+      "parent": 1836773,
+      "startTicks": "87726786",
+      "command": ""
+    },
+    {
+      "pid": 1836776,
+      "parent": 1836773,
+      "startTicks": "87726786",
+      "command": ""
+    },
+    {
+      "pid": 1836777,
+      "parent": 1836773,
+      "startTicks": "87726786",
+      "command": "uniq "
+    },
+    {
+      "pid": 1836779,
+      "parent": 1836773,
+      "startTicks": "87726786",
+      "command": "wc -l "
+    },
+    {
+      "pid": 1837359,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1838735,
+      "parent": 1838727,
+      "startTicks": "87731220",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs "
+    },
+    {
+      "pid": 1838777,
+      "parent": 1838735,
+      "startTicks": "87731277",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-wMlUo6 --remote-debugging-pipe --no-startup-window "
+    },
+    {
+      "pid": 1838779,
+      "parent": 1838777,
+      "startTicks": "87731283",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-zygote-sandbox --no-sandbox --headless "
+    },
+    {
+      "pid": 1838780,
+      "parent": 1838777,
+      "startTicks": "87731283",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-sandbox --headless "
+    },
+    {
+      "pid": 1838795,
+      "parent": 1838779,
+      "startTicks": "87731288",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=gpu-process --no-sandbox --disable-dev-shm-usage --disable-breakpad --headless --ozone-platform=headless --use-angle=swiftshader-webgl --enable-unsafe-swiftshader --gpu-preferences=UAAAAAAAAAAgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAYAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --use-gl=angle --shared-files --field-trial-handle=3,i,12942156450664513042,3079894639367545064,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,12357078160790355651,17477105928740371982,4 --trace-process-track-uuid=3190708988185955192 "
+    },
+    {
+      "pid": 1838798,
+      "parent": 1838777,
+      "startTicks": "87731289",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --no-sandbox --disable-dev-shm-usage --use-angle=swiftshader-webgl --use-gl=angle --mute-audio --headless=old --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12942156450664513042,3079894639367545064,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,12357078160790355651,17477105928740371982,4 --trace-process-track-uuid=3190708989122997041 "
+    },
+    {
+      "pid": 1838815,
+      "parent": 1838780,
+      "startTicks": "87731294",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=renderer --headless=old --no-sandbox --disable-dev-shm-usage --disable-back-forward-cache --disable-background-timer-throttling --disable-breakpad --enable-automation --force-color-profile=srgb --remote-debugging-pipe --allow-pre-commit-input --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --ozone-platform=headless --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=4 --time-ticks-at-unix-epoch=-1792086095652568 --launch-time-ticks=877312948161 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12942156450664513042,3079894639367545064,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,12357078160790355651,17477105928740371982,4 --trace-process-track-uuid=3190708990060038890 "
+    },
+    {
+      "pid": 1840642,
+      "parent": 1838780,
+      "startTicks": "87733335",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=renderer --headless=old --no-sandbox --disable-dev-shm-usage --disable-back-forward-cache --disable-background-timer-throttling --disable-breakpad --enable-automation --force-color-profile=srgb --remote-debugging-pipe --allow-pre-commit-input --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --ozone-platform=headless --disable-gpu-compositing --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1792086095652568 --launch-time-ticks=877333356983 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,12942156450664513042,3079894639367545064,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,12357078160790355651,17477105928740371982,4 --trace-process-track-uuid=3190708992871164437 "
+    },
+    {
+      "pid": 1841376,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1841476,
+      "parent": 1841473,
+      "startTicks": "87738650",
+      "command": "npm run typecheck                                                      "
+    },
+    {
+      "pid": 1841487,
+      "parent": 1841476,
+      "startTicks": "87738665",
+      "command": "sh -c tsc --noEmit "
+    },
+    {
+      "pid": 1841488,
+      "parent": 1841487,
+      "startTicks": "87738665",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.bin/tsc --noEmit "
+    },
+    {
+      "pid": 1841503,
+      "parent": 1841502,
+      "startTicks": "87739784",
+      "command": "node node_modules/.bin/eslint src/engine/combat/damage-masteries.test.ts src/engine/combat/lightning-mastery.test.ts src/engine/combat/runeword-actives.test.ts --max-warnings=0 "
+    },
+    {
+      "pid": 1841544,
+      "parent": 1841542,
+      "startTicks": "87740704",
+      "command": "npm run test:engine                                                      "
+    },
+    {
+      "pid": 1841545,
+      "parent": 1841543,
+      "startTicks": "87740705",
+      "command": "python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser-groups.py "
+    },
+    {
+      "pid": 1841552,
+      "parent": 1841545,
+      "startTicks": "87740708",
+      "command": "/home/felixzhao/.local/bin/python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/run.py browser-final-en-360 node /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs "
+    },
+    {
+      "pid": 1841553,
+      "parent": 1841552,
+      "startTicks": "87740712",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs "
+    },
+    {
+      "pid": 1841564,
+      "parent": 1841544,
+      "startTicks": "87740718",
+      "command": "sh -c vitest run --project engine "
+    },
+    {
+      "pid": 1841565,
+      "parent": 1841564,
+      "startTicks": "87740719",
+      "command": "node (vitest)                                                                                                                      "
+    },
+    {
+      "pid": 1841592,
+      "parent": 1841565,
+      "startTicks": "87740757",
+      "command": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@esbuild/linux-x64/bin/esbuild --service=0.21.5 --ping "
+    },
+    {
+      "pid": 1841602,
+      "parent": 1841553,
+      "startTicks": "87740762",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-HadEd6 --remote-debugging-pipe --no-startup-window "
+    },
+    {
+      "pid": 1841604,
+      "parent": 1841602,
+      "startTicks": "87740766",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-zygote-sandbox --no-sandbox --headless "
+    },
+    {
+      "pid": 1841605,
+      "parent": 1841602,
+      "startTicks": "87740766",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-sandbox --headless "
+    },
+    {
+      "pid": 1841620,
+      "parent": 1841604,
+      "startTicks": "87740770",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=gpu-process --no-sandbox --disable-dev-shm-usage --disable-breakpad --headless --ozone-platform=headless --use-angle=swiftshader-webgl --enable-unsafe-swiftshader --gpu-preferences=UAAAAAAAAAAgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAYAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --use-gl=angle --shared-files --field-trial-handle=3,i,9936943442380220491,11441043220563162997,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,16426229080901776181,14199920385063580398,4 --trace-process-track-uuid=3190708988185955192 "
+    },
+    {
+      "pid": 1841622,
+      "parent": 1841602,
+      "startTicks": "87740771",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --no-sandbox --disable-dev-shm-usage --use-angle=swiftshader-webgl --use-gl=angle --mute-audio --headless=old --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,9936943442380220491,11441043220563162997,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,16426229080901776181,14199920385063580398,4 --trace-process-track-uuid=3190708989122997041 "
+    },
+    {
+      "pid": 1841639,
+      "parent": 1841605,
+      "startTicks": "87740775",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=renderer --headless=old --no-sandbox --disable-dev-shm-usage --disable-back-forward-cache --disable-background-timer-throttling --disable-breakpad --enable-automation --force-color-profile=srgb --remote-debugging-pipe --allow-pre-commit-input --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --ozone-platform=headless --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=4 --time-ticks-at-unix-epoch=-1792086095652568 --launch-time-ticks=877407756073 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,9936943442380220491,11441043220563162997,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,16426229080901776181,14199920385063580398,4 --trace-process-track-uuid=3190708990060038890 "
+    },
+    {
+      "pid": 1842873,
+      "parent": 1841605,
+      "startTicks": "87742576",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=renderer --headless=old --no-sandbox --disable-dev-shm-usage --disable-back-forward-cache --disable-background-timer-throttling --disable-breakpad --enable-automation --force-color-profile=srgb --remote-debugging-pipe --allow-pre-commit-input --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --ozone-platform=headless --disable-gpu-compositing --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1792086095652568 --launch-time-ticks=877425766870 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,9936943442380220491,11441043220563162997,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,16426229080901776181,14199920385063580398,4 --trace-process-track-uuid=3190708992871164437 "
+    },
+    {
+      "pid": 1847931,
+      "parent": 1841545,
+      "startTicks": "87749183",
+      "command": "/home/felixzhao/.local/bin/python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/run.py browser-final-en-1280 node /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs "
+    },
+    {
+      "pid": 1847932,
+      "parent": 1847931,
+      "startTicks": "87749187",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs "
+    },
+    {
+      "pid": 1847974,
+      "parent": 1847932,
+      "startTicks": "87749239",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-W7JzCx --remote-debugging-pipe --no-startup-window "
+    },
+    {
+      "pid": 1847976,
+      "parent": 1847974,
+      "startTicks": "87749244",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-zygote-sandbox --no-sandbox --headless "
+    },
+    {
+      "pid": 1847977,
+      "parent": 1847974,
+      "startTicks": "87749244",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-sandbox --headless "
+    },
+    {
+      "pid": 1847991,
+      "parent": 1847976,
+      "startTicks": "87749249",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=gpu-process --no-sandbox --disable-dev-shm-usage --disable-breakpad --headless --ozone-platform=headless --use-angle=swiftshader-webgl --enable-unsafe-swiftshader --gpu-preferences=UAAAAAAAAAAgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAYAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --use-gl=angle --shared-files --field-trial-handle=3,i,2368650220523793722,8004092561908674692,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,15380049422113711419,5618190880680828471,4 --trace-process-track-uuid=3190708988185955192 "
+    },
+    {
+      "pid": 1847994,
+      "parent": 1847974,
+      "startTicks": "87749250",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --no-sandbox --disable-dev-shm-usage --use-angle=swiftshader-webgl --use-gl=angle --mute-audio --headless=old --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,2368650220523793722,8004092561908674692,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,15380049422113711419,5618190880680828471,4 --trace-process-track-uuid=3190708989122997041 "
+    },
+    {
+      "pid": 1851808,
+      "parent": 1847977,
+      "startTicks": "87753647",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=renderer --headless=old --no-sandbox --disable-dev-shm-usage --disable-back-forward-cache --disable-background-timer-throttling --disable-breakpad --enable-automation --force-color-profile=srgb --remote-debugging-pipe --allow-pre-commit-input --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --ozone-platform=headless --disable-gpu-compositing --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=12 --time-ticks-at-unix-epoch=-1792086095652568 --launch-time-ticks=877536471752 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,2368650220523793722,8004092561908674692,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,15380049422113711419,5618190880680828471,4 --trace-process-track-uuid=3190708997556373682 "
+    },
+    {
+      "pid": 1852719,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1852798,
+      "parent": 1852796,
+      "startTicks": "87755072",
+      "command": "npm run lint                                                      "
+    },
+    {
+      "pid": 1852799,
+      "parent": 1852797,
+      "startTicks": "87755073",
+      "command": "npm run typecheck                                                      "
+    },
+    {
+      "pid": 1852820,
+      "parent": 1852798,
+      "startTicks": "87755087",
+      "command": "sh -c node scripts/check-engine-purity.mjs && eslint . --ext .ts,.tsx --max-warnings=0 "
+    },
+    {
+      "pid": 1852822,
+      "parent": 1852799,
+      "startTicks": "87755088",
+      "command": "sh -c tsc --noEmit "
+    },
+    {
+      "pid": 1852823,
+      "parent": 1852822,
+      "startTicks": "87755088",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.bin/tsc --noEmit "
+    },
+    {
+      "pid": 1852836,
+      "parent": 1852820,
+      "startTicks": "87755094",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.bin/eslint . --ext .ts,.tsx --max-warnings=0 "
+    },
+    {
+      "pid": 1852896,
+      "parent": 1847977,
+      "startTicks": "87755566",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=renderer --headless=old --no-sandbox --disable-dev-shm-usage --disable-back-forward-cache --disable-background-timer-throttling --disable-breakpad --enable-automation --force-color-profile=srgb --remote-debugging-pipe --allow-pre-commit-input --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --ozone-platform=headless --disable-gpu-compositing --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=16 --time-ticks-at-unix-epoch=-1792086095652568 --launch-time-ticks=877555665901 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,2368650220523793722,8004092561908674692,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,15380049422113711419,5618190880680828471,4 --trace-process-track-uuid=3190709001304541078 "
+    },
+    {
+      "pid": 1853876,
+      "parent": 1847977,
+      "startTicks": "87757300",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=renderer --headless=old --no-sandbox --disable-dev-shm-usage --disable-back-forward-cache --disable-background-timer-throttling --disable-breakpad --enable-automation --force-color-profile=srgb --remote-debugging-pipe --allow-pre-commit-input --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --ozone-platform=headless --disable-gpu-compositing --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=19 --time-ticks-at-unix-epoch=-1792086095652568 --launch-time-ticks=877573003475 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,2368650220523793722,8004092561908674692,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,15380049422113711419,5618190880680828471,4 --trace-process-track-uuid=3190709004115666625 "
+    },
+    {
+      "pid": 1853908,
+      "parent": 1841545,
+      "startTicks": "87757637",
+      "command": "/home/felixzhao/.local/bin/python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/run.py browser-final-zh-CN-360 node /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs "
+    },
+    {
+      "pid": 1853909,
+      "parent": 1853908,
+      "startTicks": "87757640",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs "
+    },
+    {
+      "pid": 1853928,
+      "parent": 1853909,
+      "startTicks": "87757684",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-sBGmZF --remote-debugging-pipe --no-startup-window "
+    },
+    {
+      "pid": 1853930,
+      "parent": 1853928,
+      "startTicks": "87757687",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-zygote-sandbox --no-sandbox --headless "
+    },
+    {
+      "pid": 1853931,
+      "parent": 1853928,
+      "startTicks": "87757687",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-sandbox --headless "
+    },
+    {
+      "pid": 1853946,
+      "parent": 1853930,
+      "startTicks": "87757691",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=gpu-process --no-sandbox --disable-dev-shm-usage --disable-breakpad --headless --ozone-platform=headless --use-angle=swiftshader-webgl --enable-unsafe-swiftshader --gpu-preferences=UAAAAAAAAAAgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAYAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --use-gl=angle --shared-files --field-trial-handle=3,i,11390625393730600255,11713136725942205651,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,1004874581434749911,24305075290022660,4 --trace-process-track-uuid=3190708988185955192 "
+    },
+    {
+      "pid": 1853948,
+      "parent": 1853928,
+      "startTicks": "87757692",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --no-sandbox --disable-dev-shm-usage --use-angle=swiftshader-webgl --use-gl=angle --mute-audio --headless=old --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11390625393730600255,11713136725942205651,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,1004874581434749911,24305075290022660,4 --trace-process-track-uuid=3190708989122997041 "
+    },
+    {
+      "pid": 1856875,
+      "parent": 1853931,
+      "startTicks": "87763044",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=renderer --headless=old --no-sandbox --disable-dev-shm-usage --disable-back-forward-cache --disable-background-timer-throttling --disable-breakpad --enable-automation --force-color-profile=srgb --remote-debugging-pipe --allow-pre-commit-input --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --ozone-platform=headless --disable-gpu-compositing --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=16 --time-ticks-at-unix-epoch=-1792086095652568 --launch-time-ticks=877630447233 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,11390625393730600255,11713136725942205651,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,1004874581434749911,24305075290022660,4 --trace-process-track-uuid=3190709001304541078 "
+    },
+    {
+      "pid": 1857742,
+      "parent": 1841545,
+      "startTicks": "87764782",
+      "command": "/home/felixzhao/.local/bin/python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/run.py browser-final-zh-CN-1280 node /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs "
+    },
+    {
+      "pid": 1857743,
+      "parent": 1857742,
+      "startTicks": "87764785",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs "
+    },
+    {
+      "pid": 1857755,
+      "parent": 1857743,
+      "startTicks": "87764829",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-KGwmMy --remote-debugging-pipe --no-startup-window "
+    },
+    {
+      "pid": 1857757,
+      "parent": 1857755,
+      "startTicks": "87764833",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-zygote-sandbox --no-sandbox --headless "
+    },
+    {
+      "pid": 1857758,
+      "parent": 1857755,
+      "startTicks": "87764833",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-sandbox --headless "
+    },
+    {
+      "pid": 1857773,
+      "parent": 1857757,
+      "startTicks": "87764837",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=gpu-process --no-sandbox --disable-dev-shm-usage --disable-breakpad --headless --ozone-platform=headless --use-angle=swiftshader-webgl --enable-unsafe-swiftshader --gpu-preferences=UAAAAAAAAAAgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAYAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --use-gl=angle --shared-files --field-trial-handle=3,i,771467371743450877,14993085475233004959,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,735633937452939313,15930809724925880251,4 --trace-process-track-uuid=3190708988185955192 "
+    },
+    {
+      "pid": 1857775,
+      "parent": 1857755,
+      "startTicks": "87764837",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --no-sandbox --disable-dev-shm-usage --use-angle=swiftshader-webgl --use-gl=angle --mute-audio --headless=old --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,771467371743450877,14993085475233004959,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,735633937452939313,15930809724925880251,4 --trace-process-track-uuid=3190708989122997041 "
+    },
+    {
+      "pid": 1860632,
+      "parent": 1857758,
+      "startTicks": "87770374",
+      "command": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=renderer --headless=old --no-sandbox --disable-dev-shm-usage --disable-back-forward-cache --disable-background-timer-throttling --disable-breakpad --enable-automation --force-color-profile=srgb --remote-debugging-pipe --allow-pre-commit-input --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --ozone-platform=headless --disable-gpu-compositing --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=16 --time-ticks-at-unix-epoch=-1792086095652567 --launch-time-ticks=877703746561 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,771467371743450877,14993085475233004959,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,735633937452939313,15930809724925880251,4 --trace-process-track-uuid=3190709001304541078 "
+    },
+    {
+      "pid": 1861770,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1861782,
+      "alreadyAbsent": true
+    },
+    {
+      "pid": 1861919,
+      "parent": 1861918,
+      "startTicks": "87779519",
+      "command": "npm run typecheck                                                      "
+    },
+    {
+      "pid": 1861920,
+      "parent": 1861917,
+      "startTicks": "87779519",
+      "command": "npm run lint                                                      "
+    },
+    {
+      "pid": 1861941,
+      "parent": 1861919,
+      "startTicks": "87779533",
+      "command": "sh -c tsc --noEmit "
+    },
+    {
+      "pid": 1861942,
+      "parent": 1861920,
+      "startTicks": "87779533",
+      "command": "sh -c node scripts/check-engine-purity.mjs && eslint . --ext .ts,.tsx --max-warnings=0 "
+    },
+    {
+      "pid": 1861943,
+      "parent": 1861941,
+      "startTicks": "87779533",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.bin/tsc --noEmit "
+    },
+    {
+      "pid": 1861957,
+      "parent": 1861942,
+      "startTicks": "87779540",
+      "command": "node /home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.bin/eslint . --ext .ts,.tsx --max-warnings=0 "
+    },
+    {
+      "pid": 1863100,
+      "parent": 1863099,
+      "startTicks": "87799419",
+      "command": "npm test                                                      "
+    },
+    {
+      "pid": 1863111,
+      "parent": 1863100,
+      "startTicks": "87799433",
+      "command": "sh -c vitest run "
+    },
+    {
+      "pid": 1863112,
+      "parent": 1863111,
+      "startTicks": "87799433",
+      "command": "node (vitest)                                                                                                     "
+    },
+    {
+      "pid": 1863138,
+      "parent": 1863112,
+      "startTicks": "87799468",
+      "command": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@esbuild/linux-x64/bin/esbuild --service=0.21.5 --ping "
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "ordinaryPairs": [
+    {
+      "label": "en-360-charged-bolt",
+      "rank": "rank1",
+      "before": "browser-final-en-360/en-360-charged-bolt-rank1-before-3.json",
+      "after": "browser-final-en-360/en-360-charged-bolt-rank1-after-4.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-360-charged-bolt",
+      "rank": "rank2",
+      "before": "browser-final-en-360/en-360-charged-bolt-rank2-before-5.json",
+      "after": "browser-final-en-360/en-360-charged-bolt-rank2-after-6.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-360-lightning",
+      "rank": "rank1",
+      "before": "browser-final-en-360/en-360-lightning-rank1-before-10.json",
+      "after": "browser-final-en-360/en-360-lightning-rank1-after-11.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-360-lightning",
+      "rank": "rank2",
+      "before": "browser-final-en-360/en-360-lightning-rank2-before-12.json",
+      "after": "browser-final-en-360/en-360-lightning-rank2-after-13.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-360-nova",
+      "rank": "rank1",
+      "before": "browser-final-en-360/en-360-nova-rank1-before-17.json",
+      "after": "browser-final-en-360/en-360-nova-rank1-after-18.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-360-nova",
+      "rank": "rank2",
+      "before": "browser-final-en-360/en-360-nova-rank2-before-19.json",
+      "after": "browser-final-en-360/en-360-nova-rank2-after-20.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-360-chain-lightning",
+      "rank": "rank1",
+      "before": "browser-final-en-360/en-360-chain-lightning-rank1-before-24.json",
+      "after": "browser-final-en-360/en-360-chain-lightning-rank1-after-25.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-360-chain-lightning",
+      "rank": "rank2",
+      "before": "browser-final-en-360/en-360-chain-lightning-rank2-before-26.json",
+      "after": "browser-final-en-360/en-360-chain-lightning-rank2-after-27.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-charged-bolt",
+      "rank": "rank1",
+      "before": "browser-final-en-1280/en-1280-charged-bolt-rank1-before-3.json",
+      "after": "browser-final-en-1280/en-1280-charged-bolt-rank1-after-4.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-charged-bolt",
+      "rank": "rank2",
+      "before": "browser-final-en-1280/en-1280-charged-bolt-rank2-before-5.json",
+      "after": "browser-final-en-1280/en-1280-charged-bolt-rank2-after-6.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-lightning",
+      "rank": "rank1",
+      "before": "browser-final-en-1280/en-1280-lightning-rank1-before-10.json",
+      "after": "browser-final-en-1280/en-1280-lightning-rank1-after-11.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-lightning",
+      "rank": "rank2",
+      "before": "browser-final-en-1280/en-1280-lightning-rank2-before-12.json",
+      "after": "browser-final-en-1280/en-1280-lightning-rank2-after-13.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-nova",
+      "rank": "rank1",
+      "before": "browser-final-en-1280/en-1280-nova-rank1-before-17.json",
+      "after": "browser-final-en-1280/en-1280-nova-rank1-after-18.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-nova",
+      "rank": "rank2",
+      "before": "browser-final-en-1280/en-1280-nova-rank2-before-19.json",
+      "after": "browser-final-en-1280/en-1280-nova-rank2-after-20.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-chain-lightning",
+      "rank": "rank1",
+      "before": "browser-final-en-1280/en-1280-chain-lightning-rank1-before-24.json",
+      "after": "browser-final-en-1280/en-1280-chain-lightning-rank1-after-25.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "en-1280-chain-lightning",
+      "rank": "rank2",
+      "before": "browser-final-en-1280/en-1280-chain-lightning-rank2-before-26.json",
+      "after": "browser-final-en-1280/en-1280-chain-lightning-rank2-after-27.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-charged-bolt",
+      "rank": "rank1",
+      "before": "browser-final-zh-CN-360/zh-CN-360-charged-bolt-rank1-before-3.json",
+      "after": "browser-final-zh-CN-360/zh-CN-360-charged-bolt-rank1-after-4.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-charged-bolt",
+      "rank": "rank2",
+      "before": "browser-final-zh-CN-360/zh-CN-360-charged-bolt-rank2-before-5.json",
+      "after": "browser-final-zh-CN-360/zh-CN-360-charged-bolt-rank2-after-6.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-lightning",
+      "rank": "rank1",
+      "before": "browser-final-zh-CN-360/zh-CN-360-lightning-rank1-before-10.json",
+      "after": "browser-final-zh-CN-360/zh-CN-360-lightning-rank1-after-11.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-lightning",
+      "rank": "rank2",
+      "before": "browser-final-zh-CN-360/zh-CN-360-lightning-rank2-before-12.json",
+      "after": "browser-final-zh-CN-360/zh-CN-360-lightning-rank2-after-13.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-nova",
+      "rank": "rank1",
+      "before": "browser-final-zh-CN-360/zh-CN-360-nova-rank1-before-17.json",
+      "after": "browser-final-zh-CN-360/zh-CN-360-nova-rank1-after-18.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-nova",
+      "rank": "rank2",
+      "before": "browser-final-zh-CN-360/zh-CN-360-nova-rank2-before-19.json",
+      "after": "browser-final-zh-CN-360/zh-CN-360-nova-rank2-after-20.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-chain-lightning",
+      "rank": "rank1",
+      "before": "browser-final-zh-CN-360/zh-CN-360-chain-lightning-rank1-before-24.json",
+      "after": "browser-final-zh-CN-360/zh-CN-360-chain-lightning-rank1-after-25.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-360-chain-lightning",
+      "rank": "rank2",
+      "before": "browser-final-zh-CN-360/zh-CN-360-chain-lightning-rank2-before-26.json",
+      "after": "browser-final-zh-CN-360/zh-CN-360-chain-lightning-rank2-after-27.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-charged-bolt",
+      "rank": "rank1",
+      "before": "browser-final-zh-CN-1280/zh-CN-1280-charged-bolt-rank1-before-3.json",
+      "after": "browser-final-zh-CN-1280/zh-CN-1280-charged-bolt-rank1-after-4.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-charged-bolt",
+      "rank": "rank2",
+      "before": "browser-final-zh-CN-1280/zh-CN-1280-charged-bolt-rank2-before-5.json",
+      "after": "browser-final-zh-CN-1280/zh-CN-1280-charged-bolt-rank2-after-6.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-lightning",
+      "rank": "rank1",
+      "before": "browser-final-zh-CN-1280/zh-CN-1280-lightning-rank1-before-10.json",
+      "after": "browser-final-zh-CN-1280/zh-CN-1280-lightning-rank1-after-11.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-lightning",
+      "rank": "rank2",
+      "before": "browser-final-zh-CN-1280/zh-CN-1280-lightning-rank2-before-12.json",
+      "after": "browser-final-zh-CN-1280/zh-CN-1280-lightning-rank2-after-13.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-nova",
+      "rank": "rank1",
+      "before": "browser-final-zh-CN-1280/zh-CN-1280-nova-rank1-before-17.json",
+      "after": "browser-final-zh-CN-1280/zh-CN-1280-nova-rank1-after-18.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-nova",
+      "rank": "rank2",
+      "before": "browser-final-zh-CN-1280/zh-CN-1280-nova-rank2-before-19.json",
+      "after": "browser-final-zh-CN-1280/zh-CN-1280-nova-rank2-after-20.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-chain-lightning",
+      "rank": "rank1",
+      "before": "browser-final-zh-CN-1280/zh-CN-1280-chain-lightning-rank1-before-24.json",
+      "after": "browser-final-zh-CN-1280/zh-CN-1280-chain-lightning-rank1-after-25.json",
+      "exactFiveDomains": true
+    },
+    {
+      "label": "zh-CN-1280-chain-lightning",
+      "rank": "rank2",
+      "before": "browser-final-zh-CN-1280/zh-CN-1280-chain-lightning-rank2-before-26.json",
+      "after": "browser-final-zh-CN-1280/zh-CN-1280-chain-lightning-rank2-after-27.json",
+      "exactFiveDomains": true
+    }
+  ],
+  "offlineContinues": [
+    {
+      "label": "en-360-charged-bolt",
+      "file": "browser-final-en-360/en-360-charged-bolt-offline-continued-7.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "en-360-lightning",
+      "file": "browser-final-en-360/en-360-lightning-offline-continued-14.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "en-360-nova",
+      "file": "browser-final-en-360/en-360-nova-offline-continued-21.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "en-360-chain-lightning",
+      "file": "browser-final-en-360/en-360-chain-lightning-offline-continued-28.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "en-1280-charged-bolt",
+      "file": "browser-final-en-1280/en-1280-charged-bolt-offline-continued-7.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "en-1280-lightning",
+      "file": "browser-final-en-1280/en-1280-lightning-offline-continued-14.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "en-1280-nova",
+      "file": "browser-final-en-1280/en-1280-nova-offline-continued-21.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "en-1280-chain-lightning",
+      "file": "browser-final-en-1280/en-1280-chain-lightning-offline-continued-28.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-360-charged-bolt",
+      "file": "browser-final-zh-CN-360/zh-CN-360-charged-bolt-offline-continued-7.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-360-lightning",
+      "file": "browser-final-zh-CN-360/zh-CN-360-lightning-offline-continued-14.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-360-nova",
+      "file": "browser-final-zh-CN-360/zh-CN-360-nova-offline-continued-21.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-360-chain-lightning",
+      "file": "browser-final-zh-CN-360/zh-CN-360-chain-lightning-offline-continued-28.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-1280-charged-bolt",
+      "file": "browser-final-zh-CN-1280/zh-CN-1280-charged-bolt-offline-continued-7.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-1280-lightning",
+      "file": "browser-final-zh-CN-1280/zh-CN-1280-lightning-offline-continued-14.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-1280-nova",
+      "file": "browser-final-zh-CN-1280/zh-CN-1280-nova-offline-continued-21.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    },
+    {
+      "label": "zh-CN-1280-chain-lightning",
+      "file": "browser-final-zh-CN-1280/zh-CN-1280-chain-lightning-offline-continued-28.json",
+      "exactFiveDomains": true,
+      "networkDisabled": true,
+      "freshPage": true
+    }
+  ]
+}

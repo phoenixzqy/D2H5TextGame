@@ -1,0 +1,17 @@
+{
+  "total": 213,
+  "credited": [
+    "skills-sorceress-chain-lightning",
+    "skills-sorceress-charged-bolt",
+    "skills-sorceress-nova",
+    "skills-sorceress-lightning"
+  ],
+  "boundedFunctional": 135,
+  "unverified": 76,
+  "engineOnly": 1,
+  "reviewNeeded": 1,
+  "otherRowsByteExact": 209,
+  "idsAndOrderUnchanged": true,
+  "sorceressBounded": 19,
+  "acceptance": "Local bounded functional; independent design/QA and earned balance remain open."
+}

@@ -1,0 +1,30 @@
+{
+  "otherSorceressObjectSpansByteExact": 29,
+  "baseline": "812dc76a3219edf009b02515040d1bd2ac020cd0",
+  "sorceressCount": 30,
+  "changedSkills": [
+    "skills-sorceress-chain-lightning"
+  ],
+  "changedKeys": [
+    "aoeShape",
+    "maxTargets"
+  ],
+  "otherSorceressObjectsUnchanged": 29,
+  "numericTuningUnchanged": true,
+  "saveVersionUnchanged": 22,
+  "productionModifiedFiles": [
+    "src/data/schema/skill.schema.json",
+    "src/data/skills/sorceress.json",
+    "src/engine/combat/combat.ts",
+    "src/engine/combat/damage-masteries.test.ts",
+    "src/engine/combat/grid.ts",
+    "src/engine/combat/lightning-mastery.test.ts",
+    "src/engine/combat/runeword-actives.test.ts",
+    "src/engine/combat/status.ts",
+    "src/engine/skills/builders.ts",
+    "src/engine/skills/displayStats.ts",
+    "src/features/skills/SkillsScreen.tsx",
+    "src/i18n/locales/en/skills.json",
+    "src/i18n/locales/zh-CN/skills.json"
+  ]
+}

@@ -1,0 +1,433 @@
+{
+  "finalPass": {
+    "full-quiet": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "pid": 1863100,
+      "exitCode": 0,
+      "seconds": 615.8430454890477
+    },
+    "lint-final": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1861920,
+      "exitCode": 0,
+      "seconds": 154.44984675804153
+    },
+    "types-delivery": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1861919,
+      "exitCode": 0,
+      "seconds": 89.38577559695113
+    },
+    "engine-final": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1841544,
+      "exitCode": 0,
+      "seconds": 130.6851158539066
+    },
+    "compatibility-corrected": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/damage-masteries.test.ts",
+        "src/engine/combat/lightning-mastery.test.ts",
+        "src/engine/combat/runeword-actives.test.ts",
+        "src/data/loader.test.ts"
+      ],
+      "pid": 1841376,
+      "exitCode": 0,
+      "seconds": 5.99648295796942
+    },
+    "typed-assertions": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-direct-lightning.causal.test.ts",
+        "src/engine/combat/lightning-mastery.test.ts"
+      ],
+      "pid": 1852719,
+      "exitCode": 0,
+      "seconds": 14.72509852994699
+    },
+    "typed-causal-final": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-direct-lightning.causal.test.ts"
+      ],
+      "pid": 1861782,
+      "exitCode": 0,
+      "seconds": 10.730577233014628
+    },
+    "ui-green": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/features/skills/SkillsScreen.sorceress-direct-lightning.test.tsx"
+      ],
+      "pid": 1833577,
+      "exitCode": 0,
+      "seconds": 8.697184851043858
+    },
+    "causal-debuff-final": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-direct-lightning.causal.test.ts",
+        "src/stores/sorceress-direct-lightning-native.test.ts",
+        "src/engine/combat/status-application-result.test.ts"
+      ],
+      "pid": 1833469,
+      "exitCode": 0,
+      "seconds": 10.92281138105318
+    },
+    "build": {
+      "command": [
+        "node_modules/.bin/vite",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/build"
+      ],
+      "pid": 1834305,
+      "exitCode": 0,
+      "seconds": 19.409343807026744
+    },
+    "build-guards": {
+      "command": [
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/build-guards.py"
+      ],
+      "pid": 1837359,
+      "exitCode": 0,
+      "seconds": 0.507518800906837
+    },
+    "browser-matrix": {
+      "command": [
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser-groups.py"
+      ],
+      "pid": 1841545,
+      "exitCode": 0,
+      "seconds": 315.0613317369716
+    },
+    "browser-final-en-360": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs"
+      ],
+      "pid": 1841553,
+      "exitCode": 0,
+      "seconds": 84.68697064300068
+    },
+    "browser-final-en-1280": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs"
+      ],
+      "pid": 1847932,
+      "exitCode": 0,
+      "seconds": 84.4848325989442
+    },
+    "browser-final-zh-CN-360": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs"
+      ],
+      "pid": 1853909,
+      "exitCode": 0,
+      "seconds": 71.41178648394998
+    },
+    "browser-final-zh-CN-1280": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs"
+      ],
+      "pid": 1857743,
+      "exitCode": 0,
+      "seconds": 74.23712714097928
+    }
+  },
+  "otherPass": {
+    "browser-pilot2": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs"
+      ],
+      "pid": 1838735,
+      "exitCode": 0,
+      "seconds": 25.510272049112245
+    },
+    "chain-grid-green": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/grid.chain.test.ts",
+        "src/engine/combat/grid.test.ts",
+        "src/engine/combat/grid.cone.test.ts"
+      ],
+      "pid": 1829307,
+      "exitCode": 0,
+      "seconds": 1.1253483269829303
+    },
+    "lint-causal-final": {
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/stores/sorceress-direct-lightning.causal.test.ts",
+        "--max-warnings=0"
+      ],
+      "pid": 1861770,
+      "exitCode": 0,
+      "seconds": 6.816575507982634
+    },
+    "status-result-green": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/status-application-result.test.ts",
+        "src/engine/combat/status.test.ts",
+        "src/stores/sorceress-direct-lightning.causal.test.ts"
+      ],
+      "pid": 1831629,
+      "exitCode": 0,
+      "seconds": 10.854521389934234
+    },
+    "targeting-schema-green": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/sorceress-direct-lightning.test.ts",
+        "src/stores/sorceress-direct-lightning.causal.test.ts",
+        "src/engine/combat/grid.chain.test.ts",
+        "src/data/loader.test.ts"
+      ],
+      "pid": 1829930,
+      "exitCode": 0,
+      "seconds": 6.821919637965038
+    },
+    "typecheck-verified": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1852799,
+      "exitCode": 0,
+      "seconds": 106.86114853597246
+    },
+    "types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1833773,
+      "exitCode": 0,
+      "seconds": 144.23840854794253
+    }
+  },
+  "failed": {
+    "browser-pilot": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-direct-lightning-82n4jvpj/browser.cjs"
+      ],
+      "pid": 1835610,
+      "exitCode": 1,
+      "seconds": 41.37793956603855
+    },
+    "causal-debuff-green": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-direct-lightning.causal.test.ts",
+        "src/stores/sorceress-direct-lightning-native.test.ts",
+        "src/engine/combat/status-application-result.test.ts"
+      ],
+      "pid": 1833264,
+      "exitCode": 1,
+      "seconds": 10.979103701072745
+    },
+    "causal-matrix": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-direct-lightning.causal.test.ts"
+      ],
+      "pid": 1830873,
+      "exitCode": 1,
+      "seconds": 10.37577050901018
+    },
+    "causal-native-final": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-direct-lightning.causal.test.ts",
+        "src/stores/sorceress-direct-lightning-native.test.ts"
+      ],
+      "pid": 1832204,
+      "exitCode": 1,
+      "seconds": 10.904486362007447
+    },
+    "chain-grid-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/grid.chain.test.ts"
+      ],
+      "pid": 1829096,
+      "exitCode": 1,
+      "seconds": 1.141702362918295
+    },
+    "engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1833772,
+      "exitCode": 1,
+      "seconds": 148.92716264992487
+    },
+    "lint-compatibility": {
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/combat/damage-masteries.test.ts",
+        "src/engine/combat/lightning-mastery.test.ts",
+        "src/engine/combat/runeword-actives.test.ts",
+        "--max-warnings=0"
+      ],
+      "pid": 1841503,
+      "exitCode": 1,
+      "seconds": 6.848394782980904
+    },
+    "lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1833774,
+      "exitCode": 1,
+      "seconds": 221.62510918802582
+    },
+    "lint-verified": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1852798,
+      "exitCode": 1,
+      "seconds": 180.31702522898559
+    },
+    "schema-preview-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/sorceress-direct-lightning.test.ts"
+      ],
+      "pid": 1829719,
+      "exitCode": 1,
+      "seconds": 2.3123130740132183
+    },
+    "status-result-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/status-application-result.test.ts"
+      ],
+      "pid": 1831487,
+      "exitCode": 1,
+      "seconds": 2.375962566002272
+    },
+    "targeting-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-direct-lightning.causal.test.ts"
+      ],
+      "pid": 1828354,
+      "exitCode": 1,
+      "seconds": 7.099457319942303
+    },
+    "timing-diagnosis": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/sorceress-direct-lightning.causal.test.ts",
+        "-t",
+        "actually interrupts"
+      ],
+      "pid": 1832968,
+      "exitCode": 1,
+      "seconds": 7.4953567429911345
+    },
+    "ui-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/features/skills/SkillsScreen.sorceress-direct-lightning.test.tsx"
+      ],
+      "pid": 1833363,
+      "exitCode": 1,
+      "seconds": 9.751445314963348
+    }
+  },
+  "incompleteChecks": [
+    {
+      "toolSession": 89840,
+      "wrapperExitCode": 143,
+      "childPid": 1841476,
+      "childReceiptPresent": false,
+      "childPidAbsent": true,
+      "cause": "Unproven; not classified as a pass.",
+      "supersededBy": "typecheck-verified-result.json: current final source, exit0"
+    }
+  ],
+  "plannedServerStop": {
+    "toolSession": 42958,
+    "wrapperExitCode": 143,
+    "plannedExactPidStop": true,
+    "serverPid": 1835464,
+    "serverPidAbsent": true
+  },
+  "browserGroups": {
+    "groups": [
+      {
+        "label": "browser-final-en-360",
+        "exitCode": 0
+      },
+      {
+        "label": "browser-final-en-1280",
+        "exitCode": 0
+      },
+      {
+        "label": "browser-final-zh-CN-360",
+        "exitCode": 0
+      },
+      {
+        "label": "browser-final-zh-CN-1280",
+        "exitCode": 0
+      }
+    ]
+  },
+  "fullSuiteSummary": " 721 passed (721)\n      Tests  15935 passed | 2 skipped (15937)\n   Start at  14:34:50\n   Duration  614.44s (transform 18.99s, setup 67.40s, collect 1377.76s, tests 556.54s, environment 156.82s, prepare 69.72s)\n\n",
+  "limits": [
+    "Root author review only; independent and earned acceptance remain open.",
+    "Engine8018/300 precedes test-only matcher typing; final full covers final source."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "reviewer": "root author; no independent approval claimed",
+  "scope": [
+    "BUG231 real distinct five-target Chain Lightning",
+    "BUG232 truthful status acceptance feedback",
+    "four bilingual direct-lightning skill previews"
+  ],
+  "axes": {
+    "correctness": "Reviewed independent rank/seed damage oracle, native/projected authority, nearest-hop order/cap/no revisits, miss/lethal boundaries, exact Paralyze interruption/expiry/DR and status/payment/playback/replay conservation. Compatibility assertions preserve rank, damage and RNG expectations.",
+    "readability": "Small pure chain selector and explicit immutable result replace implicit status success; legacy unit-returning API retained. Existing component renders computed stats and localized prose.",
+    "architecture": "One shared grid resolver owns caps. No engine React/DOM imports, no new store/persistence shape, no alternative status rules in renderer. Existing current-wave snapshot and next-wave authority maintained.",
+    "security": "Strict identity/cap/shape schema rejects unrelated payloads; native class/unlock/transitive-prerequisite/rank and alias checks remain. No new dependency, credentials, CI, permission, remote action or browser store bridge.",
+    "performance": "Chain scans O(cap*N) with cap5, no roster-wide bounce sort and no RNG; other shapes retain existing selection then cap. No new reactive subscription. Global performance and pacing gates remain open."
+  },
+  "limitations": [
+    "Root author review only; independent design/QA and earned balance open.",
+    "Example Cone-to-chain author adaptation documented for independent design acceptance.",
+    "Thunder Storm periodic identity remains separate and uncredited.",
+    "No claim of campaign, two earned builds per class, pacing, economy, endgame or full G0-G7 acceptance."
+  ],
+  "validation": {
+    "fullTests": 15935,
+    "fullFiles": 721,
+    "existingSkips": 2,
+    "engineTests": 8018,
+    "engineFiles": 300,
+    "finalTypes": 0,
+    "finalLint": 0,
+    "browserCases": 16,
+    "ordinarySavePairs": 32,
+    "offlineContinues": 16,
+    "geometry": 80,
+    "screenshots": 48,
+    "finalScreenshotViewsInspected": 4
+  },
+  "sourceCommit": "c8510388a357151eb32df1e107fa0d2800136739",
+  "verdict": "Locally verified; independent design/QA and earned acceptance remain open."
+}

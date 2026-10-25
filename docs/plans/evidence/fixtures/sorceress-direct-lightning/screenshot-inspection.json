@@ -1,0 +1,29 @@
+{
+  "reviewer": "root author",
+  "finalViews": [
+    {
+      "path": "browser-final-en-360/en-360-charged-bolt-current-next.png",
+      "finding": "Readable current damage/payment and wrapping; lower next rows scroll.",
+      "pass": true
+    },
+    {
+      "path": "browser-final-en-1280/en-1280-lightning-current-next.png",
+      "finding": "Readable current/next damage, cost, cooldown and prerequisites.",
+      "pass": true
+    },
+    {
+      "path": "browser-final-zh-CN-360/zh-CN-360-chain-lightning-current-next.png",
+      "finding": "Readable five-target bounce/control prose and actual current target cap.",
+      "pass": true
+    },
+    {
+      "path": "browser-final-zh-CN-1280/zh-CN-1280-nova-cast-visible.png",
+      "finding": "Visible localized Nova cast and independent Lightning damage across the hostile wave.",
+      "pass": true
+    }
+  ],
+  "limitations": [
+    "Mobile detail rows scroll.",
+    "Existing missing navigation glyphs remain; full accessibility acceptance open."
+  ]
+}

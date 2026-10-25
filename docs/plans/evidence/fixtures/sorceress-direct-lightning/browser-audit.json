@@ -1,0 +1,40 @@
+{
+  "groups": [
+    {
+      "label": "browser-final-en-360",
+      "exitCode": 0
+    },
+    {
+      "label": "browser-final-en-1280",
+      "exitCode": 0
+    },
+    {
+      "label": "browser-final-zh-CN-360",
+      "exitCode": 0
+    },
+    {
+      "label": "browser-final-zh-CN-1280",
+      "exitCode": 0
+    }
+  ],
+  "cases": [
+    "en-360-charged-bolt",
+    "en-360-lightning",
+    "en-360-nova",
+    "en-360-chain-lightning",
+    "en-1280-charged-bolt",
+    "en-1280-lightning",
+    "en-1280-nova",
+    "en-1280-chain-lightning",
+    "zh-CN-360-charged-bolt",
+    "zh-CN-360-lightning",
+    "zh-CN-360-nova",
+    "zh-CN-360-chain-lightning",
+    "zh-CN-1280-charged-bolt",
+    "zh-CN-1280-lightning",
+    "zh-CN-1280-nova",
+    "zh-CN-1280-chain-lightning"
+  ],
+  "geometry": 80,
+  "screenshots": 48
+}
