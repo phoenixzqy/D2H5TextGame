@@ -29,6 +29,7 @@
     "lint:i18n": "node scripts/i18n-lint.mjs",
     "bench": "node scripts/bench-tests.mjs",
     "check:test-bridge-shake": "node scripts/check-test-bridge-shaken.mjs",
+    "check:offline-precache": "node scripts/check-offline-precache.mjs",
     "sim:modes": "vitest run --project sim-contracts tests/sim/production/mode-measure.test.ts"
   },
   "dependencies": {

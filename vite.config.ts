@@ -245,6 +245,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
+          // Keep schema tooling separate so application growth cannot silently
+          // push its entry chunk beyond Workbox's unchanged precache limit.
+          'validation-vendor': ['ajv', 'ajv-formats'],
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'game-engine': ['zustand', 'dexie', 'dexie-react-hooks'],
           'i18n': ['i18next', 'react-i18next', 'i18next-browser-languagedetector']
