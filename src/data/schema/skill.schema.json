@@ -2518,7 +2518,168 @@
       }
     },
     "else": { "properties": { "concentration": false } }
-  }],
+  },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "enum": [
+              "skills-barbarian-shout",
+              "skills-barbarian-battle-orders"
+            ]
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "scaling"
+        ],
+        "properties": {
+          "concentration": false,
+          "sanctuary": false,
+          "redemption": false,
+          "cleansing": false,
+          "auraHealing": false,
+          "auraPulse": false,
+          "conviction": false,
+          "timedBuff": false,
+          "venomOnBasicHit": false,
+          "monsterSummon": false,
+          "attackDamagePct": false,
+          "summonBasicAttackElements": false,
+          "summonId": false,
+          "aoeShape": false,
+          "staticField": false,
+          "holyFreeze": false,
+          "coldMastery": false,
+          "cost": false,
+          "damage": false,
+          "damageType": false,
+          "appliesStatus": false,
+          "statusEffect": false,
+          "additionalStatusEffects": false,
+          "heal": false,
+          "appliesTags": false,
+          "synergies": false,
+          "requires": false,
+          "trigger": {
+            "const": "passive"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 0
+          },
+          "passive": {
+            "const": true
+          },
+          "aura": {
+            "const": false
+          },
+          "summon": {
+            "const": false
+          },
+          "scaling": {
+            "type": "object",
+            "required": [
+              "passiveStatsPerLevel"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "passiveStatsPerLevel": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "lifePct": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "defensePct": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "manaRegenPct": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-barbarian-shout"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "then": {
+              "properties": {
+                "scaling": {
+                  "properties": {
+                    "passiveStatsPerLevel": {
+                      "required": [
+                        "defensePct"
+                      ],
+                      "maxProperties": 1,
+                      "type": "object",
+                      "properties": {
+                        "defensePct": {}
+                      }
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-barbarian-battle-orders"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "then": {
+              "properties": {
+                "scaling": {
+                  "properties": {
+                    "passiveStatsPerLevel": {
+                      "required": [
+                        "lifePct",
+                        "manaRegenPct"
+                      ],
+                      "maxProperties": 2,
+                      "type": "object",
+                      "properties": {
+                        "lifePct": {},
+                        "manaRegenPct": {}
+                      }
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }],
   "if": {
     "properties": { "id": { "const": "skills-necromancer-amplify-damage" } },
     "required": ["id"]

@@ -470,11 +470,11 @@
     },
     "battle-orders": {
       "name": "Battle Orders",
-      "desc": "At combat start, increases max HP and mana by 50%."
+      "desc": "Automatically adds {{life}}% maximum Life and {{recovery}}% ordinary Energy-based Mana Regeneration per allocated rank. Barbarian only, level {{level}}; maximum {{cap}} ranks. Life bonuses add with Increased Stamina; item recovery then scales the recovery rate. Maximum mana is unchanged. Applies to the hero only. Learning or resetting applies next wave; extra capacity does not heal or refill."
     },
     "shout": {
       "name": "Shout",
-      "desc": "At combat start, grants self and mercenary +50% defense for 5 turns."
+      "desc": "Automatically adds {{defense}}% ordinary Defense per allocated rank. Barbarian only, level {{level}}; maximum {{cap}} ranks. Adds with Iron Skin over fresh equipment Defense. Applies to the hero only. Learning or resetting applies next wave; current HP and MP are preserved."
     },
     "leap": {
       "name": "Leap",

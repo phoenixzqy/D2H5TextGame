@@ -169,8 +169,8 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 | `barbarian.natural_resistance` | Natural Resistance / 自然抗性 | +2pp each of six resistances and +0.5pp magical dodge per rank | L30; Iron Skin prerequisite; cap20; [D05 contract](../plans/decisions/D05-barbarian-endurance-v1.md) |
 | `barbarian.increased_stamina` | Increased Stamina / 提升耐力 | +3% equipment-derived combat max life per rank | L12; cap20; automatic, no healing on learning |
 | `barbarian.increased_speed` | Increased Speed / 提升速度 | +1% equipment-derived attack speed and +0.5pp physical dodge per rank | L24; Stamina prerequisite; cap20; automatic |
-| `barbarian.battle_orders` | Battle Orders / 战斗体制 | +50% max HP/mana at combat start | Buff |
-| `barbarian.shout` | Shout / 大叫 | +50% defense to self+merc | Buff, 5 turns |
+| `barbarian.battle_orders` | Battle Orders / 战斗体制 | +4% maximum life and +1% ordinary Energy-based mana recovery per allocated rank | L24; Shout prerequisite; cap20; automatic hero-only, no max-mana bonus; [D05 contract](../plans/decisions/D05-barbarian-warcries-v1.md) |
+| `barbarian.shout` | Shout / 大叫 | +3% ordinary defense per allocated rank | L6; Howl prerequisite; cap20; automatic hero-only; D05 warcries contract |
 
 ---
 

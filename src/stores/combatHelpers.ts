@@ -79,6 +79,7 @@ import { vigorLifeMax, withoutVigorLife } from '@/engine/skills/vigor';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeBoneArmor } from '@/engine/skills/bone-armor';
 import { composeBarbarianEndurance } from '@/engine/skills/barbarian-endurance';
+import { composeBarbarianWarcries } from '@/engine/skills/barbarian-warcries';
 import { composeBarbarianWeaponMasteries } from '@/engine/skills/barbarian-weapon-masteries';
 import { composeDamageMasteries } from '@/engine/skills/damage-masteries';
 import { isDualWielding } from '@/engine/items/equipped-weapon';
@@ -192,7 +193,9 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const shadow = composeAssassinShadowPassives(player);
   const allResistanceBonus = endurance.resistAllBonus + shadow.resistAllBonus;
-  const lifeMax = freshStats.lifeMax * endurance.lifeMultiplier;
+  const warcries = composeBarbarianWarcries({ classId: player.class, level: player.level,
+    ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
+  const lifeMax = freshStats.lifeMax * (endurance.lifeMultiplier + warcries.lifeBonus);
   const stats = { ...freshStats,
     lifeMax,
     attackSpeed: freshStats.attackSpeed * endurance.attackSpeedMultiplier * mastery.attackSpeedMultiplier,
@@ -206,7 +209,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
       lightning: freshStats.resistances.lightning + allResistanceBonus,
       arcane: freshStats.resistances.arcane + allResistanceBonus,
       poison: freshStats.resistances.poison + allResistanceBonus },
-    defense: freshStats.defense * (1 + IRON_SKIN_DEFINITION.defensePctPerRank * ironSkinRank),
+    defense: freshStats.defense * (1 + IRON_SKIN_DEFINITION.defensePctPerRank * ironSkinRank + warcries.defenseBonus),
     life: Math.min(player.derivedStats.life, lifeMax),
     mana: Math.min(player.derivedStats.mana, freshStats.manaMax) };
   const recovery = composeHeroRecovery({ classId: player.class, level: player.level,
@@ -235,7 +238,8 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     stats,
     life: stats.life,
     mana: stats.mana,
-    ...composeRunewordCombatModifiers(grants, { ...recovery, increasedDamagePct }),
+    ...composeRunewordCombatModifiers(grants, { ...recovery,
+      manaRegenPerSecond: recovery.manaRegenPerSecond * (1 + warcries.manaRegenBonus), increasedDamagePct }),
     coldResistanceReductionPct: composeColdMastery(player),
     staticFieldRank: composeStaticField(player),
     burstOfSpeedRank: composeBurstOfSpeedRank(player),

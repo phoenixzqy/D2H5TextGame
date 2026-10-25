@@ -45,6 +45,8 @@ import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-
 import { AMAZON_PASSIVE_DEFINITIONS, AMAZON_PASSIVE_IDENTITIES, AMAZON_PASSIVE_KEYS } from '@/engine/skills/amazon-passives';
 import { BARBARIAN_ENDURANCE_DEFINITIONS, BARBARIAN_ENDURANCE_IDENTITIES,
   resolveBarbarianEnduranceRank } from '@/engine/skills/barbarian-endurance';
+import { BARBARIAN_WARCRY_DEFINITIONS, BARBARIAN_WARCRY_IDENTITIES,
+  resolveBarbarianWarcryRank } from '@/engine/skills/barbarian-warcries';
 import { BARBARIAN_WEAPON_MASTERY_DEFINITIONS, BARBARIAN_WEAPON_MASTERY_IDENTITIES, BARBARIAN_WEAPON_MASTERY_KEYS,
   resolveBarbarianWeaponMasteryRank } from '@/engine/skills/barbarian-weapon-masteries';
 import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
@@ -177,6 +179,13 @@ export function SkillsScreen() {
     for (const key of ['stamina', 'speed', 'resistance'] as const) {
       const rank = resolveBarbarianEnduranceRank(key, levels);
       for (const alias of BARBARIAN_ENDURANCE_IDENTITIES[key]) {
+        if (rank > 0) map.set(alias, rank);
+        else map.delete(alias);
+      }
+    }
+    for (const key of ['shout', 'orders'] as const) {
+      const rank = resolveBarbarianWarcryRank(key, levels);
+      for (const alias of BARBARIAN_WARCRY_IDENTITIES[key]) {
         if (rank > 0) map.set(alias, rank);
         else map.delete(alias);
       }
@@ -1273,6 +1282,16 @@ function dynamicDescription(
         life: perRank.lifePct * 100, speed: perRank.attackSpeedPct * 100,
         physicalDodge: perRank.physDodgePct * 100, resist: perRank.resistAllPct * 100,
         magicDodge: perRank.magicDodgePct * 100, cap: maxRank, level: requiredLevel,
+      });
+    }
+  }
+  for (const key of ['shout', 'orders'] as const) {
+    const [authored] = BARBARIAN_WARCRY_IDENTITIES[key];
+    if (skill.id === authored) {
+      const { requiredLevel, maxRank, perRank } = BARBARIAN_WARCRY_DEFINITIONS[key];
+      return t('barbarian.' + authored.slice('skills-barbarian-'.length) + '.desc', {
+        defense: perRank.defensePct * 100, life: perRank.lifePct * 100,
+        recovery: perRank.manaRegenPct * 100, level: requiredLevel, cap: maxRank,
       });
     }
   }
