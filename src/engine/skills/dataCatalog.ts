@@ -29,6 +29,8 @@ export type PlayableSkillClass =
   | 'sorceress';
 
 interface JsonSkill {
+  readonly damageComposition?: 'weighted-components';
+  readonly ignoresMagicResist?: true;
   readonly hitSequence?: SkillHitSequence;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   readonly feralRage?: FeralRageTuning;
@@ -50,6 +52,7 @@ interface JsonSkill {
   readonly damage?: {
     readonly min: number;
     readonly max: number;
+    readonly breakdown?: Partial<Record<DamageType, number>>;
   };
   readonly damageType?: DamageType;
   readonly appliesStatus?: readonly string[];
@@ -129,11 +132,26 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
   if (skill.id === 'skills-sorceress-static-field' && skill.staticField) return [{ kind: 'static-field' }];
   const effects: SkillEffect[] = [];
   if (skill.damage && skill.damageType) {
+    const composite = skill.id === 'skills-paladin-vengeance' && skill.damageComposition === 'weighted-components';
+    const weights = skill.damage.breakdown;
+    const componentWeight = (type: DamageType): number => {
+      const weight = weights?.[type];
+      if (typeof weight !== 'number' || !Number.isFinite(weight) || weight <= 0) {
+        throw new Error('Invalid authored Vengeance component weights');
+      }
+      return weight;
+    };
+    const components = composite ? Object.freeze([
+      Object.freeze({ damageType: 'fire' as const, weight: componentWeight('fire') }),
+      Object.freeze({ damageType: 'cold' as const, weight: componentWeight('cold') }),
+      Object.freeze({ damageType: 'lightning' as const, weight: componentWeight('lightning') })
+    ] as const) : undefined;
     const tags = comboTags(skill.appliesTags);
     const statusId = skill.appliesStatus?.[0];
     const primaryStatus: OnHitStatus | undefined = statusId
       ? {
           id: statusId,
+          ...(composite ? { damageType: 'fire' as const } : {}),
           ...(skill.statusEffect?.chance !== undefined ? { chance: skill.statusEffect.chance } : {}),
           ...(skill.statusEffect?.stacksOnApply !== undefined
             ? { stacksOnApply: skill.statusEffect.stacksOnApply }
@@ -144,6 +162,8 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
         }
       : undefined;
     const secondaryStatuses = (skill.appliesStatus?.slice(1) ?? []).flatMap((id): OnHitStatus[] => {
+      if (composite && id === 'chill') return [{ id, damageType: 'cold' }];
+      if (composite && id === 'paralyze') return [{ id, damageType: 'lightning' }];
       // The authored freezing cold attacks also slow after Freeze expires.
       if (id === 'chill' && skill.trigger === 'active' && skill.damageType === 'cold' &&
         skill.appliesStatus?.length === 2 && skill.appliesStatus[0] === 'freeze') return [{ id }];
@@ -158,6 +178,8 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
     });
     effects.push({
       kind: 'damage',
+      ...(components ? { components } : {}),
+      ...(skill.ignoresMagicResist === true ? { ignoresMagicResist: true as const } : {}),
       ...(skill.hitSequence ? { hitSequence: { strikes: skill.hitSequence.strikes } } : {}),
       ...(skill.onHitRecovery ? { onHitRecovery: { lifeFraction: skill.onHitRecovery.lifeFraction } } : {}),
       ...(skill.id === 'skills-druid-feral-rage' && skill.feralRage ? { feralRage: true as const } : {}),

@@ -22,7 +22,7 @@ import type { Rng } from '../rng';
 import { createRng } from '../rng';
 import type { ActiveStatus, CombatUnit, CombatSide, GridPosition } from './types';
 import { inferKind } from './types';
-import { resolveDamage, mitigateDamage, type DamageInput } from './damage';
+import { resolveDamage, rollDamage, resolveRolledDamage, mitigateDamage, type DamageInput } from './damage';
 import {
   applyStatus,
   expireStatuses,
@@ -584,7 +584,7 @@ function buildDamageInput(
     critMult: stats.critDamage,
     defenderResistances,
     defenderArmor: Math.max(0, defender.stats.defense * (1 + armorBonus + druidFormBonuses(defender).defensePct + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor),
-    defenderMagicResist: defender.stats.magicResist,
+    defenderMagicResist: effect.ignoresMagicResist === true ? 0 : defender.stats.magicResist,
     defenderDodge:
       effect.damageType === 'physical' || effect.damageType === 'thorns'
         ? defender.stats.physDodge + druidFormBonuses(defender).physDodgePct + (activeBurstOfSpeed(defender, state.simClockMs)?.physDodgePct ?? 0) +
@@ -633,63 +633,86 @@ function applyDamageToUnit(
   const activeDefender = activeStatusView(defender, state.simClockMs);
   const retaliates = hasPaidFrozenArmor(activeDefender);
   const input = buildDamageInput(state, attacker, activeDefender, effect, skillLevel);
-  const outcome = auraPulse
+  const scalarOutcome = () => auraPulse
     ? { hit: true, crit: false, dodged: false,
       ...mitigateDamage((input.baseMin + input.flatBonus) * (1 + input.increasedPct) * input.comboMult, input) }
     : resolveDamage(input, state.rng);
-  const amount = outcome.hit && outcome.final > 0 && shouldShatter(activeDefender, effect.damageType)
-    ? Math.max(outcome.final, cycloneArmorLethalBound(defender,
-      defender.life + (boneArmorPool(defender)?.boneArmor?.remaining ?? 0) + availableEnergyShieldMana(defender)))
-    : outcome.final;
-  const absorption = splitPersonalDamage(defender, amount);
-  emit(state, {
-    kind: 'damage',
-    source: attackerId,
-    target: defenderId,
-    damageType: effect.damageType,
-    amount: absorption.damage,
-    ...(absorption.absorbed > 0 ? { absorbed: absorption.absorbed } : {}),
-    ...(absorption.cycloneAbsorbed > 0 ? { cycloneAbsorbed: absorption.cycloneAbsorbed } : {}),
-    crit: outcome.crit,
-    dodged: outcome.dodged
-  });
+  // All component inputs observe the same pre-strike units and statuses. One
+  // hit/base/crit decision is shared; this strike cannot combo with its own statuses.
+  const sharedRoll = effect.components ? rollDamage(input, state.rng) : undefined;
+  const totalWeight = effect.components?.reduce((sum, component) => sum + component.weight, 0) ?? 1;
+  const hits = effect.components && sharedRoll
+    ? effect.components.map(component => ({ damageType: component.damageType,
+      outcome: resolveRolledDamage(buildDamageInput(state, attacker, activeDefender,
+        { ...effect, damageType: component.damageType }, skillLevel), sharedRoll, component.weight / totalWeight) }))
+    : [{ damageType: effect.damageType, outcome: scalarOutcome() }];
+  const outcome = hits[0]?.outcome;
+  if (!outcome) return;
+  let amount = 0;
+  let newLife = defender.life;
+  let remainingDefenses = defender;
+  for (const [index, hit] of hits.entries()) {
+    const hitAmount = hit.outcome.hit && hit.outcome.final > 0 && shouldShatter(activeDefender, hit.damageType)
+      ? Math.max(hit.outcome.final, cycloneArmorLethalBound(defender,
+        defender.life + (boneArmorPool(defender)?.boneArmor?.remaining ?? 0) + availableEnergyShieldMana(defender)))
+      : hit.outcome.final;
+    amount += hitAmount;
+    const absorption = splitPersonalDamage(remainingDefenses, hitAmount);
+    emit(state, {
+      kind: 'damage', source: attackerId, target: defenderId,
+      damageType: hit.damageType, amount: absorption.damage,
+      ...(absorption.absorbed > 0 ? { absorbed: absorption.absorbed } : {}),
+      ...(absorption.cycloneAbsorbed > 0 ? { cycloneAbsorbed: absorption.cycloneAbsorbed } : {}),
+      crit: hit.outcome.crit, dodged: hit.outcome.dodged
+    });
+    if (hit.outcome.dodged) continue;
+    newLife = Math.max(0, newLife - absorption.damage);
+    // Spend finite defenses in order, keeping original hit eligibility until the
+    // final component commits HP. Death, orbs and corpse supply close once below.
+    const manaEvent = commitPersonalDamage(state, remainingDefenses, { ...absorption.unit,
+      life: index === hits.length - 1 ? newLife : defender.life });
+    if (manaEvent) emit(state, manaEvent);
+    if (absorption.absorbed > 0) observeStatuses(state, defenderId);
+    remainingDefenses = state.units.get(defenderId) ?? absorption.unit;
+  }
 
   if (outcome.dodged) return;
-  const newLife = Math.max(0, defender.life - absorption.damage);
-  const manaEvent = commitPersonalDamage(state, defender, { ...absorption.unit, life: newLife });
-  if (manaEvent) emit(state, manaEvent);
-  if (absorption.absorbed > 0) observeStatuses(state, defenderId);
 
   const statuses = effect.applyStatuses ?? (effect.applyStatus ? [effect.applyStatus] : []);
-  for (const status of statuses) {
-    const chance = status.chance ?? 1;
-    if ((auraPulse && chance === 1) || state.rng.chance(chance)) {
-      const stacks = status.stacksOnApply ?? 1;
-      const dotPerStack =
-        status.dotPctOfDamage !== undefined
-          ? Math.max(1, Math.floor(outcome.final * status.dotPctOfDamage))
-          : undefined;
-      const cur = state.units.get(defenderId);
-      if (cur) {
-        let updated = cur;
-        for (let i = 0; i < stacks; i++) {
-          updated = applyStatus(
-            updated,
-            {
-              id: status.id,
-              ...cleansingDurationInput(state, defenderId),
-              sourceId: attackerId,
-              simClockMs: state.simClockMs,
-              ...(status.durationMs !== undefined ? { durationMs: status.durationMs } : {}),
-              ...(dotPerStack !== undefined ? { dotPerStack } : {}),
-              damageType: status.damageType ?? effect.damageType
-            },
-            state.rng
-          );
+  for (const hit of hits) {
+    for (const status of statuses) {
+      // Scalar Physical carriers can apply elemental payloads. Only composite
+      // statuses are bound to their matching component's damage and potency.
+      if (effect.components && status.damageType !== hit.damageType) continue;
+      const chance = status.chance ?? 1;
+      if ((auraPulse && chance === 1) || state.rng.chance(chance)) {
+        const stacks = status.stacksOnApply ?? 1;
+        const dotPerStack =
+          status.dotPctOfDamage !== undefined
+            ? Math.max(1, Math.floor(hit.outcome.final * status.dotPctOfDamage))
+            : undefined;
+        const cur = state.units.get(defenderId);
+        if (cur) {
+          let updated = cur;
+          for (let i = 0; i < stacks; i++) {
+            updated = applyStatus(
+              updated,
+              {
+                id: status.id,
+                ...cleansingDurationInput(state, defenderId),
+                sourceId: attackerId,
+                simClockMs: state.simClockMs,
+                ...(status.durationMs !== undefined ? { durationMs: status.durationMs } : {}),
+                ...(dotPerStack !== undefined ? { dotPerStack } : {}),
+                damageType: status.damageType ?? hit.damageType
+              },
+              state.rng
+            );
+          }
+          state.units.set(defenderId, updated);
+          emit(state, { kind: 'status', target: defenderId, statusId: status.id });
+          observeStatuses(state, defenderId);
         }
-        state.units.set(defenderId, updated);
-        emit(state, { kind: 'status', target: defenderId, statusId: status.id });
-        observeStatuses(state, defenderId);
       }
     }
   }

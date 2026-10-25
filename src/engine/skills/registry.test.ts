@@ -104,7 +104,7 @@ describe('P08a04b authored player Frost Nova secondary Freeze', () => {
     ]);
     expect(listSkills().filter(id => getSkill(id)?.effects.some(effect =>
       effect.kind === 'damage' && effect.applyStatuses !== undefined)).sort())
-      .toEqual(['amazon.ice_arrow', 'sorceress.frost_nova', 'sorceress.glacial_spike',
+      .toEqual(['amazon.ice_arrow', 'paladin.vengeance', 'sorceress.frost_nova', 'sorceress.glacial_spike',
         'sorceress.ice_blast', 'sorceress.meteor']);
   });
 });

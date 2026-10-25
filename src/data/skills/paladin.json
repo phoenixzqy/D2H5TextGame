@@ -65,6 +65,9 @@
     ],
     "scaling": {
       "damagePerLevel": 5
+    },
+    "onHitRecovery": {
+      "lifeFraction": 0.5
     }
   },
   {
@@ -98,10 +101,12 @@
     ],
     "scaling": {
       "damagePerLevel": 6
-    }
+    },
+    "ignoresMagicResist": true
   },
   {
     "id": "skills-paladin-vengeance",
+    "damageComposition": "weighted-components",
     "name": "skills.paladin.vengeance.name",
     "description": "skills.paladin.vengeance.desc",
     "icon": "skills/paladin/vengeance.png",

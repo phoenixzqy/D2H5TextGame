@@ -30,7 +30,18 @@ export interface OnHitStatus {
   readonly dotPctOfDamage?: number; // for DoTs, fraction of dealt damage per tick
 }
 
+/** One ordered share of a single rolled base; modifiers and mitigation remain type-specific. */
+export interface WeightedDamageComponent {
+  readonly damageType: DamageType;
+  /** Positive authored weight, normalized against all components before damage modifiers. */
+  readonly weight: number;
+}
+
 interface DamageEffectBase {
+  /** Opt-in shares of one hit/base/crit roll, settled before one death/retaliation closure. */
+  readonly components?: readonly [WeightedDamageComponent, ...WeightedDamageComponent[]];
+  /** Bypass only the target's flat magic-resist stat, never percentage resistance or absorption. */
+  readonly ignoresMagicResist?: true;
   /** One bounded sequence of ordinary attempts, rotating within the original target pool. */
   readonly hitSequence?: SkillHitSequence;
   /** Explicit direct-hit recovery only; never inherited by ordinary/basic/periodic damage. */

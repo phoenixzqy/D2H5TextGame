@@ -218,6 +218,10 @@ export interface AuraSanctuaryTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Normalize authored breakdown weights into one shared-roll composite strike. */
+  readonly damageComposition?: 'weighted-components';
+  /** Explicit hit-only flat magic-resist bypass; percentage resistance still applies. */
+  readonly ignoresMagicResist?: true;
   readonly hitSequence?: SkillHitSequence;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   readonly feralRage?: FeralRageTuning;

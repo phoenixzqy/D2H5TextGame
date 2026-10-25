@@ -8,6 +8,43 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["damageComposition"], "properties": { "damageComposition": {} } },
+      "then": { "properties": { "id": { "const": "skills-paladin-vengeance" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-paladin-vengeance" } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "damageComposition", "appliesStatus", "statusEffect"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "requiredLevel": { "const": 18 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-paladin-zeal"] },
+          "damageType": { "const": "fire" },
+          "damageComposition": { "$ref": "#/properties/damageComposition" },
+          "damage": {
+            "type": "object", "required": ["min", "max", "breakdown"], "additionalProperties": false,
+            "properties": {
+              "min": { "type": "number", "minimum": 0 }, "max": { "type": "number", "minimum": 0 },
+              "breakdown": {
+                "type": "object", "required": ["fire", "cold", "lightning"], "additionalProperties": false,
+                "properties": {
+                  "fire": { "type": "number", "exclusiveMinimum": 0 },
+                  "cold": { "type": "number", "exclusiveMinimum": 0 },
+                  "lightning": { "type": "number", "exclusiveMinimum": 0 }
+                }
+              }
+            }
+          },
+          "appliesStatus": { "const": ["burn", "chill", "paralyze"] },
+          "statusEffect": {
+            "type": "object", "required": ["dotPctOfDamage"], "additionalProperties": false,
+            "properties": { "dotPctOfDamage": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 } }
+          },
+          "ignoresMagicResist": false, "onHitRecovery": false, "hitSequence": false, "additionalStatusEffects": false
+        }
+      }
+    },
+    {
       "if": { "required": ["hitSequence"], "properties": { "hitSequence": {} } },
       "then": { "properties": { "id": { "const": "skills-druid-fury" } } }
     },
@@ -27,7 +64,38 @@
     },
     {
       "if": { "required": ["onHitRecovery"], "properties": { "onHitRecovery": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-druid-feral-rage", "skills-druid-hunger"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-druid-feral-rage", "skills-druid-hunger", "skills-paladin-holy-bolt"] } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-paladin-holy-bolt" } } },
+      "then": {
+        "required": ["requiredLevel", "damage", "damageType", "onHitRecovery"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "requiredLevel": { "const": 6 }, "maxLevel": { "const": 20 },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "arcane" },
+          "onHitRecovery": { "$ref": "#/properties/onHitRecovery" },
+          "appliesStatus": false, "statusEffect": false, "feralRage": false
+        }
+      }
+    },
+    {
+      "if": { "required": ["ignoresMagicResist"], "properties": { "ignoresMagicResist": {} } },
+      "then": { "properties": { "id": { "const": "skills-paladin-blessed-hammer" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-paladin-blessed-hammer" } } },
+      "then": {
+        "required": ["requiredLevel", "damage", "damageType", "ignoresMagicResist", "prerequisites"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "all-enemies" },
+          "requiredLevel": { "const": 18 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-paladin-holy-bolt"] },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "arcane" },
+          "ignoresMagicResist": { "$ref": "#/properties/ignoresMagicResist" },
+          "appliesStatus": false, "statusEffect": false
+        }
+      }
     },
     {
       "if": { "required": ["feralRage"], "properties": { "feralRage": {} } },
@@ -3589,6 +3657,14 @@
     }
   },
   "properties": {
+    "damageComposition": {
+      "const": "weighted-components",
+      "description": "Explicit Vengeance composite strike: one shared hit/base/crit roll, with ordered per-element mitigation of normalized breakdown weights."
+    },
+    "ignoresMagicResist": {
+      "const": true,
+      "description": "Explicit Blessed Hammer flat magic-resist bypass; percentage resistance, dodge and personal absorption still apply."
+    },
     "hitSequence": {
       "description": "Explicit bounded sequential attempts, paid once and rotating within the original target pool; currently authored only by Fury.",
       "type": "object", "additionalProperties": false, "required": ["strikes"],
