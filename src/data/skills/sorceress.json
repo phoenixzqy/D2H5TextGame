@@ -391,6 +391,11 @@
   },
   {
     "id": "skills-sorceress-shiver-armor",
+    "armorRetaliation": {
+      "min": 12,
+      "max": 18,
+      "perRank": 3
+    },
     "name": "skills.sorceress.shiver-armor.name",
     "description": "skills.sorceress.shiver-armor.desc",
     "icon": "skills/sorceress/shiver-armor.png",
@@ -500,6 +505,11 @@
   },
   {
     "id": "skills-sorceress-chilling-armor",
+    "armorRetaliation": {
+      "min": 24,
+      "max": 36,
+      "perRank": 4
+    },
     "name": "skills.sorceress.chilling-armor.name",
     "description": "skills.sorceress.chilling-armor.desc",
     "icon": "skills/sorceress/chilling-armor.png",

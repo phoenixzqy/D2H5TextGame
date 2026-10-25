@@ -27,6 +27,7 @@ import { DRUID_SUMMON_DEFINITION, DRUID_SUMMON_IDS } from './druid-summon-defini
 import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 
 export interface DisplaySkillSource {
+  readonly armorRetaliation?: import('../types/skills').ArmorRetaliationTuning;
   readonly attackDamagePct?: number;
   readonly timedBuff?: { readonly durationMs: number };
   readonly aoeShape?: AoeShape;
@@ -161,6 +162,9 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Counterattack range, distinct from direct damage at buff-cast time. */
+  readonly coldArmor?: { readonly min: number; readonly max: number;
+    readonly freezeSeconds: number; readonly bossFreezeSeconds: number };
   /** Authored cold-attack control, including Frost Nova's independent secondary roll. */
   readonly coldAttack?: { readonly durationSeconds: number; readonly slowPercent: number;
     readonly freeze?: { readonly chancePercent: number; readonly durationSeconds: number; readonly bossDurationSeconds: number } };
@@ -600,6 +604,13 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(['skills-sorceress-shiver-armor', 'skills-sorceress-chilling-armor'].includes(skill.id) &&
+      skill.trigger === 'active' && skill.armorRetaliation ? { coldArmor: {
+        min: scaleValue(skill.armorRetaliation.min, skill.armorRetaliation.perRank, safeRank),
+        max: scaleValue(skill.armorRetaliation.max, skill.armorRetaliation.perRank, safeRank),
+        freezeSeconds: STATUS_DEFAULTS.freeze.duration,
+        bossFreezeSeconds: STATUS_DEFAULTS.freeze.duration * (STATUS_DEFAULTS.freeze.bossDurationMult ?? 1)
+      } } : {}),
     ...(coldAttack ? { coldAttack } : {}),
     ...(['skills-barbarian-howl', 'skills-barbarian-taunt', 'skills-barbarian-battle-cry'].includes(skill.id) ? {
       warcry: { durationSeconds: (skill.statusEffect?.durationMs ?? 0) / 1000,

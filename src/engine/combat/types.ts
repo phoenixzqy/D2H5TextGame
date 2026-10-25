@@ -160,6 +160,13 @@ export interface CombatUnit {
   readonly skillLevels?: Readonly<Record<string, number>>;
   /** Buffs already applied this combat (don't recast). */
   readonly activeBuffIds: readonly string[];
+  /** Native class/unlock/prerequisite authority, refreshed at configuration boundaries. */
+  readonly coldArmorRanks?: Readonly<Record<import('../skills/cold-armors').ColdArmorId, number>>;
+  /** Paid source/rank snapshots; temporary run state, never part of the durable save. */
+  readonly coldArmors?: Readonly<Partial<Record<import('../skills/cold-armors').ColdArmorId, {
+    readonly sourceId: string;
+    readonly rank: number;
+  }>>>;
   /** Paid player Frozen Armor potency, retained only within its native combat run. */
   readonly frozenArmor?: {
     readonly rank: number;

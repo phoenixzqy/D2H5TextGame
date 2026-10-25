@@ -52,6 +52,8 @@ import { activeSpiritOfBarbs, copySpiritOfBarbs, SPIRIT_OF_BARBS_DEFINITION, typ
 import { absorbHolyShield, activeHolyShield, HOLY_SHIELD_IDS, holyShieldDefense, holyShieldLethalBound,
   holyShieldQuota, holyShieldRank, matchesHolyShield, payHolyShield, refreshHolyShieldState } from '../skills/holy-shield';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
+import { COLD_ARMOR_IDS, coldArmorId, coldArmorRank, coldArmorBonuses, coldArmorCounterattack,
+  matchesColdArmor, paidColdArmorRank, payColdArmor } from '../skills/cold-armors';
 import { absorbBoneArmor, boneArmorPool, copyBoneArmorStatuses } from '../skills/bone-armor';
 import { absorbCycloneArmor, activeCycloneArmor, CYCLONE_ARMOR_IDS, cycloneArmorLethalBound,
   cycloneArmorQuota, cycloneArmorRank, cycloneArmorResistance, matchesCycloneArmor,
@@ -604,13 +606,14 @@ function buildDamageInput(
     ? 1 - MERC_INNER_SIGHT_DEFINITION.defenseReductionPct / 100 : 1;
   const barbsDefense = defender.kind === 'summon'
     ? (activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, defender, state.units)?.rank ?? 0) * SPIRIT_OF_BARBS_DEFINITION.summonDefensePerRank : 0;
-  const armorBonus = (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + barbsDefense + holyShieldDefense(defender) + (defendingCloak?.defensePct ?? 0) + (activeConcentrate(defender, state.simClockMs)?.defensePct ?? 0);
+  const armorBonus = (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + coldArmorBonuses(defender).defense + barbsDefense + holyShieldDefense(defender) + (defendingCloak?.defensePct ?? 0) + (activeConcentrate(defender, state.simClockMs)?.defensePct ?? 0);
   return {
     baseMin,
     baseMax,
     flatBonus: baseFlatBonus + (effect.attackDamagePct
       ? stats.attack * (1 + (attackerAura?.bonuses.attackPct ?? 0) + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.attackPerRank) * effect.attackDamagePct / 100 : 0),
     increasedPct: (attacker.increasedDamagePct?.[effect.damageType] ?? 0) +
+      (effect.damageType === 'cold' ? coldArmorBonuses(attacker).cold : 0) +
       (effect.damageType === 'physical' ? activeLeap(attacker, state.simClockMs)?.physicalDamagePct ?? 0 : 0) +
       statAuraDamageBonus(attackerAura, effect.damageType) +
       (effect.damageType === 'physical' ? activeMightAura(state.mightAura, attacker.id, state.units)?.physicalDamagePct ?? 0 : 0) +
@@ -632,7 +635,7 @@ function buildDamageInput(
       effect.damageType === 'physical' || effect.damageType === 'thorns'
         ? defender.stats.physDodge + druidFormBonuses(defender).physDodgePct + (activeBurstOfSpeed(defender, state.simClockMs)?.physDodgePct ?? 0) +
           (defenderAura?.bonuses.physDodgePct ?? 0)
-        : defender.stats.magicDodge + (defenderAura?.bonuses.magicDodgePct ?? 0) + (defendingCloak?.magicDodgePct ?? 0),
+        : defender.stats.magicDodge + coldArmorBonuses(defender).dodge + (defenderAura?.bonuses.magicDodgePct ?? 0) + (defendingCloak?.magicDodgePct ?? 0),
     ...(defender.resistPenalty !== undefined ? { resistPenalty: defender.resistPenalty } : {})
   };
 }
@@ -672,15 +675,19 @@ function applyDamageToUnit(
   effect: DamageEffect,
   skillLevel = 1,
   basicHit = false,
-  auraPulse = false
+  auraPulse = false,
+  armorReaction = false
 ): void {
   const attacker = state.units.get(attackerId);
   const defender = state.units.get(defenderId);
-  if (!attacker || !defender || !alive(attacker) || !alive(defender)) return;
+  if (!attacker || !defender || (!alive(attacker) && !armorReaction) || !alive(defender)) return;
 
   const hostileHit = effectiveSide(state, attacker) !== effectiveSide(state, defender);
   const activeDefender = activeStatusView(defender, state.simClockMs);
-  const retaliates = hasPaidFrozenArmor(activeDefender);
+  const retaliates = !armorReaction && hasPaidFrozenArmor(activeDefender);
+  const coldReactions = !armorReaction && !auraPulse && hostileHit
+    ? COLD_ARMOR_IDS.map(id => ({ id, rank: paidColdArmorRank(activeDefender, id) }))
+      .filter(({ id, rank }) => rank > 0 && (id === 'chilling-armor' || effect.damageType === 'physical')) : [];
   const input = buildDamageInput(state, attacker, activeDefender, effect, skillLevel);
   const scalarOutcome = () => auraPulse
     ? { hit: true, crit: false, dodged: false,
@@ -817,6 +824,12 @@ function applyDamageToUnit(
     observeStatuses(state, attackerId);
   }
 
+  // Snapshot eligibility before the incoming hit, including a lethal hit on the wearer.
+  // Reuse real damage/status/shield/death settlement; reaction hits cannot trigger any armor.
+  if (outcome.hit && amount > 0) for (const { id, rank } of coldReactions) {
+    applyDamageToUnit(state, defenderId, attackerId, coldArmorCounterattack(id), rank, false, false, true);
+  }
+
   const after = state.units.get(defenderId);
   const reflectionPct = (after?.physicalReflectionPct ?? 0) +
     (activeStatAura(state.statAura, defenderId, state.units)?.bonuses.thornsPct ?? 0) +
@@ -848,7 +861,7 @@ function applyDamageToUnit(
   // Explicit skill-hit recovery observes actual HP removed, after ordinary death/orb/reflection settlement.
   const hpRemoved = defender.life - newLife;
   const owner = state.units.get(attackerId);
-  if (!basicHit && !auraPulse && hostileHit && hpRemoved > 0 && owner && alive(owner)) {
+  if (!basicHit && !auraPulse && !armorReaction && hostileHit && hpRemoved > 0 && owner && alive(owner)) {
     const fraction = effect.onHitRecovery?.lifeFraction;
     if (fraction !== undefined && Number.isFinite(fraction) && fraction > 0 && fraction <= 1) {
       commitHealing(state, owner, Math.floor(hpRemoved * fraction));
@@ -1079,6 +1092,8 @@ function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
   if (LEAP_IDS.some(id => id === skill.id)) return leapRank(unit);
   if (CONCENTRATE_IDS.some(id => id === skill.id)) return concentrateRank(unit);
   if (isStaticFieldId(skill.id)) return staticFieldRank(unit);
+  const armor = coldArmorId(skill.id);
+  if (armor) return coldArmorRank(unit, armor);
   const governed = governedActiveId(skill.id);
   if (governed) {
     if (unit.governedActiveRanks) return unit.governedActiveRanks[governed];
@@ -1229,11 +1244,13 @@ function canUseSkillForState(
   if (governedActiveId(skill.id) && skillLevel === 0) return false;
   if ((unit.cooldowns[skill.id] ?? unit.cooldowns[skillOrderId] ?? 0) > 0) return false;
   if (skill.id === 'sorceress.frozen_armor' && skillLevel === 0) return false;
+  const armor = coldArmorId(skill.id);
+  if (armor && (skillLevel === 0 || !matchesColdArmor(skill, armor) || paidColdArmorRank(unit, armor) > 0)) return false;
   if (effectiveManaCost(skill, skillLevel) > unit.mana) return false;
   if (unit.level < skill.minLevel) return false;
   if (isPaidFrozenArmorSkill(skill)) {
     if (hasPaidFrozenArmor(unit)) return false;
-  } else if (!burst && !cloak && !leap && !concentrate && !form &&
+  } else if (!armor && !burst && !cloak && !leap && !concentrate && !form &&
     skill.isBuff &&
     (unit.activeBuffIds.includes(skill.id) || activeBuffIdsForSkill(skill).some((id) => unit.activeBuffIds.includes(id)))
   ) return false;
@@ -1422,6 +1439,13 @@ function applyEffect(
           }] });
         emit(state, { kind: 'buff', target: actorId, buffId: effect.id, statusBacked: true });
         observeStatuses(state, actorId);
+        break;
+      }
+      const coldArmor = coldArmorId(skill.id);
+      if (coldArmor && matchesColdArmor(skill, coldArmor) && effect.coldArmor === coldArmor) {
+        if (skillLevel === 0 || paidColdArmorRank(actor, coldArmor) > 0) return;
+        state.units.set(actorId, payColdArmor(actor, coldArmor, skillLevel));
+        emit(state, { kind: 'buff', target: actorId, buffId: coldArmor });
         break;
       }
       if (isPaidFrozenArmorSkill(skill) && effect.frozenArmor === true && effect.id === 'frozen-armor') {

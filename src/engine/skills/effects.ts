@@ -99,6 +99,8 @@ export interface BuffEffect {
   readonly statMods?: Record<string, number>;
   /** Exact player Frozen Armor opts into an independently tuned paid combat snapshot. */
   readonly frozenArmor?: true;
+  /** Exact paid Shiver/Chilling Armor consumer; markers alone grant no effects. */
+  readonly coldArmor?: import('./cold-armors').ColdArmorId;
   /** Exact paid finite stat-buff consumer; bare markers never establish potency. */
   readonly timedStatBuff?: 'burst-of-speed' | 'cloak-of-shadows' | 'leap' | 'concentrate';
   /** Paid mutually exclusive native Druid transformation. */

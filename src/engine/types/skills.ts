@@ -50,6 +50,13 @@ export interface HitSpeedStackTuning {
 /** Existing Feral tuning contract; both skills share only the numeric shape. */
 export type FeralRageTuning = HitSpeedStackTuning;
 
+/** JSON-owned Cold counterattack range and growth per additional paid armor rank. */
+export interface ArmorRetaliationTuning {
+  readonly min: number;
+  readonly max: number;
+  readonly perRank: number;
+}
+
 /**
  * Skill target type
  */
@@ -279,6 +286,7 @@ export interface SkillDef {
   readonly staticField?: StaticFieldTuning;
   /** JSON-owned personal cold penetration; exact player Cold Mastery only. */
   readonly coldMastery?: ColdMasteryTuning;
+  readonly armorRetaliation?: ArmorRetaliationTuning;
   /** Native mercenary aura party cold increase, in percentage points. */
   readonly holyFreeze?: { readonly coldDamagePct: number };
   /** JSON-owned enemy resistance reduction in percentage points; exact player Conviction only. */

@@ -8,6 +8,220 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "skills-sorceress-shiver-armor",
+              "skills-sorceress-chilling-armor"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "cost",
+          "scaling",
+          "appliesStatus",
+          "armorRetaliation"
+        ],
+        "properties": {
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "self"
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "cooldown": {
+            "type": "number",
+            "minimum": 1
+          },
+          "cost": {
+            "required": [
+              "mana"
+            ],
+            "properties": {
+              "mana": {
+                "exclusiveMinimum": 0,
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "damage": false,
+          "damageType": false,
+          "timedBuff": false,
+          "passive": {
+            "const": false
+          },
+          "aura": {
+            "const": false
+          },
+          "summon": {
+            "const": false
+          },
+          "requiredLevel": {
+            "$ref": "#/properties/requiredLevel"
+          },
+          "scaling": {
+            "$ref": "#/properties/scaling"
+          },
+          "appliesStatus": {
+            "$ref": "#/properties/appliesStatus"
+          },
+          "armorRetaliation": {
+            "$ref": "#/properties/armorRetaliation"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-sorceress-shiver-armor"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "prerequisites"
+              ],
+              "properties": {
+                "requiredLevel": {
+                  "const": 12
+                },
+                "prerequisites": {
+                  "const": [
+                    "skills-sorceress-frozen-armor"
+                  ]
+                },
+                "appliesStatus": {
+                  "const": [
+                    "shiver-armor"
+                  ]
+                },
+                "scaling": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "cooldownPerLevel",
+                    "costPerLevel",
+                    "passiveStatsPerLevel"
+                  ],
+                  "properties": {
+                    "cooldownPerLevel": {
+                      "type": "number",
+                      "maximum": 0
+                    },
+                    "costPerLevel": {
+                      "type": "number",
+                      "maximum": 0
+                    },
+                    "passiveStatsPerLevel": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "defensePct",
+                        "coldDamagePct"
+                      ],
+                      "properties": {
+                        "defensePct": {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "coldDamagePct": {
+                          "type": "number",
+                          "minimum": 0
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "id": {
+                  "const": "skills-sorceress-chilling-armor"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "prerequisites"
+              ],
+              "properties": {
+                "requiredLevel": {
+                  "const": 24
+                },
+                "prerequisites": {
+                  "const": [
+                    "skills-sorceress-shiver-armor"
+                  ]
+                },
+                "appliesStatus": {
+                  "const": [
+                    "chilling-armor"
+                  ]
+                },
+                "scaling": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "cooldownPerLevel",
+                    "costPerLevel",
+                    "passiveStatsPerLevel"
+                  ],
+                  "properties": {
+                    "cooldownPerLevel": {
+                      "type": "number",
+                      "maximum": 0
+                    },
+                    "costPerLevel": {
+                      "type": "number",
+                      "maximum": 0
+                    },
+                    "passiveStatsPerLevel": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "defensePct",
+                        "magicDodgePct"
+                      ],
+                      "properties": {
+                        "defensePct": {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        "magicDodgePct": {
+                          "type": "number",
+                          "minimum": 0
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "else": {
+        "properties": {
+          "armorRetaliation": false
+        }
+      }
+    },
+    {
       "if": { "required": ["id"], "properties": { "id": { "enum": ["skills-barbarian-howl", "skills-barbarian-taunt", "skills-barbarian-battle-cry"] } } },
       "then": {
         "required": ["requiredLevel", "cost", "scaling", "appliesStatus", "statusEffect"],
@@ -4295,6 +4509,30 @@
     }
   },
   "properties": {
+    "armorRetaliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Cold counterattack base range and growth per additional paid rank; exact Shiver/Chilling Armor only.",
+      "required": [
+        "min",
+        "max",
+        "perRank"
+      ],
+      "properties": {
+        "min": {
+          "type": "number",
+          "minimum": 1
+        },
+        "max": {
+          "type": "number",
+          "minimum": 1
+        },
+        "perRank": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
     "conversion": {
       "description": "Conversion-only finite allegiance and eligible original monster tiers.",
       "type": "object", "additionalProperties": false, "required": ["durationMs", "eligibleTiers"],

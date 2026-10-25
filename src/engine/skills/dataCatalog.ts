@@ -29,6 +29,7 @@ export type PlayableSkillClass =
   | 'sorceress';
 
 interface JsonSkill {
+  readonly armorRetaliation?: import('../types/skills').ArmorRetaliationTuning;
   readonly attackDamagePct?: number;
   readonly conversion?: ConversionTuning;
   readonly damageComposition?: 'weighted-components';
@@ -251,6 +252,8 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
         id: skill.appliesStatus[0],
         ...(skill.id === 'skills-druid-cyclone-armor' ? { cycloneArmor: true as const } : {}),
         ...(skill.id === 'skills-paladin-holy-shield' ? { holyShield: true as const } : {}),
+        ...(skill.id === 'skills-sorceress-shiver-armor' ? { coldArmor: 'shiver-armor' as const } : {}),
+        ...(skill.id === 'skills-sorceress-chilling-armor' ? { coldArmor: 'chilling-armor' as const } : {}),
         duration: skill.timedBuff ? skill.timedBuff.durationMs / 1000 : -1,
         ...((skill.id === 'skills-druid-werewolf' || skill.id === 'skills-druid-werebear') && skill.trigger === 'active'
           ? { druidForm: skill.id === 'skills-druid-werewolf' ? 'werewolf' as const : 'werebear' as const } : {}),
