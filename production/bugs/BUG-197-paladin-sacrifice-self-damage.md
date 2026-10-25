@@ -1,7 +1,7 @@
 # BUG-197 — Apply Sacrifice's advertised self damage
 
 Severity: High — the advertised resource tradeoff has no combat consequence.
-Status: Reproduced; repair pending. No inventory credit.
+Status: Reproduced; repair in progress. No inventory credit.
 Owners: engine-dev / content-designer / frontend-dev; root sole writer.
 
 ## Reproduction
@@ -50,3 +50,5 @@ scalar behavior, add pre-fix regressions, implement native/presentation consumer
 then run required automated and production-browser checks before inventory credit.
 The other six unverified Paladin actives, independent/earned acceptance, Baal,
 C2–C4/full G0–G7 and complete private v1 remain in scope and unfinished.
+
+Controlling [local repair contract](../../docs/plans/decisions/D04-paladin-sacrifice-v1.md).
