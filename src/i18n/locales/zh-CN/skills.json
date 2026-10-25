@@ -64,6 +64,11 @@
     "minLevel": "需要等级 {{level}}"
   },
   "details": {
+    "burnRate": "每层燃烧",
+    "burnRateValue": "最终命中伤害的{{percentOfHit}}%/秒（最低{{minDps}}点）",
+    "burnDuration": "燃烧持续",
+    "burnMaxStacks": "燃烧层数上限",
+    "descriptionBurn": "命中后附加燃烧：每层每秒造成最终命中伤害的{{percentOfHit}}%（向下取整，最低{{minDps}}点），持续{{durationSeconds}} 秒，最多{{maxStacks}}层。再次施加会增加层数并延长持续时间；已有伤害的燃烧保留原伤害率。",
     "treeSummary": "悬停、聚焦或点击节点，查看当前与下一级威力。",
     "nodeAria": "{{skill}}，等级 {{level}} / {{max}}，{{state}}",
     "level": "等级 {{current}}/{{max}}",

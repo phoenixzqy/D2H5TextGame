@@ -779,6 +779,9 @@ function SkillDetailPanel({
         <p className="rounded border border-d2-border/70 bg-black/30 px-3 py-2 text-sm text-d2-white/80">
           {dynamicDescription(name, skill, primaryStats, t)}
         </p>
+        {primaryStats?.burn ? (
+          <p className="text-sm text-d2-white/90">{t('details.descriptionBurn', primaryStats.burn)}</p>
+        ) : null}
         {skill.id === 'skills-paladin-meditation' ? (
           <p className="text-sm text-d2-white/90">{t('auraSelection.meditationRankBonuses')}</p>
         ) : null}
@@ -901,6 +904,13 @@ function StatSection({
                   : id === 'werewolf' || id === 'werebear' ? t('druid.' + id + '.name')
                   : t(`damage-types:status.${id}`, { defaultValue: humanizeId(id) })).join(', ')}
             />
+          ) : null}
+          {stats.burn ? (
+            <>
+              <StatLine label={t('details.burnRate')} value={t('details.burnRateValue', stats.burn)} />
+              <StatLine label={t('details.burnDuration')} value={t('details.seconds', { seconds: stats.burn.durationSeconds })} />
+              <StatLine label={t('details.burnMaxStacks')} value={String(stats.burn.maxStacks)} />
+            </>
           ) : null}
         </dl>
       ) : (

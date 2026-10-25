@@ -64,6 +64,11 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "burnRate": "Burn per stack",
+    "burnRateValue": "{{percentOfHit}}% of final hit/s (min. {{minDps}})",
+    "burnDuration": "Burn duration",
+    "burnMaxStacks": "Maximum Burn stacks",
+    "descriptionBurn": "On a successful hit, Burn deals {{percentOfHit}}% of the final hit per second per stack (rounded down, minimum {{minDps}}) for {{durationSeconds}} s, up to {{maxStacks}} stacks. Refreshing adds a stack and extends duration; an existing damaging Burn keeps its original rate.",
     "treeSummary": "Hover, focus, or tap a node to preview its current and next-level power.",
     "nodeAria": "{{skill}}, level {{level}} of {{max}}, {{state}}",
     "level": "Lv. {{current}}/{{max}}",

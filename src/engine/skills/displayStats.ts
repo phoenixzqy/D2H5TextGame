@@ -9,7 +9,8 @@
  */
 
 import type { DamageType } from '../types/attributes';
-import type { ColdMasteryTuning, StaticFieldTuning } from '../types/skills';
+import type { ColdMasteryTuning, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
+import { STATUS_DEFAULTS } from '../combat/status';
 import { coldMasteryReductionAtRank } from './cold-mastery';
 import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
 import { getSummonStats } from './summons';
@@ -39,6 +40,7 @@ export interface DisplaySkillSource {
   };
   readonly damageType?: DamageType;
   readonly appliesStatus?: readonly string[];
+  readonly statusEffect?: SkillStatusEffectMetadata;
   readonly appliesTags?: readonly string[];
   readonly summonId?: string;
   readonly scaling?: {
@@ -117,6 +119,13 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** A rule based on final mitigated hits, never a guaranteed base-damage DPS estimate. */
+  readonly burn?: {
+    readonly percentOfHit: number;
+    readonly durationSeconds: number;
+    readonly maxStacks: number;
+    readonly minDps: number;
+  };
   readonly rank: number;
   readonly damage: readonly SkillDamageDisplayRow[];
   readonly totalDamage?: {
@@ -160,6 +169,16 @@ function scaleCooldown(skill: DisplaySkillSource, rank: number): number {
   if (skill.cooldown <= 0 || skill.trigger === 'passive' || skill.trigger === 'aura') return 0;
   const perLevel = skill.scaling?.cooldownPerLevel ?? 0;
   return Math.max(1, Number((skill.cooldown + perLevel * Math.max(0, rank - 1)).toFixed(1)));
+}
+
+function burnDisplay(skill: DisplaySkillSource): SkillRankDisplayStats['burn'] {
+  const id = skill.appliesStatus?.[0], fraction = skill.statusEffect?.dotPctOfDamage;
+  if (!skill.damage || skill.damageType !== 'fire' || skill.trigger !== 'active' ||
+    (id !== 'burn' && id !== 'ignite') || fraction === undefined ||
+    !Number.isFinite(fraction) || fraction <= 0 ||
+    (skill.statusEffect?.chance ?? 1) !== 1 || (skill.statusEffect?.stacksOnApply ?? 1) !== 1) return undefined;
+  return { percentOfHit: Number((fraction * 100).toFixed(4)),
+    durationSeconds: STATUS_DEFAULTS.ignite.duration, maxStacks: STATUS_DEFAULTS.ignite.maxStacks, minDps: 1 };
 }
 
 function damageRows(skill: DisplaySkillSource, rank: number): readonly SkillDamageDisplayRow[] {
@@ -361,9 +380,11 @@ export function computeSkillRankDisplayStats(
   const utility = passiveUtilityRows(skill, safeRank);
   const manaCost = scaleCost(skill.cost?.mana, skill.scaling?.costPerLevel ?? 0, safeRank);
   const lifeCost = scaleCost(skill.cost?.life, skill.scaling?.costPerLevel ?? 0, safeRank);
+  const burn = burnDisplay(skill);
 
   return {
     rank: safeRank,
+    ...(burn ? { burn } : {}),
     damage,
     ...(totalDamage ? { totalDamage } : {}),
     ...(resolvedSummonCap !== undefined ? { summonCap: resolvedSummonCap } : {}),
