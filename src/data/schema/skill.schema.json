@@ -8,6 +8,23 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["aoeShape"], "properties": { "aoeShape": { "const": "cone-2" } } },
+      "then": { "properties": { "id": { "const": "skills-assassin-fire-blast" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-fire-blast" } } },
+      "then": {
+        "required": ["aoeShape", "requiredLevel", "damage", "damageType", "appliesStatus"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "area-enemies" },
+          "aoeShape": { "const": "cone-2" }, "requiredLevel": { "const": 1 },
+          "maxLevel": { "const": 20 }, "prerequisites": { "const": [] },
+          "damage": { "$ref": "#/properties/damage" },
+          "damageType": { "const": "fire" }, "appliesStatus": { "const": ["burn"] }
+        }
+      }
+    },
+    {
       "if": { "required": ["ignoresDefense"], "properties": { "ignoresDefense": {} } },
       "then": { "properties": { "id": { "const": "skills-amazon-impale" } } }
     },
@@ -4182,7 +4199,7 @@
     },
     "aoeShape": {
       "type": "string",
-      "enum": ["single", "line-3", "column-3", "cross", "box-3x3", "all-enemies"],
+      "enum": ["single", "line-3", "column-3", "cross", "cone-2", "box-3x3", "all-enemies"],
       "description": "Optional AOE shape on the 3-column battle grid. Does not imply attack range or movement."
     },
     "cooldown": {

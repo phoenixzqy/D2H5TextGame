@@ -277,7 +277,7 @@ for (const s of cases) {
     const hits = out.events.filter((e) => e.kind === 'damage');
     const hitTargets = new Set(hits.map((e) => e.target));
     expect(hitTargets.size).toBe(
-      s.slug === 'fire-blast' ? 5 : ['fists-of-fire', 'phoenix-strike'].includes(s.slug) ? 1 : 9
+      s.slug === 'fire-blast' ? 4 : ['fists-of-fire', 'phoenix-strike'].includes(s.slug) ? 1 : 9
     );
     for (const target of out.result.enemyTeam) {
       const direct = hits.filter((e) => e.target === target.id).reduce((n, e) => n + e.amount, 0);

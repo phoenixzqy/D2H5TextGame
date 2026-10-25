@@ -48,7 +48,7 @@
     "requiredLevel": 1,
     "trigger": "active",
     "target": "area-enemies",
-    "aoeShape": "cross",
+    "aoeShape": "cone-2",
     "cooldown": 2,
     "minLevel": 1,
     "maxLevel": 20,

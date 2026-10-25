@@ -189,7 +189,7 @@ export const DEFAULT_SKILLS: readonly RegisteredSkill[] = Object.freeze([
 
   // Assassin
   build({ id: 'assassin.shock_web', archetype: 'assassin', target: 'all-enemies', cooldown: 2, manaCost: 20, damageType: 'lightning', base: [30, 50], status: { id: 'paralyze', chance: 0.2 } }),
-  build({ id: 'assassin.fire_blast', archetype: 'assassin', target: 'area-enemies', cooldown: 2, manaCost: 25, damageType: 'fire', base: [50, 70], status: { id: 'ignite', dotPct: 0.1 }, aoeShape: 'cross' }),
+  build({ id: 'assassin.fire_blast', archetype: 'assassin', target: 'area-enemies', cooldown: 2, manaCost: 25, damageType: 'fire', base: [50, 70], status: { id: 'ignite', dotPct: 0.1 }, aoeShape: 'cone-2' }),
   build({ id: 'assassin.blade_fury', archetype: 'assassin', target: 'area-enemies', cooldown: 1, manaCost: 15, damageType: 'physical', base: [40, 60], aoeShape: 'line-3' }),
   build({ id: 'assassin.mind_blast', archetype: 'assassin', target: 'all-enemies', cooldown: 3, manaCost: 30, damageType: 'arcane', base: [50, 70], status: { id: 'mana-burn' } }),
   build({ id: 'assassin.dragon_claw', archetype: 'assassin', target: 'single-enemy', cooldown: 1, manaCost: 20, damageType: 'physical', base: [70, 100] }),

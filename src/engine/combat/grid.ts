@@ -6,6 +6,7 @@ export type AoeShape =
   | 'line-3'
   | 'column-3'
   | 'cross'
+  | 'cone-2'
   | 'box-3x3'
   | 'all-enemies';
 
@@ -93,6 +94,13 @@ export function cellsForAoeShape(anchor: GridPosition, shape: AoeShape): readonl
         { row: anchor.row, col: anchor.col + 1 },
         { row: anchor.row - 1, col: anchor.col },
         { row: anchor.row + 1, col: anchor.col }
+      ].filter(isValidGridPosition);
+    case 'cone-2':
+      return [
+        anchor,
+        { row: anchor.row + 1, col: anchor.col - 1 },
+        { row: anchor.row + 1, col: anchor.col },
+        { row: anchor.row + 1, col: anchor.col + 1 }
       ].filter(isValidGridPosition);
     case 'box-3x3': {
       const cells: GridPosition[] = [];

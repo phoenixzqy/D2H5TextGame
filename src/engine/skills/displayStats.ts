@@ -153,6 +153,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Explicit authored cone footprint; it counts covered cells, not enemy slots. */
+  readonly areaShape?: 'cone-2';
   /** Authored limit after resolving the full area and its ordinary target order. */
   readonly maxTargets?: number;
   /** Explicit flat MR bypass; percentage resistance and personal absorption remain. */
@@ -524,6 +526,9 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(skill.id === 'skills-assassin-fire-blast' && skill.trigger === 'active' &&
+      skill.target === 'area-enemies' && skill.aoeShape === 'cone-2'
+      ? { areaShape: skill.aoeShape } : {}),
     ...(maxTargets !== undefined ? { maxTargets } : {}),
     ...(ignoresMagicResist ? { ignoresMagicResist: true as const } : {}),
     ...(ignoresDefense ? { ignoresDefense: true as const } : {}),
