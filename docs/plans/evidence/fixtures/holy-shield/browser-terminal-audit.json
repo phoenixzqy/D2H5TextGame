@@ -1,0 +1,64 @@
+{
+  "terminal": {
+    "browser-en-desktop": {
+      "argv": [
+        "env",
+        "BROWSER_RUN=browser-en-desktop",
+        "BROWSER_LOCALE=en",
+        "BROWSER_WIDTH=1280",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-holy-shield-6q01qwxk/browser.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 15.432,
+      "finished": "2026-10-25T11:20:11.856984+00:00"
+    },
+    "browser-en-mobile": {
+      "argv": [
+        "env",
+        "BROWSER_RUN=browser-en-mobile",
+        "BROWSER_LOCALE=en",
+        "BROWSER_WIDTH=360",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-holy-shield-6q01qwxk/browser.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 15.768,
+      "finished": "2026-10-25T11:20:36.823040+00:00"
+    },
+    "browser-zh-desktop": {
+      "argv": [
+        "env",
+        "BROWSER_RUN=browser-zh-desktop",
+        "BROWSER_LOCALE=zh-CN",
+        "BROWSER_WIDTH=1280",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-holy-shield-6q01qwxk/browser.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 16.797,
+      "finished": "2026-10-25T11:20:37.850548+00:00"
+    },
+    "browser-zh-mobile-corrected": {
+      "argv": [
+        "env",
+        "BROWSER_RUN=browser-zh-mobile",
+        "BROWSER_LOCALE=zh-CN",
+        "BROWSER_WIDTH=360",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-holy-shield-6q01qwxk/browser.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 14.49,
+      "finished": "2026-10-25T11:20:48.912411+00:00"
+    }
+  },
+  "earlier_launch_failure": "browser-zh-mobile.json",
+  "all_four_terminal_exit_zero": true,
+  "browser_script_sha256": "25957a4cbd3cfb0a12b05e3284cdd4d71420df3c4534290e18bb3f43261c70ca",
+  "final_build_audit_sha256": "34f9aca904e3c5f8e973460798863c67596e3c9dbaa77f0007d31518ef0c5444"
+}

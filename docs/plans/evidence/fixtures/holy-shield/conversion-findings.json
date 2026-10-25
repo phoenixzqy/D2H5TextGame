@@ -1,0 +1,32 @@
+{
+  "scope": "Conversion read-only next-slice investigation; not a fix or final design",
+  "head": "bafc8e0849fa0d3a298ce46650d2da14df73ad27",
+  "includes_uncommitted_holy_shield": true,
+  "source_hashes": {
+    "src/data/skills/paladin.json": "c6f22672e6b791073c5670bdc091e4aca3772c55d914818861e7c4f58c815c2d",
+    "src/engine/combat/combat.ts": "b026df7c1612f58471adf640a83537bec01226e14f9bcc75d4bc51822d1efa5a",
+    "src/engine/combat/status.ts": "e6cd375e9b8c2e8617461dfbad5487b8b248feba41919f045f6a82d27c59fe52",
+    "src/engine/skills/player-class-actives.ts": "527b9b2ca1b3d0f75f03062f74862fa77ae4f399660a2c3ae8dfc82622625742",
+    "src/stores/combatHelpers.ts": "9f34271f4cd0be284f76430368ebfc225166e16e8cab36e3d5c839fb9775e05a"
+  },
+  "repro": "conversion-result.json",
+  "facts": [
+    "Native legal ranks1/20 each pay25MP and apply converted at1700ms, expiry2700ms.",
+    "The converted monster deals100Physical to the hero at1860ms in both cases; heroHP2000\u21921900.",
+    "Conversion aliases retain full Sacrifice\u2192Zeal\u2192Vengeance transitive eligibility in the native repro.",
+    "The current status has no dedicated configuration; the unknown-status1s fallback supplies lifetime.",
+    "Literal side drives attack/skill/heal targeting, selected offensive aura effects, slow eligibility and final result/victory/reward provenance."
+  ],
+  "design_requirements": [
+    "Preserve original side and monster identity for victory/rewards/corpses/results; conversion alone cannot clear enemies.",
+    "Central effective allegiance must cover basic attacks and actual registered monster skills, support targeting, opposing aura/pulse scopes and relevant hostility checks.",
+    "Use actual paid-cast provenance, living legal source, expiry/source death and explicit tier eligibility; bare markers may not grant control.",
+    "Review ownership graph for monster summons, unchanged scheduled cooldowns/resources, last-converted-enemy waiting, cross-wave/replay and no duplicate rewards."
+  ],
+  "unresolved_design": [
+    "Explicit useful finite duration and eligible tiers must be authored/contracted before runtime edits; accidental unknown-status fallback is not a design decision.",
+    "Exact registered damage/status identity and native transient authority must be defined."
+  ],
+  "no_credit": true,
+  "no_campaign_actions": true
+}

@@ -1,0 +1,11 @@
+{
+  "head": "36fc086a8b1a67c364ed49e24704a8beb4f65267",
+  "runtime_commit": "1c94a7856dee0353ce41828bbd2132b2bb2b586b",
+  "presentation_commit": "36fc086a8b1a67c364ed49e24704a8beb4f65267",
+  "source_files": 1359,
+  "build_files": 760,
+  "genuine": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "all_actual_committed_blobs_and_disk_exact": true,
+  "all_exact": true,
+  "mismatches": []
+}

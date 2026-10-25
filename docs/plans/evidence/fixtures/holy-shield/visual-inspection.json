@@ -1,0 +1,44 @@
+{
+  "reviewer": "root",
+  "independent": false,
+  "inspected": [
+    {
+      "file": "browser-en-desktop/en-1280-combat.png",
+      "sha256": "d7ebad968005cffc6fb1118cf241cda697339c7aa26027ff2190f6da1ff2a775"
+    },
+    {
+      "file": "browser-en-desktop/en-1280-details.png",
+      "sha256": "8a61d34081f70266d93666ca16e52677661aed01355e25f28ec266de2c098040"
+    },
+    {
+      "file": "browser-en-mobile/en-360-combat.png",
+      "sha256": "53f69a691aa6d101c6e4051a49a51e2fda3aab26b05be391111d3ce977772b71"
+    },
+    {
+      "file": "browser-en-mobile/en-360-details.png",
+      "sha256": "7f8d4b3e8e0a01f7d76ea187e7965a0ab8b653b5a6bb2127d26f303d9e6ed8c5"
+    },
+    {
+      "file": "browser-zh-desktop/zh-CN-1280-combat.png",
+      "sha256": "4c811bd33210e81e696cac4af71d238e21254eb410fc202e1b1527524ead57fa"
+    },
+    {
+      "file": "browser-zh-desktop/zh-CN-1280-details.png",
+      "sha256": "005fb922f018a96885d5d8ac692d4f5948713a469ea3b543f18381b11207881d"
+    },
+    {
+      "file": "browser-zh-mobile/zh-CN-360-combat.png",
+      "sha256": "734544b696612b6cb7bfbeba6aec951498098847b3e4bc5d449b985493a592f5"
+    },
+    {
+      "file": "browser-zh-mobile/zh-CN-360-details.png",
+      "sha256": "3d491533bc831ab41e6dcd3250437fe2155f165a958a1ead429393f826ed53c3"
+    }
+  ],
+  "observations": [
+    "All eight production screenshots inspected. Desktop detail values areDefense80%/reduction40%/MP31/CD3s, positive buff chips localized in en/zh.",
+    "No horizontal overflow in20measured five-size geometry samples; allocation button >=44px.",
+    "Mobile detail requires vertical scrolling; existing bottom-navigation occlusion/name wrapping and icon/font fallback remain broader UX issues. No full accessibility/readability acceptance claimed."
+  ],
+  "synthetic": true
+}

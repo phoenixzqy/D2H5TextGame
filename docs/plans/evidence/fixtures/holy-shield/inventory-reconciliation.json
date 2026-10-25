@@ -1,0 +1,30 @@
+{
+  "rows": 213,
+  "ids_order_preserved": true,
+  "credited": [
+    "skills-paladin-holy-shield"
+  ],
+  "evidence_only": [
+    "skills-paladin-conversion"
+  ],
+  "changed_rows": [
+    "skills-paladin-conversion",
+    "skills-paladin-holy-shield"
+  ],
+  "before_counts": {
+    "unverified": 114,
+    "bounded-functional": 97,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "after_counts": {
+    "unverified": 113,
+    "bounded-functional": 98,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "before_sha256": "f10035a2e814779af019363aba5d4bc00040bd1f1bd06e81823af26176a71005",
+  "after_sha256": "3c65fc190c25871d868c03b543045cfae4acae00821958d9c7df333864980f60",
+  "paladin_bounded_rows": 29,
+  "independent_earned_acceptance_open": true
+}

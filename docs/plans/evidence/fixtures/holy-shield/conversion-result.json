@@ -1,0 +1,131 @@
+{
+  "synthetic": true,
+  "seed": 7,
+  "cases": [
+    {
+      "rank": 1,
+      "nativeLevels": {
+        "skills-paladin-conversion": 1,
+        "skills-paladin-vengeance": 1,
+        "skills-paladin-zeal": 1,
+        "skills-paladin-sacrifice": 1
+      },
+      "conversion": {
+        "kind": "status-state",
+        "target": "converted-monster",
+        "statuses": [
+          {
+            "id": "converted",
+            "stacks": 1,
+            "remaining": 1,
+            "sourceId": "conversion-hero",
+            "appliedAtMs": 1700,
+            "expiresAtMs": 2700,
+            "damageType": "physical"
+          }
+        ],
+        "simClockMs": 1700,
+        "uiDelayMs": 50
+      },
+      "paid": {
+        "kind": "mana",
+        "target": "conversion-hero",
+        "mana": 75,
+        "reason": "cast",
+        "simClockMs": 1700,
+        "uiDelayMs": 50
+      },
+      "attacks": [
+        {
+          "kind": "damage",
+          "source": "converted-monster",
+          "target": "conversion-hero",
+          "damageType": "physical",
+          "amount": 100,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1860,
+          "uiDelayMs": 50
+        }
+      ],
+      "finalHP": 1900,
+      "originalSides": [
+        {
+          "id": "converted-monster",
+          "side": "enemy",
+          "life": 1939
+        },
+        {
+          "id": "other-monster",
+          "side": "enemy",
+          "life": 2000
+        }
+      ],
+      "expectedTarget": "other-monster",
+      "pass": false
+    },
+    {
+      "rank": 20,
+      "nativeLevels": {
+        "skills-paladin-conversion": 20,
+        "skills-paladin-vengeance": 1,
+        "skills-paladin-zeal": 1,
+        "skills-paladin-sacrifice": 1
+      },
+      "conversion": {
+        "kind": "status-state",
+        "target": "converted-monster",
+        "statuses": [
+          {
+            "id": "converted",
+            "stacks": 1,
+            "remaining": 1,
+            "sourceId": "conversion-hero",
+            "appliedAtMs": 1700,
+            "expiresAtMs": 2700,
+            "damageType": "physical"
+          }
+        ],
+        "simClockMs": 1700,
+        "uiDelayMs": 50
+      },
+      "paid": {
+        "kind": "mana",
+        "target": "conversion-hero",
+        "mana": 75,
+        "reason": "cast",
+        "simClockMs": 1700,
+        "uiDelayMs": 50
+      },
+      "attacks": [
+        {
+          "kind": "damage",
+          "source": "converted-monster",
+          "target": "conversion-hero",
+          "damageType": "physical",
+          "amount": 100,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1860,
+          "uiDelayMs": 50
+        }
+      ],
+      "finalHP": 1900,
+      "originalSides": [
+        {
+          "id": "converted-monster",
+          "side": "enemy",
+          "life": 1844
+        },
+        {
+          "id": "other-monster",
+          "side": "enemy",
+          "life": 2000
+        }
+      ],
+      "expectedTarget": "other-monster",
+      "pass": false
+    }
+  ],
+  "allPass": false
+}

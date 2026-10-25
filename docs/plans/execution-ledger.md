@@ -12,6 +12,8 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D05 Holy Shield / BUG199 | locally fixed/verified; independent and earned acceptance open | Runtime `1c94a78`, presentation/contract `36fc086`. Real paid ordinary Defense +4%/rank and postmitigation absorption2%/rank, strict native source/prerequisite authority and run-long wave carry without saved paid state/refill. Native RED900/900 damage becomes879/492; 68new cases/six files; final full14226/629/two existing skips (481.414s), engine7440/267, types/lint/build/bridge/precache PASS. Production4/4, eight exact five-domain Continue pairs/20geometry/eight inspected screenshots. [Evidence](evidence/d05-holy-shield.md); all1359source/760build/Git/genuine hashes exact through full; committed blobs verified. Exactly one credit:213IDs/order,113unverified/98bounded-functional/one engine-only/one review-needed; Paladin29/30.128raw files/26terminal receipts byte-verified;1648exact scratch files removed, scratch absent/PID647027 absent/4485closed/cleanup[]. GenuineL33/next402 unchanged/Baal uncleared. Provisional adaptation; independent/earned balance, Conversion, C2–C4/fullG0–G7/privatev1 remain open. Root sole writer, local only; umbrella goal/worktree active. |
+| D04 Conversion / BUG200 | native allegiance defect reproduced; repair open | Real native rank1/20 legal chain pays25MP at1700ms, publishes converted through2700ms, but converted monster attacks hero for100Physical at1860ms; former ally untouched. Seed7, synthetic fixtures, immutable inputs/exact replay. [Evidence](evidence/d04-conversion-repro.md). One-second fallback is unauthored, no mechanic credit. Effective allegiance must cover scheduled skills/support/auras/summons while original side preserves rewards/corpses/victory. Detailed second repeat and first-run filename collision explicitly disclosed; source hashes match36fc086. No genuine campaign action. |
 | D04 Paladin target/control attacks / BUG198 | locally fixed/verified; independent and earned acceptance open | Runtime/native e2ea27c; presentation ed37092. Strict authored Zeal cap3 after unchanged densest cross; real Smite/Charge Stun1s/boss0.5s and Fist all-target Paralyze1s with causal timing/expiry/miss/repeat proof and truthful bilingual previews. Five new files/113cases; final full14158/623/two existing skips (506.191s), engine7392/265, types/lint/build/bridge/precache PASS. Production4/4,16positive attacks/four complete three-attempt Zeal casts/eight exact five-domain Continue pairs/80geometry/32screenshots/10inspected. [Evidence](evidence/d04-paladin-target-control.md); all1352source/760build/Git/genuine exact through full; actual committed blobs checked. Exactly four credits:213IDs/order,114unverified/97bounded-functional/one engine-only/one review-needed; Paladin28/30.190raw files/26terminal receipts byte-verified;950exact scratch files removed, scratch absent/4484closed/cleanup[]. GenuineL33/next402 unchanged/Baal uncleared. Conversion/Holy Shield, independent/earned class/build/balance, C2–C4/fullG0–G7/privatev1 remain open. Root sole writer, local only, umbrella goal/worktree active. |
 | D04 Paladin Sacrifice / BUG197 | locally fixed/verified; independent and earned acceptance open | Runtime/tests `4b07c98`, presentation/tests `89c12a1`; explicit provisional8%/minimum1 life debit from actual positive enemy HP loss, ordinary death/orb/reflection first, self-shield/MP bypass and lethal hero/orphan closure preserved. Five new files/60cases; final full14045/618/two existing skips (468.318s), engine7331/262, types/lint/build/bridge/precache PASS. Production4/4, four positive self-damage cases/eight exact five-domain Continue pairs/20geometry/eight inspected screenshots. [Evidence](evidence/d04-paladin-sacrifice.md); all1347source/760build/Git/genuine exact through full; actual committed source blobs checked. Exactly one credit:213IDs/order,118unverified/93bounded-functional/one engine-only/one review-needed. 142raw files/29terminal receipts byte-verified;902exact scratch files removed, scratch absent/4483closed/cleanup[]. GenuineL33/next402 unchanged/Baal uncleared. Other six Paladin actives, independent/earned balance, C2–C4/fullG0–G7/privatev1 remain open; root sole writer, local only, umbrella goal/worktree active. |
 | D04 Paladin Holy Bolt/Hammer/Vengeance / BUG196 | locally fixed/verified; independent and earned acceptance open | Runtime `4cde6fc`/`7b129df`, native/composite regression `ccf6631`, presentation `f829458`. Actual 50% direct-HP recovery, narrow flat-MR bypass and one shared-roll Fire→Cold→Lightning strike with real Burn/Chill/Paralyze, finite shields/MP and one death/corpse closure. Eight new files/120 cases; original six-case/36-control/eight-requirement native probe GREEN; scalar 448 scenarios byte-identical. Final full 13985/613/two existing skips (506.111s), engine 7288/259, types/lint/build/bridge/precache PASS. Production 4/4, 12 positive attacks/eight exact five-domain Continue pairs/20 geometry/24 screenshots/eight inspected. [Evidence](evidence/d04-paladin-active-attacks.md); all 1342 source/760 build/Git/genuine exact through full, committed source blobs checked. Exactly three credits: 213 IDs/order, 119 unverified/92 bounded-functional/one engine-only/one review-needed. 202 raw files/37 terminal receipts byte-verified; 962 exact scratch files removed, scratch absent/4482 closed/cleanup []. Synthetic proof only; genuine L33/next402 unchanged, Baal uncleared. Seven remaining Paladin actives, independent/earned acceptance, C2–C4/full G0–G7/private v1 remain open. Root sole writer, local only; umbrella goal/worktree active. |
@@ -11734,3 +11736,49 @@ action. Root sole writer; umbrella goal/branch/worktree remain active.
 
 Retention verified260raw files/37terminal receipts;1020exact task-owned files
 removed, scratch absent/PID423178 absent/4480closed/remaining[]/failures[].
+
+
+## D05 — Paid Holy Shield defense and absorption / BUG199
+
+Runtime `1c94a78` and presentation/contract `36fc086` consume the existing JSON
++4% Defense/rank and2% absorption/rank through native legal paid authority.
+The explicit provisional v1 adaptation follows Cyclone's deterministic reduction;
+no block roll, finite capacity or equipment requirement was invented. Bare markers,
+foreign sources, invalid ranks and contradictory registry payloads confer no power.
+Run-long paid wave carry, next-wave configuration, fresh/import unpaid boundaries
+and original-resource replay remain intact; Save22 is unchanged.
+
+Native original HP-loss RED900/900 becomes879/492 at rank1/20 with one35/31MP
+payment. Shared personal settlement covers direct/periodic/reflected damage and
+exact lethal prediction. Bilingual current/next/MAX details and positive logs/chips
+show actual behavior. [Evidence](evidence/d05-holy-shield.md) retains68new cases,
+engine7440/267, full14226/629/two existing skips, types/lint/build/bridge/precache
+PASS, production4/4, eight exact five-domain Continue pairs/20geometry/eight
+inspected screenshots. All1359source/760build/Git/genuine hashes are frozen
+through full and actual committed blobs match tested bytes. Original failures
+and corrected browser invocation are retained rather than replaced.
+
+Only Holy Shield gains credit:213IDs/order preserved;113unverified,
+98bounded-functional, one bounded-engine-functional and one review-needed.
+Paladin29/30 is locally bounded, not independently accepted or earned balanced.
+Archive128members/26terminal receipts byte-verified;1648exact task-owned files
+removed; scratch/PID647027 absent,4485closed,remaining[]/failures[].
+
+## D04 — Conversion actual native RED / BUG200
+
+Legal rank1/20 native Conversion casts pay25MP at1700ms, apply a marker until
+2700ms, then the converted monster's1860ms basic attack still deals100Physical
+to the hero. Former ally HP stays unchanged. Seed7, resources/monsters/timing
+synthetic; inputs immutable and replay exact. [Reproduction](evidence/d04-conversion-repro.md)
+records first terminal1, overwritten detailed result and explicit corrected
+second repeat. Both probed source and committed36fc086 bytes agree. No mechanic
+credit or campaign progress follows. The accidental unknown-status1s fallback
+is not design authority. Next: author useful finite duration/tier eligibility,
+then authenticated effective allegiance for real skills/support/auras/summons,
+preserving original death/reward/victory identity and expiry/source-loss behavior.
+
+Genuine Ancients/Rite remainsL33/XP149261/nextNormal402/Nightmare0/Baal uncleared.
+C0/C1 retain their narrow acceptance; C2 underway, C3/C4 and fullG0–G7,
+all-class earned builds,30–50hour pacing/economy/endgame/independent QA and
+existing mobile/a11y/PWA/performance issues remain open. No remote action.
+Root sole writer; umbrella goal/branch/worktree remain active.
