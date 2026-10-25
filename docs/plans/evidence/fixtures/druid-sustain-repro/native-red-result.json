@@ -1,0 +1,302 @@
+{
+  "scope": "Native current-class/rank/prerequisite projection and actual registered attacks; all resources, held targets and cadence are disclosed synthetic isolation fixtures. No campaign save or balance claim.",
+  "cases": [
+    {
+      "slug": "feral-rage",
+      "rank": 1,
+      "seed": 7,
+      "synthetic": true,
+      "nativePriority": [
+        "skills-druid-feral-rage"
+      ],
+      "registeredEffects": [
+        {
+          "kind": "damage",
+          "damageType": "physical",
+          "base": [
+            45,
+            65
+          ],
+          "perRank": [
+            4,
+            4
+          ],
+          "tags": [
+            "physical",
+            "bleed"
+          ],
+          "applyStatus": {
+            "id": "feral-rage"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "kind": "action",
+          "actor": "synthetic-sustain-hero",
+          "skillId": "druid.feral_rage",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "synthetic-sustain-hero",
+          "target": "synthetic-held-enemy",
+          "damageType": "physical",
+          "amount": 46,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "heals": [],
+      "initialLife": 5000,
+      "finalLife": 5000,
+      "actualHealing": 0,
+      "paidMana": 3,
+      "finalMana": 0,
+      "expectation": "A successful advertised life-recovery attack must restore positive HP to this wounded surviving caster.",
+      "pass": false
+    },
+    {
+      "slug": "feral-rage",
+      "rank": 20,
+      "seed": 7,
+      "synthetic": true,
+      "nativePriority": [
+        "skills-druid-feral-rage"
+      ],
+      "registeredEffects": [
+        {
+          "kind": "damage",
+          "damageType": "physical",
+          "base": [
+            45,
+            65
+          ],
+          "perRank": [
+            4,
+            4
+          ],
+          "tags": [
+            "physical",
+            "bleed"
+          ],
+          "applyStatus": {
+            "id": "feral-rage"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "kind": "action",
+          "actor": "synthetic-sustain-hero",
+          "skillId": "druid.feral_rage",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "synthetic-sustain-hero",
+          "target": "synthetic-held-enemy",
+          "damageType": "physical",
+          "amount": 122,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "heals": [],
+      "initialLife": 5000,
+      "finalLife": 5000,
+      "actualHealing": 0,
+      "paidMana": 3,
+      "finalMana": 0,
+      "expectation": "A successful advertised life-recovery attack must restore positive HP to this wounded surviving caster.",
+      "pass": false
+    },
+    {
+      "slug": "hunger",
+      "rank": 1,
+      "seed": 7,
+      "synthetic": true,
+      "nativePriority": [
+        "skills-druid-hunger"
+      ],
+      "registeredEffects": [
+        {
+          "kind": "damage",
+          "damageType": "physical",
+          "base": [
+            60,
+            85
+          ],
+          "perRank": [
+            5,
+            5
+          ],
+          "tags": [
+            "physical",
+            "bleed"
+          ],
+          "applyStatus": {
+            "id": "hunger"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "kind": "action",
+          "actor": "synthetic-sustain-hero",
+          "skillId": "druid.hunger",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "synthetic-sustain-hero",
+          "target": "synthetic-held-enemy",
+          "damageType": "physical",
+          "amount": 61,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "heals": [],
+      "initialLife": 5000,
+      "finalLife": 5000,
+      "actualHealing": 0,
+      "paidMana": 11,
+      "finalMana": 0,
+      "expectation": "A successful advertised life-recovery attack must restore positive HP to this wounded surviving caster.",
+      "pass": false
+    },
+    {
+      "slug": "hunger",
+      "rank": 20,
+      "seed": 7,
+      "synthetic": true,
+      "nativePriority": [
+        "skills-druid-hunger"
+      ],
+      "registeredEffects": [
+        {
+          "kind": "damage",
+          "damageType": "physical",
+          "base": [
+            60,
+            85
+          ],
+          "perRank": [
+            5,
+            5
+          ],
+          "tags": [
+            "physical",
+            "bleed"
+          ],
+          "applyStatus": {
+            "id": "hunger"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "kind": "action",
+          "actor": "synthetic-sustain-hero",
+          "skillId": "druid.hunger",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "synthetic-sustain-hero",
+          "target": "synthetic-held-enemy",
+          "damageType": "physical",
+          "amount": 156,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "heals": [],
+      "initialLife": 5000,
+      "finalLife": 5000,
+      "actualHealing": 0,
+      "paidMana": 11,
+      "finalMana": 0,
+      "expectation": "A successful advertised life-recovery attack must restore positive HP to this wounded surviving caster.",
+      "pass": false
+    },
+    {
+      "slug": "feral-rage",
+      "rank": 1,
+      "seed": 7,
+      "synthetic": true,
+      "firstAction": {
+        "kind": "action",
+        "actor": "synthetic-sustain-hero",
+        "skillId": "druid.feral_rage",
+        "simClockMs": 1700,
+        "uiDelayMs": 50
+      },
+      "secondAction": {
+        "kind": "action",
+        "actor": "synthetic-sustain-hero",
+        "skillId": null,
+        "simClockMs": 3400,
+        "uiDelayMs": 50
+      },
+      "basePeriodMs": 1700,
+      "actualNextGapMs": 1700,
+      "expectation": "A landed Feral Rage promises increased speed, so its next action should occur before the unchanged1700ms period.",
+      "pass": false
+    },
+    {
+      "slug": "feral-rage",
+      "rank": 20,
+      "seed": 7,
+      "synthetic": true,
+      "firstAction": {
+        "kind": "action",
+        "actor": "synthetic-sustain-hero",
+        "skillId": "druid.feral_rage",
+        "simClockMs": 1700,
+        "uiDelayMs": 50
+      },
+      "secondAction": {
+        "kind": "action",
+        "actor": "synthetic-sustain-hero",
+        "skillId": null,
+        "simClockMs": 3400,
+        "uiDelayMs": 50
+      },
+      "basePeriodMs": 1700,
+      "actualNextGapMs": 1700,
+      "expectation": "A landed Feral Rage promises increased speed, so its next action should occur before the unchanged1700ms period.",
+      "pass": false
+    }
+  ],
+  "failures": [
+    "feral-rage rank1: no advertised life recovery",
+    "feral-rage rank20: no advertised life recovery",
+    "hunger rank1: no advertised life recovery",
+    "hunger rank20: no advertised life recovery",
+    "feral-rage rank1: no advertised speed increase",
+    "feral-rage rank20: no advertised speed increase"
+  ],
+  "pass": false
+}

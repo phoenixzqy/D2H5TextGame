@@ -1,0 +1,71 @@
+{
+  "scope": "BUG193 actual native Feral Rage/Hunger RED only; no implementation or skill credit. Synthetic isolation fixtures, root self-review only.",
+  "files": {
+    "native-red-result.json": {
+      "original": "native-red-result.json",
+      "sha256": "b2b325e0caeba190b92cec49f218f0191e6f3ce867bc2e764eea2ffe0d0abd27",
+      "bytes": 7559
+    },
+    "native-red.json": {
+      "original": "native-red.json",
+      "sha256": "75f0e41d23238e635fd23181282da2932bf658fd9ccd424d0820af3739820106",
+      "bytes": 350
+    },
+    "native-red.log": {
+      "original": "native-red.log",
+      "sha256": "b2b325e0caeba190b92cec49f218f0191e6f3ce867bc2e764eea2ffe0d0abd27",
+      "bytes": 7559
+    },
+    "native-repro.ts.txt": {
+      "original": "native-repro.ts",
+      "sha256": "a8b8eaa06f0d4101583c681e28cbb27058026ed210c05c9b55f998cb4e1ceffa",
+      "bytes": 4872
+    },
+    "ownership.json": {
+      "original": "ownership.json",
+      "sha256": "1419c0b4fe2760e7239aa66b04f93a28f4bea8fa2a7e7b6fa52afbb873959436",
+      "bytes": 445
+    },
+    "repro-audit.json": {
+      "original": "repro-audit.json",
+      "sha256": "614c7c22f3669e72c9d6b68e502fb2c98a0ffe53b29dcaa728b7011e82f1afad",
+      "bytes": 359
+    },
+    "run.py": {
+      "original": "run.py",
+      "sha256": "5b4aa743f837643d012697def88abc2a31f01721228e0c13b79821b2351a089c",
+      "bytes": 716
+    }
+  },
+  "sourceHashes": {
+    "src/data/skills/druid.json": "8e9273f331e89494492bb639fcd9773c8a091450812ada62678dfa5286a7674e",
+    "src/engine/skills/dataCatalog.ts": "e64260d903708c89c91bb97d84578a753cb8c71183a97226656417445757a8e1",
+    "src/engine/combat/combat.ts": "de99485c745beba0bcc09d172648e605dd9773160e564d88f655a835fe816146",
+    "src/stores/combatHelpers.ts": "05ed70202710fdea06cb2fb7d8f635e2a4bf15d519afebbdc9ddb6427906215f",
+    "src/i18n/locales/en/skills.json": "2955061b04b6090d25eb6e236adc49f311df2986258befe21a76d38842a27212",
+    "src/i18n/locales/zh-CN/skills.json": "34c5437d9c121a02ddf2d69fb3e2ab496d087ea611c7771dc908431afee2fbea"
+  },
+  "audit": {
+    "reproducedAtHead": "d9f2e6a593fe21ae78fad0ef3d830ba539aa37b7",
+    "node": "v24.21.0",
+    "nativeCases": 6,
+    "actualLifeRecoveryFailures": 4,
+    "actualSpeedFailures": 2,
+    "syntheticFixtures": true,
+    "genuineSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "genuineCampaignActions": false,
+    "independentAcceptance": false
+  },
+  "terminalCommand": {
+    "argv": [
+      "node",
+      "node_modules/vite-node/vite-node.mjs",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-vabj_jac/native-repro.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exit": 1,
+    "seconds": 5.058,
+    "finished": "2026-10-25T07:30:10.532900+00:00"
+  },
+  "independentAcceptance": false
+}

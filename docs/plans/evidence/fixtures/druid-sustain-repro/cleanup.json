@@ -1,0 +1,17 @@
+{
+  "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-vabj_jac",
+  "rawFilesByteVerified": 7,
+  "removedPaths": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-vabj_jac/native-red-result.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-vabj_jac/native-red.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-vabj_jac/native-red.log",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-vabj_jac/native-repro.ts",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-vabj_jac/ownership.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-vabj_jac/repro-audit.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-vabj_jac/run.py"
+  ],
+  "rootAbsent": true,
+  "remainingPaths": [],
+  "failures": [],
+  "preserved": "Original native failure source/log/receipt/result/audit and repository source/history; no server started or campaign save changed."
+}

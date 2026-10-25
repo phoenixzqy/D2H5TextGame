@@ -1,0 +1,11 @@
+{
+  "reproducedAtHead": "d9f2e6a593fe21ae78fad0ef3d830ba539aa37b7",
+  "node": "v24.21.0",
+  "nativeCases": 6,
+  "actualLifeRecoveryFailures": 4,
+  "actualSpeedFailures": 2,
+  "syntheticFixtures": true,
+  "genuineSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "genuineCampaignActions": false,
+  "independentAcceptance": false
+}

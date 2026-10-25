@@ -1,0 +1,17 @@
+{
+  "pass": true,
+  "byteVerifiedRawFiles": 7,
+  "nativeCases": 6,
+  "expectedFailures": 6,
+  "unchangedRuntimeSourceFiles": 1305,
+  "inventoryRowsWithRiskOnlyUpdates": [
+    "skills-druid-feral-rage",
+    "skills-druid-hunger"
+  ],
+  "functionalCreditUnchanged": true,
+  "evidenceLinksChecked": 7,
+  "genuineSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "scratchAbsent": true,
+  "cleanupFailures": [],
+  "independentAcceptance": false
+}

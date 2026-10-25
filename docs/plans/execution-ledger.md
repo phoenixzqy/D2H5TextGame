@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D04 Feral Rage/Hunger / BUG193 | reproduced; contract and repair pending | At `d9f2e6a`, actual native rank1/20 paid hits are46/122 and61/156; all four wounded-caster cases restore0HP, and Feral next-action gaps remain1700ms in both cases. Six expectations RED with legal priority/hit/payment controls passing; terminal1/5.058s retained. [Evidence](evidence/d04-druid-sustain-repro.md). Adapter supplies enemy markers without self recovery/speed consumers; secondary Feral Bleed is dropped, requiring separate causal coverage. Ambiguous Feral life copy and new tuning need explicit reconciliation before patching. Seven raw files byte-verified/exact scratch removed/cleanup[]. Only two unverified risk/evidence rows updated; counts unchanged137/74/one engine-only/one review-needed. Genuine save/runtime unchanged; no campaign or remote action, no independent approval or completion claim. |
 | D04 Maul/Rabies/Fire Claws / BUG192 | locally fixed/verified; independent and earned acceptance open | Runtime `3ab831d` authors explicit10% Bleed/5% Poison/10% Burn using the unchanged adapter/status runtime. Presentation `91056a5` explains bilingual current/next rules, Maul form preservation and actual Rabies death chains. Final full13405/582/two existing skips, engine6955/242, types/lint/build/bridge PASS; production4/4,12 attack entries, eight exact five-domain Continue pairs,20geometry and16inspected screenshots. [Evidence](evidence/d04-druid-attack-dot.md); all1305 source/760 build hashes, HEAD/Git/genuine exact through653.485s full, actual committed HEAD blobs checked. Introduced unsupported duration-display capability corrected after isolated RED; superseded full and interrupted browser failures retained. Exactly three credits:213 IDs/order,137unverified/74bounded-functional/one engine-only/one review-needed.264raw files/37terminal receipts byte-verified;2545owned disposable files removed, scratch absent/4478closed/cleanup[]. Synthetic fixtures; genuineL33/next402 unchanged/Baal uncleared. Independent/earned balance, C2-C4/fullG0-G7/privatev1 remain open; local only, umbrella goal/worktree active. |
 | D05 Cyclone Armor / BUG191 | locally fixed/verified; independent and earned acceptance open | Runtime `ac9eb7e` applies authored paid reduction/resistance with source-bound wave carry; UI `568b833` adds bilingual current/next bonuses and separate prevention logs. Final full 13263/577/two existing skips, engine 6858/239, types/lint/build/bridge PASS; production 4/4, eight exact five-domain Continue pairs, 20 geometry samples and eight inspected screenshots. [Evidence](evidence/d05-cyclone-armor.md); all 1300 source/760 build hashes, HEAD/Git/genuine digest exact through 477.114s full, committed blobs verified. Only one credit: 213 IDs, 140 unverified/71 bounded-functional/one engine-only/one review-needed. 153 raw files/30 command receipts byte-verified; 1673 exact disposable files removed, scratch absent/4478 closed/cleanup []. Synthetic fixtures; genuine L33/next402 unchanged, Baal uncleared. Independent/earned balance, C2–C4/full G0–G7/private v1 remain open; local only, umbrella goal/worktree active. |
 | D04 five Druid fire spells / BUG190 | locally fixed/verified; independent and earned acceptance open | Runtime67cdf76 authors explicit10% final-hit/s Burn for Firestorm/Boulder/Fissure/Volcano/Armageddon, with existing alias/status integration and no global rate or save22 change. Presentation435ceba shows bilingual current/next/floor/duration/stack rules; tuning provisional. Focused535/14, engine6813/237, full13198/571/two existing skips, types/lint/build/four-chunk bridge PASS; production4/4/20spell entries/eight exact five-domain Continue pairs/20geometry/16inspected screenshots. [Evidence](evidence/d04-druid-fire.md); all1293source/760build/HEAD/Git/genuine hashes exact through496.436s full; committed blobs verified. Only five credits:213IDs/order,141unverified/70bounded-functional/one engine-only/one review-needed. Browser fixtures synthetic; genuineL33/next402 unchanged/Baal uncleared. Independent/earned balance, C2-C4/fullG0-G7/privatev1 remain open; local only, umbrella goal/worktree active. |
@@ -11652,3 +11653,22 @@ action. Root sole writer; umbrella goal/branch/worktree stay active. Next
 read-only finding: Feral Rage and Hunger register damage plus inert markers,
 while their copy promises life recovery and Feral speed. No bug or fix is claimed
 until actual native causal reproduction and a controlling contract exist.
+
+
+## D04 — Feral Rage/Hunger native RED / BUG193
+
+The next investigation now has actual native evidence at `d9f2e6a`: six RED
+expectations across rank1/20. Both legal attacks pay and hit but restore0HP;
+Feral action gaps remain1700ms. [Evidence](evidence/d04-druid-sustain-repro.md)
+retains the actual script/results/log/terminal1 receipt, Node24.21.0/seed7,
+synthetic isolation scope and six source hashes. Feral life wording needs an
+explicit design choice; missing speed/Hunger healing are unambiguous. Secondary
+Feral Bleed truncation is a source finding, not yet an actual causal assertion.
+No fix or numerical contract is claimed. Seven raw files byte-verified and
+seven exact temporary files removed; scratch absent/remaining[]/failures[].
+Only unverified risk/evidence dispositions change, with no functional credit;
+counts remain137unverified/74bounded-functional/one engine-only/one review-needed.
+Runtime/genuine save unchanged, Baal uncleared, no campaign or remote action.
+Next work: explicit root contract and native RED-to-GREEN repair, followed by
+rank/lifecycle/schema/UI/browser proof. Independent acceptance, C2-C4/fullG0-G7
+and full privatev1 remain open. Root sole writer; umbrella goal/worktree active.

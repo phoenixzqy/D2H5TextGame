@@ -1,0 +1,75 @@
+import { writeFileSync } from 'node:fs';
+import { createMockPlayer } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/features/character/createMockPlayer';
+import { playerToCombatUnit } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/stores/combatHelpers';
+import { runBattleRecorded } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/engine/combat/combat';
+import { getSkill, loadDefaultSkills } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/engine/skills/registry';
+import type { CombatUnit } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/engine/combat/types';
+
+loadDefaultSkills();
+const cases: object[] = [], failures: string[] = [];
+function fixture(slug: string, rank: number, mana: number, oneHit: boolean) {
+  const id = 'druid.' + slug.replaceAll('-', '_');
+  const player = {
+    ...createMockPlayer('Synthetic Druid sustain repro', 'druid'),
+    id: 'synthetic-sustain-hero', level: 30,
+    skillLevels: { 'druid.werewolf': 1, 'druid.feral_rage': 1, [id]: rank },
+    comboOrder: ['skills-druid-' + slug]
+  };
+  const native = playerToCombatUnit(player);
+  const hold = (at: number) => ({ id: 'stun', stacks: 1, remaining: -1,
+    sourceId: 'synthetic-hold', appliedAtMs: at });
+  const hero: CombatUnit = { ...native, life: 5000, mana,
+    manaRegenPerSecond: 0, manaRegenBaselinePerSecond: 0,
+    manaRegenCarry: 0, manaRegenCompensation: 0, manaRegenExactCarry: '0',
+    statuses: oneHit ? [hold(1701)] : [],
+    stats: { ...native.stats, lifeMax: 10000, manaMax: 100,
+      attack: 1, attackSpeed: 100, critChance: 0 } };
+  const target: CombatUnit = { ...hero, id: 'synthetic-held-enemy', side: 'enemy',
+    kind: 'monster', life: 10000, mana: 0, statuses: [hold(0)],
+    skillOrder: [], skillLevels: {}, increasedDamagePct: {},
+    stats: { ...hero.stats, defense: 0, magicResist: 0,
+      physDodge: 0, magicDodge: 0,
+      resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } } };
+  return { id, native, input: { seed: 7, playerTeam: [hero], enemyTeam: [target] } };
+}
+for (const [slug, mana] of [['feral-rage', 3], ['hunger', 11]] as const) {
+  for (const rank of [1, 20]) {
+    const f = fixture(slug, rank, mana, true), r = runBattleRecorded(f.input);
+    const actions = r.events.filter(e => e.kind === 'action');
+    const damage = r.events.filter(e => e.kind === 'damage');
+    const heals = r.events.filter(e => e.kind === 'heal');
+    const caster = r.result.playerTeam[0];
+    if (f.native.skillOrder[0] !== 'skills-druid-' + slug || actions.length !== 1 ||
+      actions[0]?.kind !== 'action' || actions[0].skillId !== f.id ||
+      damage.length !== 1 || caster?.mana !== 0) {
+      throw new Error('Invalid paid single-hit reproduction controls for ' + slug);
+    }
+    const healed = caster.life - 5000;
+    const entry = { slug, rank, seed: 7, synthetic: true,
+      nativePriority: f.native.skillOrder, registeredEffects: getSkill(f.id)?.effects,
+      actions, damage, heals, initialLife: 5000, finalLife: caster.life,
+      actualHealing: healed, paidMana: mana, finalMana: caster.mana,
+      expectation: 'A successful advertised life-recovery attack must restore positive HP to this wounded surviving caster.',
+      pass: healed > 0 && heals.length > 0 };
+    cases.push(entry);
+    if (!entry.pass) failures.push(slug + ' rank' + rank + ': no advertised life recovery');
+  }
+}
+for (const rank of [1, 20]) {
+  const f = fixture('feral-rage', rank, 3, false), r = runBattleRecorded(f.input);
+  const actions = r.events.filter(e => e.kind === 'action' && e.actor === f.input.playerTeam[0].id);
+  const first = actions[0], second = actions[1];
+  if (!first || !second || first.simClockMs !== 1700) throw new Error('Invalid cadence controls');
+  const gap = second.simClockMs - first.simClockMs;
+  const entry = { slug: 'feral-rage', rank, seed: 7, synthetic: true,
+    firstAction: first, secondAction: second, basePeriodMs: 1700, actualNextGapMs: gap,
+    expectation: 'A landed Feral Rage promises increased speed, so its next action should occur before the unchanged1700ms period.',
+    pass: gap < 1700 };
+  cases.push(entry);
+  if (!entry.pass) failures.push('feral-rage rank' + rank + ': no advertised speed increase');
+}
+const out = { scope: 'Native current-class/rank/prerequisite projection and actual registered attacks; all resources, held targets and cadence are disclosed synthetic isolation fixtures. No campaign save or balance claim.',
+  cases, failures, pass: failures.length === 0 };
+writeFileSync(new URL('./native-red-result.json', import.meta.url), JSON.stringify(out, null, 2) + '\n');
+console.log(JSON.stringify(out, null, 2));
+if (failures.length) process.exitCode = 1;

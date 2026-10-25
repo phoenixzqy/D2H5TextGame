@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "node",
+    "node_modules/vite-node/vite-node.mjs",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-druid-sustain-vabj_jac/native-repro.ts"
+  ],
+  "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+  "exit": 1,
+  "seconds": 5.058,
+  "finished": "2026-10-25T07:30:10.532900+00:00"
+}

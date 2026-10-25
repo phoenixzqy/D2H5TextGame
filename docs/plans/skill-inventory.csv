@@ -107,10 +107,10 @@ druid,skills-druid-volcano,druid.volcano,active,damage+explicit-on-hit-burn,burn
 druid,skills-druid-armageddon,druid.armageddon,active,damage+explicit-on-hit-burn,burn,src/data/skills/druid.json,provisional-dot-tuning-balance-open|earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d04-druid-fire.md
 druid,skills-druid-werewolf,druid.werewolf,active,paid-native-form+run-carry+next-wave-authority,werewolf,src/data/skills/druid.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-druid-shapeshifting.md
 druid,skills-druid-werebear,druid.werebear,active,paid-native-form+run-carry+next-wave-authority,werebear,src/data/skills/druid.json,earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-druid-shapeshifting.md
-druid,skills-druid-feral-rage,druid.feral_rage,active,damage,feral-rage|bleed,src/data/skills/druid.json,additional-statuses-truncated-by-adapter,unverified,
+druid,skills-druid-feral-rage,druid.feral_rage,active,damage,feral-rage|bleed,src/data/skills/druid.json,additional-statuses-truncated-by-adapter|advertised-recovery-not-consumed|authored-sustain-tuning-missing|advertised-speed-not-consumed,unverified,docs/plans/evidence/d04-druid-sustain-repro.md
 druid,skills-druid-rabies,druid.rabies,active,damage+explicit-on-hit-poison+death-chain,poison,src/data/skills/druid.json,provisional-dot-tuning-balance-open|earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d04-druid-attack-dot.md
 druid,skills-druid-fire-claws,druid.fire_claws,active,damage+explicit-on-hit-burn,burn,src/data/skills/druid.json,provisional-dot-tuning-balance-open|earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d04-druid-attack-dot.md
-druid,skills-druid-hunger,druid.hunger,active,damage,hunger,src/data/skills/druid.json,,unverified,
+druid,skills-druid-hunger,druid.hunger,active,damage,hunger,src/data/skills/druid.json,advertised-recovery-not-consumed|authored-sustain-tuning-missing,unverified,docs/plans/evidence/d04-druid-sustain-repro.md
 druid,skills-druid-shock-wave,druid.shock_wave,active,damage,stun,src/data/skills/druid.json,,unverified,
 druid,skills-druid-fury,druid.fury,active,damage,,src/data/skills/druid.json,,unverified,
 druid,skills-druid-raven,druid.raven,active,summon,,src/data/skills/druid.json,,unverified,
