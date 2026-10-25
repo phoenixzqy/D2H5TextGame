@@ -133,10 +133,10 @@
     },
     {
       "if": { "required": ["hitSequence"], "properties": { "hitSequence": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "skills-assassin-dragon-talon"] } } }
     },
     {
-      "if": { "required": ["id"], "properties": { "id": { "const": "skills-amazon-jab" } } },
+      "if": { "required": ["id"], "properties": { "id": { "enum": ["skills-amazon-jab", "skills-assassin-dragon-talon"] } } },
       "then": {
         "required": ["hitSequence", "damage", "damageType", "requiredLevel"],
         "properties": {
@@ -3820,7 +3820,7 @@
       "description": "Explicit Impale ordinary Defense bypass for this hit only; resistance, dodge, critical rolls and personal absorption still apply."
     },
     "hitSequence": {
-      "description": "Explicit bounded sequential attempts, paid once within the original target pool; authored by Fury and single-target Jab.",
+      "description": "Explicit bounded sequential attempts, paid once within the original target pool; authored by Fury and single-target Jab/Dragon Talon.",
       "type": "object", "additionalProperties": false, "required": ["strikes"],
       "properties": { "strikes": { "type": "integer", "minimum": 2, "maximum": 8 } }
     },

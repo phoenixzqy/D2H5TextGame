@@ -376,6 +376,9 @@
       }
     },
     "damageType": "physical",
+    "hitSequence": {
+      "strikes": 3
+    },
     "appliesTags": [
       "physical"
     ],
