@@ -3,10 +3,12 @@
  */
 
 import type { DamageType } from '@/engine/types/attributes';
-import type { ColdMasteryTuning, StaticFieldTuning } from '@/engine/types/skills';
+import type { ColdMasteryTuning, FeralRageTuning, OnHitRecoveryTuning, StaticFieldTuning } from '@/engine/types/skills';
 
 // Define a skill template type that matches what's in JSON (without allocated level)
 export interface SkillTemplate {
+  readonly onHitRecovery?: OnHitRecoveryTuning;
+  readonly feralRage?: FeralRageTuning;
   readonly coldMastery?: ColdMasteryTuning;
   readonly staticField?: StaticFieldTuning;
   readonly id: string;

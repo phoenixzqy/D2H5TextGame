@@ -138,7 +138,8 @@
       "life-tap": "Life Tap",
       "attract": "Attract",
       "lower-resist": "Lower Resist",
-      "mana-burn": "Mana Burn"
+      "mana-burn": "Mana Burn",
+      "feral-rage": "Feral Rage"
     },
     "buff": {
       "cyclone-armor": "Cyclone Armor",
@@ -170,7 +171,8 @@
       "minor_heal": "Minor Heal",
       "frozen_armor": "Frozen Armor",
       "inner_sight": "Inner Sight",
-      "enrage": "Enrage"
+      "enrage": "Enrage",
+      "feral-rage": "Feral Rage"
     }
   },
   "log_lines": {

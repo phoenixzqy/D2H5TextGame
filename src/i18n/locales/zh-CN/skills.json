@@ -202,7 +202,15 @@
     "maxedButton": "已满级",
     "lockedLevelButton": "需要等级 {{level}}",
     "lockedPrereqButton": "需要前置",
-    "noPointsButton": "无技能点"
+    "noPointsButton": "无技能点",
+    "recovery": "生命恢复",
+    "recoveryValue": "{{percentOfHpRemoved}}%的直接实际生命损失",
+    "feralSpeed": "每层攻击速度",
+    "percentValue": "{{value}}%",
+    "feralCap": "速度层数上限",
+    "feralDuration": "速度刷新持续",
+    "descriptionRecovery": "直接命中并结算通常的死亡与反伤效果后，仍存活的施法者恢复敌人直接实际生命损失的{{percentOfHpRemoved}}%（向下取整，不超过自身已损失生命）。吸收伤害和过量伤害不计入；后续普攻与持续伤害不回血，致命反伤无法逆转。",
+    "descriptionFeralSpeed": "每次野性狂暴命中并实际扣除敌人生命，获得{{percentPerStack}}%自身攻击速度，最多{{maxStacks}}层相加；每次刷新全部层数的{{durationSeconds}}秒持续时间，满层或满血时仍可刷新。剩余时间可跨波次保留；失去有效加点、前置或主动优先级配置后，下波或明确重放配置时清除。新战斗与导入后不保留层数。"
   },
   "amazon": {
     "magic-arrow": {
@@ -645,7 +653,7 @@
     },
     "feral-rage": {
       "name": "野性狂暴",
-      "desc": "野蛮攻击，每次命中增加生命和速度。"
+      "desc": "单次物理命中造成{{min}}–{{max}}伤害，施加流血、恢复生命并叠加自身攻击速度。任何形态均可使用；需学会狼人变化，无需另行付费变身。"
     },
     "maul": {
       "name": "撕碎",
@@ -661,7 +669,7 @@
     },
     "hunger": {
       "name": "饥饿",
-      "desc": "从敌人身上吸取生命的攻击。"
+      "desc": "单次物理命中造成{{min}}–{{max}}伤害，按敌人实际生命损失恢复自身生命。任何形态均可使用；需学会野性狂暴及其前置，无需另行付费变身。不恢复法力。"
     },
     "shock-wave": {
       "name": "震波",

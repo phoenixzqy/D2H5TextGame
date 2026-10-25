@@ -748,6 +748,7 @@ function UnitCard({
       kind: status.id === 'oak-sage' || status.id === 'heart-of-wolverine' || status.id === 'spirit-of-barbs' ||
         ((status.id === 'werewolf' || status.id === 'werebear') && unit.druidForm?.form === status.id) ||
         (status.id === 'burst-of-speed' && status.statBuff !== undefined) ||
+        (status.id === 'feral-rage' && status.feralRage === true) ||
         (status.id === 'bone-armor' && status.boneArmor !== undefined) ? 'buff' as const
         : status.dotPerStack !== undefined || status.id.includes('poison') || status.id.includes('ignite') || status.id.includes('plague') ? 'dot' as const : 'debuff' as const
     }))

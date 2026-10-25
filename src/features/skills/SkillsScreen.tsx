@@ -780,6 +780,12 @@ function SkillDetailPanel({
         <p className="rounded border border-d2-border/70 bg-black/30 px-3 py-2 text-sm text-d2-white/80">
           {dynamicDescription(name, skill, primaryStats, t)}
         </p>
+        {primaryStats?.recovery ? (
+          <p className="text-sm text-d2-white/90">{t('details.descriptionRecovery', primaryStats.recovery)}</p>
+        ) : null}
+        {primaryStats?.feralRage ? (
+          <p className="text-sm text-d2-white/90">{t('details.descriptionFeralSpeed', primaryStats.feralRage)}</p>
+        ) : null}
         {primaryStats?.burn ? (
           <p className="text-sm text-d2-white/90">{t('details.descriptionBurn', primaryStats.burn)}</p>
         ) : null}
@@ -911,6 +917,16 @@ function StatSection({
                   : id === 'werewolf' || id === 'werebear' ? t('druid.' + id + '.name')
                   : t(`damage-types:status.${id}`, { defaultValue: humanizeId(id) })).join(', ')}
             />
+          ) : null}
+          {stats.recovery ? (
+            <StatLine label={t('details.recovery')} value={t('details.recoveryValue', stats.recovery)} />
+          ) : null}
+          {stats.feralRage ? (
+            <>
+              <StatLine label={t('details.feralSpeed')} value={t('details.percentValue', { value: stats.feralRage.percentPerStack })} />
+              <StatLine label={t('details.feralCap')} value={String(stats.feralRage.maxStacks)} />
+              <StatLine label={t('details.feralDuration')} value={t('details.seconds', { seconds: stats.feralRage.durationSeconds })} />
+            </>
           ) : null}
           {stats.burn ? (
             <>
@@ -1483,6 +1499,9 @@ function dynamicDescription(
       reduction: defenseReductionPct,
       duration: t('details.seconds', { seconds: durationMs / 1000 })
     });
+  }
+  if (firstDamage && (skill.id === 'skills-druid-feral-rage' || skill.id === 'skills-druid-hunger')) {
+    return t('druid.' + skill.id.slice('skills-druid-'.length) + '.desc', { min: firstDamage.min, max: firstDamage.max });
   }
   if (firstDamage) {
     return t('details.descriptionDamage', {

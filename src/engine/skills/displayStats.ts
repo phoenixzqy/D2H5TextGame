@@ -9,7 +9,7 @@
  */
 
 import type { DamageType } from '../types/attributes';
-import type { ColdMasteryTuning, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
+import type { ColdMasteryTuning, FeralRageTuning, OnHitRecoveryTuning, SkillStatusEffectMetadata, StaticFieldTuning } from '../types/skills';
 import { STATUS_DEFAULTS } from '../combat/status';
 import { coldMasteryReductionAtRank } from './cold-mastery';
 import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
@@ -21,6 +21,8 @@ import { applySummonPassiveStats, type SummonPassiveProjection } from './summon-
 import { SPIRIT_OF_BARBS_DEFINITION, SPIRIT_OF_BARBS_IDS } from './spirit-of-barbs';
 
 export interface DisplaySkillSource {
+  readonly onHitRecovery?: OnHitRecoveryTuning;
+  readonly feralRage?: FeralRageTuning;
   readonly coldMastery?: ColdMasteryTuning;
   readonly staticField?: StaticFieldTuning;
   readonly id: string;
@@ -119,6 +121,9 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** A fixed fraction of actual direct HP removed, never promised healing from base damage. */
+  readonly recovery?: { readonly percentOfHpRemoved: number };
+  readonly feralRage?: { readonly percentPerStack: number; readonly maxStacks: number; readonly durationSeconds: number };
   /** Explicit primary Bleed/Poison rule; final damage depends on the actual landed hit. */
   readonly periodic?: {
     readonly statusId: 'bleed' | 'poison';
@@ -414,9 +419,22 @@ export function computeSkillRankDisplayStats(
   const lifeCost = scaleCost(skill.cost?.life, skill.scaling?.costPerLevel ?? 0, safeRank);
   const burn = burnDisplay(skill);
   const periodic = periodicDisplay(skill);
+  const fraction = skill.onHitRecovery?.lifeFraction;
+  const recovery = skill.damage && skill.trigger === 'active' && fraction !== undefined &&
+    Number.isFinite(fraction) && fraction > 0 && fraction <= 1
+    ? { percentOfHpRemoved: Number((fraction * 100).toFixed(4)) } : undefined;
+  const tuning = skill.feralRage;
+  const feralRage = recovery && skill.id === 'skills-druid-feral-rage' && tuning &&
+    Number.isFinite(tuning.attackSpeedPctPerStack) && tuning.attackSpeedPctPerStack > 0 &&
+    Number.isInteger(tuning.maxStacks) && tuning.maxStacks > 0 &&
+    Number.isFinite(tuning.durationMs) && tuning.durationMs > 0
+    ? { percentPerStack: Number((tuning.attackSpeedPctPerStack * 100).toFixed(4)),
+        maxStacks: tuning.maxStacks, durationSeconds: tuning.durationMs / 1000 } : undefined;
 
   return {
     rank: safeRank,
+    ...(recovery ? { recovery } : {}),
+    ...(feralRage ? { feralRage } : {}),
     ...(burn ? { burn } : {}),
     ...(periodic ? { periodic } : {}),
     damage,

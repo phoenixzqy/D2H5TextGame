@@ -202,7 +202,15 @@
     "maxedButton": "Maxed",
     "lockedLevelButton": "Requires Lv. {{level}}",
     "lockedPrereqButton": "Need Prereq",
-    "noPointsButton": "No Points"
+    "noPointsButton": "No Points",
+    "recovery": "Life recovery",
+    "recoveryValue": "{{percentOfHpRemoved}}% of actual direct HP removed",
+    "feralSpeed": "Attack speed per stack",
+    "percentValue": "{{value}}%",
+    "feralCap": "Maximum speed stacks",
+    "feralDuration": "Speed refresh duration",
+    "descriptionRecovery": "After its direct hit and ordinary death/reflection effects, a living caster restores {{percentOfHpRemoved}}% of actual enemy HP removed (rounded down, capped at missing life). Absorbed damage and overkill do not count. No healing from later basic attacks or damage over time; lethal reflection cannot be reversed.",
+    "descriptionFeralSpeed": "Each Feral hit that removes enemy HP adds {{percentPerStack}}% self attack speed, up to {{maxStacks}} additive stacks, and refreshes all stacks for {{durationSeconds}} s, including at the cap or full life. Remaining duration carries between waves. Losing valid allocation, prerequisites or active priority clears speed on the next wave or explicit configuration replay. Fresh runs/imports start without stacks."
   },
   "amazon": {
     "magic-arrow": {
@@ -645,7 +653,7 @@
     },
     "feral-rage": {
       "name": "Feral Rage",
-      "desc": "A savage attack that increases life and speed with each hit."
+      "desc": "A single Physical hit deals {{min}}–{{max}} damage, applies Bleed, restores life and builds self attack speed. Works in any form; learned Werewolf is required, without a separately paid transformation."
     },
     "maul": {
       "name": "Maul",
@@ -661,7 +669,7 @@
     },
     "hunger": {
       "name": "Hunger",
-      "desc": "An attack that steals life from enemies."
+      "desc": "A single Physical hit deals {{min}}–{{max}} damage and restores life from actual enemy HP removed. Works in any form; learned Feral Rage and its prerequisites are required, without a separately paid transformation. Does not recover mana."
     },
     "shock-wave": {
       "name": "Shock Wave",

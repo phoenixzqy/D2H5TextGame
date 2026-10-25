@@ -138,7 +138,8 @@
       "life-tap": "偷取生命",
       "attract": "吸引",
       "lower-resist": "降低抵抗",
-      "mana-burn": "法力燃烧"
+      "mana-burn": "法力燃烧",
+      "feral-rage": "野性狂暴"
     },
     "buff": {
       "cyclone-armor": "旋风装甲",
@@ -170,7 +171,8 @@
       "minor_heal": "小治疗",
       "frozen_armor": "冰封装甲",
       "inner_sight": "内视",
-      "enrage": "狂怒"
+      "enrage": "狂怒",
+      "feral-rage": "野性狂暴"
     }
   },
   "log_lines": {

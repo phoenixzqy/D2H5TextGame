@@ -169,7 +169,7 @@ export function eventToLocalizedLogEntry(
         actorName: targetName,
         message: tx('combat:event.buffApplied', {
           target: targetName,
-          buff: event.buffId,
+          buff: tx(`combat:effect.buff.${event.buffId}`, { defaultValue: event.buffId }),
           defaultValue: `${targetName} gains ${event.buffId}`
         })
       };
