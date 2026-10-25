@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d2h5://schema/druid-summons",
+  "description": "Druid summon template stats and provisional native behavior tuning; shared magical mitigation remains authoritative.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "defaults", "templates", "raven", "poison", "vines"],
+  "properties": {
+    "id": {
+      "const": "summons/druid"
+    },
+    "defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manaMax",
+        "defense",
+        "attackSpeed",
+        "critChance",
+        "critDamage",
+        "physDodge",
+        "magicDodge",
+        "magicFind",
+        "goldFind",
+        "resistances"
+      ],
+      "properties": {
+        "manaMax": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "defense": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "attackSpeed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "critChance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "critDamage": {
+          "type": "number",
+          "minimum": 1
+        },
+        "physDodge": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "magicDodge": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "magicFind": {
+          "type": "number",
+          "minimum": 0
+        },
+        "goldFind": {
+          "type": "number",
+          "minimum": 0
+        },
+        "resistances": {
+          "$ref": "#/$defs/resistances"
+        }
+      }
+    },
+    "templates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raven",
+        "spirit_wolf",
+        "dire_wolf",
+        "grizzly",
+        "poison_creeper",
+        "carrion_vine",
+        "solar_creeper"
+      ],
+      "properties": {
+        "raven": {
+          "$ref": "#/$defs/template"
+        },
+        "spirit_wolf": {
+          "$ref": "#/$defs/template"
+        },
+        "dire_wolf": {
+          "$ref": "#/$defs/template"
+        },
+        "grizzly": {
+          "$ref": "#/$defs/template"
+        },
+        "poison_creeper": {
+          "$ref": "#/$defs/template"
+        },
+        "carrion_vine": {
+          "$ref": "#/$defs/template"
+        },
+        "solar_creeper": {
+          "$ref": "#/$defs/template"
+        }
+      }
+    },
+    "raven": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["durationMs", "physicalHitChancePenalty"],
+      "properties": {
+        "durationMs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60000
+        },
+        "physicalHitChancePenalty": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "poison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dotPctOfDamage"],
+      "properties": {
+        "dotPctOfDamage": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "vines": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lifeFraction", "manaFraction"],
+      "properties": {
+        "lifeFraction": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "manaFraction": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  },
+  "$defs": {
+    "resistances": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["physical", "fire", "cold", "lightning", "poison", "arcane"],
+      "properties": {
+        "physical": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "fire": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "cold": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "lightning": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "poison": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "arcane": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        }
+      }
+    },
+    "template": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lifeMax", "attack"],
+      "properties": {
+        "lifeMax": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "attack": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "manaMax": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "defense": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "attackSpeed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "critChance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "critDamage": {
+          "type": "number",
+          "minimum": 1
+        },
+        "physDodge": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "magicDodge": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "magicFind": {
+          "type": "number",
+          "minimum": 0
+        },
+        "goldFind": {
+          "type": "number",
+          "minimum": 0
+        },
+        "resistances": {
+          "$ref": "#/$defs/resistances"
+        }
+      }
+    }
+  }
+}

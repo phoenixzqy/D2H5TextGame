@@ -19,6 +19,7 @@ import { buildMonsterUnit } from '../combat/monster-factory';
 import type { MonsterDef } from '../types/monsters';
 import type { Rng } from '../rng';
 import { SPIRIT_OF_BARBS_DEFINITION } from './spirit-of-barbs';
+import { getDruidSummonStats } from './druid-summon-definition';
 
 /** @deprecated Templates are pure; battles now own their summon identity. */
 export function resetSummonCounters(): void {
@@ -131,6 +132,8 @@ function skeletonStats(): DerivedStats {
 }
 
 function baseStatsForSummon(summonId: string): DerivedStats | undefined {
+  const druid = getDruidSummonStats(summonId);
+  if (druid) return druid;
   switch (summonId) {
     case 'skeleton':
       return skeletonStats();
@@ -197,24 +200,10 @@ function baseStatsForSummon(summonId: string): DerivedStats | undefined {
       };
     case 'valkyrie':
       return { ...baseSummonStats(), life: 200, lifeMax: 200, attack: 40, defense: 20 };
-    case 'raven':
-      return { ...baseSummonStats(), life: 45, lifeMax: 45, attack: 18, attackSpeed: 95, physDodge: 0.15 };
     case 'spirit_of_barbs': {
       const { life, attack, defense } = SPIRIT_OF_BARBS_DEFINITION.stats;
       return { ...baseSummonStats(), life, lifeMax: life, attack, defense };
     }
-    case 'spirit_wolf':
-      return { ...baseSummonStats(), life: 80, lifeMax: 80, attack: 20, attackSpeed: 85, physDodge: 0.1 };
-    case 'dire_wolf':
-      return { ...baseSummonStats(), life: 100, lifeMax: 100, attack: 25, attackSpeed: 90 };
-    case 'grizzly':
-      return { ...baseSummonStats(), life: 260, lifeMax: 260, attack: 45, defense: 35, attackSpeed: 55 };
-    case 'poison_creeper':
-      return { ...baseSummonStats(), life: 90, lifeMax: 90, attack: 16, defense: 18, resistances: { ...ZERO_RES, poison: 35 } };
-    case 'carrion_vine':
-      return { ...baseSummonStats(), life: 110, lifeMax: 110, attack: 12, defense: 22, resistances: { ...ZERO_RES, poison: 25 } };
-    case 'solar_creeper':
-      return { ...baseSummonStats(), life: 120, lifeMax: 120, attack: 12, defense: 24, magicDodge: 0.08, resistances: { ...ZERO_RES, fire: 20, lightning: 20 } };
     case 'shadow_warrior':
       return { ...baseSummonStats(), life: 150, lifeMax: 150, attack: 32, defense: 24, attackSpeed: 80, physDodge: 0.1, magicDodge: 0.1 };
     case 'shadow_master':
