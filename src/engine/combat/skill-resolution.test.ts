@@ -367,6 +367,7 @@ describe('P08a02c production Amplify Damage runtime', () => {
 });
 
 describe('P08a01 production Fire Bolt', () => {
+  afterEach(() => { resetRegistry(); loadDefaultSkills(); });
   it.each([
     { rank: 1, hit: 30, hp: 461, dots: [[3400, 5], [4700, 4]] },
     { rank: 20, hit: 106, hp: 364, dots: [[3400, 17], [4700, 13]] }
@@ -457,11 +458,22 @@ describe('P08a01 production Fire Bolt', () => {
     expect(result.result.playerTeam[0]?.mana).toBe(0);
   });
 
-  it('does not invent a DoT rate for production Firestorm', () => {
+  it('does not invent a DoT rate for an explicitly rate-less fire skill', () => {
+    // D04 Druid fire now authors its own rate. A rate-less copy preserves the
+    // original no-global-fallback contract without denying the new JSON tuning.
+    const source = getSkill('skills-druid-firestorm');
+    if (!source) throw new Error('Missing registered Firestorm');
+    const id = 'fixture.rate-less-fire';
+    registerSkill({ ...source, id, effects: source.effects.map(effect => {
+      if (effect.kind !== 'damage') return effect;
+      const { applyStatuses, ...single } = effect;
+      void applyStatuses;
+      return { ...single, applyStatus: { id: 'burn' } };
+    }) });
     const input = fireBoltSnapshot();
     const hero = input.playerTeam[0];
     const result = runBattleRecorded({ ...input, playerTeam: [{ ...hero, mana: 20,
-      skillOrder: ['skills-druid-firestorm'], skillLevels: { 'skills-druid-firestorm': 1 }
+      skillOrder: [id], skillLevels: { [id]: 1 }
     }] });
     expect(result.events.filter(e => e.kind === 'damage')).toEqual([
       expect.objectContaining({ amount: 41, simClockMs: 1700 })

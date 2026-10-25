@@ -10,6 +10,30 @@
     {
       "if": {
         "properties": {
+          "id": { "enum": ["skills-druid-firestorm", "skills-druid-molten-boulder", "skills-druid-fissure", "skills-druid-volcano", "skills-druid-armageddon"] }
+        },
+        "required": ["id"]
+      },
+      "then": {
+        "required": ["damage", "damageType", "appliesStatus", "statusEffect"],
+        "properties": {
+          "damage": { "$ref": "#/properties/damage" },
+          "trigger": { "const": "active" },
+          "damageType": { "const": "fire" },
+          "appliesStatus": { "const": ["burn"] },
+          "statusEffect": {
+            "type": "object",
+            "required": ["dotPctOfDamage"],
+            "properties": {
+              "dotPctOfDamage": { "type": "number", "exclusiveMinimum": 0, "description": "Explicit positive on-hit Burn DPS fraction for the five Druid fire spells; no implicit runtime fallback." }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
           "id": {
             "const": "skills-sorceress-energy-shield"
           }

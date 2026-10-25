@@ -25,6 +25,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
@@ -315,6 +318,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
@@ -352,6 +358,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
@@ -455,6 +464,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
@@ -492,6 +504,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
