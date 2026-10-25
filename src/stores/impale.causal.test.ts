@@ -69,7 +69,7 @@ it('retains ordinary Jab Defense mitigation with no inherited bypass or Bleed', 
     expect(out.events.filter(e => e.kind === 'status' || e.kind === 'dot')).toEqual([]);
     return out.events.filter(e => e.kind === 'damage').map(e => e.amount);
   });
-  expect(hits[0]?.[0]).toBeGreaterThan(1); expect(hits[1]).toEqual([1]); expect(hits[2]).toEqual([1]);
+  expect(hits[0]).toEqual([30, 38, 33]); expect(hits[1]).toEqual([1, 1, 1]); expect(hits[2]).toEqual([1, 1, 1]);
 });
 it('pays a missed attempt without Bleed or periodic HP loss', () => {
   const out = record(fixture(20, 500, 41));

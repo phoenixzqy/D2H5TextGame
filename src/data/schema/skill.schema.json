@@ -133,7 +133,22 @@
     },
     {
       "if": { "required": ["hitSequence"], "properties": { "hitSequence": {} } },
-      "then": { "properties": { "id": { "const": "skills-druid-fury" } } }
+      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab"] } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-amazon-jab" } } },
+      "then": {
+        "required": ["hitSequence", "damage", "damageType", "requiredLevel"],
+        "properties": {
+          "hitSequence": { "$ref": "#/properties/hitSequence" },
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "requiredLevel": { "const": 1 }, "maxLevel": { "const": 20 },
+          "aoeShape": false, "appliesStatus": false, "statusEffect": false,
+          "damageComposition": false, "onHitRecovery": false, "onHitSelfDamage": false,
+          "additionalStatusEffects": false
+        }
+      }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-druid-fury" } } },
@@ -3805,7 +3820,7 @@
       "description": "Explicit Impale ordinary Defense bypass for this hit only; resistance, dodge, critical rolls and personal absorption still apply."
     },
     "hitSequence": {
-      "description": "Explicit bounded sequential attempts, paid once and rotating within the original target pool; currently authored only by Fury.",
+      "description": "Explicit bounded sequential attempts, paid once within the original target pool; authored by Fury and single-target Jab.",
       "type": "object", "additionalProperties": false, "required": ["strikes"],
       "properties": { "strikes": { "type": "integer", "minimum": 2, "maximum": 8 } }
     },
