@@ -30,6 +30,7 @@
     "thorns": "Thorns Resist"
   },
   "status": {
+    "converted": "Converted",
     "bleed": "Bleed",
     "ignite": "Ignite",
     "burn": "Burn",

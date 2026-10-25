@@ -142,7 +142,8 @@
       "lower-resist": "Lower Resist",
       "mana-burn": "Mana Burn",
       "feral-rage": "Feral Rage",
-      "blind": "Blinded"
+      "blind": "Blinded",
+      "converted": "Converted"
     },
     "buff": {
       "holy-shield": "Holy Shield",

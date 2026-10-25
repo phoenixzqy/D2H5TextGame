@@ -30,6 +30,7 @@
     "thorns": "荆棘抗性"
   },
   "status": {
+    "converted": "已转化",
     "bleed": "流血",
     "ignite": "点燃",
     "burn": "燃烧",

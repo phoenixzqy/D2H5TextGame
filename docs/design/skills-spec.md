@@ -114,6 +114,15 @@ next-wave carry. This explicit v1 adaptation uses absorption rather than a
 separate block roll; no shield-equipment gate, resource refill or saved paid state.
 Independent design/QA and earned balance remain open.
 
+Paid `paladin.conversion` follows the [D04 contract](../plans/decisions/D04-conversion-v1.md):
+a landed hit removing HP converts a surviving ordinary monster or rare minion
+for8seconds. Its real attacks/support skills and living summon descendants use
+temporary allegiance; elite/boss tiers take ordinary damage only. Expiry/source
+death restores hostility. Original enemy identity still governs victory, loot
+and corpses, so converting the last enemy cannot clear it. No healing, stat
+change or persisted paid binding. Duration/eligibility are provisional v1 tuning;
+independent design/QA and earned class/build balance remain open.
+
 #### Passive Skills (Auras, only 1 active at a time)
 | ID | Name (EN / ZH) | Effect | Notes |
 |---|---|---|---|

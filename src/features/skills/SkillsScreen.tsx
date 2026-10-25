@@ -61,6 +61,7 @@ import { DRUID_SHAPE_DEFINITIONS, DRUID_SHAPE_IDS, druidFormForId, resolveDruidS
 import { BURST_OF_SPEED_DEFINITION, BURST_OF_SPEED_IDS } from '@/engine/skills/burst-of-speed';
 import { BONE_ARMOR_DEFINITION, BONE_ARMOR_IDS } from '@/engine/skills/bone-armor';
 import { ENERGY_SHIELD_DEFINITION, ENERGY_SHIELD_IDS, resolveEnergyShieldRank } from '@/engine/skills/energy-shield';
+import { CONVERSION_DEFINITION, CONVERSION_IDS } from '@/engine/skills/conversion';
 import { HOLY_SHIELD_DEFINITION, HOLY_SHIELD_IDS } from '@/engine/skills/holy-shield';
 import { CYCLONE_ARMOR_DEFINITION, CYCLONE_ARMOR_IDS } from '@/engine/skills/cyclone-armor';
 import { DAMAGE_MASTERY_DEFINITIONS, DAMAGE_MASTERY_IDENTITIES } from '@/engine/skills/damage-masteries';
@@ -1367,6 +1368,9 @@ function dynamicDescription(
     return t('sorceress.energy-shield.desc', { absorb: d.absorbPerRank * 100,
       maxAbsorb: d.absorbPerRank * d.maxRank * 100, recovery: d.manaRegenPerRank * 100,
       cap: d.maxRank, level: d.requiredLevel });
+  }
+  if (skill.id === CONVERSION_IDS[0]) {
+    return t('paladin.conversion.desc', { seconds: CONVERSION_DEFINITION.durationMs / 1000 });
   }
   if (skill.id === HOLY_SHIELD_IDS[0]) {
     const d = HOLY_SHIELD_DEFINITION;

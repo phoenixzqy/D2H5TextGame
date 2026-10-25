@@ -913,7 +913,7 @@
     },
     "conversion": {
       "name": "Conversion",
-      "desc": "Converts enemies to fight for you temporarily."
+      "desc": "A paid hit that removes HP converts a surviving ordinary monster or rare minion for {{seconds}} seconds. It and its living summons fight former allies using their normal skills; elite monsters and bosses take damage only. Expiry restores hostility; source death ends conversion. No healing or stat change. Converted units keep their original enemy identity for victory, loot and corpses; conversion alone cannot clear an enemy. Misses, kills and fully absorbed hits do not convert."
     },
     "holy-shield": {
       "name": "Holy Shield",
