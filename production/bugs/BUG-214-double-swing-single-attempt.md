@@ -1,6 +1,6 @@
 # BUG-214 — Double Swing resolves one attempt per selected enemy
 
-- Status: reproduced; repeated-attempt/targeting contract and repair open.
+- Status: locally fixed in `0269609e`; independent and earned acceptance open.
 - Severity: High — the advertised two-strike skill has no second attempt.
 - Owner: root; independent design/QA and earned balance remain open.
 - Build: `059228dd` plus the frozen, uncommitted Leap repair; Double Swing
@@ -39,3 +39,16 @@ precede the intentional exit1.
 
 Evidence: [native reproduction](../../docs/plans/evidence/d04-double-swing-repro.md).
 No Double Swing repair/credit, genuine campaign or remote action.
+
+
+## Local repair
+
+`0269609e` implements the [author contract](../../docs/plans/decisions/D04-double-swing-v1.md):
+two independently settled passes across a fixed capped cross, no dead-target
+replacement/redistribution and one payment/CD.38new cases/four files cover
+schema/adapter/pure display, actual combat/playback, native save/wave lifecycle
+and bilingual UI. Focused38/4, compatibility129/6, loader1/1, types/lint/build,
+production4/4 and full15063/683/two existing skips pass.
+[Delivery evidence](../../docs/plans/evidence/d04-double-swing.md) retains original
+REDs, synthetic fixture limits, hashes and exact task-owned cleanup. Independent
+design/QA/earned balance stay open; the historical reproduction above remains.

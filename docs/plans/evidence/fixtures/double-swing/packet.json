@@ -1,0 +1,793 @@
+{
+  "archiveSha256": "406f8a900f48bdcaaaa8b013362d654f0160924fb615f7670a57d6c05e402eba",
+  "members": {
+    "author-review.json": {
+      "sha256": "c1f65c042056f6f6168624932ce1f3a694a98976b0c89dd7dbbe1da2a6345024",
+      "bytes": 1876
+    },
+    "browser-audit.json": {
+      "sha256": "8797d3733c5821b61e01b562bdce1c3fa8264149277e2015d1dc26c76a14ba84",
+      "bytes": 2344
+    },
+    "browser-live.json": {
+      "sha256": "0029945fc5b992dbf4552a3aa5a58a384757a2d854950a98225a340441036f18",
+      "bytes": 551
+    },
+    "browser-suite.py": {
+      "sha256": "62ad2738f4c8b7b18f019ee713206978de0d3936d6136c5f95ae515137204937",
+      "bytes": 354
+    },
+    "browser.cjs": {
+      "sha256": "31ae69faa21cfb0b55bb9bb4ebae9d9c51f40c9b94250c9551b6f8d42e72f37d",
+      "bytes": 11177
+    },
+    "browser.json": {
+      "sha256": "d69aff671106f67cd444f5f9aaa38bb43902705616f35f36e9b128f003d8f21c",
+      "bytes": 596
+    },
+    "browser.log": {
+      "sha256": "106909a0e51688c76168c7ca014fb32129bc6ded92fafc56412a51dae9feb139",
+      "bytes": 670
+    },
+    "build-audit.json": {
+      "sha256": "8f92561225d5f3a7fd42bfb24a7a2035e00b0aadd195dec3ff6f76c987b35ba0",
+      "bytes": 398
+    },
+    "build-live.json": {
+      "sha256": "b0471bb266893c79d4c0c3cf964ccd92632aa240e19969556fe436adad6a1a6b",
+      "bytes": 355
+    },
+    "build.json": {
+      "sha256": "802bed6212c6942beccbd2231eac38c72d28357f1275b530315166c0dbec9982",
+      "bytes": 401
+    },
+    "build.log": {
+      "sha256": "6ebad73ba412833a3605674e270cb87b224368478462de9fe989a3533a74654b",
+      "bytes": 2204
+    },
+    "causal-expanded-live.json": {
+      "sha256": "067cf0ca5e47975c2a71694369bff7888f8b47a4bc61a84f70be50362d801cd8",
+      "bytes": 340
+    },
+    "causal-expanded.json": {
+      "sha256": "1ed8e429f8eaa310ec6398770375cbc8cc589269361c88fd0e8230f5df75450f",
+      "bytes": 385
+    },
+    "causal-expanded.log": {
+      "sha256": "0009d4cf5ceb39c0984d1a118124ae684b83a1f0074c0f87025644d1dc716030",
+      "bytes": 1692
+    },
+    "cleanup.py": {
+      "sha256": "8200d69d30c3e7bde3593294e85c6fe307506ab4ec90768874ca488adf994d7d",
+      "bytes": 3629
+    },
+    "compatibility-live.json": {
+      "sha256": "54f65d634440170c83c72c625a5776502a395d05930479c3cfaae843dfd31547",
+      "bytes": 574
+    },
+    "compatibility.json": {
+      "sha256": "288bfccd1d71a32fe3fdb1bd5c12d83d584722b310f87a232171e3ac1b3dbca0",
+      "bytes": 620
+    },
+    "compatibility.log": {
+      "sha256": "8c5dafe159651157527e12216b0e141728289055de335803f29c7ffa322ec9af",
+      "bytes": 1031
+    },
+    "double-throw-contract-draft.md": {
+      "sha256": "cbe1ecb1fc71804f0f3f44a3e13cf2ceae5680c388338f758dd4a37673795095",
+      "bytes": 1305
+    },
+    "double-throw-observations-corrected.json": {
+      "sha256": "4d923947965fcdee090beaac9c0a1c18e24f168f8c955bb577ecb9e55a8e9bdc",
+      "bytes": 522953
+    },
+    "double-throw-probe-correction.json": {
+      "sha256": "8f228385a68f1ad53278ad16cff3c9424d98d9d154af7b12b1e34da0ed932e92",
+      "bytes": 314
+    },
+    "double-throw-repro-corrected.ts": {
+      "sha256": "eca4e310a22d0c9549ee970b26bd9ef8b16f02ef31823f0fb248a8e3455b287b",
+      "bytes": 3482
+    },
+    "double-throw-repro.ts": {
+      "sha256": "8639f6e3711b5421f8adc350f2737d93427887ed186cda23b8cba096f4c5db7c",
+      "bytes": 3482
+    },
+    "engine-live.json": {
+      "sha256": "777132d49495557cee1182766987cffec362cf80f6a94c2018c61e40f877fb39",
+      "bytes": 246
+    },
+    "engine.json": {
+      "sha256": "1a8d5102ba5bde573eac29b2bef0ed5a486652225a1bacb906e026d9c815622c",
+      "bytes": 291
+    },
+    "engine.log": {
+      "sha256": "bd7fec09c0bf380947a459acc4add4c3e299bc5eca97db0caca2bd90e1c55bfa",
+      "bytes": 67922
+    },
+    "final-browser-en-1280/browser-report.json": {
+      "sha256": "9697da39e0f50185fd565c6ca1e64070aa3ef62646fa6c23eb09c766330eb7df",
+      "bytes": 1564
+    },
+    "final-browser-en-1280/en-1280-double-swing-cast-visible.png": {
+      "sha256": "5ef7fd5161fab45ce1816343058d835fee55b0d5a9902459db21c44902104870",
+      "bytes": 226244
+    },
+    "final-browser-en-1280/en-1280-double-swing-combat.json": {
+      "sha256": "f244c25606a3919262d62e95947d6db0481026b498d03f0fc9c6457ca1c7c487",
+      "bytes": 2958
+    },
+    "final-browser-en-1280/en-1280-double-swing-current-next.png": {
+      "sha256": "906b991fc0d12ebeb50a27e170ed80bdc6ecade3968dd925a47a68ee244d094b",
+      "bytes": 118972
+    },
+    "final-browser-en-1280/en-1280-double-swing-description.png": {
+      "sha256": "967834bbd9ece6fd134b38efe6d7503b47a90976f608f87885c4109b06bbcf3d",
+      "bytes": 119088
+    },
+    "final-browser-en-1280/en-1280-double-swing-details.png": {
+      "sha256": "b390f9fadd76db280fd8aa367352e02536de3aef921e37933cc3945f9b8421fd",
+      "bytes": 120012
+    },
+    "final-browser-en-1280/en-1280-double-swing-fresh-1.json": {
+      "sha256": "400f09322b8d3b5305b40a395c73a45f43ba4ff37636185b10a104de4822e9a5",
+      "bytes": 3171
+    },
+    "final-browser-en-1280/en-1280-double-swing-imported-2.json": {
+      "sha256": "2d81bc4d0f30b30205c09f7a7195f01618146c9616de88dfc4361c657d76e8d5",
+      "bytes": 4831
+    },
+    "final-browser-en-1280/en-1280-double-swing-rank1-after-4.json": {
+      "sha256": "2686f4ca1d9af67898f75063bab93b19d5b911e8ab0ce4ab70cccd833e1650a7",
+      "bytes": 4834
+    },
+    "final-browser-en-1280/en-1280-double-swing-rank1-before-3.json": {
+      "sha256": "f65cf832c46415213e869df56005937ae4f4e36b36d6c14e496d438dbcae2860",
+      "bytes": 4831
+    },
+    "final-browser-en-1280/en-1280-double-swing-rank2-after-6.json": {
+      "sha256": "8cd0ad72fb02818cdff83350c23c09150bba5bdb2202c4380e7b41152bdd6133",
+      "bytes": 4887
+    },
+    "final-browser-en-1280/en-1280-double-swing-rank2-before-5.json": {
+      "sha256": "8cd0ad72fb02818cdff83350c23c09150bba5bdb2202c4380e7b41152bdd6133",
+      "bytes": 4887
+    },
+    "final-browser-en-1280/en-1280-double-swing-synthetic-input.json": {
+      "sha256": "a190d49dc592637bcb8fba5071262f4c56fe48e24642f91336d7d94caa349a85",
+      "bytes": 4009
+    },
+    "final-browser-en-360/browser-report.json": {
+      "sha256": "a1d3018ea6be11fec879a6b29aa98819443441b26d84e8f519c0e1cb48752ee9",
+      "bytes": 1558
+    },
+    "final-browser-en-360/en-360-double-swing-cast-visible.png": {
+      "sha256": "e2ef995379d24507fa194e94d33b9b40bd6202ad6b75239aa3015cd8e35c9608",
+      "bytes": 58697
+    },
+    "final-browser-en-360/en-360-double-swing-combat.json": {
+      "sha256": "f244c25606a3919262d62e95947d6db0481026b498d03f0fc9c6457ca1c7c487",
+      "bytes": 2958
+    },
+    "final-browser-en-360/en-360-double-swing-current-next.png": {
+      "sha256": "169f7d9854f52011f03cd30cafe4914a3ddd4789f1c71c220c582af3a051ff2e",
+      "bytes": 45652
+    },
+    "final-browser-en-360/en-360-double-swing-description.png": {
+      "sha256": "0532d2d7709dbfa4cfd07e964c2bd7a411f6427323a5e6303a717c6c00347243",
+      "bytes": 52515
+    },
+    "final-browser-en-360/en-360-double-swing-details.png": {
+      "sha256": "1b7e7386a2943b9425261dab72f8694689cc957da3e7df813b0b795551cb891a",
+      "bytes": 54080
+    },
+    "final-browser-en-360/en-360-double-swing-fresh-1.json": {
+      "sha256": "55bd450eeb68a4078070dd583ad58b5b52c2c6f8d0ee3ecda8a0c981a286ec91",
+      "bytes": 3171
+    },
+    "final-browser-en-360/en-360-double-swing-imported-2.json": {
+      "sha256": "87b9e5e519c945c9aa6ada6eb3ece882dde8ff3f1f070374a33d097305d9d7c6",
+      "bytes": 4831
+    },
+    "final-browser-en-360/en-360-double-swing-rank1-after-4.json": {
+      "sha256": "c029ca83339a81588acee72603cf82f589ec583a15d1911e9ab6ed1d3dc4a559",
+      "bytes": 4834
+    },
+    "final-browser-en-360/en-360-double-swing-rank1-before-3.json": {
+      "sha256": "ee311757a3305aca8d4025e9702f124bd82fdd33e311ffcaa65a3cdb9cc5769b",
+      "bytes": 4831
+    },
+    "final-browser-en-360/en-360-double-swing-rank2-after-6.json": {
+      "sha256": "c736fdecd8bb4538712cc7acbb8be92e0358bb26479a2def4558cf8446832093",
+      "bytes": 4887
+    },
+    "final-browser-en-360/en-360-double-swing-rank2-before-5.json": {
+      "sha256": "c736fdecd8bb4538712cc7acbb8be92e0358bb26479a2def4558cf8446832093",
+      "bytes": 4887
+    },
+    "final-browser-en-360/en-360-double-swing-synthetic-input.json": {
+      "sha256": "882f494f25c80d8adbe1b4f43b2638be0f05d9e08765b6bc856540fb2bf8cc20",
+      "bytes": 4009
+    },
+    "final-browser-zh-CN-1280/browser-report.json": {
+      "sha256": "763be515d0c2ec803b946847353431d9f2bfbe278bc2de444e7a370d93ef584e",
+      "bytes": 1520
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-cast-visible.png": {
+      "sha256": "dc61dfff509d5cff1ca2470d70df132d19ae4001f1da6b6127ea80337d03bcb9",
+      "bytes": 230017
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-combat.json": {
+      "sha256": "b5510bebce2929b2a1482727034006349fea4399e638d99ddd9a40d7783f57ad",
+      "bytes": 3221
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-current-next.png": {
+      "sha256": "b1736e0d1602e37f608424299546cc96fb4f71ed98485366a4822af302666910",
+      "bytes": 120679
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-description.png": {
+      "sha256": "b1736e0d1602e37f608424299546cc96fb4f71ed98485366a4822af302666910",
+      "bytes": 120679
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-details.png": {
+      "sha256": "d7c926bca0ffa4014330b0d35ea76319707516536101a821f4f1c0051cb36993",
+      "bytes": 122236
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-fresh-1.json": {
+      "sha256": "26699ded6bbace3519e835733f6be69db1a00e9c63fe614260d9705e82d66dc6",
+      "bytes": 3174
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-imported-2.json": {
+      "sha256": "b84d4e881bc2e293022cf6856e1a248f67082c8f393fdca9654a9b94629cba67",
+      "bytes": 4834
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-rank1-after-4.json": {
+      "sha256": "f1cd421a2a80efcc55e94c38b32fba2e0ec965cae280493a291a318bf45eb3db",
+      "bytes": 4837
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-rank1-before-3.json": {
+      "sha256": "4a0aa74483b0575a7e3194bb12a6991f526511d33cadfb43ca26ce1bcdd692cf",
+      "bytes": 4834
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-rank2-after-6.json": {
+      "sha256": "6804179df4fb9aa61e6a73757e40746945d00a0ff8aafb590c6bc400d99dba92",
+      "bytes": 4890
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-rank2-before-5.json": {
+      "sha256": "6804179df4fb9aa61e6a73757e40746945d00a0ff8aafb590c6bc400d99dba92",
+      "bytes": 4890
+    },
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-synthetic-input.json": {
+      "sha256": "d7c72fbee8d1939be14fbf50fd1b05fa31f449663f34b79303e7d64992d8a069",
+      "bytes": 4012
+    },
+    "final-browser-zh-CN-360/browser-report.json": {
+      "sha256": "38c9fa83aad15c2bca5624280c260131c2858983afcd8a64a6451c80f3d3d433",
+      "bytes": 1514
+    },
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-cast-visible.png": {
+      "sha256": "5751a68b76fde6ac42b28fe6e9e09123ff5b65a11344277f354329e9a3a92520",
+      "bytes": 61902
+    },
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-combat.json": {
+      "sha256": "b5510bebce2929b2a1482727034006349fea4399e638d99ddd9a40d7783f57ad",
+      "bytes": 3221
+    },
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-current-next.png": {
+      "sha256": "767e2348c67f03d797c7c3977d437204bc5465e80e4767417bf6b9f41d0ad4c7",
+      "bytes": 48715
+    },
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-description.png": {
+      "sha256": "acbafe1f08f04f157fed0d4003b72e6eff8767ef15d88af1404dbbf67ecaf0e6",
+      "bytes": 61396
+    },
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-details.png": {
+      "sha256": "ff90d532ba98d12701e5e4787827e470fa42d4bbea7b3f19235657506b28dd28",
+      "bytes": 62789
+    },
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-fresh-1.json": {
+      "sha256": "0f611ef02bc93b483a390e490705a893131693d54ee71857ada88a20b969bb0f",
+      "bytes": 3174
+    },
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-imported-2.json": {
+      "sha256": "495146782d04d90675c62eb3176df051718ea1feaf262245d5373ff0bfdc486e",
+      "bytes": 4834
+    },
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-rank1-after-4.json": {
+      "sha256": "1272e023ff423fc7dcd73e928e2b0dff6792e7c72eb4f79bbb25526e8ee64918",
+      "bytes": 4837
+    },
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-rank1-before-3.json": {
+      "sha256": "da205311535269651c9ce46e317ac282508d2e96d4ca0594003b8f301b4252d7",
+      "bytes": 4834
+    },
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-rank2-after-6.json": {
+      "sha256": "8a9b1c2c5111224d06207bce9fe60dcfa60e948a725e993e0b4e6cff55ec5cc9",
+      "bytes": 4890
+    },
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-rank2-before-5.json": {
+      "sha256": "8a9b1c2c5111224d06207bce9fe60dcfa60e948a725e993e0b4e6cff55ec5cc9",
+      "bytes": 4890
+    },
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-synthetic-input.json": {
+      "sha256": "20d734cefecce0849da0ba6948164eeb7356eb6c1e6ed069d39e15119e76c31f",
+      "bytes": 4012
+    },
+    "final-validation-summary.json": {
+      "sha256": "995fdadd28463146c3fbbc53d7c03501a1b247c5b2e3ceca618ca8a8d35ef74e",
+      "bytes": 4457
+    },
+    "finalize-docs.py": {
+      "sha256": "2458f8d2584a4eeeadae770cf397558a715a24c581845f1f577a5b1b8e8d7965",
+      "bytes": 15760
+    },
+    "fixture-correction.json": {
+      "sha256": "231e94e0cf6afe9a11aa2cc919c21b529f27fc1f476492738c8481660e172329",
+      "bytes": 279
+    },
+    "focused-final-live.json": {
+      "sha256": "fa93308183f93046e8f05a2b0760512b8d4f162c2d9b04b5270279021864fb63",
+      "bytes": 445
+    },
+    "focused-final.json": {
+      "sha256": "75193eaa09704c926231fd89195da968fb3a9f4ad182bd8a8c258e9af73f5539",
+      "bytes": 490
+    },
+    "focused-final.log": {
+      "sha256": "676f115db28b7db81628e2aabf83c6d927484735db1df8ac76972b01c9e6babb",
+      "bytes": 786
+    },
+    "focused-live.json": {
+      "sha256": "985aff956e99d5298548e1903c8fb526b82a9d7a7c7bd1c92e4139b53a216b31",
+      "bytes": 440
+    },
+    "focused.json": {
+      "sha256": "763145e54fc9a521ff301bdc38ee02b6f13f5b007fcddf6ed55c225789bf14eb",
+      "bytes": 485
+    },
+    "focused.log": {
+      "sha256": "3a75eab39bb68b472b9d4b69fdebcb835d72f06183a4878d18086da56d259d89",
+      "bytes": 785
+    },
+    "freeze.json": {
+      "sha256": "60a04b70fbc897199dd0ddb2b76100e36722cb55bc177a880deb2488cefcdcce",
+      "bytes": 236999
+    },
+    "full-live.json": {
+      "sha256": "905cc843e650da4766667694300941968506ac77b945d7582323c4e6e243c531",
+      "bytes": 227
+    },
+    "full.json": {
+      "sha256": "889591e41ec33b9a548f9daa7250e842c07ed12a5d4b6ae8dd5db21c2f22e254",
+      "bytes": 272
+    },
+    "full.log": {
+      "sha256": "ab1038a075ce6b4ffeccbb2fcce1219bb338eca56f084d647f0a45ba52eaa10a",
+      "bytes": 159885
+    },
+    "inventory-audit.json": {
+      "sha256": "c1bf7d32f042b338a6bdd9e7b8186262c9fcfb5594eca31e60e647af3eacdf8f",
+      "bytes": 557
+    },
+    "inventory-before.csv": {
+      "sha256": "a87f43da71490f37a8fd120dc7ba841d694ef7eb21be7fe4295dea03b49da486",
+      "bytes": 48572
+    },
+    "lint-live.json": {
+      "sha256": "9eb7964c6188794dec5d96bbc2482778e1b4cfc2b81a6cd55316ff7a9d4e5c25",
+      "bytes": 238
+    },
+    "lint.json": {
+      "sha256": "4b12f3452f03afe4e4a191cf7123ef6f914efe11ae79c72c015d9828758e2158",
+      "bytes": 284
+    },
+    "lint.log": {
+      "sha256": "9c5b2e915b257e613d79ee2fa15694b3c2663f5e56b29ade9cdd0fc1ae48738e",
+      "bytes": 197
+    },
+    "loader-live.json": {
+      "sha256": "db6e24aa344161e5c46ef58e9c878528e2d23744804e20a5d729c0823cf169e8",
+      "bytes": 293
+    },
+    "loader.json": {
+      "sha256": "16d688db4580662e6d307f3dbd54b957ba299995ee049a9b1a74b773718320e9",
+      "bytes": 338
+    },
+    "loader.log": {
+      "sha256": "51be4b69a304ab85c68301f83c2ca88cd3897596568003714bbc03926a755a6f",
+      "bytes": 448
+    },
+    "native-green-live.json": {
+      "sha256": "765e8cb036fe60de6c95c23b5bde86956f1f887ad674e4f67d671d0641528f6a",
+      "bytes": 336
+    },
+    "native-green.json": {
+      "sha256": "248bc7a010261f4819ca7c49f28ef21e6cdd3a1b8b0af9fc33eae983b6869874",
+      "bytes": 382
+    },
+    "native-green.log": {
+      "sha256": "ae1b2cb0f8cc2d69a7641a2b9857be821101b2f4084d78437ed9fb220747e0b8",
+      "bytes": 541
+    },
+    "native-red-live.json": {
+      "sha256": "5fe5ad74bb5a97857decff8108a0835c2a0b9789b651ad4b9b98da0da1fc2859",
+      "bytes": 335
+    },
+    "native-red.json": {
+      "sha256": "a131226154ba1eb12f23e80fc02f734f2d59b201d22cdc45651ec08ff59fd277",
+      "bytes": 380
+    },
+    "native-red.log": {
+      "sha256": "8162acc4294a62d2d30bcffec84276feee1210fd08f70860863ef62ca079d627",
+      "bytes": 13325
+    },
+    "next-double-throw-corrected-live.json": {
+      "sha256": "c71cdad50dca2a6349ac20a3d7336e4dd2168101d603254206d3bbb682ee2ecd",
+      "bytes": 377
+    },
+    "next-double-throw-corrected.json": {
+      "sha256": "e09afbdf6731a711e9ac5ded0f36c4360a46e6ece74562fe407553a5c366f5fa",
+      "bytes": 422
+    },
+    "next-double-throw-corrected.log": {
+      "sha256": "e2f24523a2e65b88a628180bbf7296932ea21cb991ca2b7810af99e981f70c03",
+      "bytes": 5460
+    },
+    "next-double-throw-live.json": {
+      "sha256": "f931b2271228cd92f9d4da9ec85dc24f6f588805f856894f67fb578ef87fc0b4",
+      "bytes": 357
+    },
+    "next-double-throw.json": {
+      "sha256": "7ac4190733a2287eac328ec321c8187957672808e683c99661ff6bab7038efb5",
+      "bytes": 402
+    },
+    "next-double-throw.log": {
+      "sha256": "6f6c15c02f1667786d5d009c111da5d476ac3e267d4547148231187e7650c992",
+      "bytes": 1262
+    },
+    "record.py": {
+      "sha256": "4c7bc657a5695df1a6ac100ba4bb5f4946e58ce6bb7fa9b1ba0a6496985d2df2",
+      "bytes": 741
+    },
+    "retain.py": {
+      "sha256": "03f10b4ddbf2e3f3a4a2ec0c5212d11902c32c63c4c0e056e261f48b08f76692",
+      "bytes": 4451
+    },
+    "save-pairs-audit.json": {
+      "sha256": "971847d76734a6c283985ba85c7196742349f98c7ea8937ce337afa7d644c685",
+      "bytes": 7640
+    },
+    "serve.py": {
+      "sha256": "86c2fce4ee0c4c737b4197e451abd5e9a8eba7fe926981c294b99d96dd2b915b",
+      "bytes": 510
+    },
+    "server-live.json": {
+      "sha256": "843fd2152dc61c2d1352653cee30b9d1175e68c5279c908c7d8e3d34f29c5e32",
+      "bytes": 124
+    },
+    "task.json": {
+      "sha256": "749196d42f6048b1b2fb630fc532b4ba656e8fe1effc3722b7237749c0902686",
+      "bytes": 410
+    },
+    "types-live.json": {
+      "sha256": "73d1f3af0f2b0c22edc3fb25d960ed9b7b8f8017d70f73b21097b20506b78f85",
+      "bytes": 243
+    },
+    "types.json": {
+      "sha256": "7d1199be9eaa42c79606c336eaa3e94f34ebe857f6396c7b5bd4cb8748721dfb",
+      "bytes": 288
+    },
+    "types.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "ui-red-live.json": {
+      "sha256": "ac173f863738cbf9df75159ef7660f717272c7aa6e7e630701098cb9f00f9d64",
+      "bytes": 301
+    },
+    "ui-red.json": {
+      "sha256": "7cdf9b57d7eaf1c9a96d693bdf2200ec723ea30da8121e811734d1131d019d43",
+      "bytes": 346
+    },
+    "ui-red.log": {
+      "sha256": "1c172c0def8d56156c96a475d771dc2581a4fff424e7d68e54e1e581c8a8b6b6",
+      "bytes": 13518
+    }
+  },
+  "terminalReceipts": [
+    {
+      "name": "types",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1262207,
+      "wrapperPid": 1262183,
+      "started": 1792948129.780694,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 90.91291427612305
+    },
+    {
+      "name": "loader",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/data/loaders/shared-skill-validator.test.ts"
+      ],
+      "pid": 1263176,
+      "wrapperPid": 1263171,
+      "started": 1792948232.559422,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 3.021625280380249
+    },
+    {
+      "name": "native-green",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/double-swing.test.ts",
+        "src/stores/double-swing.causal.test.ts"
+      ],
+      "pid": 1256537,
+      "wrapperPid": 1256535,
+      "started": 1792947924.949017,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 6.9943132400512695
+    },
+    {
+      "name": "full",
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "pid": 1267305,
+      "wrapperPid": 1267302,
+      "started": 1792948312.0910442,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 559.7227020263672
+    },
+    {
+      "name": "build",
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-double-swing-5ov3u07v/build"
+      ],
+      "pid": 1262873,
+      "wrapperPid": 1262871,
+      "started": 1792948198.0519204,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 12.253437519073486
+    },
+    {
+      "name": "browser",
+      "argv": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-double-swing-5ov3u07v/serve.py",
+        "--port",
+        "4500",
+        "--",
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-double-swing-5ov3u07v/browser-suite.py"
+      ],
+      "pid": 1263175,
+      "wrapperPid": 1263173,
+      "started": 1792948232.5539126,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 63.63010501861572
+    },
+    {
+      "name": "next-double-throw-corrected",
+      "argv": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-double-swing-5ov3u07v/double-throw-repro-corrected.ts"
+      ],
+      "pid": 1266206,
+      "wrapperPid": 1266204,
+      "started": 1792948274.9519393,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 5.678425550460815
+    },
+    {
+      "name": "lint",
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1262208,
+      "wrapperPid": 1262184,
+      "started": 1792948129.7827778,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 156.25031089782715
+    },
+    {
+      "name": "focused",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/double-swing.test.ts",
+        "src/stores/double-swing.causal.test.ts",
+        "src/stores/double-swing-native.test.ts",
+        "src/features/skills/SkillsScreen.double-swing.test.tsx"
+      ],
+      "pid": 1261711,
+      "wrapperPid": 1261709,
+      "started": 1792948064.3827174,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 7.211016416549683
+    },
+    {
+      "name": "native-red",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/double-swing.test.ts",
+        "src/stores/double-swing.causal.test.ts"
+      ],
+      "pid": 1256164,
+      "wrapperPid": 1256163,
+      "started": 1792947879.9142063,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 6.703850030899048
+    },
+    {
+      "name": "engine",
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1256817,
+      "wrapperPid": 1256801,
+      "started": 1792947960.203973,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 96.40787196159363
+    },
+    {
+      "name": "next-double-throw",
+      "argv": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-double-swing-5ov3u07v/double-throw-repro.ts"
+      ],
+      "pid": 1264452,
+      "wrapperPid": 1264433,
+      "started": 1792948252.1730273,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 6.622894287109375
+    },
+    {
+      "name": "ui-red",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/features/skills/SkillsScreen.double-swing.test.tsx"
+      ],
+      "pid": 1260807,
+      "wrapperPid": 1260803,
+      "started": 1792948042.2536542,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 9.812195062637329
+    },
+    {
+      "name": "compatibility",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/jab.causal.test.ts",
+        "src/stores/dragon-talon.causal.test.ts",
+        "src/stores/dragon-claw.causal.test.ts",
+        "src/stores/druid-fury-wind.causal.test.ts",
+        "src/engine/skills/paladin-active-attacks-schema.test.ts",
+        "src/engine/skills/skill-validator.test.ts",
+        "src/data/loaders/skills.test.ts"
+      ],
+      "pid": 1262579,
+      "wrapperPid": 1262552,
+      "started": 1792948161.7828643,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 10.310127973556519
+    },
+    {
+      "name": "focused-final",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/double-swing.test.ts",
+        "src/stores/double-swing.causal.test.ts",
+        "src/stores/double-swing-native.test.ts",
+        "src/features/skills/SkillsScreen.double-swing.test.tsx"
+      ],
+      "pid": 1262219,
+      "wrapperPid": 1262181,
+      "started": 1792948129.805901,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 8.367350101470947
+    },
+    {
+      "name": "causal-expanded",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/engine/skills/double-swing.test.ts",
+        "src/stores/double-swing.causal.test.ts"
+      ],
+      "pid": 1258729,
+      "wrapperPid": 1258728,
+      "started": 1792948007.0699406,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 8.812201738357544
+    }
+  ],
+  "verifiedRawMembers": 123,
+  "recordedPids": [
+    1256163,
+    1256164,
+    1256535,
+    1256537,
+    1256801,
+    1256817,
+    1258728,
+    1258729,
+    1260803,
+    1260807,
+    1261709,
+    1261711,
+    1262181,
+    1262183,
+    1262184,
+    1262207,
+    1262208,
+    1262219,
+    1262552,
+    1262579,
+    1262871,
+    1262873,
+    1263171,
+    1263173,
+    1263175,
+    1263176,
+    1263182,
+    1264433,
+    1264452,
+    1266204,
+    1266206,
+    1267302,
+    1267305
+  ],
+  "allRecordedPidsAbsent": true,
+  "excludedDisposable": [
+    "build/"
+  ],
+  "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-double-swing-5ov3u07v"
+}

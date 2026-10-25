@@ -1,0 +1,19 @@
+{
+  "chunks": [
+    "assets/react-vendor-dRBhy6jq.js",
+    "assets/game-engine-CqIzUXqx.js",
+    "assets/i18n-Bxr3rY09.js",
+    "assets/index-DDR8-9Rl.js"
+  ],
+  "bridgeMarkersAbsent": [
+    "__GAME__",
+    "__E2E__"
+  ],
+  "precacheUrls": 756,
+  "missingPrecacheUrls": [],
+  "VITE_E2E": false,
+  "knownBudgetWarnings": [
+    "large main bundle",
+    "generated asset manifest not precached"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "creditedOnly": "skills-barbarian-double-swing",
+  "rows": 213,
+  "otherRowsByteExact": 212,
+  "orderPreserved": true,
+  "counts": {
+    "unverified": 99,
+    "bounded-functional;independent-acceptance-open": 109,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "barbarianBounded": 14,
+  "beforeSha256": "a87f43da71490f37a8fd120dc7ba841d694ef7eb21be7fe4295dea03b49da486",
+  "afterSha256": "8811bf3eb0be2e2dab0752a4b2c7ee47181a5e509c67bc926c19b641f405f380"
+}

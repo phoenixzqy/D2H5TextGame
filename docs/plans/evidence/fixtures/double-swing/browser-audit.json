@@ -1,0 +1,83 @@
+{
+  "cases": 4,
+  "saveContinuePairs": 8,
+  "domains": [
+    "player",
+    "inventory",
+    "map",
+    "mercs",
+    "formation"
+  ],
+  "geometryChecks": 20,
+  "screenshots": 16,
+  "individuallyInspected": [
+    "final-browser-en-360/en-360-double-swing-cast-visible.png",
+    "final-browser-zh-CN-360/zh-CN-360-double-swing-description.png",
+    "final-browser-en-1280/en-1280-double-swing-current-next.png",
+    "final-browser-zh-CN-1280/zh-CN-1280-double-swing-cast-visible.png"
+  ],
+  "combat": [
+    {
+      "case": "final-browser-en-1280",
+      "firstCastAttempts": 6,
+      "orderedTargets": [
+        "Bone Warrior B",
+        "Bone Warrior C",
+        "Bone Warrior A",
+        "Bone Warrior B",
+        "Bone Warrior C",
+        "Bone Warrior A"
+      ],
+      "positiveDamage": true,
+      "observedDamageEach": 1
+    },
+    {
+      "case": "final-browser-en-360",
+      "firstCastAttempts": 6,
+      "orderedTargets": [
+        "Bone Warrior B",
+        "Bone Warrior C",
+        "Bone Warrior A",
+        "Bone Warrior B",
+        "Bone Warrior C",
+        "Bone Warrior A"
+      ],
+      "positiveDamage": true,
+      "observedDamageEach": 1
+    },
+    {
+      "case": "final-browser-zh-CN-1280",
+      "firstCastAttempts": 6,
+      "orderedTargets": [
+        "\u9ab8\u9aa8\u6218\u58eb B",
+        "\u9ab8\u9aa8\u6218\u58eb C",
+        "\u9ab8\u9aa8\u6218\u58eb A",
+        "\u9ab8\u9aa8\u6218\u58eb B",
+        "\u9ab8\u9aa8\u6218\u58eb C",
+        "\u9ab8\u9aa8\u6218\u58eb A"
+      ],
+      "positiveDamage": true,
+      "observedDamageEach": 1
+    },
+    {
+      "case": "final-browser-zh-CN-360",
+      "firstCastAttempts": 6,
+      "orderedTargets": [
+        "\u9ab8\u9aa8\u6218\u58eb B",
+        "\u9ab8\u9aa8\u6218\u58eb C",
+        "\u9ab8\u9aa8\u6218\u58eb A",
+        "\u9ab8\u9aa8\u6218\u58eb B",
+        "\u9ab8\u9aa8\u6218\u58eb C",
+        "\u9ab8\u9aa8\u6218\u58eb A"
+      ],
+      "positiveDamage": true,
+      "observedDamageEach": 1
+    }
+  ],
+  "errors": [],
+  "fixture": "Synthetic L30/resources/imported helmet/fixed combat Date.now; public controls and ordinary timers, no bridge. Six first-cast hits each deal1HP after actual enemy mitigation; mechanical proof, no earned balance acceptance.",
+  "limits": [
+    "Existing missing navigation glyphs",
+    "Full device/a11y/offline acceptance open"
+  ]
+}

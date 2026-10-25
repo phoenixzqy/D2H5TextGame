@@ -60,7 +60,7 @@ assassin,skills-assassin-wake-of-inferno,assassin.wake_of_inferno,active,damage+
 assassin,skills-assassin-death-sentry,assassin.death_sentry,active,damage,burn,src/data/skills/assassin.json,lightning-trap-corpse-identity-open-and-burn-still-unpowered,unverified,docs/plans/evidence/d04-assassin-burn-repro.md|production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md|docs/plans/evidence/d04-assassin-fire.md
 assassin,skills-assassin-blade-shield,assassin.blade_shield,active,damage,,src/data/skills/assassin.json,,unverified,
 barbarian,skills-barbarian-bash,barbarian.bash,active,damage,,src/data/skills/barbarian.json,,unverified,
-barbarian,skills-barbarian-double-swing,barbarian.double_swing,active,damage,,src/data/skills/barbarian.json,,unverified,
+barbarian,skills-barbarian-double-swing,barbarian.double_swing,active,damage,,src/data/skills/barbarian.json,provisional-targeting-adaptation|independent-acceptance-open|earned-balance-open,bounded-functional;independent-acceptance-open,docs/plans/decisions/D04-double-swing-v1.md;docs/plans/evidence/d04-double-swing.md
 barbarian,skills-barbarian-whirlwind,barbarian.whirlwind,active,damage,,src/data/skills/barbarian.json,,unverified,
 barbarian,skills-barbarian-leap-attack,barbarian.leap_attack,active,damage,stun,src/data/skills/barbarian.json,,unverified,
 barbarian,skills-barbarian-berserk,barbarian.berserk,active,damage,,src/data/skills/barbarian.json,,unverified,

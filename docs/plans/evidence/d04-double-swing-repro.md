@@ -37,3 +37,12 @@ miss/death/retargeting rules and truthful bilingual previews before repair.
 Genuine L33/nextNormal402/Baal uncleared is unchanged. No genuine campaign or
 remote action. C2–C4/fullG0–G7/all-class earned builds/30–50hour pacing/economy/
 endgame and complete privatev1 remain unfinished.
+
+
+## Subsequent local repair
+
+`0269609e` implements the explicit [author contract](../decisions/D04-double-swing-v1.md).
+[Delivery verification](d04-double-swing.md) records actual original-pool passes,
+death/payment/cooldown/mitigation, native save/wave proof and production browser
+checks. Historical prepatch evidence above is preserved; independent/earned
+acceptance remains open.
