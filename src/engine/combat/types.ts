@@ -76,6 +76,9 @@ export interface CombatUnit {
   readonly druidSummonRanks?: import('../skills/druid-summon-authority').DruidSummonRanks;
   /** Fresh native configured Feral authority, captured per wave; never persisted. */
   readonly feralRageRank?: number;
+  /** Fresh native Holy Shield eligibility and source-bound paid run-local power; never persisted. */
+  readonly holyShieldRank?: number;
+  readonly holyShield?: { readonly sourceHeroId: string; readonly rank: number };
   /** Fresh native Cyclone eligibility and source-bound paid run-local power; never persisted. */
   readonly cycloneArmorRank?: number;
   readonly cycloneArmor?: { readonly sourceHeroId: string; readonly rank: number };

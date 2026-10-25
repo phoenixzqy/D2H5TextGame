@@ -83,6 +83,8 @@ export interface HealEffect {
 export interface BuffEffect {
   /** Exact paid Cyclone Armor consumer; bare buff markers confer no defensive power. */
   readonly cycloneArmor?: true;
+  /** Exact paid Holy Shield consumer; markers alone grant no power. */
+  readonly holyShield?: true;
   readonly kind: 'buff';
   readonly id: string;
   readonly duration: number;

@@ -44,6 +44,8 @@ import { activeStatAura, copyStatAuraProjection, statAuraDamageBonus, type StatA
 import { projectLifeCapacity } from './life-capacity';
 import { activeDruidAllyAuras, copyDruidAllyAuras, DRUID_ALLY_AURA_DEFINITIONS, type DruidAllyAuraProjection } from '../skills/druid-ally-auras';
 import { activeSpiritOfBarbs, copySpiritOfBarbs, SPIRIT_OF_BARBS_DEFINITION, type SpiritOfBarbsProjection } from '../skills/spirit-of-barbs';
+import { absorbHolyShield, activeHolyShield, HOLY_SHIELD_IDS, holyShieldDefense, holyShieldLethalBound,
+  holyShieldQuota, holyShieldRank, matchesHolyShield, payHolyShield, refreshHolyShieldState } from '../skills/holy-shield';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
 import { absorbBoneArmor, boneArmorPool, copyBoneArmorStatuses } from '../skills/bone-armor';
 import { absorbCycloneArmor, activeCycloneArmor, CYCLONE_ARMOR_IDS, cycloneArmorLethalBound,
@@ -122,6 +124,8 @@ export type BattleEvent =
       readonly absorbed?: number;
       /** Paid Cyclone reduction, kept separate from the finite Bone Armor pool. */
       readonly cycloneAbsorbed?: number;
+      /** Paid Holy Shield prevention, separate from other personal defenses. */
+      readonly holyShieldAbsorbed?: number;
       readonly crit: boolean;
       readonly dodged: boolean;
     }
@@ -148,7 +152,7 @@ export type BattleEvent =
   | { readonly kind: 'orb'; readonly target: string; readonly orb: Orb }
   | { readonly kind: 'stunned'; readonly target: string }
   | { readonly kind: 'dot'; readonly target: string; readonly amount: number;
-      readonly absorbed?: number; readonly cycloneAbsorbed?: number }
+      readonly absorbed?: number; readonly cycloneAbsorbed?: number; readonly holyShieldAbsorbed?: number }
   | { readonly kind: 'end'; readonly winner: CombatSide | null };
 
 /** Initial combat snapshot. */
@@ -248,6 +252,8 @@ interface State {
   periodic: Map<string, PeriodicIntegral>;
   /** Settled pre-cast periodic damage never contributes to paid Cyclone absorption. */
   readonly cyclonePeriodicBaseline: Map<string, number>;
+  /** Post-Cyclone periodic damage at the paid Holy Shield cast; wave-local. */
+  readonly holyShieldPeriodicBaseline: Map<string, number>;
   /** Cumulative recovery integral; only fractional MP transfers between battles. */
   manaRecovery: Map<string, ManaRecoveryIntegral>;
   deathsHandled: Set<string>;
@@ -497,7 +503,7 @@ function pickDefender(
 function registerUnit(state: State, u: CombatUnit): void {
   const native = u.druidSummonRanks === undefined ? u : { ...u, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
   const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(native))));
-  const shaped = refreshDruidFormState(copied);
+  const shaped = refreshHolyShieldState(refreshDruidFormState(copied));
   state.units.set(u.id, shaped);
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
   if (!state.insertionIdx.has(u.id)) {
@@ -564,7 +570,7 @@ function buildDamageInput(
     ? 1 - MERC_INNER_SIGHT_DEFINITION.defenseReductionPct / 100 : 1;
   const barbsDefense = defender.kind === 'summon'
     ? (activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, defender, state.units)?.rank ?? 0) * SPIRIT_OF_BARBS_DEFINITION.summonDefensePerRank : 0;
-  const armorBonus = (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + barbsDefense;
+  const armorBonus = (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + barbsDefense + holyShieldDefense(defender);
   return {
     baseMin,
     baseMax,
@@ -600,14 +606,19 @@ function cleansingDurationInput(state: State, recipientId: string): { readonly c
   return multiplier === undefined ? {} : { cleansingDurationMultiplier: multiplier };
 }
 
-/** Shared settlement/prediction: paid Cyclone, MP diversion, then finite Bone Armor. */
-function splitPersonalDamage(unit: CombatUnit, amount: number, previousPeriodicDamage = 0, cycloneBaseline = 0) {
+/** Shared settlement/prediction: Cyclone, Holy Shield, MP diversion, then finite Bone Armor. */
+function splitPersonalDamage(unit: CombatUnit, amount: number, previousPeriodicDamage = 0,
+  cycloneBaseline = 0, holyShieldBaseline = 0) {
   const sinceCast = Math.max(0, previousPeriodicDamage - cycloneBaseline);
   const cyclone = absorbCycloneArmor(unit, amount, sinceCast);
   const previousAfterCyclone = previousPeriodicDamage - cycloneArmorQuota(unit, sinceCast);
-  const shield = divertEnergyShield(unit, cyclone.damage, previousAfterCyclone);
+  const holySinceCast = Math.max(0, previousAfterCyclone - holyShieldBaseline);
+  const holy = absorbHolyShield(unit, cyclone.damage, holySinceCast);
+  const previousAfterHoly = previousAfterCyclone - holyShieldQuota(unit, holySinceCast);
+  const shield = divertEnergyShield(unit, holy.damage, previousAfterHoly);
   const bone = absorbBoneArmor(shield.unit, shield.damage);
-  return { ...bone, cycloneAbsorbed: cyclone.absorbed, manaSpent: shield.manaSpent };
+  return { ...bone, cycloneAbsorbed: cyclone.absorbed, holyShieldAbsorbed: holy.absorbed,
+    manaSpent: shield.manaSpent };
 }
 
 /** Preserve the ordinary damage path's resource/carry bytes when no MP was spent. */
@@ -653,8 +664,8 @@ function applyDamageToUnit(
   let remainingDefenses = defender;
   for (const [index, hit] of hits.entries()) {
     const hitAmount = hit.outcome.hit && hit.outcome.final > 0 && shouldShatter(activeDefender, hit.damageType)
-      ? Math.max(hit.outcome.final, cycloneArmorLethalBound(defender,
-        defender.life + (boneArmorPool(defender)?.boneArmor?.remaining ?? 0) + availableEnergyShieldMana(defender)))
+      ? Math.max(hit.outcome.final, cycloneArmorLethalBound(defender, holyShieldLethalBound(defender,
+        defender.life + (boneArmorPool(defender)?.boneArmor?.remaining ?? 0) + availableEnergyShieldMana(defender))))
       : hit.outcome.final;
     amount += hitAmount;
     const absorption = splitPersonalDamage(remainingDefenses, hitAmount);
@@ -663,6 +674,7 @@ function applyDamageToUnit(
       damageType: hit.damageType, amount: absorption.damage,
       ...(absorption.absorbed > 0 ? { absorbed: absorption.absorbed } : {}),
       ...(absorption.cycloneAbsorbed > 0 ? { cycloneAbsorbed: absorption.cycloneAbsorbed } : {}),
+      ...(absorption.holyShieldAbsorbed > 0 ? { holyShieldAbsorbed: absorption.holyShieldAbsorbed } : {}),
       crit: hit.outcome.crit, dodged: hit.outcome.dodged
     });
     if (hit.outcome.dodged) continue;
@@ -762,6 +774,7 @@ function applyDamageToUnit(
       damageType: 'thorns', amount: reflectionAbsorption.damage,
       ...(reflectionAbsorption.absorbed > 0 ? { absorbed: reflectionAbsorption.absorbed } : {}),
       ...(reflectionAbsorption.cycloneAbsorbed > 0 ? { cycloneAbsorbed: reflectionAbsorption.cycloneAbsorbed } : {}),
+      ...(reflectionAbsorption.holyShieldAbsorbed > 0 ? { holyShieldAbsorbed: reflectionAbsorption.holyShieldAbsorbed } : {}),
       crit: false, dodged: false });
     const damaged = { ...reflectionAbsorption.unit, life: Math.max(0, target.life - reflectionAbsorption.damage) };
     const manaEvent = commitPersonalDamage(state, target, damaged);
@@ -978,6 +991,7 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
+  if (HOLY_SHIELD_IDS.some(id => id === skill.id)) return holyShieldRank(unit);
   if (CYCLONE_ARMOR_IDS.some(id => id === skill.id)) return cycloneArmorRank(unit);
   const form = druidFormForId(skill.id);
   if (form) return druidFormRank(unit, form);
@@ -1076,6 +1090,11 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  const holy = HOLY_SHIELD_IDS.some(id => id === skillOrderId || id === skill.id) ||
+    skill.effects.some(effect => effect.kind === 'buff' && effect.holyShield === true);
+  if (holy && (!matchesHolyShield(skill) || holyShieldRank(unit) === 0 ||
+    activeHolyShield(unit) > 0 || !Number.isFinite(unit.mana) ||
+    HOLY_SHIELD_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   const cyclone = CYCLONE_ARMOR_IDS.some(id => id === skillOrderId || id === skill.id) ||
     skill.effects.some(effect => effect.kind === 'buff' && effect.cycloneArmor === true);
   if (cyclone && (!matchesCycloneArmor(skill) || cycloneArmorRank(unit) === 0 ||
@@ -1170,6 +1189,7 @@ function applyEffect(
           damageType: 'lightning', amount: absorption.damage,
           ...(absorption.absorbed > 0 ? { absorbed: absorption.absorbed } : {}),
           ...(absorption.cycloneAbsorbed > 0 ? { cycloneAbsorbed: absorption.cycloneAbsorbed } : {}),
+          ...(absorption.holyShieldAbsorbed > 0 ? { holyShieldAbsorbed: absorption.holyShieldAbsorbed } : {}),
           crit: false, dodged: false });
         if (manaEvent) emit(state, manaEvent);
         if (absorption.absorbed > 0) observeStatuses(state, target.id);
@@ -1210,6 +1230,14 @@ function applyEffect(
     case 'buff': {
       const actor = state.units.get(actorId);
       if (!actor) return;
+      if (matchesHolyShield(skill) && effect.holyShield === true) {
+        state.units.set(actorId, payHolyShield(actor));
+        const dealt = state.periodic.get(actorId)?.dealt ?? 0;
+        state.holyShieldPeriodicBaseline.set(actorId, dealt - cycloneArmorQuota(actor,
+          Math.max(0, dealt - (state.cyclonePeriodicBaseline.get(actorId) ?? 0))));
+        emit(state, { kind: 'buff', target: actorId, buffId: effect.id });
+        break;
+      }
       if (matchesCycloneArmor(skill) && effect.cycloneArmor === true) {
         state.units.set(actorId, payCycloneArmor(actor));
         state.cyclonePeriodicBaseline.set(actorId, state.periodic.get(actorId)?.dealt ?? 0);
@@ -1482,7 +1510,7 @@ function integratePeriodic(
 /** Every HP write precedes events/deaths; sources freeze the just-integrated interval. */
 function settlePeriodic(state: State, to: number): void {
   const from = state.simClockMs;
-  const damages: { unit: CombatUnit; amount: number; absorbed: number; cycloneAbsorbed: number; manaEvent: ManaEvent | undefined }[] = [];
+  const damages: { unit: CombatUnit; amount: number; absorbed: number; cycloneAbsorbed: number; holyShieldAbsorbed: number; manaEvent: ManaEvent | undefined }[] = [];
   const dead: CombatUnit[] = [];
   for (const before of state.units.values()) {
     if (!alive(before)) continue;
@@ -1492,18 +1520,19 @@ function settlePeriodic(state: State, to: number): void {
     state.periodic.set(before.id, next);
     if (amount <= 0) continue;
     const absorption = splitPersonalDamage(before, amount, previous?.dealt ?? 0,
-      state.cyclonePeriodicBaseline.get(before.id) ?? 0);
+      state.cyclonePeriodicBaseline.get(before.id) ?? 0, state.holyShieldPeriodicBaseline.get(before.id) ?? 0);
     const after = { ...absorption.unit, life: Math.max(0, before.life - absorption.damage) };
     const manaEvent = commitPersonalDamage(state, before, after);
     damages.push({ unit: after, amount: absorption.damage, absorbed: absorption.absorbed,
-      cycloneAbsorbed: absorption.cycloneAbsorbed, manaEvent });
+      cycloneAbsorbed: absorption.cycloneAbsorbed, holyShieldAbsorbed: absorption.holyShieldAbsorbed, manaEvent });
     if (!alive(after)) dead.push(activeStatusView(after, from));
   }
   state.simClockMs = to;
   emitTurnBoundaries(state);
-  for (const { unit, amount, absorbed, cycloneAbsorbed, manaEvent } of damages) {
+  for (const { unit, amount, absorbed, cycloneAbsorbed, holyShieldAbsorbed, manaEvent } of damages) {
     emit(state, { kind: 'dot', target: unit.id, amount, ...(absorbed > 0 ? { absorbed } : {}),
-      ...(cycloneAbsorbed > 0 ? { cycloneAbsorbed } : {}) });
+      ...(cycloneAbsorbed > 0 ? { cycloneAbsorbed } : {}),
+      ...(holyShieldAbsorbed > 0 ? { holyShieldAbsorbed } : {}) });
     if (manaEvent) emit(state, manaEvent);
   }
   finishDeaths(state, dead);
@@ -1665,7 +1694,8 @@ function nextPeriodicBoundary(state: State, nextActionAt: number): number {
     const effectiveLife = unit.life + (boneArmorPool(unit)?.boneArmor?.remaining ?? 0) + availableEnergyShieldMana(unit);
     const lethalAt = (at: number): boolean => splitPersonalDamage(unit,
       integratePeriodic(unit, state.simClockMs, at, previous).dealt - (previous?.dealt ?? 0),
-      previous?.dealt ?? 0, state.cyclonePeriodicBaseline.get(unit.id) ?? 0).damage >= unit.life;
+      previous?.dealt ?? 0, state.cyclonePeriodicBaseline.get(unit.id) ?? 0,
+      state.holyShieldPeriodicBaseline.get(unit.id) ?? 0).damage >= unit.life;
     let candidate = Math.max(minimum, Math.min(maximum,
       Math.ceil(state.simClockMs + SECONDS * (effectiveLife - carry) / rate)));
     // Verify both candidate and predecessor; floating arithmetic may put the
@@ -2099,6 +2129,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     cooldownExpiresAt: new Map(),
     periodic: new Map(),
     cyclonePeriodicBaseline: new Map(),
+    holyShieldPeriodicBaseline: new Map(),
     manaRecovery: new Map(),
     deathsHandled: new Set(),
     turnsEmitted: 0,

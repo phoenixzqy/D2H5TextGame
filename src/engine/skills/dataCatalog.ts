@@ -222,6 +222,7 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
         kind: 'buff',
         id: skill.appliesStatus[0],
         ...(skill.id === 'skills-druid-cyclone-armor' ? { cycloneArmor: true as const } : {}),
+        ...(skill.id === 'skills-paladin-holy-shield' ? { holyShield: true as const } : {}),
         duration: skill.timedBuff ? skill.timedBuff.durationMs / 1000 : -1,
         ...((skill.id === 'skills-druid-werewolf' || skill.id === 'skills-druid-werebear') && skill.trigger === 'active'
           ? { druidForm: skill.id === 'skills-druid-werewolf' ? 'werewolf' as const : 'werebear' as const } : {}),

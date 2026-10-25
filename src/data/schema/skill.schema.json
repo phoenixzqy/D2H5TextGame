@@ -350,6 +350,33 @@
       }
     },
     {
+      "if": { "properties": { "id": { "const": "skills-paladin-holy-shield" } }, "required": ["id"] },
+      "then": {
+        "required": ["cost", "scaling", "appliesStatus", "requiredLevel", "prerequisites"],
+        "not": { "anyOf": [{ "required": ["damage"], "properties": { "damage": {} } }, { "required": ["timedBuff"], "properties": { "timedBuff": {} } }] },
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "self" },
+          "appliesStatus": { "const": ["holy-shield"] },
+          "prerequisites": { "const": ["skills-paladin-charge"] },
+          "requiredLevel": { "type": "integer", "minimum": 1 },
+          "cost": { "type": "object", "required": ["mana"], "properties": { "mana": { "type": "number", "minimum": 0 } } },
+          "scaling": {
+            "type": "object", "required": ["passiveStatsPerLevel", "costPerLevel", "cooldownPerLevel"],
+            "properties": {
+              "costPerLevel": { "type": "number" }, "cooldownPerLevel": { "type": "number" },
+              "passiveStatsPerLevel": {
+                "type": "object", "required": ["shieldAbsorbPct", "defensePct"], "additionalProperties": false,
+                "properties": {
+                  "shieldAbsorbPct": { "type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 0.05, "description": "Per-rank final-damage reduction; rank20 must remain below complete immunity." },
+                  "defensePct": { "type": "number", "exclusiveMinimum": 0, "description": "Per-rank fractional ordinary Defense bonus over the fresh base." }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
       "if": {
         "properties": {
           "id": { "enum": ["skills-druid-firestorm", "skills-druid-molten-boulder", "skills-druid-fissure", "skills-druid-volcano", "skills-druid-armageddon"] }
