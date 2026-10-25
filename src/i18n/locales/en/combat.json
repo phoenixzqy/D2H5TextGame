@@ -79,6 +79,7 @@
   "acting": "Acting",
   "summon": "Summon",
   "summons": {
+    "spirit_of_barbs": "Spirit of Barbs",
     "blood_raven_zombie": "Zombie",
     "skeleton": "Skeleton Warrior",
     "clay_golem": "Clay Golem",
@@ -109,6 +110,7 @@
     "summon": "Summon",
     "death": "Down",
     "status": {
+      "spirit-of-barbs": "Spirit of Barbs",
       "oak-sage": "Oak Sage",
       "heart-of-wolverine": "Heart of Wolverine",
       "werewolf": "Werewolf",
@@ -195,6 +197,7 @@
     "manaOrb": "{{actor}} picks up a Mana Orb, restoring {{amount}} MP."
   },
   "status": {
+      "spirit-of-barbs": "Spirit of Barbs",
     "applied": "{{target}} is afflicted with [{{status}}] ({{stacks}} stacks).",
     "appliedSimple": "{{target}} is afflicted with [{{status}}].",
     "expired": "{{target}}'s [{{status}}] expires.",

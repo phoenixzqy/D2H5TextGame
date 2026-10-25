@@ -79,6 +79,7 @@
   "acting": "行动中",
   "summon": "召唤物",
   "summons": {
+    "spirit_of_barbs": "棘灵",
     "blood_raven_zombie": "僵尸",
     "skeleton": "骷髅战士",
     "clay_golem": "黏土石魔",
@@ -109,6 +110,7 @@
     "summon": "召唤",
     "death": "倒下",
     "status": {
+      "spirit-of-barbs": "棘灵",
       "oak-sage": "橡树智者",
       "heart-of-wolverine": "狼獾之心",
       "werewolf": "狼人变化",
@@ -195,6 +197,7 @@
     "manaOrb": "{{actor}} 拾取了法力之球，恢复 {{amount}} 点法力。"
   },
   "status": {
+      "spirit-of-barbs": "棘灵",
     "applied": "{{target}} 进入【{{status}}】状态 ({{stacks}} 层)。",
     "appliedSimple": "{{target}} 进入【{{status}}】状态。",
     "expired": "{{target}} 的【{{status}}】结束。",

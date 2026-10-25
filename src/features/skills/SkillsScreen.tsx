@@ -56,6 +56,7 @@ import { composeSummonPassives, SUMMON_PASSIVE_IDENTITIES, SUMMON_PASSIVE_DEFINI
 import { ASSASSIN_WEAPON_PASSIVE_DEFINITIONS, ASSASSIN_WEAPON_PASSIVE_IDENTITIES } from '@/engine/skills/assassin-weapon-passives';
 import { ASSASSIN_SHADOW_DEFINITIONS, ASSASSIN_SHADOW_IDENTITIES } from '@/engine/skills/assassin-shadow';
 import { DRUID_ALLY_AURA_DEFINITIONS, DRUID_ALLY_AURA_IDS, druidAllyAuraRank } from '@/engine/skills/druid-ally-auras';
+import { SPIRIT_OF_BARBS_DEFINITION, SPIRIT_OF_BARBS_IDS, spiritOfBarbsRank } from '@/engine/skills/spirit-of-barbs';
 import { DRUID_SHAPE_DEFINITIONS, DRUID_SHAPE_IDS, druidFormForId, resolveDruidShapeRank, type DruidShapeKey } from '@/engine/skills/druid-shapeshifting';
 import { BURST_OF_SPEED_DEFINITION, BURST_OF_SPEED_IDS } from '@/engine/skills/burst-of-speed';
 import { BONE_ARMOR_DEFINITION, BONE_ARMOR_IDS } from '@/engine/skills/bone-armor';
@@ -162,6 +163,11 @@ export function SkillsScreen() {
         if (rank > 0) map.set(alias, rank);
         else map.delete(alias);
       }
+    }
+    const barbsRank = spiritOfBarbsRank(levels);
+    for (const alias of SPIRIT_OF_BARBS_IDS) {
+      if (barbsRank > 0) map.set(alias, barbsRank);
+      else map.delete(alias);
     }
     const mightRank = resolveMightRank(levels);
     for (const alias of ['paladin.might', 'skills-paladin-might']) {
@@ -1257,6 +1263,11 @@ function dynamicDescription(
         life: d.lifePerRank * 100, attack: d.attackPerRank * 100, critical: d.critPerRank * 100,
         level: d.requiredLevel, cap: d.maxRank });
     }
+  }
+  if (skill.id === SPIRIT_OF_BARBS_IDS[0]) {
+    const d = SPIRIT_OF_BARBS_DEFINITION;
+    return t('druid.spirit-of-barbs.desc', { thorns: d.thornsPerRank * 100,
+      defense: d.summonDefensePerRank * 100, level: d.requiredLevel, cap: d.maxRank });
   }
   if (skill.id === ENERGY_SHIELD_IDS[0]) {
     const d = ENERGY_SHIELD_DEFINITION;

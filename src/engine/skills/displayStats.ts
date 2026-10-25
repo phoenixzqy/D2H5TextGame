@@ -17,6 +17,7 @@ import { applySkeletonMasteryStats, type SkeletonMasteryProjection } from './ske
 import { applyIronGolemItemStats, isIronGolemSkill, type IronGolemInput } from './iron-golem';
 import { applyGolemMasteryStats, type GolemMasteryProjection } from './golem-mastery';
 import { applySummonPassiveStats, type SummonPassiveProjection } from './summon-passives';
+import { SPIRIT_OF_BARBS_DEFINITION, SPIRIT_OF_BARBS_IDS } from './spirit-of-barbs';
 
 export interface DisplaySkillSource {
   readonly coldMastery?: ColdMasteryTuning;
@@ -188,6 +189,7 @@ function damageRows(skill: DisplaySkillSource, rank: number): readonly SkillDama
 }
 
 function summonCap(skill: DisplaySkillSource, rank: number): number | undefined {
+  if (SPIRIT_OF_BARBS_IDS.some(id => skill.id === id)) return 1;
   if (skill.scaling?.summonMaxCount?.kind === 'raise-skeleton-1-6-12-cap-3') {
     return maxSkeletonsForLevel(rank);
   }
@@ -198,6 +200,7 @@ function summonCap(skill: DisplaySkillSource, rank: number): number | undefined 
 }
 
 function inferSummonId(skill: DisplaySkillSource): string | undefined {
+  if (SPIRIT_OF_BARBS_IDS.some(id => skill.id === id)) return SPIRIT_OF_BARBS_DEFINITION.summonId;
   if (skill.summonId) return skill.summonId;
   if (skill.id === 'skills-necromancer-raise-skeleton' || skill.id === 'necromancer.raise_skeleton') {
     return 'skeleton';

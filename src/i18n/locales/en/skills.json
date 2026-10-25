@@ -120,6 +120,7 @@
       "magicDodge": "Magic Dodge"
     },
     "summonName": {
+      "spirit_of_barbs": "Spirit of Barbs",
       "skeleton": "Skeleton Warrior",
       "clay_golem": "Clay Golem",
       "blood_golem": "Blood Golem",
@@ -681,7 +682,7 @@
     },
     "spirit-of-barbs": {
       "name": "Spirit of Barbs",
-      "desc": "Summons a spirit that reflects damage."
+      "desc": "At each wave start, automatically creates one targetable support spirit with no ordinary action, mana cost or combo slot. It never attacks and is not replaced after death that wave. While both you and the spirit live, each allocated rank reflects {{thorns}}% of physical Life actually lost by you, your original fielded mercenary and your living summons if the hit is survived; adds {{defense}}% Defense only to your summons, including the spirit. Reflection is mitigated as thorns and cannot reflect again. Requires learned Heart of Wolverine and Oak Sage, Druid level {{level}}, maximum {{cap}} ranks. Changes apply next wave. Preview shows base stats before combat bonuses, including Oak Sage and this Defense aura; increased life capacity never heals."
     },
     "summon-grizzly": {
       "name": "Summon Grizzly",
