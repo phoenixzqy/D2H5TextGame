@@ -263,11 +263,10 @@ Monsters use a simplified skill set. Examples:
 ### 6.2 Aura Skills (Paladin-specific)
 The implemented player selection supports **None, Might, Meditation, Thorns,
 Blessed Aim, Fanaticism, Defiance, Resist Fire, Resist Cold, Resist Lightning,
-Salvation, Holy Freeze, Conviction, Holy Fire, Holy Shock, Prayer, Cleansing, Redemption and Vigor** in one
+Salvation, Holy Freeze, Conviction, Holy Fire, Holy Shock, Prayer, Cleansing, Redemption, Vigor and Sanctuary** in one
 exclusive saved canonical slot. Stat, enemy, pulse and healing effects follow
 [the family contract](../plans/decisions/D05-paladin-aura-family-v1.md).
-Sanctuary and Concentration still require their
-distinct remaining mechanics;
+Concentration still requires its distinct interruption-prevention mechanic;
 full aura-catalog and independent acceptance remain open.
 
 - **Selection:** None is physical absence of `selectedAuraId`. Runtime-supported
@@ -292,6 +291,14 @@ full aura-catalog and independent acceptance remain open.
   capacity floors once over the fresh maximum; selection grants no healing.
   Existing healing/orbs can fill it; source death removes it and caps actual HP.
   Transient carry identity prevents compounding and is never persisted.
+- **Sanctuary:** authored 3% Arcane damage per rank applies to hero/original
+  living fielded merc against any target. Every 2000 ms, the living hero deals
+  20 base Arcane damage only to explicitly authored undead enemies, including
+  factory-backed enemy summons. Repulsion is canonical Stun on survivors for
+  500 ms (bosses 250 ms), with no movement. First pulse waits a full interval;
+  normal mitigation, source death and next-wave rules apply. See the
+  [undead identity contract](../plans/decisions/D05-monster-undead-v1.md).
+  Pulse/control tuning is provisional; earned balance remains open.
 - **Might strength:** Each allocated rank supplies separate additive physical
   increased damage (+3%) and Attack (+1%), capped at rank20. Basic Attack100
   therefore gives104/192 at ranks1/20; fixed physical100 gives103/160, without new

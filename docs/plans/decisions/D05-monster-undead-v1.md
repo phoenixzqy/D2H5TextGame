@@ -68,3 +68,11 @@ or accepting an omitted classification. Original failed output is retained.
 Sanctuary must still implement actual undead damage/control, source authority,
 native wave/replay/save integration and truthful bilingual UI. Its functional
 inventory disposition must remain unverified until that behavior is proven.
+
+## Local implementation checkpoint
+
+Sanctuary now implements and verifies actual undead damage/control, native
+wave/replay/save integration and bilingual UI in `5586d34`. The original
+classification-only prerequisite above is fulfilled by the separate
+[Sanctuary evidence](../evidence/d05-paladin-sanctuary.md). Only Sanctuary gains
+a bounded-functional record; independent acceptance and earned balance remain open.

@@ -291,15 +291,14 @@ Arcane bonus, pulse timing and Stun adaptation.
 
 ## Remaining required effects
 
-Vigor follows the explicit temporary endurance/cadence contract above and has
-[bounded local verification](../evidence/d05-paladin-vigor.md). Eighteen of20
-selected Paladin auras now have supported effects. Sanctuary still requires
-an authoritative undead classification, undead damage and an explicit
-no-movement repulsion adaptation. Concentration still requires an explicit
-interruption-prevention rule. Existing JSON and older descriptions disagree
-for these two: resolve their affected rules and data explicitly before
-implementing the remaining mechanics. Do not count stat-only substitutes as
-completion of those effects.
+Vigor and Sanctuary follow their explicit contracts above and have
+[bounded Vigor verification](../evidence/d05-paladin-vigor.md) and
+[bounded Sanctuary verification](../evidence/d05-paladin-sanctuary.md).
+Nineteen of 20 selected Paladin auras now have supported effects. Concentration
+still requires an explicit interruption-prevention rule. Its JSON and older
+description must be reconciled before implementation; a physical-only substitute
+does not complete the promised mechanic. Independent design/QA and earned
+class/build balance remain open.
 
 Other family evidence remains bounded:
 [stat auras](../evidence/d05-paladin-stat-auras.md),

@@ -161,3 +161,21 @@ that enemy is now explicitly held. A subsequent extra-parenthesis transform
 error is retained but is not causal gameplay evidence. Repair the shared aura
 interval/settlement consumer, reusing normal Arcane mitigation, timed Stun and
 exact-once death closure; do not create movement or weaken validation.
+
+
+Eighth batch `5586d34` implements selected Sanctuary with explicit authored
+undead identity (29/109 archetypes), deterministic Arcane pulses and canonical
+500 ms Stun repulsion (bosses 250 ms), preserving authored 3% Arcane/rank and
+ordinary wave/replay/save boundaries. Current factory-backed enemy summons remain
+eligible; historical fixtures preserve their older unclassified input bytes.
+Final corrected full 12430/531, two existing skips, engine6252/220, corrected
+types/lint and unchanged production build/bridge/browser PASS. Four browser cases,
+eight exact five-domain Continue pairs and 20 geometry samples retain bounded
+proof. Original full78failed/12352passed remains; BUG183 fixes only historical
+projection, and intermittent BUG180 remains unresolved after isolated13PASS and
+corrected full PASS. [Evidence](../../docs/plans/evidence/d05-paladin-sanctuary.md)
+retains156raw files/29terminal records; exact916file cleanup verifies scratch
+absence and4469closure. Nineteen of20auras are supported; remaining one is
+Concentration's explicit interruption-prevention effect. A physical-only
+substitute is insufficient. Earned balance and independent whole-family
+acceptance remain open; BUG181 is not closed. No genuine campaign action.

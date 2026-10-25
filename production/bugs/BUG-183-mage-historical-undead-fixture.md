@@ -1,6 +1,6 @@
 # BUG-183 — Preserve frozen mage fixture identity after undead authoring
 
-- Status: reproduced; fix pending.
+- Status: Fixed locally in `5586d34`; independent acceptance remains open.
 - Severity: Medium (historical measurement contracts fail; current production Sanctuary path passes focused/native/browser checks).
 - Affected systems: QA historical simulation fixture builders; root owns this local fix. Independent review remains open.
 - Build: local Sanctuary changes over a03fed2d8a73ab163fa0cf37780674f653dbd5e5, branch feat/playable-foundations.
@@ -27,3 +27,16 @@ full-final.log/result and before-full-final/after-full-attempt1/full-attempt1-in
 Extend only the two explicitly historical mage fixture projection boundaries to exclude the post-v1 undead marker, just as they already exclude post-v1 provenance. Keep production factory output and the complete current109-row classification. Missing legacy identity is explicitly unclassified under D05-monster-undead-v1; these historical fixtures never select Sanctuary. Keep every existing frozen hash/length, recipe, enemy/stat/RNG and recording oracle unchanged. Existing causal76failures and strict-byte tests guard the correction. Do not regenerate/promote historical fixtures, weaken hashes or change timeout/worker/discovery settings. Verify all mage contracts, current identity/native tests and unchanged import tests, then the complete suite.
 
 No genuine campaign action, diagnostic-save promotion or remote publication.
+
+## Local correction and verification
+
+`5586d34` extends the existing historical projection in mage-balance-fixture.ts
+and mage-mastery-fixture.ts to omit only post-v1 undead identity. Current native
+monsters keep the marker. No frozen hash, length, recipe, expected gameplay value,
+source guard, timeout or test-discovery rule changed. Causal76failures become
+green; corrected historical/aura/identity focus168PASS/eight files, final full
+12430PASS/531files/two existing skips and types/lint PASS. All1246committed
+source blobs match the validated unchanged-run snapshot. Original outputs and
+exact source/build snapshots are archived in
+[Sanctuary evidence](../../docs/plans/evidence/d05-paladin-sanctuary.md); task-owned
+scratch is removed after archival. BUG180 remains separately unresolved.

@@ -64,3 +64,12 @@ Profile the cold import path under the full workload before proposing a source f
 
 
 Sanctuary first-full recurrence over a03fed2: player-first entry case timed out at unchanged5000ms (13-case file, one failure). The complete full also retains76historical-byte failures and one stale aura assertion, reported separately under BUG183/BUG181. No timeout, worker, discovery or import assertion is changed. Original full-final.log/result and exact before/after integrity live in the Sanctuary task evidence root; isolated reproduction and corrected-source full remain pending.
+
+
+Sanctuary follow-up at `5586d34`: unchanged13-case file passes in isolation;
+corrected full passes 12430tests/531files plus two existing skips in
+426.676seconds. No import implementation/assertion, timeout, worker or
+discovery change was made. The original full timeout remains retained under
+[Sanctuary evidence](../../docs/plans/evidence/d05-paladin-sanctuary.md); this
+intermittent issue remains open. Exact source/build/genuine snapshots prove both
+full attempts stayed unchanged during their respective runs.
