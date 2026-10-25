@@ -8,6 +8,156 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-druid-werewolf-maul"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "damage",
+          "damageType",
+          "appliesStatus",
+          "statusEffect"
+        ],
+        "properties": {
+          "damage": { "$ref": "#/properties/damage" },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "single-enemy"
+          },
+          "damageType": {
+            "const": "physical"
+          },
+          "appliesStatus": {
+            "const": [
+              "bleed"
+            ]
+          },
+          "statusEffect": {
+            "type": "object",
+            "required": [
+              "dotPctOfDamage"
+            ],
+            "properties": {
+              "dotPctOfDamage": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Explicit positive fraction of the final hit per second per bleed stack; no implicit runtime fallback."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-druid-rabies"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "damage",
+          "damageType",
+          "appliesStatus",
+          "statusEffect"
+        ],
+        "properties": {
+          "damage": { "$ref": "#/properties/damage" },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "single-enemy"
+          },
+          "damageType": {
+            "const": "poison"
+          },
+          "appliesStatus": {
+            "const": [
+              "poison"
+            ]
+          },
+          "statusEffect": {
+            "type": "object",
+            "required": [
+              "dotPctOfDamage"
+            ],
+            "properties": {
+              "dotPctOfDamage": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Explicit positive fraction of the final hit per second per poison stack; no implicit runtime fallback."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-druid-fire-claws"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "damage",
+          "damageType",
+          "appliesStatus",
+          "statusEffect"
+        ],
+        "properties": {
+          "damage": { "$ref": "#/properties/damage" },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "single-enemy"
+          },
+          "damageType": {
+            "const": "fire"
+          },
+          "appliesStatus": {
+            "const": [
+              "burn"
+            ]
+          },
+          "statusEffect": {
+            "type": "object",
+            "required": [
+              "dotPctOfDamage"
+            ],
+            "properties": {
+              "dotPctOfDamage": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Explicit positive fraction of the final hit per second per burn stack; no implicit runtime fallback."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
       "if": { "properties": { "id": { "const": "skills-druid-cyclone-armor" } }, "required": ["id"] },
       "then": {
         "required": ["cost", "scaling", "appliesStatus", "requiredLevel", "prerequisites"],

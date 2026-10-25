@@ -166,6 +166,9 @@
     "appliesStatus": [
       "bleed"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "physical",
       "bleed"
@@ -639,6 +642,9 @@
     "appliesStatus": [
       "poison"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.05
+    },
     "appliesTags": [
       "poison"
     ],
@@ -676,6 +682,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
