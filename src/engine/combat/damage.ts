@@ -64,6 +64,17 @@ export interface DamageOutcome {
   readonly effectiveResistPct: number;
 }
 
+/** One immutable hit/base/crit decision, reusable across a strike's typed components. */
+export type DamageRoll =
+  | { readonly hit: false; readonly dodged: true; readonly crit: false }
+  | {
+      readonly hit: true;
+      readonly dodged: false;
+      readonly crit: boolean;
+      readonly base: number;
+      readonly critMultiplier: number;
+    };
+
 /** A "miss" outcome shorthand. */
 const MISS: DamageOutcome = {
   hit: false,
@@ -116,30 +127,28 @@ function resistOf(res: Resistances, type: DamageType): number {
  * Pipeline order is exactly per combat-formulas.md §6.1 — do not reorder.
  */
 export function resolveDamage(input: DamageInput, rng: Rng): DamageOutcome {
+  return resolveRolledDamage(input, rollDamage(input, rng));
+}
+
+/** Draw hit, inclusive base and crit once, preserving the scalar pipeline's RNG order. */
+export function rollDamage(input: DamageInput, rng: Rng): DamageRoll {
   const hitChance = input.hitChance ?? 0.85;
 
   // 1) Dodge / hit roll
   if (!input.ignoreDodge) {
-    const effectiveHit = Math.max(0.05, hitChance - (input.hitChancePenalty ?? 0) - input.defenderDodge);
+    const effectiveHit = Math.max(
+      0.05,
+      hitChance - (input.hitChancePenalty ?? 0) - input.defenderDodge
+    );
     if (!rng.chance(effectiveHit)) {
-      return MISS;
+      return Object.freeze({ hit: false, dodged: true, crit: false });
     }
   }
 
   // 2) Base damage roll
   const baseLo = Math.min(input.baseMin, input.baseMax);
   const baseHi = Math.max(input.baseMin, input.baseMax);
-  const baseRoll =
-    baseLo === baseHi ? baseLo : rng.nextInt(Math.floor(baseLo), Math.floor(baseHi));
-
-  // Step 1: base
-  let dmg = baseRoll;
-  // Step 2: + flat
-  dmg = dmg + input.flatBonus;
-  // Step 3: × (1 + %inc)
-  dmg = dmg * (1 + input.increasedPct);
-  // Step 4: × combo
-  dmg = dmg * input.comboMult;
+  const baseRoll = baseLo === baseHi ? baseLo : rng.nextInt(Math.floor(baseLo), Math.floor(baseHi));
 
   // Step 5: crit (with overflow conversion at 1:2 ratio)
   let critChance = input.critChance;
@@ -150,16 +159,43 @@ export function resolveDamage(input: DamageInput, rng: Rng): DamageOutcome {
     critChance = 1;
   }
   const crit = rng.chance(critChance);
-  if (crit) dmg = dmg * critMult;
+  return Object.freeze({
+    hit: true,
+    dodged: false,
+    crit,
+    base: baseRoll,
+    critMultiplier: crit ? critMult : 1
+  });
+}
 
-  return { hit: true, dodged: false, crit, ...mitigateDamage(dmg, input) };
+/** Resolve one typed share without drawing RNG; only rolled base is weighted before modifiers. */
+export function resolveRolledDamage(
+  input: DamageInput,
+  roll: DamageRoll,
+  baseShare = 1
+): DamageOutcome {
+  if (!roll.hit) return MISS;
+  // Preserve scalar arithmetic order; component shares remain unrounded until mitigation.
+  let dmg = roll.base * baseShare;
+  dmg = dmg + input.flatBonus;
+  dmg = dmg * (1 + input.increasedPct);
+  dmg = dmg * input.comboMult;
+  if (roll.crit) dmg = dmg * roll.critMultiplier;
+  return { hit: true, dodged: false, crit: roll.crit, ...mitigateDamage(dmg, input) };
 }
 
 /** Deterministic post-roll mitigation shared by ordinary hits and RNG-free reflection. */
 export function mitigateDamage(
   rawDamage: number,
-  input: Pick<DamageInput, 'type' | 'defenderResistances' | 'defenderArmor' |
-    'defenderMagicResist' | 'resistPenalty' | 'resistCap'>
+  input: Pick<
+    DamageInput,
+    | 'type'
+    | 'defenderResistances'
+    | 'defenderArmor'
+    | 'defenderMagicResist'
+    | 'resistPenalty'
+    | 'resistCap'
+  >
 ): Pick<DamageOutcome, 'raw' | 'mitigated' | 'final' | 'effectiveResistPct'> {
   // Step 6: resistance
   const cap = input.resistCap ?? 75;
@@ -168,11 +204,7 @@ export function mitigateDamage(
   let dmg = rawDamage * (1 - effective / 100);
 
   // Step 7: flat mitigation
-  const mitigation = mitigationFor(
-    input.type,
-    input.defenderArmor,
-    input.defenderMagicResist
-  );
+  const mitigation = mitigationFor(input.type, input.defenderArmor, input.defenderMagicResist);
   const beforeMitigation = dmg;
   dmg = dmg - mitigation;
 
