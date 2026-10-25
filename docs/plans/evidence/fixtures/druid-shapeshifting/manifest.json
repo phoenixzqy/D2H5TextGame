@@ -1,0 +1,1460 @@
+{
+  "scope": "Local synthetic Druid shapeshifting verification; independent and earned acceptance remain open.",
+  "owner": {
+    "owner": "root",
+    "task": "Druid Werewolf/Werebear/Lycanthropy",
+    "worktree": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "base": "cc4fd0988356f362e689dd65b3d739d04c9837a2"
+  },
+  "session": "01a1577a-5af4-70e3-8699-50a906877d8f",
+  "runtime": "3c41154f2ee5b5c3199d229d1e6d82db51cd102c",
+  "archiveSha256": "b5699bc7347f99ae0ef9d9ca1e20463d226b8c4c7868cb610436d9b38d01a7f4",
+  "files": {
+    "after-full.json": {
+      "sha256": "717a7a09c6556814aa5002edd918fcc7b809f3becd2e8e7673b6f9747c4c6f9c",
+      "bytes": 246221
+    },
+    "audit-browser.py": {
+      "sha256": "d9f82a8c84012cd0fa21b89944126cdd714fe58ce06e6ed4affe55c61a19cd8b",
+      "bytes": 3003
+    },
+    "badge-locale-red.log": {
+      "sha256": "97c85f4056beaa6c447c24a6ddf7a37db754e2119c7ce3ff614e42b0bf4d9dfb",
+      "bytes": 2714
+    },
+    "badge-locale-red.result.json": {
+      "sha256": "72959caed446ac2bebf4bb80e4eff2ec0759946d73273c7a022b9a2779090324",
+      "bytes": 172
+    },
+    "before-full.json": {
+      "sha256": "717a7a09c6556814aa5002edd918fcc7b809f3becd2e8e7673b6f9747c4c6f9c",
+      "bytes": 246221
+    },
+    "bridge-complete.log": {
+      "sha256": "eec491543ea807893bec5ab669e444de342217a64e19e46342d5a503b15891aa",
+      "bytes": 144
+    },
+    "bridge-complete.result.json": {
+      "sha256": "8fdfd2bfc7f6e6130b9b7a48823064cd6a4e24e60b25a1585e9c6a9cdde74866",
+      "bytes": 175
+    },
+    "bridge-current.log": {
+      "sha256": "eec491543ea807893bec5ab669e444de342217a64e19e46342d5a503b15891aa",
+      "bytes": 144
+    },
+    "bridge-current.result.json": {
+      "sha256": "6381b8a5d870c932b5a109162070c29f6b6d6fa5414b3f86f7f8273470d52765",
+      "bytes": 174
+    },
+    "bridge-wording.log": {
+      "sha256": "eec491543ea807893bec5ab669e444de342217a64e19e46342d5a503b15891aa",
+      "bytes": 144
+    },
+    "bridge-wording.result.json": {
+      "sha256": "68147fbf90db2fb03c13f4f6e7100395bd3f94518c76c3e481503e02e636009e",
+      "bytes": 175
+    },
+    "bridge.py": {
+      "sha256": "19b074e6b2c73adae41f8f0500ebe3259bd4ad5bef4281aaf2dc49ae64f12a41",
+      "bytes": 463
+    },
+    "browser-attachment-audit.json": {
+      "sha256": "013043dd9fe8636ac8a8d6be1329b1bfd4f85e2b40c17b651d0c59d82024ef56",
+      "bytes": 1355
+    },
+    "browser-attachment-audit.log": {
+      "sha256": "3aecdcfce350a796a889f024ce543f1dfa36432b3afef7f0462aeceadaf95b41",
+      "bytes": 391
+    },
+    "browser-attachment-audit.result.json": {
+      "sha256": "70188d8630fb3aed80cf7e7261acf9db2ae402f812765e64d4e362bc9879d804",
+      "bytes": 182
+    },
+    "browser-attachment-before-badge.json": {
+      "sha256": "013043dd9fe8636ac8a8d6be1329b1bfd4f85e2b40c17b651d0c59d82024ef56",
+      "bytes": 1355
+    },
+    "browser-attachment-complete.log": {
+      "sha256": "3aecdcfce350a796a889f024ce543f1dfa36432b3afef7f0462aeceadaf95b41",
+      "bytes": 391
+    },
+    "browser-attachment-complete.result.json": {
+      "sha256": "f614121c6d7653e5cbde838c328d6378e03cb5479eb4c238ce27a396838523b1",
+      "bytes": 182
+    },
+    "browser-complete.log": {
+      "sha256": "5f3ee7eed2d1b608c2345fc5beca3a07861a5154cfe523472a9168e381a5c915",
+      "bytes": 78
+    },
+    "browser-complete.result.json": {
+      "sha256": "798c55182f16f1d070308495f2ebe0e1ce881c8249f383d8abeae62cdfda271f",
+      "bytes": 172
+    },
+    "browser-corrected.log": {
+      "sha256": "3a5fa94deb0d07dcb4f81c17c23c96380d55851f0787f5e186b076d73cd2fa6f",
+      "bytes": 1829
+    },
+    "browser-corrected.result.json": {
+      "sha256": "cb6b572d43cbe12b821dfe274366cc9fc98402bfdb5c0e4bc0baa00d412d5c8b",
+      "bytes": 173
+    },
+    "browser-current.log": {
+      "sha256": "5f3ee7eed2d1b608c2345fc5beca3a07861a5154cfe523472a9168e381a5c915",
+      "bytes": 78
+    },
+    "browser-current.result.json": {
+      "sha256": "a3990e829664fca8a55c6a12d55564b03448ef017243d91950db6c4bec8e6aba",
+      "bytes": 172
+    },
+    "browser-failed-hp-observer/browser-report.json": {
+      "sha256": "cfee7292eb1a6e449c2b9be71d66ef173ca75a8faabcb226e087df131287be29",
+      "bytes": 1781
+    },
+    "browser-failed-hp-observer/en-1280-failed-trace.zip": {
+      "sha256": "dc7264df2898a42e9a3c99afea1526a831f25360a410ec35bbdefebe5861e1b6",
+      "bytes": 49564538
+    },
+    "browser-failed-hp-observer/en-1280-failed.png": {
+      "sha256": "48c9e952325a9586144c1b6bf4ba2fa77e31c1157c1598259234c0bf002f4d30",
+      "bytes": 398652
+    },
+    "browser-failed-hp-observer/en-1280-fresh-1.json": {
+      "sha256": "c6c623117a2c4c30990c4edc0fb147bb063cd38f43fa4089f3b4d08d80f5cca1",
+      "bytes": 3235
+    },
+    "browser-failed-hp-observer/en-1280-imported-2.json": {
+      "sha256": "2fcd6c61cc6a25b4ba772783c9c1ea599391325bd7396922cbe0af25967db705",
+      "bytes": 4901
+    },
+    "browser-failed-hp-observer/en-1280-lycanthropy-details.png": {
+      "sha256": "5297c00a098a0b64f0dfe788f89f7a65460d0db1644f75dc15e89870898314ff",
+      "bytes": 123690
+    },
+    "browser-failed-hp-observer/en-1280-rank19-after-4.json": {
+      "sha256": "0b3a68b4017b93dd8d755b7f1bdb144d32cc48cc9963cac63fb63a80631b4384",
+      "bytes": 4904
+    },
+    "browser-failed-hp-observer/en-1280-rank19-before-3.json": {
+      "sha256": "988f64900aca9b4be75c257b04921311bfd28df84538f5f6fceb5bcbd5aed0eb",
+      "bytes": 4901
+    },
+    "browser-failed-hp-observer/en-1280-synthetic-input.json": {
+      "sha256": "8da443f9c00fd286831c6036c87a672b65d4a6276b8eb089bbc9a39d35db8147",
+      "bytes": 4087
+    },
+    "browser-failed-hp-observer/en-1280-werebear-details.png": {
+      "sha256": "35ae542d15950825e5de9cb6d2e14d260301f480d0b9bc4e9549cc03de0dfba9",
+      "bytes": 134829
+    },
+    "browser-failed-hp-observer/en-1280-werewolf-details.png": {
+      "sha256": "0e3bcc3181c3a28e11e5b27cf6222caca78ceb51d2a2334e5ea67bf3b59d773f",
+      "bytes": 133112
+    },
+    "browser-failed-zh-observer/browser-report.json": {
+      "sha256": "ca17f54e3e25312406d9c56b4253ba3baefe39f1e81d071b70e930d3c4715816",
+      "bytes": 5101
+    },
+    "browser-failed-zh-observer/en-1280-fresh-1.json": {
+      "sha256": "6c0ed2ad2c7d246b17cad89e55fc12240089a694675b839f4aa83acd55c75905",
+      "bytes": 3235
+    },
+    "browser-failed-zh-observer/en-1280-imported-2.json": {
+      "sha256": "710369bef2d9bf522c3a8a40e8f578c6491d1157c1b44719dc11ffa215b74ae6",
+      "bytes": 4901
+    },
+    "browser-failed-zh-observer/en-1280-lycanthropy-details.png": {
+      "sha256": "5297c00a098a0b64f0dfe788f89f7a65460d0db1644f75dc15e89870898314ff",
+      "bytes": 123690
+    },
+    "browser-failed-zh-observer/en-1280-rank19-after-4.json": {
+      "sha256": "9e0e16ad250fbd0c4ca72d6c45ea36b0301f4bbd471bfd6463b49611df69b33e",
+      "bytes": 4904
+    },
+    "browser-failed-zh-observer/en-1280-rank19-before-3.json": {
+      "sha256": "9616ad1dfaaa05b696877cd812758ea5c500cc08dd4c79ee87d10059aac67ff4",
+      "bytes": 4901
+    },
+    "browser-failed-zh-observer/en-1280-rank20-after-6.json": {
+      "sha256": "0c8fcfe022220df56aebc7b8dd731375eb42097f6cf678bb9eff8a527722cb60",
+      "bytes": 4915
+    },
+    "browser-failed-zh-observer/en-1280-rank20-before-5.json": {
+      "sha256": "24385965793f23d096f7918c864f559df9053158698d892722bd058ce8a724d9",
+      "bytes": 4915
+    },
+    "browser-failed-zh-observer/en-1280-synthetic-input.json": {
+      "sha256": "a47d2a21b9f9c70540397f91a442a91e2b6ec5fd7e97eacc972367053f43ef66",
+      "bytes": 4087
+    },
+    "browser-failed-zh-observer/en-1280-werebear-combat.png": {
+      "sha256": "4749541034e0e8dd1d87b5d2a68c7fd44a97088a22c1ee315988b1596c1d3226",
+      "bytes": 436262
+    },
+    "browser-failed-zh-observer/en-1280-werebear-combat.txt": {
+      "sha256": "b1966a1be1fc7e4d0e16d8fb1a210ff7aba03984fa6416940ec152ec782846ae",
+      "bytes": 902
+    },
+    "browser-failed-zh-observer/en-1280-werebear-details.png": {
+      "sha256": "35ae542d15950825e5de9cb6d2e14d260301f480d0b9bc4e9549cc03de0dfba9",
+      "bytes": 134829
+    },
+    "browser-failed-zh-observer/en-1280-werewolf-combat.png": {
+      "sha256": "289aef98ea885473c87c47c14ac4ee0a074bd7ef7d5c8e998c53ca92591d2432",
+      "bytes": 398720
+    },
+    "browser-failed-zh-observer/en-1280-werewolf-combat.txt": {
+      "sha256": "1eefa4f0bbe2015dcdf85d0ad1a54e3a3c121044a38f8e6735e4a0cc96fd4598",
+      "bytes": 809
+    },
+    "browser-failed-zh-observer/en-1280-werewolf-details.png": {
+      "sha256": "0e3bcc3181c3a28e11e5b27cf6222caca78ceb51d2a2334e5ea67bf3b59d773f",
+      "bytes": 133112
+    },
+    "browser-failed-zh-observer/en-360-fresh-7.json": {
+      "sha256": "1748ef4e57cf88ae2515344e5f02822c59ea5e7ae3881ace3ba165669bd6bea0",
+      "bytes": 3235
+    },
+    "browser-failed-zh-observer/en-360-imported-8.json": {
+      "sha256": "fe5cf9c21c468f74fbc54207c2b0a10ed1a9cfbd73d69547dae2a42b9a928a33",
+      "bytes": 4901
+    },
+    "browser-failed-zh-observer/en-360-lycanthropy-details.png": {
+      "sha256": "d10a8b77c154b99683dc2ec2bd02df6f4261ab4f160767b26cb5be4710a43524",
+      "bytes": 48516
+    },
+    "browser-failed-zh-observer/en-360-rank19-after-10.json": {
+      "sha256": "d57b26977ee80abe0856f0ff93c85b599456922234f1bf19b7ac50f3748060c1",
+      "bytes": 4904
+    },
+    "browser-failed-zh-observer/en-360-rank19-before-9.json": {
+      "sha256": "c9490c1be9850c7fb5471920186120c89a18d5521d81518729ef757722133bd0",
+      "bytes": 4901
+    },
+    "browser-failed-zh-observer/en-360-rank20-after-12.json": {
+      "sha256": "c81ebbb5552c15156f9e7683efd24fe3ad0ecd2e43ea714dd81fcba12cc595a5",
+      "bytes": 4915
+    },
+    "browser-failed-zh-observer/en-360-rank20-before-11.json": {
+      "sha256": "162e48b5d87b2aa004a04508ce190162a882c1278cff9be215585c124dd4d9f5",
+      "bytes": 4915
+    },
+    "browser-failed-zh-observer/en-360-synthetic-input.json": {
+      "sha256": "71adfb01fcf3d1b566f0ab014a4985ab92420dcb99cd40e1d1155ac9760b3ef2",
+      "bytes": 4087
+    },
+    "browser-failed-zh-observer/en-360-werebear-combat.png": {
+      "sha256": "d8a9ef798112e5a5192b7085de65aa18ae493c608ab9b240261963efff987793",
+      "bytes": 34563
+    },
+    "browser-failed-zh-observer/en-360-werebear-combat.txt": {
+      "sha256": "21dceb239d28875004cae7fc0b368ab0c40f2b62097b3f9494df3c210b87f830",
+      "bytes": 944
+    },
+    "browser-failed-zh-observer/en-360-werebear-details.png": {
+      "sha256": "dacd711498a5e5b704b734e6cfdc3bf1090bfbe326b7b0eb66e6e25638c4fbdb",
+      "bytes": 54156
+    },
+    "browser-failed-zh-observer/en-360-werewolf-combat.png": {
+      "sha256": "8b521132d5bd8dbf8c49a37d23887be08fd5df5968d06e0d7cd0fdb30ca004cb",
+      "bytes": 34572
+    },
+    "browser-failed-zh-observer/en-360-werewolf-combat.txt": {
+      "sha256": "43475e5120b92986bc0ed8ccfe6a7b37ad2e1e4d58487cdbc585baaa6dbbabeb",
+      "bytes": 830
+    },
+    "browser-failed-zh-observer/en-360-werewolf-details.png": {
+      "sha256": "427d895cd2af85f725eaff49bb40e38f7c3d1cbccb519c21c638e1db71d1ccff",
+      "bytes": 54118
+    },
+    "browser-failed-zh-observer/zh-CN-1280-failed-trace.zip": {
+      "sha256": "244b2f3e99a074560af729126053bac5e1c57bad214465c997fbd88ad74b3298",
+      "bytes": 39792875
+    },
+    "browser-failed-zh-observer/zh-CN-1280-failed.png": {
+      "sha256": "a5574d35dfdbeb26d4a94fd322b9c88475a302f78fc5476e78401ada8a3402c6",
+      "bytes": 126281
+    },
+    "browser-failed-zh-observer/zh-CN-1280-fresh-13.json": {
+      "sha256": "d59aa8d4274d62f12e0d6296930930fa459a799908e5624ce82e8f526b4fdaa1",
+      "bytes": 3238
+    },
+    "browser-failed-zh-observer/zh-CN-1280-imported-14.json": {
+      "sha256": "725ba68bf03cc56f9ff31ccd99249331d1fb8a716e456a36dd6328b27c4c5f8a",
+      "bytes": 4904
+    },
+    "browser-failed-zh-observer/zh-CN-1280-rank19-after-16.json": {
+      "sha256": "4df1c90d269b86135e8bf149b0bfcb54bc23dc880c7e2db71c976e2ac9f69e9a",
+      "bytes": 4907
+    },
+    "browser-failed-zh-observer/zh-CN-1280-rank19-before-15.json": {
+      "sha256": "e80d8428b223f75131dbd452aff18f7ccaf7ab8220b860ef9352e92d2888d40b",
+      "bytes": 4904
+    },
+    "browser-failed-zh-observer/zh-CN-1280-synthetic-input.json": {
+      "sha256": "bfd53a319a7053040f54457e129cca79864f73f591218af7e940c71119bdfc7c",
+      "bytes": 4090
+    },
+    "browser-failed-zh-observer/zh-CN-1280-werebear-details.png": {
+      "sha256": "9ae34486112febc3d4ca8ca523f2961a6652b78c6752ce75acb3f4a3921822a9",
+      "bytes": 137976
+    },
+    "browser-failed-zh-observer/zh-CN-1280-werewolf-details.png": {
+      "sha256": "f1babbd0e428266256e0609251ed0566fd054174a652f6a9ede8887705aa1dc4",
+      "bytes": 137371
+    },
+    "browser-final.log": {
+      "sha256": "5f3ee7eed2d1b608c2345fc5beca3a07861a5154cfe523472a9168e381a5c915",
+      "bytes": 78
+    },
+    "browser-final.result.json": {
+      "sha256": "a80d9f03b4191ca8f9d29bf3fe0f74ce87157a8ca2110191ce55b11ee022604a",
+      "bytes": 173
+    },
+    "browser-original-hp-observer.cjs": {
+      "sha256": "d7f1197cf97c1a7cc63b3526a782f038175666fbc2c8e085bf3ab42c62caf631",
+      "bytes": 9315
+    },
+    "browser-original-zh-observer.cjs": {
+      "sha256": "5a72bef5f8e610a9d6116e2fd5ab093495e8bb620bfbeebc61fb5f010f7bc97b",
+      "bytes": 9234
+    },
+    "browser-passed-before-badge/browser-report.json": {
+      "sha256": "79de2925ce629ee11420942b622700d2f0b05c85d7034d12ba632d3a5e6a35dd",
+      "bytes": 6044
+    },
+    "browser-passed-before-badge/en-1280-fresh-1.json": {
+      "sha256": "758d31ce81b9add998ade2edc6a12e8d02a92befbc83298dda1210420455c1d3",
+      "bytes": 3235
+    },
+    "browser-passed-before-badge/en-1280-imported-2.json": {
+      "sha256": "2e75482aad3128b914ee97e078dc9033802b030cc60d2587feb9f07cfc22c3e1",
+      "bytes": 4901
+    },
+    "browser-passed-before-badge/en-1280-lycanthropy-details.png": {
+      "sha256": "5297c00a098a0b64f0dfe788f89f7a65460d0db1644f75dc15e89870898314ff",
+      "bytes": 123690
+    },
+    "browser-passed-before-badge/en-1280-rank19-after-4.json": {
+      "sha256": "f5a2c8f9b7320c9c0db24bb1db296500c49691b8e68876cd1459aac1115ceb33",
+      "bytes": 4904
+    },
+    "browser-passed-before-badge/en-1280-rank19-before-3.json": {
+      "sha256": "f8f88c60b560719fe9f41ce20642bcdd90b5e0e1f072a2f69106bfa5b7296aa7",
+      "bytes": 4901
+    },
+    "browser-passed-before-badge/en-1280-rank20-after-6.json": {
+      "sha256": "c069b31e85f6d6914b8209133bc235353e6e34ba33350c8dfc2d90f794754317",
+      "bytes": 4915
+    },
+    "browser-passed-before-badge/en-1280-rank20-before-5.json": {
+      "sha256": "259fb6920f482fea5fedac1b863493bffe3edb24657f12b01e2b85bb09b54686",
+      "bytes": 4915
+    },
+    "browser-passed-before-badge/en-1280-synthetic-input.json": {
+      "sha256": "3983f378abe135eaf000c8d0c6cf0bb9e19640155087da3999124196b5498a20",
+      "bytes": 4087
+    },
+    "browser-passed-before-badge/en-1280-werebear-combat.png": {
+      "sha256": "21d65923e4f2425ded7aaa990a0859704f3913d12c96c9fa48304ae0f07e7681",
+      "bytes": 436723
+    },
+    "browser-passed-before-badge/en-1280-werebear-combat.txt": {
+      "sha256": "6435daaf303b450b5a4508c7a17d4aa1185ae024cd6eb5030b36ba9668fdfb8f",
+      "bytes": 902
+    },
+    "browser-passed-before-badge/en-1280-werebear-details.png": {
+      "sha256": "35ae542d15950825e5de9cb6d2e14d260301f480d0b9bc4e9549cc03de0dfba9",
+      "bytes": 134829
+    },
+    "browser-passed-before-badge/en-1280-werewolf-combat.png": {
+      "sha256": "218569cf0568d801741a5f03317a1e53cfd0aacecaf7ab6ea78e069c161c65b4",
+      "bytes": 398628
+    },
+    "browser-passed-before-badge/en-1280-werewolf-combat.txt": {
+      "sha256": "fd7c90c45eeb7034fc7850168ab8ac318c76d226b8e7034e06e045fa64216988",
+      "bytes": 795
+    },
+    "browser-passed-before-badge/en-1280-werewolf-details.png": {
+      "sha256": "0e3bcc3181c3a28e11e5b27cf6222caca78ceb51d2a2334e5ea67bf3b59d773f",
+      "bytes": 133112
+    },
+    "browser-passed-before-badge/en-360-fresh-7.json": {
+      "sha256": "c443286f59bf5042d2c4ecf0ef497bd2060bb1484c85d121d989b750a8a3e14f",
+      "bytes": 3235
+    },
+    "browser-passed-before-badge/en-360-imported-8.json": {
+      "sha256": "6e4c62a4c7d1b9d2d9525936febd96b83a48a0c938738a6266eec7295c4444e2",
+      "bytes": 4901
+    },
+    "browser-passed-before-badge/en-360-lycanthropy-details.png": {
+      "sha256": "f433605d5557872a63ce1346c857ccb71f9a9a4c086db5ba3cc2f3302fe00a9e",
+      "bytes": 48526
+    },
+    "browser-passed-before-badge/en-360-rank19-after-10.json": {
+      "sha256": "a8187ea114a6c1ed8eb03c59577f2bfbd1287c5792c483e6d01daf221031f767",
+      "bytes": 4904
+    },
+    "browser-passed-before-badge/en-360-rank19-before-9.json": {
+      "sha256": "0ac8645bbd9bf3ce4f732e8483f12799a8c47a141b076261bb5fa1762413caa9",
+      "bytes": 4901
+    },
+    "browser-passed-before-badge/en-360-rank20-after-12.json": {
+      "sha256": "fa565633f61d862234d5c6f9bc03fbad4d3067ef012ffaf46b4d2071eea792a8",
+      "bytes": 4915
+    },
+    "browser-passed-before-badge/en-360-rank20-before-11.json": {
+      "sha256": "28b058ac82c0d2402a5ea1a3c4628202679d29d1c725c942e7f46eaecc17fb63",
+      "bytes": 4915
+    },
+    "browser-passed-before-badge/en-360-synthetic-input.json": {
+      "sha256": "23ac59d907c647416a9bc3e84dc23164f70d7bdb8e6f020535a1d670ea9e63f0",
+      "bytes": 4087
+    },
+    "browser-passed-before-badge/en-360-werebear-combat.png": {
+      "sha256": "ad2a4c88ea372070614897d64c4fd9aeeab06b7056532d63f7e458c72125596b",
+      "bytes": 34556
+    },
+    "browser-passed-before-badge/en-360-werebear-combat.txt": {
+      "sha256": "01c6cdff4be4e38dcd2343a283a149a351ee2bae0911286934585603fefb825c",
+      "bytes": 916
+    },
+    "browser-passed-before-badge/en-360-werebear-details.png": {
+      "sha256": "87673ab3ee1461561240bf4550ba817d88aedb1a5218f038956aa93c18e7abeb",
+      "bytes": 54167
+    },
+    "browser-passed-before-badge/en-360-werewolf-combat.png": {
+      "sha256": "5cd5c8533092508577dff05bd0fb943c68101d8857de37ef1330e8433064e4bc",
+      "bytes": 34540
+    },
+    "browser-passed-before-badge/en-360-werewolf-combat.txt": {
+      "sha256": "ee4cd9adc0fda217e23490eeece7985a88821fd64715e117b4e545f36a1aedf5",
+      "bytes": 823
+    },
+    "browser-passed-before-badge/en-360-werewolf-details.png": {
+      "sha256": "e6d5d53d45410c6d059da95fa6fa6fb3c39214a4bf35687595715b4a1ccae3dc",
+      "bytes": 54118
+    },
+    "browser-passed-before-badge/zh-CN-1280-fresh-13.json": {
+      "sha256": "6c95b2ef7a86eea0e6c26053b63b4d37a9f990652499618ccccfde9f800523a9",
+      "bytes": 3238
+    },
+    "browser-passed-before-badge/zh-CN-1280-imported-14.json": {
+      "sha256": "ac908eaed3c539726ccaf5e1dd28ae8375110fb7e3e4f40593856473f2a46ac1",
+      "bytes": 4904
+    },
+    "browser-passed-before-badge/zh-CN-1280-lycanthropy-details.png": {
+      "sha256": "0284820d8b62892f5d59eb3abb020c562df0bc46bd53967603cc625982662675",
+      "bytes": 125441
+    },
+    "browser-passed-before-badge/zh-CN-1280-rank19-after-16.json": {
+      "sha256": "791cd02c211a3ffeeb4c93538dbacc19061e39ec6531aad0cfc5137691b08838",
+      "bytes": 4907
+    },
+    "browser-passed-before-badge/zh-CN-1280-rank19-before-15.json": {
+      "sha256": "64f18198b87aae79163e2fee67ae6ad7162f54474468fe259d9dedeb890c9e15",
+      "bytes": 4904
+    },
+    "browser-passed-before-badge/zh-CN-1280-rank20-after-18.json": {
+      "sha256": "f5c9000473234adbc477e8d540af922b206cce86f0a9e6cbdb730284daa04dfd",
+      "bytes": 4918
+    },
+    "browser-passed-before-badge/zh-CN-1280-rank20-before-17.json": {
+      "sha256": "52f507138c6613ff5a7e8996dc46f7a55d3e0cfb66e4467eddfe1b1083bc585d",
+      "bytes": 4918
+    },
+    "browser-passed-before-badge/zh-CN-1280-synthetic-input.json": {
+      "sha256": "2a94c1d68f858fe31097e7daa6ae738c1921cff934ab557b5a75f810f415824b",
+      "bytes": 4090
+    },
+    "browser-passed-before-badge/zh-CN-1280-werebear-combat.png": {
+      "sha256": "c0910648fac79a0a83aeabf9cdd62b9ad18855d5ae4c13bb20e14e342e13c929",
+      "bytes": 442952
+    },
+    "browser-passed-before-badge/zh-CN-1280-werebear-combat.txt": {
+      "sha256": "a024504cc28a480c8b02c0555a04619e5fc8a3c0ddbb949387f75a5530baea9b",
+      "bytes": 1077
+    },
+    "browser-passed-before-badge/zh-CN-1280-werebear-details.png": {
+      "sha256": "e88d5bcb2e45cdd72d0cc740d74a61d14b79a705b996f6b3c8c6b936ef60225b",
+      "bytes": 138434
+    },
+    "browser-passed-before-badge/zh-CN-1280-werewolf-combat.png": {
+      "sha256": "8c17f07dd7af202a6e3d5aff31d61d6856706544ad53e263b61745e6271628bd",
+      "bytes": 412447
+    },
+    "browser-passed-before-badge/zh-CN-1280-werewolf-combat.txt": {
+      "sha256": "d94ace24a8dc13fdb58eafa2a4f4115c0d78e0bf0a4bc25d358f36d5a1463751",
+      "bytes": 1145
+    },
+    "browser-passed-before-badge/zh-CN-1280-werewolf-details.png": {
+      "sha256": "f1babbd0e428266256e0609251ed0566fd054174a652f6a9ede8887705aa1dc4",
+      "bytes": 137371
+    },
+    "browser-passed-before-badge/zh-CN-360-fresh-19.json": {
+      "sha256": "4a376fc56982238939172619d32f30eb1e1b62b3585016cd7e314aa6f5f743c1",
+      "bytes": 3238
+    },
+    "browser-passed-before-badge/zh-CN-360-imported-20.json": {
+      "sha256": "affc1abbd8c993f49916fa00919abb93594f3f6d70aa4100366b6a39971c3f29",
+      "bytes": 4904
+    },
+    "browser-passed-before-badge/zh-CN-360-lycanthropy-details.png": {
+      "sha256": "d6fafdfafb8bb8ac0c63c50f94a5014e41416b69a29313704e7ce5d228d1de14",
+      "bytes": 50716
+    },
+    "browser-passed-before-badge/zh-CN-360-rank19-after-22.json": {
+      "sha256": "a735864cdaca22b912d59d8cc6f93a2fa02a837b38be6f5bb27e3d30ed97180e",
+      "bytes": 4907
+    },
+    "browser-passed-before-badge/zh-CN-360-rank19-before-21.json": {
+      "sha256": "4a7be9b4acebe6c8c826b165b8936954399adbc090a76fca35ca3e04a2a58a4f",
+      "bytes": 4904
+    },
+    "browser-passed-before-badge/zh-CN-360-rank20-after-24.json": {
+      "sha256": "ad6399b7b4f553c1ad7af59c03ae2a0c01b2f6125cbef506ba92736d62f518a8",
+      "bytes": 4918
+    },
+    "browser-passed-before-badge/zh-CN-360-rank20-before-23.json": {
+      "sha256": "8a5b786bc3c0c498250063d32c095fdcad9222bca3971152b50ff550d8fd6dc9",
+      "bytes": 4918
+    },
+    "browser-passed-before-badge/zh-CN-360-synthetic-input.json": {
+      "sha256": "7fce739b99bcbc160ddb5d3e3ffb7c8e1c98e6e0aa05e3c48447ef2610ff3a7c",
+      "bytes": 4090
+    },
+    "browser-passed-before-badge/zh-CN-360-werebear-combat.png": {
+      "sha256": "97862f0b6f24d2d5003a72c9893827846095495a5159b7c16bd2074130168c52",
+      "bytes": 34181
+    },
+    "browser-passed-before-badge/zh-CN-360-werebear-combat.txt": {
+      "sha256": "24f5cf63a76c7827bc822f4aa6dae429418bfd2565174f2166e160105983d423",
+      "bytes": 1081
+    },
+    "browser-passed-before-badge/zh-CN-360-werebear-details.png": {
+      "sha256": "d965659c8f99ea27fac760312bf42462301b7a8bdbec25386b42240575b9a56f",
+      "bytes": 60554
+    },
+    "browser-passed-before-badge/zh-CN-360-werewolf-combat.png": {
+      "sha256": "73f8b996d5972a23277337d78740dbe3f1b40d0482074b635e9b00e5e2a83305",
+      "bytes": 34325
+    },
+    "browser-passed-before-badge/zh-CN-360-werewolf-combat.txt": {
+      "sha256": "afd9d657850315e44c6ba877ee13db7ece19962e47b6cac25dd1ffc42eef6861",
+      "bytes": 981
+    },
+    "browser-passed-before-badge/zh-CN-360-werewolf-details.png": {
+      "sha256": "193224527d42a92f92d3667ecb852b50c832322df60c18c01fa6d47264ad77d8",
+      "bytes": 59757
+    },
+    "browser-passed-before-wording/browser-report.json": {
+      "sha256": "9008452685d8a5139471ace76bc03ac0fdf9c81785606fd43b34f2101c7293e3",
+      "bytes": 6045
+    },
+    "browser-passed-before-wording/en-1280-fresh-1.json": {
+      "sha256": "f6831972d43ae71cf71adc152f369de5bd1307acf33d182470e7d8b2f951000d",
+      "bytes": 3235
+    },
+    "browser-passed-before-wording/en-1280-imported-2.json": {
+      "sha256": "b01e555c1dfb6c3e2b8a82dc58e3bb8f601bec7f272fdaee978e27b56fc70176",
+      "bytes": 4901
+    },
+    "browser-passed-before-wording/en-1280-lycanthropy-details.png": {
+      "sha256": "0bee8f8ad511b7e4e0512c040be728468b922ee414a619551238d838febd51c3",
+      "bytes": 123667
+    },
+    "browser-passed-before-wording/en-1280-rank19-after-4.json": {
+      "sha256": "5d46cac5456114e9966929cc073ee556c0ef4662ee88fed5d332eeea3654da59",
+      "bytes": 4904
+    },
+    "browser-passed-before-wording/en-1280-rank19-before-3.json": {
+      "sha256": "56f96e973d0262b2c86ec8dc6acfb3e02ca668b6841fc4897e9da24a7125eeff",
+      "bytes": 4901
+    },
+    "browser-passed-before-wording/en-1280-rank20-after-6.json": {
+      "sha256": "71ab0bc74159d3fcfb2a80deff7d0d90d63a6732faa19006efd2d45d5921cd90",
+      "bytes": 4915
+    },
+    "browser-passed-before-wording/en-1280-rank20-before-5.json": {
+      "sha256": "ebee03251fb1d301c069e5724e671fa38f9e1e9cae4ecff07a546c46477203b2",
+      "bytes": 4915
+    },
+    "browser-passed-before-wording/en-1280-synthetic-input.json": {
+      "sha256": "532347379e1203ece477b17e006d9698a61ab541c7bf2d69bc5108b7b9a1edad",
+      "bytes": 4087
+    },
+    "browser-passed-before-wording/en-1280-werebear-combat.png": {
+      "sha256": "b28023aa98efb85b32baf08fdaa675ccae570e0d9742e20da94c0caffff57555",
+      "bytes": 436469
+    },
+    "browser-passed-before-wording/en-1280-werebear-combat.txt": {
+      "sha256": "8e4670eb5a8153c64f28c313a95329135dd359fbe9615c21c77acaafde6c7984",
+      "bytes": 916
+    },
+    "browser-passed-before-wording/en-1280-werebear-details.png": {
+      "sha256": "35ae542d15950825e5de9cb6d2e14d260301f480d0b9bc4e9549cc03de0dfba9",
+      "bytes": 134829
+    },
+    "browser-passed-before-wording/en-1280-werewolf-combat.png": {
+      "sha256": "c7ab3af0dd3cca8ce4fbf688e04fa610f119fa0cc2cc0d3729001e1e68259d63",
+      "bytes": 398883
+    },
+    "browser-passed-before-wording/en-1280-werewolf-combat.txt": {
+      "sha256": "9138cae637d4d29a1585b14f688f09ea987bcb05aaf5ccc0d94e9e9805b3d58e",
+      "bytes": 809
+    },
+    "browser-passed-before-wording/en-1280-werewolf-details.png": {
+      "sha256": "855b6eaa0aa092f57e0b51a017965cc80f8e7946d1b56644ca384c4f1c150383",
+      "bytes": 133092
+    },
+    "browser-passed-before-wording/en-360-fresh-7.json": {
+      "sha256": "e2ce80cac227c6aba91d9f40f92103369aa221fe2e6e7c3901167cb96644a6a9",
+      "bytes": 3235
+    },
+    "browser-passed-before-wording/en-360-imported-8.json": {
+      "sha256": "a335bbed41a90df2b2287a3b85d0a8ed788961af10b6caa567a57150acf87e8a",
+      "bytes": 4901
+    },
+    "browser-passed-before-wording/en-360-lycanthropy-details.png": {
+      "sha256": "995919fd15ab347ebe5b1e6ea4f5cf591f912f5902f98f475b57dca83925345d",
+      "bytes": 48548
+    },
+    "browser-passed-before-wording/en-360-rank19-after-10.json": {
+      "sha256": "54aaa4da5ed3af815af818eb2bbd15e0d78e6de712195b90a060cd799829e972",
+      "bytes": 4904
+    },
+    "browser-passed-before-wording/en-360-rank19-before-9.json": {
+      "sha256": "1041127b1e8fd4d269fae4581b051a109fe8432211d37f631b7a26d524f9f35c",
+      "bytes": 4901
+    },
+    "browser-passed-before-wording/en-360-rank20-after-12.json": {
+      "sha256": "de153092611c8bf94e12a2730700a6214c966f022fec59e1ab6f2c543a7dfa9d",
+      "bytes": 4915
+    },
+    "browser-passed-before-wording/en-360-rank20-before-11.json": {
+      "sha256": "4e61f2211a5dacf0bb40c8876ff597899232898ae38a9c67bac672630d5c7792",
+      "bytes": 4915
+    },
+    "browser-passed-before-wording/en-360-synthetic-input.json": {
+      "sha256": "a448e739c8c21af54d793daa21776e52bcf292d91061b0d5015bada60d362f2c",
+      "bytes": 4087
+    },
+    "browser-passed-before-wording/en-360-werebear-combat.png": {
+      "sha256": "b7af60037c4948d4d23c096f2be745172bb69fdbf14c8639986ae46de4deebb9",
+      "bytes": 34495
+    },
+    "browser-passed-before-wording/en-360-werebear-combat.txt": {
+      "sha256": "257bfc22be8d3c6a97136a0c8dba3a01492fffb88a5bff8a0746e1f14a794d3a",
+      "bytes": 916
+    },
+    "browser-passed-before-wording/en-360-werebear-details.png": {
+      "sha256": "e0afc36ab4c6f85544c7a7934861caadf52d5ee3acdb38ebb3f1f4f72ab1c812",
+      "bytes": 54156
+    },
+    "browser-passed-before-wording/en-360-werewolf-combat.png": {
+      "sha256": "dc18c909a47a56f25d7ac05b2e9d4048a723ea0ea2c46b4c07e22dfa819208f4",
+      "bytes": 34562
+    },
+    "browser-passed-before-wording/en-360-werewolf-combat.txt": {
+      "sha256": "a8a00a4964dd27fb091eae7ca5d7983939f106ecb627ae6d84f7162703690ff6",
+      "bytes": 830
+    },
+    "browser-passed-before-wording/en-360-werewolf-details.png": {
+      "sha256": "1067c865a2c34d119882a2f8aac633cb427da749a798f9e09f7d23cba48bcb1b",
+      "bytes": 54152
+    },
+    "browser-passed-before-wording/zh-CN-1280-fresh-13.json": {
+      "sha256": "06c6a1797fd60ceb3346e97e3477200b66d3641cd1326937b2b0c4a2a2b0dbb8",
+      "bytes": 3238
+    },
+    "browser-passed-before-wording/zh-CN-1280-imported-14.json": {
+      "sha256": "b283d7bc7ec542835bfcbaa73b4cc0a49ebad01c732d5d456437598979849032",
+      "bytes": 4904
+    },
+    "browser-passed-before-wording/zh-CN-1280-lycanthropy-details.png": {
+      "sha256": "40039b5ad9a3fcd53ab34173228ffbc86696e7271ef9cf9c97471d5c06d6202b",
+      "bytes": 125461
+    },
+    "browser-passed-before-wording/zh-CN-1280-rank19-after-16.json": {
+      "sha256": "ff50095806c08686c625b5ae38caf288ff3a91bc020c515486cba9c2da436000",
+      "bytes": 4907
+    },
+    "browser-passed-before-wording/zh-CN-1280-rank19-before-15.json": {
+      "sha256": "de73e3512b4520f31857116ab3fd4beadd4ca6a873fa3bd2a93a1ccb7f58b524",
+      "bytes": 4904
+    },
+    "browser-passed-before-wording/zh-CN-1280-rank20-after-18.json": {
+      "sha256": "f97eff6b9c6352b3d73d167ccc3ab3888d5cd8ffd6fe654cc36c1d8115731a3b",
+      "bytes": 4918
+    },
+    "browser-passed-before-wording/zh-CN-1280-rank20-before-17.json": {
+      "sha256": "8fc62fee20da67d38b24ce9b5cb5a2d6092b9adde998047f240a2e91e1d0516d",
+      "bytes": 4918
+    },
+    "browser-passed-before-wording/zh-CN-1280-synthetic-input.json": {
+      "sha256": "d284ad83bf452c65b25718fe398a5dccd7938e952a12706d3378e331b25449cf",
+      "bytes": 4090
+    },
+    "browser-passed-before-wording/zh-CN-1280-werebear-combat.png": {
+      "sha256": "ba54087bfc85a00b1f24ba515f2625ab7aa575f365746c7c40a5c721e6f54d69",
+      "bytes": 442218
+    },
+    "browser-passed-before-wording/zh-CN-1280-werebear-combat.txt": {
+      "sha256": "5a4f93f5377fd13bc891e7e626ce91171eccb55ff53b7e8073a1d0c71385cb9d",
+      "bytes": 1049
+    },
+    "browser-passed-before-wording/zh-CN-1280-werebear-details.png": {
+      "sha256": "9ae34486112febc3d4ca8ca523f2961a6652b78c6752ce75acb3f4a3921822a9",
+      "bytes": 137976
+    },
+    "browser-passed-before-wording/zh-CN-1280-werewolf-combat.png": {
+      "sha256": "d8374852583060e476c848c9c063ae705e89aa7396ecc9779e4c425794443825",
+      "bytes": 402900
+    },
+    "browser-passed-before-wording/zh-CN-1280-werewolf-combat.txt": {
+      "sha256": "8e1b460a6aee1a639917a67ee8009252709a58f933b99d617bc7134fe2730ab2",
+      "bytes": 995
+    },
+    "browser-passed-before-wording/zh-CN-1280-werewolf-details.png": {
+      "sha256": "f1babbd0e428266256e0609251ed0566fd054174a652f6a9ede8887705aa1dc4",
+      "bytes": 137371
+    },
+    "browser-passed-before-wording/zh-CN-360-fresh-19.json": {
+      "sha256": "7b2ee2bd7fcd5f29dc931dadba9516790810000e96686138da50df334e4dc5d3",
+      "bytes": 3238
+    },
+    "browser-passed-before-wording/zh-CN-360-imported-20.json": {
+      "sha256": "b464ddb0f7228e3996642d15a21d32083748c6d4e1f4cec720f401e48b256e96",
+      "bytes": 4904
+    },
+    "browser-passed-before-wording/zh-CN-360-lycanthropy-details.png": {
+      "sha256": "e9d6d9be4d258c2ccf08e05f559af79454dbe3a6ee180b527c548b435eee6b8e",
+      "bytes": 50741
+    },
+    "browser-passed-before-wording/zh-CN-360-rank19-after-22.json": {
+      "sha256": "8e2459081bb47955bba7808c9c72e910b3d1052b6a07def4baca68a88048c26d",
+      "bytes": 4907
+    },
+    "browser-passed-before-wording/zh-CN-360-rank19-before-21.json": {
+      "sha256": "eff7d45cc6f07628bedd6e6416ad7dbb8806f43e88a4a25edcc25fd3e112395a",
+      "bytes": 4904
+    },
+    "browser-passed-before-wording/zh-CN-360-rank20-after-24.json": {
+      "sha256": "a33102e8d28b88f4a30068e129e0ace06e7d128a7f8af38a8072011f7380b392",
+      "bytes": 4918
+    },
+    "browser-passed-before-wording/zh-CN-360-rank20-before-23.json": {
+      "sha256": "f86844ab39a629204f32a1f1cec989a6974ab46d82ee7ca3d07ba6051355c341",
+      "bytes": 4918
+    },
+    "browser-passed-before-wording/zh-CN-360-synthetic-input.json": {
+      "sha256": "b2aa1be2c73739535e35739c5f427d0a9fddf84c89530080b635494c3181633f",
+      "bytes": 4090
+    },
+    "browser-passed-before-wording/zh-CN-360-werebear-combat.png": {
+      "sha256": "73b43e2031473506ad9499db7083ea6d0542132313aae009036d991c38546900",
+      "bytes": 34036
+    },
+    "browser-passed-before-wording/zh-CN-360-werebear-combat.txt": {
+      "sha256": "7528b894a12a0f5f3261dbcf29ff1c98a4576c1c9b548c0140d472f9f56fd532",
+      "bytes": 1095
+    },
+    "browser-passed-before-wording/zh-CN-360-werebear-details.png": {
+      "sha256": "65336fcb7c3aeea0da5bf3b0dfc0c1caee37b3d9264401aead52659b14ab105c",
+      "bytes": 59817
+    },
+    "browser-passed-before-wording/zh-CN-360-werewolf-combat.png": {
+      "sha256": "9d1627b2a7d5c75130108504bbf6980fcbd4bb662ac2cde972174a4447ca14f7",
+      "bytes": 34136
+    },
+    "browser-passed-before-wording/zh-CN-360-werewolf-combat.txt": {
+      "sha256": "70ace7b2dee95aa662db7f479a08fa820e4080711ef466a95353589d5e2dd8db",
+      "bytes": 953
+    },
+    "browser-passed-before-wording/zh-CN-360-werewolf-details.png": {
+      "sha256": "c6697b198a160b69106471ec0c582c7cb2105064bff2b1f3eef9d73b7a58fe80",
+      "bytes": 59768
+    },
+    "browser-verified/browser-report.json": {
+      "sha256": "9008452685d8a5139471ace76bc03ac0fdf9c81785606fd43b34f2101c7293e3",
+      "bytes": 6045
+    },
+    "browser-verified/en-1280-fresh-1.json": {
+      "sha256": "2b8b1e49c09889638260f3523e44f6522db94aeb8a7c70719583613e8f28ae5c",
+      "bytes": 3235
+    },
+    "browser-verified/en-1280-imported-2.json": {
+      "sha256": "d3b6e85edfb2245c24fdf8783f80dbee95bb04c1f7e6f37a6b4937fb82852044",
+      "bytes": 4901
+    },
+    "browser-verified/en-1280-lycanthropy-details.png": {
+      "sha256": "5297c00a098a0b64f0dfe788f89f7a65460d0db1644f75dc15e89870898314ff",
+      "bytes": 123690
+    },
+    "browser-verified/en-1280-rank19-after-4.json": {
+      "sha256": "9a13f020cef3479cb03d3a41fde551fb78191adde4d139ed63d1c6c94dd13306",
+      "bytes": 4904
+    },
+    "browser-verified/en-1280-rank19-before-3.json": {
+      "sha256": "7498428e2b6a73c7d5d2edbc663ee5afcd745e574edc26928773543d729cd0d4",
+      "bytes": 4901
+    },
+    "browser-verified/en-1280-rank20-after-6.json": {
+      "sha256": "b6d015e1cdbfb8bb240faea9e5ea58aa797f75e21f5de173754ccb025523c67d",
+      "bytes": 4915
+    },
+    "browser-verified/en-1280-rank20-before-5.json": {
+      "sha256": "22e5b5d5466f164b81022d25fc6f99d0d4a7bed0b8baa2001c022faaac2ae976",
+      "bytes": 4915
+    },
+    "browser-verified/en-1280-synthetic-input.json": {
+      "sha256": "3e8fa4ed6a984b31f5b1f0520ec8b5843628a090b8f8e9a1446758a63b1f8529",
+      "bytes": 4087
+    },
+    "browser-verified/en-1280-werebear-combat.png": {
+      "sha256": "8448cf0326c3f7c8de7cfec17604ffca0b115d267279b14c3dfcd2f2560b3e1d",
+      "bytes": 436075
+    },
+    "browser-verified/en-1280-werebear-combat.txt": {
+      "sha256": "fcdee548ee84c28f049de8790085916e9d9eb3e1e26ab9c91b532678081cb95b",
+      "bytes": 951
+    },
+    "browser-verified/en-1280-werebear-details.png": {
+      "sha256": "35ae542d15950825e5de9cb6d2e14d260301f480d0b9bc4e9549cc03de0dfba9",
+      "bytes": 134829
+    },
+    "browser-verified/en-1280-werewolf-combat.png": {
+      "sha256": "fe6a69877760f00134299bc74cb3653e70134b0c65d433dd7205975183f4c0f4",
+      "bytes": 398629
+    },
+    "browser-verified/en-1280-werewolf-combat.txt": {
+      "sha256": "bb5182458fea0a0e202d80c28a691662348c9a3adf24c8a89e5b97271e678f21",
+      "bytes": 823
+    },
+    "browser-verified/en-1280-werewolf-details.png": {
+      "sha256": "0e3bcc3181c3a28e11e5b27cf6222caca78ceb51d2a2334e5ea67bf3b59d773f",
+      "bytes": 133112
+    },
+    "browser-verified/en-360-fresh-7.json": {
+      "sha256": "263a078760e2ca540e4b60dde76e1c379be071831604751625ebc4740e40169c",
+      "bytes": 3235
+    },
+    "browser-verified/en-360-imported-8.json": {
+      "sha256": "c365f8f97ce771593a85b3548ca1cf6ad371e3ff73dda29337386e9c3b9f87fb",
+      "bytes": 4901
+    },
+    "browser-verified/en-360-lycanthropy-details.png": {
+      "sha256": "f433605d5557872a63ce1346c857ccb71f9a9a4c086db5ba3cc2f3302fe00a9e",
+      "bytes": 48526
+    },
+    "browser-verified/en-360-rank19-after-10.json": {
+      "sha256": "35840a399929cd8c8201173f0da0aa5a0da546be9a846e2e42d09effbaf9d434",
+      "bytes": 4904
+    },
+    "browser-verified/en-360-rank19-before-9.json": {
+      "sha256": "67c5ec1c5bf3bea7e019f17be05f68fb86a19b700795a089fb9de59f7b1bd534",
+      "bytes": 4901
+    },
+    "browser-verified/en-360-rank20-after-12.json": {
+      "sha256": "d4c69411aa023ea41822cceeb6b8119805a2a55d6fb2c964b32f0363f7b384f3",
+      "bytes": 4915
+    },
+    "browser-verified/en-360-rank20-before-11.json": {
+      "sha256": "f9cc1220e3234211f440d5fcb19f59c41cf5046cb458ef970c8aff86ba7c2097",
+      "bytes": 4915
+    },
+    "browser-verified/en-360-synthetic-input.json": {
+      "sha256": "d18f0aa079ff9fd8cf77e56af28b0bd7b35db881afb8212cbefbb82f36a8e7f4",
+      "bytes": 4087
+    },
+    "browser-verified/en-360-werebear-combat.png": {
+      "sha256": "f91c7d9003d259b696784cd32d9b37b5dc6f9bdb425fdd7b15a2cdd92d2a67c9",
+      "bytes": 34549
+    },
+    "browser-verified/en-360-werebear-combat.txt": {
+      "sha256": "06045ff0cce3b7000ba7dc852592d3b023db163e6aa5dea859488feb299061d2",
+      "bytes": 888
+    },
+    "browser-verified/en-360-werebear-details.png": {
+      "sha256": "859133ba2c84c33b656caecd6df9a2a9b97ffe221da6a1c3a97c527af048a4e6",
+      "bytes": 54127
+    },
+    "browser-verified/en-360-werewolf-combat.png": {
+      "sha256": "177bb6ac1ca7f3034787db21f91c94a9bed6e7635b7bb4e6469b9d7a966f56b8",
+      "bytes": 34371
+    },
+    "browser-verified/en-360-werewolf-combat.txt": {
+      "sha256": "e5f614b020457229ee332a9a06a3e6ac60173d24e2a60c449fe884cfb4df2ce8",
+      "bytes": 851
+    },
+    "browser-verified/en-360-werewolf-details.png": {
+      "sha256": "427d895cd2af85f725eaff49bb40e38f7c3d1cbccb519c21c638e1db71d1ccff",
+      "bytes": 54118
+    },
+    "browser-verified/zh-CN-1280-fresh-13.json": {
+      "sha256": "f908788c7015fc0aa1002ba6eb1a8d248de719309392576fbe0b4cdf84208eb9",
+      "bytes": 3238
+    },
+    "browser-verified/zh-CN-1280-imported-14.json": {
+      "sha256": "172b1423c3e26cb7513832fb0ab684a3ff5a011bd847b91dbef26e870cb2e823",
+      "bytes": 4904
+    },
+    "browser-verified/zh-CN-1280-lycanthropy-details.png": {
+      "sha256": "40039b5ad9a3fcd53ab34173228ffbc86696e7271ef9cf9c97471d5c06d6202b",
+      "bytes": 125461
+    },
+    "browser-verified/zh-CN-1280-rank19-after-16.json": {
+      "sha256": "04957cd9013a6c4dace6cade34abaac27035f32cb35daf732dd109cf4db556a6",
+      "bytes": 4907
+    },
+    "browser-verified/zh-CN-1280-rank19-before-15.json": {
+      "sha256": "19bcb66159da11bf6dcf1089c5a35d891079127da3c3b476a719986a3ad59d94",
+      "bytes": 4904
+    },
+    "browser-verified/zh-CN-1280-rank20-after-18.json": {
+      "sha256": "fc025b30415b769c6492197be6c586f57fd4234308248aeb5afcb262e67e84f7",
+      "bytes": 4918
+    },
+    "browser-verified/zh-CN-1280-rank20-before-17.json": {
+      "sha256": "4d788876da74ce949d82338e15889bc49b30f3809b24464cb881ce2a1eaa7f26",
+      "bytes": 4918
+    },
+    "browser-verified/zh-CN-1280-synthetic-input.json": {
+      "sha256": "bbb5620a780cc5eaf798ffba3d4bd67eb7e6ff4f5deee18d306512eb8996576a",
+      "bytes": 4090
+    },
+    "browser-verified/zh-CN-1280-werebear-combat.png": {
+      "sha256": "66943dd89ba68a49c1f08aa9de254ea8c23a76bcef27f406f35b1e8c148cf2da",
+      "bytes": 442576
+    },
+    "browser-verified/zh-CN-1280-werebear-combat.txt": {
+      "sha256": "91bc0a10fb479279b9a6b7ec476614b13f9198dd3d76e4ad1a7c9436b1d8bd2d",
+      "bytes": 1081
+    },
+    "browser-verified/zh-CN-1280-werebear-details.png": {
+      "sha256": "65bca208f8ac805997950732e562d2704c97c8a18d73f485708e600e9b1bd9c5",
+      "bytes": 138460
+    },
+    "browser-verified/zh-CN-1280-werewolf-combat.png": {
+      "sha256": "0be8cc7fce755f15ee0496a4d8246d9ba66e07520f8f6f4bdad631c4ab785186",
+      "bytes": 403188
+    },
+    "browser-verified/zh-CN-1280-werewolf-combat.txt": {
+      "sha256": "0927002d0330f5801bd32b09ec6b46556c2f5f9acf33b9e3d53bf8eb60ec9421",
+      "bytes": 981
+    },
+    "browser-verified/zh-CN-1280-werewolf-details.png": {
+      "sha256": "f1babbd0e428266256e0609251ed0566fd054174a652f6a9ede8887705aa1dc4",
+      "bytes": 137371
+    },
+    "browser-verified/zh-CN-360-fresh-19.json": {
+      "sha256": "770f6f80217c8a4bbf4c713bb3752719ae140ea199439f4903922612dafc415c",
+      "bytes": 3238
+    },
+    "browser-verified/zh-CN-360-imported-20.json": {
+      "sha256": "40e0a6c3f8db1b3ab1fa1068f2163e790c012e1d01ccc00eccd7d3fdc9bf2c08",
+      "bytes": 4904
+    },
+    "browser-verified/zh-CN-360-lycanthropy-details.png": {
+      "sha256": "fa971b5828a41dd44d568853fbc7467775972c1b7fa3699a06daf347e99be8ee",
+      "bytes": 50738
+    },
+    "browser-verified/zh-CN-360-rank19-after-22.json": {
+      "sha256": "55abc28271e1bcd4cc8cb20c0db610a26df8b2787b881719fdccdf6bb25cfc2c",
+      "bytes": 4907
+    },
+    "browser-verified/zh-CN-360-rank19-before-21.json": {
+      "sha256": "024c2a56df21a221c8c6c942eaa9bcce537b881dc47ad601a7da0b0122b60d64",
+      "bytes": 4904
+    },
+    "browser-verified/zh-CN-360-rank20-after-24.json": {
+      "sha256": "869d1d8538bbf30c44286841d63e34610cf90ccb570a5f8b517505e60f1b1a3e",
+      "bytes": 4918
+    },
+    "browser-verified/zh-CN-360-rank20-before-23.json": {
+      "sha256": "1f3a3ec4017e544eb61d582d40cd28977ae26f32496eb934bff4a0976b45ff54",
+      "bytes": 4918
+    },
+    "browser-verified/zh-CN-360-synthetic-input.json": {
+      "sha256": "20c4db00b57d407b0a298215a85213b5fcfa8923541d617154f41beb824b8d53",
+      "bytes": 4090
+    },
+    "browser-verified/zh-CN-360-werebear-combat.png": {
+      "sha256": "a87caefbab53c981944c1b14ae4f848a56bf5268fb15007d4a9ef5a432e7787e",
+      "bytes": 34093
+    },
+    "browser-verified/zh-CN-360-werebear-combat.txt": {
+      "sha256": "7269c0d4147622d38b9fdaecfd39ce54f8e71b56015df6be2757df6f1a2e024b",
+      "bytes": 1063
+    },
+    "browser-verified/zh-CN-360-werebear-details.png": {
+      "sha256": "32316db5dcfe5ae63c54e6ff52d24c457b1bc0f85fa6c026781bfc9108a6c70f",
+      "bytes": 60564
+    },
+    "browser-verified/zh-CN-360-werewolf-combat.png": {
+      "sha256": "462479cc954258256ada60e75bfaad245f98f89603b6b794811f9191832679d0",
+      "bytes": 34184
+    },
+    "browser-verified/zh-CN-360-werewolf-combat.txt": {
+      "sha256": "35f561d964a080d428fd6063d811f1a967da047e8a809e38795271cba32cda35",
+      "bytes": 953
+    },
+    "browser-verified/zh-CN-360-werewolf-details.png": {
+      "sha256": "c6697b198a160b69106471ec0c582c7cb2105064bff2b1f3eef9d73b7a58fe80",
+      "bytes": 59768
+    },
+    "browser-verified.log": {
+      "sha256": "369aa8130e3327822048a80136f6527370c506c7ddd7c92080d3d822211bbce4",
+      "bytes": 444
+    },
+    "browser-verified.result.json": {
+      "sha256": "b8e97c81d8269368d09843859179dd7932cd8bfd51b031be4fd200ed89413511",
+      "bytes": 172
+    },
+    "browser.cjs": {
+      "sha256": "aeade32364c665cfa191fdfecbbbe6ce7c270e6927f4c35675c9fc17ba02cac5",
+      "bytes": 9304
+    },
+    "build-complete.log": {
+      "sha256": "37ef58342aedecd5d6170961b2813c121621db3c80169dedd0d6230a5e0f83cd",
+      "bytes": 2265
+    },
+    "build-complete.result.json": {
+      "sha256": "ab98fa7c8caf410e35816782ec5e2d5914fc3de3d77458227a57bd3b9d73bafc",
+      "bytes": 222
+    },
+    "build-current.log": {
+      "sha256": "a92e6e1ae0bfd8004bad620318a8b219386f25fde8cabc51d98c2d587d0e4964",
+      "bytes": 2265
+    },
+    "build-current.result.json": {
+      "sha256": "b3bf36bcf051ae0fe1a7b2bbf41f51b497c00e43d37c79bf6d3e73ea85e741c2",
+      "bytes": 222
+    },
+    "build-final.log": {
+      "sha256": "25187daacbe5f2abb1842e38a3eae18d3a59141c5204cd83b5787486af3a3345",
+      "bytes": 2265
+    },
+    "build-final.result.json": {
+      "sha256": "be589181e5bdd925ae87a4d4f14ada868ee42dfb4a226c86868d487a53764e59",
+      "bytes": 222
+    },
+    "build-wording.log": {
+      "sha256": "35ee672348a6c1d0353706d29fa3e8aed1483ca436e042517be284703df2cb69",
+      "bytes": 2264
+    },
+    "build-wording.result.json": {
+      "sha256": "5b79fa6e20c8b091a4961912d1848eeefedd54152916dad142eef07d5bb6039d",
+      "bytes": 221
+    },
+    "carry-ownership-red.log": {
+      "sha256": "2ceb393e48a2b2f0eb4f9d5168e58d20439b830c715f16ff2633bfbcff8472ed",
+      "bytes": 1483
+    },
+    "carry-ownership-red.result.json": {
+      "sha256": "1e594dcd0ed3d4c62ce241b837143c590a9f07ac452b1ea064bab0e9fb855d46",
+      "bytes": 156
+    },
+    "causal-corrected-red.log": {
+      "sha256": "b603978a76cb6efb415dcb11fbc577969d7ec8b6385789ae616f932f7d7403a2",
+      "bytes": 8276
+    },
+    "causal-corrected-red.result.json": {
+      "sha256": "50f43a7a02016d9e1fe6635ae03c1519c5f8e89f63a373a766f3645120cc0fd6",
+      "bytes": 156
+    },
+    "causal-original.test.ts": {
+      "sha256": "ff01f005b84b5764d9e287fa8be8bae8e9d059388c4cb9e553e53805bf1f1441",
+      "bytes": 5194
+    },
+    "causal-red.log": {
+      "sha256": "b9c96eb57859d1011e8d40f173c8c9f5ca163dfc3508670d74ba34837f789969",
+      "bytes": 8264
+    },
+    "causal-red.result.json": {
+      "sha256": "89f761ced7bf7d670dd20565dcd5681f5f4fc31613c450451b710035ec41277b",
+      "bytes": 156
+    },
+    "chip-red.log": {
+      "sha256": "e3e2af126294acdd7216b67d70ebd8f0cde205893cde4996811a092b10996112",
+      "bytes": 5471
+    },
+    "chip-red.result.json": {
+      "sha256": "6ed746af91acf8cd8438c2661f54a0c1575dc66bce8a8ec005ec9f886184563d",
+      "bytes": 171
+    },
+    "commit-runtime.log": {
+      "sha256": "ad8e504b0c06aa71a7f96517520c05478034318eb72b203ff310f99d1ab84159",
+      "bytes": 778
+    },
+    "commit-runtime.result.json": {
+      "sha256": "844cd949449fe429605fd0bd4cd20925fdf0ce426d66bc83fa43c796d6f3c02b",
+      "bytes": 241
+    },
+    "committed-source-verification.json": {
+      "sha256": "fcd5a38621187e8de33abd88bf711beb3e4c4f704c458e294094376273b3b268",
+      "bytes": 164
+    },
+    "contact-sheet-unavailable.log": {
+      "sha256": "39bb88d27df0a9993c828bb632b3388ed4af17aeffe4d52dc57fa2479baa127d",
+      "bytes": 201
+    },
+    "engine-current.log": {
+      "sha256": "9a246c8aa7fd7791487474634b16dfc7ca4af64151b2389c0915fc3b06017ea3",
+      "bytes": 63432
+    },
+    "engine-current.result.json": {
+      "sha256": "a0177a6063cc0a5535d385b405eb4cbab7526bfda8d4cccad73e9f9509cd458e",
+      "bytes": 107
+    },
+    "engine-final.log": {
+      "sha256": "4526c0a8829e31225754c642721f94946ce4fa5d299fa4c703daae5e38290057",
+      "bytes": 63413
+    },
+    "engine-final.result.json": {
+      "sha256": "b1d18fff0fcd503d88fd8ccc53824922b3035af3e1648dbdfb9db2ccc016c886",
+      "bytes": 107
+    },
+    "engine-initial.log": {
+      "sha256": "72608eec9849fef43eea7cfaac6a83c7b46eae836a5d4c410e020b4ee7d67bda",
+      "bytes": 63261
+    },
+    "engine-initial.result.json": {
+      "sha256": "14d30e95520e8e0f4e46d333fe832b1df51f26ac9ee869e410b06484115b1ca3",
+      "bytes": 107
+    },
+    "first-green.log": {
+      "sha256": "b4748930e3b4f22e9ca309df54fec525c9cee7b83f1e0e60238c81cee88bbb36",
+      "bytes": 353
+    },
+    "first-green.result.json": {
+      "sha256": "3bc56c2c99604a0ea6407459d3f3f7190af203a54b6c05b964cd240fbd8f8cf2",
+      "bytes": 155
+    },
+    "focused-complete.log": {
+      "sha256": "7917e9ce5ef4cd69a5e7c286c067bef70b35d7724b49bc47839d9cc6b76e7a1d",
+      "bytes": 951
+    },
+    "focused-complete.result.json": {
+      "sha256": "e6c6c37f4d047ac87ed3a1d477dae32e8ad5f5f9ac4191f785838179618043fc",
+      "bytes": 570
+    },
+    "focused-corrected.log": {
+      "sha256": "3166e6fceeb4d996afd8c1e9d958a965f5388b62cad22da661ca093812146bcf",
+      "bytes": 805
+    },
+    "focused-corrected.result.json": {
+      "sha256": "4401fd39dec17f42fd3afd0a414c3509f99826cace8e9055a7caa41ae4eb945e",
+      "bytes": 470
+    },
+    "focused-current.log": {
+      "sha256": "f9d5377388800510cdc845df5b05516141d627fd8e40638d471bac1d604e5595",
+      "bytes": 950
+    },
+    "focused-current.result.json": {
+      "sha256": "753687d05036ff8751aadcc53300da7b2835c2b4ae7abe8b08b6907a7ad33fd3",
+      "bytes": 570
+    },
+    "focused-final.log": {
+      "sha256": "d5d485029dd17814dda0271aca01b7186cdae20900d2e873f945a9f574c5fb92",
+      "bytes": 950
+    },
+    "focused-final.result.json": {
+      "sha256": "31ae57ad5211095a495457cf73cf9db263593bd45f89f2252e0b3fe93162670b",
+      "bytes": 604
+    },
+    "focused-ownership.log": {
+      "sha256": "b7e0464ada17837f78a0f6fa31fe1bb3adca95e9915b97ea4d8f5930f8566121",
+      "bytes": 951
+    },
+    "focused-ownership.result.json": {
+      "sha256": "5a1080fa7ebf2c72117ec11d1259dad6f9f319a6bcb7dacbecd22657a57b72ba",
+      "bytes": 570
+    },
+    "focused-wording.log": {
+      "sha256": "1e185f477ace484ae109b10453d7d27cf7c86f7937c0b8ba4f939a1668989699",
+      "bytes": 466
+    },
+    "focused-wording.result.json": {
+      "sha256": "5bc6b769faf8efb93abe1da55f4211c6b7f8baa6a1d1b17b2cc9ad872a51bbfc",
+      "bytes": 240
+    },
+    "focused.log": {
+      "sha256": "bebdf32bcfab0dbbec113068a583ebb4827adf053b39b84d9ac2146a9e36e9b6",
+      "bytes": 48588
+    },
+    "focused.result.json": {
+      "sha256": "160199b1894f3e17ded6e9f34a87ac8b45a4648065aff20e902f5f0f1dc22c9b",
+      "bytes": 470
+    },
+    "format-badge.log": {
+      "sha256": "3d7f8035645e05cdd27be492531d18f31f3d1544c3e921922e1c97d6797ab3df",
+      "bytes": 68
+    },
+    "format-badge.result.json": {
+      "sha256": "9b8893e75de75bcb757afd33f8a9e3eb892bd566612958d3b6ab364cc81ba8f0",
+      "bytes": 178
+    },
+    "format-new.log": {
+      "sha256": "69330a9b4691f0ce8a847164318ce11562a185f30533e6d3416dfd6d2730dedc",
+      "bytes": 523
+    },
+    "format-new.result.json": {
+      "sha256": "fe41d43d844b7bc8f167bbc8b2e2eade1d5ae60f8d0cd09275f0a5073322bb3b",
+      "bytes": 627
+    },
+    "format-ownership.log": {
+      "sha256": "b3e08a8501bfe14c49b484c4cb77605471864a17c487dae6b59011c3b98ee904",
+      "bytes": 161
+    },
+    "format-ownership.result.json": {
+      "sha256": "9189c5f1cc0eac4ccb4f172dcce206a8fa18d4b1252f23057e0be4c7bbb961cf",
+      "bytes": 263
+    },
+    "format-priority.log": {
+      "sha256": "229d6a98850e3085137a733395791a765f59085ed4c7399053b546bd2130c5fb",
+      "bytes": 119
+    },
+    "format-priority.result.json": {
+      "sha256": "01716fd644903228fa0fd16824fa23f8628268288209226618d8e41613c08978",
+      "bytes": 231
+    },
+    "freeze-verification.log": {
+      "sha256": "8652d5e36562274b2a9dce16bfbb32f5be4001b7a92a5197b3c505ffb163952a",
+      "bytes": 541
+    },
+    "freeze-verification.result.json": {
+      "sha256": "70573bf934564fe1ceb2089aedbc72c2208fc7b3239c707882d759d8f3fa50e4",
+      "bytes": 187
+    },
+    "full-final.log": {
+      "sha256": "345907084bf6b1fa6fb47040454e4a7eb438d6954da01342c518981cbd4f71b3",
+      "bytes": 150072
+    },
+    "full-final.result.json": {
+      "sha256": "0ceab57de345427041ec632304efea6d225da0a60925b6e169c1fb707d00daad",
+      "bytes": 90
+    },
+    "full-freeze-verification.json": {
+      "sha256": "f00e4b10cfb9b038f2cea8120fb3c787e2c96d362fd9852950069710be77727a",
+      "bytes": 581
+    },
+    "inventory-verification.json": {
+      "sha256": "03253cb77b9651ca6371f08ea7ea4a348103c5d731b599b864941973030fab47",
+      "bytes": 409
+    },
+    "lint-complete.log": {
+      "sha256": "3990bc68692cd3319b22126d1171da19f2fc92ef883f8a05cc8a466800325e90",
+      "bytes": 197
+    },
+    "lint-complete.result.json": {
+      "sha256": "198232871b928b6740f925afef427e1d52665055f5eb74c68f151a8e4b6765dc",
+      "bytes": 101
+    },
+    "lint-current.log": {
+      "sha256": "3990bc68692cd3319b22126d1171da19f2fc92ef883f8a05cc8a466800325e90",
+      "bytes": 197
+    },
+    "lint-current.result.json": {
+      "sha256": "3ae4aabd109d27fea82cb7a5564c0fae81424da281509616abc48dd0b9b8a7dd",
+      "bytes": 101
+    },
+    "lint-final.log": {
+      "sha256": "3990bc68692cd3319b22126d1171da19f2fc92ef883f8a05cc8a466800325e90",
+      "bytes": 197
+    },
+    "lint-final.result.json": {
+      "sha256": "6f014fec429fb8360b6be1a51c76c8ebf201c6e998870db8548db59ea4951711",
+      "bytes": 100
+    },
+    "lint-initial.log": {
+      "sha256": "b25fb2e7cc59be98869227997c1bb0d1e2dd6d37da693153bcac396a774a7b34",
+      "bytes": 894
+    },
+    "lint-initial.result.json": {
+      "sha256": "95988ae7fb2cc54af8c6f5ab5583c4c49daab47f349c59450f4d4a1d9bf65a1a",
+      "bytes": 101
+    },
+    "lint-wording.log": {
+      "sha256": "3990bc68692cd3319b22126d1171da19f2fc92ef883f8a05cc8a466800325e90",
+      "bytes": 197
+    },
+    "lint-wording.result.json": {
+      "sha256": "34dd5cf0ba7f6525904d7ea511ce759d975ca17058f90979e5b96d9901482859",
+      "bytes": 100
+    },
+    "ownership.json": {
+      "sha256": "54c4d3a782ffa5c6f99f9233814a56961fcc896486c8329c4df7e549b919b591",
+      "bytes": 221
+    },
+    "previous-audit-browser.py": {
+      "sha256": "c62abeb1b746e15a82693770c2f78db8ac10ceb50dfeb015222df3c0f14dc4d3",
+      "bytes": 2575
+    },
+    "previous-bridge.py": {
+      "sha256": "19b074e6b2c73adae41f8f0500ebe3259bd4ad5bef4281aaf2dc49ae64f12a41",
+      "bytes": 463
+    },
+    "previous-browser.cjs": {
+      "sha256": "a136d2e933e86534a5ea9dcf25d92afaaae77175ee46dcf51379f1ed0595595a",
+      "bytes": 8383
+    },
+    "previous-serve.py": {
+      "sha256": "b364240ed83647aa526072097604e3db032a97e30fb3637b1f6a51e7db2ef322",
+      "bytes": 457
+    },
+    "previous-snapshot.py": {
+      "sha256": "51eea22057228baf4fc3079f139f68731783abbe249c870ccf8c6d6d5529bf81",
+      "bytes": 1163
+    },
+    "previous-verify-full-freeze.py": {
+      "sha256": "74c3c7ec836f67ed8025ea0ab10dcae88d90311c2c23b66d079d8f50a96ba366",
+      "bytes": 1147
+    },
+    "public-priority-red.log": {
+      "sha256": "4a6466b8fb711db6f8b2675eddb924d3fdab97aec529c119fece925e48b0aa8d",
+      "bytes": 55349
+    },
+    "public-priority-red.result.json": {
+      "sha256": "228a178ec0756105bc37e3c2138971a831a74801b6320e4f7b4efdc5b12a7e59",
+      "bytes": 172
+    },
+    "retain-cleanup.py": {
+      "sha256": "3f9fa00cbbf044bbcdebad7e10795690e098f5d871fa657353c238c1c932e668",
+      "bytes": 3557
+    },
+    "run.py": {
+      "sha256": "e3860ce332f6bac1e3911fd217995cfdcd3073c671d5de2d5903e71ccd3b2026",
+      "bytes": 491
+    },
+    "self-review.md": {
+      "sha256": "67c271e430a20dfc0b54bc90a5b07018b5198ec75a0484bfffce52f05380b41b",
+      "bytes": 2405
+    },
+    "serve.py": {
+      "sha256": "0ca4080f9883171d2e1854e4db80934d6e0abae7229577b9618069bbdf25299f",
+      "bytes": 927
+    },
+    "server-process.json": {
+      "sha256": "1ba3cd232733fb4ba67bd73cd03ff9a8c98c48a581db1134a27ce84bc8b628ce",
+      "bytes": 82
+    },
+    "server-terminal.json": {
+      "sha256": "467adbf5fe1d4f3b24c002c0630674b1fdab63bfe14f92205389507397b64378",
+      "bytes": 60
+    },
+    "server.log": {
+      "sha256": "d6810ca93879fb193ee060e7caadddfb6ce36869dbe358fd0afbd3c109b330a4",
+      "bytes": 1491389
+    },
+    "snapshot-after.log": {
+      "sha256": "04d4eb45e461ad9cd41dd807940a587c0ecf98c6c8b77443e3a650815a55e2de",
+      "bytes": 172
+    },
+    "snapshot-after.result.json": {
+      "sha256": "fb1ce94d816a9d461471352a9fa670eb8d73c71b46a7cf263cfa48d7eea30196",
+      "bytes": 195
+    },
+    "snapshot-before.log": {
+      "sha256": "04d4eb45e461ad9cd41dd807940a587c0ecf98c6c8b77443e3a650815a55e2de",
+      "bytes": 172
+    },
+    "snapshot-before.result.json": {
+      "sha256": "0e00a3e17ee6315aad0f2d43611ebb8c95fab2ac31cc41d36e08224bd07fdc56",
+      "bytes": 196
+    },
+    "snapshot.py": {
+      "sha256": "51eea22057228baf4fc3079f139f68731783abbe249c870ccf8c6d6d5529bf81",
+      "bytes": 1163
+    },
+    "stop-server.log": {
+      "sha256": "824fa550ed2c41d098fc9bcea1c82857b028bd9ae0187a589b29053d7650f907",
+      "bytes": 89
+    },
+    "stop-server.py": {
+      "sha256": "d1e250cad54e51afbefdf81a73a60dbdaa5cdff3d245a5a5bba9a174bc366a2d",
+      "bytes": 673
+    },
+    "stop-server.result.json": {
+      "sha256": "bc10a6db81dd318d7f20f035893cf0ad9d3ef22f6b68730002a5b1b076fd3db8",
+      "bytes": 179
+    },
+    "types-complete.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-complete.result.json": {
+      "sha256": "db6e1faa0d336cd04bf88c36d5aa94c2fd27fd7274efe5a19918dfbcd8557304",
+      "bytes": 106
+    },
+    "types-corrected.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-corrected.result.json": {
+      "sha256": "5d22769e89facde13f9e2e7cb043f5b9d3424242922b1fc5dc938aca477f9051",
+      "bytes": 105
+    },
+    "types-current.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-current.result.json": {
+      "sha256": "db684d47b51cb5ca90fa053f9c172865d9470152de637dc423c003773fdd218f",
+      "bytes": 106
+    },
+    "types-final.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-final.result.json": {
+      "sha256": "68b898c33762b1f2aa14f1299b2422e8757155dcf249b1702e376b3eefe8bdca",
+      "bytes": 106
+    },
+    "types-initial.log": {
+      "sha256": "5daf087376a429d19e3b2f6a2eff6beb587351a661eaa25bebde7a724bd06851",
+      "bytes": 791
+    },
+    "types-initial.result.json": {
+      "sha256": "a135a855250371acd6003e7c0936e72bf31137f72c10fff10e7aef205b393a52",
+      "bytes": 106
+    },
+    "verify-full-freeze.py": {
+      "sha256": "39ac6ba27331fd07cac9037e59b3472a4ba91df23326d4b566b66a82f1249429",
+      "bytes": 1347
+    },
+    "visual-review.json": {
+      "sha256": "a272f2e1bf561d2dbded5cf128d40816c1ff882f9fb6590253883a99f75a83bd",
+      "bytes": 1275
+    },
+    "wording-build-comparison.json": {
+      "sha256": "5471e3a7e9e1ce0f3f4d338c6cb34fbea6bb586ed51a47cedddf96c3c4d2c613",
+      "bytes": 344
+    }
+  },
+  "rawFileCount": 355,
+  "terminalResults": 51,
+  "allArchivedBytesVerified": true,
+  "excludedDisposableBuildDirectories": [
+    "build-before-badge",
+    "build-before-ownership",
+    "build-before-wording",
+    "build-final"
+  ],
+  "fullFreeze": {
+    "pass": true,
+    "sourceFiles": 1270,
+    "buildFiles": 760,
+    "sourceBuildHeadStatusGenuineExact": true,
+    "summary": [
+      "Test Files  551 passed (551)",
+      "Tests  12913 passed | 2 skipped (12915)",
+      "Duration  441.51s (transform 17.69s, setup 54.18s, collect 929.93s, tests 453.32s, environment 127.62s, prepare 53.98s)"
+    ],
+    "genuineSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "head": "3c41154f2ee5b5c3199d229d1e6d82db51cd102c",
+    "testsPassed": 12913,
+    "testFilesPassed": 551,
+    "skipped": 2,
+    "fullSeconds": 442.87290835380554
+  }
+}

@@ -1,6 +1,6 @@
 # BUG-187 — Apply real Druid form effects
 
-Severity: High. Status: reproduced; implementation in progress.
+Severity: High. Status: locally fixed and verified; independent/earned acceptance open.
 
 Reproduction: `cc4fd0988356f362e689dd65b3d739d04c9837a2`, Node/Vitest native
 store-to-engine path, seed7. No browser required for the causal reproduction;
@@ -33,3 +33,16 @@ status chips were translated, but the transient buff-event badge fell back to
 English Werewolf/Werebear because effect.buff lacked those two keys. The actual
 component regression reproduces this separately; both representations must use
 the existing localized skill name.
+
+Fix: runtime `3c41154f2ee5b5c3199d229d1e6d82db51cd102c`; source-bound paid forms,
+real cadence/dodge/defense/life capacity and native next-wave authority replace
+markers. No life refill, repeated payment, form stacking or saved transient state.
+Both persistent chips and cast badges use the localized form name.
+
+Verification: focused350/9, engine6629/228, standard full12913/551 with two
+existing skips, typecheck/lint/production build/bridge scan pass. Production
+en/zh × desktop/mobile4/4, eight exact five-domain Continue pairs,20geometry
+samples; original failures retained. [Evidence](../../docs/plans/evidence/d05-druid-shapeshifting.md).
+Original causal logs now retained in the raw archive under
+`docs/plans/evidence/fixtures/druid-shapeshifting/`; the original temporary path
+above is historical and is removed after verified retention.

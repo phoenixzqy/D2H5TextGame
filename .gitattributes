@@ -1,1 +1,2 @@
 /docs/plans/evidence/fixtures/earned-spider-through358/raw.tar.gz filter=lfs diff=lfs merge=lfs -text
+/docs/plans/evidence/fixtures/druid-shapeshifting/raw.tar.gz filter=lfs diff=lfs merge=lfs -text
