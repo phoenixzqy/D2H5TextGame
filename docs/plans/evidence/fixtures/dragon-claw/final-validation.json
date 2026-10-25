@@ -1,0 +1,33 @@
+{
+  "pass": true,
+  "committed_source": "79d3311a65ffa62c69e816fcbda727716c99a641",
+  "source_files": 1390,
+  "design_files": 3,
+  "actual_committed_blobs_and_disk_exact": true,
+  "raw_archive_sha256": "b71e4609a3995c1d838c9e71a040ca64388de46b1e9a500b87e50a0ba11750d7",
+  "verified_raw_members": 237,
+  "terminal_receipts": 25,
+  "cleaned_exact_files": 997,
+  "recorded_owned_pids_absent": 53,
+  "scratch_absent": true,
+  "remaining": [],
+  "failures": [],
+  "inventory_rows": 213,
+  "IDs_order_unchanged": true,
+  "changed_rows": [
+    "skills-assassin-dragon-claw"
+  ],
+  "counts": {
+    "unverified": 105,
+    "bounded-functional": 106,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "local_document_links_checked": 306,
+  "genuine_decompressed_sha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "full_tests": 14730,
+  "full_files": 658,
+  "existing_skips": 2,
+  "independent_and_earned_acceptance_open": true,
+  "umbrella_goal": "active; C2-C4 and full G0-G7 unfinished"
+}

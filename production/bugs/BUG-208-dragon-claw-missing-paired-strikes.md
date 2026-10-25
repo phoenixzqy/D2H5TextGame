@@ -1,6 +1,6 @@
 # BUG-208 — Dragon Claw emits one attack instead of its promised pair
 
-- Status: reproduced; repeated-strike/bonus-critical contract and repair open.
+- Status: fixed and verified locally; independent design/QA and earned balance remain open.
 - Severity: High — the paid skill lacks an advertised second attack attempt.
 - Environment: Node24.21.0, real default registry/native L30 Assassin.
 - Owner: root; independent design/QA and earned balance remain open.
@@ -27,4 +27,15 @@ Record a faithful two-attempt/critical adaptation before implementation; do not
 credit two attacks by merely doubling one scalar hit or waive the bonus promise.
 
 See [native reproduction](../../docs/plans/evidence/d04-dragon-claw-repro.md).
-No Dragon Claw code/data patch, functionality credit, genuine campaign or remote action.
+The initial reproduction included no Dragon Claw code/data patch, functionality
+credit, genuine campaign or remote action. The repair continuation follows below.
+
+
+## Local repair continuation
+
+Runtime `70efa356` and presentation `79d3311a` restore two independent
+original-target attempts and the explicit provisional10-point critical bonus.
+Final full14730/658/two existing skips, types/lint/build and four production
+public cases pass. See [verification](../../docs/plans/evidence/d04-dragon-claw.md)
+and the four Dragon Claw regression files. The reproduction above remains
+historical; independent/earned acceptance and full v1 are open.

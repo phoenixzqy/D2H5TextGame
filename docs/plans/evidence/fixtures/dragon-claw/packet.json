@@ -1,0 +1,1303 @@
+{
+  "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dragon-claw-l90a_txb",
+  "members": [
+    {
+      "path": "scratch/archive.py",
+      "sha256": "01713654d3261723893eba0e2a2bb7cb1027bc56d6d873e737154f72b978fd82",
+      "bytes": 2300
+    },
+    {
+      "path": "scratch/audit-committed.py",
+      "sha256": "0aa76c1276487c3bbb03e74cb3115278926a82d7ddfd6dfaecd7358ebf88af1f",
+      "bytes": 1532
+    },
+    {
+      "path": "scratch/author-review-final.json",
+      "sha256": "a6185722a657c7159595e90764a2a21292ef44eee79d5c88d7873685b304d041",
+      "bytes": 1717
+    },
+    {
+      "path": "scratch/author-review.json",
+      "sha256": "546c816b80d017691415e7ff1f970284e6299d47843adb9be5d46033fd41a40b",
+      "bytes": 1215
+    },
+    {
+      "path": "scratch/baseline-source.json",
+      "sha256": "aa76c943200312672bad147996a487d46786a957b7452c244389a5a7ae6c6d6f",
+      "bytes": 156927
+    },
+    {
+      "path": "scratch/blade-fury-cone-observed.json",
+      "sha256": "d6eb8f25344ca2a4c83b7f41328ced48cbf56ead3273e06242d3eb17c664c325",
+      "bytes": 44911
+    },
+    {
+      "path": "scratch/blade-fury-cone-repro.ts",
+      "sha256": "81110e3395035728d5c2e71f467b4f8a3ecd44df854ef7bf2d3ef18f3e7b03d7",
+      "bytes": 4302
+    },
+    {
+      "path": "scratch/blade-fury-line-repro.ts",
+      "sha256": "3d77629f0f96bb827399ac1dd4aaf991e48bc28a3078c37a3954d46ae048fdfd",
+      "bytes": 4281
+    },
+    {
+      "path": "scratch/browser-audit.json",
+      "sha256": "879665666e94a0095f1e9db6440ace75944b98ecb7b11bf3c90e5f017c47a6ad",
+      "bytes": 10362
+    },
+    {
+      "path": "scratch/browser-en-desktop/browser-report.json",
+      "sha256": "1284bd1a7b792a0a6596fa2e852820f36f3839d08b89ec16312af9e9ee967768",
+      "bytes": 1531
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-cast-visible.png",
+      "sha256": "e8de13418464d86d5115b89fd79075911b74ff84098f89cbfb75275db2689a55",
+      "bytes": 219156
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-claw-stats.png",
+      "sha256": "58977b1ff26a09495b8f3bce4ee7d7d600e712bc7c32268b675e988cf2c2abd7",
+      "bytes": 126212
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-combat.json",
+      "sha256": "4835364a6188a1e20a252ac1733b96137d661c718d09b0105d0d8774ba5fe5eb",
+      "bytes": 2482
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-description.png",
+      "sha256": "58977b1ff26a09495b8f3bce4ee7d7d600e712bc7c32268b675e988cf2c2abd7",
+      "bytes": 126212
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-details.png",
+      "sha256": "fb1513215c6b56c2b41a8e12f8ed77e3d6fb75e8b84242e59441eefd3cdc3729",
+      "bytes": 127868
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-fresh-1.json",
+      "sha256": "4b9682083a73986590f9ba243a385a86eecde1c3ea88254432bef4c23ef2a154",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-imported-2.json",
+      "sha256": "6b27dcec149c96fddfd3af4fd67b76fabf0b1cd5420cfdfc856772e036f1865b",
+      "bytes": 4832
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-observed-attempts.json",
+      "sha256": "cdd7af7b1add051d513d91cc146652a34c8f1dd83a40e3ddfd8386cd2351d9d4",
+      "bytes": 2402
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-rank1-after-4.json",
+      "sha256": "b140931ac5641a166a216c0f106eeb45dfd05791bfda89f7104676334a95bad2",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-rank1-before-3.json",
+      "sha256": "14a8df86625f1b4131c57cdfc645e59f6be1ef54a79729106f48d84e63d2f5e2",
+      "bytes": 4832
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-rank2-after-6.json",
+      "sha256": "a716ab368e5b93681e31f00895c3c1d6511a09214dabf10673eff39cf2850fa5",
+      "bytes": 4886
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-rank2-before-5.json",
+      "sha256": "a716ab368e5b93681e31f00895c3c1d6511a09214dabf10673eff39cf2850fa5",
+      "bytes": 4886
+    },
+    {
+      "path": "scratch/browser-en-desktop/en-1280-dragon-claw-synthetic-input.json",
+      "sha256": "6cc26cfe8d004f81d2bb3431671e1e31a21365f31617d1429a2dc3b74597b2b1",
+      "bytes": 4011
+    },
+    {
+      "path": "scratch/browser-en-desktop-owner.json",
+      "sha256": "8fba525d83a58023da044a8e12767a385f5fb7fe1446eceeec074f7e26aabc9d",
+      "bytes": 172
+    },
+    {
+      "path": "scratch/browser-en-desktop.json",
+      "sha256": "6e43ec3f15186f89262db1399a0f2d426d2172545cfef3247a5648dec20e686c",
+      "bytes": 179
+    },
+    {
+      "path": "scratch/browser-en-desktop.log",
+      "sha256": "f3df24f70e175a95812b601b31305b6dd90f856c31544c85aed8f82162ea8ece",
+      "bytes": 71
+    },
+    {
+      "path": "scratch/browser-en-mobile/browser-report.json",
+      "sha256": "6e32307d271823ee605ca7170b8ef2507f66065909a43012404e39fc0334d0aa",
+      "bytes": 1768
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-claw-claw-stats.png",
+      "sha256": "95a8c2143047a2200d8e8bb40d3c925fcdbbbbb7ef1e11a765a37240ad5e12f5",
+      "bytes": 46985
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-claw-description.png",
+      "sha256": "27ad46bcffb70c0a5e45fc99f6fd4d77deca0d8dcb8cccdd4db50e832c6d37c7",
+      "bytes": 51795
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-claw-details.png",
+      "sha256": "d793f747d3a26b058dbd6b45851fee64a589319ce1cbe2e84d0f48f7aa967644",
+      "bytes": 51832
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-claw-failed-trace.zip",
+      "sha256": "c546224bc9312362e654bb5d0beb39339f11c0325902b95ab50325d00b2853b0",
+      "bytes": 40985182
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-claw-failed.png",
+      "sha256": "1a2100e614972bef5ed2b3354c92814d2d01e62b7cccce24f603ec7a63a9aa6e",
+      "bytes": 38050
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-claw-fresh-1.json",
+      "sha256": "5ebb8e7b353997f24bb533a1bb4f080edb347fbc02100a6bae7329cd3f4fedf9",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-claw-imported-2.json",
+      "sha256": "27e6e6f1e018cce0770c375b1c9cd425207cbcb03aab8eaecd07787f409f53bc",
+      "bytes": 4832
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-claw-rank1-after-4.json",
+      "sha256": "07b70c0af2288758269955d9e24a2035c040213155e8ef4d42383fbee0a496fb",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-claw-rank1-before-3.json",
+      "sha256": "e4f4599b69399675a787a334bffd97d5699662951a25a2c1e95ed3de70144bb2",
+      "bytes": 4832
+    },
+    {
+      "path": "scratch/browser-en-mobile/en-360-dragon-claw-synthetic-input.json",
+      "sha256": "83ece6143c81611821d9c1b2b9dfb476bdec9279f18cebb515e348d28e25eb75",
+      "bytes": 4011
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/browser-report.json",
+      "sha256": "44e2b66a3eb96a9de71e9af3977b0276bfc5668261e41feaa31c76de7bd70121",
+      "bytes": 1525
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-cast-visible.png",
+      "sha256": "ec752a56a02b07334dbcd7d80774ec8e3c769fc74d382915ee0badace888b87f",
+      "bytes": 53734
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-claw-stats.png",
+      "sha256": "95a8c2143047a2200d8e8bb40d3c925fcdbbbbb7ef1e11a765a37240ad5e12f5",
+      "bytes": 46985
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-combat.json",
+      "sha256": "d12f41c2051091a492933810d1685899b7d9b267242f2ecf4c801cb46620375f",
+      "bytes": 2080
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-description.png",
+      "sha256": "27ad46bcffb70c0a5e45fc99f6fd4d77deca0d8dcb8cccdd4db50e832c6d37c7",
+      "bytes": 51795
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-details.png",
+      "sha256": "95fc7ec11c5837e587b9c6761cd3a3a2bb57049e1b9fb7c483fa981575f9f6ef",
+      "bytes": 51840
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-fresh-1.json",
+      "sha256": "69b230266ab88eabc6bc705bae838fe62ed846e8969e8b41dd9f3ddfb046ff72",
+      "bytes": 3177
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-imported-2.json",
+      "sha256": "ba346ed1c2da708ff5e7f4a8fa900d49ad51b527f5042b76c6c20592cfc32d9c",
+      "bytes": 4832
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-observed-attempts.json",
+      "sha256": "1a8b2d780fbe4f7bc91fea1f19f4ecd4064dc86f9bf5d9817d870f1e5dee56ad",
+      "bytes": 2000
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-rank1-after-4.json",
+      "sha256": "8727b0aaadb6e2bdbcbd2282485349772d587f1043dacf6604bab8e6221fa6a8",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-rank1-before-3.json",
+      "sha256": "4aa24de3aa0eab9cb29bdbd1832e5e4228507f3ace3a5e84903fcba98fede807",
+      "bytes": 4832
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-rank2-after-6.json",
+      "sha256": "dde3f4560a26b37a95f5b39782cb98ab78fc00e998c984dd15eb20ccb1fd3923",
+      "bytes": 4886
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-rank2-before-5.json",
+      "sha256": "dde3f4560a26b37a95f5b39782cb98ab78fc00e998c984dd15eb20ccb1fd3923",
+      "bytes": 4886
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected/en-360-dragon-claw-synthetic-input.json",
+      "sha256": "01d81f18441b8295116eac7b620c633864e03316a2e60360cb1cf1c8ba62840a",
+      "bytes": 4011
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected-owner.json",
+      "sha256": "286bd0957d461696008ceed9854fcdbec9f8552c2876e6c4568e1f372894cf49",
+      "bytes": 172
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected.json",
+      "sha256": "6dc53eeb2352c318f9e7a88d06583c6568403785c38280ead2f3b782366d41bf",
+      "bytes": 179
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected.log",
+      "sha256": "315087d1195ba41e7b9ec7143622088ef41621efd2da5bbf3ada6a7e438d421e",
+      "bytes": 70
+    },
+    {
+      "path": "scratch/browser-en-mobile-owner.json",
+      "sha256": "409ca37e5badff6cf52d837ac08809b08d32cfb5c6a1269a984214a6adc71dcc",
+      "bytes": 172
+    },
+    {
+      "path": "scratch/browser-en-mobile.json",
+      "sha256": "9f78844d35fb339c7910d6ad34c89efeda0312dde828802773b37357223c8317",
+      "bytes": 179
+    },
+    {
+      "path": "scratch/browser-en-mobile.log",
+      "sha256": "520611d7105b556367f25527367643596c73ebf15b8fa3698677bd0dbe71079f",
+      "bytes": 466
+    },
+    {
+      "path": "scratch/browser-initial.cjs",
+      "sha256": "11ad7aeb7999a7407186274baa97555ab2aa404284211d6ba86d7c93a78faef6",
+      "bytes": 11253
+    },
+    {
+      "path": "scratch/browser-second.cjs",
+      "sha256": "99a8db0ac29d86def872659758098ef832647fd951a941f02dfb450273ed6274",
+      "bytes": 11385
+    },
+    {
+      "path": "scratch/browser-zh-desktop/browser-report.json",
+      "sha256": "0305bb783a007d7371ea70b50bebcca8d10978198ee6f7029b9cce238e116bc6",
+      "bytes": 1726
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-claw-claw-stats.png",
+      "sha256": "fecaf4a2e736d084daf1bc9fdb2cc5c5a37a5c8e199c6242c68ac94dc279e7e7",
+      "bytes": 125319
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-claw-description.png",
+      "sha256": "fecaf4a2e736d084daf1bc9fdb2cc5c5a37a5c8e199c6242c68ac94dc279e7e7",
+      "bytes": 125319
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-claw-details.png",
+      "sha256": "220a1ed9940feb07c1859e9757173d3d3d0eeacbb9b8b7dcd297659c953170fc",
+      "bytes": 127018
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-claw-failed-trace.zip",
+      "sha256": "fe5c7cdd8fdd89d18776618ae8d0658a6bb6d270ea3abc48ecfdd6c8342a505b",
+      "bytes": 41120397
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-claw-failed.png",
+      "sha256": "b874a8b40e6ddc61299edee262fec0276b30a25e868659b7d84168700ab65001",
+      "bytes": 423159
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-claw-fresh-1.json",
+      "sha256": "02a5494610b785ac659dcbd3850ccdbadec571998305c44a9f69def939790aa9",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-claw-imported-2.json",
+      "sha256": "47cb6ce26841a2ff87a36cf4809c913e1ce7bc294109bf3297e39cde1da9740d",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-claw-observed-attempts.json",
+      "sha256": "2557674eb552991b57af9e7cae6ed321f852b214e2f5029ae27418bbbcebc42f",
+      "bytes": 3094
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-claw-rank1-after-4.json",
+      "sha256": "13e5da1c1feab0525f98e2d53ebaf3959a90c45e9c87a41a01fc57986b126815",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-claw-rank1-before-3.json",
+      "sha256": "815a56f1c50b1a73e0c516e7b67905bdd5a47d2833c51084baa0b7c561975fc6",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-zh-desktop/zh-CN-1280-dragon-claw-synthetic-input.json",
+      "sha256": "3e41938295a91bb3ee88b1b0dd1aa4c040d57e3c0d39f8ae779b3be2829b9722",
+      "bytes": 4014
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/browser-report.json",
+      "sha256": "bf44ae56f753fcc5ffcbdb399cb1029c2724bf0138e0b1eec3d29cccb8f9752b",
+      "bytes": 1903
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-cast-visible.png",
+      "sha256": "683e9f1e79a659046b64e8e9b2bbbd946dadcdf30e61b04a4cb69d4a57e89a3a",
+      "bytes": 137253
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-claw-stats.png",
+      "sha256": "fecaf4a2e736d084daf1bc9fdb2cc5c5a37a5c8e199c6242c68ac94dc279e7e7",
+      "bytes": 125319
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-combat.json",
+      "sha256": "2b55a53d5cb2fcc388e391478585a7910394c52c2c4185c1e2b906debc0b4027",
+      "bytes": 2266
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-description.png",
+      "sha256": "fecaf4a2e736d084daf1bc9fdb2cc5c5a37a5c8e199c6242c68ac94dc279e7e7",
+      "bytes": 125319
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-details.png",
+      "sha256": "e7d8c2bf656b49914b310ac6af747fb86d2a21a1db074f7150964d3e3253e6a7",
+      "bytes": 126345
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-failed-trace.zip",
+      "sha256": "ada168f3cf218f70d1b21297b0fab43b47c035490911bf1f36b99cd6b8c5cb0e",
+      "bytes": 39934955
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-fresh-1.json",
+      "sha256": "aa0e0053b1656cf188af642136511bf2d571d75593154b296770b28996eb5d97",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-imported-2.json",
+      "sha256": "4301966760bff563efa0c7761c36e28d3bceee4431ac45fea4d76f44d3db8f91",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-observed-attempts.json",
+      "sha256": "ae93679302684b0c28f237d82d61a269ef31284b5c9e473ba00063da2a4ae5bc",
+      "bytes": 2186
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-rank1-after-4.json",
+      "sha256": "bb6bc3472a7770eef55168ecef957842f81610ce09911733a8fb98d2a0797fdc",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-rank1-before-3.json",
+      "sha256": "cec415f4d184aac9474736eb3ca2c1f398e89807088b6a589d61d8e3fdfd1f9a",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-rank2-before-5.json",
+      "sha256": "1e8116e962554b227ba854807a3627c43a9fbedaa3af25369201772c6c41c467",
+      "bytes": 4889
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected/zh-CN-1280-dragon-claw-synthetic-input.json",
+      "sha256": "07d050673a8d3aaf837f2f76cc85042b119fa1389bfe4291ac37290c9dba064a",
+      "bytes": 4014
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected-owner.json",
+      "sha256": "3601bd4380b08564f79adea4e5bc1200a0fd50c2a537edd61add7afe4ac561b8",
+      "bytes": 172
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected.json",
+      "sha256": "b72cf4f80b6a55b5c9f7fc006a678b49019def0825ddf1b70303e3ecb43459f5",
+      "bytes": 178
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected.log",
+      "sha256": "c4f5359738d0a7d42fdb5661bbbb868d22db494ea3abe0bfc8acbd711d58a146",
+      "bytes": 391
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/browser-report.json",
+      "sha256": "7b5ea049ac7fed735176eed8e19e543696bf4cb088a3176ffa17a67bd38f6d85",
+      "bytes": 1479
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-cast-visible.png",
+      "sha256": "d8e0f047810985aa783c6622b5d6570aa0c0ced6ea7a070d39f948ebaa384f73",
+      "bytes": 251910
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-claw-stats.png",
+      "sha256": "fecaf4a2e736d084daf1bc9fdb2cc5c5a37a5c8e199c6242c68ac94dc279e7e7",
+      "bytes": 125319
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-combat.json",
+      "sha256": "2b55a53d5cb2fcc388e391478585a7910394c52c2c4185c1e2b906debc0b4027",
+      "bytes": 2266
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-description.png",
+      "sha256": "fecaf4a2e736d084daf1bc9fdb2cc5c5a37a5c8e199c6242c68ac94dc279e7e7",
+      "bytes": 125319
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-details.png",
+      "sha256": "7d77aad0a16d62c524437acda4e83159b3486221c9fef9362a9aacffefcb6260",
+      "bytes": 126789
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-fresh-1.json",
+      "sha256": "bbf911e3b2fdcff98148925741bf977ffb1494742a8741e7e259dc487aaac762",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-imported-2.json",
+      "sha256": "0cfff1c33991baedbc2adcd863f085164ec82db49904762c75eaa065ffd10f79",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-observed-attempts.json",
+      "sha256": "ae93679302684b0c28f237d82d61a269ef31284b5c9e473ba00063da2a4ae5bc",
+      "bytes": 2186
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-rank1-after-4.json",
+      "sha256": "3e7827625016c8ec3392647a41966f963c21386254d61b0f187ad7c87d884e40",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-rank1-before-3.json",
+      "sha256": "e7744a9fc3d1baf73cd74da9b767c7076d25e6bc75f2fb6533ead15518ccc70f",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-rank2-after-6.json",
+      "sha256": "38f30178dba23bffd4cd798c1057385f7af468e0d41b1d70a42d74b318ab93bc",
+      "bytes": 4889
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-rank2-before-5.json",
+      "sha256": "38f30178dba23bffd4cd798c1057385f7af468e0d41b1d70a42d74b318ab93bc",
+      "bytes": 4889
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final/zh-CN-1280-dragon-claw-synthetic-input.json",
+      "sha256": "07b98d5056eddc2e7a7fb24b4b7d43631540d0ab290fabd4ee67ded0725058a9",
+      "bytes": 4014
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final-owner.json",
+      "sha256": "43927cd41ce18848f8ec7894cd9cfd1313d2e302524170a469d78f58257a6e93",
+      "bytes": 396
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final-server-access.log",
+      "sha256": "d58ec205861affa400c5e5ba6660079570022544515159bce040d3eb12cf2f5f",
+      "bytes": 68251
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final-server-owner.json",
+      "sha256": "db7da6e2fe9e751f77d709e1ce1de41b01850958b22144d138649ca790024002",
+      "bytes": 132
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final.json",
+      "sha256": "89041dd8fbf0f7bd815b1c44b605ff2ddb946341234152e5cd8e60c433105ef0",
+      "bytes": 403
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final.log",
+      "sha256": "9182d5a6f9d841ce3a558502abf342109eb5ebd166f087f8b00e67524adcfb09",
+      "bytes": 434
+    },
+    {
+      "path": "scratch/browser-zh-desktop-owner.json",
+      "sha256": "ff4280176b76fe15cda1214bfd3b92f177d1221e07268cf37c93c87c156a207b",
+      "bytes": 172
+    },
+    {
+      "path": "scratch/browser-zh-desktop.json",
+      "sha256": "e17104cca42ba8a0cf6391f8fc78b5b35cb61c4bd8786ecb4861a3c843fc7bec",
+      "bytes": 178
+    },
+    {
+      "path": "scratch/browser-zh-desktop.log",
+      "sha256": "5d39ea84b8fc120b28b132fafbdba3ea1eea1eb6ca17a7df59d311dfc72a3659",
+      "bytes": 466
+    },
+    {
+      "path": "scratch/browser-zh-mobile/browser-report.json",
+      "sha256": "642ec836ac52a2f5aa4faa7353046847bf8c486858d50305d2fa77752de1033f",
+      "bytes": 1719
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-claw-claw-stats.png",
+      "sha256": "5d048ce50c21ad21c365c1a54b8ec3efa11de6eb4ede2fc446d1a072fa4404b0",
+      "bytes": 54040
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-claw-description.png",
+      "sha256": "f52e9588918d4e9bff2f8f851adf0f8762b1b60d006628e692ea222c94524efe",
+      "bytes": 58963
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-claw-details.png",
+      "sha256": "7a8503544d8a71435b5a96485808471f675901716f0b93d99f1cbe862d9c9fc7",
+      "bytes": 60416
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-claw-failed-trace.zip",
+      "sha256": "e19282e660c136168fcc829986f7bb9e24aa148a34ae3d14a4a8e881d26729d0",
+      "bytes": 41807765
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-claw-failed.png",
+      "sha256": "3c06ea485560d2f441dc61fc0fa92aaabb0399b8205fc200bcc489483f38df95",
+      "bytes": 37738
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-claw-fresh-1.json",
+      "sha256": "e57541d40aece4b064f949e2595e9577228d1dcc6ecba3dd1d764ea59b6f05ec",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-claw-imported-2.json",
+      "sha256": "06ec1c13e25bc9ee43048aa3b16feb2a4e60703ef827c68455942b88d7e2faf1",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-claw-observed-attempts.json",
+      "sha256": "da3d6960ce4d548cb2dda1d07a2d8975982daf158295f03136937ba58c184498",
+      "bytes": 2576
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-claw-rank1-after-4.json",
+      "sha256": "d1ebd95f56d6cc2a7001231e967bb4ad98c02136789621bf795e08083d124499",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-claw-rank1-before-3.json",
+      "sha256": "38d525dfa0600dbb0b60dbf613830664a1b181b749131d87111e3f902fd57fd8",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-zh-mobile/zh-CN-360-dragon-claw-synthetic-input.json",
+      "sha256": "6bc9718646f81135348b920e8ede36de19ba23951039ff2ae3aff9d8ad7796b0",
+      "bytes": 4014
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/browser-report.json",
+      "sha256": "9d302762c9b74f4ebc022ef6e85daeb2e5a6162404e9c752084cdc1631c3bc9f",
+      "bytes": 1896
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-cast-visible.png",
+      "sha256": "bad1a4d3d3ad5023028a726b352abc1f7781a011a86936c2088b3536badbe757",
+      "bytes": 60128
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-claw-stats.png",
+      "sha256": "5d048ce50c21ad21c365c1a54b8ec3efa11de6eb4ede2fc446d1a072fa4404b0",
+      "bytes": 54040
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-combat.json",
+      "sha256": "2b55a53d5cb2fcc388e391478585a7910394c52c2c4185c1e2b906debc0b4027",
+      "bytes": 2266
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-description.png",
+      "sha256": "f52e9588918d4e9bff2f8f851adf0f8762b1b60d006628e692ea222c94524efe",
+      "bytes": 58963
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-details.png",
+      "sha256": "bb704b1a75f4555e00b48cdb9c64d9d4609e4d7228032ad0dad87a506fc11466",
+      "bytes": 60338
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-failed-trace.zip",
+      "sha256": "f0e605775f4a153e04d9a6a2b5b64dec27264003c5008909faf8890006a10a82",
+      "bytes": 41282249
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-fresh-1.json",
+      "sha256": "227b72b6d00b5c16bc9a1ad8cad0ca491a085f27ceb06e55bf2e7cc1e48034e0",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-imported-2.json",
+      "sha256": "036fd812bead8fd84dcfe13f648bc579b183d0c10ca95740c6f175b063aa4047",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-observed-attempts.json",
+      "sha256": "ae93679302684b0c28f237d82d61a269ef31284b5c9e473ba00063da2a4ae5bc",
+      "bytes": 2186
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-rank1-after-4.json",
+      "sha256": "98e8300391d89be429803bd2c7df48c4bf75d8a4e3f659287051fa6633fb9dae",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-rank1-before-3.json",
+      "sha256": "5e9ebfea5c110c37d2e719c6218de389b36ed88f93dfd95991b5bba362e3a9df",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-rank2-before-5.json",
+      "sha256": "64eec4c59a7cfa423c4f10103f00a65f08297aa058c234b60c5cbe5c90b09d19",
+      "bytes": 4889
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected/zh-CN-360-dragon-claw-synthetic-input.json",
+      "sha256": "56d0112e7dad9a4b458327e69f52727586013efd6bccf5be6f258d2a20140101",
+      "bytes": 4014
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected-owner.json",
+      "sha256": "9f95b8647bafbcf763dda58fb7ac312979bce3077e7de37cac591121baf2e945",
+      "bytes": 172
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected.json",
+      "sha256": "073505411e0374b3ffcd6ddba72d8081a2bfee440180c67826a703e354b253a1",
+      "bytes": 178
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected.log",
+      "sha256": "c4f5359738d0a7d42fdb5661bbbb868d22db494ea3abe0bfc8acbd711d58a146",
+      "bytes": 391
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/browser-report.json",
+      "sha256": "b3f74297cb6f88afc675915b6f472e68fcc984a410e9de2476f037c0b5ca65b0",
+      "bytes": 1473
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-cast-visible.png",
+      "sha256": "12faf71f2dfc588ad9dabbd4999d2b594a85f9e43afb0d2feac892b0de9f8ab5",
+      "bytes": 60150
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-claw-stats.png",
+      "sha256": "5d048ce50c21ad21c365c1a54b8ec3efa11de6eb4ede2fc446d1a072fa4404b0",
+      "bytes": 54040
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-combat.json",
+      "sha256": "2b55a53d5cb2fcc388e391478585a7910394c52c2c4185c1e2b906debc0b4027",
+      "bytes": 2266
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-description.png",
+      "sha256": "f52e9588918d4e9bff2f8f851adf0f8762b1b60d006628e692ea222c94524efe",
+      "bytes": 58963
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-details.png",
+      "sha256": "678750403c15d4811f8277c6584dbecb12d77d11b57a1a274c91c7a34c3db585",
+      "bytes": 60324
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-fresh-1.json",
+      "sha256": "59d0b2008522a41a502a996dd8e3534605f5a5ecc30e4ee1ff04a52471a8c187",
+      "bytes": 3180
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-imported-2.json",
+      "sha256": "c62e9ff5da8553ce2373c2f853e60210c0770d58dc157d583db1a0ac3cdcfa2a",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-observed-attempts.json",
+      "sha256": "ae93679302684b0c28f237d82d61a269ef31284b5c9e473ba00063da2a4ae5bc",
+      "bytes": 2186
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-rank1-after-4.json",
+      "sha256": "77229e201eabe9e305216ea12eece2c45b6292e5e147f28e53410236e8b3765f",
+      "bytes": 4838
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-rank1-before-3.json",
+      "sha256": "13b30f18050ea947acb7cad92d931d94c098b829e8c2616715517c18616b3b1f",
+      "bytes": 4835
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-rank2-after-6.json",
+      "sha256": "254e648deef42260232cadb34f85d6b202eb83758ab4b3cbcbdc34a17366e810",
+      "bytes": 4889
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-rank2-before-5.json",
+      "sha256": "254e648deef42260232cadb34f85d6b202eb83758ab4b3cbcbdc34a17366e810",
+      "bytes": 4889
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final/zh-CN-360-dragon-claw-synthetic-input.json",
+      "sha256": "6b7e9b8b9f196c6c65305e5c7de93db5dcedec1de8365b8c14f5541e8bd14165",
+      "bytes": 4014
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final-owner.json",
+      "sha256": "112f4779457cd481a1b2d40c3022ead3847f884494b31c2336f562700ee45873",
+      "bytes": 396
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final-server-access.log",
+      "sha256": "d02ac5ea44b881f9105ea024d13abd91f3578ac05f5865a3445dae1573d0a77b",
+      "bytes": 68409
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final-server-owner.json",
+      "sha256": "43942d329b79145cc0bf23b7a2caa35192e0dbbea226498151ba3d865470ea1e",
+      "bytes": 132
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final.json",
+      "sha256": "e3153c473eba8629dc6523022180ac7574635be87198a87b6a07374b15ba68c7",
+      "bytes": 402
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final.log",
+      "sha256": "352bfa3f9562505c7f70692345a44d4b1f11d0219f1f315b2043a0d2ff67ef60",
+      "bytes": 433
+    },
+    {
+      "path": "scratch/browser-zh-mobile-owner.json",
+      "sha256": "0fecd7d2da84e40a6598c2835494b4cfffe55f983d64fd40e11eb11f5d63196d",
+      "bytes": 172
+    },
+    {
+      "path": "scratch/browser-zh-mobile.json",
+      "sha256": "b0ca6c0986da6604aad3bf5bfe8285869dfc32690f86d5391acc4ce4f534c0f1",
+      "bytes": 179
+    },
+    {
+      "path": "scratch/browser-zh-mobile.log",
+      "sha256": "2d777b0a9d10fe92d362bd1e4ecdd789c5b5546c1d2737f4bfc66105050fe495",
+      "bytes": 466
+    },
+    {
+      "path": "scratch/browser.cjs",
+      "sha256": "7bc81da7b994950989885ca70f3425ae05053db3e6a6ade19e7090753d88c9ea",
+      "bytes": 11400
+    },
+    {
+      "path": "scratch/build-audit.json",
+      "sha256": "4385a92d81376c8ec86a079be0b8f7ee1d7580e694732acd5dd77d5e9828f405",
+      "bytes": 186
+    },
+    {
+      "path": "scratch/build-owner.json",
+      "sha256": "4a53ede370403d21893e0e6dec95d562df716a809643053f9c0a4b4da0f9157a",
+      "bytes": 225
+    },
+    {
+      "path": "scratch/build.json",
+      "sha256": "e6a1a65f4ce5dcb69e504ee4bef356830238916f8b1a3f8d1a8655fa3e86150e",
+      "bytes": 232
+    },
+    {
+      "path": "scratch/build.log",
+      "sha256": "9708c54e6f2f9e0c852b79481eff7b3a01f2fe70ff79e0ce06724e63be5745dc",
+      "bytes": 2312
+    },
+    {
+      "path": "scratch/cleanup.py",
+      "sha256": "795f45efce7ad9d529d95fd831703860c77bf5472b4c81aa59e59f071aadf054",
+      "bytes": 2073
+    },
+    {
+      "path": "scratch/committed-source-audit.json",
+      "sha256": "de4f9c4b719aa335a39318afc068ad020394ab4dbe2e76538f583915153f3d80",
+      "bytes": 157820
+    },
+    {
+      "path": "scratch/corrections.json",
+      "sha256": "6fb3b19474beb44397d4763abfaffea1c3be164ba2fc56b6a3a48e565c0a3227",
+      "bytes": 2326
+    },
+    {
+      "path": "scratch/data-final-owner.json",
+      "sha256": "f39f20f5b16746f585c4556d3fc0d7b4e1784c1e132752bd625ca0bbc3f0829a",
+      "bytes": 499
+    },
+    {
+      "path": "scratch/data-final.json",
+      "sha256": "5ff89e29b0fd48d8862865814c8e5f7cce72135454f658f31fae23732591e3bc",
+      "bytes": 506
+    },
+    {
+      "path": "scratch/data-final.log",
+      "sha256": "0ea1f6cd9a2aa603ad8aae945dbcbcfb88a3e2621d3f78fb82a9a4823b0b0884",
+      "bytes": 1256
+    },
+    {
+      "path": "scratch/dragon-claw-native-repaired.json",
+      "sha256": "814c92fee2f078071118775f8eeee06b8bdfa59f1c798d3580ee1900b78dea88",
+      "bytes": 27745
+    },
+    {
+      "path": "scratch/dragon-claw-native-repro.ts",
+      "sha256": "5ce2df701b5b69d9d96a38fdacb23907f09aadafbd61f3ab8ad6e5229e084d32",
+      "bytes": 4219
+    },
+    {
+      "path": "scratch/engine-owner.json",
+      "sha256": "1b7170767f4e6feddff65575552cc09419b6b178467ca81fc912920c79c923ac",
+      "bytes": 107
+    },
+    {
+      "path": "scratch/engine.json",
+      "sha256": "c122cb64ffae9b37a984de1da54808acb9d17ce449a5bfe1080441800e5dc0e5",
+      "bytes": 113
+    },
+    {
+      "path": "scratch/engine.log",
+      "sha256": "d6f2f2d86027edadbf0dbba4f36d0c05cfc845759a339ff42333c8a14d89bc71",
+      "bytes": 67284
+    },
+    {
+      "path": "scratch/final-validate.py",
+      "sha256": "7c67201efbda57ce30b2bd3696e319dc242cb6e3bdfab046f3a74d83beb4b3ee",
+      "bytes": 5285
+    },
+    {
+      "path": "scratch/finish-docs.py",
+      "sha256": "0d5d0de35adc18a31c2db51504898a157c77fe35dc36cbc2cb7dc4cbb45bc147",
+      "bytes": 10292
+    },
+    {
+      "path": "scratch/focused-owner.json",
+      "sha256": "0d931a733ef160b1172e16c5dcfabc5e620910b75d864928582c949022713633",
+      "bytes": 524
+    },
+    {
+      "path": "scratch/focused.json",
+      "sha256": "39b5a6f74ccd6cca605923c63c1abbaed9813eefe687cb10537f9e30478b5992",
+      "bytes": 529
+    },
+    {
+      "path": "scratch/focused.log",
+      "sha256": "ae1c66b42441449a48043ea7f9340b86f977060bb48b6fc02b764663cab3a5d2",
+      "bytes": 1320
+    },
+    {
+      "path": "scratch/freeze.py",
+      "sha256": "7bb933607b46ffc25eb756e9bd9bc447518325aaf85e786813ff7b73d92dc4fd",
+      "bytes": 1886
+    },
+    {
+      "path": "scratch/frozen-inputs.json",
+      "sha256": "64e4497968269a16aaad1c0c399cc4fd14c9e4ec87626f10d31f15cce51d6e37",
+      "bytes": 260882
+    },
+    {
+      "path": "scratch/full-owner.json",
+      "sha256": "c2577ca7f424904d86d170f12d69306ba1f04d2f741b4025d0b0e199b7f4a172",
+      "bytes": 89
+    },
+    {
+      "path": "scratch/full.json",
+      "sha256": "5403305f21b25cfe4e08bab2bb2c109d4c1876ffa5ae6baa30ac56a5a70907ea",
+      "bytes": 95
+    },
+    {
+      "path": "scratch/full.log",
+      "sha256": "eb02729f51e89b1d945e0f6b87025075c13a0d4277c5dea9605f884e240889a1",
+      "bytes": 158079
+    },
+    {
+      "path": "scratch/golden-oracle.json",
+      "sha256": "7c27dfb68b197b817eb3debc7cb21b34cf9d2f4d85999ceb129797f269f39e3f",
+      "bytes": 8111
+    },
+    {
+      "path": "scratch/golden-oracle.ts",
+      "sha256": "72c6d823401886976ded8c408629d0f3f3e656c8dd9126b78bf5f0f67fd01577",
+      "bytes": 952
+    },
+    {
+      "path": "scratch/green-corrected-owner.json",
+      "sha256": "80cc49c60a233f37f34a69761a2e101ccde3b56a856b753a37a7572246b1629d",
+      "bytes": 247
+    },
+    {
+      "path": "scratch/green-corrected.json",
+      "sha256": "784e0ba0f733d9415f09f059d21514268807792089b257bb92801bbb7ec30564",
+      "bytes": 253
+    },
+    {
+      "path": "scratch/green-corrected.log",
+      "sha256": "e7f8c099a48d1b237b931dab4d992b050bbe2ad932b31c58e691568dc655a514",
+      "bytes": 670
+    },
+    {
+      "path": "scratch/green-owner.json",
+      "sha256": "dbdb0828ade2a3ace6f0a4b64bcd4baef86b04b9fd422840dfae35a954ca5b31",
+      "bytes": 247
+    },
+    {
+      "path": "scratch/green.json",
+      "sha256": "cd88872433b5f63ca98f0fc67f55ad43459f3d515a5be9560c2d0917388ddaec",
+      "bytes": 252
+    },
+    {
+      "path": "scratch/green.log",
+      "sha256": "6f52e237ed625b40dd45e14afe660d8513e708c152b76c9770b6c50ae08b8a55",
+      "bytes": 9157
+    },
+    {
+      "path": "scratch/inventory-reconciliation.json",
+      "sha256": "898dd8beb057929e55a522a1dcf190792ddfda2210597295950adb6d29338bab",
+      "bytes": 504
+    },
+    {
+      "path": "scratch/lint-owner.json",
+      "sha256": "404e43deaecea44b9db149bc88666dc5d6284f23afc184b407c0d7fb672fb16d",
+      "bytes": 100
+    },
+    {
+      "path": "scratch/lint.json",
+      "sha256": "48110a93a30f9f8804fedd26e0dd1f49ff8bce56d2645f00139bb0b217dfa25b",
+      "bytes": 106
+    },
+    {
+      "path": "scratch/lint.log",
+      "sha256": "a4012202f78184550933e01b22143b019cda43cd4265b831383fc36041b22d2f",
+      "bytes": 197
+    },
+    {
+      "path": "scratch/native-audit.json",
+      "sha256": "86b4a3e94b3d8441d56891538d6c56d72490365112dd552dbb5ad25b7b202c75",
+      "bytes": 414
+    },
+    {
+      "path": "scratch/native-owner.json",
+      "sha256": "a02f4477dd8338bfbd7a44075c9744017f7c238d2c6cbaa6140212d75fe15141",
+      "bytes": 223
+    },
+    {
+      "path": "scratch/native-repaired.ts",
+      "sha256": "cdcd7b7108c525f684d62b201a2d701f1c4551567343c00b412909fff48bb19f",
+      "bytes": 4689
+    },
+    {
+      "path": "scratch/native.json",
+      "sha256": "1f47ba3f58a9adfa487413b8d31c95674eaf4b9a239d24d483639c70aa0fb3f2",
+      "bytes": 229
+    },
+    {
+      "path": "scratch/native.log",
+      "sha256": "95800c1ce35a3a1becb7a8355932f27f0cb418ba5cb2dca41af63deec39283e8",
+      "bytes": 138
+    },
+    {
+      "path": "scratch/next-blade-fury-line-repro-owner.json",
+      "sha256": "8444b454052d91922881640499178099cf33918deb58809fe9eb627e50a59a2b",
+      "bytes": 229
+    },
+    {
+      "path": "scratch/next-blade-fury-line-repro.json",
+      "sha256": "8269fef5f1f2050fc96b26448401a4adb58b09f2a839b6b4be1d0f4df0bca82e",
+      "bytes": 235
+    },
+    {
+      "path": "scratch/next-blade-fury-line-repro.log",
+      "sha256": "b7c03cfdd5ed09bbc1b08d24cbf01313a310cec3116b4faa94b1c666b2cdf29a",
+      "bytes": 1277
+    },
+    {
+      "path": "scratch/next-blade-fury-plan.json",
+      "sha256": "1b80720890c2229b05a68083c3478c6671f6b654643540a9c53afaa4686950df",
+      "bytes": 1664
+    },
+    {
+      "path": "scratch/next-blade-fury-repro-owner.json",
+      "sha256": "345e9bec66398a64639c7d1a4cc09e08c9cf889281b1899195e41a4f35929cac",
+      "bytes": 229
+    },
+    {
+      "path": "scratch/next-blade-fury-repro.json",
+      "sha256": "ebcd6efe3323299b963e2ec0b4aab247d497fa1d12a5ff14b690047ff06c42b1",
+      "bytes": 234
+    },
+    {
+      "path": "scratch/next-blade-fury-repro.log",
+      "sha256": "94c5aff08ba1e07346dc26ee096849bb5af5b467a8490af32c1b575ec5407a4f",
+      "bytes": 1497
+    },
+    {
+      "path": "scratch/next-probe-source-audit.json",
+      "sha256": "5af1a3fe8cada0ea0671f499c834fdfe3d4464133353a87e054639d54ecab940",
+      "bytes": 271
+    },
+    {
+      "path": "scratch/oracle-owner.json",
+      "sha256": "60d7c464472d7f4536addeb62f8d8819ef8b59c5c6717e585dd02ac5bda95ffc",
+      "bytes": 221
+    },
+    {
+      "path": "scratch/oracle.json",
+      "sha256": "d3d4268fe2d1cb76ea349f537299672a1fcb19dc93b24fa35db3d7f7da6546a0",
+      "bytes": 228
+    },
+    {
+      "path": "scratch/oracle.log",
+      "sha256": "74d759dc74d7c836edabce553c07243abf8e223a9a56c82cc3adae6eb411a787",
+      "bytes": 4828
+    },
+    {
+      "path": "scratch/post-full-freeze-audit.json",
+      "sha256": "f245e868349d7030aff9a6ec3180e1e60ffdfd03c75c27284daf0202991d1a2a",
+      "bytes": 170
+    },
+    {
+      "path": "scratch/preview-server-access.log",
+      "sha256": "b924b29756e9cbb2d5034ad358076a64ff2dc2b99bc588d3cbd50c5adc4c2872",
+      "bytes": 474942
+    },
+    {
+      "path": "scratch/preview-server-owner.json",
+      "sha256": "cebe3fcd7aec37d66935b0d716c001c9e42afdace99f95c5845426a70b662c58",
+      "bytes": 132
+    },
+    {
+      "path": "scratch/preview-server-terminal.json",
+      "sha256": "5e67aaae7386f79d260fde2289918b1f0d12f529c68bbcf00a8b38fdea3e30e6",
+      "bytes": 476
+    },
+    {
+      "path": "scratch/previous-browser.cjs",
+      "sha256": "11215f22d2b86d3223fbc4de1888e31d32cd68381a6ba506da556235f6859f9c",
+      "bytes": 11108
+    },
+    {
+      "path": "scratch/reconcile-inventory.py",
+      "sha256": "191ade6a7c41bc9d792f86aed5593fac3f093da4222decbc4d823803cc366c75",
+      "bytes": 2114
+    },
+    {
+      "path": "scratch/red-owner.json",
+      "sha256": "40addac07250f39b7479d78703bdaf3239b30d2d8243495cdc1e625f6665296a",
+      "bytes": 247
+    },
+    {
+      "path": "scratch/red.json",
+      "sha256": "c69474f33cc0a3e8f4f0a9d34b44b67c982ed0e1c028ad85127ba02970ab4f31",
+      "bytes": 253
+    },
+    {
+      "path": "scratch/red.log",
+      "sha256": "acd5ec9ae967cb44e33f6a01525d3bcebd5bd51d45537fcec37eb2fd3fab9bee",
+      "bytes": 22438
+    },
+    {
+      "path": "scratch/run-stream.py",
+      "sha256": "4c8a43c402b3f5ab98917b3d34c4525f11342fcdf21af3bae5d155992c0094b5",
+      "bytes": 914
+    },
+    {
+      "path": "scratch/serve.py",
+      "sha256": "f57b0476ea3eb6d7b1b619f129cc62663c0772c506009ae4b74a911f12281458",
+      "bytes": 842
+    },
+    {
+      "path": "scratch/task.json",
+      "sha256": "20edb374939162cdf341902c10dedca9d086d1daf19d7b3171f834b669f1c07c",
+      "bytes": 408
+    },
+    {
+      "path": "scratch/types-corrected-owner.json",
+      "sha256": "aca782ffd468a3974ae33423bbbbe8e5887672d80fce0c14fabb5a1098a6e227",
+      "bytes": 105
+    },
+    {
+      "path": "scratch/types-corrected.json",
+      "sha256": "8b697868ba93f2e77368dd2389e80e2a61b009bf1b2d3ae9f7b5894bdc75676a",
+      "bytes": 112
+    },
+    {
+      "path": "scratch/types-corrected.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "path": "scratch/types-owner.json",
+      "sha256": "aed915f872104a13e7b273ed7f52cc321625686fd4f9a5944c30eb933814b2a1",
+      "bytes": 105
+    },
+    {
+      "path": "scratch/types.json",
+      "sha256": "f11d9996d53bbff78eb41a95126b08f0a5495b9b20a0c3629227e6d731f065a4",
+      "bytes": 111
+    },
+    {
+      "path": "scratch/types.log",
+      "sha256": "7138e106fc63f952e1e9dd4992546e6cb6f95196f9ade9fa5881e434a54bad21",
+      "bytes": 3464
+    },
+    {
+      "path": "scratch/ui-red-owner.json",
+      "sha256": "3278720bed72de931d6008c45e3f1118ccb4ec11f9e6adc546cfcf1074cff3a1",
+      "bytes": 160
+    },
+    {
+      "path": "scratch/ui-red.json",
+      "sha256": "cbaf67860e054eeb88bdadfe4afcb142e4c4820f56ee34a5b13d7e90af693264",
+      "bytes": 167
+    },
+    {
+      "path": "scratch/ui-red.log",
+      "sha256": "2b39e7aeecae1717ca8c490225b055d8b3c4ff43a7fc7b5a8bbaf40f88a41edd",
+      "bytes": 13579
+    },
+    {
+      "path": "scratch/visual-review.json",
+      "sha256": "8ce9f43905cd52f779b215befac0bda53571a243ad947e75d127129a11b35ae1",
+      "bytes": 1276
+    }
+  ],
+  "terminal_receipts": [
+    {
+      "path": "scratch/browser-en-desktop.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/browser-en-mobile-corrected.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/browser-en-mobile.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/browser-zh-desktop-corrected.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/browser-zh-desktop-final.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/browser-zh-desktop.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/browser-zh-mobile-corrected.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/browser-zh-mobile-final.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/browser-zh-mobile.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/build.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/data-final.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/engine.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/focused.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/full.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/green-corrected.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/green.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/lint.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/native.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/next-blade-fury-line-repro.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/next-blade-fury-repro.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/oracle.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/red.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/types-corrected.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/types.json",
+      "exit_code": 2
+    },
+    {
+      "path": "scratch/ui-red.json",
+      "exit_code": 1
+    }
+  ],
+  "member_hashes_verified": true,
+  "raw_archive_sha256": "b71e4609a3995c1d838c9e71a040ca64388de46b1e9a500b87e50a0ba11750d7",
+  "build_hash_map": "scratch/frozen-inputs.json",
+  "final_evidence": [
+    "full.json",
+    "post-full-freeze-audit.json",
+    "browser-audit.json",
+    "visual-review.json",
+    "committed-source-audit.json"
+  ],
+  "independent_acceptance_open": true
+}

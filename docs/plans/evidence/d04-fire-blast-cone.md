@@ -113,3 +113,10 @@ All148 raw members and20 terminal receipts are member-hash verified. Cleanup
 removed908 exact task-owned files after every consumer finished; scratch and
 all41 recorded owned PIDs are absent, port4493 is closed, remaining[]/failures[].
 The active worktree/claim and shared caches remain preserved.
+
+
+## Dragon Claw continuation
+
+The next missing paired-strike/critical promise is now repaired and locally
+verified. See [Dragon Claw evidence](d04-dragon-claw.md). Fire Blast geometry,
+Burn and its bounded acceptance remain unchanged; full v1 remains unfinished.

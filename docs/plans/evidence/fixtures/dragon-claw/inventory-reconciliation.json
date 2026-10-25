@@ -1,0 +1,19 @@
+{
+  "rows": 213,
+  "IDs_and_order_unchanged": true,
+  "credited": [
+    "skills-assassin-dragon-claw"
+  ],
+  "changed_rows": [
+    "skills-assassin-dragon-claw"
+  ],
+  "other212rows_exact": true,
+  "counts": {
+    "unverified": 105,
+    "bounded-functional": 106,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "baseline_sha256": "1b3c539cff98ac846012517c901c57ca91faecf58a34fe6d9474c2a0044579bc",
+  "final_sha256": "5b41629956cc4e713cf3186222ee3e8103151c426cf46e149e879a90f5625a91"
+}

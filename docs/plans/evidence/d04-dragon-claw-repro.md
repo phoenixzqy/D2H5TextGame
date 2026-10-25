@@ -19,3 +19,11 @@ current frozen1386source snapshot, which remains exact through full verification
 A numeric bonus-critical design is also absent and needs an explicit contract;
 this reproduction does not settle that percentage or waive martial build goals.
 Genuine retainedL33/next402/Baal-uncleared digest remains unchanged.
+
+
+## Local repair continuation
+
+The original one-attempt diagnostic above is historical. Actual paired strikes
+and the explicitly authored local critical bonus are now fixed and verified
+locally. See [repair evidence](d04-dragon-claw.md); independent/earned acceptance
+remains open. Original raw observations and diagnostic exit1 remain unchanged.
