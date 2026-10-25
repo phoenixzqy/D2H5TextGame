@@ -1,0 +1,651 @@
+{
+  "raw_archive_sha256": "3dd25fe4f086ad6bac09bb4f4eb6c040a4dafaaeb7d0f6f099b6c0d2273fa2a4",
+  "members": [
+    {
+      "path": "scratch/author-review-final.json",
+      "bytes": 1360,
+      "sha256": "d7924613ff4ce44edd678bca0083484de62495fe996c1aa3689cd1d3e0b5e953"
+    },
+    {
+      "path": "scratch/author-review.json",
+      "bytes": 1164,
+      "sha256": "2a912e7f355eae1ce2a1cbce52ff7360a71210d7d0cc3461a57020920775c3e9"
+    },
+    {
+      "path": "scratch/browser-audit.json",
+      "bytes": 7681,
+      "sha256": "ef0acec6116c4dfcc9855bdfb150e98ab19abf8447e496cba700f0f8e4084d1f"
+    },
+    {
+      "path": "scratch/browser-en-1280/browser-report.json",
+      "bytes": 1524,
+      "sha256": "b90fe5f1c564aac0c8108a94fcabfc98786268daaf61a14f68ae861da2d0fde7"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-cast-visible.png",
+      "bytes": 224301,
+      "sha256": "625aa4096fcdb80358c5e7415dfc055dc42786fedc63109bb643c7a58c57cf73"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-combat.json",
+      "bytes": 2496,
+      "sha256": "92919c0dff3a235772f4ebc864a219de726771aa6e64928864b00c46b590fe5c"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-cone-stats.png",
+      "bytes": 122504,
+      "sha256": "12e91575199df0471198c985e1c7bff3f3a38fd211ac8eee8d7aa441aaefce8f"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-description.png",
+      "bytes": 122504,
+      "sha256": "12e91575199df0471198c985e1c7bff3f3a38fd211ac8eee8d7aa441aaefce8f"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-details.png",
+      "bytes": 124139,
+      "sha256": "c634796cc075d1ecba9c9d27cec885fe50ee6c05edc1520e6da431e96aed6e98"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-fresh-1.json",
+      "bytes": 3178,
+      "sha256": "eb387eca625731c3e616c7d4484c86672e621bc9da2ac47c9caabd33855c97f2"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-imported-2.json",
+      "bytes": 4832,
+      "sha256": "759659ed2423a245a573bdbddfa5945b5e6aa469c5904ba4be040ea77694b680"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-observed-attempts.json",
+      "bytes": 2417,
+      "sha256": "8e9e12c9227d302dfe3600e347b9b3724f939cd598bd1d10d09f1db7be3747dc"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-rank1-after-4.json",
+      "bytes": 4835,
+      "sha256": "899dcde3d7a293a53d832d0c401d6eb8324320872a90b91c1d803660e7be140e"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-rank1-before-3.json",
+      "bytes": 4832,
+      "sha256": "c071e2ba11d2b61e374fe6d64ab7d79a1fabd176df008e590bcb6ed6e47c42b6"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-rank2-after-6.json",
+      "bytes": 4885,
+      "sha256": "2148036cf762efae58eb2a3eed8f57278d239a04860eb6e0f353c9010abf60f8"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-rank2-before-5.json",
+      "bytes": 4885,
+      "sha256": "2148036cf762efae58eb2a3eed8f57278d239a04860eb6e0f353c9010abf60f8"
+    },
+    {
+      "path": "scratch/browser-en-1280/en-1280-blade-fury-synthetic-input.json",
+      "bytes": 4012,
+      "sha256": "a2d8d04f3f2bf09d02179c4cf493b11f044df2ca1e4d03c32a801cd6130b774e"
+    },
+    {
+      "path": "scratch/browser-en-360/browser-report.json",
+      "bytes": 1518,
+      "sha256": "82801880ded21e4ecdbd0b0da1a48eaf6936c0ee9d37a26ea1cba9742562b0f4"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-cast-visible.png",
+      "bytes": 54549,
+      "sha256": "483e5b731417f92ee7e1c232c713383ee0cce57bc031f9a72f034c4a5951a864"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-combat.json",
+      "bytes": 2496,
+      "sha256": "92919c0dff3a235772f4ebc864a219de726771aa6e64928864b00c46b590fe5c"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-cone-stats.png",
+      "bytes": 45655,
+      "sha256": "bfffdd750d8f0d4e402ae2315b9f7b97bdf2b0b6452edb7578dd662641866dff"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-description.png",
+      "bytes": 49231,
+      "sha256": "c452e9758f7f5a77e68e63ee015bdfe9c3e6c1014dc06880626b7d20e9f65fb5"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-details.png",
+      "bytes": 50946,
+      "sha256": "e1b70475b130769d967efb78a7e7e49b7a3d095ce4e94199a8f538319a45e3ea"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-fresh-1.json",
+      "bytes": 3178,
+      "sha256": "114f93a1ede5f7cf6011812cd5cbef1819ab4cc427ca3c9179a55125466160d6"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-imported-2.json",
+      "bytes": 4832,
+      "sha256": "03145930fe6764d20ccd0d7e3ed951a1f2da5d8bb3d9bd80b5439af61245a58b"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-observed-attempts.json",
+      "bytes": 2417,
+      "sha256": "8e9e12c9227d302dfe3600e347b9b3724f939cd598bd1d10d09f1db7be3747dc"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-rank1-after-4.json",
+      "bytes": 4835,
+      "sha256": "5c19738b7c63e1803b309a75061d39cc22c76ec1a6d4ec7818f820e8a3bc6ffa"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-rank1-before-3.json",
+      "bytes": 4832,
+      "sha256": "b8f2eb63b87b101fabd011084e6a627362ad5c9895a0bd5a88ac24f46f029fa0"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-rank2-after-6.json",
+      "bytes": 4885,
+      "sha256": "415ad465233fbebd2db8f1a186b7e4361f16bdd20b463f352b832fef14d83fa9"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-rank2-before-5.json",
+      "bytes": 4885,
+      "sha256": "415ad465233fbebd2db8f1a186b7e4361f16bdd20b463f352b832fef14d83fa9"
+    },
+    {
+      "path": "scratch/browser-en-360/en-360-blade-fury-synthetic-input.json",
+      "bytes": 4012,
+      "sha256": "0a82ef93604fbd6bf9754282523226d4d353348fa50fdb713c763977b4c060d4"
+    },
+    {
+      "path": "scratch/browser-suite.py",
+      "bytes": 312,
+      "sha256": "266e8f532bb95654240cea00134351b38ac8c0628bd8c6d9451d31fe0b590fd9"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/browser-report.json",
+      "bytes": 1472,
+      "sha256": "4ac711a1f1c337d462144695660bf3b4de629afa011f593c92814f6337306806"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-cast-visible.png",
+      "bytes": 209930,
+      "sha256": "2fc64bc34eee054dd87b5b2c7d280f4791f944f1022f3b5b0707e9c82ae937fe"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-combat.json",
+      "bytes": 3205,
+      "sha256": "297e92f4088e67ef6bc0585d28d45ce46b1494318a4db4b7ce5fefa2a0089160"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-cone-stats.png",
+      "bytes": 124407,
+      "sha256": "c55c6967b959aad2d9fc11dafb54f566d529cd108b056500c66675f720e39813"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-description.png",
+      "bytes": 124407,
+      "sha256": "c55c6967b959aad2d9fc11dafb54f566d529cd108b056500c66675f720e39813"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-details.png",
+      "bytes": 126126,
+      "sha256": "631431b6be9e93247f53307f8b0b8bee0f52201323ec5860645a01828fdadc00"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-fresh-1.json",
+      "bytes": 3181,
+      "sha256": "7d4e6e72ac0a178623ee56ec01e4da2cf3d610e74b75ed6673df13f88562f50a"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-imported-2.json",
+      "bytes": 4835,
+      "sha256": "c04a7d8877cf6a90fb91a1ed0f2e2c80a3090ec0308521a84f0abd6f4b349b79"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-observed-attempts.json",
+      "bytes": 3126,
+      "sha256": "67568a6c6ea03f20a9f6ef0759b314f6417774f9c85f8f68a9a72dae031666ad"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-rank1-after-4.json",
+      "bytes": 4838,
+      "sha256": "2415b415b22e6bb27b87c93313ee4d1846bfd0d6a5c07162251b1f4ac7a0ec15"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-rank1-before-3.json",
+      "bytes": 4835,
+      "sha256": "cab61599a810134dc7b30428153246bb8589342cd0b87b5086c29ef5695552b5"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-rank2-after-6.json",
+      "bytes": 4888,
+      "sha256": "7e2dbcf086be7e5ab21432dd769bf039b7eaf4fca12a9a87c4a5a751276b155c"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-rank2-before-5.json",
+      "bytes": 4888,
+      "sha256": "7e2dbcf086be7e5ab21432dd769bf039b7eaf4fca12a9a87c4a5a751276b155c"
+    },
+    {
+      "path": "scratch/browser-zh-CN-1280/zh-CN-1280-blade-fury-synthetic-input.json",
+      "bytes": 4015,
+      "sha256": "cee005261525d655de9710a2ce7e6e1cbc400a9613d311dfda8ff2353045d771"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/browser-report.json",
+      "bytes": 1466,
+      "sha256": "d87437475e425ada7809fae9ceda052a571ee92da66ba734376c04fc034bb930"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-cast-visible.png",
+      "bytes": 60276,
+      "sha256": "0eb623cd2bb05ee7c61d67c0fd5c0589bb46361b6fa068bde1f30119cd2f4488"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-combat.json",
+      "bytes": 3205,
+      "sha256": "297e92f4088e67ef6bc0585d28d45ce46b1494318a4db4b7ce5fefa2a0089160"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-cone-stats.png",
+      "bytes": 51906,
+      "sha256": "3f41ec5cd27b1d9c1208aba68d74413de81064e4eb776561e8491e051d1535a6"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-description.png",
+      "bytes": 56554,
+      "sha256": "ecf5ae42d10b451f8a8574cb9008f5b9d05a98f4b143643de8f9cb9bda0c247c"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-details.png",
+      "bytes": 58280,
+      "sha256": "f4c908606ba77aa79175ecbec78228926fd3ceaa2dd7087b27a8e4201e33ac6d"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-fresh-1.json",
+      "bytes": 3181,
+      "sha256": "5d0d5d3bad012f795f0008e5e65ef496bfdb62b42a5e6cbc3eb0fe9517ffffb6"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-imported-2.json",
+      "bytes": 4835,
+      "sha256": "8dcb92f1b53d070f0c8f94859a88190a00f168bcb74357b1b75a4c7012e16f95"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-observed-attempts.json",
+      "bytes": 3126,
+      "sha256": "67568a6c6ea03f20a9f6ef0759b314f6417774f9c85f8f68a9a72dae031666ad"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-rank1-after-4.json",
+      "bytes": 4838,
+      "sha256": "ab51f997cfbcf7bd8ceb77880f02f7650d04546905d38fe12231d3d2c24c762c"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-rank1-before-3.json",
+      "bytes": 4835,
+      "sha256": "19add17c9bd98d427d4852a66989bec721680bd9bebe302b1c79bd8fa18ef55b"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-rank2-after-6.json",
+      "bytes": 4888,
+      "sha256": "1c65e9b81659b16ab0c2d766aa8bddf91c92435c42be8825ec200b6f9c802935"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-rank2-before-5.json",
+      "bytes": 4888,
+      "sha256": "1c65e9b81659b16ab0c2d766aa8bddf91c92435c42be8825ec200b6f9c802935"
+    },
+    {
+      "path": "scratch/browser-zh-CN-360/zh-CN-360-blade-fury-synthetic-input.json",
+      "bytes": 4015,
+      "sha256": "778276107cfce785b5ea3b0ff97a0fd141831c16f5af8eed821a6e85588b9944"
+    },
+    {
+      "path": "scratch/browser.cjs",
+      "bytes": 11439,
+      "sha256": "798226996b392ce5fb78b503dd2d1dad628acf825e1d0654b1bf2b2b34e1e0e3"
+    },
+    {
+      "path": "scratch/browser.json",
+      "bytes": 364,
+      "sha256": "a95b571c892db7507972099870cc46311cf6b61db52783e0199d30b6e322ec7e"
+    },
+    {
+      "path": "scratch/browser.log",
+      "bytes": 615,
+      "sha256": "67b41cd7f8cb57fb25730fc40f38e1759d7d38f54477791a38fd98874b632b6d"
+    },
+    {
+      "path": "scratch/build-audit.json",
+      "bytes": 129,
+      "sha256": "05bc40cfc391ff0d04899660dfcde65d5650939548a3813ad436efa6b80c592a"
+    },
+    {
+      "path": "scratch/build.json",
+      "bytes": 157,
+      "sha256": "e88944b1ff56b0aea6541b64a4874414a3132df220f8d769941284fe9330b421"
+    },
+    {
+      "path": "scratch/build.log",
+      "bytes": 2193,
+      "sha256": "9e2eff37baeac85481339a093c7f004c44047df3bacbcc005f3f38efa81bf13d"
+    },
+    {
+      "path": "scratch/committed-source-audit.json",
+      "bytes": 158256,
+      "sha256": "cdb58e585ee8f01ae1d2c483218bc67316a4c824b1597a47c0a4c54062a48aae"
+    },
+    {
+      "path": "scratch/corrections.json",
+      "bytes": 1259,
+      "sha256": "a6a81927860ba03bb4f92609db6dd00842fcc1dbc4c01b927909154072ea7546"
+    },
+    {
+      "path": "scratch/engine.json",
+      "bytes": 106,
+      "sha256": "940ad1c58bf11e86a494b6a7f9bfeb1eb24606a69e02eb66527698a72690bd5d"
+    },
+    {
+      "path": "scratch/engine.log",
+      "bytes": 67415,
+      "sha256": "aa8c07ae0b8f4b94fd6fbbb24fb7f7eb5738a922c602163a4d3c243dfdc20704"
+    },
+    {
+      "path": "scratch/final-validate.py",
+      "bytes": 5746,
+      "sha256": "b020cc9b3f237c28b1e1a2f0e9e9d5f294854c77a7636ce4b1b642e40e6b9752"
+    },
+    {
+      "path": "scratch/finish-docs.initial.py",
+      "bytes": 4302,
+      "sha256": "a08a801a2d3b16c17d395424c343ece0163ff93540860169cfd681b8a3c6b95f"
+    },
+    {
+      "path": "scratch/finish-docs.py",
+      "bytes": 4302,
+      "sha256": "01952938021c137c1d542f46ed79368a06555d1a24a6c99d1b4dfdbf098845ed"
+    },
+    {
+      "path": "scratch/focused-final.json",
+      "bytes": 242,
+      "sha256": "496b9d68d48d9db605bbfa7bad40b6199e37aeb2a0ec962e3d7d915fc691af6b"
+    },
+    {
+      "path": "scratch/focused-final.log",
+      "bytes": 505,
+      "sha256": "21c05b9f1395180be6183436877ba0c6ae4637857f85a815e9dd83376c743ecb"
+    },
+    {
+      "path": "scratch/focused.json",
+      "bytes": 425,
+      "sha256": "5abea65523f3ed10182c6a81baa5d7b8b529cc2190e249a5f7b6415ca206d858"
+    },
+    {
+      "path": "scratch/focused.log",
+      "bytes": 793,
+      "sha256": "f539ab996935692e4cd4360d9c459543e9c28e8a3df05e2b2a0790759486ba43"
+    },
+    {
+      "path": "scratch/frozen-inputs.json",
+      "bytes": 261246,
+      "sha256": "ba77ddd051ad951d886cca3fc5479297a87e0bafeab515055187e176a4eab6f9"
+    },
+    {
+      "path": "scratch/full.json",
+      "bytes": 91,
+      "sha256": "7234214f871090b53882b5d2a29473deeb04c276ae9d81c89a6a1a61650d5958"
+    },
+    {
+      "path": "scratch/full.log",
+      "bytes": 158303,
+      "sha256": "b96cf840ad929dfb7779d6857d6bafbaa524c63c77c93d0e604ba2f41b6b6ef6"
+    },
+    {
+      "path": "scratch/green.json",
+      "bytes": 309,
+      "sha256": "fe2917660182c6028ed608f482773d9ddf72393ec2e5ebe5f3feadecda475510"
+    },
+    {
+      "path": "scratch/green.log",
+      "bytes": 6274,
+      "sha256": "dca5ae454aae23fea1e3d72e4b6f3d3417f825752c1b1e1f3dd9c9789c641df6"
+    },
+    {
+      "path": "scratch/inventory-reconciliation.json",
+      "bytes": 471,
+      "sha256": "23203b884df6148bc409bbc474a6aec6cbc5cbf692228fc320a327ec8602dc26"
+    },
+    {
+      "path": "scratch/lint-final.json",
+      "bytes": 99,
+      "sha256": "764390303fdc2a1744e3864907a8333896d81429bfa814f9fa29da172d0feafd"
+    },
+    {
+      "path": "scratch/lint-final.log",
+      "bytes": 197,
+      "sha256": "d8b7fac196af4b1774a9f0c3c0539db1a97062522a54effac572aaa6221a5172"
+    },
+    {
+      "path": "scratch/lint.json",
+      "bytes": 99,
+      "sha256": "609f22d74a9fae7d62601a0fe25024b9f91457abf7d5a8e9ad4e6e5814485109"
+    },
+    {
+      "path": "scratch/lint.log",
+      "bytes": 766,
+      "sha256": "879148ccede0dcb8b00735ea2f679a73a2f600e3b256215a93a480f3384f1d84"
+    },
+    {
+      "path": "scratch/live-owned-processes.json",
+      "bytes": 1503,
+      "sha256": "c1280434e3d8848177ccd97eba95afd3787069f002f58f3fbcd0e2bbd88247d7"
+    },
+    {
+      "path": "scratch/mind-blast-observed.json",
+      "bytes": 90913,
+      "sha256": "65fb52a48cd33ff41edeb2e18759ba2e23f1a78389537d4f0bc425914182ee27"
+    },
+    {
+      "path": "scratch/mind-blast-repro.ts",
+      "bytes": 4388,
+      "sha256": "c5c0126f528f268594610565a50d6cf2519970757ae53ba45580276c6735b307"
+    },
+    {
+      "path": "scratch/native-repaired.json",
+      "bytes": 48553,
+      "sha256": "776b649d16e62f9ed98608ca8b04c73fe27cb721fab0147df14b64fe70dc5ac7"
+    },
+    {
+      "path": "scratch/native-repaired.ts",
+      "bytes": 4238,
+      "sha256": "f9e5df4d6b3e8cb8ed6c5e44b9bcdd321f579f4b57231907ca42903a9ad611fb"
+    },
+    {
+      "path": "scratch/native.json",
+      "bytes": 176,
+      "sha256": "6262526294d83753a36b77a4a45e5b0975edd4723531d0596cabfe77c689c4a2"
+    },
+    {
+      "path": "scratch/native.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scratch/next-mind-blast-research.json",
+      "bytes": 1747,
+      "sha256": "74ed3e992558c6c23024b4ed716fdc4403cb9472cb6fecb7f199ac69493a35c0"
+    },
+    {
+      "path": "scratch/next-mind-blast.json",
+      "bytes": 178,
+      "sha256": "fae72e0e27030668b988119a1c79b1c9ab0a383e673b84aed34ac748014fe63c"
+    },
+    {
+      "path": "scratch/next-mind-blast.log",
+      "bytes": 1246,
+      "sha256": "af7a31f9c7fb432d0bdff25cd7efe87293da975459f58da42d9a1aff03b209d3"
+    },
+    {
+      "path": "scratch/package.py",
+      "bytes": 3572,
+      "sha256": "8d1142599044d10939796f4bc306c50b7e7a02dd163ed56660eea8605e68f4ef"
+    },
+    {
+      "path": "scratch/pre-lint-test-correction-inputs.json",
+      "bytes": 261246,
+      "sha256": "85165db44bafaf51c562084603272787d9c63e24000647f33f076580cb698e47"
+    },
+    {
+      "path": "scratch/raw-oracle.cjs",
+      "bytes": 625,
+      "sha256": "4a05c199c52636d65cc6109e4183899bd363881ba74f8a3f9230f5c5646ab295"
+    },
+    {
+      "path": "scratch/raw-oracle.json",
+      "bytes": 134,
+      "sha256": "54639e23b0fae922783c6f3a49d3f5199fb8343d5458c3499f80f2b0f011cae3"
+    },
+    {
+      "path": "scratch/raw-oracle.log",
+      "bytes": 674,
+      "sha256": "c534ad3945cc3d3a2fe272066cf6406e6f93e4f34a2eeb10978d96c053a6b7ec"
+    },
+    {
+      "path": "scratch/reconcile.py",
+      "bytes": 1888,
+      "sha256": "91515090e805ec41b89ac061726c4483b6c10b7c989a33b620567d28f6bb9505"
+    },
+    {
+      "path": "scratch/red.json",
+      "bytes": 184,
+      "sha256": "3e36a58e4ab2b77faf876a338e9aaa05cda7b6e10177a8028512fb994b643965"
+    },
+    {
+      "path": "scratch/red.log",
+      "bytes": 20790,
+      "sha256": "b15527258bf6e09fbcff14ffddd92543c28ef340b0be1cea452d44fbaf20a6a8"
+    },
+    {
+      "path": "scratch/run.py",
+      "bytes": 482,
+      "sha256": "0d670df37b4bd30873db057811c509fcfcf4500021a6aeeb218284cdfa3d8d39"
+    },
+    {
+      "path": "scratch/task.json",
+      "bytes": 197,
+      "sha256": "e06d0f5be02eb7c92e1a82f42413a3c536970872587774d052288d3615df942e"
+    },
+    {
+      "path": "scratch/types-delivery.json",
+      "bytes": 104,
+      "sha256": "397d1848787fa7322297c1468767621cbd8d3930933afb9b6f7e0766c2ee600d"
+    },
+    {
+      "path": "scratch/types-delivery.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "scratch/types-final.json",
+      "bytes": 103,
+      "sha256": "db468a427cff62f0326e42bcd6257086947c73aea643b5dd7db17a031270339b"
+    },
+    {
+      "path": "scratch/types-final.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "scratch/types.json",
+      "bytes": 103,
+      "sha256": "07d41f7fe0a4587fcb8e1271131cc957ccb6877083ee8082424579c7e32596ea"
+    },
+    {
+      "path": "scratch/types.log",
+      "bytes": 408,
+      "sha256": "1e82086804c20fa0d80ef7722ef13f845c81ac4bea4fc4913d45cb0ddfc42add"
+    },
+    {
+      "path": "scratch/ui-red.json",
+      "bytes": 156,
+      "sha256": "3c9ab6bf3bb3f6e6651991ba8cd0865be95433bf521172977fc86bc29c53b5a5"
+    },
+    {
+      "path": "scratch/ui-red.log",
+      "bytes": 18593,
+      "sha256": "4b7d844623e204749ab98843a984af60882852d18b003995e3e83658319f97c3"
+    }
+  ],
+  "terminal_receipts": [
+    {
+      "path": "scratch/browser.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/build.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/engine.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/focused-final.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/focused.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/full.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/green.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/lint-final.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/lint.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/native.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/next-mind-blast.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/raw-oracle.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/red.json",
+      "exit_code": 1
+    },
+    {
+      "path": "scratch/types-delivery.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/types-final.json",
+      "exit_code": 0
+    },
+    {
+      "path": "scratch/types.json",
+      "exit_code": 2
+    },
+    {
+      "path": "scratch/ui-red.json",
+      "exit_code": 1
+    }
+  ],
+  "disposable_build_files": 760
+}

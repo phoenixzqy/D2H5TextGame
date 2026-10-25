@@ -1,6 +1,6 @@
 # BUG-209 — Blade Fury targets a line instead of its promised cone
 
-- Status: reproduced; cone contract and repair open.
+- Status: fixed and verified locally; independent design/QA and earned balance open.
 - Severity: Medium — paid area targeting differs from the advertised shape.
 - Environment: Node24.21.0, real default registry/native L30 Assassin; pure
   engine reproduction, no browser viewport. Both en/zh-CN descriptions promise
@@ -36,5 +36,13 @@ Fire Blast only. A repair must retain Blade Fury's Physical identity and must
 not copy Fire Blast's Fire/Burn contract or add Dragon Claw's critical bonus.
 
 See [native evidence](../../docs/plans/evidence/d04-blade-fury-cone-repro.md).
-No Blade Fury source patch, functionality credit, genuine campaign or remote
-action. No workaround restoring the promised geometry is established.
+The initial reproduction included no source patch, functionality credit,
+genuine campaign or remote action. Its observations remain historical.
+
+## Local repair continuation
+
+Commit `feb5c6f8` authors the real Physical cone with separate closed-schema
+identity and truthful bilingual rank presentation. Native12cases,47new regressions,
+full14777/661/two existing skips, types/lint/build and four production public
+cases pass. See [verification](../../docs/plans/evidence/d04-blade-fury-cone.md).
+Independent/earned acceptance and full v1 remain open.

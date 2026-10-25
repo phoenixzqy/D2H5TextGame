@@ -1,0 +1,35 @@
+{
+  "pass": true,
+  "committed_source": "feb5c6f8861c334ff7d482c22886cc30cdd35bf0",
+  "source_files": 1393,
+  "design_files": 3,
+  "actual_committed_blobs_and_disk_exact": true,
+  "full_provenance_note": "Full production bytes unchanged. Two test-only lint corrections during full, final47/3 recheck and final types/lint pass; before/after snapshots retained.",
+  "raw_archive_sha256": "3dd25fe4f086ad6bac09bb4f4eb6c040a4dafaaeb7d0f6f099b6c0d2273fa2a4",
+  "verified_raw_members": 115,
+  "terminal_receipts": 17,
+  "removed_exact_files": 875,
+  "recorded_pids_absent": 24,
+  "scratch_absent": true,
+  "port4495_closed": true,
+  "remaining": [],
+  "failures": [],
+  "inventory_rows": 213,
+  "changed_rows": [
+    "skills-assassin-blade-fury"
+  ],
+  "counts": {
+    "unverified": 104,
+    "bounded-functional": 107,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "browser_exact_save_pairs": 8,
+  "full_tests": 14777,
+  "full_files": 661,
+  "existing_skips": 2,
+  "local_document_links_checked": 296,
+  "genuine_decompressed_sha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "independent_and_earned_acceptance_open": true,
+  "umbrella_goal": "active; C2-C4/full G0-G7 unfinished"
+}

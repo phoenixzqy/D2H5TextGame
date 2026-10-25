@@ -1,0 +1,17 @@
+{
+  "baseline_sha256": "5b41629956cc4e713cf3186222ee3e8103151c426cf46e149e879a90f5625a91",
+  "final_sha256": "787bd57a3db8b555db664e7cc3c5771d79e23f3921cf9095cd0a9a05e3d32cbc",
+  "rows": 213,
+  "IDs_order_unchanged": true,
+  "changed_rows": [
+    "skills-assassin-blade-fury"
+  ],
+  "other_rows_unchanged": 212,
+  "counts": {
+    "unverified": 104,
+    "bounded-functional": 107,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "assassin_bounded": 10
+}

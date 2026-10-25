@@ -24,3 +24,10 @@ Resources, holds and enemies are synthetic. There is no earned class/build,
 balance or campaign credit. Blade Fury's row is unchanged by the Dragon Claw
 batch; source provenance is retained with that batch's final frozen snapshot.
 The genuine L33/nextNormal402/Baal-uncleared save remains unchanged.
+
+## Local repair continuation
+
+The line diagnostic above is historical. Actual Physical cone targeting and
+truthful bilingual rank presentation are now locally repaired and verified.
+See [repair evidence](d04-blade-fury-cone.md). Independent/earned acceptance
+remains open; original failing observations are preserved.
