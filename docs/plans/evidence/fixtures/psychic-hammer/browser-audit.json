@@ -1,0 +1,22 @@
+{
+  "cases": 4,
+  "saveContinuePairs": 8,
+  "domains": [
+    "player",
+    "inventory",
+    "map",
+    "mercs",
+    "formation"
+  ],
+  "geometryChecks": 20,
+  "screenshots": 16,
+  "individuallyInspected": [
+    "en-360-cast-visible",
+    "zh-CN-360-description",
+    "en-1280-current-next",
+    "zh-CN-1280-cast-visible"
+  ],
+  "errors": [],
+  "fixture": "Synthetic L30/resources/imported helmet, fixed combat Date.now, ordinary timers and public controls; no earned credit.",
+  "observed": "Actual Arcane cast/Stun and MP use; Chinese desktop screenshot also shows a stunned enemy unable to act."
+}

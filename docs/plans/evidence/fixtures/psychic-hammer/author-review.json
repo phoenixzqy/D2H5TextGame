@@ -1,0 +1,16 @@
+{
+  "scope": "Hammer authored data/schema, bilingual description, localized Stun label and four test files; author review only",
+  "securityCheck": "pass",
+  "correctness": "Data now declares shared on-hit Stun. Native paid hit/miss/boss/trash, actual timing, one-target isolation, finite expiry, canonical refresh and ordinary on-hit-before-death settlement are exercised. No engine exception or changed damage formula.",
+  "readability": "Narrow data correction and six UI lines reuse existing pure display/control definitions; no additional runtime abstraction.",
+  "architecture": "Existing JSON validation, ordinary class-active authority, scheduler, status playback and saves reused; no save version, dependency or API expansion.",
+  "security": "First-party local gameplay only. Strict schema rejects contradictory effect metadata. No credentials, remote, CI or permission changes.",
+  "performance": "No new loop or allocation in combat hot path; one status ID changes to an existing consumer. Test/bundle/PWA budgets and earned balance remain open.",
+  "findings": [],
+  "limits": [
+    "Independent QA/design and earned balance open.",
+    "Full started before one UI expectation used explicit String conversion for lint. Final focused/lint/typecheck cover final test bytes; runtime/build frozen.",
+    "Playback checks all HP/MP and living active-status views, matching staged rendering rather than inactive future/dead raw markers.",
+    "Browser L30/resources/helmet/fixed combat Date.now are synthetic; no earned campaign credit."
+  ]
+}

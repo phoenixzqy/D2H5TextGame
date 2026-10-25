@@ -1,6 +1,6 @@
 # BUG-212 — Psychic Hammer Knockback has no observed combat effect
 
-- Status: reproduced; author adaptation contract and repair open.
+- Status: locally repaired and verified at `884b0839`; independent/earned acceptance open.
 - Severity: High — the advertised control component has no observed consumer.
 - Environment: Node24.21.0, actual JSON/default registry/native L30 Assassin;
   ranks1/2/20 × seeds7/19/41/97; synthetic resources and isolated first actions.
@@ -37,3 +37,18 @@ claim: this fixture proves no movement in this path, not every possible layout.
 
 Evidence: [native reproduction](../../docs/plans/evidence/d04-psychic-hammer-repro.md).
 No Hammer source patch, inventory credit, genuine campaign or remote action.
+
+## Subsequent local repair
+
+The [author contract](../../docs/plans/decisions/D04-psychic-hammer-v1.md)
+explicitly replaces inert Knockback with shared on-hit Stun,1s ordinary/0.5s
+boss, without moving targets or changing Arcane damage/payment. This is a new
+author adaptation, not historical tuning or independent balance approval.
+
+Commit `884b0839` includes37schema/adapter/causal/native/UI cases. Landed
+actual/control pairs interrupt the first enemy action2000→4000ms; misses keep
+timing, bosses expire at2200ms and ordinary targets2700ms. Engine7753/287,
+full14965/675/two existing skips, types/lint/build and production4/4 pass.
+[Delivery evidence](../../docs/plans/evidence/d04-psychic-hammer.md).
+Only bounded skill functionality is credited; independent/earned acceptance,
+campaign/Baal, C2–C4/fullG0–G7 and complete privatev1 remain open.

@@ -32,3 +32,11 @@ present during the probe and will be identified by the packet's source audit.
 No skill credit, earned campaign action, balance verdict or remote action.
 Genuine Ancients/Rite remainsL33/nextNormal402/Baal uncleared. Full C2–C4,
 G0–G7, all213skills, earned builds, pacing/economy/endgame/privatev1 remain open.
+
+## Subsequent delivery
+
+The original defect above remains preserved. An explicit
+[author adaptation](../decisions/D04-psychic-hammer-v1.md) and
+[locally verified repair](d04-psychic-hammer.md) follow at `884b0839`.
+Real landed-hit Stun interrupts enemy actions, with finite ordinary/boss expiry.
+Independent design/QA and earned balance remain open.

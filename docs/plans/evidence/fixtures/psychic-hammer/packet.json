@@ -1,0 +1,1011 @@
+{
+  "archiveSha256": "b8cd84c0ea1dea0453f5906e1a6275a8bc2052df37c23bacbacd435dd40c08e8",
+  "members": {
+    "author-review.json": {
+      "sha256": "d2e481e725e14f43365e3c8b21da5b81def8c05443c6158996503e2ba0dff748",
+      "bytes": 1551
+    },
+    "browser-audit.json": {
+      "sha256": "2935ac22febb490b4074b7265125561bf3ae9282e175ce4ddeab73b30e6fc998",
+      "bytes": 600
+    },
+    "browser-corrected-live.json": {
+      "sha256": "a02f53940e80f84ef44af4858b1032c540f15e1423df89a55871ca53e5a51ede",
+      "bytes": 548
+    },
+    "browser-corrected.json": {
+      "sha256": "5b4358f0d83da6f47f5ba10946a5b4a05f68044b2a32228c53ca5cb6b4b78990",
+      "bytes": 593
+    },
+    "browser-corrected.log": {
+      "sha256": "f694485a1285af773acf0dbebbd4f212bdf1c9292d12724beb43a27e65a025fc",
+      "bytes": 642
+    },
+    "browser-first-suite.py": {
+      "sha256": "9dc3a3a9c6d91673ddde5d06f449562d0a1e1ed96a7a59fd8618b75217151039",
+      "bytes": 321
+    },
+    "browser-first.cjs": {
+      "sha256": "599e9efe4b5797a8f3f79e9adfe3d119c8bb690d8342b607827bef9bd4a67b59",
+      "bytes": 11378
+    },
+    "browser-live.json": {
+      "sha256": "5ee35e5c1204f4013c0797116eb52db06f9d1b06484fdfc97eb82c5992aae13f",
+      "bytes": 538
+    },
+    "browser-suite.py": {
+      "sha256": "9dc3a3a9c6d91673ddde5d06f449562d0a1e1ed96a7a59fd8618b75217151039",
+      "bytes": 321
+    },
+    "browser.cjs": {
+      "sha256": "7a3d0e62e134a83aaf9a00c0a738b51b4bc3408881e674633ef62615a34231ec",
+      "bytes": 11372
+    },
+    "browser.json": {
+      "sha256": "46e46988a7c018853fbfb03a9db021b5c52d76f7afda70e213efe63573c887e3",
+      "bytes": 583
+    },
+    "browser.log": {
+      "sha256": "60b06ee9760a52bc39d107b139cccda751753a7cd5fba8ea8953502632e66a40",
+      "bytes": 262152
+    },
+    "build-audit.json": {
+      "sha256": "586a7e6f084dc7aaacc172b88baf97093733650c07308d2baf44426c5a213c26",
+      "bytes": 603
+    },
+    "build-live.json": {
+      "sha256": "c196a02035df7a2f772cdabdeec849d477ed770b7185b7a59464ced75b90c090",
+      "bytes": 348
+    },
+    "build.json": {
+      "sha256": "4908d8e811bada87d1d66d71bad159d05b5e514ed01f69c7911a64746b72beee",
+      "bytes": 394
+    },
+    "build.log": {
+      "sha256": "1a98efc13ee518741f14d14b63e32e5cdb967789d8781ae7b3f916300cd7f631",
+      "bytes": 2133
+    },
+    "corrected-red-live.json": {
+      "sha256": "e70aa2ffede38a7a5545aaf6e2e4f1fe582a019472946b1dc74401a9c24349af",
+      "bytes": 389
+    },
+    "corrected-red.json": {
+      "sha256": "684a3441619c9737a5d32df163e7d39f0e01cf9404ef1a61a7adb05c784018b7",
+      "bytes": 434
+    },
+    "corrected-red.log": {
+      "sha256": "5e1e3fadc0cd224510563e01df315d74fc5c7671acdaacbc4c3655c4d0075ba7",
+      "bytes": 29846
+    },
+    "corrections.json": {
+      "sha256": "1a875a3676dd5c9236307bccba776466269f3a3dc960e6291f466efe6ca2c21d",
+      "bytes": 1660
+    },
+    "engine-live.json": {
+      "sha256": "f5ff1279b5f34e13873a11b36cf26319a0f6f0372fb43f176c2a3fa832881a0c",
+      "bytes": 246
+    },
+    "engine.json": {
+      "sha256": "64562e097dda67061a25b907eafd766c53f698536ae557af00a604a214c0158e",
+      "bytes": 292
+    },
+    "engine.log": {
+      "sha256": "18813f60fc059b370f9ea7e2cfa9f9762c0d34ba93b7265a6c065b35ca739998",
+      "bytes": 67825
+    },
+    "failed-browser-en-360/browser-report.json": {
+      "sha256": "a565dd34db78eb07b4e4790fcae04ac7c2c700c437849a14423093733d523399",
+      "bytes": 127304
+    },
+    "failed-browser-en-360/en-360-psychic-hammer-current-next.png": {
+      "sha256": "7535a578ad39d554eb97aa5c56cc67f26d1ac02793795ac799dc58d74ed1ca7e",
+      "bytes": 45170
+    },
+    "failed-browser-en-360/en-360-psychic-hammer-description.png": {
+      "sha256": "7170bddf9910c8c9faa9289425eb7f8ba5454c17e848c9df5ea591bb7a6d2264",
+      "bytes": 45042
+    },
+    "failed-browser-en-360/en-360-psychic-hammer-details.png": {
+      "sha256": "488e45a1a7fd41a71a8dbdc76ab311efc615b91177edabae6291e5c8552ba86f",
+      "bytes": 45826
+    },
+    "failed-browser-en-360/en-360-psychic-hammer-failed-trace-bounded.manifest.json": {
+      "sha256": "efc1a8168b9bf495a86ef1b063fde548e5cd987aad5dca6ffdf7cbb3fd6bfa7e",
+      "bytes": 327743
+    },
+    "failed-browser-en-360/en-360-psychic-hammer-failed-trace-bounded.zip": {
+      "sha256": "837c23feffda1bae7f28a005f79ca62fca2b486d2f62cc66841db19f5837719f",
+      "bytes": 1227235
+    },
+    "failed-browser-en-360/en-360-psychic-hammer-failed.png": {
+      "sha256": "edbfa9db1cd17533863191dbe98f1a103def4c78bba91b1738ffa34365e6848b",
+      "bytes": 37514
+    },
+    "failed-browser-en-360/en-360-psychic-hammer-fresh-1.json": {
+      "sha256": "5236dc33fa1db9ecb2fca4ec92d381d5bfffad4926fb9f5a11953e3ed6aacd4f",
+      "bytes": 3179
+    },
+    "failed-browser-en-360/en-360-psychic-hammer-imported-2.json": {
+      "sha256": "fa0f1ba1b9a921dfeeef297833cfa82fdf6c743330539afaa82e1381aa689a42",
+      "bytes": 4809
+    },
+    "failed-browser-en-360/en-360-psychic-hammer-rank1-after-4.json": {
+      "sha256": "f281151dc72e8cac8290d81d90aaba7bf5aa5dff85662361501b7c9a6cfcb9a5",
+      "bytes": 4812
+    },
+    "failed-browser-en-360/en-360-psychic-hammer-rank1-before-3.json": {
+      "sha256": "7393a15df7ca2f8a0f465425773f07a8502b741b2373255c8ea18c2cd4b9b02a",
+      "bytes": 4809
+    },
+    "failed-browser-en-360/en-360-psychic-hammer-synthetic-input.json": {
+      "sha256": "222f7986aafeb928bad8aae08e38edcb4e3db6faff9f6005982e7c921f9452ce",
+      "bytes": 3985
+    },
+    "focused-corrected-live.json": {
+      "sha256": "089263ee9d00145fc67b29deeb011d3ad4cc8cd7fa1afe76a1bf39e813b189c5",
+      "bytes": 456
+    },
+    "focused-corrected.json": {
+      "sha256": "861b1a48c45dc4747f151a3691433a3a6100b6e75b0d7cb19c42047b278d2b5a",
+      "bytes": 501
+    },
+    "focused-corrected.log": {
+      "sha256": "aa93ea78cf65ded1449109bd49caadae296cb6b91cfc1e294ef3027dfdf7b64a",
+      "bytes": 1849
+    },
+    "focused-delivery-live.json": {
+      "sha256": "c91785ae49d842ad650177966289a82e345bd3fb38ba24b235ca35fd9a5b24d3",
+      "bytes": 457
+    },
+    "focused-delivery.json": {
+      "sha256": "41a8d8a705d308b451ec02186b20e70c070cfca9580e377cc2be407925116569",
+      "bytes": 502
+    },
+    "focused-delivery.log": {
+      "sha256": "92169693afbe099211e4fc085a88789c3d756816ea176315f4a9086e06e8074b",
+      "bytes": 801
+    },
+    "focused-final-live.json": {
+      "sha256": "944b858e2f5d710b253d2c12a6b3daf028d8570b699fa78cc44fa8ddeebcf54d",
+      "bytes": 454
+    },
+    "focused-final.json": {
+      "sha256": "acdabaf3a0627c4569d03cd77e107075ae2fda0dd4c807cd82962ea61bf51a3d",
+      "bytes": 500
+    },
+    "focused-final.log": {
+      "sha256": "06f497adebb3e366164a7353c56a6ea124cfc03ea40c14757e656b6923d9acef",
+      "bytes": 2322
+    },
+    "focused-first-live.json": {
+      "sha256": "9f96eaa209969ab2e8b3c8abdefb1c3343d3284641b79decf7fb2258f897b2e8",
+      "bytes": 454
+    },
+    "focused-first.json": {
+      "sha256": "0ca63297870a64c3c14fbccab2f7a8bb2ed228db02c329732ac29f438b1bf60b",
+      "bytes": 500
+    },
+    "focused-first.log": {
+      "sha256": "bd08293f07736544268c8c5e78aa887a2af8cfff01b6451550620594501bc68e",
+      "bytes": 3064
+    },
+    "focused-green-live.json": {
+      "sha256": "f8d0361b411953386b86984172d4996759a5c5ed80c783e2edd56b3edff374cd",
+      "bytes": 454
+    },
+    "focused-green.json": {
+      "sha256": "9d3bb37f25d17e0785c7ee7cc27bac731acf5b27fbe1241898450e21f22b450e",
+      "bytes": 499
+    },
+    "focused-green.log": {
+      "sha256": "5b0df9c053aff2dc0c82317ab4c94ca21df464f9c92044fac82bd9bb7aa67a90",
+      "bytes": 2311
+    },
+    "focused-verified-live.json": {
+      "sha256": "64d97f0ffc951fce4cd9f1c85b99dacbb8e4a55aa5c1ba9e44be1bcc3dc0d4bb",
+      "bytes": 457
+    },
+    "focused-verified.json": {
+      "sha256": "abaf2b1953b2e260cca735c8996678ce889ab2354bb9333fd0306b8d0315e2db",
+      "bytes": 501
+    },
+    "focused-verified.log": {
+      "sha256": "88ca6b076fd9d2722f3e6090a58e31b8bb962024228892b4db5a6b947a74a790",
+      "bytes": 801
+    },
+    "freeze-before-lint-correction.json": {
+      "sha256": "9bdd02aac472c377213c5b725c425946d7b8c019a6454bae0c8cb6a801b487b6",
+      "bytes": 235756
+    },
+    "freeze-before-type-correction.json": {
+      "sha256": "d9faec9c4153bec05ff970d229f6e98731553a041453bf049136483597ff6729",
+      "bytes": 235756
+    },
+    "freeze.json": {
+      "sha256": "8738c661dbdec5eccea144ca503bbfb5272557f4421b3fc2a5a5aaa0c6a1204c",
+      "bytes": 235756
+    },
+    "full-live.json": {
+      "sha256": "04056c5f43a9de6a13d5043d601ff29607dfdea107585d9008d760318786a8ef",
+      "bytes": 227
+    },
+    "full.json": {
+      "sha256": "30ce688d3e0889e9b1ddb978ee239924710dca08e43e7da817778cd4770aa25e",
+      "bytes": 272
+    },
+    "full.log": {
+      "sha256": "82bb12976e7a74ea8f7eafc16aa14456dae65eced96a931cd64da9f35fb3d3cf",
+      "bytes": 159342
+    },
+    "inventory-audit.json": {
+      "sha256": "c003530d6f5536cd7868557b485cd3af17186a71f96b4cb8b44da6a9638c79e1",
+      "bytes": 591
+    },
+    "inventory-before.csv": {
+      "sha256": "d0643ac19d002a5527aa64e46eca9b27d73adb96a816e7931f8edf5a12b394e8",
+      "bytes": 48210
+    },
+    "leap-observations.json": {
+      "sha256": "73bbd9c2fcd7410a2edb1dd7d96cbb1311b23be712db3a428011e24510263666",
+      "bytes": 669477
+    },
+    "leap-repro.ts": {
+      "sha256": "0e63a5cee2075cc153ea8445b671ab8639ffc95607ff6bec9545d8ed7e024c40",
+      "bytes": 3820
+    },
+    "lint-delivery-live.json": {
+      "sha256": "aea1ccd90e63273e76be99ba225567a8a1190d93bb2bb4ba4ef4fbebc8d38864",
+      "bytes": 247
+    },
+    "lint-delivery.json": {
+      "sha256": "3dda43a668e54fd67bb0a878511152e3b806a1ad5c4ca0093282b08376d827ee",
+      "bytes": 293
+    },
+    "lint-delivery.log": {
+      "sha256": "9b5dffbdd4c5efbaa730214c30abcef9f013a0f1fb1708825d862304072d0f6f",
+      "bytes": 197
+    },
+    "lint-final-test-live.json": {
+      "sha256": "9fd405bbc1c5472154f0c9455681a680526cbcc626f08c67c2974ba07ec9d894",
+      "bytes": 340
+    },
+    "lint-final-test.json": {
+      "sha256": "6e45121889f9f92dc92ac8037b53a7e780e63fd3466265ede1eb9d763675f112",
+      "bytes": 385
+    },
+    "lint-final-test.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "lint-live.json": {
+      "sha256": "ec0c4cdb18c4909e23d3b67347c8a516b05aaac8dcc2fc7b2a0eb6bf75e2e72b",
+      "bytes": 238
+    },
+    "lint.json": {
+      "sha256": "dc0de6c1c25778eb7edda7ad8aa93444c90c3d141acd444d331c61c3c93dec32",
+      "bytes": 284
+    },
+    "lint.log": {
+      "sha256": "2b1a19238854815816df8cc485bcf74343f93774ebb62fb27a06da6fec09af28",
+      "bytes": 613
+    },
+    "native-red-live.json": {
+      "sha256": "24e26b1cb9e9fb4ea273ec2228fd0289640dd7e35e68fc21ce5df0cb79881c2c",
+      "bytes": 338
+    },
+    "native-red.json": {
+      "sha256": "c4342af1b4e59f45ced4813d5cdcee4b170d92b078b447d502713d464cc97d0d",
+      "bytes": 383
+    },
+    "native-red.log": {
+      "sha256": "1a1a041b80f7b1369ac159ab09c1f8ded6a30a8077f838e9b3c79e571abe2a56",
+      "bytes": 29724
+    },
+    "next-leap-live.json": {
+      "sha256": "14e978d1df2f434e28166b99176d81e4d8deb7a749efe795dc90c6a94256feec",
+      "bytes": 356
+    },
+    "next-leap.json": {
+      "sha256": "db10554ff02f34add87c1e0d2aba10cc59f6f91595477668fb596906de74251c",
+      "bytes": 401
+    },
+    "next-leap.log": {
+      "sha256": "96d91fed37f3a852983e817c3bb12dd35173d9bdaa60db35c01950e782a50586",
+      "bytes": 2375
+    },
+    "record.py": {
+      "sha256": "4c7bc657a5695df1a6ac100ba4bb5f4946e58ce6bb7fa9b1ba0a6496985d2df2",
+      "bytes": 741
+    },
+    "retain.py": {
+      "sha256": "8dcfd4e97bd09b6ae0545674057aab0175806a19ea0a7a5f07b569f65ea92b4f",
+      "bytes": 4402
+    },
+    "save-pairs-audit.json": {
+      "sha256": "61f83c7e3e7242a1389dcf2fa2e4c4d919422e236bd98d6687f5b7cef84d43f3",
+      "bytes": 3164
+    },
+    "serve.py": {
+      "sha256": "e1e1f94a22056e5b31163d1c3d57cf6f88119ec94ca5bc13e692d0fba03caf2e",
+      "bytes": 510
+    },
+    "server-live.json": {
+      "sha256": "0bb84e6ef6e02c856af8695afa6d825d8dcab4deffe763cd63474b1a9a68c6ad",
+      "bytes": 118
+    },
+    "source-freeze.json": {
+      "sha256": "98035dde654763755b4826b74566d672b9b566d9198fd5b149c53ae8e4eff17f",
+      "bytes": 132549
+    },
+    "task.json": {
+      "sha256": "06760482529b95391156154dc404b614ecd5d2b9c194bc16cb5ee03e21dda2b5",
+      "bytes": 326
+    },
+    "types-corrected-live.json": {
+      "sha256": "7859a4eb397075f6616467a61a268acf8bc21f3f3fcfd13b16eda84a47f32965",
+      "bytes": 253
+    },
+    "types-corrected.json": {
+      "sha256": "a14040a8d9fe16f48a58b603ddd5b4505c430c7efae4ecc28b1c2b170225bdd8",
+      "bytes": 299
+    },
+    "types-corrected.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-delivery-live.json": {
+      "sha256": "10df4b5de02bed48893132cfd5e4f48fdb9d4436262029dc051d8396fc09abef",
+      "bytes": 253
+    },
+    "types-delivery.json": {
+      "sha256": "b08078d820283679322af2d25073571fe303a088b5a478e2fa4fc0de4fced11e",
+      "bytes": 299
+    },
+    "types-delivery.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-live.json": {
+      "sha256": "7a5d9f44d74399aa950599281dd063bbfe66a8086f3b61eeafdecc6baaafd36f",
+      "bytes": 244
+    },
+    "types.json": {
+      "sha256": "9a95eb3aaf540ad3ae2933d7dab9152d1b60d1a3e80efd93b0e40f88a6f28700",
+      "bytes": 290
+    },
+    "types.log": {
+      "sha256": "8158d1c6814a058f15a64cdd1d499b0386413d559217062c380b25d3d96fddb3",
+      "bytes": 406
+    },
+    "ui-red-live.json": {
+      "sha256": "abca6a450eecdcb82b860f6665463a5807b7fb656b70c0dbbafa66f9878b199f",
+      "bytes": 302
+    },
+    "ui-red.json": {
+      "sha256": "dc20e99fb8938108eac33c93133ad0e1a3802f68e6e5ba3e99945f99a1d14582",
+      "bytes": 347
+    },
+    "ui-red.log": {
+      "sha256": "e64dc87de07f62f8b2aa99a2a85e9ed18ca36815623611be916427f479a9cb92",
+      "bytes": 13089
+    },
+    "verified-browser-en-1280/browser-report.json": {
+      "sha256": "5a77a2c175b30413bd1a22b25fba06130a09f8f41145cf2b4a1ecaf4ae840253",
+      "bytes": 1544
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-cast-visible.png": {
+      "sha256": "c652168ae7139a9d625d1fce2be39b92058088b6f42dfe1e6fb36f938a347df8",
+      "bytes": 265060
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-combat.json": {
+      "sha256": "d87e97024c71980dcd88a9e45e9e10542c4f173ab986b9a9f5dbd7aa614aa988",
+      "bytes": 1901
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-current-next.png": {
+      "sha256": "6e6bb7a5b4753cfd5ac43d3d9dc43c6cc2f2e0606920eb99b0cdc68c189eebb5",
+      "bytes": 113469
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-description.png": {
+      "sha256": "6e6bb7a5b4753cfd5ac43d3d9dc43c6cc2f2e0606920eb99b0cdc68c189eebb5",
+      "bytes": 113469
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-details.png": {
+      "sha256": "044575a7127314d3323f9a278c7762b7ef280ccaf0f47f938725f38a9c471c14",
+      "bytes": 114992
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-fresh-1.json": {
+      "sha256": "cdd5ef5aa4e239568713e0cc6ce0c3f0e52e1e056cdbab6a72f280afc7861497",
+      "bytes": 3179
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-imported-2.json": {
+      "sha256": "e0d19bf53aa77c12c582a67bcf97f907de2a96789f49081a49f9c2280afa614b",
+      "bytes": 4809
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-observed-attempts.json": {
+      "sha256": "43ff4e824168f64d67a570acfe645de973dc8a946686001c2b71b77fd7a60d3c",
+      "bytes": 1794
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-rank1-after-4.json": {
+      "sha256": "89da1652df73f2a865b009bda92c65c2391ecc97123985103a6e654ef9ac2c16",
+      "bytes": 4812
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-rank1-before-3.json": {
+      "sha256": "9a25f2485322894078372a8b369d1b0fd7d17c7c736684d7b8d5b0944ab4ba4c",
+      "bytes": 4809
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-rank2-after-6.json": {
+      "sha256": "8304b7a3ae3b6db8b9626ce8c827669b41e4209610b0a24913d08f0a613c2afb",
+      "bytes": 4866
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-rank2-before-5.json": {
+      "sha256": "8304b7a3ae3b6db8b9626ce8c827669b41e4209610b0a24913d08f0a613c2afb",
+      "bytes": 4866
+    },
+    "verified-browser-en-1280/en-1280-psychic-hammer-synthetic-input.json": {
+      "sha256": "faf05367e4377b0aba935ad80a0118188feda5446162d5a85994029b4bc643a2",
+      "bytes": 3985
+    },
+    "verified-browser-en-360/browser-report.json": {
+      "sha256": "40dba60c58d76af64dcf39923a3e5774233e981096ab440668f3dd08ac892772",
+      "bytes": 1538
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-cast-visible.png": {
+      "sha256": "52246c0e7e0a5b176ad46c983c7cdad18d99a92938ea3331f711805d043cebf5",
+      "bytes": 50549
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-combat.json": {
+      "sha256": "d87e97024c71980dcd88a9e45e9e10542c4f173ab986b9a9f5dbd7aa614aa988",
+      "bytes": 1901
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-current-next.png": {
+      "sha256": "7535a578ad39d554eb97aa5c56cc67f26d1ac02793795ac799dc58d74ed1ca7e",
+      "bytes": 45170
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-description.png": {
+      "sha256": "7170bddf9910c8c9faa9289425eb7f8ba5454c17e848c9df5ea591bb7a6d2264",
+      "bytes": 45042
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-details.png": {
+      "sha256": "bbda0386db1256712332f952d0e1f373ef26cc52da7facf026851a65212370ba",
+      "bytes": 45684
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-fresh-1.json": {
+      "sha256": "a51ac1fb4aab93542c7d4a921956724b9786cacff821c8baacb95bf7df2330bd",
+      "bytes": 3179
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-imported-2.json": {
+      "sha256": "e4442552e49b0a72ab93f0e72a0d1e31cb578329e25f8bfbc0ee7f06026c87dd",
+      "bytes": 4809
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-observed-attempts.json": {
+      "sha256": "43ff4e824168f64d67a570acfe645de973dc8a946686001c2b71b77fd7a60d3c",
+      "bytes": 1794
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-rank1-after-4.json": {
+      "sha256": "8e6fa49f2464474f991770b8c2cbcb7ce906ce3b698079f6732eaf6282a4a97b",
+      "bytes": 4812
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-rank1-before-3.json": {
+      "sha256": "c6bc6aa3aec8452cb701db944a500da59969d8b78a9a9f1d9c42f46fb0a76c96",
+      "bytes": 4809
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-rank2-after-6.json": {
+      "sha256": "962f099a5b1ccba8f862bc6cbf2f77ed294d40f7a53bd2ec73f0b00b32db614c",
+      "bytes": 4866
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-rank2-before-5.json": {
+      "sha256": "962f099a5b1ccba8f862bc6cbf2f77ed294d40f7a53bd2ec73f0b00b32db614c",
+      "bytes": 4866
+    },
+    "verified-browser-en-360/en-360-psychic-hammer-synthetic-input.json": {
+      "sha256": "f95f7b8ab48adefced87f297a99be8b208de5296b7c9ccbad456d77220780028",
+      "bytes": 3985
+    },
+    "verified-browser-zh-CN-1280/browser-report.json": {
+      "sha256": "a077f512b80267d716d81f1372486fe97f932377f0d8434d398919e6f00eeb50",
+      "bytes": 1500
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-cast-visible.png": {
+      "sha256": "3035adf2b91c2f3a75985af4487b7efd760260c957aca5a9f169229856f8af7a",
+      "bytes": 218011
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-combat.json": {
+      "sha256": "528d92a3cbf557f6975bd7414d9225558cd6f2888b423afd86c81fb6c8321261",
+      "bytes": 2545
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-current-next.png": {
+      "sha256": "dade86a52fc8141de76a3203f218d4ef96ec10e9910de0c504c239c70221f059",
+      "bytes": 109563
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-description.png": {
+      "sha256": "dade86a52fc8141de76a3203f218d4ef96ec10e9910de0c504c239c70221f059",
+      "bytes": 109563
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-details.png": {
+      "sha256": "7dac674fccef8d8a2285f0309137b8fc9153ce7ea5e85dc5519d4c20a8c8eb70",
+      "bytes": 111225
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-fresh-1.json": {
+      "sha256": "e4683e17a8f812cdc3992378fc5be90dd5a0de21401d2f1a0013e3fc4497b6fd",
+      "bytes": 3182
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-imported-2.json": {
+      "sha256": "bfb24294d142a72fc63e41b5981d864217001695f441dce2e630d0e62a900b6d",
+      "bytes": 4812
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-observed-attempts.json": {
+      "sha256": "dd4cd2d7465f870fa62d9bbe45edc6d40fc620933e3f6533f9474c0878842f59",
+      "bytes": 2437
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-rank1-after-4.json": {
+      "sha256": "f757fbb831b047ddb104d9147ad96982f6a50cf3dbff8cf0298f434f0157d775",
+      "bytes": 4815
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-rank1-before-3.json": {
+      "sha256": "b0bdb1907bac03a8dd594195d55e7fe0c28f82fe60c3b9d825ec85338b2dd590",
+      "bytes": 4812
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-rank2-after-6.json": {
+      "sha256": "3094f0779647ac0eaf1ad743b3b81381a65ac339b43a0f2567c026926b75c22e",
+      "bytes": 4869
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-rank2-before-5.json": {
+      "sha256": "3094f0779647ac0eaf1ad743b3b81381a65ac339b43a0f2567c026926b75c22e",
+      "bytes": 4869
+    },
+    "verified-browser-zh-CN-1280/zh-CN-1280-psychic-hammer-synthetic-input.json": {
+      "sha256": "7f2f82f95cc92c17743ecc40a5fcff59c5992066e5469447aec2b857dac142e6",
+      "bytes": 3988
+    },
+    "verified-browser-zh-CN-360/browser-report.json": {
+      "sha256": "7f5eaac8e76819e15e0415a69387b10f14d474355da953f2185075fc17c40548",
+      "bytes": 1494
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-cast-visible.png": {
+      "sha256": "8154d4a37832774aab9add4dc6c96d02710aedd9ef5fd3d5ca3dec56fd51720b",
+      "bytes": 61537
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-combat.json": {
+      "sha256": "c5a3ecda35a1c2e7bd624917a92667cf1290855fbd9a375d373075b51964e885",
+      "bytes": 2060
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-current-next.png": {
+      "sha256": "50955433ff007c12199a089a756c7bef9f28fe78d2aeb97a6417aacf48b6a7eb",
+      "bytes": 47272
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-description.png": {
+      "sha256": "5840e8c535164c39044e1d5e4616f0f09e5e47c818c98bcd3b7e871a3b5577c4",
+      "bytes": 48613
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-details.png": {
+      "sha256": "7cdac7bb27389f12b48d9613369c9955dfd6e9a6728646cc778739ee73c97f02",
+      "bytes": 48805
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-fresh-1.json": {
+      "sha256": "d299ae91cc37410b449e61fbb8ed8fa5696099721a8586c5bfa664cb82132bba",
+      "bytes": 3182
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-imported-2.json": {
+      "sha256": "b4e4637ebd016954ed0057d96f7d196adb9c9d376915ea7980e17bbcf050e0ce",
+      "bytes": 4812
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-observed-attempts.json": {
+      "sha256": "b585a41b8f2954049614f979cf930b6f37ca19cd455057c19589c6501f99daf0",
+      "bytes": 1953
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-rank1-after-4.json": {
+      "sha256": "a3c50dec84e4864120cd12a52518ecd66ef61d33e093a81ccdb262a36958c28b",
+      "bytes": 4815
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-rank1-before-3.json": {
+      "sha256": "7149e50ddddd21ff957cfa2444bcc334aed998339a56f340007d21148ac42e0d",
+      "bytes": 4812
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-rank2-after-6.json": {
+      "sha256": "d135c6ed88702ea1767d8d7019ce7def11d6ee8e04096b5a17c2c9bfa83543d7",
+      "bytes": 4869
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-rank2-before-5.json": {
+      "sha256": "d135c6ed88702ea1767d8d7019ce7def11d6ee8e04096b5a17c2c9bfa83543d7",
+      "bytes": 4869
+    },
+    "verified-browser-zh-CN-360/zh-CN-360-psychic-hammer-synthetic-input.json": {
+      "sha256": "3411b5b175708405c9154ef96c65424ca70081fcd060fd9e0aca271a7b49c1db",
+      "bytes": 3988
+    }
+  },
+  "terminalReceipts": [
+    {
+      "name": "types-delivery",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1206070,
+      "wrapperPid": 1206069,
+      "started": 1792945934.9552553,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 107.52620506286621
+    },
+    {
+      "name": "types",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1193544,
+      "wrapperPid": 1193541,
+      "started": 1792945617.3472683,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 2,
+      "seconds": 115.27122116088867
+    },
+    {
+      "name": "lint-final-test",
+      "argv": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/psychic-hammer.causal.test.ts",
+        "--max-warnings=0"
+      ],
+      "pid": 1201582,
+      "wrapperPid": 1201580,
+      "started": 1792945768.8820107,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 9.749961614608765
+    },
+    {
+      "name": "focused-verified",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/psychic-hammer.causal.test.ts",
+        "src/stores/psychic-hammer-native.test.ts",
+        "src/engine/skills/psychic-hammer.test.ts",
+        "src/features/skills/SkillsScreen.psychic-hammer.test.tsx"
+      ],
+      "pid": 1193425,
+      "wrapperPid": 1193424,
+      "started": 1792945608.1533983,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 7.07347297668457
+    },
+    {
+      "name": "browser-corrected",
+      "argv": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hammer-3d_s7863/serve.py",
+        "--port",
+        "4498",
+        "--",
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hammer-3d_s7863/browser-suite.py"
+      ],
+      "pid": 1199618,
+      "wrapperPid": 1199617,
+      "started": 1792945741.128891,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 73.23608183860779
+    },
+    {
+      "name": "full",
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "pid": 1201584,
+      "wrapperPid": 1201581,
+      "started": 1792945768.8833547,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 582.7324457168579
+    },
+    {
+      "name": "build",
+      "argv": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hammer-3d_s7863/build"
+      ],
+      "pid": 1194386,
+      "wrapperPid": 1194385,
+      "started": 1792945640.006017,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 15.650975704193115
+    },
+    {
+      "name": "browser",
+      "argv": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hammer-3d_s7863/serve.py",
+        "--port",
+        "4498",
+        "--",
+        "python",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hammer-3d_s7863/browser-suite.py"
+      ],
+      "pid": 1195680,
+      "wrapperPid": 1195669,
+      "started": 1792945670.335597,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 39.49795150756836
+    },
+    {
+      "name": "focused-delivery",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/psychic-hammer.causal.test.ts",
+        "src/stores/psychic-hammer-native.test.ts",
+        "src/engine/skills/psychic-hammer.test.ts",
+        "src/features/skills/SkillsScreen.psychic-hammer.test.tsx"
+      ],
+      "pid": 1205032,
+      "wrapperPid": 1204992,
+      "started": 1792945875.8962307,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 9.686542749404907
+    },
+    {
+      "name": "focused-first",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/psychic-hammer.causal.test.ts",
+        "src/stores/psychic-hammer-native.test.ts",
+        "src/engine/skills/psychic-hammer.test.ts",
+        "src/features/skills/SkillsScreen.psychic-hammer.test.tsx"
+      ],
+      "pid": 1192410,
+      "wrapperPid": 1192409,
+      "started": 1792945470.8539648,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 3.5069706439971924
+    },
+    {
+      "name": "lint-delivery",
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1205033,
+      "wrapperPid": 1205005,
+      "started": 1792945875.8967128,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 180.17580437660217
+    },
+    {
+      "name": "lint",
+      "argv": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1193545,
+      "wrapperPid": 1193542,
+      "started": 1792945617.3478234,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 192.37503147125244
+    },
+    {
+      "name": "native-red",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/psychic-hammer.causal.test.ts",
+        "src/engine/skills/psychic-hammer.test.ts"
+      ],
+      "pid": 1191567,
+      "wrapperPid": 1191566,
+      "started": 1792945382.484856,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.136166572570801
+    },
+    {
+      "name": "engine",
+      "argv": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1193546,
+      "wrapperPid": 1193543,
+      "started": 1792945617.352612,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 110.55814361572266
+    },
+    {
+      "name": "ui-red",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/features/skills/SkillsScreen.psychic-hammer.test.tsx"
+      ],
+      "pid": 1191876,
+      "wrapperPid": 1191875,
+      "started": 1792945409.471255,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.379645586013794
+    },
+    {
+      "name": "next-leap",
+      "argv": [
+        "node",
+        "node_modules/vite-node/vite-node.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hammer-3d_s7863/leap-repro.ts"
+      ],
+      "pid": 1206105,
+      "wrapperPid": 1206090,
+      "started": 1792945936.2069762,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 6.615745782852173
+    },
+    {
+      "name": "focused-final",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/psychic-hammer.causal.test.ts",
+        "src/stores/psychic-hammer-native.test.ts",
+        "src/engine/skills/psychic-hammer.test.ts",
+        "src/features/skills/SkillsScreen.psychic-hammer.test.tsx"
+      ],
+      "pid": 1192917,
+      "wrapperPid": 1192916,
+      "started": 1792945545.0605624,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.3477630615234375
+    },
+    {
+      "name": "focused-green",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/psychic-hammer.causal.test.ts",
+        "src/stores/psychic-hammer-native.test.ts",
+        "src/engine/skills/psychic-hammer.test.ts",
+        "src/features/skills/SkillsScreen.psychic-hammer.test.tsx"
+      ],
+      "pid": 1193224,
+      "wrapperPid": 1193223,
+      "started": 1792945573.0348346,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.195289373397827
+    },
+    {
+      "name": "corrected-red",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/psychic-hammer.causal.test.ts",
+        "src/stores/psychic-hammer-native.test.ts",
+        "src/engine/skills/psychic-hammer.test.ts"
+      ],
+      "pid": 1192026,
+      "wrapperPid": 1192023,
+      "started": 1792945438.874019,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 6.589793920516968
+    },
+    {
+      "name": "focused-corrected",
+      "argv": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/psychic-hammer.causal.test.ts",
+        "src/stores/psychic-hammer-native.test.ts",
+        "src/engine/skills/psychic-hammer.test.ts",
+        "src/features/skills/SkillsScreen.psychic-hammer.test.tsx"
+      ],
+      "pid": 1192673,
+      "wrapperPid": 1192672,
+      "started": 1792945511.00427,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 1,
+      "seconds": 7.271259546279907
+    },
+    {
+      "name": "types-corrected",
+      "argv": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1201583,
+      "wrapperPid": 1201579,
+      "started": 1792945768.882104,
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exit": 0,
+      "seconds": 110.64743971824646
+    }
+  ],
+  "verifiedRawMembers": 153,
+  "recordedPids": [
+    1191566,
+    1191567,
+    1191875,
+    1191876,
+    1192023,
+    1192026,
+    1192409,
+    1192410,
+    1192672,
+    1192673,
+    1192916,
+    1192917,
+    1193223,
+    1193224,
+    1193424,
+    1193425,
+    1193541,
+    1193542,
+    1193543,
+    1193544,
+    1193545,
+    1193546,
+    1194385,
+    1194386,
+    1195669,
+    1195680,
+    1199617,
+    1199618,
+    1199619,
+    1201579,
+    1201580,
+    1201581,
+    1201582,
+    1201583,
+    1201584,
+    1204992,
+    1205005,
+    1205032,
+    1205033,
+    1206069,
+    1206070,
+    1206090,
+    1206105
+  ],
+  "allRecordedPidsAbsent": true,
+  "excludedDisposable": [
+    "build/",
+    "browser-template-suite.py",
+    "browser-template.cjs"
+  ],
+  "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hammer-3d_s7863"
+}
