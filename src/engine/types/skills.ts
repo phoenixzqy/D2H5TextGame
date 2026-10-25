@@ -25,6 +25,11 @@ export interface OnHitRecoveryTuning {
   readonly lifeFraction: number;
 }
 
+/** Bounded sequential attempts shared by one paid cast and its original target pool. */
+export interface SkillHitSequence {
+  readonly strikes: number;
+}
+
 /** JSON-owned self attack-speed stacks earned by damaging Feral Rage hits. */
 export interface FeralRageTuning {
   readonly attackSpeedPctPerStack: number;
@@ -213,6 +218,7 @@ export interface AuraSanctuaryTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  readonly hitSequence?: SkillHitSequence;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   readonly feralRage?: FeralRageTuning;
   /** Exact Spirit of Barbs passive support template; ordinary summon defaults remain shared. */

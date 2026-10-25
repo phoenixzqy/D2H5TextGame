@@ -16,7 +16,7 @@ import paladinSkills from '../../data/skills/paladin.json';
 import sorceressSkills from '../../data/skills/sorceress.json';
 import type { AoeShape } from '../combat/grid';
 import type { DamageType } from '../types/attributes';
-import type { ComboTag, FeralRageTuning, OnHitRecoveryTuning, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
+import type { ComboTag, FeralRageTuning, OnHitRecoveryTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
 import type { OnHitStatus, RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
 
 export type PlayableSkillClass =
@@ -29,6 +29,7 @@ export type PlayableSkillClass =
   | 'sorceress';
 
 interface JsonSkill {
+  readonly hitSequence?: SkillHitSequence;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   readonly feralRage?: FeralRageTuning;
   readonly staticField?: StaticFieldTuning;
@@ -157,6 +158,7 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
     });
     effects.push({
       kind: 'damage',
+      ...(skill.hitSequence ? { hitSequence: { strikes: skill.hitSequence.strikes } } : {}),
       ...(skill.onHitRecovery ? { onHitRecovery: { lifeFraction: skill.onHitRecovery.lifeFraction } } : {}),
       ...(skill.id === 'skills-druid-feral-rage' && skill.feralRage ? { feralRage: true as const } : {}),
       damageType: skill.damageType,

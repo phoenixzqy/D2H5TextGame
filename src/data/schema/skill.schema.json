@@ -8,6 +8,24 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["hitSequence"], "properties": { "hitSequence": {} } },
+      "then": { "properties": { "id": { "const": "skills-druid-fury" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-druid-fury" } } },
+      "then": {
+        "required": ["hitSequence", "damage", "damageType", "requiredLevel", "prerequisites"],
+        "properties": {
+          "hitSequence": { "$ref": "#/properties/hitSequence" },
+          "trigger": { "const": "active" }, "target": { "const": "area-enemies" },
+          "aoeShape": false, "appliesStatus": false, "statusEffect": false,
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "requiredLevel": { "const": 30 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-druid-rabies"] }
+        }
+      }
+    },
+    {
       "if": { "required": ["onHitRecovery"], "properties": { "onHitRecovery": {} } },
       "then": { "properties": { "id": { "enum": ["skills-druid-feral-rage", "skills-druid-hunger"] } } }
     },
@@ -3571,6 +3589,11 @@
     }
   },
   "properties": {
+    "hitSequence": {
+      "description": "Explicit bounded sequential attempts, paid once and rotating within the original target pool; currently authored only by Fury.",
+      "type": "object", "additionalProperties": false, "required": ["strikes"],
+      "properties": { "strikes": { "type": "integer", "minimum": 2, "maximum": 8 } }
+    },
     "onHitRecovery": {
       "type": "object", "additionalProperties": false, "required": ["lifeFraction"],
       "description": "Explicit fraction of actual direct enemy HP removed restored to the surviving caster; no global drain fallback.",

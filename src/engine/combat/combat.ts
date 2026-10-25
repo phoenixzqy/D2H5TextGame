@@ -1128,6 +1128,31 @@ function applyEffect(
       break;
     }
     case 'damage': {
+      if (effect.hitSequence !== undefined) {
+        const strikes = effect.hitSequence.strikes;
+        if (!Number.isInteger(strikes) || strikes < 2 || strikes > 8) {
+          throw new Error('Invalid damage hit sequence: expected 2–8 attempts');
+        }
+        let cursor = 0;
+        for (let strike = 0; strike < strikes; strike++) {
+          const actor = state.units.get(actorId);
+          if (!actor || !alive(actor)) break;
+          let target: CombatUnit | undefined;
+          for (const offset of enemySideAlive.keys()) {
+            const index = (cursor + offset) % enemySideAlive.length;
+            const candidate = enemySideAlive[index];
+            const current = candidate && state.units.get(candidate.id);
+            if (current && alive(current)) {
+              target = current;
+              cursor = (index + 1) % enemySideAlive.length;
+              break;
+            }
+          }
+          if (!target) break;
+          applyDamageToUnit(state, actorId, target.id, effect, skillLevel);
+        }
+        break;
+      }
       for (const t of enemySideAlive) {
         applyDamageToUnit(state, actorId, t.id, effect, skillLevel);
       }
