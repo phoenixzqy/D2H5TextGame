@@ -16,6 +16,7 @@ import { loadItemBases } from '@/data/loaders/loot';
 import { resolveItemIcon, resolveMercArt, resolveSkillIcon } from './cardAssets';
 import {
   CLASS_PORTRAITS,
+  NPC_PORTRAITS,
   MONSTER_ART,
   BASE_ITEM_ICONS,
   SKILL_ICONS
@@ -199,8 +200,10 @@ export function getSkillIconUrl(skillRef: string): string | null {
 /* ------------------------------------------------------------------ */
 /*  NPC portraits                                                      */
 /* ------------------------------------------------------------------ */
-export function getNpcPortraitUrl(npcId: string, act = 1): string {
-  return `${BASE}/class-portraits/npcs.act${String(act)}.${toKebab(npcId)}.png`;
+/** Use registered art from this act, or let GameImage render its immediate fallback. */
+export function getNpcPortraitUrl(npcId: string, act = 1): string | null {
+  const portrait = NPC_PORTRAITS[toKebab(npcId)];
+  return portrait?.startsWith(`${BASE}/class-portraits/npcs.act${String(act)}.`) ? portrait : null;
 }
 
 /* ------------------------------------------------------------------ */
