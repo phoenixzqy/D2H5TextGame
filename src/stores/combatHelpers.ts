@@ -82,6 +82,7 @@ import { withoutTemporaryLifeCapacity } from '@/engine/combat/life-capacity';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeBoneArmor } from '@/engine/skills/bone-armor';
 import { composeEnergyShield } from '@/engine/skills/energy-shield';
+import { composeCycloneArmorRank, refreshCycloneArmorState } from '@/engine/skills/cyclone-armor';
 import { composeBarbarianEndurance } from '@/engine/skills/barbarian-endurance';
 import { composeBarbarianWarcries } from '@/engine/skills/barbarian-warcries';
 import { composeBarbarianWeaponMasteries } from '@/engine/skills/barbarian-weapon-masteries';
@@ -250,6 +251,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     coldResistanceReductionPct: composeColdMastery(player),
     staticFieldRank: composeStaticField(player),
     ...(energyShield.rank > 0 ? { energyShieldRank: energyShield.rank } : {}),
+    ...(player.class === 'druid' ? { cycloneArmorRank: composeCycloneArmorRank(player) } : {}),
     ...(player.class === 'druid' ? { druidShapeRanks: composeDruidShapeshifting(player) } : {}),
     burstOfSpeedRank: composeBurstOfSpeedRank(player),
     manaRegenCarry: 0,
@@ -1167,10 +1169,12 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
     const capped = mana >= fresh.stats.manaMax;
-    const refreshed = refreshDruidFormState({ ...unit, level: fresh.level, stats: fresh.stats,
+    const refreshed = refreshCycloneArmorState(refreshDruidFormState({ ...unit, level: fresh.level, stats: fresh.stats,
       life: unit.life,
       mana, ...((unit.druidShapeRanks !== undefined || fresh.druidShapeRanks !== undefined)
         ? { druidShapeRanks: fresh.druidShapeRanks } : {}),
+      ...((unit.cycloneArmorRank !== undefined || fresh.cycloneArmorRank !== undefined)
+        ? { cycloneArmorRank: fresh.cycloneArmorRank ?? 0 } : {}),
       manaRegenPerSecond: fresh.manaRegenPerSecond ?? 0,
       manaRegenBaselinePerSecond: fresh.manaRegenBaselinePerSecond ?? 0,
       increasedDamagePct: fresh.increasedDamagePct ?? { fire: 0 },
@@ -1187,7 +1191,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       skillLevels: fresh.skillLevels ?? {},
       governedActiveRanks: fresh.governedActiveRanks,
       equippedWeapon: fresh.equippedWeapon ?? {},
-      summonGridPositions: fresh.summonGridPositions ?? [] });
+      summonGridPositions: fresh.summonGridPositions ?? [] }));
     if (resolveFrozenArmorRank(fresh.skillLevels) > 0) return refreshed;
     // Invalidate only this new input; replay retains the original paid baseline.
     const { frozenArmor, ...unarmored } = refreshed;

@@ -8,6 +8,33 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "properties": { "id": { "const": "skills-druid-cyclone-armor" } }, "required": ["id"] },
+      "then": {
+        "required": ["cost", "scaling", "appliesStatus", "requiredLevel", "prerequisites"],
+        "not": { "anyOf": [{ "required": ["damage"], "properties": { "damage": {} } }, { "required": ["timedBuff"], "properties": { "timedBuff": {} } }] },
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "self" },
+          "appliesStatus": { "const": ["cyclone-armor"] },
+          "prerequisites": { "const": ["skills-druid-arctic-blast"] },
+          "requiredLevel": { "type": "integer", "minimum": 1 },
+          "cost": { "type": "object", "required": ["mana"], "properties": { "mana": { "type": "number", "minimum": 0 } } },
+          "scaling": {
+            "type": "object", "required": ["passiveStatsPerLevel", "costPerLevel", "cooldownPerLevel"],
+            "properties": {
+              "costPerLevel": { "type": "number" }, "cooldownPerLevel": { "type": "number" },
+              "passiveStatsPerLevel": {
+                "type": "object", "required": ["shieldAbsorbPct", "resistAllPct"], "additionalProperties": false,
+                "properties": {
+                  "shieldAbsorbPct": { "type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 0.05, "description": "Per-rank final-damage reduction; rank20 must remain below complete immunity." },
+                  "resistAllPct": { "type": "number", "exclusiveMinimum": 0, "description": "Per-rank fractional bonus converted to points on all six resistances." }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
       "if": {
         "properties": {
           "id": { "enum": ["skills-druid-firestorm", "skills-druid-molten-boulder", "skills-druid-fissure", "skills-druid-volcano", "skills-druid-armageddon"] }

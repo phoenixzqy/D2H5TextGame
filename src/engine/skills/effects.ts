@@ -60,6 +60,8 @@ export interface HealEffect {
 
 /** Buff primitive. */
 export interface BuffEffect {
+  /** Exact paid Cyclone Armor consumer; bare buff markers confer no defensive power. */
+  readonly cycloneArmor?: true;
   readonly kind: 'buff';
   readonly id: string;
   readonly duration: number;

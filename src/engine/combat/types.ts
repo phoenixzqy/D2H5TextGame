@@ -70,6 +70,9 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Fresh native Cyclone eligibility and source-bound paid run-local power; never persisted. */
+  readonly cycloneArmorRank?: number;
+  readonly cycloneArmor?: { readonly sourceHeroId: string; readonly rank: number };
   /** Native Druid allocation authority and paid run-local form; never persisted. */
   readonly druidShapeRanks?: import('../skills/druid-shapeshifting').DruidShapeRanks;
   readonly druidForm?: import('../skills/druid-shapeshifting').PaidDruidForm;
