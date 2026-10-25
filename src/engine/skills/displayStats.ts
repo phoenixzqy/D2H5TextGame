@@ -533,7 +533,7 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
-    ...(skill.id === 'skills-assassin-fire-blast' && skill.trigger === 'active' &&
+    ...(['skills-assassin-fire-blast', 'skills-assassin-blade-fury'].includes(skill.id) && skill.trigger === 'active' &&
       skill.target === 'area-enemies' && skill.aoeShape === 'cone-2'
       ? { areaShape: skill.aoeShape } : {}),
     ...(maxTargets !== undefined ? { maxTargets } : {}),

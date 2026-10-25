@@ -9,7 +9,7 @@
   "allOf": [
     {
       "if": { "required": ["aoeShape"], "properties": { "aoeShape": { "const": "cone-2" } } },
-      "then": { "properties": { "id": { "const": "skills-assassin-fire-blast" } } }
+      "then": { "properties": { "id": { "enum": ["skills-assassin-fire-blast", "skills-assassin-blade-fury"] } } }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-fire-blast" } } },
@@ -21,6 +21,21 @@
           "maxLevel": { "const": 20 }, "prerequisites": { "const": [] },
           "damage": { "$ref": "#/properties/damage" },
           "damageType": { "const": "fire" }, "appliesStatus": { "const": ["burn"] }
+        }
+      }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-blade-fury" } } },
+      "then": {
+        "required": ["aoeShape", "requiredLevel", "prerequisites", "damage", "damageType"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "area-enemies" },
+          "aoeShape": { "const": "cone-2" }, "requiredLevel": { "const": 18 },
+          "maxLevel": { "const": 20 }, "prerequisites": { "const": ["skills-assassin-blade-sentinel"] },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false,
+          "hitSequence": false, "critChanceBonus": false, "damageComposition": false,
+          "onHitRecovery": false, "onHitSelfDamage": false
         }
       }
     },

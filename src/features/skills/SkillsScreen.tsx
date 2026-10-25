@@ -1553,8 +1553,10 @@ function dynamicDescription(
     return t('assassin.dragon-claw.desc', { min: firstDamage.min, max: firstDamage.max,
       strikes: stats.strikesPerCast, critical: stats.criticalBonusPoints });
   }
-  if (firstDamage && stats.areaShape === 'cone-2') {
-    return t('assassin.fire-blast.desc', { min: firstDamage.min, max: firstDamage.max });
+  if (firstDamage && stats.areaShape === 'cone-2' &&
+    ['skills-assassin-fire-blast', 'skills-assassin-blade-fury'].includes(skill.id)) {
+    return t(skill.id === 'skills-assassin-blade-fury' ? 'assassin.blade-fury.desc' : 'assassin.fire-blast.desc',
+      { min: firstDamage.min, max: firstDamage.max });
   }
   if (firstDamage && skill.id === 'skills-amazon-impale') {
     return t('amazon.impale.desc', { min: firstDamage.min, max: firstDamage.max });

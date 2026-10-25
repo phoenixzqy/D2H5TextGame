@@ -376,7 +376,7 @@
     },
     "blade-fury": {
       "name": "Blade Fury",
-      "desc": "Hurls a flurry of blades in a cone, striking multiple enemies."
+      "desc": "Hurls a spread of blades for {{min}} ~ {{max}} Physical damage per enemy in a two-row cone: one apex cell, then three adjacent cells in the next row. Chooses the cone with the most enemies, breaking ties by the foremost row then leftmost column. Each enemy rolls separately. Mana and cooldown are paid once per cast."
     },
     "mind-blast": {
       "name": "Mind Blast",

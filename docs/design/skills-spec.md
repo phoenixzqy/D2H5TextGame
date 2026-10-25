@@ -226,7 +226,7 @@ Paid Werewolf/Werebear and Lycanthropy follow the [D05 form contract](../plans/d
 |---|---|---|---|---|---|---|---|---|
 | `assassin.shock_web` | Shock Web / 电网 | Lightning | All | 30–50 | 2 | 20 | Paralyze | AOE lightning trap |
 | `assassin.fire_blast` | Fire Blast / 火焰爆破 | Fire | Cone | 50–70 | 2 | 25 | Burn | Cone fire trap |
-| `assassin.blade_fury` | Blade Fury / 刀刃之怒 | Physical | Cone | 40–60 | 1 | 15 | — | Physical multi-hit |
+| `assassin.blade_fury` | Blade Fury / 刀刃之怒 | Physical | Cone | 40–60 | 1 | 15 | — | One independent hit per enemy; provisional 1+3-cell cone (D04-blade-fury-cone-v1) |
 | `assassin.mind_blast` | Mind Blast / 心灵震爆 | Arcane | All | 50–70 | 3 | 30 | Mana Burn + Stun | Arcane AOE |
 | `assassin.dragon_claw` | Dragon Claw / 龙爪 | Physical | Single original target | 70–100 (+7/rank) per attempt | 1 | 20 once | — | Up to2 independent claw attempts, each with +10 percentage points critical chance; ordinary critical overflow/Defense/resistance/shields/reflection apply per attempt. Misses consume attempts; stop on caster/original-target death, no retarget or weapon Attack scaling. Unlock6/cap20/Talon prerequisite; preserve current v1 eligibility without an equipment gate. Provisional bonus under [D04](../plans/decisions/D04-dragon-claw-v1.md); independent/earned balance open. |
 | `assassin.phoenix_strike` | Phoenix Strike / 凤凰打击 | Fire+Cold+Lightning | Single | 40–60 per element | 3 | 40 | Burn+Chill+Paralyze | Tri-element combo |
