@@ -1,7 +1,7 @@
 # BUG-181 — Complete advertised Paladin aura selection and effects
 
 Severity: High
-Status: Open; sixteen selected auras locally verified in bounded scope, four distinct aura mechanics outstanding
+Status: Open; seventeen selected auras locally verified in bounded scope, three distinct aura mechanics outstanding
 Owners: engine-dev, frontend-dev, content-designer; root sole writer this run
 
 ## Reproduction
@@ -101,3 +101,21 @@ duration factor and independent healing base/interval are provisional local
 tuning. This verifies curse duration handling, not the other curse skills'
 still-unverified effects. Earned balance and independent whole-family acceptance
 remain open; the genuine campaign save/next402 is unchanged.
+
+
+Sixth batch `af8b8d7` implements selected Redemption using the same authoritative
+wave-local FIFO as Corpse Explosion and Poison Explosion. One useful corpse
+restores independently floored/capped HP and MP to the living hero/original
+living fielded merc; empty/full/zero-rounded opportunities preserve resources or
+corpses as appropriate. JSON-owned20HP/10MP/5000ms and authored2%/rank,
+source/death/tie/deadline/cap/ownership rules, public allocation, original-resource
+replay/no duplicate income, savev22 and bilingual UI pass. Focused210/6,
+engine6208/215 and final full12377/525 plus two existing skips pass;
+types/lint/build/bridge and production browser4/4 pass, with eight exact
+five-domain Continue pairs,20 geometry samples and18 radio labels>=44x44.
+All1239source/760build hashes, HEAD/Git and genuine save digest stayed exact
+through the full run; committed source blobs match. [Evidence and original
+failures](../../docs/plans/evidence/d05-paladin-redemption.md).
+Remaining three: Sanctuary, Vigor and Concentration. Recovery base/interval are
+provisional local tuning; earned balance and independent whole-family acceptance
+remain open. Genuine campaign save/next402 is unchanged.
