@@ -201,6 +201,8 @@ export interface AuraSanctuaryTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Concentration-only scheduled action protection; canonical Stun remains real. */
+  readonly concentration?: { readonly preventStunInterruption: true };
   /** Sanctuary-only undead damage/control, copied without persisted timers. */
   readonly sanctuary?: AuraSanctuaryTuning;
   /** Redemption-only HP/MP recovery from one shared wave-local corpse per useful pulse. */

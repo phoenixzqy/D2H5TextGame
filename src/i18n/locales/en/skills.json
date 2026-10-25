@@ -880,7 +880,7 @@
     },
     "concentration": {
       "name": "Concentration",
-      "desc": "Aura: increases physical damage and prevents interruption."
+      "desc": "Selected aura: while the hero lives, you and your living fielded mercenary gain physical damage +{{physicalDamagePct}}% per rank. Scheduled basic attacks and ready skills continue during Stun. Stun remains applied and expires normally; Freeze and Paralyze still block actions. Skills keep their normal mana and cooldown requirements. The aura spends no mana and grants no extra actions. Hero death ends protection. Changes apply next wave and never become permanent stats."
     },
     "holy-freeze": {
       "name": "Holy Freeze",

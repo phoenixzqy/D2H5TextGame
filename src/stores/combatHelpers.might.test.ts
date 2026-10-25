@@ -147,6 +147,48 @@ beforeEach(() => {
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('native selected Might wave composition', () => {
+  it('publicly learns Concentration, acts during real enemy Stun and replays original resources without income or saved protection', async () => {
+    arrange(0); gear(100, -1000);
+    // Synthetic replacement of this existing enemy ability creates real native
+    // timed Stun. No captured input, engine output or genuine save is changed.
+    registerSkill({ id: 'monster-weak-melee', archetype: 'fixture', target: 'all-enemies', minLevel: 1,
+      cooldown: 60, manaCost: 0, effects: [{ kind: 'debuff', statusId: 'stun', durationMs: 4000 }] });
+    const before = structuredClone(player().derivedStats);
+    for (const id of ['might', 'blessed-aim', 'concentration']) {
+      expect(usePlayerStore.getState().allocateSkillPoint('skills-paladin-' + id)).toBe('ok');
+    }
+    expect(player().derivedStats).toEqual(before); expect(player()).not.toHaveProperty('selectedAuraId');
+    expect(usePlayerStore.getState().selectAura('paladin.concentration')).toBe('ok');
+    start();
+    const original = structuredClone(latest()), first = recording();
+    expect(original.statAura).toMatchObject({ selectedAuraId: 'paladin.concentration', rank: 1,
+      bonuses: { physicalDamagePct: .035 }, preventStunInterruption: true });
+    const applied = first.events.find(event => event.kind === 'status-state' && event.target === player().id && event.statuses.some(status => status.id === 'stun'));
+    const action = first.events.find(event => event.kind === 'action' && event.actor === player().id);
+    if (applied?.kind !== 'status-state' || !action) throw new Error('Missing native applied Stun/action');
+    const stun = applied.statuses.find(status => status.id === 'stun');
+    expect(applied.simClockMs).toBeLessThan(action.simClockMs);
+    expect(action.simClockMs).toBeLessThan(stun?.expiresAtMs ?? 0);
+    expect(first.events.some(event => event.kind === 'stunned' && event.target === player().id)).toBe(false);
+    expect(first.events).toContainEqual(expect.objectContaining({ kind: 'mana', reason: 'cast', target: player().id, simClockMs: action.simClockMs }));
+    const income = structuredClone({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies, xp: player().experience });
+    expect(usePlayerStore.getState().selectAura(null)).toBe('ok'); expect(recording()).toEqual(first);
+    replay();
+    expect(latest().playerTeam).toEqual(original.playerTeam); expect(latest().enemyTeam).toEqual(original.enemyTeam);
+    expect(latest().statAura).toBeUndefined();
+    expect(recording().events).toContainEqual(expect.objectContaining({ kind: 'stunned', target: player().id, simClockMs: action.simClockMs }));
+    expect(recording().events.find(event => event.kind === 'action' && event.actor === player().id)?.simClockMs).toBeGreaterThan(action.simClockMs);
+    expect(usePlayerStore.getState().selectAura('paladin.concentration')).toBe('ok'); replay();
+    expect(latest().playerTeam).toEqual(original.playerTeam); expect(latest().enemyTeam).toEqual(original.enemyTeam);
+    expect(latest().statAura).toEqual(original.statAura); expect(recording().events).toEqual(first.events);
+    expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies, xp: player().experience }).toEqual(income);
+    const saved = snapshotStores(); if (!saved) throw new Error('Missing Concentration save');
+    expect(saved.version).toBe(22); expect(saved.player.selectedAuraId).toBe('paladin.concentration');
+    expect(saved.player.derivedStats).toEqual(before);
+    for (const field of ['statAura', 'concentration', 'preventStunInterruption']) expect(saved.player).not.toHaveProperty(field);
+    abortSubAreaRun(); await importIntoStores(JSON.stringify(toJsonSafe(saved)));
+    expect(player().selectedAuraId).toBe('paladin.concentration'); expect(player().derivedStats).toEqual(before);
+  });
   it('uses publicly learned Sanctuary on real native undead and replays original inputs without income or saved potency', async () => {
     arrange(0); gear(100, -1000); configure({ skillPoints: 2 });
     const before = structuredClone(player().derivedStats);

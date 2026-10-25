@@ -489,6 +489,7 @@
   },
   {
     "id": "skills-paladin-concentration",
+    "concentration": { "preventStunInterruption": true },
     "name": "skills.paladin.concentration.name",
     "description": "skills.paladin.concentration.desc",
     "icon": "skills/paladin/concentration.png",

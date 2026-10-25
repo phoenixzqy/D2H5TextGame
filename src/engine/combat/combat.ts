@@ -1607,7 +1607,12 @@ function takeAction(state: State, unitId: string): void {
   if (!unit || !alive(unit)) return;
 
   const active = activeStatusView(unit, state.simClockMs);
-  if (isStunned(active) || isImmobilized(active)) {
+  // Concentration protects only this interruption check. The real Stun remains
+  // visible to status lifecycle, recording and every other combat interaction.
+  const blocking = activeStatAura(state.statAura, unitId, state.units)?.preventStunInterruption
+    ? { ...active, statuses: active.statuses.filter(status => status.id !== 'stun') }
+    : active;
+  if (isStunned(blocking) || isImmobilized(blocking)) {
     emit(state, { kind: 'stunned', target: unitId });
     return;
   }

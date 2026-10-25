@@ -8,7 +8,7 @@ import { createSkillValidator } from './skill-validator';
 /** Selected stat auras, including their derived enemy Chill and resistance effects. */
 export const STAT_AURA_IDS = Object.freeze(['paladin.thorns', 'paladin.blessed-aim', 'paladin.fanaticism',
   'paladin.defiance', 'paladin.resist-fire', 'paladin.resist-cold', 'paladin.resist-lightning', 'paladin.salvation',
-  'paladin.holy-freeze', 'paladin.conviction', 'paladin.holy-fire', 'paladin.holy-shock', 'paladin.prayer', 'paladin.cleansing', 'paladin.redemption', 'paladin.vigor', 'paladin.sanctuary'] as const);
+  'paladin.holy-freeze', 'paladin.conviction', 'paladin.holy-fire', 'paladin.holy-shock', 'paladin.prayer', 'paladin.cleansing', 'paladin.redemption', 'paladin.vigor', 'paladin.sanctuary', 'paladin.concentration'] as const);
 export type StatAuraId = typeof STAT_AURA_IDS[number];
 type BonusKey = 'thornsPct' | 'attackPct' | 'physicalDamagePct' | 'attackSpeedPct' | 'defensePct'
   | 'resistAllPct' | 'fireDamagePct' | 'coldDamagePct' | 'lightningDamagePct' | 'elementalDamagePct' | 'physDodgePct' | 'arcaneDamagePct' | 'lifeRegenPct' | 'magicDodgePct' | 'manaRegenPct' | 'lifePct';
@@ -20,9 +20,10 @@ const keys: Readonly<Record<StatAuraId, readonly BonusKey[]>> = {
   'paladin.resist-lightning': ['resistAllPct', 'lightningDamagePct'], 'paladin.salvation': ['resistAllPct', 'elementalDamagePct'],
   'paladin.holy-freeze': ['coldDamagePct', 'physDodgePct'], 'paladin.conviction': ['elementalDamagePct', 'arcaneDamagePct'],
   'paladin.holy-fire': ['fireDamagePct'], 'paladin.holy-shock': ['lightningDamagePct'], 'paladin.prayer': ['lifeRegenPct'],
-  'paladin.cleansing': ['lifeRegenPct', 'magicDodgePct'], 'paladin.redemption': ['lifeRegenPct', 'manaRegenPct'], 'paladin.vigor': ['lifePct', 'attackSpeedPct'], 'paladin.sanctuary': ['arcaneDamagePct']
+  'paladin.cleansing': ['lifeRegenPct', 'magicDodgePct'], 'paladin.redemption': ['lifeRegenPct', 'manaRegenPct'], 'paladin.vigor': ['lifePct', 'attackSpeedPct'], 'paladin.sanctuary': ['arcaneDamagePct'], 'paladin.concentration': ['physicalDamagePct']
 };
 export interface StatAuraDefinition {
+  readonly preventStunInterruption?: true;
   readonly sanctuary?: AuraSanctuaryTuning;
   readonly redemption?: AuraRedemptionTuning;
   readonly requiredLevel: number;
@@ -34,6 +35,7 @@ export interface StatAuraDefinition {
   readonly cleansingDurationMultiplier?: number;
 }
 export interface StatAuraProjection {
+  readonly preventStunInterruption?: true;
   readonly sanctuary?: AuraSanctuaryTuning;
   readonly redemption?: AuraRedemptionTuning;
   readonly selectedAuraId: StatAuraId;
@@ -136,6 +138,7 @@ export function resolveStatAuraDefinitions(rows: readonly unknown[]): Readonly<R
       ...(row.auraPulse ? { pulse: copyPulse(row.auraPulse) } : {}),
       ...(row.auraHealing ? { healing: copyHealing(row.auraHealing) } : {}),
       ...(row.redemption ? { redemption: copyRedemption(row.redemption) } : {}),
+      ...(row.concentration ? { preventStunInterruption: row.concentration.preventStunInterruption } : {}),
       ...(row.sanctuary ? { sanctuary: copySanctuary(row.sanctuary) } : {}),
       ...(row.cleansing ? { cleansingDurationMultiplier: row.cleansing.durationMultiplier, healing: copyHealing(row.cleansing.healing) } : {}),
       perRank: Object.freeze(Object.fromEntries(keys[id].map(key => [key, perRank[key]]))) })];
@@ -168,6 +171,7 @@ export function composeStatAura(player: Pick<Player, 'id' | 'class' | 'level' | 
     ...(definition.pulse ? { pulse: copyPulse(definition.pulse) } : {}),
     ...(definition.healing ? { healing: copyHealing(definition.healing) } : {}),
     ...(definition.redemption ? { redemption: copyRedemption(definition.redemption) } : {}),
+    ...(definition.preventStunInterruption ? { preventStunInterruption: definition.preventStunInterruption } : {}),
     ...(definition.sanctuary ? { sanctuary: copySanctuary(definition.sanctuary) } : {}),
     ...(definition.cleansingDurationMultiplier !== undefined ? { cleansingDurationMultiplier: definition.cleansingDurationMultiplier } : {}),
     bonuses: Object.freeze(Object.fromEntries(keys[id].map(key => [key, (definition.perRank[key] ?? 0) * rank]))),
@@ -181,6 +185,7 @@ function valid(aura: StatAuraProjection): boolean {
     validHealing(aura.selectedAuraId, aura.healing) &&
     validRedemption(aura.selectedAuraId, aura.redemption) &&
     validSanctuary(aura.selectedAuraId, aura.sanctuary) &&
+    (aura.selectedAuraId === 'paladin.concentration' ? aura.preventStunInterruption === true : aura.preventStunInterruption === undefined) &&
     (aura.selectedAuraId === 'paladin.cleansing'
       ? typeof aura.cleansingDurationMultiplier === 'number' && Number.isFinite(aura.cleansingDurationMultiplier) &&
         aura.cleansingDurationMultiplier > 0 && aura.cleansingDurationMultiplier < 1
@@ -204,6 +209,7 @@ export function copyStatAuraProjection(aura: StatAuraProjection | undefined): St
     ...(aura.pulse ? { pulse: copyPulse(aura.pulse) } : {}),
     ...(aura.healing ? { healing: copyHealing(aura.healing) } : {}),
     ...(aura.redemption ? { redemption: copyRedemption(aura.redemption) } : {}),
+    ...(aura.preventStunInterruption ? { preventStunInterruption: aura.preventStunInterruption } : {}),
     ...(aura.sanctuary ? { sanctuary: copySanctuary(aura.sanctuary) } : {}),
     ...(aura.cleansingDurationMultiplier !== undefined ? { cleansingDurationMultiplier: aura.cleansingDurationMultiplier } : {}),
     rank: aura.rank, maxRank: aura.maxRank, bonuses: Object.freeze({ ...aura.bonuses }),

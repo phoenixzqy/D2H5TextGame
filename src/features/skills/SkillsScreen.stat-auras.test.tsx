@@ -90,6 +90,16 @@ for (const locale of ['en', 'zh-CN'] as const) {
         expect(detail).not.toHaveTextContent('{{');
       }
     });
+    it('explains Concentration physical scaling, actual Stun protection and remaining control/cost limits', () => {
+      mount(true);
+      fireEvent.click(screen.getByTestId('skill-node-skills-paladin-concentration'));
+      const detail = screen.getByTestId('skill-detail-panel');
+      for (const text of locale === 'en'
+        ? ['physical damage +3.5%', 'Stun remains applied', 'Freeze and Paralyze still block', 'normal mana and cooldown', 'living fielded mercenary', 'next wave']
+        : ['物理伤害+3.5%', '眩晕状态仍然保留', '冻结与麻痹仍会阻止', '正常法力与冷却', '存活的上阵佣兵', '下一波']) expect(detail).toHaveTextContent(text);
+      expect(detail).toHaveTextContent('3.5%'); expect(detail).toHaveTextContent('7%');
+      expect(detail).not.toHaveTextContent('{{');
+    });
     it('explains Sanctuary undead-only pulses, recipient Arcane scaling and timed Stun instead of movement', () => {
       mount(true);
       fireEvent.click(screen.getByTestId('skill-node-skills-paladin-sanctuary'));

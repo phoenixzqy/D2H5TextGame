@@ -2506,6 +2506,18 @@
       }
     },
     "else": { "properties": { "redemption": false } }
+  }, {
+    "if": { "properties": { "id": { "const": "skills-paladin-concentration" } }, "required": ["id"] },
+    "then": {
+      "required": ["aura", "concentration"],
+      "properties": {
+        "aura": { "const": true }, "trigger": { "const": "passive" },
+        "target": { "const": "self" }, "cooldown": { "const": 0 },
+        "damage": false, "appliesStatus": false, "heal": false,
+        "concentration": { "$ref": "#/properties/concentration" }
+      }
+    },
+    "else": { "properties": { "concentration": false } }
   }],
   "if": {
     "properties": { "id": { "const": "skills-necromancer-amplify-damage" } },
@@ -2525,6 +2537,14 @@
     }
   },
   "properties": {
+    "concentration": {
+      "type": "object", "additionalProperties": false,
+      "description": "Exact selected Concentration interruption adaptation; Stun remains applied while eligible scheduled actions continue. Freeze and Paralyze still block.",
+      "required": ["preventStunInterruption"],
+      "properties": {
+        "preventStunInterruption": { "const": true, "description": "Protect scheduled actions against canonical Stun only while the source lives; no extra action or saved status immunity." }
+      }
+    },
     "sanctuary": {
       "type": "object", "additionalProperties": false,
       "description": "Exact selected Sanctuary undead-only Arcane damage and canonical Stun repulsion adaptation; no movement or saved timer.",
