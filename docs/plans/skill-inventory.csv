@@ -118,7 +118,7 @@ druid,skills-druid-poison-creeper,druid.poison_creeper,active,summon,,src/data/s
 druid,skills-druid-summon-spirit-wolf,druid.summon_spirit_wolf,active,summon,,src/data/skills/druid.json,,unverified,
 druid,skills-druid-carrion-vine,druid.carrion_vine,active,summon,,src/data/skills/druid.json,,unverified,
 druid,skills-druid-solar-creeper,druid.solar_creeper,active,summon,,src/data/skills/druid.json,,unverified,
-druid,skills-druid-spirit-of-barbs,druid.spirit_of_barbs,passive,buff,,src/data/skills/druid.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
+druid,skills-druid-spirit-of-barbs,druid.spirit_of_barbs,passive,automatic-living-spirit+party-reflection+summon-defense,spirit-of-barbs,src/data/skills/druid.json,provisional-spirit-template-balance-open|earned-class-build-balance-open,bounded-functional;independent-acceptance-open,docs/plans/evidence/d05-spirit-of-barbs.md
 druid,skills-druid-summon-grizzly,druid.summon_grizzly,active,summon,,src/data/skills/druid.json,,unverified,
 necromancer,skills-necromancer-raise-skeleton,necromancer.raise_skeleton,active,summon,,src/data/skills/necromancer.json,,unverified,
 necromancer,skills-necromancer-corpse-explosion,necromancer.corpse_explosion,active,damage,ignite,src/data/skills/necromancer.json,,bounded-functional;earned-balance-open,docs/plans/evidence/d06-corpse-explosion-ui.md

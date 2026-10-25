@@ -1,0 +1,713 @@
+{
+  "scope": "Local synthetic actual Spirit of Barbs verification; independent and earned acceptance remain open.",
+  "owner": {
+    "owner": "root",
+    "session": "01a1577a-5af4-70e3-8699-50a906877d8f",
+    "task": "Spirit of Barbs actual passive summoned spirit",
+    "worktree": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "base": "aca09a8791ead672edf51d7700ca5b94a2e10596"
+  },
+  "session": "01a1577a-5af4-70e3-8699-50a906877d8f",
+  "runtime": "ffae4ea08e6c087ee900e5294959f80e29343eec",
+  "archiveSha256": "2204161d50aeb0b5fb6f1f942696af8a776acd44255ae36b4b5a001c713a4877",
+  "files": {
+    "audit-browser.py": {
+      "sha256": "49c60eeaec91b41c40e1644a326aed5f09924dfa00db73721ba4827555170bb8",
+      "bytes": 1518
+    },
+    "aura-reference-audit-browser.py": {
+      "sha256": "31d662e922bb887b4fe6af7fd48cbb3b0014a90678aab727eefe16a9c5a6f735",
+      "bytes": 1502
+    },
+    "aura-reference-bridge.py": {
+      "sha256": "19b074e6b2c73adae41f8f0500ebe3259bd4ad5bef4281aaf2dc49ae64f12a41",
+      "bytes": 463
+    },
+    "aura-reference-browser.cjs": {
+      "sha256": "fd2d600becb97a3a15825868928fec7829179010f3b541bf29db26f40c150b5f",
+      "bytes": 8622
+    },
+    "aura-reference-retain-cleanup.py": {
+      "sha256": "c96b289722291da1a615b7f05fa9daac4e6befdda176aaf78476f96a44cbe3a4",
+      "bytes": 3869
+    },
+    "aura-reference-serve.py": {
+      "sha256": "4af249e56a927c5196a64f6e244c9227c6ec0078d04c93c38e73582dd6f6d648",
+      "bytes": 927
+    },
+    "aura-reference-snapshot.py": {
+      "sha256": "51eea22057228baf4fc3079f139f68731783abbe249c870ccf8c6d6d5529bf81",
+      "bytes": 1163
+    },
+    "aura-reference-verify-freeze.py": {
+      "sha256": "e7583bf2d92d76a8b04d0ea1ab446e101b951dc5e4167ffe3fb218c7e55f9f89",
+      "bytes": 1133
+    },
+    "bridge-final.log": {
+      "sha256": "eec491543ea807893bec5ab669e444de342217a64e19e46342d5a503b15891aa",
+      "bytes": 144
+    },
+    "bridge-final.result.json": {
+      "sha256": "e4275e5fe0b7a0b97547602c80989cdb5bc066c95d83357654e0e6bd820e9e2d",
+      "bytes": 180
+    },
+    "bridge.py": {
+      "sha256": "19b074e6b2c73adae41f8f0500ebe3259bd4ad5bef4281aaf2dc49ae64f12a41",
+      "bytes": 463
+    },
+    "browser-attachment-audit.json": {
+      "sha256": "df451d106172a9450c86ce5df8afc355c571549eaa73b79fa827fe0b7c0408c4",
+      "bytes": 1757
+    },
+    "browser-attachment-audit.log": {
+      "sha256": "20476c31670ff93aff41bcd32a8827ea3a86f58a382841a4534a7de34e2d072f",
+      "bytes": 84
+    },
+    "browser-attachment-audit.result.json": {
+      "sha256": "393ccbc18b1e34061ef4b81c89425f218fc982c202237d0ee4d75cb3667d44ab",
+      "bytes": 187
+    },
+    "browser-final/browser-report.json": {
+      "sha256": "905a96ca3d7ef6dd984a2075e811a44152d925f1be9c94ec92980f135ba1d83a",
+      "bytes": 5733
+    },
+    "browser-final/en-1280-fresh-1.json": {
+      "sha256": "2d265b54de61a35564a35f754ca3387369fff95213d30549934bc0186c7724ce",
+      "bytes": 3236
+    },
+    "browser-final/en-1280-imported-2.json": {
+      "sha256": "28d4a41a2a6db7916f43f33c0161e304d795c51ee202c4b2712a6444ac50e8f3",
+      "bytes": 4850
+    },
+    "browser-final/en-1280-rank19-after-4.json": {
+      "sha256": "2fc06ab750f1e5109bd800c34ecd2103a731f46dc25c16047be846feac8e360d",
+      "bytes": 4853
+    },
+    "browser-final/en-1280-rank19-before-3.json": {
+      "sha256": "c27db985e13c5e99e145adbaffc671914460f51a5f90cf5df8e2c79f4210a3af",
+      "bytes": 4850
+    },
+    "browser-final/en-1280-rank20-after-6.json": {
+      "sha256": "ed0067927c586a5dddd087515b937617278fe496f9b63d1185bafb0e1b989aa2",
+      "bytes": 4864
+    },
+    "browser-final/en-1280-rank20-before-5.json": {
+      "sha256": "bf2f5d80bf1fdd1299cccbc9847b9748602ec7f662d289ca0a3905e265557cfa",
+      "bytes": 4864
+    },
+    "browser-final/en-1280-spirit-combat.png": {
+      "sha256": "ea08ebc34b34214b7391e6d01f75392cbf19d255b97b37d5d5893b57033d593a",
+      "bytes": 417799
+    },
+    "browser-final/en-1280-spirit-of-barbs-details.png": {
+      "sha256": "438fcac09ee5b33e6e4396aa632684ae967421f306d548acae98c3a23dec3602",
+      "bytes": 157735
+    },
+    "browser-final/en-1280-synthetic-input.json": {
+      "sha256": "c29a601cda977a129621789d13852dc9adf6d8dca2ab68373a8445c56552d646",
+      "bytes": 4035
+    },
+    "browser-final/en-360-fresh-7.json": {
+      "sha256": "3ea3206ecbea4a3369cf8af31639df8b75b227199d1847c33c323d3b22bddc44",
+      "bytes": 3236
+    },
+    "browser-final/en-360-imported-8.json": {
+      "sha256": "46a0041272dc4999ac2dbdcc7f83926545073dc518a3a5d0107b4bc207f397f1",
+      "bytes": 4850
+    },
+    "browser-final/en-360-rank19-after-10.json": {
+      "sha256": "dce1974b985544e1d3aed3f5553c8f41c5f08b55912419282d22680cf369f471",
+      "bytes": 4853
+    },
+    "browser-final/en-360-rank19-before-9.json": {
+      "sha256": "26b04510a1d4e1de6162bb8eeef634e4111abc7498d9f5bde78f84dc4a56b6af",
+      "bytes": 4850
+    },
+    "browser-final/en-360-rank20-after-12.json": {
+      "sha256": "c8aa191f7a0f21ed5d595cebee726ea2fe05928d6b3f7fa4693c5f202776517d",
+      "bytes": 4864
+    },
+    "browser-final/en-360-rank20-before-11.json": {
+      "sha256": "a6600696c8cd1c18bc6217613a839025b7e4314caa776f8bce62f69f44e6b228",
+      "bytes": 4864
+    },
+    "browser-final/en-360-spirit-combat.png": {
+      "sha256": "23f08a5d54aa37184cac33c223529f8275dfbd8b0118669f2e3e430ec296da86",
+      "bytes": 42041
+    },
+    "browser-final/en-360-spirit-of-barbs-details.png": {
+      "sha256": "03ef9f5ce9e1288d9fd858c42e7f871c3e5229a2ed494833da229570b1f7c6f7",
+      "bytes": 59154
+    },
+    "browser-final/en-360-synthetic-input.json": {
+      "sha256": "8777b0d1985456d7e35593981be1b0e247476d2e798107b7e7cca96ce25a8e98",
+      "bytes": 4035
+    },
+    "browser-final/zh-CN-1280-fresh-13.json": {
+      "sha256": "c183d4d773fab3e34ccebda50370f32cc72b8119f69cef336b556f7f1587036a",
+      "bytes": 3239
+    },
+    "browser-final/zh-CN-1280-imported-14.json": {
+      "sha256": "f4ea5bf6e2d468db8ddf17f44cece6bac472ac4e426a7e362d85fdc9af434a86",
+      "bytes": 4853
+    },
+    "browser-final/zh-CN-1280-rank19-after-16.json": {
+      "sha256": "4561a100c870c97db3e5991b2ba5a0c96d040a0bb1f23aadb113aa2fbccdd1d2",
+      "bytes": 4856
+    },
+    "browser-final/zh-CN-1280-rank19-before-15.json": {
+      "sha256": "67e431b346256e3f21a327ddb14c03d042ba95ef7c3bdb3f18e0b3e8fb99465f",
+      "bytes": 4853
+    },
+    "browser-final/zh-CN-1280-rank20-after-18.json": {
+      "sha256": "a403b68ab2a956767e4b83cdcd46968cd71f1efe477c40f3a4c41ba18336c1fa",
+      "bytes": 4868
+    },
+    "browser-final/zh-CN-1280-rank20-before-17.json": {
+      "sha256": "931ff476b394a735d1846c6d59d71c6b3984e8071bb192a97d4ca0400dab562f",
+      "bytes": 4867
+    },
+    "browser-final/zh-CN-1280-spirit-combat.png": {
+      "sha256": "36dc6be1088e417a2bb6761ec0c7f2e74842eb7c7bbb2272f9d7a4b52c5041a5",
+      "bytes": 423279
+    },
+    "browser-final/zh-CN-1280-spirit-of-barbs-details.png": {
+      "sha256": "4c8fbe4a8817a8d3df53e5a1343736097e8ef1e6c63416bb21ea423a637a240a",
+      "bytes": 160125
+    },
+    "browser-final/zh-CN-1280-synthetic-input.json": {
+      "sha256": "eaf027869b2689de2da0fdfba371e9a2792bcd89fbdd39d401c03c45a224bd20",
+      "bytes": 4038
+    },
+    "browser-final/zh-CN-360-fresh-19.json": {
+      "sha256": "9678d79530eb478ba85cecd0476239b5f35aa13c0d1a92753ad9dd502b37646e",
+      "bytes": 3239
+    },
+    "browser-final/zh-CN-360-imported-20.json": {
+      "sha256": "a324c298cd69fa119805acbd5797884c56cad6805edee9132ada1c977598b469",
+      "bytes": 4853
+    },
+    "browser-final/zh-CN-360-rank19-after-22.json": {
+      "sha256": "2d89598f9ad658adfd57f75951f562400a296ebddc66d3a9b559848dfb8b7bf3",
+      "bytes": 4856
+    },
+    "browser-final/zh-CN-360-rank19-before-21.json": {
+      "sha256": "5efd90a717958b2b5dfd6fa4179edd6eaabe67116f1b1a7b88b86617025732ec",
+      "bytes": 4853
+    },
+    "browser-final/zh-CN-360-rank20-after-24.json": {
+      "sha256": "c74ddbbc0518c76f2d592b82f0a318add807508038821f03c7382b8fc6f3939c",
+      "bytes": 4867
+    },
+    "browser-final/zh-CN-360-rank20-before-23.json": {
+      "sha256": "02bb70828141720832163b836ea94a4bc8939daa60f75c87a92aea64c937afdd",
+      "bytes": 4867
+    },
+    "browser-final/zh-CN-360-spirit-combat.png": {
+      "sha256": "ceed4909947d89b08bd507a90a195f8116dd8d058f65dad2e027bf7749851623",
+      "bytes": 44322
+    },
+    "browser-final/zh-CN-360-spirit-of-barbs-details.png": {
+      "sha256": "4c42412cacc713957085bff23ee258103c57c0fc469158084ef1137bd2dff640",
+      "bytes": 72675
+    },
+    "browser-final/zh-CN-360-synthetic-input.json": {
+      "sha256": "e738858961b6a54cb8cc102299332b6be4726b8fdf64efa576a8d70d66502c96",
+      "bytes": 4038
+    },
+    "browser-final.log": {
+      "sha256": "5f3ee7eed2d1b608c2345fc5beca3a07861a5154cfe523472a9168e381a5c915",
+      "bytes": 78
+    },
+    "browser-final.result.json": {
+      "sha256": "d80d6d9b10ec6f19bc20d21400255d0a84f93503628db189e883a7cb6fce29a8",
+      "bytes": 176
+    },
+    "browser.cjs": {
+      "sha256": "e9d62c4d371e18510150d839c2b3754f5bc132806b1f37605703725885ae7aab",
+      "bytes": 8803
+    },
+    "build-final.log": {
+      "sha256": "53894ebe88929550b83f60e5523d58f799270d113c08cbf495f8c6bccec45bf4",
+      "bytes": 2313
+    },
+    "build-final.result.json": {
+      "sha256": "d2b1971cbb851d7a966206d9e3877683ff0f8251bdf4408696fee46510bdc5ef",
+      "bytes": 226
+    },
+    "candidate-sources.json": {
+      "sha256": "4e70340353e9287c9831357108e1a14424786e8c1118464f593b0205c39e1342",
+      "bytes": 1794
+    },
+    "committed-source-verification.json": {
+      "sha256": "9b05f1237867aeccbb4da5a1b10449cb323c9a027731810895a30d709ebeda9c",
+      "bytes": 116
+    },
+    "definition-api-red.log": {
+      "sha256": "e0ac182451920f0d5555e4ac71f065250f71acce7f9d6851c166d6626f44c332",
+      "bytes": 886
+    },
+    "definition-api-red.result.json": {
+      "sha256": "2688c320dc08d689cb994067d3497f5283d1f79f72b87a75c1d631854e441aba",
+      "bytes": 184
+    },
+    "definition-before-fixture-literals.test.ts": {
+      "sha256": "9042d290a2267694b1dca87c3ea2ebdcbf0ed1133fc0daa79f26745b5422ae8e",
+      "bytes": 5641
+    },
+    "definition-first-green.log": {
+      "sha256": "d4a3aee132ffa2dbec340cbe230b84610cfdb21f9094279f78c52b20c3a4d9ac",
+      "bytes": 1590
+    },
+    "definition-first-green.result.json": {
+      "sha256": "dc41e8d009f3783e0627693a589cc22663f5e18bf6413d3e57fe02a15d686089",
+      "bytes": 234
+    },
+    "definition-schema-green.log": {
+      "sha256": "6d619ec48313980d354a9d1204803bc1d7fbcdb93cb3d2d2005f3c2497cbb276",
+      "bytes": 576
+    },
+    "definition-schema-green.result.json": {
+      "sha256": "92195141524e79c65310c4abff10105015c0d144c1bf67b4a9417b8a4493ff95",
+      "bytes": 306
+    },
+    "engine-before-continuous-sweep.test.ts": {
+      "sha256": "ef9d652662f457dea7ceb2e9ab79c78ddbd1e97ee67a44f17b9a22a937b4222d",
+      "bytes": 12692
+    },
+    "engine-before-death-time-and-refund-reason.test.ts": {
+      "sha256": "69f606e4980be1f385622474b85d84a4d72a3ded0b7212fca16b9fc18a1ea791",
+      "bytes": 7269
+    },
+    "engine-before-magic-scope-and-foreign-dodge.test.ts": {
+      "sha256": "0573f6735d01a25bb67dda68a3de5cdaa1fcfb7d125231bfb4d6d3f0c491831a",
+      "bytes": 12103
+    },
+    "engine-before-survivor-oracle.test.ts": {
+      "sha256": "4d2a9bd2021dc4d44332ec0536795396eb973c3fa32ccc9564bab0b73f1837d6",
+      "bytes": 6224
+    },
+    "engine-causal-red-input.test.ts": {
+      "sha256": "4d2a9bd2021dc4d44332ec0536795396eb973c3fa32ccc9564bab0b73f1837d6",
+      "bytes": 6224
+    },
+    "engine-definition.log": {
+      "sha256": "cbcf33e184ba44fff9eedca05a98e968c767d295e3bd932de95e7d59751d33a6",
+      "bytes": 63725
+    },
+    "engine-definition.result.json": {
+      "sha256": "518e9bce290421d017392d814322cfd1ee4fcf57aa766cbd720a70c864a0060f",
+      "bytes": 108
+    },
+    "engine-final.log": {
+      "sha256": "8058cdb51978592c65b1b869bd0f0df51c09051f039143c8451554d6c93824e7",
+      "bytes": 63910
+    },
+    "engine-final.result.json": {
+      "sha256": "d336455a3c3051656fd3cb941b7a646f0c822c19d8b5027f523bfaedd571be8d",
+      "bytes": 108
+    },
+    "evidence-draft.md": {
+      "sha256": "081ca78e404e295e238d7767247bae0e5f8dbe4781c657f016e2596afe9e62e3",
+      "bytes": 6973
+    },
+    "final-preview-test-source.ts": {
+      "sha256": "70e985616b05ff38b35dfd4c3697bdf939efc36c30d50da79d2f527a9179b148",
+      "bytes": 1842
+    },
+    "focused-final.log": {
+      "sha256": "a041ae3bc95d318be157c0d87dc3d1c75ffee5bb11f5539ac102a8369ddf9d03",
+      "bytes": 1420
+    },
+    "focused-final.result.json": {
+      "sha256": "31afe9f9c61545a0695f6384c77df82a7b4e455a63e1469648f6d845b967ae02",
+      "bytes": 719
+    },
+    "format-definition.log": {
+      "sha256": "24f2684bc49de24e3acb27c4611065559f8d0dffceac8f240d88c99d91435d75",
+      "bytes": 137
+    },
+    "format-definition.result.json": {
+      "sha256": "931e8aea188288b9a3da7f9593ab7a28b447c69e0b5a188b745abaadba5d46b1",
+      "bytes": 252
+    },
+    "format-runtime-final.log": {
+      "sha256": "8228a0031c81ba4d8e3c7c8ff6a22e2689a8f71dea0a543b65f2311063b454ba",
+      "bytes": 95
+    },
+    "format-runtime-final.result.json": {
+      "sha256": "8c67b049062af382d571a99de91bd78b5173a6e5fbc9fae68789bcbb380a29b9",
+      "bytes": 207
+    },
+    "format-runtime-oracle.log": {
+      "sha256": "2fcad8889a460849953b0a2f5e36f06e46cb92a55298f19d70b27ac539f564e9",
+      "bytes": 48
+    },
+    "format-runtime-oracle.result.json": {
+      "sha256": "4a244d04a4d082c3ef0258d5e32ab38578a3177c7a52b5ff0ebfa505339a08e4",
+      "bytes": 157
+    },
+    "format-runtime-test.log": {
+      "sha256": "228c23312af6038f88315f5cfb03474f8c0489afc160538a927c3fce4eae6d9e",
+      "bytes": 48
+    },
+    "format-runtime-test.result.json": {
+      "sha256": "d9fa59f2805abdb17c9f845284cd723b5d50c5db100483610375c8e2d14922d3",
+      "bytes": 159
+    },
+    "format-ui-tests.log": {
+      "sha256": "fa897828b311e354328c1ff808c2edb3d91a5d237d538055f1f680cc0a80b399",
+      "bytes": 187
+    },
+    "format-ui-tests.result.json": {
+      "sha256": "18aeb7dd4f3a1be181a9e75d56ed0bed5927e060d9e1737e4c364d0060b535d8",
+      "bytes": 302
+    },
+    "full-freeze-verification.json": {
+      "sha256": "6c328297b320303c6a78c317d6d09ea9aff160a7008c49e5a7f8886f95177710",
+      "bytes": 590
+    },
+    "full-verified-after.json": {
+      "sha256": "f9d0d89f22026bf5014c9446ea7e80884586532278621422b61c52c7e0747166",
+      "bytes": 248401
+    },
+    "full-verified-before.json": {
+      "sha256": "f9d0d89f22026bf5014c9446ea7e80884586532278621422b61c52c7e0747166",
+      "bytes": 248401
+    },
+    "full-verified.log": {
+      "sha256": "4bf27065ab23aed84c629968493dae6fc2c1ff8e27d8ef25c9766482e2e75543",
+      "bytes": 151292
+    },
+    "full-verified.result.json": {
+      "sha256": "1606ef02daa457199d7322d1225c39d0bd8d0243a6700e540f256056d2ab07bc",
+      "bytes": 89
+    },
+    "inventory-credit-verification.json": {
+      "sha256": "9464c8c9624ad9bac6e2475b5c7423e5ee21aa2d8fe216119253e6f5c7ba498a",
+      "bytes": 240
+    },
+    "lint-definition.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "lint-definition.result.json": {
+      "sha256": "179b7d85fd46db5f8e267a62d42f5c4e3174d02de1adb74c0453ff19805c52e9",
+      "bytes": 292
+    },
+    "lint-final-test-corrections.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "lint-final-test-corrections.result.json": {
+      "sha256": "812cab7c6ccc7ecccc98845b3ca94d7e1156b1ecbb598c3fb409c80e1ce99292",
+      "bytes": 227
+    },
+    "lint-final.log": {
+      "sha256": "b6d03051e626dc5ebaf1001bd4d6ac8eb6fe135c465f5cabd978f1dbd1038a7e",
+      "bytes": 197
+    },
+    "lint-final.result.json": {
+      "sha256": "577623de678bc18b56141202f17c6aadff68909f6cfdca209d7b54568b801a55",
+      "bytes": 102
+    },
+    "lint-runtime-boundaries.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "lint-runtime-boundaries.result.json": {
+      "sha256": "8a089f2331932659dee7633162556df274c99bb14a195c294e3c67ae2400e469",
+      "bytes": 370
+    },
+    "lint-runtime-corrected.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "lint-runtime-corrected.result.json": {
+      "sha256": "e30710cb4e22e70a88162e51561be9307c203f0e32e7ba7df1eb4de488fb622c",
+      "bytes": 321
+    },
+    "lint-runtime.log": {
+      "sha256": "6853c2c8f05c3d8527b8a79acb93185b3d7359f99e6bbf1fd7341300eaa02ded",
+      "bytes": 316
+    },
+    "lint-runtime.result.json": {
+      "sha256": "f55f9c12dfb829d05361772cc12a77d9f6da48606758a093f8aa7dc2bf8a3df8",
+      "bytes": 321
+    },
+    "native-before-canonical-rank-oracle.test.ts": {
+      "sha256": "2d452f33cd74531fa639ad6bbc92ef10829ca0ada9e8c4c06d4d07b8f0bd1655",
+      "bytes": 5988
+    },
+    "native-before-optional-levels-type-fix.test.ts": {
+      "sha256": "63753e86f633b048a95407feb7a84aa435b75adf02c3353b37087df0ce235113",
+      "bytes": 6227
+    },
+    "native-causal-red-input.test.ts": {
+      "sha256": "704c734b71b8455ff0c2dd2821340ffabd491c4bde9ec66c2866c4a38642313c",
+      "bytes": 2980
+    },
+    "native-spirit-red.log": {
+      "sha256": "4a7e86a0804019c2709d825408aeffd8c7c5017d0be847f43bc30a45d0fc648b",
+      "bytes": 1596
+    },
+    "native-spirit-red.result.json": {
+      "sha256": "4a433aac4fc0601c75522d6377c863232d3230aa53f75992f934419ce825ece8",
+      "bytes": 179
+    },
+    "next-active-audit.json": {
+      "sha256": "9d82d7f39288d1a75067a6b07a1fa74a8074ccfa2006ca4ad1388c8074e5e57c",
+      "bytes": 1929
+    },
+    "original-CombatScreen.spirit-of-barbs.test.tsx": {
+      "sha256": "8fffa543f6d0b15fd9db144e284a23739112b935281d93c7cfc07ec93da370bd",
+      "bytes": 5333
+    },
+    "original-SkillsScreen.spirit-of-barbs.test.tsx": {
+      "sha256": "b626471b4cb62502fb0b65f223e11b5e5170ff2ff45e310915114a841ff91920",
+      "bytes": 3689
+    },
+    "original-displayStats.spirit-of-barbs.test.ts": {
+      "sha256": "9c83b455d8f876e9bb2b8fdf18262a102b97e815310c7f9aa011df1a072e1577",
+      "bytes": 1474
+    },
+    "ownership.json": {
+      "sha256": "b2853a9d5fdb686fa93788de4e0c840c2152886e52af09549b4c423511c7ca3d",
+      "bytes": 286
+    },
+    "publish-local-evidence.py": {
+      "sha256": "c1950fdfa8bf7f622cc4ab00016ad58870c6e587425eee40d201344bb7eecc5d",
+      "bytes": 3875
+    },
+    "retain-cleanup.py": {
+      "sha256": "a24a52beb579b98927b75f0c88f7ae1f94b3b0faa3c5105fe8d83f5bc0f7b88e",
+      "bytes": 3817
+    },
+    "run.py": {
+      "sha256": "1451b9c4cfb83f2e781bc45c392bcd284e9b262b066d58242552f604d1a40933",
+      "bytes": 521
+    },
+    "schema-before.json": {
+      "sha256": "eb59a5005fde7daa2f868c552cbcf9209c40a44453c8a825c5c053a6fe0cf584",
+      "bytes": 111072
+    },
+    "screenshot-review.json": {
+      "sha256": "7b17a2e7d1df976896eb97563fe3b28a7734409a2d8d5ccceb705d8b6b1bbe08",
+      "bytes": 963
+    },
+    "serve.py": {
+      "sha256": "499df0f2cea47f870a5d66ed6e83cf05ff030efcee2f126b118a06af081c838d",
+      "bytes": 927
+    },
+    "server-process.json": {
+      "sha256": "24c6f2e212f7600396618901b410943c543a2d6d237ae5a541d8410376f1aa60",
+      "bytes": 82
+    },
+    "server-stop-receipt.json": {
+      "sha256": "a02ab1fc0405083e519e54da93aba6ab9b497db9df82923a3dc12a1da094b0aa",
+      "bytes": 188
+    },
+    "server-terminal.json": {
+      "sha256": "e1353f7199df4c9b11b95b859e8a330252c9b52de62857b7c7569c95a19965c8",
+      "bytes": 59
+    },
+    "server.log": {
+      "sha256": "420ad46fee6dda3da044e2d2ed6cf0d5c941adc8a25afbdb03173ad59153d00a",
+      "bytes": 388886
+    },
+    "server.result.json": {
+      "sha256": "365d1e517765526ad5b8158b76c0d6bb51afbf9865329a293d34625d9eebbe2a",
+      "bytes": 178
+    },
+    "snapshot.py": {
+      "sha256": "51eea22057228baf4fc3079f139f68731783abbe249c870ccf8c6d6d5529bf81",
+      "bytes": 1163
+    },
+    "source-self-review.json": {
+      "sha256": "06507dff6519b67ff7c4168c3a70c9bdc8f34cdae535033394c41728c5663832",
+      "bytes": 1286
+    },
+    "spirit-engine-lifecycle-corrected.log": {
+      "sha256": "3ae71a01ca65bb35ac5eb8e47cf2404b93422a68c239741b726998c9cb476740",
+      "bytes": 45401
+    },
+    "spirit-engine-lifecycle-corrected.result.json": {
+      "sha256": "18bc24e7d0cba0b6f4370b8b8c267c02ffd985c44b587b473df1976c4ca3ab82",
+      "bytes": 201
+    },
+    "spirit-engine-lifecycle.log": {
+      "sha256": "5a128fc879fefa8aee3571f179766fd503308a934482526e877d2df8675ac29a",
+      "bytes": 2462
+    },
+    "spirit-engine-lifecycle.result.json": {
+      "sha256": "df869aa3e0ce1a4727ec4b50102880b1eedcbf7d87df91cb31475665cb7bf337",
+      "bytes": 153
+    },
+    "spirit-engine-red.log": {
+      "sha256": "d773de7bbc6475ebf00663a48adf13e0852667501cf0d87df2f72df6fef02e60",
+      "bytes": 2632
+    },
+    "spirit-engine-red.result.json": {
+      "sha256": "b53ab4595040aab1da7a2243aec0a3823ac959f7be0253b0ee70594da6900e9c",
+      "bytes": 184
+    },
+    "spirit-engine-runtime.log": {
+      "sha256": "81b0b2e9e79c96799fc7571805d82e2cde97dbef68df680c5ed896b9354a8ccc",
+      "bytes": 63853
+    },
+    "spirit-engine-runtime.result.json": {
+      "sha256": "fbc7c3110fb3607028e995193e2f8c600aaa6b8a4128c109a078e0681823b5be",
+      "bytes": 108
+    },
+    "spirit-lifecycle-native-final.log": {
+      "sha256": "60b71d80d45a6b33f23423f26e69662c4199a3fcc08225cb42c3b35313e006eb",
+      "bytes": 427
+    },
+    "spirit-lifecycle-native-final.result.json": {
+      "sha256": "db869ae349856636bb0973009244469c45c3f96afb5b4ad27fd6b457d779a575",
+      "bytes": 201
+    },
+    "spirit-native-boundaries.log": {
+      "sha256": "fdddaaaadd2882e05af9138f4945c449693f93d5c01eb5b55b1438b814608d89",
+      "bytes": 1400
+    },
+    "spirit-native-boundaries.result.json": {
+      "sha256": "a93f5e1cbbcd4cd0a192c7a26ebcbb85dd92904d26f9a0c4948ebaa041d71e7b",
+      "bytes": 152
+    },
+    "spirit-preview-red.log": {
+      "sha256": "7f5074c7f23f50283472e54928626a85aaec84ef5007bab17d465115e003c6e2",
+      "bytes": 1757
+    },
+    "spirit-preview-red.result.json": {
+      "sha256": "67b10ba03fdbe95c44e712fd774e7f8a3dfbbe8bb8ee6d8d8f33712762b6a754",
+      "bytes": 164
+    },
+    "spirit-runtime-causal-green.log": {
+      "sha256": "24bb6a9180d1df46cc903b68dc1174cd0e239bb694f1f7178e3f5182a7456d0f",
+      "bytes": 1000
+    },
+    "spirit-runtime-causal-green.result.json": {
+      "sha256": "2ace4f025ce4d2b0f7352fcb124275e76c6965fee1e8c5104b508ebd5cd97625",
+      "bytes": 400
+    },
+    "spirit-runtime-first-green.log": {
+      "sha256": "46d75978a0e43426b9011be2077f6360b7a2471ed51c9d7af16ee59a89deaecf",
+      "bytes": 2300
+    },
+    "spirit-runtime-first-green.result.json": {
+      "sha256": "c4c0859d661bedaaf2b9e31fd135d963a423bb2097d9a96e09179aa4ab6d2a99",
+      "bytes": 303
+    },
+    "spirit-runtime-survivor-green.log": {
+      "sha256": "fc3d4dc1fa15fb3fc397417b495aac774d479886e5f8d152843cdc9af4e2369d",
+      "bytes": 2797
+    },
+    "spirit-runtime-survivor-green.result.json": {
+      "sha256": "70ec311df877c7c75d7e006ee55ed37c8df3ce9d11ba9f453ba698313b4b0c98",
+      "bytes": 400
+    },
+    "spirit-ui-preview-green.log": {
+      "sha256": "4591d7d61829bf905aa8ae09cde6020ae6971808eed798161e9d7cab7b2c9481",
+      "bytes": 613
+    },
+    "spirit-ui-preview-green.result.json": {
+      "sha256": "8a782205a5e455825566cc7cf1124fe4fc567c83c9496acc9827545fcdffe27e",
+      "bytes": 342
+    },
+    "spirit-ui-red.log": {
+      "sha256": "2cdacd4b5a908a88603db3f21521a5dd709b201a67afde99e23b650f3f3ad406",
+      "bytes": 57321
+    },
+    "spirit-ui-red.result.json": {
+      "sha256": "7105c98b6cc6f0006419c2245133afb87a9a8e4a83d589d0fb7f6829a2b10202",
+      "bytes": 232
+    },
+    "types-definition-corrected.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-definition-corrected.result.json": {
+      "sha256": "54787ae632626bb796bf84a82044f17ecd88228ba35820faec263b4e94213718",
+      "bytes": 105
+    },
+    "types-definition.log": {
+      "sha256": "4163da381e5b6a6c2d9715555a75a6d960b82454e10a85147d7a07a85c953743",
+      "bytes": 2313
+    },
+    "types-definition.result.json": {
+      "sha256": "2d954036398860563f8b2572d05285309a930e2545bc9b77ff67e39d6aa6012f",
+      "bytes": 106
+    },
+    "types-final-corrected.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-final-corrected.result.json": {
+      "sha256": "914a8a92481ac68f26f2e2f4eb43754dd6e05583afad2bd40e5530ed73c8de6d",
+      "bytes": 106
+    },
+    "types-final.log": {
+      "sha256": "1d19dd0b3ed7a13e8730236734229f1f1910d924380bdafcc6a75678ded29302",
+      "bytes": 2289
+    },
+    "types-final.result.json": {
+      "sha256": "a86bc763ec092fd0692e00bd2248bf8a0627122864b324de67b5e5e903276419",
+      "bytes": 106
+    },
+    "types-runtime-boundaries.log": {
+      "sha256": "95e3156f924bbc86c869ab0ad8d020dfac0e115f164c6c7389b37e2edb64679b",
+      "bytes": 147
+    },
+    "types-runtime-boundaries.result.json": {
+      "sha256": "40d2978220d0923d952c7e0d631402443699e722d175521706ffaf2a22a8c6ca",
+      "bytes": 106
+    },
+    "types-runtime-corrected.log": {
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    "types-runtime-corrected.result.json": {
+      "sha256": "6d7819e70eebd8166dc0f5cf3192eba5979525bc43663418a9b453fb022ddead",
+      "bytes": 106
+    },
+    "types-runtime.log": {
+      "sha256": "0b47c7b8fc8b388eba13dd926cf45ce1b194ed58831afdf6c63f7df808d88d5e",
+      "bytes": 294
+    },
+    "types-runtime.result.json": {
+      "sha256": "14e0e95e229d5c5fbc7b47888c4dbd21ad3908c80d7e24485700c1e3b27f4eae",
+      "bytes": 107
+    },
+    "verify-freeze.py": {
+      "sha256": "e7583bf2d92d76a8b04d0ea1ab446e101b951dc5e4167ffe3fb218c7e55f9f89",
+      "bytes": 1133
+    }
+  },
+  "rawFileCount": 168,
+  "terminalResults": 43,
+  "allArchivedBytesVerified": true,
+  "excludedDisposableBuildDirectories": [
+    "build-final"
+  ],
+  "fullFreeze": {
+    "pass": true,
+    "head": "ffae4ea08e6c087ee900e5294959f80e29343eec",
+    "checks": {
+      "sources": true,
+      "build": true,
+      "genuine": true,
+      "head": true,
+      "status": true
+    },
+    "sourceFiles": 1288,
+    "buildFiles": 760,
+    "genuineSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "fullWallSeconds": 564.435055732727,
+    "summary": [
+      "Test Files  566 passed (566)",
+      "Tests  13003 passed | 2 skipped (13005)",
+      "Duration  563.00s (transform 21.95s, setup 66.94s, collect 1184.82s, tests 586.55s, environment 155.24s, prepare 68.98s)"
+    ]
+  }
+}

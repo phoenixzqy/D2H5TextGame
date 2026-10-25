@@ -1,6 +1,6 @@
 # BUG-189 — Create the advertised Spirit of Barbs
 
-Severity: High. Status: reproduced; implementation pending.
+Severity: High. Status: locally fixed and verified; independent/earned acceptance open.
 Owner: root acting as engine/frontend/content; independent design/QA open.
 Affected: Druid passive ownership, summon lifecycle, reflection, summon Defense,
 native wave/replay, bilingual Skills/Combat presentation.
@@ -33,3 +33,12 @@ replacement or skill-inventory credit. The
 [local contract](../../docs/plans/decisions/D05-spirit-of-barbs-v1.md) preserves
 authored4% reflection/2% summon Defense per rank and requires an actual creation
 attestation, no ordinary attacks/replacement/refund and Save22-only allocations.
+
+## Local resolution
+
+Runtime `61ec0c1` and presentation `ffae4ea` implement the actual passive spirit.
+[Verification and limits](../../docs/plans/evidence/d05-spirit-of-barbs.md) retain
+the causal RED and final checks. Save22 and genuine progression are unchanged.
+Root archived the required evidence and removed the exact scratch named above;
+the linked evidence cleanup receipt records scratch absence, port closure and no
+remaining task paths or cleanup failures.
