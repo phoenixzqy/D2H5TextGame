@@ -263,10 +263,10 @@ Monsters use a simplified skill set. Examples:
 ### 6.2 Aura Skills (Paladin-specific)
 The implemented player selection supports **None, Might, Meditation, Thorns,
 Blessed Aim, Fanaticism, Defiance, Resist Fire, Resist Cold, Resist Lightning,
-Salvation, Holy Freeze, Conviction, Holy Fire, Holy Shock, Prayer and Cleansing** in one
+Salvation, Holy Freeze, Conviction, Holy Fire, Holy Shock, Prayer, Cleansing and Redemption** in one
 exclusive saved canonical slot. Stat, enemy, pulse and healing effects follow
 [the family contract](../plans/decisions/D05-paladin-aura-family-v1.md).
-Sanctuary, Redemption, Vigor and Concentration still require their
+Sanctuary, Vigor and Concentration still require their
 distinct remaining mechanics;
 full aura-catalog and independent acceptance remain open.
 
@@ -322,6 +322,16 @@ full aura-catalog and independent acceptance remain open.
   point/rank. These duration/recovery numbers are provisional local defaults;
   earned balance and independent acceptance remain open. Full details in the
   [family contract](../plans/decisions/D05-paladin-aura-family-v1.md).
+- **Redemption:** Every5000ms, starting one full interval after each wave entry,
+  consume one oldest corpse from the shared CE/PE wave-local pool only if an
+  eligible living hero/original fielded merc can recover. One body grants each
+  eligible recipient20 base HP/10 base MP, each scaled by its authored2%/rank,
+  floored and capped independently. Full resources preserve the body. Existing
+  primary death/summon/orphan guards, periodic-death-first ordering, source death,
+  deadline/action cap and battle-end rules remain authoritative. No resurrection,
+  extra RNG/cast/action/mana cost, banked recovery or saved corpse/timer. The
+  interval/base resources are provisional local tuning. Item-granted Redemption
+  stays separate; earned balance and independent acceptance remain open.
 - **Meditation strength:** Each allocated rank adds3% of the source hero's normal
   mana-regeneration baseline per second to each recipient, capped at rank20/60%.
   Each recipient retains its own existing baseline. Source baseline4 therefore

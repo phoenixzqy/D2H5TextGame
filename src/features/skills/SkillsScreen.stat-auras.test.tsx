@@ -90,6 +90,15 @@ for (const locale of ['en', 'zh-CN'] as const) {
         expect(detail).not.toHaveTextContent('{{');
       }
     });
+    it('explains Redemption actual corpse cost, life/mana recovery, timing, scaling and full-resource preservation', () => {
+      mount(true);
+      fireEvent.click(screen.getByTestId('skill-node-skills-paladin-redemption'));
+      const detail = screen.getByTestId('skill-detail-panel');
+      for (const text of locale === 'en'
+        ? ['one corpse', 'every 5 seconds', '20 base HP', '10 base MP', '+2% per rank', 'living fielded mercenary', 'full resources', 'never revives']
+        : ['一具尸体', '每5秒', '20点基础生命', '10点基础法力', '每级+2%', '存活的上阵佣兵', '资源全满', '不会复活']) expect(detail).toHaveTextContent(text);
+      expect(detail).not.toHaveTextContent('{{');
+    });
     it('explains Cleansing finite one-time duration reduction, independent recovery and magical dodge', () => {
       mount(true);
       fireEvent.click(screen.getByTestId('skill-node-skills-paladin-cleansing'));

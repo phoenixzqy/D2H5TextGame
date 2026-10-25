@@ -928,7 +928,7 @@
     },
     "redemption": {
       "name": "Redemption",
-      "desc": "Aura: absorbs corpses to restore life and mana."
+      "desc": "Selected aura: every {{redemptionSeconds}} seconds, consumes one corpse from this wave to restore {{redemptionLife}} base HP and {{redemptionMana}} base MP to you and your living fielded mercenary while the hero lives. HP recovery +{{lifeRegenPct}}% per rank and MP recovery +{{manaRegenPct}}% per rank, rounded down and capped to missing resources. First pulse after {{redemptionSeconds}} seconds of each wave. If nobody can recover, including full resources, the corpse is preserved. Healing never revives dead allies. Competes with Corpse Explosion and Poison Explosion; no extra cast or mana cost."
     },
     "salvation": {
       "name": "Salvation",

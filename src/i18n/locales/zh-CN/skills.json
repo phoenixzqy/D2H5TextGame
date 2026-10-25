@@ -928,7 +928,7 @@
     },
     "redemption": {
       "name": "救赎",
-      "desc": "光环：吸收尸体恢复生命和法力。"
+      "desc": "选择此光环后，英雄存活时每{{redemptionSeconds}}秒消耗本波一具尸体，为自身与存活的上阵佣兵恢复{{redemptionLife}}点基础生命和{{redemptionMana}}点基础法力。生命恢复量每级+{{lifeRegenPct}}%，法力恢复量每级+{{manaRegenPct}}%，分别向下取整且最多补满已损失资源。每波首次恢复在{{redemptionSeconds}}秒后。若无人可恢复（包括资源全满），保留尸体。不会复活阵亡盟友。与尸体爆破、剧毒爆破共用尸体，无额外施法或法力消耗。"
     },
     "salvation": {
       "name": "救助",

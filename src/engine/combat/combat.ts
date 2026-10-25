@@ -125,7 +125,7 @@ export type BattleEvent =
     }
   | { readonly kind: 'heal'; readonly target: string; readonly amount: number }
   | { readonly kind: 'mana'; readonly target: string; readonly mana: number;
-      readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' }
+      readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' | 'redemption' }
   | { readonly kind: 'death'; readonly target: string }
   | { readonly kind: 'enrage'; readonly target: string }
   | { readonly kind: 'orb'; readonly target: string; readonly orb: Orb }
@@ -700,7 +700,9 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
   }
   // Publish only after the complete closure/effects, in the existing death-event order.
   // Keep every outcome unit and handled death intact for rewards and replay.
-  if (state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0) {
+  const aura = state.statAura;
+  if (state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0 ||
+    (aura?.redemption && activeStatAura(aura, aura.sourceHeroId, state.units))) {
     for (const u of dead) {
       if (!primary.has(u.id) || u.side !== 'enemy' || inferKind(u) !== 'monster' ||
         u.summon === true || u.ownerId !== undefined || u.summonOwnerId !== undefined) continue;
@@ -1292,6 +1294,11 @@ function settleAuraPulse(state: State): void {
   const aura = state.statAura;
   if (!aura || state.nextAuraPulseAtMs !== state.simClockMs ||
     !activeStatAura(aura, aura.sourceHeroId, state.units)) return;
+  if (aura.redemption) {
+    state.nextAuraPulseAtMs += aura.redemption.intervalMs;
+    settleRedemption(state, aura);
+    return;
+  }
   if (aura.healing) {
     state.nextAuraPulseAtMs += aura.healing.intervalMs;
     const amount = Math.floor(aura.healing.amount * (1 + (aura.bonuses.lifeRegenPct ?? 0)));
@@ -1310,6 +1317,34 @@ function settleAuraPulse(state: State): void {
   for (const target of state.units.values()) {
     if (target.side === 'enemy' && alive(target)) {
       applyDamageToUnit(state, aura.sourceHeroId, target.id, effect, 1, false, true);
+    }
+  }
+}
+
+/** Stage useful capped recovery before consuming one body from the shared CE/PE FIFO. */
+function settleRedemption(state: State, aura: StatAuraProjection): void {
+  if (!aura.redemption || state.corpses.length === 0) return;
+  const hp = Math.floor(aura.redemption.life * (1 + (aura.bonuses.lifeRegenPct ?? 0)));
+  const mp = Math.floor(aura.redemption.mana * (1 + (aura.bonuses.manaRegenPct ?? 0)));
+  const recipients = [...state.units.values()].flatMap(target => {
+    if (!activeStatAura(aura, target.id, state.units)) return [];
+    const life = Number.isFinite(hp) && Number.isFinite(target.stats.lifeMax)
+      ? Math.max(0, Math.min(target.stats.lifeMax - target.life, hp)) : 0;
+    const mana = Number.isFinite(mp) && Number.isFinite(target.mana) && target.mana >= 0 &&
+      Number.isFinite(target.stats.manaMax) && target.stats.manaMax > 0
+      ? Math.max(0, Math.min(target.stats.manaMax - target.mana, mp)) : 0;
+    return life > 0 || mana > 0 ? [{ target, life, mana }] : [];
+  });
+  if (recipients.length === 0) return;
+  const corpseId = state.corpses.shift();
+  if (corpseId === undefined) return;
+  emit(state, { kind: 'message', messageKey: 'combat:corpses.consumedRedemption', params: { count: state.corpses.length, corpseId } });
+  for (const { target, life, mana } of recipients) {
+    commitHealing(state, target, life);
+    const after = state.units.get(target.id);
+    if (after && mana > 0) {
+      const event = commitMana(state, after, { ...after, mana: after.mana + mana }, 'redemption');
+      if (event) emit(state, event);
     }
   }
 }
@@ -1684,7 +1719,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const aura = snapshot.mightAura;
   const meditation = snapshot.meditationAura;
   const statAura = copyStatAuraProjection(snapshot.statAura);
-  const auraIntervalMs = statAura?.pulse?.intervalMs ?? statAura?.healing?.intervalMs;
+  const auraIntervalMs = statAura?.pulse?.intervalMs ?? statAura?.healing?.intervalMs ?? statAura?.redemption?.intervalMs;
   const mastery = snapshot.skeletonMastery;
   const golemMastery = snapshot.golemMastery;
   const iron = snapshot.ironGolem;

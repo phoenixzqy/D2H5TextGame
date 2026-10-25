@@ -181,7 +181,7 @@ describe('silent authoritative mana events', () => {
     const previous = i18n.language;
     try {
       await i18n.changeLanguage(locale);
-      for (const reason of ['cast', 'regeneration', 'summon-refund', 'orb'] as const) {
+      for (const reason of ['cast', 'regeneration', 'summon-refund', 'orb', 'redemption'] as const) {
         expect(eventToLocalizedLogEntry({ kind: 'mana', target: 'hero', mana: 0, reason })).toBeNull();
       }
     } finally {

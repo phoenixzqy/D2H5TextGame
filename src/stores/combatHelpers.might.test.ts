@@ -147,6 +147,45 @@ beforeEach(() => {
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('native selected Might wave composition', () => {
+  it('runs publicly allocated Redemption against real native corpses and replays original resources without income', async () => {
+    arrange(0); gear(100, 0, -10000);
+    const killer = 'fixture.redemption-kill';
+    registerSkill({ id: killer, archetype: 'fixture', target: 'single-enemy', minLevel: 1,
+      cooldown: 60, manaCost: 8, effects: [{ kind: 'damage', damageType: 'physical', base: [100000, 100000] }] });
+    configure({ skillPoints: 4, comboOrder: [killer], derivedStats: { ...player().derivedStats, life: 500000 } });
+    const before = structuredClone(player().derivedStats);
+    for (const id of ['prayer', 'cleansing', 'meditation', 'redemption']) {
+      expect(usePlayerStore.getState().allocateSkillPoint('skills-paladin-' + id)).toBe('ok');
+    }
+    expect(player()).not.toHaveProperty('selectedAuraId'); expect(player().derivedStats).toEqual(before);
+    expect(usePlayerStore.getState().selectAura('paladin.redemption')).toBe('ok');
+    expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })?.totalWaves).toBeGreaterThan(2);
+    const original = structuredClone(latest()), first = recording();
+    expect(original.statAura).toMatchObject({ selectedAuraId: 'paladin.redemption', rank: 1,
+      bonuses: { lifeRegenPct: .02, manaRegenPct: .02 }, redemption: { intervalMs: 5000, life: 20, mana: 10 } });
+    expect(Object.isFrozen(latest().statAura?.redemption)).toBe(true);
+    expect(first.events).toContainEqual(expect.objectContaining({ kind: 'message', messageKey: 'combat:corpses.consumedRedemption', simClockMs: 5000 }));
+    expect(first.events).toContainEqual(expect.objectContaining({ kind: 'heal', target: player().id, amount: 20, simClockMs: 5000 }));
+    expect(first.events).toContainEqual(expect.objectContaining({ kind: 'mana', target: player().id, reason: 'redemption', simClockMs: 5000 }));
+    const manaEvents = first.events.filter(e => e.kind === 'mana' && e.target === player().id);
+    const manaIndex = manaEvents.findIndex(e => e.kind === 'mana' && e.reason === 'redemption');
+    const recovered = manaEvents[manaIndex], previous = manaEvents[manaIndex - 1];
+    expect(recovered?.kind === 'mana' ? recovered.mana : undefined)
+      .toBe((previous?.kind === 'mana' ? previous.mana : hero(original).mana) + 10);
+    const income = structuredClone({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies, xp: player().experience });
+    expect(usePlayerStore.getState().selectAura(null)).toBe('ok'); expect(recording()).toEqual(first);
+    replay(); expect(latest().playerTeam).toEqual(original.playerTeam); expect(latest().statAura).toBeUndefined();
+    expect(useCombatStore.getState().recordedEvents.some(e => e.kind === 'mana' && e.reason === 'redemption')).toBe(false);
+    expect(usePlayerStore.getState().selectAura('paladin.redemption')).toBe('ok'); replay();
+    expect(latest().playerTeam).toEqual(original.playerTeam); expect(latest().statAura).toEqual(original.statAura);
+    expect(useCombatStore.getState().recordedEvents).toEqual(first.events);
+    expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies, xp: player().experience }).toEqual(income);
+    const save = snapshotStores(); if (!save) throw new Error('Missing Redemption save');
+    expect(save.version).toBe(22); expect(save.player.selectedAuraId).toBe('paladin.redemption');
+    expect(save.player).not.toHaveProperty('statAura'); expect(save.player).not.toHaveProperty('redemption');
+    abortSubAreaRun(); await importIntoStores(JSON.stringify(toJsonSafe(save)));
+    expect(player().selectedAuraId).toBe('paladin.redemption'); expect(player().derivedStats).toEqual(save.player.derivedStats);
+  });
   it('runs publicly allocated Cleansing recovery, freezes ordinary edits and replays original resources without duplicate income', async () => {
     arrange(0); gear(100, 0, -10000);
     configure({ comboOrder: [], derivedStats: { ...player().derivedStats, life: 500000 } });

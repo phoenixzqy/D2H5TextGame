@@ -1189,6 +1189,8 @@ function dynamicDescription(
       level: definition.requiredLevel, cap: definition.maxRank,
       healSeconds: definition.healing ? definition.healing.intervalMs / 1000 : undefined,
       healAmount: definition.healing?.amount,
+      redemptionSeconds: definition.redemption ? definition.redemption.intervalMs / 1000 : undefined,
+      redemptionLife: definition.redemption?.life, redemptionMana: definition.redemption?.mana,
       durationReductionPct: definition.cleansingDurationMultiplier !== undefined ? (1 - definition.cleansingDurationMultiplier) * 100 : undefined,
       pulseSeconds: definition.pulse ? definition.pulse.intervalMs / 1000 : undefined,
       pulseDamage: definition.pulse?.damage,

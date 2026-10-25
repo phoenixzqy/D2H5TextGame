@@ -180,15 +180,58 @@ potency is persisted. Native ordinary edits apply next wave; explicit unlocked
 configuration replay uses current selection over original teams/resources/seed
 without income, as in the shared contract.
 
+## Redemption: shared corpse consumption for life and mana
+
+Local implementation decision; independent design/QA and earned balance open.
+Preserve unlock30, Meditation prerequisite, cap20 and authored2% lifeRegenPct and
+manaRegenPct per rank. Redemption-only JSON `redemption` owns intervalMs5000,
+life20 and mana10. These base amounts and interval are provisional local tuning.
+Each eligible recipient restores floor(base × (1 + matching2% × rank)), capped
+independently to missing resources: ranks1/2/20 give20/20/28 HP and10/10/14 MP.
+No implicit baseline regeneration or Prayer/Meditation synergy. Existing
+`item.redemption` remains a separate active self-heal under its own contract.
+
+The selected living hero consumes at most one oldest available body per due
+pulse from the same authoritative wave-local FIFO pool as Corpse Explosion and
+Poison Explosion. That one body recovers both the living hero and exact original
+living fielded merc in registration order. Preserve source/recipient ownership
+and kind guards. Each full resource, invalid maximum or zero-rounded recovery
+grants nothing; dead recipients never qualify. If nobody can receive a positive
+amount, preserve the body.
+An empty pool skips the pulse without banking. Crowd control alone does not
+suppress the aura. Dead recipients never resurrect. Bodies are supplied only
+by the existing primary enemy-monster death closure, once; initial dead inputs,
+summons, ownership-forged victims, orphan-only deaths and cross-wave bodies do
+not qualify. Do not introduce a parallel pool or replay death consequences.
+
+Use the existing selected aura timeline, first pulse one full interval after
+each wave entry. Periodic deaths and ordinary interval mana settlement precede
+the pulse; source death prevents it. A pulse at the same timestamp precedes
+surviving active casts, so it may consume a corpse before a tied CE/PE action;
+an earlier CE/PE cast has already consumed its body. Include due60000ms recovery,
+but never fabricate future recovery after an action cap or battle end. Reuse
+normal HP settlement and MP commit/cap-carry semantics; emit only actual positive
+resource changes and truthful corpse-consumption feedback. No extra RNG, action,
+cast/cooldown or mana payment. Save remainsv22; no corpse, timer or potency is
+persisted. Ordinary changes apply next wave; explicit current-configuration
+replay retains original teams/resources/seed without duplicate income.
+
+Require exact finite positive life/mana and integer1000–60000ms tuning, owned
+only by the exact passive/self/CD0 Redemption row. Copy/freeze at definition,
+native projection and direct-engine boundaries; missing/foreign/invalid tuning
+provides no effect. Existing Prayer-only healing and Cleansing-only metadata
+remain separate. Bilingual descriptions must explain consumption, recipients,
+timing, rank scaling and full-resource preservation.
+
 ## Remaining required effects
 
 Holy Fire/Shock now follow the pulse contract above and have [bounded local verification](../evidence/d05-paladin-pulse-auras.md). Sanctuary requires undead damage
 and explicit no-movement repulsion adaptation. Cleansing follows the explicit
 duration/recovery contract above and has [bounded local verification](../evidence/d05-paladin-cleansing.md).
-Redemption consumes authoritative corpses for life/mana;
+Redemption follows the explicit shared-corpse recovery contract above;
 Vigor requires a truthful no-movement/stamina adaptation;
 Concentration requires an explicit interruption-prevention rule. Existing JSON
-and older descriptions disagree for the remaining four: resolve their affected rules and
+and older descriptions disagree for the remaining three: resolve their affected rules and
 data explicitly before implementing their remaining mechanics. Holy Freeze/Conviction follow the resolved
 contract above and have [bounded local verification](../evidence/d05-paladin-enemy-auras.md).
 Prayer follows the healing contract above and has [bounded local verification](../evidence/d05-paladin-prayer.md).

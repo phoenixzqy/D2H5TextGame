@@ -2482,6 +2482,18 @@
       }
     },
     "else": { "properties": { "cleansing": false } }
+  }, {
+    "if": { "properties": { "id": { "const": "skills-paladin-redemption" } }, "required": ["id"] },
+    "then": {
+      "required": ["aura", "redemption"],
+      "properties": {
+        "aura": { "const": true }, "trigger": { "const": "passive" },
+        "target": { "const": "self" }, "cooldown": { "const": 0 },
+        "damage": false, "appliesStatus": false, "heal": false,
+        "redemption": { "$ref": "#/properties/redemption" }
+      }
+    },
+    "else": { "properties": { "redemption": false } }
   }],
   "if": {
     "properties": { "id": { "const": "skills-necromancer-amplify-damage" } },
@@ -2501,6 +2513,16 @@
     }
   },
   "properties": {
+    "redemption": {
+      "type": "object", "additionalProperties": false,
+      "description": "Exact selected Redemption recovery from one shared FIFO corpse per useful pulse; no saved corpses or timers.",
+      "required": ["intervalMs", "life", "mana"],
+      "properties": {
+        "intervalMs": { "type": "integer", "minimum": 1000, "maximum": 60000, "description": "Simulation milliseconds between corpse recovery opportunities, starting one full interval after wave entry." },
+        "life": { "type": "number", "exclusiveMinimum": 0, "description": "Finite positive base HP per eligible recipient before authored lifeRegenPct rank scaling, floor and missing-HP cap." },
+        "mana": { "type": "number", "exclusiveMinimum": 0, "description": "Finite positive base MP per eligible recipient before authored manaRegenPct rank scaling, floor and missing-MP cap." }
+      }
+    },
     "cleansing": {
       "type": "object", "additionalProperties": false,
       "description": "Exact selected Cleansing finite poison/curse duration reduction and independent recovery; Prayer-only auraHealing remains separate.",

@@ -778,6 +778,7 @@
   },
   {
     "id": "skills-paladin-redemption",
+    "redemption": { "intervalMs": 5000, "life": 20, "mana": 10 },
     "name": "skills.paladin.redemption.name",
     "description": "skills.paladin.redemption.desc",
     "icon": "skills/paladin/redemption.png",

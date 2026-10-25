@@ -185,8 +185,17 @@ export interface AuraHealingTuning {
   readonly amount: number;
 }
 
+/** JSON-owned selected Redemption interval and independent corpse recovery resources. */
+export interface AuraRedemptionTuning {
+  readonly intervalMs: number;
+  readonly life: number;
+  readonly mana: number;
+}
+
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Redemption-only HP/MP recovery from one shared wave-local corpse per useful pulse. */
+  readonly redemption?: AuraRedemptionTuning;
   /** Cleansing-only duration factor and independent recovery, copied at each wave boundary. */
   readonly cleansing?: { readonly durationMultiplier: number; readonly healing: AuraHealingTuning };
   /** Frozen selected Prayer interval and base healing; no timer is saved. */
