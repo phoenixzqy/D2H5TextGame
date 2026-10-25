@@ -1592,6 +1592,10 @@ function dynamicDescription(
     return t('barbarian.double-swing.desc', { min: firstDamage.min, max: firstDamage.max,
       strikes: stats.strikesPerTarget, maxTargets: stats.maxTargets });
   }
+  if (firstDamage && skill.id === 'skills-barbarian-double-throw' && stats.strikesPerCast !== undefined) {
+    return t('barbarian.double-throw.desc', { min: firstDamage.min, max: firstDamage.max,
+      strikes: stats.strikesPerCast });
+  }
   if (firstDamage && skill.id === 'skills-amazon-jab' && stats.strikesPerCast !== undefined) {
     return t('amazon.jab.desc', { min: firstDamage.min, max: firstDamage.max, strikes: stats.strikesPerCast });
   }

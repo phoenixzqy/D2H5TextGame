@@ -387,7 +387,27 @@
     },
     {
       "if": { "required": ["hitSequence"], "properties": { "hitSequence": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw", "skills-barbarian-double-swing"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw", "skills-barbarian-double-swing", "skills-barbarian-double-throw"] } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-double-throw" } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "damage", "damageType", "hitSequence", "cost"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "area-enemies" },
+          "requiredLevel": { "const": 12 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-barbarian-double-swing"] },
+          "damage": { "$ref": "#/properties/damage" }, "damageType": { "const": "physical" },
+          "hitSequence": { "$ref": "#/properties/hitSequence", "const": { "strikes": 2 } },
+          "cost": { "const": { "mana": 12 } }, "cooldown": { "const": 1 },
+          "passive": { "const": false }, "aura": { "const": false }, "summon": { "const": false },
+          "aoeShape": false, "maxTargets": false,
+          "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false,
+          "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false,
+          "damageComposition": false, "ignoresDefense": false, "ignoresMagicResist": false,
+          "timedBuff": false, "requires": false, "heal": false, "summonId": false
+        }
+      }
     },
     {
       "if": { "required": ["hitSequence"], "properties": { "hitSequence": {

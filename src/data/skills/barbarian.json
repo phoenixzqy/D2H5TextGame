@@ -536,6 +536,7 @@
     ],
     "trigger": "active",
     "target": "area-enemies",
+    "hitSequence": { "strikes": 2 },
     "cooldown": 1,
     "minLevel": 1,
     "maxLevel": 20,

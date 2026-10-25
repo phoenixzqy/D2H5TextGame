@@ -550,7 +550,7 @@
     },
     "double-throw": {
       "name": "Double Throw",
-      "desc": "Throws two weapons simultaneously at enemies."
+      "desc": "{{strikes}} total independent throws rotate among the first two living enemies, enemy summons first, then battle order. {{min}}–{{max}} Physical base damage per attempt. A lone original can receive both throws. Misses consume attempts; skip dead originals and continue on surviving originals. Never select enemies outside the original pool. Stop if the caster or the entire pool dies. Pay 12 MP and start the 1 s cooldown once per cast. Rank changes apply next wave."
     },
     "concentrate": {
       "name": "Concentrate",
