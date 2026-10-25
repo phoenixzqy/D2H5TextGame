@@ -1,6 +1,6 @@
 # BUG-224 — Taunt does not force the marked enemy to attack its caster
 
-- Status: reproduced; target/lifetime contract and repair open.
+- Status: locally fixed in `eeaaa48d`; independent design/QA and earned balance open.
 - Severity: High — advertised target control is absent.
 - Owner: root, engine/data/UI; independent design/QA and earned balance open.
 - Build: `3bef78ad` plus frozen basic/AOE presentation/tests; Taunt unchanged.
@@ -33,3 +33,15 @@ Evidence: `warcry-probe.ts`, `warcry-observations.json` and
 to retain. Both the initial held-caster diagnostic and stronger active-caster
 reproduction remain recorded. No repair, functional credit, genuine campaign
 action or remote action.
+
+## Local resolution — 2026-10-25
+
+`eeaaa48d` makes eligible single-target hostile attacks select the living
+caster during the paid1s interval, with ordinary fallback after caster death,
+absence or same allegiance. Area/friendly/self targeting is preserved under
+the [contract](../../docs/plans/decisions/D04-barbarian-warcry-control-v1.md).
+`src/stores/barbarian-warcry-control.causal.test.ts` asserts actual recipients,
+negative intervals/source states, area boundaries and payment/authority.
+Native allocation/save and bilingual UI/browser checks accompany the
+[delivery evidence](../../docs/plans/evidence/d04-barbarian-warcry-control.md).
+Bounded functional credit only; no earned campaign action or remote action.

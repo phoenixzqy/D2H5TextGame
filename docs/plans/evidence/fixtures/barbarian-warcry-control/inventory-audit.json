@@ -1,0 +1,21 @@
+{
+  "changedIds": [
+    "skills-barbarian-howl",
+    "skills-barbarian-taunt",
+    "skills-barbarian-battle-cry"
+  ],
+  "beforeSha256": "72f605c07a15baa871d536028b7a23b748c998aa09891bfdeff7f6a154c9e1d0",
+  "afterSha256": "1579a01a2f0f1f11a43642a5376b330d524549ebf892bbdc1ae3cc5c4923bf8a",
+  "rows": 213,
+  "otherRowsByteExact": 210,
+  "idsOrderPreserved": true,
+  "counts": {
+    "unverified": 87,
+    "bounded-functional": 124,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "barbarianBoundedFunctional": 26,
+  "independentAcceptance": "open",
+  "earnedBalance": "open"
+}

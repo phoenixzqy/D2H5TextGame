@@ -1,0 +1,11 @@
+{
+  "baseCommit": "98ad797036de961a2b23016311f1ca2878a1d573",
+  "changedDataIds": [
+    "skills-barbarian-howl",
+    "skills-barbarian-taunt",
+    "skills-barbarian-battle-cry"
+  ],
+  "otherDataRowsByteExact": 27,
+  "idsOrderPreserved": true,
+  "pass": true
+}

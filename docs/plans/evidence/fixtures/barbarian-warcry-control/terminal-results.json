@@ -1,0 +1,411 @@
+{
+  "finalPass": {
+    "focused-corrected": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/barbarian-warcry-control.causal.test.ts",
+        "src/stores/barbarian-warcry-control-native.test.ts",
+        "src/engine/combat/warcry-definition.test.ts",
+        "src/features/skills/SkillsScreen.barbarian-warcry-control.test.tsx"
+      ],
+      "pid": 1519689,
+      "exitCode": 0,
+      "seconds": 14.219642480020411
+    },
+    "engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "pid": 1507303,
+      "exitCode": 0,
+      "seconds": 134.0461334270658
+    },
+    "types-final": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1519805,
+      "exitCode": 0,
+      "seconds": 138.2179117060732
+    },
+    "lint-final": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "pid": 1519806,
+      "exitCode": 0,
+      "seconds": 291.02404441998806
+    },
+    "build": {
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/build"
+      ],
+      "pid": 1516680,
+      "exitCode": 0,
+      "seconds": 17.343574943952262
+    },
+    "precache": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/build"
+      ],
+      "pid": 1520705,
+      "exitCode": 0,
+      "seconds": 0.045124312047846615
+    },
+    "full-quiet": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "pid": 1562574,
+      "exitCode": 0,
+      "seconds": 726.9489904089132
+    },
+    "browser-en-360": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec env BROWSER_PORT=4506 python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/serve.py",
+        "--port",
+        "4506",
+        "--",
+        "env",
+        "BROWSER_WIDTH=360",
+        "BROWSER_LOCALE=en",
+        "BROWSER_RUN=browser-en-360",
+        "BROWSER_PORT=4506",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/browser.cjs"
+      ],
+      "pid": 1526911,
+      "exitCode": 0,
+      "seconds": 95.50645594205707
+    },
+    "browser-zh-CN-360": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec env BROWSER_PORT=4507 python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/serve.py",
+        "--port",
+        "4507",
+        "--",
+        "env",
+        "BROWSER_WIDTH=360",
+        "BROWSER_LOCALE=zh-CN",
+        "BROWSER_RUN=browser-zh-CN-360",
+        "BROWSER_PORT=4507",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/browser.cjs"
+      ],
+      "pid": 1526912,
+      "exitCode": 0,
+      "seconds": 96.41283695900347
+    },
+    "browser-en-1280": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec env BROWSER_PORT=4508 python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/serve.py",
+        "--port",
+        "4508",
+        "--",
+        "env",
+        "BROWSER_WIDTH=1280",
+        "BROWSER_LOCALE=en",
+        "BROWSER_RUN=browser-en-1280",
+        "BROWSER_PORT=4508",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/browser.cjs"
+      ],
+      "pid": 1537464,
+      "exitCode": 0,
+      "seconds": 81.64358133997303
+    },
+    "browser-zh-CN-1280": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec env BROWSER_PORT=4509 python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/serve.py",
+        "--port",
+        "4509",
+        "--",
+        "env",
+        "BROWSER_WIDTH=1280",
+        "BROWSER_LOCALE=zh-CN",
+        "BROWSER_RUN=browser-zh-CN-1280",
+        "BROWSER_PORT=4509",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/browser.cjs"
+      ],
+      "pid": 1526914,
+      "exitCode": 0,
+      "seconds": 100.38862298801541
+    }
+  },
+  "otherPass": {
+    "browser-syntax-green": {
+      "command": [
+        "node",
+        "--check",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/browser.cjs"
+      ],
+      "pid": 1521125,
+      "exitCode": 0,
+      "seconds": 0.05096788692753762
+    },
+    "causal-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/barbarian-warcry-control.causal.test.ts"
+      ],
+      "pid": 1505144,
+      "exitCode": 0,
+      "seconds": 8.023116042022593
+    },
+    "focused-expanded": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/barbarian-warcry-control.causal.test.ts",
+        "src/stores/barbarian-warcry-control-native.test.ts",
+        "src/engine/combat/warcry-definition.test.ts",
+        "src/features/skills/SkillsScreen.barbarian-warcry-control.test.tsx"
+      ],
+      "pid": 1506869,
+      "exitCode": 0,
+      "seconds": 9.0513646309264
+    },
+    "focused-final": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/barbarian-warcry-control.causal.test.ts",
+        "src/stores/barbarian-warcry-control-native.test.ts",
+        "src/engine/combat/warcry-definition.test.ts",
+        "src/features/skills/SkillsScreen.barbarian-warcry-control.test.tsx"
+      ],
+      "pid": 1516564,
+      "exitCode": 0,
+      "seconds": 14.337584245949984
+    },
+    "import-timeout-repro": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/playerStore.experience-equipment.test.ts",
+        "--poolOptions.threads.minThreads=1",
+        "--poolOptions.threads.maxThreads=1"
+      ],
+      "pid": 1545061,
+      "exitCode": 0,
+      "seconds": 13.4899888089858
+    },
+    "lint-focused": {
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/combat/warcry-definition.ts",
+        "src/engine/combat/warcry-definition.test.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/combat/damage.ts",
+        "src/engine/combat/status.ts",
+        "src/engine/combat/types.ts",
+        "src/engine/skills/dataCatalog.ts",
+        "src/engine/skills/displayStats.ts",
+        "src/engine/skills/effects.ts",
+        "src/engine/types/skills.ts",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.barbarian-warcry-control.test.tsx",
+        "src/stores/barbarian-warcry-control.causal.test.ts",
+        "src/stores/barbarian-warcry-control-native.test.ts"
+      ],
+      "pid": 1510449,
+      "exitCode": 0,
+      "seconds": 19.348067782004364
+    }
+  },
+  "failed": {
+    "browser-syntax-red": {
+      "command": [
+        "node",
+        "--check",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/browser-syntax-failed.cjs"
+      ],
+      "pid": 1521116,
+      "exitCode": 1,
+      "seconds": 0.050281077972613275
+    },
+    "causal-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/barbarian-warcry-control.causal.test.ts"
+      ],
+      "pid": 1504556,
+      "exitCode": 1,
+      "seconds": 7.6879746849881485
+    },
+    "first-browser-run/browser-en-360": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec env BROWSER_PORT=4506 python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/serve.py",
+        "--port",
+        "4506",
+        "--",
+        "env",
+        "BROWSER_WIDTH=360",
+        "BROWSER_LOCALE=en",
+        "BROWSER_RUN=browser-en-360",
+        "BROWSER_PORT=4506",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/browser.cjs"
+      ],
+      "pid": 1521133,
+      "exitCode": 1,
+      "seconds": 41.98729112301953
+    },
+    "first-browser-run/browser-zh-CN-360": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec env BROWSER_PORT=4507 python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/serve.py",
+        "--port",
+        "4507",
+        "--",
+        "env",
+        "BROWSER_WIDTH=360",
+        "BROWSER_LOCALE=zh-CN",
+        "BROWSER_RUN=browser-zh-CN-360",
+        "BROWSER_PORT=4507",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/browser.cjs"
+      ],
+      "pid": 1523354,
+      "exitCode": 1,
+      "seconds": 41.90532587899361
+    },
+    "focused": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/barbarian-warcry-control.causal.test.ts",
+        "src/engine/combat/warcry-definition.test.ts",
+        "src/features/skills/SkillsScreen.barbarian-warcry-control.test.tsx"
+      ],
+      "pid": 1506255,
+      "exitCode": 1,
+      "seconds": 8.678056304925121
+    },
+    "full-final": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "pid": 1519804,
+      "exitCode": 1,
+      "seconds": 827.5029494710034
+    },
+    "next-corpse-skills": {
+      "command": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/next-corpse-skills-probe.ts"
+      ],
+      "pid": 1536828,
+      "exitCode": 1,
+      "seconds": 8.78916600602679
+    },
+    "next-frozen-orb-corrected": {
+      "command": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/next-frozen-orb-probe.ts"
+      ],
+      "pid": 1612303,
+      "exitCode": 1,
+      "seconds": 5.755109132966027
+    },
+    "next-frozen-orb": {
+      "command": [
+        "node_modules/.bin/vite-node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/next-frozen-orb-probe.ts"
+      ],
+      "pid": 1610299,
+      "exitCode": 1,
+      "seconds": 6.481262270943262
+    },
+    "second-browser-run/browser-en-1280": {
+      "command": [
+        "python",
+        ".github/skills/webapp-testing/scripts/with_server.py",
+        "--server",
+        "exec env BROWSER_PORT=4508 python /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/serve.py",
+        "--port",
+        "4508",
+        "--",
+        "env",
+        "BROWSER_WIDTH=1280",
+        "BROWSER_LOCALE=en",
+        "BROWSER_RUN=browser-en-1280",
+        "BROWSER_PORT=4508",
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-barbarian-warcry-control-qoc34jvq/browser.cjs"
+      ],
+      "pid": 1526913,
+      "exitCode": 1,
+      "seconds": 32.7798140529776
+    },
+    "types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "pid": 1507304,
+      "exitCode": 2,
+      "seconds": 132.87853169010486
+    },
+    "ui-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.barbarian-warcry-control.test.tsx"
+      ],
+      "pid": 1505826,
+      "exitCode": 1,
+      "seconds": 9.580405117943883
+    }
+  },
+  "fullTests": 15436,
+  "fullFiles": 707,
+  "existingSkips": 2,
+  "timeoutInvestigation": "First full:15435passed/one5000ms player-first import timeout/two existing skips. Exact isolated13-test file and unchanged quiet full pass. Cause unproven; BUG226 remains open. No timeout/assertion/configuration alteration."
+}

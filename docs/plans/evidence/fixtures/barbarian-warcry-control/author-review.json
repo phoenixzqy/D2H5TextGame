@@ -1,0 +1,27 @@
+{
+  "reviewer": "root author only; independent acceptance open",
+  "security": {
+    "verdict": "pass",
+    "scope": "Pure combat/data/presentation and synthetic local validation",
+    "findings": [],
+    "constraints": ["No credentials/dependencies/remote action", "Save version22 unchanged", "No genuine campaign action", "No transient combat power persisted"]
+  },
+  "planReview": {
+    "verdict": "ready",
+    "contract": "docs/plans/decisions/D04-barbarian-warcry-control-v1.md",
+    "requirements": ["Real action interruption and expiry/resumption", "Eligible living Taunt source and ordinary targeting fallback", "Area/friendly/self targeting boundaries", "Paid copied rank/potency; latest replacement without stacking", "Direct damage versus periodic/reflection boundaries", "Native next-wave authority without refilling resources", "Bilingual actual current/next/MAX and public browser/save/offline flow"],
+    "numericTuning": "Battle Cry25/50 percent base plus1/2 percentage points per additional rank are provisional author choices; independent design and earned balance open"
+  },
+  "codeReview": {
+    "verdict": "no blocking author finding; unchanged quiet full passes15436tests/707files/two existing skips",
+    "axes": {
+      "correctness": "Inspected44schema/definition,33causal,6native and24UI cases. Actual actions/recipients/HP/MP and immutable replay/playback are covered at ranks1/2/20 across seeds7/19/41/97. Finite paid payload validation, source fallback, replacement, ordinary/boss expiry, raw reflection and ongoing DoT boundaries are asserted.",
+      "readability": "One authored-definition helper validates and freezes existing JSON. Status/application/targeting/mitigation sites consume small typed transient fields. UI formats computed data through i18n.",
+      "architecture": "Uses existing pure engine targeting, control and damage pipeline. Existing native class-active projector owns learned eligibility and next-wave state. No new persistence store or saved schema/version.",
+      "security": "Closed identity-specific schema and exact finite Battle Cry payload checks; no bare marker potency. No eval, credentials, dependencies, external publication or browser store bridge.",
+      "performance": "One shared cached schema validator, bounded same-status lookup and existing per-hit processing. No new timers or unbounded retained state. Existing broad bundle/art-manifest/test-duration budgets are not accepted by this review."
+    }
+  },
+  "retainedFailures": ["Nine original causal REDs", "24original UI REDs", "Five fixture/prose mismatches corrected without weaker assertions", "Initial missing required tier type failure", "Harness syntax/hidden-marker selector/transient-chip race failures with original scripts", "Full regression player-first import timeout; exact isolated file passes; cause open in BUG226", "Separate36-case corpse-skill reproduction intentionally fails and receives no credit"],
+  "limits": ["Independent design/QA and earned balance remain open", "No full C2-C4/G0-G7 or private-v1 acceptance", "No complete accessibility/performance audit", "Synthetic imported browser fixtures do not establish earned builds or pacing"]
+}

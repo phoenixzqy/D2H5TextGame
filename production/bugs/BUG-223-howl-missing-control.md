@@ -1,6 +1,6 @@
 # BUG-223 — Howl spends mana without disrupting hostile actions
 
-- Status: reproduced; no-movement fear contract and repair open.
+- Status: locally fixed in `eeaaa48d`; independent design/QA and earned balance open.
 - Severity: High — the advertised crowd-control effect has no combat consumer.
 - Owner: root, engine/data/UI; independent design/QA and earned balance open.
 - Build: `3bef78ad` plus frozen basic/AOE presentation/tests; Howl unchanged.
@@ -33,3 +33,14 @@ Evidence: `warcry-probe.ts`, `warcry-observations.json` and
 to retain. The earlier1701ms-hold probe is preserved separately; the stronger
 2701ms version proves the caster is not controlled during the marker.
 No repair, functional credit, earned campaign action or remote action.
+
+## Local resolution — 2026-10-25
+
+`eeaaa48d` makes the paid marker actually interrupt living hostile actions for
+1s, or0.5s for bosses/chapter bosses, under the explicit no-movement
+[contract](../../docs/plans/decisions/D04-barbarian-warcry-control-v1.md).
+`src/stores/barbarian-warcry-control.causal.test.ts` proves scheduled-action
+interruption, exact expiry/resumption, payment and native-authority boundaries.
+Definition, native allocation/save and bilingual UI/browser checks accompany
+the [delivery evidence](../../docs/plans/evidence/d04-barbarian-warcry-control.md).
+Bounded functional credit only; no earned campaign action or remote action.

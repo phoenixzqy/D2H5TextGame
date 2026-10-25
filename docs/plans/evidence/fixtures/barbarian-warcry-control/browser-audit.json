@@ -1,0 +1,1163 @@
+{
+  "cases": [
+    {
+      "label": "en-1280-howl",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 100,
+          "publicCast": true,
+          "selectedSkill": "howl",
+          "enemyChips": [
+            "Fear",
+            "Fear",
+            "Fear",
+            "Fear",
+            "Fear",
+            "Fear",
+            "Fear",
+            "Fear"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-1280-taunt",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.54,
+          "publicCast": true,
+          "selectedSkill": "taunt",
+          "enemyChips": [
+            "Taunted"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-1280-battle-cry",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.66,
+          "publicCast": true,
+          "selectedSkill": "battle-cry",
+          "enemyChips": [
+            "Battle Cry",
+            "Battle Cry",
+            "Battle Cry",
+            "Battle Cry",
+            "Battle Cry",
+            "Battle Cry",
+            "Battle Cry",
+            "Battle Cry"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-howl",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 100,
+          "publicCast": true,
+          "selectedSkill": "howl",
+          "enemyChips": [
+            "Fear",
+            "Fear",
+            "Fear",
+            "Fear",
+            "Fear",
+            "Fear",
+            "Fear",
+            "Fear"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-taunt",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.54,
+          "publicCast": true,
+          "selectedSkill": "taunt",
+          "enemyChips": [
+            "Taunted"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "en-360-battle-cry",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.66,
+          "publicCast": true,
+          "selectedSkill": "battle-cry",
+          "enemyChips": [
+            "Battle Cry",
+            "Battle Cry",
+            "Battle Cry",
+            "Battle Cry",
+            "Battle Cry",
+            "Battle Cry",
+            "Battle Cry",
+            "Battle Cry"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-howl",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 100,
+          "publicCast": true,
+          "selectedSkill": "howl",
+          "enemyChips": [
+            "\u6050\u60e7",
+            "\u6050\u60e7",
+            "\u6050\u60e7",
+            "\u6050\u60e7",
+            "\u6050\u60e7",
+            "\u6050\u60e7",
+            "\u6050\u60e7",
+            "\u6050\u60e7"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-taunt",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.54,
+          "publicCast": true,
+          "selectedSkill": "taunt",
+          "enemyChips": [
+            "\u88ab\u5632\u8bbd"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-1280-battle-cry",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.66,
+          "publicCast": true,
+          "selectedSkill": "battle-cry",
+          "enemyChips": [
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-howl",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 100,
+          "publicCast": true,
+          "selectedSkill": "howl",
+          "enemyChips": [
+            "\u6050\u60e7",
+            "\u6050\u60e7",
+            "\u6050\u60e7",
+            "\u6050\u60e7",
+            "\u6050\u60e7",
+            "\u6050\u60e7",
+            "\u6050\u60e7",
+            "\u6050\u60e7"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-taunt",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.54,
+          "publicCast": true,
+          "selectedSkill": "taunt",
+          "enemyChips": [
+            "\u88ab\u5632\u8bbd"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    },
+    {
+      "label": "zh-CN-360-battle-cry",
+      "errors": [],
+      "pairs": [
+        "rank1",
+        "rank2"
+      ],
+      "combat": [
+        {
+          "lifePercent": 99.66,
+          "publicCast": true,
+          "selectedSkill": "battle-cry",
+          "enemyChips": [
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a",
+            "\u6218\u6597\u5450\u558a"
+          ]
+        }
+      ],
+      "offlineContinue": {
+        "pass": true,
+        "exactDomains": [
+          "player",
+          "inventory",
+          "map",
+          "mercs",
+          "formation"
+        ],
+        "freshPage": true,
+        "networkOffline": true
+      },
+      "pass": true
+    }
+  ],
+  "geometry": [
+    {
+      "label": "en-1280-howl",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-howl",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-howl",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-howl",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-howl",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-taunt",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-taunt",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-taunt",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-taunt",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-taunt",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-battle-cry",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-battle-cry",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-battle-cry",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-battle-cry",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-1280-battle-cry",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-howl",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-howl",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-howl",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-howl",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-howl",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-taunt",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-taunt",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-taunt",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-taunt",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-taunt",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-battle-cry",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 209.078125,
+        "y": 329,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-battle-cry",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 261.078125,
+        "y": 293,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-battle-cry",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 489.078125,
+        "y": 255,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-battle-cry",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1117.078125,
+        "y": 466,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "en-360-battle-cry",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1501.078125,
+        "y": 746,
+        "width": 120.921875,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-howl",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-howl",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-howl",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-howl",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-howl",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-taunt",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-taunt",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-taunt",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-taunt",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-taunt",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-battle-cry",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-battle-cry",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-battle-cry",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-battle-cry",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-1280-battle-cry",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-howl",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-howl",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-howl",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-howl",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-howl",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-taunt",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-taunt",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-taunt",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-taunt",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-taunt",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-battle-cry",
+      "width": 360,
+      "height": 640,
+      "overflow": 0,
+      "allocate": {
+        "x": 210,
+        "y": 329,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-battle-cry",
+      "width": 412,
+      "height": 915,
+      "overflow": 0,
+      "allocate": {
+        "x": 262,
+        "y": 293,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-battle-cry",
+      "width": 640,
+      "height": 360,
+      "overflow": 0,
+      "allocate": {
+        "x": 490,
+        "y": 255,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-battle-cry",
+      "width": 1280,
+      "height": 800,
+      "overflow": 0,
+      "allocate": {
+        "x": 1118,
+        "y": 466,
+        "width": 120,
+        "height": 48
+      }
+    },
+    {
+      "label": "zh-CN-360-battle-cry",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "allocate": {
+        "x": 1502,
+        "y": 746,
+        "width": 120,
+        "height": 48
+      }
+    }
+  ],
+  "consolePageErrors": [],
+  "screenshots": 36,
+  "individuallyInspected": [
+    "browser-en-360/en-360-howl-current-next.png",
+    "browser-en-360/en-360-taunt-current-next.png",
+    "browser-zh-CN-360/zh-CN-360-battle-cry-current-next.png",
+    "browser-en-1280/en-1280-battle-cry-current-next.png"
+  ],
+  "limits": "Synthetic imported L30/resources/helmet and fixed Date.now; no earned campaign or balance claim. Geometry covers selected skill allocation control; no full accessibility audit."
+}

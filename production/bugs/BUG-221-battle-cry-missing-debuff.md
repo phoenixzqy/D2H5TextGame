@@ -1,6 +1,6 @@
 # BUG-221 — Battle Cry pays for a marker without its advertised debuff
 
-- Status: reproduced; numerical/lifetime contract and repair open.
+- Status: locally fixed in `eeaaa48d`; independent design/QA and earned balance open.
 - Severity: High — neither advertised enemy Attack nor Defense reduction works.
 - Owner: root, engine/data/UI; independent design/QA and earned balance open.
 - Build: `5d5524b6` plus the frozen Concentrate/Berserk/Stun batch; Battle Cry unchanged.
@@ -36,3 +36,16 @@ as `battle-cry-repro.ts`, `battle-cry-observations.json` and
 `next-battle-cry.log`. Root owns follow-up; no separate agent or remote action.
 Battle Cry receives no functional credit. Genuine L33/Ancients complete/Baal
 uncleared remains unchanged.
+
+## Local resolution — 2026-10-25
+
+`eeaaa48d` implements the [paid warcry contract](../../docs/plans/decisions/D04-barbarian-warcry-control-v1.md):
+one-second copied rank/potency, provisional25/50percent outgoing-direct-damage/
+ordinary-Defense reduction plus1/2percentage points per additional rank.
+Existing periodic damage/raw reflection retain their ordinary outgoing rates.
+Latest replacement, exact expiry, no base-stat mutation and no saved transient
+power are covered by `src/engine/combat/warcry-definition.test.ts` and
+`src/stores/barbarian-warcry-control.causal.test.ts`, plus native allocation/save
+and bilingual UI tests. [Evidence](../../docs/plans/evidence/d04-barbarian-warcry-control.md)
+records107focused,15436full and12production-browser cases, with the original
+regression timeout retained separately. Bounded functional credit only.

@@ -1,0 +1,1476 @@
+{
+  "archive": "raw.tar.gz",
+  "archiveSha256": "2fde8f3fc6f89a18f5f7cf3766a6e03fd49f190a5b5b01ae4d44ea7346a8c453",
+  "archiveBytes": 5013491,
+  "members": [
+    {
+      "path": "audit.py",
+      "sha256": "bca4f7cd40529680b6171e7c7a22f363649ec9d8201843edb0683cedf1565864",
+      "bytes": 3401
+    },
+    {
+      "path": "browser-chip-race-failed.cjs",
+      "sha256": "5a11708f26d9014b9c447fa8e019a5b3f23db1c1d6b3aa155af7c4b3426deff8",
+      "bytes": 11886
+    },
+    {
+      "path": "browser-en-1280/browser-report.json",
+      "sha256": "54a7b82d2329df0e36358ad156ff204fc1f00c65a3e214b28fcb05535b2b7442",
+      "bytes": 5646
+    },
+    {
+      "path": "browser-en-1280/en-1280-battle-cry-cast-visible.png",
+      "sha256": "2582e8f22d4358181ee1bc9e15bb2c845bbdc75a2e4ca661c46fb72275968609",
+      "bytes": 196419
+    },
+    {
+      "path": "browser-en-1280/en-1280-battle-cry-combat.json",
+      "sha256": "1bd5e408d21b61870623f02fc43b0c549e727e90b3fe88bf2e7c4943e29e6cd1",
+      "bytes": 1862
+    },
+    {
+      "path": "browser-en-1280/en-1280-battle-cry-current-next.png",
+      "sha256": "dace66bd5102cbb7ace6d50f19484046e0dc9871f5faf00eac08c8c8e63a3d1f",
+      "bytes": 116579
+    },
+    {
+      "path": "browser-en-1280/en-1280-battle-cry-details.png",
+      "sha256": "f767277c8a24c610dbd56d128633927fa9d15f574cab9e18e5d77e3bf3cd57d3",
+      "bytes": 118344
+    },
+    {
+      "path": "browser-en-1280/en-1280-battle-cry-fresh-15.json",
+      "sha256": "6404892ec7e45923586f743d40e67bfe951c38a56167c691350bf5fa8f4d334c",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-1280/en-1280-battle-cry-imported-16.json",
+      "sha256": "2bb4c5b07677f60905c46ceec4b9627b1273ef7c6bb8a9510ea2dc01b316bb06",
+      "bytes": 4846
+    },
+    {
+      "path": "browser-en-1280/en-1280-battle-cry-offline-continued-21.json",
+      "sha256": "4c3cc81877917f76c27d63eb72aca96c3e61ce844d9d8a8741647f0db75b243f",
+      "bytes": 4900
+    },
+    {
+      "path": "browser-en-1280/en-1280-battle-cry-rank1-after-18.json",
+      "sha256": "75e79bf695c7ea963e0f3f554a74122dfee07e0b817b303090603b2644d17f91",
+      "bytes": 4849
+    },
+    {
+      "path": "browser-en-1280/en-1280-battle-cry-rank1-before-17.json",
+      "sha256": "50648f8b3249c6786ad6d225eeb31321c193ef7f5e1ac8a6d328b7b5eddded21",
+      "bytes": 4846
+    },
+    {
+      "path": "browser-en-1280/en-1280-battle-cry-rank2-after-20.json",
+      "sha256": "4c3cc81877917f76c27d63eb72aca96c3e61ce844d9d8a8741647f0db75b243f",
+      "bytes": 4900
+    },
+    {
+      "path": "browser-en-1280/en-1280-battle-cry-rank2-before-19.json",
+      "sha256": "4c3cc81877917f76c27d63eb72aca96c3e61ce844d9d8a8741647f0db75b243f",
+      "bytes": 4900
+    },
+    {
+      "path": "browser-en-1280/en-1280-battle-cry-synthetic-input.json",
+      "sha256": "9bde17184c331bb35a9babe110d30f3f48dfa4e391d10b68c1db841eae3081cc",
+      "bytes": 4030
+    },
+    {
+      "path": "browser-en-1280/en-1280-howl-cast-visible.png",
+      "sha256": "d8de449d23025e4b9a41c827af0392c8f91a7587f3258d350db94f36c6446076",
+      "bytes": 196544
+    },
+    {
+      "path": "browser-en-1280/en-1280-howl-combat.json",
+      "sha256": "d582f690195eee6e9828abf6f53c2c74226934dc96ec30f143e7c8e5222c8c8c",
+      "bytes": 1248
+    },
+    {
+      "path": "browser-en-1280/en-1280-howl-current-next.png",
+      "sha256": "f66d2188d078a93a2f856baecb7ed4c9f721921b18a5c8621a4fb8fcb7404c34",
+      "bytes": 101398
+    },
+    {
+      "path": "browser-en-1280/en-1280-howl-details.png",
+      "sha256": "8aefbc96425c305689245c9a566d5ed28518439a9b42282f522dc1c517c2b29d",
+      "bytes": 102517
+    },
+    {
+      "path": "browser-en-1280/en-1280-howl-fresh-1.json",
+      "sha256": "8b2986ed16311db32be04b84a0158bc6d06337b6ba921e2cc80b6c899ddc3665",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-1280/en-1280-howl-imported-2.json",
+      "sha256": "be80f3ce553c2c914fb12cccf0c90c127a77967ee787cb5ab184e0188445d942",
+      "bytes": 4785
+    },
+    {
+      "path": "browser-en-1280/en-1280-howl-offline-continued-7.json",
+      "sha256": "3c19272eb928a73c5ff1d47dae6f67d962ecd36b861af2dcb89165a9381d6ef0",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-en-1280/en-1280-howl-rank1-after-4.json",
+      "sha256": "4c4fd8c2c52b19674b7f2c9f6cb9f7c680616a2008df282ba37dab49c2b2da53",
+      "bytes": 4788
+    },
+    {
+      "path": "browser-en-1280/en-1280-howl-rank1-before-3.json",
+      "sha256": "77572883e44aed72338e407d51d8bca834c0f90944782c48358c2a4fdff25556",
+      "bytes": 4785
+    },
+    {
+      "path": "browser-en-1280/en-1280-howl-rank2-after-6.json",
+      "sha256": "3c19272eb928a73c5ff1d47dae6f67d962ecd36b861af2dcb89165a9381d6ef0",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-en-1280/en-1280-howl-rank2-before-5.json",
+      "sha256": "3c19272eb928a73c5ff1d47dae6f67d962ecd36b861af2dcb89165a9381d6ef0",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-en-1280/en-1280-howl-synthetic-input.json",
+      "sha256": "5b19e85ef1bf51e0a20e9cfecc8999691201afa4b86bca6114dfd6547cddc9fa",
+      "bytes": 3969
+    },
+    {
+      "path": "browser-en-1280/en-1280-taunt-cast-visible.png",
+      "sha256": "c9024760cf2d2ee35ed9943cfe90b1c74294344281fe88f07a1a8f9eb45766c6",
+      "bytes": 215502
+    },
+    {
+      "path": "browser-en-1280/en-1280-taunt-combat.json",
+      "sha256": "aad5f20b1da9fe812724efaee7e05ea0c4b7107d044286fc7103c72777c00d5a",
+      "bytes": 1299
+    },
+    {
+      "path": "browser-en-1280/en-1280-taunt-current-next.png",
+      "sha256": "c737bc4ed366c9b499d871d22545d45c9c54ce31ca86d59bb6cdd87972aa68b0",
+      "bytes": 105270
+    },
+    {
+      "path": "browser-en-1280/en-1280-taunt-details.png",
+      "sha256": "fd577bed18cf1b66d4cf152088af346187a54d1d4081604c5f7d26298335b92f",
+      "bytes": 106943
+    },
+    {
+      "path": "browser-en-1280/en-1280-taunt-fresh-8.json",
+      "sha256": "06972657eb0d6d42ca037ae52c4fc3174ae8225e457798ef3dd1b0841fa9bb1a",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-1280/en-1280-taunt-imported-9.json",
+      "sha256": "2690f3d477fc898aa961ad13985b83ef40d2ea19d5ae14d8d6956e6fa1ba945e",
+      "bytes": 4813
+    },
+    {
+      "path": "browser-en-1280/en-1280-taunt-offline-continued-14.json",
+      "sha256": "1b1086719539f639ba2a781cf1df30ab9010c1950f42f8f863e1ef738f223950",
+      "bytes": 4862
+    },
+    {
+      "path": "browser-en-1280/en-1280-taunt-rank1-after-11.json",
+      "sha256": "34702d8436d814875d1200ef9ee6daedff4422424d0dfa0494fc3662a9d8b309",
+      "bytes": 4816
+    },
+    {
+      "path": "browser-en-1280/en-1280-taunt-rank1-before-10.json",
+      "sha256": "adebfff2fdf8dd98139142860cc5f896e0d85a18c5f29db0dc0cdf5517bed222",
+      "bytes": 4813
+    },
+    {
+      "path": "browser-en-1280/en-1280-taunt-rank2-after-13.json",
+      "sha256": "1b1086719539f639ba2a781cf1df30ab9010c1950f42f8f863e1ef738f223950",
+      "bytes": 4862
+    },
+    {
+      "path": "browser-en-1280/en-1280-taunt-rank2-before-12.json",
+      "sha256": "1b1086719539f639ba2a781cf1df30ab9010c1950f42f8f863e1ef738f223950",
+      "bytes": 4862
+    },
+    {
+      "path": "browser-en-1280/en-1280-taunt-synthetic-input.json",
+      "sha256": "35664e88ea7bc6b1c3fe2b3d2a9b6517c06ded72d4458f8fd892debb8fa44b4b",
+      "bytes": 3997
+    },
+    {
+      "path": "browser-en-1280-live.json",
+      "sha256": "8dad51cdce07fefe049c7b8f1d525a5a10d9c13b989d5f13319877aa1dcba6c8",
+      "bytes": 478
+    },
+    {
+      "path": "browser-en-1280-result.json",
+      "sha256": "01e0ee84b17325d9707cb882ccc7b55bec207c1c5ba99e96d735cf66f40d8d3f",
+      "bytes": 523
+    },
+    {
+      "path": "browser-en-1280.log",
+      "sha256": "0168f7a841b966994e0d0886c9f0e2114af20327e65d02e477a682205599cd24",
+      "bytes": 613
+    },
+    {
+      "path": "browser-en-360/browser-report.json",
+      "sha256": "c37929c599997addc8df15f5161a8d02025ad744a4a9288e7edda2543aeb6ec2",
+      "bytes": 5628
+    },
+    {
+      "path": "browser-en-360/en-360-battle-cry-cast-visible.png",
+      "sha256": "efad0fb403c56fe0f14354ac6a0883722acf3f38b782105cd26d75f08ede381f",
+      "bytes": 50835
+    },
+    {
+      "path": "browser-en-360/en-360-battle-cry-combat.json",
+      "sha256": "ca7ffcd6d31327d6de473864aba8323acf205484eca51e0e2f13b253e3f46002",
+      "bytes": 1797
+    },
+    {
+      "path": "browser-en-360/en-360-battle-cry-current-next.png",
+      "sha256": "6c32f7210ef543f91febfb9f94a1a8b01adcaa7028638213c790eed02a7bb8b4",
+      "bytes": 55057
+    },
+    {
+      "path": "browser-en-360/en-360-battle-cry-details.png",
+      "sha256": "a815d507ab21504d2ded83238db0a28d77d8723be49f3730472a618cc67834f6",
+      "bytes": 56152
+    },
+    {
+      "path": "browser-en-360/en-360-battle-cry-fresh-15.json",
+      "sha256": "7b927d17608174e50f3933f9742ea5d870524a96c5af7f62acda03c226f3b731",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-360/en-360-battle-cry-imported-16.json",
+      "sha256": "6dde0a0629e2147e8adfaaca5a33061d07aed858cb9dc030149c85b87e5dd1e3",
+      "bytes": 4846
+    },
+    {
+      "path": "browser-en-360/en-360-battle-cry-offline-continued-21.json",
+      "sha256": "fa45ec7a07d9b8e2481e83f452ff522f26e945b44473f2278da821848d2a6991",
+      "bytes": 4900
+    },
+    {
+      "path": "browser-en-360/en-360-battle-cry-rank1-after-18.json",
+      "sha256": "20c7795a5f7ea3a576e05fae2f1006a37322159450d29c101adaf8859894c19c",
+      "bytes": 4849
+    },
+    {
+      "path": "browser-en-360/en-360-battle-cry-rank1-before-17.json",
+      "sha256": "4b2cc54ed3774210deb36edbf4296f11b265ed8fa3d271f83a0eac380f646265",
+      "bytes": 4846
+    },
+    {
+      "path": "browser-en-360/en-360-battle-cry-rank2-after-20.json",
+      "sha256": "fa45ec7a07d9b8e2481e83f452ff522f26e945b44473f2278da821848d2a6991",
+      "bytes": 4900
+    },
+    {
+      "path": "browser-en-360/en-360-battle-cry-rank2-before-19.json",
+      "sha256": "fa45ec7a07d9b8e2481e83f452ff522f26e945b44473f2278da821848d2a6991",
+      "bytes": 4900
+    },
+    {
+      "path": "browser-en-360/en-360-battle-cry-synthetic-input.json",
+      "sha256": "8b123ffe5fd43afe8b189defb159b27fe5291e430d03d88ad1dd1aa86f472c57",
+      "bytes": 4030
+    },
+    {
+      "path": "browser-en-360/en-360-howl-cast-visible.png",
+      "sha256": "c653805f89839c4acee45b5911a47fdcf4dddc1b9bef027c2ca378ade53924ba",
+      "bytes": 47126
+    },
+    {
+      "path": "browser-en-360/en-360-howl-combat.json",
+      "sha256": "ba2190a4de0b97072372cc0fc55865329a428a12917de085a6df18585538b362",
+      "bytes": 1183
+    },
+    {
+      "path": "browser-en-360/en-360-howl-current-next.png",
+      "sha256": "fce0c32f592de735ddd82a670969e202a2fd44ac5ed13282d42d1fb9b247d41e",
+      "bytes": 45759
+    },
+    {
+      "path": "browser-en-360/en-360-howl-details.png",
+      "sha256": "29f651e36693a79af5361a3ddd392090fd4f793abb978ae43f20c2cb7ad2c6dd",
+      "bytes": 45975
+    },
+    {
+      "path": "browser-en-360/en-360-howl-fresh-1.json",
+      "sha256": "bbd21a1cb99501f3a90ccf32380791d30c76d617780ab7463b5746cf834c8138",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-360/en-360-howl-imported-2.json",
+      "sha256": "148e5efa01b05b83e8921171459c458880a6ec41c43477a566bbea8ab83624e8",
+      "bytes": 4785
+    },
+    {
+      "path": "browser-en-360/en-360-howl-offline-continued-7.json",
+      "sha256": "4598309d3aeaf9e6774bdae224c7624b21849cacf530dd272635b28f2f37a2f8",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-en-360/en-360-howl-rank1-after-4.json",
+      "sha256": "879d832eeab974188e501e46d7856e3dc838b5a0787eae0ba81820a8de78f8f4",
+      "bytes": 4788
+    },
+    {
+      "path": "browser-en-360/en-360-howl-rank1-before-3.json",
+      "sha256": "d7ca44d1387280e331ca19cbc8914bc25eb9cd266b257c7cd7458a8550dd8c4e",
+      "bytes": 4785
+    },
+    {
+      "path": "browser-en-360/en-360-howl-rank2-after-6.json",
+      "sha256": "4598309d3aeaf9e6774bdae224c7624b21849cacf530dd272635b28f2f37a2f8",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-en-360/en-360-howl-rank2-before-5.json",
+      "sha256": "4598309d3aeaf9e6774bdae224c7624b21849cacf530dd272635b28f2f37a2f8",
+      "bytes": 4833
+    },
+    {
+      "path": "browser-en-360/en-360-howl-synthetic-input.json",
+      "sha256": "8dcdb567f6e429c1e6dce64f73e576ab822df8e419c4485ce88199a9f75337bb",
+      "bytes": 3969
+    },
+    {
+      "path": "browser-en-360/en-360-taunt-cast-visible.png",
+      "sha256": "b00dd751bfd747aee402a98eee25d2c782013898f393ceebd8ded926f763fd59",
+      "bytes": 52596
+    },
+    {
+      "path": "browser-en-360/en-360-taunt-combat.json",
+      "sha256": "0a14538d59aa24386674ea6b40e83199749b80a8c0395d58199209805daf9221",
+      "bytes": 1234
+    },
+    {
+      "path": "browser-en-360/en-360-taunt-current-next.png",
+      "sha256": "901e1ce165b3d6f52590f4943f751cc32d0ead03e29a17945d86d6d8ef59b1da",
+      "bytes": 48085
+    },
+    {
+      "path": "browser-en-360/en-360-taunt-details.png",
+      "sha256": "901e1ce165b3d6f52590f4943f751cc32d0ead03e29a17945d86d6d8ef59b1da",
+      "bytes": 48085
+    },
+    {
+      "path": "browser-en-360/en-360-taunt-fresh-8.json",
+      "sha256": "4ae5bd22741f1d43e69b52c20f3bcff223ae93e24b2ec67974de7e3e662d2231",
+      "bytes": 3172
+    },
+    {
+      "path": "browser-en-360/en-360-taunt-imported-9.json",
+      "sha256": "d4dc598b2b4958da5c8ff07ba42ac20e0dd28948f92674b9a3f0fff85386d634",
+      "bytes": 4813
+    },
+    {
+      "path": "browser-en-360/en-360-taunt-offline-continued-14.json",
+      "sha256": "51dea4bae518e04ce56dbb6de1ed19ba3e4f87e61d286e4c5fd1dda6b90b006a",
+      "bytes": 4862
+    },
+    {
+      "path": "browser-en-360/en-360-taunt-rank1-after-11.json",
+      "sha256": "115b47916b933f158636bff254baf4cfef5cad104aabe523839c0a48802359c4",
+      "bytes": 4816
+    },
+    {
+      "path": "browser-en-360/en-360-taunt-rank1-before-10.json",
+      "sha256": "06655afb2858bb3a0d4699392f6c1dbd0a71f98a82d1cfe0a163fb7f442d7a81",
+      "bytes": 4813
+    },
+    {
+      "path": "browser-en-360/en-360-taunt-rank2-after-13.json",
+      "sha256": "51dea4bae518e04ce56dbb6de1ed19ba3e4f87e61d286e4c5fd1dda6b90b006a",
+      "bytes": 4862
+    },
+    {
+      "path": "browser-en-360/en-360-taunt-rank2-before-12.json",
+      "sha256": "51dea4bae518e04ce56dbb6de1ed19ba3e4f87e61d286e4c5fd1dda6b90b006a",
+      "bytes": 4862
+    },
+    {
+      "path": "browser-en-360/en-360-taunt-synthetic-input.json",
+      "sha256": "4ecb12425585b6af952d30a80627154ceff8f7fdf1caaa91bef0df5bd21c3441",
+      "bytes": 3997
+    },
+    {
+      "path": "browser-en-360-live.json",
+      "sha256": "46eed6df83e8e77c495039b4b305676ab4af2ba6fc0d7536dca8207030ebb62d",
+      "bytes": 476
+    },
+    {
+      "path": "browser-en-360-result.json",
+      "sha256": "f32f3233539519918a418ab6cbc7c2b8acd38f515969ebe08ca3c12b0ea1ff76",
+      "bytes": 521
+    },
+    {
+      "path": "browser-en-360.log",
+      "sha256": "7c8d1c34ffa11dd6f3e2a0e8f0ebfde514bb78880553f344314ab3be533838ec",
+      "bytes": 608
+    },
+    {
+      "path": "browser-selector-failed.cjs",
+      "sha256": "c9b8f408d43973d67052d063642dd00721d33e8ed3cfd369c424412eba06ca10",
+      "bytes": 11880
+    },
+    {
+      "path": "browser-syntax-failed.cjs",
+      "sha256": "3cade0b69e95f851b4ca58df19c1673da2ebc8fb28ab214d02319ee40c83c484",
+      "bytes": 13222
+    },
+    {
+      "path": "browser-syntax-green-live.json",
+      "sha256": "336e72d044ef9d59e9fad4a5f8f784d108351c426920f64b7ff4c85889056169",
+      "bytes": 151
+    },
+    {
+      "path": "browser-syntax-green-result.json",
+      "sha256": "75bff4c9f5bbb6dc9992bfe424e55ac3d1acb3854635cdcb3689a0ab27036db7",
+      "bytes": 198
+    },
+    {
+      "path": "browser-syntax-green.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "browser-syntax-red-live.json",
+      "sha256": "7f41a00c40c0d90f650c01731196ba51be6c43bde5a01a796d2fd7ab38be85f0",
+      "bytes": 165
+    },
+    {
+      "path": "browser-syntax-red-result.json",
+      "sha256": "7ad329ef703461782a78df71dbefafe9b4423a827bd75f07e27df66efc9cffbd",
+      "bytes": 213
+    },
+    {
+      "path": "browser-syntax-red.log",
+      "sha256": "50a165409f609b02c0849d8dcc9f03dd260eee45c4ea8cf40d3da4f7e05c3f90",
+      "bytes": 438
+    },
+    {
+      "path": "browser-zh-CN-1280/browser-report.json",
+      "sha256": "6a5e723b3cb7f474ca6f180daa4ee2ab14594bc0efcbefc3b177dfe38994923d",
+      "bytes": 5524
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-battle-cry-cast-visible.png",
+      "sha256": "aaaab25ebbc5c456b6a147d2e8e1de5bd0c3b5f5b7cbf8fede75a8bcb9cfa6c3",
+      "bytes": 198512
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-battle-cry-combat.json",
+      "sha256": "5f4c5cbb6dd3e3596dc5119561bdc6e29d4e7bb16466216f16f14d3f92a0e84b",
+      "bytes": 1936
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-battle-cry-current-next.png",
+      "sha256": "c72f8197654f383cdb1d4fbd22859bc08482d20e632a3d7db3f4f02c02f926c6",
+      "bytes": 117144
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-battle-cry-details.png",
+      "sha256": "38d1921fb6cdeee4bfb75cd8b883b14782aa0e922794438562a7df2ab6c99982",
+      "bytes": 117387
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-battle-cry-fresh-15.json",
+      "sha256": "8875b61124f36afcbb2ddb8e2bc67d5e3ac92df380c4ae26eaeb0a213d62fcb8",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-battle-cry-imported-16.json",
+      "sha256": "c81701282353a916bafc0eb4d388543fe1b2a765b926e58348ff849a414ddc8b",
+      "bytes": 4849
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-battle-cry-offline-continued-21.json",
+      "sha256": "396833713bfd6a674396c2659562ec99999f8f6f3df5a32efed99f6dddda5894",
+      "bytes": 4903
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-battle-cry-rank1-after-18.json",
+      "sha256": "24eeba81db23621f1c80865f6d3d867be58ad71b23492048977c62a8c728448a",
+      "bytes": 4852
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-battle-cry-rank1-before-17.json",
+      "sha256": "b26f07df54083f34a1d07c121c6aa78bdc6557d72cd2f60d96bf310c161d25db",
+      "bytes": 4849
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-battle-cry-rank2-after-20.json",
+      "sha256": "396833713bfd6a674396c2659562ec99999f8f6f3df5a32efed99f6dddda5894",
+      "bytes": 4903
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-battle-cry-rank2-before-19.json",
+      "sha256": "396833713bfd6a674396c2659562ec99999f8f6f3df5a32efed99f6dddda5894",
+      "bytes": 4903
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-battle-cry-synthetic-input.json",
+      "sha256": "9ba0d57aa63aeb2737f412a33a6d334fb3d5a7d64fd55e5fb6e8ad14ad878c25",
+      "bytes": 4033
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-howl-cast-visible.png",
+      "sha256": "c32963bdc217dca3a0e5c185d27f717db48f9852dd33e982fdcec6346bd2a4ed",
+      "bytes": 199040
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-howl-combat.json",
+      "sha256": "f156c10d8d9eaa3533e1b074e703774592831d60867c67b572788dd24af4bccd",
+      "bytes": 1236
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-howl-current-next.png",
+      "sha256": "f0e41b53909dbe3a7649a7b74aba5808c9ccbc21eb3c095814b10e43d6aa1480",
+      "bytes": 103588
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-howl-details.png",
+      "sha256": "06d8e30f360ff1376bda85f73bbd2d60e26586e95cda2f6c8fade4175446f6ac",
+      "bytes": 104063
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-howl-fresh-1.json",
+      "sha256": "e4beeb5176005f53c9487782b6748c0c3dc7c7c3ee634525f7426495f61e0135",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-howl-imported-2.json",
+      "sha256": "afc19532b5088a7ad2513b1e0031b256ed900e939495c108d71cfac5c75ec8d2",
+      "bytes": 4788
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-howl-offline-continued-7.json",
+      "sha256": "d6a5ba1e9f5c0fe41a8131c04d5ef0e532a3025cc8208dd6f83f215f0d5f2af6",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-howl-rank1-after-4.json",
+      "sha256": "fef665dd443c052ef998242e18fc12a003c7c2b0dfe538176ebc4ea05db17739",
+      "bytes": 4791
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-howl-rank1-before-3.json",
+      "sha256": "220ec3c101bb9dcb05c35ce12314d15dfd94f07289eff04d9f82d9437fee1e3d",
+      "bytes": 4788
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-howl-rank2-after-6.json",
+      "sha256": "d6a5ba1e9f5c0fe41a8131c04d5ef0e532a3025cc8208dd6f83f215f0d5f2af6",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-howl-rank2-before-5.json",
+      "sha256": "d6a5ba1e9f5c0fe41a8131c04d5ef0e532a3025cc8208dd6f83f215f0d5f2af6",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-howl-synthetic-input.json",
+      "sha256": "38cfbe96de6fd644ca608617187431bb0e0d0f7acbb5828af491182b5591e96f",
+      "bytes": 3972
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-taunt-cast-visible.png",
+      "sha256": "90be855865afe5679be0b99feefd314fcf9ecfc0e6dc81709c91e42ea6cdab66",
+      "bytes": 219429
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-taunt-combat.json",
+      "sha256": "94bc7153ae7b085c3be4f28ee9af1d5a7239d46d590bd9fee61faa12e8c3604f",
+      "bytes": 1344
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-taunt-current-next.png",
+      "sha256": "64dfce6bff6b00d0fd4e3726260649857206297a76f7ff4db79de5f6fcdc6932",
+      "bytes": 109947
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-taunt-details.png",
+      "sha256": "9f88572f2afa0930466b2edbd68fa3a2e333d3bd71d88fb4a922dcb89c4bbc26",
+      "bytes": 110703
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-taunt-fresh-8.json",
+      "sha256": "26fc34f540262445384beb3b4daa7399a69692a42f2e69991cbd5164dbd9341d",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-taunt-imported-9.json",
+      "sha256": "82827f5ac62ed8d3ebd42132f0e162d794becda778e6c886282f5eb85e0f10f9",
+      "bytes": 4816
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-taunt-offline-continued-14.json",
+      "sha256": "7bdca9e90b05284dd10c4b015825709e1fb30a4d4b56bacd965a98a6ba2c2097",
+      "bytes": 4865
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-taunt-rank1-after-11.json",
+      "sha256": "763006f15ee34fd0f8af8a6f1dc26a5e057fcba3d3f7cbc88c0515d7178e13f6",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-taunt-rank1-before-10.json",
+      "sha256": "7a4a0bf14af031a71d55a9dcceb83577449266ede81a48713377141dd0a72835",
+      "bytes": 4816
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-taunt-rank2-after-13.json",
+      "sha256": "7bdca9e90b05284dd10c4b015825709e1fb30a4d4b56bacd965a98a6ba2c2097",
+      "bytes": 4865
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-taunt-rank2-before-12.json",
+      "sha256": "7bdca9e90b05284dd10c4b015825709e1fb30a4d4b56bacd965a98a6ba2c2097",
+      "bytes": 4865
+    },
+    {
+      "path": "browser-zh-CN-1280/zh-CN-1280-taunt-synthetic-input.json",
+      "sha256": "ae4a8a85b6a2fc155cd6744f4ba89edf8158cb24e619ad1c3a544207baea8347",
+      "bytes": 4000
+    },
+    {
+      "path": "browser-zh-CN-1280-live.json",
+      "sha256": "c236f260798579a763beb45af7ebba7cf88f7a980e4c4f7097354a8b162abbd6",
+      "bytes": 484
+    },
+    {
+      "path": "browser-zh-CN-1280-result.json",
+      "sha256": "612064acb712cc4a46b378723ef021046af54f7570b482d861987d84cdf66251",
+      "bytes": 530
+    },
+    {
+      "path": "browser-zh-CN-1280.log",
+      "sha256": "d599f8958b2b86cd45b061023e518781485a5e8dfab7de546cba688534e26a0f",
+      "bytes": 628
+    },
+    {
+      "path": "browser-zh-CN-360/browser-report.json",
+      "sha256": "fce9681e082b23809779d57f4956a9787ff5397e009d58b687708eec16fd4590",
+      "bytes": 5506
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-battle-cry-cast-visible.png",
+      "sha256": "e3f5244b4f558ad59c084b06f46359960f57179319694523018aefa76c46aa61",
+      "bytes": 44765
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-battle-cry-combat.json",
+      "sha256": "5f4c5cbb6dd3e3596dc5119561bdc6e29d4e7bb16466216f16f14d3f92a0e84b",
+      "bytes": 1936
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-battle-cry-current-next.png",
+      "sha256": "4c7d82f41f1a294fd5b32cabf1f68bff03b8b80d6ec22e0595e352ff2809d644",
+      "bytes": 57372
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-battle-cry-details.png",
+      "sha256": "4d63b9eb8091c207543dacf06a7073ba6fdee0275b8c434f68b121b9ced2e2bd",
+      "bytes": 58294
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-battle-cry-fresh-15.json",
+      "sha256": "e5a5f17e717ef62b6786af19a7dff9c580993f7ec04ad0a0295ba9f95ad745c2",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-battle-cry-imported-16.json",
+      "sha256": "0d43c699215ca14e9c4c9439d1b6d0ddd593e9a7e48a9ab28ba6077b4f871569",
+      "bytes": 4849
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-battle-cry-offline-continued-21.json",
+      "sha256": "717976f9e72f4c15e915e90b4db0a8ac57446c3bc76a7e9c6b10e91fdd7cbb33",
+      "bytes": 4903
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-battle-cry-rank1-after-18.json",
+      "sha256": "fd23ce4e29a56e9e95cbe300780edb349971a4176762731e18fbf53bd7c89618",
+      "bytes": 4852
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-battle-cry-rank1-before-17.json",
+      "sha256": "f8b4c6af2f6209539029135c682b9d1a95679ed88de7e3b6c0a4fee2da473270",
+      "bytes": 4849
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-battle-cry-rank2-after-20.json",
+      "sha256": "717976f9e72f4c15e915e90b4db0a8ac57446c3bc76a7e9c6b10e91fdd7cbb33",
+      "bytes": 4903
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-battle-cry-rank2-before-19.json",
+      "sha256": "717976f9e72f4c15e915e90b4db0a8ac57446c3bc76a7e9c6b10e91fdd7cbb33",
+      "bytes": 4903
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-battle-cry-synthetic-input.json",
+      "sha256": "89b4c45545052f2fb09f12dea08114a16c42025e8dc2e22825a0e72330db4a78",
+      "bytes": 4033
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-howl-cast-visible.png",
+      "sha256": "c71ad526d1c7da28ff13291296ae706b54f9f5b66d6209429cc63339c247a1d4",
+      "bytes": 37895
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-howl-combat.json",
+      "sha256": "f156c10d8d9eaa3533e1b074e703774592831d60867c67b572788dd24af4bccd",
+      "bytes": 1236
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-howl-current-next.png",
+      "sha256": "3f6a843b02edd65be934fd0a9a65267c0f9375f84ba351c7ad0136a1222ff534",
+      "bytes": 50854
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-howl-details.png",
+      "sha256": "e2c172227872ac246b4b23a3f75d96e75adf86ec6552341a13f4eb03d5a3223b",
+      "bytes": 50999
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-howl-fresh-1.json",
+      "sha256": "38f4ec09ea2ea61238305b92bc519c36642f14f12285ba9322c5dcb42b4d2237",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-howl-imported-2.json",
+      "sha256": "f9866a943640e05bd3ce7a924b38cc4a5e9b757cf048a5c6db8fad401f3ffab5",
+      "bytes": 4788
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-howl-offline-continued-7.json",
+      "sha256": "b1c6df5cea0cbb0db4ad9baea94fc3d9489c7bab31bed7605094c6f490ed64fe",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-howl-rank1-after-4.json",
+      "sha256": "8238162894f9204492c488e90abbc425fc39189fac786e2b3d4cadabd6dc1bc9",
+      "bytes": 4791
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-howl-rank1-before-3.json",
+      "sha256": "014ebfb809f4d1daf878bed9712e48ff17b74aa392daa6466534b71d63bc5da0",
+      "bytes": 4788
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-howl-rank2-after-6.json",
+      "sha256": "b1c6df5cea0cbb0db4ad9baea94fc3d9489c7bab31bed7605094c6f490ed64fe",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-howl-rank2-before-5.json",
+      "sha256": "b1c6df5cea0cbb0db4ad9baea94fc3d9489c7bab31bed7605094c6f490ed64fe",
+      "bytes": 4836
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-howl-synthetic-input.json",
+      "sha256": "3f503d882c626ea2f138975eacadc8856682d99a2cffb2b4606674e9f6351af0",
+      "bytes": 3972
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-taunt-cast-visible.png",
+      "sha256": "f4fe822fa295e8903b72d09e97fe541d770bcc748e60677d4d287dc1b8d9c44c",
+      "bytes": 62267
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-taunt-combat.json",
+      "sha256": "94bc7153ae7b085c3be4f28ee9af1d5a7239d46d590bd9fee61faa12e8c3604f",
+      "bytes": 1344
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-taunt-current-next.png",
+      "sha256": "09389daa71d588d389608c20dde632846d5dc71547021c9b8f8aadb30603bf12",
+      "bytes": 56177
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-taunt-details.png",
+      "sha256": "c4bafe451d3516e9f6a45d89c913a25a6d12f228f699881bafff220405a2b4fe",
+      "bytes": 56285
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-taunt-fresh-8.json",
+      "sha256": "379fa85b2131005ee9fffec2e88c4f74d10cd85ff342bd58e9b5f91559f6ed22",
+      "bytes": 3175
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-taunt-imported-9.json",
+      "sha256": "1b2d7c5aec193f965f7596e8750d6965f609bffe488bbd98d24307e01ba7d6bd",
+      "bytes": 4816
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-taunt-offline-continued-14.json",
+      "sha256": "69964e91827f8031392e845b47ac4ca2daa32309ef8f61fbc25e4dd5fa2b628f",
+      "bytes": 4865
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-taunt-rank1-after-11.json",
+      "sha256": "a902e2ef14b1951b513dd74985eeafd651009f93f423bc03c9ecde5a11c2f6af",
+      "bytes": 4819
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-taunt-rank1-before-10.json",
+      "sha256": "2134d16e5184658da11dd06e772c6d9c1e2a175466776aaec0f75f41f4433583",
+      "bytes": 4816
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-taunt-rank2-after-13.json",
+      "sha256": "69964e91827f8031392e845b47ac4ca2daa32309ef8f61fbc25e4dd5fa2b628f",
+      "bytes": 4865
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-taunt-rank2-before-12.json",
+      "sha256": "69964e91827f8031392e845b47ac4ca2daa32309ef8f61fbc25e4dd5fa2b628f",
+      "bytes": 4865
+    },
+    {
+      "path": "browser-zh-CN-360/zh-CN-360-taunt-synthetic-input.json",
+      "sha256": "3b85cf0959348b44091c92ac3230827aa6cc07dfcdd3476375541861230a55bc",
+      "bytes": 4000
+    },
+    {
+      "path": "browser-zh-CN-360-live.json",
+      "sha256": "f85df18de5d924b602b5ee357313ab8c97be1261cf70ee1b14e6c5ec142beb6c",
+      "bytes": 482
+    },
+    {
+      "path": "browser-zh-CN-360-result.json",
+      "sha256": "090de3baa07c9698f9df47bce6400b9fa042d1901b6783adc13832fb04c3efdb",
+      "bytes": 527
+    },
+    {
+      "path": "browser-zh-CN-360.log",
+      "sha256": "0239038f23322f23adb4ad270ebbea796f88b93b61f2ffee1100d3f77f80dd85",
+      "bytes": 623
+    },
+    {
+      "path": "browser.cjs",
+      "sha256": "a4d3b0b93d0826f9d1bee6a6ee6566ea182dcc6f0fa3c047cbeda13c4e1408db",
+      "bytes": 12130
+    },
+    {
+      "path": "build-live.json",
+      "sha256": "ca6612317fc3bf206e4fc3038c80f74823d15b8f4179e78848586510a49fba34",
+      "bytes": 167
+    },
+    {
+      "path": "build-result.json",
+      "sha256": "ddef96bd1187f9d4093b5e874f2bf7a083a0134360f50a90f8805ac2d6a2d398",
+      "bytes": 213
+    },
+    {
+      "path": "build.log",
+      "sha256": "29e9bd723c6d52b418cfdbedfb90ffdbc95b8adc12be69f7f11e4b59e6f4f055",
+      "bytes": 2519
+    },
+    {
+      "path": "causal-green-live.json",
+      "sha256": "481d94792510f98b5277ed17f815421261ffa0881e93ef082df8c85b057a4f6d",
+      "bytes": 107
+    },
+    {
+      "path": "causal-green-result.json",
+      "sha256": "3b76ecd2b587e11d702388c5d995738729bf441b46ee265f422526770cb67091",
+      "bytes": 152
+    },
+    {
+      "path": "causal-green.log",
+      "sha256": "5234f729dc40043fc7657fc26456d7133da687ff894c7fbec0c2369f802546c3",
+      "bytes": 360
+    },
+    {
+      "path": "causal-red-live.json",
+      "sha256": "2360a3bedb601d2e0d760d11a155f93f3ae11b981a0736d332c0472f5d86129c",
+      "bytes": 107
+    },
+    {
+      "path": "causal-red-result.json",
+      "sha256": "e4d500cde377dfdef3c26969a5ec2748cde7ded15a98975be5d3cd9f39f9513d",
+      "bytes": 153
+    },
+    {
+      "path": "causal-red.log",
+      "sha256": "6c308a9710462c585c041115afa5ba1dc31597ef6bb89b33b11d53848e1483b1",
+      "bytes": 6513
+    },
+    {
+      "path": "cleanup.py",
+      "sha256": "8a6eaffd9a3857848a45569f5d5962b50b14ef7de962f5fd629904e1b3bea73b",
+      "bytes": 3486
+    },
+    {
+      "path": "credit.py",
+      "sha256": "7362bd1690b6902d938a3ff886710d37719dc895690223ee39ab9cfc2c976943",
+      "bytes": 2233
+    },
+    {
+      "path": "engine-live.json",
+      "sha256": "a3cf4c1991f0c7a568c2861acea5b08912ab8c5f6a9e0ec9f50185526f09242b",
+      "bytes": 58
+    },
+    {
+      "path": "engine-result.json",
+      "sha256": "27314bd24d6d6069ee23b679a970be47ea3a6b33cb6bd10b23f67c01e50228f4",
+      "bytes": 103
+    },
+    {
+      "path": "engine.log",
+      "sha256": "22647288e1c8f6566274159136e4e3f174231871a6584026da9543c246796c2c",
+      "bytes": 68426
+    },
+    {
+      "path": "failed-traces-index.json",
+      "sha256": "4bef7b3469d7f74c7ca2176d358995d6b05993f501fd79a82546c777601f17b1",
+      "bytes": 711594
+    },
+    {
+      "path": "first-browser-run/browser-en-360/browser-report.json",
+      "sha256": "89337e2a68a6cde10cd3221d72c0c4e41bc69e64eb4dafb4fc72d6714efb53d7",
+      "bytes": 2227
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-howl-current-next.png",
+      "sha256": "fce0c32f592de735ddd82a670969e202a2fd44ac5ed13282d42d1fb9b247d41e",
+      "bytes": 45759
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-howl-details.png",
+      "sha256": "ea8e1cc69648391f50bc024000cacd2496aa5a052282ee9973b4744bf77ccfbe",
+      "bytes": 47412
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-howl-failed-trace.zip",
+      "sha256": "c87c467c04245c2ce27603719fa07c124d95cedfc04b9cb89d0f90a120828d5b",
+      "bytes": 145080
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-howl-failed.png",
+      "sha256": "ff841e6008aa24b528c32110e7efec75c0cfc49cc0327c6643a4e35129dce1ac",
+      "bytes": 37271
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-howl-fresh-1.json",
+      "sha256": "9440e1843b0f9b39c33fd38397f7cceeb6953cfcc57543b25951ca36c38db724",
+      "bytes": 3172
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-howl-imported-2.json",
+      "sha256": "6233e1fa4b05588975f859706016bccc208d34a0357fbad6d048834214786727",
+      "bytes": 4785
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-howl-rank1-after-4.json",
+      "sha256": "7e69a60a58c59fe8baec47ca57ff0807fecbc3422de562122db4dc40a43fa412",
+      "bytes": 4788
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-howl-rank1-before-3.json",
+      "sha256": "93d526bcc3ea127b01e50c348b611737c4e724627f974780505f60858596d56d",
+      "bytes": 4785
+    },
+    {
+      "path": "first-browser-run/browser-en-360/en-360-howl-synthetic-input.json",
+      "sha256": "0771988b8c11c8a164659c24ca87b960c861aa0a09fefd3cac865d57e1004b99",
+      "bytes": 3969
+    },
+    {
+      "path": "first-browser-run/browser-en-360-live.json",
+      "sha256": "a821bed5f71e5bf0fd6989bc1b55fb862fa035d208193910496ba4d51be507a9",
+      "bytes": 476
+    },
+    {
+      "path": "first-browser-run/browser-en-360-result.json",
+      "sha256": "478c064c1adc72e594d59c0a5f24ff489a3f10a61d92df77507f1998e320858d",
+      "bytes": 521
+    },
+    {
+      "path": "first-browser-run/browser-en-360.log",
+      "sha256": "3500be45c16cb1207b5bb98258ef673dfea5cca07a162e74e9c915c41caf5993",
+      "bytes": 2237
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/browser-report.json",
+      "sha256": "6ed14d0455479c5c0b49b52b748751dcd7385217cfa3c8255032ce87e5457a60",
+      "bytes": 2182
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-howl-current-next.png",
+      "sha256": "3f6a843b02edd65be934fd0a9a65267c0f9375f84ba351c7ad0136a1222ff534",
+      "bytes": 50854
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-howl-details.png",
+      "sha256": "5e52800c0b2c6c5331045d68defdeecc99e463f553dc84cba2e4f064f8f78747",
+      "bytes": 52560
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-howl-failed-trace.zip",
+      "sha256": "86ee9e44383717d4cb8696ba4571df7d5380ce4dfac2a27907e9bbf4f15eba2d",
+      "bytes": 143788
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-howl-failed.png",
+      "sha256": "3d34d7332182f7b64c999eec643f8941dae1663861dcc7dba2e7b09cdacd069c",
+      "bytes": 36707
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-howl-fresh-1.json",
+      "sha256": "09f8a6900a0d9fc5fafd008f3fe08828f40fb4452289c22735f8974107e65de5",
+      "bytes": 3175
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-howl-imported-2.json",
+      "sha256": "1b0e51032e4595ba5a7193966cee9bc145062d7f52206901780d60f2d13fa59e",
+      "bytes": 4788
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-howl-rank1-after-4.json",
+      "sha256": "5cf82476402990d6fe8a6ee73cdcff3406f9fa5a258a8f8a83bbc7e63244e6a2",
+      "bytes": 4791
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-howl-rank1-before-3.json",
+      "sha256": "a18d7b7ec25a2ef0239f0431b6301a5a4dc61b01b4ec112222790bb2c6d5c36f",
+      "bytes": 4788
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360/zh-CN-360-howl-synthetic-input.json",
+      "sha256": "159bb4e62c0fd29fe815ce92cd59dc97b2b9a00d8fe5d083e8e4fa6c1590cbc7",
+      "bytes": 3972
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360-live.json",
+      "sha256": "fe1d3e045f6138de72ff749d608e3b9266783227808b24b32516e8e8e38f2e96",
+      "bytes": 482
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360-result.json",
+      "sha256": "32c48d37c4e91d5b67b939c6f52e0d97b878743b1cb440ef2886d4ce97ed4374",
+      "bytes": 527
+    },
+    {
+      "path": "first-browser-run/browser-zh-CN-360.log",
+      "sha256": "3308d7b31169bcb470ec6a4e59337e83b0578a4fb8947e9bd6ad0a7e834516a4",
+      "bytes": 2253
+    },
+    {
+      "path": "focused-corrected-live.json",
+      "sha256": "e115b513da65428a824985ad0c21651af411f5212b99ef1fb4ebfe91a1ab9b3c",
+      "bytes": 278
+    },
+    {
+      "path": "focused-corrected-result.json",
+      "sha256": "26b193842392b41986bebe795adb78bfa55838509b5540ebf1ff379729b7aa01",
+      "bytes": 324
+    },
+    {
+      "path": "focused-corrected.log",
+      "sha256": "0203218f069693a3b6da6daf6a4d79c4e78087202ce5ea83059ad7ed4e7d2976",
+      "bytes": 618
+    },
+    {
+      "path": "focused-expanded-live.json",
+      "sha256": "0f1b9c518eb4efe0baba072d019b1884aa42664d6741e22e1272b111862619d4",
+      "bytes": 278
+    },
+    {
+      "path": "focused-expanded-result.json",
+      "sha256": "c53accf5ebfb11a8c862e3356fbfa751f8c5407c97f521ba4f5a07181b5935a0",
+      "bytes": 321
+    },
+    {
+      "path": "focused-expanded.log",
+      "sha256": "af4779f63773907e853c47b65bb61080b773e73fd3536e80e74e9239e5cc2593",
+      "bytes": 616
+    },
+    {
+      "path": "focused-final-live.json",
+      "sha256": "08a74143c24b65a721249a70b3856aa9c54340749ed01ea363e3361e17a09af6",
+      "bytes": 278
+    },
+    {
+      "path": "focused-final-result.json",
+      "sha256": "24c38a2b8611bd665605a14010ba9b38d8fc9508c8e82f35d22858f07fa6a3fc",
+      "bytes": 324
+    },
+    {
+      "path": "focused-final.log",
+      "sha256": "52a2c2ced8e09727e460b12f75fcfb295d170f2948f3285bbd9437842fa436b5",
+      "bytes": 619
+    },
+    {
+      "path": "focused-live.json",
+      "sha256": "22e700fa32eb2ea680eae96ae4ce947c65389f6b49e2ec0be4efe74d2f1d4718",
+      "bytes": 224
+    },
+    {
+      "path": "focused-result.json",
+      "sha256": "ca93b51c7b78e681dd1ef710749d7444991d97418279e567265a366a4cda4c69",
+      "bytes": 269
+    },
+    {
+      "path": "focused.log",
+      "sha256": "1b564c35fc1ee9ff085690dc0c5cc2f334e25125306c2d9a9bece2854dd7c99f",
+      "bytes": 9608
+    },
+    {
+      "path": "frozen.json",
+      "sha256": "e1c955e94c8bcd52bb664e4a4b327d4259fb37c6201f60303ca4648540e713f2",
+      "bytes": 239388
+    },
+    {
+      "path": "full-final-live.json",
+      "sha256": "9954b45a6c1624861a2d73d3daddd045e8a39c8e03a3277f1a1d3677a7b8f25c",
+      "bytes": 44
+    },
+    {
+      "path": "full-final-result.json",
+      "sha256": "7102449fbacce1f7f3ea9a6875669a464a19348fd0450839714e764f7f801c44",
+      "bytes": 89
+    },
+    {
+      "path": "full-final.log",
+      "sha256": "841f72ca2dc2ec084f515d227e1b0dcd8906bc618bdaa6960ecbdb1377762a90",
+      "bytes": 162586
+    },
+    {
+      "path": "full-quiet-live.json",
+      "sha256": "2cfbc3dfd7c04af5b57ab11914d9c9c146e8c59ed5ec2b9f31e22aa1d7f0bd3e",
+      "bytes": 44
+    },
+    {
+      "path": "full-quiet-result.json",
+      "sha256": "32c10610a16d122582f44c47940b99e7eb71c9e4478448c0f4a37b180ff73326",
+      "bytes": 89
+    },
+    {
+      "path": "full-quiet.log",
+      "sha256": "51c9c64a0b6380ce04ee1200a0e510bcf2da14fd88031ff49e9f18289469dd28",
+      "bytes": 161756
+    },
+    {
+      "path": "import-timeout-repro-live.json",
+      "sha256": "4fc58ea7dfae015eb1a5500cfbe242cd8c809f0e044884e68194aa63c17401c4",
+      "bytes": 184
+    },
+    {
+      "path": "import-timeout-repro-result.json",
+      "sha256": "1a2ec23ad1381e6c5ae69ec3c4e6ba1335ab321b50d042a9c2c3613e6096234c",
+      "bytes": 228
+    },
+    {
+      "path": "import-timeout-repro.log",
+      "sha256": "fffe00ee23d0edfba8a98ea48ae8420b4eb55666008cc863fd75fb51a51e25c0",
+      "bytes": 367
+    },
+    {
+      "path": "inventory-before.csv",
+      "sha256": "72f605c07a15baa871d536028b7a23b748c998aa09891bfdeff7f6a154c9e1d0",
+      "bytes": 50128
+    },
+    {
+      "path": "lint-final-live.json",
+      "sha256": "8d1a0762e92933fc87d630f8c9a39d8e548f2f0740e6441554a7ca330315b127",
+      "bytes": 51
+    },
+    {
+      "path": "lint-final-result.json",
+      "sha256": "dd39bae68da52628ce5e733bc59865b1e0edb72c9abe09447b9676fca79cb424",
+      "bytes": 97
+    },
+    {
+      "path": "lint-final.log",
+      "sha256": "6315a386d2bfe1cd6769a8afe6a3bfa1222496c3d0f7a821ec81ffbf875a9a01",
+      "bytes": 197
+    },
+    {
+      "path": "lint-focused-live.json",
+      "sha256": "5135b46c946fb1d83351fed60eaefcbd50f461f6a442ca05e7cfb4c4130fe1c0",
+      "bytes": 611
+    },
+    {
+      "path": "lint-focused-result.json",
+      "sha256": "cb41f563313aad548d90a371ff094633700a52a5b3f1b2cc8830d2e9e06fa5dd",
+      "bytes": 657
+    },
+    {
+      "path": "lint-focused.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "next-corpse-skills-live.json",
+      "sha256": "16e633cdf996760303c4feabf191febce7de68e348c8eccdb9d54e775827a25b",
+      "bytes": 179
+    },
+    {
+      "path": "next-corpse-skills-observations.json",
+      "sha256": "fc8056fbcbd4adcd9ccd95187a9d0c8beff05fbf3d0ae252f818ff87547a49f0",
+      "bytes": 48009
+    },
+    {
+      "path": "next-corpse-skills-probe.ts",
+      "sha256": "4026522150b5e43c48034e204e09a82afb8648f5a5424563744b2694e8953b96",
+      "bytes": 3203
+    },
+    {
+      "path": "next-corpse-skills-result.json",
+      "sha256": "44ccd2ab6836bbf046ac01e709e6cf7d176e6ac3720b7a0e3c3a39ebf21922d6",
+      "bytes": 223
+    },
+    {
+      "path": "next-corpse-skills.log",
+      "sha256": "87db663b8f21df163aeefc123d1119932143c1b0dd211385250adacaac189cd4",
+      "bytes": 49301
+    },
+    {
+      "path": "next-frozen-orb-alias-failed.ts",
+      "sha256": "4d04a459f75ce733498c4884463875a1e4d81e53142d984be068f344b833b8fc",
+      "bytes": 4092
+    },
+    {
+      "path": "next-frozen-orb-corrected-live.json",
+      "sha256": "050504315395c0d723bf5fd4df1fb2380be5898c7f8575a3073d3df3fe73d161",
+      "bytes": 176
+    },
+    {
+      "path": "next-frozen-orb-corrected-result.json",
+      "sha256": "97b7fb832318a117615e01d01344c63b0b697343fdf51ef5ee6fb099c6d1b6ae",
+      "bytes": 221
+    },
+    {
+      "path": "next-frozen-orb-corrected.log",
+      "sha256": "ebc146a95006c08b6df6053af3ddf6d4841ad2fe3829b8ddce650c0563ccec19",
+      "bytes": 44882
+    },
+    {
+      "path": "next-frozen-orb-live.json",
+      "sha256": "a527492c7038ffae39d3e8cbcb07f33b37703af48d7def06ef05d26d1830d825",
+      "bytes": 176
+    },
+    {
+      "path": "next-frozen-orb-observations.json",
+      "sha256": "0c12b6fd5c652a26b541f050d6c86bb33949bc37a88f6e4887649940041c3079",
+      "bytes": 43556
+    },
+    {
+      "path": "next-frozen-orb-probe.ts",
+      "sha256": "3328293b95b777e645de57fe05ee0ca6cdd2a791c571320021986a51c7cab5d5",
+      "bytes": 4072
+    },
+    {
+      "path": "next-frozen-orb-result.json",
+      "sha256": "e14c2fb681736b43aaccce432fe5200bb907d8d4c45fda08daa1aa8d7e90432d",
+      "bytes": 221
+    },
+    {
+      "path": "next-frozen-orb.log",
+      "sha256": "b66bdfda808a7cb813402795bf4ddff53c1dad7c0b8300ff25258f28f36b5bd5",
+      "bytes": 1420
+    },
+    {
+      "path": "precache-live.json",
+      "sha256": "1a7624b3c52acb4e1ccedc6f844e28b159a37ddc2e92c51ff62a3ddd9a84320d",
+      "bytes": 172
+    },
+    {
+      "path": "precache-result.json",
+      "sha256": "f2d17519f19582d7a3ea5a423500eb48d6786a85f3b112922e2c2f2dcb926301",
+      "bytes": 220
+    },
+    {
+      "path": "precache.log",
+      "sha256": "eeb305ed9b952c0461211ca17a8a09a438e2f9f476ac373f8411bf77ab0fef6b",
+      "bytes": 371
+    },
+    {
+      "path": "record-processes.py",
+      "sha256": "0f89cf197dcf933aaf8f99cb160af2101eb1b4fcf0a4b2a61f8f2ebc5a69f031",
+      "bytes": 1235
+    },
+    {
+      "path": "recorded-processes.json",
+      "sha256": "a8ab96ab1e200fa84a95c5e41994aeb174c702e9ce5c236be4647973db7dc764",
+      "bytes": 48413
+    },
+    {
+      "path": "resource-observation.json",
+      "sha256": "ce5282afdafa242cde71858a8476acc789b9daa538ef20a9aa71ed0d98a2d9f1",
+      "bytes": 384
+    },
+    {
+      "path": "retain.py",
+      "sha256": "5660f8d1e72303f9b35bc53b69ae2f534e6d2509d7ff4bde33307048442f63b7",
+      "bytes": 4045
+    },
+    {
+      "path": "run.py",
+      "sha256": "a97f6057539c7e7e00b87e0dc185355816c0b32b17744bbe240580f16c8843ec",
+      "bytes": 510
+    },
+    {
+      "path": "second-browser-run/browser-en-1280/browser-report.json",
+      "sha256": "acddd68d99bcb4497acf69f13c8672f3e37f0ad66e6f4c6f8b1a3feb439fbca4",
+      "bytes": 1747
+    },
+    {
+      "path": "second-browser-run/browser-en-1280/en-1280-howl-current-next.png",
+      "sha256": "f66d2188d078a93a2f856baecb7ed4c9f721921b18a5c8621a4fb8fcb7404c34",
+      "bytes": 101398
+    },
+    {
+      "path": "second-browser-run/browser-en-1280/en-1280-howl-details.png",
+      "sha256": "2791bc9c0313d3d8f819c07feb708bbebf4bd89ac6568d4af62a0ca7637a547e",
+      "bytes": 101802
+    },
+    {
+      "path": "second-browser-run/browser-en-1280/en-1280-howl-failed-trace.zip",
+      "sha256": "c042c86f5a0ff5eca8040f078a0d62baf127f8e3281ae573a6fc678e1afb1272",
+      "bytes": 140249
+    },
+    {
+      "path": "second-browser-run/browser-en-1280/en-1280-howl-failed.png",
+      "sha256": "da93bdb73bb2d10b2543df1ab3a258715d18e3ae3d96b494052988280fb26039",
+      "bytes": 418300
+    },
+    {
+      "path": "second-browser-run/browser-en-1280/en-1280-howl-fresh-1.json",
+      "sha256": "2b5416c614888bf208ea322b442a907d9c2b3643629f56040fe08911d1fd940e",
+      "bytes": 3172
+    },
+    {
+      "path": "second-browser-run/browser-en-1280/en-1280-howl-imported-2.json",
+      "sha256": "fefbf1e7a6d5c73bc7c74addc4b5a702b9cc83f1452fe48256d2cbe88c302964",
+      "bytes": 4785
+    },
+    {
+      "path": "second-browser-run/browser-en-1280/en-1280-howl-rank1-after-4.json",
+      "sha256": "36934202022472838e481ed0cd1a129ae936dc2726f1754b6489ce5b99a4d45f",
+      "bytes": 4788
+    },
+    {
+      "path": "second-browser-run/browser-en-1280/en-1280-howl-rank1-before-3.json",
+      "sha256": "e23ad7b626ec8b0872842e58a006b648890b98bf7dd2080b783efd69438ac5f7",
+      "bytes": 4785
+    },
+    {
+      "path": "second-browser-run/browser-en-1280/en-1280-howl-synthetic-input.json",
+      "sha256": "782df4fb45ce1ca5c028b4343049c4e6152ff510b48cf09b58d2c2d8d0a99f90",
+      "bytes": 3969
+    },
+    {
+      "path": "second-browser-run/browser-en-1280-live.json",
+      "sha256": "1e9335ce05a124d1e57797fbd13a3ab70a7864e53259ae64fad6263020d5b750",
+      "bytes": 478
+    },
+    {
+      "path": "second-browser-run/browser-en-1280-result.json",
+      "sha256": "f2290b90f9fe6d81db7933084e70e55e9ebc2d0ffc90a27174a12e2b0056388e",
+      "bytes": 522
+    },
+    {
+      "path": "second-browser-run/browser-en-1280.log",
+      "sha256": "4f01cd493d9987505762bec10a7635e5bf952d453ebc07501576602c72eb5926",
+      "bytes": 984
+    },
+    {
+      "path": "serve.py",
+      "sha256": "7899de6cbcba304bf7925c091eee6cee9d83fc6fc963c1e73aad68e5f49e3e91",
+      "bytes": 515
+    },
+    {
+      "path": "server-4506-live.json",
+      "sha256": "df5c86268a0586fb44829f254ad2f5106295ee694fdb76cb9af9a2c7fc7c6746",
+      "bytes": 30
+    },
+    {
+      "path": "server-4507-live.json",
+      "sha256": "1b22415b099d6a94397d3d71e2f9fee2102363052963f5e56eaf0e32924131af",
+      "bytes": 30
+    },
+    {
+      "path": "server-4508-live.json",
+      "sha256": "f1baa3778e7a9f8ff5a48a65b2be70e0807c40b95cfb868e436b8a83acce6c18",
+      "bytes": 30
+    },
+    {
+      "path": "server-4509-live.json",
+      "sha256": "8b65eb01f676946e98ca187ab3aac4e11a57bf60bf2c08cfc901caeba82a65e5",
+      "bytes": 30
+    },
+    {
+      "path": "source-delivered.json",
+      "sha256": "3d6ff7b8b5ac0e3c00e2cadd648fe5bab0d72f719929bb1a301ea41a38a5b7dc",
+      "bytes": 257
+    },
+    {
+      "path": "types-final-live.json",
+      "sha256": "24b984bf285b82fe6d1fb75c735f509adec3f930fea7358afde5c8c37033076f",
+      "bytes": 56
+    },
+    {
+      "path": "types-final-result.json",
+      "sha256": "33576185e3308f6940660d478332d3a7cd3225249a68798d76282274cd536d55",
+      "bytes": 101
+    },
+    {
+      "path": "types-final.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "path": "types-live.json",
+      "sha256": "536079168823ba09c561bda27275db301d56dfd15929c87a3c2152441a8931a2",
+      "bytes": 56
+    },
+    {
+      "path": "types-result.json",
+      "sha256": "186c82cf562b385c863f4ea4215691d203d4d872c96be4c0b45c0ce3eb411c82",
+      "bytes": 102
+    },
+    {
+      "path": "types.log",
+      "sha256": "8c81556f7026be99e11e40bca74ad303541170d7062535d9539f2081f2339748",
+      "bytes": 425
+    },
+    {
+      "path": "ui-red-live.json",
+      "sha256": "6ab953413628337672da40d50834552d1a5c7611dc5baf8d42a7b9272be603ae",
+      "bytes": 123
+    },
+    {
+      "path": "ui-red-result.json",
+      "sha256": "ba8dedccd2bf1403e1355424203f08f3b89a6297a87a1c9a366da9d64034ea2e",
+      "bytes": 168
+    },
+    {
+      "path": "ui-red.log",
+      "sha256": "6e692cdedb78478d3110dddba17a5ac80794a10d726f169e1d91de5688e3e3b5",
+      "bytes": 37900
+    }
+  ],
+  "excludedDisposable": {
+    "build": "761build assets represented by frozen hashes; no duplicate build copy"
+  },
+  "traceRetention": "failed-traces-index.json preserves original archive hashes/all-member indexes and exact trace/network/stack metadata; discarded duplicate resource binaries are identified.",
+  "receiptNote": "Only finalPass entries establish the final handoff checks. All original failures, intermediate passes and the intentional corpse-skill failure remain separate.",
+  "verification": {
+    "archiveMembers": 291,
+    "allMemberHashesMatch": true,
+    "sourceFiles": 1198,
+    "buildFiles": 761,
+    "fullFiles": 707,
+    "fullTests": 15436,
+    "skips": 2
+  }
+}

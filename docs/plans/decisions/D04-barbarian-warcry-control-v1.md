@@ -22,8 +22,10 @@ balance approval. Campaign pacing and final balance still require earned proof.
   additional rank (rank20:44%/88%). Apply the outgoing multiplier after direct
   hit/flat/increased/combo/critical calculations, before resistance/flat
   mitigation; apply Defense reduction multiplicatively with existing effects.
-  Magic Resist, resistances, ongoing DoTs and reflection are unchanged. The
-  effect persists to expiry if the caster dies, without mutating base stats.
+  Magic Resist and resistances are unchanged. Existing ongoing DoTs and raw
+  reflected amounts do not receive the outgoing factor; ordinary Defense
+  projection still applies through normal mitigation. The effect persists to
+  expiry if the caster dies, without mutating base stats.
 
 Each cast pays once and starts its authored cooldown once, with no hit roll.
 Start is inclusive, expiry exclusive. Same-status reapplication replaces source,
