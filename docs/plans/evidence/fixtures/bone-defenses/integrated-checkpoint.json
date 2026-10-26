@@ -3056,6 +3056,6 @@
     "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v",
     "build": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
     "owner": "root",
-    "state": "active; full-unit/evidence consumers still running; cleanup not complete"
+    "state": "active at collection; full-unit terminal exit0; remaining summon/evidence consumers pending"
   }
 }

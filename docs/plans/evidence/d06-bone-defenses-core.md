@@ -91,3 +91,37 @@ The full-unit process is terminal exit0; these paths are still active, not
 cleanup-complete. Root owns lossless archive/read-back and exact disposable
 cleanup once all consumers finish, before inventory credit. The umbrella
 worktree/claim and original full-v1 goal continue.
+
+## Final retention, cleanup and inventory reconciliation
+
+All1588archive members were read back and verified against exact hashes/types.
+Exact1559disposable files and29directories were removed; raw task, task-owned
+dist and finished external helper are absent. Remaining[]/failures[]; no live
+task command or preview server was found and no restricted process entries were
+encountered by the final audit. Shared caches, source/history and the umbrella
+worktree remain preserved.
+
+Only after cleanup verification, exactly five skills (Wall, Prison, Skeleton,
+Clay and Revive) receive bounded-functional status. Inventory now172bounded/
+39unverified/one engine-only/one review-needed; Necromancer30/32. All208other
+raw rows, header,213IDs and order are unchanged. The
+[inventory/cleanup packet](fixtures/basic-necromancer-summons/inventory-credit.json)
+records the exact before/after rows, counts, retained archive and receipts.
+Historical checkpoint counts/active-retention statements above describe their
+collection time and are superseded by this final closure.
+
+Root retains these exact paths for BUG262–272 and full-v1 evidence consumers:
+
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v-retained.tar.xz`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v-retention.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v-cleanup-manifest.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v-cleanup.json`
+
+Raw receipt paths are retained as archive members under `task/`; served build
+files are under `dist/`. The cleanup manifest maps every original path to its
+member and hash. Root removes archive/sidecars when consumers finish. Archive SHA256:
+`1280809a8b7f736d95d3dd90a7ca3f3591f137be624f22cfa0cbf6f039c0c5ed`.
+This local verification does not close independent, earned-build, campaign,
+C2–C4/fullG0–G7 or full privatev1 acceptance. Genuine save remains unchanged.
+Next: complete Skeletal Mage and Iron Golem's individual native/public evidence;
+no family-wide credit is implied. Goal/worktree remain active.

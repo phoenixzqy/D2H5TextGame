@@ -12,7 +12,8 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
-| D06 Bone Wall / Prison / BUG262–268 | locally implemented and integrated verification passed; retention/credit and independent/earned acceptance open | Code `bdc747b8`: native paid Wall100000HP vs99975 without protection; Prison0actions vs1control. Full18359/845/two existing skips PASS848.172s, engine9382/352, types/lint/officialbuild/bridge/precache PASS. Production combat4/4 plus visible-chip4/4; preview4/4 with eight seven-domain pairs/four actual offlineContinues. Frozen4893tracked/762build/31feature/115terminal log hashes and genuine save exact. [Integrated evidence](evidence/d06-bone-defenses-core.md) preserves historical packet and all failed attempts/visual limits. Inventory remains167/44/one engine/one review, Necromancer25/32 pending lossless retention/exact cleanup. Root owns active bone task/dist through remaining summon consumers; genuineL33/next402/Baal uncleared and full-v1 scope unchanged. |
+| D06 Skeleton / Clay / Revive / BUG269–272 | bounded local native/public verification closed; independent/earned acceptance open | Test-only `6c4b2b58`:21new native/186related cases, fulltypes120.220s and focusedlint8.784s PASS. Eight completed Skeleton/Clay contexts from failed aggregate command plus separate Revive4/4PASS80.285s;24seven-domain pairs/12actual offlineContinues/60geometry;24of72originals individually viewed with crop/text-fallback limits.125terminal log/2557existing non-doc/762build/source/genuine hashes exact. Together with Wall/Prison,1588archive members verified and exact1559files/29directories/helper cleaned before exactly5credits:172bounded/39unverified/oneengine/onereview,Necromancer30/32,208other raw rows exact. [Evidence](evidence/d06-basic-necromancer-summons.md). Root retains exact archive/three sidecars through full-v1 consumers. GenuineL33/next402/Baal uncleared, independent/earned/fullv1 open; next Mage/Iron. |
+| D06 Bone Wall / Prison / BUG262–268 | bounded local verification closed; independent/earned acceptance open | Code `bdc747b8`: native paid Wall100000HP vs99975 without protection; Prison0actions vs1control. Full18359/845/two existing skips PASS848.172s, engine9382/352, types/lint/officialbuild/bridge/precache PASS. Production combat4/4 plus visible-chip4/4; preview4/4 with eight seven-domain pairs/four actual offlineContinues. Frozen4893tracked/762build/31feature/115terminal log hashes and genuine save exact. [Integrated evidence](evidence/d06-bone-defenses-core.md) preserves historical packet and all failed attempts/visual limits. Final1588member archive/read-back and1559file/29directory/helper cleanup complete; five combined credits yield172/39/one engine/one review,Necromancer30/32. Root retains exact archive/three sidecars; raw task/dist absent. GenuineL33/next402/Baal uncleared and full-v1 scope unchanged. |
 | D06 Poison Explosion public acceptance / BUG259–261 | bounded local verification closed; independent and earned acceptance open | Test-only`761fa2f1`; production4/4PASS137.842s: native allocation0→1→2, actual Teeth first kill/body1→0, exact public10140/max10155 supported by native within-batch15MP witness at18000ms/seed2688559832, direct/chip/positivePoison,8seven-domain pairs/4actual offlineContinues/20geometry/12individually inspected originals. Final explicitlint/types/officialbuild/bridge/756URLprecachePASS; unchanged18100/834/two existing skips carried through2540exact baseline inputs, no fresh full.4860frozen tracked/2public/762build/genuine exact. All3377archive members read-back verified;3376files/27directories/driver removed,remaining[]/failures[],118restrictedproc entries disclosed. Root retains archive/three sidecars through BUG259–261/full-v1 consumers. Exactly1credit:167bounded/44unverified/oneengine-only/onereview,Necromancer25/32;212other raw rows exact. [Evidence](evidence/d06-poison-explosion-public.md). GenuineL33/next402/Baal uncleared;independent/earned/manual-feel/fullv1 open. |
 | D04 Poison Dagger / BUG256, stale oracle / BUG257 and browser draw / BUG258 | bounded local verification closed; independent and earned acceptance open | Frozen`bee044a8` full18100/834/two existing opt-in skipsPASS1132.935s; finaltypes/lint/explicit PWA lint/build/bridge/756URLprecache/public4/4PASS. All4855tracked/12feature/548production-source/762build/genuine hashes exact;8seven-domain pairs/4actual SWofflineContinues/20geometry/16individual visuals. Original timeout/interruption and unchanged13PASS retained under unresolved BUG180.2332archive members read-back verified;2332files40directories/driver removed,remaining[]/failures[],29restrictedproc entries disclosed. Root retains archive/three sidecars through evidence consumers. Exactly1credit:166bounded/45unverified/oneengine-only/onereview,Necromancer24/32;212other raw rows/header/IDs/order exact. [Evidence](evidence/d04-poison-dagger.md). GenuineL33/next402/Baal uncleared;independent/earned/fullv1 open. |
 | D04 Amplify Damage native/public acceptance | bounded local verification closed;independent and earned acceptance open | Test-only4paths f767948b;focused145/5PASS;public4/4/213.057sPASS:4casts/chips,8exact seven-domain pairs,4actual offlineContinues,20geometry,12individually inspected originals. Types/lint/purityPASS. FrozenHEAD25e68f7d full18062/830/twoexisting skipsPASS808.684s;original soleHEAD-drift failure and unchanged isolated19pass retained without code/test/timeout changes. Final4feature/1636committed input/762reused build/12terminal receipt/genuine auditsPASS.1796members142145331rawbytes archived/read-back verified;1796files38directories and driver removed,remaining[]/failures[],29restrictedproc entries disclosed. Root retains archive/3sidecars through full-v1 consumers. Exactly1credit:165bounded/46unverified/oneengine-only/onereview,Necromancer23/32;212other raw rows/header/IDs/order exact. [Evidence](evidence/d04-amplify-damage-native.md). No runtime change or genuine campaign action;Baal/earned/independent/full privatev1 remain open. |
@@ -12973,3 +12974,31 @@ bone task/dist through remaining summon consumers; no cleanup-complete claim.
 GenuineL33/nextNormal402/Ancients-Rite claimed/Baal uncleared is unchanged;
 independent/earned,C2–C4/fullG0–G7/full privatev1 remain open. No delegation,
 campaign/replay or remote action. Umbrella worktree and goal continue.
+
+
+## 2026-10-26 — Five Necromancer skills locally verified and reconciled
+
+Bone defenses' frozen full18359/845/two existing skips passes; test-only
+6c4b2b58 adds21actual native Skeleton/Clay/Revive payment/body/damage/denial/
+regeneration/replay checks. Related186/3, fulltypes120.220s/focusedlint8.784s pass.
+Eight complete Skeleton/Clay browser contexts are retained from the failed
+aggregate command; separate Revive4/4passes80.285s after optional-portrait
+observer correction. Twelve completed contexts,24seven-domain save pairs,
+12actual SWofflineContinues,60geometry and24of72individual image reviews are
+explicitly bounded. Original failures, partial command and visual limits remain
+visible; the new21tests are excluded from the earlier full count.
+
+Final125terminal logs/2557unchanged existing non-doc inputs/762build/committed
+sources/genuine hashes audit passes. All1588raw archive members read-back
+verified;1559files/29directories/external helper removed,remaining[]/failures[],
+no live task commands/preview servers or restricted process entries observed.
+Root retains exact archive/three sidecars listed in both evidence reports until
+BUG262–272/full-v1 consumers finish. Only then exactly5credits:172bounded/
+39unverified/oneengine-only/onereview-needed,Necromancer30/32;208other rawrows,
+header/213IDs/order exact. No family credit or independent self-approval.
+
+Next individual native/public verification: Skeletal Mage and Iron Golem.
+GenuineL33/nextNormal402/Ancients-Rite claimed/Baal uncleared remains unchanged;
+no campaign/replay/remote action or delegation. C2–C4/fullG0–G7/earned builds,
+balance/pacing/economy/endgame/independent acceptance/full privatev1 remain open.
+Umbrella worktree/claim and original full goal continue.

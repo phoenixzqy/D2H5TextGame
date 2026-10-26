@@ -1,0 +1,287 @@
+{
+  "codeHead": "6c4b2b581759eaa1eefe267b1e228d67de04c178",
+  "credits": 5,
+  "beforeSha256": "809c7727bf5ce362e8474a32614b7f1428a457530a55da24262d28bf88d12d60",
+  "afterSha256": "a60db861945ccd5a841b98002de16341636b252987e5e433b734957d0d2c9330",
+  "rows": 213,
+  "unchangedOtherRawRows": 208,
+  "sameHeaderAndIdsAndOrder": true,
+  "counts": {
+    "unverified": 39,
+    "bounded-functional;independent-acceptance-open": 169,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "boundedFunctional": 172,
+  "necromancerBounded": 30,
+  "necromancerTotal": 32,
+  "changes": [
+    {
+      "id": "necromancer.raise_skeleton",
+      "before": {
+        "class": "necromancer",
+        "data_id": "skills-necromancer-raise-skeleton",
+        "runtime_id": "necromancer.raise_skeleton",
+        "trigger": "active",
+        "adapter_route": "summon",
+        "declared_statuses": "",
+        "source": "src/data/skills/necromancer.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "necromancer",
+        "data_id": "skills-necromancer-raise-skeleton",
+        "runtime_id": "necromancer.raise_skeleton",
+        "trigger": "active",
+        "adapter_route": "summon",
+        "declared_statuses": "",
+        "source": "src/data/skills/necromancer.json",
+        "risk_flags": "",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-summon-preparation-v1.md;docs/plans/decisions/D06-summon-corpses-v1.md;docs/plans/decisions/D06-necromancer-body-data-v1.md;docs/plans/evidence/d06-basic-necromancer-summons.md"
+      }
+    },
+    {
+      "id": "necromancer.bone_wall",
+      "before": {
+        "class": "necromancer",
+        "data_id": "skills-necromancer-bone-wall",
+        "runtime_id": "necromancer.bone_wall",
+        "trigger": "active",
+        "adapter_route": "buff",
+        "declared_statuses": "bone-wall",
+        "source": "src/data/skills/necromancer.json",
+        "risk_flags": "buff-mechanics-not-applied-in-audited-handler",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "necromancer",
+        "data_id": "skills-necromancer-bone-wall",
+        "runtime_id": "necromancer.bone_wall",
+        "trigger": "active",
+        "adapter_route": "buff",
+        "declared_statuses": "bone-wall",
+        "source": "src/data/skills/necromancer.json",
+        "risk_flags": "",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-bone-defenses-v1.md;docs/plans/evidence/d06-bone-defenses-core.md;production/bugs/BUG-262-apply-bone-wall-and-prison-behavior.md"
+      }
+    },
+    {
+      "id": "necromancer.bone_prison",
+      "before": {
+        "class": "necromancer",
+        "data_id": "skills-necromancer-bone-prison",
+        "runtime_id": "necromancer.bone_prison",
+        "trigger": "active",
+        "adapter_route": "debuff",
+        "declared_statuses": "bone-prison",
+        "source": "src/data/skills/necromancer.json",
+        "risk_flags": "pure-debuff-consumer-not-found-in-audit",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "necromancer",
+        "data_id": "skills-necromancer-bone-prison",
+        "runtime_id": "necromancer.bone_prison",
+        "trigger": "active",
+        "adapter_route": "debuff",
+        "declared_statuses": "bone-prison",
+        "source": "src/data/skills/necromancer.json",
+        "risk_flags": "",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-bone-defenses-v1.md;docs/plans/evidence/d06-bone-defenses-core.md;production/bugs/BUG-262-apply-bone-wall-and-prison-behavior.md"
+      }
+    },
+    {
+      "id": "necromancer.clay_golem",
+      "before": {
+        "class": "necromancer",
+        "data_id": "skills-necromancer-clay-golem",
+        "runtime_id": "necromancer.clay_golem",
+        "trigger": "active",
+        "adapter_route": "summon",
+        "declared_statuses": "",
+        "source": "src/data/skills/necromancer.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "necromancer",
+        "data_id": "skills-necromancer-clay-golem",
+        "runtime_id": "necromancer.clay_golem",
+        "trigger": "active",
+        "adapter_route": "summon",
+        "declared_statuses": "",
+        "source": "src/data/skills/necromancer.json",
+        "risk_flags": "",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-summon-preparation-v1.md;docs/plans/decisions/D06-summon-corpses-v1.md;docs/plans/decisions/D06-necromancer-body-data-v1.md;docs/plans/evidence/d06-basic-necromancer-summons.md"
+      }
+    },
+    {
+      "id": "necromancer.revive",
+      "before": {
+        "class": "necromancer",
+        "data_id": "skills-necromancer-revive",
+        "runtime_id": "necromancer.revive",
+        "trigger": "active",
+        "adapter_route": "summon",
+        "declared_statuses": "",
+        "source": "src/data/skills/necromancer.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "necromancer",
+        "data_id": "skills-necromancer-revive",
+        "runtime_id": "necromancer.revive",
+        "trigger": "active",
+        "adapter_route": "summon",
+        "declared_statuses": "",
+        "source": "src/data/skills/necromancer.json",
+        "risk_flags": "",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-summon-preparation-v1.md;docs/plans/decisions/D06-summon-corpses-v1.md;docs/plans/decisions/D06-necromancer-body-data-v1.md;docs/plans/evidence/d06-basic-necromancer-summons.md"
+      }
+    }
+  ],
+  "creditAfterVerifiedCleanup": true,
+  "cleanup": {
+    "owner": "root",
+    "archiveReadBack": true,
+    "filesRemoved": 1559,
+    "directoriesRemoved": 29,
+    "remaining": [],
+    "failures": [],
+    "rawTaskAbsent": true,
+    "distAbsent": true,
+    "finalProcessAudit": {
+      "examined": 67,
+      "restricted": [],
+      "liveTaskCommands": []
+    },
+    "helper": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v-closeout.py",
+    "helperRemoval": "Exact helper removed by root after successful process completion; absence verified.",
+    "helperSourceSha256": "e5998a3a47bc26c45034f39a217d118220296ea2f50766a105e38b0fc92d23a7",
+    "helperAbsent": true
+  },
+  "retention": {
+    "owner": "root",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v-retained.tar.xz",
+    "archiveBytes": 47086560,
+    "archiveSha256": "1280809a8b7f736d95d3dd90a7ca3f3591f137be624f22cfa0cbf6f039c0c5ed",
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v-cleanup-manifest.json",
+    "manifestSha256": "c1d966eef3810183305e87d9fc3b06d9feebdb71d74a06492856a264b5f31205",
+    "members": 1588,
+    "files": 1559,
+    "rawBytes": 61707243,
+    "losslessReadBack": true,
+    "servers": [
+      {
+        "start": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/combat-browser-diagnostic/server-start.json",
+        "terminal": {
+          "pid": 533000,
+          "code": 0,
+          "signal": null
+        }
+      },
+      {
+        "start": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser-combo-diagnostic/server-start.json",
+        "terminal": {
+          "pid": 555682,
+          "code": 0,
+          "signal": null
+        }
+      },
+      {
+        "start": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser-corrected/server-start.json",
+        "terminal": {
+          "pid": 556196,
+          "code": 0,
+          "signal": null
+        }
+      },
+      {
+        "start": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/preview-browser/server-start.json",
+        "terminal": {
+          "pid": 527809,
+          "code": 0,
+          "signal": null
+        }
+      },
+      {
+        "start": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser-diagnostic/server-start.json",
+        "terminal": {
+          "pid": 548036,
+          "code": 0,
+          "signal": null
+        }
+      },
+      {
+        "start": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/combat-browser-visible-chips/server-start.json",
+        "terminal": {
+          "pid": 535351,
+          "code": 0,
+          "signal": null
+        }
+      },
+      {
+        "start": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/combat-browser-canonical/server-start.json",
+        "terminal": {
+          "pid": 534106,
+          "code": 0,
+          "signal": null
+        }
+      },
+      {
+        "start": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser-active-tab/server-start.json",
+        "terminal": {
+          "pid": 556657,
+          "code": 0,
+          "signal": null
+        }
+      },
+      {
+        "start": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/combat-browser/server-start.json",
+        "terminal": {
+          "pid": 532517,
+          "code": 0,
+          "signal": null
+        }
+      },
+      {
+        "start": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser/server-start.json",
+        "terminal": {
+          "pid": 545924,
+          "code": 0,
+          "signal": null
+        }
+      },
+      {
+        "start": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser-revive-card-name/server-start.json",
+        "terminal": {
+          "pid": 558818,
+          "code": 0,
+          "signal": null
+        }
+      }
+    ],
+    "processAudit": {
+      "examined": 69,
+      "restricted": [],
+      "liveTaskCommands": []
+    },
+    "removeWhen": "Root removes archive and sidecars once BUG262–272/full-v1 evidence consumers finish; preserve until then."
+  },
+  "independentAcceptance": "open",
+  "earnedBuildBalance": "open",
+  "fullPrivateV1": "unfinished"
+}

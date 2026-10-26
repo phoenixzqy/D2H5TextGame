@@ -1,0 +1,3497 @@
+{
+  "head": "6c4b2b581759eaa1eefe267b1e228d67de04c178",
+  "scope": "author-local synthetic native and production Skeleton/Clay/Revive verification; independent and earned-build acceptance open",
+  "functionalCreditsAtCollection": 0,
+  "newCanonicalCases": 21,
+  "relatedCases": 186,
+  "relatedFiles": 3,
+  "newTestsExcludedFromEarlierFull": true,
+  "fullBaseline": {
+    "head": "bdc747b83d8de15fa49724bb823b5ff6d1de68b5",
+    "passed": 18359,
+    "files": 845,
+    "skipped": 2,
+    "receipt": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 848.172,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-complete-full.log",
+      "logBytes": 172204,
+      "logSha256": "f81f05cd3a05e1728a93bf1c92c06fa069f33159837f9d11261b49cb6f10ce66",
+      "pid": 534654,
+      "terminal": true
+    },
+    "unchangedExistingNonDocInputs": 2557,
+    "buildFiles": 762
+  },
+  "source": {
+    "src/stores/basic-necromancer-summons-native.test.ts": {
+      "sha256": "8ee131eccf6e19da6d27c4c7f84c73eb5e7bdfa8639df70b73e0230e5fd12135",
+      "bytes": 7455
+    },
+    "src/stores/combatHelpers.ts": {
+      "sha256": "f577a83c97879297c32562098b5f03f783f6a4180f2cc249aff3c7db56c37cda",
+      "bytes": 98219
+    },
+    "src/data/summons/necromancer.json": {
+      "sha256": "c3a948c991a645ae1a6c264a566aa1b7fa4a0e64707a9195e2777b86a8fb484f",
+      "bytes": 2244
+    },
+    "src/engine/skills/necromancer-summon-definition.ts": {
+      "sha256": "3c0db40a717d8392e0bd60a4ccd7182f8d281dfb8fd112827dc7d8c75d0b3b28",
+      "bytes": 2217
+    },
+    "src/features/skills/SkillsScreen.tsx": {
+      "sha256": "c75c83546999e3e0c89fa42cf8bea18d29df80974924781362b8650ab663d7a8",
+      "bytes": 104657
+    },
+    "src/features/combat/CombatScreen.tsx": {
+      "sha256": "f6b70b6f5167b4d436fc2b9fc315642717176f5fb027dd11f938e4c165d06984",
+      "bytes": 52190
+    }
+  },
+  "cases": [
+    {
+      "key": "raise-skeleton-en-360",
+      "locale": "en",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "skill": "raise-skeleton",
+      "errors": [],
+      "pictures": [
+        "raise-skeleton-en-360-rank1-detail.png",
+        "raise-skeleton-en-360-rank1-body.png",
+        "raise-skeleton-en-360-rank1-combat.png",
+        "raise-skeleton-en-360-rank20-detail.png",
+        "raise-skeleton-en-360-rank20-body.png",
+        "raise-skeleton-en-360-rank20-combat.png"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "bounds": {
+            "x": 30,
+            "y": 329,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "bounds": {
+            "x": 261.078125,
+            "y": 260,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "bounds": {
+            "x": 489.078125,
+            "y": 233,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "bounds": {
+            "x": 1117.078125,
+            "y": 466,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bounds": {
+            "x": 1501.078125,
+            "y": 746,
+            "width": 120.921875,
+            "height": 48
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "raise-skeleton-en-360-online",
+          "offline": false,
+          "exactDomains": 7
+        },
+        {
+          "pair": "raise-skeleton-en-360-offline",
+          "offline": true,
+          "exactDomains": 7
+        }
+      ],
+      "battles": [
+        {
+          "rank": 1,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "Skeleton Warrior attacks Fallen B for 13 physical damage."
+          ],
+          "timeline": "raise-skeleton-en-360-rank1-timeline"
+        },
+        {
+          "rank": 20,
+          "expectedBodies": 3,
+          "positivePhysicalLogs": [
+            "Skeleton Warrior attacks Fallen B for 51 physical damage.",
+            "Skeleton Warrior attacks Fallen C for 51 physical damage.",
+            "Skeleton Warrior attacks Quill Rat A for 53 physical damage."
+          ],
+          "timeline": "raise-skeleton-en-360-rank20-timeline"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "key": "raise-skeleton-en-1280",
+      "locale": "en",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "skill": "raise-skeleton",
+      "errors": [],
+      "pictures": [
+        "raise-skeleton-en-1280-rank1-detail.png",
+        "raise-skeleton-en-1280-rank1-body.png",
+        "raise-skeleton-en-1280-rank1-combat.png",
+        "raise-skeleton-en-1280-rank20-detail.png",
+        "raise-skeleton-en-1280-rank20-body.png",
+        "raise-skeleton-en-1280-rank20-combat.png"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "bounds": {
+            "x": 30,
+            "y": 329,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "bounds": {
+            "x": 261.078125,
+            "y": 260,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "bounds": {
+            "x": 489.078125,
+            "y": 233,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "bounds": {
+            "x": 1117.078125,
+            "y": 466,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bounds": {
+            "x": 1501.078125,
+            "y": 746,
+            "width": 120.921875,
+            "height": 48
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "raise-skeleton-en-1280-online",
+          "offline": false,
+          "exactDomains": 7
+        },
+        {
+          "pair": "raise-skeleton-en-1280-offline",
+          "offline": true,
+          "exactDomains": 7
+        }
+      ],
+      "battles": [
+        {
+          "rank": 1,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "Skeleton Warrior attacks Fallen B for 13 physical damage."
+          ],
+          "timeline": "raise-skeleton-en-1280-rank1-timeline"
+        },
+        {
+          "rank": 20,
+          "expectedBodies": 3,
+          "positivePhysicalLogs": [
+            "Skeleton Warrior attacks Fallen B for 51 physical damage.",
+            "Skeleton Warrior attacks Fallen C for 51 physical damage.",
+            "Skeleton Warrior attacks Quill Rat A for 53 physical damage."
+          ],
+          "timeline": "raise-skeleton-en-1280-rank20-timeline"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "key": "raise-skeleton-zh-CN-360",
+      "locale": "zh-CN",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "skill": "raise-skeleton",
+      "errors": [],
+      "pictures": [
+        "raise-skeleton-zh-CN-360-rank1-detail.png",
+        "raise-skeleton-zh-CN-360-rank1-body.png",
+        "raise-skeleton-zh-CN-360-rank1-combat.png",
+        "raise-skeleton-zh-CN-360-rank20-detail.png",
+        "raise-skeleton-zh-CN-360-rank20-body.png",
+        "raise-skeleton-zh-CN-360-rank20-combat.png"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "bounds": {
+            "x": 210,
+            "y": 329,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "bounds": {
+            "x": 262,
+            "y": 293,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "bounds": {
+            "x": 490,
+            "y": 255,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "bounds": {
+            "x": 1118,
+            "y": 466,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bounds": {
+            "x": 1502,
+            "y": 746,
+            "width": 120,
+            "height": 48
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "raise-skeleton-zh-CN-360-online",
+          "offline": false,
+          "exactDomains": 7
+        },
+        {
+          "pair": "raise-skeleton-zh-CN-360-offline",
+          "offline": true,
+          "exactDomains": 7
+        }
+      ],
+      "battles": [
+        {
+          "rank": 1,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "骷髅战士 普攻 堕落者 B，造成 13 点物理伤害。"
+          ],
+          "timeline": "raise-skeleton-zh-CN-360-rank1-timeline"
+        },
+        {
+          "rank": 20,
+          "expectedBodies": 3,
+          "positivePhysicalLogs": [
+            "骷髅战士 普攻 堕落者 B，造成 51 点物理伤害。",
+            "骷髅战士 普攻 堕落者 C，造成 51 点物理伤害。",
+            "骷髅战士 普攻 尖刺鼠 A，造成 53 点物理伤害。"
+          ],
+          "timeline": "raise-skeleton-zh-CN-360-rank20-timeline"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "key": "raise-skeleton-zh-CN-1280",
+      "locale": "zh-CN",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "skill": "raise-skeleton",
+      "errors": [],
+      "pictures": [
+        "raise-skeleton-zh-CN-1280-rank1-detail.png",
+        "raise-skeleton-zh-CN-1280-rank1-body.png",
+        "raise-skeleton-zh-CN-1280-rank1-combat.png",
+        "raise-skeleton-zh-CN-1280-rank20-detail.png",
+        "raise-skeleton-zh-CN-1280-rank20-body.png",
+        "raise-skeleton-zh-CN-1280-rank20-combat.png"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "bounds": {
+            "x": 210,
+            "y": 329,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "bounds": {
+            "x": 262,
+            "y": 293,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "bounds": {
+            "x": 490,
+            "y": 255,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "bounds": {
+            "x": 1118,
+            "y": 466,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bounds": {
+            "x": 1502,
+            "y": 746,
+            "width": 120,
+            "height": 48
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "raise-skeleton-zh-CN-1280-online",
+          "offline": false,
+          "exactDomains": 7
+        },
+        {
+          "pair": "raise-skeleton-zh-CN-1280-offline",
+          "offline": true,
+          "exactDomains": 7
+        }
+      ],
+      "battles": [
+        {
+          "rank": 1,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "骷髅战士 普攻 堕落者 B，造成 13 点物理伤害。"
+          ],
+          "timeline": "raise-skeleton-zh-CN-1280-rank1-timeline"
+        },
+        {
+          "rank": 20,
+          "expectedBodies": 3,
+          "positivePhysicalLogs": [
+            "骷髅战士 普攻 堕落者 B，造成 51 点物理伤害。",
+            "骷髅战士 普攻 堕落者 C，造成 51 点物理伤害。",
+            "骷髅战士 普攻 尖刺鼠 A，造成 53 点物理伤害。"
+          ],
+          "timeline": "raise-skeleton-zh-CN-1280-rank20-timeline"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "key": "clay-golem-en-360",
+      "locale": "en",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "skill": "clay-golem",
+      "errors": [],
+      "pictures": [
+        "clay-golem-en-360-rank1-detail.png",
+        "clay-golem-en-360-rank1-body.png",
+        "clay-golem-en-360-rank1-combat.png",
+        "clay-golem-en-360-rank20-detail.png",
+        "clay-golem-en-360-rank20-body.png",
+        "clay-golem-en-360-rank20-combat.png"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "bounds": {
+            "x": 209.078125,
+            "y": 329,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "bounds": {
+            "x": 261.078125,
+            "y": 293,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "bounds": {
+            "x": 489.078125,
+            "y": 255,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "bounds": {
+            "x": 1117.078125,
+            "y": 466,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bounds": {
+            "x": 1501.078125,
+            "y": 746,
+            "width": 120.921875,
+            "height": 48
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "clay-golem-en-360-online",
+          "offline": false,
+          "exactDomains": 7
+        },
+        {
+          "pair": "clay-golem-en-360-offline",
+          "offline": true,
+          "exactDomains": 7
+        }
+      ],
+      "battles": [
+        {
+          "rank": 1,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "Clay Golem attacks Fallen B for 12 physical damage."
+          ],
+          "timeline": "clay-golem-en-360-rank1-timeline"
+        },
+        {
+          "rank": 20,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "Clay Golem attacks Fallen B for 31 physical damage."
+          ],
+          "timeline": "clay-golem-en-360-rank20-timeline"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "key": "clay-golem-en-1280",
+      "locale": "en",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "skill": "clay-golem",
+      "errors": [],
+      "pictures": [
+        "clay-golem-en-1280-rank1-detail.png",
+        "clay-golem-en-1280-rank1-body.png",
+        "clay-golem-en-1280-rank1-combat.png",
+        "clay-golem-en-1280-rank20-detail.png",
+        "clay-golem-en-1280-rank20-body.png",
+        "clay-golem-en-1280-rank20-combat.png"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "bounds": {
+            "x": 209.078125,
+            "y": 329,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "bounds": {
+            "x": 261.078125,
+            "y": 293,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "bounds": {
+            "x": 489.078125,
+            "y": 255,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "bounds": {
+            "x": 1117.078125,
+            "y": 466,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bounds": {
+            "x": 1501.078125,
+            "y": 746,
+            "width": 120.921875,
+            "height": 48
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "clay-golem-en-1280-online",
+          "offline": false,
+          "exactDomains": 7
+        },
+        {
+          "pair": "clay-golem-en-1280-offline",
+          "offline": true,
+          "exactDomains": 7
+        }
+      ],
+      "battles": [
+        {
+          "rank": 1,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "Clay Golem attacks Fallen B for 12 physical damage."
+          ],
+          "timeline": "clay-golem-en-1280-rank1-timeline"
+        },
+        {
+          "rank": 20,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "Clay Golem attacks Fallen B for 31 physical damage."
+          ],
+          "timeline": "clay-golem-en-1280-rank20-timeline"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "key": "clay-golem-zh-CN-360",
+      "locale": "zh-CN",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "skill": "clay-golem",
+      "errors": [],
+      "pictures": [
+        "clay-golem-zh-CN-360-rank1-detail.png",
+        "clay-golem-zh-CN-360-rank1-body.png",
+        "clay-golem-zh-CN-360-rank1-combat.png",
+        "clay-golem-zh-CN-360-rank20-detail.png",
+        "clay-golem-zh-CN-360-rank20-body.png",
+        "clay-golem-zh-CN-360-rank20-combat.png"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "bounds": {
+            "x": 210,
+            "y": 329,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "bounds": {
+            "x": 262,
+            "y": 293,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "bounds": {
+            "x": 490,
+            "y": 255,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "bounds": {
+            "x": 1118,
+            "y": 466,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bounds": {
+            "x": 1502,
+            "y": 746,
+            "width": 120,
+            "height": 48
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "clay-golem-zh-CN-360-online",
+          "offline": false,
+          "exactDomains": 7
+        },
+        {
+          "pair": "clay-golem-zh-CN-360-offline",
+          "offline": true,
+          "exactDomains": 7
+        }
+      ],
+      "battles": [
+        {
+          "rank": 1,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "黏土石魔 普攻 堕落者 B，造成 12 点物理伤害。"
+          ],
+          "timeline": "clay-golem-zh-CN-360-rank1-timeline"
+        },
+        {
+          "rank": 20,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "黏土石魔 普攻 堕落者 B，造成 31 点物理伤害。"
+          ],
+          "timeline": "clay-golem-zh-CN-360-rank20-timeline"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "key": "clay-golem-zh-CN-1280",
+      "locale": "zh-CN",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "skill": "clay-golem",
+      "errors": [],
+      "pictures": [
+        "clay-golem-zh-CN-1280-rank1-detail.png",
+        "clay-golem-zh-CN-1280-rank1-body.png",
+        "clay-golem-zh-CN-1280-rank1-combat.png",
+        "clay-golem-zh-CN-1280-rank20-detail.png",
+        "clay-golem-zh-CN-1280-rank20-body.png",
+        "clay-golem-zh-CN-1280-rank20-combat.png"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "bounds": {
+            "x": 210,
+            "y": 329,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "bounds": {
+            "x": 262,
+            "y": 293,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "bounds": {
+            "x": 490,
+            "y": 255,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "bounds": {
+            "x": 1118,
+            "y": 466,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bounds": {
+            "x": 1502,
+            "y": 746,
+            "width": 120,
+            "height": 48
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "clay-golem-zh-CN-1280-online",
+          "offline": false,
+          "exactDomains": 7
+        },
+        {
+          "pair": "clay-golem-zh-CN-1280-offline",
+          "offline": true,
+          "exactDomains": 7
+        }
+      ],
+      "battles": [
+        {
+          "rank": 1,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "黏土石魔 普攻 堕落者 B，造成 12 点物理伤害。"
+          ],
+          "timeline": "clay-golem-zh-CN-1280-rank1-timeline"
+        },
+        {
+          "rank": 20,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "黏土石魔 普攻 堕落者 B，造成 31 点物理伤害。"
+          ],
+          "timeline": "clay-golem-zh-CN-1280-rank20-timeline"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "key": "revive-en-360",
+      "locale": "en",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "skill": "revive",
+      "errors": [],
+      "pictures": [
+        "revive-en-360-rank1-detail.png",
+        "revive-en-360-rank1-body.png",
+        "revive-en-360-rank1-combat.png",
+        "revive-en-360-rank20-detail.png",
+        "revive-en-360-rank20-body.png",
+        "revive-en-360-rank20-combat.png"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "bounds": {
+            "x": 209.078125,
+            "y": 329,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "bounds": {
+            "x": 261.078125,
+            "y": 293,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "bounds": {
+            "x": 489.078125,
+            "y": 255,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "bounds": {
+            "x": 1117.078125,
+            "y": 466,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bounds": {
+            "x": 1501.078125,
+            "y": 746,
+            "width": 120.921875,
+            "height": 48
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "revive-en-360-online",
+          "offline": false,
+          "exactDomains": 7
+        },
+        {
+          "pair": "revive-en-360-offline",
+          "offline": true,
+          "exactDomains": 7
+        }
+      ],
+      "battles": [
+        {
+          "rank": 1,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "Revived Minion attacks Fallen B for 16 physical damage."
+          ],
+          "timeline": "revive-en-360-rank1-timeline"
+        },
+        {
+          "rank": 20,
+          "expectedBodies": 8,
+          "positivePhysicalLogs": [
+            "Revived Minion attacks Fallen B for 54 physical damage.",
+            "Revived Minion attacks Fallen C for 54 physical damage.",
+            "Revived Minion attacks Quill Rat A for 56 physical damage.",
+            "Revived Minion attacks Fallen D for 54 physical damage.",
+            "Revived Minion attacks Fallen E for 54 physical damage.",
+            "Revived Minion attacks Fallen F for 54 physical damage."
+          ],
+          "timeline": "revive-en-360-rank20-timeline"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "key": "revive-en-1280",
+      "locale": "en",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "skill": "revive",
+      "errors": [],
+      "pictures": [
+        "revive-en-1280-rank1-detail.png",
+        "revive-en-1280-rank1-body.png",
+        "revive-en-1280-rank1-combat.png",
+        "revive-en-1280-rank20-detail.png",
+        "revive-en-1280-rank20-body.png",
+        "revive-en-1280-rank20-combat.png"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "bounds": {
+            "x": 209.078125,
+            "y": 329,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "bounds": {
+            "x": 261.078125,
+            "y": 293,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "bounds": {
+            "x": 489.078125,
+            "y": 255,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "bounds": {
+            "x": 1117.078125,
+            "y": 466,
+            "width": 120.921875,
+            "height": 48
+          }
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bounds": {
+            "x": 1501.078125,
+            "y": 746,
+            "width": 120.921875,
+            "height": 48
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "revive-en-1280-online",
+          "offline": false,
+          "exactDomains": 7
+        },
+        {
+          "pair": "revive-en-1280-offline",
+          "offline": true,
+          "exactDomains": 7
+        }
+      ],
+      "battles": [
+        {
+          "rank": 1,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "Revived Minion attacks Fallen B for 16 physical damage."
+          ],
+          "timeline": "revive-en-1280-rank1-timeline"
+        },
+        {
+          "rank": 20,
+          "expectedBodies": 8,
+          "positivePhysicalLogs": [
+            "Revived Minion attacks Fallen B for 54 physical damage.",
+            "Revived Minion attacks Fallen C for 54 physical damage.",
+            "Revived Minion attacks Quill Rat A for 56 physical damage.",
+            "Revived Minion attacks Fallen D for 54 physical damage.",
+            "Revived Minion attacks Fallen E for 54 physical damage.",
+            "Revived Minion attacks Fallen F for 54 physical damage."
+          ],
+          "timeline": "revive-en-1280-rank20-timeline"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "key": "revive-zh-CN-360",
+      "locale": "zh-CN",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "skill": "revive",
+      "errors": [],
+      "pictures": [
+        "revive-zh-CN-360-rank1-detail.png",
+        "revive-zh-CN-360-rank1-body.png",
+        "revive-zh-CN-360-rank1-combat.png",
+        "revive-zh-CN-360-rank20-detail.png",
+        "revive-zh-CN-360-rank20-body.png",
+        "revive-zh-CN-360-rank20-combat.png"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "bounds": {
+            "x": 210,
+            "y": 329,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "bounds": {
+            "x": 262,
+            "y": 293,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "bounds": {
+            "x": 490,
+            "y": 255,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "bounds": {
+            "x": 1118,
+            "y": 466,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bounds": {
+            "x": 1502,
+            "y": 746,
+            "width": 120,
+            "height": 48
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "revive-zh-CN-360-online",
+          "offline": false,
+          "exactDomains": 7
+        },
+        {
+          "pair": "revive-zh-CN-360-offline",
+          "offline": true,
+          "exactDomains": 7
+        }
+      ],
+      "battles": [
+        {
+          "rank": 1,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "复生仆从 普攻 堕落者 B，造成 16 点物理伤害。"
+          ],
+          "timeline": "revive-zh-CN-360-rank1-timeline"
+        },
+        {
+          "rank": 20,
+          "expectedBodies": 8,
+          "positivePhysicalLogs": [
+            "复生仆从 普攻 堕落者 B，造成 54 点物理伤害。",
+            "复生仆从 普攻 堕落者 C，造成 54 点物理伤害。",
+            "复生仆从 普攻 尖刺鼠 A，造成 56 点物理伤害。",
+            "复生仆从 普攻 堕落者 D，造成 54 点物理伤害。",
+            "复生仆从 普攻 堕落者 E，造成 54 点物理伤害。",
+            "复生仆从 普攻 堕落者 F，造成 54 点物理伤害。"
+          ],
+          "timeline": "revive-zh-CN-360-rank20-timeline"
+        }
+      ],
+      "status": "passed"
+    },
+    {
+      "key": "revive-zh-CN-1280",
+      "locale": "zh-CN",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "skill": "revive",
+      "errors": [],
+      "pictures": [
+        "revive-zh-CN-1280-rank1-detail.png",
+        "revive-zh-CN-1280-rank1-body.png",
+        "revive-zh-CN-1280-rank1-combat.png",
+        "revive-zh-CN-1280-rank20-detail.png",
+        "revive-zh-CN-1280-rank20-body.png",
+        "revive-zh-CN-1280-rank20-combat.png"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "bounds": {
+            "x": 210,
+            "y": 329,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "bounds": {
+            "x": 262,
+            "y": 293,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "bounds": {
+            "x": 490,
+            "y": 255,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "bounds": {
+            "x": 1118,
+            "y": 466,
+            "width": 120,
+            "height": 48
+          }
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bounds": {
+            "x": 1502,
+            "y": 746,
+            "width": 120,
+            "height": 48
+          }
+        }
+      ],
+      "pairs": [
+        {
+          "pair": "revive-zh-CN-1280-online",
+          "offline": false,
+          "exactDomains": 7
+        },
+        {
+          "pair": "revive-zh-CN-1280-offline",
+          "offline": true,
+          "exactDomains": 7
+        }
+      ],
+      "battles": [
+        {
+          "rank": 1,
+          "expectedBodies": 1,
+          "positivePhysicalLogs": [
+            "复生仆从 普攻 堕落者 B，造成 16 点物理伤害。"
+          ],
+          "timeline": "revive-zh-CN-1280-rank1-timeline"
+        },
+        {
+          "rank": 20,
+          "expectedBodies": 8,
+          "positivePhysicalLogs": [
+            "复生仆从 普攻 堕落者 B，造成 54 点物理伤害。",
+            "复生仆从 普攻 堕落者 C，造成 54 点物理伤害。",
+            "复生仆从 普攻 尖刺鼠 A，造成 56 点物理伤害。",
+            "复生仆从 普攻 堕落者 D，造成 54 点物理伤害。",
+            "复生仆从 普攻 堕落者 E，造成 54 点物理伤害。",
+            "复生仆从 普攻 堕落者 F，造成 54 点物理伤害。"
+          ],
+          "timeline": "revive-zh-CN-1280-rank20-timeline"
+        }
+      ],
+      "status": "passed"
+    }
+  ],
+  "visualReview": {
+    "reviewer": "root author; no independent sign-off",
+    "viewedImages": {
+      "basic-summons-browser-active-tab/raise-skeleton-en-360-rank1-detail.png": {
+        "bytes": 44528,
+        "sha256": "f581c4d542de301ac685d1b1b51ab5565e72f2b1a546ae86c418cb2903cde2fa",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/raise-skeleton-en-360-rank20-detail.png": {
+        "bytes": 44718,
+        "sha256": "aa35935f944e1e088bb7bd1dc6388ee7fda1f598646350a2a17f3304415f9e9f",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/raise-skeleton-en-360-rank1-body.png": {
+        "bytes": 11474,
+        "sha256": "7774dcca2bd3472f867913b3f1090bed1de0b7c65c0c82c5916178777e58fb06",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/raise-skeleton-en-360-rank20-combat.png": {
+        "bytes": 74351,
+        "sha256": "a7a37b014e572f61be69dfad1faa1e041d247a660fba55ab511c84a3dc8cf7e8",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/raise-skeleton-zh-CN-1280-rank1-detail.png": {
+        "bytes": 51658,
+        "sha256": "ca8a25d8cd1c56a833c089f407dfb8dd370a9caedac39f3e451589d4bef412d6",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/raise-skeleton-zh-CN-1280-rank20-detail.png": {
+        "bytes": 49906,
+        "sha256": "29d05e2e201cc4eda2f68a9818cbc680640e167bf8cc0dbb16cb0064ba49e395",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/raise-skeleton-zh-CN-1280-rank1-body.png": {
+        "bytes": 40770,
+        "sha256": "6a8623eb98cf9adf9f26bee0ab7700592c30e12091296d8e4e64aacd15df55db",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/raise-skeleton-zh-CN-1280-rank20-combat.png": {
+        "bytes": 435297,
+        "sha256": "87b3876f4fed7771a8fb6d072fb6cd18eae41041b929ebbdc4bc63efd6242c57",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/clay-golem-en-360-rank1-detail.png": {
+        "bytes": 44323,
+        "sha256": "37a169554a680fed7cd353e66a5523748a2bd3469af99d551fb12a0470f105b2",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/clay-golem-en-360-rank20-detail.png": {
+        "bytes": 44596,
+        "sha256": "2bf3dfae451505456a610be32c2e6efc415fc3a60672852eb4e87f35a373df21",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/clay-golem-en-360-rank1-body.png": {
+        "bytes": 10586,
+        "sha256": "6f6483265e9eb7a24cb880d871c7b195c48b876ee453e0af68a0373274639655",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/clay-golem-en-360-rank20-combat.png": {
+        "bytes": 60516,
+        "sha256": "4cb68edf2a17c4c9fb0711d19d18f6206ceced6ff12dfc93e7ed345e710ae7fa",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/clay-golem-zh-CN-1280-rank1-detail.png": {
+        "bytes": 52099,
+        "sha256": "2f811f3151d0e911ce1b176f5268556448c7bb915d0e327c275b63abcd19ad32",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/clay-golem-zh-CN-1280-rank20-detail.png": {
+        "bytes": 49349,
+        "sha256": "05eb7c8ffcbd1113e1c46eaa078daafefcb49c4a80fa0ddc3e2876b84782df15",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/clay-golem-zh-CN-1280-rank1-body.png": {
+        "bytes": 38381,
+        "sha256": "d53aa70fc15eccf686f5dc7ccf21e8e84ef055d2521d39cb1d89309359825d0c",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-active-tab/clay-golem-zh-CN-1280-rank20-combat.png": {
+        "bytes": 447780,
+        "sha256": "93c7a7c60be4cb88f2695392a7a8cc99fce2ef31a6be84d420ea1ebb31f48b31",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-revive-card-name/revive-en-360-rank1-detail.png": {
+        "bytes": 49957,
+        "sha256": "9ecb570fd25a6d23bfb9d90c327a5df320e1f11340c2dcf233973b976b4a94e7",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-revive-card-name/revive-en-360-rank20-detail.png": {
+        "bytes": 50308,
+        "sha256": "0ec7bb0be815fecd199e4512ce33a31c1a677772034842d0340ddbc67f19fba1",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-revive-card-name/revive-en-360-rank1-body.png": {
+        "bytes": 3128,
+        "sha256": "ea6dfa67187c86dc4558d7aa81cffad96f9dc621141447c406d393d8fae72732",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-revive-card-name/revive-en-360-rank20-combat.png": {
+        "bytes": 35920,
+        "sha256": "7c546f0ceb6e6eb592e6b8a9df6ffa8f52728030459c2fd4edc29f1273137371",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-revive-card-name/revive-zh-CN-1280-rank1-detail.png": {
+        "bytes": 58863,
+        "sha256": "dc7740b5cf3f1b6ebb46f03f6a1bab3701ae4ac76febe585aed6884767fc0c3f",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-revive-card-name/revive-zh-CN-1280-rank20-detail.png": {
+        "bytes": 57111,
+        "sha256": "30b91ab187559ef0589d1e6efd70dd8355197522739cb300369aa6ecaf44f48e",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-revive-card-name/revive-zh-CN-1280-rank1-body.png": {
+        "bytes": 2677,
+        "sha256": "86a4a34cc5b8efbf92f4d953421dc718c9a72626271cdab4e1eccee9f879c2b7",
+        "individuallyViewed": true
+      },
+      "basic-summons-browser-revive-card-name/revive-zh-CN-1280-rank20-combat.png": {
+        "bytes": 336219,
+        "sha256": "8beba159cf86beec7bf8a6671f92c4c6920d6113de3d8783d39727c06df36a4c",
+        "individuallyViewed": true
+      }
+    },
+    "totalSuccessfulCaseImages": 72,
+    "individuallyViewedCount": 24,
+    "limits": [
+      "other48 successful-case PNGs retained without individual visual acceptance",
+      "mobile detail captures crop heading/lower current-next rows; Skeleton and Revive descriptions/caps readable, Clay life/attack/defense readable",
+      "mobile combat viewports show scrolled portion of battlefield; lower cards/enemies outside crop",
+      "desktop lower battlefield rows may be cropped and rank20 Revive screenshot follows actual enemy defeat; exact8body/positive-damage timeline is separate evidence",
+      "Revive intentionally uses displayed-name text fallback with no portrait; no image-generation or art-completeness claim"
+    ]
+  },
+  "receipts": {
+    "wall-damage-corrected-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/combat/combat.ts",
+        "src/engine/combat/bone-wall-damage.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.848,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-damage-corrected-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 509581,
+      "terminal": true
+    },
+    "prison-foundation-engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 157.641,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-foundation-engine.log",
+      "logBytes": 72219,
+      "logSha256": "82679335ad3a80052c61023d8b75b7110edca6f74534145ed24447984a0ed21b",
+      "pid": 458742,
+      "terminal": true
+    },
+    "prison-foundation-lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 212.928,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-foundation-lint.log",
+      "logBytes": 197,
+      "logSha256": "d0326b8ee2d609cca445376422c15a6297b52466f45bf9af7f31fa0745152c3e",
+      "pid": 458740,
+      "terminal": true
+    },
+    "bone-defenses-ui-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.bone-defenses.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 10.375,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-ui-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 526258,
+      "terminal": true
+    },
+    "wall-damage-green": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/bone-wall-damage.test.ts",
+        "src/engine/combat/bone-armor.test.ts",
+        "src/engine/combat/energy-shield.test.ts",
+        "src/engine/combat/cyclone-armor.test.ts",
+        "src/engine/combat/holy-shield.test.ts",
+        "src/engine/combat/bone-wall-cast.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 5.742,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-damage-green.log",
+      "logBytes": 2502,
+      "logSha256": "0767873da3453477b543870543fa9ea49ae7fd1f7acafbed42787a3f880a6ec2",
+      "pid": 509116,
+      "terminal": true
+    },
+    "prison-foundation-precache": {
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.184,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-foundation-precache.log",
+      "logBytes": 483,
+      "logSha256": "6cc2e5d6d1e2215d40275c87e4ae0ab247d0085c644f9eba7583cbb1dfd17aaa",
+      "pid": 465052,
+      "terminal": true
+    },
+    "bone-defenses-fixture-canonical-decode": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/decode-fixture.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/canonical-bone-combat-fixture.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 4.165,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-fixture-canonical-decode.log",
+      "logBytes": 372,
+      "logSha256": "c248c60ddabfd92364554afd5a1adc3d8c4aee55d977fc86002c3aa873a503f0",
+      "pid": 533911,
+      "terminal": true
+    },
+    "prison-foundation-final-precache": {
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.183,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-foundation-final-precache.log",
+      "logBytes": 483,
+      "logSha256": "de719f72a3d2933ea0f0d5d9b9a5ce7a58bb5c96a436276612c6304dd87367b5",
+      "pid": 465286,
+      "terminal": true
+    },
+    "prison-runtime-build-bridge": {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 17.524,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-build-bridge.log",
+      "logBytes": 1954,
+      "logSha256": "1ffa01f90a40c92593b61731187b853af354471aebc45063960bd605e7866244",
+      "pid": 474015,
+      "terminal": true
+    },
+    "bone-defenses-native-green": {
+      "command": [
+        "npm",
+        "run",
+        "test:ui",
+        "--",
+        "src/stores/bone-defenses-native.test.ts",
+        "src/stores/bone-armor-native.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 8.06,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-native-green.log",
+      "logBytes": 120660,
+      "logSha256": "f7b057053700e80ea7cb8c0b906d96621a47576932bf515532db02660034adf3",
+      "pid": 510382,
+      "terminal": true
+    },
+    "prison-runtime-final-build-bridge": {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 19.005,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-final-build-bridge.log",
+      "logBytes": 1954,
+      "logSha256": "7f22aaf79118580b6e19507dc0371f4c544c66a166f6bf287e3044d9f063af1e",
+      "pid": 480977,
+      "terminal": true
+    },
+    "wall-pool-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/skills/bone-wall.ts",
+        "src/engine/combat/bone-wall-pool.test.ts",
+        "src/engine/combat/types.ts",
+        "src/engine/skills/effects.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 6.731,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-pool-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 508133,
+      "terminal": true
+    },
+    "prison-authored-corrected": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts",
+        "src/engine/skills/data-catalog.test.ts",
+        "src/engine/skills/skill-validator.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 3.618,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-authored-corrected.log",
+      "logBytes": 498,
+      "logSha256": "7d33371f60ebea949e02862433a099d8e8752819ee9e36ed3502d55bcd790432",
+      "pid": 458548,
+      "terminal": true
+    },
+    "bone-defenses-ui-v2-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-ui-v2.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 9.606,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-ui-v2-red.log",
+      "logBytes": 10435,
+      "logSha256": "76b121e7c7f88d4aa9997a1242f6aeec4044fc546219429de389be7570b76bac",
+      "pid": 521341,
+      "terminal": true
+    },
+    "prison-runtime-precache": {
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.242,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-precache.log",
+      "logBytes": 483,
+      "logSha256": "ad3109bcd36170b669870d1ed78533ebf206ccad8bd08d175d23493cdd70c6ea",
+      "pid": 476713,
+      "terminal": true
+    },
+    "bone-defenses-final-lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 183.028,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-final-lint.log",
+      "logBytes": 197,
+      "logSha256": "54f7d422bb5d8b3d7fe15732d6688fd78e9d4cc9fa1d1f5a2af7673ced58e756",
+      "pid": 526375,
+      "terminal": true
+    },
+    "basic-necromancer-summons-corrected": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-necromancer-summons-corrected.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 9.013,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-necromancer-summons-corrected.log",
+      "logBytes": 432,
+      "logSha256": "82936ac1b15a5dffe21d92cd4cdfce13d1ae76482bea9829796829fe9fbdfdae",
+      "pid": 543404,
+      "terminal": true
+    },
+    "prison-runtime-corrected-scope-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/skills/bone-prison.ts",
+        "src/engine/combat/bone-prison-combat.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.061,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-corrected-scope-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 480741,
+      "terminal": true
+    },
+    "wall-native-causal-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/native-wall-causal.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 9.473,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-native-causal-red.log",
+      "logBytes": 1373,
+      "logSha256": "32da5aee49ec0ae6f0d6700988a309c5837ab9b14b5e4e19420e4558da5c936d",
+      "pid": 497272,
+      "terminal": true
+    },
+    "prison-wave-boundary-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-wave-green.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.461,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-wave-boundary-green.log",
+      "logBytes": 392,
+      "logSha256": "72af3aecd0714406a901488137a0f7b0041d9b39e72d14bfe2e7c926158b614a",
+      "pid": 473871,
+      "terminal": true
+    },
+    "bone-defenses-integrated-precache": {
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.216,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-integrated-precache.log",
+      "logBytes": 483,
+      "logSha256": "4f0db23ebc1940c82d8389dce61810c8be0dd0fff2b38dd75e80580137b60ee3",
+      "pid": 532487,
+      "terminal": true
+    },
+    "wall-core-bridge": {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 12.67,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-core-bridge.log",
+      "logBytes": 1953,
+      "logSha256": "a80dfed72c17155bd812a08edc9fcb14a99fda889f823b91fb1fa7690008878a",
+      "pid": 519107,
+      "terminal": true
+    },
+    "basic-summons-public-active-tab": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser-active-tab.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 191.736,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-public-active-tab.log",
+      "logBytes": 672,
+      "logSha256": "babb9d0717a5f3fcb31fc5bb59a1b66dccf3fde559c0e536dd7522d5db3b2fd7",
+      "pid": 556645,
+      "terminal": true
+    },
+    "prison-status-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 126.131,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 465778,
+      "terminal": true
+    },
+    "prison-authored-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-definition.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 2.138,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-authored-red.log",
+      "logBytes": 8519,
+      "logSha256": "dadfa4a586a3ad3e6871d073455b2bc803c91398ef9ebfde6b9d6fded19b7405",
+      "pid": 458274,
+      "terminal": true
+    },
+    "basic-necromancer-summons-prospective": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-necromancer-summons.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 9.341,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-necromancer-summons-prospective.log",
+      "logBytes": 7462,
+      "logSha256": "31413de6242fc3c15771289b6ff6e75c1ae1503dd217fe6ff8da31413daffdbc",
+      "pid": 542601,
+      "terminal": true
+    },
+    "basic-summons-canonical-related": {
+      "command": [
+        "npm",
+        "run",
+        "test:related",
+        "--",
+        "src/stores/basic-necromancer-summons-native.test.ts",
+        "src/stores/combatHelpers.summon-eligibility.test.ts",
+        "src/engine/skills/necromancer-summon-definition.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 41.522,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-canonical-related.log",
+      "logBytes": 758,
+      "logSha256": "ad9d8c672dff624e088af1b4912b496b96c445b2130f675d7986fb31e817772c",
+      "pid": 557190,
+      "terminal": true
+    },
+    "wall-foundation-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 104.102,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-foundation-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 507112,
+      "terminal": true
+    },
+    "bone-defenses-native-corrected-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/combatHelpers.ts",
+        "src/stores/bone-defenses-native.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.524,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-native-corrected-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 510825,
+      "terminal": true
+    },
+    "wall-settlement-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-settlement.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 4.317,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-settlement-red.log",
+      "logBytes": 10108,
+      "logSha256": "4c4038e7e01f2caa6c4fd27af4ce42189009a6dd71156008c750f1256e6723bd",
+      "pid": 496227,
+      "terminal": true
+    },
+    "prison-runtime-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 2,
+      "durationSeconds": 132.879,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-types.log",
+      "logBytes": 316,
+      "logSha256": "6decda87b78cffe33075ebbaa6414286bf8390d9605693881f554edfcbd4d477",
+      "pid": 474016,
+      "terminal": true
+    },
+    "bone-combat-chips-corrected-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/features/combat/CombatScreen.bone-defenses.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.489,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-combat-chips-corrected-green.log",
+      "logBytes": 365,
+      "logSha256": "79886011e05e9a0ceefdff7563f1e5918acc228fe416ae2bc02718be2034a647",
+      "pid": 531738,
+      "terminal": true
+    },
+    "bone-defenses-integrated-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 105.978,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-integrated-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 532134,
+      "terminal": true
+    },
+    "bone-defenses-native-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-native.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 7.382,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-native-red.log",
+      "logBytes": 3970,
+      "logSha256": "9bb0453cfb86cb951be3b1762f147d5bebb90abe23334233539e277a511b860b",
+      "pid": 510102,
+      "terminal": true
+    },
+    "bone-defenses-preview-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/skills/displayStats.ts",
+        "src/engine/skills/displayStats.bone-defenses.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.417,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-preview-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 519325,
+      "terminal": true
+    },
+    "basic-summons-public-diagnostic": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser-diagnostic.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 36.619,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-public-diagnostic.log",
+      "logBytes": 456,
+      "logSha256": "e143bf3ea48f6c3a40c16b058f4e5fa88385225aaf3bde25ba5e048430e2712b",
+      "pid": 547976,
+      "terminal": true
+    },
+    "wall-core-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 2,
+      "durationSeconds": 131.904,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-core-types.log",
+      "logBytes": 2209,
+      "logSha256": "0727332a0b8c80942f2450ee72d6fc2fc89887ca93aed6a45d8b2a8dc2c2074c",
+      "pid": 511259,
+      "terminal": true
+    },
+    "bone-combat-chips-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/features/combat/CombatScreen.tsx",
+        "src/features/combat/CombatScreen.bone-defenses.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 9.652,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-combat-chips-lint.log",
+      "logBytes": 335,
+      "logSha256": "f0e57998b397e95b59e581612d98f73ee8d665df991252fd23d6fdfade936cc8",
+      "pid": 530925,
+      "terminal": true
+    },
+    "basic-summons-public-revive-card-name": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser-revive-card-name.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 80.285,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-public-revive-card-name.log",
+      "logBytes": 84,
+      "logSha256": "97e5b6e8c97a40d40a7a3b213fe84ebeb9c8391a83b1eae05e8d37c0c8d7c971",
+      "pid": 558806,
+      "terminal": true
+    },
+    "wall-pool-green": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/bone-wall-pool.test.ts",
+        "src/engine/combat/bone-wall-definition.test.ts",
+        "src/engine/combat/bone-armor.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 3.708,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-pool-green.log",
+      "logBytes": 692,
+      "logSha256": "9c33fc6b82d50b8eb9293d164f2dc2758d981390cbac1bf504a8832c78ac77f5",
+      "pid": 507925,
+      "terminal": true
+    },
+    "prison-combat-boundaries": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-combat.test.ts",
+        "src/engine/combat/bone-prison-status.test.ts",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts",
+        "src/engine/combat/battle-command-carry.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 5.049,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-combat-boundaries.log",
+      "logBytes": 659,
+      "logSha256": "fdd94ece3ae85220d6ebac59779db6ed887fa9c0e16572ed3a7eb97cde06ba0f",
+      "pid": 473022,
+      "terminal": true
+    },
+    "prison-combat-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-combat.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 4.908,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-combat-red.log",
+      "logBytes": 17645,
+      "logSha256": "17f77623daa29c42bdc476049e202b7780f4a3a061bfba3e2d7e4c1c6a724584",
+      "pid": 468350,
+      "terminal": true
+    },
+    "wall-cast-typed-green": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/bone-wall-cast.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 3.943,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-cast-typed-green.log",
+      "logBytes": 461,
+      "logSha256": "8b049c2256ae115d39453ebe8ba9b6ab49e36d5d53796e9194b5d37e771335f4",
+      "pid": 508768,
+      "terminal": true
+    },
+    "prison-status-precache": {
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.208,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-precache.log",
+      "logBytes": 483,
+      "logSha256": "9c8f71182e3ab9352025f44710e68b7a9d6881249cd66e3e7a40dd7d4b5483ae",
+      "pid": 470000,
+      "terminal": true
+    },
+    "bone-defenses-complete-full": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 848.172,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-complete-full.log",
+      "logBytes": 172204,
+      "logSha256": "f81f05cd3a05e1728a93bf1c92c06fa069f33159837f9d11261b49cb6f10ce66",
+      "pid": 534654,
+      "terminal": true
+    },
+    "wall-cast-corrected-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-cast.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 4.568,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-cast-corrected-red.log",
+      "logBytes": 14183,
+      "logSha256": "f959b2ab106402139f980d68dc9118525b0eafff889efdbd3bbfc112e78319b5",
+      "pid": 501660,
+      "terminal": true
+    },
+    "prison-runtime-final-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 134.428,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-final-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 480976,
+      "terminal": true
+    },
+    "bone-defenses-final-build-bridge": {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 13.27,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-final-build-bridge.log",
+      "logBytes": 1953,
+      "logSha256": "bfb085b0507d73666783828a5477f7b2fe897b97b01b27a6a2283e59e32f1145",
+      "pid": 527316,
+      "terminal": true
+    },
+    "prison-runtime-final-precache": {
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.251,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-final-precache.log",
+      "logBytes": 483,
+      "logSha256": "231d6ee18c2bac71574823755207872a3212b1c3d9cb38e0f584300865739cc2",
+      "pid": 484726,
+      "terminal": true
+    },
+    "prison-wave-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-wave.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 7.643,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-wave-red.log",
+      "logBytes": 1518,
+      "logSha256": "f0ff030c1b6e24d2898b99c68305dcc8384280bbebac80b15fb4e75de6b72c64",
+      "pid": 473469,
+      "terminal": true
+    },
+    "wall-core-build": {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 12.303,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-core-build.log",
+      "logBytes": 1695,
+      "logSha256": "55d7ba1811d773d299027efdfb619b333f4d0eef8d35fb79f5ddb7fb42cae3b4",
+      "pid": 518023,
+      "terminal": true
+    },
+    "bone-defenses-ui-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-ui.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 2.143,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-ui-red.log",
+      "logBytes": 1571,
+      "logSha256": "9443326e71779b54fb6ea00c96c12f41f0330e629b2a83b1fc363251f9b259d2",
+      "pid": 520262,
+      "terminal": true
+    },
+    "bone-defenses-import-diagnostic": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-public-combat-diagnostic.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 10.008,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-import-diagnostic.log",
+      "logBytes": 1600,
+      "logSha256": "4cf70107c100b632aba2e26639d482a06685b172f9b6f621c9644e0c34fa385c",
+      "pid": 532988,
+      "terminal": true
+    },
+    "bone-defenses-ui-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/features/skills/SkillsScreen.bone-defenses.test.tsx",
+        "src/features/skills/SkillsScreen.terror.test.tsx",
+        "src/features/skills/SkillsScreen.bone-armor.test.tsx",
+        "src/features/skills/SkillsScreen.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 10.694,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-ui-green.log",
+      "logBytes": 598,
+      "logSha256": "e89a329fe5f0100ef2a1600807c3cbe099fe746cdc871ce9ed9f87ea01479e4e",
+      "pid": 526259,
+      "terminal": true
+    },
+    "bone-defenses-canonical-public-combat": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-public-combat-canonical.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 43.143,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-canonical-public-combat.log",
+      "logBytes": 56,
+      "logSha256": "64afa03221f69b60cebbafc43e832d43101376aebb1a0f7c460a278eef902e32",
+      "pid": 534094,
+      "terminal": true
+    },
+    "prison-status-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 2.979,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-red.log",
+      "logBytes": 7251,
+      "logSha256": "78688d2b363304df53c0687b691b254a831fba44497a9cc8fe200f50ef3db8a1",
+      "pid": 462089,
+      "terminal": true
+    },
+    "bone-defenses-preview-engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 156.99,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-preview-engine.log",
+      "logBytes": 72745,
+      "logSha256": "5b43b0ebbe52e03eee14b48c45d9780dc27dd454470a04c8a5def809cb9907c3",
+      "pid": 519615,
+      "terminal": true
+    },
+    "prison-foundation-bridge": {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 12.635,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-foundation-bridge.log",
+      "logBytes": 1953,
+      "logSha256": "7234be37865af1763b99b6b9b39753ec358b026135ae190c92a9266db2705f46",
+      "pid": 465051,
+      "terminal": true
+    },
+    "wall-authored-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-authored.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 2.464,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-authored-red.log",
+      "logBytes": 8360,
+      "logSha256": "c818942e95234caa950c08b2cf57c7e9caa557f00d454979a34596948c6dd326",
+      "pid": 491840,
+      "terminal": true
+    },
+    "prison-runtime-engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 161.394,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-engine.log",
+      "logBytes": 72370,
+      "logSha256": "be44263e4902afa4ddd005b28e6c65f9bdf6a10762ec9d38e5e3c79e5b5c8a94",
+      "pid": 474014,
+      "terminal": true
+    },
+    "wall-foundation-installed-green": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/bone-wall-definition.test.ts",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/skills/player-class-actives.test.ts",
+        "src/engine/skills/skill-validator.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 1.612,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-foundation-installed-green.log",
+      "logBytes": 4084,
+      "logSha256": "32cb21dfa6ee5fa2c059c509627663e0d9d3bf8d9ba6197522d5eca5545fdcc1",
+      "pid": 506943,
+      "terminal": true
+    },
+    "prison-foundation-build": {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 12.939,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-foundation-build.log",
+      "logBytes": 1695,
+      "logSha256": "528493dafd1c4109f633af308b28c6945a5c68cf6e06e782f9c2187bad2c45a1",
+      "pid": 464899,
+      "terminal": true
+    },
+    "bone-defenses-ui-v4-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-ui-v4.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 12.724,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-ui-v4-red.log",
+      "logBytes": 103138,
+      "logSha256": "5151d631b48279b4128f07b3608e49a1f76c597374bb2f13f4e786893ad32a40",
+      "pid": 524913,
+      "terminal": true
+    },
+    "wall-cast-typed-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/dataCatalog.ts",
+        "src/engine/combat/bone-wall-cast.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.867,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-cast-typed-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 508767,
+      "terminal": true
+    },
+    "bone-combat-chips-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 106.255,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-combat-chips-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 530927,
+      "terminal": true
+    },
+    "bone-defenses-visible-chips-public": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-public-combat-visible-chips.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 48.601,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-visible-chips-public.log",
+      "logBytes": 56,
+      "logSha256": "64afa03221f69b60cebbafc43e832d43101376aebb1a0f7c460a278eef902e32",
+      "pid": 535339,
+      "terminal": true
+    },
+    "wall-foundation-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/types/skills.ts",
+        "src/engine/combat/bone-wall-definition.ts",
+        "src/engine/combat/bone-wall-definition.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.559,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-foundation-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 507111,
+      "terminal": true
+    },
+    "wall-core-precache": {
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.202,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-core-precache.log",
+      "logBytes": 352,
+      "logSha256": "e8be55f0f02b75b78d75cae6f566e48b5a324093b0a6fb487efa703df38fadab",
+      "pid": 519108,
+      "terminal": true
+    },
+    "wall-foundation-green": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/bone-wall-definition.test.ts",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/skills/player-class-actives.test.ts",
+        "src/engine/skills/skill-validator.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 2.796,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-foundation-green.log",
+      "logBytes": 768,
+      "logSha256": "c81429d56b307f6e61984d26f1e6e11efd12933e9ff70881110395d091081eee",
+      "pid": 506801,
+      "terminal": true
+    },
+    "prison-wave-boundary-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-wave-corrected.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 7.62,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-wave-boundary-red.log",
+      "logBytes": 1394,
+      "logSha256": "b750e40c1f1872cbaf0e2b539b2b512bc51a2c071cc45588db8f92949c21e6bb",
+      "pid": 473786,
+      "terminal": true
+    },
+    "basic-summons-public-browser": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 36.493,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-public-browser.log",
+      "logBytes": 445,
+      "logSha256": "d738eb5f1536d9edb47e52f13ce2a07744a68751ec4ddd139ab2111e2fe5afb6",
+      "pid": 545912,
+      "terminal": true
+    },
+    "wall-typed-fixtures-green": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/bone-wall-cast.test.ts",
+        "src/engine/combat/bone-wall-pool.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 4.651,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-typed-fixtures-green.log",
+      "logBytes": 575,
+      "logSha256": "947c2562614167137f9e3c090abdc8a5b7194de2a3c81b5c893b135075e994b1",
+      "pid": 517885,
+      "terminal": true
+    },
+    "bone-combat-chips-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-combat-chips.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 8.061,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-combat-chips-red.log",
+      "logBytes": 9791,
+      "logSha256": "b1177f72e10c0bfa932e0d1c55103e35e8a85f4a8875e130e65b79a591ab02c6",
+      "pid": 530651,
+      "terminal": true
+    },
+    "basic-summons-immutable-related": {
+      "command": [
+        "npm",
+        "run",
+        "test:related",
+        "--",
+        "src/stores/basic-necromancer-summons-native.test.ts",
+        "src/stores/combatHelpers.summon-eligibility.test.ts",
+        "src/engine/skills/necromancer-summon-definition.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 35.734,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-immutable-related.log",
+      "logBytes": 758,
+      "logSha256": "5421a231699bc782dc39e1e446a63b8cc2fa05d2400782813191ae90fe07b6b9",
+      "pid": 558431,
+      "terminal": true
+    },
+    "prison-status-engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 151.108,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-engine.log",
+      "logBytes": 72279,
+      "logSha256": "aa873a62ed13e0cf5a30fea5fdcfddaec1e4b2150cfa0cb48c034a7234fe8fa1",
+      "pid": 465780,
+      "terminal": true
+    },
+    "basic-summons-public-slotted": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser-corrected.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 35.309,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-public-slotted.log",
+      "logBytes": 299,
+      "logSha256": "09a764579fac2554102a0fa27ff96b35132b7c05328b619d970967836e09e373",
+      "pid": 556184,
+      "terminal": true
+    },
+    "prison-status-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/combat/types.ts",
+        "src/engine/skills/effects.ts",
+        "src/engine/skills/dataCatalog.ts",
+        "src/engine/combat/status.ts",
+        "src/engine/combat/bone-prison-status.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 10.535,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 465777,
+      "terminal": true
+    },
+    "wall-settlement-expanded-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-settlement.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 3.983,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-settlement-expanded-red.log",
+      "logBytes": 14332,
+      "logSha256": "b475ee63b73e62cd68f1ed4d5735d9f55acda8c55f2e0da94a7faabb0b812016",
+      "pid": 503532,
+      "terminal": true
+    },
+    "wall-core-engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 159.992,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-core-engine.log",
+      "logBytes": 72668,
+      "logSha256": "89de275adbc188c977730dba41d99c1d0009ad95bf89ac9612e1d491ffdd52bf",
+      "pid": 511258,
+      "terminal": true
+    },
+    "prison-status-build-bridge": {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 16.832,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-build-bridge.log",
+      "logBytes": 1954,
+      "logSha256": "0d4717ed238e9946f6f24252b979e0b54ea643f8559283457367c52cc0ef1c47",
+      "pid": 465779,
+      "terminal": true
+    },
+    "prison-foundation-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 131.018,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-foundation-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 458741,
+      "terminal": true
+    },
+    "bone-defenses-integrated-lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 182.939,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-integrated-lint.log",
+      "logBytes": 197,
+      "logSha256": "54f7d422bb5d8b3d7fe15732d6688fd78e9d4cc9fa1d1f5a2af7673ced58e756",
+      "pid": 532136,
+      "terminal": true
+    },
+    "bone-defenses-preview-v2-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-preview-v2.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 2.644,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-preview-v2-red.log",
+      "logBytes": 13388,
+      "logSha256": "61d1786e1917fa884cefb2b586012a3b73eff343804d26907c0c2e83d53ad88a",
+      "pid": 519200,
+      "terminal": true
+    },
+    "bone-defenses-ui-v3-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-ui-v3.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 13.007,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-ui-v3-red.log",
+      "logBytes": 152683,
+      "logSha256": "cf4c158b8c322bab8de89dc3820fe8955e71bae675eb12e261a76a8f78fc5200",
+      "pid": 522137,
+      "terminal": true
+    },
+    "wall-cast-green": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/bone-wall-cast.test.ts",
+        "src/engine/combat/bone-wall-pool.test.ts",
+        "src/engine/combat/bone-prison-combat.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 4.115,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-cast-green.log",
+      "logBytes": 699,
+      "logSha256": "9735ce30f2ee867f96bf07060b92d679f149c68c9575de099cbfbe88b8dfc317",
+      "pid": 508257,
+      "terminal": true
+    },
+    "wall-typed-fixtures-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/combat/bone-wall-cast.test.ts",
+        "src/engine/combat/bone-wall-pool.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.821,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-typed-fixtures-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 517892,
+      "terminal": true
+    },
+    "prison-runtime-lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 215.671,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-lint.log",
+      "logBytes": 870,
+      "logSha256": "bd1c56c40e1b8c67933aeabbbaa38269ecfd0c65e785cd4c37a45445c5bc6838",
+      "pid": 474013,
+      "terminal": true
+    },
+    "bone-defenses-ui-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 103.716,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-ui-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 526374,
+      "terminal": true
+    },
+    "native-prison-final": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/native-final.workspace.ts",
+        "-t",
+        "Bone Prison|refreshes"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.599,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/native-prison-final.log",
+      "logBytes": 536,
+      "logSha256": "d0c5c1da45423b06694c253e99f22f655e0901f40934a1f169bc08fdc0430897",
+      "pid": 480895,
+      "terminal": true
+    },
+    "prison-combat-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-combat.test.ts",
+        "src/engine/combat/bone-prison-status.test.ts",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 3.911,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-combat-green.log",
+      "logBytes": 1714,
+      "logSha256": "980f5a1ad24b516d8436d5b9ac033ec87fb273f1bde4633e83b340d9932f6710",
+      "pid": 472071,
+      "terminal": true
+    },
+    "prison-status-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-status.test.ts",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts",
+        "src/engine/combat/status.test.ts",
+        "src/engine/skills/registry.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 5.92,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-green.log",
+      "logBytes": 635,
+      "logSha256": "5f36be546dccaddbe3dc9ac9860e57f00df085ab8986c00496a68dd9b1e2af32",
+      "pid": 465444,
+      "terminal": true
+    },
+    "basic-summons-combo-diagnostic": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser-combo-diagnostic.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 5.848,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-combo-diagnostic.log",
+      "logBytes": 864,
+      "logSha256": "e3ebfddba7d2a4caa484d42d5445b82babb331864f84b4c7e9fce81adc9136e8",
+      "pid": 555655,
+      "terminal": true
+    },
+    "basic-summons-immutable-lint": {
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/stores/basic-necromancer-summons-native.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.784,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-immutable-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 558432,
+      "terminal": true
+    },
+    "native-after-prison": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/native-after-prison.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 7.127,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/native-after-prison.log",
+      "logBytes": 1460,
+      "logSha256": "ac7cbe3b2fc5ad37f03bd0a1e68f8bd8a10ed7dc2ddf1c7310898cd1f095c622",
+      "pid": 472649,
+      "terminal": true
+    },
+    "prison-runtime-final-engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 162.939,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-final-engine.log",
+      "logBytes": 72372,
+      "logSha256": "c3d0c62052bf7f8dd6cf3efe2b1301f55b4eae655841202c3ad660cf869d046b",
+      "pid": 480975,
+      "terminal": true
+    },
+    "bone-combat-chips-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/features/combat/CombatScreen.bone-defenses.test.tsx",
+        "src/features/combat/CombatScreen.test.tsx",
+        "src/features/combat/CombatScreen.lifecycle.test.tsx",
+        "src/features/skills/SkillsScreen.bone-defenses.test.tsx",
+        "src/stores/bone-defenses-native.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 18.335,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-combat-chips-green.log",
+      "logBytes": 677,
+      "logSha256": "2759e1a7d635cb77c2cd035338c6ed8c434f35b7ab781a66be3c3e590ec1eedc",
+      "pid": 530926,
+      "terminal": true
+    },
+    "wall-damage-corrected-green": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/bone-wall-damage.test.ts",
+        "src/engine/combat/bone-armor.test.ts",
+        "src/engine/combat/energy-shield.test.ts",
+        "src/engine/combat/cyclone-armor.test.ts",
+        "src/engine/combat/holy-shield.test.ts",
+        "src/engine/combat/bone-wall-cast.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 5.896,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-damage-corrected-green.log",
+      "logBytes": 1021,
+      "logSha256": "cba3a0dc828f9a43e97801d5ef7fbbf7b65ff145943cbb7f63b759eaac95923d",
+      "pid": 509580,
+      "terminal": true
+    },
+    "wall-core-types-corrected": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 104.669,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-core-types-corrected.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 517891,
+      "terminal": true
+    },
+    "wall-foundation-strict-green": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/bone-wall-definition.test.ts",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/skills/player-class-actives.test.ts",
+        "src/engine/skills/skill-validator.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 3.109,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-foundation-strict-green.log",
+      "logBytes": 846,
+      "logSha256": "2998b03ff214dd55667dd47eb608693a64befa1a4680510144dded467ca26679",
+      "pid": 507348,
+      "terminal": true
+    },
+    "wall-core-lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 211.003,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-core-lint.log",
+      "logBytes": 197,
+      "logSha256": "35ffac54e8e3249c0bdd12142b5d8165d26052eb9a331a147c804852bb4711fa",
+      "pid": 511260,
+      "terminal": true
+    },
+    "prison-core-full": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 824.603,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-core-full.log",
+      "logBytes": 171574,
+      "logSha256": "a9ffa6e225dfc0e48011e6646c16569d404ce5eb293509e0fb85131deed42852",
+      "pid": 487866,
+      "terminal": true
+    },
+    "basic-summons-canonical-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 2,
+      "durationSeconds": 123.651,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-canonical-types.log",
+      "logBytes": 494,
+      "logSha256": "7faf97399190b509006095a4c0c94c8602de61442553769cf867c50a876bbc04",
+      "pid": 557191,
+      "terminal": true
+    },
+    "basic-summons-canonical-lint": {
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/stores/basic-necromancer-summons-native.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 10.759,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-canonical-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 557192,
+      "terminal": true
+    },
+    "wall-cast-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/dataCatalog.ts",
+        "src/engine/combat/bone-wall-cast.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 8.479,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-cast-lint.log",
+      "logBytes": 253,
+      "logSha256": "425d09a70ff707958b8dc72882a5e4efd6c04ff30e639a188d3ec1ece8871d84",
+      "pid": 508692,
+      "terminal": true
+    },
+    "bone-defenses-preview-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-preview.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 2.817,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-preview-red.log",
+      "logBytes": 13676,
+      "logSha256": "af2b0799b1577b4fe27c11e662e19d7c5c9860e84d0e90584b8f13eb7b60a452",
+      "pid": 517587,
+      "terminal": true
+    },
+    "bone-defenses-public-combat": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-public-combat.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 10.375,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-public-combat.log",
+      "logBytes": 1456,
+      "logSha256": "8bc69f76123d61c6f6b889486a06f4620b5e023efcd2030d3c0853fc9db83efa",
+      "pid": 532486,
+      "terminal": true
+    },
+    "wall-damage-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/combat/combat.ts",
+        "src/engine/combat/bone-wall-damage.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 8.358,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-damage-lint.log",
+      "logBytes": 300,
+      "logSha256": "281340a200eef0be23da052904b0c66287e708e1d6be5d302cd99ba58542d771",
+      "pid": 509262,
+      "terminal": true
+    },
+    "native-reproduction": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/native-repro.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 7.924,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/native-reproduction.log",
+      "logBytes": 2276,
+      "logSha256": "19621557e9e4565369fd390b134c209a022ec9e2d98e88f03cbc3bf12361d228",
+      "pid": 456085,
+      "terminal": true
+    },
+    "bone-combat-chips-corrected-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/features/combat/CombatScreen.tsx",
+        "src/features/combat/CombatScreen.bone-defenses.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.214,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-combat-chips-corrected-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 531737,
+      "terminal": true
+    },
+    "bone-defenses-preview-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/skills/displayStats.bone-defenses.test.ts",
+        "src/engine/skills/displayStats.terror.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 2.897,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-preview-green.log",
+      "logBytes": 440,
+      "logSha256": "55f14cef382f0f2499899d6c6738dc274d7920a2dd782cfb82689bed582f9a8a",
+      "pid": 519324,
+      "terminal": true
+    },
+    "bone-defenses-final-precache": {
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.21,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-final-precache.log",
+      "logBytes": 483,
+      "logSha256": "c4f763781da7b1adee3504686464c3c1a9f3ecb3531af53eacdd0e2a48e08a17",
+      "pid": 527753,
+      "terminal": true
+    },
+    "bone-defenses-integrated-build-bridge": {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 13.979,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-integrated-build-bridge.log",
+      "logBytes": 1954,
+      "logSha256": "245fe7f4d728e0507dcfeda7abf8ebf6b9b47ae76fed1ce41f8cfad8cd40034a",
+      "pid": 532135,
+      "terminal": true
+    },
+    "bone-defenses-native-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/combatHelpers.ts",
+        "src/stores/bone-defenses-native.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.04,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-native-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 510383,
+      "terminal": true
+    },
+    "bone-defenses-preview-browser": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-preview-browser.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 89.516,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-preview-browser.log",
+      "logBytes": 56,
+      "logSha256": "64afa03221f69b60cebbafc43e832d43101376aebb1a0f7c460a278eef902e32",
+      "pid": 527778,
+      "terminal": true
+    },
+    "bone-defenses-preview-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 127.966,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-preview-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 519614,
+      "terminal": true
+    },
+    "basic-summons-immutable-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 120.22,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-immutable-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 558433,
+      "terminal": true
+    },
+    "wall-cast-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-cast.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 4.613,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-cast-red.log",
+      "logBytes": 14361,
+      "logSha256": "c4d0d06d6b182496ee398cc1be95b4aa152668f6770a2b11b784be44b44808b7",
+      "pid": 500948,
+      "terminal": true
+    },
+    "bone-defenses-native-corrected-green": {
+      "command": [
+        "npm",
+        "run",
+        "test:ui",
+        "--",
+        "src/stores/bone-defenses-native.test.ts",
+        "src/stores/bone-armor-native.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.405,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-native-corrected-green.log",
+      "logBytes": 551,
+      "logSha256": "58fcbf2841d83b6252e455d10d9f743c92b783e6056809059a5a334fa98edd8b",
+      "pid": 510824,
+      "terminal": true
+    },
+    "bone-defenses-fixture-decode": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/decode-fixture.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/combat-browser/en-360-synthetic-fixture.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 4.285,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/bone-defenses-fixture-decode.log",
+      "logBytes": 1753,
+      "logSha256": "b5711854004d5da25132ea74ad399a3cb57c7c081eaab7574fafa52723c2c128",
+      "pid": 533811,
+      "terminal": true
+    },
+    "prison-authored-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts",
+        "src/engine/skills/dataCatalog.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 3.782,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-authored-green.log",
+      "logBytes": 1313,
+      "logSha256": "bfa558b4cd0b2c878178843816056ab9a93d4331bd26f7c28c330039135a34a3",
+      "pid": 458381,
+      "terminal": true
+    },
+    "wall-native-causal-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/native-wall-causal-green.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 10.183,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/wall-native-causal-green.log",
+      "logBytes": 401,
+      "logSha256": "413c873fde758bee42494e0571ebd56ba4bc3e4767a1aba7342a8e9ec748bfef",
+      "pid": 511670,
+      "terminal": true
+    },
+    "prison-runtime-corrected-focused": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-combat.test.ts",
+        "src/engine/combat/bone-prison-status.test.ts",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts",
+        "src/engine/combat/battle-command-carry.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 5.618,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-corrected-focused.log",
+      "logBytes": 661,
+      "logSha256": "3ec8a6e7f464d8f6a748f44efda123c3a1b6f74736acae45ab595f350f01922a",
+      "pid": 480542,
+      "terminal": true
+    },
+    "prison-combat-corrected": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-combat.test.ts",
+        "src/engine/combat/bone-prison-status.test.ts",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 3.787,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-combat-corrected.log",
+      "logBytes": 580,
+      "logSha256": "b33e61cc99f51a488f060c070bed36c66b550b4ddd66b3ff8ec69201aa11b85d",
+      "pid": 472499,
+      "terminal": true
+    },
+    "basic-summons-public-corrected": {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-browser-corrected.cjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 0.042,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/basic-summons-public-corrected.log",
+      "logBytes": 827,
+      "logSha256": "06cb274854360d35f809ca7adf0d44ff20bcf980803a99f2d00497af09bad8bb",
+      "pid": 556122,
+      "terminal": true
+    },
+    "prison-runtime-final-lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 216.405,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-final-lint.log",
+      "logBytes": 197,
+      "logSha256": "9da8d09d4253a13cedd4b68153c3f20ad7307868df74b189baa2c86a973ba7c8",
+      "pid": 480974,
+      "terminal": true
+    }
+  },
+  "genuineSave": {
+    "compressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "rawSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "state": "L33; nextNormal402; claimed Ancients/Rite; Baal uncleared; unchanged"
+  },
+  "originalFailures": [
+    "BUG269 wrong alias oracle:9fail/6pass before correcting slot expectation",
+    "BUG270 unlearned imported slot correctly pruned; allocated export proves comboOrder[]; missing Active Skills tab; incorrect English Physical case",
+    "BUG270 initial summary overescape diagnosis disproven by byte inspection; original regex digit class was valid; failed generator and absent-driver attempt preserved",
+    "BUG271 readonly negative fixture writes fail full TypeScript; original source/log retained, immutable construction now passes",
+    "BUG272 original aggregate command exit1 after8passed contexts; Revive image-alt observer fails despite real body/damage; separate displayed-name observer4/4passes"
+  ],
+  "retention": {
+    "state": "all test/browser consumers terminal; lossless archive/read-back/exact cleanup next",
+    "owner": "root",
+    "raw": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v",
+    "build": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist"
+  }
+}
