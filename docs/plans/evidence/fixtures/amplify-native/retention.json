@@ -1,0 +1,17 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs-retained.tar.xz",
+  "sha256": "9dd585de4a3775e91f5bf8b0085b01e7adaefd2c7aa5afd2b31a3744d489a407",
+  "archiveBytes": 118278512,
+  "members": 1796,
+  "rawBytes": 142145331,
+  "readBackVerified": true,
+  "deletionManifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs-deletion-manifest.json",
+  "owner": "root",
+  "retainUntil": "Amplify Damage/native/public/full-v1 evidence consumers finish; root owns later removal",
+  "requiredRemainingPaths": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs-retained.tar.xz",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs-retention.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs-deletion-manifest.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs-cleanup.json"
+  ]
+}

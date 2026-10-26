@@ -5,7 +5,9 @@ semantics remain the existing [D04 contract](../decisions/D04-amplify-damage-v1.
 The [historical bilingual UI closure](p08a02d-amplify-damage-ui.md) explicitly did
 not prove actual native casting or offline continuation. This continuation adds
 those missing checks; no production defect or runtime/locale/save change is inferred.
-Amplify Damage remains uncredited while final full validation/audit/retention is pending.
+Amplify Damage now has one bounded local functional credit after final full validation,
+source/build audits,lossless retention/read-back and exact cleanup. Independent
+acceptance and earned builds/balance remain open.
 
 ## Four-path test increment
 
@@ -60,10 +62,10 @@ The prior18055-test full result belongs to target-curse source;the new seven tes
 require their own final full result. Two existing opt-in genuine campaign simulations
 remain skipped;no campaign action/replay or remote publication is authorized here.
 
-Root owns required active evidence at
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs`
-through native/public/full-v1 consumers and later verified lossless retention and
-exact cleanup. Canonical types/lint/browser handles are terminal0 in their receipts;the exact
+The historical raw task root was
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs`;
+it is now absent after the verified retention/cleanup below. Root retains the
+archive and three sidecars through native/public/full-v1 evidence consumers. Canonical types/lint/browser handles are terminal0 in their receipts;the exact
 original combined-full handle69167/child296932 is terminal1 with the provenance
 failure recorded below. The replacement must freeze HEAD as well as1636inputs. Inventory stays164bounded/47unverified/one engine-only/
 one review-needed,Necromancer22/32. GenuineL33/Ancients claimed/nextNormal402/Baal
@@ -142,3 +144,31 @@ Lossless raw retention/read-back and exact cleanup remain the next required
 boundary before any Amplify inventory credit. GenuineL33/Ancients claimed/
 nextNormal402/Baal uncleared,earned builds/balance,30–50hour pacing/economy/
 endgame,independent UX/a11y/performance,C2–C4/fullG0–G7/full privatev1 stay open.
+
+
+## Retention, exact cleanup and one bounded credit
+
+All1796regular members/142145331raw bytes were archived and individually
+read-back verified. ArchiveSHA256 `9dd585de4a3775e91f5bf8b0085b01e7adaefd2c7aa5afd2b31a3744d489a407`;
+archive size118278512bytes. Exact cleanup removed1796files/38directories
+and the separately byte-verified external driver;raw root and driver are absent,
+remaining[]/failures[]. Known command identities are terminal;readable process
+checks found no task consumer,port4543was free,and no signals were sent.
+29restricted `/proc` entries are disclosed in the cleanup receipt;no
+claim of complete privileged process visibility is made.
+
+Root owns these four required retained paths through Amplify/native/public/full-v1
+consumers and removes them only after those consumers finish:
+
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs-retained.tar.xz`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs-retention.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs-deletion-manifest.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs-cleanup.json`
+
+Durable retention/deletion/cleanup receipts are adjacent. Exactly one Amplify row
+is now credited: **165bounded-functional /46unverified /one engine-only /one
+review-needed**;Necromancer23/32. All212other raw rows,header,IDs and order remain
+byte-exact,as shown by `inventory-credit-audit.json`. This corrects the historical
+consumer-risk flag without inventing a runtime change. GenuineL33/Ancients claimed/
+nextNormal402/Baal uncleared and independent/earned/C2–C4/fullG0–G7/privatev1 remain
+open. Poison Dagger BUG256 is a separate reproduced defect with no skill credit.

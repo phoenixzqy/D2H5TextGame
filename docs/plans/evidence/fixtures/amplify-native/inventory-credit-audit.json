@@ -1,0 +1,23 @@
+{
+  "skill": "skills-necromancer-amplify-damage",
+  "beforeSha256": "dc67048927482acf3e2e9dccd73631fef85661ebebb8436bc2e64c76a64595ea",
+  "afterSha256": "2ac836f89424ca479b413dc5c809077acc634a9e68cfa65cd309704dc9771e66",
+  "onlyChangedRawRow": 127,
+  "otherRawRowsUnchanged": 212,
+  "headerIdsOrderUnchanged": true,
+  "counts": {
+    "unverified": 46,
+    "bounded-functional;independent-acceptance-open": 162,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "boundedFunctional": 165,
+  "necromancerBounded": 23,
+  "total": 213,
+  "archiveReadBackVerified": true,
+  "taskRootRemoved": true,
+  "independentAcceptance": "open",
+  "earnedBalance": "open",
+  "fullPrivateV1": "open"
+}
