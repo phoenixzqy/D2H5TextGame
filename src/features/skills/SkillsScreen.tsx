@@ -922,6 +922,10 @@ function StatSection({
           ) : null}
           {stats.summonUnit ? (
             <>
+              {summonEffect?.kind === 'lifeLeech' ? (
+                <StatLine label={t('details.summonLifeLeech')}
+                  value={t('details.summonLifeLeechValue', summonEffect)} />
+              ) : null}
               {stats.summonUnit.attackType ? (
                 <StatLine label={t('details.summonAttackType')}
                   value={t(`damage-types:type.${stats.summonUnit.attackType}`)} />

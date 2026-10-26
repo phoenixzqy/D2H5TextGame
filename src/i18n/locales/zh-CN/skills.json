@@ -281,6 +281,8 @@
     "descriptionRecovery": "直接命中并结算通常的死亡与反伤效果后，仍存活的施法者恢复敌人直接实际生命损失的{{percentOfHpRemoved}}%（向下取整，不超过自身已损失生命）。吸收伤害和过量伤害不计入；后续普攻与持续伤害不回血，致命反伤无法逆转。",
     "descriptionFeralSpeed": "每次野性狂暴命中并实际扣除敌人生命，获得{{percentPerStack}}%自身攻击速度，最多{{maxStacks}}层相加；每次刷新全部层数的{{durationSeconds}}秒持续时间，满层或满血时仍可刷新。剩余时间可跨波次保留；失去有效加点、前置或主动优先级配置后，下波或明确重放配置时清除。新战斗与导入后不保留层数。",
     "summonAttackType": "召唤物攻击类型",
+    "summonLifeLeech": "友方生命吸取",
+    "summonLifeLeechValue": "敌方实际失去生命的{{percentOfDamage}}%",
     "summonBlindPenalty": "致盲命中惩罚",
     "summonBlindPenaltyValue": "{{hitPenaltyPoints}}个百分点",
     "summonBlindDuration": "致盲持续",
@@ -830,7 +832,7 @@
     },
     "blood-golem": {
       "name": "血魔像",
-      "desc": "常驻光环：所造成伤害的 10% 转化为生命。"
+      "desc": "付费召唤的血魔像与原主人均存活时，原友方英雄、佣兵和召唤物造成伤害后，各自恢复敌方实际失去生命的{{percentOfDamage}}%，向下取整且不超过自身已损失生命。包括存活来源造成的直接、持续和反射伤害。未命中、被吸收的伤害、超额击杀伤害及自伤均不提供恢复。多个血魔像的光环不叠加。"
     },
     "bone-armor": {
       "name": "骨甲",

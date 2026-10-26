@@ -281,6 +281,8 @@
     "descriptionRecovery": "After its direct hit and ordinary death/reflection effects, a living caster restores {{percentOfHpRemoved}}% of actual enemy HP removed (rounded down, capped at missing life). Absorbed damage and overkill do not count. No healing from later basic attacks or damage over time; lethal reflection cannot be reversed.",
     "descriptionFeralSpeed": "Each Feral hit that removes enemy HP adds {{percentPerStack}}% self attack speed, up to {{maxStacks}} additive stacks, and refreshes all stacks for {{durationSeconds}} s, including at the cap or full life. Remaining duration carries between waves. Losing valid allocation, prerequisites or active priority clears speed on the next wave or explicit configuration replay. Fresh runs/imports start without stacks.",
     "summonAttackType": "Summon attack type",
+    "summonLifeLeech": "Party life leech",
+    "summonLifeLeechValue": "{{percentOfDamage}}% of hostile HP removed",
     "summonBlindPenalty": "Blind hit penalty",
     "summonBlindPenaltyValue": "{{hitPenaltyPoints}} percentage points",
     "summonBlindDuration": "Blind duration",
@@ -830,7 +832,7 @@
     },
     "blood-golem": {
       "name": "Blood Golem",
-      "desc": "Always-on aura: 10% of damage dealt is returned as life."
+      "desc": "While this paid Blood Golem and its original owner are alive, your hero, mercenaries and summons recover their own life equal to {{percentOfDamage}}% of the hostile HP they remove, rounded down and capped by missing life. Includes direct, periodic and reflected damage from living sources. Misses, absorbed damage, overkill excess and self damage give no recovery. Multiple Blood Golems do not stack."
     },
     "bone-armor": {
       "name": "Bone Armor",

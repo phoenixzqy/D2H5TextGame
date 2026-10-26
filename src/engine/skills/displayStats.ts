@@ -29,6 +29,7 @@ import { applySummonPassiveStats, type SummonPassiveProjection } from './summon-
 import { SPIRIT_OF_BARBS_DEFINITION, SPIRIT_OF_BARBS_IDS } from './spirit-of-barbs';
 import { DRUID_SUMMON_DEFINITION, DRUID_SUMMON_IDS } from './druid-summon-definition';
 import { FIRE_GOLEM_DEFINITION, FIRE_GOLEM_IDS } from './fire-golem';
+import { BLOOD_GOLEM_DEFINITION, BLOOD_GOLEM_IDS } from './blood-golem';
 import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 import { HYDRA_DEFINITION, hydraBodyStats } from './hydra';
 
@@ -150,6 +151,7 @@ export interface SkillSummonDisplayStats {
 
 /** Authored summon rules, rather than promised damage or recovery from base stats. */
 export type SkillSummonEffectDisplay =
+  | { readonly kind: 'lifeLeech'; readonly percentOfDamage: number }
   | { readonly kind: 'blind'; readonly hitPenaltyPoints: number; readonly durationSeconds: number }
   | { readonly kind: 'poison'; readonly percentOfHit: number; readonly durationSeconds: number;
       readonly maxStacks: number; readonly minDps: number }
@@ -413,9 +415,12 @@ function summonUnit(
     DRUID_SUMMON_IDS.some(id => id === summonId);
   const fireGolem = FIRE_GOLEM_IDS.some(id => id === skill.id) && skill.trigger === 'active' &&
     skill.target === 'summon' && skill.summon === true && summonId === 'fire_golem';
+  const bloodGolem = BLOOD_GOLEM_IDS.some(id => id === skill.id) && skill.trigger === 'active' &&
+    skill.target === 'summon' && skill.summon === true && summonId === 'blood_golem';
   const effect: SkillSummonEffectDisplay | undefined = fireGolem
     ? { kind: 'burn', percentOfHit: FIRE_GOLEM_DEFINITION.attack.dotPctOfDamage * 100,
       durationSeconds: STATUS_DEFAULTS.ignite.duration, maxStacks: STATUS_DEFAULTS.ignite.maxStacks, minDps: 1 }
+    : bloodGolem ? { kind: 'lifeLeech', percentOfDamage: BLOOD_GOLEM_DEFINITION.lifeLeechFraction * 100 }
     : druid ? druidSummonEffect(summonId) : undefined;
   const baseStats = getSummonStats(summonId, {
     skillLevel: rank,
@@ -449,14 +454,14 @@ function summonUnit(
     if (!combined) return undefined;
     stats = combined;
   }
-  const resistanceRows: SkillSummonStatDisplayRow[] = druid || fireGolem || (exactNecromancer && global?.resistRank)
+  const resistanceRows: SkillSummonStatDisplayRow[] = druid || fireGolem || bloodGolem || (exactNecromancer && global?.resistRank)
     ? (['physical', 'fire', 'cold', 'lightning', 'arcane', 'poison'] as const).map(type => ({
       id: `${type}Resistance`, labelKey: `details.summonStat.${type}Resistance`,
       value: stats.resistances[type] / 100, valueKind: 'percent' })) : [];
   return {
     summonId,
     nameKey: `details.summonName.${summonId}`,
-    ...(fireGolem ? { attackType: 'fire' as const } : druid ? { attackType: 'physical' as const } : {}),
+    ...(fireGolem ? { attackType: 'fire' as const } : druid || bloodGolem ? { attackType: 'physical' as const } : {}),
     ...(effect ? { effect } : {}),
     stats: [
       ...resistanceRows,
