@@ -60,8 +60,8 @@ export function stageRecordedWave(input: RecordedWaveStagingInput): StagedRecord
   freezeOwnedInput(engineInput);
   const { events, result } = runBattleRecorded(engineInput);
   // Own successful searches before naming callbacks or public playback can observe the result.
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- Only absent optional finds default; malformed null must fail staging.
-  const findItemFinds = copyFindItemFinds(result.findItemFinds === undefined ? [] : result.findItemFinds);
+  const { findItemFinds: recordedFinds = [] } = result;
+  const findItemFinds = copyFindItemFinds(recordedFinds);
   const terminal = events.at(-1);
   if (terminal?.kind !== 'end' || !Number.isFinite(terminal.simClockMs) ||
     terminal.simClockMs < 0 || terminal.simClockMs > MAX_SIM_MS) {

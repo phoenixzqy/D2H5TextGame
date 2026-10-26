@@ -995,8 +995,8 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           (u) => u.life <= 0 && inferKind(u) !== 'summon'
         );
         // Validate the entire private list before generating or publishing either reward bag.
-        // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- Only absent optional finds default; malformed null must fail settlement.
-        const searchEnemies = findItemBonusEnemies(binding.findItemFinds === undefined ? [] : binding.findItemFinds, binding.engineInput,
+        const { findItemFinds = [] } = binding;
+        const searchEnemies = findItemBonusEnemies(findItemFinds, binding.engineInput,
           outcome.finalEnemyTeam, binding.heroId);
         if (slain.length > 0) {
           const now = Date.now();
