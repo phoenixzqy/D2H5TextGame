@@ -246,23 +246,44 @@ describe('real-clock initial condition exposure', () => {
     expect(summary.metrics.successfulTtkMs).toBeNull();
   });
 
-  it('rejects unsupported enemy lifecycle events, invalid clocks and source-less DoT', () => {
+  it('rejects unbacked enemy lifecycle events, invalid clocks and malformed periodic loss', () => {
     const fixture = buildMageComboFixture('paralyze'), actual = recordMageComboSeed(fixture, 'paralyze', 'elemental', 0);
     const target = required(fixture.snapshot.enemyTeam[0]);
     const bad: RecordedBattleEvent[] = [
       { kind: 'status', target: target.id, statusId: 'paralyze', simClockMs: 0, uiDelayMs: 50 },
       { kind: 'action', actor: target.id, skillId: null, simClockMs: 0, uiDelayMs: 50 },
       { kind: 'stunned', target: target.id, simClockMs: 6000, uiDelayMs: 50 },
-      { kind: 'dot', target: target.id, amount: 1, simClockMs: 0, uiDelayMs: 50 }
+      { kind: 'dot', target: target.id, amount: NaN, simClockMs: 0, uiDelayMs: 50 }
     ];
     for (const event of bad) {
       const events = [...actual.recorded.events, event].sort((a, b) => a.simClockMs - b.simClockMs);
-      expect(() => inspectMageComboBattle(fixture, 'paralyze', { ...actual.recorded, events }, 'elemental', 0)).toThrow();
+      expect(() => inspectMageComboBattle(fixture, 'paralyze', { events, result: { ...actual.recorded.result, events } }, 'elemental', 0)).toThrow();
     }
     for (const simClockMs of [-1, NaN, Infinity]) {
       const events = actual.recorded.events.map((event, index) => index === 0 ? { ...event, simClockMs } : event);
       expect(() => inspectMageComboBattle(fixture, 'paralyze', { ...actual.recorded, events }, 'elemental', 0)).toThrow();
     }
     expect(verifyMageComboDeterminism(fixture, 'paralyze', 'elemental')).toEqual({ repeatAA: true, returnABA: true, plainRecorded: true, inputPreserved: true });
+  });
+
+  it('replays periodic HP loss and a renewed observed condition after initial expiry', () => {
+    const fixture = buildMageComboFixture('chill'), actual = recordMageComboSeed(fixture, 'chill', 'elemental', 0);
+    const hero = required(fixture.snapshot.playerTeam[0]), target = required(fixture.snapshot.enemyTeam[0]);
+    const mages = actual.preparation.mages, mage = required(mages[0]);
+    const events: RecordedBattleEvent[] = [...actual.preparation.events,
+      { kind: 'damage', source: mage.id, target: target.id, damageType: 'fire', amount: 20, crit: false, dodged: false, simClockMs: 1940, uiDelayMs: 50 },
+      { kind: 'dot', target: target.id, amount: 7, simClockMs: 5999, uiDelayMs: 50 },
+      { kind: 'status-state', target: target.id, statuses: [{ id: 'chill', stacks: 1, remaining: 2,
+        appliedAtMs: 6000, expiresAtMs: 8000, sourceId: required(mages[1]).id }], simClockMs: 6000, uiDelayMs: 0 },
+      { kind: 'damage', source: mage.id, target: target.id, damageType: 'fire', amount: 1000, crit: false, dodged: false, simClockMs: 6001, uiDelayMs: 50 },
+      { kind: 'death', target: target.id, simClockMs: 6001, uiDelayMs: 50 },
+      { kind: 'end', winner: null, simClockMs: 6002, uiDelayMs: 50 }];
+    const recorded: RecordedBattleResult = { events, result: { events, winner: null, rounds: 1,
+      playerTeam: [{ ...hero, mana: 165 }, ...mages],
+      enemyTeam: fixture.snapshot.enemyTeam.map(unit => ({ ...unit, life: unit.id === target.id ? 0 : unit.life })) } };
+    const summary = inspectMageComboBattle(fixture, 'chill', recorded, 'elemental', 0).summary;
+    expect(summary.strata[0]).toMatchObject({ exposure: 'active', attempts: 2, effectiveHpRemoved: target.life - 7 });
+    expect(summary.strata[1]).toMatchObject({ exposure: 'expired', attempts: 0 });
+    expect(summary.metrics.periodic.againstEnemies).toEqual({ loggedDamage: 7, effectiveHpRemoved: 7, ticks: 1 });
   });
 });

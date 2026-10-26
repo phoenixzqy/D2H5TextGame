@@ -1,4 +1,4 @@
-import type { RecordedBattleResult } from '@/engine/combat/combat';
+import type { RecordedBattleEvent, RecordedBattleResult } from '@/engine/combat/combat';
 import { legacyRecordedEvents } from '@/test/combat-oracle';
 import { activeStatusView, expireStatuses } from '@/engine/combat/status';
 import { applyOrbs } from '@/engine/combat/orbs';
@@ -22,11 +22,12 @@ function legacyInput(fixture: MageComboFixture, expectedCase: MageComboCase): Ma
   return { ...value, hash: mageJsonHash(value) };
 }
 
-/** Replay frozen initial records at actual event clocks; no explicit expiry event is invented. */
+/** Replay initial and observed records at actual clocks, retaining source-less periodic HP loss. */
 function strata(fixture: MageComboFixture, recorded: RecordedBattleResult, mode: MageMasteryMode) {
   const units = new Map([...fixture.snapshot.playerTeam, ...fixture.snapshot.enemyTeam].map(unit => [unit.id, unit]));
   const enemyIds = new Set(fixture.snapshot.enemyTeam.map(unit => unit.id)), condition = fixture.recipe.caseId;
   const mageIds = recorded.events.flatMap(event => event.kind === 'summon' ? [event.unit.id] : []);
+  const hits = new Map<string, Extract<RecordedBattleEvent, { kind: 'damage' }>>();
   const rows = mageIds.flatMap((mageId, index) => (['flayer', 'horror-mage'] as const).flatMap(species =>
     (condition === 'none' ? ['none'] : ['active', 'expired']).map(exposure => ({
       mageId, type: mode === 'physical' ? 'physical' : required(['fire', 'cold', 'lightning', 'poison'][index]), species, exposure,
@@ -36,13 +37,19 @@ function strata(fixture: MageComboFixture, recorded: RecordedBattleResult, mode:
   for (const event of recorded.events) {
     // The accepted direct meter validates finite/nonnegative/nondecreasing clocks first.
     for (const [id, unit] of units) if (unit.life > 0) units.set(id, expireStatuses(unit, event.simClockMs));
-    const activeParalyze = (id: string) => condition === 'paralyze' && enemyIds.has(id) &&
+    const activeParalyze = (id: string) => enemyIds.has(id) &&
       activeStatusView(required(units.get(id)), event.simClockMs).statuses.some(status => status.id === 'paralyze');
-    if (event.kind === 'status' && enemyIds.has(event.target)) throw new Error('Mage combo unsupported enemy status refresh');
+    if (event.kind === 'status' && enemyIds.has(event.target)) {
+      const hit = hits.get(event.target);
+      const signatureTypes: Readonly<Record<string, string>> = { burn: 'fire', chill: 'cold', paralyze: 'lightning', poison: 'poison' };
+      if (!hit || hit.dodged || !mageIds.includes(hit.source) || hit.simClockMs !== event.simClockMs ||
+        signatureTypes[event.statusId] !== hit.damageType) throw new Error('Mage combo unbacked enemy status refresh');
+    }
     if (event.kind === 'action' && activeParalyze(event.actor)) throw new Error('Mage combo action during active paralyze');
     if (event.kind === 'stunned' && enemyIds.has(event.target) && !activeParalyze(event.target)) throw new Error('Mage combo unsupported enemy stun window');
     if (event.kind === 'summon') units.set(event.unit.id, event.unit);
     else if (event.kind === 'damage') {
+      hits.set(event.target, event);
       const target = units.get(event.target);
       if (!target) throw new Error('Mage combo unknown stratum target');
       const effective = event.dodged ? 0 : Math.min(Math.max(0, target.life), event.amount);
@@ -60,6 +67,10 @@ function strata(fixture: MageComboFixture, recorded: RecordedBattleResult, mode:
         const values = event.crit ? row.critValues : row.noncritValues;
         values[String(event.amount)] = (values[String(event.amount)] ?? 0) + 1;
       }
+    } else if (event.kind === 'dot' || event.kind === 'status-state') {
+      const target = required(units.get(event.target));
+      units.set(target.id, event.kind === 'dot' ? { ...target, life: Math.max(0, target.life - event.amount) }
+        : { ...target, statuses: event.statuses });
     } else if (event.kind === 'heal' || event.kind === 'orb' || event.kind === 'death') {
       const target = units.get(event.target);
       if (!target) throw new Error('Mage combo unknown HP target');
