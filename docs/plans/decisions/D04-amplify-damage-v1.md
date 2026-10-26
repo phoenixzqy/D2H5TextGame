@@ -95,3 +95,15 @@ Security check: PASS. Trusted local deterministic combat/data work; no external
 publication, credentials, dependency, permission or validation-bypass request.
 Producer read-only P08a02-D04-PLAN-REVIEW APPROVE: explicit authored duration,
 legacy defaults/zero/duplicates, physical-only boundary and serial slices accepted.
+
+## 2026-10-26 — Missing native/public acceptance continuation
+
+Existing authored duration/potency/legacy-family semantics remain unchanged.
+Root is sole author;no new independent approval is attributed to historical
+reviews. Four test/config paths add actual native projection/allocation/fresh-wave
+resources/active-curse seven-domain import and production public actual casting/
+network-disabled Continue. Canonical focused145/5filesPASS;external draft native7
+and browser4prechecksPASS. Canonical types/lint/browser/full/source/evidence/
+retention/cleanup remain pending. [Current evidence](../evidence/d04-amplify-damage-native.md)
+records exact numerical checks,test-authoring corrections,limits and root-owned
+active paths. No Amplify skill credit or earned campaign/balance change yet.
