@@ -18,6 +18,8 @@ import { isDecrepifyDefinition, resolveDecrepifyDefinition } from '../combat/dec
 import { isWeakenDefinition, resolveWeakenDefinition } from '../combat/weaken-definition';
 import { isDimVisionDefinition, resolveDimVisionDefinition } from '../combat/dim-vision-definition';
 import { isTerrorDefinition, resolveTerrorDefinition } from '../combat/terror-definition';
+import { isBoneWallDefinition, resolveBoneWallDefinition } from '../combat/bone-wall-definition';
+import { isBonePrisonDefinition, resolveBonePrisonDefinition } from '../combat/bone-prison-definition';
 import { targetCurseId, resolveTargetCurseDefinition, type TargetCurseId } from '../combat/target-curse-definition';
 import { resolveDamageCurseDefinition, type DamageCurseId } from '../combat/damage-curse-definition';
 import { MANA_BURN_DEFINITION } from '../combat/mana-burn-definition';
@@ -36,6 +38,7 @@ import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 import { HYDRA_DEFINITION, hydraBodyStats } from './hydra';
 
 export interface DisplaySkillSource {
+  readonly boneWall?: import('../types/skills').SkillDef['boneWall'];
   readonly skillRankBuff?: import('../types/skills').SkillDef['skillRankBuff'];
   readonly corpseWard?: import('../types/skills').SkillDef['corpseWard'];
   readonly corpseSearch?: import('../types/skills').SkillDef['corpseSearch'];
@@ -181,6 +184,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Finite paid personal barrier capacity after ordinary mitigation. */
+  readonly boneWall?: { readonly capacity: number; readonly durationSeconds: number };
   /** Finite party potency changes effective ranks, never permanent allocations. */
   readonly skillRankBuff?: { readonly bonusRanks: number; readonly durationSeconds: number };
   /** Wave-local paid ward timing; fear reuses ordinary timed Howl interruption. */
@@ -585,6 +590,10 @@ export function computeSkillRankDisplayStats(
     ? resolveDimVisionDefinition([skill]) : undefined;
   const terror = skill.id === 'skills-necromancer-terror' && isTerrorDefinition(skill)
     ? resolveTerrorDefinition([skill]) : undefined;
+  const boneWall = skill.id === 'skills-necromancer-bone-wall' && isBoneWallDefinition(skill)
+    ? resolveBoneWallDefinition([skill]) : undefined;
+  const bonePrison = skill.id === 'skills-necromancer-bone-prison' && isBonePrisonDefinition(skill)
+    ? resolveBonePrisonDefinition([skill]) : undefined;
   const damageCurse = resolveDamageCurseDefinition(skill);
   const targeting = targetCurseId(skill);
   const targetCurse = targeting === undefined ? undefined : resolveTargetCurseDefinition([skill], targeting);
@@ -653,7 +662,9 @@ export function computeSkillRankDisplayStats(
   const howl = skill.id === 'skills-barbarian-howl';
   const controlDefinition = (skill.damage !== undefined || leap || howl || skill.id === 'skills-sorceress-telekinesis') && skill.trigger === 'active' &&
     (controlId === 'chill' || controlId === 'stun' || controlId === 'paralyze' || controlId === 'howl') ? STATUS_DEFAULTS[controlId] : undefined;
-  const control = terror ? { durationSeconds: terror.durationMs / 1000,
+  const control = bonePrison ? { durationSeconds: bonePrison.durationMs / 1000,
+    bossDurationSeconds: Math.max(1, Math.floor(bonePrison.durationMs * bonePrison.bossDurationMultiplier)) / 1000
+  } : terror ? { durationSeconds: terror.durationMs / 1000,
     bossDurationSeconds: Math.max(1, Math.floor(terror.durationMs * terror.bossDurationMultiplier)) / 1000
   } : controlDefinition ? { durationSeconds: controlDefinition.duration,
     bossDurationSeconds: controlDefinition.duration * (controlDefinition.bossDurationMult ?? 1) } : undefined;
@@ -767,6 +778,8 @@ export function computeSkillRankDisplayStats(
     ...(strikesPerCast !== undefined ? { strikesPerCast } : {}),
     ...(strikesPerTarget !== undefined ? { strikesPerTarget } : {}),
     ...(criticalBonusPoints !== undefined ? { criticalBonusPoints } : {}),
+    ...(boneWall ? { boneWall: { capacity: boneWall.baseCapacity + boneWall.capacityPerRank * (safeRank - 1),
+      durationSeconds: boneWall.durationMs / 1000 } } : {}),
     ...(control ? { control } : {}),
     ...(manaBurn ? { manaBurn } : {}),
     ...(recovery ? { recovery } : {}),
