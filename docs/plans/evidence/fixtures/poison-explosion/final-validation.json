@@ -1,0 +1,311 @@
+{
+  "reviewer": "root-author",
+  "independentAcceptance": "open",
+  "sourceTestCommit": "761fa2f192a4043f901b28c308b63d846464f398",
+  "frozenBrowserHead": "05732820ced8d2562bec06927cb3a19699c66f2d",
+  "frozenTrackedInputs": 4860,
+  "nonDocBaselineExact": 2540,
+  "publicFilesExact": {
+    "tests/pwa/poison-explosion-acceptance.spec.ts": "940e00d0ea739731dfd9d7591b9be9d81265a601193214cd55eac054862f5037",
+    "tests/pwa/poison-explosion-acceptance.config.ts": "fec025b063bffe01dae09be4b2f71db0d1da108536b7fd2bdb917a791b03246f"
+  },
+  "productionBuildFilesExact": 762,
+  "genuineCompressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+  "genuineRawSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "inventoryUnchangedBeforeCredit": "211eca3eaca166afe63380f65e9ef179a5e9cbd27ae9b51a689406e7206afe4d",
+  "carriedFullSuite": "18100PASS/834files/two existing opt-in skips/1132.935s",
+  "carriedFullHead": "bee044a8e17fd9935f7d2d176afe177e273251f7",
+  "carryReason": "vitest.workspace.ts unchanged; includes src and tests/sim/production; both new paths are under tests/pwa and are not imported by unit tests",
+  "receipts": [
+    {
+      "label": "fixture-capacity-probe",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/fixture-capacity.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 5.302,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/fixture-capacity-probe.log",
+      "logBytes": 401,
+      "logSha256": "f839d4353b8a38a54cbf3ec56a45f8dab44ace30165449d629cee4d2f96f5178",
+      "pid": 449578,
+      "terminal": true
+    },
+    {
+      "label": "native-payment-probe",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/native-payment.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.402,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/native-payment-probe.log",
+      "logBytes": 408,
+      "logSha256": "259b91f6c4283513439c676e40e10850c8b885b41c4e3cdf66cad02f32fea31f",
+      "pid": 452268,
+      "terminal": true
+    },
+    {
+      "label": "official-build",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 12.833,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/official-build.log",
+      "logBytes": 1953,
+      "logSha256": "8e4e78e734807b939bf0e4ed851f69ceb38ab5fd9f7f3d1f849355e1bef3b22c",
+      "pid": 448026,
+      "terminal": true
+    },
+    {
+      "label": "official-precache",
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.208,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/official-precache.log",
+      "logBytes": 483,
+      "logSha256": "a227a1de6506b4d12c34677967ae59019178838dbf1a18baa27d0ec0914c3db4",
+      "pid": 448468,
+      "terminal": true
+    },
+    {
+      "label": "public-browser-batches",
+      "command": [
+        "env",
+        "PWA_PORT=4547",
+        "POISON_EXPLOSION_ACCEPTANCE_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/production-dist",
+        "POISON_EXPLOSION_ACCEPTANCE_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-batch-output",
+        "POISON_EXPLOSION_ACCEPTANCE_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-batch-report.json",
+        "node",
+        "node_modules/playwright/cli.js",
+        "test",
+        "--config",
+        "tests/pwa/poison-explosion-acceptance.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 137.842,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-browser-batches.log",
+      "logBytes": 1707,
+      "logSha256": "7a9a98e41b35fb4cc893b6643715b53ddffe84b709909dcd746c74c13075163c",
+      "pid": 452648,
+      "terminal": true
+    },
+    {
+      "label": "public-browser-initial",
+      "command": [
+        "env",
+        "PWA_PORT=4547",
+        "POISON_EXPLOSION_ACCEPTANCE_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/production-dist",
+        "POISON_EXPLOSION_ACCEPTANCE_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-initial-output",
+        "POISON_EXPLOSION_ACCEPTANCE_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-initial-report.json",
+        "node",
+        "node_modules/playwright/cli.js",
+        "test",
+        "--config",
+        "tests/pwa/poison-explosion-acceptance.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 16.528,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-browser-initial.log",
+      "logBytes": 4304,
+      "logSha256": "aac925981b6240a2cfac6638421eb4b8a22111e2981390006016541521e61338",
+      "pid": 448759,
+      "terminal": true
+    },
+    {
+      "label": "public-browser-sockets",
+      "command": [
+        "env",
+        "PWA_PORT=4547",
+        "POISON_EXPLOSION_ACCEPTANCE_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/production-dist",
+        "POISON_EXPLOSION_ACCEPTANCE_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-socket-output",
+        "POISON_EXPLOSION_ACCEPTANCE_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-socket-report.json",
+        "node",
+        "node_modules/playwright/cli.js",
+        "test",
+        "--config",
+        "tests/pwa/poison-explosion-acceptance.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 43.4,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-browser-sockets.log",
+      "logBytes": 4094,
+      "logSha256": "a1e9ef97be2731353e221bf4d99364cab92fc1821a6e22e59d489bd4ed7b4321",
+      "pid": 449976,
+      "terminal": true
+    },
+    {
+      "label": "public-lint-batches",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "tests/pwa/poison-explosion-acceptance.spec.ts",
+        "tests/pwa/poison-explosion-acceptance.config.ts",
+        "--no-ignore",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.061,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-lint-batches.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 452431,
+      "terminal": true
+    },
+    {
+      "label": "public-lint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "tests/pwa/poison-explosion-acceptance.spec.ts",
+        "tests/pwa/poison-explosion-acceptance.config.ts",
+        "--no-ignore",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.34,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-lint-final.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 448467,
+      "terminal": true
+    },
+    {
+      "label": "public-lint-initial",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "tests/pwa/poison-explosion-acceptance.spec.ts",
+        "tests/pwa/poison-explosion-acceptance.config.ts",
+        "--no-ignore",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 7.678,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-lint-initial.log",
+      "logBytes": 600,
+      "logSha256": "38c0d47ae8d0b97cc72258d2253e28dcef19ab8e34747a27ff1c34716fb69a08",
+      "pid": 448014,
+      "terminal": true
+    },
+    {
+      "label": "public-lint-sockets",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "tests/pwa/poison-explosion-acceptance.spec.ts",
+        "tests/pwa/poison-explosion-acceptance.config.ts",
+        "--no-ignore",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.312,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-lint-sockets.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 449826,
+      "terminal": true
+    },
+    {
+      "label": "public-types-batches",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--project",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/typecheck.public.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 6.853,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-types-batches.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 452434,
+      "terminal": true
+    },
+    {
+      "label": "public-types-final",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--project",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/typecheck.public.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 6.842,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-types-final.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 448469,
+      "terminal": true
+    },
+    {
+      "label": "public-types-initial",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--project",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/typecheck.public.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 2,
+      "durationSeconds": 5.242,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-types-initial.log",
+      "logBytes": 1903,
+      "logSha256": "f22259ccd454271b683134a518800b20556fd56f19da6a98982e3e7c5323e75a",
+      "pid": 448015,
+      "terminal": true
+    },
+    {
+      "label": "public-types-sockets",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--project",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/typecheck.public.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 6.874,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx/public-types-sockets.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 449825,
+      "terminal": true
+    }
+  ],
+  "browserAudit": "public-batch-audit.json",
+  "visualReview": "visual-review.json",
+  "nativeBoundary": "native-payment-diagnosis.json",
+  "retention": "pending after evidence consumers terminal",
+  "createdUnix": 1793041047.0099123
+}

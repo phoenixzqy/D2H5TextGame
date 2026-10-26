@@ -1,0 +1,183 @@
+{
+  "head": "05732820ced8d2562bec06927cb3a19699c66f2d",
+  "trackedInputsExact": 4860,
+  "publicFilesExact": {
+    "tests/pwa/poison-explosion-acceptance.spec.ts": "940e00d0ea739731dfd9d7591b9be9d81265a601193214cd55eac054862f5037",
+    "tests/pwa/poison-explosion-acceptance.config.ts": "fec025b063bffe01dae09be4b2f71db0d1da108536b7fd2bdb917a791b03246f"
+  },
+  "buildFilesExact": 762,
+  "nonDocBaselineExact": 2540,
+  "genuineCompressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+  "browserStats": {
+    "startTime": "2026-10-26T18:53:26.498Z",
+    "duration": 136966.96800000002,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "case": "desktop-en",
+      "status": "passed",
+      "durationMs": 33813,
+      "payment": {
+        "castLine": "PE Browser casts Poison Explosion.",
+        "opening": "PE Browser casts Teeth.",
+        "corpseBefore": "1",
+        "corpseAfter": "0",
+        "observedManaBeforeBatch": 10154,
+        "observedManaMax": 10155,
+        "observedManaAfterBatch": 10140,
+        "nativePrepaymentMana": 10155,
+        "nativePaymentCost": 15,
+        "poisonHit": "PE Browser attacks Bone Warrior D for 3 poison damage.",
+        "enemyDot": "Bone Warrior D takes 1 damage over time."
+      },
+      "geometryCount": 5,
+      "sevenDomainPairs": 2,
+      "actualOfflineContinue": true,
+      "consoleErrors": [],
+      "originalPngs": [
+        {
+          "path": "visual-originals/desktop-en-rank-1-stats.png",
+          "sha256": "93f1ad256ccb344b0a8e79f25b392e117a5e3d78ed30d8026798d5bce9193266",
+          "bytes": 12175
+        },
+        {
+          "path": "visual-originals/desktop-en-rank-2-stats.png",
+          "sha256": "514b27f9c7f1411d79e71c36c5b55a60daf4d5b704a583e4f83a088faf99696d",
+          "bytes": 11954
+        },
+        {
+          "path": "visual-originals/desktop-en-poison-battle-viewport.png",
+          "sha256": "b2efa801540b7d1c6288e930b7927e7733fb506dfb318b511903daf7e46bbfb3",
+          "bytes": 456522
+        }
+      ]
+    },
+    {
+      "case": "desktop-zh-CN",
+      "status": "passed",
+      "durationMs": 33387,
+      "payment": {
+        "castLine": "PE Browser 施放了 尸体剧毒爆破。",
+        "opening": "PE Browser 施放了 尸牙。",
+        "corpseBefore": "1",
+        "corpseAfter": "0",
+        "observedManaBeforeBatch": 10154,
+        "observedManaMax": 10155,
+        "observedManaAfterBatch": 10140,
+        "nativePrepaymentMana": 10155,
+        "nativePaymentCost": 15,
+        "poisonHit": "PE Browser 普攻 骸骨战士 D，造成 3 点毒素伤害。",
+        "enemyDot": "骸骨战士 D 因持续伤害受到 1 点伤害。"
+      },
+      "geometryCount": 5,
+      "sevenDomainPairs": 2,
+      "actualOfflineContinue": true,
+      "consoleErrors": [],
+      "originalPngs": [
+        {
+          "path": "visual-originals/desktop-zh-CN-rank-1-stats.png",
+          "sha256": "65fc069e483c9c8a5f79975562201e54dc26ceb05d1d7e6e7342160f530849bb",
+          "bytes": 12526
+        },
+        {
+          "path": "visual-originals/desktop-zh-CN-rank-2-stats.png",
+          "sha256": "68622764d23a20b06b7747a4ba28acdaa962cdf70195f2bea0ebacb9bc6f2746",
+          "bytes": 12324
+        },
+        {
+          "path": "visual-originals/desktop-zh-CN-poison-battle-viewport.png",
+          "sha256": "394d84f653067a33b00e96158ab2796b52855740a12d731a32d8fe446c3fbce9",
+          "bytes": 457511
+        }
+      ]
+    },
+    {
+      "case": "mobile-en",
+      "status": "passed",
+      "durationMs": 33704,
+      "payment": {
+        "castLine": "PE Browser casts Poison Explosion.",
+        "opening": "PE Browser casts Teeth.",
+        "corpseBefore": "1",
+        "corpseAfter": "0",
+        "observedManaBeforeBatch": 10154,
+        "observedManaMax": 10155,
+        "observedManaAfterBatch": 10140,
+        "nativePrepaymentMana": 10155,
+        "nativePaymentCost": 15,
+        "poisonHit": "PE Browser attacks Bone Warrior D for 3 poison damage.",
+        "enemyDot": "Bone Warrior D takes 1 damage over time."
+      },
+      "geometryCount": 5,
+      "sevenDomainPairs": 2,
+      "actualOfflineContinue": true,
+      "consoleErrors": [],
+      "originalPngs": [
+        {
+          "path": "visual-originals/mobile-en-rank-1-stats.png",
+          "sha256": "9a95922e79e910fbffef016e2d8355fc5149dcdbba3b5e0628b3eedaca0cfd8f",
+          "bytes": 48969
+        },
+        {
+          "path": "visual-originals/mobile-en-rank-2-stats.png",
+          "sha256": "14b68eb3bcfbed807a892ca356a137d702331672b9831482fa7809e264637e05",
+          "bytes": 48519
+        },
+        {
+          "path": "visual-originals/mobile-en-poison-battle-viewport.png",
+          "sha256": "75437910647c13d2d420ef948ceae2b66b6ea460d290d3c6739bbceb2fef9383",
+          "bytes": 143215
+        }
+      ]
+    },
+    {
+      "case": "mobile-zh-CN",
+      "status": "passed",
+      "durationMs": 32762,
+      "payment": {
+        "castLine": "PE Browser 施放了 尸体剧毒爆破。",
+        "opening": "PE Browser 施放了 尸牙。",
+        "corpseBefore": "1",
+        "corpseAfter": "0",
+        "observedManaBeforeBatch": 10154,
+        "observedManaMax": 10155,
+        "observedManaAfterBatch": 10140,
+        "nativePrepaymentMana": 10155,
+        "nativePaymentCost": 15,
+        "poisonHit": "PE Browser 普攻 骸骨战士 D，造成 3 点毒素伤害。",
+        "enemyDot": "骸骨战士 D 因持续伤害受到 1 点伤害。"
+      },
+      "geometryCount": 5,
+      "sevenDomainPairs": 2,
+      "actualOfflineContinue": true,
+      "consoleErrors": [],
+      "originalPngs": [
+        {
+          "path": "visual-originals/mobile-zh-CN-rank-1-stats.png",
+          "sha256": "98ddac6f20e237ca7a97a965d73b4e14a937e8367ff38075ca82ba996b980efa",
+          "bytes": 42400
+        },
+        {
+          "path": "visual-originals/mobile-zh-CN-rank-2-stats.png",
+          "sha256": "f4d7a51631f0531b9661574d96ee873ecc62ebb057a72e1c49bf668e84774ec8",
+          "bytes": 41970
+        },
+        {
+          "path": "visual-originals/mobile-zh-CN-poison-battle-viewport.png",
+          "sha256": "dd687eac6eb3272c98e379ca0d5bffa265045609271f4411fed08dfa727ac142",
+          "bytes": 136232
+        }
+      ]
+    }
+  ],
+  "originals": 12,
+  "sevenDomainPairs": 8,
+  "actualOfflineContinues": 4,
+  "geometryChecks": 20,
+  "visualInspection": "12 originals individually viewed and hash-bound in visual-review.json",
+  "fullSuite": "carried unchanged18100/834/two existing opt-in skips; no fresh full run for PWA-only files"
+}

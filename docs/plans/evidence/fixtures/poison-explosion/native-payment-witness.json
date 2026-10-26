@@ -1,0 +1,331 @@
+{
+  "handle": {
+    "runId": "areas/act1-catacombs",
+    "totalWaves": 6,
+    "runSeed": 2688559832,
+    "challengeOrdinal": 0
+  },
+  "id": "player-1792584000055",
+  "hero": {
+    "id": "player-1792584000055",
+    "name": "PE Browser",
+    "side": "player",
+    "level": 18,
+    "tier": "trash",
+    "stats": {
+      "life": 1000,
+      "lifeMax": 1000266,
+      "mana": 1000,
+      "manaMax": 10155,
+      "attack": 56,
+      "defense": 1000078,
+      "magicResist": 0,
+      "attackSpeed": 125,
+      "critChance": 0.05,
+      "critDamage": 2,
+      "physDodge": 0.1,
+      "magicDodge": 0.05,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "physical": 0,
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "arcane": 0,
+        "poison": 0
+      }
+    },
+    "life": 1000266,
+    "mana": 10155,
+    "manaRegenBaselinePerSecond": 5,
+    "manaRegenPerSecond": 5,
+    "increasedDamagePct": {
+      "fire": 0,
+      "lightning": 0
+    },
+    "physicalReflectionPct": 0,
+    "coldResistanceReductionPct": 0,
+    "staticFieldRank": 0,
+    "coldArmorRanks": {
+      "shiver-armor": 0,
+      "chilling-armor": 0
+    },
+    "periodicSpellRanks": {
+      "inferno": 0,
+      "fire-wall": 0,
+      "thunder-storm": 0
+    },
+    "fireGolemRank": 0,
+    "bloodGolemRank": 0,
+    "burstOfSpeedRank": 0,
+    "cloakOfShadowsRank": 0,
+    "manaRegenCarry": 0,
+    "manaRegenCompensation": 0,
+    "manaRegenExactCarry": "0",
+    "statuses": [],
+    "cooldowns": {},
+    "skillOrder": [
+      "skills-necromancer-poison-explosion",
+      "skills-necromancer-teeth"
+    ],
+    "skillLevels": {
+      "skills-necromancer-poison-dagger": 1,
+      "necromancer.poison_explosion": 2,
+      "necromancer.teeth": 1
+    },
+    "governedActiveRanks": {
+      "sorceress.fire_bolt": 0,
+      "sorceress.blaze": 0,
+      "sorceress.chain_lightning": 0,
+      "item.redemption": 0
+    },
+    "activeBuffIds": [],
+    "enraged": false,
+    "summonedAdds": false,
+    "kind": "hero",
+    "equippedWeapon": {},
+    "gridPosition": {
+      "row": 1,
+      "col": 1
+    },
+    "summonGridPositions": [
+      {
+        "row": 2,
+        "col": 0
+      },
+      {
+        "row": 2,
+        "col": 1
+      },
+      {
+        "row": 2,
+        "col": 2
+      },
+      {
+        "row": 0,
+        "col": 1
+      },
+      {
+        "row": 0,
+        "col": 2
+      },
+      {
+        "row": 1,
+        "col": 0
+      },
+      {
+        "row": 1,
+        "col": 2
+      },
+      {
+        "row": 0,
+        "col": 0
+      }
+    ]
+  },
+  "ci": 238,
+  "before": {
+    "kind": "mana",
+    "target": "player-1792584000055",
+    "mana": 10155,
+    "reason": "regeneration",
+    "simClockMs": 18000,
+    "uiDelayMs": 200
+  },
+  "cast": {
+    "kind": "action",
+    "actor": "player-1792584000055",
+    "skillId": "necromancer.poison_explosion",
+    "simClockMs": 18000,
+    "uiDelayMs": 50
+  },
+  "paid": {
+    "kind": "mana",
+    "target": "player-1792584000055",
+    "mana": 10140,
+    "reason": "cast",
+    "simClockMs": 18000,
+    "uiDelayMs": 50
+  },
+  "batch": [
+    233,
+    258,
+    18000
+  ],
+  "nearby": [
+    {
+      "kind": "damage",
+      "source": "enemy-act1.bone-warrior-5-00dc",
+      "target": "player-1792584000055",
+      "damageType": "physical",
+      "amount": 1,
+      "crit": false,
+      "dodged": false,
+      "simClockMs": 17800,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "action",
+      "actor": "enemy-act1.bone-warrior-0-d862",
+      "skillId": "monster.strong_melee",
+      "simClockMs": 17800,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "damage",
+      "source": "enemy-act1.bone-warrior-0-d862",
+      "target": "player-1792584000055",
+      "damageType": "physical",
+      "amount": 1,
+      "crit": false,
+      "dodged": false,
+      "simClockMs": 17800,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "mana",
+      "target": "player-1792584000055",
+      "mana": 10155,
+      "reason": "regeneration",
+      "simClockMs": 18000,
+      "uiDelayMs": 200
+    },
+    {
+      "kind": "action",
+      "actor": "enemy-act1.zombie-0-c58c",
+      "skillId": "monster.weak_melee",
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "damage",
+      "source": "enemy-act1.zombie-0-c58c",
+      "target": "player-1792584000055",
+      "damageType": "physical",
+      "amount": 1,
+      "crit": false,
+      "dodged": false,
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "action",
+      "actor": "enemy-act1.zombie-1-b1f2",
+      "skillId": "monster.weak_melee",
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "damage",
+      "source": "enemy-act1.zombie-1-b1f2",
+      "target": "player-1792584000055",
+      "damageType": "physical",
+      "amount": 1,
+      "crit": false,
+      "dodged": false,
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "action",
+      "actor": "player-1792584000055",
+      "skillId": "necromancer.poison_explosion",
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "mana",
+      "target": "player-1792584000055",
+      "mana": 10140,
+      "reason": "cast",
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "message",
+      "messageKey": "combat:corpses.consumedPoison",
+      "params": {
+        "count": 0
+      },
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "damage",
+      "source": "player-1792584000055",
+      "target": "enemy-act1.bone-warrior-0-d862",
+      "damageType": "poison",
+      "amount": 0,
+      "crit": false,
+      "dodged": true,
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "damage",
+      "source": "player-1792584000055",
+      "target": "enemy-act1.bone-warrior-2-0eae",
+      "damageType": "poison",
+      "amount": 0,
+      "crit": false,
+      "dodged": true,
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "damage",
+      "source": "player-1792584000055",
+      "target": "enemy-act1.bone-warrior-3-0b73",
+      "damageType": "poison",
+      "amount": 3,
+      "crit": false,
+      "dodged": false,
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "status",
+      "target": "enemy-act1.bone-warrior-3-0b73",
+      "statusId": "poison",
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "status-state",
+      "target": "enemy-act1.bone-warrior-3-0b73",
+      "statuses": [
+        {
+          "id": "poison",
+          "stacks": 1,
+          "remaining": 5,
+          "sourceId": "player-1792584000055",
+          "appliedAtMs": 18000,
+          "expiresAtMs": 23000,
+          "dotPerStack": 1,
+          "damageType": "poison"
+        }
+      ],
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "damage",
+      "source": "player-1792584000055",
+      "target": "enemy-act1.zombie-0-c58c",
+      "damageType": "poison",
+      "amount": 30,
+      "crit": false,
+      "dodged": false,
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    },
+    {
+      "kind": "status",
+      "target": "enemy-act1.zombie-0-c58c",
+      "statusId": "poison",
+      "simClockMs": 18000,
+      "uiDelayMs": 50
+    }
+  ]
+}

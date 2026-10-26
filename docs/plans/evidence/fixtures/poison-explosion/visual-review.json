@@ -1,0 +1,108 @@
+{
+  "reviewer": "root-author",
+  "independentAcceptance": "open",
+  "originals": [
+    {
+      "path": "visual-originals/desktop-en-rank-1-stats.png",
+      "sha256": "93f1ad256ccb344b0a8e79f25b392e117a5e3d78ed30d8026798d5bce9193266",
+      "bytes": 12175,
+      "individuallyViewed": true,
+      "reviewer": "root-author",
+      "observation": "All eight current rows readable and within element crop: literal rank damage,15MP,2s,Poison,5% final hit/s minimum1,5s,max10. Element crop alone does not show allocation/next stats/full panel or scrolling."
+    },
+    {
+      "path": "visual-originals/desktop-en-rank-2-stats.png",
+      "sha256": "514b27f9c7f1411d79e71c36c5b55a60daf4d5b704a583e4f83a088faf99696d",
+      "bytes": 11954,
+      "individuallyViewed": true,
+      "reviewer": "root-author",
+      "observation": "All eight current rows readable and within element crop: literal rank damage,15MP,2s,Poison,5% final hit/s minimum1,5s,max10. Element crop alone does not show allocation/next stats/full panel or scrolling."
+    },
+    {
+      "path": "visual-originals/desktop-en-poison-battle-viewport.png",
+      "sha256": "b2efa801540b7d1c6288e930b7927e7733fb506dfb318b511903daf7e46bbfb3",
+      "bytes": 456522,
+      "individuallyViewed": true,
+      "reviewer": "root-author",
+      "observation": "Actual1280x800 viewport: paused header,10140/10155 MP, one dead Bone Warrior and living enemies with localized Poison chips. Bottom enemy row/logs clipped below viewport. Pre-existing missing navigation glyphs visible."
+    },
+    {
+      "path": "visual-originals/desktop-zh-CN-rank-1-stats.png",
+      "sha256": "65fc069e483c9c8a5f79975562201e54dc26ceb05d1d7e6e7342160f530849bb",
+      "bytes": 12526,
+      "individuallyViewed": true,
+      "reviewer": "root-author",
+      "observation": "All eight current rows readable and within element crop: literal rank damage,15MP,2s,Poison,5% final hit/s minimum1,5s,max10. Element crop alone does not show allocation/next stats/full panel or scrolling."
+    },
+    {
+      "path": "visual-originals/desktop-zh-CN-rank-2-stats.png",
+      "sha256": "68622764d23a20b06b7747a4ba28acdaa962cdf70195f2bea0ebacb9bc6f2746",
+      "bytes": 12324,
+      "individuallyViewed": true,
+      "reviewer": "root-author",
+      "observation": "All eight current rows readable and within element crop: literal rank damage,15MP,2s,Poison,5% final hit/s minimum1,5s,max10. Element crop alone does not show allocation/next stats/full panel or scrolling."
+    },
+    {
+      "path": "visual-originals/desktop-zh-CN-poison-battle-viewport.png",
+      "sha256": "394d84f653067a33b00e96158ab2796b52855740a12d731a32d8fe446c3fbce9",
+      "bytes": 457511,
+      "individuallyViewed": true,
+      "reviewer": "root-author",
+      "observation": "Actual1280x800 viewport: paused header,10140/10155 MP, one dead Bone Warrior and living enemies with localized Poison chips. Bottom enemy row/logs clipped below viewport. Pre-existing missing navigation glyphs visible."
+    },
+    {
+      "path": "visual-originals/mobile-en-rank-1-stats.png",
+      "sha256": "9a95922e79e910fbffef016e2d8355fc5149dcdbba3b5e0628b3eedaca0cfd8f",
+      "bytes": 48969,
+      "individuallyViewed": true,
+      "reviewer": "root-author",
+      "observation": "All eight current rows readable and within element crop: literal rank damage,15MP,2s,Poison,5% final hit/s minimum1,5s,max10. Element crop alone does not show allocation/next stats/full panel or scrolling."
+    },
+    {
+      "path": "visual-originals/mobile-en-rank-2-stats.png",
+      "sha256": "14b68eb3bcfbed807a892ca356a137d702331672b9831482fa7809e264637e05",
+      "bytes": 48519,
+      "individuallyViewed": true,
+      "reviewer": "root-author",
+      "observation": "All eight current rows readable and within element crop: literal rank damage,15MP,2s,Poison,5% final hit/s minimum1,5s,max10. Element crop alone does not show allocation/next stats/full panel or scrolling."
+    },
+    {
+      "path": "visual-originals/mobile-en-poison-battle-viewport.png",
+      "sha256": "75437910647c13d2d420ef948ceae2b66b6ea460d290d3c6739bbceb2fef9383",
+      "bytes": 143215,
+      "individuallyViewed": true,
+      "reviewer": "root-author",
+      "observation": "Actual360x640 Pixel5 viewport at device scale2.75: paused header, wrapped controls,10140/10155 MP and hero. Enemy cards/chips and logs are below viewport; this screenshot does not visually establish them. Name wraps; pre-existing missing navigation glyphs visible. No horizontal overflow in measured five geometries."
+    },
+    {
+      "path": "visual-originals/mobile-zh-CN-rank-1-stats.png",
+      "sha256": "98ddac6f20e237ca7a97a965d73b4e14a937e8367ff38075ca82ba996b980efa",
+      "bytes": 42400,
+      "individuallyViewed": true,
+      "reviewer": "root-author",
+      "observation": "All eight current rows readable and within element crop: literal rank damage,15MP,2s,Poison,5% final hit/s minimum1,5s,max10. Element crop alone does not show allocation/next stats/full panel or scrolling."
+    },
+    {
+      "path": "visual-originals/mobile-zh-CN-rank-2-stats.png",
+      "sha256": "f4d7a51631f0531b9661574d96ee873ecc62ebb057a72e1c49bf668e84774ec8",
+      "bytes": 41970,
+      "individuallyViewed": true,
+      "reviewer": "root-author",
+      "observation": "All eight current rows readable and within element crop: literal rank damage,15MP,2s,Poison,5% final hit/s minimum1,5s,max10. Element crop alone does not show allocation/next stats/full panel or scrolling."
+    },
+    {
+      "path": "visual-originals/mobile-zh-CN-poison-battle-viewport.png",
+      "sha256": "dd687eac6eb3272c98e379ca0d5bffa265045609271f4411fed08dfa727ac142",
+      "bytes": 136232,
+      "individuallyViewed": true,
+      "reviewer": "root-author",
+      "observation": "Actual360x640 Pixel5 viewport at device scale2.75: paused header, wrapped controls,10140/10155 MP and hero. Enemy cards/chips and logs are below viewport; this screenshot does not visually establish them. Name wraps; pre-existing missing navigation glyphs visible. No horizontal overflow in measured five geometries."
+    }
+  ],
+  "limits": [
+    "No full a11y/contrast/real-device/manual-feel acceptance",
+    "Mobile chip proof is DOM chronology, not this viewport screenshot",
+    "Current stats are element crops; complete panels require vertical scrolling",
+    "No campaign win/clear or earned/balance claim"
+  ]
+}
