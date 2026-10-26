@@ -1726,6 +1726,7 @@ function applyEffect(
           t,
           {
             id: effect.statusId,
+            ...(effect.targetCurse === effect.statusId ? { targetCurse: effect.targetCurse } : {}),
             ...(effect.dimVision === true && effect.statusId === 'dim-vision' ? { dimVision: paidDimVision() } : {}),
             ...(effect.damageCurse === effect.statusId
               ? { damageCurse: paidDamageCurse(effect.damageCurse) } : {}),

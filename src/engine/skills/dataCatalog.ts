@@ -20,6 +20,7 @@ import { isTerrorDefinition } from '../combat/terror-definition';
 import { isWeakenDefinition } from '../combat/weaken-definition';
 import { isDimVisionDefinition } from '../combat/dim-vision-definition';
 import { damageCurseId } from '../combat/damage-curse-definition';
+import { targetCurseId } from '../combat/target-curse-definition';
 import type { DamageType } from '../types/attributes';
 import type { ComboTag, ConversionTuning, FeralRageTuning, HitSpeedStackTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
 import type { OnHitStatus, RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
@@ -297,16 +298,18 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
     const dimVision = skill.id === 'skills-necromancer-dim-vision' && isDimVisionDefinition(skill);
     const damageCurse = damageCurseId(skill);
     const terror = skill.id === 'skills-necromancer-terror' && isTerrorDefinition(skill);
+    const targetCurse = targetCurseId(skill);
     effects.push({
       kind: 'debuff',
       statusId: skill.appliesStatus[0],
-      ...((warcry || decrepify || weaken || dimVision || damageCurse !== undefined || terror) && skill.statusEffect?.durationMs !== undefined
+      ...((warcry || decrepify || weaken || dimVision || damageCurse !== undefined || terror || targetCurse !== undefined) && skill.statusEffect?.durationMs !== undefined
         ? { durationMs: skill.statusEffect.durationMs } : {}),
       ...(skill.id === 'skills-barbarian-battle-cry' ? { battleCry: true as const } : {}),
       ...(decrepify ? { decrepify: true as const } : {}),
       ...(weaken ? { weaken: true as const } : {}),
       ...(dimVision ? { dimVision: true as const } : {}),
       ...(terror ? { terror: true as const } : {}),
+      ...(targetCurse ? { targetCurse } : {}),
       ...(damageCurse ? { damageCurse } : {}),
       ...(amplifyMetadata?.durationMs !== undefined ? { durationMs: amplifyMetadata.durationMs } : {}),
       ...(amplifyMetadata?.physicalResistReductionPct !== undefined

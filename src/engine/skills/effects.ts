@@ -111,6 +111,8 @@ export interface BuffEffect {
 
 /** Debuff primitive (applies a status to enemies, no damage). */
 export interface DebuffEffect {
+  /** Complete authored target curse, captured under its own finite status on payment. */
+  readonly targetCurse?: 'confuse' | 'attract';
   /** Complete authored finite blindness, captured only when the action pays. */
   readonly dimVision?: true;
   /** Complete authored finite fear, captured only at actual payment. */
