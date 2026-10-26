@@ -2460,9 +2460,13 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
   if (skill.requires && owner.equippedWeapon !== undefined && !canCastSkill(skill, owner.equippedWeapon).ok) return;
   const rank = effectiveSkillLevel(state, owner, skill);
   const cap = resolveSummonMaxCount(effect, rank);
+  // The catalog limit describes learned capacity; paid Command may raise the
+  // effective count beyond it without authorizing an over-cap allocation.
+  const learnedRank = learnedSkillLevel(state, owner, skill);
+  const learnedCap = resolveSummonMaxCount(effect, learnedRank);
   const cost = effectiveManaCost(skill, rank);
   const cooldown = effectiveCooldown(skill, rank);
-  if (!Number.isInteger(rank) || rank <= 0 || !Number.isInteger(cap) || cap <= 0 || cap > effect.maxCount ||
+  if (!Number.isInteger(rank) || rank <= 0 || !Number.isInteger(cap) || cap <= 0 || learnedCap > effect.maxCount ||
     !Number.isFinite(cost) || !Number.isFinite(cooldown * SECONDS)) return;
   const missing = Math.max(0, cap - summonsOf(state, owner.id, effect.summonId).length);
   const candidates: CombatUnit[] = [];
@@ -2479,12 +2483,12 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
     state.preparationTemplates.set(owner.id, templates);
   }
   templates.add(effect.summonId);
-  const druidTemplate = qualifyDruidSummon(owner, skill, rank);
+  const druidTemplate = qualifyDruidSummon(owner, skill, learnedRank);
   const bindDruidBodies = () => {
     if (!druidTemplate) return;
     for (const body of summonsOf(state, owner.id, druidTemplate).slice(0, cap)) {
       if (isDruidSummonBody(body, owner.id, druidTemplate)) state.druidSummons.set(body.id,
-        { ownerId: owner.id, template: druidTemplate, skillId: skill.id, rank });
+        { ownerId: owner.id, template: druidTemplate, skillId: skill.id, rank: learnedRank });
     }
   };
   if (missing === 0) { bindDruidBodies(); return; }
@@ -2492,8 +2496,8 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
   const registered = castSkill(state, owner.id, skill, { summonId: effect.summonId, units: candidates });
   if (registered?.length === candidates.length) bindDruidBodies();
   if (registered?.length === candidates.length && effect.summonId === 'fire_golem' &&
-    qualifyFireGolem(owner, skill, rank)) {
-    for (const body of registered) state.fireGolems.set(body.id, { ownerId: owner.id, rank });
+    qualifyFireGolem(owner, skill, learnedRank)) {
+    for (const body of registered) state.fireGolems.set(body.id, { ownerId: owner.id, rank: learnedRank });
   }
   if (registered?.length === candidates.length && effect.summonId === 'blood_golem') {
     // Command raises paid body potency, including20→21; it never replaces learned authority.
@@ -2509,11 +2513,12 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
     owner.summon === true || owner.ownerId !== undefined || owner.summonOwnerId !== undefined ||
     !Number.isFinite(owner.life) || owner.life <= 0 ||
     !Number.isInteger(owner.level) || owner.level < skill.minLevel) return;
-  // Match effectiveSkillLevel's first-positive precedence without accepting its flooring/default.
+  // Match learned authority without mistaking a genuinely paid +1 for allocation.
   const rawRank = skillLevelCandidates(skill).map(id => owner.skillLevels?.[id])
     .find(level => typeof level === 'number' && level > 0);
   if (rawRank === undefined || !Number.isFinite(rawRank) || !Number.isInteger(rawRank) ||
-    rawRank < 1 || rawRank > SKELETAL_MAGE_DEFINITION.maxRank || rawRank !== rank) return;
+    rawRank < 1 || rawRank > SKELETAL_MAGE_DEFINITION.maxRank ||
+    rawRank !== rank - (paidRankBonus(state, owner) ?? 0)) return;
   registered.forEach((unit, index) => {
     if (unit.side !== 'player' || unit.kind !== 'summon' || unit.summon !== true ||
       unit.summonTemplateId !== 'skeletal_mage' || unit.summonOwnerId !== owner.id ||
