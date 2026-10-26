@@ -1,0 +1,37 @@
+{
+  "scope": "Explanation of repeated bridge scan only; no source/build change",
+  "correction": "The initial scan patterns were already valid. The repeat added explicit positive/negative controls. The archived later scan record incorrectly called the initial patterns overescaped.",
+  "patternsIdentical": true,
+  "controls": {
+    "bridge-scan-initial.json": {
+      "seedItem": {
+        "positive": true,
+        "negative": true
+      },
+      "seedMerc": {
+        "positive": true,
+        "negative": true
+      },
+      "installTestBridge": {
+        "positive": true,
+        "negative": true
+      }
+    },
+    "bridge-scan.json": {
+      "seedItem": {
+        "positive": true,
+        "negative": true
+      },
+      "seedMerc": {
+        "positive": true,
+        "negative": true
+      },
+      "installTestBridge": {
+        "positive": true,
+        "negative": true
+      }
+    }
+  },
+  "bothBuildScansPassed": true,
+  "archiveUnchanged": true
+}

@@ -54,3 +54,18 @@ Write a reviewed shared effective-rank contract before implementation. Address
 caster/allied scope, learned-only eligibility, caps, prerequisites, equipment and
 merc grants, passives, timed expiry, pre-existing paid effects, summons, wave carry,
 recomposition and save purity. Preserve existing skill-specific authority checks.
+
+## Incremental repair progress
+
+`318ed060` implements the first dependency: explicit learned-versus-effective
+rank arithmetic and one native Barbarian passive projection. Allocated20 can
+compose as effective21 without granting an unlearned/locked/foreign/weapon-
+mismatched passive or altering saved allocation.57new tests, engine8406/313,
+full16932/762/two existing skips, final types/lint/build/precache and bridge
+checks pass. [Evidence](../../docs/plans/evidence/d06-temporary-skill-ranks.md).
+
+This does not activate the actual command. The paid party effect, effective
+active/specialist/corpse ranks, passive application/removal and life/recovery,
+paid snapshots, expiry/death, wave carry, bilingual UI and production persistence
+remain unfinished. The original command reproduction is still open; no bounded
+skill credit or independent acceptance is added by the dependency increment.

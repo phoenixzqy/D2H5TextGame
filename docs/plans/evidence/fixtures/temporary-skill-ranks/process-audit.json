@@ -1,0 +1,67 @@
+{
+  "identities": [
+    {
+      "label": "build",
+      "pid": 3391989,
+      "startTicks": 90594024,
+      "originalIdentityAbsent": true
+    },
+    {
+      "label": "engine",
+      "pid": 3387493,
+      "startTicks": 90585822,
+      "originalIdentityAbsent": true
+    },
+    {
+      "label": "full",
+      "pid": 3419047,
+      "startTicks": 90617322,
+      "originalIdentityAbsent": true
+    },
+    {
+      "label": "lint",
+      "pid": 3391876,
+      "startTicks": 90593906,
+      "originalIdentityAbsent": true
+    },
+    {
+      "label": "passive-green",
+      "pid": 3386450,
+      "startTicks": 90579597,
+      "originalIdentityAbsent": true
+    },
+    {
+      "label": "passive-red",
+      "pid": 3384875,
+      "startTicks": 90576827,
+      "originalIdentityAbsent": true
+    },
+    {
+      "label": "precache",
+      "pid": 3396815,
+      "startTicks": 90599908,
+      "originalIdentityAbsent": true
+    },
+    {
+      "label": "rank-boundaries",
+      "pid": 3387278,
+      "startTicks": 90584092,
+      "originalIdentityAbsent": true
+    },
+    {
+      "label": "types-final",
+      "pid": 3413862,
+      "startTicks": 90606634,
+      "originalIdentityAbsent": true
+    },
+    {
+      "label": "types",
+      "pid": 3387545,
+      "startTicks": 90585941,
+      "originalIdentityAbsent": true
+    }
+  ],
+  "taskEnvironmentConsumers": [],
+  "allTerminal": true,
+  "processesSignalled": []
+}

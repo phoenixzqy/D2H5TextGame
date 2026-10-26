@@ -1,0 +1,19 @@
+{
+  "chunks": [
+    "game-engine-CqIzUXqx.js",
+    "i18n-Bxr3rY09.js",
+    "index-Crw9JaSu.js",
+    "react-vendor-dRBhy6jq.js",
+    "validation-vendor-ejvZqCB8.js"
+  ],
+  "patterns": {
+    "__GAME__": "__GAME__",
+    "seedItem": "\\bseedItem\\b",
+    "seedMerc": "\\bseedMerc\\b",
+    "installTestBridge": "\\binstallTestBridge\\b",
+    "flushSave property": "[,{]flushSave:"
+  },
+  "violations": [],
+  "scannerPositiveNegativeControls": true,
+  "supersedes": "Initial scan repeated with explicit positive/negative controls; the archived overescape diagnosis was mistaken. See scan-diagnosis-correction.json."
+}

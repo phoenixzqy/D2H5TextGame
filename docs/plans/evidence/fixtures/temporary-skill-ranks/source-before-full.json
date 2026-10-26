@@ -1,0 +1,14 @@
+{
+  "docs/plans/decisions/D06-temporary-skill-ranks-v1.md": "083d80df23e181430ec0413aed78d4d0082cc061ae883bb3e2d53c90ce9f14d3",
+  "src/engine/skills/barbarian-endurance.ts": "32d54e9b830edfcddd1d05f097dd13f113d3077e531a084abf9ee7153f155ff9",
+  "src/engine/skills/barbarian-passives.test.ts": "8fecb614795829690bc2afb2652ef0104fa6ee63ccd9b0aaa09a047031850231",
+  "src/engine/skills/barbarian-passives.ts": "0d55d4271f9394988edb1b470abf08817f241795287ee220d6ce7be234555041",
+  "src/engine/skills/barbarian-temporary-ranks.test.ts": "321c148b13cbed4231bb74ce18c39851156263bf20b4ab30c182d27d7b4d4310",
+  "src/engine/skills/barbarian-warcries.ts": "b33d80a6246e80392a5cc0b265ad599481f59388c5fdafac60f5cce12b23775b",
+  "src/engine/skills/barbarian-weapon-masteries.ts": "418af361ee1942f449cd6568cedec3f900059f4c2cf64952052c9675958bd4d2",
+  "src/engine/skills/effective-rank.test.ts": "ac697b88ba9c2a67bd49ff3bc271db0f690accbf08f6971524185fae971a4596",
+  "src/engine/skills/effective-rank.ts": "b186a11816f27f31d87571a4ec7a4e027398a515ff7042a89382d75d612dce35",
+  "src/engine/skills/iron-skin.ts": "e70b50916a8250204909f2fdb5be8d79b62fa014fb05e4ba03eade35898de54a",
+  "src/stores/barbarian-passive-composition.test.ts": "2b6388448b2be51c17852477b381f683e2d8b9fa3b0862a89bd6faf73c6f1c04",
+  "src/stores/combatHelpers.ts": "3120931e42236a9bf4af9b23f5fdc6d51cf121bc5fdb80fcb1e5d9e70779b0e4"
+}

@@ -1,0 +1,13 @@
+{
+  "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-battle-command-ranks-4sotuf64",
+  "scratchAbsent": true,
+  "evidenceFilesArchivedAndRemoved": 35,
+  "buildFilesRemoved": 761,
+  "runtimeFilesRemoved": 540,
+  "totalFilesRemoved": 1336,
+  "totalDirectoriesRemoved": 17,
+  "allTaskConsumersTerminal": true,
+  "processesSignalled": [],
+  "remainingDisposablePaths": [],
+  "failures": []
+}

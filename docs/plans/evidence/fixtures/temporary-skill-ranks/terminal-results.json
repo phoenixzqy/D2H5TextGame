@@ -1,0 +1,174 @@
+{
+  "build": {
+    "command": [
+      "env",
+      "VITE_E2E=false",
+      "npm",
+      "run",
+      "build",
+      "--",
+      "--outDir",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-battle-command-ranks-4sotuf64/dist",
+      "--emptyOutDir"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 22.799,
+    "identity": {
+      "pid": 3391989,
+      "procStat": "3391989 (env) R 3391981 3391981 3391981 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 90594024 11788288 0 18446744073709551615 97454930841600 97454935787197 140736002658832 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 97454939719376 97454941204248 97455705489408 140736002664419 140736002664567 140736002664567 140736002670571 0\n"
+    },
+    "logSha256": "72740b3c7d5636243a2c26b642d66302ab581baf2ade6349ccfd74b3c7635815"
+  },
+  "engine": {
+    "command": [
+      "npm",
+      "run",
+      "test:engine",
+      "--",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 178.405,
+    "identity": {
+      "pid": 3387493,
+      "procStat": "3387493 (npm) R 3387492 3387492 3387492 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 90585822 11788288 0 18446744073709551615 96657064312832 96657069258429 140726846776464 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 96657073190608 96657074675480 96657855102976 140726846785510 140726846785616 140726846785616 140726846791620 0\n"
+    },
+    "logSha256": "bbc35d061d85d03aed7c6ecd0e341c8ee4e572992c9babdfb98605a43f6ee4fa"
+  },
+  "full": {
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 869.901,
+    "identity": {
+      "pid": 3419047,
+      "procStat": "3419047 (npm) R 3419046 3419046 3419046 0 -1 4194304 8 0 0 0 0 0 0 0 20 0 1 0 90617322 11788288 0 18446744073709551615 107155766972416 107155771918013 140726644230928 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 107155775850192 107155777335064 107156019445760 140726644234225 140726644234320 140726644234320 140726644240324 0\n"
+    },
+    "logSha256": "b07db00d1ca80759ae9e1f7fd3bbf7025d826c50ac42b3bbdc2d0705e44f409c"
+  },
+  "lint": {
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 219.108,
+    "identity": {
+      "pid": 3391876,
+      "procStat": "3391876 (npm) R 3391862 3391862 3391862 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 90593906 11788288 0 18446744073709551615 97716154150912 97716159096509 140721128982784 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 97716163028688 97716164513560 97716898922496 140721128986625 140721128986704 140721128986704 140721128992708 0\n"
+    },
+    "logSha256": "f487f5c3f1cf906dfb3d35b40ee907baaaef4e6e8f9c0139e511dc64f3f019f0"
+  },
+  "passive-green": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/barbarian-temporary-ranks.test.ts",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 2.526,
+    "identity": {
+      "pid": 3386450,
+      "procStat": "3386450 (npx) R 3386449 3386449 3386449 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 90579597 11788288 0 18446744073709551615 95242944884736 95242949830333 140726813827984 0 0 0 0 0 0 0 0 0 17 13 0 0 0 0 0 95242953762512 95242955247384 95243666030592 140726813833146 140726813833296 140726813833296 140726813839300 0\n"
+    },
+    "logSha256": "9ef26dd4be6f10de1605518c1cd6540270d5d994bdfe6196731fc9ffbf9587ab"
+  },
+  "passive-red": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/barbarian-temporary-ranks.test.ts",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 2.854,
+    "identity": {
+      "pid": 3384875,
+      "procStat": "3384875 (npx) R 3384874 3384874 3384874 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 90576827 11788288 33 18446744073709551615 98528871526400 98528876471997 140735480171888 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 98528880404176 98528881889048 98529776558080 140735480174522 140735480174672 140735480174672 140735480180676 0\n"
+    },
+    "logSha256": "1fa6368b86186c92af78e3fe69223ecb1e42f8095cf447266140da11c6cbac45"
+  },
+  "precache": {
+    "command": [
+      "node",
+      "scripts/check-offline-precache.mjs",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-battle-command-ranks-4sotuf64/dist"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 0.087,
+    "identity": {
+      "pid": 3396815,
+      "procStat": "3396815 (node) R 3396808 3396803 3396803 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 90599908 107352064 0 18446744073709551615 7626752 52430497 140730464189712 0 0 0 0 0 0 0 0 0 17 13 0 0 0 0 0 112535000 112706784 358551552 140730464192462 140730464192591 140730464192591 140730464198595 0\n"
+    },
+    "logSha256": "ea802abe0830d315d56da3fbb698bc08f70154275697003870cb4dde1e2fb95d"
+  },
+  "rank-boundaries": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/effective-rank.test.ts",
+      "src/engine/skills/barbarian-temporary-ranks.test.ts",
+      "src/engine/skills/barbarian-passives.test.ts",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 2.872,
+    "identity": {
+      "pid": 3387278,
+      "procStat": "3387278 (npx) R 3387277 3387277 3387277 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 90584092 11788288 0 18446744073709551615 105364359999488 105364364945085 140734108804192 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 105364368877264 105364370362136 105364692885504 140734108813156 140734108813392 140734108813392 140734108819396 0\n"
+    },
+    "logSha256": "26daf1ac70feacd033cd9bf7570e16950b6aca35f558055f2e2b0418a7b58ab0"
+  },
+  "types-final": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 100.709,
+    "identity": {
+      "pid": 3413862,
+      "procStat": "3413862 (npm) R 3413836 3413836 3413836 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 90606634 11788288 32 18446744073709551615 109604343955456 109604348901053 140734013275792 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 109604352833232 109604354318104 109604892356608 140734013282300 140734013282384 140734013282384 140734013288388 0\n"
+    },
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+  },
+  "types": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 148.759,
+    "identity": {
+      "pid": 3387545,
+      "procStat": "3387545 (npm) R 3387544 3387544 3387544 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 90585941 11788288 42 18446744073709551615 98102162321408 98102167267005 140730609094560 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 98102171199184 98102172684056 98103234027520 140730609100796 140730609100880 140730609100880 140730609106884 0\n"
+    },
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+  }
+}

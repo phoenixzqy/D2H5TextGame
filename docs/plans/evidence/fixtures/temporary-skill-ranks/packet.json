@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "318ed06062fd5e3304926a86393f6c5016a84bfd",
+  "sourcePaths": 12,
+  "buildFiles": 761,
+  "fullTestsPassed": 16932,
+  "existingSkippedTests": 2,
+  "fullFilesPassed": 762,
+  "independentAcceptance": false,
+  "battleCommandImplemented": false,
+  "skillCreditAdded": 0,
+  "retainedArchive": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-battle-command-ranks-retained-_3nc9mxo.tar.xz",
+    "sha256": "517cf77651826840a1af581e1a65796fd32708bb4f4ba6a111d163c85ec460ea",
+    "bytes": 79636,
+    "regularMembers": 35,
+    "allMemberBytesVerified": true,
+    "owner": "/root",
+    "removeWhen": "Root removes this exact archive after the original RED/scan diagnostics and BUG241/full-v1 acceptance evidence consumers finish."
+  },
+  "diagnosticCorrection": "scan-diagnosis-correction.json supersedes the archived mistaken explanation of initial pattern escaping; both scans had valid patterns and passed."
+}

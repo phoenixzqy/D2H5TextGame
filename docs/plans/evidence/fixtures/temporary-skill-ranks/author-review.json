@@ -1,0 +1,12 @@
+{
+  "author": "/root; sole author/reviewer",
+  "independentAcceptance": false,
+  "correctness": "Explicit resolved learned rank plus validated temporary bonus; allocation remains capped separately; no authority for unlearned ranks. Existing class/level/weapon gates and native stat arithmetic are preserved.",
+  "architecture": "One pure effective-rank helper is used by four existing passive composers; one aggregate projection is now consumed by the native hero boundary. No global rank context, copied stat formula or persistent bonus.",
+  "security": "No dependency, network, credentials, CI, genuine-save or permission changes. Imported temporary bonus fields are ignored by native composition; private paid authority remains future BUG241 work.",
+  "performance": "Only constant-size once-per-native-composition additions; no scheduler/hot-loop or rendering change.",
+  "scope": "Rank and passive-composition increment only. Battle Command casting, party recipients, expiry, active/specialized ranks, resource/life handling, wave carry and UI remain unfinished. No skill inventory credit.",
+  "findings": [],
+  "sourcePathsFrozen": 12,
+  "sourceDrift": []
+}
