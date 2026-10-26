@@ -72,6 +72,23 @@ export interface BattleCommandGrant {
   readonly expiresAtMs: number;
 }
 
+/** Fresh native stats at one authorized passive potency; resources remain battle-owned. */
+export type BattleCommandPassiveProfile = Required<Pick<CombatUnit,
+  'manaRegenPerSecond' | 'manaRegenBaselinePerSecond' | 'increasedDamagePct'>> & {
+    readonly stats: Omit<CombatUnit['stats'], 'life' | 'mana'>;
+  };
+
+/** Copy native composition without retaining mutable stats or damage maps. */
+export function captureBattleCommandPassiveProfile(unit: Pick<CombatUnit,
+  'stats' | 'manaRegenPerSecond' | 'manaRegenBaselinePerSecond' | 'increasedDamagePct'>): BattleCommandPassiveProfile {
+  const { life: _life, mana: _mana, ...potency } = unit.stats;
+  return Object.freeze({ stats: Object.freeze({ ...potency,
+    resistances: Object.freeze({ ...unit.stats.resistances }) }),
+    manaRegenPerSecond: unit.manaRegenPerSecond ?? 0,
+    manaRegenBaselinePerSecond: unit.manaRegenBaselinePerSecond ?? 0,
+    increasedDamagePct: Object.freeze({ ...unit.increasedDamagePct }) });
+}
+
 /** Half-open active interval, independent of whether the already-paid source survives. */
 export function battleCommandBonus(unit: CombatUnit, clock: number,
   grants: ReadonlyMap<string, BattleCommandGrant>): number {

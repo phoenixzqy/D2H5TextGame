@@ -95,8 +95,14 @@ describe('P07a04B fresh combat-only Iron Skin adapter', () => {
     expect(plain.stats.defense).toBe(21);
     expect.soft(learned.stats.defense).toBeCloseTo(21.84, 12);
     expect(learned.stats.magicResist).toBe(11);
+    const profiles = plain.battleCommandPassives;
+    if (!profiles) throw new Error('Missing native passive profiles');
+    expect(learned.battleCommandPassives).toEqual({
+      baseline: { ...profiles.baseline, stats: { ...profiles.baseline.stats, defense: 21.84 } },
+      boosted: { ...profiles.boosted, stats: { ...profiles.boosted.stats, defense: 22.68 } }
+    });
     expect({ ...learned, stats: { ...learned.stats, defense: plain.stats.defense },
-      skillLevels: plain.skillLevels }).toEqual(plain);
+      skillLevels: plain.skillLevels, battleCommandPassives: profiles }).toEqual(plain);
     expect([learned.life, learned.mana, learned.manaRegenCarry, learned.manaRegenCompensation,
       learned.manaRegenExactCarry]).toEqual([31, 17, 0, 0, '0']);
     expect({ hero, equipped: useInventoryStore.getState().equipped }).toEqual(before);

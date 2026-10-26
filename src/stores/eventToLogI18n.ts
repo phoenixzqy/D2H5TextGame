@@ -66,6 +66,7 @@ export function eventToLocalizedLogEntry(
   const getName = (id: string): string => unitMap?.get(id) ?? id;
 
   switch (event.kind) {
+    case 'stats-state':
     case 'life-capacity':
     case 'mana':
       return null;

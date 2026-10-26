@@ -75,6 +75,27 @@ afterEach(() => {
 });
 
 describe('Barbarian warcries native allocation, recording, reset and persistence', () => {
+  it('refreshes Command authority and both passive profiles from the next-wave player without changing the paid recording', () => {
+    arrange({ ...allocations, 'barbarian.battle_command': 1 });
+    usePlayerStore.setState({ player: { ...player(), comboOrder: ['barbarian.battle_command', FINISHER] } });
+    start();
+    const before = recording(), initial = currentHero();
+    expect(initial.battleCommandRank).toBe(1);
+    expect({ ...initial.stats, ...initial.battleCommandPassives?.baseline.stats }).toEqual(initial.stats);
+    expect(before.events.some(event => event.kind === 'action' && event.skillId === 'barbarian.battle_command')).toBe(true);
+    expect(before.outcome?.finalPlayerTeam[0]?.stats).toEqual({ ...initial.stats, ...initial.battleCommandPassives?.boosted.stats });
+    const skillLevels = { 'barbarian.howl': 1, 'barbarian.shout': 1, 'barbarian.battle_orders': 1 };
+    usePlayerStore.setState({ player: { ...player(), skillLevels, comboOrder: [FINISHER] } });
+    const fresh = playerToCombatUnit(player());
+    expect(recording()).toEqual(before);
+    drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
+    expect(currentHero().battleCommandRank).toBe(0);
+    expect(currentHero().battleCommandPassives).toEqual(fresh.battleCommandPassives);
+    expect(currentHero().stats).toEqual(fresh.stats);
+    expect(useCombatStore.getState().recordedEvents.some(event => event.kind === 'action' &&
+      event.skillId === 'barbarian.battle_command')).toBe(false);
+  });
+
   it('learns both natively; only the next wave gains bonuses, with carried resources and no healing', () => {
     arrange(); start();
     const before = recording(), baseline = structuredClone(currentHero());

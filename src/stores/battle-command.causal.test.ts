@@ -26,6 +26,8 @@ function fixture(rank = 1, seed = 7): CombatSnapshot {
     stats: { ...native.stats, lifeMax: 1000000, manaMax: 100, attack: 0, attackSpeed: 100,
       defense: 0, magicResist: 0, critChance: 0, physDodge: 0, magicDodge: 0,
       resistances: { physical: 0, fire: 0, cold: 0, lightning: 0, arcane: 0, poison: 0 } } };
+  // Fixed diagnostic stats deliberately replace native passive composition.
+  Reflect.deleteProperty(hero, 'battleCommandPassives');
   const ally: CombatUnit = { ...hero, id: 'ally', kind: 'merc', skillOrder: [probe],
     skillLevels: { [probe]: 1 }, stats: { ...hero.stats, attackSpeed: 50 } };
   const enemy: CombatUnit = { ...ally, id: 'enemy', side: 'enemy', kind: 'monster',
@@ -60,9 +62,18 @@ it.each([1, 2, 20])('paid Command rank%i raises caster/allied potency only durin
   for (const seed of [7, 19, 41, 97]) {
     const input = fixture(rank, seed), out = record(input), expiry = 1700 + 8000 + 500 * (rank - 1);
     registerSkill({ id: 'fixture.inert-command', archetype: 'fixture', target: 'self', minLevel: 1,
-      cooldown: 4, manaCost: Math.round(11 - .1 * (rank - 1)), effects: [] });
+      cooldown: 4, manaCost: Math.round(11 - .1 * (rank - 1)), isBuff: true,
+      effects: [{ kind: 'buff', id: 'fixture.inert-command', duration: 60 }] });
     const control = record({ ...input, playerTeam: input.playerTeam.map(u => u.id === 'hero'
       ? { ...u, skillOrder: ['fixture.inert-command', probe] } : u) });
+    expect(control.events.filter(e => e.kind === 'action' && e.skillId === 'fixture.inert-command')).toEqual([
+      expect.objectContaining({ simClockMs: 1700 })]);
+    expect(control.events.filter(e => e.kind === 'mana' && e.reason === 'cast'))
+      .toEqual(out.events.filter(e => e.kind === 'mana' && e.reason === 'cast'));
+    const actions = (events: typeof out.events) => events.flatMap(e => e.kind === 'action'
+      ? [{ actor: e.actor, skillId: e.skillId === 'fixture.inert-command' ? command : e.skillId,
+        at: e.simClockMs }] : []);
+    expect(actions(control.events)).toEqual(actions(out.events));
     expect(out.events.filter(e => e.kind === 'action' && e.skillId === command)).toHaveLength(1);
     expect(out.events.filter(e => e.kind === 'mana' && e.reason === 'cast')).toHaveLength(1);
     expect(out.result.playerTeam[0]?.mana).toBe(0);

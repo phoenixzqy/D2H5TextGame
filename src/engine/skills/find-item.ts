@@ -8,6 +8,7 @@ import type { RegisteredSkill } from './effects';
 import { createSkillValidator } from './skill-validator';
 import { composeFindPotion } from './find-potion';
 import type { Rng } from '../rng';
+import { validCapturedSkillRank } from './effective-rank';
 
 /** Exact learned identities; marker buffs or equipment never grant a search. */
 export const FIND_ITEM_IDS = ['skills-barbarian-find-item', 'barbarian.find_item'] as const;
@@ -92,21 +93,27 @@ export function findItemRank(unit: CombatUnit, authority: ReadonlyMap<string, nu
   return authority.get(unit.id) ?? 0;
 }
 
-/** Return the reviewed rank probability, refusing invalid ranks rather than clamping. */
-export function findItemChance(rank: number): number {
-  if (!Number.isInteger(rank) || rank < 1 || rank > FIND_ITEM_DEFINITION.maxRank) throw new Error('Invalid Find Item rank');
+/** Return captured paid potency's probability; plain ranks retain their allocation cap. */
+export function findItemChance(rank: number, rankBonus?: 1): number {
+  if (!validCapturedSkillRank(rank, FIND_ITEM_DEFINITION.maxRank, rankBonus)) throw new Error('Invalid Find Item rank');
   const tuning = FIND_ITEM_DEFINITION.search;
   return tuning.successChance + tuning.successChancePerRank * (rank - 1);
 }
 
 /** Exactly one ordinary seeded draw after a paid corpse search; no loot generation. */
-export function rollFindItemSearch(rank: number, rng: Pick<Rng, 'next'>): boolean {
-  const chance = findItemChance(rank);
+export function rollFindItemSearch(rank: number, rng: Pick<Rng, 'next'>, rankBonus?: 1): boolean {
+  const chance = findItemChance(rank, rankBonus);
   return rng.next() < chance;
 }
 
 /** Created only by a successful paid engine search, then privately copied during native staging. */
-export interface FindItemFind { readonly sourceHeroId: string; readonly corpseId: string; readonly rank: number }
+export interface FindItemFind {
+  readonly sourceHeroId: string;
+  readonly corpseId: string;
+  readonly rank: number;
+  /** Captured paid potency; subtract to recover the separate original allocated authority. */
+  readonly rankBonus?: 1;
+}
 
 /** Invalid reward attestations throw before settlement; do not silently lose promised bonus loot. */
 export function copyFindItemFinds(value: unknown): readonly FindItemFind[] {
@@ -115,10 +122,14 @@ export function copyFindItemFinds(value: unknown): readonly FindItemFind[] {
   for (const entry of entries) {
     if (typeof entry !== 'object' || entry === null || !('sourceHeroId' in entry) || !('corpseId' in entry) || !('rank' in entry) ||
       typeof entry.sourceHeroId !== 'string' || !entry.sourceHeroId || typeof entry.corpseId !== 'string' || !entry.corpseId ||
-      typeof entry.rank !== 'number' || !Number.isInteger(entry.rank) || entry.rank < 1 || entry.rank > FIND_ITEM_DEFINITION.maxRank ||
-      seen.has(entry.corpseId) || !same(entry, { sourceHeroId: entry.sourceHeroId, corpseId: entry.corpseId, rank: entry.rank }))
+      typeof entry.rank !== 'number')
       throw new Error('Invalid Find Item find');
-    seen.add(entry.corpseId); copies.push(Object.freeze({ sourceHeroId: entry.sourceHeroId, corpseId: entry.corpseId, rank: entry.rank }));
+    const rankBonus = 'rankBonus' in entry ? entry.rankBonus : undefined;
+    const copied: FindItemFind = { sourceHeroId: entry.sourceHeroId, corpseId: entry.corpseId,
+      rank: entry.rank, ...(rankBonus === 1 ? { rankBonus: 1 } : {}) };
+    if (!validCapturedSkillRank(entry.rank, FIND_ITEM_DEFINITION.maxRank, rankBonus) ||
+      seen.has(entry.corpseId) || !same(entry, copied)) throw new Error('Invalid Find Item find');
+    seen.add(entry.corpseId); copies.push(Object.freeze(copied));
   }
   return Object.freeze(copies);
 }
@@ -134,7 +145,7 @@ export function findItemBonusEnemies(value: unknown, input: CombatSnapshot,
   return finds.map(find => {
     const originals = input.enemyTeam.filter(unit => unit.id === find.corpseId), original = originals[0];
     const slain = finalEnemies.filter(unit => unit.id === find.corpseId), dead = slain[0];
-    if (find.sourceHeroId !== heroId || find.rank !== authority.get(heroId) || originals.length !== 1 || !original ||
+    if (find.sourceHeroId !== heroId || find.rank - (find.rankBonus ?? 0) !== authority.get(heroId) || originals.length !== 1 || !original ||
       original.side !== 'enemy' || inferKind(original) !== 'monster' || original.summon === true ||
       original.ownerId !== undefined || original.summonOwnerId !== undefined || !Number.isFinite(original.life) || original.life <= 0 ||
       slain.length !== 1 || !dead || dead.side !== 'enemy' || inferKind(dead) !== 'monster' ||

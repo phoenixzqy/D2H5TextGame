@@ -6,6 +6,7 @@ import { inferKind } from '../combat/types';
 import type { RegisteredSkill } from './effects';
 import { createSkillValidator } from './skill-validator';
 import { composeFindItem } from './find-item';
+import { validCapturedSkillRank } from './effective-rank';
 
 /** Exact learned identities; neither equipment nor imported markers create wards. */
 export const GRIM_WARD_IDS = ['skills-barbarian-grim-ward', 'barbarian.grim_ward'] as const;
@@ -89,9 +90,9 @@ export function grimWardRank(unit: CombatUnit, authority: ReadonlyMap<string, nu
   return authority.get(unit.id) ?? 0;
 }
 
-/** Paid finite lifetime in milliseconds; never clamp malformed ranks into a ward. */
-export function grimWardDuration(rank: number): number {
+/** Captured paid finite lifetime in milliseconds; never clamp malformed ranks into a ward. */
+export function grimWardDuration(rank: number, rankBonus?: 1): number {
   const d = GRIM_WARD_DEFINITION;
-  if (!Number.isInteger(rank) || rank < 1 || rank > d.maxRank) throw new Error('Invalid Grim Ward rank');
+  if (!validCapturedSkillRank(rank, d.maxRank, rankBonus)) throw new Error('Invalid Grim Ward rank');
   return d.ward.durationMs + d.ward.durationPerRankMs * (rank - 1);
 }

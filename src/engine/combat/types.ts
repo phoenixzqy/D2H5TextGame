@@ -87,6 +87,11 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Same fresh native composition at baseline/+1; only actual paid Command selects a profile. */
+  readonly battleCommandPassives?: {
+    readonly baseline: import('../skills/battle-command').BattleCommandPassiveProfile;
+    readonly boosted: import('../skills/battle-command').BattleCommandPassiveProfile;
+  };
   /** Native learned Command authority, independent of temporary paid recipient state. */
   readonly battleCommandRank?: number;
   /** Fresh learned native Hydra eligibility; paid bodies are bound privately inside each battle. */

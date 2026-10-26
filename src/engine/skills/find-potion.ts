@@ -5,6 +5,7 @@ import type { CombatUnit } from '../combat/types';
 import { inferKind } from '../combat/types';
 import type { RegisteredSkill } from './effects';
 import { createSkillValidator } from './skill-validator';
+import { validCapturedSkillRank } from './effective-rank';
 
 /** Exact learned identities; legacy markers and equipment do not grant recovery. */
 export const FIND_POTION_IDS = ['skills-barbarian-find-potion', 'barbarian.find_potion'] as const;
@@ -94,10 +95,10 @@ export function findPotionRank(unit: CombatUnit, authority: ReadonlyMap<string, 
   return authority.get(unit.id) ?? 0;
 }
 
-/** Actual capped gains after payment; refuse unless HP or pre-payment MP improves. */
-export function findPotionRecovery(unit: CombatUnit, rank: number): { readonly life: number; readonly mana: number } | undefined {
+/** Actual capped gains at captured paid potency; refuse unless HP or pre-payment MP improves. */
+export function findPotionRecovery(unit: CombatUnit, rank: number, rankBonus?: 1): { readonly life: number; readonly mana: number } | undefined {
   const d = FIND_POTION_DEFINITION, t = d.recovery;
-  if (!Number.isInteger(rank) || rank < 1 || rank > d.maxRank ||
+  if (!validCapturedSkillRank(rank, d.maxRank, rankBonus) ||
     ![unit.life, unit.mana, unit.stats.lifeMax, unit.stats.manaMax].every(Number.isFinite) ||
     unit.life <= 0 || unit.stats.lifeMax <= 0 || unit.stats.manaMax <= 0 ||
     unit.life > unit.stats.lifeMax || unit.mana < d.manaCost || unit.mana > unit.stats.manaMax) return undefined;

@@ -24,7 +24,8 @@ import type { Rng } from '../rng';
 import { createRng } from '../rng';
 import { activeBattleCry, paidBattleCry } from './warcry-definition';
 import { BATTLE_COMMAND_IDS, battleCommandBonus, battleCommandDuration, battleCommandRank,
-  isBattleCommandId, matchesBattleCommand, type BattleCommandGrant } from '../skills/battle-command';
+  captureBattleCommandPassiveProfile, isBattleCommandId, matchesBattleCommand,
+  type BattleCommandGrant, type BattleCommandPassiveProfile } from '../skills/battle-command';
 import { effectiveLearnedSkillRank } from '../skills/effective-rank';
 import type { ActiveStatus, CombatUnit, CombatSide, GridPosition } from './types';
 import { inferKind } from './types';
@@ -49,7 +50,7 @@ import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { activeMightAura, type MightAuraProjection } from '../skills/might';
 import { activeMeditationAura, type MeditationAuraProjection } from '../skills/meditation';
 import { activeStatAura, copyStatAuraProjection, statAuraDamageBonus, type StatAuraProjection } from '../skills/stat-auras';
-import { projectLifeCapacity } from './life-capacity';
+import { projectLifeCapacity, withoutTemporaryLifeCapacity, type LifeCapacityBonus } from './life-capacity';
 import { activeDruidAllyAuras, copyDruidAllyAuras, DRUID_ALLY_AURA_DEFINITIONS, type DruidAllyAuraProjection } from '../skills/druid-ally-auras';
 import { activeSpiritOfBarbs, copySpiritOfBarbs, SPIRIT_OF_BARBS_DEFINITION, type SpiritOfBarbsProjection } from '../skills/spirit-of-barbs';
 import { absorbHolyShield, activeHolyShield, HOLY_SHIELD_IDS, holyShieldDefense, holyShieldLethalBound,
@@ -173,6 +174,9 @@ export type BattleEvent =
       readonly unit: CombatUnit;
     }
   | { readonly kind: 'heal'; readonly target: string; readonly amount: number }
+  /** Absolute passive/stat observation, including final layered capacity and unchanged resources. */
+  | { readonly kind: 'stats-state'; readonly target: string;
+      readonly state: BattleCommandPassiveProfile & Pick<CombatUnit, 'stats' | 'life' | 'mana' | 'vigorLife'> }
   | { readonly kind: 'life-capacity'; readonly target: string; readonly lifeMax: number; readonly life: number; readonly vigorBaseLifeMax?: number;
       readonly druidFormState?: Pick<CombatUnit, 'druidForm' | 'druidFormLife'> }
   | { readonly kind: 'mana'; readonly target: string; readonly mana: number;
@@ -245,6 +249,7 @@ export interface CombatResult {
 interface State {
   /** Only actual paid casts establish recipient potency; imported markers are inert. */
   readonly battleCommands: Map<string, BattleCommandGrant>;
+  readonly boostedCommandPassives: Set<string>;
   /** Only successful paid Hydra registration creates a binding; input markers grant no power. */
   readonly hydras: Map<string, { readonly ownerId: string; readonly rank: number; readonly expiresAtMs: number }>;
   /** Wave-local duplicate guard; paid phase itself is stored in standard status clocks. */
@@ -949,19 +954,46 @@ function applyDamageToUnit(
   }
 }
 
+/** Shared ambient layers, always applied over the current fresh personal capacity. */
+function ambientLifeBonuses(state: State, unit: CombatUnit): readonly LifeCapacityBonus[] {
+  const oakRank = activeDruidAllyAuras(state.druidAllyAuras, unit, state.units)?.oakRank ?? 0;
+  const aura = activeStatAura(state.statAura, unit.id, state.units);
+  const vigor = aura?.selectedAuraId === 'paladin.vigor' ? aura.bonuses.lifePct ?? 0 : 0;
+  return [
+    ...(oakRank ? [{ coefficient: DRUID_ALLY_AURA_DEFINITIONS.oak.lifePerRank, rank: oakRank }] : []),
+    ...(vigor ? [{ coefficient: vigor, rank: 1 }] : [])
+  ];
+}
+
+/** Switch native profiles only at a paid transition; preserve HP until all life layers settle. */
+function reconcileBattleCommandPassives(state: State): void {
+  for (const unit of state.units.values()) {
+    const profiles = unit.battleCommandPassives;
+    if (!profiles || unit.side !== 'player' || inferKind(unit) !== 'hero' ||
+      unit.summon === true || unit.ownerId !== undefined || unit.summonOwnerId !== undefined) continue;
+    const boosted = battleCommandBonus(unit, state.simClockMs, state.battleCommands) > 0;
+    if (boosted === state.boostedCommandPassives.has(unit.id)) continue;
+    const profile = boosted ? profiles.boosted : profiles.baseline;
+    const base = withoutTemporaryLifeCapacity(unit);
+    const next = projectLifeCapacity({ ...base, ...profile, stats: { ...base.stats, ...profile.stats }, life: unit.life,
+      mana: Math.min(unit.mana, profile.stats.manaMax) }, druidFormLifeBonus(base), ambientLifeBonuses(state, unit));
+    if (boosted) state.boostedCommandPassives.add(unit.id);
+    else state.boostedCommandPassives.delete(unit.id);
+    state.units.set(unit.id, next);
+    emit(state, { kind: 'stats-state', target: unit.id, state: {
+      ...captureBattleCommandPassiveProfile(next), stats: next.stats, life: next.life, mana: next.mana,
+      ...(next.vigorLife ? { vigorLife: next.vigorLife } : {}) } });
+  }
+}
+
 /** Recompose temporary capacity once; removing it caps absolute HP without healing or damage. */
 function reconcileLifeCapacities(state: State, forceFormIds: readonly string[] = []): void {
   if (!state.hasTemporaryLife) return;
   for (const unit of state.units.values()) {
-    const oakRank = activeDruidAllyAuras(state.druidAllyAuras, unit, state.units)?.oakRank ?? 0;
-    const aura = activeStatAura(state.statAura, unit.id, state.units);
-    const vigor = aura?.selectedAuraId === 'paladin.vigor' ? aura.bonuses.lifePct ?? 0 : 0;
+    const ambient = ambientLifeBonuses(state, unit);
     const druid = forceFormIds.includes(unit.id) || unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined;
-    if (!druid && !oakRank && !vigor && unit.vigorLife === undefined) continue;
-    const next = projectLifeCapacity(unit, druidFormLifeBonus(unit), [
-      ...(oakRank ? [{ coefficient: DRUID_ALLY_AURA_DEFINITIONS.oak.lifePerRank, rank: oakRank }] : []),
-      ...(vigor ? [{ coefficient: vigor, rank: 1 }] : [])
-    ]);
+    if (!druid && ambient.length === 0 && unit.vigorLife === undefined) continue;
+    const next = projectLifeCapacity(unit, druidFormLifeBonus(unit), ambient);
     state.units.set(unit.id, next);
     if (unit.stats.lifeMax !== next.stats.lifeMax || unit.life !== next.life || forceFormIds.includes(unit.id)) {
       emit(state, { kind: 'life-capacity', target: unit.id, lifeMax: next.stats.lifeMax, life: next.life,
@@ -1133,8 +1165,13 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
   ];
 }
 
-function learnedSkillLevel(unit: CombatUnit, skill: RegisteredSkill, legacyFallback = 1): number {
+function learnedSkillLevel(state: State, unit: CombatUnit, skill: RegisteredSkill, legacyFallback = 1): number {
   if (isBattleCommandId(skill.id)) return battleCommandRank(unit);
+  if (isCorpseExplosionId(skill.id)) return corpseExplosionRank(unit, state.corpseExplosion);
+  if (isPoisonExplosionId(skill.id)) return poisonExplosionRank(unit, state.poisonExplosion);
+  if (isFindPotionId(skill.id)) return findPotionRank(unit, state.findPotion);
+  if (isFindItemId(skill.id)) return findItemRank(unit, state.findItem);
+  if (isGrimWardId(skill.id)) return grimWardRank(unit, state.grimWard);
   const personalBuff = sorceressBuffId(skill.id);
   if (personalBuff) return sorceressBuffRank(unit, personalBuff);
   const periodic = periodicSpellId(skill.id);
@@ -1168,11 +1205,11 @@ function learnedSkillLevel(unit: CombatUnit, skill: RegisteredSkill, legacyFallb
 
 /** Resolve permission first; a party bonus never grants a missing learned skill. */
 function effectiveSkillLevel(state: State, unit: CombatUnit, skill: RegisteredSkill): number {
-  const learned = learnedSkillLevel(unit, skill), bonus = battleCommandBonus(unit, state.simClockMs, state.battleCommands);
+  const learned = learnedSkillLevel(state, unit, skill), bonus = battleCommandBonus(unit, state.simClockMs, state.battleCommands);
   if (!bonus) return learned;
   // Dedicated native projections already resolve learned authority. Merc/summon
   // orders contain their owned abilities; a missing hero allocation stays absent.
-  const authorized = learnedSkillLevel(unit, skill, 0) > 0 ||
+  const authorized = learnedSkillLevel(state, unit, skill, 0) > 0 ||
     ((unit.kind === 'merc' || unit.kind === 'summon') &&
       skillLevelCandidates(skill).some(id => unit.skillOrder.includes(id)));
   return authorized ? effectiveLearnedSkillRank(learned, bonus) : learned;
@@ -1325,18 +1362,14 @@ function canUseSkillForState(
     skill.effects.some(effect => effect.kind === 'corpse-search');
   const gw = isGrimWardId(skillOrderId) || isGrimWardId(skill.id) ||
     skill.effects.some(effect => effect.kind === 'corpse-ward');
-  const skillLevel = ce ? corpseExplosionRank(unit, state.corpseExplosion)
-    : pe ? poisonExplosionRank(unit, state.poisonExplosion)
-    : gw ? grimWardRank(unit, state.grimWard)
-    : fi ? findItemRank(unit, state.findItem)
-    : fp ? findPotionRank(unit, state.findPotion) : effectiveSkillLevel(state, unit, skill);
+  const skillLevel = effectiveSkillLevel(state, unit, skill);
   if (gw && (!matchesGrimWard(skill) || skillLevel === 0 || state.corpses.length === 0 || !hasEnemyTarget ||
     !Number.isFinite(unit.mana) || state.grimWards.has(unit.id) ||
     GRIM_WARD_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   if (fi && (!matchesFindItem(skill) || skillLevel === 0 || state.corpses.length === 0 || !hasEnemyTarget ||
     !Number.isFinite(unit.mana) || FIND_ITEM_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   if (fp && (!matchesFindPotion(skill) || skillLevel === 0 || state.corpses.length === 0 || !hasEnemyTarget ||
-    FIND_POTION_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0) || !findPotionRecovery(unit, skillLevel))) return false;
+    FIND_POTION_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0) || !findPotionRecovery(unit, skillLevel, paidRankBonus(state, unit)))) return false;
   if (burst && (!matchesBurstOfSpeed(skill) || burstOfSpeedRank(unit) === 0 || !Number.isFinite(unit.mana) ||
     activeBurstOfSpeed(unit, state.simClockMs) !== undefined ||
     BURST_OF_SPEED_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
@@ -1419,6 +1452,7 @@ function applyEffect(
         emit(state, { kind: 'buff', target: recipient.id, buffId: 'battle-command', statusBacked: true });
         observeStatuses(state, recipient.id);
       }
+      reconcileBattleCommandPassives(state);
       break;
     }
     case 'corpse-ward':
@@ -1726,13 +1760,9 @@ function castSkill(
   const consumesCorpse = ce || pe || fp || fi || gw;
   if (consumesCorpse && !canUseSkillForState(state, actor, skill, skillOrderId,
     opponentsOf(state, actor).length > 0)) return;
-  const skillLevel = ce ? corpseExplosionRank(actor, state.corpseExplosion)
-    : pe ? poisonExplosionRank(actor, state.poisonExplosion)
-    : gw ? grimWardRank(actor, state.grimWard)
-    : fi ? findItemRank(actor, state.findItem)
-    : fp ? findPotionRank(actor, state.findPotion)
-    : prepared?.skillLevel ?? effectiveSkillLevel(state, actor, skill);
-  const recovery = fp ? findPotionRecovery(actor, skillLevel) : undefined;
+  const skillLevel = prepared?.skillLevel ?? effectiveSkillLevel(state, actor, skill);
+  const rankBonus = paidRankBonus(state, actor);
+  const recovery = fp ? findPotionRecovery(actor, skillLevel, rankBonus) : undefined;
   // Synchronous commit: reserve exactly one oldest body before ordinary payment/effects.
   const corpseId = consumesCorpse ? state.corpses.shift() : undefined;
   const manaCost = effectiveManaCost(skill, skillLevel);
@@ -1756,7 +1786,7 @@ function castSkill(
     : pe ? 'combat:corpses.consumedPoison' : 'combat:corpses.consumed',
     params: { count: state.corpses.length, ...(fp && corpseId !== undefined ? { corpseId } : {}) } });
   if (gw && corpseId !== undefined) {
-    const duration = grimWardDuration(skillLevel), paid = state.units.get(actorId);
+    const duration = grimWardDuration(skillLevel, rankBonus), paid = state.units.get(actorId);
     state.grimWards.set(actorId, Object.freeze({ corpseId, rank: skillLevel, createdAtMs: state.simClockMs,
       expiresAtMs: state.simClockMs + duration, nextPulseAtMs: state.simClockMs }));
     if (paid) state.units.set(actorId, { ...paid, statuses: [...paid.statuses, {
@@ -1769,8 +1799,9 @@ function castSkill(
     return;
   }
   if (fi && corpseId !== undefined) {
-    const found = rollFindItemSearch(skillLevel, state.rng);
-    if (found) state.findItemFinds.push(Object.freeze({ sourceHeroId: actorId, corpseId, rank: skillLevel }));
+    const found = rollFindItemSearch(skillLevel, state.rng, rankBonus);
+    if (found) state.findItemFinds.push(Object.freeze({ sourceHeroId: actorId, corpseId, rank: skillLevel,
+      ...(rankBonus ? { rankBonus } : {}) }));
     emit(state, { kind: 'message', messageKey: found ? 'combat:corpses.findItemSuccess' : 'combat:corpses.findItemEmpty',
       params: { count: state.corpses.length, corpseId } });
     return;
@@ -2609,6 +2640,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const assassinVenom = copyAssassinVenomProjection(snapshot.assassinVenom);
   const state: State = {
     battleCommands: new Map(),
+    boostedCommandPassives: new Set(),
     hydras: new Map(),
     periodicSpellPulses: new Map(),
     conversions: new Map(),
@@ -2742,6 +2774,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     const meditationRecipients = captureMeditationRecipients(state);
     settlePeriodic(state, boundary);
     settleManaRecovery(state, from, boundary, meditationRecipients);
+    reconcileBattleCommandPassives(state);
     if (winnerOf(state) !== null) break;
     settleAuraPulse(state);
     if (winnerOf(state) !== null) break;
@@ -2758,6 +2791,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     checkEnrage(state, next.id);
     if (winnerOf(state) !== null) break;
     takeAction(state, next.id);
+    reconcileBattleCommandPassives(state);
     actionsTaken++;
     const after = state.units.get(next.id);
     if (after && alive(after)) {

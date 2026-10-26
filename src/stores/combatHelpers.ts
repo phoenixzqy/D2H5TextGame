@@ -105,7 +105,7 @@ import { composeCorpseExplosion } from '@/engine/skills/corpse-explosion';
 import { composeFindPotion } from '@/engine/skills/find-potion';
 import { composeFindItem, findItemBonusEnemies } from '@/engine/skills/find-item';
 import { composeGrimWard } from '@/engine/skills/grim-ward';
-import { composeBattleCommandRank } from '@/engine/skills/battle-command';
+import { captureBattleCommandPassiveProfile, composeBattleCommandRank } from '@/engine/skills/battle-command';
 import { composePoisonExplosion } from '@/engine/skills/poison-explosion';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { IRON_GOLEM_SKILL_ID, isIronGolemSkill } from '@/engine/skills/iron-golem';
@@ -191,6 +191,16 @@ export function scopedSummonConfiguration(player: Player): Pick<CombatUnit, 'ski
  * (see {@link import('@/engine/skills/eligibility').canCastSkill}).
  */
 export function playerToCombatUnit(player: Player): CombatUnit & { readonly governedActiveRanks: GovernedActiveRanks } {
+  const baseline = composeNativeCombatUnit(player, 0);
+  if (player.class !== 'barbarian') return baseline;
+  return { ...baseline, battleCommandPassives: Object.freeze({
+    baseline: captureBattleCommandPassiveProfile(baseline),
+    boosted: captureBattleCommandPassiveProfile(composeNativeCombatUnit(player, 1)) }) };
+}
+
+/** One stat/equipment composition for both learned and temporarily boosted passives. */
+function composeNativeCombatUnit(player: Player, temporarySkillRankBonus: 0 | 1):
+  CombatUnit & { readonly governedActiveRanks: GovernedActiveRanks } {
   const equipped = useInventoryStore.getState().equipped;
   const equippedWeapon = resolveEquippedWeapon(equipped);
   const mods = aggregateEquipmentMods(equipped);
@@ -199,7 +209,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
   const freshStats = deriveEquippedPlayerStats(player, player.level, equipped, map.questProgress,
     useInventoryStore.getState().questItems, map.questReceipts);
   const { endurance, mastery, warcries, ironSkinDefenseBonus } = composeBarbarianPassives({
-    classId: player.class, level: player.level, ...equippedWeapon,
+    classId: player.class, level: player.level, ...equippedWeapon, temporarySkillRankBonus,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const amazon = composeAmazonPassives({ classId: player.class, level: player.level,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
@@ -1204,7 +1214,11 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
     const capped = mana >= fresh.stats.manaMax;
-    const refreshed = refreshPeriodicSpells(refreshColdArmorState(refreshHolyShieldState(refreshCycloneArmorState(refreshDruidFormState({ ...unit, level: fresh.level, stats: fresh.stats,
+    const { battleCommandPassives: _oldCommandPassives, ...current } = unit;
+    const refreshed = refreshPeriodicSpells(refreshColdArmorState(refreshHolyShieldState(refreshCycloneArmorState(refreshDruidFormState({ ...current, level: fresh.level, stats: fresh.stats,
+      ...(fresh.battleCommandPassives ? { battleCommandPassives: fresh.battleCommandPassives } : {}),
+      ...((unit.battleCommandRank !== undefined || fresh.battleCommandRank !== undefined)
+        ? { battleCommandRank: fresh.battleCommandRank ?? 0 } : {}),
       life: unit.life,
       mana, ...((unit.druidShapeRanks !== undefined || fresh.druidShapeRanks !== undefined)
         ? { druidShapeRanks: fresh.druidShapeRanks } : {}),

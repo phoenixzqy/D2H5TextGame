@@ -115,6 +115,13 @@ export function applyEventToTeams(
   let teams = { player: playerTeam, enemy: enemyTeam };
 
   switch (ev.kind) {
+    case 'stats-state': {
+      teams = patchUnit(teams, ev.target, (unit) => {
+        const { vigorLife: _previous, ...base } = unit;
+        return { ...base, ...ev.state };
+      });
+      break;
+    }
     case 'life-capacity': {
       teams = patchUnit(teams, ev.target, (unit) => {
         const { vigorLife: _previous, ...base } = unit;
