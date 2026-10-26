@@ -78,3 +78,17 @@ Final strict types156.877s and full lint259.384s pass; build/bridge18.591s and
 756URLprecache0.251s pass. No full Mage signature, earned or independent acceptance
 is implied. Task evidence remains active through Iron/Hydra/browser consumers;
 root owns final retention and cleanup.
+
+
+## Superseding terminal closeout
+
+The [unified final evidence](../../docs/plans/evidence/d06-command-summon-capture.md)
+records the later unchanged-input full pass of 18,414 tests / 849 files (two
+existing opt-in skips), plus eight separately checked native Iron cases. Its
+canonical earlier-build 18-case browser matrix and latest-build four startup
+cases remain distinct. Original failures and observer corrections are retained.
+The task-directory references above are historical: the directory and task-owned
+`dist/` were archived, read-back verified and removed. Root retains only the
+three exact archive/sidecar paths listed in that report through BUG273–276 and
+full-v1 evidence consumers, then owns their removal. Independent acceptance,
+earned balance, Mage signature effects and full private v1 remain open.
