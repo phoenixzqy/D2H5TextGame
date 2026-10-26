@@ -1,7 +1,7 @@
 # BUG-262 — Apply actual Bone Wall defense and Bone Prison control
 
 - Severity: High — two advertised active skills pay without their promised effect.
-- Status: Partially implemented locally at `2213ac0e`: Prison core verified; Wall and complete acceptance pending.
+- Status: Fixed locally through `bdc747b8`; complete independent/earned acceptance remains open.
 - Owner: root acting as engine/content/QA owner; no delegation.
 - Environment: native stores and pure TS engine under Vitest/jsdom, Linux/Node.
   No browser viewport or locale applies. Engine seed7, ordinary production data.
@@ -58,8 +58,8 @@ The corrected native boundary test failed exactly1-versus2 before the patch;
 its gear/seed/payment/current-wave recording remained unchanged. The first test
 attempt incorrectly used hero replacement (setPlayer), which intentionally clears
 combat; that harness failure and corrected RED are retained separately. Updating
-the ordinary native refresh boundary is part of the Prison root fix. Wall remains
-unfixed; no whole-bug or skill-family closure is claimed.
+the ordinary native refresh boundary is part of the Prison root fix. At that historical checkpoint Wall remained
+unfixed; subsequent integrated verification is recorded below.
 
 Prison schema/data foundation eb3f7da9, paid status847cd7e9 and scheduling/native
 projection2213ac0e now give0actual enemy actions versus1 in the original paid
@@ -68,3 +68,7 @@ passes after its RED.88new engine regressions pass; final engine9242/347,
 types/lint/production build+bridge/756URLprecache pass. Original Wall comparison
 still fails99975==99975. No inventory credit, independent acceptance, earned
 balance or whole BUG262 closure. See docs/plans/evidence/d06-bone-defenses-core.md.
+
+## Integrated validation at bdc747b8
+
+Full18359tests/845files/two existing opt-in skips, engine9382/352, strict types, lint, official build/bridge and756URLprecache pass. Original failures are preserved; details and immutable receipts are in docs/plans/evidence/d06-bone-defenses-core.md and its integrated packet. No new inventory credit or independent/earned/full-v1 acceptance.

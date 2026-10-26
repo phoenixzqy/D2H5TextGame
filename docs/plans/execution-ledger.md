@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D06 Bone Wall / Prison / BUG262–268 | locally implemented and integrated verification passed; retention/credit and independent/earned acceptance open | Code `bdc747b8`: native paid Wall100000HP vs99975 without protection; Prison0actions vs1control. Full18359/845/two existing skips PASS848.172s, engine9382/352, types/lint/officialbuild/bridge/precache PASS. Production combat4/4 plus visible-chip4/4; preview4/4 with eight seven-domain pairs/four actual offlineContinues. Frozen4893tracked/762build/31feature/115terminal log hashes and genuine save exact. [Integrated evidence](evidence/d06-bone-defenses-core.md) preserves historical packet and all failed attempts/visual limits. Inventory remains167/44/one engine/one review, Necromancer25/32 pending lossless retention/exact cleanup. Root owns active bone task/dist through remaining summon consumers; genuineL33/next402/Baal uncleared and full-v1 scope unchanged. |
 | D06 Poison Explosion public acceptance / BUG259–261 | bounded local verification closed; independent and earned acceptance open | Test-only`761fa2f1`; production4/4PASS137.842s: native allocation0→1→2, actual Teeth first kill/body1→0, exact public10140/max10155 supported by native within-batch15MP witness at18000ms/seed2688559832, direct/chip/positivePoison,8seven-domain pairs/4actual offlineContinues/20geometry/12individually inspected originals. Final explicitlint/types/officialbuild/bridge/756URLprecachePASS; unchanged18100/834/two existing skips carried through2540exact baseline inputs, no fresh full.4860frozen tracked/2public/762build/genuine exact. All3377archive members read-back verified;3376files/27directories/driver removed,remaining[]/failures[],118restrictedproc entries disclosed. Root retains archive/three sidecars through BUG259–261/full-v1 consumers. Exactly1credit:167bounded/44unverified/oneengine-only/onereview,Necromancer25/32;212other raw rows exact. [Evidence](evidence/d06-poison-explosion-public.md). GenuineL33/next402/Baal uncleared;independent/earned/manual-feel/fullv1 open. |
 | D04 Poison Dagger / BUG256, stale oracle / BUG257 and browser draw / BUG258 | bounded local verification closed; independent and earned acceptance open | Frozen`bee044a8` full18100/834/two existing opt-in skipsPASS1132.935s; finaltypes/lint/explicit PWA lint/build/bridge/756URLprecache/public4/4PASS. All4855tracked/12feature/548production-source/762build/genuine hashes exact;8seven-domain pairs/4actual SWofflineContinues/20geometry/16individual visuals. Original timeout/interruption and unchanged13PASS retained under unresolved BUG180.2332archive members read-back verified;2332files40directories/driver removed,remaining[]/failures[],29restrictedproc entries disclosed. Root retains archive/three sidecars through evidence consumers. Exactly1credit:166bounded/45unverified/oneengine-only/onereview,Necromancer24/32;212other raw rows/header/IDs/order exact. [Evidence](evidence/d04-poison-dagger.md). GenuineL33/next402/Baal uncleared;independent/earned/fullv1 open. |
 | D04 Amplify Damage native/public acceptance | bounded local verification closed;independent and earned acceptance open | Test-only4paths f767948b;focused145/5PASS;public4/4/213.057sPASS:4casts/chips,8exact seven-domain pairs,4actual offlineContinues,20geometry,12individually inspected originals. Types/lint/purityPASS. FrozenHEAD25e68f7d full18062/830/twoexisting skipsPASS808.684s;original soleHEAD-drift failure and unchanged isolated19pass retained without code/test/timeout changes. Final4feature/1636committed input/762reused build/12terminal receipt/genuine auditsPASS.1796members142145331rawbytes archived/read-back verified;1796files38directories and driver removed,remaining[]/failures[],29restrictedproc entries disclosed. Root retains archive/3sidecars through full-v1 consumers. Exactly1credit:165bounded/46unverified/oneengine-only/onereview,Necromancer23/32;212other raw rows/header/IDs/order exact. [Evidence](evidence/d04-amplify-damage-native.md). No runtime change or genuine campaign action;Baal/earned/independent/full privatev1 remain open. |
@@ -12951,3 +12952,24 @@ Root retains active bone task/dist through consumers, then owns retention/exact
 cleanup; neither is declared cleaned. No campaign/replay/remote action/delegation.
 Fullv1, C2-C4/fullG0-G7, Wall, native/UI/public and independent/earned acceptance
 remain open; keep the umbrella worktree claimed and goal active.
+
+
+## 2026-10-26 — Bone defenses integrated full regression passed
+
+Native paid Wall and Prison now change actual HP loss and scheduled enemy actions;
+truthful bilingual previews and translated capacity/control chips are implemented
+through bdc747b8. Full18359/845/two existing opt-in skips passes848.172s;
+engine9382/352, types/lint/productionbuild/bridge/756URLprecache and two4/4actual
+combat browser runs pass. All4893frozen tracked/762build/31feature/115terminal
+receipt hashes and protected genuine save are exact. The prior status turn was
+a verified wait: exact npm534654/supervisor534653 were confirmed live; no restart
+occurred. Both now terminal; the npm receipt is exit0. Historical interrupted
+full and original failures remain uncredited and retained.
+
+[Integrated evidence](evidence/d06-bone-defenses-core.md) states preview/save/offline
+and visual boundaries; historical Prison-only packet remains unchanged. No new
+inventory credit before retention/read-back/exact cleanup. Root owns active
+bone task/dist through remaining summon consumers; no cleanup-complete claim.
+GenuineL33/nextNormal402/Ancients-Rite claimed/Baal uncleared is unchanged;
+independent/earned,C2–C4/fullG0–G7/full privatev1 remain open. No delegation,
+campaign/replay or remote action. Umbrella worktree and goal continue.

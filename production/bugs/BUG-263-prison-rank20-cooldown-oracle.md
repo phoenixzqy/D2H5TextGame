@@ -23,5 +23,9 @@ The failure and complete original test are retained at
 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v;
 cooldown-oracle.json captures the exact source and observation. Corrected
 focused152/5 and native2case validation pass; engine9242/347, full types/lint,
-production build/bridge/precache pass. Fresh full unit run is pending. This
+production build/bridge/precache pass. Integrated full18359/845/two existing skips now passes at bdc747b8. This
 is not a gameplay fix credit.
+
+## Integrated validation at bdc747b8
+
+Full18359tests/845files/two existing opt-in skips, engine9382/352, strict types, lint, official build/bridge and756URLprecache pass. Original failures are preserved; details and immutable receipts are in docs/plans/evidence/d06-bone-defenses-core.md and its integrated packet. No new inventory credit or independent/earned/full-v1 acceptance.
