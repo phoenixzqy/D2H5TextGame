@@ -1,0 +1,17 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede-retained.tar.xz",
+  "sha256": "fdaa24c121d256b1ce4cc44d7552e64b214fb78e157944400ddf205b725204b5",
+  "archiveBytes": 82608720,
+  "members": 1896,
+  "rawBytes": 107829151,
+  "readBackVerified": true,
+  "deletionManifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede-deletion-manifest.json",
+  "owner": "root",
+  "retainUntil": "BUG254/BUG255 and full-v1 evidence consumers finish; root owns later removal",
+  "requiredRemainingPaths": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede-retained.tar.xz",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede-retention.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede-deletion-manifest.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede-cleanup.json"
+  ]
+}

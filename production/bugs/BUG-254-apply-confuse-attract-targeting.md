@@ -1,6 +1,6 @@
 # BUG-254 — Apply paid Confuse and Attract to real enemy target selection
 
-- Status: runtime/presentation/native lifecycle/public online-offline proof locally verified through `6d4f5009`; first full exposed two stale helper-copy oracles, corrected test-only in `c0b20f1d`/BUG255. Fresh full/types/lint, final audit/retention/exact cleanup remain open; no skill credit.
+- Status: locally fixed/verified; final full/types/lint/build/bridge/precache/audit/raw retention/exact cleanup pass. Confuse and Attract have bounded functional credit; independent design/review/QA and earned acceptance remain open.
 - Severity: High — two advertised targeting curses spend resources without their advertised behavior.
 - Owner: root engine/content/frontend; independent design/review/QA remain open.
 - Build:7b27fb0463cd8d6b9bfdbcaf03e1fd370c3c7b9f;Node24.21.0/Linux; native projection/engine reproduction, independent of browser/locale/viewport.
@@ -78,3 +78,20 @@ Official build/bridge/precache and types/full lint pass. First full2failed/18053
 found only old Confuse description literals; BUG255/c0b20f1d fixes those with focused
 22PASS and unchanged exact assertions. Fresh combined full/type/lint remains live.
 No bounded credits, independent/earned approval or genuine campaign change yet.
+
+## Final local outcome
+
+Fresh combined full18055passed/828files/two existing opt-in skips,exit0/865.538s;
+logSHA256`48d5fb5ee5e2fc961f09bd6de05b3e3705afdc2747f32bd281f0456b7b3481d1`.
+Post-copy types130.517s/full lint216.273s and final source/build/command/browser/
+protected-state audit PASS. Original failures are preserved in the1896-member
+read-back-verified archive;1896exact files/106directories and external driver
+cleaned,remaining[]/failures[],28restricted /proc entries disclosed. Root retains
+archive/three sidecars through BUG254/BUG255/full-v1 consumers and owns later removal;
+original raw directory is absent. [Final evidence and exact retained paths](../../docs/plans/evidence/d04-target-curses.md)
+supersede the historical pending checkpoints above.
+
+Exactly Confuse/Attract gain bounded functional credit:164bounded/47unverified/
+one engine-only/one review-needed,Necromancer22/32;211other raw rows/header/IDs/order
+unchanged. BUG255 itself grants no additional credit. GenuineL33/next402/Baal
+uncleared remains unchanged; independent/earned/full privatev1 remain open.

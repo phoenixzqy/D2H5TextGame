@@ -1,0 +1,27 @@
+{
+  "beforeSha256": "82430154ed321f68491a3efc1d644aae4c5846d653e14295da59070194d56b59",
+  "afterSha256": "dc67048927482acf3e2e9dccd73631fef85661ebebb8436bc2e64c76a64595ea",
+  "modifiedIds": [
+    "skills-necromancer-confuse",
+    "skills-necromancer-attract"
+  ],
+  "otherRawRowsByteIdentical": 211,
+  "headerIdsOrderPreserved": true,
+  "rows": 213,
+  "boundedFunctional": 164,
+  "unverified": 47,
+  "engineOnly": 1,
+  "reviewNeeded": 1,
+  "necromancerBoundedFunctional": 22,
+  "independentAcceptance": "open",
+  "earnedBalance": "open",
+  "creditPrerequisites": {
+    "fullTests": 18055,
+    "fullFiles": 828,
+    "existingOptInSkips": 2,
+    "allFinalChecksPass": true,
+    "rawArchiveReadBackVerified": true,
+    "exactCleanupVerified": true,
+    "genuineCampaignUnchanged": true
+  }
+}

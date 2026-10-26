@@ -1,6 +1,6 @@
 # D04 — Confuse / Attract finite target redirection
 
-2026-10-26; root owns all work, no delegation or independent approval. Definition foundation `9bc03a22` and paid runtime integration through `e636b8fe` are locally verified; original native RED is now6/6GREEN. Presentation/native lifecycle/public proof are locally verified through `6d4f5009`; final full-unit retry and retention/cleanup remain open. This is a provisional root-author v1 adaptation, not independent design approval or functional skill credit. [BUG254](../../../production/bugs/BUG-254-apply-confuse-attract-targeting.md) records original source/commands/failures.
+2026-10-26; root owns all work, no delegation or independent approval. Definition foundation `9bc03a22` and paid runtime integration through `e636b8fe` are locally verified; original native RED is now6/6GREEN. Presentation/native lifecycle/public proof are locally verified through `6d4f5009`; final full-unit/audit/retention/read-back/exact cleanup now pass and both skills have bounded functional credit. This remains a provisional root-author v1 adaptation; independent design/QA and earned acceptance remain open. [BUG254](../../../production/bugs/BUG-254-apply-confuse-attract-targeting.md) records original source/commands/failures.
 
 ## Preserved authority
 
@@ -35,6 +35,25 @@ Both descriptions must state the actual finite duration,other living enemy eligi
 
 ## Current state
 
-Dim Vision closed locally in `b7d2dff8`; current inventory162bounded/49unverified/one engine-only/one review-needed,Necromancer20/32. Neither Confuse nor Attract is credited. Original rank1/20 native RED4failed/2negative controls passed remains retained. Paid runtime commits `a6b9c101`,`7bacc916`,`e636b8fe` now produce6/6GREEN: Confuse1600→600heroHP loss/12same-side attempts/1000monsterHP removed; Attract1600→1100/6attempts/500monsterHP removed,at both ranks. Final focused209/7files,engine9123/342files,types/scoped lint/purity PASS. [Runtime evidence](../evidence/d04-target-curses.md) records88new runtime cases,14final blobs/33terminal receipts,fixture corrections and author-review limits. Presentation/native lifecycle/public proof are now locally verified (`f20d7e3c`,`da771f12`,`fd6dd6bd`,`6d4f5009`). First full found two stale helper copy literals; `c0b20f1d` preserves exact assertions with current authored templates. Fresh full/types/lint, final audit and required-evidence retention/exact cleanup remain next. GenuineL33/Ancients claimed/Baal uncleared and all full-v1 requirements stay unchanged.
+Final full18055/828files/two existing opt-in skips865.538s; final types130.517s,
+full lint216.273s/343engine purity,official build/bridge/756URLprecache PASS.
+Final public8/8 gives eight actual localized casts/chips,16exact seven-domain
+save pairs,eight network-disabled activated-SW Continues,40geometry and24originals
+individually inspected with explicit scrolling/victory-viewport limits. Exact
+native rank1/20 numerical proof and all prior paid/runtime controls remain green.
+Final audit checks25feature blobs/all1632frozen inputs/68terminal receipts/both762-file
+builds/genuine hashes.1896raw members are losslessly archived/read-back verified;
+1896exact files/106directories and external driver removed,remaining[]/failures[];
+28restricted /proc entries disclosed. Root retains archive/three sidecars through
+BUG254/BUG255/full-v1 consumers; exact paths and proof are in the
+[evidence](../evidence/d04-target-curses.md).
+
+Exactly two credits preserve211other raw rows/header/213IDs/order:
+164bounded/47unverified/one engine-only/one review-needed,Necromancer22/32.
+Original native RED and first full failure remain retained; BUG255 corrects only
+two provably stale exact translation expectations/comment,without weakening tests.
+No independent/earned acceptance or full-v1 completion follows. GenuineL33/Ancients
+claimed/next402/Baal uncleared remains unchanged. Next:remaining skills and all
+original C2–C4/fullG0–G7/build/balance/pacing/economy/endgame/privatev1 requirements.
 
 Historical foundation validation:81focused/3files3.129s,engine9035/338150.233s,typecheck122.374s and explicit lint11.230s PASS. Native RED remained4failed/2controls after metadata and again after paid capture; only offensive integration made it GREEN. No bounded credit;inventory162unchanged. Raw failures and every incremental source snapshot remain in BUG254's active task root,owned by root through evidence consumers and exact cleanup.

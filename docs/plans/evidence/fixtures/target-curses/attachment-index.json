@@ -1,5 +1,5 @@
 {
-  "scope": "Final production public browser run only. Full-unit retry, final audit, evidence retention/cleanup and skill credits remain pending. Root author inspection is not independent approval.",
+  "scope": "Final production public browser run only; see final-audit.json, author-review.json, retention-summary.json, cleanup.json and inventory-reconciliation.json for final bounded local disposition. Root author inspection is not independent approval.",
   "sourceCommit": "6d4f5009",
   "commandReceipt": {
     "command": [

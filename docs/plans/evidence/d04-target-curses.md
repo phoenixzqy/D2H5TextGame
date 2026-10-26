@@ -1,7 +1,7 @@
 # D04 — Confuse / Attract local implementation and acceptance
 
 2026-10-26; root author evidence, not independent acceptance. Runtime source head
-`e636b8feda324a6f79a0d624586c1f6fd1c3e51a`. Both skills remain uncredited pending final full-unit retry and evidence retention/cleanup.
+`e636b8feda324a6f79a0d624586c1f6fd1c3e51a`. Both skills now have bounded functional credit after final full-unit, audit, raw retention/read-back and exact cleanup; independent and earned acceptance remain open.
 Presentation/native lifecycle/public proof are now locally verified through `6d4f5009`;
 `c0b20f1d` corrects two stale translation-helper literals without changing runtime.
 [Contract](../decisions/D04-target-curses-v1.md),
@@ -91,13 +91,13 @@ continuity; combined full/types/lint/build/bridge/precache verification and fina
 evidence retention/cleanup. That checkpoint claimed no post-runtime full unit suite,
 build or browser run; the later continuation below supersedes it. The prior17,874full/4browser evidence belongs to Dim Vision's head.
 
-Inventory is byte-identical to the post-DimVision162credit baseline:
+At the runtime checkpoint, inventory was byte-identical to the post-DimVision162credit baseline:
 162bounded/49unverified/one engine-only/one review-needed,213IDs. Neither target
 curse receives credit. GenuineL33/Ancients claimed/nextNormal402/Baal uncleared
 and retained compressed/raw hashes remain exact. Independent/earned acceptance,
 all-class builds, pacing/economy/endgame, C2–C4/fullG0–G7 and full privatev1 remain open.
 
-## Active evidence retention
+## Historical active evidence retention
 
 Task root:
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede`.
@@ -169,7 +169,7 @@ forbidden checks/environment clearing are preserved. Existing Browserslist,large
 chunk and2.57MB generated-manifest-not-precache warnings remain. Browser page and
 console warning/error arrays are empty; command-side Node color warnings are separate.
 
-## Full-suite regression and current hold
+## Full-suite regression — historical pending checkpoint
 
 First combined full:onefailed/827passed files,2failed/18053passed/2existing opt-in
 skips,1345.413s/exit1. Both failures are provably stale exact Confuse copy literals
@@ -179,14 +179,58 @@ was filed before the test-only correction. Focused RED2failed/4controls3.220s;
 six tests/assertions. GREEN22/2files10.107s/scopedlint7.360sPASS. No locale/helper
 or other production workaround.
 
-A fresh full run `combined-full-final`, final typecheck and full lint are active
-in the task root. Before that run,1632source/test/script/config inputs were frozen
-and verified against committed `c0b20f1d`; manifest is `full-final-inputs-manifest.json`.
-No fresh full-green or skill credit is claimed yet. The two pre-existing skipped
-checks are opt-in fresh campaign economy/continuation simulations, not new skips.
-Inventory remains162bounded/49unverified/one engine-only/one review-needed.
-GenuineL33/Ancients claimed/next402/Baal uncleared and protected hashes remain exact.
-Root author/security/five-axis review and24individual visual records are retained;
-no independent approval or earned balance/full-v1 completion. Next:terminal full
-results, final source/build/command/browser audit, lossless required-evidence
-retention/read-back and exact disposable cleanup before considering two credits.
+The fresh full run has now completed; the final outcome below supersedes the
+pending checkpoint. Before that run,1632source/test/script/config inputs were
+frozen against committed `c0b20f1d`. The two pre-existing skipped checks are opt-in
+fresh campaign economy/continuation simulations, not new skips.
+
+## Final local validation and bounded credit
+
+Final `combined-full-final`:18055passed/828files/two existing opt-in skips,
+exit0/865.538s; logSHA256
+`48d5fb5ee5e2fc961f09bd6de05b3e3705afdc2747f32bd281f0456b7b3481d1`.
+Post-copy final types130.517s/full lint216.273s/343engine-file purity PASS.
+Build/bridge/precache and final public8/8 evidence above remain valid: subsequent
+source changes after `da771f12` are only the two native test files and the exact
+i18nKey test literals; later evidence commits change documentation only.
+
+[Final audit](fixtures/target-curses/final-audit.json) verifies25feature blobs,
+all1632committed source/test/config inputs equal the pre-run freeze,68terminal
+command/log hashes,762identical files per build,eight browser cases/16seven-domain
+pairs/40geometry/24images,unchanged pre-credit inventory and both genuine hashes.
+[Historical source audit](fixtures/target-curses/historical-source-audit.json)
+checks all five snapshot stages against their original commits (4/4/4/14/6blobs).
+[Author review](fixtures/target-curses/author-review.json) finds bounded automated
+and visual evidence adequate; this remains author evidence, not independent approval.
+
+[Retention](fixtures/target-curses/retention-summary.json) records1896regular raw
+members/107829151bytes,all read back against their source bytes. ArchiveSHA256
+`fdaa24c121d256b1ce4cc44d7552e64b214fb78e157944400ddf205b725204b5`.
+[Cleanup](fixtures/target-curses/cleanup.json) verifies1896exact files/106directories
+removed,original root absent,remaining[]/failures[],no readable task consumers,
+4541free and no signals.28restricted /proc entries are disclosed; no exhaustive
+visibility claim. The separately copied exact cleanup driver was also verified
+and removed. Source/history/shared caches/tools and umbrella worktree/claim remain.
+
+The following required evidence paths remain under root ownership through
+BUG254/BUG255/full-v1 consumers; root owns their later removal:
+
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede-retained.tar.xz`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede-retention.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede-deletion-manifest.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede-cleanup.json`
+
+The archive preserves original native REDs,first failed full,reduced stale-copy
+RED,untouched stale test,all interim source/config/spec versions,logs/reports,
+original screenshots and final source/build/command audits. Historical absolute
+raw paths in receipts identify archive members; the original task root is absent.
+
+[Inventory reconciliation](fixtures/target-curses/inventory-reconciliation.json)
+credits exactly Confuse and Attract after validation/retention/cleanup:
+164bounded-functional/47unverified/one engine-only/one review-needed;
+Necromancer22/32. Header,all213IDs/order and211other raw rows remain byte-exact.
+This is bounded skill evidence, not overall game completion. GenuineL33/Ancients
+claimed/nextNormal402/Baal uncleared and both protected hashes remain unchanged.
+No genuine campaign/replay,remote action or delegation. Independent acceptance,
+earned all-class builds/balance,30–50hour pacing/economy/endgame,C2–C4/fullG0–G7
+and the complete privatev1 objective remain open.

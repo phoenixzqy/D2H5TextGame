@@ -1,6 +1,6 @@
 # BUG-255 — Refresh stale Confuse description oracles
 
-- Status: test-only correction committed in `c0b20f1d`; focused RED/GREEN verified, fresh full suite pending.
+- Status: test-only correction locally fixed/verified in `c0b20f1d`; focused RED/GREEN and final full/types/lint/audit/raw retention/exact cleanup pass. No independent or full-v1 acceptance claimed.
 - Severity: Medium — the required full-unit gate fails on two obsolete copy literals; public bilingual UI/native/browser behavior is already separately asserted by other tests. No runtime translation defect is established.
 - Owner: root test/frontend author; no delegation or independent approval.
 - Build: `6d4f5009`; Node24.21.0/Linux/Vitest1.6.1. Browser/viewport/engine seed: not applicable; localization-helper unit test, both en and zh-CN.
@@ -27,3 +27,20 @@ and their explanatory comment. All six tests and their assertions remain. Reduce
 RED2failed/4passed3.220s; GREEN22/2files10.107s and scopedlint7.360sPASS. No runtime
 or locale change. Fresh `combined-full-final` and final types/lint are active;
 local closure waits for their terminal evidence. Original source/failures retained.
+
+## Final local outcome
+
+Fresh combined full18055passed/828files/two existing opt-in skips,exit0/865.538s;
+logSHA256`48d5fb5ee5e2fc961f09bd6de05b3e3705afdc2747f32bd281f0456b7b3481d1`.
+Post-copy types130.517s/full lint216.273s and final source/build/command/browser/
+protected-state audit PASS. Original failures are preserved in the1896-member
+read-back-verified archive;1896exact files/106directories and external driver
+cleaned,remaining[]/failures[],28restricted /proc entries disclosed. Root retains
+archive/three sidecars through BUG254/BUG255/full-v1 consumers and owns later removal;
+original raw directory is absent. [Final evidence and exact retained paths](../../docs/plans/evidence/d04-target-curses.md)
+supersede the historical pending checkpoints above.
+
+Exactly Confuse/Attract gain bounded functional credit:164bounded/47unverified/
+one engine-only/one review-needed,Necromancer22/32;211other raw rows/header/IDs/order
+unchanged. BUG255 itself grants no additional credit. GenuineL33/next402/Baal
+uncleared remains unchanged; independent/earned/full privatev1 remain open.
