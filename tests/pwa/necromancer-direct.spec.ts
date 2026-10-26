@@ -14,7 +14,7 @@ async function backup(page: Page): Promise<SaveCurrent> {
   try { return JSON.parse(await readFile(await download.path(), 'utf8')) as SaveCurrent; }
   finally { await download.delete(); }
 }
-for (const locale of ['en', 'zh-CN'] as const) test(`Necromancer direct public previews/casts/save/offline ${locale}`, async ({ page, context }, info) => {
+for (const slug of spells) for (const locale of ['en', 'zh-CN'] as const) test(`Necromancer ${slug} public preview/cast/save/offline ${locale}`, async ({ page, context }, info) => {
   const english = locale === 'en', errors: string[] = [], consoleErrors: string[] = [];
   const watch = (target: Page) => {
     target.on('pageerror', error => errors.push(error.message));
@@ -34,14 +34,14 @@ for (const locale of ['en', 'zh-CN'] as const) test(`Necromancer direct public p
     for (const ancestor of row.prerequisites ?? []) add(ancestor);
     levels[id] = 1;
   };
-  for (const slug of spells) add('skills-necromancer-' + slug);
-  for (const slug of spells) levels['skills-necromancer-' + slug] = 19;
+  add('skills-necromancer-' + slug);
+  levels['skills-necromancer-' + slug] = 19;
   const cap: Item = { id: 'synthetic-necromancer-direct-cap', baseId: 'items/base/helm-cap', rarity: 'rare',
     level: 1, identified: true, equipped: false, socketCapacity: 0, socketContents: [],
     affixes: [{ affixId: 'synthetic-import', values: new Map([['statMods.life', 999880],
       ['statMods.mana', 1000], ['statMods.attack', 100]]) }] };
-  const incoming = { ...original, player: { ...original.player, level: 30, skillPoints: 4,
-    comboOrder: spells.map(slug => 'skills-necromancer-' + slug), skillLevels: levels },
+  const incoming = { ...original, player: { ...original.player, level: 30, skillPoints: 1,
+    comboOrder: ['skills-necromancer-' + slug], skillLevels: levels },
     inventory: { ...original.inventory, backpack: [cap], equipped: original.inventory.equipped } };
   const importLabel = english ? 'Import Save' : '导入存档';
   await page.getByRole('button', { name: importLabel, exact: true }).click();
@@ -51,7 +51,7 @@ for (const locale of ['en', 'zh-CN'] as const) test(`Necromancer direct public p
   await navTo(page, 'inventory'); await page.getByTestId('inv-item-' + cap.id).click();
   await page.getByTestId('inv-primary-action').click(); await navTo(page, 'skills');
   const geometry: { skill: string; width: number; height: number; allocationHeight: number }[] = [];
-  for (const slug of spells) {
+  {
     await page.getByTestId('skill-node-skills-necromancer-' + slug).click(); await page.mouse.move(0, 0);
     const panel = page.getByTestId('skill-detail-panel');
     await expect(panel).toContainText(english ? 'base damage' : '基础伤害');
@@ -72,11 +72,32 @@ for (const locale of ['en', 'zh-CN'] as const) test(`Necromancer direct public p
   }
   await info.attach('geometry', { body: JSON.stringify(geometry), contentType: 'application/json' });
   const prepared = await backup(page);
-  for (const slug of spells) expect(prepared.player.skillLevels?.['skills-necromancer-' + slug]).toBe(20);
+  expect(prepared.player.skillLevels?.['skills-necromancer-' + slug]).toBe(20);
+  expect(prepared.player.comboOrder).toEqual(['skills-necromancer-' + slug]);
+  const names = { teeth: ['Teeth', '尸牙'], 'bone-spear': ['Bone Spear', '骨矛'],
+    'bone-spirit': ['Bone Spirit', '骨灵'], 'poison-nova': ['Poison Nova', '毒云术'] } as const;
+  const spellName = names[slug][english ? 0 : 1];
+  // Observe real rendered log entries across wave resets, retaining only one matching line.
+  const observed = await page.evaluateHandle(name => {
+    let castLine: string | null = null;
+    const observer = new MutationObserver(() => {
+      if (castLine !== null) return;
+      for (const row of document.querySelectorAll('[data-testid="combat-log"] > div')) {
+        const text = row.textContent ?? '';
+        if (text.includes(name)) { castLine = text; break; }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+    return { read: () => castLine, disconnect: () => { observer.disconnect(); } };
+  }, spellName);
+  try {
   await navTo(page, 'map');
   await page.getByTestId('sub-area-row-a1-blood-moor').getByRole('button', { name: english ? 'Enter' : '进入', exact: true }).click();
   for (let i = 0; i < 2; i++) await page.getByRole('button', { name: english ? 'Speed' : '速度', exact: true }).click();
   await page.mouse.move(0, 0); await expect(page.getByTestId('victory-panel')).toBeVisible({ timeout: 90_000 });
+  await expect.poll(() => observed.evaluate(handle => handle.read())).toContain(spellName);
+  await info.attach('public-cast', { body: JSON.stringify({ slug, spellName, line: await observed.evaluate(handle => handle.read()) }), contentType: 'application/json' });
+  } finally { await observed.evaluate(handle => { handle.disconnect(); }); await observed.dispose(); }
   await info.attach('victory', { body: await page.getByTestId('victory-panel').screenshot(), contentType: 'image/png' });
   await page.getByTestId('return-to-town').click(); await navTo(page, 'settings');
   await page.getByRole('button', { name: english ? 'Save' : '保存', exact: true }).click();
