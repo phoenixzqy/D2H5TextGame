@@ -11,7 +11,7 @@ import { SkillsScreen } from './SkillsScreen';
 
 beforeEach(() => { usePlayerStore.getState().reset(); useHydrationStore.getState().setStatus('ready'); });
 afterEach(() => { cleanup(); usePlayerStore.getState().reset(); useHydrationStore.getState().setStatus('idle'); });
-for (const locale of ['en', 'zh-CN'] as const) for (const spell of ['blaze', 'fire-wall', 'thunder-storm']) {
+for (const locale of ['en', 'zh-CN'] as const) for (const spell of ['blaze', 'fire-wall', 'thunder-storm', 'inferno']) {
   it.each([0, 1, 2, 20])(`${spell} previews per-pulse damage, finite time and one payment (${locale}, rank%i)`, async rank => {
     await i18n.changeLanguage(locale);
     act(() => { usePlayerStore.getState().setPlayer({ ...createMockPlayer('Synthetic spell UI', 'sorceress'),
@@ -21,12 +21,14 @@ for (const locale of ['en', 'zh-CN'] as const) for (const spell of ['blaze', 'fi
     </Suspense></I18nextProvider>);
     fireEvent.click(screen.getByTestId('skill-node-skills-sorceress-' + spell));
     const panel = screen.getByTestId('skill-detail-panel'), at = Math.max(1, rank);
-    const growth = spell === 'blaze' ? 5 : spell === 'fire-wall' ? 6 : 7;
-    const min = (spell === 'blaze' ? 60 : 70) + growth * (at - 1);
-    const max = (spell === 'blaze' ? 85 : spell === 'fire-wall' ? 100 : 110) + growth * (at - 1);
+    const growth = spell === 'inferno' ? 4 : spell === 'blaze' ? 5 : spell === 'fire-wall' ? 6 : 7;
+    const min = (spell === 'inferno' ? 35 : spell === 'blaze' ? 60 : 70) + growth * (at - 1);
+    const max = (spell === 'inferno' ? 55 : spell === 'blaze' ? 85 : spell === 'fire-wall' ? 100 : 110) + growth * (at - 1);
     for (const phrase of locale === 'en'
-      ? [`${String(min)}–${String(max)}`, 'per pulse', '3 s', 'every 1 s', '3 pulses', 'immediately', 'one payment', 'all living enemies']
-      : [`${String(min)}～${String(max)}`, '每次脉冲', '3 秒', '每 1 秒', '共 3 次', '立即', '只支付一次', '所有存活敌人']) expect(panel).toHaveTextContent(phrase);
+      ? [`${String(min)}–${String(max)}`, 'per pulse', '3 s', 'every 1 s', '3 pulses', 'immediately', 'one payment',
+        ...(spell === 'inferno' ? ['two-row cone', 'actions are occupied', 'interrupts without a refund', 'next wave'] : ['all living enemies'])]
+      : [`${String(min)}～${String(max)}`, '每次脉冲', '3 秒', '每 1 秒', '共 3 次', '立即', '只支付一次',
+        ...(spell === 'inferno' ? ['两排锥形', '占用施法者行动', '打断且不返还法力', '下一波'] : ['所有存活敌人'])]) expect(panel).toHaveTextContent(phrase);
     expect(panel).toHaveTextContent(locale === 'en' ? (spell === 'thunder-storm' ? 'Paralyze' : 'Burn')
       : (spell === 'thunder-storm' ? '麻痹' : '灼烧'));
     expect(panel.textContent).not.toMatch(/\{\{|undefined|NaN|details\./);

@@ -6,7 +6,7 @@ import type { DamageEffect, RegisteredSkill } from './effects';
 import { createSkillValidator } from './skill-validator';
 import { statusActiveAt } from '../combat/status';
 
-export const PERIODIC_SPELL_IDS = ['blaze', 'fire-wall', 'thunder-storm'] as const;
+export const PERIODIC_SPELL_IDS = ['blaze', 'fire-wall', 'thunder-storm', 'inferno'] as const;
 export type PeriodicSpellId = typeof PERIODIC_SPELL_IDS[number];
 const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number }>();
 export const periodicSpellDataId = (id: PeriodicSpellId) => 'skills-sorceress-' + id;
@@ -32,22 +32,24 @@ export function resolvePeriodicSpellDefinition(source: readonly unknown[], id: P
     perRank: Object.freeze([row.scaling?.damagePerLevel ?? 0, row.scaling?.damagePerLevel ?? 0] as const),
     ...(row.appliesTags ? { tags: Object.freeze([...row.appliesTags]) } : {}),
     ...(status ? { applyStatus: Object.freeze({ id: status, ...row.statusEffect }) } : {}) });
-  return Object.freeze({ ...row.periodicSpell, maxRank: row.maxLevel, requiredLevel: row.requiredLevel,
+  return Object.freeze({ ...row.periodicSpell, target: row.target, aoeShape: row.aoeShape,
+    maxRank: row.maxLevel, requiredLevel: row.requiredLevel,
     manaCost: row.cost.mana, cooldown: row.cooldown, costPerRank: row.scaling?.costPerLevel ?? 0,
     cooldownPerRank: row.scaling?.cooldownPerLevel ?? 0, pulse });
 }
 export const PERIODIC_SPELL_DEFINITIONS = Object.freeze({
   blaze: resolvePeriodicSpellDefinition(rows, 'blaze'),
   'fire-wall': resolvePeriodicSpellDefinition(rows, 'fire-wall'),
-  'thunder-storm': resolvePeriodicSpellDefinition(rows, 'thunder-storm')
+  'thunder-storm': resolvePeriodicSpellDefinition(rows, 'thunder-storm'),
+  inferno: resolvePeriodicSpellDefinition(rows, 'inferno')
 });
 
 /** Reject contradictory registry overrides before resource payment. */
 export function matchesPeriodicSpell(skill: RegisteredSkill, id: PeriodicSpellId): boolean {
   const d = PERIODIC_SPELL_DEFINITIONS[id], effect = skill.effects[0];
   return skill.id === periodicSpellCanonicalId(id) && skill.archetype === 'sorceress' &&
-    skill.trigger === 'active' && skill.target === 'all-enemies' && skill.isBuff !== true &&
-    skill.summonOnStart !== true && skill.requires === undefined && skill.aoeShape === undefined &&
+    skill.trigger === 'active' && skill.target === d.target && skill.isBuff !== true &&
+    skill.summonOnStart !== true && skill.requires === undefined && skill.aoeShape === d.aoeShape &&
     skill.maxTargets === undefined && skill.minLevel === d.requiredLevel &&
     skill.manaCost === d.manaCost && skill.cooldown === d.cooldown &&
     (skill.manaCostPerRank ?? 0) === d.costPerRank && (skill.cooldownPerRank ?? 0) === d.cooldownPerRank &&
@@ -105,4 +107,10 @@ export function nextPeriodicSpellPulse(unit: CombatUnit, id: PeriodicSpellId, at
   const start = paid.appliedAtMs ?? 0, interval = PERIODIC_SPELL_DEFINITIONS[id].intervalMs;
   const next = start + (Math.floor((at - start) / interval) + 1) * interval;
   return next < (paid.expiresAtMs ?? 0) ? next : undefined;
+}
+
+/** A paid channel occupies caster opportunities; independent field spells never do. */
+export function isChanneling(unit: CombatUnit, at: number): boolean {
+  return PERIODIC_SPELL_IDS.some(id => PERIODIC_SPELL_DEFINITIONS[id].channelled === true &&
+    paidPeriodicSpell(unit, id, at) !== undefined);
 }

@@ -77,11 +77,30 @@
         "properties": {
           "id": {
             "enum": [
+              "skills-sorceress-inferno",
               "skills-sorceress-blaze",
               "skills-sorceress-fire-wall",
               "skills-sorceress-thunder-storm"
             ]
           }
+        }
+      }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-sorceress-inferno" } } },
+      "then": {
+        "required": ["periodicSpell", "damage", "damageType", "aoeShape", "appliesStatus", "requiredLevel"],
+        "properties": {
+          "periodicSpell": { "type": "object", "required": ["channelled"], "properties": { "channelled": { "const": true } } },
+          "trigger": { "const": "active" }, "target": { "const": "area-enemies" },
+          "aoeShape": { "const": "cone-2" }, "requiredLevel": { "const": 6 },
+          "maxLevel": { "const": 20 }, "damageType": { "const": "fire" },
+          "appliesStatus": { "const": ["burn"] },
+          "heal": false, "summonId": false, "maxTargets": false, "timedBuff": false,
+          "additionalStatusEffects": false, "damageComposition": false, "attackDamagePct": false,
+          "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false,
+          "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false,
+          "isPassive": false, "isAura": false, "isSummon": false
         }
       }
     },
@@ -107,7 +126,7 @@
           "damageType"
         ],
         "properties": {
-          "periodicSpell": {},
+          "periodicSpell": { "type": "object", "properties": { "channelled": false } },
           "damage": {},
           "damageType": {},
           "heal": false,
@@ -694,7 +713,7 @@
     },
     {
       "if": { "required": ["aoeShape"], "properties": { "aoeShape": { "const": "cone-2" } } },
-      "then": { "properties": { "id": { "enum": ["skills-assassin-fire-blast", "skills-assassin-blade-fury", "skills-sorceress-frozen-orb"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-assassin-fire-blast", "skills-assassin-blade-fury", "skills-sorceress-frozen-orb", "skills-sorceress-inferno"] } } }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-sorceress-frozen-orb" } } },
@@ -4789,8 +4808,12 @@
         "durationMs",
         "intervalMs"
       ],
-      "description": "Exact paid Blaze, Fire Wall and Thunder Storm duration/interval in simulation milliseconds; immediate first pulse and half-open expiry.",
+      "description": "Exact paid Sorceress spell timing in simulation milliseconds; immediate first pulse and half-open expiry. Only Inferno occupies caster actions and is interrupted by disabling control.",
       "properties": {
+        "channelled": {
+          "const": true,
+          "description": "Inferno only: occupies caster opportunities and stops on action-blocking control. Independent fields omit this property."
+        },
         "durationMs": {
           "type": "integer",
           "minimum": 1,

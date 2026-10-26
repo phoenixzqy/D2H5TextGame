@@ -14,7 +14,7 @@ import { CombatScreen } from './CombatScreen';
 const stores = [useCombatStore, useMapStore, useMetaStore, usePlayerStore, useInventoryStore];
 beforeEach(() => { abortSubAreaRun(); for (const s of stores) s.getState().reset(); useHydrationStore.getState().setStatus('ready'); });
 afterEach(() => { cleanup(); abortSubAreaRun(); for (const s of stores) s.getState().reset(); useHydrationStore.getState().setStatus('idle'); });
-for (const locale of ['en', 'zh-CN'] as const) for (const spell of ['blaze', 'fire-wall', 'thunder-storm'] as const) {
+for (const locale of ['en', 'zh-CN'] as const) for (const spell of ['blaze', 'fire-wall', 'thunder-storm', 'inferno'] as const) {
   it(`${spell} renders as a localized positive finite effect, removed by playback (${locale})`, async () => {
     await i18n.changeLanguage(locale);
     const player = createMockPlayer('Synthetic field chip', 'sorceress');
@@ -26,8 +26,8 @@ for (const locale of ['en', 'zh-CN'] as const) for (const spell of ['blaze', 'fi
     </Suspense></I18nextProvider>);
     const card = screen.getByTestId('unit-card-' + hero.id);
     const chip = within(card).getByTestId('unit-effect-chips').firstElementChild;
-    const names = locale === 'en' ? { blaze: 'Blaze', 'fire-wall': 'Fire Wall', 'thunder-storm': 'Thunder Storm' }
-      : { blaze: '炽烈之径', 'fire-wall': '火墙', 'thunder-storm': '雷暴' };
+    const names = locale === 'en' ? { blaze: 'Blaze', 'fire-wall': 'Fire Wall', 'thunder-storm': 'Thunder Storm', inferno: 'Inferno' }
+      : { blaze: '炽烈之径', 'fire-wall': '火墙', 'thunder-storm': '雷暴', inferno: '炼狱' };
     expect(chip).toHaveTextContent(names[spell]);
     expect(chip).toHaveClass('text-blue-200');
     act(() => { useCombatStore.setState({ playerTeam: [{ ...hero, statuses: [] }] }); });

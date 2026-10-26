@@ -112,6 +112,7 @@
     "summon": "Summon",
     "death": "Down",
     "status": {
+      "inferno": "Inferno",
       "blaze": "Blaze",
       "fire-wall": "Fire Wall",
       "thunder-storm": "Thunder Storm",
@@ -160,6 +161,7 @@
       "enchant": "Enchant"
     },
     "buff": {
+      "inferno": "Inferno",
       "blaze": "Blaze",
       "fire-wall": "Fire Wall",
       "thunder-storm": "Thunder Storm",

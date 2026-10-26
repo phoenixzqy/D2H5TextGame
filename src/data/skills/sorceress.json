@@ -819,6 +819,8 @@
   },
   {
     "id": "skills-sorceress-inferno",
+    "periodicSpell": { "durationMs": 3000, "intervalMs": 1000, "channelled": true },
+    "aoeShape": "cone-2",
     "name": "skills.sorceress.inferno.name",
     "description": "skills.sorceress.inferno.desc",
     "icon": "skills/sorceress/inferno.png",

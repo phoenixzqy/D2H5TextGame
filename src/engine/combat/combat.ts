@@ -56,7 +56,7 @@ import { COLD_ARMOR_IDS, coldArmorId, coldArmorRank, coldArmorBonuses, coldArmor
   matchesColdArmor, paidColdArmorRank, payColdArmor } from '../skills/cold-armors';
 import { PERIODIC_SPELL_IDS, PERIODIC_SPELL_DEFINITIONS, periodicSpellId, periodicSpellRank,
   matchesPeriodicSpell, paidPeriodicSpell, payPeriodicSpell, refreshPeriodicSpells,
-  nextPeriodicSpellPulse, type PeriodicSpellId } from '../skills/periodic-spells';
+  nextPeriodicSpellPulse, isChanneling, type PeriodicSpellId } from '../skills/periodic-spells';
 import { absorbBoneArmor, boneArmorPool, copyBoneArmorStatuses } from '../skills/bone-armor';
 import { absorbCycloneArmor, activeCycloneArmor, CYCLONE_ARMOR_IDS, cycloneArmorLethalBound,
   cycloneArmorQuota, cycloneArmorRank, cycloneArmorResistance, matchesCycloneArmor,
@@ -399,6 +399,7 @@ function scheduleNextAction(state: State, unit: CombatUnit): void {
 
 /** Preserve remaining progress at onset/expiry; unchanged refresh never reschedules. */
 function reconcileActionPeriods(state: State): void {
+  cancelInterruptedChannels(state);
   for (const [id, scheduled] of state.actionSchedule) {
     // Authored enrage observes damage/periodic boundaries and preserves pending phase.
     if (state.units.get(id)?.enrage) checkEnrage(state, id);
@@ -1838,7 +1839,11 @@ function pulsePaidSpell(state: State, actorId: string, id: PeriodicSpellId): voi
   const last = state.periodicSpellPulses.get(actorId) ?? {};
   if (last[id] === state.simClockMs) return;
   state.periodicSpellPulses.set(actorId, { ...last, [id]: state.simClockMs });
-  for (const target of targetPriority(state, opponentsOf(state, actor))) {
+  const definition = PERIODIC_SPELL_DEFINITIONS[id];
+  const candidates = targetPriority(state, opponentsOf(state, actor));
+  const targets = definition.target === 'area-enemies'
+    ? resolveAoeTargets(candidates, definition.aoeShape) : candidates;
+  for (const target of targets) {
     applyDamageToUnit(state, actorId, target.id, PERIODIC_SPELL_DEFINITIONS[id].pulse,
       paid.periodicSpell?.rank ?? 0, false, false, false, true);
   }
@@ -1846,6 +1851,7 @@ function pulsePaidSpell(state: State, actorId: string, id: PeriodicSpellId): voi
 
 /** Periodic deaths/expiry and ambient auras precede spells; spells precede same-time ordinary actions. */
 function settlePaidSpells(state: State): void {
+  cancelInterruptedChannels(state);
   if (state.simClockMs === 0) return; // previous wave already settled its endpoint
   for (const actor of state.units.values()) {
     if (!alive(actor)) continue;
@@ -2179,20 +2185,36 @@ function castSummonsOnStart(state: State, unitId: string): void {
   }
 }
 
-function takeAction(state: State, unitId: string): void {
-  const unit = state.units.get(unitId);
-  if (!unit || !alive(unit)) return;
-
+/** Channels and ordinary actions share the exact supported-control/Concentration rule. */
+function actionIsInterrupted(state: State, unit: CombatUnit): boolean {
   const active = activeStatusView(unit, state.simClockMs);
   // Concentration protects only this interruption check. The real Stun remains
   // visible to status lifecycle, recording and every other combat interaction.
-  const blocking = activeStatAura(state.statAura, unitId, state.units)?.preventStunInterruption
+  const blocking = activeStatAura(state.statAura, unit.id, state.units)?.preventStunInterruption
     ? { ...active, statuses: active.statuses.filter(status => status.id !== 'stun') }
     : active;
-  if (isStunned(blocking) || isImmobilized(blocking)) {
+  return isStunned(blocking) || isImmobilized(blocking);
+}
+
+/** Cancel at onset, including controls shorter than the interval between pulses. */
+function cancelInterruptedChannels(state: State): void {
+  for (const unit of state.units.values()) {
+    if (!alive(unit) || !isChanneling(unit, state.simClockMs) || !actionIsInterrupted(state, unit)) continue;
+    state.units.set(unit.id, { ...unit, statuses: unit.statuses.filter(status =>
+      !PERIODIC_SPELL_IDS.some(id => id === status.id && PERIODIC_SPELL_DEFINITIONS[id].channelled === true)) });
+    observeStatuses(state, unit.id);
+  }
+}
+
+function takeAction(state: State, unitId: string): void {
+  const unit = state.units.get(unitId);
+  if (!unit || !alive(unit)) return;
+  if (actionIsInterrupted(state, unit)) {
     emit(state, { kind: 'stunned', target: unitId });
     return;
   }
+
+  if (isChanneling(unit, state.simClockMs)) return;
 
   if (recoverDruidVine(state, unitId)) return;
 

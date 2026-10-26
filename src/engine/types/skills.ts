@@ -251,8 +251,8 @@ export interface ConversionTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
-  /** Paid recurring spell timing, available only to three explicitly authored Sorceress skills. */
-  readonly periodicSpell?: { readonly durationMs: number; readonly intervalMs: number };
+  /** Paid recurring timing; only explicit Inferno channel metadata occupies caster actions. */
+  readonly periodicSpell?: { readonly durationMs: number; readonly intervalMs: number; readonly channelled?: true };
   readonly conversion?: ConversionTuning;
   /** Normalize authored breakdown weights into one shared-roll composite strike. */
   readonly damageComposition?: 'weighted-components';

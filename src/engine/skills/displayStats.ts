@@ -28,7 +28,7 @@ import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 
 export interface DisplaySkillSource {
   readonly enchantOnPhysicalHit?: { readonly attackPctPerRank: number };
-  readonly periodicSpell?: { readonly durationMs: number; readonly intervalMs: number };
+  readonly periodicSpell?: { readonly durationMs: number; readonly intervalMs: number; readonly channelled?: true };
   readonly armorRetaliation?: import('../types/skills').ArmorRetaliationTuning;
   readonly attackDamagePct?: number;
   readonly timedBuff?: { readonly durationMs: number };
@@ -168,7 +168,8 @@ export interface SkillRankDisplayStats {
   readonly sorceressBuff?: { readonly durationSeconds: number;
     readonly magicDodgePoints?: number; readonly enchantAttackPercent?: number };
   /** Persistent spell damage rows are per pulse, not totals or a once-only cast. */
-  readonly periodicSpell?: { readonly durationSeconds: number; readonly intervalSeconds: number; readonly pulses: number };
+  readonly periodicSpell?: { readonly durationSeconds: number; readonly intervalSeconds: number; readonly pulses: number;
+    readonly channelled?: true };
   /** Counterattack range, distinct from direct damage at buff-cast time. */
   readonly coldArmor?: { readonly min: number; readonly max: number;
     readonly freezeSeconds: number; readonly bossFreezeSeconds: number };
@@ -618,11 +619,12 @@ export function computeSkillRankDisplayStats(
           ? { magicDodgePoints: Number(((skill.scaling?.passiveStatsPerLevel?.magicDodgePct ?? 0) * safeRank * 100).toFixed(4)) }
           : { enchantAttackPercent: Number(((skill.enchantOnPhysicalHit?.attackPctPerRank ?? 0) * safeRank * 100).toFixed(4)) })
       } } : {}),
-    ...(skill.periodicSpell && ['skills-sorceress-blaze', 'skills-sorceress-fire-wall',
+    ...(skill.periodicSpell && ['skills-sorceress-inferno', 'skills-sorceress-blaze', 'skills-sorceress-fire-wall',
       'skills-sorceress-thunder-storm'].includes(skill.id) ? { periodicSpell: {
       durationSeconds: skill.periodicSpell.durationMs / 1000,
       intervalSeconds: skill.periodicSpell.intervalMs / 1000,
-      pulses: Math.ceil(skill.periodicSpell.durationMs / skill.periodicSpell.intervalMs)
+      pulses: Math.ceil(skill.periodicSpell.durationMs / skill.periodicSpell.intervalMs),
+      ...(skill.id === 'skills-sorceress-inferno' && skill.periodicSpell.channelled === true ? { channelled: true as const } : {})
     } } : {}),
     ...(['skills-sorceress-shiver-armor', 'skills-sorceress-chilling-armor'].includes(skill.id) &&
       skill.trigger === 'active' && skill.armorRetaliation ? { coldArmor: {
@@ -647,7 +649,7 @@ export function computeSkillRankDisplayStats(
     ...(skill.id === 'skills-assassin-cloak-of-shadows' && skill.timedBuff
       ? { cloak: { durationSeconds: skill.timedBuff.durationMs / 1000,
         blindHitPenaltyPoints: DRUID_SUMMON_DEFINITION.raven.physicalHitChancePenalty * 100 } } : {}),
-    ...(['skills-assassin-fire-blast', 'skills-assassin-blade-fury', 'skills-sorceress-frozen-orb'].includes(skill.id) && skill.trigger === 'active' &&
+    ...(['skills-assassin-fire-blast', 'skills-assassin-blade-fury', 'skills-sorceress-frozen-orb', 'skills-sorceress-inferno'].includes(skill.id) && skill.trigger === 'active' &&
       skill.target === 'area-enemies' && skill.aoeShape === 'cone-2'
       ? { areaShape: skill.aoeShape } : {}),
     ...(maxTargets !== undefined ? { maxTargets } : {}),

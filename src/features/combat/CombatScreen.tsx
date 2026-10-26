@@ -752,7 +752,7 @@ function UnitCard({
         (status.id === 'frenzy' && status.frenzy === true) ||
         (status.id === 'concentrate' && status.concentrate !== undefined) ||
         ((status.id === 'teleport' || status.id === 'enchant') && status.sorceressBuff !== undefined) ||
-        (['blaze', 'fire-wall', 'thunder-storm'].includes(status.id) && status.periodicSpell !== undefined) ||
+        (['blaze', 'fire-wall', 'thunder-storm', 'inferno'].includes(status.id) && status.periodicSpell !== undefined) ||
         (status.id === 'bone-armor' && status.boneArmor !== undefined) ? 'buff' as const
         : status.dotPerStack !== undefined || status.id.includes('poison') || status.id.includes('ignite') || status.id.includes('plague') ? 'dot' as const : 'debuff' as const
     }))

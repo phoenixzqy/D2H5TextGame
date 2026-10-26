@@ -142,7 +142,7 @@ function summonMaxForKind(kind: SummonMaxCountScalingKind | undefined): number {
 
 function effectsForSkill(skill: JsonSkill): SkillEffect[] {
   if (skill.periodicSpell) {
-    const spell = (['blaze', 'fire-wall', 'thunder-storm'] as const)
+    const spell = (['blaze', 'fire-wall', 'thunder-storm', 'inferno'] as const)
       .find(id => skill.id === 'skills-sorceress-' + id);
     if (spell) return [{ kind: 'periodic-spell', spell }];
   }

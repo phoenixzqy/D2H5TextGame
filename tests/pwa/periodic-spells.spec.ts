@@ -14,12 +14,12 @@ async function backup(page: Page): Promise<SaveCurrent> {
   try { return JSON.parse(await readFile(await download.path(), 'utf8')) as SaveCurrent; }
   finally { await download.delete(); }
 }
-for (const locale of ['en', 'zh-CN'] as const) for (const slug of ['blaze', 'fire-wall', 'thunder-storm']) {
+for (const locale of ['en', 'zh-CN'] as const) for (const slug of ['blaze', 'fire-wall', 'thunder-storm', 'inferno'] as const) {
   test(`${slug} public allocation/field/save/offline ${locale}`, async ({ page, context }, info) => {
     const english = locale === 'en';
-    const names = english ? { blaze: 'Blaze', 'fire-wall': 'Fire Wall', 'thunder-storm': 'Thunder Storm' }
-      : { blaze: '炽烈之径', 'fire-wall': '火墙', 'thunder-storm': '雷暴' };
-    const armorName = names[slug as keyof typeof names];
+    const names = english ? { blaze: 'Blaze', 'fire-wall': 'Fire Wall', 'thunder-storm': 'Thunder Storm', inferno: 'Inferno' }
+      : { blaze: '炽烈之径', 'fire-wall': '火墙', 'thunder-storm': '雷暴', inferno: '炼狱' };
+    const armorName = names[slug];
     const name = 'Field Browser', errors: string[] = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.clock.setFixedTime(at);
@@ -55,8 +55,13 @@ for (const locale of ['en', 'zh-CN'] as const) for (const slug of ['blaze', 'fir
     const panel = page.getByTestId('skill-detail-panel');
     await expect(panel.getByRole('heading', { name: armorName, exact: true })).toBeVisible();
     await expect(panel).toContainText(english ? 'per pulse' : '每次脉冲');
+    if (slug === 'inferno') {
+      await expect(panel).toContainText(english ? 'Caster actions are occupied' : '占用施法者行动');
+      await expect(panel).toContainText(english ? 'interrupts without a refund' : '打断且不返还法力');
+    }
     const allocate = panel.getByRole('button', { name: english ? 'Allocate' : '分配', exact: true });
     await expect(allocate).toHaveCount(1);
+    const geometry: { width: number; height: number; allocationHeight: number }[] = [];
     for (const [width, height] of [[360, 640], [412, 915], [640, 360], [1280, 800], [1920, 1080]] as const) {
       await page.setViewportSize({ width, height });
       await page.mouse.move(0, 0);
@@ -65,27 +70,33 @@ for (const locale of ['en', 'zh-CN'] as const) for (const slug of ['blaze', 'fir
       const rect = await allocate.boundingBox();
       if (!rect) throw new Error('Missing allocation control');
       expect(rect.height).toBeGreaterThanOrEqual(44);
+      geometry.push({ width, height, allocationHeight: rect.height });
     }
     await allocate.click();
     await expect(panel).toContainText(english ? 'Lv. 2/20' : '等级 2/20');
     await page.setViewportSize(info.project.name.includes('mobile') ? { width: 360, height: 640 } : { width: 1280, height: 800 });
-    await info.attach('skill-preview', { body: await page.screenshot({ fullPage: true }), contentType: 'image/png' });
+    await panel.scrollIntoViewIfNeeded();
+    await info.attach('skill-preview', { body: await panel.screenshot(), contentType: 'image/png' });
+    await info.attach('geometry', { body: JSON.stringify(geometry), contentType: 'application/json' });
     const prepared = await backup(page);
     expect(prepared.player.skillLevels?.['skills-sorceress-' + slug]).toBe(2);
     // Sample the public MP bar while native playback runs; recovery may refill it before inspection.
     const manaFrames = await page.evaluateHandle(label => {
-      const values: number[] = [];
+      const values: number[] = [], positiveChips: string[] = [];
       let overflow = false;
       const observer = new MutationObserver(() => {
         const bar = document.querySelector(`[data-testid="combat-screen"] [role="group"][aria-label="${label}"] [role="progressbar"]`);
-        if (!bar) return;
-        const value = Number(bar.getAttribute('aria-valuenow'));
-        if (values.at(-1) === value) return;
-        if (values.length >= 256) { overflow = true; return; }
-        values.push(value);
+        if (bar) {
+          const value = Number(bar.getAttribute('aria-valuenow'));
+          if (values.at(-1) !== value) {
+            if (values.length >= 256) overflow = true; else values.push(value);
+          }
+        }
+        for (const chip of document.querySelectorAll('[data-testid="unit-effect-chips"] > .text-blue-200'))
+          if (chip.textContent && !positiveChips.includes(chip.textContent)) positiveChips.push(chip.textContent);
       });
       observer.observe(document.body, { childList: true, subtree: true, attributes: true, characterData: true });
-      return { read: () => ({ values, overflow }), disconnect: () => { observer.disconnect(); } };
+      return { read: () => ({ values, positiveChips, overflow }), disconnect: () => { observer.disconnect(); } };
     }, english ? 'MP' : '法力');
     const log = page.getByTestId('combat-log');
     try {
@@ -96,11 +107,22 @@ for (const locale of ['en', 'zh-CN'] as const) for (const slug of ['blaze', 'fir
       await expect(log).toContainText(armorName);
       await expect(log).toContainText(english ? (slug === 'thunder-storm' ? 'lightning damage' : 'fire damage') : (slug === 'thunder-storm' ? '闪电' : '火焰'));
       await expect(log).toContainText(english ? (slug === 'thunder-storm' ? '[Paralyze]' : '[Burn]') : (slug === 'thunder-storm' ? '【麻痹】' : '【燃烧】'));
+      if (slug === 'inferno') {
+        // A cone can hit at most four bodies. Five hero Fire attempts with one
+        // cast prove a later pulse through public playback, without a test bridge.
+        const heroFire = (line: string) => line.includes(name) && line.includes(english ? 'fire damage' : '火焰伤害');
+        await expect.poll(async () => (await log.innerText()).split('\n').filter(heroFire).length)
+          .toBeGreaterThanOrEqual(5);
+        const text = await log.innerText();
+        expect(text.split('\n').filter(line => line.includes(name) && line.includes(english ? 'casts Inferno' : '施放了 炼狱')))
+          .toHaveLength(1);
+        expect((await manaFrames.evaluate(handle => handle.read())).positiveChips.some(chip => chip.includes(armorName))).toBe(true);
+      }
       await page.getByRole('button', { name: english ? 'Pause' : '暂停', exact: true }).click();
       const observed = await manaFrames.evaluate(handle => handle.read());
       await info.attach('mana-playback', { body: JSON.stringify(observed), contentType: 'application/json' });
       expect(observed.overflow).toBe(false);
-      expect(observed.values).toContain(prepared.player.derivedStats.manaMax - (slug === 'blaze' ? 22 : slug === 'fire-wall' ? 25 : 30));
+      expect(observed.values).toContain(prepared.player.derivedStats.manaMax - (slug === 'inferno' ? 10 : slug === 'blaze' ? 22 : slug === 'fire-wall' ? 25 : 30));
     } finally {
       await manaFrames.evaluate(handle => { handle.disconnect(); });
       await manaFrames.dispose();

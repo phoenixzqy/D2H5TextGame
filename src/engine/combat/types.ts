@@ -90,7 +90,7 @@ export interface CombatUnit {
   /** Fresh legal native allocations, independent of carried paid buff potency. */
   readonly sorceressBuffRanks?: Readonly<Record<import('../skills/sorceress-buffs').SorceressBuffId, number>>;
   /** Fresh legal learned authority; governed equipment/native Blaze has its separate projection. */
-  readonly periodicSpellRanks?: Readonly<Record<'fire-wall' | 'thunder-storm', number>>;
+  readonly periodicSpellRanks?: Readonly<Record<'fire-wall' | 'thunder-storm', number> & { readonly inferno?: number }>;
   /** Fresh native Concentrate authority, independent of carried paid potency. */
   readonly concentrateRank?: number;
   /** Fresh native learned Leap authority, independent of carried paid potency. */

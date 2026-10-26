@@ -869,10 +869,12 @@ function StatSection({
               delta={damageDelta(row, compare, t)}
             />
           ))}
-          {stats.periodicSpell ? <StatLine label={t('details.spellTiming')} value={t('details.spellTimingValue', {
+          {stats.periodicSpell ? <StatLine label={t(stats.periodicSpell.channelled ? 'details.channelTiming' : 'details.spellTiming')} value={t('details.spellTimingValue', {
             duration: stats.periodicSpell.durationSeconds, interval: stats.periodicSpell.intervalSeconds,
             pulses: stats.periodicSpell.pulses
           })} /> : null}
+          {stats.periodicSpell?.channelled ? <StatLine label={t('details.channelActions')}
+            value={t('details.channelActionsValue')} /> : null}
           {stats.damage.length > 1 && stats.totalDamage ? (
             <StatLine
               label={t('details.totalPower')}

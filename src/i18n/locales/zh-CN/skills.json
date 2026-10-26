@@ -66,6 +66,9 @@
   "details": {
     "damagePerPulse": "每次脉冲{{type}}伤害",
     "spellTiming": "持续法术",
+    "channelTiming": "引导",
+    "channelActions": "施法者行动",
+    "channelActionsValue": "引导期间占用行动；眩晕、冻结、麻痹或恐惧会打断",
     "spellTimingValue": "{{duration}} 秒；每 {{interval}} 秒一次；共 {{pulses}} 次，首次立即生效",
     "armorRetaliation": "冰冷反击伤害",
     "armorFreeze": "反击冻结",
@@ -1130,7 +1133,7 @@
     },
     "inferno": {
       "name": "炼狱",
-      "desc": "持续火焰流灼烧敌人。"
+      "desc": "引导火焰流，持续 {{duration}} 秒。每次脉冲选择两排锥形区域（首排一格，次排三格），对其中每个敌人分别尝试造成 {{min}}～{{max}} 点火焰基础伤害；首次立即生效，之后每 {{interval}} 秒一次（共 {{pulses}} 次）。消耗 {{mana}} 点法力并启动 {{cooldown}} 秒冷却，只支付一次。引导期间占用施法者行动；眩晕、冻结、麻痹或恐惧会打断且不返还法力，专注光环仅防止眩晕打断。死亡后停止，生效期间不重复施放。命中施加持续 3 秒的灼烧，最多 5 层，每层每秒造成该次命中伤害的 10%（最低 1 点）。受火焰抗性与防御减免。仍习得时，剩余时间与已支付等级延续至下一波；新分配影响后续施放。"
     },
     "blaze": {
       "name": "炽烈之径",

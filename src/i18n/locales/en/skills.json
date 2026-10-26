@@ -66,6 +66,9 @@
   "details": {
     "damagePerPulse": "{{type}} damage per pulse",
     "spellTiming": "Persistent spell",
+    "channelTiming": "Channel",
+    "channelActions": "Caster actions",
+    "channelActionsValue": "Occupied while channeling; Stun, Freeze, Paralyze or Fear interrupts",
     "spellTimingValue": "{{duration}} s; every {{interval}} s; {{pulses}} pulses, first immediately",
     "armorRetaliation": "Cold counterattack damage",
     "armorFreeze": "Counterattack Freeze",
@@ -1130,7 +1133,7 @@
     },
     "inferno": {
       "name": "Inferno",
-      "desc": "A stream of flame that burns enemies continuously."
+      "desc": "Channel a flame stream for {{duration}} s. Each pulse selects a two-row cone (one cell, then three cells) and attempts {{min}}–{{max}} Fire base damage per enemy, immediately then every {{interval}} s ({{pulses}} pulses). Pay {{mana}} MP and start a {{cooldown}} s cooldown in one payment. Caster actions are occupied while channeling. Stun, Freeze, Paralyze or Fear interrupts without a refund; Concentration protects against Stun only. Death stops the stream; cannot recast while active. Landed hits apply Burn for 3 s, up to 5 stacks, each dealing 10% of that hit per second (minimum 1). Fire resistance and Defense apply. Remaining time and paid rank carry into the next wave while learned; new allocations govern future casts."
     },
     "blaze": {
       "name": "Blaze",

@@ -112,6 +112,7 @@
     "summon": "召唤",
     "death": "倒下",
     "status": {
+      "inferno": "炼狱",
       "blaze": "炽烈之径",
       "fire-wall": "火墙",
       "thunder-storm": "雷暴",
@@ -160,6 +161,7 @@
       "enchant": "附魔"
     },
     "buff": {
+      "inferno": "炼狱",
       "blaze": "炽烈之径",
       "fire-wall": "火墙",
       "thunder-storm": "雷暴",
