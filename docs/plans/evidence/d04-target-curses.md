@@ -154,6 +154,14 @@ public DOM flow proves victory/return. Existing unrelated glyph boxes remain.
 The initial desktop blank rectangle is absent from final desktop previews. No
 full-screen/a11y/performance or independent visual acceptance is inferred.
 
+The [durable attachment index](fixtures/target-curses/attachment-index.json),
+[parsed browser audit](fixtures/target-curses/browser-audit.json),
+[visual review](fixtures/target-curses/visual-review.json) and24adjacent original
+PNGs preserve this final browser run in the repository. All26copied files were
+read back byte-for-byte against the active task evidence. This browser packet
+does not close the pending full-unit retry, final audit, raw retention/cleanup
+or either skill's inventory credit.
+
 Both task-isolated production builds contain762byte-identical files. Official build
 24.934s/copied official six-chunk bridge guard17.524s/756-URL required precache0.055s
 PASS. Guard adaptation changes only repository/output paths and build outDir;

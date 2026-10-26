@@ -1,0 +1,351 @@
+{
+  "sourceHead": "6d4f5009",
+  "finalRun": "public-browser-final",
+  "images": [
+    {
+      "case": [
+        "target-curses-desktop",
+        "confuse",
+        "en"
+      ],
+      "name": "confuse-preview-viewport",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-desktop-en-confuse-confuse-preview-viewport.png",
+      "sha256": "555ce22884fa69deb47f2a7455c33f48b4785f83a9b663b5b813376b3e3b79e3",
+      "bytes": 143296,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable MAX heading/button, finite targeting description, Current values, Next Level MAX and requirements; no blank rectangular overlay visible in this final desktop capture."
+    },
+    {
+      "case": [
+        "target-curses-desktop",
+        "confuse",
+        "en"
+      ],
+      "name": "confuse-current-stats",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-desktop-en-confuse-confuse-current-stats.png",
+      "sha256": "80113fb37761eca08ea2fad8332dda3a7cea73e2591584e095e6ab97642749f7",
+      "bytes": 6984,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized current rows: mana 8, cooldown 3s, enemy duration3s, correct localized Applies label."
+    },
+    {
+      "case": [
+        "target-curses-desktop",
+        "confuse",
+        "en"
+      ],
+      "name": "victory",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-desktop-en-confuse-victory.png",
+      "sha256": "0ef558515998ed6ca3ee52a0b05d1c80afa945d9e2f9c268b803991b032fde3b",
+      "bytes": 312315,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "After terminal DOM victory check, viewport shows combat header, MP and battlefield cards. Victory panel and log lie below this crop. This image alone does not prove a cast, targeting mechanic or visible victory panel."
+    },
+    {
+      "case": [
+        "target-curses-desktop",
+        "confuse",
+        "zh-CN"
+      ],
+      "name": "confuse-preview-viewport",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-desktop-zh-CN-confuse-confuse-preview-viewport.png",
+      "sha256": "3056edec6d5594a8a1e02c075d7986295813caa20f4df6bec0e1387330f063cf",
+      "bytes": 145766,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable MAX heading/button, finite targeting description, Current values, Next Level MAX and requirements; no blank rectangular overlay visible in this final desktop capture."
+    },
+    {
+      "case": [
+        "target-curses-desktop",
+        "confuse",
+        "zh-CN"
+      ],
+      "name": "confuse-current-stats",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-desktop-zh-CN-confuse-confuse-current-stats.png",
+      "sha256": "0a1f71bef4380e8f931502b618e106f08ee76e8195fcf5adfc033cef54780536",
+      "bytes": 7019,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized current rows: mana 8, cooldown 3s, enemy duration3s, correct localized Applies label."
+    },
+    {
+      "case": [
+        "target-curses-desktop",
+        "confuse",
+        "zh-CN"
+      ],
+      "name": "victory",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-desktop-zh-CN-confuse-victory.png",
+      "sha256": "040225b12fa999d9fdad5c69539670e99f1ff84cb3791e42a45525cae515952a",
+      "bytes": 317956,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "After terminal DOM victory check, viewport shows combat header, MP and battlefield cards. Victory panel and log lie below this crop. This image alone does not prove a cast, targeting mechanic or visible victory panel."
+    },
+    {
+      "case": [
+        "target-curses-desktop",
+        "attract",
+        "en"
+      ],
+      "name": "attract-preview-viewport",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-desktop-en-attract-attract-preview-viewport.png",
+      "sha256": "fb9311cbf11a16c68b6a9b4f0886c50f874bb26804127da98be1f03de79c2eca",
+      "bytes": 152584,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable MAX heading/button, finite targeting description, Current values, Next Level MAX and requirements; no blank rectangular overlay visible in this final desktop capture."
+    },
+    {
+      "case": [
+        "target-curses-desktop",
+        "attract",
+        "en"
+      ],
+      "name": "attract-current-stats",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-desktop-en-attract-attract-current-stats.png",
+      "sha256": "497985d2af4daf5d0f08fb7e093a2ffe964cf2d5eaf48e6e2bc6c41d2a83d242",
+      "bytes": 6922,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized current rows: mana 17, cooldown 2s, enemy duration3s, correct localized Applies label."
+    },
+    {
+      "case": [
+        "target-curses-desktop",
+        "attract",
+        "en"
+      ],
+      "name": "victory",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-desktop-en-attract-victory.png",
+      "sha256": "ffe7c652023252108692017e50ef06042fe69d58c4b0010bc9463142f8b5e0cc",
+      "bytes": 311965,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "After terminal DOM victory check, viewport shows combat header, MP and battlefield cards. Victory panel and log lie below this crop. This image alone does not prove a cast, targeting mechanic or visible victory panel."
+    },
+    {
+      "case": [
+        "target-curses-desktop",
+        "attract",
+        "zh-CN"
+      ],
+      "name": "attract-preview-viewport",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-desktop-zh-CN-attract-attract-preview-viewport.png",
+      "sha256": "2a5b990763b5de0bdd5e183d38a5aec7f9152487ca9db4f7009a7982538f1661",
+      "bytes": 154568,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable MAX heading/button, finite targeting description, Current values, Next Level MAX and requirements; no blank rectangular overlay visible in this final desktop capture."
+    },
+    {
+      "case": [
+        "target-curses-desktop",
+        "attract",
+        "zh-CN"
+      ],
+      "name": "attract-current-stats",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-desktop-zh-CN-attract-attract-current-stats.png",
+      "sha256": "79ebf6d5355ceb75b7c8edf25a72711cf3776b92d66984e6cb513cc50c60c47e",
+      "bytes": 6875,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized current rows: mana 17, cooldown 2s, enemy duration3s, correct localized Applies label."
+    },
+    {
+      "case": [
+        "target-curses-desktop",
+        "attract",
+        "zh-CN"
+      ],
+      "name": "victory",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-desktop-zh-CN-attract-victory.png",
+      "sha256": "0545b14a14e9ed8d507886ab07bc0ffe8f9df7cde1a8d47db466de0099966a63",
+      "bytes": 322284,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "After terminal DOM victory check, viewport shows combat header, MP and battlefield cards. Victory panel and log lie below this crop. This image alone does not prove a cast, targeting mechanic or visible victory panel."
+    },
+    {
+      "case": [
+        "target-curses-mobile",
+        "confuse",
+        "en"
+      ],
+      "name": "confuse-preview-viewport",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-mobile-en-confuse-confuse-preview-viewport.png",
+      "sha256": "56b758dba7a4616648bcaee76863c29ad843e149597316ca97fb1be428fb3a65",
+      "bytes": 224686,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized skill name/MAX button and finite targeting prose. Remaining details require scrolling; English Attract description continues below viewport/bottom navigation. Separate current-stat crop proves its rows."
+    },
+    {
+      "case": [
+        "target-curses-mobile",
+        "confuse",
+        "en"
+      ],
+      "name": "confuse-current-stats",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-mobile-en-confuse-confuse-current-stats.png",
+      "sha256": "e9d2823268f4d5bf70202a7860f46fd3e143bc49c4306611a31bc06b4a20655c",
+      "bytes": 25397,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized current rows: mana 8, cooldown 3s, enemy duration3s, correct localized Applies label."
+    },
+    {
+      "case": [
+        "target-curses-mobile",
+        "confuse",
+        "en"
+      ],
+      "name": "victory",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-mobile-en-confuse-victory.png",
+      "sha256": "95e8db8d146049a9c2b16a0864d207071fcadf9889e0a148d784992feab8d313",
+      "bytes": 133108,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "After terminal DOM victory check, viewport shows combat header, controls, MP and ally card. Enemy grid/log/victory panel lie outside this crop. This image alone does not prove a cast, targeting mechanic or visible victory panel."
+    },
+    {
+      "case": [
+        "target-curses-mobile",
+        "confuse",
+        "zh-CN"
+      ],
+      "name": "confuse-preview-viewport",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-mobile-zh-CN-confuse-confuse-preview-viewport.png",
+      "sha256": "0d535d2cd9bfc5b7dc2fd5dae9f929a5a9ff2d1a974324a31143c4d0201bea41",
+      "bytes": 221260,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized skill name/MAX button and finite targeting prose. Remaining details require scrolling; English Attract description continues below viewport/bottom navigation. Separate current-stat crop proves its rows."
+    },
+    {
+      "case": [
+        "target-curses-mobile",
+        "confuse",
+        "zh-CN"
+      ],
+      "name": "confuse-current-stats",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-mobile-zh-CN-confuse-confuse-current-stats.png",
+      "sha256": "7aa55e2f62349f7070e257cb2efca034cda2df16e980c845a2d5113a36d04cdb",
+      "bytes": 23661,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized current rows: mana 8, cooldown 3s, enemy duration3s, correct localized Applies label."
+    },
+    {
+      "case": [
+        "target-curses-mobile",
+        "confuse",
+        "zh-CN"
+      ],
+      "name": "victory",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-mobile-zh-CN-confuse-victory.png",
+      "sha256": "f5f57a169f30245e9fd254a2f5c135f2e8b9802c9c0bb479189938c768e64f9d",
+      "bytes": 123276,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "After terminal DOM victory check, viewport shows combat header, controls, MP and ally card. Enemy grid/log/victory panel lie outside this crop. This image alone does not prove a cast, targeting mechanic or visible victory panel."
+    },
+    {
+      "case": [
+        "target-curses-mobile",
+        "attract",
+        "en"
+      ],
+      "name": "attract-preview-viewport",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-mobile-en-attract-attract-preview-viewport.png",
+      "sha256": "a25954991d5004ee034de9d27a99892c4d840ad505e3cf8e8c5d666e5fe30c21",
+      "bytes": 224153,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized skill name/MAX button and finite targeting prose. Remaining details require scrolling; English Attract description continues below viewport/bottom navigation. Separate current-stat crop proves its rows."
+    },
+    {
+      "case": [
+        "target-curses-mobile",
+        "attract",
+        "en"
+      ],
+      "name": "attract-current-stats",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-mobile-en-attract-attract-current-stats.png",
+      "sha256": "dec6f0c3ccd680960aacc7e37c4b48e66e8e2728e83a5d18a8b5315f18c7c6d8",
+      "bytes": 24398,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized current rows: mana 17, cooldown 2s, enemy duration3s, correct localized Applies label."
+    },
+    {
+      "case": [
+        "target-curses-mobile",
+        "attract",
+        "en"
+      ],
+      "name": "victory",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-mobile-en-attract-victory.png",
+      "sha256": "ed18c453254c06baaf49e3f929a2ccd0ddde7cf3d5bfed982856275862408a7b",
+      "bytes": 133912,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "After terminal DOM victory check, viewport shows combat header, controls, MP and ally card. Enemy grid/log/victory panel lie outside this crop. This image alone does not prove a cast, targeting mechanic or visible victory panel."
+    },
+    {
+      "case": [
+        "target-curses-mobile",
+        "attract",
+        "zh-CN"
+      ],
+      "name": "attract-preview-viewport",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-mobile-zh-CN-attract-attract-preview-viewport.png",
+      "sha256": "44dbd6bdfac7028058787f8be7ac6f3160ff9474f2c71b814f7d1f9fdead79d5",
+      "bytes": 249655,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized skill name/MAX button and finite targeting prose. Remaining details require scrolling; English Attract description continues below viewport/bottom navigation. Separate current-stat crop proves its rows."
+    },
+    {
+      "case": [
+        "target-curses-mobile",
+        "attract",
+        "zh-CN"
+      ],
+      "name": "attract-current-stats",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-mobile-zh-CN-attract-attract-current-stats.png",
+      "sha256": "2a38c506ba4af554761320b4401f159d0c57fa6b321ccb4a3cd07686b51f676f",
+      "bytes": 22889,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized current rows: mana 17, cooldown 2s, enemy duration3s, correct localized Applies label."
+    },
+    {
+      "case": [
+        "target-curses-mobile",
+        "attract",
+        "zh-CN"
+      ],
+      "name": "victory",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/selected-browser/target-curses-mobile-zh-CN-attract-victory.png",
+      "sha256": "4e88ab70f25f2f3908b3a1978e9d1547b93c4f04dec46a2e137ab7a1c7a0cde0",
+      "bytes": 121276,
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "After terminal DOM victory check, viewport shows combat header, controls, MP and ally card. Enemy grid/log/victory panel lie outside this crop. This image alone does not prove a cast, targeting mechanic or visible victory panel."
+    }
+  ],
+  "inspectedCount": 24,
+  "scope": "Bounded local rendering observations only; not independent UX/a11y/performance approval.",
+  "limits": [
+    "Mobile long descriptions and remaining stats need scrolling; whole panel is not simultaneously visible.",
+    "All victory-labelled screenshots are battlefield viewport crops; actual victory/return is asserted separately through public DOM flow.",
+    "Unrelated pre-existing navigation/skill-node glyph boxes remain visible.",
+    "Initial desktop capture contained a blank rectangle; it is not observed in any of the final desktop preview captures.",
+    "Causal targeting is proved by exact native combat regressions, separately from public cast/chip observations."
+  ]
+}
