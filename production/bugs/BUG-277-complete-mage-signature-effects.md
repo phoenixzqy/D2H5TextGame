@@ -1,7 +1,7 @@
 # BUG-277 — Complete deferred Skeletal Mage signature effects
 
 - Severity: Medium — direct elemental bolts work; GDD signature effects remain absent.
-- Status: Reproduced; implementation pending.
+- Status: Implemented locally; final full-suite verification and cleanup pending.
 - Owner: root, engine/content/QA; no delegation or independent approval.
 - Baseline: `f8392a8b` (runtime unchanged from `6122bee5`).
 - Environment: Linux, Node v24.21.0, Vitest pure-engine fixture; browser, viewport
@@ -44,3 +44,15 @@ determinism. Workaround: use other status skills alongside Mage direct bolts.
 Security check: pass for local first-party code/data/tests; no credential,
 dependency, permission, network, CI or save-shape change. Independent design/QA,
 earned balance, full-skill browser acceptance and private v1 remain open.
+
+## Implementation and current verification
+
+Validated definitions `468ed83f` and runtime `602d0f14` supply all four signatures
+through the existing paid-Mage authority. Bilingual copy/native playback is in
+`cbd99f8f`; resistance-chip translation is `1d8a34cf`. All326related tests/18files
+pass after `71081cc7`, including Command, resource, provenance and replay checks.
+The final production matrix passes10/10 across both locales and five viewports.
+See the [current evidence](../../docs/plans/evidence/d06-mage-signatures.md).
+The first final full suite failed nine stale-consumer assertions; a fresh full
+run is active after their correction. No full pass, inventory credit, independent
+approval, earned balance or full-v1 completion is claimed yet.

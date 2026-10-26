@@ -1,7 +1,7 @@
 # BUG-279 — Measure Mage signatures without discarding periodic damage
 
 - Severity: Medium — historical simulation consumers reject valid new combat.
-- Status: Partially repaired; combo consumer and full validation pending.
+- Status: All identified consumers repaired; fresh full validation pending.
 - Owner: root, QA/measurement; no delegation or independent acceptance.
 - Baseline: `ccbf186c` plus uncommitted bilingual presentation. Linux, Vitest
   Node simulation project; no browser/locale/viewport dependency.
@@ -55,3 +55,18 @@ The earlier broad run remains interrupted, not passing. Receipts and the new
 `strata-tsconfig.json` remain in the task directory above for the continuing
 Mage/full-v1 work; root owns their eventual archive and cleanup. Skill inventory
 credit remains unchanged173 bounded/38 unverified/one engine-only/one review.
+
+`99654938` repairs observed combo windows. The first terminal full run then
+finds nine failures in three further consumers: asymmetry strata and two native
+store/playback tests. Its actual result is18452passed/9failed/two existing skips,
+852files,exit1,977.071s; this is not a full pass. `71081cc7` repairs their periodic
+HP accounting, status-dependent seeded traces and dead-card status projection.
+The mixed paid/unpaid replay remains exact; final MP is182/117 and paid battle
+ends5147ms under the current real recording. No resource/replay assertion is
+removed. Four changed consumer inputs are enumerated against1660unchanged inputs.
+
+All326tests/18Mage-related files now pass,27.621s; latest four-path strict types
+and explicit playback lint pass. The fresh `full-retry-after-consumers` run is
+active; poll its existing tool session29503 and terminal receipt before any
+restart, inventory credit or task cleanup. Evidence remains in the same task
+directory; root owns retention/cleanup after all consumers finish.

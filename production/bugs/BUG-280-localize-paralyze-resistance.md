@@ -1,7 +1,7 @@
 # BUG-280 — Localize the visible Paralyze resistance marker
 
 - Severity: Low — player-facing untranslated effect name.
-- Status: Reproduced; fix pending.
+- Status: Fixed locally in `1d8a34cf`; independent/full-v1 acceptance open.
 - Owner: root, frontend/localization; no delegation.
 - Build: `cbd99f8f` presentation, production Chromium through Playwright;
   reproduced in zh-CN and en at360×640,412×915,640×360,1280×800,1920×1080.
@@ -34,3 +34,9 @@ There is no player workaround for the label; the mechanic itself functions.
 Security check: pass for first-party locale/test-only correction; no dependency,
 credential, network, permission or save-format changes. Root retains the evidence
 through continuing Mage/full-v1 consumers and removes the task artifacts afterward.
+
+The new native regression first fails on the actual Chinese `Paralyze Cd` chip
+against the old build. The rebuilt production matrix passes10/10 in185.715s,
+requiring the localized resistance label on a living damaged enemy and refusing
+the raw fallback in both locales. Explicit native lint, bridge/precache and full
+type/standard lint checks pass. Runtime mechanics and saves are unchanged.

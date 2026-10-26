@@ -1,7 +1,7 @@
 # BUG-278 — Reconcile Mage Poison copy with adopted death spread
 
 - Severity: Low — inaccurate new follow-up contract; shared runtime is unchanged.
-- Status: Reproduced; correction and native regression pending.
+- Status: Child contract/copy corrected locally; broader GDD reconciliation open.
 - Owner: root, design/writing/QA; no independent approval or delegation.
 - Baseline: `602d0f14`, Linux Vitest jsdom, zh-CN and en, seed7.
 
@@ -33,3 +33,8 @@ reconcile the broad GDD wording and the adopted specific contracts.
 
 Workaround: consult the existing D04 Poison contracts. Security check: pass for
 first-party local docs/tests/copy; no save, permission, dependency or network change.
+
+`ccbf186c` corrects the child; `cbd99f8f` verifies the exact3HP loss and shared
+spread through native mounted playback in both locales. The later326-case Mage
+run passes. This correction does not settle the broader GDD/adopted-contract
+relationship; BUG281 makes that dependency explicit for Plague Javelin.
