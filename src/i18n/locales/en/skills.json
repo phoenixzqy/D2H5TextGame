@@ -93,7 +93,6 @@
     "warcryDuration": "Enemy effect duration",
     "warcryDamageReduction": "Outgoing direct damage reduction",
     "warcryDefenseReduction": "Ordinary Defense reduction",
-
     "concentrateDuration": "Defense duration",
     "convertedAttack": "Attack converted to Arcane",
     "cloakDuration": "Cloak / Blind Duration",
@@ -293,7 +292,9 @@
     "teleportDodge": "Magical dodge bonus",
     "teleportDodgeValue": "+{{points}} percentage points",
     "enchantFire": "Fire base per weapon hit",
-    "enchantFireValue": "{{percent}}% of Attack at cast"
+    "enchantFireValue": "{{percent}}% of Attack at cast",
+    "periodicAppliedStacks": "{{status}} stacks per landed hit",
+    "descriptionPeriodicMultiple": "On a successful hit, applies {{stacksOnApply}} {{status}} stacks. Each stack deals {{percentOfHit}}% of the final hit per second (rounded down, minimum {{minDps}}) for {{durationSeconds}} s, up to {{maxStacks}} stacks. Reapplying refreshes duration and adds {{stacksOnApply}} stacks up to the cap; an existing damaging status keeps its original rate."
   },
   "amazon": {
     "magic-arrow": {
@@ -802,11 +803,11 @@
     },
     "poison-nova": {
       "name": "Poison Nova",
-      "desc": "Releases a nova of toxic energy, applying 2 stacks of poison to all enemies."
+      "desc": "One independent attempt against every living enemy, including separated and overflow targets, for {{min}}–{{max}} Poison base damage. Poison resistance and Defense mitigate each direct hit; magic resist does not. Misses apply no Poison. Pays {{mana}} MP and starts {{cooldown}} s cooldown once per cast, including misses."
     },
     "bone-spear": {
       "name": "Bone Spear",
-      "desc": "Hurls a piercing bone spear that ignores armor and deals arcane damage."
+      "desc": "Hurls a bone spear at one living enemy for {{min}}–{{max}} Arcane base damage. Arcane resistance and magic resist mitigate the hit; armor (Defense) is ignored. Pays {{mana}} MP and starts {{cooldown}} s cooldown once per cast, including misses."
     },
     "amplify-damage": {
       "name": "Amplify Damage",
@@ -834,7 +835,7 @@
     },
     "teeth": {
       "name": "Teeth",
-      "desc": "Fires a volley of bone shards at enemies."
+      "desc": "One independent attempt at each of the first two prioritized living enemies, dealing {{min}}–{{max}} Arcane base damage per target. Arcane resistance and magic resist mitigate each hit; Defense does not. Pays {{mana}} MP and starts {{cooldown}} s cooldown once per cast, including misses."
     },
     "poison-dagger": {
       "name": "Poison Dagger",
@@ -854,7 +855,7 @@
     },
     "bone-spirit": {
       "name": "Bone Spirit",
-      "desc": "Summons a seeking spirit of bone that tracks down enemies."
+      "desc": "Sends a seeking bone spirit at one living enemy for {{min}}–{{max}} Arcane base damage. Arcane resistance and magic resist mitigate the hit; Defense does not. The spirit can miss. Pays {{mana}} MP and starts {{cooldown}} s cooldown once per cast, including misses."
     },
     "skeleton-mastery": {
       "name": "Skeleton Mastery",

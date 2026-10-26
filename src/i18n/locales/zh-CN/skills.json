@@ -93,7 +93,6 @@
     "warcryDuration": "敌方效果持续时间",
     "warcryDamageReduction": "对外直接伤害降低",
     "warcryDefenseReduction": "普通防御降低",
-
     "concentrateDuration": "防御持续时间",
     "convertedAttack": "攻击力转为奥术",
     "cloakDuration": "斗篷／致盲持续时间",
@@ -293,7 +292,9 @@
     "teleportDodge": "魔法闪避加成",
     "teleportDodgeValue": "+{{points}} 个百分点",
     "enchantFire": "每次武器命中的火焰基础伤害",
-    "enchantFireValue": "施放时攻击力的 {{percent}}%"
+    "enchantFireValue": "施放时攻击力的 {{percent}}%",
+    "periodicAppliedStacks": "每次命中的{{status}}层数",
+    "descriptionPeriodicMultiple": "命中后附加 {{stacksOnApply}} 层{{status}}；每层每秒造成最终命中伤害的{{percentOfHit}}%（向下取整，最低{{minDps}}点），持续{{durationSeconds}} 秒，最多{{maxStacks}}层。再次施加会刷新持续时间并增加{{stacksOnApply}}层，达到上限后不再增加；已有伤害的状态保留原伤害率。"
   },
   "amazon": {
     "magic-arrow": {
@@ -802,11 +803,11 @@
     },
     "poison-nova": {
       "name": "毒云术",
-      "desc": "释放毒能新星，对所有敌人附加 2 层中毒。"
+      "desc": "对每个存活敌人独立判定一次，包括分散或超出阵列的敌人，造成{{min}}～{{max}} 点毒素基础伤害。直接伤害受毒素抗性与防御减免，不受魔法抵抗减免。未命中不施加中毒。每次施放仅消耗{{mana}} 点法力并进入{{cooldown}} 秒冷却，未命中也照常支付。"
     },
     "bone-spear": {
       "name": "骨矛",
-      "desc": "投出穿透骨矛，无视护甲并造成奥术伤害。"
+      "desc": "向一个存活敌人投出骨矛，造成{{min}}～{{max}} 点奥术基础伤害。伤害受奥术抗性与魔法抵抗减免，无视护甲（防御）。每次施放仅消耗{{mana}} 点法力并进入{{cooldown}} 秒冷却，未命中也照常支付。"
     },
     "amplify-damage": {
       "name": "加强伤害",
@@ -834,7 +835,7 @@
     },
     "teeth": {
       "name": "尸牙",
-      "desc": "向敌人射出骨刺弹幕。"
+      "desc": "对优先顺序中的前两个存活敌人各独立判定一次，每个目标承受{{min}}～{{max}} 点奥术基础伤害。伤害受奥术抗性与魔法抵抗减免，不受防御减免。每次施放仅消耗{{mana}} 点法力并进入{{cooldown}} 秒冷却，未命中也照常支付。"
     },
     "poison-dagger": {
       "name": "淬毒匕首",
@@ -854,7 +855,7 @@
     },
     "bone-spirit": {
       "name": "骨灵",
-      "desc": "召唤追踪敌人的骨之灵体。"
+      "desc": "向一个存活敌人放出追踪骨灵，造成{{min}}～{{max}} 点奥术基础伤害。伤害受奥术抗性与魔法抵抗减免，不受防御减免；骨灵仍可能未命中。每次施放仅消耗{{mana}} 点法力并进入{{cooldown}} 秒冷却，未命中也照常支付。"
     },
     "skeleton-mastery": {
       "name": "支配骷髅",

@@ -797,7 +797,8 @@ function SkillDetailPanel({
             ? 'details.descriptionComponentBurn' : 'details.descriptionBurn', primaryStats.burn)}</p>
         ) : null}
         {primaryStats?.periodic ? (
-          <p className="text-sm text-d2-white/90">{t('details.descriptionPeriodic', {
+          <p className="text-sm text-d2-white/90">{t(primaryStats.periodic.stacksOnApply
+            ? 'details.descriptionPeriodicMultiple' : 'details.descriptionPeriodic', {
             ...primaryStats.periodic, status: t(`combat:effect.status.${primaryStats.periodic.statusId}`)
           })}</p>
         ) : null}
@@ -1091,6 +1092,9 @@ function StatSection({
           ) : null}
           {stats.periodic ? (
             <>
+              {stats.periodic.stacksOnApply ? <StatLine label={t('details.periodicAppliedStacks', {
+                status: t(`combat:effect.status.${stats.periodic.statusId}`)
+              })} value={String(stats.periodic.stacksOnApply)} /> : null}
               <StatLine label={t('details.periodicRate', { status: t(`combat:effect.status.${stats.periodic.statusId}`) })}
                 value={t('details.burnRateValue', stats.periodic)} />
               <StatLine label={t('details.periodicDuration', { status: t(`combat:effect.status.${stats.periodic.statusId}`) })}
@@ -1828,6 +1832,12 @@ function dynamicDescription(
   }
   if (['skills-druid-werewolf-maul', 'skills-druid-rabies', 'skills-druid-fire-claws'].includes(skill.id) && firstDamage && skill.description) {
     return t(skill.description.replace('skills.', ''), { min: firstDamage.min, max: firstDamage.max });
+  }
+  if (stats && firstDamage && ['skills-necromancer-teeth', 'skills-necromancer-bone-spear',
+    'skills-necromancer-bone-spirit', 'skills-necromancer-poison-nova'].includes(skill.id)) {
+    return t('necromancer.' + skill.id.slice('skills-necromancer-'.length) + '.desc', {
+      min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown
+    });
   }
   if (skill.id === 'skills-necromancer-corpse-explosion' && stats && firstDamage) {
     return t('necromancer.corpse-explosion.desc', {

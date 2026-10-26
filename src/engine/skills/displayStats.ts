@@ -232,6 +232,8 @@ export interface SkillRankDisplayStats {
   /** Explicit primary Bleed/Poison rule; final damage depends on the actual landed hit. */
   readonly periodic?: {
     readonly statusId: 'bleed' | 'poison';
+    /** Present for a validated multi-stack application; absent means one. */
+    readonly stacksOnApply?: number;
     readonly percentOfHit: number;
     readonly durationSeconds: number;
     readonly maxStacks: number;
@@ -310,10 +312,13 @@ function periodicDisplay(skill: DisplaySkillSource): SkillRankDisplayStats['peri
     (id !== 'bleed' && id !== 'poison') ||
     skill.damageType !== (id === 'bleed' ? 'physical' : 'poison') ||
     fraction === undefined || !Number.isFinite(fraction) || fraction <= 0 ||
-    (metadata?.chance ?? 1) !== 1 || (metadata?.stacksOnApply ?? 1) !== 1 ||
+    (metadata?.chance ?? 1) !== 1 ||
     // The generic damage adapter forwards potency, chance and stack count, but no primary duration override.
     durationMs !== undefined) return undefined;
-  return { statusId: id, percentOfHit: Number((fraction * 100).toFixed(4)),
+  const stacks = metadata?.stacksOnApply ?? 1;
+  if (!Number.isInteger(stacks) || stacks < 1 || stacks > STATUS_DEFAULTS[id].maxStacks) return undefined;
+  return { statusId: id, ...(stacks > 1 ? { stacksOnApply: stacks } : {}),
+    percentOfHit: Number((fraction * 100).toFixed(4)),
     durationSeconds: STATUS_DEFAULTS[id].duration,
     maxStacks: STATUS_DEFAULTS[id].maxStacks, minDps: 1 };
 }
