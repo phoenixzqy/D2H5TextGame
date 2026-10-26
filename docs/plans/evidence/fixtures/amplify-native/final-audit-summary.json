@@ -1,0 +1,17 @@
+{
+  "head": "25e68f7d1abc6673617a3edd1fce5ecad0334738",
+  "frozenHeadVerified": true,
+  "retainedOriginalFullFailure": "HEAD drift;one failure18061pass;isolated19pass",
+  "featureSourceFiles": 4,
+  "verifiedInputFiles": 1636,
+  "commands": 12,
+  "buildFiles": 762,
+  "verifiedReusedProductionBuild": true,
+  "browserCases": 4,
+  "savePairs": 8,
+  "offlineContinues": 4,
+  "geometryChecks": 20,
+  "screenshots": 12,
+  "inventoryUnchanged": true,
+  "genuineSaveUnchanged": true
+}

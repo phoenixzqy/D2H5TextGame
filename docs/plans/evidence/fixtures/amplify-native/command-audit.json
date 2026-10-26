@@ -1,0 +1,232 @@
+{
+  "commands": [
+    {
+      "label": "canonical-focused",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/necromancer-amplify-damage-native.test.ts",
+        "src/stores/necromancer-amplify-damage.causal.test.ts",
+        "src/engine/combat/skill-resolution.test.ts",
+        "src/engine/combat/status.test.ts",
+        "src/features/skills/SkillsScreen.amplify-damage.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 14.516,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/canonical-focused.log",
+      "logBytes": 674,
+      "logSha256": "98e854f4bf408a1da939f5b810074a87a59f68c6397149296bc8c9174af67ad8",
+      "pid": 294252,
+      "terminal": true
+    },
+    {
+      "label": "canonical-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 232.225,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/canonical-lint.log",
+      "logBytes": 197,
+      "logSha256": "eff440ceef4f601f0fb29ee17458a303a56ef70432553884a1a5cd2b947d4a0b",
+      "pid": 294416,
+      "terminal": true
+    },
+    {
+      "label": "canonical-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 136.961,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/canonical-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 294415,
+      "terminal": true
+    },
+    {
+      "label": "combined-full-frozen",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 808.684,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/combined-full-frozen.log",
+      "logBytes": 171048,
+      "logSha256": "88d22f302eecd5ebd855bc683b07f931adfc79a8d5b0c7edc5409ccb3c6fa9e8",
+      "pid": 318260,
+      "terminal": true
+    },
+    {
+      "label": "combined-full",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 876.03,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/combined-full.log",
+      "logBytes": 172322,
+      "logSha256": "f8a284c1647324fc53eeeae4ea1695d432c872a9dd0d8109683127db25e598cc",
+      "pid": 296932,
+      "terminal": true
+    },
+    {
+      "label": "native-causal",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/repro.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 9.578,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/native-causal.log",
+      "logBytes": 526,
+      "logSha256": "1a073bf30a5ddf351e87eb29be2d8ced46d3fc61df825b4eb77fff6f38ac15dc",
+      "pid": 280614,
+      "terminal": true
+    },
+    {
+      "label": "native-initial",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/repro.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.801,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/native-initial.log",
+      "logBytes": 403,
+      "logSha256": "9093f24f6fd1a84f6672152fbb50704a0a8c29c97db0bcdd954a38c324f54880",
+      "pid": 279573,
+      "terminal": true
+    },
+    {
+      "label": "provenance-isolated",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-measurement.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 14.81,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/provenance-isolated.log",
+      "logBytes": 369,
+      "logSha256": "1f59e87003573d198085a78143f60729ab5f3a78645035e64cdb6686c45f571a",
+      "pid": 312933,
+      "terminal": true
+    },
+    {
+      "label": "public-canonical",
+      "command": [
+        "env",
+        "AMPLIFY_ACCEPTANCE_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/production-dist",
+        "AMPLIFY_ACCEPTANCE_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/browser-output-canonical",
+        "AMPLIFY_ACCEPTANCE_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/browser-report-canonical.json",
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "tests/pwa/amplify-acceptance.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 213.057,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/public-canonical.log",
+      "logBytes": 1603,
+      "logSha256": "ad0ea64ce489a4600228a710cfb22b552a43ba81a1df888a78b8abc8a3976142",
+      "pid": 294417,
+      "terminal": true
+    },
+    {
+      "label": "public-chip-oracle",
+      "command": [
+        "env",
+        "AMPLIFY_ACCEPTANCE_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/production-dist",
+        "AMPLIFY_ACCEPTANCE_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/browser-output-chip-oracle",
+        "AMPLIFY_ACCEPTANCE_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/browser-report-chip-oracle.json",
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/amplify-acceptance.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 206.24,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/public-chip-oracle.log",
+      "logBytes": 1755,
+      "logSha256": "da4cac3bb903fd6ce4db2d6080654414e6d9fe87f65428226db511a5ccc7535d",
+      "pid": 286718,
+      "terminal": true
+    },
+    {
+      "label": "public-esm",
+      "command": [
+        "env",
+        "AMPLIFY_ACCEPTANCE_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/production-dist",
+        "AMPLIFY_ACCEPTANCE_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/browser-output-esm",
+        "AMPLIFY_ACCEPTANCE_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/browser-report-esm.json",
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/amplify-acceptance.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 22.366,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/public-esm.log",
+      "logBytes": 4032,
+      "logSha256": "e8b6117c484b308d53f6a1b5f9be97edec8f6db449801e0b86c60556a314258f",
+      "pid": 284506,
+      "terminal": true
+    },
+    {
+      "label": "public-initial",
+      "command": [
+        "env",
+        "NODE_PATH=/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules",
+        "AMPLIFY_ACCEPTANCE_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/production-dist",
+        "AMPLIFY_ACCEPTANCE_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/browser-output",
+        "AMPLIFY_ACCEPTANCE_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/browser-report.json",
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/amplify-acceptance.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 2.034,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/public-initial.log",
+      "logBytes": 1179,
+      "logSha256": "6a34d10233a58df85b49c0b76ecb16f09487e4496d062b7cca97e91f82d27eb6",
+      "pid": 282962,
+      "terminal": true
+    }
+  ],
+  "liveOwnedCommandIdentities": []
+}

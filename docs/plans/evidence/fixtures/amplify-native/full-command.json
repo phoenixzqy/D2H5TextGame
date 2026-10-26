@@ -1,0 +1,14 @@
+{
+  "command": [
+    "npm",
+    "test"
+  ],
+  "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+  "exitCode": 0,
+  "durationSeconds": 808.684,
+  "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/combined-full-frozen.log",
+  "logBytes": 171048,
+  "logSha256": "88d22f302eecd5ebd855bc683b07f931adfc79a8d5b0c7edc5409ccb3c6fa9e8",
+  "pid": 318260,
+  "terminal": true
+}

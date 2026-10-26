@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "--project",
+    "sim-contracts",
+    "tests/sim/production/earned-measurement.test.ts"
+  ],
+  "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+  "exitCode": 0,
+  "durationSeconds": 14.81,
+  "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/provenance-isolated.log",
+  "logBytes": 369,
+  "logSha256": "1f59e87003573d198085a78143f60729ab5f3a78645035e64cdb6686c45f571a",
+  "pid": 312933,
+  "terminal": true
+}

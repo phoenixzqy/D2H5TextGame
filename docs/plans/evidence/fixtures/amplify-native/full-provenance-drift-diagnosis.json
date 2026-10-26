@@ -1,0 +1,66 @@
+{
+  "classification": "validation-environment failure; source identity protection worked",
+  "observedFailure": "tests/sim/production/earned-measurement.test.ts > versioned earned measurement orchestration > retains expected refusal and partial observations in genuine restored attempts: Earned source/tool identity drift during measurement",
+  "cause": "Root committed docs during full suite; collectSourceState captures actual git rev-parse HEAD and runEarnedMeasurement requires unchanged sourceIdentity before/after every attempt. Frozen source bytes alone were insufficient.",
+  "headAtLaunch": "a88db7dd05494f18746d58b06772dbe6c2dea5f5",
+  "subsequentDocumentationHeads": [
+    "82f0669834794aeb49c81e4fee5820f1e639bd33",
+    "753b0a16",
+    "249cd13c"
+  ],
+  "currentRun": "combined-full",
+  "currentRunTerminal": true,
+  "nextAction": "Preserve original failed run; observe terminal; commit all documentation first; freeze HEAD plus all1636source/test/script/config inputs; isolated failing-file verification,then fresh full run with no repository edits/commits until all consumers/final audit close. No source/test/assertion/timeout changes.",
+  "createdUnix": 1793035488.6868837,
+  "isolatedVerification": {
+    "command": [
+      "node",
+      "node_modules/vitest/vitest.mjs",
+      "run",
+      "--project",
+      "sim-contracts",
+      "tests/sim/production/earned-measurement.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 14.81,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/provenance-isolated.log",
+    "logBytes": 369,
+    "logSha256": "1f59e87003573d198085a78143f60729ab5f3a78645035e64cdb6686c45f571a",
+    "pid": 312933,
+    "terminal": true
+  },
+  "isolatedTestsPassed": 19,
+  "noTestOrRuntimeChange": true,
+  "originalTerminal": {
+    "command": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "durationSeconds": 876.03,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/combined-full.log",
+    "logBytes": 172322,
+    "logSha256": "f8a284c1647324fc53eeeae4ea1695d432c872a9dd0d8109683127db25e598cc",
+    "pid": 296932,
+    "terminal": true
+  },
+  "frozenReplacementHead": "25e68f7d1abc6673617a3edd1fce5ecad0334738",
+  "replacementTerminal": {
+    "command": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 808.684,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/combined-full-frozen.log",
+    "logBytes": 171048,
+    "logSha256": "88d22f302eecd5ebd855bc683b07f931adfc79a8d5b0c7edc5409ccb3c6fa9e8",
+    "pid": 318260,
+    "terminal": true
+  },
+  "frozenHeadVerified": true,
+  "resolution": "No code/test/timeout change;actual HEAD and all1636inputs held stable through complete green replacement and final audit."
+}

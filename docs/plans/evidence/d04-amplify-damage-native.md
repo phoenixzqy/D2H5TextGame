@@ -116,3 +116,29 @@ exact frozen HEAD,all command hashes and original failure,then retain/read-back
 raw evidence and perform exact cleanup before considering one bounded credit.
 Native/public/type/lint evidence above remains scoped to its actual checks;
 no final full result,cleanup or Amplify credit is claimed here.
+
+
+## Final frozen-HEAD validation and author review
+
+Replacement `combined-full-frozen` is terminal0: **18062passed /830passed files /
+two existing opt-in skips**, 808.684s command duration. LogSHA256
+`88d22f302eecd5ebd855bc683b07f931adfc79a8d5b0c7edc5409ccb3c6fa9e8`. Actual HEAD `25e68f7d1abc6673617a3edd1fce5ecad0334738` and all1636committed
+source/test/script/config inputs remained equal to the pre-run freeze through
+the final audit. No repository edit or commit occurred during that replacement.
+The original sole HEAD-drift failure, unchanged19-case isolated pass and both
+full logs/receipts remain retained; no assertion/runtime/timeout was weakened.
+
+Final audits verify exactly4feature paths versus2c755849,12
+terminal command receipts/log hashes,all1636committed inputs and all762reused
+production files equal both accepted prior build copies. Later `src/` changes
+since da771f12 are tests only;no new build is claimed. The4canonical browser
+cases/eight seven-domain pairs/four actual offlineContinues/20geometry/12originals
+and protected genuine compressed/raw save plus unchanged164inventory are exact.
+The adjacent final audit/command/source/input/build/protected-state packet was
+copied/read-back verified. Author five-axis/security and test-evidence review
+records bounded local adequacy;independent acceptance remains open.
+
+Lossless raw retention/read-back and exact cleanup remain the next required
+boundary before any Amplify inventory credit. GenuineL33/Ancients claimed/
+nextNormal402/Baal uncleared,earned builds/balance,30–50hour pacing/economy/
+endgame,independent UX/a11y/performance,C2–C4/fullG0–G7/full privatev1 stay open.

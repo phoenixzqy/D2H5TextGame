@@ -1,0 +1,25 @@
+{
+  "head": "25e68f7d1abc6673617a3edd1fce5ecad0334738",
+  "files": [
+    {
+      "path": "src/stores/necromancer-amplify-damage-native.test.ts",
+      "bytes": 10103,
+      "sha256": "acf4d2135932005d1dfa37e514b1b102f6cc8992afb2ea244c3398f782df8ed1"
+    },
+    {
+      "path": "src/stores/necromancer-amplify-damage.causal.test.ts",
+      "bytes": 5584,
+      "sha256": "a3dfd3acf48a859356bc2cc33aef7d9b4d50330a6847a050619473600f6a5f11"
+    },
+    {
+      "path": "tests/pwa/amplify-acceptance.config.ts",
+      "bytes": 1544,
+      "sha256": "9681bfcc4228f6bc3c612a13f2bd8dba2bbc091435deb2e503003eb446453a56"
+    },
+    {
+      "path": "tests/pwa/amplify-acceptance.spec.ts",
+      "bytes": 14126,
+      "sha256": "b1bf7fc47fa6ef3c3727cb13c7d7445e9031fe2a1ac5853f2d092890ce2b71ef"
+    }
+  ]
+}
