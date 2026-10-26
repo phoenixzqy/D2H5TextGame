@@ -66,11 +66,20 @@ it.each([[1, 2, 95, 33], [6, 4, 130, 48], [20, 9, 228, 90]] as const)(
       expect(hits.length).toBeGreaterThan(0);
       expect([...new Set(hits.map(e => e.kind === 'damage' ? e.damageType : 'invalid'))])
         .toEqual([CYCLE[i % CYCLE.length]]);
-      expect(hits.some(e => e.kind === 'damage' && !e.dodged && !e.crit && e.amount === attack)).toBe(true);
+      // Zero-defense/resistance fixture: exact authored combo multipliers are
+      // possible once earlier bolts create statuses; every landed noncrit must fit.
+      const poison = [1, ...Array.from({ length: 8 }, (_, n) => 1 + .15 * (n + 3))];
+      const multipliers = CYCLE[i % CYCLE.length] === 'fire' ? [1, 1.2] :
+        CYCLE[i % CYCLE.length] === 'lightning' ? [1, 1.3] :
+        CYCLE[i % CYCLE.length] === 'poison' ? [...poison, ...poison.map(n => n * 1.15)] : [1];
+      const direct = multipliers.map(n => Math.floor(attack * n));
+      const landed = hits.filter(e => e.kind === 'damage' && !e.dodged && !e.crit);
+      expect(landed.length).toBeGreaterThan(0);
+      expect(landed.every(e => e.kind === 'damage' && direct.includes(e.amount))).toBe(true);
       expect(hits.some(e => e.simClockMs > 8000)).toBe(true);
     });
     const dealt = out.events.reduce((sum, e) => sum +
-      (e.kind === 'damage' && e.target === 'target' ? e.amount : 0), 0);
+      ((e.kind === 'damage' || e.kind === 'dot') && e.target === 'target' ? e.amount : 0), 0);
     expect(out.result.enemyTeam[0]?.life).toBe(1000000 - dealt);
     expect(out.battleCommandCarry).toBeUndefined();
   });

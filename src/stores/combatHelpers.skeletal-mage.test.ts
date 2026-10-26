@@ -135,7 +135,7 @@ function assertFreshBatch(binding: RecordedWaveBinding, initialMana: number) {
   return summons;
 }
 
-it('publishes four fresh corpse-free elemental Mages and records four actual pre-finisher kills', () => {
+it('publishes four fresh corpse-free elemental Mages and records actual lethal bolts of every element', () => {
   const player = usePlayerStore.getState().player;
   const inventory = useInventoryStore.getState();
   const formation = useFormationStore.getState();
@@ -157,20 +157,24 @@ it('publishes four fresh corpse-free elemental Mages and records four actual pre
   const summons = assertFreshBatch(binding, 100);
   const finisher = binding.recording.events.find(e => e.kind === 'action' && e.skillId === FINISH);
   expect(finisher?.simClockMs).toBe(4000);
-  // Literal seed7 W0 oracles: F/C/L/P positive direct hits, not action-only evidence.
+  // Signature attempts consume shared RNG, including after lethal hits. Seed7's
+  // Fire/Lightning first attempts now miss; retain exact successful-hit/kill proof.
   summons.forEach((summon, index) => {
     const first = binding.recording.events.find(e => e.kind === 'damage' && e.source === summon.unit.id);
-    expect(first).toMatchObject({ kind: 'damage', source: summon.unit.id, simClockMs: 1940,
+    expect(first).toMatchObject({ simClockMs: 1940, amount: [0, 61, 0, 50][index],
+      dodged: index === 0 || index === 2, crit: false });
+    const lethal = binding.recording.events.find(e => e.kind === 'damage' && e.source === summon.unit.id && !e.dodged);
+    const at = [5820, 1940, 3880, 1940][index];
+    expect(lethal).toMatchObject({ kind: 'damage', source: summon.unit.id, simClockMs: at,
       damageType: ['fire', 'cold', 'lightning', 'poison'][index], amount: [50, 61, 61, 50][index],
       crit: false, dodged: false });
-    if (first?.kind !== 'damage' || !finisher) throw new Error('Missing literal Mage hit/finisher');
-    expect(first.simClockMs).toBeLessThan(finisher.simClockMs);
-    const target = binding.engineInput.enemyTeam.find(u => u.id === first.target);
+    if (lethal?.kind !== 'damage' || !finisher) throw new Error('Missing literal Mage hit/finisher');
+    const target = binding.engineInput.enemyTeam.find(u => u.id === lethal.target);
     expect(target?.life).toBeGreaterThan(0);
-    expect(first.amount).toBeGreaterThanOrEqual(target?.life ?? Infinity);
+    expect(lethal.amount).toBeGreaterThanOrEqual(target?.life ?? Infinity);
     expect(binding.recording.events).toContainEqual(expect.objectContaining({
-      kind: 'death', target: first.target, simClockMs: 1940 }));
-    expect(binding.recording.outcome.finalEnemyTeam.find(u => u.id === first.target)?.life).toBe(0);
+      kind: 'death', target: lethal.target, simClockMs: at }));
+    expect(binding.recording.outcome.finalEnemyTeam.find(u => u.id === lethal.target)?.life).toBe(0);
   });
   expect(binding.recording.events.at(-1)).toMatchObject({ kind: 'end', winner: 'player', simClockMs: 5820 });
   // Supplemental real pure/recorded equality, without mocking either engine path.
@@ -199,7 +203,7 @@ it('settles once then carries real resources and creates a newly paid cycle from
   expect(first.binding.recording.events.find(e => e.kind === 'action' && e.skillId === WAIT))
     .toMatchObject({ simClockMs: 2000 });
   expect(first.binding.recording.events.at(-1)).toMatchObject({ simClockMs: 5820 });
-  expect(finalHero).toMatchObject({ life: 1000372, mana: 220, manaRegenCarry: 0.444,
+  expect(finalHero).toMatchObject({ life: 1000372, mana: 161, manaRegenCarry: 0.444,
     manaRegenCompensation: 0, manaRegenExactCarry: '0.444', statuses: [],
     cooldowns: { [WAIT]: 2000 + 4000 - 5820 }, activeBuffIds: [WAIT] });
   drain(); expect(durable()).toEqual(unpaid);
@@ -218,16 +222,19 @@ it('settles once then carries real resources and creates a newly paid cycle from
   expect(hero?.statuses).toEqual(finalHero.statuses); expect(hero?.cooldowns).toEqual(finalHero.cooldowns);
   expect(hero?.activeBuffIds).toEqual(finalHero.activeBuffIds);
   assertDeepFrozen(binding.engineInput);
-  const fresh = assertFreshBatch(binding, 220);
+  const fresh = assertFreshBatch(binding, 161);
   fresh.forEach((summon, index) => {
     expect(summon.unit).not.toBe(mageSummons(first.binding)[index]?.unit);
   }); // Local IDs may repeat; fresh event/unit identity and zero-preload input prove creation.
   const cold = fresh[1];
   const earlyCold = binding.recording.events.filter(e => e.kind === 'damage' && e.source === cold?.unit.id && e.simClockMs < 4000);
   expect(earlyCold).toHaveLength(2);
-  expect(earlyCold.every(e => e.kind === 'damage' && e.dodged && e.amount === 0 && e.damageType === 'cold')).toBe(true);
+  expect(earlyCold).toEqual([
+    expect.objectContaining({ dodged: true, amount: 0, damageType: 'cold', simClockMs: 1940 }),
+    expect.objectContaining({ dodged: false, amount: 58, damageType: 'cold', simClockMs: 3880 })
+  ]);
   expect(binding.recording.outcome.finalPlayerTeam.find(u => u.id === HERO))
-    .toMatchObject({ mana: 753, manaRegenCarry: 0.888, manaRegenExactCarry: '0.888' });
+    .toMatchObject({ mana: 694, manaRegenCarry: 0.888, manaRegenExactCarry: '0.888' });
   const paid = structuredClone(durable());
   expect(paid.experience).toBeGreaterThan(unpaid.experience ?? Infinity);
   expect(paid.rewards).not.toEqual(unpaid.rewards);

@@ -121,6 +121,7 @@ import type { SkeletonMasteryProjection } from '../skills/skeleton-mastery';
 import type { GolemMasteryProjection } from '../skills/golem-mastery';
 import { empowerNecromancerSummon, type SummonPassiveProjection } from '../skills/summon-passives';
 import { SKELETAL_MAGE_DEFINITION, type SkeletalMageElement } from '../skills/skeletal-mage';
+import { SKELETAL_MAGE_SIGNATURES } from '../skills/skeletal-mage-signatures';
 import { IRON_GOLEM_SKILL_ID, isIronGolemSkill, qualifyIronGolemSource, applyIronGolemItemStats,
   type IronGolemInput, type IronGolemPreparationAttestation } from '../skills/iron-golem';
 import { resolveSummonMaxCount, scalePerRank } from '../skills/scaling';
@@ -1950,7 +1951,8 @@ function basicAttack(state: State, actorId: string): void {
     (activeDruidAllyAuras(state.druidAllyAuras, actor, state.units)?.heartRank ?? 0) * DRUID_ALLY_AURA_DEFINITIONS.heart.attackPerRank;
   const ordinaryRange = actor.attackRange ?? [actor.stats.attack, actor.stats.attack];
   const fireGolem = activeFireGolem(state, actorId);
-  const damageType = actor.basicAttack?.damageType ?? state.skeletalMageElements.get(actorId) ??
+  const mageElement = state.skeletalMageElements.get(actorId);
+  const damageType = actor.basicAttack?.damageType ?? mageElement ??
     (fireGolem ? FIRE_GOLEM_DEFINITION.attack.damageType : 'physical');
   const druid = damageType === 'physical' ? activeDruidSummon(state, actorId) : undefined;
   const projectAttack = (value: number): number => Math.max(1, Math.floor(value * (1 + attackPct)));
@@ -1958,7 +1960,8 @@ function basicAttack(state: State, actorId: string): void {
     kind: 'damage',
     damageType,
     base: actor.basicAttack?.damage ?? [projectAttack(ordinaryRange[0]), projectAttack(ordinaryRange[1])],
-    ...(fireGolem ? { applyStatus: { id: 'burn', damageType: 'fire' as const,
+    ...(mageElement && actor.basicAttack === undefined ? { applyStatus: SKELETAL_MAGE_SIGNATURES[mageElement] }
+      : fireGolem ? { applyStatus: { id: 'burn', damageType: 'fire' as const,
       dotPctOfDamage: FIRE_GOLEM_DEFINITION.attack.dotPctOfDamage } }
       : druid?.template === 'raven' ? { applyStatus: { id: 'blind' } }
       : druid?.template === 'poison_creeper' ? { applyStatus: { id: 'poison', damageType: 'poison' as const,

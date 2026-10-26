@@ -37,10 +37,26 @@ function record(snapshot: CombatSnapshot) {
   expect(snapshot).toEqual(before);
   expect(runBattle(snapshot)).toEqual(out.result);
   for (const target of snapshot.enemyTeam) {
-    const total = out.events.reduce((sum, e) => sum + (e.kind === 'damage' && e.target === target.id ? e.amount : 0), 0);
+    const total = out.events.reduce((sum, e) => sum +
+      ((e.kind === 'damage' || e.kind === 'dot') && e.target === target.id ? e.amount : 0), 0);
     expect(out.result.enemyTeam.find(u => u.id === target.id)?.life).toBe(Math.max(0, target.life - total));
   }
   return out;
+}
+/** Isolate one real first bolt so earlier Mage procs cannot alter its numeric oracle. */
+function recordBolt(snapshot: CombatSnapshot, index: number, critical = false) {
+  const factory = required(getSummon('skeletal_mage'));
+  const rank = required(snapshot.playerTeam[0]).skillLevels?.[MAGE] ?? 6;
+  const count = rank === 1 ? 1 : rank === 20 ? 8 : 4;
+  let built = 0;
+  registerSummon('skeletal_mage', owner => {
+    const body = factory(owner);
+    return { ...body, ...(critical ? { stats: { ...body.stats, critChance: 1 } } : {}),
+      statuses: [{ id: 'stun', sourceId: 'bolt-isolation', stacks: 1, remaining: -1,
+        ...(built++ % count === index ? { appliedAtMs: 1941 } : {}) }] };
+  });
+  try { return record(snapshot); }
+  finally { registerSummon('skeletal_mage', factory); }
 }
 type Recording = ReturnType<typeof runBattleRecorded>;
 function spawned(out: Recording, owner = 'hero') {
@@ -90,7 +106,11 @@ describe('D06 fresh Mage elemental basic bolts', () => {
       expect(mage).not.toHaveProperty('basicAttackElement');
       expect(mage).not.toHaveProperty('summonBasicAttackElements');
     }
-    expect(out.events.filter(e => e.kind === 'status' || e.kind === 'dot')).toEqual([]);
+    const signatures = types.map(type => type === 'fire' ? 'burn' : type === 'cold' ? 'chill' :
+      type === 'lightning' ? 'paralyze' : 'poison');
+    expect(new Set(out.events.filter(e => e.kind === 'status').map(e => e.statusId)))
+      .toEqual(new Set(signatures));
+    expect(out.events.filter(e => e.kind === 'dot').length).toBeGreaterThan(0);
     expect(out.events.at(-1)).toMatchObject({ kind: 'end', simClockMs: 60000 });
   });
 
@@ -115,28 +135,33 @@ describe('D06 fresh Mage elemental basic bolts', () => {
     for (const mage of spawned(out)) {
       const first = out.events.findIndex(e => e.kind === 'damage' && e.source === mage.id && !e.dodged);
       expect(first).toBeGreaterThanOrEqual(0);
-      expect(out.events[first + 1]).toMatchObject({ kind: 'status', target: mage.id, statusId: 'chill',
+      expect(out.events.slice(first + 1).find(e => e.kind === 'status' && e.target === mage.id &&
+        e.statusId === 'chill')).toMatchObject({ kind: 'status', target: mage.id, statusId: 'chill',
         simClockMs: required(out.events[first]).simClockMs });
     }
   });
 
   it('does not physically shatter a frozen target already below20% life', () => {
     const base = input(), target = required(base.enemyTeam[0]);
-    const out = record(targetChange(base, { life: 1000, statuses: [...target.statuses,
-      { id: 'freeze', sourceId: 'fixture', stacks: 1, remaining: -1 }] }));
-    const hits = spawned(out).flatMap(u => damage(out, u.id)).filter(e => !e.dodged);
-    expect(new Set(hits.map(e => e.damageType))).toEqual(new Set(CYCLE));
-    expect(hits.every(e => e.amount <= 45)).toBe(true);
-    expect(out.events.filter(e => e.kind === 'dot')).toEqual([]);
+    for (let index = 0; index < 4; index++) {
+      const out = recordBolt(targetChange(base, { life: 1000, statuses: [...target.statuses,
+        { id: 'freeze', sourceId: 'fixture', stacks: 1, remaining: -1 }] }), index);
+      const hits = damage(out, required(spawned(out)[index]).id);
+      expect(hits).toHaveLength(1);
+      expect(hits[0]).toMatchObject({ damageType: CYCLE[index], dodged: false });
+      expect(hits.every(e => e.amount <= 45)).toBe(true);
+      expect(out.result.enemyTeam[0]?.life).toBeGreaterThan(900);
+    }
   });
 
   it.each([
     [1, 10, 17], [6, 21, 28], [20, 53, 60]
   ])('rank%i uses Defense for fire/poison and Magic Resistance for cold/lightning', (rank, armor, magic) => {
-    const out = record(input(rank));
-    for (const u of spawned(out)) {
-      const hits = damage(out, u.id).filter(e => !e.dodged && !e.crit);
-      expect(hits.length).toBeGreaterThan(0);
+    for (let index = 0; index < (rank === 1 ? 1 : 4); index++) {
+      const out = recordBolt(input(rank), index);
+      const hits = damage(out, required(spawned(out)[index]).id);
+      expect(hits).toHaveLength(1);
+      expect(hits[0]).toMatchObject({ dodged: false, crit: false });
       expect(hits.every(e => e.amount === (e.damageType === 'fire' || e.damageType === 'poison' ? armor : magic))).toBe(true);
     }
   });
@@ -145,19 +170,28 @@ describe('D06 fresh Mage elemental basic bolts', () => {
     const out = record(input());
     const crits = spawned(out).flatMap(u => damage(out, u.id)).filter(e => e.crit);
     expect(crits.length).toBeGreaterThan(0);
-    expect(crits.every(e => e.amount === (e.damageType === 'fire' || e.damageType === 'poison' ? 38 : 45))).toBe(true);
+    expect(spawned(out).every(u => u.stats.critChance === .05)).toBe(true);
+    for (let index = 0; index < 4; index++) {
+      const isolated = recordBolt(input(), index, true);
+      const hits = damage(isolated, required(spawned(isolated)[index]).id);
+      expect(hits).toHaveLength(1);
+      expect(hits[0]).toMatchObject({ crit: true, dodged: false });
+      expect(hits.every(e => e.amount === (e.damageType === 'fire' || e.damageType === 'poison' ? 38 : 45))).toBe(true);
+    }
     for (const [rank, attack, armor, magic] of [[1, 45.9, 21, 28], [20, 62.99999999999999, 34, 41]] as const) {
-      const enhanced = record({ ...input(), skeletonMastery: { sourceHeroId: 'hero', rank, maxRank: 20,
-        summonLifePct: rank * .04, summonAttackPct: rank * .02, summonDefensePct: rank * .01 } });
-      for (const u of spawned(enhanced)) {
+      for (let index = 0; index < 4; index++) {
+        const enhanced = recordBolt({ ...input(), skeletonMastery: { sourceHeroId: 'hero', rank, maxRank: 20,
+          summonLifePct: rank * .04, summonAttackPct: rank * .02, summonDefensePct: rank * .01 } }, index);
+        const u = required(spawned(enhanced)[index]);
         expect(u.stats.attack).toBeCloseTo(attack, 12);
         if (rank === 20) {
           expect(u.stats.attack).toBe(62.99999999999999);
           expect(u.stats.attack).toBeLessThan(63);
           expect(Math.floor(u.stats.attack)).toBe(62);
         }
-        const hits = damage(enhanced, u.id).filter(e => !e.dodged && !e.crit);
-        expect(hits.length).toBeGreaterThan(0);
+        const hits = damage(enhanced, u.id);
+        expect(hits).toHaveLength(1);
+        expect(hits[0]).toMatchObject({ dodged: false, crit: false });
         expect(hits.every(e => e.amount === (e.damageType === 'fire' || e.damageType === 'poison' ? armor : magic))).toBe(true);
       }
     }
@@ -166,22 +200,24 @@ describe('D06 fresh Mage elemental basic bolts', () => {
   it.each([[0, 33, 40], [75, 1, 6], [95, 1, 6], [-100, 78, 85], [-200, 78, 85]])(
     'uses live resistance clamp for raw%i', (raw, armor, magic) => {
       const base = input(), target = required(base.enemyTeam[0]);
-      const out = record(targetChange(base, { stats: { ...target.stats,
-        resistances: { physical: 0, fire: raw, cold: raw, lightning: raw, arcane: 0, poison: raw } } }));
-      for (const u of spawned(out)) {
-        const hits = damage(out, u.id).filter(e => !e.dodged && !e.crit);
-        expect(hits.length).toBeGreaterThan(0);
+      for (let index = 0; index < 4; index++) {
+        const out = recordBolt(targetChange(base, { stats: { ...target.stats,
+          resistances: { physical: 0, fire: raw, cold: raw, lightning: raw, arcane: 0, poison: raw } } }), index);
+        const hits = damage(out, required(spawned(out)[index]).id);
+        expect(hits).toHaveLength(1);
+        expect(hits[0]).toMatchObject({ dodged: false, crit: false });
         expect(hits.every(e => e.amount === (e.damageType === 'fire' || e.damageType === 'poison' ? armor : magic))).toBe(true);
       }
     });
 
   it.each([[50, 20, 19, 26], [25, 40, 39, 46]])('applies explicit resistance penalty %i minus%i', (raw, penalty, armor, magic) => {
     const base = input(), target = required(base.enemyTeam[0]);
-    const out = record(targetChange(base, { resistPenalty: penalty, stats: { ...target.stats,
-      resistances: { physical: 0, fire: raw, cold: raw, lightning: raw, arcane: 0, poison: raw } } }));
-    for (const u of spawned(out)) {
-      const hits = damage(out, u.id).filter(e => !e.dodged && !e.crit);
-      expect(hits.length).toBeGreaterThan(0);
+    for (let index = 0; index < 4; index++) {
+      const out = recordBolt(targetChange(base, { resistPenalty: penalty, stats: { ...target.stats,
+        resistances: { physical: 0, fire: raw, cold: raw, lightning: raw, arcane: 0, poison: raw } } }), index);
+      const hits = damage(out, required(spawned(out)[index]).id);
+      expect(hits).toHaveLength(1);
+      expect(hits[0]).toMatchObject({ dodged: false, crit: false });
       expect(hits.every(e => e.amount === (e.damageType === 'fire' || e.damageType === 'poison' ? armor : magic))).toBe(true);
     }
   });
@@ -205,11 +241,12 @@ describe('D06 fresh Mage elemental basic bolts', () => {
   it.each([['chill', 'lightning', 38], ['ignite', 'poison', 26], ['paralyze', 'fire', 28]] as const)(
     'uses the existing %s combo on %s', (status, element, amount) => {
       const base = input(), target = required(base.enemyTeam[0]);
-      const out = record(targetChange(base, { statuses: [...target.statuses,
-        { id: status, sourceId: 'fixture', stacks: 1, remaining: -1 }] }));
+      const out = recordBolt(targetChange(base, { statuses: [...target.statuses,
+        { id: status, sourceId: 'fixture', stacks: 1, remaining: -1 }] }), CYCLE.indexOf(element));
       const mage = required(spawned(out)[CYCLE.indexOf(element)]);
-      const hits = damage(out, mage.id).filter(e => !e.dodged && !e.crit);
-      expect(hits.length).toBeGreaterThan(0);
+      const hits = damage(out, mage.id);
+      expect(hits).toHaveLength(1);
+      expect(hits[0]).toMatchObject({ dodged: false, crit: false });
       expect(hits.every(e => e.amount === amount)).toBe(true);
     });
 });
@@ -304,7 +341,9 @@ describe('D06 battle-local Mage registration authority', () => {
     const spy = vi.spyOn(summonModule, 'buildSummon').mockImplementation((owner, template, options) => {
       const candidate = realBuild(owner, template, options);
       if (!candidate) return candidate;
-      return ++calls % 4 === 1 ? { ...candidate, ...fields } : candidate;
+      return ++calls % 4 === 1 ? { ...candidate, ...fields,
+        // A hostile invalid body acts before the paid control Mages can interrupt it.
+        ...('side' in fields ? { stats: { ...candidate.stats, attackSpeed: 100 } } : {}) } : candidate;
     });
     try {
       const out = record(input()), fresh = spawned(out);
@@ -320,11 +359,12 @@ describe('D06 battle-local Mage registration authority', () => {
     expectTypes(out, fresh, CYCLE);
   });
 
-  it('adds no RNG draw versus the same rank1 generic preparation', () => {
+  it('adds no assignment RNG before the first bolt; signature attempts then use shared RNG', () => {
     const base = input(1), hero = required(base.playerTeam[0]);
     const { skillLevels: _levels, ...unlearned } = hero;
     const explicit = record(base), generic = record({ ...base, playerTeam: [unlearned] });
-    const trace = (out: Recording) => out.events.map(e => e.kind === 'damage'
+    const trace = (out: Recording) => out.events.slice(0,
+      out.events.findIndex(e => e.kind === 'damage') + 1).map(e => e.kind === 'damage'
       ? { kind: e.kind, source: e.source, target: e.target, crit: e.crit, dodged: e.dodged,
           simClockMs: e.simClockMs, uiDelayMs: e.uiDelayMs }
       : e);
