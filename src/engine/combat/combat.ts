@@ -95,6 +95,8 @@ import { copyCorpseExplosionProjections, corpseExplosionRank, isCorpseExplosionI
   type CorpseExplosionProjection } from '../skills/corpse-explosion';
 import { copyPoisonExplosionProjections, poisonExplosionRank, isPoisonExplosionId, matchesPoisonExplosion,
   type PoisonExplosionProjection } from '../skills/poison-explosion';
+import { copyFindPotionProjections, findPotionRank, findPotionRecovery, isFindPotionId, matchesFindPotion,
+  FIND_POTION_IDS, type FindPotionProjection } from '../skills/find-potion';
 import type { SkeletonMasteryProjection } from '../skills/skeleton-mastery';
 import type { GolemMasteryProjection } from '../skills/golem-mastery';
 import { empowerNecromancerSummon, type SummonPassiveProjection } from '../skills/summon-passives';
@@ -167,7 +169,7 @@ export type BattleEvent =
   | { readonly kind: 'life-capacity'; readonly target: string; readonly lifeMax: number; readonly life: number; readonly vigorBaseLifeMax?: number;
       readonly druidFormState?: Pick<CombatUnit, 'druidForm' | 'druidFormLife'> }
   | { readonly kind: 'mana'; readonly target: string; readonly mana: number;
-      readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' | 'redemption' | 'energy-shield' | 'solar-creeper' | 'mana-burn' }
+      readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' | 'redemption' | 'energy-shield' | 'solar-creeper' | 'mana-burn' | 'find-potion' }
   | { readonly kind: 'death'; readonly target: string }
   | { readonly kind: 'enrage'; readonly target: string }
   | { readonly kind: 'orb'; readonly target: string; readonly orb: Orb }
@@ -189,6 +191,8 @@ export interface CombatSnapshot {
   readonly corpseExplosion?: readonly CorpseExplosionProjection[];
   /** Independent Player-composed PE eligibility; both consumers share one empty wave-local FIFO. */
   readonly poisonExplosion?: readonly PoisonExplosionProjection[];
+  /** Learned native Barbarian recovery authority; shares the empty wave-local body pool. */
+  readonly findPotion?: readonly FindPotionProjection[];
   /** Copied learned Assassin coating, bound to the exact player hero for this wave. */
   readonly assassinVenom?: AssassinVenomProjection;
   /** Frozen explicit player Might selection for this wave, active from simulation entry. */
@@ -242,6 +246,7 @@ interface State {
   /** Valid copied player authority and FIFO primary enemy-monster death IDs; wave-local only. */
   readonly corpseExplosion: Map<string, number>;
   readonly poisonExplosion: Map<string, number>;
+  readonly findPotion: Map<string, number>;
   readonly assassinVenom?: AssassinVenomProjection;
   readonly corpses: string[];
   /** Only IDs committed/accepted by qualified preparation in this battle may use Druid effects. */
@@ -994,7 +999,7 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
   // Publish only after the complete closure/effects, in the existing death-event order.
   // Keep every outcome unit and handled death intact for rewards and replay.
   const aura = state.statAura;
-  if (state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0 ||
+  if (state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0 || state.findPotion.size > 0 ||
     (aura?.redemption !== undefined && activeStatAura(aura, aura.sourceHeroId, state.units) !== undefined) ||
     [...state.druidSummons.keys()].some(id => {
       const bound = activeDruidSummon(state, id);
@@ -1270,8 +1275,13 @@ function canUseSkillForState(
     CLOAK_OF_SHADOWS_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   const ce = isCorpseExplosionId(skillOrderId) || isCorpseExplosionId(skill.id);
   const pe = isPoisonExplosionId(skillOrderId) || isPoisonExplosionId(skill.id);
+  const fp = isFindPotionId(skillOrderId) || isFindPotionId(skill.id) ||
+    skill.effects.some(effect => effect.kind === 'corpse-recovery');
   const skillLevel = ce ? corpseExplosionRank(unit, state.corpseExplosion)
-    : pe ? poisonExplosionRank(unit, state.poisonExplosion) : effectiveSkillLevel(unit, skill);
+    : pe ? poisonExplosionRank(unit, state.poisonExplosion)
+    : fp ? findPotionRank(unit, state.findPotion) : effectiveSkillLevel(unit, skill);
+  if (fp && (!matchesFindPotion(skill) || skillLevel === 0 || state.corpses.length === 0 || !hasEnemyTarget ||
+    FIND_POTION_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0) || !findPotionRecovery(unit, skillLevel))) return false;
   if (burst && (!matchesBurstOfSpeed(skill) || burstOfSpeedRank(unit) === 0 || !Number.isFinite(unit.mana) ||
     activeBurstOfSpeed(unit, state.simClockMs) !== undefined ||
     BURST_OF_SPEED_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
@@ -1339,6 +1349,9 @@ function applyEffect(
   const acting = state.units.get(actorId);
   if (!acting || !alive(acting)) return;
   switch (effect.kind) {
+    case 'corpse-recovery':
+      // Synchronous finite-body recovery is committed once by castSkill, never as a generic effect.
+      break;
     case 'hydra':
       // Hydra is committed only by its validated, paid battle-start preparation.
       break;
@@ -1625,14 +1638,18 @@ function castSkill(
 
   const ce = isCorpseExplosionId(skillOrderId) || isCorpseExplosionId(skill.id);
   const pe = isPoisonExplosionId(skillOrderId) || isPoisonExplosionId(skill.id);
-  const consumesCorpse = ce || pe;
+  const fp = isFindPotionId(skillOrderId) || isFindPotionId(skill.id) ||
+    skill.effects.some(effect => effect.kind === 'corpse-recovery');
+  const consumesCorpse = ce || pe || fp;
   if (consumesCorpse && !canUseSkillForState(state, actor, skill, skillOrderId,
     opponentsOf(state, actor).length > 0)) return;
   const skillLevel = ce ? corpseExplosionRank(actor, state.corpseExplosion)
     : pe ? poisonExplosionRank(actor, state.poisonExplosion)
+    : fp ? findPotionRank(actor, state.findPotion)
     : prepared?.skillLevel ?? effectiveSkillLevel(actor, skill);
+  const recovery = fp ? findPotionRecovery(actor, skillLevel) : undefined;
   // Synchronous commit: reserve exactly one oldest body before ordinary payment/effects.
-  if (consumesCorpse) state.corpses.shift();
+  const corpseId = consumesCorpse ? state.corpses.shift() : undefined;
   const manaCost = effectiveManaCost(skill, skillLevel);
   const newMana = Math.max(0, actor.mana - manaCost);
   const manaEvent = commitMana(state, actor, { ...actor, mana: newMana }, 'cast');
@@ -1650,8 +1667,20 @@ function castSkill(
 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
   if (manaEvent) emit(state, manaEvent);
-  if (consumesCorpse) emit(state, { kind: 'message', messageKey: pe ? 'combat:corpses.consumedPoison' : 'combat:corpses.consumed',
-    params: { count: state.corpses.length } });
+  if (consumesCorpse) emit(state, { kind: 'message', messageKey: fp ? 'combat:corpses.consumedFindPotion'
+    : pe ? 'combat:corpses.consumedPoison' : 'combat:corpses.consumed',
+    params: { count: state.corpses.length, ...(fp && corpseId !== undefined ? { corpseId } : {}) } });
+  if (recovery) {
+    const paid = state.units.get(actorId);
+    if (!paid) return;
+    commitHealing(state, paid, recovery.life);
+    const healed = state.units.get(actorId);
+    if (healed && recovery.mana > 0) {
+      const event = commitMana(state, healed, { ...healed, mana: healed.mana + recovery.mana }, 'find-potion');
+      if (event) emit(state, event);
+    }
+    return;
+  }
   if (prepared) {
     return prepared.units.map(candidate => registerSpawnedSummon(state, actor, prepared.summonId, candidate));
   }
@@ -2451,6 +2480,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     difficulty: snapshot.difficulty ?? 'normal',
     corpseExplosion: new Map(copyCorpseExplosionProjections(snapshot.corpseExplosion).map(p => [p.sourceHeroId, p.rank])),
     poisonExplosion: new Map(copyPoisonExplosionProjections(snapshot.poisonExplosion).map(p => [p.sourceHeroId, p.rank])),
+    findPotion: new Map(copyFindPotionProjections(snapshot.findPotion).map(p => [p.sourceHeroId, p.rank])),
     corpses: [],
     druidSummons: new Map(),
     ...(golemMastery ? { golemMastery: Object.freeze({ sourceHeroId: golemMastery.sourceHeroId,
@@ -2507,6 +2537,10 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   for (const id of state.poisonExplosion.keys()) {
     const hero = state.units.get(id);
     if (!hero || poisonExplosionRank(hero, state.poisonExplosion) === 0) state.poisonExplosion.delete(id);
+  }
+  for (const id of state.findPotion.keys()) {
+    const hero = state.units.get(id);
+    if (!hero || findPotionRank(hero, state.findPotion) === 0) state.findPotion.delete(id);
   }
 
   for (const u of state.units.values()) {

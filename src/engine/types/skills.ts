@@ -251,6 +251,9 @@ export interface ConversionTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Immediate paid recovery from one shared enemy body; creates no potion item. */
+  readonly corpseRecovery?: { readonly lifePct: number; readonly lifePctPerRank: number;
+    readonly manaPct: number; readonly manaPctPerRank: number };
   /** Exact paid finite Hydra body; other summons keep their existing definitions. */
   readonly hydra?: {
     readonly heads: number;

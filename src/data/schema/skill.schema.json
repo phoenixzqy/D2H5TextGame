@@ -8,6 +8,32 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["corpseRecovery"], "properties": { "corpseRecovery": {} } },
+      "then": { "properties": { "id": { "const": "skills-barbarian-find-potion" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-find-potion" } } },
+      "then": {
+        "required": ["requiredLevel", "cost", "scaling", "corpseRecovery"],
+        "properties": {
+          "requiredLevel": { "const": 1 }, "minLevel": { "const": 1 }, "maxLevel": { "const": 20 },
+          "trigger": { "const": "active" }, "target": { "const": "self" }, "cooldown": { "const": 4 },
+          "cost": { "type": "object", "additionalProperties": false, "required": ["mana"],
+            "properties": { "mana": { "const": 2 } } },
+          "scaling": { "type": "object", "additionalProperties": false, "required": ["cooldownPerLevel"],
+            "properties": { "cooldownPerLevel": { "const": -0.05 } } },
+          "corpseRecovery": { "$ref": "#/properties/corpseRecovery" },
+          "prerequisites": false, "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false,
+          "damage": false, "damageType": false, "heal": false, "timedBuff": false, "periodicSpell": false,
+          "summon": false, "summonId": false, "aura": false, "passive": false,
+          "requires": false, "aoeShape": false, "maxTargets": false, "hitSequence": false,
+          "onHitRecovery": false, "onHitSelfDamage": false, "attackDamagePct": false,
+          "critChanceBonus": false, "damageComposition": false, "synergies": false,
+          "ignoresDefense": false, "ignoresMagicResist": false, "appliesTags": false
+        }
+      }
+    },
+    {
       "if": { "required": ["hydra"], "properties": { "hydra": {} } },
       "then": { "properties": { "id": { "const": "skills-sorceress-hydra" } } }
     },
@@ -4831,6 +4857,16 @@
     }
   },
   "properties": {
+    "corpseRecovery": {
+      "type": "object", "additionalProperties": false,
+      "required": ["lifePct", "lifePctPerRank", "manaPct", "manaPctPerRank"],
+      "properties": {
+        "lifePct": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+        "lifePctPerRank": { "type": "number", "minimum": 0, "maximum": 0.01 },
+        "manaPct": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+        "manaPctPerRank": { "type": "number", "minimum": 0, "maximum": 0.01 }
+      }
+    },
     "hydra": {
       "description": "Paid battle-start Hydra only: body stats, independently rolled heads and finite half-open lifetime.",
       "type": "object", "additionalProperties": false,

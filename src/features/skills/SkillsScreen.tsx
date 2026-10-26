@@ -871,6 +871,12 @@ function StatSection({
           ))}
           {stats.hydra ? <StatLine label={t('details.hydraBody')}
             value={t('details.hydraBodyValue', { heads: stats.hydra.heads, duration: stats.hydra.durationSeconds })} /> : null}
+          {stats.corpseRecovery ? <>
+            <StatLine label={t('details.corpseRecoveryLife')}
+              value={t('details.percentValue', { value: stats.corpseRecovery.lifePercent })} />
+            <StatLine label={t('details.corpseRecoveryMana')}
+              value={t('details.percentValue', { value: stats.corpseRecovery.manaPercent })} />
+          </> : null}
           {stats.periodicSpell ? <StatLine label={t(stats.periodicSpell.channelled ? 'details.channelTiming' : 'details.spellTiming')} value={t('details.spellTimingValue', {
             duration: stats.periodicSpell.durationSeconds, interval: stats.periodicSpell.intervalSeconds,
             pulses: stats.periodicSpell.pulses
@@ -1626,6 +1632,10 @@ function dynamicDescription(
       duration: t('details.seconds', { seconds: stats.leap.durationSeconds }),
       stun: t('details.seconds', { seconds: stats.control.durationSeconds }),
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
+  }
+  if (stats?.corpseRecovery) {
+    return t('barbarian.find-potion.desc', { life: stats.corpseRecovery.lifePercent,
+      manaRecovery: stats.corpseRecovery.manaPercent, mana: stats.manaCost, cooldown: stats.cooldown });
   }
   const firstDamage = stats?.damage[0];
   if (firstDamage && stats.hydra) {

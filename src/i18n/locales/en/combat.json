@@ -34,6 +34,7 @@
   "logPaused": "Auto-scroll paused (move cursor away to resume)",
   "logHoverPausedHint": "Log auto-scroll paused",
   "corpses": {
+    "consumedFindPotion": "Find Potion consumes a corpse for immediate life and mana recovery. Remaining: {{count}}.",
     "available": "A fallen enemy leaves a corpse. Available: {{count}}.",
     "consumed": "Corpse Explosion consumes a corpse. Remaining: {{count}}.",
     "consumedPoison": "Poison Explosion consumes a corpse. Remaining: {{count}}.",

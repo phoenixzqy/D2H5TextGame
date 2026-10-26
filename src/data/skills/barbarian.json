@@ -671,14 +671,14 @@
     "cost": {
       "mana": 2
     },
-    "appliesStatus": [
-      "find-potion"
-    ],
+    "corpseRecovery": {
+      "lifePct": 0.1,
+      "lifePctPerRank": 0.005,
+      "manaPct": 0.05,
+      "manaPctPerRank": 0.0025
+    },
     "scaling": {
-      "cooldownPerLevel": -0.05,
-      "passiveStatsPerLevel": {
-        "magicFindPct": 0.01
-      }
+      "cooldownPerLevel": -0.05
     }
   },
   {

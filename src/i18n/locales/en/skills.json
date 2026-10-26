@@ -66,6 +66,8 @@
   "details": {
     "damagePerHead": "{{type}} damage per head bolt",
     "hydraBody": "Hydra body",
+    "corpseRecoveryLife": "Life recovered (% of maximum)",
+    "corpseRecoveryMana": "Mana recovered (% of maximum)",
     "hydraBodyValue": "One body, {{heads}} heads; {{duration}} s; own Attack Speed",
     "damagePerPulse": "{{type}} damage per pulse",
     "spellTiming": "Persistent spell",
@@ -628,7 +630,7 @@
     },
     "find-potion": {
       "name": "Find Potion",
-      "desc": "Searches corpses for potions."
+      "desc": "Consumes one shared enemy corpse to restore {{life}}% of your maximum life and {{manaRecovery}}% of maximum mana, rounded down and capped. Pay {{mana}} MP first; cooldown {{cooldown}} s. Creates no potion item. With no corpse, or no life or net mana gain, skip to the next skill or basic attack. Changes apply next wave."
     },
     "taunt": {
       "name": "Taunt",

@@ -28,6 +28,7 @@ import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 import { HYDRA_DEFINITION, hydraBodyStats } from './hydra';
 
 export interface DisplaySkillSource {
+  readonly corpseRecovery?: import('../types/skills').SkillDef['corpseRecovery'];
   readonly hydra?: import('../types/skills').SkillDef['hydra'];
   readonly enchantOnPhysicalHit?: { readonly attackPctPerRank: number };
   readonly periodicSpell?: { readonly durationMs: number; readonly intervalMs: number; readonly channelled?: true };
@@ -166,6 +167,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** One shared corpse restores these independent percentages, capped after payment. */
+  readonly corpseRecovery?: { readonly lifePercent: number; readonly manaPercent: number };
   /** Independent body attacks; damage rows describe one head's bolt. */
   readonly hydra?: { readonly heads: number; readonly durationSeconds: number };
   /** Finite personal paid potency; Enchant is a weapon Fire base, not spell damage. */
@@ -628,6 +631,11 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(skill.id === 'skills-barbarian-find-potion' && skill.trigger === 'active' && skill.target === 'self' &&
+      skill.corpseRecovery ? { corpseRecovery: {
+        lifePercent: Number(((skill.corpseRecovery.lifePct + skill.corpseRecovery.lifePctPerRank * (safeRank - 1)) * 100).toFixed(4)),
+        manaPercent: Number(((skill.corpseRecovery.manaPct + skill.corpseRecovery.manaPctPerRank * (safeRank - 1)) * 100).toFixed(4))
+      } } : {}),
     ...(skill.id === 'skills-sorceress-hydra' && skill.hydra && skill.target === 'summon' ? {
       hydra: { heads: HYDRA_DEFINITION.heads, durationSeconds: HYDRA_DEFINITION.durationMs / 1000 }
     } : {}),

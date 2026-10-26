@@ -66,6 +66,8 @@
   "details": {
     "damagePerHead": "每个头的火弹{{type}}伤害",
     "hydraBody": "海蛇实体",
+    "corpseRecoveryLife": "生命恢复（最大值百分比）",
+    "corpseRecoveryMana": "法力恢复（最大值百分比）",
     "hydraBodyValue": "一个实体，{{heads}}个头；{{duration}} 秒；使用自身攻击速度",
     "damagePerPulse": "每次脉冲{{type}}伤害",
     "spellTiming": "持续法术",
@@ -628,7 +630,7 @@
     },
     "find-potion": {
       "name": "找药水",
-      "desc": "从尸体中搜寻药水。"
+      "desc": "消耗一具共享敌人尸体，恢复自身最大生命的 {{life}}% 与最大法力的 {{manaRecovery}}%，向下取整且不超过上限。先支付 {{mana}} 点法力，冷却 {{cooldown}} 秒。不生成药水物品。没有尸体，或没有生命及净法力收益时，跳过并尝试下一技能或普攻。调整从下一波生效。"
     },
     "taunt": {
       "name": "嘲弄",
