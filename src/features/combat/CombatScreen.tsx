@@ -742,8 +742,10 @@ function UnitCard({
     ...unit.activeBuffIds.map((id) => ({ id, label: t(`effect.buff.${id}`, { defaultValue: humanizeEffectId(id) }), kind: 'buff' as const })),
     ...unit.statuses.map((status) => ({
       id: status.id,
-      label: t(`effect.status.${status.id}`, { defaultValue: humanizeEffectId(status.id),
-        amount: status.boneArmor?.remaining ?? 0 }),
+      label: status.id === 'bone-wall' && status.boneWall
+        ? t('effect.boneWallCapacity', { amount: status.boneWall.remaining })
+        : t(`effect.status.${status.id}`, { defaultValue: humanizeEffectId(status.id),
+          amount: status.boneArmor?.remaining ?? 0 }),
       stacks: status.stacks,
       kind: status.id === 'battle-command' || status.id === 'grim-ward' || status.id === 'oak-sage' || status.id === 'heart-of-wolverine' || status.id === 'spirit-of-barbs' ||
         ((status.id === 'werewolf' || status.id === 'werebear') && unit.druidForm?.form === status.id) ||
@@ -753,7 +755,8 @@ function UnitCard({
         (status.id === 'concentrate' && status.concentrate !== undefined) ||
         ((status.id === 'teleport' || status.id === 'enchant') && status.sorceressBuff !== undefined) ||
         (['blaze', 'fire-wall', 'thunder-storm', 'inferno'].includes(status.id) && status.periodicSpell !== undefined) ||
-        (status.id === 'bone-armor' && status.boneArmor !== undefined) ? 'buff' as const
+        (status.id === 'bone-armor' && status.boneArmor !== undefined) ||
+        (status.id === 'bone-wall' && status.boneWall !== undefined) ? 'buff' as const
         : status.dotPerStack !== undefined || status.id.includes('poison') || status.id.includes('ignite') || status.id.includes('plague') ? 'dot' as const : 'debuff' as const
     }))
   ];

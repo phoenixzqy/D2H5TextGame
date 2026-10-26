@@ -118,7 +118,10 @@
     "buffApplied": "增益",
     "summon": "召唤",
     "death": "倒下",
+    "boneWallCapacity": "骨墙：{{amount}}",
     "status": {
+      "bone-wall": "骨墙",
+      "bone-prison": "骨牢",
       "battle-command": "战斗指挥",
       "grim-ward": "恐怖图腾",
       "inferno": "炼狱",
@@ -170,6 +173,7 @@
       "enchant": "附魔"
     },
     "buff": {
+      "bone-wall": "骨墙",
       "battle-command": "战斗指挥",
       "inferno": "炼狱",
       "blaze": "炽烈之径",

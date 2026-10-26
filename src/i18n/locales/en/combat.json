@@ -118,7 +118,10 @@
     "buffApplied": "Buff",
     "summon": "Summon",
     "death": "Down",
+    "boneWallCapacity": "Bone Wall: {{amount}}",
     "status": {
+      "bone-wall": "Bone Wall",
+      "bone-prison": "Bone Prison",
       "battle-command": "Battle Command",
       "grim-ward": "Grim Ward",
       "inferno": "Inferno",
@@ -170,6 +173,7 @@
       "enchant": "Enchant"
     },
     "buff": {
+      "bone-wall": "Bone Wall",
       "battle-command": "Battle Command",
       "inferno": "Inferno",
       "blaze": "Blaze",
