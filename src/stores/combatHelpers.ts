@@ -92,6 +92,7 @@ import { withoutTemporaryLifeCapacity } from '@/engine/combat/life-capacity';
 import { composeBarbarianPassives } from '@/engine/skills/barbarian-passives';
 import { composeBoneArmor } from '@/engine/skills/bone-armor';
 import { composeBonePrisonRank } from '@/engine/skills/bone-prison';
+import { composeBoneWallRank } from '@/engine/skills/bone-wall';
 import { composeEnergyShield } from '@/engine/skills/energy-shield';
 import { composeConversionRank } from '@/engine/skills/conversion';
 import { composeHolyShieldRank, refreshHolyShieldState } from '@/engine/skills/holy-shield';
@@ -273,6 +274,7 @@ function composeNativeCombatUnit(player: Player, temporarySkillRankBonus: 0 | 1)
     coldResistanceReductionPct: composeColdMastery(player),
     staticFieldRank: composeStaticField(player),
     bonePrisonRank: composeBonePrisonRank(player),
+    boneWallRank: composeBoneWallRank(player),
     coldArmorRanks: composeColdArmorRanks(player),
     periodicSpellRanks: composePeriodicSpellRanks(player),
     ...(player.class === 'sorceress' ? { hydraRank: composeHydraRank(player) } : {}),
@@ -1251,6 +1253,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
         ? { conversionRank: fresh.conversionRank ?? 0 } : {}),
       staticFieldRank: fresh.staticFieldRank ?? 0,
       bonePrisonRank: fresh.bonePrisonRank ?? 0,
+      boneWallRank: fresh.boneWallRank ?? 0,
       ...((unit.energyShieldRank !== undefined || fresh.energyShieldRank !== undefined)
         ? { energyShieldRank: fresh.energyShieldRank ?? 0 } : {}),
       burstOfSpeedRank: fresh.burstOfSpeedRank ?? 0,
