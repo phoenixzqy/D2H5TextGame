@@ -94,7 +94,7 @@ import { activeTerror } from './terror-definition';
 import { activeBonePrison, BONE_PRISON_IDS } from './bone-prison-definition';
 import { bonePrisonRank, matchesBonePrison } from '../skills/bone-prison';
 import { BONE_WALL_IDS } from './bone-wall-definition';
-import { boneWallPool, boneWallRank, copyBoneWallStatuses, matchesBoneWall, payBoneWall } from '../skills/bone-wall';
+import { absorbBoneWall, boneWallPool, boneWallRank, copyBoneWallStatuses, matchesBoneWall, payBoneWall } from '../skills/bone-wall';
 import { activeDamageCurse, paidDamageCurse } from './damage-curse-definition';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
@@ -169,6 +169,8 @@ export type BattleEvent =
       readonly cycloneAbsorbed?: number;
       /** Paid Holy Shield prevention, separate from other personal defenses. */
       readonly holyShieldAbsorbed?: number;
+      /** Already-mitigated damage consumed by the finite paid Wall. */
+      readonly wallAbsorbed?: number;
       readonly crit: boolean;
       readonly dodged: boolean;
     }
@@ -198,7 +200,7 @@ export type BattleEvent =
   | { readonly kind: 'orb'; readonly target: string; readonly orb: Orb }
   | { readonly kind: 'stunned'; readonly target: string }
   | { readonly kind: 'dot'; readonly target: string; readonly amount: number;
-      readonly absorbed?: number; readonly cycloneAbsorbed?: number; readonly holyShieldAbsorbed?: number }
+      readonly absorbed?: number; readonly cycloneAbsorbed?: number; readonly holyShieldAbsorbed?: number; readonly wallAbsorbed?: number }
   | { readonly kind: 'end'; readonly winner: CombatSide | null };
 
 /** Initial combat snapshot. */
@@ -345,6 +347,8 @@ interface State {
 }
 
 interface PeriodicIntegral {
+  /** Prior periodic damage removed by Wall, excluded from subsequent mana-diversion quotas. */
+  wallAbsorbed?: number;
   /** Compensated accumulated damage in HP * milliseconds. */
   total: number;
   compensation: number;
@@ -721,18 +725,19 @@ function cleansingDurationInput(state: State, recipientId: string): { readonly c
   return multiplier === undefined ? {} : { cleansingDurationMultiplier: multiplier };
 }
 
-/** Shared settlement/prediction: Cyclone, Holy Shield, MP diversion, then finite Bone Armor. */
-function splitPersonalDamage(unit: CombatUnit, amount: number, previousPeriodicDamage = 0,
-  cycloneBaseline = 0, holyShieldBaseline = 0) {
+/** Shared settlement/prediction: Cyclone, Holy Shield, finite Wall, MP diversion, then Bone Armor. */
+function splitPersonalDamage(unit: CombatUnit, amount: number, clock: number, previousPeriodicDamage = 0,
+  cycloneBaseline = 0, holyShieldBaseline = 0, previousWallAbsorbed = 0) {
   const sinceCast = Math.max(0, previousPeriodicDamage - cycloneBaseline);
   const cyclone = absorbCycloneArmor(unit, amount, sinceCast);
   const previousAfterCyclone = previousPeriodicDamage - cycloneArmorQuota(unit, sinceCast);
   const holySinceCast = Math.max(0, previousAfterCyclone - holyShieldBaseline);
   const holy = absorbHolyShield(unit, cyclone.damage, holySinceCast);
   const previousAfterHoly = previousAfterCyclone - holyShieldQuota(unit, holySinceCast);
-  const shield = divertEnergyShield(unit, holy.damage, previousAfterHoly);
+  const wall = absorbBoneWall(unit, holy.damage, clock);
+  const shield = divertEnergyShield(wall.unit, wall.damage, Math.max(0, previousAfterHoly - previousWallAbsorbed));
   const bone = absorbBoneArmor(shield.unit, shield.damage);
-  return { ...bone, cycloneAbsorbed: cyclone.absorbed, holyShieldAbsorbed: holy.absorbed,
+  return { ...bone, cycloneAbsorbed: cyclone.absorbed, holyShieldAbsorbed: holy.absorbed, wallAbsorbed: wall.absorbed,
     manaSpent: shield.manaSpent };
 }
 
@@ -800,16 +805,18 @@ function applyDamageToUnit(
   for (const [index, hit] of hits.entries()) {
     const hitAmount = hit.outcome.hit && hit.outcome.final > 0 && shouldShatter(activeDefender, hit.damageType)
       ? Math.max(hit.outcome.final, cycloneArmorLethalBound(defender, holyShieldLethalBound(defender,
-        defender.life + (boneArmorPool(defender)?.boneArmor?.remaining ?? 0) + availableEnergyShieldMana(defender))))
+        defender.life + (boneArmorPool(defender)?.boneArmor?.remaining ?? 0) +
+        (boneWallPool(defender, state.simClockMs)?.boneWall?.remaining ?? 0) + availableEnergyShieldMana(defender))))
       : hit.outcome.final;
     amount += hitAmount;
-    const absorption = splitPersonalDamage(remainingDefenses, hitAmount);
+    const absorption = splitPersonalDamage(remainingDefenses, hitAmount, state.simClockMs);
     emit(state, {
       kind: 'damage', source: attackerId, target: defenderId,
       damageType: hit.damageType, amount: absorption.damage,
       ...(absorption.absorbed > 0 ? { absorbed: absorption.absorbed } : {}),
       ...(absorption.cycloneAbsorbed > 0 ? { cycloneAbsorbed: absorption.cycloneAbsorbed } : {}),
       ...(absorption.holyShieldAbsorbed > 0 ? { holyShieldAbsorbed: absorption.holyShieldAbsorbed } : {}),
+      ...(absorption.wallAbsorbed > 0 ? { wallAbsorbed: absorption.wallAbsorbed } : {}),
       crit: hit.outcome.crit, dodged: hit.outcome.dodged
     });
     if (hit.outcome.dodged) continue;
@@ -940,12 +947,13 @@ function applyDamageToUnit(
     const thorns: DamageEffect = { kind: 'damage', damageType: 'thorns', base: [raw, raw] };
     const reflected = mitigateDamage(raw,
       buildDamageInput(state, after, activeStatusView(target, state.simClockMs), thorns));
-    const reflectionAbsorption = splitPersonalDamage(target, reflected.final);
+    const reflectionAbsorption = splitPersonalDamage(target, reflected.final, state.simClockMs);
     emit(state, { kind: 'damage', source: defenderId, target: attackerId,
       damageType: 'thorns', amount: reflectionAbsorption.damage,
       ...(reflectionAbsorption.absorbed > 0 ? { absorbed: reflectionAbsorption.absorbed } : {}),
       ...(reflectionAbsorption.cycloneAbsorbed > 0 ? { cycloneAbsorbed: reflectionAbsorption.cycloneAbsorbed } : {}),
       ...(reflectionAbsorption.holyShieldAbsorbed > 0 ? { holyShieldAbsorbed: reflectionAbsorption.holyShieldAbsorbed } : {}),
+      ...(reflectionAbsorption.wallAbsorbed > 0 ? { wallAbsorbed: reflectionAbsorption.wallAbsorbed } : {}),
       crit: false, dodged: false });
     const damaged = { ...reflectionAbsorption.unit, life: Math.max(0, target.life - reflectionAbsorption.damage) };
     const manaEvent = commitPersonalDamage(state, target, damaged);
@@ -1556,13 +1564,14 @@ function applyEffect(
         if (!target) continue;
         const amount = staticFieldDamage(target, state.difficulty);
         if (amount <= 0) continue;
-        const absorption = splitPersonalDamage(target, amount);
+        const absorption = splitPersonalDamage(target, amount, state.simClockMs);
         const manaEvent = commitPersonalDamage(state, target, { ...absorption.unit, life: target.life - absorption.damage });
         emit(state, { kind: 'damage', source: actorId, target: target.id,
           damageType: 'lightning', amount: absorption.damage,
           ...(absorption.absorbed > 0 ? { absorbed: absorption.absorbed } : {}),
           ...(absorption.cycloneAbsorbed > 0 ? { cycloneAbsorbed: absorption.cycloneAbsorbed } : {}),
           ...(absorption.holyShieldAbsorbed > 0 ? { holyShieldAbsorbed: absorption.holyShieldAbsorbed } : {}),
+          ...(absorption.wallAbsorbed > 0 ? { wallAbsorbed: absorption.wallAbsorbed } : {}),
           crit: false, dodged: false });
         if (manaEvent) emit(state, manaEvent);
         if (absorption.absorbed > 0) observeStatuses(state, target.id);
@@ -2039,7 +2048,7 @@ function integratePeriodic(
     compensation = (next - total) - adjusted;
     total = next;
   }
-  return { total, compensation, dealt: Math.floor(total / SECONDS) };
+  return { total, compensation, dealt: Math.floor(total / SECONDS), wallAbsorbed: previous.wallAbsorbed ?? 0 };
 }
 
 /** Attribute only actual lost HP; preserve the shared integral and pooled damage event exactly. */
@@ -2070,7 +2079,7 @@ function periodicRecoveryShares(state: State, unit: CombatUnit, from: number, to
 /** Every HP write precedes events/deaths; sources freeze the just-integrated interval. */
 function settlePeriodic(state: State, to: number): void {
   const from = state.simClockMs;
-  const damages: { unit: CombatUnit; amount: number; absorbed: number; cycloneAbsorbed: number; holyShieldAbsorbed: number; manaEvent: ManaEvent | undefined }[] = [];
+  const damages: { unit: CombatUnit; amount: number; absorbed: number; cycloneAbsorbed: number; holyShieldAbsorbed: number; wallAbsorbed: number; manaEvent: ManaEvent | undefined }[] = [];
   const dead: CombatUnit[] = [];
   const recoveries: ReturnType<typeof periodicRecoveryShares> = [];
   for (const before of state.units.values()) {
@@ -2080,20 +2089,24 @@ function settlePeriodic(state: State, to: number): void {
     const amount = next.dealt - (previous?.dealt ?? 0);
     state.periodic.set(before.id, next);
     if (amount <= 0) continue;
-    const absorption = splitPersonalDamage(before, amount, previous?.dealt ?? 0,
-      state.cyclonePeriodicBaseline.get(before.id) ?? 0, state.holyShieldPeriodicBaseline.get(before.id) ?? 0);
+    const absorption = splitPersonalDamage(before, amount, from, previous?.dealt ?? 0,
+      state.cyclonePeriodicBaseline.get(before.id) ?? 0, state.holyShieldPeriodicBaseline.get(before.id) ?? 0,
+      previous?.wallAbsorbed ?? 0);
+    state.periodic.set(before.id, { ...next, wallAbsorbed: (previous?.wallAbsorbed ?? 0) + absorption.wallAbsorbed });
     const after = { ...absorption.unit, life: Math.max(0, before.life - absorption.damage) };
     recoveries.push(...periodicRecoveryShares(state, before, from, to, before.life - after.life));
     const manaEvent = commitPersonalDamage(state, before, after);
     damages.push({ unit: after, amount: absorption.damage, absorbed: absorption.absorbed,
-      cycloneAbsorbed: absorption.cycloneAbsorbed, holyShieldAbsorbed: absorption.holyShieldAbsorbed, manaEvent });
+      cycloneAbsorbed: absorption.cycloneAbsorbed, holyShieldAbsorbed: absorption.holyShieldAbsorbed,
+      wallAbsorbed: absorption.wallAbsorbed, manaEvent });
     if (!alive(after)) dead.push(activeStatusView(after, from));
   }
   state.simClockMs = to;
   emitTurnBoundaries(state);
-  for (const { unit, amount, absorbed, cycloneAbsorbed, holyShieldAbsorbed, manaEvent } of damages) {
+  for (const { unit, amount, absorbed, cycloneAbsorbed, holyShieldAbsorbed, wallAbsorbed, manaEvent } of damages) {
     emit(state, { kind: 'dot', target: unit.id, amount, ...(absorbed > 0 ? { absorbed } : {}),
       ...(cycloneAbsorbed > 0 ? { cycloneAbsorbed } : {}),
+      ...(wallAbsorbed > 0 ? { wallAbsorbed } : {}),
       ...(holyShieldAbsorbed > 0 ? { holyShieldAbsorbed } : {}) });
     if (manaEvent) emit(state, manaEvent);
   }
@@ -2346,11 +2359,12 @@ function nextPeriodicBoundary(state: State, nextActionAt: number): number {
     const minimum = Math.floor(state.simClockMs) + 1;
     const maximum = Math.floor(boundary);
     if (minimum > maximum) continue;
-    const effectiveLife = unit.life + (boneArmorPool(unit)?.boneArmor?.remaining ?? 0) + availableEnergyShieldMana(unit);
+    const effectiveLife = unit.life + (boneArmorPool(unit)?.boneArmor?.remaining ?? 0) +
+      (boneWallPool(unit, state.simClockMs)?.boneWall?.remaining ?? 0) + availableEnergyShieldMana(unit);
     const lethalAt = (at: number): boolean => splitPersonalDamage(unit,
-      integratePeriodic(unit, state.simClockMs, at, previous).dealt - (previous?.dealt ?? 0),
+      integratePeriodic(unit, state.simClockMs, at, previous).dealt - (previous?.dealt ?? 0), state.simClockMs,
       previous?.dealt ?? 0, state.cyclonePeriodicBaseline.get(unit.id) ?? 0,
-      state.holyShieldPeriodicBaseline.get(unit.id) ?? 0).damage >= unit.life;
+      state.holyShieldPeriodicBaseline.get(unit.id) ?? 0, previous?.wallAbsorbed ?? 0).damage >= unit.life;
     let candidate = Math.max(minimum, Math.min(maximum,
       Math.ceil(state.simClockMs + SECONDS * (effectiveLife - carry) / rate)));
     // Verify both candidate and predecessor; floating arithmetic may put the
