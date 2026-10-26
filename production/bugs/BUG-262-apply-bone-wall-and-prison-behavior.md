@@ -1,7 +1,7 @@
 # BUG-262 — Apply actual Bone Wall defense and Bone Prison control
 
 - Severity: High — two advertised active skills pay without their promised effect.
-- Status: Reproduced at `d703e60e`; implementation pending.
+- Status: Partially implemented locally at `2213ac0e`: Prison core verified; Wall and complete acceptance pending.
 - Owner: root acting as engine/content/QA owner; no delegation.
 - Environment: native stores and pure TS engine under Vitest/jsdom, Linux/Node.
   No browser viewport or locale applies. Engine seed7, ordinary production data.
@@ -48,3 +48,23 @@ determinism, save version and genuine campaign. Any newly authored duration or
 capacity must be identified as provisional tuning, not an existing balance
 approval. Root owns retention/read-back and exact task cleanup after consumers
 finish; independent/earned balance acceptance remains open.
+
+## Implementation boundary reproduction
+
+During Prison implementation, an actual native allocation1->2 during frozen
+playback left the next wave's new Prison authority at1. The existing wave refresh
+copied generic skillLevels but the new dedicated scalar also requires refreshing.
+The corrected native boundary test failed exactly1-versus2 before the patch;
+its gear/seed/payment/current-wave recording remained unchanged. The first test
+attempt incorrectly used hero replacement (setPlayer), which intentionally clears
+combat; that harness failure and corrected RED are retained separately. Updating
+the ordinary native refresh boundary is part of the Prison root fix. Wall remains
+unfixed; no whole-bug or skill-family closure is claimed.
+
+Prison schema/data foundation eb3f7da9, paid status847cd7e9 and scheduling/native
+projection2213ac0e now give0actual enemy actions versus1 in the original paid
+status-removal control. The actual native next-wave allocation1->2 test also
+passes after its RED.88new engine regressions pass; final engine9242/347,
+types/lint/production build+bridge/756URLprecache pass. Original Wall comparison
+still fails99975==99975. No inventory credit, independent acceptance, earned
+balance or whole BUG262 closure. See docs/plans/evidence/d06-bone-defenses-core.md.

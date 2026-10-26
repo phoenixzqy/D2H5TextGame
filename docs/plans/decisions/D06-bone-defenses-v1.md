@@ -49,8 +49,8 @@ For effective rank r=1..21, Wall capacity=40+10*(r-1):40/90/150/230/240 at
 r1/6/12/20/21. Duration stays6000ms. Absorb=min(capacityRemaining,damageRemaining),
 then decrease both by absorb. Exhaustion removes the paid pool.
 For each skill, cost=max(0,round(baseCost-.2*(r-1))) and cooldown=max(1,
-roundToOneDecimal(4-.05*(r-1))) seconds. Rank1/20 costs are17/13 Wall,27/23 Prison;
-cooldown4/3.1s. Prison duration=2000ms, boss floor(2000*.5)=1000ms.
+Number((4-.05*(r-1)).toFixed(1))) seconds. Rank1/20 costs are17/13 Wall,27/23 Prison;
+cooldown4/3.0s under the existing binary-decimal toFixed rule (BUG263). Prison duration=2000ms, boss floor(2000*.5)=1000ms.
 
 ## Edge cases
 

@@ -1,0 +1,562 @@
+{
+  "codeHead": "2213ac0ee23be2930f854438d2792d54cb41bc27",
+  "scope": "Prison local core only; Wall/unverified UI/native public/independent/earned/full-v1 remain open",
+  "credits": 0,
+  "newEngineRegressions": 88,
+  "nativeActionsWithPaidTrap": 0,
+  "nativeActionsOnlyTrapRemoved": 1,
+  "nativeAllocationAtNextWave": "1->2 pass",
+  "finalUnitFull": "pending fresh run; prior18100 not carried over changed runtime",
+  "genuineProtectedSave": "compressed/raw exact; campaign unchanged",
+  "runtimeSource": {
+    "head": "847cd7e9fab4eb22d90666234da456146eaed3b4",
+    "paths": {
+      "src/engine/combat/bone-prison-definition.ts": "b62b61a8c238d58bf52f267f1009c4e975efc883411092b5ea4053d32f1b9447",
+      "src/engine/combat/combat.ts": "e10126444db185335118e43fd8116cc88c8ac560f76106c1f3cefae21dbc4b18",
+      "src/engine/skills/bone-prison.ts": "9edde7dcf67decd66b0857f746351eba83284977f3f814b8beee17909e6c0734",
+      "src/stores/combatHelpers.ts": "2ee77eb73b665eca7c5a55c058524f452be2c2496959081494d0a3894f0c23e7",
+      "src/engine/combat/bone-prison-combat.test.ts": "57900d37cb82abe39881d50aadaa0bc3a6a39901fd0ec1c32e4df8784a8e5e2e"
+    },
+    "focused": "152/5 pass, includes88 new Prison tests",
+    "native": "2 pass; one already-red Wall case deselected by exact test-name filter, never counted as passing",
+    "finalBuildAndBridge": "pass",
+    "precacheUrls": 756,
+    "originalFailures": "all retained under task; source/test pre-correction copies included",
+    "credits": 0
+  },
+  "receipts": {
+    "prison-authored-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-definition.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 2.138,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-authored-red.log",
+      "logBytes": 8519,
+      "logSha256": "dadfa4a586a3ad3e6871d073455b2bc803c91398ef9ebfde6b9d6fded19b7405",
+      "pid": 458274,
+      "terminal": true
+    },
+    "prison-authored-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts",
+        "src/engine/skills/dataCatalog.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 3.782,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-authored-green.log",
+      "logBytes": 1313,
+      "logSha256": "bfa558b4cd0b2c878178843816056ab9a93d4331bd26f7c28c330039135a34a3",
+      "pid": 458381,
+      "terminal": true
+    },
+    "prison-authored-corrected": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts",
+        "src/engine/skills/data-catalog.test.ts",
+        "src/engine/skills/skill-validator.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 3.618,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-authored-corrected.log",
+      "logBytes": 498,
+      "logSha256": "7d33371f60ebea949e02862433a099d8e8752819ee9e36ed3502d55bcd790432",
+      "pid": 458548,
+      "terminal": true
+    },
+    "prison-foundation-engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 157.641,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-foundation-engine.log",
+      "logBytes": 72219,
+      "logSha256": "82679335ad3a80052c61023d8b75b7110edca6f74534145ed24447984a0ed21b",
+      "pid": 458742,
+      "terminal": true
+    },
+    "prison-foundation-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 131.018,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-foundation-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 458741,
+      "terminal": true
+    },
+    "prison-foundation-lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 212.928,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-foundation-lint.log",
+      "logBytes": 197,
+      "logSha256": "d0326b8ee2d609cca445376422c15a6297b52466f45bf9af7f31fa0745152c3e",
+      "pid": 458740,
+      "terminal": true
+    },
+    "prison-foundation-bridge": {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 12.635,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-foundation-bridge.log",
+      "logBytes": 1953,
+      "logSha256": "7234be37865af1763b99b6b9b39753ec358b026135ae190c92a9266db2705f46",
+      "pid": 465051,
+      "terminal": true
+    },
+    "prison-foundation-final-precache": {
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.183,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-foundation-final-precache.log",
+      "logBytes": 483,
+      "logSha256": "de719f72a3d2933ea0f0d5d9b9a5ce7a58bb5c96a436276612c6304dd87367b5",
+      "pid": 465286,
+      "terminal": true
+    },
+    "prison-status-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 2.979,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-red.log",
+      "logBytes": 7251,
+      "logSha256": "78688d2b363304df53c0687b691b254a831fba44497a9cc8fe200f50ef3db8a1",
+      "pid": 462089,
+      "terminal": true
+    },
+    "prison-status-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-status.test.ts",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts",
+        "src/engine/combat/status.test.ts",
+        "src/engine/skills/registry.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 5.92,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-green.log",
+      "logBytes": 635,
+      "logSha256": "5f36be546dccaddbe3dc9ac9860e57f00df085ab8986c00496a68dd9b1e2af32",
+      "pid": 465444,
+      "terminal": true
+    },
+    "prison-status-engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 151.108,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-engine.log",
+      "logBytes": 72279,
+      "logSha256": "aa873a62ed13e0cf5a30fea5fdcfddaec1e4b2150cfa0cb48c034a7234fe8fa1",
+      "pid": 465780,
+      "terminal": true
+    },
+    "prison-status-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 126.131,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 465778,
+      "terminal": true
+    },
+    "prison-status-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/combat/types.ts",
+        "src/engine/skills/effects.ts",
+        "src/engine/skills/dataCatalog.ts",
+        "src/engine/combat/status.ts",
+        "src/engine/combat/bone-prison-status.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 10.535,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 465777,
+      "terminal": true
+    },
+    "prison-status-build-bridge": {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 16.832,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-build-bridge.log",
+      "logBytes": 1954,
+      "logSha256": "0d4717ed238e9946f6f24252b979e0b54ea643f8559283457367c52cc0ef1c47",
+      "pid": 465779,
+      "terminal": true
+    },
+    "prison-status-precache": {
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.208,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-status-precache.log",
+      "logBytes": 483,
+      "logSha256": "9c8f71182e3ab9352025f44710e68b7a9d6881249cd66e3e7a40dd7d4b5483ae",
+      "pid": 470000,
+      "terminal": true
+    },
+    "prison-combat-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-combat.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 4.908,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-combat-red.log",
+      "logBytes": 17645,
+      "logSha256": "17f77623daa29c42bdc476049e202b7780f4a3a061bfba3e2d7e4c1c6a724584",
+      "pid": 468350,
+      "terminal": true
+    },
+    "prison-combat-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-combat.test.ts",
+        "src/engine/combat/bone-prison-status.test.ts",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 3.911,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-combat-green.log",
+      "logBytes": 1714,
+      "logSha256": "980f5a1ad24b516d8436d5b9ac033ec87fb273f1bde4633e83b340d9932f6710",
+      "pid": 472071,
+      "terminal": true
+    },
+    "prison-combat-boundaries": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-combat.test.ts",
+        "src/engine/combat/bone-prison-status.test.ts",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts",
+        "src/engine/combat/battle-command-carry.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 5.049,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-combat-boundaries.log",
+      "logBytes": 659,
+      "logSha256": "fdd94ece3ae85220d6ebac59779db6ed887fa9c0e16572ed3a7eb97cde06ba0f",
+      "pid": 473022,
+      "terminal": true
+    },
+    "native-after-prison": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/native-after-prison.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 7.127,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/native-after-prison.log",
+      "logBytes": 1460,
+      "logSha256": "ac7cbe3b2fc5ad37f03bd0a1e68f8bd8a10ed7dc2ddf1c7310898cd1f095c622",
+      "pid": 472649,
+      "terminal": true
+    },
+    "prison-wave-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-wave.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 7.643,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-wave-red.log",
+      "logBytes": 1518,
+      "logSha256": "f0ff030c1b6e24d2898b99c68305dcc8384280bbebac80b15fb4e75de6b72c64",
+      "pid": 473469,
+      "terminal": true
+    },
+    "prison-wave-boundary-red": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-wave-corrected.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 7.62,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-wave-boundary-red.log",
+      "logBytes": 1394,
+      "logSha256": "b750e40c1f1872cbaf0e2b539b2b512bc51a2c071cc45588db8f92949c21e6bb",
+      "pid": 473786,
+      "terminal": true
+    },
+    "prison-wave-boundary-green": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-wave-green.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.461,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-wave-boundary-green.log",
+      "logBytes": 392,
+      "logSha256": "72af3aecd0714406a901488137a0f7b0041d9b39e72d14bfe2e7c926158b614a",
+      "pid": 473871,
+      "terminal": true
+    },
+    "prison-runtime-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 2,
+      "durationSeconds": 132.879,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-types.log",
+      "logBytes": 316,
+      "logSha256": "6decda87b78cffe33075ebbaa6414286bf8390d9605693881f554edfcbd4d477",
+      "pid": 474016,
+      "terminal": true
+    },
+    "prison-runtime-lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 215.671,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-lint.log",
+      "logBytes": 870,
+      "logSha256": "bd1c56c40e1b8c67933aeabbbaa38269ecfd0c65e785cd4c37a45445c5bc6838",
+      "pid": 474013,
+      "terminal": true
+    },
+    "prison-runtime-corrected-focused": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/bone-prison-combat.test.ts",
+        "src/engine/combat/bone-prison-status.test.ts",
+        "src/engine/combat/bone-prison-definition.test.ts",
+        "src/engine/combat/terror.test.ts",
+        "src/engine/combat/battle-command-carry.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 5.618,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-corrected-focused.log",
+      "logBytes": 661,
+      "logSha256": "3ec8a6e7f464d8f6a748f44efda123c3a1b6f74736acae45ab595f350f01922a",
+      "pid": 480542,
+      "terminal": true
+    },
+    "prison-runtime-corrected-scope-lint": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/skills/bone-prison.ts",
+        "src/engine/combat/bone-prison-combat.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.061,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-corrected-scope-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 480741,
+      "terminal": true
+    },
+    "native-prison-final": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/native-final.workspace.ts",
+        "-t",
+        "Bone Prison|refreshes"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.599,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/native-prison-final.log",
+      "logBytes": 536,
+      "logSha256": "d0c5c1da45423b06694c253e99f22f655e0901f40934a1f169bc08fdc0430897",
+      "pid": 480895,
+      "terminal": true
+    },
+    "prison-runtime-final-engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 162.939,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-final-engine.log",
+      "logBytes": 72372,
+      "logSha256": "c3d0c62052bf7f8dd6cf3efe2b1301f55b4eae655841202c3ad660cf869d046b",
+      "pid": 480975,
+      "terminal": true
+    },
+    "prison-runtime-final-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 134.428,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-final-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 480976,
+      "terminal": true
+    },
+    "prison-runtime-final-lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 216.405,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-final-lint.log",
+      "logBytes": 197,
+      "logSha256": "9da8d09d4253a13cedd4b68153c3f20ad7307868df74b189baa2c86a973ba7c8",
+      "pid": 480974,
+      "terminal": true
+    },
+    "prison-runtime-final-build-bridge": {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 19.005,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-final-build-bridge.log",
+      "logBytes": 1954,
+      "logSha256": "7f22aaf79118580b6e19507dc0371f4c544c66a166f6bf287e3044d9f063af1e",
+      "pid": 480977,
+      "terminal": true
+    },
+    "prison-runtime-final-precache": {
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.251,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v/prison-runtime-final-precache.log",
+      "logBytes": 483,
+      "logSha256": "231d6ee18c2bac71574823755207872a3212b1c3d9cb38e0f584300865739cc2",
+      "pid": 484726,
+      "terminal": true
+    }
+  },
+  "activeTaskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-defenses-6z98386v",
+  "activeBuildDirectory": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
+  "cleanup": "Not yet due: root retains active raw evidence/build through full-unit and remaining Wall/Prison consumers; root owns later archive/read-back and exact cleanup."
+}

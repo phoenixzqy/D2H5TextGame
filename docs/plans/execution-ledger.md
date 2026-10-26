@@ -12928,3 +12928,26 @@ nextNormal402/Ancients-Rite claimed/Baal uncleared remains unchanged. Independen
 earned builds/balance/feel,C2–C4/fullG0–G7/privatev1 remain open; umbrella
 goal/worktree continue. Next read-only finding is marker-only Bone Wall/Prison;
 no runtime reproduction or implementation yet and no credit follows a search.
+
+
+## 2026-10-26 — Bone Prison core implemented locally; Wall remains RED
+
+The prior status-only turn was no progress. BUG262's actual paid native failures
+led to explicit provisional non-spatial Wall/Prison contracts (5fece7f0). Prison
+schema/data eb3f7da9, paid status847cd7e9 and runtime2213ac0e now enforce actual
+learned/native/registry authority and finite action/channel trapping. The original
+Prison branch changes from1enemy action to0; the marker-removal control remains1.
+An actual allocate1->2/next-wave RED exposed a missing dedicated rank refresh,
+now GREEN. Wall still fails99975==99975 and remains pending.
+
+88new tests; final engine9242/347, strict types/lint, production build/bridge and
+756URLprecache pass. The earlier full18100 is not carried over changed runtime;
+a fresh full run is next. [Core evidence](evidence/d06-bone-defenses-core.md) and
+its terminal-receipt packet preserve every original failure, source hashes,
+BUG263's corrected draft cooldown oracle and explicit synthetic/independent/
+earned/public limits. No inventory credit:167bounded/44unverified/oneengine-only/
+onereview remains. Genuine save hashes and L33/nextNormal402/Baal uncleared exact.
+Root retains active bone task/dist through consumers, then owns retention/exact
+cleanup; neither is declared cleaned. No campaign/replay/remote action/delegation.
+Fullv1, C2-C4/fullG0-G7, Wall, native/UI/public and independent/earned acceptance
+remain open; keep the umbrella worktree claimed and goal active.
