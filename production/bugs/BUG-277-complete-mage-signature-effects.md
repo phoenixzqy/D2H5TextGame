@@ -1,7 +1,7 @@
 # BUG-277 — Complete deferred Skeletal Mage signature effects
 
 - Severity: Medium — direct elemental bolts work; GDD signature effects remain absent.
-- Status: Implemented locally; final full-suite verification and cleanup pending.
+- Status: Fixed locally; bounded verification and cleanup complete. Independent/earned acceptance open.
 - Owner: root, engine/content/QA; no delegation or independent approval.
 - Baseline: `f8392a8b` (runtime unchanged from `6122bee5`).
 - Environment: Linux, Node v24.21.0, Vitest pure-engine fixture; browser, viewport
@@ -28,10 +28,9 @@ deferred this behavior; this is a full-plan feature gap rather than a regression
 against its earlier tooltip promise.
 
 Root retains `signatures-red-test.ts`, `signatures-red.log/json` and unchanged
-`baseline-combat.ts` at
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6`.
-The original RED is4failed/4cases,exit1,4.016s. Keep it through final verification,
-then archive/read-back/exact cleanup. No inventory credit yet.
+`baseline-combat.ts` in the archive linked by the current evidence below.
+The original RED is4failed/4cases,exit1,4.016s. The former raw task is removed
+after complete read-back verification; exactly one bounded Mage credit follows.
 
 ## Cause and repair plan
 
@@ -53,6 +52,9 @@ through the existing paid-Mage authority. Bilingual copy/native playback is in
 pass after `71081cc7`, including Command, resource, provenance and replay checks.
 The final production matrix passes10/10 across both locales and five viewports.
 See the [current evidence](../../docs/plans/evidence/d06-mage-signatures.md).
-The first final full suite failed nine stale-consumer assertions; a fresh full
-run is active after their correction. No full pass, inventory credit, independent
-approval, earned balance or full-v1 completion is claimed yet.
+The first final full suite failed nine stale-consumer assertions. Its corrected
+retry passes18461tests/852files/two existing skips,exit0,1018.442s,with1664frozen
+inputs unchanged. All1977archive members were verified before exact cleanup;
+remaining paths/failures are empty. The compact packet preserves71terminal
+receipts. Inventory is174bounded/37unverified/oneengine/onereview,Necromancer32/32.
+Independent approval, earned balance and full private-v1 remain open.

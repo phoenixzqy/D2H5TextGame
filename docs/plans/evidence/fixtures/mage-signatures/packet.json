@@ -1,0 +1,1334 @@
+{
+  "scope": "Root-author bounded local evidence, not independent/earned/full-v1 acceptance",
+  "full": {
+    "label": "full-retry-after-consumers",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit": 0,
+    "seconds": 1018.4424677019706,
+    "inputsUnchanged": true,
+    "totals": [
+      "Test Files  852 passed (852)",
+      "Tests  18461 passed | 2 skipped (18463)"
+    ]
+  },
+  "frozenInputs": 1664,
+  "sourceDrift": [],
+  "buildFiles": 762,
+  "protectedSave": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
+    "compressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "rawSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577"
+  },
+  "terminalReceipts": [
+    {
+      "file": "task/all-mage-consumers-final.json",
+      "label": "all-mage-consumers-final",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/skeletal-mage-signatures.test.ts",
+        "src/engine/skills/skeletal-mage-metadata.test.ts",
+        "src/engine/skills/skeletal-mage-signatures.test.ts",
+        "src/engine/skills/skeletal-mage.test.ts",
+        "src/features/combat/CombatScreen.skeletal-mage.test.tsx",
+        "src/stores/combatHelpers.skeletal-mage-iron-replay.test.ts",
+        "src/stores/combatHelpers.skeletal-mage-playback.test.ts",
+        "src/stores/combatHelpers.skeletal-mage.test.ts",
+        "src/stores/skeletal-mage-command-native.test.ts",
+        "tests/sim/production/mage-asymmetry.test.ts",
+        "tests/sim/production/mage-balance.test.ts",
+        "tests/sim/production/mage-combo.test.ts",
+        "tests/sim/production/mage-mastery.test.ts",
+        "tests/sim/production/mage-mitigation.test.ts",
+        "tests/sim/production/mage-mixed.test.ts",
+        "tests/sim/production/mage-rank.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 27.620655475067906,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  18 passed (18)",
+        "Tests  326 passed (326)"
+      ]
+    },
+    {
+      "file": "task/all-mage-consumers.json",
+      "label": "all-mage-consumers",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/skeletal-mage-signatures.test.ts",
+        "src/engine/skills/skeletal-mage-metadata.test.ts",
+        "src/engine/skills/skeletal-mage-signatures.test.ts",
+        "src/engine/skills/skeletal-mage.test.ts",
+        "src/features/combat/CombatScreen.skeletal-mage.test.tsx",
+        "src/stores/combatHelpers.skeletal-mage-iron-replay.test.ts",
+        "src/stores/combatHelpers.skeletal-mage-playback.test.ts",
+        "src/stores/combatHelpers.skeletal-mage.test.ts",
+        "src/stores/skeletal-mage-command-native.test.ts",
+        "tests/sim/production/mage-asymmetry.test.ts",
+        "tests/sim/production/mage-balance.test.ts",
+        "tests/sim/production/mage-combo.test.ts",
+        "tests/sim/production/mage-mastery.test.ts",
+        "tests/sim/production/mage-mitigation.test.ts",
+        "tests/sim/production/mage-mixed.test.ts",
+        "tests/sim/production/mage-rank.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 26.155967762926593,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed | 17 passed (18)",
+        "Tests  2 failed | 324 passed (326)"
+      ]
+    },
+    {
+      "file": "task/all-meters-green.json",
+      "label": "all-meters-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/mage-balance.test.ts",
+        "tests/sim/production/mage-mastery.test.ts",
+        "tests/sim/production/mage-rank.test.ts",
+        "tests/sim/production/mage-mitigation.test.ts",
+        "tests/sim/production/mage-mixed.test.ts",
+        "tests/sim/production/mage-combo.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 9.198911658022553,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  6 passed (6)",
+        "Tests  119 passed (119)"
+      ]
+    },
+    {
+      "file": "task/all-meters-types.json",
+      "label": "all-meters-types",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/all-meters-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 7.803185319993645,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/asymmetry-periodic-green.json",
+      "label": "asymmetry-periodic-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/mage-asymmetry.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 5.62437306495849,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  25 passed (25)"
+      ]
+    },
+    {
+      "file": "task/combo-refresh-lint.json",
+      "label": "combo-refresh-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "--max-warnings=0",
+        "tests/sim/production/mage-combo-runner.ts",
+        "tests/sim/production/mage-combo.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 7.7740833890857175,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/combo-refresh-red.json",
+      "label": "combo-refresh-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/mage-combo.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 4.792648692033254,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 10 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  10 failed | 13 passed (23)"
+      ]
+    },
+    {
+      "file": "task/definition-green.json",
+      "label": "definition-green",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/skills/skeletal-mage-signatures.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 1.310970363090746,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  15 passed (15)"
+      ]
+    },
+    {
+      "file": "task/definition-lint.json",
+      "label": "definition-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/skills/skeletal-mage-signatures.ts",
+        "src/engine/skills/skeletal-mage-signatures.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 7.340388959972188,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/definition-red.json",
+      "label": "definition-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/skills/skeletal-mage-signatures.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 1.2040963950566947,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 failed (1)",
+        "Tests  no tests"
+      ]
+    },
+    {
+      "file": "task/definition-types.json",
+      "label": "definition-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--project",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/definition-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 2.9961907890392467,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/engine.json",
+      "label": "engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "exit": 0,
+      "seconds": 365.365459010005,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  356 passed (356)",
+        "Tests  9445 passed (9445)"
+      ]
+    },
+    {
+      "file": "task/final-current-lint.json",
+      "label": "final-current-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 280.99541908700485,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/final-current-types.json",
+      "label": "final-current-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 174.83242928306572,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/final-current-units.json",
+      "label": "final-current-units",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 1,
+      "seconds": 977.0712035080651,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 9 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  3 failed | 849 passed (852)",
+        "Tests  9 failed | 18452 passed | 2 skipped (18463)"
+      ]
+    },
+    {
+      "file": "task/final-lint.json",
+      "label": "final-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 343.4867716570152,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/final-types.json",
+      "label": "final-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 234.6226988530252,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/final-units.json",
+      "label": "final-units",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 143,
+      "seconds": 122.7807043880457,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/full-retry-after-consumers.json",
+      "label": "full-retry-after-consumers",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "seconds": 1018.4424677019706,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  852 passed (852)",
+        "Tests  18461 passed | 2 skipped (18463)"
+      ]
+    },
+    {
+      "file": "task/last-consumers-types-final.json",
+      "label": "last-consumers-types-final",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/last-consumers-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 9.895168935065158,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/last-playback-lint-final.json",
+      "label": "last-playback-lint-final",
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "--max-warnings=0",
+        "src/stores/combatHelpers.skeletal-mage-playback.test.ts",
+        "src/stores/combatHelpers.skeletal-mage-iron-replay.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 10.245532950037159,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/mage-regressions-diagnostic.json",
+      "label": "mage-regressions-diagnostic",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/stores/combatHelpers.skeletal-mage.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 8.975750454002991,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 4 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  3 failed (3)",
+        "Tests  4 failed | 69 passed (73)"
+      ]
+    },
+    {
+      "file": "task/mage-regressions-final.json",
+      "label": "mage-regressions-final",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/skeletal-mage-signatures.test.ts",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/stores/combatHelpers.skeletal-mage.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 19.21790649695322,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 4 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed | 3 passed (4)",
+        "Tests  4 failed | 73 passed (77)"
+      ]
+    },
+    {
+      "file": "task/mage-regressions-initial.json",
+      "label": "mage-regressions-initial",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/stores/combatHelpers.skeletal-mage.test.ts",
+        "src/stores/skeletal-mage-command-native.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 9.121917315991595,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 43 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  3 failed | 1 passed (4)",
+        "Tests  43 failed | 33 passed (76)"
+      ]
+    },
+    {
+      "file": "task/mage-regressions-next.json",
+      "label": "mage-regressions-next",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/skeletal-mage-command.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 8.100871241069399,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 5 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  2 failed (2)",
+        "Tests  5 failed | 65 passed (70)"
+      ]
+    },
+    {
+      "file": "task/mage-regressions-third.json",
+      "label": "mage-regressions-third",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/stores/combatHelpers.skeletal-mage.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 28.204182307003066,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  2 failed | 1 passed (3)",
+        "Tests  2 failed | 71 passed (73)"
+      ]
+    },
+    {
+      "file": "task/measurement-red.json",
+      "label": "measurement-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/mage-balance.test.ts",
+        "tests/sim/production/mage-mastery.test.ts",
+        "tests/sim/production/mage-rank.test.ts",
+        "tests/sim/production/mage-mixed.test.ts",
+        "tests/sim/production/mage-combo.test.ts",
+        "tests/sim/production/mage-mitigation.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 15.588847008999437,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 48 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  6 failed (6)",
+        "Tests  48 failed | 64 passed (112)"
+      ]
+    },
+    {
+      "file": "task/meter-periodic-final.json",
+      "label": "meter-periodic-final",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/mage-balance.test.ts",
+        "tests/sim/production/mage-mastery.test.ts",
+        "tests/sim/production/mage-rank.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 5.892569019924849,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  3 passed (3)",
+        "Tests  63 passed (63)"
+      ]
+    },
+    {
+      "file": "task/meter-periodic-lint-existing-warnings.json",
+      "label": "meter-periodic-lint-existing-warnings",
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "tests/sim/production/mage-balance-runner.ts",
+        "tests/sim/production/mage-balance.test.ts",
+        "tests/sim/production/mage-mastery.test.ts",
+        "tests/sim/production/mage-rank.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 8.156310083926655,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/meter-periodic-lint.json",
+      "label": "meter-periodic-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "tests/sim/production/mage-balance-runner.ts",
+        "tests/sim/production/mage-balance.test.ts",
+        "tests/sim/production/mage-mastery.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 1,
+      "seconds": 12.621456283028238,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/meter-periodic-types.json",
+      "label": "meter-periodic-types",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/meter-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 8.277762787998654,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/meter-periodic.json",
+      "label": "meter-periodic",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/mage-balance.test.ts",
+        "tests/sim/production/mage-mastery.test.ts",
+        "tests/sim/production/mage-rank.test.ts",
+        "tests/sim/production/mage-mitigation.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 7.022937985952012,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 9 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  2 failed | 2 passed (4)",
+        "Tests  9 failed | 74 passed (83)"
+      ]
+    },
+    {
+      "file": "task/meter-strata-final-typed.json",
+      "label": "meter-strata-final-typed",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/mage-mitigation.test.ts",
+        "tests/sim/production/mage-mixed.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 4.8705314110266045,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  32 passed (32)"
+      ]
+    },
+    {
+      "file": "task/meter-strata-final.json",
+      "label": "meter-strata-final",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/mage-mitigation.test.ts",
+        "tests/sim/production/mage-mixed.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 6.1482291569700465,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  32 passed (32)"
+      ]
+    },
+    {
+      "file": "task/meter-strata-lint-final.json",
+      "label": "meter-strata-lint-final",
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "tests/sim/production/mage-mitigation-runner.ts",
+        "tests/sim/production/mage-mitigation.test.ts",
+        "tests/sim/production/mage-mixed-runner.ts",
+        "tests/sim/production/mage-mixed.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 8.336595579050481,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/meter-strata-lint.json",
+      "label": "meter-strata-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "--max-warnings=0",
+        "tests/sim/production/mage-mitigation-runner.ts",
+        "tests/sim/production/mage-mitigation.test.ts",
+        "tests/sim/production/mage-mixed-runner.ts",
+        "tests/sim/production/mage-mixed.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 10.324956477968954,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/meter-strata-types-final.json",
+      "label": "meter-strata-types-final",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/strata-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 6.653934185043909,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/meter-strata-types.json",
+      "label": "meter-strata-types",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/strata-tsconfig.json"
+      ],
+      "exit": 2,
+      "seconds": 8.270190497976728,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/meter-strata.json",
+      "label": "meter-strata",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/mage-mitigation.test.ts",
+        "tests/sim/production/mage-mixed.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 4.962955644004978,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed | 1 passed (2)",
+        "Tests  1 failed | 31 passed (32)"
+      ]
+    },
+    {
+      "file": "task/mounted-before-copy.json",
+      "label": "mounted-before-copy",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/features/combat/CombatScreen.skeletal-mage.test.tsx",
+        "src/features/skills/SkillsScreen.summon-preparation-corpses.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 32.89116188592743,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed | 1 passed (2)",
+        "Tests  2 failed | 22 passed (24)"
+      ]
+    },
+    {
+      "file": "task/mounted-hp-inspection.json",
+      "label": "mounted-hp-inspection",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/features/combat/CombatScreen.skeletal-mage.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 10.884407397941686,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  2 failed (2)"
+      ]
+    },
+    {
+      "file": "task/mounted-seed-inspection.json",
+      "label": "mounted-seed-inspection",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/features/combat/CombatScreen.skeletal-mage.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 13.54547981300857,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  2 failed (2)"
+      ]
+    },
+    {
+      "file": "task/mounted-signatures.json",
+      "label": "mounted-signatures",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/features/combat/CombatScreen.skeletal-mage.test.tsx",
+        "src/features/skills/SkillsScreen.summon-preparation-corpses.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 17.086872256011702,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  24 passed (24)"
+      ]
+    },
+    {
+      "file": "task/mounted-updated.json",
+      "label": "mounted-updated",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/features/combat/CombatScreen.skeletal-mage.test.tsx",
+        "src/features/skills/SkillsScreen.summon-preparation-corpses.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 16.856198746012524,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed | 1 passed (2)",
+        "Tests  2 failed | 22 passed (24)"
+      ]
+    },
+    {
+      "file": "task/native-final.json",
+      "label": "native-final",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "playwright.skeletal-mage.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 244.33868927601725,
+      "inputsUnchanged": true,
+      "totals": [
+        "10 passed (4.0m)"
+      ]
+    },
+    {
+      "file": "task/native-probe-1.json",
+      "label": "native-probe-1",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "playwright.skeletal-mage.config.ts",
+        "--grep",
+        "native Mage zh-CN 360x640"
+      ],
+      "exit": 0,
+      "seconds": 21.2830280730268,
+      "inputsUnchanged": true,
+      "totals": [
+        "1 passed (19.4s)"
+      ]
+    },
+    {
+      "file": "task/official-build.json",
+      "label": "official-build",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "exit": 0,
+      "seconds": 14.589922945946455,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/offline-precache.json",
+      "label": "offline-precache",
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache",
+        "--",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/dist"
+      ],
+      "exit": 0,
+      "seconds": 0.27831734402570873,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/plague-death-red.json",
+      "label": "plague-death-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/plague-vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/plague-workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 4.877561092958786,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 6 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  6 failed | 4 passed (10)"
+      ]
+    },
+    {
+      "file": "task/plague-red.json",
+      "label": "plague-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/plague-vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/plague-workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 5.120903620030731,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 5 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  5 failed | 4 passed (9)"
+      ]
+    },
+    {
+      "file": "task/presentation-lint-fixed.json",
+      "label": "presentation-lint-fixed",
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "src/features/combat/CombatScreen.skeletal-mage.test.tsx",
+        "src/features/skills/SkillsScreen.summon-preparation-corpses.test.tsx",
+        "tests/native/skeletal-mage-native.spec.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 10.562856561038643,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/presentation-lint.json",
+      "label": "presentation-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/features/combat/CombatScreen.skeletal-mage.test.tsx",
+        "src/features/skills/SkillsScreen.summon-preparation-corpses.test.tsx",
+        "tests/native/skeletal-mage-native.spec.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 1,
+      "seconds": 9.62284605903551,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/remaining-consumers-types.json",
+      "label": "remaining-consumers-types",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/last-consumers-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 9.319658356020227,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/remaining-playback-green.json",
+      "label": "remaining-playback-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/combatHelpers.skeletal-mage-playback.test.ts",
+        "src/stores/combatHelpers.skeletal-mage-iron-replay.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 10.164561331970617,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed | 1 passed (2)",
+        "Tests  2 failed | 2 passed (4)"
+      ]
+    },
+    {
+      "file": "task/remaining-playback-lint.json",
+      "label": "remaining-playback-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "--max-warnings=0",
+        "src/stores/combatHelpers.skeletal-mage-playback.test.ts",
+        "src/stores/combatHelpers.skeletal-mage-iron-replay.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 9.79449682997074,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/remaining-playback-observe.json",
+      "label": "remaining-playback-observe",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/stores/combatHelpers.skeletal-mage-playback.test.ts",
+        "src/stores/combatHelpers.skeletal-mage-iron-replay.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 9.284908726927824,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed | 1 passed (2)",
+        "Tests  2 failed | 2 passed (4)"
+      ]
+    },
+    {
+      "file": "task/resistance-browser-final.json",
+      "label": "resistance-browser-final",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "-c",
+        "playwright.skeletal-mage.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 185.71526753297076,
+      "inputsUnchanged": true,
+      "totals": [
+        "10 passed (3.1m)"
+      ]
+    },
+    {
+      "file": "task/resistance-browser-red.json",
+      "label": "resistance-browser-red",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "-c",
+        "playwright.skeletal-mage.config.ts",
+        "--grep",
+        "native Mage zh-CN 360x640"
+      ],
+      "exit": 1,
+      "seconds": 12.461868235026486,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/resistance-explicit-lint.json",
+      "label": "resistance-explicit-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "--max-warnings=0",
+        "tests/native/skeletal-mage-native.spec.ts"
+      ],
+      "exit": 0,
+      "seconds": 10.569389207987115,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/resistance-official-build.json",
+      "label": "resistance-official-build",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "exit": 0,
+      "seconds": 18.08747464895714,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/resistance-offline-precache.json",
+      "label": "resistance-offline-precache",
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "exit": 0,
+      "seconds": 0.3270505899563432,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/runtime-fixed.json",
+      "label": "runtime-fixed",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/skeletal-mage-signatures.test.ts",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/stores/combatHelpers.skeletal-mage.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 37.5851608410012,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  4 passed (4)",
+        "Tests  90 passed (90)"
+      ]
+    },
+    {
+      "file": "task/runtime-lint-fixed.json",
+      "label": "runtime-lint-fixed",
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/combat/combat.ts",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/skeletal-mage-signatures.test.ts",
+        "src/stores/combatHelpers.skeletal-mage.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 46.32921348698437,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/runtime-lint.json",
+      "label": "runtime-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/combat/combat.ts",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/skeletal-mage-signatures.test.ts",
+        "src/stores/combatHelpers.skeletal-mage.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 1,
+      "seconds": 20.224539193091914,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/runtime-types-fixed.json",
+      "label": "runtime-types-fixed",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/runtime-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 37.14946935407352,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/runtime-types.json",
+      "label": "runtime-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 2,
+      "seconds": 237.2326348660281,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/signature-screen.json",
+      "label": "signature-screen",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6/signature-screen.mjs"
+      ],
+      "exit": 0,
+      "seconds": 10.300007971003652,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "file": "task/signatures-controls.json",
+      "label": "signatures-controls",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/skeletal-mage-signatures.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 21.27021710097324,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  17 passed (17)"
+      ]
+    },
+    {
+      "file": "task/signatures-final.json",
+      "label": "signatures-final",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/skeletal-mage-signatures.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 4.509094445034862,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  1 failed | 13 passed (14)"
+      ]
+    },
+    {
+      "file": "task/signatures-green.json",
+      "label": "signatures-green",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/skeletal-mage-signatures.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 4.440332053927705,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  4 passed (4)"
+      ]
+    },
+    {
+      "file": "task/signatures-red.json",
+      "label": "signatures-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/skeletal-mage-signatures.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 4.015804789029062,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 4 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  4 failed (4)"
+      ]
+    }
+  ],
+  "retention": {
+    "owner": "root",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6-retained.tar.gz",
+    "archiveSha256": "d48a195855dad574cedd81fd5416deee99aecd4a394e3e36ff98d53a7b024b2c",
+    "archiveBytes": 47797892,
+    "archiveMembers": 1977,
+    "verifiedRegularOrLinkMembers": 1885,
+    "retention": "Root retains archive and sidecars through BUG277-281/full-v1 evidence consumers, then removes exact paths."
+  },
+  "cleanup": {
+    "owner": "root",
+    "removedFiles": 2648,
+    "removedLinks": 0,
+    "removedDirectories": 102,
+    "remaining": [],
+    "failures": [],
+    "processAfter": {
+      "taskMatches": [],
+      "restrictedPids": []
+    },
+    "driver": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6-close.py",
+    "driverCleanup": "Root removes this exact external driver after reading the sidecars.",
+    "driverRemoved": true
+  },
+  "inventory": {
+    "beforeSha256": "6e7247d7e017808a4eeb121259e8956fc87f946dfd6a6d46d688cbe27a318c54",
+    "afterSha256": "1abeb795c3940794f9388cde7f9d9e147f60175b1c0259beefd72766689ed7fa",
+    "changedId": "necromancer.raise_skeletal_mage",
+    "otherRawRowsUnchanged": 212,
+    "headerIdsOrderUnchanged": true,
+    "counts": {
+      "bounded-functional": 174,
+      "unverified": 37,
+      "bounded-engine-functional": 1,
+      "review-needed": 1
+    },
+    "necromancerBounded": 32
+  }
+}

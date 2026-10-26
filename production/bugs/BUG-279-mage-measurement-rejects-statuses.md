@@ -1,7 +1,7 @@
 # BUG-279 — Measure Mage signatures without discarding periodic damage
 
 - Severity: Medium — historical simulation consumers reject valid new combat.
-- Status: All identified consumers repaired; fresh full validation pending.
+- Status: All identified consumers repaired; complete frozen-input full regression passes.
 - Owner: root, QA/measurement; no delegation or independent acceptance.
 - Baseline: `ccbf186c` plus uncommitted bilingual presentation. Linux, Vitest
   Node simulation project; no browser/locale/viewport dependency.
@@ -38,7 +38,7 @@ replace the repaired balance consumer or full unit acceptance.
 Security check: pass for local first-party simulation/test changes; no save,
 credential, network, dependency, permission or production runtime change.
 
-## Local repair progress
+## Historical repair progress
 
 `353f57a2` separates source-less periodic loss from direct attributed damage;
 balance/rank/mastery checks pass63/63, with focused strict types passing.
@@ -65,8 +65,12 @@ The mixed paid/unpaid replay remains exact; final MP is182/117 and paid battle
 ends5147ms under the current real recording. No resource/replay assertion is
 removed. Four changed consumer inputs are enumerated against1660unchanged inputs.
 
-All326tests/18Mage-related files now pass,27.621s; latest four-path strict types
-and explicit playback lint pass. The fresh `full-retry-after-consumers` run is
-active; poll its existing tool session29503 and terminal receipt before any
-restart, inventory credit or task cleanup. Evidence remains in the same task
-directory; root owns retention/cleanup after all consumers finish.
+All326tests/18Mage-related files pass,27.621s; latest four-path strict types
+and explicit playback lint pass. The original `full-retry-after-consumers` run
+completed18461tests/852files/two existing skips,exit0,1018.442s,without restarting.
+All1664frozen inputs remain unchanged. Root verified1977archive members and
+cleaned exact task-owned output; remaining paths/failures are empty. Raw paths
+above are historical locations. The [current evidence and compact packet](../../docs/plans/evidence/d06-mage-signatures.md)
+give the retained archive/sidecar paths and71terminal receipts. Root retains them
+through BUG277–281/full-v1 consumers, then owns removal. No independent/earned
+or whole-private-v1 acceptance follows.

@@ -2,7 +2,8 @@
 
 2026-10-26. Local author evidence; independent acceptance, earned builds and full
 private-v1 remain open. Root is sole writer/executor. No campaign, publication,
-delegation or worktree release occurred. Skill inventory credit remains pending.
+delegation or worktree release occurred. Bounded local Mage verification is
+closed after terminal validation and cleanup; one inventory row is credited.
 
 ## Behavior
 
@@ -31,7 +32,7 @@ chips without rewriting retained terminal engine records.
 | Full standard types / lint |PASS174.832s / PASS280.995s before final test-only corrections; latest four corrected paths have focused strict types and playback lint PASS |
 | Rebuilt production / bridge / required precache |PASS; six chunks without bridge symbols,756required URL observations/no missing required assets |
 | First final full unit run |18452passed,9failed,two existing skips;852files,exit1,977.071s |
-| Fresh complete unit retry after corrections |Running; `full-retry-after-consumers`, tool session29503; no result claimed |
+| Fresh complete unit retry after corrections |18461passed/852files/two existing skips,exit0,1018.442s; all1664frozen inputs unchanged |
 
 The nine full-run failures were stale asymmetry/playback assumptions. All three
 files pass in the326-case related run;1660other frozen inputs are byte-identical.
@@ -61,16 +62,33 @@ This is one closed screen, not earned/on-zone/multi-build balance approval.
 
 ## Retention and remaining work
 
-Raw receipts, failures, sources, scripts, screenshots and browser build remain at
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6`.
-Its ownership record also covers this worktree's exact `dist` output. Root will
-archive/read-back the required evidence, then remove verified task-owned output
-after the active full run and every consumer finish. Cleanup has not occurred.
+The [compact packet](fixtures/mage-signatures/packet.json) retains71terminal
+receipts, frozen-input/build/protected-save checks and the cleanup audit.
+All1977archive members (1885regular files,92directories) were read back in one
+sequential pass and verified before disposal. The original slow random-access
+read-back helper and its exact-PID stop/retry record are also retained.
+Cleanup removed2648regular files including the external helper,102directories,
+and both owned build copies. Remaining paths, failures, live task matches and
+restricted process entries are empty. The former task directory and worktree
+`dist` are absent; installed dependencies/shared caches/source/history remain.
+
+Root retains these exact paths through BUG277–281/full-v1 evidence consumers,
+then owns their removal:
+
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6-retained.tar.gz`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6-retention.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6-cleanup.json`
+
+Archive SHA256:`d48a195855dad574cedd81fd5416deee99aecd4a394e3e36ff98d53a7b024b2c`,
+47797892bytes. Read required members without extracting the archive broadly.
 
 The genuine Ancients401 compressed/raw hashes remain exactly
 `3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c` /
 `c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577`.
 GenuineL33/nextNormal402/Baal uncleared remains unchanged. Broader Poison/Plague
-design reconciliation is open (BUG278/281). Full units, retention/cleanup and
-one-row inventory reconciliation precede local Mage closure; C2–C4/G0–G7,
-earned/independent acceptance and the complete seven-class private-v1 continue.
+design reconciliation is open (BUG278/281). After validation and cleanup, exactly
+one Mage row changes:174bounded/37unverified/one engine-only/one review-needed,
+Necromancer32/32. All212other raw rows,header,IDs and order remain exact.
+C2–C4/G0–G7,earned/independent acceptance and the complete seven-class private-v1
+continue. The next Amazon payload repair is a separate increment; this full
+result proves the frozen Mage inputs, not future source changes.
