@@ -40,6 +40,7 @@ import { governedActiveId, projectGovernedActives } from '@/engine/skills/runewo
 import { AMPLIFY_DAMAGE_DEFINITION } from '@/engine/combat/amplify-damage-definition';
 import { STATUS_DEFAULTS } from '@/engine/combat/status';
 import { CHILL_DEFINITION } from '@/engine/combat/chill-definition';
+import { PLAGUE_DEFINITION } from '@/engine/combat/plague-definition';
 import { METEOR_ARMOR_MELT_DEFINITION } from '@/engine/skills/armor-melt';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { AMAZON_PASSIVE_DEFINITIONS, AMAZON_PASSIVE_IDENTITIES, AMAZON_PASSIVE_KEYS } from '@/engine/skills/amazon-passives';
@@ -1895,6 +1896,17 @@ function dynamicDescription(
   }
   if (firstDamage && skill.id === 'skills-amazon-impale') {
     return t('amazon.impale.desc', { min: firstDamage.min, max: firstDamage.max });
+  }
+  if (stats && firstDamage && skill.id === 'skills-amazon-plague-javelin') {
+    return t('amazon.plague-javelin.desc', {
+      min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown,
+      stacks: skill.statusEffect?.stacksOnApply,
+      poisonPercent: (skill.statusEffect?.dotPctOfDamage ?? 0) * 100,
+      poisonSeconds: STATUS_DEFAULTS.poison.duration, plagueSeconds: STATUS_DEFAULTS.plague.duration,
+      cap: STATUS_DEFAULTS.poison.maxStacks, threshold: PLAGUE_DEFINITION.poisonStacksForEpidemic,
+      ordinaryPercent: PLAGUE_DEFINITION.ordinarySpreadFraction * 100,
+      epidemicPercent: PLAGUE_DEFINITION.epidemicSpreadFraction * 100
+    });
   }
   if (firstDamage && skill.id === 'skills-paladin-zeal' && stats.maxTargets !== undefined) {
     return t('paladin.zeal.desc', { min: firstDamage.min, max: firstDamage.max, maxTargets: stats.maxTargets });

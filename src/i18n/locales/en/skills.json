@@ -322,7 +322,7 @@
     },
     "plague-javelin": {
       "name": "Plague Javelin",
-      "desc": "Throws a javelin that releases poison clouds, applying 3 stacks of poison and spreading on kill."
+      "desc": "One attempt at each of up to three living enemies in one row deals {{min}}–{{max}} Poison base damage. Poison resistance and Defense apply; magic resist does not. Each landed hit applies {{stacks}} Poison stacks for {{poisonSeconds}} s ({{poisonPercent}}% of the final hit per second, maximum {{cap}} stacks; active Poison keeps its original rate), plus Plague for {{plagueSeconds}} s. Plague adds no extra periodic damage. On death, {{ordinaryPercent}}% of current Poison stacks spread to all its living allies (rounded down, at least one), keeping the captured rate for a fresh {{poisonSeconds}} s. If a target already has {{threshold}} active Poison stacks before the cast, its death while Plague is active spreads {{epidemicPercent}}% instead, once per cast. Pay {{mana}} MP with a {{cooldown}} s cooldown once per cast. Misses apply neither status."
     },
     "strafe": {
       "name": "Strafe",
