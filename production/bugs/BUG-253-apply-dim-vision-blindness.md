@@ -1,6 +1,6 @@
 # BUG-253 — Apply paid Dim Vision blindness to real hostile hits
 
-- Status: reproduced; implementation pending.
+- Status: locally implemented through `cd5e90a3`; broad/static/production-browser verification pending. No skill credit yet.
 - Severity: High — the advertised control spell spends mana without affecting combat.
 - Owner: root engine/content/frontend; independent design/review/QA remain open.
 - Build: `8724f96c`; Node24.21.0/Linux; engine/native adapter reproduction, independent of browser/locale/viewport.
@@ -22,3 +22,9 @@ Evidence root: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision
 ## Cause and boundaries
 
 `dataCatalog` emits an ordinary `dim-vision` marker. No accuracy/targeting consumer reads it; the existing Raven `blind` status alone supplies a Physical-hit penalty. No workaround makes Dim Vision functional. Adopt an explicit text-combat blindness adaptation, rather than inventing movement/range or removing the skill promise. Preserve canonical eligibility, targets, cost/cooldown scaling, resources, RNG draws, shared damage/mitigation and saved allocation.
+
+## Local implementation progress
+
+Authored metadata/definition`aaaaccaf`, copied finite status`45e54dff`, shared hit consumer`a4a90f65`, bilingual details`a9985354`, native/component/type-fixture controls`cd5e90a3`.89focused regressions across six files pass13.368s, including the original paid native rank1/20 failure, eight independent first-seed50-point/onset/expiry controls, all seven direct types, valid Cleansing/rebasing, Raven maximum/nonstack, periodic HP integrals, actual reflection, playback and real native allocation/next-wave/import. Both locales expose current/next/MAX mechanics. An existing one-decimal cooldown rule justified three test-oracle corrections; exact optional-input fixtures now delete optional keys rather than assigning undefined. Original failed sources/results remain task-owned and retained pending final archive/cleanup.
+
+Production-browser spec/config now cover four desktop/Pixel5 locale cases using ordinary controls and current Save22, keyboard detail/combo, exact previews, real localized cast/chip, geometry, seven-domain online/offline reopen and console-warning/error checks. Discovery lists four cases; this is not runtime browser acceptance. Full engine/unit/type/lint/build/precache/public browser and visual review remain pending; author review is not independent approval. Inventory remains unchanged.
