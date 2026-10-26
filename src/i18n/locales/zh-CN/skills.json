@@ -64,6 +64,8 @@
     "minLevel": "需要等级 {{level}}"
   },
   "details": {
+    "wallCapacity": "骨墙吸收量",
+    "wallDuration": "骨墙持续时间",
     "skillRankBonus": "已学技能等级",
     "skillRankBonusValue": "+{{ranks}}",
     "skillRankDuration": "指挥持续时间",
@@ -848,7 +850,7 @@
     },
     "bone-wall": {
       "name": "骨墙",
-      "desc": "创造骨墙抵御攻击。"
+      "desc": "消耗{{mana}} 点法力，形成持续{{duration}}的个人骨墙，最多吸收{{capacity}} 点减免后的敌方伤害，先于能量护盾与白骨护甲结算。冷却{{cooldown}} 秒。受伤消耗吸收量；生效期间不叠加、不刷新。耗尽或到期且冷却结束后可再次施放。剩余吸收量与时间延续至下一波。"
     },
     "poison-explosion": {
       "name": "尸体剧毒爆破",
@@ -856,7 +858,7 @@
     },
     "bone-prison": {
       "name": "骨牢",
-      "desc": "将敌人困在骨笼中。"
+      "desc": "消耗{{mana}} 点法力，将所有存活敌人困住，持续{{duration}}；首领与章节首领持续{{bossDuration}}，阻止其按原计划行动并打断引导。已发出的非引导法术继续生效。冷却{{cooldown}} 秒。再次施加替换原骨牢，不叠加。"
     },
     "bone-spirit": {
       "name": "骨灵",

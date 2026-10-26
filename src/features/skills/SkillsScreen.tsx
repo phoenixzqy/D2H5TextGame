@@ -880,6 +880,12 @@ function StatSection({
           </> : null}
           {stats.hydra ? <StatLine label={t('details.hydraBody')}
             value={t('details.hydraBodyValue', { heads: stats.hydra.heads, duration: stats.hydra.durationSeconds })} /> : null}
+          {stats.boneWall ? <>
+            <StatLine label={t('details.wallCapacity')} value={String(stats.boneWall.capacity)}
+              delta={compare?.boneWall ? numberDelta(stats.boneWall.capacity, compare.boneWall.capacity, t) : null} />
+            <StatLine label={t('details.wallDuration')}
+              value={t('details.seconds', { seconds: stats.boneWall.durationSeconds })} />
+          </> : null}
           {stats.corpseWard ? <>
             <StatLine label={t('details.wardDuration')} value={t('details.wardTimingValue', {
               duration: stats.corpseWard.durationSeconds, interval: stats.corpseWard.intervalSeconds })} />
@@ -1025,7 +1031,7 @@ function StatSection({
           </> : null}
           {stats.targetCurse ? <StatLine label={t('details.warcryDuration')}
             value={t('details.seconds', { seconds: stats.targetCurse.durationSeconds })} /> : null}
-          {stats.statuses.includes('terror') && stats.control ? <>
+          {(stats.statuses.includes('terror') || stats.statuses.includes('bone-prison')) && stats.control ? <>
             <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.control.durationSeconds })} />
             <StatLine label={t('details.bossEffectDuration')} value={t('details.seconds', { seconds: stats.control.bossDurationSeconds })} />
           </> : null}
@@ -1072,6 +1078,7 @@ function StatSection({
                   : id === 'weaken' ? t('necromancer.weaken.name')
                   : id === 'dim-vision' ? t('necromancer.dim-vision.name')
                   : id === 'terror' ? t('necromancer.terror.name')
+                  : id === 'bone-wall' || id === 'bone-prison' ? t('necromancer.' + id + '.name')
                   : id === 'confuse' || id === 'attract' || id === 'iron-maiden' || id === 'life-tap' || id === 'lower-resist' ? t('necromancer.' + id + '.name')
                   : id === 'burst-of-speed' ? t('assassin.burst-of-speed.name')
                   : id === 'cloak-of-shadows' ? t('assassin.cloak-of-shadows.name')
@@ -1800,6 +1807,19 @@ function dynamicDescription(
   }
   if (skill.id === 'skills-necromancer-terror' && stats?.control) {
     return t('necromancer.terror.desc', {
+      duration: t('details.seconds', { seconds: stats.control.durationSeconds }),
+      bossDuration: t('details.seconds', { seconds: stats.control.bossDurationSeconds }),
+      mana: stats.manaCost, cooldown: stats.cooldown
+    });
+  }
+  if (skill.id === 'skills-necromancer-bone-wall' && stats?.boneWall) {
+    return t('necromancer.bone-wall.desc', {
+      capacity: stats.boneWall.capacity, duration: t('details.seconds', { seconds: stats.boneWall.durationSeconds }),
+      mana: stats.manaCost, cooldown: stats.cooldown
+    });
+  }
+  if (skill.id === 'skills-necromancer-bone-prison' && stats?.control) {
+    return t('necromancer.bone-prison.desc', {
       duration: t('details.seconds', { seconds: stats.control.durationSeconds }),
       bossDuration: t('details.seconds', { seconds: stats.control.bossDurationSeconds }),
       mana: stats.manaCost, cooldown: stats.cooldown

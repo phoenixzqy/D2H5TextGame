@@ -64,6 +64,8 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "wallCapacity": "Barrier capacity",
+    "wallDuration": "Barrier duration",
     "skillRankBonus": "Learned skill ranks",
     "skillRankBonusValue": "+{{ranks}}",
     "skillRankDuration": "Command duration",
@@ -848,7 +850,7 @@
     },
     "bone-wall": {
       "name": "Bone Wall",
-      "desc": "Creates a barrier of bone to shield from attacks."
+      "desc": "Spend {{mana}} MP to create a personal barrier for {{duration}}, absorbing up to {{capacity}} hostile damage after mitigation, before Energy Shield and Bone Armor. Cooldown: {{cooldown}} s. Damage depletes the barrier; it neither stacks nor refreshes while active. It can be cast again after exhaustion or expiry and cooldown. Remaining capacity and time carry between waves."
     },
     "poison-explosion": {
       "name": "Poison Explosion",
@@ -856,7 +858,7 @@
     },
     "bone-prison": {
       "name": "Bone Prison",
-      "desc": "Traps an enemy in a cage of bone."
+      "desc": "Spend {{mana}} MP to trap all living enemies for {{duration}} ({{bossDuration}} against bosses and chapter bosses), preventing scheduled actions and interrupting channels. Already-launched non-channel spells continue. Cooldown: {{cooldown}} s. Reapplication replaces the trap without stacking."
     },
     "bone-spirit": {
       "name": "Bone Spirit",
