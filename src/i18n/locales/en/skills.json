@@ -64,6 +64,10 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "wardDuration": "Ward duration",
+    "wardFear": "Fear per pulse",
+    "wardTimingValue": "{{duration}}s; every {{interval}}s, first immediately",
+    "wardFearValue": "{{fear}}s (bosses: {{boss}}s)",
     "damagePerHead": "{{type}} damage per head bolt",
     "hydraBody": "Hydra body",
     "corpseSearchChance": "Search success chance",
@@ -647,7 +651,7 @@
     },
     "grim-ward": {
       "name": "Grim Ward",
-      "desc": "Creates a totem from a corpse that frightens enemies."
+      "desc": "Spend {{mana}} MP and one shared enemy corpse to raise a ward for {{duration}}s. Immediately and every {{interval}}s, frighten current enemies for {{fear}}s (bosses: {{boss}}s), interrupting their actions. Only one active ward per caster; it deals no damage and cannot be attacked. Ends when its caster dies or this wave ends. Cooldown: {{cooldown}}s. Changed learning applies next wave."
     },
     "battle-command": {
       "name": "Battle Command",

@@ -8,6 +8,90 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": {
+        "required": [
+          "corpseWard"
+        ],
+        "properties": {
+          "corpseWard": {}
+        }
+      },
+      "then": {
+        "properties": {
+          "id": {
+            "const": "skills-barbarian-grim-ward"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "const": "skills-barbarian-grim-ward"
+          }
+        }
+      },
+      "then": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requiredLevel",
+          "prerequisites",
+          "cost",
+          "scaling",
+          "corpseWard"
+        ],
+        "properties": {
+          "id": {},
+          "name": {},
+          "description": {},
+          "icon": {},
+          "tree": {},
+          "requiredLevel": {
+            "const": 24
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "prerequisites": {
+            "const": [
+              "skills-barbarian-find-item"
+            ]
+          },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "all-enemies"
+          },
+          "cooldown": {
+            "const": 4
+          },
+          "cost": {
+            "const": {
+              "mana": 7
+            }
+          },
+          "scaling": {
+            "const": {
+              "cooldownPerLevel": -0.05,
+              "costPerLevel": -0.1
+            }
+          },
+          "corpseWard": {
+            "$ref": "#/properties/corpseWard"
+          }
+        }
+      }
+    },
+    {
       "if": { "required": ["corpseSearch"], "properties": { "corpseSearch": {} } },
       "then": { "properties": { "id": { "const": "skills-barbarian-find-item" } } }
     },
@@ -4884,6 +4968,45 @@
     }
   },
   "properties": {
+    "corpseWard": {
+      "description": "Finite corpse-created ward lifetime and deterministic fear pulses; wave-local, no reward or summon body.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "durationMs",
+        "durationPerRankMs",
+        "intervalMs",
+        "fearDurationMs",
+        "bossDurationMultiplier"
+      ],
+      "properties": {
+        "durationMs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60000
+        },
+        "durationPerRankMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "intervalMs": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 10000
+        },
+        "fearDurationMs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "bossDurationMultiplier": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        }
+      }
+    },
     "corpseSearch": {
       "description": "Find Item paid shared-corpse search probability; victory settlement owns any reward.",
       "type": "object", "additionalProperties": false,

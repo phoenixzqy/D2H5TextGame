@@ -99,6 +99,8 @@ import { copyFindPotionProjections, findPotionRank, findPotionRecovery, isFindPo
   FIND_POTION_IDS, type FindPotionProjection } from '../skills/find-potion';
 import { copyFindItemProjections, findItemRank, isFindItemId, matchesFindItem, rollFindItemSearch,
   FIND_ITEM_IDS, type FindItemProjection, type FindItemFind } from '../skills/find-item';
+import { GRIM_WARD_IDS, GRIM_WARD_DEFINITION, copyGrimWardProjections,
+  grimWardDuration, grimWardRank, isGrimWardId, matchesGrimWard, type GrimWardProjection } from '../skills/grim-ward';
 import type { SkeletonMasteryProjection } from '../skills/skeleton-mastery';
 import type { GolemMasteryProjection } from '../skills/golem-mastery';
 import { empowerNecromancerSummon, type SummonPassiveProjection } from '../skills/summon-passives';
@@ -197,6 +199,8 @@ export interface CombatSnapshot {
   readonly findPotion?: readonly FindPotionProjection[];
   /** Learned native corpse-search authority; no reward is granted during simulation/playback. */
   readonly findItem?: readonly FindItemProjection[];
+  /** Native learned ward authority; no corpse or paid timer is accepted from a save. */
+  readonly grimWard?: readonly GrimWardProjection[];
   /** Copied learned Assassin coating, bound to the exact player hero for this wave. */
   readonly assassinVenom?: AssassinVenomProjection;
   /** Frozen explicit player Might selection for this wave, active from simulation entry. */
@@ -255,6 +259,9 @@ interface State {
   readonly findPotion: Map<string, number>;
   readonly findItem: Map<string, number>;
   readonly findItemFinds: FindItemFind[];
+  readonly grimWard: Map<string, number>;
+  readonly grimWards: Map<string, { readonly corpseId: string; readonly rank: number;
+    readonly createdAtMs: number; readonly expiresAtMs: number; readonly nextPulseAtMs: number }>;
   readonly assassinVenom?: AssassinVenomProjection;
   readonly corpses: string[];
   /** Only IDs committed/accepted by qualified preparation in this battle may use Druid effects. */
@@ -1000,6 +1007,7 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
   if (state.druidAllyAuras !== undefined || state.spiritOfBarbs !== undefined || hadConversions) {
     for (const u of state.units.values()) if (alive(u)) observeStatuses(state, u.id);
   }
+  for (const u of dead) stopGrimWard(state, u.id);
   for (const u of dead) {
     const source = primary.get(u.id);
     if (source) deathEffects(state, source);
@@ -1007,7 +1015,7 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
   // Publish only after the complete closure/effects, in the existing death-event order.
   // Keep every outcome unit and handled death intact for rewards and replay.
   const aura = state.statAura;
-  if (state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0 || state.findPotion.size > 0 || state.findItem.size > 0 ||
+  if (state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0 || state.findPotion.size > 0 || state.findItem.size > 0 || state.grimWard.size > 0 ||
     (aura?.redemption !== undefined && activeStatAura(aura, aura.sourceHeroId, state.units) !== undefined) ||
     [...state.druidSummons.keys()].some(id => {
       const bound = activeDruidSummon(state, id);
@@ -1287,10 +1295,16 @@ function canUseSkillForState(
     skill.effects.some(effect => effect.kind === 'corpse-recovery');
   const fi = isFindItemId(skillOrderId) || isFindItemId(skill.id) ||
     skill.effects.some(effect => effect.kind === 'corpse-search');
+  const gw = isGrimWardId(skillOrderId) || isGrimWardId(skill.id) ||
+    skill.effects.some(effect => effect.kind === 'corpse-ward');
   const skillLevel = ce ? corpseExplosionRank(unit, state.corpseExplosion)
     : pe ? poisonExplosionRank(unit, state.poisonExplosion)
+    : gw ? grimWardRank(unit, state.grimWard)
     : fi ? findItemRank(unit, state.findItem)
     : fp ? findPotionRank(unit, state.findPotion) : effectiveSkillLevel(unit, skill);
+  if (gw && (!matchesGrimWard(skill) || skillLevel === 0 || state.corpses.length === 0 || !hasEnemyTarget ||
+    !Number.isFinite(unit.mana) || state.grimWards.has(unit.id) ||
+    GRIM_WARD_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   if (fi && (!matchesFindItem(skill) || skillLevel === 0 || state.corpses.length === 0 || !hasEnemyTarget ||
     !Number.isFinite(unit.mana) || FIND_ITEM_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   if (fp && (!matchesFindPotion(skill) || skillLevel === 0 || state.corpses.length === 0 || !hasEnemyTarget ||
@@ -1362,6 +1376,9 @@ function applyEffect(
   const acting = state.units.get(actorId);
   if (!acting || !alive(acting)) return;
   switch (effect.kind) {
+    case 'corpse-ward':
+      // Private paid ward state is created only by the validated synchronous corpse cast.
+      break;
     case 'corpse-search':
       // Only the validated synchronous cast may consume a body or attest a successful search.
       break;
@@ -1658,11 +1675,14 @@ function castSkill(
     skill.effects.some(effect => effect.kind === 'corpse-recovery');
   const fi = isFindItemId(skillOrderId) || isFindItemId(skill.id) ||
     skill.effects.some(effect => effect.kind === 'corpse-search');
-  const consumesCorpse = ce || pe || fp || fi;
+  const gw = isGrimWardId(skillOrderId) || isGrimWardId(skill.id) ||
+    skill.effects.some(effect => effect.kind === 'corpse-ward');
+  const consumesCorpse = ce || pe || fp || fi || gw;
   if (consumesCorpse && !canUseSkillForState(state, actor, skill, skillOrderId,
     opponentsOf(state, actor).length > 0)) return;
   const skillLevel = ce ? corpseExplosionRank(actor, state.corpseExplosion)
     : pe ? poisonExplosionRank(actor, state.poisonExplosion)
+    : gw ? grimWardRank(actor, state.grimWard)
     : fi ? findItemRank(actor, state.findItem)
     : fp ? findPotionRank(actor, state.findPotion)
     : prepared?.skillLevel ?? effectiveSkillLevel(actor, skill);
@@ -1686,9 +1706,22 @@ function castSkill(
 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
   if (manaEvent) emit(state, manaEvent);
-  if (consumesCorpse && !fi) emit(state, { kind: 'message', messageKey: fp ? 'combat:corpses.consumedFindPotion'
+  if (consumesCorpse && !fi && !gw) emit(state, { kind: 'message', messageKey: fp ? 'combat:corpses.consumedFindPotion'
     : pe ? 'combat:corpses.consumedPoison' : 'combat:corpses.consumed',
     params: { count: state.corpses.length, ...(fp && corpseId !== undefined ? { corpseId } : {}) } });
+  if (gw && corpseId !== undefined) {
+    const duration = grimWardDuration(skillLevel), paid = state.units.get(actorId);
+    state.grimWards.set(actorId, Object.freeze({ corpseId, rank: skillLevel, createdAtMs: state.simClockMs,
+      expiresAtMs: state.simClockMs + duration, nextPulseAtMs: state.simClockMs }));
+    if (paid) state.units.set(actorId, { ...paid, statuses: [...paid.statuses, {
+      id: 'grim-ward', sourceId: actorId, stacks: 1, remaining: duration / SECONDS,
+      appliedAtMs: state.simClockMs, expiresAtMs: state.simClockMs + duration }] });
+    emit(state, { kind: 'message', messageKey: 'combat:corpses.consumedGrimWard',
+      params: { count: state.corpses.length, corpseId, duration: duration / SECONDS } });
+    observeStatuses(state, actorId);
+    settleGrimWards(state);
+    return;
+  }
   if (fi && corpseId !== undefined) {
     const found = rollFindItemSearch(skillLevel, state.rng);
     if (found) state.findItemFinds.push(Object.freeze({ sourceHeroId: actorId, corpseId, rank: skillLevel }));
@@ -1947,6 +1980,43 @@ function settlePaidSpells(state: State): void {
   }
 }
 
+/** End private paid state exactly once; the visible marker cannot keep a ward alive. */
+function stopGrimWard(state: State, sourceId: string): void {
+  if (!state.grimWards.delete(sourceId)) return;
+  const owner = state.units.get(sourceId);
+  if (owner) {
+    state.units.set(sourceId, { ...owner, statuses: owner.statuses.filter(status => status.id !== 'grim-ward') });
+    observeStatuses(state, sourceId);
+  }
+  emit(state, { kind: 'message', messageKey: 'combat:corpses.grimWardEnded' });
+}
+
+/** A finite corpse ward fears current hostiles without drawing RNG or granting combatant/reward identity. */
+function settleGrimWards(state: State): void {
+  if (state.grimWards.size === 0) return;
+  const tuning = GRIM_WARD_DEFINITION.ward;
+  for (const [sourceId, ward] of state.grimWards) {
+    const owner = state.units.get(sourceId);
+    if (!owner || !alive(owner) || state.simClockMs >= ward.expiresAtMs || opponentsOf(state, owner).length === 0) {
+      stopGrimWard(state, sourceId); continue;
+    }
+    if (state.simClockMs !== ward.nextPulseAtMs) continue;
+    state.grimWards.set(sourceId, Object.freeze({ ...ward, nextPulseAtMs: ward.nextPulseAtMs + tuning.intervalMs }));
+    const targets = opponentsOf(state, owner);
+    for (const target of targets) {
+      const application = applyStatusWithResult(target, { id: 'howl', sourceId,
+        durationMs: tuning.fearDurationMs, simClockMs: state.simClockMs,
+        config: { duration: tuning.fearDurationMs / SECONDS, maxStacks: 1,
+          bossDurationMult: tuning.bossDurationMultiplier } }, state.rng);
+      state.units.set(target.id, application.unit);
+      if (application.applied) emit(state, { kind: 'status', target: target.id, statusId: 'howl' });
+      observeStatuses(state, target.id);
+    }
+    emit(state, { kind: 'message', messageKey: 'combat:corpses.grimWardPulse', params: { targets: targets.length } });
+  }
+  cancelInterruptedChannels(state);
+}
+
 /** Ambient pulses share normal healing, mitigation, status and exact-once death settlement. */
 function settleAuraPulse(state: State): void {
   const aura = state.statAura;
@@ -2026,6 +2096,10 @@ function settleRedemption(state: State, aura: StatAuraProjection): void {
 /** Next action/status/deadline boundary; starts include non-DoT pending controls. */
 function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   let boundary = Math.min(MAX_SIM_MS, nextActionAt);
+  for (const [id, ward] of state.grimWards) {
+    const owner = state.units.get(id);
+    if (owner && alive(owner)) boundary = Math.min(boundary, ward.expiresAtMs, ward.nextPulseAtMs);
+  }
   for (const [id, binding] of state.hydras) {
     const body = state.units.get(id);
     if (body && alive(body) && binding.expiresAtMs > state.simClockMs)
@@ -2509,6 +2583,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     findPotion: new Map(copyFindPotionProjections(snapshot.findPotion).map(p => [p.sourceHeroId, p.rank])),
     findItem: new Map(copyFindItemProjections(snapshot.findItem).map(p => [p.sourceHeroId, p.rank])),
     findItemFinds: [],
+    grimWard: new Map(copyGrimWardProjections(snapshot.grimWard).map(p => [p.sourceHeroId, p.rank])),
+    grimWards: new Map(),
     corpses: [],
     druidSummons: new Map(),
     ...(golemMastery ? { golemMastery: Object.freeze({ sourceHeroId: golemMastery.sourceHeroId,
@@ -2551,8 +2627,12 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     skeletalMageElements: new Map()
   };
 
-  for (const u of withDefaultGridPositions(snapshot.playerTeam)) registerUnit(state, u);
-  for (const u of withDefaultGridPositions(snapshot.enemyTeam)) registerUnit(state, u);
+  // Wave-local visual markers cannot establish paid state or cross the wave boundary.
+  const clearWardMarkers = (unit: CombatUnit): CombatUnit => ({ ...unit,
+    statuses: unit.statuses.filter(status => status.id !== 'grim-ward' && !isGrimWardId(status.id)),
+    activeBuffIds: unit.activeBuffIds.filter(id => id !== 'grim-ward' && !isGrimWardId(id)) });
+  for (const u of withDefaultGridPositions(snapshot.playerTeam)) registerUnit(state, clearWardMarkers(u));
+  for (const u of withDefaultGridPositions(snapshot.enemyTeam)) registerUnit(state, clearWardMarkers(u));
   for (const unit of state.units.values()) {
     const factor = activeStatAura(state.statAura, unit.id, state.units)?.cleansingDurationMultiplier;
     if (factor !== undefined) state.units.set(unit.id, shortenCleansingStatuses(unit, 0, factor));
@@ -2569,6 +2649,10 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   for (const id of state.findPotion.keys()) {
     const hero = state.units.get(id);
     if (!hero || findPotionRank(hero, state.findPotion) === 0) state.findPotion.delete(id);
+  }
+  for (const id of state.grimWard.keys()) {
+    const hero = state.units.get(id);
+    if (!hero || grimWardRank(hero, state.grimWard) === 0) state.grimWard.delete(id);
   }
   for (const id of state.findItem.keys()) {
     const hero = state.units.get(id);
@@ -2612,6 +2696,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     if (winnerOf(state) !== null) break;
     settleAuraPulse(state);
     if (winnerOf(state) !== null) break;
+    settleGrimWards(state);
     settlePaidSpells(state);
     if (winnerOf(state) !== null) break;
     reconcileActionPeriods(state);
@@ -2635,6 +2720,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   }
 
   const winner = winnerOf(state);
+  for (const id of state.grimWards.keys()) stopGrimWard(state, id);
   // Native wave carry consumes this view; a terminal cast may have no later
   // actor refresh to publish the cooldown already paid into the expiry map.
   for (const unitId of state.units.keys()) refreshCooldowns(state, unitId);

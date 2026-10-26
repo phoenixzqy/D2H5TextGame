@@ -107,6 +107,7 @@ import { composeGolemMastery } from '@/engine/skills/golem-mastery';
 import { composeCorpseExplosion } from '@/engine/skills/corpse-explosion';
 import { composeFindPotion } from '@/engine/skills/find-potion';
 import { composeFindItem, findItemBonusEnemies } from '@/engine/skills/find-item';
+import { composeGrimWard } from '@/engine/skills/grim-ward';
 import { composePoisonExplosion } from '@/engine/skills/poison-explosion';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { IRON_GOLEM_SKILL_ID, isIronGolemSkill } from '@/engine/skills/iron-golem';
@@ -1184,6 +1185,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     ? composeGolemMastery(currentPlayer) : undefined;
   const findPotion = currentPlayer?.id === run.playerUnit.id ? composeFindPotion(currentPlayer) : undefined;
   const findItem = currentPlayer?.id === run.playerUnit.id ? composeFindItem(currentPlayer) : undefined;
+  const grimWard = currentPlayer?.id === run.playerUnit.id ? composeGrimWard(currentPlayer) : undefined;
   const corpseExplosion = currentPlayer?.id === run.playerUnit.id
     ? composeCorpseExplosion(currentPlayer) : undefined;
   const assassinVenom = currentPlayer?.id === run.playerUnit.id
@@ -1314,6 +1316,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       ...(corpseExplosion ? { corpseExplosion: [corpseExplosion] } : {}),
       ...(findPotion ? { findPotion: [findPotion] } : {}),
       ...(findItem ? { findItem: [findItem] } : {}),
+      ...(grimWard ? { grimWard: [grimWard] } : {}),
       ...(assassinVenom ? { assassinVenom } : {}),
       ...(poisonExplosion ? { poisonExplosion: [poisonExplosion] } : {})
     },

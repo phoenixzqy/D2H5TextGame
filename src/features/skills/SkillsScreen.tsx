@@ -871,6 +871,12 @@ function StatSection({
           ))}
           {stats.hydra ? <StatLine label={t('details.hydraBody')}
             value={t('details.hydraBodyValue', { heads: stats.hydra.heads, duration: stats.hydra.durationSeconds })} /> : null}
+          {stats.corpseWard ? <>
+            <StatLine label={t('details.wardDuration')} value={t('details.wardTimingValue', {
+              duration: stats.corpseWard.durationSeconds, interval: stats.corpseWard.intervalSeconds })} />
+            <StatLine label={t('details.wardFear')} value={t('details.wardFearValue', {
+              fear: stats.corpseWard.fearSeconds, boss: stats.corpseWard.bossFearSeconds })} />
+          </> : null}
           {stats.corpseSearch ? <StatLine label={t('details.corpseSearchChance')}
             value={t('details.percentValue', { value: stats.corpseSearch.successPercent })} /> : null}
           {stats.corpseRecovery ? <>
@@ -1634,6 +1640,11 @@ function dynamicDescription(
       duration: t('details.seconds', { seconds: stats.leap.durationSeconds }),
       stun: t('details.seconds', { seconds: stats.control.durationSeconds }),
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
+  }
+  if (stats?.corpseWard) {
+    return t('barbarian.grim-ward.desc', { duration: stats.corpseWard.durationSeconds,
+      interval: stats.corpseWard.intervalSeconds, fear: stats.corpseWard.fearSeconds,
+      boss: stats.corpseWard.bossFearSeconds, mana: stats.manaCost, cooldown: stats.cooldown });
   }
   if (stats?.corpseSearch) {
     return t('barbarian.find-item.desc', { chance: stats.corpseSearch.successPercent,

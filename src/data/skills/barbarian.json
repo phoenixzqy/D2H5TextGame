@@ -788,16 +788,16 @@
     "cost": {
       "mana": 7
     },
-    "appliesStatus": [
-      "grim-ward"
-    ],
     "scaling": {
       "cooldownPerLevel": -0.05,
-      "costPerLevel": -0.1,
-      "passiveStatsPerLevel": {
-        "physDodgePct": 0.005,
-        "magicFindPct": 0.005
-      }
+      "costPerLevel": -0.1
+    },
+    "corpseWard": {
+      "durationMs": 6000,
+      "durationPerRankMs": 500,
+      "intervalMs": 2000,
+      "fearDurationMs": 1000,
+      "bossDurationMultiplier": 0.5
     }
   },
   {

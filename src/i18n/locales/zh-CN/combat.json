@@ -34,6 +34,9 @@
   "logPaused": "已暂停滚动 (移开光标继续)",
   "logHoverPausedHint": "日志已暂停滚动",
   "corpses": {
+    "consumedGrimWard": "恐怖图腾消耗一具尸体：图腾建立，持续{{duration}}秒。剩余尸体：{{count}}。",
+    "grimWardPulse": "恐怖图腾使{{targets}}名敌人恐惧。",
+    "grimWardEnded": "恐怖图腾消失。",
     "findItemSuccess": "找物品消耗一具尸体：搜索成功。本波胜利后收取额外一次普通掉落。剩余尸体：{{count}}。",
     "findItemEmpty": "找物品消耗一具尸体：未找到物品。已消耗法力并进入冷却。剩余尸体：{{count}}。",
     "consumedFindPotion": "找药水消耗一具尸体，即时恢复生命与法力。剩余尸体：{{count}}。",
@@ -116,6 +119,7 @@
     "summon": "召唤",
     "death": "倒下",
     "status": {
+      "grim-ward": "恐怖图腾",
       "inferno": "炼狱",
       "blaze": "炽烈之径",
       "fire-wall": "火墙",

@@ -64,6 +64,10 @@
     "minLevel": "需要等级 {{level}}"
   },
   "details": {
+    "wardDuration": "图腾持续时间",
+    "wardFear": "每次恐惧",
+    "wardTimingValue": "{{duration}}秒；立即及每{{interval}}秒生效",
+    "wardFearValue": "{{fear}}秒（首领为{{boss}}秒）",
     "damagePerHead": "每个头的火弹{{type}}伤害",
     "hydraBody": "海蛇实体",
     "corpseSearchChance": "搜索成功率",
@@ -647,7 +651,7 @@
     },
     "grim-ward": {
       "name": "恐怖图腾",
-      "desc": "从尸体创造惊吓敌人的图腾。"
+      "desc": "消耗{{mana}}点法力与一具共享敌人尸体，建立持续{{duration}}秒的图腾。立即及每{{interval}}秒使当前敌人恐惧{{fear}}秒（首领为{{boss}}秒），打断其行动。每位施法者同时只能有一个生效图腾；图腾不造成伤害且无法被攻击。施法者死亡或本波结束时消失。冷却{{cooldown}}秒。技能学习变化于下一波生效。"
     },
     "battle-command": {
       "name": "战斗指挥",

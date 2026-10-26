@@ -28,6 +28,7 @@ import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 import { HYDRA_DEFINITION, hydraBodyStats } from './hydra';
 
 export interface DisplaySkillSource {
+  readonly corpseWard?: import('../types/skills').SkillDef['corpseWard'];
   readonly corpseSearch?: import('../types/skills').SkillDef['corpseSearch'];
   readonly corpseRecovery?: import('../types/skills').SkillDef['corpseRecovery'];
   readonly hydra?: import('../types/skills').SkillDef['hydra'];
@@ -168,6 +169,9 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Wave-local paid ward timing; fear reuses ordinary timed Howl interruption. */
+  readonly corpseWard?: { readonly durationSeconds: number; readonly intervalSeconds: number;
+    readonly fearSeconds: number; readonly bossFearSeconds: number };
   /** Probability of one bonus ordinary loot roll, collected only on victory. */
   readonly corpseSearch?: { readonly successPercent: number };
   /** One shared corpse restores these independent percentages, capped after payment. */
@@ -634,6 +638,11 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(skill.id === 'skills-barbarian-grim-ward' && skill.trigger === 'active' && skill.target === 'all-enemies' &&
+      skill.corpseWard ? { corpseWard: {
+        durationSeconds: (skill.corpseWard.durationMs + skill.corpseWard.durationPerRankMs * (safeRank - 1)) / 1000,
+        intervalSeconds: skill.corpseWard.intervalMs / 1000, fearSeconds: skill.corpseWard.fearDurationMs / 1000,
+        bossFearSeconds: skill.corpseWard.fearDurationMs * skill.corpseWard.bossDurationMultiplier / 1000 } } : {}),
     ...(skill.id === 'skills-barbarian-find-item' && skill.trigger === 'active' && skill.target === 'self' &&
       skill.corpseSearch ? { corpseSearch: { successPercent: Number(((skill.corpseSearch.successChance +
         skill.corpseSearch.successChancePerRank * (safeRank - 1)) * 100).toFixed(4)) } } : {}),

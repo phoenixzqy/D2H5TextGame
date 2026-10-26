@@ -745,7 +745,7 @@ function UnitCard({
       label: t(`effect.status.${status.id}`, { defaultValue: humanizeEffectId(status.id),
         amount: status.boneArmor?.remaining ?? 0 }),
       stacks: status.stacks,
-      kind: status.id === 'oak-sage' || status.id === 'heart-of-wolverine' || status.id === 'spirit-of-barbs' ||
+      kind: status.id === 'grim-ward' || status.id === 'oak-sage' || status.id === 'heart-of-wolverine' || status.id === 'spirit-of-barbs' ||
         ((status.id === 'werewolf' || status.id === 'werebear') && unit.druidForm?.form === status.id) ||
         (status.id === 'burst-of-speed' && status.statBuff !== undefined) ||
         (status.id === 'feral-rage' && status.feralRage === true) ||

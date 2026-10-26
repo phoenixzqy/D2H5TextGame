@@ -251,6 +251,9 @@ export interface ConversionTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Finite corpse-created area ward; no summon body or saved timer. */
+  readonly corpseWard?: { readonly durationMs: number; readonly durationPerRankMs: number;
+    readonly intervalMs: number; readonly fearDurationMs: number; readonly bossDurationMultiplier: number };
   /** One paid real-corpse search; a successful result settles ordinary bonus loot on victory. */
   readonly corpseSearch?: { readonly successChance: number; readonly successChancePerRank: number };
   /** Immediate paid recovery from one shared enemy body; creates no potion item. */
