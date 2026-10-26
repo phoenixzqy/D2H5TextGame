@@ -1,0 +1,130 @@
+{
+  "head": "5beee2db7f6c8ef3e03219da589dd1f2739718be",
+  "files": [
+    {
+      "path": "src/data/schema/skill.schema.json",
+      "bytes": 213916,
+      "sha256": "fe139d753daf40a0765a1a7c77356691ab36ff8abac2ab205dba538b7799990d"
+    },
+    {
+      "path": "src/data/skills/necromancer.json",
+      "bytes": 21336,
+      "sha256": "fe75e8654c7564bda1df5633b8aec28760eebe30ac6c34323465e4c949f3213e"
+    },
+    {
+      "path": "src/engine/combat/attack-targets.test.ts",
+      "bytes": 3876,
+      "sha256": "271a498b00d0b4fba2bcd0523ecbe1011a5eeaefd563a098c0fb65ac59f81a0c"
+    },
+    {
+      "path": "src/engine/combat/attack-targets.ts",
+      "bytes": 1188,
+      "sha256": "d975b7563a7d424eebb36b27325874c2569e524515d4e966f0a425bce4326236"
+    },
+    {
+      "path": "src/engine/combat/combat.ts",
+      "bytes": 163875,
+      "sha256": "4f6c9c4a1e0c2470e44ed127fa746a8c0f5786ceaf37ffa1bde36f06762b12ed"
+    },
+    {
+      "path": "src/engine/combat/status.ts",
+      "bytes": 21376,
+      "sha256": "99c2b39e86208c30578754c7ac5ecbcb392ec2e4289374adfc399af996afb7d2"
+    },
+    {
+      "path": "src/engine/combat/target-curse-definition.test.ts",
+      "bytes": 3507,
+      "sha256": "51e159ffd677386ade1b15cdbb45a46862d46aeb4c087b958edebb6ab0e6a8ca"
+    },
+    {
+      "path": "src/engine/combat/target-curse-definition.ts",
+      "bytes": 2648,
+      "sha256": "832481457292e75efb67302e82c412d811456926417413f4bf46485afb92ad44"
+    },
+    {
+      "path": "src/engine/combat/target-curse-payment.test.ts",
+      "bytes": 4553,
+      "sha256": "85f52ac27121fdaf448d2c2f1e67cf6b67121b9d45b5b9b343c7ef6285356d7f"
+    },
+    {
+      "path": "src/engine/combat/target-curse-status.test.ts",
+      "bytes": 5460,
+      "sha256": "f49a85f9e20111432d9d2d9147b9b5c46b9b7e43557b443c2a42224016834904"
+    },
+    {
+      "path": "src/engine/combat/target-curse-targeting.test.ts",
+      "bytes": 13611,
+      "sha256": "c1c377db2bf8f5f3dc8e4282eec30c93bcc72f246cde68679e26e9be6fed7a4d"
+    },
+    {
+      "path": "src/engine/combat/types.ts",
+      "bytes": 16194,
+      "sha256": "fd59c65dbb43141f85c6918c64b99703c4239c7b3108a3d2c7578acc8e946b19"
+    },
+    {
+      "path": "src/engine/skills/dataCatalog.ts",
+      "bytes": 17988,
+      "sha256": "e22785cbd2e38c692815fef38ffa6d4de9c70f2160b475eb2e0a7cd660ba387a"
+    },
+    {
+      "path": "src/engine/skills/displayStats.target-curses.test.ts",
+      "bytes": 2288,
+      "sha256": "c255c3ab2b7182a0bf84fffa65ff9d520b433b43aa3718259a05b2850713427d"
+    },
+    {
+      "path": "src/engine/skills/displayStats.ts",
+      "bytes": 46967,
+      "sha256": "4291ad63a3466679c45bba24fcd10a0828cac029fc4990ad7aabcb117a47967a"
+    },
+    {
+      "path": "src/engine/skills/effects.ts",
+      "bytes": 9490,
+      "sha256": "9712965804e79957132a7d8915fd0f9a78256cc8154b2f27abf8148db21a510c"
+    },
+    {
+      "path": "src/features/skills/SkillsScreen.target-curses.test.tsx",
+      "bytes": 4103,
+      "sha256": "c79353a34541f72dc75dde92ff6de6565d44fd7ea1e332dbcc87d8bc5d19304f"
+    },
+    {
+      "path": "src/features/skills/SkillsScreen.tsx",
+      "bytes": 103407,
+      "sha256": "70f44f39a6927fef5d41dbd2a09ad5545088cde414ebe494e301fc573e95dd45"
+    },
+    {
+      "path": "src/i18n/locales/en/skills.json",
+      "bytes": 99175,
+      "sha256": "e4ce35c8bec132ae4ef824cdd740d3fe73fcb482d2633447e076fa9d3f7c8e6c"
+    },
+    {
+      "path": "src/i18n/locales/zh-CN/skills.json",
+      "bytes": 95941,
+      "sha256": "72c783726c767906baf9fb7f4665c949e9c676b66642a86e8fcc5b03c51a8046"
+    },
+    {
+      "path": "src/stores/necromancer-target-curses-native.test.ts",
+      "bytes": 9675,
+      "sha256": "d0cb4bb437ee5b8ee2472cd52ade2a93b28625a79409bb4da08c314cf2707e6d"
+    },
+    {
+      "path": "src/stores/necromancer-target-curses.causal.test.ts",
+      "bytes": 7715,
+      "sha256": "1961433178603e4c4ba7c4832850480c9cf1f53b32587ad662ba1a635184d7a8"
+    },
+    {
+      "path": "src/ui/i18nKey.test.ts",
+      "bytes": 4395,
+      "sha256": "d954570aebd11ab51cf9022403710ab8a8b4d54efc96c9a059cdf7ea93fe08ff"
+    },
+    {
+      "path": "tests/pwa/target-curses.config.ts",
+      "bytes": 1499,
+      "sha256": "c8dd7913f40360225416d70efd122568330601605e91565d85756d99ec6affc1"
+    },
+    {
+      "path": "tests/pwa/target-curses.spec.ts",
+      "bytes": 14882,
+      "sha256": "c409e21a6e0d51f8c9452dea3238a465b3630319132f2fd7633af68e59daf965"
+    }
+  ]
+}

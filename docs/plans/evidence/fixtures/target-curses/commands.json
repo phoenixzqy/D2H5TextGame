@@ -1,0 +1,1205 @@
+{
+  "commands": [
+    {
+      "label": "combined-full-final",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 865.538,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/combined-full-final.log",
+      "logBytes": 170908,
+      "logSha256": "48d5fb5ee5e2fc961f09bd6de05b3e3705afdc2747f32bd281f0456b7b3481d1",
+      "pid": 270698,
+      "terminal": true
+    },
+    {
+      "label": "combined-full",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 1345.413,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/combined-full.log",
+      "logBytes": 173699,
+      "logSha256": "010d9db80c34190f1a8c2dfc060dd86b1b14c23fe8d10992250eb8a58571f140",
+      "pid": 197779,
+      "terminal": true
+    },
+    {
+      "label": "combined-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 364.488,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/combined-lint.log",
+      "logBytes": 197,
+      "logSha256": "eff440ceef4f601f0fb29ee17458a303a56ef70432553884a1a5cd2b947d4a0b",
+      "pid": 200129,
+      "terminal": true
+    },
+    {
+      "label": "combined-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 240.534,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/combined-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 200128,
+      "terminal": true
+    },
+    {
+      "label": "definition-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-definition.test.ts",
+        "src/engine/combat/dim-vision-definition.test.ts",
+        "src/engine/skills/skill-validator.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 3.129,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/definition-green.log",
+      "logBytes": 515,
+      "logSha256": "4c31916bda519db0ce3ccad0c3beedddb37b8ba7a9bd1b5e966fec3cf5c8c614",
+      "pid": 139416,
+      "terminal": true
+    },
+    {
+      "label": "definition-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-definition.test.ts",
+        "src/engine/combat/dim-vision-definition.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 2.715,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/definition-red.log",
+      "logBytes": 1035,
+      "logSha256": "f8ca0dee3dfece7e2845309d270de876e417c543a81219e2eea4782a3e14d6ae",
+      "pid": 139162,
+      "terminal": true
+    },
+    {
+      "label": "final-lint-after-copy",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 216.273,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/final-lint-after-copy.log",
+      "logBytes": 197,
+      "logSha256": "eff440ceef4f601f0fb29ee17458a303a56ef70432553884a1a5cd2b947d4a0b",
+      "pid": 270700,
+      "terminal": true
+    },
+    {
+      "label": "final-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 443.579,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/final-lint.log",
+      "logBytes": 197,
+      "logSha256": "eff440ceef4f601f0fb29ee17458a303a56ef70432553884a1a5cd2b947d4a0b",
+      "pid": 238488,
+      "terminal": true
+    },
+    {
+      "label": "final-types-after-copy",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 130.517,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/final-types-after-copy.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 270699,
+      "terminal": true
+    },
+    {
+      "label": "final-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 212.261,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/final-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 238487,
+      "terminal": true
+    },
+    {
+      "label": "foundation-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 150.233,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/foundation-engine.log",
+      "logBytes": 71669,
+      "logSha256": "31146f8aefc295f5499ec417b6c439082105dde47eae403343659519fa02e821",
+      "pid": 139582,
+      "terminal": true
+    },
+    {
+      "label": "foundation-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/combat/target-curse-definition.ts",
+        "src/engine/combat/target-curse-definition.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 11.23,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/foundation-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 139667,
+      "terminal": true
+    },
+    {
+      "label": "foundation-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 122.374,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/foundation-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 139562,
+      "terminal": true
+    },
+    {
+      "label": "native-after-foundation",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/repro.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 8.62,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/native-after-foundation.log",
+      "logBytes": 5160,
+      "logSha256": "9602f57493f64afcfb7f6b2919332a5463b8598b16919b543345009c52876a35",
+      "pid": 145740,
+      "terminal": true
+    },
+    {
+      "label": "native-after-payment",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/repro.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 11.153,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/native-after-payment.log",
+      "logBytes": 5160,
+      "logSha256": "8d560d6fd9949c8e496ea107c68a53a3f21eb24a6d22ffd7aab23cf712d945e5",
+      "pid": 156732,
+      "terminal": true
+    },
+    {
+      "label": "native-causal-persistent",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/necromancer-target-curses.causal.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.897,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/native-causal-persistent.log",
+      "logBytes": 361,
+      "logSha256": "ed3db1136d1d3d901db7eb60d0653bfe1d6c97713f1160cd5283f741bc8b0092",
+      "pid": 193007,
+      "terminal": true
+    },
+    {
+      "label": "native-final-focused",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/necromancer-target-curses.causal.test.ts",
+        "src/stores/necromancer-target-curses-native.test.ts",
+        "src/engine/combat/target-curse-payment.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 11.252,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/native-final-focused.log",
+      "logBytes": 522,
+      "logSha256": "ef45b75620f5152356e88c0442a743034392c09025d9cbe9f2d34d949f47b608",
+      "pid": 194389,
+      "terminal": true
+    },
+    {
+      "label": "native-lifecycle-persistent",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/necromancer-target-curses-native.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.904,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/native-lifecycle-persistent.log",
+      "logBytes": 362,
+      "logSha256": "a17a19f269917c28ea2fd5ce9359ab48f190470e10dd316fb918c927cb4f5e62",
+      "pid": 194250,
+      "terminal": true
+    },
+    {
+      "label": "native-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/stores/necromancer-target-curses.causal.test.ts",
+        "src/stores/necromancer-target-curses-native.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 10.447,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/native-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 194387,
+      "terminal": true
+    },
+    {
+      "label": "native-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/repro.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 2.214,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/native-red.log",
+      "logBytes": 1017,
+      "logSha256": "b90200397a7b13995af5110d578e074a0f668e05de4cf294337feb8f63a3c355",
+      "pid": 124495,
+      "terminal": true
+    },
+    {
+      "label": "native-red-v2",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/repro.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 9.127,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/native-red-v2.log",
+      "logBytes": 5160,
+      "logSha256": "ba48e930d30624d8458ffdef7860c649419e8eaf287d26d8200ccd438a12418b",
+      "pid": 124949,
+      "terminal": true
+    },
+    {
+      "label": "native-targeting-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/repro.workspace.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.475,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/native-targeting-green.log",
+      "logBytes": 1487,
+      "logSha256": "4b017b91fedadd3599b2516f36a3d01f84016a228587d557797afa84be232ce2",
+      "pid": 163041,
+      "terminal": true
+    },
+    {
+      "label": "native-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 157.981,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/native-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 194388,
+      "terminal": true
+    },
+    {
+      "label": "payment-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 166.519,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/payment-engine.log",
+      "logBytes": 71831,
+      "logSha256": "460209de6d31c30db90318c261c15e7fbe506dfa8189b196e2fd94a71df67b38",
+      "pid": 156138,
+      "terminal": true
+    },
+    {
+      "label": "payment-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-payment.test.ts",
+        "src/engine/combat/target-curse-status.test.ts",
+        "src/engine/combat/target-curse-definition.test.ts",
+        "src/engine/combat/dim-vision-consumers.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 11.08,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/payment-green.log",
+      "logBytes": 600,
+      "logSha256": "eb01bc5769bad2187b4eef1e3c7412257ea36ae3e9c18d13beb1604a85b9ba95",
+      "pid": 156137,
+      "terminal": true
+    },
+    {
+      "label": "payment-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/skills/effects.ts",
+        "src/engine/skills/dataCatalog.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/combat/target-curse-payment.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 14.258,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/payment-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 156140,
+      "terminal": true
+    },
+    {
+      "label": "payment-red-native-owner",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-payment.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 8.421,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/payment-red-native-owner.log",
+      "logBytes": 5252,
+      "logSha256": "d109623f4fe5c5bce0fbb3cc5d82776f8598863f4424a919ef60fa6f83a1cd08",
+      "pid": 155896,
+      "terminal": true
+    },
+    {
+      "label": "payment-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-payment.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 9.14,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/payment-red.log",
+      "logBytes": 6646,
+      "logSha256": "2548f929f6aae6b08d230b85656ae8b9a37ec2dd5aab0dc39ff8d2fe8caa49fa",
+      "pid": 155670,
+      "terminal": true
+    },
+    {
+      "label": "payment-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 135.995,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/payment-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 156139,
+      "terminal": true
+    },
+    {
+      "label": "presentation-final-focused",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.target-curses.test.tsx",
+        "src/engine/skills/displayStats.target-curses.test.ts",
+        "src/features/skills/SkillsScreen.debuffs.test.tsx",
+        "src/features/skills/i18n-no-raw-keys.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 11.31,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/presentation-final-focused.log",
+      "logBytes": 54684,
+      "logSha256": "2ff43b9d63aff5ae15c5a0d7670a9743c26a8a1c21c06f6cb4d1a00d74503d9e",
+      "pid": 189813,
+      "terminal": true
+    },
+    {
+      "label": "presentation-final-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.target-curses.test.tsx",
+        "src/i18n/locales/en/skills.json",
+        "src/i18n/locales/zh-CN/skills.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 14.405,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/presentation-final-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 189814,
+      "terminal": true
+    },
+    {
+      "label": "presentation-green-literal-heading",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.target-curses.test.tsx",
+        "src/features/skills/SkillsScreen.dim-vision.test.tsx",
+        "src/features/skills/SkillsScreen.terror.test.tsx",
+        "src/features/skills/i18n-no-raw-keys.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 11.077,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/presentation-green-literal-heading.log",
+      "logBytes": 54758,
+      "logSha256": "df47d7cc4b31b27eecb9ed3a666aea7fd3a0f617a4c82194669e7a1b0827d141",
+      "pid": 186209,
+      "terminal": true
+    },
+    {
+      "label": "presentation-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.target-curses.test.tsx",
+        "src/features/skills/SkillsScreen.dim-vision.test.tsx",
+        "src/features/skills/SkillsScreen.terror.test.tsx",
+        "src/features/skills/i18n-no-raw-keys.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 11.665,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/presentation-green.log",
+      "logBytes": 402351,
+      "logSha256": "272bf0ca07fcf608839412b108426270134cea188efd6dc71d72abe76303dc6a",
+      "pid": 185163,
+      "terminal": true
+    },
+    {
+      "label": "presentation-green-unlearned-heading",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.target-curses.test.tsx",
+        "src/features/skills/SkillsScreen.dim-vision.test.tsx",
+        "src/features/skills/SkillsScreen.terror.test.tsx",
+        "src/features/skills/i18n-no-raw-keys.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 12.745,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/presentation-green-unlearned-heading.log",
+      "logBytes": 402376,
+      "logSha256": "3b234b2171f1c2fe0e3409e81f4b1fd6b9fb4b56074761cac68d84f9041bd2e9",
+      "pid": 185723,
+      "terminal": true
+    },
+    {
+      "label": "presentation-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.target-curses.test.tsx",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 10.639,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/presentation-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 185544,
+      "terminal": true
+    },
+    {
+      "label": "presentation-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.target-curses.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 10.648,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/presentation-red.log",
+      "logBytes": 24773,
+      "logSha256": "905b602fffbf7d8d762f042532ba505760428c3860e1fd3444b7aec84cd242c9",
+      "pid": 184564,
+      "terminal": true
+    },
+    {
+      "label": "presentation-types-role-options",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 109.849,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/presentation-types-role-options.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 189815,
+      "terminal": true
+    },
+    {
+      "label": "presentation-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 2,
+      "durationSeconds": 114.153,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/presentation-types.log",
+      "logBytes": 611,
+      "logSha256": "6cb76efe28074780e9898f165af6a4c7295f93e26de59b74e708fd2f60ecfa43",
+      "pid": 185545,
+      "terminal": true
+    },
+    {
+      "label": "preview-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 158.35,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/preview-engine.log",
+      "logBytes": 72068,
+      "logSha256": "c59c20cd00baa5b3fc800e6ce76c22147670747460b8dddd06a1cc8f2629fcc9",
+      "pid": 177265,
+      "terminal": true
+    },
+    {
+      "label": "preview-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/displayStats.target-curses.test.ts",
+        "src/engine/skills/displayStats.dim-vision.test.ts",
+        "src/engine/combat/target-curse-definition.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 3.317,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/preview-green.log",
+      "logBytes": 525,
+      "logSha256": "cff5f4dac4428bab8f2fcc2a74946f2168a1bc46a9027626c30fcc5b74bb2e75",
+      "pid": 177037,
+      "terminal": true
+    },
+    {
+      "label": "preview-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/skills/displayStats.ts",
+        "src/engine/skills/displayStats.target-curses.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 10.337,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/preview-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 177264,
+      "terminal": true
+    },
+    {
+      "label": "preview-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/displayStats.target-curses.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 3.256,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/preview-red.log",
+      "logBytes": 16899,
+      "logSha256": "287d4ce585732cad0c5322f2da0fcc0613eade89ddacf3fe17dd11638e150df6",
+      "pid": 176955,
+      "terminal": true
+    },
+    {
+      "label": "preview-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 127.121,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/preview-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 177266,
+      "terminal": true
+    },
+    {
+      "label": "production-bridge",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/bridge-guard.mjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 17.524,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/production-bridge.log",
+      "logBytes": 2573,
+      "logSha256": "c3ebec32c3a9474e02d617d358ed116dd75a04d20ca8ec43c95cd25e33054805",
+      "pid": 199492,
+      "terminal": true
+    },
+    {
+      "label": "production-build",
+      "command": [
+        "env",
+        "-u",
+        "VITE_E2E",
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/production-dist",
+        "--emptyOutDir"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 24.934,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/production-build.log",
+      "logBytes": 2460,
+      "logSha256": "c4454d6b62df99ce8764a541fac063a0e706f8fd592a186ee52fe5ef1fcc9c21",
+      "pid": 197778,
+      "terminal": true
+    },
+    {
+      "label": "production-precache",
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/production-dist"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.055,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/production-precache.log",
+      "logBytes": 401,
+      "logSha256": "ade645ec48f5aad79339b878837484d64e0594d6e05b3c13037025373811b38a",
+      "pid": 199491,
+      "terminal": true
+    },
+    {
+      "label": "public-browser-final",
+      "command": [
+        "env",
+        "TARGET_CURSES_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/production-dist",
+        "TARGET_CURSES_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/browser-output-final",
+        "TARGET_CURSES_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/browser-report-final.json",
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "tests/pwa/target-curses.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 574.059,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/public-browser-final.log",
+      "logBytes": 2095,
+      "logSha256": "6c2b25b82c4805d29c62353dfc304fca518940abfe6ddb47b2512d1d6fe5913f",
+      "pid": 238486,
+      "terminal": true
+    },
+    {
+      "label": "public-browser",
+      "command": [
+        "env",
+        "TARGET_CURSES_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/production-dist",
+        "TARGET_CURSES_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/browser-output",
+        "TARGET_CURSES_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/browser-report.json",
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "tests/pwa/target-curses.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 537.064,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/public-browser.log",
+      "logBytes": 2095,
+      "logSha256": "a1d5933237c22227036947a29af972d3da69204f06bf91b06d2a6dd6d7ce0356",
+      "pid": 200130,
+      "terminal": true
+    },
+    {
+      "label": "stale-copy-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/ui/i18nKey.test.ts",
+        "src/features/skills/SkillsScreen.target-curses.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 10.107,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/stale-copy-green.log",
+      "logBytes": 419,
+      "logSha256": "49c107f28efc1411d37cb113f4cd663e5b8cbc3fe1d0765c3fee23cabaf5f31d",
+      "pid": 268598,
+      "terminal": true
+    },
+    {
+      "label": "stale-copy-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/ui/i18nKey.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.36,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/stale-copy-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 268599,
+      "terminal": true
+    },
+    {
+      "label": "stale-copy-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/ui/i18nKey.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 3.22,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/stale-copy-red.log",
+      "logBytes": 2974,
+      "logSha256": "2fba20a8b0a7236944f48e17609654b859b6e67bd0ab72d2c5f5d7b6ef08143f",
+      "pid": 268236,
+      "terminal": true
+    },
+    {
+      "label": "status-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 161.268,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/status-engine.log",
+      "logBytes": 71748,
+      "logSha256": "b40678e29133603643f0537bfcf9796c280d744a7f9498ad9978ac50bd92cf0e",
+      "pid": 147890,
+      "terminal": true
+    },
+    {
+      "label": "status-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-status.test.ts",
+        "src/engine/combat/target-curse-definition.test.ts",
+        "src/engine/combat/dim-vision-consumers.test.ts",
+        "src/engine/combat/terror.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 4.413,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/status-green.log",
+      "logBytes": 584,
+      "logSha256": "6f7285aa44a0004cabe7692f52903de378c24832258d18f1b2794a2959676818",
+      "pid": 147760,
+      "terminal": true
+    },
+    {
+      "label": "status-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/combat/types.ts",
+        "src/engine/combat/status.ts",
+        "src/engine/combat/target-curse-definition.ts",
+        "src/engine/combat/target-curse-status.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 10.071,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/status-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 147891,
+      "terminal": true
+    },
+    {
+      "label": "status-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-status.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 2.874,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/status-red.log",
+      "logBytes": 26648,
+      "logSha256": "22d5fac42f6254effde3d5d3c225d2286046e04cbecb4266d81dac6a3193bc3d",
+      "pid": 147395,
+      "terminal": true
+    },
+    {
+      "label": "status-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 132.84,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/status-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 147892,
+      "terminal": true
+    },
+    {
+      "label": "targeting-actions-corrected",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-targeting.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 4.272,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/targeting-actions-corrected.log",
+      "logBytes": 361,
+      "logSha256": "eefafc5e5eb25854740f8202989627896b9197ee4617ecbc4a51ff2647112ccb",
+      "pid": 163507,
+      "terminal": true
+    },
+    {
+      "label": "targeting-actions",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-targeting.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 4.701,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/targeting-actions.log",
+      "logBytes": 1776,
+      "logSha256": "e55162f5f76bba133694d417625e9ea70636c51ea2512742536a4e495d69404b",
+      "pid": 163385,
+      "terminal": true
+    },
+    {
+      "label": "targeting-boundaries",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-targeting.test.ts",
+        "src/engine/combat/attack-targets.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 4.862,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/targeting-boundaries.log",
+      "logBytes": 433,
+      "logSha256": "a673524ec4b043427bc04ecc040b5e3f5fd75710751c2cddc854786402f3ce4e",
+      "pid": 164610,
+      "terminal": true
+    },
+    {
+      "label": "targeting-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 175.291,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/targeting-engine.log",
+      "logBytes": 71995,
+      "logSha256": "ba760f5fe57b7653f94b8a2ff152c1a4a64d093aa406def0e71c0cc02c9e58c2",
+      "pid": 165583,
+      "terminal": true
+    },
+    {
+      "label": "targeting-focused",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-definition.test.ts",
+        "src/engine/combat/target-curse-status.test.ts",
+        "src/engine/combat/target-curse-payment.test.ts",
+        "src/engine/combat/target-curse-targeting.test.ts",
+        "src/engine/combat/attack-targets.test.ts",
+        "src/engine/combat/conversion.test.ts",
+        "src/engine/combat/dim-vision-consumers.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 13.158,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/targeting-focused.log",
+      "logBytes": 821,
+      "logSha256": "8b64d4a98896ecce2f0228af869a802f1ba08d32fa6251b7b9428f19f6267c56",
+      "pid": 165369,
+      "terminal": true
+    },
+    {
+      "label": "targeting-green-basic",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-targeting.test.ts",
+        "src/engine/combat/target-curse-payment.test.ts",
+        "src/engine/combat/target-curse-status.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.232,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/targeting-green-basic.log",
+      "logBytes": 517,
+      "logSha256": "00bc13e2a8ea47afecb5030611f979d702832c0445d90586987665b9151017c3",
+      "pid": 162876,
+      "terminal": true
+    },
+    {
+      "label": "targeting-hostility-controls",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-targeting.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 4.999,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/targeting-hostility-controls.log",
+      "logBytes": 362,
+      "logSha256": "702d2edf184c32e7f505db7aea4bb0d765e9604eeb2a5aee8b767f2306bf54cd",
+      "pid": 164782,
+      "terminal": true
+    },
+    {
+      "label": "targeting-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/combat/combat.ts",
+        "src/engine/combat/attack-targets.ts",
+        "src/engine/combat/attack-targets.test.ts",
+        "src/engine/combat/target-curse-targeting.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 14.588,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/targeting-lint.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 165582,
+      "terminal": true
+    },
+    {
+      "label": "targeting-purity",
+      "command": [
+        "npm",
+        "run",
+        "check:engine-purity"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.289,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/targeting-purity.log",
+      "logBytes": 168,
+      "logSha256": "9ad2c1991a432257cff275a049aedd52d7a64022a78a682cee6b98e9eb2967e9",
+      "pid": 169625,
+      "terminal": true
+    },
+    {
+      "label": "targeting-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/target-curse-targeting.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "durationSeconds": 4.389,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/targeting-red.log",
+      "logBytes": 6268,
+      "logSha256": "bd44fb55b8b6ba8e3076fe97f3b0a86f4ad58a3a224a6769788e40b7fc9d5b41",
+      "pid": 162715,
+      "terminal": true
+    },
+    {
+      "label": "targeting-safety",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/combat/attack-targets.test.ts",
+        "src/engine/combat/target-curse-targeting.test.ts",
+        "src/engine/combat/conversion.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 4.763,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/targeting-safety.log",
+      "logBytes": 501,
+      "logSha256": "a9d6ceecb6f8667036beb80f6e81932f7b2e3b75a30c3a77c24ce00a74565312",
+      "pid": 163803,
+      "terminal": true
+    },
+    {
+      "label": "targeting-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 147.354,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede/targeting-types.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 165584,
+      "terminal": true
+    }
+  ],
+  "liveOwnedCommandIdentities": []
+}

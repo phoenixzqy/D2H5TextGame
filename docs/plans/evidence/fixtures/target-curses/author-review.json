@@ -1,0 +1,84 @@
+{
+  "reviewer": "root author; not independent approval",
+  "scope": "Complete bounded Confuse/Attract local source/UI/native/public diff; final combined full/types/lint/build/bridge/precache and source/build/command/browser/protected-state audit all pass",
+  "security": {
+    "verdict": "pass",
+    "evidence": "First-party local engine/data/UI/tests; no dependencies, credentials, network service, CI, permissions, or save decoder/schema version changes."
+  },
+  "axes": {
+    "correctness": "Finite exact own-identity paid authority; actual native rank1/20 recipient and exact HP regressions; onset/expiry/refresh, singleton and hostile/converted/self controls; current-wave freeze and exact carried resources; seven-domain actual import. Final public browser8/8 passes with exact online/offline pairs; final full-suite retry passes18055tests/828files with two existing opt-in skips. Final audit/retention/cleanup remain required before credit.",
+    "readability": "Single documented candidate helper and canonical definition resolver; descriptive persistent causal/native tests. Existing engine/UI style retained outside narrow additions.",
+    "architecture": "Offensive acquisition alone uses attackCandidates; effectiveSide/opponentsOf, support/ambient/captured targeting and hostile-only reward/recovery owners remain separate. Preview derives validated JSON duration in pure engine model. No component business logic.",
+    "security": "Unknown/malformed/cross-identity/nonfinite/overlong records grant no targeting authority. Transient capability never becomes durable save configuration. No broader authorizations.",
+    "performance": "Candidate selection is linear in roster, matching existing scan scale; no new tick, independent RNG roll, process or render subscription. Final bundle/precache scan passes. This is not a measured performance-budget or soak signoff."
+  },
+  "tests": "Persistent exact positive/negative causal fixture8cases and native lifecycle4cases; focused20/3files11.252sPASS. Final public browser8/8/574.059sPASS. Post-copy final typecheck130.517s/full lint216.273sPASS. First full2failed/18053passed/2existing opt-in skips: only stale exact translation expectations, corrected without source or assertion weakening; reduced22/2filesPASS. Fresh full retry passes18055tests/828files/2existing opt-in skips865.538s. Required raw evidence and all initial failures remain retained.",
+  "limits": [
+    "No independent design/review/QA approval",
+    "No earned all-class builds, pacing/balance or campaign credit",
+    "No full private-v1 completion",
+    "Browser numerical targeting causal proof is supplied separately by native engine regression; cast/chip alone is not credited as mechanic proof",
+    "The two pre-existing skipped tests opt into genuine fresh-campaign economy/continuation; no campaign simulation enabled or campaign/replay action taken."
+  ],
+  "materialFindings": [],
+  "initialVisualPrecheck": {
+    "individuallyViewed": [
+      "target-curses-mobile-confuse-en-confuse-preview-viewport.png",
+      "target-curses-mobile-confuse-en-confuse-current-stats.png",
+      "target-curses-desktop-confuse-en-confuse-preview-viewport.png"
+    ],
+    "observations": [
+      "Mobile current-stat crop is readable: Current, mana8, cooldown3s, duration3s, Applies Confuse.",
+      "Mobile full viewport shows readable Confuse/MAX/description; lower content continues behind bottom navigation and requires scrolling.",
+      "Desktop full viewport shows current mana/cooldown/duration but also a blank rectangular region at the right. It does not prove unobscured full-panel visual acceptance.",
+      "Unrelated navigation/skill-node glyph boxes remain visible."
+    ],
+    "scope": "Historical initial run only, preserved as observed. Later finalBrowser and visual-review.json supersede this incomplete initial precheck; all24final originals individually inspected. No broad UX/a11y/performance approval inferred."
+  },
+  "finalBrowser": {
+    "head": "6d4f5009",
+    "cases": 8,
+    "seconds": 574.059,
+    "savePairs": 16,
+    "domainsEach": 7,
+    "offlineContinues": 8,
+    "geometryChecks": 40,
+    "individuallyInspectedScreenshots": 24,
+    "pageErrors": [],
+    "consoleErrorsWarnings": [],
+    "visualLimits": [
+      "Mobile long descriptions and remaining stats need scrolling; whole panel is not simultaneously visible.",
+      "All victory-labelled screenshots are battlefield viewport crops; actual victory/return is asserted separately through public DOM flow.",
+      "Unrelated pre-existing navigation/skill-node glyph boxes remain visible.",
+      "Initial desktop capture contained a blank rectangle; it is not observed in any of the final desktop preview captures.",
+      "Causal targeting is proved by exact native combat regressions, separately from public cast/chip observations."
+    ]
+  },
+  "evidenceReview": {
+    "localVerdict": "ADEQUATE for bounded local functionality; inventory disposition additionally requires retained/read-back-verified raw evidence and exact cleanup receipts",
+    "independentAcceptance": "incomplete; no independent reviewer/design/QA approval",
+    "automatedCriteria": "Native numeric/cost/authority/recipient/lifecycle assertions and browser public interaction/seven-domain/offline/geometry checks reviewed. Browser markers are separate from numerical targeting proof.",
+    "visualCriteria": "All24final original images inspected with explicit mobile scroll and battlefield-only victory-crop limits."
+  },
+  "combinedUnitSuite": {
+    "passedTests": 18055,
+    "passedFiles": 828,
+    "existingOptInSkips": 2,
+    "commandDurationSeconds": 865.538,
+    "exitCode": 0,
+    "logSha256": "48d5fb5ee5e2fc961f09bd6de05b3e3705afdc2747f32bd281f0456b7b3481d1"
+  },
+  "finalAudit": {
+    "head": "5beee2db7f6c8ef3e03219da589dd1f2739718be",
+    "featureSourceFiles": 25,
+    "verifiedInputFiles": 1632,
+    "commands": 68,
+    "buildFilesEach": 762,
+    "browserCases": 8,
+    "screenshots": 24,
+    "savePairs": 16,
+    "geometryChecks": 40,
+    "inventoryUnchanged": true,
+    "genuineSaveUnchanged": true
+  }
+}

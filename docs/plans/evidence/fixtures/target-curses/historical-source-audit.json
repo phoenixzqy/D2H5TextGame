@@ -1,0 +1,29 @@
+{
+  "stages": [
+    {
+      "stage": "foundation",
+      "head": "9bc03a222ca045dc9d66f9a5830b0b909f580ccc",
+      "verifiedBlobs": 4
+    },
+    {
+      "stage": "status",
+      "head": "a6b9c101dd9248065fd9498b57aa17d86bac7a63",
+      "verifiedBlobs": 4
+    },
+    {
+      "stage": "payment",
+      "head": "7bacc9161930683872aba5ac254aed1c1c349bed",
+      "verifiedBlobs": 4
+    },
+    {
+      "stage": "runtime",
+      "head": "e636b8feda324a6f79a0d624586c1f6fd1c3e51a",
+      "verifiedBlobs": 14
+    },
+    {
+      "stage": "presentation",
+      "head": "da771f1290fcde7a1b192f4fbc3b18ed44c53fe4",
+      "verifiedBlobs": 6
+    }
+  ]
+}

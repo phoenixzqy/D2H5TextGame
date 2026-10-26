@@ -1,0 +1,13 @@
+{
+  "head": "5beee2db7f6c8ef3e03219da589dd1f2739718be",
+  "featureSourceFiles": 25,
+  "verifiedInputFiles": 1632,
+  "commands": 68,
+  "buildFilesEach": 762,
+  "browserCases": 8,
+  "screenshots": 24,
+  "savePairs": 16,
+  "geometryChecks": 40,
+  "inventoryUnchanged": true,
+  "genuineSaveUnchanged": true
+}
