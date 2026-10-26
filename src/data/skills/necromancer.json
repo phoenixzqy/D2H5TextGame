@@ -676,6 +676,10 @@
     "appliesStatus": [
       "bone-prison"
     ],
+    "statusEffect": {
+      "durationMs": 2000,
+      "bossDurationMultiplier": 0.5
+    },
     "scaling": {
       "cooldownPerLevel": -0.05,
       "costPerLevel": -0.2

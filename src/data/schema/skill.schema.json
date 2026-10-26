@@ -9,6 +9,97 @@
   "allOf": [
     {
       "if": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "const": "skills-necromancer-bone-prison"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "prerequisites",
+          "cost",
+          "scaling",
+          "appliesStatus",
+          "statusEffect"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 24
+          },
+          "prerequisites": {
+            "const": [
+              "skills-necromancer-bone-wall"
+            ]
+          },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "all-enemies"
+          },
+          "cooldown": {
+            "const": 4
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "cost": {
+            "const": {
+              "mana": 27
+            }
+          },
+          "scaling": {
+            "const": {
+              "cooldownPerLevel": -0.05,
+              "costPerLevel": -0.2
+            }
+          },
+          "appliesStatus": {
+            "const": [
+              "bone-prison"
+            ]
+          },
+          "damage": false,
+          "damageType": false,
+          "summon": false,
+          "summonId": false,
+          "effects": false,
+          "timedBuff": false,
+          "statusEffect": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "durationMs",
+              "bossDurationMultiplier"
+            ],
+            "properties": {
+              "durationMs": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 60000,
+                "description": "Finite paid non-spatial action trap duration before boss reduction."
+              },
+              "bossDurationMultiplier": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1,
+                "description": "Boss and chapter-boss action trap duration factor."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
         "properties": {
           "id": {
             "const": "skills-necromancer-poison-dagger"
