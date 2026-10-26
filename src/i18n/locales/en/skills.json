@@ -895,7 +895,7 @@
     },
     "weaken": {
       "name": "Weaken",
-      "desc": "Reduces enemy damage output."
+      "desc": "Curses all living enemies for {{duration}}, reducing outgoing direct damage by {{reduction}}% before resistance and flat mitigation. AttackSpeed and existing damage-over-time rates stay unchanged. Pays {{mana}} MP and starts a {{cooldown}} s cooldown. Refreshes without stacking."
     },
     "iron-maiden": {
       "name": "Iron Maiden",
