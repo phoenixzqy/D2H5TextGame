@@ -1,6 +1,7 @@
 import { createSkillValidator } from './skill-validator';
 import skills from '../../data/skills/barbarian.json';
 import type { SkillDef } from '../types/skills';
+import { effectiveLearnedSkillRank } from './effective-rank';
 
 /** The only supported authored/canonical identities for this passive group. */
 export const BARBARIAN_ENDURANCE_IDENTITIES = {
@@ -55,12 +56,13 @@ export function resolveBarbarianEnduranceRank(key: PassiveKey, levels?: Readonly
 
 /** Fresh player-only modifiers. Resistance uses percentage points; dodge uses fractions. */
 export function composeBarbarianEndurance(input: { readonly classId: string; readonly level: number;
-  readonly skillLevels?: Readonly<Record<string, number>> },
+  readonly skillLevels?: Readonly<Record<string, number>>; readonly temporarySkillRankBonus?: number },
   definitions: BarbarianEnduranceDefinitions = BARBARIAN_ENDURANCE_DEFINITIONS) {
   const bonus = (key: PassiveKey, stat: typeof statKeys[number]): number => {
     const definition = definitions[key];
     if (input.classId !== 'barbarian' || !Number.isFinite(input.level) || input.level < definition.requiredLevel) return 0;
-    return resolveBarbarianEnduranceRank(key, input.skillLevels, definitions) * definition.perRank[stat];
+    return effectiveLearnedSkillRank(resolveBarbarianEnduranceRank(key, input.skillLevels, definitions),
+      input.temporarySkillRankBonus) * definition.perRank[stat];
   };
   return Object.freeze({
     lifeMultiplier: 1 + bonus('stamina', 'lifePct'),

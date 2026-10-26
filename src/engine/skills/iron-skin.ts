@@ -1,6 +1,7 @@
 import { createSkillValidator } from './skill-validator';
 import barbarianSkills from '../../data/skills/barbarian.json';
 import type { SkillDef } from '../types/skills';
+import { effectiveLearnedSkillRank } from './effective-rank';
 
 /** Independent authored unlock and potency for the player Iron Skin passive. */
 export interface IronSkinDefinition {
@@ -42,4 +43,12 @@ export function resolveIronSkinRank(
     }
   }
   return rank;
+}
+
+/** Native eligibility stays separate from a temporary increase in learned potency. */
+export function composeIronSkinRank(input: { readonly classId: string; readonly level: number;
+  readonly skillLevels?: Readonly<Record<string, number>>; readonly temporarySkillRankBonus?: number },
+  definition: IronSkinDefinition = IRON_SKIN_DEFINITION): number {
+  if (input.classId !== 'barbarian' || !Number.isFinite(input.level) || input.level < definition.requiredLevel) return 0;
+  return effectiveLearnedSkillRank(resolveIronSkinRank(input.skillLevels, definition), input.temporarySkillRankBonus);
 }

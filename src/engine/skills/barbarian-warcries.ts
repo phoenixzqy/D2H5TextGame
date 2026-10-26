@@ -1,6 +1,7 @@
 import skills from '../../data/skills/barbarian.json';
 import type { SkillDef } from '../types/skills';
 import { createSkillValidator } from './skill-validator';
+import { effectiveLearnedSkillRank } from './effective-rank';
 
 /** Exact allocation identities; no item grants or inferred combo ranks. */
 export const BARBARIAN_WARCRY_IDENTITIES = {
@@ -50,10 +51,11 @@ export function resolveBarbarianWarcryRank(key: WarcryKey, levels?: Readonly<Rec
 
 /** Additive personal bonuses, composed once over fresh equipment/quest baselines. */
 export function composeBarbarianWarcries(input: { readonly classId: string; readonly level: number;
-  readonly skillLevels?: Readonly<Record<string, number>> },
+  readonly skillLevels?: Readonly<Record<string, number>>; readonly temporarySkillRankBonus?: number },
   definitions: BarbarianWarcryDefinitions = BARBARIAN_WARCRY_DEFINITIONS) {
   const rank = (key: WarcryKey): number => input.classId === 'barbarian' && Number.isInteger(input.level) &&
-    input.level >= definitions[key].requiredLevel ? resolveBarbarianWarcryRank(key, input.skillLevels, definitions) : 0;
+    input.level >= definitions[key].requiredLevel ? effectiveLearnedSkillRank(
+      resolveBarbarianWarcryRank(key, input.skillLevels, definitions), input.temporarySkillRankBonus) : 0;
   const shout = rank('shout'), orders = rank('orders');
   return Object.freeze({ defenseBonus: shout * definitions.shout.perRank.defensePct,
     lifeBonus: orders * definitions.orders.perRank.lifePct,

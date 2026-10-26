@@ -21,6 +21,16 @@ const reset = () => {
 beforeEach(reset); afterEach(reset);
 
 describe('Barbarian endurance passives at the native hero boundary', () => {
+  it('does not treat an imported temporary rank field as paid combat authority', () => {
+    const player = hero({ skillLevels: { 'barbarian.increased_stamina': 20,
+      'barbarian.increased_speed': 20, 'barbarian.natural_resistance': 20,
+      'barbarian.shout': 20, 'barbarian.battle_orders': 20, 'barbarian.iron_skin': 20 } });
+    const imported = { ...player, temporarySkillRankBonus: 1 };
+    const before = structuredClone(imported);
+    expect(playerToCombatUnit(imported)).toEqual(playerToCombatUnit(player));
+    expect(imported).toEqual(before);
+  });
+
   it.each([1, 20])('Increased Stamina rank%s increases fresh combat max life without healing', rank => {
     const plain = playerToCombatUnit(hero());
     const learned = playerToCombatUnit(hero({ skillLevels: { 'barbarian.increased_stamina': rank } }));

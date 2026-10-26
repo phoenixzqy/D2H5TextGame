@@ -87,15 +87,12 @@ import { activeStatAura, composeStatAura } from '@/engine/skills/stat-auras';
 import { activeDruidAllyAuras, composeDruidAllyAuras } from '@/engine/skills/druid-ally-auras';
 import { composeSpiritOfBarbs } from '@/engine/skills/spirit-of-barbs';
 import { withoutTemporaryLifeCapacity } from '@/engine/combat/life-capacity';
-import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
+import { composeBarbarianPassives } from '@/engine/skills/barbarian-passives';
 import { composeBoneArmor } from '@/engine/skills/bone-armor';
 import { composeEnergyShield } from '@/engine/skills/energy-shield';
 import { composeConversionRank } from '@/engine/skills/conversion';
 import { composeHolyShieldRank, refreshHolyShieldState } from '@/engine/skills/holy-shield';
 import { composeCycloneArmorRank, refreshCycloneArmorState } from '@/engine/skills/cyclone-armor';
-import { composeBarbarianEndurance } from '@/engine/skills/barbarian-endurance';
-import { composeBarbarianWarcries } from '@/engine/skills/barbarian-warcries';
-import { composeBarbarianWeaponMasteries } from '@/engine/skills/barbarian-weapon-masteries';
 import { composeDamageMasteries } from '@/engine/skills/damage-masteries';
 import { isDualWielding } from '@/engine/items/equipped-weapon';
 import { composeAssassinShadowPassives, composeAssassinVenom } from '@/engine/skills/assassin-shadow';
@@ -200,25 +197,20 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
   const map = useMapStore.getState();
   const freshStats = deriveEquippedPlayerStats(player, player.level, equipped, map.questProgress,
     useInventoryStore.getState().questItems, map.questReceipts);
-  const ironSkinRank = player.class === 'barbarian' && Number.isFinite(player.level) &&
-    player.level >= IRON_SKIN_DEFINITION.requiredLevel ? resolveIronSkinRank(player.skillLevels) : 0;
+  const { endurance, mastery, warcries, ironSkinDefenseBonus } = composeBarbarianPassives({
+    classId: player.class, level: player.level, ...equippedWeapon,
+    ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const amazon = composeAmazonPassives({ classId: player.class, level: player.level,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const assassin = composeAssassinWeaponPassives({ classId: player.class, level: player.level,
     ...equippedWeapon, dualWielding: isDualWielding(equipped),
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
-  const endurance = composeBarbarianEndurance({ classId: player.class, level: player.level,
-    ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
-  const mastery = composeBarbarianWeaponMasteries({ classId: player.class, level: player.level,
-    ...equippedWeapon, ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const physicalDamagePct = mastery.physicalDamagePct + amazon.physicalDamagePct;
   const damageMasteries = composeDamageMasteries({ classId: player.class, level: player.level,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const shadow = composeAssassinShadowPassives(player);
   const energyShield = composeEnergyShield(player);
   const allResistanceBonus = endurance.resistAllBonus + shadow.resistAllBonus;
-  const warcries = composeBarbarianWarcries({ classId: player.class, level: player.level,
-    ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const lifeMax = freshStats.lifeMax * (endurance.lifeMultiplier + warcries.lifeBonus);
   const stats = { ...freshStats,
     lifeMax,
@@ -233,7 +225,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
       lightning: freshStats.resistances.lightning + allResistanceBonus,
       arcane: freshStats.resistances.arcane + allResistanceBonus,
       poison: freshStats.resistances.poison + allResistanceBonus },
-    defense: freshStats.defense * (1 + IRON_SKIN_DEFINITION.defensePctPerRank * ironSkinRank + warcries.defenseBonus),
+    defense: freshStats.defense * (1 + ironSkinDefenseBonus + warcries.defenseBonus),
     life: Math.min(player.derivedStats.life, lifeMax),
     mana: Math.min(player.derivedStats.mana, freshStats.manaMax) };
   const recovery = composeHeroRecovery({ classId: player.class, level: player.level,

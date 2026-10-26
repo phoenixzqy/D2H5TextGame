@@ -2,6 +2,7 @@ import { createSkillValidator } from './skill-validator';
 import skills from '../../data/skills/barbarian.json';
 import type { SkillDef } from '../types/skills';
 import type { WeaponType } from '../types/items';
+import { effectiveLearnedSkillRank } from './effective-rank';
 
 /** Exact authored/canonical identities; equipment requirements remain in JSON. */
 export const BARBARIAN_WEAPON_MASTERY_IDENTITIES = {
@@ -67,14 +68,16 @@ export function resolveBarbarianWeaponMasteryRank(key: MasteryKey, levels?: Read
 
 /** Player-only fresh-wave bonuses for the matching canonical weapon snapshot. */
 export function composeBarbarianWeaponMasteries(input: { readonly classId: string; readonly level: number;
-  readonly weaponType?: WeaponType; readonly skillLevels?: Readonly<Record<string, number>> },
+  readonly weaponType?: WeaponType; readonly skillLevels?: Readonly<Record<string, number>>;
+  readonly temporarySkillRankBonus?: number },
   definitions: BarbarianWeaponMasteryDefinitions = BARBARIAN_WEAPON_MASTERY_DEFINITIONS
 ): { readonly physicalDamagePct: number; readonly critChanceBonus: number; readonly attackSpeedMultiplier: number } {
   if (input.classId === 'barbarian' && Number.isFinite(input.level)) {
     for (const key of BARBARIAN_WEAPON_MASTERY_KEYS) {
       const definition = definitions[key];
       if (input.weaponType !== definition.weaponType || input.level < definition.requiredLevel) continue;
-      const rank = resolveBarbarianWeaponMasteryRank(key, input.skillLevels, definitions);
+      const rank = effectiveLearnedSkillRank(resolveBarbarianWeaponMasteryRank(key, input.skillLevels, definitions),
+        input.temporarySkillRankBonus);
       return Object.freeze({ physicalDamagePct: rank * definition.physicalDamagePctPerRank,
         critChanceBonus: rank * definition.critChancePctPerRank,
         attackSpeedMultiplier: 1 + rank * definition.attackSpeedPctPerRank });
