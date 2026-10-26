@@ -580,6 +580,9 @@
     "appliesStatus": [
       "poison"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.05
+    },
     "appliesTags": [
       "poison"
     ],

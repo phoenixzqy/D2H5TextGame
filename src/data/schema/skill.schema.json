@@ -8,6 +8,39 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-necromancer-poison-dagger"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "statusEffect"
+        ],
+        "properties": {
+          "statusEffect": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "dotPctOfDamage"
+            ],
+            "properties": {
+              "dotPctOfDamage": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Poison Dagger requires a positive periodic fraction of its final direct hit."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-necromancer-confuse" } } },
       "then": {
         "required": ["requiredLevel", "prerequisites", "cost", "scaling", "appliesStatus", "statusEffect"],
