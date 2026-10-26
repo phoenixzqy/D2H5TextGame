@@ -1019,6 +1019,10 @@ function StatSection({
             <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.weaken.durationSeconds })} />
             <StatLine label={t('details.warcryDamageReduction')} value={t('details.percentValue', { value: stats.weaken.damageReductionPercent })} />
           </> : null}
+          {stats.dimVision ? <>
+            <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.dimVision.durationSeconds })} />
+            <StatLine label={t('details.cloakBlindPenalty')} value={t('details.cloakBlindPenaltyValue', { points: stats.dimVision.physicalHitChanceReductionPoints })} />
+          </> : null}
           {stats.statuses.includes('terror') && stats.control ? <>
             <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.control.durationSeconds })} />
             <StatLine label={t('details.bossEffectDuration')} value={t('details.seconds', { seconds: stats.control.bossDurationSeconds })} />
@@ -1064,6 +1068,7 @@ function StatSection({
                   ? t('necromancer.amplify-damage.name')
                   : id === 'decrepify' ? t('necromancer.decrepify.name')
                   : id === 'weaken' ? t('necromancer.weaken.name')
+                  : id === 'dim-vision' ? t('necromancer.dim-vision.name')
                   : id === 'terror' ? t('necromancer.terror.name')
                   : id === 'iron-maiden' || id === 'life-tap' || id === 'lower-resist' ? t('necromancer.' + id + '.name')
                   : id === 'burst-of-speed' ? t('assassin.burst-of-speed.name')
@@ -1777,6 +1782,12 @@ function dynamicDescription(
     return t('necromancer.weaken.desc', {
       duration: t('details.seconds', { seconds: stats.weaken.durationSeconds }),
       reduction: stats.weaken.damageReductionPercent, mana: stats.manaCost, cooldown: stats.cooldown
+    });
+  }
+  if (skill.id === 'skills-necromancer-dim-vision' && stats?.dimVision) {
+    return t('necromancer.dim-vision.desc', {
+      duration: t('details.seconds', { seconds: stats.dimVision.durationSeconds }),
+      penalty: stats.dimVision.physicalHitChanceReductionPoints, mana: stats.manaCost, cooldown: stats.cooldown
     });
   }
   if (skill.id === 'skills-necromancer-terror' && stats?.control) {

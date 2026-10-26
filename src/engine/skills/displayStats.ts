@@ -16,6 +16,7 @@ import { CHILL_DEFINITION } from '../combat/chill-definition';
 import { paidBattleCry } from '../combat/warcry-definition';
 import { isDecrepifyDefinition, resolveDecrepifyDefinition } from '../combat/decrepify-definition';
 import { isWeakenDefinition, resolveWeakenDefinition } from '../combat/weaken-definition';
+import { isDimVisionDefinition, resolveDimVisionDefinition } from '../combat/dim-vision-definition';
 import { isTerrorDefinition, resolveTerrorDefinition } from '../combat/terror-definition';
 import { resolveDamageCurseDefinition, type DamageCurseId } from '../combat/damage-curse-definition';
 import { MANA_BURN_DEFINITION } from '../combat/mana-burn-definition';
@@ -210,6 +211,8 @@ export interface SkillRankDisplayStats {
     readonly damageReductionPercent: number };
   /** Complete finite outgoing direct-damage curse, independent of action speed. */
   readonly weaken?: { readonly durationSeconds: number; readonly damageReductionPercent: number };
+  /** Paid finite Physical/Thorns accuracy penalty in percentage points. */
+  readonly dimVision?: { readonly durationSeconds: number; readonly physicalHitChanceReductionPoints: number };
   /** One validated finite paid reflection, healing, or resistance curse. */
   readonly damageCurse?: { readonly id: DamageCurseId; readonly durationSeconds: number; readonly percent: number };
   /** Paid personal Defense interval and Attack converted into an Arcane hit. */
@@ -575,6 +578,8 @@ export function computeSkillRankDisplayStats(
     ? resolveDecrepifyDefinition([skill]) : undefined;
   const weaken = skill.id === 'skills-necromancer-weaken' && isWeakenDefinition(skill)
     ? resolveWeakenDefinition([skill]) : undefined;
+  const dimVision = skill.id === 'skills-necromancer-dim-vision' && isDimVisionDefinition(skill)
+    ? resolveDimVisionDefinition([skill]) : undefined;
   const terror = skill.id === 'skills-necromancer-terror' && isTerrorDefinition(skill)
     ? resolveTerrorDefinition([skill]) : undefined;
   const damageCurse = resolveDamageCurseDefinition(skill);
@@ -727,6 +732,8 @@ export function computeSkillRankDisplayStats(
       damageReductionPercent: decrepify.damageReductionPct } } : {}),
     ...(weaken ? { weaken: { durationSeconds: weaken.durationMs / 1000,
       damageReductionPercent: weaken.damageReductionPct } } : {}),
+    ...(dimVision ? { dimVision: { durationSeconds: dimVision.durationMs / 1000,
+      physicalHitChanceReductionPoints: dimVision.physicalHitChanceReductionPct } } : {}),
     ...(damageCurse ? { damageCurse: { id: damageCurse.id, durationSeconds: damageCurse.durationMs / 1000,
       percent: damageCurse.percent } } : {}),
     ...(['skills-barbarian-howl', 'skills-barbarian-taunt', 'skills-barbarian-battle-cry'].includes(skill.id) ? {

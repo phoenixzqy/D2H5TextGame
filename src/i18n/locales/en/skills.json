@@ -896,7 +896,7 @@
     },
     "dim-vision": {
       "name": "Dim Vision",
-      "desc": "Blinds enemies, preventing them from seeing the caster."
+      "desc": "Blinds all living enemies for {{duration}}, reducing Physical / thorns hit chance by {{penalty}} percentage points (5% minimum). Successful-hit damage, magical accuracy and existing damage-over-time rates stay unchanged. With Raven Blind, only the stronger penalty applies. Pays {{mana}} MP; {{cooldown}} s cooldown."
     },
     "weaken": {
       "name": "Weaken",
