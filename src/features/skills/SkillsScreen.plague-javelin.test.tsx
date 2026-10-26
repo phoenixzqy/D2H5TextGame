@@ -55,4 +55,12 @@ for (const locale of ['en', 'zh-CN'] as const) {
       : ['等级 20/20', '已达到最高等级。', '87～107 点毒素基础伤害', '25 点法力', '2 秒冷却'])
       expect(panel).toHaveTextContent(phrase);
   });
+  it(`translates both applied status labels (${locale})`, async () => {
+    const panel = await arrange(locale, 1);
+    const current = within(panel).getByRole('heading', { name: locale === 'en' ? /^Current$/ : /^当前$/ });
+    const section = current.parentElement;
+    if (!section) throw new Error('Missing current stats');
+    const label = within(section).getByText(locale === 'en' ? 'Applies' : '附加', { exact: true });
+    expect(label.parentElement?.querySelector('dd')).toHaveTextContent(locale === 'en' ? 'Poisoned, Plague' : '中毒, 瘟疫');
+  });
 }
