@@ -97,6 +97,7 @@ it('uses a real first kill before the first native Poison Explosion and pays ord
   expect(engineInput.poisonExplosion).toEqual([{ sourceHeroId: player().id, rank: 1 }]);
   const cast = required(events.find(e => e.kind === 'action' && e.actor === player().id && e.skillId === PE));
   const castIndex = events.indexOf(cast), firstDeath = required(deaths[0]);
+  if (firstDeath.kind !== 'death') throw new Error('Missing first native death');
   expect(events.indexOf(firstDeath)).toBeLessThan(castIndex);
   expect(deaths.filter(e => events.indexOf(e) < castIndex).length).toBeLessThan(engineInput.enemyTeam.length);
   expect(events.filter(e => e.kind === 'action' && e.actor === player().id)[0])
@@ -110,13 +111,19 @@ it('uses a real first kill before the first native Poison Explosion and pays ord
   expect(events.slice(castIndex + 1).find(e => e.kind === 'message'))
     .toMatchObject({ messageKey: 'combat:corpses.consumedPoison', params: { count: 0 } });
   expect(events.some(e => e.kind === 'status' && e.statusId === 'poison' && e.simClockMs === cast.simClockMs)).toBe(true);
-  // The seed7 survivor dodges the direct hit, then inherits damaging Poison
-  // from the real lethal-hit spread. Dagger's marker has no potency of its own.
+  // Dagger's damaging Poison spreads on the first kill at6000ms. Its1HP/s
+  // settles1HP at7500ms before PE's dodged direct hit and further death spread.
   const recipient = required(events.find(e => e.kind === 'damage' && e.source === player().id &&
     e.simClockMs === cast.simClockMs && e.dodged));
   if (recipient.kind !== 'damage') throw new Error('Missing native spread recipient');
+  expect(events.slice(0, castIndex).find(e => e.kind === 'status-state' && e.target === recipient.target &&
+    e.statuses.some(status => status.id === 'poison' && (status.dotPerStack ?? 0) > 0)))
+    .toMatchObject({ simClockMs: 6000, statuses: [{ id: 'poison', stacks: 1,
+      sourceId: firstDeath.target, dotPerStack: 1, appliedAtMs: 6000, expiresAtMs: 11000 }] });
+  expect(events.slice(0, castIndex).filter(e => e.kind === 'dot' && e.target === recipient.target))
+    .toEqual([expect.objectContaining({ simClockMs: 7500, amount: 1 })]);
   expect(events.filter(e => e.kind === 'dot' && e.target === recipient.target)
-    .map(e => e.kind === 'dot' ? [e.simClockMs, e.amount] : null)).toEqual([[7700, 2], [9000, 13]]);
+    .map(e => e.kind === 'dot' ? [e.simClockMs, e.amount] : null)).toEqual([[7500, 1], [7700, 2], [9000, 13]]);
   expect(recording.outcome.finalEnemyTeam.map(u => u.id)).toEqual(engineInput.enemyTeam.map(u => u.id));
   expect(recording.outcome.finalEnemyTeam.every(u => u.life === 0)).toBe(true);
   expect(events.some(e => e.kind === 'damage' && e.source === player().id &&
