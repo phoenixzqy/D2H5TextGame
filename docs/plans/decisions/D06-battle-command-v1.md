@@ -1,7 +1,9 @@
 # D06 — Paid Battle Command party ranks
 
-Status: provisional author contract for BUG241. Implementation and independent
-design/QA/balance acceptance remain open. This document grants no skill credit.
+Status: provisional author contract for BUG241; local implementation and scoped
+verification complete through3e8221f9. Independent design/QA/earned balance
+acceptance remains open. [Delivery evidence](../evidence/d06-battle-command-ui.md)
+records the one bounded-functional inventory credit and its limits.
 
 ## Overview
 

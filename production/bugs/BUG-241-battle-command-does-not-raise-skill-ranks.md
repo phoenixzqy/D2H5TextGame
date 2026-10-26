@@ -1,6 +1,6 @@
 # BUG-241 — Apply Battle Command skill levels to caster and allies
 
-- Status: paid party/passive/corpse/carry increments locally repaired and verified; complete skill acceptance open; no bounded skill credit.
+- Status: locally repaired and verified, including native equipped consumers and bilingual production save/offline UI; bounded-functional credit added; independent/earned acceptance open.
 - Severity: High — the advertised skill-rank benefit has no working consumer.
 - Owner: root, engine/native composition/data/UI; independent design/QA open.
 - Reproduced head: `775fc1aa`; Node24.21.0, pure engine, no browser viewport.
@@ -86,3 +86,28 @@ locale and no positive Command classification in CombatScreen; current generic
 details also omit finite duration. These gaps are recorded before their repair.
 Root author review is not independent/earned/balance acceptance. Genuine
 campaign state and the148bounded skill inventory remain unchanged.
+
+Production screenshot review of the current UI increment found an additional
+presentation gap before repair: the zh-CN skill detail's generic Applies row
+humanizes `battle-command` into English `Battle Command`, despite the localized
+heading and description. Add a localized-row regression, use the existing
+combat status key, then repeat the affected browser proof before skill credit.
+
+## Final local contract verification
+
+Presentation`90687c08` and equipped/browser`3e8221f9` complete the missing
+local contract proof. Current/next/MAX+1 and durations, positive localized
+party chips/logs and corrected Chinese Applies names agree. Eight native
+equipped controls prove boosted Fire Bolt/Blaze/Chain Lightning and unchanged
+fixed Redemption. Production en/zh-CN desktop/mobile4/4 proves party/carry/
+same-wave living-recipient expiry, eight exact six-domain save pairs and four
+actual offline Continues. Full17075/772/two existing skips, types/lint/build/
+precache/bridge pass; all1367 committed source blobs match frozen tested bytes.
+
+[Evidence](../../docs/plans/evidence/d06-battle-command-ui.md) links all prior
+paid/passive/corpse/carry proofs and raw diagnostic retention. BUG242's separate
+precache repair preserves the cache guard. Battle Command alone gains local
+bounded-functional credit; inventory149bounded/62unverified/one engine-only/
+one review-needed. Historical pending statements above describe earlier
+increments. Independent design/QA, earned builds and balance remain open;
+no genuine campaign or remote action occurred.

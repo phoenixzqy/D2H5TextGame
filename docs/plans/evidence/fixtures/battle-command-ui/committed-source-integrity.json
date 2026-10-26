@@ -1,0 +1,11 @@
+{
+  "head": "3e8221f90ba44436f65c841b1e9b53f13746d53f",
+  "testedManifest": "source-final-v2.json",
+  "verifiedCommittedBlobs": 1367,
+  "mismatches": [],
+  "commits": [
+    "3e8221f90ba44436f65c841b1e9b53f13746d53f test(skills): verify Command equipped consumers and offline saves",
+    "90687c083fd300f51069cda0ab7e3366f9c31cc8 fix(ui): explain and localize paid Battle Command party ranks",
+    "664f8ea416fe53317fd6e66c666074d8ec03df58 fix(pwa): keep static game data below the precache limit"
+  ]
+}

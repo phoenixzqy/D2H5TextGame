@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D06 Battle Command complete local contract / BUG241 and offline precache / BUG242 | locally repaired/verified; independent and earned acceptance open | Build`664f8ea4`, presentation`90687c08`, equipped/browser`3e8221f9`: authored+1/duration/current-next/MAX; localized positive party/log/Applies names; eight actual equipped controls; bilingual desktop/mobile4/4, eight exact six-domain save pairs/four actual offline Continues/20geometry/eight final screenshots inspected.25new tests; engine8478/316, full17075/772/two existing skips, types/lint/build/precache/bridge PASS.1367frozen committed blobs/both762-file builds/genuine exact. [Evidence](evidence/d06-battle-command-ui.md). Exactly one credit:149bounded/62unverified/one engine-only/one review-needed; Barbarian30/30,212other raw rows exact.144raw archive members byte-verified;3286exact task files/72directories cleaned,31identities absent/no runtime users/4523closed,remaining[]/failures[]. Mobile capture and official/tested vendor emission limits explicit. GenuineL33/next402/Baal uncleared and C2-C4/fullG0-G7/privatev1 remain unfinished. |
 | D06 Battle Command qualified native carry / BUG241 | locally fixed/verified increment; complete skill unfinished | `9a4433f2`: private paid intervals rebased at actual terminal clock; exact result-array/clock transfer, fresh learned/passive authority, initial status prefix, final HP layers and deterministic retry/replay.26new tests; focused74/5 plus playback8/1, engine8471/315, full17050/768/two existing skips, types/lint/build/755-URL precache/bridge PASS.1361source/committed blobs and protected hashes exact. [Evidence](evidence/d06-battle-command-carry.md).52raw members verified;593exact files/eight directories cleaned,17recorded identities/no runtime users,remaining[]/failures[]. Reachable equipped consumers, bilingual feedback/details and production save/offline/mobile proof remain open; no skill credit. Inventory148bounded/63unverified/one engine-only/one review-needed; genuineL33/next402/Baal uncleared and C2-C4/fullG0-G7/privatev1 unchanged. |
 | D06 Battle Command passive/corpse potency / BUG241 | locally fixed/verified increment; full skill unfinished | Source`2cb8d1e1` over paid-party`5e7f0e96`: fresh baseline/+1 native passive profiles, paid cast/expiry resources/recovery/phase and final layered HP; shared corpse effective ranks with strict captured Find Item settlement.33new tests; focused385/15, engine8453/314, full17024/766/two existing skips, types/lint/build/precache/bridge PASS. All1358collected paths/committed blobs and protected hashes exact. [Evidence](evidence/d06-battle-command-passives-corpses.md). Corrected earlier skipped inert-action control with actual matched paid actions/debits.43raw members byte-verified;583exact scratch files/seven directories cleaned,12recorded identities/no runtime users,remaining[]/failures[]. Qualified remaining-interval carry, other consumers, bilingual details, production save/offline/mobile proof and independent/earned acceptance remain open; no Battle Command credit. Inventory148bounded/63unverified/one engine-only/one review-needed, Barbarian29/30; genuineL33/next402/Baal uncleared and C2-C4/fullG0-G7/privatev1 unchanged. |
 | D06 temporary effective ranks / BUG241 dependency | rank/composition increment locally verified; actual Battle Command unfinished | `318ed060`: learned authority remains separate from temporary potency, including20->21; one native Barbarian passive projection preserves baseline stat arithmetic and ignores imported bonus fields.57new tests; engine8406/313, full16932/762/two existing skips, final types/lint/build/precache/bridge PASS. [Evidence](evidence/d06-temporary-skill-ranks.md). Raw35member archive verified; exact1336files/17directories cleaned,10process identities absent, scratch absent,remaining[]/failures[]. Inventory stays148bounded/63unverified/one engine-only/one review-needed, Barbarian29/30. Paid party buff, active/specialist/corpse ranks, passive lifecycle/resources, snapshots/wave carry, UI/browser saves and independent/earned acceptance remain open. GenuineL33/next402/Baal uncleared unchanged; C2-C4/fullG0-G7/privatev1 remain unfinished. |
@@ -12687,3 +12688,35 @@ Carry evidence was committed in25edc7d6 before this ledger update: an exact
 Markdown-table guard refused a duplicate generic separator before ledger or bug
 edits. The follow-up uses the unique complete Current cards header. No gameplay
 source or validation evidence changed during that documentation correction.
+
+## 2026-10-26 — Battle Command local contract and precache delivery
+
+The previous status turn collected the terminal full-suite result; this continuation
+verifies all1367 frozen paths, original HEAD/porcelain, both762-file builds, all
+eight screenshots and protected inventory/genuine hashes. Source is committed as
+`664f8ea4` build, `90687c08` presentation and `3e8221f9` equipped/browser proof;
+all1367 committed source blobs match tested bytes. Full17075/772/two existing
+skips (735.92s Vitest/737.429s process), engine8478/316, types/lint/build/precache/
+bridge and final production4/4 pass. No source/check/limit weakening.
+
+Only Battle Command gains bounded-functional credit:149bounded/62unverified/
+one engine-only/one review-needed; Barbarian30/30. All213IDs/order and212other
+raw rows remain exact. BUG241 is locally repaired/verified under its provisional
+author contract; independent design/QA, earned builds and balance remain open.
+BUG242 separates eager static data from the entry without raising Workbox's
+2MiB limit. Both actual756-URL precaches pass; official/tested validation-vendor
+emission differs, so no binary-equivalence or proven-cause claim. Existing
+bundle/optional-art/test-runtime budgets and mobile screenshot limits remain.
+
+[Evidence](evidence/d06-battle-command-ui.md) retains144byte-verified raw archive
+members;3286exact task files/72directories cleaned,31recorded identities absent,
+no runtime users,4523closed,scratch/dist absent,remaining[]/failures[]. Four exact
+retained archive/receipt/manifest paths and root's removal condition are recorded.
+
+GenuineL33/XP149261/nextNormal402/Nightmare0/Ancients-Rite claimed/Baal uncleared
+remains exact. No genuine campaign/replay or remote action. C0/C1 retain limited
+historical acceptance; C2underway,C3/C4/fullG0-G7/all-class earned builds/
+30-50hour pacing/economy/endgame/privatev1 unfinished. Umbrella worktree/branch/
+claim stay active. Next: bounded Necromancer direct-spell investigation and
+causal/native/bilingual verification; no new skill is credited by existing
+JSON/schema tests alone.

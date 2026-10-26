@@ -1,0 +1,17 @@
+{
+  "beforeSha256": "6dc926ba2027915a0409f49ca97b1e48e63a0f5c1eaccf229547043f8996a9ce",
+  "afterSha256": "8e38ad6669d5698f90c91110e652d455d32cdb2ae629ad6e5ee516b08a29685b",
+  "rows": 213,
+  "changedDataIds": [
+    "skills-barbarian-battle-command"
+  ],
+  "otherRawRowsExact": 212,
+  "idOrderExact": true,
+  "behaviorCounts": {
+    "unverified": 62,
+    "bounded-functional;independent-acceptance-open": 146,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  }
+}

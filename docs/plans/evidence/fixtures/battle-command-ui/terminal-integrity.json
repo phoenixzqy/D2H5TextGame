@@ -1,0 +1,88 @@
+{
+  "sourceFreeze": {
+    "manifest": "source-final-v2.json",
+    "sha256": "401a78dc702dc5dadf46e88fa2072c69fce8a36e6d6f3e5de6e4116c0b1b11e0",
+    "files": 1367,
+    "head": "339258e13b50bc5dbc15871e06ba53a36fcbe560",
+    "porcelainExact": true,
+    "mismatches": []
+  },
+  "checks": {
+    "applies-green": {
+      "exitCode": 0,
+      "seconds": 21.499,
+      "logSha256": "415539203bb0384b0c32305323eb44e1d49928441cd603a4126cd1e3f956e76b"
+    },
+    "ui-engine": {
+      "exitCode": 0,
+      "seconds": 171.758,
+      "logSha256": "d5816dd0ca6a4f673a478a8c629e3e241ac5f488cd4ed64cc487888aa335f309"
+    },
+    "final-v2-types": {
+      "exitCode": 0,
+      "seconds": 107.058,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "final-v2-lint": {
+      "exitCode": 0,
+      "seconds": 176.138,
+      "logSha256": "dd16661030a987ad4533ffefccc90256b6bf98deffbcc391f2a1886191ce595f"
+    },
+    "final-v2-build": {
+      "exitCode": 0,
+      "seconds": 16.009,
+      "logSha256": "61b7fc09ce3003bc2d7fafbe418f544bbc39bf74ce2b6aeb0e56454cf1ff03f6"
+    },
+    "final-v2-precache": {
+      "exitCode": 0,
+      "seconds": 0.048,
+      "logSha256": "98422567afc25437a5567a0c02f7d9b5253fbc0015e59b670be52f2e8e1ae5aa"
+    },
+    "final-v2-bridge": {
+      "exitCode": 0,
+      "seconds": 15.442,
+      "logSha256": "cf4a69b9e5f49db56abd3b6ee3107aaeb0448f229ba2be950776c33e4d67e160"
+    },
+    "final-v2-official-precache": {
+      "exitCode": 0,
+      "seconds": 0.218,
+      "logSha256": "314c1b819ef726c45463d990dc0fbf0aafc79a0b264b6055a210facb1d921146"
+    },
+    "tested-build-bridge-scan": {
+      "exitCode": 0,
+      "seconds": 0.113,
+      "logSha256": "e94e74e8be471ae50475b9ea0af42156fe5d2d5a999977295bd60518d0e5ad1e"
+    },
+    "browser-v2": {
+      "exitCode": 0,
+      "seconds": 141.137,
+      "logSha256": "afdc2099ac4daa4db1ff68552af4f60c142b7afce21850d7a91078e90469b8a7"
+    },
+    "final-full": {
+      "exitCode": 0,
+      "seconds": 737.429,
+      "logSha256": "109769fb8c70ea74b9d3a56f19802bc691371ca556178f69c1026a53c9b7fc69"
+    }
+  },
+  "builds": {
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/dist-final": {
+      "files": 762,
+      "manifestSha256": "294ca49592df2a19f063e64d9a9c2473f95149f367a935846974f43f365cbba9"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist": {
+      "files": 762,
+      "manifestSha256": "8bbe54a14f3ba58056d72aa1f7738d75aebcd35c3f44a2a1c7c9b95d4a202010"
+    }
+  },
+  "protected": {
+    "docs/plans/skill-inventory.csv": "6dc926ba2027915a0409f49ca97b1e48e63a0f5c1eaccf229547043f8996a9ce",
+    "docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c"
+  },
+  "genuineDecompressedSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "finalScreenshots": 8,
+  "fullSummary": {
+    "testFilesPassed": 772,
+    "testsPassed": 17075,
+    "skipped": 2
+  }
+}

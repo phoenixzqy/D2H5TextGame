@@ -1,0 +1,28 @@
+{
+  "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7",
+  "scratchAbsent": true,
+  "rootDist": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
+  "rootDistAbsent": true,
+  "totalFilesRemoved": 3286,
+  "totalDirectoriesRemoved": 72,
+  "verifiedRootBuildFiles": 762,
+  "archiveRegularMembers": 144,
+  "allArchiveMembersByteVerified": true,
+  "recordedProcessIdentitiesAbsent": 31,
+  "liveRecordedIdentities": [],
+  "runtimeUsers": [],
+  "observedRuntimeProfilesRemoved": 1,
+  "port": 4523,
+  "portOpen": false,
+  "processesSignalled": [],
+  "manifestReceipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7-cleanup-manifest.json",
+  "remainingDisposablePaths": [],
+  "failures": [],
+  "retainedPaths": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7-retained.tar.xz",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7-retention.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7-cleanup.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7-cleanup-manifest.json"
+  ],
+  "retentionOwner": "root; remove exact retained paths after BUG241/242/full-v1 evidence consumers finish"
+}

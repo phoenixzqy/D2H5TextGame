@@ -1,0 +1,259 @@
+{
+  "cases": [
+    {
+      "locale": "en",
+      "device": "desktop",
+      "durationMs": 35266,
+      "status": "passed",
+      "screenshots": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/screenshots-v2/desktop-en-skill-preview.png",
+          "sha256": "8811f35b467c796e4ebf2f0127622ee8f62f28f2e69aabeca4fce3bdd68e4b3e"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/screenshots-v2/desktop-en-command-battlefield.png",
+          "sha256": "a672e20cb77d90d035e74e2e99f990e4a62ca7b6f04710d6d0de10c71c52e47f"
+        }
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "observationFlags": {
+        "overflow": false,
+        "partySeen": true,
+        "carrySeen": true,
+        "expirySeen": true,
+        "rawIdSeen": false
+      },
+      "snapshots": 121,
+      "online-save-pair": {
+        "exactDomains": 6,
+        "sha256": "defb6c236365ec79f97d0c01974346c5d0cbed2d11c69081cdb8d917a0294ea0"
+      },
+      "offline-save-pair": {
+        "exactDomains": 6,
+        "sha256": "defb6c236365ec79f97d0c01974346c5d0cbed2d11c69081cdb8d917a0294ea0"
+      },
+      "console": {
+        "errors": [],
+        "consoleErrors": []
+      }
+    },
+    {
+      "locale": "zh-CN",
+      "device": "desktop",
+      "durationMs": 34248,
+      "status": "passed",
+      "screenshots": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/screenshots-v2/desktop-zh-CN-skill-preview.png",
+          "sha256": "f649c4fe64bfdd992e0d3c153b76137223c52b905dd52dcc2a1e2c64f5a67649"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/screenshots-v2/desktop-zh-CN-command-battlefield.png",
+          "sha256": "371b5c90a57f4c731aa0a6ce36caea807bde205143e14d241a47833e0fced95a"
+        }
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "observationFlags": {
+        "overflow": false,
+        "partySeen": true,
+        "carrySeen": true,
+        "expirySeen": true,
+        "rawIdSeen": false
+      },
+      "snapshots": 120,
+      "online-save-pair": {
+        "exactDomains": 6,
+        "sha256": "7f894c368d919475f8834ac52d1e92024dec84184c3f999b303c4ec17866a29f"
+      },
+      "offline-save-pair": {
+        "exactDomains": 6,
+        "sha256": "7f894c368d919475f8834ac52d1e92024dec84184c3f999b303c4ec17866a29f"
+      },
+      "console": {
+        "errors": [],
+        "consoleErrors": []
+      }
+    },
+    {
+      "locale": "en",
+      "device": "mobile",
+      "durationMs": 33325,
+      "status": "passed",
+      "screenshots": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/screenshots-v2/mobile-en-skill-preview.png",
+          "sha256": "13eeb107b58f5dd5a2e6b3ae4c57d995005888871ff80e2ff5b09a738aedd411"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/screenshots-v2/mobile-en-command-battlefield.png",
+          "sha256": "23ddcf651448fbb27c0e88751174ff153295c10ef35685b0800416ebebb0bbde"
+        }
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "observationFlags": {
+        "overflow": false,
+        "partySeen": true,
+        "carrySeen": true,
+        "expirySeen": true,
+        "rawIdSeen": false
+      },
+      "snapshots": 121,
+      "online-save-pair": {
+        "exactDomains": 6,
+        "sha256": "defb6c236365ec79f97d0c01974346c5d0cbed2d11c69081cdb8d917a0294ea0"
+      },
+      "offline-save-pair": {
+        "exactDomains": 6,
+        "sha256": "defb6c236365ec79f97d0c01974346c5d0cbed2d11c69081cdb8d917a0294ea0"
+      },
+      "console": {
+        "errors": [],
+        "consoleErrors": []
+      }
+    },
+    {
+      "locale": "zh-CN",
+      "device": "mobile",
+      "durationMs": 34022,
+      "status": "passed",
+      "screenshots": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/screenshots-v2/mobile-zh-CN-skill-preview.png",
+          "sha256": "330f5fe7fffc2fff79373b1c79f1adb73d6deebfeebec38611d4db399bba6194"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/screenshots-v2/mobile-zh-CN-command-battlefield.png",
+          "sha256": "0e45614c51f2f1b9c0bf3df6dce9955e1ffd22700a19a95792eeddf87a755669"
+        }
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "observationFlags": {
+        "overflow": false,
+        "partySeen": true,
+        "carrySeen": true,
+        "expirySeen": true,
+        "rawIdSeen": false
+      },
+      "snapshots": 120,
+      "online-save-pair": {
+        "exactDomains": 6,
+        "sha256": "7f894c368d919475f8834ac52d1e92024dec84184c3f999b303c4ec17866a29f"
+      },
+      "offline-save-pair": {
+        "exactDomains": 6,
+        "sha256": "7f894c368d919475f8834ac52d1e92024dec84184c3f999b303c4ec17866a29f"
+      },
+      "console": {
+        "errors": [],
+        "consoleErrors": []
+      }
+    }
+  ],
+  "savePairs": 8,
+  "geometryChecks": 20,
+  "specSha256": "2414755723bd7d64051ee36973653025888fe9d4418eb89e191676eb09572565"
+}

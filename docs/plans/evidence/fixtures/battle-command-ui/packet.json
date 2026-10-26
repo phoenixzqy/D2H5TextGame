@@ -1,0 +1,41 @@
+{
+  "sourceCommits": {
+    "build": "664f8ea416fe53317fd6e66c666074d8ec03df58",
+    "presentation": "90687c083fd300f51069cda0ab7e3366f9c31cc8",
+    "equippedAndBrowser": "3e8221f90ba44436f65c841b1e9b53f13746d53f"
+  },
+  "fullUnit": {
+    "filesPassed": 772,
+    "testsPassed": 17075,
+    "existingSkipped": 2,
+    "seconds": 737.429
+  },
+  "newTests": 25,
+  "productionBrowserCasesPassed": 4,
+  "exactSixDomainSavePairs": 8,
+  "actualOfflineContinues": 4,
+  "geometryChecks": 20,
+  "inspectedFinalScreenshots": 8,
+  "verifiedCommittedBlobs": 1367,
+  "testedBuildFiles": 762,
+  "independentAcceptance": false,
+  "earnedBalanceAcceptance": false,
+  "skillCreditAdded": 1,
+  "retainedArchive": {
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7-retained.tar.xz",
+    "archiveSha256": "9b10749c6c61fad1d68d8db0d7c84d4d5a9c3eeaa1306d7fe2cfd0621ba56796",
+    "archiveBytes": 7116856,
+    "regularMembers": 144,
+    "allMembersByteVerified": true,
+    "owner": "root / 01a1577a-5af4-70e3-8699-50a906877d8f",
+    "retainUntil": "BUG241/242 and full-private-v1 evidence consumers finish; root removes these exact retained archive and retention/cleanup receipts afterward",
+    "excludedDisposableRoots": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/dist",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/dist-final",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/dist-split",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-command-ui-jlln85u7/runtime"
+    ]
+  },
+  "cleanup": "cleanup.json",
+  "buildEmissionVariance": "official validation-vendor130611bytes versus exact browser130370bytes; both precaches pass; no binary equality or proven-cause claim"
+}
