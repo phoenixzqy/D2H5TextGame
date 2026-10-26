@@ -64,7 +64,9 @@ it.each([0, 20])('actual paid party Command boosts only learned Wall potency at 
   expect(out.events.some(e => e.kind === 'action' && e.actor === 'commander' &&
     e.skillId === 'barbarian.battle_command' && e.simClockMs === 400)).toBe(true);
   expect(out.events.some(e => e.kind === 'action' && e.actor === 'hero' && e.skillId === id)).toBe(rank > 0);
-  if (rank > 0) expect(out.events.find(e => e.kind === 'status-state' && e.target === 'hero' && e.simClockMs === 500))
-    .toMatchObject({ statuses: expect.arrayContaining([expect.objectContaining({ id: 'bone-wall',
-      boneWall: { rank: 21, rankBonus: 1, remaining: 240 } })]) });
+  if (rank > 0) {
+    const statuses = out.events.flatMap(e => e.kind === 'status-state' && e.target === 'hero' && e.simClockMs === 500 ? e.statuses : []);
+    expect(statuses.find(s => s.id === 'bone-wall')).toMatchObject({
+      boneWall: { rank: 21, rankBonus: 1, remaining: 240 } });
+  }
 });
