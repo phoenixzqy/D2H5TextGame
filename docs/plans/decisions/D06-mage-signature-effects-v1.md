@@ -32,7 +32,13 @@ Do not invent a second mitigation, status, RNG or scheduler implementation.
 Burn's existing combo supplies physical amplification and poison synergy; Chill
 amplifies Lightning, and Paralyze amplifies Fire. These statuses become available
 after their hit, so a bolt cannot amplify itself using a status it just created.
-Ordinary Poison is not a plague variant and does not gain spreading. No Freeze,
+Poison uses the already adopted shared death rule: half its active stacks,
+floored with minimum one, spread to living same-side recipients with the captured
+rate and a fresh five-second duration. It does not add a `plague` marker or a
+Mage-specific spreading mechanism. This corrects the initial no-spread sentence,
+which conflicted with D04 Poison Dagger/Rabies and the shared timing contract.
+The broad GDD wording about plague variants and those specific adopted contracts
+still require reconciliation before independent/full-v1 design acceptance. No Freeze,
 new aura, owner mastery/weapon inheritance, projectile or per-bolt MP charge.
 
 ## Authority and determinism
