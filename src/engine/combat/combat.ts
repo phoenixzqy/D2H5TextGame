@@ -91,6 +91,8 @@ import { activeDecrepify, paidDecrepify } from './decrepify-definition';
 import { activeWeaken, paidWeaken } from './weaken-definition';
 import { activeDimVision, paidDimVision } from './dim-vision-definition';
 import { activeTerror } from './terror-definition';
+import { activeBonePrison, BONE_PRISON_IDS } from './bone-prison-definition';
+import { bonePrisonRank, matchesBonePrison } from '../skills/bone-prison';
 import { activeDamageCurse, paidDamageCurse } from './damage-curse-definition';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
@@ -1207,6 +1209,7 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function learnedSkillLevel(state: State, unit: CombatUnit, skill: RegisteredSkill, legacyFallback = 1): number {
+  if (BONE_PRISON_IDS.some(id => id === skill.id)) return bonePrisonRank(unit);
   if (isBattleCommandId(skill.id)) return battleCommandRank(unit);
   if (isCorpseExplosionId(skill.id)) return corpseExplosionRank(unit, state.corpseExplosion);
   if (isPoisonExplosionId(skill.id)) return poisonExplosionRank(unit, state.poisonExplosion);
@@ -1356,6 +1359,11 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  const prison = BONE_PRISON_IDS.some(id => id === skillOrderId || id === skill.id) ||
+    skill.effects.some(effect => effect.kind === 'debuff' && effect.bonePrison === true);
+  if (prison && (!matchesBonePrison(skill) || bonePrisonRank(unit) === 0 ||
+    !hasEnemyTarget || !Number.isFinite(unit.mana) ||
+    BONE_PRISON_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   const command = isBattleCommandId(skillOrderId) || isBattleCommandId(skill.id) ||
     skill.effects.some(effect => effect.kind === 'party-skill-ranks');
   if (command && (!matchesBattleCommand(skill) || battleCommandRank(unit) === 0 ||
@@ -1733,6 +1741,7 @@ function applyEffect(
               ? { damageCurse: paidDamageCurse(effect.damageCurse) } : {}),
             ...(effect.weaken === true && effect.statusId === 'weaken' ? { weaken: paidWeaken() } : {}),
             ...(effect.terror === true && effect.statusId === 'terror' ? { terror: true as const } : {}),
+            ...(effect.bonePrison === true && effect.statusId === 'bone-prison' ? { bonePrison: true as const } : {}),
             ...(effect.decrepify === true && effect.statusId === 'decrepify' ? { decrepify: paidDecrepify() } : {}),
             ...(effect.battleCry === true && effect.statusId === 'battle-cry'
               ? { battleCry: paidBattleCry(skillLevel, paidRankBonus(state, acting)) } : {}),
@@ -2574,7 +2583,8 @@ function actionIsInterrupted(state: State, unit: CombatUnit): boolean {
   const blocking = activeStatAura(state.statAura, unit.id, state.units)?.preventStunInterruption
     ? { ...active, statuses: active.statuses.filter(status => status.id !== 'stun') }
     : active;
-  return isStunned(blocking) || isImmobilized(blocking) || activeTerror(blocking, state.simClockMs);
+  return isStunned(blocking) || isImmobilized(blocking) || activeTerror(blocking, state.simClockMs) ||
+    activeBonePrison(blocking, state.simClockMs);
 }
 
 /** Cancel at onset, including controls shorter than the interval between pulses. */
