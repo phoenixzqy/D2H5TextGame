@@ -5,7 +5,7 @@ import { absorbBoneWall, boneWallPool, boneWallRank, composeBoneWallRank,
   copyBoneWallStatuses, payBoneWall } from '../skills/bone-wall';
 
 function unit(patch: Partial<CombatUnit> = {}): CombatUnit {
-  return { id: 'hero', name: 'Synthetic barrier hero', side: 'player', kind: 'hero', level: 30,
+  return { id: 'hero', name: 'Synthetic barrier hero', side: 'player', kind: 'hero', tier: 'trash', level: 30,
     boneWallRank: 1, life: 1000, mana: 1000, stats: { life: 1000, lifeMax: 1000, mana: 1000,
       manaMax: 1000, attack: 10, defense: 0, magicResist: 0, attackSpeed: 100, critChance: 0,
       critDamage: 1.5, physDodge: 0, magicDodge: 0, magicFind: 0, goldFind: 0,
@@ -47,7 +47,7 @@ it.each<Partial<ActiveStatus>>([
   { id: 'bone-armor' }, { sourceId: 'other' }, { sourceId: '' }, { stacks: 0 }, { stacks: 2 },
   { remaining: NaN }, { remaining: -1 }, { appliedAtMs: NaN }, { expiresAtMs: Infinity },
   { expiresAtMs: 500 }, { expiresAtMs: 6500.01 }, { dotPerStack: 10 }, { damageType: 'fire' },
-  { boneWall: undefined }, { boneWall: { rank: 21, remaining: 240 } },
+  { boneWall: { rank: 21, remaining: 240 } },
   { boneWall: { rank: .5, remaining: 10 } }, { boneWall: { rank: 1, remaining: 41 } },
   { boneWall: { rank: 1, remaining: 0 } }, { boneWall: { rank: 1, remaining: NaN } }
 ])('refuses marker-only or malformed paid payload %j', patch => {
@@ -80,4 +80,11 @@ it('rejects duplicate pools and nonfinite clocks without consuming zero, negativ
   for (const clock of [NaN, Infinity, -Infinity, Number.MAX_VALUE]) {
     expect(boneWallPool(hero, clock)).toBeUndefined(); expect(payBoneWall(unit(), 1, clock).statuses).toEqual([]);
   }
+});
+
+it('a marker with an absent paid payload grants no protection', () => {
+  const { boneWall, ...marker } = status(); void boneWall;
+  const hero = unit({ statuses: [marker] });
+  expect(boneWallPool(hero, 600)).toBeUndefined();
+  expect(absorbBoneWall(hero, 50, 600)).toMatchObject({ damage: 50, absorbed: 0 });
 });

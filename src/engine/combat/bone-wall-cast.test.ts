@@ -50,7 +50,7 @@ it.each<Partial<RegisteredSkill>>([
 
 it('does not infer learned permission from a combo or a bare Wall marker', () => {
   for (const activeBuffIds of [[], ['bone-wall']]) {
-    const out = runBattleRecorded(scene({ boneWallRank: undefined, activeBuffIds }));
+    const out = runBattleRecorded({ ...scene(), playerTeam: [unit('player', { skillOrder: [id], activeBuffIds })] });
     expect(out.events.some(e => e.kind === 'action' && e.skillId === id)).toBe(false);
     expect(out.events.some(e => e.kind === 'mana' && e.reason === 'cast')).toBe(false);
   }
