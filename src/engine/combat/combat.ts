@@ -2541,11 +2541,12 @@ function emitTurnBoundaries(state: State): void {
 /**
  * Run a deterministic battle.
  *
- * Determinism contract: same {@link CombatSnapshot} ⇒ identical event log
- * (including event-attached `simClockMs` in {@link runBattleRecorded}).
+ * Determinism contract: same {@link CombatSnapshot} and optional native carry
+ * proof ⇒ identical event log (including `simClockMs` in {@link runBattleRecorded}).
+ * Proof remains reusable for replay and is never read from the snapshot/save DTO.
  */
-export function runBattle(snapshot: CombatSnapshot): CombatResult {
-  return runBattleWithTimestamps(snapshot).result;
+export function runBattle(snapshot: CombatSnapshot, carry?: BattleCommandCarry): CombatResult {
+  return runBattleWithTimestamps(snapshot, carry).result;
 }
 
 // Re-export for downstream consumers needing types.
@@ -2563,8 +2564,45 @@ export type RecordedBattleEvent = BattleEvent & {
   readonly uiDelayMs: number;
 };
 
+declare const battleCommandCarryBrand: unique symbol;
+/** Opaque in-memory proof of a prior paid interval; cloning/serialization loses authority. */
+export interface BattleCommandCarry { readonly [battleCommandCarryBrand]: true }
+interface CarriedCommand {
+  readonly kind: ReturnType<typeof inferKind>;
+  readonly ownerId: CombatUnit['ownerId'];
+  readonly summonOwnerId: CombatUnit['summonOwnerId'];
+  readonly grant: BattleCommandGrant;
+}
+const commandCarries = new WeakMap<BattleCommandCarry, ReadonlyMap<string, CarriedCommand>>();
+
+/** Check a living matching recipient without revealing or consuming paid state. */
+export function hasBattleCommandCarry(carry: BattleCommandCarry | undefined, unit: CombatUnit): boolean {
+  const entry = carry && commandCarries.get(carry)?.get(unit.id);
+  return Boolean(entry && unit.side === 'player' && Number.isFinite(unit.life) && unit.life > 0 &&
+    inferKind(unit) === entry.kind && unit.ownerId === entry.ownerId && unit.summonOwnerId === entry.summonOwnerId);
+}
+
+/** Only actual engine bindings may issue a new proof, rebased against the actual terminal clock. */
+function captureBattleCommandCarry(state: State): BattleCommandCarry | undefined {
+  const grants = new Map<string, CarriedCommand>();
+  for (const unit of state.units.values()) {
+    if (!battleCommandBonus(unit, state.simClockMs, state.battleCommands)) continue;
+    const grant = state.battleCommands.get(unit.id);
+    if (!grant) continue;
+    grants.set(unit.id, Object.freeze({ kind: inferKind(unit), ownerId: unit.ownerId,
+      summonOwnerId: unit.summonOwnerId, grant: Object.freeze({ sourceId: grant.sourceId,
+        appliedAtMs: grant.appliedAtMs - state.simClockMs, expiresAtMs: grant.expiresAtMs - state.simClockMs }) }));
+  }
+  if (grants.size === 0) return undefined;
+  const carry = Object.freeze({}) as BattleCommandCarry;
+  commandCarries.set(carry, grants);
+  return carry;
+}
+
 /** Result of {@link runBattleRecorded}. */
 export interface RecordedBattleResult {
+  /** Explicit native carry only; this proof is never a snapshot/save field. */
+  readonly battleCommandCarry?: BattleCommandCarry;
   /** Battle events with attached `simClockMs` + `uiDelayMs` hints. */
   readonly events: readonly RecordedBattleEvent[];
   /** The full {@link CombatResult} (final state, winner, rounds). */
@@ -2590,9 +2628,10 @@ export function computeUiDelayMs(
  * and `uiDelayMs` hints suitable for stepped UI playback.
  *
  * The battle outcome is fully determined when this returns.
+ * Pass prior paid carry separately; copied/serialized proofs confer no authority.
  */
-export function runBattleRecorded(snapshot: CombatSnapshot): RecordedBattleResult {
-  const { events, simTimes, result } = runBattleWithTimestamps(snapshot);
+export function runBattleRecorded(snapshot: CombatSnapshot, carry?: BattleCommandCarry): RecordedBattleResult {
+  const { events, simTimes, result, battleCommandCarry } = runBattleWithTimestamps(snapshot, carry);
 
   const recorded: RecordedBattleEvent[] = [];
   let prev: number | null = null;
@@ -2605,7 +2644,7 @@ export function runBattleRecorded(snapshot: CombatSnapshot): RecordedBattleResul
     prev = ts;
   }
 
-  return { events: recorded, result };
+  return { events: recorded, result, ...(battleCommandCarry ? { battleCommandCarry } : {}) };
 }
 
 /**
@@ -2613,10 +2652,11 @@ export function runBattleRecorded(snapshot: CombatSnapshot): RecordedBattleResul
  * snapshot for every emitted event. Kept private to avoid leaking the
  * timing array into the main public surface.
  */
-function runBattleWithTimestamps(snapshot: CombatSnapshot): {
+function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommandCarry): {
   events: BattleEvent[];
   simTimes: number[];
   result: CombatResult;
+  battleCommandCarry?: BattleCommandCarry;
 } {
   // Pure engine entry points can also receive untyped external snapshots.
   if ((snapshot.difficulty as unknown) !== undefined && (snapshot.difficulty as unknown) !== 'normal' &&
@@ -2740,13 +2780,27 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     if (!hero || findItemRank(hero, state.findItem) === 0) state.findItem.delete(id);
   }
 
+  // Restore only private paid proof. Imported markers were removed above, and
+  // duplicate recipient IDs cannot inherit one legitimate binding twice.
+  for (const unit of state.units.values()) {
+    if (!hasBattleCommandCarry(carry, unit) || snapshot.playerTeam.filter(u => u.id === unit.id).length !== 1) continue;
+    const entry = carry && commandCarries.get(carry)?.get(unit.id);
+    if (!entry) continue;
+    state.battleCommands.set(unit.id, entry.grant);
+    state.units.set(unit.id, { ...unit, statuses: [...unit.statuses,
+      { id: 'battle-command', stacks: 1,
+        remaining: entry.grant.expiresAtMs / SECONDS, ...entry.grant }] });
+  }
+  // Keep the complete initial status prefix ahead of every other observation.
+  for (const u of state.units.values()) observeStatuses(state, u.id, true);
+  // Fresh potency must precede initial cadence, recovery and final life clamping.
+  reconcileBattleCommandPassives(state);
   for (const u of state.units.values()) {
     scheduleNextAction(state, u);
     // At time zero, carried remaining milliseconds are their expiry timestamps.
     state.cooldownExpiresAt.set(u.id, new Map(Object.entries(u.cooldowns)
       .filter(([, remaining]) => Number.isFinite(remaining) && remaining > 0)));
   }
-  for (const u of state.units.values()) observeStatuses(state, u.id, true);
   // Rejected carried paid state still needs an explicit removal observation for playback.
   reconcileLifeCapacities(state, [...snapshot.playerTeam, ...snapshot.enemyTeam]
     .filter(unit => unit.druidForm !== undefined || unit.druidFormLife !== undefined).map(unit => unit.id));
@@ -2825,5 +2879,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     ...(state.findItemFinds.length > 0 ? { findItemFinds: Object.freeze([...state.findItemFinds]) } : {}),
     ...(state.ironGolemPreparation ? { ironGolemPreparation: state.ironGolemPreparation } : {})
   };
-  return { events: state.events, simTimes: state.simTimes, result };
+  const battleCommandCarry = captureBattleCommandCarry(state);
+  return { events: state.events, simTimes: state.simTimes, result,
+    ...(battleCommandCarry ? { battleCommandCarry } : {}) };
 }

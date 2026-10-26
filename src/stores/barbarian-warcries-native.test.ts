@@ -91,7 +91,8 @@ describe('Barbarian warcries native allocation, recording, reset and persistence
     drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
     expect(currentHero().battleCommandRank).toBe(0);
     expect(currentHero().battleCommandPassives).toEqual(fresh.battleCommandPassives);
-    expect(currentHero().stats).toEqual(fresh.stats);
+    // The original paid interval remains active, using the new learned profiles.
+    expect(currentHero().stats).toEqual({ ...fresh.stats, ...fresh.battleCommandPassives?.boosted.stats });
     expect(useCombatStore.getState().recordedEvents.some(event => event.kind === 'action' &&
       event.skillId === 'barbarian.battle_command')).toBe(false);
   });

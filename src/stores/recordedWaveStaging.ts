@@ -1,13 +1,16 @@
-import { MAX_SIM_MS, runBattleRecorded, type CombatSnapshot, type RecordedBattleEvent } from '@/engine/combat/combat';
+import { MAX_SIM_MS, runBattleRecorded, type BattleCommandCarry, type CombatSnapshot, type RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { WaveSpec, WavePresentation } from '@/engine/combat';
 import type { IronGolemPreparationAttestation } from '@/engine/skills/iron-golem';
 import { copyFindItemFinds, type FindItemFind } from '@/engine/skills/find-item';
 import type { ActiveRun } from './combatRunLifecycle';
 import { stageRecordedBattle, type RecordedBattleDefaults, type RecordedBattlePublication } from './recordedBattlePublication';
+import { rememberBattleCommandResult } from './battleCommandCarry';
 
 /** Already-composed wave input; run/selection/ownership authority remains with the caller. */
 export interface RecordedWaveStagingInput {
+  /** Native paid proof stays outside the serializable/cloned engine snapshot. */
+  readonly battleCommandCarry?: BattleCommandCarry;
   readonly replayProfileId?: 'normal' | 'nightmare';
   readonly snapshot: CombatSnapshot;
   readonly waveIdx: number;
@@ -58,7 +61,7 @@ export function stageRecordedWave(input: RecordedWaveStagingInput): StagedRecord
   const engineInput = structuredClone({ ...input.snapshot,
     ...(difficulty === 'nightmare' || input.snapshot.difficulty !== undefined ? { difficulty } : {}) });
   freezeOwnedInput(engineInput);
-  const { events, result } = runBattleRecorded(engineInput);
+  const { events, result, battleCommandCarry } = runBattleRecorded(engineInput, input.battleCommandCarry);
   // Own successful searches before naming callbacks or public playback can observe the result.
   const { findItemFinds: recordedFinds = [] } = result;
   const findItemFinds = copyFindItemFinds(recordedFinds);
@@ -67,6 +70,7 @@ export function stageRecordedWave(input: RecordedWaveStagingInput): StagedRecord
     terminal.simClockMs < 0 || terminal.simClockMs > MAX_SIM_MS) {
     throw new Error('Recorded battle must end with a valid terminal simulation clock');
   }
+  rememberBattleCommandResult(result.playerTeam, terminal.simClockMs, battleCommandCarry);
   const unitMap = new Map<string, string>();
   for (const unit of [...result.playerTeam, ...result.enemyTeam]) {
     unitMap.set(unit.id, input.resolveDisplayName(unit));

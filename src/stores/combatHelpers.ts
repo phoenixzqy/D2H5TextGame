@@ -42,6 +42,8 @@ import { eliteConfig, monsters as monsterList } from '@/data/index';
 import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
 import { stageRecordedWave, type StagedRecordedWave } from './recordedWaveStaging';
+import { hasBattleCommandCarry } from '@/engine/combat/combat';
+import { nativeBattleCommandCarry, transferBattleCommandCarry } from './battleCommandCarry';
 import { captureCouncilEncounter, COUNCIL_QUEST_ID, COUNCIL_RECEIPT_SOURCE,
   hasOriginalCouncilVictory, isCouncilAdmissionEligible, type CouncilEncounter } from '@/engine/map/council-admission';
 import { captureGuardianEncounter, GUARDIAN_QUEST_ID, hasOriginalGuardianVictory,
@@ -1100,6 +1102,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
         const carryPlayerTeam = outcome.finalPlayerTeam
           .filter(u => inferKind(u) !== 'summon' && u.life > 0)
           .map(u => rebaseStatusClock(u, binding.waveElapsedMs));
+        transferBattleCommandCarry(outcome.finalPlayerTeam, binding.waveElapsedMs, carryPlayerTeam);
         publishCouncilProof();
         publishAct4Victory();
         publishAct5Victory();
@@ -1274,10 +1277,12 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   // all pending capacity together after registering the complete party; ordinary
   // units still clamp against fresh equipment when no temporary layer is pending.
   const party = new Map([...refreshedTeam, ...enemies].map(unit => [unit.id, unit]));
+  const battleCommandCarry = nativeBattleCommandCarry(carryPlayerTeam);
   const playerTeam = refreshedTeam.map(unit => {
     const oakRank = activeDruidAllyAuras(druidAllyAuras, unit, party)?.oakRank ?? 0;
     const aura = activeStatAura(statAura, unit.id, party);
-    const pending = oakRank > 0 || aura?.selectedAuraId === 'paladin.vigor' ||
+    const pending = Boolean(unit.battleCommandPassives && hasBattleCommandCarry(battleCommandCarry, unit)) ||
+      oakRank > 0 || aura?.selectedAuraId === 'paladin.vigor' ||
       unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined;
     return pending ? unit : { ...unit, life: Math.min(unit.life, unit.stats.lifeMax) };
   });
@@ -1306,6 +1311,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     ? captureAct5ThroneWave(run.act, run.plan.subAreaId, wave, enemies) : undefined;
   const act4Encounter = areaRun ? captureAct4Encounter(run.act, run.plan.subAreaId, wave, enemies) : undefined;
   const staged = stageRecordedWave({
+    ...(battleCommandCarry ? { battleCommandCarry } : {}),
     replayProfileId: run.replayProfileId ?? 'normal',
     snapshot: {
       seed: waveSeed,
