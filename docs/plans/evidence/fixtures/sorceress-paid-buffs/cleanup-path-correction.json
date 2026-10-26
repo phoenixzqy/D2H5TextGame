@@ -1,0 +1,12 @@
+{
+  "initialAttempt": "Stopped at profile prefix assertion before any deletion.",
+  "observedProfile": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-Sv6bf9",
+  "cause": "Runtime-owned TMPDIR differs from /tmp; the recorded profile is in the configured temporary parent.",
+  "patch": {
+    "original": "profile.is_absolute() and str(profile).startswith('/tmp/playwright_chromiumdev_profile-')",
+    "replacement": "profile.is_absolute() and profile.parent in (Path('/tmp'), p.parent) and profile.name.startswith('playwright_chromiumdev_profile-')"
+  },
+  "archivedOriginalScriptSha256": "0fa35ac12a5f08f1e4b65a60c7b9bf247cb7dafe65efe631d5b29b85f539747d",
+  "executedPatchedScriptSha256": "7378088b5a7c88144b9af545d23dbf61e39ee932d4aef3ef73a3dc902186cbf3",
+  "scope": "Only recorded task process profile locations are checked for absence; no profiles are deleted."
+}

@@ -1,0 +1,67 @@
+{
+  "reviewer": "root author self-review; no independent gate",
+  "scope": "BUG238 / D05 Teleport and Enchant",
+  "correctness": [
+    "Finite half-open statuses replace inert permanent markers.",
+    "Strict registered body and native projection control payment; carried paid potency remains independent of fresh allocation.",
+    "Enchant uses the original hit/base/crit roll and captured Attack; normal Fire mitigation applies without carrier penetration or statuses.",
+    "Damage components share defense spending and single death closure; reflection uses actual Physical HP removed.",
+    "Existing transient status persistence and save version remain unchanged."
+  ],
+  "readabilityArchitecture": [
+    "One JSON-validated two-buff helper owns definition, rank, payment, carry copying and active reads.",
+    "Uses existing scheduler/status playback/native wave projection and damage settlement.",
+    "No React or DOM imports in the engine; no dependency or RNG implementation change."
+  ],
+  "security": {
+    "verdict": "pass",
+    "scope": "First-party local JSON/gameplay/UI/tests and diagnostic fixture save/import",
+    "findings": [],
+    "constraints": [
+      "No credentials, new network destinations, permissions, CI, dependency, save-format or export-format changes.",
+      "No remote actions or genuine campaign actions."
+    ]
+  },
+  "performance": [
+    "Bounded two-status lookups in existing attack/status paths.",
+    "Existing test runtime budgets and build chunk warnings remain unresolved; no performance approval."
+  ],
+  "verificationPending": [],
+  "limitations": [
+    "New duration/Enchant coefficient interpretation remains provisional tuning.",
+    "Independent design/QA, earned balance, all-class builds, campaign pacing, economy/endgame and full v1 remain open."
+  ],
+  "verification": {
+    "newTests": 95,
+    "newTestFiles": 6,
+    "engineTests": 8168,
+    "engineFiles": 305,
+    "fullTestsPassed": 16371,
+    "fullFilesPassed": 740,
+    "existingSkipped": 2,
+    "browserCases": 8,
+    "requiredTerminalLabels": [
+      "engine-narrowed",
+      "delivery-final-types",
+      "delivery-lint",
+      "browser-lint-corrected",
+      "production-build",
+      "precache",
+      "browser-delivery",
+      "full-delivery"
+    ]
+  },
+  "verdict": "No remaining blocking author findings for this local bounded repair; independent acceptance and earned balance open.",
+  "deliveredIntegrity": {
+    "sourceCommit": "7957c3bad78bb781785c1af9cf30ded33f48a668",
+    "sourceFilesExact": 1487,
+    "buildFilesExact": 761,
+    "changedSorceressObjects": [
+      "skills-sorceress-teleport",
+      "skills-sorceress-enchant"
+    ],
+    "other28RawSorceressObjectsExact": true,
+    "all213InventoryRowsUnchangedBeforeCredit": true,
+    "genuineSaveDecompressedSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577"
+  }
+}

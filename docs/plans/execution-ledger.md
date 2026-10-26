@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D05 Teleport/Enchant / BUG238 | locally fixed/verified; independent design/QA and earned balance open | Engine `6d994bd2`, native/UI `7957c3ba`: finite paid magical dodge and captured-Attack weapon Fire, shared rolls/settlement, Physical-only reflection, native carry and bilingual details/chips. 95 new tests; engine8168/305, quiet full16371/740/two existing skips, types/lint/build/precache PASS. Production8/8,16exact six-domain save pairs/eight actual offline Continues/40geometry checks; six of16screenshots inspected with capture-edge limits. Two credits:143bounded/68unverified/one engine-only/one review-needed; Sorceress27/30,211other CSV rows unchanged. [Evidence](evidence/d05-sorceress-paid-buffs.md).1487source blobs/761build/genuine exact.328raw members/965verified ZIP references retained outside Git with root ownership/removal condition.2055exact task files cleaned;795observed process identities/two profiles absent,4517closed,scratch absent,remaining[]/failures[]. Initial cleanup path assertion corrected to recorded runtime TMPDIR before deletion. GenuineL33/next402/Baal uncleared; C2–C4/fullG0–G7/privatev1 remain open. |
 | D04 Telekinesis / BUG236 | locally fixed/verified; independent design/QA and earned balance open | Source `431f453f`: paid single-hostile shared Stun1s/boss0.5s, no damage/movement, truthful bilingual payment/duration/next-wave details. Corrected40/4 focused, engine8106/303, quiet full16276/734/two existing skips, types/lint/build/precache PASS. Production4/4, eight exact six-domain save pairs/four actual offline Continues/20geometry checks; screenshot readability limits retained. One credit:141bounded/70unverified/one engine-only/one review-needed; Sorceress25/30,212other CSV rows unchanged. [Evidence](evidence/d04-telekinesis.md). Original empty-effects comparator superseded by equal-action/payment inert-Knockback controls. BUG180 first-full import timeout and BUG237 browser timeout remain open despite isolated/quiet passes.1477source blobs/761build/genuine exact;68direct raw members/1043byte-exact ZIP duplicates retained outside Git with owner/removal condition.1872exact scratch files removed,40recorded PIDs/one profile absent,4516closed,scratch absent,remaining[]/failures[]. GenuineL33/next402/Baal uncleared; C2–C4/fullG0–G7/privatev1 remain open. |
 | D04 Blaze/Fire Wall/Thunder Storm / BUG234/235 | locally fixed/verified; independent design/QA and earned balance open | Engine `b1cfe5e8`, presentation/final source `f683dfad`: paid recurring ordinary seeded pulses, finite source/rank/phase carry and invalidation, truthful bilingual previews/chips, and shared terminal cooldown publication.176new tests; focused730/14, engine8088/302, quiet full16236/730/two existing skips, types/lint/build/precache PASS. Production12cases/24exact six-domain save pairs/12actual offline Continues/60geometry checks; four of24screenshots inspected. Three credits:140bounded/71unverified/one engine-only/one review-needed; Sorceress24/30,210other CSV rows unchanged. [Evidence](evidence/d04-sorceress-periodic-spells.md).1479committed source blobs/761build/genuine exact. Archive95raw members/two original failed ZIPs verified;704unpacked duplicates represented byte-exact in ZIPs.1560exact files cleaned,26recorded PIDs/two profiles absent,4515closed,scratch absent,remaining[]/failures[]. Provisional adaptation/tuning; genuineL33/next402/Baal uncleared, independent/earned acceptance and C2–C4/fullG0–G7/privatev1 remain open. |
 | D05 Shiver/Chilling Armor / BUG233 | locally fixed/verified; independent design/QA and earned balance open | Engine `484f9433`, presentation `93e39b22`: paid Defense/Cold/dodge, ordinary Cold counters/Freeze, bounded reaction guard and native carry/invalidation.125new tests; compatibility437/6, engine8053/301, quiet full16060/725/two existing skips, types/lint/build/precache PASS. Final8browser cases/16exact six-domain save pairs/eight actual offline Continues/40geometry checks. Two credits:137bounded/74unverified/one engine-only/one review-needed; Sorceress21/30,211other CSV rows unchanged. [Evidence](evidence/d05-cold-armors.md). Provisional adaptation/tuning; genuineL33/next402/Baal uncleared and C2–C4/fullG0–G7/privatev1 remain open.223raw members/five original failed trace ZIPs verified;5955exact files cleaned,18recorded PIDs absent,4514closed,scratch absent,remaining[]/failures[]. |
@@ -12415,3 +12416,30 @@ entries.5955task-owned files cleaned; scratch absent,remaining[]/failures[].
 Root author review only; independent design/QA and earned balance remain open.
 No genuine campaign action. C0/C1 remain narrowly accepted; C2 underway, C3/C4
 and fullG0–G7/privatev1 open. Continue remaining skills and full staged objective.
+
+
+## 2026-10-25 — Paid Teleport and Enchant locally verified
+
+Engine `6d994bd2` and native/UI `7957c3ba` repair BUG238 under the D05 author
+contract. Teleport changes magical dodge for one second; Enchant captures
+Attack/rank for ten seconds and adds shared-roll Fire to weapon hits. Both use
+finite paid statuses, native carry and truthful bilingual details/chips.
+95 new tests; engine8168/305, quiet full16371/740/two existing skips (682.23s),
+types/lint/build/precache and final production8/8 pass. Sixteen exact six-domain
+save pairs include eight actual offline Continues;40geometry checks pass.
+Original failures and screenshot limits remain in the [evidence](evidence/d05-sorceress-paid-buffs.md).
+
+Only two credits:143bounded/68unverified/one engine-only/one review-needed;
+Sorceress27/30. Other211raw CSV rows and28other Sorceress data objects are exact.
+1487committed source blobs/761build hashes/genuine Ancients401 remain exact.
+Archive328raw members/965verified ZIP references retained with root ownership;
+2055exact task files cleaned,795observed process identities/two profiles absent,
+4517closed,scratch absent,remaining[]/failures[]. Cleanup's initial TMPDIR prefix
+assumption stopped safely before deletion and is corrected with exact evidence.
+
+Root author review only; independent/earned tuning, BUG180/237 and test/build
+budgets stay open. GenuineL33/nextNormal402/Baal uncleared is unchanged. No
+campaign or remote action. C0/C1 keep narrow acceptance; C2 underway,C3/C4/full
+G0–G7/all-class earned builds/30–50hour pacing/economy/endgame/privatev1 unfinished.
+Umbrella goal, branch, worktree and claim remain active. Next: Inferno/Hydra;
+Cold Mastery remains review-needed.

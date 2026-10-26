@@ -1,0 +1,12 @@
+{
+  "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-sorceress-buffs-retained-flbl4n5l.tar.xz",
+  "bytes": 54945440,
+  "sha256": "20a1d2ccf3cc41f80efd163e1238c518464b8e5f7161b84987031342b7cca8f3",
+  "members": 328,
+  "byteExactZipDuplicates": 965,
+  "omittedDisposableBuildFiles": 761,
+  "verifiedAllMembers": true,
+  "verifiedAllDuplicateReferences": true,
+  "owner": "root",
+  "retention": "Keep through original failure diagnosis and full-v1 evidence consumers; root removes this exact archive afterward."
+}

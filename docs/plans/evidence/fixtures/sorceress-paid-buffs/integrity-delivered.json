@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "7957c3bad78bb781785c1af9cf30ded33f48a668",
+  "sourceFilesExact": 1487,
+  "buildFilesExact": 761,
+  "changedSorceressObjects": [
+    "skills-sorceress-teleport",
+    "skills-sorceress-enchant"
+  ],
+  "other28RawSorceressObjectsExact": true,
+  "all213InventoryRowsUnchangedBeforeCredit": true,
+  "genuineSaveDecompressedSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577"
+}

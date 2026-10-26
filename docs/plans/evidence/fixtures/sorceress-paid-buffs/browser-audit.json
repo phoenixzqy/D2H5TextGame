@@ -1,0 +1,697 @@
+{
+  "cases": [
+    {
+      "project": "buff-desktop",
+      "skill": "teleport",
+      "locale": "en",
+      "status": "passed",
+      "durationMs": 16656,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "playback": {
+        "mana": [
+          1316,
+          1296
+        ],
+        "buffs": [
+          "Teleport"
+        ],
+        "overflow": false
+      },
+      "expectedPaidMana": 1296,
+      "savePairs": {
+        "online": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "affeea1c8fddf15c1c5c072ec05549df947041ccd0a4c934d49de3611b974889"
+        },
+        "offline": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "affeea1c8fddf15c1c5c072ec05549df947041ccd0a4c934d49de3611b974889"
+        }
+      },
+      "screenshots": [
+        {
+          "path": "buff-desktop-teleport-en-skill-detail.png",
+          "sha256": "3f4714410493debb2dae886e6d5c834148695c262d9d0d0b7f930c407aec3e64",
+          "bytes": 45066
+        },
+        {
+          "path": "buff-desktop-teleport-en-combat.png",
+          "sha256": "e899df4bd5a17c6808a47fd94b6c65071740bca962e0b0b6d9f4a394bc71e4ee",
+          "bytes": 412214
+        }
+      ]
+    },
+    {
+      "project": "buff-desktop",
+      "skill": "enchant",
+      "locale": "en",
+      "status": "passed",
+      "durationMs": 15708,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "playback": {
+        "mana": [
+          1316,
+          1294,
+          1302,
+          1310,
+          1316
+        ],
+        "buffs": [
+          "Enchant"
+        ],
+        "overflow": false
+      },
+      "expectedPaidMana": 1294,
+      "savePairs": {
+        "online": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "978e5977e8a0b96f10646cd8611315a3ddafe9a313dd273c8e5e129a202e0330"
+        },
+        "offline": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "978e5977e8a0b96f10646cd8611315a3ddafe9a313dd273c8e5e129a202e0330"
+        }
+      },
+      "screenshots": [
+        {
+          "path": "buff-desktop-enchant-en-skill-detail.png",
+          "sha256": "ed388a075f415edce602b12b0458c88747eb8b8010501f2b66232726169b5442",
+          "bytes": 49959
+        },
+        {
+          "path": "buff-desktop-enchant-en-combat.png",
+          "sha256": "bb1cbba84baad6ec88989a9b910800614adec7f02e032b22ef81272384737865",
+          "bytes": 412179
+        }
+      ]
+    },
+    {
+      "project": "buff-desktop",
+      "skill": "teleport",
+      "locale": "zh-CN",
+      "status": "passed",
+      "durationMs": 15332,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "playback": {
+        "mana": [
+          1316,
+          1296
+        ],
+        "buffs": [
+          "传送"
+        ],
+        "overflow": false
+      },
+      "expectedPaidMana": 1296,
+      "savePairs": {
+        "online": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "a32e4f0d8a90295b6a3eec73ca7641b961e2448029d12890357e73cab51b6ba7"
+        },
+        "offline": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "a32e4f0d8a90295b6a3eec73ca7641b961e2448029d12890357e73cab51b6ba7"
+        }
+      },
+      "screenshots": [
+        {
+          "path": "buff-desktop-teleport-zh-CN-skill-detail.png",
+          "sha256": "804184dd613fde441d2a0e70b5a8c061f8e2a4c2102dc7ec7d4e8d180cb0a6c7",
+          "bytes": 43682
+        },
+        {
+          "path": "buff-desktop-teleport-zh-CN-combat.png",
+          "sha256": "9941f6a4ac9f7e1f27e5a0a9d448a7495fdd9bd0b01ebcebadb4662d48cc835e",
+          "bytes": 413397
+        }
+      ]
+    },
+    {
+      "project": "buff-desktop",
+      "skill": "enchant",
+      "locale": "zh-CN",
+      "status": "passed",
+      "durationMs": 15556,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "playback": {
+        "mana": [
+          1316,
+          1294,
+          1302,
+          1310,
+          1316
+        ],
+        "buffs": [
+          "附魔"
+        ],
+        "overflow": false
+      },
+      "expectedPaidMana": 1294,
+      "savePairs": {
+        "online": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "2c63025a32bbab69472032ab5a2a25bd69f78478d702d58adc2dba3e03af51ed"
+        },
+        "offline": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "2c63025a32bbab69472032ab5a2a25bd69f78478d702d58adc2dba3e03af51ed"
+        }
+      },
+      "screenshots": [
+        {
+          "path": "buff-desktop-enchant-zh-CN-skill-detail.png",
+          "sha256": "8ded2b8522448629b4688054850db6f7e79aa9d96edd3dec47f56c96249e04a3",
+          "bytes": 57935
+        },
+        {
+          "path": "buff-desktop-enchant-zh-CN-combat.png",
+          "sha256": "33cc03d11313c2c7e4f377002ede14d380c55f6ee3d31080d2662ce5fdaad57a",
+          "bytes": 412937
+        }
+      ]
+    },
+    {
+      "project": "buff-mobile",
+      "skill": "teleport",
+      "locale": "en",
+      "status": "passed",
+      "durationMs": 15847,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "playback": {
+        "mana": [
+          1316,
+          1296
+        ],
+        "buffs": [
+          "Teleport"
+        ],
+        "overflow": false
+      },
+      "expectedPaidMana": 1296,
+      "savePairs": {
+        "online": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "affeea1c8fddf15c1c5c072ec05549df947041ccd0a4c934d49de3611b974889"
+        },
+        "offline": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "affeea1c8fddf15c1c5c072ec05549df947041ccd0a4c934d49de3611b974889"
+        }
+      },
+      "screenshots": [
+        {
+          "path": "buff-mobile-teleport-en-skill-detail.png",
+          "sha256": "cb97971b1ba071787736b63dd19b4807fc533d40257e42fc6426fba70a7c2dfe",
+          "bytes": 171104
+        },
+        {
+          "path": "buff-mobile-teleport-en-combat.png",
+          "sha256": "25e9213012a9a4274c6254891e9a9d27867a03fee9fdafcdfccd2a25a4453e1c",
+          "bytes": 132164
+        }
+      ]
+    },
+    {
+      "project": "buff-mobile",
+      "skill": "enchant",
+      "locale": "en",
+      "status": "passed",
+      "durationMs": 15086,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "playback": {
+        "mana": [
+          1316,
+          1294,
+          1302,
+          1310
+        ],
+        "buffs": [
+          "Enchant"
+        ],
+        "overflow": false
+      },
+      "expectedPaidMana": 1294,
+      "savePairs": {
+        "online": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "978e5977e8a0b96f10646cd8611315a3ddafe9a313dd273c8e5e129a202e0330"
+        },
+        "offline": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "978e5977e8a0b96f10646cd8611315a3ddafe9a313dd273c8e5e129a202e0330"
+        }
+      },
+      "screenshots": [
+        {
+          "path": "buff-mobile-enchant-en-skill-detail.png",
+          "sha256": "bb0eae9c286b2af0f8ede3f38be3fb80668c73dbdbf778c62ad5010108e88396",
+          "bytes": 188773
+        },
+        {
+          "path": "buff-mobile-enchant-en-combat.png",
+          "sha256": "ebb384204687545bd075cbcab8bd2d6deb214421b56788118d15a96ad3f41951",
+          "bytes": 127094
+        }
+      ]
+    },
+    {
+      "project": "buff-mobile",
+      "skill": "teleport",
+      "locale": "zh-CN",
+      "status": "passed",
+      "durationMs": 15049,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "playback": {
+        "mana": [
+          1316,
+          1296
+        ],
+        "buffs": [
+          "传送"
+        ],
+        "overflow": false
+      },
+      "expectedPaidMana": 1296,
+      "savePairs": {
+        "online": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "a32e4f0d8a90295b6a3eec73ca7641b961e2448029d12890357e73cab51b6ba7"
+        },
+        "offline": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "a32e4f0d8a90295b6a3eec73ca7641b961e2448029d12890357e73cab51b6ba7"
+        }
+      },
+      "screenshots": [
+        {
+          "path": "buff-mobile-teleport-zh-CN-skill-detail.png",
+          "sha256": "d8e7fea6d3e4577207658f4eef6852a24374203e1f2d6993f3ca8d1088734d1c",
+          "bytes": 162050
+        },
+        {
+          "path": "buff-mobile-teleport-zh-CN-combat.png",
+          "sha256": "39602a33621896d8d1ca1bfb8a2bcf1a6b68846314c02f33203853ce3f315a3f",
+          "bytes": 124900
+        }
+      ]
+    },
+    {
+      "project": "buff-mobile",
+      "skill": "enchant",
+      "locale": "zh-CN",
+      "status": "passed",
+      "durationMs": 14932,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "playback": {
+        "mana": [
+          1316,
+          1294,
+          1302,
+          1310
+        ],
+        "buffs": [
+          "附魔"
+        ],
+        "overflow": false
+      },
+      "expectedPaidMana": 1294,
+      "savePairs": {
+        "online": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "2c63025a32bbab69472032ab5a2a25bd69f78478d702d58adc2dba3e03af51ed"
+        },
+        "offline": {
+          "domains": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ],
+          "exact": true,
+          "sha256": "2c63025a32bbab69472032ab5a2a25bd69f78478d702d58adc2dba3e03af51ed"
+        }
+      },
+      "screenshots": [
+        {
+          "path": "buff-mobile-enchant-zh-CN-skill-detail.png",
+          "sha256": "f223ee55930d9721119332ee57e49520c85c843a2f8d052c55e646c962cd0b3f",
+          "bytes": 204990
+        },
+        {
+          "path": "buff-mobile-enchant-zh-CN-combat.png",
+          "sha256": "f6a2ac290e31428b91204daf01e37f79bb07bb5844cf5e3bab7e2a5bc1907937",
+          "bytes": 119429
+        }
+      ]
+    }
+  ],
+  "passed": 8,
+  "onlineExactSixDomainPairs": 8,
+  "offlineExactSixDomainPairs": 8,
+  "actualOfflineServiceWorkerContinues": 8,
+  "geometryChecks": 40,
+  "screenshots": 16,
+  "limits": [
+    "Imported diagnostic resources and allocations; no earned build or pacing claim.",
+    "Offline response and absent debug bridge are strict executed test assertions; save pairs/playback/geometry also audited from raw attachments.",
+    "Six screenshots individually inspected. Desktop details fully readable; mobile descriptions/current rows readable but the fixed header/navigation overlap capture edges, including part of the mobile combat chip. DOM assertions prove allocation and positive chip state; no broad UX/a11y approval."
+  ],
+  "visuallyInspected": [
+    "buff-mobile-enchant-en-skill-detail.png",
+    "buff-mobile-teleport-zh-CN-skill-detail.png",
+    "buff-desktop-teleport-en-skill-detail.png",
+    "buff-desktop-enchant-zh-CN-skill-detail.png",
+    "buff-mobile-enchant-zh-CN-combat.png",
+    "buff-desktop-teleport-en-combat.png"
+  ]
+}

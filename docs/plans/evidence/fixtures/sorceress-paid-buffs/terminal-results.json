@@ -1,0 +1,331 @@
+{
+  "required": [
+    "engine-narrowed",
+    "delivery-final-types",
+    "delivery-lint",
+    "browser-lint-corrected",
+    "production-build",
+    "precache",
+    "browser-delivery",
+    "full-delivery"
+  ],
+  "allRequiredPass": true,
+  "fullTestsPassed": 16371,
+  "fullFilesPassed": 740,
+  "existingSkipped": 2,
+  "newTests": 95,
+  "newTestFiles": 6,
+  "receipts": {
+    "browser-delivery": {
+      "exitCode": 0,
+      "seconds": 128.6478806930827,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 128.6478806930827
+      }
+    },
+    "browser-first": {
+      "exitCode": 1,
+      "seconds": 47.84288990392815,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 47.84288990392815
+      }
+    },
+    "browser-lint-corrected": {
+      "exitCode": 0,
+      "seconds": 7.385686583002098,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 7.385686583002098
+      }
+    },
+    "browser-lint-included": {
+      "exitCode": 1,
+      "seconds": 7.913070115027949,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 7.913070115027949
+      }
+    },
+    "browser-name-corrected": {
+      "exitCode": 0,
+      "seconds": 131.56257017399184,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 131.56257017399184
+      }
+    },
+    "chips-native": {
+      "exitCode": 0,
+      "seconds": 8.983034753007814,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 8.983034753007814
+      }
+    },
+    "combat-fixtures-corrected": {
+      "exitCode": 1,
+      "seconds": 9.954143419046886,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 9.954143419046886
+      }
+    },
+    "combat-focused": {
+      "exitCode": 1,
+      "seconds": 5.802045487915166,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 5.802045487915166
+      }
+    },
+    "delivery-browser-lint": {
+      "exitCode": 1,
+      "seconds": 2.047740996000357,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 2.047740996000357
+      }
+    },
+    "delivery-final-types": {
+      "exitCode": 0,
+      "seconds": 100.07796964899171,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 100.07796964899171
+      }
+    },
+    "delivery-lint": {
+      "exitCode": 0,
+      "seconds": 176.6648083999753,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 176.6648083999753
+      }
+    },
+    "engine-lint-corrected": {
+      "exitCode": 0,
+      "seconds": 168.76333803893067,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 168.76333803893067
+      }
+    },
+    "engine-narrowed": {
+      "exitCode": 0,
+      "seconds": 141.23094422195572,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 141.23094422195572
+      }
+    },
+    "engine-runtime": {
+      "exitCode": 1,
+      "seconds": 134.36110740806907,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 134.36110740806907
+      }
+    },
+    "engine-verified": {
+      "exitCode": 0,
+      "seconds": 122.59955845703371,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 122.59955845703371
+      }
+    },
+    "extended-combat": {
+      "exitCode": 1,
+      "seconds": 6.340967153082602,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 6.340967153082602
+      }
+    },
+    "extended-fixtures-corrected": {
+      "exitCode": 1,
+      "seconds": 8.199879830004647,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 8.199879830004647
+      }
+    },
+    "extended-live-effects": {
+      "exitCode": 0,
+      "seconds": 7.852766667027026,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 7.852766667027026
+      }
+    },
+    "extended-native": {
+      "exitCode": 1,
+      "seconds": 8.41343254793901,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 8.41343254793901
+      }
+    },
+    "final-engine": {
+      "exitCode": 0,
+      "seconds": 125.93915013200603,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 125.93915013200603
+      }
+    },
+    "final-types": {
+      "exitCode": 2,
+      "seconds": 110.57696139800828,
+      "raw": {
+        "exitCode": 2,
+        "seconds": 110.57696139800828
+      }
+    },
+    "focused-sim-clock": {
+      "exitCode": 0,
+      "seconds": 7.50644583592657,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 7.50644583592657
+      }
+    },
+    "full-delivery": {
+      "exitCode": 0,
+      "seconds": 684.0388913530624,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 684.0388913530624
+      }
+    },
+    "lint-verified": {
+      "exitCode": 1,
+      "seconds": 161.76330674695782,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 161.76330674695782
+      }
+    },
+    "native-and-components": {
+      "exitCode": 0,
+      "seconds": 12.44822232495062,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 12.44822232495062
+      }
+    },
+    "native-carry-clock-corrected": {
+      "exitCode": 0,
+      "seconds": 9.02934406499844,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 9.02934406499844
+      }
+    },
+    "native-carry": {
+      "exitCode": 1,
+      "seconds": 9.372832628083415,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 9.372832628083415
+      }
+    },
+    "native-red": {
+      "exitCode": 1,
+      "seconds": 7.43,
+      "raw": {
+        "handle": 84463,
+        "exit": 1,
+        "testsFailed": 5,
+        "filesFailed": 1,
+        "seconds": 7.43,
+        "teleportFirstDodges": {
+          "actual": 5,
+          "control": 5,
+          "seeds": "1-64"
+        },
+        "enchantFireEvents": 0,
+        "productionChangedBeforeRed": false
+      }
+    },
+    "precache": {
+      "exitCode": 0,
+      "seconds": 0.260856328997761,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 0.260856328997761
+      }
+    },
+    "presentation-green": {
+      "exitCode": 0,
+      "seconds": 12.690045853029005,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 12.690045853029005
+      }
+    },
+    "presentation-red": {
+      "exitCode": 1,
+      "seconds": 8.98350029392168,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 8.98350029392168
+      }
+    },
+    "production-build": {
+      "exitCode": 0,
+      "seconds": 15.288704716018401,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 15.288704716018401
+      }
+    },
+    "resolver-lint": {
+      "exitCode": 0,
+      "seconds": 11.699146189028397,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 11.699146189028397
+      }
+    },
+    "runtime-focused": {
+      "exitCode": 1,
+      "seconds": 8.288933153962716,
+      "raw": {
+        "exitCode": 1,
+        "seconds": 8.288933153962716
+      }
+    },
+    "runtime-types": {
+      "exitCode": 0,
+      "seconds": 118.90108955802862,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 118.90108955802862
+      }
+    },
+    "types-narrowed": {
+      "exitCode": 0,
+      "seconds": 127.15858943096828,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 127.15858943096828
+      }
+    },
+    "types-verified": {
+      "exitCode": 0,
+      "seconds": 91.37022980500478,
+      "raw": {
+        "exitCode": 0,
+        "seconds": 91.37022980500478
+      }
+    }
+  },
+  "limits": [
+    "No timeout, worker, assertion or discovery weakening.",
+    "Original nonzero receipts remain retained.",
+    "Budget overruns and BUG180/237 remain unresolved."
+  ]
+}

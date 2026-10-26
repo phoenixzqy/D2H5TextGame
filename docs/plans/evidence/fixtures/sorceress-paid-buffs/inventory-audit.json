@@ -1,0 +1,24 @@
+{
+  "changedRows": [
+    "skills-sorceress-enchant",
+    "skills-sorceress-teleport"
+  ],
+  "changedColumns": [
+    "behavior_verification",
+    "contract_evidence"
+  ],
+  "other211RawRowsExact": true,
+  "historicalFieldsIdsOrderExact": true,
+  "beforeSha256": "dfabebb76386b756c4ca071e6ba82bb976c40a5f000130d9732451e40e1799fd",
+  "afterSha256": "1d1a9ebc7a539eed244d2de97faaf1710809e75f057a9ad722e834518b36374e",
+  "counts": {
+    "unverified": 68,
+    "bounded-functional;independent-acceptance-open": 140,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "boundedFunctional": 143,
+  "sorceressBounded": 27,
+  "total": 213
+}
