@@ -1,0 +1,13 @@
+{
+  "archivePath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-telekinesis-retained-5n1g37xq.tar.xz",
+  "archiveOwner": "root task",
+  "archiveRemovalCondition": "After BUG180/BUG237 diagnostic review and evidence consumers finish; root removes exact retained file",
+  "archiveBytes": 50325492,
+  "archiveSha256": "ceceb506681965e244e4ff85111f4ae70302e7d710a65ab972a2ddb4bf497418",
+  "rawMembers": 68,
+  "logicalRawFiles": 1111,
+  "byteExactZipDuplicates": 1043,
+  "sourceFiles": 1477,
+  "buildFiles": 761,
+  "genuineExact": true
+}

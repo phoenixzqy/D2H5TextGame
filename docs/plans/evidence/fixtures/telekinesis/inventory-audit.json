@@ -1,0 +1,21 @@
+{
+  "changedRow": "skills-sorceress-telekinesis",
+  "changedColumns": [
+    "behavior_verification",
+    "contract_evidence"
+  ],
+  "other212RawRowsExact": true,
+  "historicalFieldsIdsOrderExact": true,
+  "beforeSha256": "875db69f5b581df2cabf74bc6095988cf84776e5f918b202a440be06c3f82e47",
+  "afterSha256": "dfabebb76386b756c4ca071e6ba82bb976c40a5f000130d9732451e40e1799fd",
+  "counts": {
+    "unverified": 70,
+    "bounded-functional;independent-acceptance-open": 138,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "boundedFunctional": 141,
+  "sorceressBounded": 25,
+  "total": 213
+}

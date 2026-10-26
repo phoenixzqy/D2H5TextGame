@@ -1,0 +1,131 @@
+{
+  "focused": {
+    "handle": 79878,
+    "exit": 0,
+    "log": "focused-final-source.log",
+    "testsPassed": 52,
+    "filesPassed": 6
+  },
+  "engine": {
+    "handle": 8885,
+    "exit": 0,
+    "log": "engine.log",
+    "testsPassed": 8106,
+    "filesPassed": 303,
+    "seconds": 230.12,
+    "note": "Before type-only assertion spelling correction; full delivery suite covers final file."
+  },
+  "types": {
+    "handle": 12268,
+    "exit": 0,
+    "log": "types-final.log"
+  },
+  "lint": {
+    "handle": 23174,
+    "exit": 0,
+    "log": "lint.log"
+  },
+  "changedSourceLint": {
+    "handle": 63967,
+    "exit": 0,
+    "log": "changed-source-lint.log"
+  },
+  "browserLint": {
+    "handle": 70501,
+    "exit": 0,
+    "log": "browser-lint.log"
+  },
+  "build": {
+    "handle": 71614,
+    "exit": 0,
+    "log": "build-final.log"
+  },
+  "precache": {
+    "exit": 0,
+    "log": "precache-final.log"
+  },
+  "browser": {
+    "handle": 59254,
+    "exit": 0,
+    "log": "browser-quiet.log",
+    "report": "browser-report-quiet.json",
+    "casesPassed": 4,
+    "note": "Production/build exact; later correction changes only a Vitest test."
+  },
+  "retainedFailedBrowser": {
+    "handle": 28840,
+    "exit": 1,
+    "log": "browser-final.log",
+    "report": "browser-report-final.json",
+    "passed": 2,
+    "timedOut": 1,
+    "didNotRun": 1,
+    "bug": "BUG237"
+  },
+  "retainedFirstTypeRun": {
+    "handle": 47291,
+    "exit": 2,
+    "log": "types.log"
+  },
+  "correctedControlFocused": {
+    "handle": 92312,
+    "exit": 0,
+    "log": "corrected-control-focused.log",
+    "testsPassed": 40,
+    "filesPassed": 4,
+    "seconds": 18.96,
+    "sourceManifest": "source-frozen.json"
+  },
+  "correctedControlLint": {
+    "handle": 24646,
+    "exit": 0,
+    "log": "lint-corrected-control.log"
+  },
+  "correctedControlTypes": {
+    "handle": 92399,
+    "exit": 0,
+    "log": "types-corrected-control.log"
+  },
+  "retainedFirstFull": {
+    "handle": 56864,
+    "state": "terminal",
+    "log": "full.log",
+    "sourceManifest": "source-pre-control-correction.json",
+    "note": "Production matches delivery; causal-control test strengthened after this run had read its earlier version. Corrected40/4 focused, types and file lint validate the test-only correction separately.",
+    "observedFailure": {
+      "file": "src/stores/playerStore.experience-equipment.test.ts",
+      "case": "supports inventory-first without an initialization cycle failure",
+      "reason": "Test timed out in 5000ms",
+      "existingBug": "BUG180",
+      "terminalResultPending": true
+    },
+    "exit": 1,
+    "testsPassed": 16275,
+    "testsFailed": 1,
+    "testsSkipped": 2,
+    "filesPassed": 733,
+    "filesFailed": 1,
+    "seconds": 1290.77
+  },
+  "importTimeoutDiagnostic": {
+    "handle": 27791,
+    "exit": 0,
+    "log": "import-timeout-diagnostic.log",
+    "testsPassed": 13,
+    "filesPassed": 1,
+    "seconds": 13.73,
+    "testAssertionsTimeoutWorkersUnchanged": true
+  },
+  "full": {
+    "handle": 40005,
+    "state": "terminal",
+    "log": "full-quiet.log",
+    "sourceManifest": "source-frozen.json",
+    "note": "Includes corrected causal comparator. Quiet relative to this task: all previous recorded validation checks terminal before launch. Existing timeout/assertions/discovery/workers unchanged.",
+    "exit": 0,
+    "testsPassed": 16276,
+    "testsSkipped": 2,
+    "filesPassed": 734,
+    "seconds": 1035.57
+  }
+}

@@ -73,3 +73,18 @@ discovery change was made. The original full timeout remains retained under
 [Sanctuary evidence](../../docs/plans/evidence/d05-paladin-sanctuary.md); this
 intermittent issue remains open. Exact source/build/genuine snapshots prove both
 full attempts stayed unchanged during their respective runs.
+
+
+Telekinesis batch recurrence (2026-10-25), `d030f410` plus the authored Telekinesis
+repair: the first full run again reports inventory-first exceeding the unchanged
+5000ms limit; the13-case file takes12879ms. The first full exits1 after1290.77s:16275passed/one failure/two existing
+skips,733passing files/one failing. The unchanged13-case file then passes alone
+(13.73s). With this task's other checks terminal, the full run on the same product
+and strengthened Telekinesis-only comparator exits0:16276passed/734files/two
+existing skips,1035.57s. The import file takes5326ms across both entry cases;
+neither individual case exceeds its unchanged5000ms bound. Preserve `full.log`,
+`import-timeout-diagnostic.log` and `full-quiet.log` in the required local archive
+linked from [Telekinesis evidence](../../docs/plans/evidence/d04-telekinesis.md).
+The later causal-comparator correction changes only a separate Vitest test;
+it does not alter this module-entry test, product code or production build.
+No diagnosed root cause, timeout increase or source workaround is claimed.

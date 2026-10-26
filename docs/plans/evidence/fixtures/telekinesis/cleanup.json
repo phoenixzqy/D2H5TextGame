@@ -1,0 +1,17 @@
+{
+  "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-telekinesis-5n1g37xq",
+  "scratchAbsent": true,
+  "verifiedFilesRemoved": 1872,
+  "rawFiles": 1111,
+  "disposableBuildFiles": 761,
+  "priorBuildFilesReplaced": 761,
+  "observedProcessesAbsent": 40,
+  "observedProfilesAbsent": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-TvGRwp"
+  ],
+  "port4516Closed": true,
+  "remaining": [],
+  "failures": [],
+  "requiredRetainedArchive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-telekinesis-retained-5n1g37xq.tar.xz",
+  "sharedCachesAndUmbrellaWorktreePreserved": true
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "root-author-self-review",
+  "independentAcceptance": false,
+  "contract": "docs/plans/decisions/D04-telekinesis-v1.md",
+  "axes": {
+    "correctness": "Corrected original-inert-Knockback comparison proves identical cast/payment, no hero damage or movement, and actual interruption at ranks1/2/20 over36pairs. Original empty-effects paired-control claims are explicitly superseded. Single hostile, finite duration, refusal, cadence, native allocation and save/import checks pass.",
+    "readability": "Six focused production files; existing skill metadata and localized description path, no new runtime subsystem.",
+    "architecture": "Authored status feeds existing shared adapter/debuff/scheduler; no runtime exception, persistence format or dependency changes.",
+    "security": "First-party local gameplay data and React/i18n; closed schema rejects contradictory metadata; no permissions, secrets, remote actions or genuine campaign mutations.",
+    "performance": "One existing status on one selected hostile; no new loops, persistent state or large hot-path allocations. Broad performance acceptance remains open."
+  },
+  "findings": [
+    {
+      "issue": "Empty effects made the original comparator fall back to Attack",
+      "resolution": "Keep original inert Knockback and assert equal actions/payment, no damage and exact target HP/position; corrected40/4 focused PASS",
+      "scope": "Test only; product/build unchanged; full run predates correction"
+    }
+  ],
+  "limits": [
+    "Independent design and QA acceptance open",
+    "New author control adaptation; earned balance open",
+    "BUG180 and BUG237 remain unresolved intermittent validation observations; no shipping/performance approval"
+  ],
+  "commit": "431f453f468bc465ce9fca946e006ee9cd7c5a35",
+  "verificationComplete": true
+}

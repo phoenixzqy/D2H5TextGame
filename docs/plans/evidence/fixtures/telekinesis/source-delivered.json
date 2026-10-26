@@ -1,0 +1,8 @@
+{
+  "commit": "431f453f468bc465ce9fca946e006ee9cd7c5a35",
+  "sourceFiles": 1477,
+  "allCommittedBlobsExact": true,
+  "allWorkingFilesExact": true,
+  "sourceManifestSha256": "d349e25998df6d9f7fef1c813289bcbe446adb227ab1e2ef244d086be5c7a0e9",
+  "validation": "quiet full includes strengthened causal comparator; production/build/browser exact"
+}

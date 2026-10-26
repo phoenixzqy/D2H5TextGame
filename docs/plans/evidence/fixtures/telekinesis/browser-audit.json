@@ -1,0 +1,133 @@
+{
+  "report": "browser-report-quiet.json",
+  "cases": [
+    {
+      "project": "spell-desktop",
+      "locale": "en",
+      "durationMs": 50938
+    },
+    {
+      "project": "spell-desktop",
+      "locale": "zh-CN",
+      "durationMs": 32710
+    },
+    {
+      "project": "spell-mobile",
+      "locale": "en",
+      "durationMs": 23603
+    },
+    {
+      "project": "spell-mobile",
+      "locale": "zh-CN",
+      "durationMs": 21695
+    }
+  ],
+  "exactSixDomainPairs": [
+    {
+      "project": "spell-desktop",
+      "locale": "en",
+      "mode": "online-save-pair",
+      "sixDomainsExact": true,
+      "rawPairSha256": "93c1a96a503f4a8d8521e2475c8f9941a3a59f64ff29bfb2b30a566c1f55a1d7"
+    },
+    {
+      "project": "spell-desktop",
+      "locale": "en",
+      "mode": "offline-save-pair",
+      "sixDomainsExact": true,
+      "rawPairSha256": "93c1a96a503f4a8d8521e2475c8f9941a3a59f64ff29bfb2b30a566c1f55a1d7"
+    },
+    {
+      "project": "spell-desktop",
+      "locale": "zh-CN",
+      "mode": "online-save-pair",
+      "sixDomainsExact": true,
+      "rawPairSha256": "ce5f2fe968c35e82aa42bc3aff6b100e8225386abc7ad3619cd32629cad52559"
+    },
+    {
+      "project": "spell-desktop",
+      "locale": "zh-CN",
+      "mode": "offline-save-pair",
+      "sixDomainsExact": true,
+      "rawPairSha256": "ce5f2fe968c35e82aa42bc3aff6b100e8225386abc7ad3619cd32629cad52559"
+    },
+    {
+      "project": "spell-mobile",
+      "locale": "en",
+      "mode": "online-save-pair",
+      "sixDomainsExact": true,
+      "rawPairSha256": "93c1a96a503f4a8d8521e2475c8f9941a3a59f64ff29bfb2b30a566c1f55a1d7"
+    },
+    {
+      "project": "spell-mobile",
+      "locale": "en",
+      "mode": "offline-save-pair",
+      "sixDomainsExact": true,
+      "rawPairSha256": "93c1a96a503f4a8d8521e2475c8f9941a3a59f64ff29bfb2b30a566c1f55a1d7"
+    },
+    {
+      "project": "spell-mobile",
+      "locale": "zh-CN",
+      "mode": "online-save-pair",
+      "sixDomainsExact": true,
+      "rawPairSha256": "ce5f2fe968c35e82aa42bc3aff6b100e8225386abc7ad3619cd32629cad52559"
+    },
+    {
+      "project": "spell-mobile",
+      "locale": "zh-CN",
+      "mode": "offline-save-pair",
+      "sixDomainsExact": true,
+      "rawPairSha256": "ce5f2fe968c35e82aa42bc3aff6b100e8225386abc7ad3619cd32629cad52559"
+    }
+  ],
+  "actualOfflineContinues": 4,
+  "geometryChecks": 20,
+  "geometrySizes": [
+    [
+      360,
+      640
+    ],
+    [
+      412,
+      915
+    ],
+    [
+      640,
+      360
+    ],
+    [
+      1280,
+      800
+    ],
+    [
+      1920,
+      1080
+    ]
+  ],
+  "allocationTargetsAtLeast44px": true,
+  "noHorizontalOverflowAtMeasuredSizes": true,
+  "screenshots": [
+    "inspected-images/spell-desktop-en-skill-preview.png",
+    "inspected-images/spell-desktop-en-combat.png",
+    "inspected-images/spell-desktop-zh-CN-skill-preview.png",
+    "inspected-images/spell-desktop-zh-CN-combat.png",
+    "inspected-images/spell-mobile-en-skill-preview.png",
+    "inspected-images/spell-mobile-en-combat.png",
+    "inspected-images/spell-mobile-zh-CN-skill-preview.png",
+    "inspected-images/spell-mobile-zh-CN-combat.png"
+  ],
+  "inspectedScreenshots": [
+    "inspected-images/spell-desktop-zh-CN-skill-preview.png",
+    "inspected-images/spell-desktop-zh-CN-combat.png",
+    "inspected-images/spell-mobile-en-skill-preview.png",
+    "inspected-images/spell-mobile-en-combat.png"
+  ],
+  "limits": [
+    "Constructed diagnostic characters; no earned class-build balance",
+    "Five-size geometry is not broad accessibility acceptance",
+    "BUG237 original final-source timeout remains retained/open"
+  ],
+  "captureLimit": "Quiet-run full-page previews show the tree and partial/off-screen detail panel after viewport reset. Descriptions were asserted through real DOM and current/next/MAX tests; these screenshots do not establish detailed text readability.",
+  "additionalTraceThumbnailInspected": "inspected-images/trace-allocation-0.jpeg",
+  "additionalTraceThumbnailLimit": "Retained failed-case allocation thumbnail shows panel placement at 1920x1080; downsampled text is not readability evidence."
+}
