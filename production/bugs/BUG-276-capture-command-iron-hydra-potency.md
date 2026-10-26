@@ -1,7 +1,7 @@
 # BUG-276 — Capture paid Command potency for Iron Golem and Hydra
 
 - Severity: Medium — summons work, but ignore a legitimately paid rank bonus.
-- Status: Reproduced; regression and production fix pending.
+- Status: Fixed locally in `7628e872`; fresh full regression still pending.
 - Owner: root, engine/QA; no delegation or independent acceptance.
 - Baseline: `4b1b22cc2d1cb8dd5a213c0f2ba7e975d8cf1783` plus BUG273/274 runtime.
 - Environment: Linux, Node v24.21.0, pure TypeScript engine; browser/viewport/
@@ -45,3 +45,27 @@ action, save migration or remote publication follows this bounded repair.
 Security check: pass. Scope: local summon capture and regressions. Genuine
 battle-local carry may grant potency; imported markers/copied carry must not.
 No credential, dependency, filesystem-access, permission or CI changes.
+
+## Local repair and verification
+
+The actual regression reproduces7failed/6passed in4.505s before runtime changes.
+`7628e872` retains each dedicated MAX learned-authority resolver, then applies the
+existing effective-rank helper with only authenticated battle-local paid bonus.
+Iron body stats/payment and Hydra bolt bindings capture that effective rank.
+No changed allocation, new stat formula, save field or forged-marker authority.
+
+All13tests pass4.261s; final literal-typed tables pass3.855s. Coverage includes
+Iron ranks1/6/20, Hydra1/20, actual outgoing damage and final target HP (including
+Hydra DoT), after-expiry potency, exact payment/attestation, MAX aliases,
+insufficient resources, invalid learned21, copied carry, replay and input purity.
+Fixtures remain synthetic party-engine evidence, not ordinary campaign proof.
+
+Engine9413/354passes178.851s. Initial full types fail149.678s because three test
+tables widened literal skill IDs to string. Adding only `as const` to those
+tables fixes the diagnostic; original bytes/diff/failure remain retained.
+Final full types126.237s pass. Full lint241.448s passes with inputsUnchanged:false
+from that type-only correction; final changed-test lint9.345s passes unchanged.
+Production build/bridge16.732s,756URLprecache0.292s and final native Iron startup
+Save/Continue4/4pass48.766s. The earlier18401 full pass predates this runtime and
+is not carried over. A fresh exact-input full run is active at this checkpoint.
+Root owns its task evidence until consumers finish, then archive/read-back/cleanup.

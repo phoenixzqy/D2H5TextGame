@@ -13002,3 +13002,43 @@ GenuineL33/nextNormal402/Ancients-Rite claimed/Baal uncleared remains unchanged;
 no campaign/replay/remote action or delegation. C2–C4/fullG0–G7/earned builds,
 balance/pacing/economy/endgame/independent acceptance/full privatev1 remain open.
 Umbrella worktree/claim and original full goal continue.
+
+
+## 2026-10-26 — Command summon capture repaired; fresh full regression active
+
+The preceding status turn was a verified wait: session98709/npm564589 was
+confirmed live, then its original full command completed18401tests/848files,
+two existing opt-in skips,997.951s. `49dea62a` commits Mage elemental/capacity
+and Raven/Creeper/Fire effect-authority fixes with21regressions. Runtime bytes
+were unchanged throughout; only redundant test guards changed during that run,
+with exact diff retained and final21/2file/types/lint checked separately.
+
+BUG275 reproduced the obsolete Iron browser version/fixture/refill assertions;
+`0fddb877` corrects the test. Canonical18/18passes139.651s against frozen earlier
+build bytes, whose762hashes are exact despite repository runtime changing during
+the run. Latest runtime has a separate4/4startup Save/Continue pass48.766s; do
+not combine those into one final-runtime18-case pass. Six current canonical
+mobile originals were individually inspected in both locales, with crop limits
+recorded. Broader visual/device/a11y acceptance remains open.
+
+BUG276's actual paid Command RED has7failures/6passes. `7628e872` qualifies
+learned MAX authority before capturing effective Iron/Hydra potency. All13tests
+pass, including actual damage/HP, after-expiry capture, payment, alias and forged
+carry controls. Engine9413/354, final strict types126.237s, full lint241.448s plus
+final changed-test lint9.345s, build/bridge16.732s and756URLprecache0.292s pass.
+The initial strict-type failure and three literal-table annotations are retained;
+no assertion or production behavior was weakened for checks.
+
+Fresh full session43300/npm594063 remains active at this checkpoint; the old
+18401 result is not carried over changed runtime. Source SHA256 is
+`5033b41c2e0350b2ab6d78fa6d5345613a2b41d9ff8ef20ea29e9a1c64d513d0`.
+Root retains exact active task
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h`
+and762task-owned worktree `dist/` outputs until the full consumer finishes, then
+owns archive/read-back/verified exact cleanup. Neither is declared cleaned.
+
+No skill credit yet:172bounded/39unverified/oneengine/onereview; Necromancer30/32.
+Mage's automatic signature effects, remaining skills, independent/earned builds,
+campaign/balance/economy/endgame,C2–C4/fullG0–G7/privatev1 remain open. Protected
+genuineL33/nextNormal402/Ancients-Rite claimed/Baal uncleared hashes stay exact.
+No campaign/replay/remote action or delegation. Original goal and claim continue.

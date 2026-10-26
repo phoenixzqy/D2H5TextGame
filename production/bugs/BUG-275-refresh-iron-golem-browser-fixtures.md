@@ -1,7 +1,7 @@
 # BUG-275 — Refresh Iron Golem native browser fixtures
 
 - Severity: Medium — stale QA fixtures prevent current production verification.
-- Status: Reproduced; repository test correction pending.
+- Status: Fixed locally in `0fddb877`; broader Iron acceptance remains open.
 - Owner: root, frontend/QA; no delegation or independent acceptance.
 - Baseline: `4b1b22cc2d1cb8dd5a213c0f2ba7e975d8cf1783` plus BUG273/274 runtime.
 - Environment: Linux, Node v24.21.0, Playwright Chromium, production bridge-free
@@ -42,3 +42,24 @@ test maintenance; Iron's Command-potency defect remains separate.
 
 Security check: pass. Scope: local browser fixture/test maintenance; no new
 dependency, credential, network destination, permission or CI bypass.
+
+## Local correction and verification
+
+`0fddb877` updates only the native test: current version22 plus compile-time
+SaveVersion guard, socket fields, full learned prerequisite chain, Mastery1
+preview Life360.4/377.36 and fresh-entry refill expectations. Production behavior
+was not altered to accommodate the stale fixture.
+
+Canonical matrix:18/18pass139.651s, zero retries, against frozen runtime
+`142f847dfefb77ef4ecffa55feb73f02109cc2b165ab2fc4d699c73be3aa0acf`.
+Its receipt reports changed repository inputs because the separate BUG276 source
+fix occurred while the browser served the unchanged old build; all762 build
+hashes were independently checked exact. This is not a latest-runtime18-case claim.
+
+After rebuilding BUG276's runtime, the final four native startup Save/Continue
+cases pass48.766s in en/zh-CN at360x640, with both34/35MP initial saves. Final
+types126.237s, full lint241.448s and focused final-test lint9.345s pass. Six
+canonical mobile originals were individually inspected; whole-matrix visual,
+physical-device/accessibility/earned/balance acceptance is not claimed.
+Root retains the task artifacts through the fresh full-unit run and owns final
+archive verification and exact cleanup. No inventory credit at this checkpoint.
