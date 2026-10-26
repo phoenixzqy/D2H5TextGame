@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D04 Inferno / BUG239 | locally fixed/verified; independent design/QA and earned balance open | Source `65be2984`: paid three-pulse cone channel occupies caster actions, cancels at real control onset, shares Concentration semantics and carries paid rank/phase through native waves.95new tests; focused541/10, engine8194/306, quiet full16466/743/two existing skips, types/lint/build/precache PASS. Production4/4, eight exact six-domain save pairs/four actual offline Continues/20geometry/eight inspected screenshots with mobile overlap limits. One credit:144bounded/67unverified/one engine-only/one review-needed; Sorceress28/30,212other CSV rows unchanged. [Evidence](evidence/d04-inferno-channel.md).2230committed source blobs/761build/genuine exact;131raw archive members byte-verified;893exact task files cleaned,438observed process identities/two profiles absent,4518closed,scratch absent,remaining[]/failures[]. Provisional timing/cone; Hydra/Cold Mastery, earned builds, campaign/Baal and C2–C4/fullG0–G7/privatev1 remain open. |
 | D05 Teleport/Enchant / BUG238 | locally fixed/verified; independent design/QA and earned balance open | Engine `6d994bd2`, native/UI `7957c3ba`: finite paid magical dodge and captured-Attack weapon Fire, shared rolls/settlement, Physical-only reflection, native carry and bilingual details/chips. 95 new tests; engine8168/305, quiet full16371/740/two existing skips, types/lint/build/precache PASS. Production8/8,16exact six-domain save pairs/eight actual offline Continues/40geometry checks; six of16screenshots inspected with capture-edge limits. Two credits:143bounded/68unverified/one engine-only/one review-needed; Sorceress27/30,211other CSV rows unchanged. [Evidence](evidence/d05-sorceress-paid-buffs.md).1487source blobs/761build/genuine exact.328raw members/965verified ZIP references retained outside Git with root ownership/removal condition.2055exact task files cleaned;795observed process identities/two profiles absent,4517closed,scratch absent,remaining[]/failures[]. Initial cleanup path assertion corrected to recorded runtime TMPDIR before deletion. GenuineL33/next402/Baal uncleared; C2–C4/fullG0–G7/privatev1 remain open. |
 | D04 Telekinesis / BUG236 | locally fixed/verified; independent design/QA and earned balance open | Source `431f453f`: paid single-hostile shared Stun1s/boss0.5s, no damage/movement, truthful bilingual payment/duration/next-wave details. Corrected40/4 focused, engine8106/303, quiet full16276/734/two existing skips, types/lint/build/precache PASS. Production4/4, eight exact six-domain save pairs/four actual offline Continues/20geometry checks; screenshot readability limits retained. One credit:141bounded/70unverified/one engine-only/one review-needed; Sorceress25/30,212other CSV rows unchanged. [Evidence](evidence/d04-telekinesis.md). Original empty-effects comparator superseded by equal-action/payment inert-Knockback controls. BUG180 first-full import timeout and BUG237 browser timeout remain open despite isolated/quiet passes.1477source blobs/761build/genuine exact;68direct raw members/1043byte-exact ZIP duplicates retained outside Git with owner/removal condition.1872exact scratch files removed,40recorded PIDs/one profile absent,4516closed,scratch absent,remaining[]/failures[]. GenuineL33/next402/Baal uncleared; C2–C4/fullG0–G7/privatev1 remain open. |
 | D04 Blaze/Fire Wall/Thunder Storm / BUG234/235 | locally fixed/verified; independent design/QA and earned balance open | Engine `b1cfe5e8`, presentation/final source `f683dfad`: paid recurring ordinary seeded pulses, finite source/rank/phase carry and invalidation, truthful bilingual previews/chips, and shared terminal cooldown publication.176new tests; focused730/14, engine8088/302, quiet full16236/730/two existing skips, types/lint/build/precache PASS. Production12cases/24exact six-domain save pairs/12actual offline Continues/60geometry checks; four of24screenshots inspected. Three credits:140bounded/71unverified/one engine-only/one review-needed; Sorceress24/30,210other CSV rows unchanged. [Evidence](evidence/d04-sorceress-periodic-spells.md).1479committed source blobs/761build/genuine exact. Archive95raw members/two original failed ZIPs verified;704unpacked duplicates represented byte-exact in ZIPs.1560exact files cleaned,26recorded PIDs/two profiles absent,4515closed,scratch absent,remaining[]/failures[]. Provisional adaptation/tuning; genuineL33/next402/Baal uncleared, independent/earned acceptance and C2–C4/fullG0–G7/privatev1 remain open. |
@@ -12443,3 +12444,33 @@ campaign or remote action. C0/C1 keep narrow acceptance; C2 underway,C3/C4/full
 G0–G7/all-class earned builds/30–50hour pacing/economy/endgame/privatev1 unfinished.
 Umbrella goal, branch, worktree and claim remain active. Next: Inferno/Hydra;
 Cold Mastery remains review-needed.
+
+
+## 2026-10-25 — Inferno channel / BUG239
+
+Source `65be2984` replaces one-shot Inferno with an explicit paid, caster-occupying
+channel in the existing periodic scheduler. Ordinary interruption/Concentration
+rules cancel even short controls; cone pulses use ordinary seeded Fire/Burn and
+settlement. Native paid phase/rank, wave carry/invalidation, fresh/import unpaid
+state and bilingual timing/action/chip presentation are verified. Timing/geometry
+remain provisional; root author review supplies no independent approval.
+
+95added regressions; final focused541/10, engine8194/306, quiet full16466/743
+(two existing skips;653.18s Vitest/654.911s process), types/lint/build/precache and
+four production browser cases pass. Browser8exact six-domain pairs/four actual
+offline Continues/20geometry checks; all8screenshots inspected with mobile
+overlap/capture limits. Original native RED, setup/type/lint/fixture failures and
+the no-test browser grep remain distinct from final passes. No validation
+setting or assertion was weakened. BUG180/237 and runtime/build budgets stay open.
+
+Only Inferno gains credit:144bounded/67unverified/one engine-only/one review-needed;
+Sorceress28/30. Other212raw CSV rows and29other Sorceress data objects are exact.
+2230frozen committed blobs/761build/genuine Ancients401 remain exact.131raw archive
+members retained with exact hashes/root ownership/removal condition;893exact
+task files cleaned,438observed process identities/two profiles absent,4518closed,
+scratch absent,remaining[]/failures[]. [Delivered evidence](evidence/d04-inferno-channel.md).
+
+GenuineL33/nextNormal402/Baal uncleared is unchanged; no campaign or remote action.
+C0/C1 keep narrow acceptance; C2 underway,C3/C4/fullG0–G7/all-class earned builds/
+30–50hour pacing/economy/endgame/privatev1 remain unfinished. Umbrella goal, branch,
+worktree and claim stay active. Next: Hydra; Cold Mastery remains review-needed.

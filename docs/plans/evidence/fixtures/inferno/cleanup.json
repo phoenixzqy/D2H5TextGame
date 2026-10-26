@@ -1,0 +1,22 @@
+{
+  "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inferno-gp6lol25",
+  "scratchAbsent": true,
+  "removedExactFiles": 893,
+  "remaining": [],
+  "failures": [],
+  "observedProcessIdentities": 438,
+  "liveOwnedProcessIdentities": [],
+  "recordedBrowserProfiles": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-G47CXv",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-oOOOJP"
+  ],
+  "remainingBrowserProfiles": [],
+  "port4518Closed": true,
+  "preserved": [
+    "source/history",
+    "shared caches/tools",
+    "genuine campaign",
+    "umbrella worktree/branch/claim",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inferno-retained-bapgcoob.tar.xz"
+  ]
+}

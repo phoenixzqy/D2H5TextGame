@@ -1,0 +1,13 @@
+{
+  "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inferno-retained-bapgcoob.tar.xz",
+  "bytes": 3676588,
+  "sha256": "eb758ade6abdd4f4e3df08c1f5989866eecf95f2e0e4385f08bb61222e436eee",
+  "directMembers": 131,
+  "allMembersVerifiedByteExact": true,
+  "excludedDisposable": [
+    "build/ (761 files; hashes retained)",
+    "__pycache__/"
+  ],
+  "owner": "/root",
+  "removeWhen": "Root removes this exact archive after original-failure diagnosis and all full-v1 evidence consumers finish."
+}

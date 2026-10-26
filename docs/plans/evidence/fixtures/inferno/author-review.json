@@ -1,0 +1,90 @@
+{
+  "scope": "BUG239 / D04 paid Inferno channel",
+  "reviewer": "root author self-review only; no independent review or gate approval",
+  "securityCheck": {
+    "verdict": "pass",
+    "scope": "local deterministic engine/schema/UI/test changes",
+    "findings": [],
+    "constraints": [
+      "No network/credentials/dependency/CI/permission changes",
+      "No save-format or persistent channel state",
+      "No genuine campaign or remote actions"
+    ]
+  },
+  "axes": {
+    "correctness": {
+      "verdict": "pass within authored bounded contract",
+      "evidence": [
+        "Original two-test strengthened native RED starts paid state before testing cancellation",
+        "Ranks1/2/20 ordinary seeded damage oracle, mana debit, occupied turns, half-open expiry and no bonus action",
+        "Short and tied controls, actual enemy Freeze and resisted Paralyze, shared Concentration rule",
+        "Cone recipients/reselection, source death, immutable source/inputs, playback equivalence",
+        "Native carry/reallocation/invalidation and fresh/import unpaid state",
+        "95 new regressions; 541-test focused set and 8194 engine tests pass",
+        "Quiet full suite:16466 passed/743 files/two existing skips; terminal exit0"
+      ]
+    },
+    "readability": {
+      "verdict": "pass within scope",
+      "evidence": [
+        "Small shared actionIsInterrupted extraction prevents channel/ordinary control drift",
+        "Explicit channelled metadata differentiates occupied channels from independent fields",
+        "Source/rank/time/payment validation uses existing named paid-periodic helpers"
+      ]
+    },
+    "architecture": {
+      "verdict": "pass within scope",
+      "evidence": [
+        "JSON owns timing, footprint and damage; pure engine owns scheduling/damage",
+        "Reuses paid periodic scheduler, ordinary damage/Burn/death and standard status clocks",
+        "Strict optional native Inferno rank preserves existing callers; absent projected rank means zero",
+        "Save version22 and import boundary remain unchanged"
+      ]
+    },
+    "security": {
+      "verdict": "pass within scope",
+      "evidence": [
+        "Strict schema identity/body/target/cone and exact registered payment/effect checks",
+        "Immutable copied definitions and source-bound paid rank/time state",
+        "No dynamic code, external network, credentials or new export surface"
+      ]
+    },
+    "performance": {
+      "verdict": "acceptance open",
+      "evidence": [
+        "Cancellation adds bounded scans at existing settlement/action reconciliation points",
+        "Spell interval >=1000ms and duration <=60000ms; no unbounded new loop",
+        "Production build/precache and five-chunk debug-bridge scan pass",
+        "Existing full/engine/type/lint runtime and build chunk/art warnings remain above project budgets; no performance approval"
+      ]
+    }
+  },
+  "browser": {
+    "cases": 4,
+    "locales": [
+      "en",
+      "zh-CN"
+    ],
+    "screens": [
+      "desktop1280x800",
+      "mobile360x640"
+    ],
+    "savePairsSixDomains": 8,
+    "offlineServiceWorkerContinues": 4,
+    "geometryChecks": 20,
+    "screenshotsIndividuallyInspected": 8,
+    "mechanics": "Each case shows one Inferno cast, six hero Fire hit lines, positive chip and10MP debit",
+    "limits": [
+      "Synthetic resources/gear/rank demonstrate mechanics rather than earned balance",
+      "Desktop descriptions and combat chips readable; detail screenshot clips lower rows",
+      "Mobile fixed header/nav overlap preview edges and part of combat chip; no general UX/a11y approval"
+    ]
+  },
+  "open": [
+    "Provisional3s/1s and cone geometry tuning",
+    "Independent design/QA and earned TTK/resource/build balance",
+    "Hydra unverified, Cold Mastery review-needed",
+    "GenuineL33/nextNormal402/Baal uncleared unchanged; C2-C4 and full privatev1 unfinished"
+  ],
+  "sourceCommit": "65be29845ff2189640672cb0a420d064199403b2"
+}

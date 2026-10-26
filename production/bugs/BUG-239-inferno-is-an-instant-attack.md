@@ -1,6 +1,7 @@
 # BUG-239 — Make Inferno a continuous interruptible stream
 
-Severity: High. Status: Reproduced at `f92e8a34`; local repair underway.
+Severity: High. Status: Locally fixed and verified in `65be2984`;
+independent acceptance and earned balance remain open.
 Owners: engine/content/frontend; root sole author and reviewer.
 
 Environment: deterministic Vitest/Node, seed19; browser/locale independent.
@@ -27,9 +28,17 @@ Root cause: JSON has only ordinary damage; its generic adapter and scheduler
    rules without explicit channel semantics would also be incorrect.
 Workaround: recasts deal damage but do not supply the promised continuous stream.
 
-Original evidence: `native-red.log`, `native-red-strengthened.log`, receipts
-   and frozen `native-red.test.ts` in task scratch
-   `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inferno-gp6lol25`.
-   Root owns this scratch until final evidence retention and exact cleanup.
+Repair: explicit JSON-owned channel timing, shared paid pulse/cone scheduler,
+   occupied caster opportunities and the ordinary control/Concentration rule.
+   Native source/rank/phase carry, localized previews and positive chips are
+   included.95 new regressions; full16466/743/two existing skips, engine8194/306,
+   types/lint/build/precache and four production-browser cases pass.
+
+Original `native-red.log`, `native-red-strengthened.log`, receipts and frozen
+   `native-red.test.ts` are retained in the root-owned archive named by the
+   [retention record](../../docs/plans/evidence/fixtures/inferno/retention.json).
+   Root removes it after failure diagnosis and all full-v1 consumers finish.
+   Disposable scratch/build are removed; process/profile/port cleanup is verified.
+   [Final evidence and limits](../../docs/plans/evidence/d04-inferno-channel.md).
 
 No earned campaign, independent acceptance or final balance claim.

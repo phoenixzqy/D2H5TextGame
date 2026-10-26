@@ -1,0 +1,213 @@
+{
+  "sourceCommit": "65be29845ff2189640672cb0a420d064199403b2",
+  "checks": [
+    {
+      "name": "focused-complete",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/inferno.causal.test.ts",
+        "src/stores/inferno-native.test.ts",
+        "src/engine/skills/inferno.test.ts",
+        "src/features/skills/SkillsScreen.periodic-spells.test.tsx",
+        "src/features/combat/CombatScreen.periodic-spells.test.tsx",
+        "src/stores/periodic-spells.causal.test.ts",
+        "src/stores/periodic-spells-native.test.ts",
+        "src/engine/combat/concentration.test.ts",
+        "src/data/loader.test.ts",
+        "src/data/loaders/shared-skill-validator.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 26.617,
+      "identity": {
+        "pid": 2712593,
+        "procStat": "2712593 (npx) R 2712591 2712591 2712591 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 89346785 11788288 0 18446744073709551615 102297655984128 102297660929725 140735150248352 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 102297664861904 102297666346776 102298724696064 140735150249712 140735150250224 140735150250224 140735150256068 0\n"
+      },
+      "logSha256": "e37e26400539d867caed7b055d7bc705ad271c61d5ba6706ff9a0b35d38bfc99"
+    },
+    {
+      "name": "compatibility-final",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/inferno.causal.test.ts",
+        "src/data/loader.test.ts",
+        "src/data/loaders/shared-skill-validator.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 7.946,
+      "identity": {
+        "pid": 2708191,
+        "procStat": "2708191 (npx) R 2708190 2708190 2708190 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 89328842 11788288 32 18446744073709551615 101810718928896 101810723874493 140729687762432 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 101810727806672 101810729291544 101811798806528 140729687771172 140729687771376 140729687771376 140729687777220 0\n"
+      },
+      "logSha256": "c7cb641beec5310ae1c31325b4920ced1f3248a930c87335d440f10c54838812"
+    },
+    {
+      "name": "engine-final",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 156.327,
+      "identity": {
+        "pid": 2708705,
+        "procStat": "2708705 (npm) R 2708704 2708704 2708704 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89336068 11788288 0 18446744073709551615 105467160334336 105467165279933 140732666784272 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 105467169212112 105467170696984 105467756621824 140732666792070 140732666792176 140732666792176 140732666798020 0\n"
+      },
+      "logSha256": "59d440a79ee6aad5232986ad50f20a9be6653c30885d448571c20f261a034c66"
+    },
+    {
+      "name": "types-complete",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 144.105,
+      "identity": {
+        "pid": 2708771,
+        "procStat": "2708771 (npm) R 2708768 2708768 2708768 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89336186 11788288 0 18446744073709551615 107524461416448 107524466362045 140737168463104 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 107524470294224 107524471779096 107524544421888 140737168468124 140737168468208 140737168468208 140737168474052 0\n"
+      },
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "name": "lint-complete",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 204.281,
+      "identity": {
+        "pid": 2709510,
+        "procStat": "2709510 (npm) R 2709508 2709508 2709508 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 89338402 11788288 0 18446744073709551615 109216835649536 109216840595133 140726599341248 0 0 0 0 0 0 0 0 0 17 13 0 0 0 0 0 109216844527312 109216846012184 109216991416320 140726599342241 140726599342320 140726599342320 140726599348164 0\n"
+      },
+      "logSha256": "a5de592123c7b71038c23a9080b9684d2ddb7f77375e3eb32ef1eaca2967340d"
+    },
+    {
+      "name": "browser-lint-final",
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "tests/pwa/periodic-spells.spec.ts",
+        "tests/pwa/periodic-spells.config.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 7.7,
+      "identity": {
+        "pid": 2708137,
+        "procStat": "2708137 (npx) R 2708136 2708136 2708136 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89326289 11788288 0 18446744073709551615 106377613377536 106377618323133 140722234533712 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 106377622255312 106377623740184 106377937633280 140722234542144 140722234542320 140722234542320 140722234548164 0\n"
+      },
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "build-final",
+      "command": [
+        "env",
+        "-u",
+        "VITE_E2E",
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inferno-gp6lol25/build",
+        "--emptyOutDir"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 13.344,
+      "identity": {
+        "pid": 2708493,
+        "procStat": "2708493 (env) R 2708492 2708492 2708492 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89331394 11788288 0 18446744073709551615 107622565945344 107622570890941 140735083583808 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 107622574823120 107622576307992 107622755512320 140735083591826 140735083591959 140735083591959 140735083597803 0\n"
+      },
+      "logSha256": "e6790f836b77c1679fb87ea04094f363c7d79823c0ffe1047e25b7054531e10f"
+    },
+    {
+      "name": "precache-final",
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inferno-gp6lol25/build"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 0.263,
+      "identity": {
+        "pid": 2708640,
+        "procStat": "2708640 (node) R 2708639 2708639 2708639 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 89334087 107352064 41 18446744073709551615 7626752 52430497 140725892138720 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 112535000 112706784 927088640 140725892147322 140725892147439 140725892147439 140725892153283 0\n"
+      },
+      "logSha256": "d7bc75bb5d4c1cb4692e4ec58793c7e64b4592298843576dfd7ccd67087f110a"
+    },
+    {
+      "name": "browser-second",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "-c",
+        "tests/pwa/periodic-spells.config.ts",
+        "--grep",
+        "inferno public"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 103.29,
+      "identity": {
+        "pid": 2709472,
+        "procStat": "2709472 (npx) R 2709471 2709471 2709471 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 89338285 11788288 0 18446744073709551615 108567070310400 108567075255997 140725747314928 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 108567079188176 108567080673048 108567508590592 140725747316501 140725747316648 140725747316648 140725747322820 0\n"
+      },
+      "logSha256": "d0445f67457434f25ae0b4596cc6d826a7155d29b7ae270104f19e2e1f506615"
+    },
+    {
+      "name": "full-final",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 654.911,
+      "identity": {
+        "pid": 2715445,
+        "procStat": "2715445 (npm) R 2715444 2715444 2715444 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89362041 11788288 0 18446744073709551615 103826667532288 103826672477885 140735654120032 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 103826676410064 103826677894936 103827661209600 140735654123665 140735654123760 140735654123760 140735654129604 0\n"
+      },
+      "logSha256": "bc35eece0dee4d59448cbd3fabd7bee6296412b5714e69d854878b4aae8ea6f2"
+    }
+  ],
+  "full": {
+    "passed": 16466,
+    "skippedExisting": 2,
+    "files": 743,
+    "vitestSeconds": 653.18
+  },
+  "engine": {
+    "passed": 8194,
+    "files": 306
+  },
+  "newTests": 95,
+  "focused": {
+    "passed": 541,
+    "files": 10
+  },
+  "performanceAcceptance": "open; test/build budgets remain exceeded"
+}

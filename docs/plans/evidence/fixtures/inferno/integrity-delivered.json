@@ -1,0 +1,22 @@
+{
+  "sourceFiles": 2230,
+  "sourceManifestSha256": "e05dee8ea52aa28977e3b53ed4480036c1ad43930aff2eaad8f30d189ac943b2",
+  "onlyPostBuildChange": [
+    {
+      "path": "src/stores/inferno.causal.test.ts",
+      "beforeSha256": "bb8b6520538c85f1d8f82c1daefa0bb8d6e2eb3a68adf9ed4a4c1ed5cbcb1a49",
+      "afterSha256": "b1329efd9b926e9eb8197ece44687835de1fce403d7ba125131203ffb20944c5"
+    }
+  ],
+  "buildFiles": 761,
+  "buildExact": true,
+  "sorceressChangedObjects": [
+    "skills-sorceress-inferno"
+  ],
+  "other29RawSorceressObjectsExact": true,
+  "genuineSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "genuineExact": true,
+  "sourceCommit": "65be29845ff2189640672cb0a420d064199403b2",
+  "committedBlobsVerified": 2230,
+  "allFrozenSourceAndBuildExact": true
+}

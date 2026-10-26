@@ -1,0 +1,19 @@
+{
+  "sourceCommit": "65be29845ff2189640672cb0a420d064199403b2",
+  "base": "f92e8a34",
+  "manifestFiles": 2230,
+  "manifestSha256": "e05dee8ea52aa28977e3b53ed4480036c1ad43930aff2eaad8f30d189ac943b2",
+  "manifestInRetainedArchive": "source-delivered-manifest.json",
+  "preBuildManifestInRetainedArchive": "source-before-build.json",
+  "changesSinceProductionBuild": {
+    "changesSinceProductionBuild": [
+      {
+        "path": "src/stores/inferno.causal.test.ts",
+        "beforeSha256": "bb8b6520538c85f1d8f82c1daefa0bb8d6e2eb3a68adf9ed4a4c1ed5cbcb1a49",
+        "afterSha256": "b1329efd9b926e9eb8197ece44687835de1fce403d7ba125131203ffb20944c5"
+      }
+    ],
+    "productionSourceUnchanged": true,
+    "reason": "Typed explicit paid-status start/removal assertions replace nested asymmetric matchers after lint identified unsafe any. No production source changed."
+  }
+}

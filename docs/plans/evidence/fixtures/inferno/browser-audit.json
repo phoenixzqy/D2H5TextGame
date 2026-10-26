@@ -1,0 +1,236 @@
+{
+  "cases": [
+    {
+      "case": "spell-desktop-en",
+      "status": "passed",
+      "retry": 0,
+      "geometryChecks": 5,
+      "sixDomainSavePairs": 2,
+      "actualOfflineContinues": 1,
+      "fireLines": 6,
+      "infernoCasts": 1,
+      "positiveChip": true,
+      "attachments": [
+        {
+          "name": "skill-preview",
+          "path": "inspect/spell-desktop-en-skill-preview.png",
+          "sha256": "b161a1324622b580ba061bc529d99451331d5648fcbaa31235cca25dba07ae6b",
+          "bytes": 73482
+        },
+        {
+          "name": "geometry",
+          "path": "inspect/spell-desktop-en-geometry.json",
+          "sha256": "410d0a656fb5e216a79da1cf982aaa24cc1914076a373b76989936afc4ceee57",
+          "bytes": 249
+        },
+        {
+          "name": "mana-playback",
+          "path": "inspect/spell-desktop-en-mana-playback.json",
+          "sha256": "e07b0632f9abdc5629c8d13059358a285099f3506f1c20f6989653163aba82fa",
+          "bytes": 77
+        },
+        {
+          "name": "combat-log",
+          "path": "inspect/spell-desktop-en-combat-log.txt",
+          "sha256": "c2d7fb4ecec4dd7931771c521f53b1864d41ecd776e1e9c59f418148a5900ede",
+          "bytes": 1034
+        },
+        {
+          "name": "combat",
+          "path": "inspect/spell-desktop-en-combat.png",
+          "sha256": "40d6e705792d1f8a6dd418a7ff3c4f9fa8f06dbb7df57f63bd8170f4c7f7a815",
+          "bytes": 422927
+        },
+        {
+          "name": "online-save-pair",
+          "path": "inspect/spell-desktop-en-online-save-pair.json",
+          "sha256": "bff70128e5c3f531e8cb8fb3fba1cf0aac626869e29779420d10b7d8eb19a132",
+          "bytes": 6370
+        },
+        {
+          "name": "offline-save-pair",
+          "path": "inspect/spell-desktop-en-offline-save-pair.json",
+          "sha256": "bff70128e5c3f531e8cb8fb3fba1cf0aac626869e29779420d10b7d8eb19a132",
+          "bytes": 6370
+        }
+      ]
+    },
+    {
+      "case": "spell-desktop-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "geometryChecks": 5,
+      "sixDomainSavePairs": 2,
+      "actualOfflineContinues": 1,
+      "fireLines": 6,
+      "infernoCasts": 1,
+      "positiveChip": true,
+      "attachments": [
+        {
+          "name": "skill-preview",
+          "path": "inspect/spell-desktop-zh-CN-skill-preview.png",
+          "sha256": "fc99d2ab6b796d863684aeb27b703e20ab4ef92049e4ba61aaa94605d3426e18",
+          "bytes": 89229
+        },
+        {
+          "name": "geometry",
+          "path": "inspect/spell-desktop-zh-CN-geometry.json",
+          "sha256": "410d0a656fb5e216a79da1cf982aaa24cc1914076a373b76989936afc4ceee57",
+          "bytes": 249
+        },
+        {
+          "name": "mana-playback",
+          "path": "inspect/spell-desktop-zh-CN-mana-playback.json",
+          "sha256": "a466a8fba7ec1065ee66c73bece846dd0ad407927780f8ce56228052e8ccf5eb",
+          "bytes": 76
+        },
+        {
+          "name": "combat-log",
+          "path": "inspect/spell-desktop-zh-CN-combat-log.txt",
+          "sha256": "ac623dee2f6d437a56caf58d4f384df51a52643e845b6c64f7632df6e033d0df",
+          "bytes": 1165
+        },
+        {
+          "name": "combat",
+          "path": "inspect/spell-desktop-zh-CN-combat.png",
+          "sha256": "8b2fb0c20e0d857decd5211d3f9eedbc25d88338c8acb21de2b7bf3743aa603a",
+          "bytes": 420934
+        },
+        {
+          "name": "online-save-pair",
+          "path": "inspect/spell-desktop-zh-CN-online-save-pair.json",
+          "sha256": "3fea4177a900eca4d63a9909f616a5ee44e05a7c63d3dce5f69ff5d8b9edfdd5",
+          "bytes": 6376
+        },
+        {
+          "name": "offline-save-pair",
+          "path": "inspect/spell-desktop-zh-CN-offline-save-pair.json",
+          "sha256": "3fea4177a900eca4d63a9909f616a5ee44e05a7c63d3dce5f69ff5d8b9edfdd5",
+          "bytes": 6376
+        }
+      ]
+    },
+    {
+      "case": "spell-mobile-en",
+      "status": "passed",
+      "retry": 0,
+      "geometryChecks": 5,
+      "sixDomainSavePairs": 2,
+      "actualOfflineContinues": 1,
+      "fireLines": 6,
+      "infernoCasts": 1,
+      "positiveChip": true,
+      "attachments": [
+        {
+          "name": "skill-preview",
+          "path": "inspect/spell-mobile-en-skill-preview.png",
+          "sha256": "39f26c2783e1883023ccf17302adfaad2d011c33ec11d9662b70923174efedb4",
+          "bytes": 232911
+        },
+        {
+          "name": "geometry",
+          "path": "inspect/spell-mobile-en-geometry.json",
+          "sha256": "410d0a656fb5e216a79da1cf982aaa24cc1914076a373b76989936afc4ceee57",
+          "bytes": 249
+        },
+        {
+          "name": "mana-playback",
+          "path": "inspect/spell-mobile-en-mana-playback.json",
+          "sha256": "e07b0632f9abdc5629c8d13059358a285099f3506f1c20f6989653163aba82fa",
+          "bytes": 77
+        },
+        {
+          "name": "combat-log",
+          "path": "inspect/spell-mobile-en-combat-log.txt",
+          "sha256": "c2d7fb4ecec4dd7931771c521f53b1864d41ecd776e1e9c59f418148a5900ede",
+          "bytes": 1034
+        },
+        {
+          "name": "combat",
+          "path": "inspect/spell-mobile-en-combat.png",
+          "sha256": "bcb6e51069031e547dc669a59ca6f7093de8fccf5123e11a4a9a885bd8d5285a",
+          "bytes": 129988
+        },
+        {
+          "name": "online-save-pair",
+          "path": "inspect/spell-mobile-en-online-save-pair.json",
+          "sha256": "bff70128e5c3f531e8cb8fb3fba1cf0aac626869e29779420d10b7d8eb19a132",
+          "bytes": 6370
+        },
+        {
+          "name": "offline-save-pair",
+          "path": "inspect/spell-mobile-en-offline-save-pair.json",
+          "sha256": "bff70128e5c3f531e8cb8fb3fba1cf0aac626869e29779420d10b7d8eb19a132",
+          "bytes": 6370
+        }
+      ]
+    },
+    {
+      "case": "spell-mobile-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "geometryChecks": 5,
+      "sixDomainSavePairs": 2,
+      "actualOfflineContinues": 1,
+      "fireLines": 6,
+      "infernoCasts": 1,
+      "positiveChip": true,
+      "attachments": [
+        {
+          "name": "skill-preview",
+          "path": "inspect/spell-mobile-zh-CN-skill-preview.png",
+          "sha256": "29fdf0db811be68882c2d1ab00d3a977ec0eedbc847a21079376a44c0ccdba69",
+          "bytes": 276469
+        },
+        {
+          "name": "geometry",
+          "path": "inspect/spell-mobile-zh-CN-geometry.json",
+          "sha256": "410d0a656fb5e216a79da1cf982aaa24cc1914076a373b76989936afc4ceee57",
+          "bytes": 249
+        },
+        {
+          "name": "mana-playback",
+          "path": "inspect/spell-mobile-zh-CN-mana-playback.json",
+          "sha256": "a466a8fba7ec1065ee66c73bece846dd0ad407927780f8ce56228052e8ccf5eb",
+          "bytes": 76
+        },
+        {
+          "name": "combat-log",
+          "path": "inspect/spell-mobile-zh-CN-combat-log.txt",
+          "sha256": "ac623dee2f6d437a56caf58d4f384df51a52643e845b6c64f7632df6e033d0df",
+          "bytes": 1165
+        },
+        {
+          "name": "combat",
+          "path": "inspect/spell-mobile-zh-CN-combat.png",
+          "sha256": "9bf03754faeb96a6494acef2388d5c8127b3cc66c3bd26a200a79acc7cc6343e",
+          "bytes": 121974
+        },
+        {
+          "name": "online-save-pair",
+          "path": "inspect/spell-mobile-zh-CN-online-save-pair.json",
+          "sha256": "3fea4177a900eca4d63a9909f616a5ee44e05a7c63d3dce5f69ff5d8b9edfdd5",
+          "bytes": 6376
+        },
+        {
+          "name": "offline-save-pair",
+          "path": "inspect/spell-mobile-zh-CN-offline-save-pair.json",
+          "sha256": "3fea4177a900eca4d63a9909f616a5ee44e05a7c63d3dce5f69ff5d8b9edfdd5",
+          "bytes": 6376
+        }
+      ]
+    }
+  ],
+  "caseCount": 4,
+  "geometryChecks": 20,
+  "sixDomainSavePairs": 8,
+  "actualOfflineContinues": 4,
+  "screenshots": 8,
+  "reportSha256": "1e72f2272f2424fd33b32300a0334a6ed262c9ef2c840acd99ed75db2f494b35",
+  "screenshotsIndividuallyInspected": 8,
+  "inspectionLimits": [
+    "Desktop descriptions/combat chips readable; preview capture clips lower rows",
+    "Mobile fixed header/nav overlap preview edges and part of combat chip",
+    "No general UX/a11y, earned balance or campaign acceptance"
+  ]
+}

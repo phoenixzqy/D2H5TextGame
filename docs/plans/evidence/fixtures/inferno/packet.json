@@ -1,0 +1,12 @@
+{
+  "bug": "BUG239",
+  "contract": "docs/plans/decisions/D04-inferno-channel-v1.md",
+  "sourceCommit": "65be29845ff2189640672cb0a420d064199403b2",
+  "base": "f92e8a34",
+  "newTests": 95,
+  "verification": "bounded local functionality only",
+  "next": "Hydra; Cold Mastery review-needed; remaining all-class skill/campaign/earned-build gates",
+  "genuineCampaign": "L33/nextNormal402/Nightmare0/Ancients-Rite claimed/Baal uncleared; no action",
+  "independentAcceptance": "open",
+  "fullPrivateV1": "unfinished; goal/branch/worktree/claim active"
+}

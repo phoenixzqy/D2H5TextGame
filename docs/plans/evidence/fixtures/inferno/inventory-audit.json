@@ -1,0 +1,23 @@
+{
+  "changedRows": [
+    "skills-sorceress-inferno"
+  ],
+  "changedColumns": [
+    "behavior_verification",
+    "contract_evidence"
+  ],
+  "other212RawRowsExact": true,
+  "historicalFieldsIdsOrderExact": true,
+  "beforeSha256": "1d1a9ebc7a539eed244d2de97faaf1710809e75f057a9ad722e834518b36374e",
+  "afterSha256": "3fb4ff290b488e8d37fc72387d7cf1152d4f41bbfe43b236eb1acfca119a0060",
+  "counts": {
+    "unverified": 67,
+    "bounded-functional;independent-acceptance-open": 141,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "boundedFunctional": 144,
+  "sorceressBounded": 28,
+  "total": 213
+}
