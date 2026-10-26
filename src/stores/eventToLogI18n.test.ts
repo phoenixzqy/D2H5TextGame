@@ -129,7 +129,7 @@ const statusNames = [
   ['amplify-damage', 'Amplify', '伤害加深'], ['decrepify', 'Decrepify', '衰老'],
   ['dim-vision', 'Dim Vision', '微暗灵视'], ['weaken', 'Weaken', '削弱'],
   ['iron-maiden', 'Iron Maiden', '攻击反噬'], ['terror', 'Terror', '恐惧'],
-  ['confuse', 'Confuse', '迷乱'], ['life-tap', 'Life Tap', '偷取生命'],
+  ['confuse', 'Confuse', '迷乱'], ['life-tap', 'Life Tap', '吸取生命'],
   ['attract', 'Attract', '吸引'], ['lower-resist', 'Lower Resist', '降低抵抗'],
   ['mana-burn', 'Mana Burn', '法力燃烧'], ['armor-melt', 'Armor Melt', '护甲熔毁']
 ] as const;
