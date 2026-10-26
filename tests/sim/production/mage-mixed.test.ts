@@ -151,20 +151,38 @@ describe('source-separated mixed recording contracts', () => {
     expect(summary.strata.every(row => row.critDenominator === row.landed && row.dodgeDenominator === row.attempts)).toBe(true);
   });
 
-  it('checks actual production hits against the independent damage literals', () => {
+  it('checks actual production hits against independent damage arithmetic and observed combos', () => {
     const fixture = buildMageMixedFixture(), run = recordMageMixedSeed(fixture, 'elemental', 7);
-    let observed = 0;
+    const statuses = new Map(fixture.snapshot.enemyTeam.map(unit => [unit.id, unit.statuses]));
+    let observed = 0, chilledLightning = 0;
     for (const event of run.recorded.events) {
+      if (event.kind === 'status-state') statuses.set(event.target, event.statuses);
       if (event.kind !== 'damage') continue;
       const source = run.summary.units.find(unit => unit.id === event.source);
       if (!source) continue;
-      const flayer = event.target.includes('undead-flayer');
-      const literals = source.family === 'skeleton' ? [1, 1] : source.type === 'cold' || source.type === 'lightning'
-        ? flayer ? [22, 44] : [10, 27] : source.type === 'poison' && flayer ? [1, 1] : [1, 2];
-      expect(event.amount).toBe(event.dodged ? 0 : literals[event.crit ? 1 : 0]);
+      const target = required(fixture.snapshot.enemyTeam.find(unit => unit.id === event.target));
+      const active = required(statuses.get(target.id)).filter(status =>
+        (status.appliedAtMs === undefined || status.appliedAtMs <= event.simClockMs) &&
+        (status.expiresAtMs === undefined || event.simClockMs < status.expiresAtMs));
+      const has = (id: string) => active.some(status => status.id === id);
+      let multiplier = 1;
+      if (has('chill') && event.damageType === 'lightning') { multiplier *= 1.3; chilledLightning++; }
+      if (has('chill') && event.damageType === 'physical') multiplier *= 1.1;
+      if (has('ignite') && event.damageType === 'physical') multiplier *= 1.25;
+      if (has('ignite') && event.damageType === 'poison') multiplier *= 1.15;
+      if (has('paralyze') && event.damageType === 'fire') multiplier *= 1.2;
+      const poisonStacks = active.find(status => status.id === 'poison')?.stacks ?? 0;
+      if (poisonStacks >= 3 && event.damageType === 'poison') multiplier *= 1 + .15 * poisonStacks;
+      const type = required((['physical', 'fire', 'cold', 'lightning', 'poison'] as const).find(type => type === event.damageType));
+      const resistance = target.stats.resistances[type];
+      const mitigation = ['cold', 'lightning', 'arcane'].includes(event.damageType) ? target.stats.magicResist : target.stats.defense;
+      const damage = Math.max(1, Math.floor((source.family === 'skeleton' ? 35 : 45) * multiplier *
+        (event.crit ? 1.5 : 1) * (1 - Math.max(-100, Math.min(75, resistance)) / 100) - mitigation));
+      expect(event.amount).toBe(event.dodged ? 0 : damage);
       observed++;
     }
     expect(observed).toBeGreaterThan(0);
+    expect(chilledLightning).toBeGreaterThan(0);
     expect(run.summary.metrics.mages.effectiveHpRemoved).toBeGreaterThan(0);
   });
 
@@ -196,10 +214,10 @@ describe('source-separated mixed recording contracts', () => {
     expect(summary.metrics.successfulTtkMs).toBeNull();
   });
 
-  it('rejects preparation, bolt, clock, unsupported enemy condition and source-less DoT forgeries', () => {
+  it('rejects preparation, bolt, clock, unsupported enemy condition and malformed periodic forgeries', () => {
     const fixture = buildMageMixedFixture(), actual = recordMageMixedSeed(fixture, 'elemental', 0), enemy = required(fixture.snapshot.enemyTeam[0]);
     const invalid: [RecordedBattleEvent, RegExp][] = [[{ kind: 'status', target: enemy.id, statusId: 'chill', simClockMs: 0, uiDelayMs: 50 }, /unsupported enemy condition/],
-      [{ kind: 'dot', target: enemy.id, amount: 1, simClockMs: 0, uiDelayMs: 50 }, /Source-less DoT/]];
+      [{ kind: 'dot', target: enemy.id, amount: NaN, simClockMs: 0, uiDelayMs: 50 }, /Invalid Mage screen periodic damage/]];
     for (const [extra, reason] of invalid) {
       const events = [...actual.recorded.events, extra].sort((a, b) => a.simClockMs - b.simClockMs);
       expect(() => inspectMageMixedBattle(fixture, withEvents(actual.recorded, events), 'elemental', 0)).toThrow(reason);

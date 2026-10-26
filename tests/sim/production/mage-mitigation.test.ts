@@ -102,7 +102,7 @@ describe('outer identity before actual battle recording', () => {
     expect(JSON.stringify(fixture)).toBe(bytes);
   });
 
-  it('rejects invalid seeds, wrong payment/stats/type and source-less DoT', () => {
+  it('rejects invalid seeds, wrong payment/stats/type and malformed periodic damage', () => {
     const fixture = buildMageMitigationFixture('d65-m23');
     for (const seed of [-1, 1000, 0.5, NaN]) expect(() => recordMageMitigationSeed(fixture, 'd65-m23', 'elemental', seed)).toThrow();
     const run = recordMageMitigationSeed(fixture, 'd65-m23', 'elemental', 0);
@@ -113,7 +113,7 @@ describe('outer identity before actual battle recording', () => {
         if (mutation === 'stats' && event.kind === 'summon') return { ...event, unit: { ...event.unit, stats: { ...event.unit.stats, attack: 99 } } };
         return event;
       });
-      if (mutation === 'dot') events.unshift({ kind: 'dot', target: fixture.snapshot.playerTeam[0]!.id, amount: 1, simClockMs: 0, uiDelayMs: 50 });
+      if (mutation === 'dot') events.unshift({ kind: 'dot', target: fixture.snapshot.playerTeam[0]!.id, amount: NaN, simClockMs: 0, uiDelayMs: 50 });
       expect(() => inspectMageMitigationBattle(fixture, 'd65-m23', { ...run.recorded, events }, 'elemental', 0)).toThrow();
     }
   });

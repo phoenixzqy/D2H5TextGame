@@ -1,6 +1,7 @@
 import { runBattle, runBattleRecorded, type RecordedBattleEvent, type RecordedBattleResult } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import { applyOrbs } from '@/engine/combat/orbs';
+import { activeStatusView } from '@/engine/combat/status';
 import { mageJsonHash } from './mage-balance-fixture';
 import { measureMageBattle } from './mage-balance-runner';
 import { assertMageMixedFixture, type MageMixedFixture } from './mage-mixed-fixture';
@@ -91,6 +92,7 @@ export function inspectMageMixedBattle(fixture: MageMixedFixture, recorded: Reco
   const state = new Map([...input.playerTeam, ...input.enemyTeam].map(unit => [unit.id, unit]));
   const species = new Map(input.enemyTeam.map(unit => [unit.id, unit.id.includes('undead-flayer') ? 'flayer' : 'horror-mage']));
   const controls: { kind: 'status' | 'stunned'; target: string; statusId: string | null; atMs: number }[] = [];
+  const hits = new Map<string, Extract<RecordedBattleEvent, { kind: 'damage' }>>();
   for (const event of recorded.events) {
     if (event.kind === 'summon') state.set(event.unit.id, event.unit);
     else if (event.kind === 'action') {
@@ -102,6 +104,7 @@ export function inspectMageMixedBattle(fixture: MageMixedFixture, recorded: Reco
       }
     } else if (event.kind === 'damage') {
       const source = required(state.get(event.source)), target = required(state.get(event.target));
+      hits.set(target.id, event);
       if (source.side === target.side || (event.dodged && (event.amount !== 0 || event.crit))) throw new Error('Mage mixed damage shape');
       const effective = event.dodged ? 0 : Math.min(Math.max(0, target.life), event.amount);
       state.set(target.id, { ...target, life: Math.max(0, target.life - effective) });
@@ -114,6 +117,12 @@ export function inspectMageMixedBattle(fixture: MageMixedFixture, recorded: Reco
         const values = event.crit ? row.critValues : row.noncritValues;
         values[String(event.amount)] = (values[String(event.amount)] ?? 0) + 1;
       }
+    } else if (event.kind === 'dot') {
+      const target = required(state.get(event.target));
+      state.set(target.id, { ...target, life: Math.max(0, target.life - event.amount) });
+    } else if (event.kind === 'status-state') {
+      const target = required(state.get(event.target));
+      state.set(target.id, { ...target, statuses: event.statuses });
     } else if (event.kind === 'heal' || event.kind === 'orb' || event.kind === 'death') {
       const target = required(state.get(event.target));
       if (event.kind === 'heal' && (!Number.isFinite(event.amount) || event.amount < 0)) throw new Error('Mage mixed heal');
@@ -124,7 +133,15 @@ export function inspectMageMixedBattle(fixture: MageMixedFixture, recorded: Reco
       if (event.kind === 'death' && unit) unit.deathEvents++;
     } else if (event.kind === 'status' || event.kind === 'stunned') {
       const target = required(state.get(event.target));
-      if (target.side === 'enemy') throw new Error('Mage mixed unsupported enemy condition');
+      if (target.side === 'enemy') {
+        const hit = hits.get(target.id), source = hit && units.find(unit => unit.id === hit.source);
+        const signatureTypes: Readonly<Record<string, string>> = { burn: 'fire', chill: 'cold', paralyze: 'lightning', poison: 'poison' };
+        const expected = event.kind === 'status' ? signatureTypes[event.statusId] : undefined;
+        const valid = event.kind === 'status'
+          ? expected !== undefined && source?.family === 'mage' && hit?.simClockMs === event.simClockMs && !hit.dodged && hit.damageType === expected
+          : activeStatusView(target, event.simClockMs).statuses.some(status => status.id === 'paralyze');
+        if (!valid) throw new Error('Mage mixed unsupported enemy condition');
+      }
       controls.push({ kind: event.kind, target: event.target, statusId: event.kind === 'status' ? event.statusId : null, atMs: event.simClockMs });
     } else if (event.kind === 'mana') {
       const target = required(state.get(event.target));
