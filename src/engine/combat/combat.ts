@@ -1,4 +1,5 @@
 import { activeConversion, effectiveSide, opponentsOf, type ConversionBinding } from './allegiance';
+import { attackCandidates } from './attack-targets';
 import { CONVERSION_DEFINITION, CONVERSION_IDS, conversionRank, isConversionTarget, matchesConversion } from '../skills/conversion';
 import { assassinVenomRawDps, copyAssassinVenomProjection, ASSASSIN_SHADOW_DEFINITIONS,
   type AssassinVenomProjection } from '../skills/assassin-shadow';
@@ -1887,7 +1888,7 @@ function castSkill(
     return prepared.units.map(candidate => registerSpawnedSummon(state, actor, prepared.summonId, candidate));
   }
 
-  const enemiesAliveRaw = opponentsOf(state, actor);
+  const enemiesAliveRaw = attackCandidates(state, actor);
   const enemies = targetPriority(state, enemiesAliveRaw);
 
   let targetEnemies: CombatUnit[] = enemies;
@@ -1907,7 +1908,7 @@ function castSkill(
 function basicAttack(state: State, actorId: string): void {
   const actor = state.units.get(actorId);
   if (!actor) return;
-  const enemiesAlive = opponentsOf(state, actor);
+  const enemiesAlive = attackCandidates(state, actor);
   const target = pickDefender(state, actor, enemiesAlive);
   if (!target) return;
 
@@ -1956,7 +1957,7 @@ function attackWithHydra(state: State, body: CombatUnit): void {
   for (let head = 0; head < HYDRA_DEFINITION.heads; head++) {
     const current = state.units.get(body.id);
     if (!current || !alive(current)) break;
-    const target = pickDefender(state, current, opponentsOf(state, current));
+    const target = pickDefender(state, current, attackCandidates(state, current));
     if (!target) break;
     applyDamageToUnit(state, body.id, target.id, HYDRA_DEFINITION.bolt, bound.rank, true);
   }
