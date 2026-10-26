@@ -1,0 +1,27 @@
+{
+  "head": "7f7149b7425708f945345b947bff2f93576a36dd",
+  "committedSource": {
+    "head": "7f7149b7425708f945345b947bff2f93576a36dd",
+    "sourceCount": 1594,
+    "drift": []
+  },
+  "sourceCount": 1594,
+  "buildCount": 762,
+  "sourceDrift": [],
+  "buildDrift": [],
+  "full": {
+    "passed": 17590,
+    "files": 800,
+    "existingSkipped": 2,
+    "seconds": 689.033,
+    "exitCode": 0
+  },
+  "newRegressions": 77,
+  "verifiedTerminalReceipts": 23,
+  "inventoryBeforeCreditSha256": "648b58ae87540981f7f89faa404619e497576ea3db888474b4b293d1acc5e377",
+  "inventoryUnchangedBeforeCredit": true,
+  "earnedSaveSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+  "earnedSaveUnchanged": true,
+  "genuineCampaignAction": false,
+  "remoteAction": false
+}

@@ -1,0 +1,52 @@
+{
+  "deletedFiles": 992,
+  "deletedDirectories": 32,
+  "remaining": [],
+  "failures": [],
+  "taskRootAbsent": true,
+  "distAbsent": true,
+  "recordedIdentitiesChecked": 54,
+  "liveRecordedIdentities": [],
+  "readableTaskConsumers": [],
+  "optionalProcAuditRestricted": [
+    {
+      "pid": 394,
+      "name": "systemd",
+      "reason": "restricted optional fd/cwd audit"
+    },
+    {
+      "pid": 398,
+      "name": "(sd-pam)",
+      "reason": "restricted optional fd/cwd audit"
+    },
+    {
+      "pid": 2217552,
+      "name": "zai",
+      "reason": "restricted optional fd audit"
+    },
+    {
+      "pid": 3874319,
+      "name": "zai",
+      "reason": "restricted optional fd audit"
+    },
+    {
+      "pid": 4110578,
+      "name": "zai",
+      "reason": "restricted optional fd audit"
+    }
+  ],
+  "optionalProcAuditInitialFailure": "PermissionError reading /proc/394/cwd (systemd); no deletion was attempted by that audit. Archive creation was nondestructive and completed separately.",
+  "procAuditScope": "All recorded task births and task-tagged commands absent; readable same-UID fd/cwd paths clear. Restricted unrelated OS process entries are explicitly listed; no claim of universal host fd visibility.",
+  "port4531Closed": true,
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-retained.tar.xz",
+  "archiveSha256": "e8c6e70ce32893baa032cb1a4310e9a4b1b897a0f34ad871b31f696c59090238",
+  "rawMembersByteVerified": 119,
+  "terminalReceiptsByteVerified": 23,
+  "retainedPaths": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-retained.tar.xz",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-retention.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-deletion-manifest.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-cleanup.json"
+  ],
+  "owner": "root; retain through BUG247/BUG248 and full-v1 evidence consumers, then remove exact retained paths after no-reader verification."
+}

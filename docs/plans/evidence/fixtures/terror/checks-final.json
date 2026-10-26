@@ -1,0 +1,386 @@
+[
+  {
+    "label": "terror-browser-final",
+    "command": [
+      "node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "tests/pwa/terror.config.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 228.374,
+    "identity": {
+      "pid": 4152047,
+      "procStat": "4152047 (playwright) R 4152040 4152040 4152040 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 93014149 11788288 33 18446744073709551615 94278977306624 94278982252221 140726664818848 0 0 0 0 0 0 0 0 0 17 3 0 0 0 0 0 94278986184400 94278987669272 94279214477312 140726664820404 140726664820492 140726664820492 140726664826843 0\n"
+    },
+    "logSha256": "fdeade0fbaa377d53c32a161f3cdd6f69359a65fd50e8944d4c644e56d1ece93"
+  },
+  {
+    "label": "terror-browser",
+    "command": [
+      "node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "tests/pwa/terror.config.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 2.923,
+    "identity": {
+      "pid": 4149806,
+      "procStat": "4149806 (python3) R 4149724 4149724 4149724 0 -1 0 3 0 0 0 0 0 0 0 20 0 1 0 93009046 8192 0 18446744073709551615 0 0 0 0 0 0 0 0 0 0 0 0 17 11 0 0 0 0 0 0 0 0 0 0 0 0 0\n"
+    },
+    "logSha256": "f54bc347165fd8c320f576c748b4dad31a72796d459bef703f0bcd96379420ad"
+  },
+  {
+    "label": "terror-channels",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-terror-channel.test.ts",
+      "src/stores/inferno.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 8.513,
+    "identity": {
+      "pid": 4134823,
+      "procStat": "4134823 (vitest) R 4134822 4134822 4134822 0 -1 4194304 12 0 0 0 0 0 0 0 20 0 1 0 92911384 11788288 33 18446744073709551615 107001792708608 107001797654205 140737284984528 0 0 0 0 0 0 0 0 0 17 15 0 0 0 0 0 107001801586384 107001803071256 107002559565824 140737284986887 140737284987014 140737284987014 140737284992991 0\n"
+    },
+    "logSha256": "863868796bdf935d001e40d8d80c5713bb0318e760b5c368da98cb516423df94"
+  },
+  {
+    "label": "terror-core-focused",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/terror.test.ts",
+      "src/stores/necromancer-terror.causal.test.ts",
+      "src/engine/combat/cleansing.test.ts",
+      "src/engine/combat/warcry-definition.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 7.502,
+    "identity": {
+      "pid": 4131476,
+      "procStat": "4131476 (vitest) R 4131475 4131475 4131475 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 92902006 11751424 0 18446744073709551615 0 0 140730339268537 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 0 0 0 140730339268537 0 0 0 0\n"
+    },
+    "logSha256": "664399055eeeb060d40683d4bef8eec465caf31d911af1f807a28d5126949dbe"
+  },
+  {
+    "label": "terror-corrected-focused",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/terror.test.ts",
+      "src/stores/necromancer-terror.causal.test.ts",
+      "src/stores/necromancer-terror-channel.test.ts",
+      "src/stores/necromancer-damage-curses.causal.test.ts",
+      "src/data/loader.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 13.949,
+    "identity": {
+      "pid": 4140614,
+      "procStat": "4140614 (vitest) R 4140612 4140612 4140612 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 92941573 11788288 0 18446744073709551615 97178787618816 97178792564413 140723534961184 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 97178796496592 97178797981464 97179588030464 140723534964623 140723534964870 140723534964870 140723534970847 0\n"
+    },
+    "logSha256": "6318631bfde66af87ad205b13ca35db02317ba148a6e79faa543dafa5cb41381"
+  },
+  {
+    "label": "terror-data-loader",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/data/loader.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 6.639,
+    "identity": {
+      "pid": 4137503,
+      "procStat": "4137503 (vitest) R 4137502 4137502 4137502 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 92919786 11788288 33 18446744073709551615 104888872554496 104888877500093 140729402689760 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 104888881432272 104888882917144 104889472557056 140729402693695 140729402693766 140729402693766 140729402699743 0\n"
+    },
+    "logSha256": "0bde6c5ccb0648b7d6649cb5c192c094e2caf38a7b43ed974c2011877d4a3d37"
+  },
+  {
+    "label": "terror-engine-corrected",
+    "command": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 144.196,
+    "identity": {
+      "pid": 4138438,
+      "procStat": "4138438 (npm) R 4138435 4138435 4138435 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 92934933 11788288 33 18446744073709551615 101334205374464 101334210320061 140734197941248 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 101334214252240 101334215737112 101335188774912 140734197942293 140734197942379 140734197942379 140734197948356 0\n"
+    },
+    "logSha256": "be660f93c77837f433ee813ebe47bc7b17a6c8b067ad35d311a6654df8ed1924"
+  },
+  {
+    "label": "terror-engine",
+    "command": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 129.824,
+    "identity": {
+      "pid": 4131792,
+      "procStat": "4131792 (npm) R 4131791 4131791 4131791 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 92903665 11788288 0 18446744073709551615 101229533224960 101229538170557 140725006808928 0 0 0 0 0 0 0 0 0 17 11 0 0 0 0 0 101229542102736 101229543587608 101229939884032 140725006813205 140725006813291 140725006813291 140725006819268 0\n"
+    },
+    "logSha256": "1b051a59327e0c0efe5263e0ed9f1d37717c52f7e56fa84bfec90088021a3270"
+  },
+  {
+    "label": "terror-final-build-bridge",
+    "command": [
+      "npm",
+      "run",
+      "check:test-bridge-shake"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 16.475,
+    "identity": {
+      "pid": 4148112,
+      "procStat": "4148112 (npm) R 4148111 4148111 4148111 0 -1 4194304 7 0 0 0 0 0 0 0 20 0 1 0 93004305 11788288 0 18446744073709551615 98970506858496 98970511804093 140736949465008 0 0 0 0 0 0 0 0 0 17 3 0 0 0 0 0 98970515736272 98970517221144 98971245473792 140736949471241 140736949471339 140736949471339 140736949477316 0\n"
+    },
+    "logSha256": "569f5a6a157f828841d0044790b28bfa854661c7a40d074afff5aead07c157f4"
+  },
+  {
+    "label": "terror-final-engine",
+    "command": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 148.856,
+    "identity": {
+      "pid": 4147614,
+      "procStat": "4147614 (npm) R 4147610 4147610 4147610 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93002775 11788288 0 18446744073709551615 94060918169600 94060923115197 140727554012544 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 94060927047376 94060928532248 94061809872896 140727554017301 140727554017387 140727554017387 140727554023364 0\n"
+    },
+    "logSha256": "b9df23c4483e127414b1256ad56d69748d2c5623b5220d0ef879a5883134b384"
+  },
+  {
+    "label": "terror-final-full",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 689.033,
+    "identity": {
+      "pid": 4155073,
+      "procStat": "4155073 (npm) R 4155045 4155045 4155045 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 93039786 11788288 32 18446744073709551615 93944598241280 93944603186877 140727424491168 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 93944607119056 93944608603928 93945067347968 140727424493600 140727424493675 140727424493675 140727424499652 0\n"
+    },
+    "logSha256": "cd94fadc83b9e610f2ef7771904fc06b8ef5b3213b356611c66bf9d9c1159412"
+  },
+  {
+    "label": "terror-final-lint",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 210.528,
+    "identity": {
+      "pid": 4147926,
+      "procStat": "4147926 (npm) R 4147910 4147910 4147910 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 93003619 11788288 40 18446744073709551615 97078093238272 97078098183869 140723917373152 0 0 0 0 0 0 0 0 0 17 13 0 0 0 0 0 97078102116048 97078103600920 97078920916992 140723917379612 140723917379691 140723917379691 140723917385668 0\n"
+    },
+    "logSha256": "ece0984d3f3facf14cafedcc59b8b3c44daba14dec0264379522890f0e7d0892"
+  },
+  {
+    "label": "terror-final-precache",
+    "command": [
+      "node",
+      "scripts/check-offline-precache.mjs"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 0.046,
+    "identity": {
+      "pid": 4149726,
+      "procStat": "4149726 (node) R 4149725 4149724 4149724 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 93008973 107352064 0 18446744073709551615 7626752 52430497 140730514063968 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 112535000 112706784 727707648 140730514065474 140730514065514 140730514065514 140730514071491 0\n"
+    },
+    "logSha256": "80b50c468136cd544256f879075a120424e770a4dbe1ed7a1afa3b5735b5a8d8"
+  },
+  {
+    "label": "terror-final-types",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 128.599,
+    "identity": {
+      "pid": 4147925,
+      "procStat": "4147925 (npm) R 4147909 4147909 4147909 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93003618 11788288 0 18446744073709551615 105392704987136 105392709932733 140729829210064 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 105392713864912 105392715349784 105393141387264 140729829218327 140729829218411 140729829218411 140729829224388 0\n"
+    },
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+  },
+  {
+    "label": "terror-lint-core-corrected",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 202.964,
+    "identity": {
+      "pid": 4138439,
+      "procStat": "4138439 (npm) R 4138436 4138436 4138436 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 92934934 11788288 0 18446744073709551615 0 0 140733340686364 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 140733340686364 0 0 0 0\n"
+    },
+    "logSha256": "45e1bf52278a4e651d242a633b4f81fc089816ff172088cb5a68f560e26e5e22"
+  },
+  {
+    "label": "terror-lint-core",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 169.078,
+    "identity": {
+      "pid": 4136674,
+      "procStat": "4136674 (npm) R 4136657 4136657 4136657 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 92915271 11788288 0 18446744073709551615 97374437511168 97374442456765 140724937619696 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 97374446388944 97374447873816 97374969921536 140724937627676 140724937627755 140724937627755 140724937633732 0\n"
+    },
+    "logSha256": "697a796b2a0a51e7c419b48e7e8850c9ada215745272590a2ba438aa2cc06ec9"
+  },
+  {
+    "label": "terror-native-red",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-terror.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.286,
+    "identity": {
+      "pid": 4130363,
+      "procStat": "4130363 (vitest) R 4130362 4130362 4130362 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 92883997 11751424 0 18446744073709551615 0 0 140725576886314 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 0 0 0 140725576886314 0 0 0 0\n"
+    },
+    "logSha256": "a995751d8e0c5e52a9825645b97ed9e87813db2b9e20f0387f4cb6af0e795ab0"
+  },
+  {
+    "label": "terror-presentation-corrected-green",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/displayStats.terror.test.ts",
+      "src/features/skills/SkillsScreen.terror.test.tsx",
+      "src/stores/necromancer-terror-native.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 7.5,
+    "identity": {
+      "pid": 4147267,
+      "procStat": "4147267 (vitest) R 4147266 4147266 4147266 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 92996912 11788288 0 18446744073709551615 108008488095744 108008493041341 140720762148368 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 108008496973520 108008498458392 108008616472576 140720762152907 140720762153094 140720762153094 140720762159071 0\n"
+    },
+    "logSha256": "789cf6206b3ec4a19feaade9438be9ca2b51cdc09935b4f2b45c49066ad7a83d"
+  },
+  {
+    "label": "terror-presentation-corrected-red",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/displayStats.terror.test.ts",
+      "src/features/skills/SkillsScreen.terror.test.tsx",
+      "src/stores/necromancer-terror-native.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.549,
+    "identity": {
+      "pid": 4146543,
+      "procStat": "4146543 (vitest) R 4146541 4146541 4146541 0 -1 4194304 3 0 0 0 0 0 0 0 20 0 1 0 92991814 10006528 0 18446744073709551615 0 0 140733209720779 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 0 0 0 140733209720779 0 0 0 0\n"
+    },
+    "logSha256": "1fdedef6cf365f052b1f058351bae971057d6c767a5fbf13ca70b2df0cd7a0bb"
+  },
+  {
+    "label": "terror-presentation-green",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/displayStats.terror.test.ts",
+      "src/features/skills/SkillsScreen.terror.test.tsx",
+      "src/stores/necromancer-terror-native.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.7,
+    "identity": {
+      "pid": 4146836,
+      "procStat": "4146836 (vitest) R 4146834 4146834 4146834 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 92994189 11788288 33 18446744073709551615 94821019365376 94821024310973 140733890301488 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 94821028243152 94821029728024 94821297553408 140733890303947 140733890304134 140733890304134 140733890310111 0\n"
+    },
+    "logSha256": "9e5ff1662013c2c91e1b5af36bcf69c5e90599ce1fa523c4bed15bd3f5b31a1c"
+  },
+  {
+    "label": "terror-presentation-red",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/displayStats.terror.test.ts",
+      "src/features/skills/SkillsScreen.terror.test.tsx",
+      "src/stores/necromancer-terror-native.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.377,
+    "identity": {
+      "pid": 4145099,
+      "procStat": "4145099 (vitest) R 4145098 4145098 4145098 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 92966631 11788288 0 18446744073709551615 105308856504320 105308861449917 140730326010960 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 105308865382096 105308866866968 105309092253696 140730326013899 140730326014086 140730326014086 140730326020063 0\n"
+    },
+    "logSha256": "3cd6f9a23404fb3a07a17b9a9ba14e7d9a6546a104bef76115377972011616ab"
+  },
+  {
+    "label": "terror-types-core-corrected",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 124.333,
+    "identity": {
+      "pid": 4138440,
+      "procStat": "4138440 (npm) R 4138437 4138437 4138437 0 -1 4194304 9 0 0 0 0 0 0 0 20 0 1 0 92934934 11788288 0 18446744073709551615 97269706190848 97269711136445 140726948960512 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 97269715068624 97269716553496 97270318895104 140726948968471 140726948968555 140726948968555 140726948974532 0\n"
+    },
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+  },
+  {
+    "label": "terror-types-core",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 103.144,
+    "identity": {
+      "pid": 4136675,
+      "procStat": "4136675 (npm) R 4136658 4136658 4136658 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 92915271 11763712 0 18446744073709551615 0 0 140735075604503 0 0 0 0 0 0 0 0 0 17 13 0 0 0 0 0 0 0 0 140735075604503 0 0 0 0\n"
+    },
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+  }
+]

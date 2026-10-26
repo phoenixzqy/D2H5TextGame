@@ -1,13 +1,13 @@
 # BUG-247 — Apply paid Terror fear to real combat actions
 
-- Status: core locally implemented; native/finite/control/channel checks pass. Engine8737/326/types/lint/loader pass; presentation/native lifecycle/public browser and final full validation remain open, no credit.
+- Status: locally fixed/verified in 1b192510/27f4acc9/a5008fce/7f7149b7; bounded credit recorded; independent design/QA and earned acceptance open.
 - Severity: High — advertised paid fear has no combat consequence.
 - Owner: root engine/content/frontend; independent design/QA and earned balance open.
-- Build:ab03db65f7b8d1408840df8d92ec91f7f7a81a81; Node24.21.0/Vitest1.6.1.
-- Browser/viewport: native engine repro is locale/viewport independent; production en/zh-CN desktop/mobile verification still required.
+- Original build:ab03db65f7b8d1408840df8d92ec91f7f7a81a81; Node24.21.0/Vitest1.6.1.
+- Browser/viewport: original native repro is locale/viewport independent; final production en/zh-CN desktop/mobile4/4PASS.
 - Seed:1; real registered native L30 Necromancer ranks1/20 with Amplify→Weaken→Terror prerequisites.
 
-## Reproduction
+## Original reproduction
 
 1. Run src/stores/necromancer-terror.causal.test.ts.
 2. Native casterAS263 acts400ms and pays7MP once. Hold it from401ms.
@@ -41,7 +41,7 @@ Cleansing, bosses, boundaries, channel cancellation and truthful bilingual
 previews/native/public save/offline paths require proof before bounded credit.
 No genuine campaign/replay or remote operation is authorized by this increment.
 
-## Core follow-up
+## Historical core follow-up
 
 Complete finite JSON authoring, strict paid interval and shared action/channel
 consumer now repair all six native behavior cases. Focused129/4PASS7.502s;
@@ -57,3 +57,21 @@ damageCurse !== undefined; no suppression or policy change. Original failure
 retained. Corrected focused390/5PASS13.949s, engine8737/326PASS144.196s,
 typesPASS124.333s and lint/purityPASS202.964s;1589source paths exact, only Terror
 data metadata changes, inventory unchanged. Presentation and full skill remain unfinished.
+
+## Final local verification
+
+Core1b192510, source-driven preview27f4acc9, bilingual renderinga5008fce,
+native/public lifecycle7f7149b7.77new regressions; final full17,590passed/800files/
+two existing skips, engine8745/327, types/lint/official build/bridge/precache PASS.
+Production browser4/4: eight exact six-domain pairs/four actual offline Continues,
+20geometry checks and16inspected PNGs with explicit mobile capture limits.
+BUG248 uses available display-model status identity, with all eight original
+component cases passing. No fallback, suppression or skip added.
+
+[Final evidence](../../docs/plans/evidence/d04-terror.md) supplies causal outcomes,
+original RED hashes, contract/commit traceability and exact durable archive paths.
+The former task root named above is deleted;119raw members/23terminal receipts
+are retained and verified,992exact files/32directories cleaned,remaining[]/failures[].
+Exactly one Terror inventory credit;159bounded,52unverified,one engine-only,
+one review-needed. Root author review is not independent approval; earned
+balance/builds and C2-C4/fullG0-G7/full privatev1 remain open.

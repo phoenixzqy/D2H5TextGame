@@ -1,0 +1,15 @@
+{
+  "reason": "Original draft assumed unrounded cooldown, but existing combat.ts effectiveCooldown and displayStats scaleCooldown both use toFixed(1). Preserve native scheduling; fix wrong draft oracle only.",
+  "coreHead": "1b192510d0d3fe3bfbcd65b53d9e5972d05fad20",
+  "originalRedReceipt": "terror-presentation-red.json",
+  "originalRedLogSha256": "3cd6f9a23404fb3a07a17b9a9ba14e7d9a6546a104bef76115377972011616ab",
+  "explicitCooldowns": {
+    "0": 3,
+    "1": 3,
+    "2": 3,
+    "18": 2.1,
+    "19": 2.1,
+    "20": 2
+  },
+  "strengthened": "Case-insensitive Chinese raw identifier rejection; exact next cooldown and fear stat assertion"
+}

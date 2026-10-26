@@ -1,0 +1,47 @@
+{
+  "sourceHead": "7f7149b7425708f945345b947bff2f93576a36dd",
+  "beforeSha256": "648b58ae87540981f7f89faa404619e497576ea3db888474b4b293d1acc5e377",
+  "afterSha256": "800f13df4e30fcb98d3c8b337572a0e974bca03c317babecb98637e711762cb1",
+  "rowCount": 213,
+  "idsAndOrderUnchanged": true,
+  "headerByteExact": true,
+  "otherRawRowsByteExact": 212,
+  "changedIds": [
+    "skills-necromancer-terror"
+  ],
+  "before": {
+    "class": "necromancer",
+    "data_id": "skills-necromancer-terror",
+    "runtime_id": "necromancer.terror",
+    "trigger": "active",
+    "adapter_route": "debuff",
+    "declared_statuses": "terror",
+    "source": "src/data/skills/necromancer.json",
+    "risk_flags": "pure-debuff-consumer-not-found-in-audit",
+    "behavior_verification": "unverified",
+    "contract_evidence": ""
+  },
+  "after": {
+    "class": "necromancer",
+    "data_id": "skills-necromancer-terror",
+    "runtime_id": "necromancer.terror",
+    "trigger": "active",
+    "adapter_route": "debuff",
+    "declared_statuses": "terror",
+    "source": "src/data/skills/necromancer.json",
+    "risk_flags": "independent-design-qa-and-earned-balance-open",
+    "behavior_verification": "bounded-functional;independent-acceptance-open",
+    "contract_evidence": "docs/plans/decisions/D04-terror-v1.md;docs/plans/evidence/d04-terror.md;production/bugs/BUG-247-apply-terror-fear.md"
+  },
+  "counts": {
+    "unverified": 52,
+    "bounded-functional;independent-acceptance-open": 156,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "boundedFunctional": 159,
+  "necromancerBounded": 17,
+  "earnedSaveUnchanged": true,
+  "acceptance": "Root author local bounded functional credit; independent design/QA and earned balance open. No full-v1 acceptance."
+}

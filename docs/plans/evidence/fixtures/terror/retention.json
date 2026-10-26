@@ -1,0 +1,729 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-retained.tar.xz",
+  "archiveSha256": "e8c6e70ce32893baa032cb1a4310e9a4b1b897a0f34ad871b31f696c59090238",
+  "archiveBytes": 3524460,
+  "rawMembers": 119,
+  "terminalReceipts": [
+    {
+      "label": "terror-browser-final",
+      "exitCode": 0,
+      "logSha256": "fdeade0fbaa377d53c32a161f3cdd6f69359a65fd50e8944d4c644e56d1ece93"
+    },
+    {
+      "label": "terror-browser",
+      "exitCode": 1,
+      "logSha256": "f54bc347165fd8c320f576c748b4dad31a72796d459bef703f0bcd96379420ad"
+    },
+    {
+      "label": "terror-channels",
+      "exitCode": 0,
+      "logSha256": "863868796bdf935d001e40d8d80c5713bb0318e760b5c368da98cb516423df94"
+    },
+    {
+      "label": "terror-core-focused",
+      "exitCode": 0,
+      "logSha256": "664399055eeeb060d40683d4bef8eec465caf31d911af1f807a28d5126949dbe"
+    },
+    {
+      "label": "terror-corrected-focused",
+      "exitCode": 0,
+      "logSha256": "6318631bfde66af87ad205b13ca35db02317ba148a6e79faa543dafa5cb41381"
+    },
+    {
+      "label": "terror-data-loader",
+      "exitCode": 0,
+      "logSha256": "0bde6c5ccb0648b7d6649cb5c192c094e2caf38a7b43ed974c2011877d4a3d37"
+    },
+    {
+      "label": "terror-engine-corrected",
+      "exitCode": 0,
+      "logSha256": "be660f93c77837f433ee813ebe47bc7b17a6c8b067ad35d311a6654df8ed1924"
+    },
+    {
+      "label": "terror-engine",
+      "exitCode": 0,
+      "logSha256": "1b051a59327e0c0efe5263e0ed9f1d37717c52f7e56fa84bfec90088021a3270"
+    },
+    {
+      "label": "terror-final-build-bridge",
+      "exitCode": 0,
+      "logSha256": "569f5a6a157f828841d0044790b28bfa854661c7a40d074afff5aead07c157f4"
+    },
+    {
+      "label": "terror-final-engine",
+      "exitCode": 0,
+      "logSha256": "b9df23c4483e127414b1256ad56d69748d2c5623b5220d0ef879a5883134b384"
+    },
+    {
+      "label": "terror-final-full",
+      "exitCode": 0,
+      "logSha256": "cd94fadc83b9e610f2ef7771904fc06b8ef5b3213b356611c66bf9d9c1159412"
+    },
+    {
+      "label": "terror-final-lint",
+      "exitCode": 0,
+      "logSha256": "ece0984d3f3facf14cafedcc59b8b3c44daba14dec0264379522890f0e7d0892"
+    },
+    {
+      "label": "terror-final-precache",
+      "exitCode": 0,
+      "logSha256": "80b50c468136cd544256f879075a120424e770a4dbe1ed7a1afa3b5735b5a8d8"
+    },
+    {
+      "label": "terror-final-types",
+      "exitCode": 0,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "label": "terror-lint-core-corrected",
+      "exitCode": 0,
+      "logSha256": "45e1bf52278a4e651d242a633b4f81fc089816ff172088cb5a68f560e26e5e22"
+    },
+    {
+      "label": "terror-lint-core",
+      "exitCode": 1,
+      "logSha256": "697a796b2a0a51e7c419b48e7e8850c9ada215745272590a2ba438aa2cc06ec9"
+    },
+    {
+      "label": "terror-native-red",
+      "exitCode": 1,
+      "logSha256": "a995751d8e0c5e52a9825645b97ed9e87813db2b9e20f0387f4cb6af0e795ab0"
+    },
+    {
+      "label": "terror-presentation-corrected-green",
+      "exitCode": 0,
+      "logSha256": "789cf6206b3ec4a19feaade9438be9ca2b51cdc09935b4f2b45c49066ad7a83d"
+    },
+    {
+      "label": "terror-presentation-corrected-red",
+      "exitCode": 1,
+      "logSha256": "1fdedef6cf365f052b1f058351bae971057d6c767a5fbf13ca70b2df0cd7a0bb"
+    },
+    {
+      "label": "terror-presentation-green",
+      "exitCode": 1,
+      "logSha256": "9e5ff1662013c2c91e1b5af36bcf69c5e90599ce1fa523c4bed15bd3f5b31a1c"
+    },
+    {
+      "label": "terror-presentation-red",
+      "exitCode": 1,
+      "logSha256": "3cd6f9a23404fb3a07a17b9a9ba14e7d9a6546a104bef76115377972011616ab"
+    },
+    {
+      "label": "terror-types-core-corrected",
+      "exitCode": 0,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "label": "terror-types-core",
+      "exitCode": 0,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    }
+  ],
+  "members": [
+    {
+      "name": "audit-browser.py",
+      "sha256": "e384882c7a4acab7ebac941c21f1285b88be0dce78667be8805afce2a88547b6",
+      "bytes": 3449
+    },
+    {
+      "name": "author-review-core.json",
+      "sha256": "bb7b45e7ace4c5bfebb5bf90ff4c6e13f4b89269a44778979bfbd1f71168de9d",
+      "bytes": 1765
+    },
+    {
+      "name": "author-review-final.json",
+      "sha256": "6f57339815f62490e337b542bb17949814266fec80a5563f05d4345e8e35c8fa",
+      "bytes": 2983
+    },
+    {
+      "name": "author-review-presentation.json",
+      "sha256": "d1de92b1ffec696679e335b5faf64793ffcaf545f94d12d073e37e2eadf1ea14",
+      "bytes": 1771
+    },
+    {
+      "name": "browser-images/01-terror-desktop-en-terror-panel.png",
+      "sha256": "55d435a9973e4736a83d184e66536209631aff01a00a77ba23dccdf1b2518dc5",
+      "bytes": 38123
+    },
+    {
+      "name": "browser-images/01-terror-desktop-en-terror-stats-viewport.png",
+      "sha256": "0bfe5c5cecbe4d9fb0e1822cd4ea9f419a0414d6019858d02257a22693c0d0e2",
+      "bytes": 137606
+    },
+    {
+      "name": "browser-images/01-terror-desktop-en-terror-title-viewport.png",
+      "sha256": "4afaa0d8040172856176bb3a0d899c0fd8471464615e841e98311441a360395e",
+      "bytes": 166339
+    },
+    {
+      "name": "browser-images/01-terror-desktop-en-victory-viewport.png",
+      "sha256": "571b701e239887fe24084a5245fe000faf74322dbcc68568a0ab53181fd2590f",
+      "bytes": 86385
+    },
+    {
+      "name": "browser-images/02-terror-desktop-zh-CN-terror-panel.png",
+      "sha256": "7dd9ce4f24083b46f6e85ad1cfe00848caf3e43d7845a6aadac5f64f1bed1726",
+      "bytes": 38973
+    },
+    {
+      "name": "browser-images/02-terror-desktop-zh-CN-terror-stats-viewport.png",
+      "sha256": "52a652cd2c11172e9b944e0fab7f1f0ae9ece58bfa775b350447437901e45a78",
+      "bytes": 138096
+    },
+    {
+      "name": "browser-images/02-terror-desktop-zh-CN-terror-title-viewport.png",
+      "sha256": "7f4839c1e7f09cf1ed9a77e7fb86d38ad86f5b74f21831e99c447be09da5ea33",
+      "bytes": 167142
+    },
+    {
+      "name": "browser-images/02-terror-desktop-zh-CN-victory-viewport.png",
+      "sha256": "ec3aea62351a4c78721880ac2a0817b7ab1f2c92578c7b575aaf6ce6663e9d8c",
+      "bytes": 76553
+    },
+    {
+      "name": "browser-images/03-terror-mobile-en-terror-panel.png",
+      "sha256": "dd62e9a1d6ea014e00cb6294f17a7781dd6067b91341995eab7804e1920c93f3",
+      "bytes": 139704
+    },
+    {
+      "name": "browser-images/03-terror-mobile-en-terror-stats-viewport.png",
+      "sha256": "2c662408637b031338f52c779fa4b2f25669a0d08950364ed5196fd3502c19f2",
+      "bytes": 198238
+    },
+    {
+      "name": "browser-images/03-terror-mobile-en-terror-title-viewport.png",
+      "sha256": "2c662408637b031338f52c779fa4b2f25669a0d08950364ed5196fd3502c19f2",
+      "bytes": 198238
+    },
+    {
+      "name": "browser-images/03-terror-mobile-en-victory-viewport.png",
+      "sha256": "0cab01c98605742b9b60b3c6db72072250cf02e6354504231d434762a21e1c82",
+      "bytes": 128483
+    },
+    {
+      "name": "browser-images/04-terror-mobile-zh-CN-terror-panel.png",
+      "sha256": "d2a0eefd397099a233d982bd11983d560d60451976656733d715bce3dfc48c17",
+      "bytes": 129721
+    },
+    {
+      "name": "browser-images/04-terror-mobile-zh-CN-terror-stats-viewport.png",
+      "sha256": "60c8b86ecf2badf9a3fb690f911648566e204b297bb67b87b6baf3d307dfd7f0",
+      "bytes": 194819
+    },
+    {
+      "name": "browser-images/04-terror-mobile-zh-CN-terror-title-viewport.png",
+      "sha256": "60c8b86ecf2badf9a3fb690f911648566e204b297bb67b87b6baf3d307dfd7f0",
+      "bytes": 194819
+    },
+    {
+      "name": "browser-images/04-terror-mobile-zh-CN-victory-viewport.png",
+      "sha256": "78a4a8db214aa57fd70bb9ef28b7081e0bca7dc60b0cfefe02f54b7819c53f97",
+      "bytes": 119419
+    },
+    {
+      "name": "browser-invocations.json",
+      "sha256": "2e8f37ee93d7091c34997614d691cb5a6b784aac0d8acfe1b581ab6d69ea4d5a",
+      "bytes": 698
+    },
+    {
+      "name": "browser-metrics.json",
+      "sha256": "6bc631a7793f95bd25d542f3c7612201cfc2b274128cb1a67643e20c944fc129",
+      "bytes": 21697
+    },
+    {
+      "name": "browser-output/.last-run.json",
+      "sha256": "a0ef131d06f2bb1474df7e82376d5d11270445613a0f209a2d39ebc24a9017d1",
+      "bytes": 96
+    },
+    {
+      "name": "browser-output/terror-Necromancer-terror--57fdd-review-cast-save-offline-en-terror-desktop/error-context.md",
+      "sha256": "7ce899315014d4f8f9cc2d1797e4977984d4df5684822bc9df90074634528b07",
+      "bytes": 1342
+    },
+    {
+      "name": "browser-output/terror-Necromancer-terror--57fdd-review-cast-save-offline-en-terror-desktop/trace.zip",
+      "sha256": "724bbe96a322d3f65938c4f24d9123c99f92d07edc74cccdba71608256739bbd",
+      "bytes": 2312
+    },
+    {
+      "name": "browser-output-final/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45
+    },
+    {
+      "name": "browser-records/01-terror-desktop-en-console-errors.json",
+      "sha256": "6e6f435f37b79e54f32f88137d263c2598f9bedc2b89e6c633013a48e8aec874",
+      "bytes": 32
+    },
+    {
+      "name": "browser-records/01-terror-desktop-en-geometry.json",
+      "sha256": "533de1de926f6276a5bbb63cff8e9698c548ab4e7cfed086af4d636759b0dc23",
+      "bytes": 334
+    },
+    {
+      "name": "browser-records/01-terror-desktop-en-offline-save-pair.json",
+      "sha256": "9426231e97277bf89fdeb6fdd9979017cd7e1afbdaa1e00e12676906f69f64af",
+      "bytes": 21390
+    },
+    {
+      "name": "browser-records/01-terror-desktop-en-online-save-pair.json",
+      "sha256": "9426231e97277bf89fdeb6fdd9979017cd7e1afbdaa1e00e12676906f69f64af",
+      "bytes": 21390
+    },
+    {
+      "name": "browser-records/01-terror-desktop-en-public-cast.json",
+      "sha256": "1e5f860cf765d23962cc2de429c3d75435c37118c8d960fc64f5c613fcc5819d",
+      "bytes": 105
+    },
+    {
+      "name": "browser-records/02-terror-desktop-zh-CN-console-errors.json",
+      "sha256": "6e6f435f37b79e54f32f88137d263c2598f9bedc2b89e6c633013a48e8aec874",
+      "bytes": 32
+    },
+    {
+      "name": "browser-records/02-terror-desktop-zh-CN-geometry.json",
+      "sha256": "533de1de926f6276a5bbb63cff8e9698c548ab4e7cfed086af4d636759b0dc23",
+      "bytes": 334
+    },
+    {
+      "name": "browser-records/02-terror-desktop-zh-CN-offline-save-pair.json",
+      "sha256": "e1162185bcb2b2a5f8d1ded8430d23d739bd86b97fcca1d00454635ac14187b9",
+      "bytes": 21396
+    },
+    {
+      "name": "browser-records/02-terror-desktop-zh-CN-online-save-pair.json",
+      "sha256": "e1162185bcb2b2a5f8d1ded8430d23d739bd86b97fcca1d00454635ac14187b9",
+      "bytes": 21396
+    },
+    {
+      "name": "browser-records/02-terror-desktop-zh-CN-public-cast.json",
+      "sha256": "51604dfd9b5614105e3d698f1484ae38646cd14f8ce2b515a676b9daeda41594",
+      "bytes": 111
+    },
+    {
+      "name": "browser-records/03-terror-mobile-en-console-errors.json",
+      "sha256": "6e6f435f37b79e54f32f88137d263c2598f9bedc2b89e6c633013a48e8aec874",
+      "bytes": 32
+    },
+    {
+      "name": "browser-records/03-terror-mobile-en-geometry.json",
+      "sha256": "533de1de926f6276a5bbb63cff8e9698c548ab4e7cfed086af4d636759b0dc23",
+      "bytes": 334
+    },
+    {
+      "name": "browser-records/03-terror-mobile-en-offline-save-pair.json",
+      "sha256": "9426231e97277bf89fdeb6fdd9979017cd7e1afbdaa1e00e12676906f69f64af",
+      "bytes": 21390
+    },
+    {
+      "name": "browser-records/03-terror-mobile-en-online-save-pair.json",
+      "sha256": "9426231e97277bf89fdeb6fdd9979017cd7e1afbdaa1e00e12676906f69f64af",
+      "bytes": 21390
+    },
+    {
+      "name": "browser-records/03-terror-mobile-en-public-cast.json",
+      "sha256": "1e5f860cf765d23962cc2de429c3d75435c37118c8d960fc64f5c613fcc5819d",
+      "bytes": 105
+    },
+    {
+      "name": "browser-records/04-terror-mobile-zh-CN-console-errors.json",
+      "sha256": "6e6f435f37b79e54f32f88137d263c2598f9bedc2b89e6c633013a48e8aec874",
+      "bytes": 32
+    },
+    {
+      "name": "browser-records/04-terror-mobile-zh-CN-geometry.json",
+      "sha256": "533de1de926f6276a5bbb63cff8e9698c548ab4e7cfed086af4d636759b0dc23",
+      "bytes": 334
+    },
+    {
+      "name": "browser-records/04-terror-mobile-zh-CN-offline-save-pair.json",
+      "sha256": "e1162185bcb2b2a5f8d1ded8430d23d739bd86b97fcca1d00454635ac14187b9",
+      "bytes": 21396
+    },
+    {
+      "name": "browser-records/04-terror-mobile-zh-CN-online-save-pair.json",
+      "sha256": "e1162185bcb2b2a5f8d1ded8430d23d739bd86b97fcca1d00454635ac14187b9",
+      "bytes": 21396
+    },
+    {
+      "name": "browser-records/04-terror-mobile-zh-CN-public-cast.json",
+      "sha256": "51604dfd9b5614105e3d698f1484ae38646cd14f8ce2b515a676b9daeda41594",
+      "bytes": 111
+    },
+    {
+      "name": "browser-report-final.json",
+      "sha256": "44ba3dc0fff170f19eea67e177f7bf3799f9a0bbd71b54924f554561120afbec",
+      "bytes": 3114685
+    },
+    {
+      "name": "browser-report.json",
+      "sha256": "3aa6856ea771f9a33aed21372a1af08c2ce32d6ea8535298b2a173e3d6ebebc4",
+      "bytes": 9817
+    },
+    {
+      "name": "build-freeze.json",
+      "sha256": "16934a45ec2b3f6b94d1b444d68bbcf3b0c1cad686c9d8282bfa8302398ef09b",
+      "bytes": 177322
+    },
+    {
+      "name": "checks-core.json",
+      "sha256": "89fb6675b0166ef798953979dcd50dc6497d6271426d292e0fb1fea52e9fcd79",
+      "bytes": 8077
+    },
+    {
+      "name": "checks-final.json",
+      "sha256": "b9981b7e7a685eb3c2eee2b9bca0cdc9be60f458e45986aaef01c7ae043049ba",
+      "bytes": 17217
+    },
+    {
+      "name": "checks-progress.json",
+      "sha256": "2ba30b59c83bfca1e9f8585fa7d0926a079ad4aa965e94a8cc069ce6990adc95",
+      "bytes": 15740
+    },
+    {
+      "name": "committed-source.json",
+      "sha256": "f22a7119dc32309bd97641ba9d6c06e2488d8590e8f289f7a573c92d4837c736",
+      "bytes": 95
+    },
+    {
+      "name": "core-committed-source.json",
+      "sha256": "a5a5f9af37b11a8584ddea74a4035aad6cb8bcf006486aa6c6b0bf7d1ba40ab8",
+      "bytes": 95
+    },
+    {
+      "name": "core-integrity.json",
+      "sha256": "4f46490d5f27a1f1e3d97eb2315c14209321c7b5ada54bea1e2f56e1e8216eb4",
+      "bytes": 2269
+    },
+    {
+      "name": "core-source-freeze.json",
+      "sha256": "f87907116b1205eee941e4cbab25b94443032aa69c44b2e01e271cf466d0b065",
+      "bytes": 333014
+    },
+    {
+      "name": "earned-save-integrity.json",
+      "sha256": "3a6acd833c5f35e18499ae7ff12b0211fa8eff98b01a1550c5035055b5b887de",
+      "bytes": 279
+    },
+    {
+      "name": "follow-on-investigation.json",
+      "sha256": "4e60ad3b69224b31fa13c5eacee73a7c5c0cd984b3610f4bd6bcbe5e37e9b4a8",
+      "bytes": 2359
+    },
+    {
+      "name": "freeze.py",
+      "sha256": "d8fed8ab10248bcb1f69fee881e75d2aecbfdc8b08c015ac2c685cc86bbd656f",
+      "bytes": 1961
+    },
+    {
+      "name": "lint-correction.json",
+      "sha256": "b5730f540e3ca8bfc58d4acdad7143af50f88f3cdc27a2fa324bae1cd6c962ba",
+      "bytes": 546
+    },
+    {
+      "name": "next-presentation-plan.json",
+      "sha256": "5081fddb3704672a1f3bc893ef9952f18e8355dabf728094b20f2de107456b2d",
+      "bytes": 1373
+    },
+    {
+      "name": "next-preview.test.ts",
+      "sha256": "f81a1387be93d8aa0ffc75e93d52ded5207ae5340a2ad3ae6b0c4c6053c60647",
+      "bytes": 1744
+    },
+    {
+      "name": "next-terror-contract-draft.md",
+      "sha256": "1d3a40649c38b505becd1d24ef962c1a8f4f0a6136461f4bb08566d08c4823d2",
+      "bytes": 4199
+    },
+    {
+      "name": "next-terror.causal.test.ts",
+      "sha256": "337150482c912ee1c4799d6a3116dc9291eaa6bc84ef34bb9f3c45c3c279b54a",
+      "bytes": 6170
+    },
+    {
+      "name": "observe.py",
+      "sha256": "fd05a06e951e7d10734f51d5f590c737551ef51fe9db41332ecd99869cbc47e8",
+      "bytes": 1802
+    },
+    {
+      "name": "observed-processes.json",
+      "sha256": "83a471f0cedc220ea462fe8c05fe2d554cf4682d5ae928c8ed03d54e00c8c020",
+      "bytes": 10158
+    },
+    {
+      "name": "post-full-integrity.json",
+      "sha256": "09511eb06fc382b8ac3f5551b36f643139c6a667dad0d61363b8507acf6edfe6",
+      "bytes": 772
+    },
+    {
+      "name": "presentation-oracle-correction.json",
+      "sha256": "9fe1cee72f5872d30dc51475e419444049b746c822cab20a28199a05c094bae7",
+      "bytes": 643
+    },
+    {
+      "name": "retain.py",
+      "sha256": "c33c995c0f32b141edd3ac9196a9ad4ca52db51b561408fd4409e197a1e0ed87",
+      "bytes": 2230
+    },
+    {
+      "name": "run.py",
+      "sha256": "36c79604bf905ae00c07b26903fe993a275b96a32acfca57f677540d22a59574",
+      "bytes": 1186
+    },
+    {
+      "name": "source-freeze.json",
+      "sha256": "b25761749ae75f0f0b0af2c7f9ef171d884d24b1c9a97544993b572cc845b4d4",
+      "bytes": 334062
+    },
+    {
+      "name": "task.json",
+      "sha256": "8412f99f79604d472b51dd90a2baf06c5e64562afa5ebb3af59d89a816298e58",
+      "bytes": 1541
+    },
+    {
+      "name": "terror-browser-final.json",
+      "sha256": "156df7f8d839c4f8a39307a6d59318402c0074ddcd7e4dbd9e644507b5d63cd1",
+      "bytes": 713
+    },
+    {
+      "name": "terror-browser-final.log",
+      "sha256": "fdeade0fbaa377d53c32a161f3cdd6f69359a65fd50e8944d4c644e56d1ece93",
+      "bytes": 1484
+    },
+    {
+      "name": "terror-browser.json",
+      "sha256": "c070a097ad5a46f256b134fc03691c95411b47db38959d60e1ac10c9d2772c75",
+      "bytes": 562
+    },
+    {
+      "name": "terror-browser.log",
+      "sha256": "f54bc347165fd8c320f576c748b4dad31a72796d459bef703f0bcd96379420ad",
+      "bytes": 3185
+    },
+    {
+      "name": "terror-channels.json",
+      "sha256": "e50de078d74d2493d3030e4c0934847dd6cf3b86d093621ce3bd9862f8663a36",
+      "bytes": 752
+    },
+    {
+      "name": "terror-channels.log",
+      "sha256": "863868796bdf935d001e40d8d80c5713bb0318e760b5c368da98cb516423df94",
+      "bytes": 420
+    },
+    {
+      "name": "terror-core-focused.json",
+      "sha256": "e56e4cd83faea9afc278e8c41e0658092da7f69823798dd54410d0422dcbb9ce",
+      "bytes": 730
+    },
+    {
+      "name": "terror-core-focused.log",
+      "sha256": "664399055eeeb060d40683d4bef8eec465caf31d911af1f807a28d5126949dbe",
+      "bytes": 568
+    },
+    {
+      "name": "terror-corrected-focused.json",
+      "sha256": "526a20419a79c6fbf9048678b4c210c64a2a7699fbe5b6447f91644db4c2a971",
+      "bytes": 886
+    },
+    {
+      "name": "terror-corrected-focused.log",
+      "sha256": "6318631bfde66af87ad205b13ca35db02317ba148a6e79faa543dafa5cb41381",
+      "bytes": 632
+    },
+    {
+      "name": "terror-data-loader.json",
+      "sha256": "76d426494915cb09b215a55df7b82b7affbfc49314855fe3eea4475be1d5a4b2",
+      "bytes": 688
+    },
+    {
+      "name": "terror-data-loader.log",
+      "sha256": "0bde6c5ccb0648b7d6649cb5c192c094e2caf38a7b43ed974c2011877d4a3d37",
+      "bytes": 340
+    },
+    {
+      "name": "terror-engine-corrected.json",
+      "sha256": "7d9f1b5c0a8e9ece34702ad01b6e7a29647fc325f60fb5348df735b03c9ac58f",
+      "bytes": 654
+    },
+    {
+      "name": "terror-engine-corrected.log",
+      "sha256": "be660f93c77837f433ee813ebe47bc7b17a6c8b067ad35d311a6654df8ed1924",
+      "bytes": 70754
+    },
+    {
+      "name": "terror-engine.json",
+      "sha256": "db5cdd7e3d3fffa3f5a2f3ba08a2c6b2aa8a74e45d50702c2de31cb579dc276f",
+      "bytes": 653
+    },
+    {
+      "name": "terror-engine.log",
+      "sha256": "1b051a59327e0c0efe5263e0ed9f1d37717c52f7e56fa84bfec90088021a3270",
+      "bytes": 70742
+    },
+    {
+      "name": "terror-final-build-bridge.json",
+      "sha256": "0ad7b22a70c47647d1ed5d426e271233214bf37c39f8f170fd24edf9be794b7f",
+      "bytes": 658
+    },
+    {
+      "name": "terror-final-build-bridge.log",
+      "sha256": "569f5a6a157f828841d0044790b28bfa854661c7a40d074afff5aead07c157f4",
+      "bytes": 1954
+    },
+    {
+      "name": "terror-final-engine.json",
+      "sha256": "1163e5735680ff2af3ef83c04f9d656004877389a7ccafd6dd2c5b393b88bc3b",
+      "bytes": 647
+    },
+    {
+      "name": "terror-final-engine.log",
+      "sha256": "b9df23c4483e127414b1256ad56d69748d2c5623b5220d0ef879a5883134b384",
+      "bytes": 70839
+    },
+    {
+      "name": "terror-final-full.json",
+      "sha256": "a57f4cc59d75a8b4370994b558c4dd4981df7f4bc5587460c06cf6785be8cbce",
+      "bytes": 631
+    },
+    {
+      "name": "terror-final-full.log",
+      "sha256": "cd94fadc83b9e610f2ef7771904fc06b8ef5b3213b356611c66bf9d9c1159412",
+      "bytes": 168661
+    },
+    {
+      "name": "terror-final-lint.json",
+      "sha256": "7f9e4d6ef7dcab58c5082db230ea7921eb5b1130b06bd16d31919e1d26ebd25e",
+      "bytes": 643
+    },
+    {
+      "name": "terror-final-lint.log",
+      "sha256": "ece0984d3f3facf14cafedcc59b8b3c44daba14dec0264379522890f0e7d0892",
+      "bytes": 197
+    },
+    {
+      "name": "terror-final-precache.json",
+      "sha256": "8cd19f249061dd196464cfd46e6a4c36074c69fd21b1ab180f8793d7e9d61208",
+      "bytes": 632
+    },
+    {
+      "name": "terror-final-precache.log",
+      "sha256": "80b50c468136cd544256f879075a120424e770a4dbe1ed7a1afa3b5735b5a8d8",
+      "bytes": 393
+    },
+    {
+      "name": "terror-final-types.json",
+      "sha256": "e398a54c89a158aef8b7f30aa7992eb8d3322e42101f4a1f5358bf967d1c3f9b",
+      "bytes": 650
+    },
+    {
+      "name": "terror-final-types.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "name": "terror-lint-core-corrected.json",
+      "sha256": "2d1473f3baea05eece48a4deac1b269bdd2cbdbce91dc429a05c928f55e07eda",
+      "bytes": 533
+    },
+    {
+      "name": "terror-lint-core-corrected.log",
+      "sha256": "45e1bf52278a4e651d242a633b4f81fc089816ff172088cb5a68f560e26e5e22",
+      "bytes": 197
+    },
+    {
+      "name": "terror-lint-core.json",
+      "sha256": "1d2a6b4bd8ee0f3028786d5cae4570610534a26e44f6454e61c547aed7287032",
+      "bytes": 640
+    },
+    {
+      "name": "terror-lint-core.log",
+      "sha256": "697a796b2a0a51e7c419b48e7e8850c9ada215745272590a2ba438aa2cc06ec9",
+      "bytes": 518
+    },
+    {
+      "name": "terror-native-red.json",
+      "sha256": "1c84f766b3053465451d2e847e51adbec58c6b47f40ae4678c7b99f3f53af52b",
+      "bytes": 595
+    },
+    {
+      "name": "terror-native-red.log",
+      "sha256": "a995751d8e0c5e52a9825645b97ed9e87813db2b9e20f0387f4cb6af0e795ab0",
+      "bytes": 9722
+    },
+    {
+      "name": "terror-presentation-corrected-green.json",
+      "sha256": "a4749fd525919c579bbb8acd8922184119d8c895a6ff8806230bf76172523931",
+      "bytes": 814
+    },
+    {
+      "name": "terror-presentation-corrected-green.log",
+      "sha256": "789cf6206b3ec4a19feaade9438be9ca2b51cdc09935b4f2b45c49066ad7a83d",
+      "bytes": 510
+    },
+    {
+      "name": "terror-presentation-corrected-red.json",
+      "sha256": "60d638a1c4c25ac34156cb7eb6acfe8308b837300e8420f0963771039a7aed99",
+      "bytes": 704
+    },
+    {
+      "name": "terror-presentation-corrected-red.log",
+      "sha256": "1fdedef6cf365f052b1f058351bae971057d6c767a5fbf13ca70b2df0cd7a0bb",
+      "bytes": 19727
+    },
+    {
+      "name": "terror-presentation-green.json",
+      "sha256": "bb9ac945acca1fec212eba9d55a1b41bace4f8437a5f588cab9ddda7e7c6d555",
+      "bytes": 811
+    },
+    {
+      "name": "terror-presentation-green.log",
+      "sha256": "9e5ff1662013c2c91e1b5af36bcf69c5e90599ce1fa523c4bed15bd3f5b31a1c",
+      "bytes": 77686
+    },
+    {
+      "name": "terror-presentation-red.json",
+      "sha256": "ca08eab0ec610d2529f3b7893e19057cd746ba687ce526ea74f2ec925cab8846",
+      "bytes": 816
+    },
+    {
+      "name": "terror-presentation-red.log",
+      "sha256": "3cd6f9a23404fb3a07a17b9a9ba14e7d9a6546a104bef76115377972011616ab",
+      "bytes": 20400
+    },
+    {
+      "name": "terror-types-core-corrected.json",
+      "sha256": "10df452a675dec407239a369360ce3e931cc8812480bbac2fc019063fcd7c177",
+      "bytes": 645
+    },
+    {
+      "name": "terror-types-core-corrected.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "name": "terror-types-core.json",
+      "sha256": "94c77a964e7d23cdb085205a3b7512b255ad31de95ef0d7c297e919a8ba17124",
+      "bytes": 539
+    },
+    {
+      "name": "terror-types-core.log",
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "bytes": 50
+    },
+    {
+      "name": "visual-review.json",
+      "sha256": "0c70d6a80639146fd2e0c9653ba63835fc2f02af65a6290c8ed848a2e1b1ae73",
+      "bytes": 12474
+    }
+  ],
+  "byteVerified": true,
+  "excludedDisposable": "Task-local runtime caches/profiles and separately frozen disposable dist; no diagnostic raw evidence excluded.",
+  "owner": "root",
+  "retainUntil": "BUG247/BUG248 and full-v1 evidence consumers finish; root verifies no readers, then removes the exact archive and three task sidecars.",
+  "sidecars": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-retention.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-deletion-manifest.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-cleanup.json"
+  ]
+}

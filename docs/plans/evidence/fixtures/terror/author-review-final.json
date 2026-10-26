@@ -1,0 +1,45 @@
+{
+  "author": "root only; not independent sign-off",
+  "head": "7f7149b7425708f945345b947bff2f93576a36dd",
+  "boundedContract": "locally implemented and verified; disposition pending retention/cleanup",
+  "securityCheck": "pass",
+  "planReview": "ready under authored finite-control/no-movement contract; existing cooldown rounding preserved",
+  "coreReview": {
+    "correctness": "One shared ordinary/channel consumer, exact finite capability, tier maximum and Cleansing/rebase support. Matched native controls demonstrate real suppressed attacks/HP and pulses.",
+    "architecture": "Schema owns tuning; pure copied definition and one action predicate, no movement/targeting system or mutable base stats.",
+    "security": "Bare/future/expired/malformed/nonfinite/overlong packets grant no fear; native grants and save22 unchanged.",
+    "performance": "Bounded status scan at an ordinary interruption check; no runtime budget acceptance."
+  },
+  "presentationReview": {
+    "correctness": "Uses complete caller-supplied validated Terror definition. Boss preview uses the same floor/minimum as combat; duration has no hardcoded UI default. Explicit current/next/MAX, malformed and changed-source tests pass. Existing rounding to tenths preserved after correcting the draft oracle.",
+    "readability": "Existing control model and StatLine conventions; two new stat rows and one description branch. No new subsystem.",
+    "architecture": "All duration math remains pure engine code; component renders existing stats/status identity. Native eligibility/save22 unchanged.",
+    "security": "No dependencies, credentials, CI, permissions or new persistence surface. Public tests use only explicit synthetic fixtures, rendered UI and exported saves; no test bridge.",
+    "performance": "Bounded existing schema validation for one identified row per rank; no new combat hot path in this presentation increment."
+  },
+  "validation": {
+    "passed": 17590,
+    "files": 800,
+    "existingSkipped": 2,
+    "seconds": 689.033,
+    "exitCode": 0
+  },
+  "newRegressions": 77,
+  "productionBrowser": {
+    "passed": 4,
+    "sixDomainPairs": 8,
+    "actualOfflineContinues": 4,
+    "geometry": 20,
+    "inspectedPngs": 16
+  },
+  "limitations": [
+    "Five-size automated document-overflow/allocation-target checks; screenshots cover default desktop/mobile, not a complete visual sweep of all five geometries.",
+    "Mobile title/stats viewport captures are identical and omit lower fear rows; element capture supplies bounded row evidence with explicit overlay/cropping limits.",
+    "No complete safe-area, screen-reader, contrast, all-navigation-target, broad mobile or performance acceptance.",
+    "Synthetic fixtures establish functional routes, not earned builds or balance.",
+    "Independent design/QA, earned builds/balance and C2-C4/fullG0-G7/private-v1 remain open."
+  ],
+  "originalFailuresRetained": true,
+  "suppressionsOrSkippedTestsAdded": false,
+  "inventoryCredit": false
+}

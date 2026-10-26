@@ -1,0 +1,37 @@
+{
+  "status": "read-only follow-on investigation; no new source/test/credit",
+  "findings": [
+    {
+      "scope": "Necromancer summons",
+      "unverifiedIds": [
+        "raise-skeleton",
+        "blood-golem",
+        "clay-golem",
+        "raise-skeletal-mage",
+        "iron-golem",
+        "fire-golem",
+        "revive"
+      ],
+      "existingEvidence": "docs/plans/evidence/d06-summon-preparation.md",
+      "established": "Older paid preparation eligibility/cap/payment, native lifecycle and bilingual detail proof exists; the cited public browser sample is Druid Raven, not seven Necromancer public paths. Selected-item Iron Golem has its own contract.",
+      "next": "Audit per-skill existing proofs, then run a coherent native/public/save/offline batch on final current source; do not automatically credit inventory from document existence."
+    },
+    {
+      "scope": "Amplify Damage",
+      "existingEvidence": "docs/plans/evidence/p08a02d-amplify-damage-ui.md",
+      "established": "Older exact bilingual current/next/MAX/native allocation/save/ordinary Continue proof explicitly does not establish native public Amplify cast or offline Continue. Existing rank20 cost11/cooldown2s confirms the established tenths-rounding convention.",
+      "next": "Combine existing causal runtime proof with current native/public paid cast+chip and actual offline save proof before reconciliation credit."
+    },
+    {
+      "scope": "Dim Vision",
+      "source": "src/data/skills/necromancer.json; src/engine/combat/combat.ts pickDefender; src/engine/combat/allegiance.ts opponentsOf",
+      "established": "Native all-enemies utility declares dim-vision but targeting has no consumer. Existing curse description is caster-specific visibility, not generic hit penalty.",
+      "next": "Before implementation, reproduce actual paid native targeting against caster-only and caster+ally teams. Preserve original side/reward identity and distinguish untargetable caster from fear/control/allegiance/accuracy. Review all hostile target selection consumers including channels/AoE and precedence with Taunt/Conversion."
+    }
+  ],
+  "constraints": [
+    "No genuine campaign/replay or remote action",
+    "No new repository writes while Terror source freeze is under full verification",
+    "Root remains sole writer; independent acceptance remains open"
+  ]
+}

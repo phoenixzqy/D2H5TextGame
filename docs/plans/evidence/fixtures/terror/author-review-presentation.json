@@ -1,0 +1,28 @@
+{
+  "author": "root only; no independent sign-off",
+  "securityCheck": "pass",
+  "scope": "Source-driven Terror duration/boss preview, bilingual rule copy, native lifecycle and public browser tests",
+  "findings": [],
+  "axes": {
+    "correctness": "Uses complete caller-supplied validated Terror definition. Boss preview uses the same floor/minimum as combat; duration has no hardcoded UI default. Explicit current/next/MAX, malformed and changed-source tests pass. Existing rounding to tenths preserved after correcting the draft oracle.",
+    "readability": "Existing control model and StatLine conventions; two new stat rows and one description branch. No new subsystem.",
+    "architecture": "All duration math remains pure engine code; component renders existing stats/status identity. Native eligibility/save22 unchanged.",
+    "security": "No dependencies, credentials, CI, permissions or new persistence surface. Public tests use only explicit synthetic fixtures, rendered UI and exported saves; no test bridge.",
+    "performance": "Bounded existing schema validation for one identified row per rank; no new combat hot path in this presentation increment."
+  },
+  "proof": {
+    "presentationNative": "18/3PASS7.5s",
+    "newTests": 18,
+    "originalRed": "terror-presentation-red.json",
+    "correctedOracleRed": "terror-presentation-corrected-red.json",
+    "caughtDraftRegression": "BUG248; eight component tests exposed unavailable skill variable; corrected to display model status identity."
+  },
+  "remaining": [
+    "Final engine/types/lint/full",
+    "Final production browser and visual inspection",
+    "Committed source/build identity",
+    "Retention and exact cleanup",
+    "Independent/earned/full-v1 acceptance"
+  ],
+  "inventoryCredit": false
+}

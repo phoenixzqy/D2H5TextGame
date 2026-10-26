@@ -1,0 +1,18 @@
+{
+  "initial": {
+    "label": "terror-browser",
+    "output": "browser-output",
+    "report": "browser-report.json",
+    "outcome": "terminal launch failure; task-local XDG cache has no chromium1217; no product behavior executed"
+  },
+  "corrected": {
+    "label": "terror-browser-final",
+    "output": "browser-output-final",
+    "report": "browser-report-final.json",
+    "PLAYWRIGHT_BROWSERS_PATH": "/home/felixzhao/.cache/ms-playwright",
+    "TERROR_DIST": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
+    "PWA_PORT": 4531,
+    "productSourceChanges": false
+  },
+  "sharedBrowsers": "Pre-existing installed tools; read/use only; never task-cleaned"
+}

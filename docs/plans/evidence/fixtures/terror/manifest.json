@@ -1,0 +1,172 @@
+{
+  "owner": "root; versioned evidence is a deliverable, not disposable task output",
+  "head": "7f7149b7425708f945345b947bff2f93576a36dd",
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-retained.tar.xz",
+  "archiveSha256": "e8c6e70ce32893baa032cb1a4310e9a4b1b897a0f34ad871b31f696c59090238",
+  "rawMembersVerified": 119,
+  "terminalReceiptsVerified": 23,
+  "currentSourceFilesReverified": 1594,
+  "attachments": {
+    "author-review-core.json": {
+      "sha256": "bb7b45e7ace4c5bfebb5bf90ff4c6e13f4b89269a44778979bfbd1f71168de9d",
+      "bytes": 1765,
+      "archiveMember": "author-review-core.json"
+    },
+    "author-review-presentation.json": {
+      "sha256": "d1de92b1ffec696679e335b5faf64793ffcaf545f94d12d073e37e2eadf1ea14",
+      "bytes": 1771,
+      "archiveMember": "author-review-presentation.json"
+    },
+    "author-review-final.json": {
+      "sha256": "6f57339815f62490e337b542bb17949814266fec80a5563f05d4345e8e35c8fa",
+      "bytes": 2983,
+      "archiveMember": "author-review-final.json"
+    },
+    "checks-final.json": {
+      "sha256": "b9981b7e7a685eb3c2eee2b9bca0cdc9be60f458e45986aaef01c7ae043049ba",
+      "bytes": 17217,
+      "archiveMember": "checks-final.json"
+    },
+    "post-full-integrity.json": {
+      "sha256": "09511eb06fc382b8ac3f5551b36f643139c6a667dad0d61363b8507acf6edfe6",
+      "bytes": 772,
+      "archiveMember": "post-full-integrity.json"
+    },
+    "committed-source.json": {
+      "sha256": "f22a7119dc32309bd97641ba9d6c06e2488d8590e8f289f7a573c92d4837c736",
+      "bytes": 95,
+      "archiveMember": "committed-source.json"
+    },
+    "browser-metrics.json": {
+      "sha256": "6bc631a7793f95bd25d542f3c7612201cfc2b274128cb1a67643e20c944fc129",
+      "bytes": 21697,
+      "archiveMember": "browser-metrics.json"
+    },
+    "visual-review.json": {
+      "sha256": "0c70d6a80639146fd2e0c9653ba63835fc2f02af65a6290c8ed848a2e1b1ae73",
+      "bytes": 12474,
+      "archiveMember": "visual-review.json"
+    },
+    "browser-invocations.json": {
+      "sha256": "2e8f37ee93d7091c34997614d691cb5a6b784aac0d8acfe1b581ab6d69ea4d5a",
+      "bytes": 698,
+      "archiveMember": "browser-invocations.json"
+    },
+    "presentation-oracle-correction.json": {
+      "sha256": "9fe1cee72f5872d30dc51475e419444049b746c822cab20a28199a05c094bae7",
+      "bytes": 643,
+      "archiveMember": "presentation-oracle-correction.json"
+    },
+    "earned-save-integrity.json": {
+      "sha256": "3a6acd833c5f35e18499ae7ff12b0211fa8eff98b01a1550c5035055b5b887de",
+      "bytes": 279,
+      "archiveMember": "earned-save-integrity.json"
+    },
+    "follow-on-investigation.json": {
+      "sha256": "4e60ad3b69224b31fa13c5eacee73a7c5c0cd984b3610f4bd6bcbe5e37e9b4a8",
+      "bytes": 2359,
+      "archiveMember": "follow-on-investigation.json"
+    },
+    "browser-images/01-terror-desktop-en-terror-panel.png": {
+      "sha256": "55d435a9973e4736a83d184e66536209631aff01a00a77ba23dccdf1b2518dc5",
+      "bytes": 38123,
+      "archiveMember": "browser-images/01-terror-desktop-en-terror-panel.png"
+    },
+    "browser-images/01-terror-desktop-en-terror-stats-viewport.png": {
+      "sha256": "0bfe5c5cecbe4d9fb0e1822cd4ea9f419a0414d6019858d02257a22693c0d0e2",
+      "bytes": 137606,
+      "archiveMember": "browser-images/01-terror-desktop-en-terror-stats-viewport.png"
+    },
+    "browser-images/01-terror-desktop-en-terror-title-viewport.png": {
+      "sha256": "4afaa0d8040172856176bb3a0d899c0fd8471464615e841e98311441a360395e",
+      "bytes": 166339,
+      "archiveMember": "browser-images/01-terror-desktop-en-terror-title-viewport.png"
+    },
+    "browser-images/01-terror-desktop-en-victory-viewport.png": {
+      "sha256": "571b701e239887fe24084a5245fe000faf74322dbcc68568a0ab53181fd2590f",
+      "bytes": 86385,
+      "archiveMember": "browser-images/01-terror-desktop-en-victory-viewport.png"
+    },
+    "browser-images/02-terror-desktop-zh-CN-terror-panel.png": {
+      "sha256": "7dd9ce4f24083b46f6e85ad1cfe00848caf3e43d7845a6aadac5f64f1bed1726",
+      "bytes": 38973,
+      "archiveMember": "browser-images/02-terror-desktop-zh-CN-terror-panel.png"
+    },
+    "browser-images/02-terror-desktop-zh-CN-terror-stats-viewport.png": {
+      "sha256": "52a652cd2c11172e9b944e0fab7f1f0ae9ece58bfa775b350447437901e45a78",
+      "bytes": 138096,
+      "archiveMember": "browser-images/02-terror-desktop-zh-CN-terror-stats-viewport.png"
+    },
+    "browser-images/02-terror-desktop-zh-CN-terror-title-viewport.png": {
+      "sha256": "7f4839c1e7f09cf1ed9a77e7fb86d38ad86f5b74f21831e99c447be09da5ea33",
+      "bytes": 167142,
+      "archiveMember": "browser-images/02-terror-desktop-zh-CN-terror-title-viewport.png"
+    },
+    "browser-images/02-terror-desktop-zh-CN-victory-viewport.png": {
+      "sha256": "ec3aea62351a4c78721880ac2a0817b7ab1f2c92578c7b575aaf6ce6663e9d8c",
+      "bytes": 76553,
+      "archiveMember": "browser-images/02-terror-desktop-zh-CN-victory-viewport.png"
+    },
+    "browser-images/03-terror-mobile-en-terror-panel.png": {
+      "sha256": "dd62e9a1d6ea014e00cb6294f17a7781dd6067b91341995eab7804e1920c93f3",
+      "bytes": 139704,
+      "archiveMember": "browser-images/03-terror-mobile-en-terror-panel.png"
+    },
+    "browser-images/03-terror-mobile-en-terror-stats-viewport.png": {
+      "sha256": "2c662408637b031338f52c779fa4b2f25669a0d08950364ed5196fd3502c19f2",
+      "bytes": 198238,
+      "archiveMember": "browser-images/03-terror-mobile-en-terror-stats-viewport.png"
+    },
+    "browser-images/03-terror-mobile-en-terror-title-viewport.png": {
+      "sha256": "2c662408637b031338f52c779fa4b2f25669a0d08950364ed5196fd3502c19f2",
+      "bytes": 198238,
+      "archiveMember": "browser-images/03-terror-mobile-en-terror-title-viewport.png"
+    },
+    "browser-images/03-terror-mobile-en-victory-viewport.png": {
+      "sha256": "0cab01c98605742b9b60b3c6db72072250cf02e6354504231d434762a21e1c82",
+      "bytes": 128483,
+      "archiveMember": "browser-images/03-terror-mobile-en-victory-viewport.png"
+    },
+    "browser-images/04-terror-mobile-zh-CN-terror-panel.png": {
+      "sha256": "d2a0eefd397099a233d982bd11983d560d60451976656733d715bce3dfc48c17",
+      "bytes": 129721,
+      "archiveMember": "browser-images/04-terror-mobile-zh-CN-terror-panel.png"
+    },
+    "browser-images/04-terror-mobile-zh-CN-terror-stats-viewport.png": {
+      "sha256": "60c8b86ecf2badf9a3fb690f911648566e204b297bb67b87b6baf3d307dfd7f0",
+      "bytes": 194819,
+      "archiveMember": "browser-images/04-terror-mobile-zh-CN-terror-stats-viewport.png"
+    },
+    "browser-images/04-terror-mobile-zh-CN-terror-title-viewport.png": {
+      "sha256": "60c8b86ecf2badf9a3fb690f911648566e204b297bb67b87b6baf3d307dfd7f0",
+      "bytes": 194819,
+      "archiveMember": "browser-images/04-terror-mobile-zh-CN-terror-title-viewport.png"
+    },
+    "browser-images/04-terror-mobile-zh-CN-victory-viewport.png": {
+      "sha256": "78a4a8db214aa57fd70bb9ef28b7081e0bca7dc60b0cfefe02f54b7819c53f97",
+      "bytes": 119419,
+      "archiveMember": "browser-images/04-terror-mobile-zh-CN-victory-viewport.png"
+    },
+    "retention.json": {
+      "sha256": "c16f3c5031530de0f838f16dc102354a7557b22601b5e030f9c69d466cce4660",
+      "bytes": 24840,
+      "sidecar": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-retention.json"
+    },
+    "deletion-manifest.json": {
+      "sha256": "e09a41c0ccf6b2fc67213a218d76afa0625db87e426637dadf70c560136ee872",
+      "bytes": 297673,
+      "sidecar": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-deletion-manifest.json"
+    },
+    "cleanup.json": {
+      "sha256": "9c1eecee6f1e450e5026d4912f0016a8c7ff9fe2658e86812a99550ac731795e",
+      "bytes": 2046,
+      "sidecar": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f-cleanup.json"
+    },
+    "inventory-integrity.json": {
+      "sha256": "d8cb65f8001d4c5fb1c06665e727ce435093ab855bdf6c911733ad111f1a47ec",
+      "bytes": 1821,
+      "origin": "post-cleanup inventory closure"
+    }
+  },
+  "acceptance": "Root author bounded functional proof only; independent and earned acceptance open. Credit established by later inventory-integrity.json and final evidence record."
+}

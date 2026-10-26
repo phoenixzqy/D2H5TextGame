@@ -1,0 +1,602 @@
+{
+  "sourceFreeze": "source-freeze.json",
+  "buildFreeze": "build-freeze.json",
+  "reportSha256": "44ba3dc0fff170f19eea67e177f7bf3799f9a0bbd71b54924f554561120afbec",
+  "cases": [
+    {
+      "title": "Necromancer terror public preview/cast/save/offline en",
+      "project": "terror-desktop",
+      "locale": "en",
+      "durationMs": 57988,
+      "retry": 0,
+      "status": "passed",
+      "geometry": [
+        {
+          "skill": "terror",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "cast": {
+        "slug": "terror",
+        "spellName": "Terror",
+        "line": "05:00:00Terror Browser casts Terror.",
+        "enemyChip": "Terror"
+      },
+      "sixDomainPairs": 2,
+      "actualOfflineContinue": true,
+      "screenshots": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/01-terror-desktop-en-terror-title-viewport.png",
+          "archiveMember": "browser-images/01-terror-desktop-en-terror-title-viewport.png",
+          "sha256": "4afaa0d8040172856176bb3a0d899c0fd8471464615e841e98311441a360395e",
+          "dimensionsPixels": [
+            1280,
+            800
+          ],
+          "project": "terror-desktop",
+          "locale": "en",
+          "attachment": "terror-title-viewport"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/01-terror-desktop-en-terror-stats-viewport.png",
+          "archiveMember": "browser-images/01-terror-desktop-en-terror-stats-viewport.png",
+          "sha256": "0bfe5c5cecbe4d9fb0e1822cd4ea9f419a0414d6019858d02257a22693c0d0e2",
+          "dimensionsPixels": [
+            1280,
+            800
+          ],
+          "project": "terror-desktop",
+          "locale": "en",
+          "attachment": "terror-stats-viewport"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/01-terror-desktop-en-terror-panel.png",
+          "archiveMember": "browser-images/01-terror-desktop-en-terror-panel.png",
+          "sha256": "55d435a9973e4736a83d184e66536209631aff01a00a77ba23dccdf1b2518dc5",
+          "dimensionsPixels": [
+            1152,
+            336
+          ],
+          "project": "terror-desktop",
+          "locale": "en",
+          "attachment": "terror-panel"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/01-terror-desktop-en-victory-viewport.png",
+          "archiveMember": "browser-images/01-terror-desktop-en-victory-viewport.png",
+          "sha256": "571b701e239887fe24084a5245fe000faf74322dbcc68568a0ab53181fd2590f",
+          "dimensionsPixels": [
+            1280,
+            800
+          ],
+          "project": "terror-desktop",
+          "locale": "en",
+          "attachment": "victory-viewport"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer terror public preview/cast/save/offline zh-CN",
+      "project": "terror-desktop",
+      "locale": "zh-CN",
+      "durationMs": 55075,
+      "retry": 0,
+      "status": "passed",
+      "geometry": [
+        {
+          "skill": "terror",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "cast": {
+        "slug": "terror",
+        "spellName": "\u6050\u60e7",
+        "line": "05:00:00Terror Browser \u65bd\u653e\u4e86 \u6050\u60e7\u3002",
+        "enemyChip": "\u6050\u60e7"
+      },
+      "sixDomainPairs": 2,
+      "actualOfflineContinue": true,
+      "screenshots": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/02-terror-desktop-zh-CN-terror-title-viewport.png",
+          "archiveMember": "browser-images/02-terror-desktop-zh-CN-terror-title-viewport.png",
+          "sha256": "7f4839c1e7f09cf1ed9a77e7fb86d38ad86f5b74f21831e99c447be09da5ea33",
+          "dimensionsPixels": [
+            1280,
+            800
+          ],
+          "project": "terror-desktop",
+          "locale": "zh-CN",
+          "attachment": "terror-title-viewport"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/02-terror-desktop-zh-CN-terror-stats-viewport.png",
+          "archiveMember": "browser-images/02-terror-desktop-zh-CN-terror-stats-viewport.png",
+          "sha256": "52a652cd2c11172e9b944e0fab7f1f0ae9ece58bfa775b350447437901e45a78",
+          "dimensionsPixels": [
+            1280,
+            800
+          ],
+          "project": "terror-desktop",
+          "locale": "zh-CN",
+          "attachment": "terror-stats-viewport"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/02-terror-desktop-zh-CN-terror-panel.png",
+          "archiveMember": "browser-images/02-terror-desktop-zh-CN-terror-panel.png",
+          "sha256": "7dd9ce4f24083b46f6e85ad1cfe00848caf3e43d7845a6aadac5f64f1bed1726",
+          "dimensionsPixels": [
+            1152,
+            336
+          ],
+          "project": "terror-desktop",
+          "locale": "zh-CN",
+          "attachment": "terror-panel"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/02-terror-desktop-zh-CN-victory-viewport.png",
+          "archiveMember": "browser-images/02-terror-desktop-zh-CN-victory-viewport.png",
+          "sha256": "ec3aea62351a4c78721880ac2a0817b7ab1f2c92578c7b575aaf6ce6663e9d8c",
+          "dimensionsPixels": [
+            1280,
+            800
+          ],
+          "project": "terror-desktop",
+          "locale": "zh-CN",
+          "attachment": "victory-viewport"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer terror public preview/cast/save/offline en",
+      "project": "terror-mobile",
+      "locale": "en",
+      "durationMs": 55327,
+      "retry": 0,
+      "status": "passed",
+      "geometry": [
+        {
+          "skill": "terror",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "cast": {
+        "slug": "terror",
+        "spellName": "Terror",
+        "line": "05:00:00Terror Browser casts Terror.",
+        "enemyChip": "Terror"
+      },
+      "sixDomainPairs": 2,
+      "actualOfflineContinue": true,
+      "screenshots": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/03-terror-mobile-en-terror-title-viewport.png",
+          "archiveMember": "browser-images/03-terror-mobile-en-terror-title-viewport.png",
+          "sha256": "2c662408637b031338f52c779fa4b2f25669a0d08950364ed5196fd3502c19f2",
+          "dimensionsPixels": [
+            990,
+            1760
+          ],
+          "project": "terror-mobile",
+          "locale": "en",
+          "attachment": "terror-title-viewport"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/03-terror-mobile-en-terror-stats-viewport.png",
+          "archiveMember": "browser-images/03-terror-mobile-en-terror-stats-viewport.png",
+          "sha256": "2c662408637b031338f52c779fa4b2f25669a0d08950364ed5196fd3502c19f2",
+          "dimensionsPixels": [
+            990,
+            1760
+          ],
+          "project": "terror-mobile",
+          "locale": "en",
+          "attachment": "terror-stats-viewport"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/03-terror-mobile-en-terror-panel.png",
+          "archiveMember": "browser-images/03-terror-mobile-en-terror-panel.png",
+          "sha256": "dd62e9a1d6ea014e00cb6294f17a7781dd6067b91341995eab7804e1920c93f3",
+          "dimensionsPixels": [
+            924,
+            1496
+          ],
+          "project": "terror-mobile",
+          "locale": "en",
+          "attachment": "terror-panel"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/03-terror-mobile-en-victory-viewport.png",
+          "archiveMember": "browser-images/03-terror-mobile-en-victory-viewport.png",
+          "sha256": "0cab01c98605742b9b60b3c6db72072250cf02e6354504231d434762a21e1c82",
+          "dimensionsPixels": [
+            990,
+            1760
+          ],
+          "project": "terror-mobile",
+          "locale": "en",
+          "attachment": "victory-viewport"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer terror public preview/cast/save/offline zh-CN",
+      "project": "terror-mobile",
+      "locale": "zh-CN",
+      "durationMs": 54773,
+      "retry": 0,
+      "status": "passed",
+      "geometry": [
+        {
+          "skill": "terror",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "terror",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "cast": {
+        "slug": "terror",
+        "spellName": "\u6050\u60e7",
+        "line": "05:00:00Terror Browser \u65bd\u653e\u4e86 \u6050\u60e7\u3002",
+        "enemyChip": "\u6050\u60e7"
+      },
+      "sixDomainPairs": 2,
+      "actualOfflineContinue": true,
+      "screenshots": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/04-terror-mobile-zh-CN-terror-title-viewport.png",
+          "archiveMember": "browser-images/04-terror-mobile-zh-CN-terror-title-viewport.png",
+          "sha256": "60c8b86ecf2badf9a3fb690f911648566e204b297bb67b87b6baf3d307dfd7f0",
+          "dimensionsPixels": [
+            990,
+            1760
+          ],
+          "project": "terror-mobile",
+          "locale": "zh-CN",
+          "attachment": "terror-title-viewport"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/04-terror-mobile-zh-CN-terror-stats-viewport.png",
+          "archiveMember": "browser-images/04-terror-mobile-zh-CN-terror-stats-viewport.png",
+          "sha256": "60c8b86ecf2badf9a3fb690f911648566e204b297bb67b87b6baf3d307dfd7f0",
+          "dimensionsPixels": [
+            990,
+            1760
+          ],
+          "project": "terror-mobile",
+          "locale": "zh-CN",
+          "attachment": "terror-stats-viewport"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/04-terror-mobile-zh-CN-terror-panel.png",
+          "archiveMember": "browser-images/04-terror-mobile-zh-CN-terror-panel.png",
+          "sha256": "d2a0eefd397099a233d982bd11983d560d60451976656733d715bce3dfc48c17",
+          "dimensionsPixels": [
+            924,
+            1496
+          ],
+          "project": "terror-mobile",
+          "locale": "zh-CN",
+          "attachment": "terror-panel"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/04-terror-mobile-zh-CN-victory-viewport.png",
+          "archiveMember": "browser-images/04-terror-mobile-zh-CN-victory-viewport.png",
+          "sha256": "78a4a8db214aa57fd70bb9ef28b7081e0bca7dc60b0cfefe02f54b7819c53f97",
+          "dimensionsPixels": [
+            990,
+            1760
+          ],
+          "project": "terror-mobile",
+          "locale": "zh-CN",
+          "attachment": "victory-viewport"
+        }
+      ]
+    }
+  ],
+  "passed": 4,
+  "failures": 0,
+  "retries": 0,
+  "skips": 0,
+  "flakies": 0,
+  "actualOfflineContinues": 4,
+  "sixDomainPairs": 8,
+  "geometryChecks": 20,
+  "pngs": [
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/01-terror-desktop-en-terror-title-viewport.png",
+      "archiveMember": "browser-images/01-terror-desktop-en-terror-title-viewport.png",
+      "sha256": "4afaa0d8040172856176bb3a0d899c0fd8471464615e841e98311441a360395e",
+      "dimensionsPixels": [
+        1280,
+        800
+      ],
+      "project": "terror-desktop",
+      "locale": "en",
+      "attachment": "terror-title-viewport"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/01-terror-desktop-en-terror-stats-viewport.png",
+      "archiveMember": "browser-images/01-terror-desktop-en-terror-stats-viewport.png",
+      "sha256": "0bfe5c5cecbe4d9fb0e1822cd4ea9f419a0414d6019858d02257a22693c0d0e2",
+      "dimensionsPixels": [
+        1280,
+        800
+      ],
+      "project": "terror-desktop",
+      "locale": "en",
+      "attachment": "terror-stats-viewport"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/01-terror-desktop-en-terror-panel.png",
+      "archiveMember": "browser-images/01-terror-desktop-en-terror-panel.png",
+      "sha256": "55d435a9973e4736a83d184e66536209631aff01a00a77ba23dccdf1b2518dc5",
+      "dimensionsPixels": [
+        1152,
+        336
+      ],
+      "project": "terror-desktop",
+      "locale": "en",
+      "attachment": "terror-panel"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/01-terror-desktop-en-victory-viewport.png",
+      "archiveMember": "browser-images/01-terror-desktop-en-victory-viewport.png",
+      "sha256": "571b701e239887fe24084a5245fe000faf74322dbcc68568a0ab53181fd2590f",
+      "dimensionsPixels": [
+        1280,
+        800
+      ],
+      "project": "terror-desktop",
+      "locale": "en",
+      "attachment": "victory-viewport"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/02-terror-desktop-zh-CN-terror-title-viewport.png",
+      "archiveMember": "browser-images/02-terror-desktop-zh-CN-terror-title-viewport.png",
+      "sha256": "7f4839c1e7f09cf1ed9a77e7fb86d38ad86f5b74f21831e99c447be09da5ea33",
+      "dimensionsPixels": [
+        1280,
+        800
+      ],
+      "project": "terror-desktop",
+      "locale": "zh-CN",
+      "attachment": "terror-title-viewport"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/02-terror-desktop-zh-CN-terror-stats-viewport.png",
+      "archiveMember": "browser-images/02-terror-desktop-zh-CN-terror-stats-viewport.png",
+      "sha256": "52a652cd2c11172e9b944e0fab7f1f0ae9ece58bfa775b350447437901e45a78",
+      "dimensionsPixels": [
+        1280,
+        800
+      ],
+      "project": "terror-desktop",
+      "locale": "zh-CN",
+      "attachment": "terror-stats-viewport"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/02-terror-desktop-zh-CN-terror-panel.png",
+      "archiveMember": "browser-images/02-terror-desktop-zh-CN-terror-panel.png",
+      "sha256": "7dd9ce4f24083b46f6e85ad1cfe00848caf3e43d7845a6aadac5f64f1bed1726",
+      "dimensionsPixels": [
+        1152,
+        336
+      ],
+      "project": "terror-desktop",
+      "locale": "zh-CN",
+      "attachment": "terror-panel"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/02-terror-desktop-zh-CN-victory-viewport.png",
+      "archiveMember": "browser-images/02-terror-desktop-zh-CN-victory-viewport.png",
+      "sha256": "ec3aea62351a4c78721880ac2a0817b7ab1f2c92578c7b575aaf6ce6663e9d8c",
+      "dimensionsPixels": [
+        1280,
+        800
+      ],
+      "project": "terror-desktop",
+      "locale": "zh-CN",
+      "attachment": "victory-viewport"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/03-terror-mobile-en-terror-title-viewport.png",
+      "archiveMember": "browser-images/03-terror-mobile-en-terror-title-viewport.png",
+      "sha256": "2c662408637b031338f52c779fa4b2f25669a0d08950364ed5196fd3502c19f2",
+      "dimensionsPixels": [
+        990,
+        1760
+      ],
+      "project": "terror-mobile",
+      "locale": "en",
+      "attachment": "terror-title-viewport"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/03-terror-mobile-en-terror-stats-viewport.png",
+      "archiveMember": "browser-images/03-terror-mobile-en-terror-stats-viewport.png",
+      "sha256": "2c662408637b031338f52c779fa4b2f25669a0d08950364ed5196fd3502c19f2",
+      "dimensionsPixels": [
+        990,
+        1760
+      ],
+      "project": "terror-mobile",
+      "locale": "en",
+      "attachment": "terror-stats-viewport"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/03-terror-mobile-en-terror-panel.png",
+      "archiveMember": "browser-images/03-terror-mobile-en-terror-panel.png",
+      "sha256": "dd62e9a1d6ea014e00cb6294f17a7781dd6067b91341995eab7804e1920c93f3",
+      "dimensionsPixels": [
+        924,
+        1496
+      ],
+      "project": "terror-mobile",
+      "locale": "en",
+      "attachment": "terror-panel"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/03-terror-mobile-en-victory-viewport.png",
+      "archiveMember": "browser-images/03-terror-mobile-en-victory-viewport.png",
+      "sha256": "0cab01c98605742b9b60b3c6db72072250cf02e6354504231d434762a21e1c82",
+      "dimensionsPixels": [
+        990,
+        1760
+      ],
+      "project": "terror-mobile",
+      "locale": "en",
+      "attachment": "victory-viewport"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/04-terror-mobile-zh-CN-terror-title-viewport.png",
+      "archiveMember": "browser-images/04-terror-mobile-zh-CN-terror-title-viewport.png",
+      "sha256": "60c8b86ecf2badf9a3fb690f911648566e204b297bb67b87b6baf3d307dfd7f0",
+      "dimensionsPixels": [
+        990,
+        1760
+      ],
+      "project": "terror-mobile",
+      "locale": "zh-CN",
+      "attachment": "terror-title-viewport"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/04-terror-mobile-zh-CN-terror-stats-viewport.png",
+      "archiveMember": "browser-images/04-terror-mobile-zh-CN-terror-stats-viewport.png",
+      "sha256": "60c8b86ecf2badf9a3fb690f911648566e204b297bb67b87b6baf3d307dfd7f0",
+      "dimensionsPixels": [
+        990,
+        1760
+      ],
+      "project": "terror-mobile",
+      "locale": "zh-CN",
+      "attachment": "terror-stats-viewport"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/04-terror-mobile-zh-CN-terror-panel.png",
+      "archiveMember": "browser-images/04-terror-mobile-zh-CN-terror-panel.png",
+      "sha256": "d2a0eefd397099a233d982bd11983d560d60451976656733d715bce3dfc48c17",
+      "dimensionsPixels": [
+        924,
+        1496
+      ],
+      "project": "terror-mobile",
+      "locale": "zh-CN",
+      "attachment": "terror-panel"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/04-terror-mobile-zh-CN-victory-viewport.png",
+      "archiveMember": "browser-images/04-terror-mobile-zh-CN-victory-viewport.png",
+      "sha256": "78a4a8db214aa57fd70bb9ef28b7081e0bca7dc60b0cfefe02f54b7819c53f97",
+      "dimensionsPixels": [
+        990,
+        1760
+      ],
+      "project": "terror-mobile",
+      "locale": "zh-CN",
+      "attachment": "victory-viewport"
+    }
+  ],
+  "limitations": "Explicit synthetic rank/pool/gear; does not establish earned balance, broad UX/a11y or full-v1 acceptance."
+}

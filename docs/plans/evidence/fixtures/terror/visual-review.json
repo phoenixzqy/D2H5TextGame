@@ -1,0 +1,224 @@
+{
+  "date": "2026-10-26",
+  "reviewer": "root author; no independent QA/UX/a11y sign-off",
+  "sourceFreeze": "source-freeze.json",
+  "browserReport": "browser-report-final.json",
+  "method": "Viewed all16 original PNGs individually using view_image; checked PNG dimensions and SHA256 with Python standard library.",
+  "inspectedPngs": 16,
+  "images": [
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/01-terror-desktop-en-terror-title-viewport.png",
+      "archiveMember": "browser-images/01-terror-desktop-en-terror-title-viewport.png",
+      "sha256": "4afaa0d8040172856176bb3a0d899c0fd8471464615e841e98311441a360395e",
+      "dimensionsPixels": [
+        1280,
+        800
+      ],
+      "project": "terror-desktop",
+      "locale": "en",
+      "attachment": "terror-title-viewport",
+      "finding": "Desktop viewport shows title/rank20/MAX at the bottom beneath the skill tree; description and stat rows are below the fold."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/01-terror-desktop-en-terror-stats-viewport.png",
+      "archiveMember": "browser-images/01-terror-desktop-en-terror-stats-viewport.png",
+      "sha256": "0bfe5c5cecbe4d9fb0e1822cd4ea9f419a0414d6019858d02257a22693c0d0e2",
+      "dimensionsPixels": [
+        1280,
+        800
+      ],
+      "project": "terror-desktop",
+      "locale": "en",
+      "attachment": "terror-stats-viewport",
+      "finding": "Desktop viewport shows complete detail panel: localized description, mana7, cooldown2s, fear1s/boss0.5s, Applies name, MAX and prerequisites; navigation remains visible."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/01-terror-desktop-en-terror-panel.png",
+      "archiveMember": "browser-images/01-terror-desktop-en-terror-panel.png",
+      "sha256": "55d435a9973e4736a83d184e66536209631aff01a00a77ba23dccdf1b2518dc5",
+      "dimensionsPixels": [
+        1152,
+        336
+      ],
+      "project": "terror-desktop",
+      "locale": "en",
+      "attachment": "terror-panel",
+      "finding": "Desktop element capture fully shows localized title/current/next-MAX/requirements, actual durations, payment, cooldown and Applies; no raw untranslated status or interpolation placeholder."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/01-terror-desktop-en-victory-viewport.png",
+      "archiveMember": "browser-images/01-terror-desktop-en-victory-viewport.png",
+      "sha256": "571b701e239887fe24084a5245fe000faf74322dbcc68568a0ab53181fd2590f",
+      "dimensionsPixels": [
+        1280,
+        800
+      ],
+      "project": "terror-desktop",
+      "locale": "en",
+      "attachment": "victory-viewport",
+      "finding": "Viewport shows lower loot list and visible Continue/Return to map/Return to town controls with navigation. Victory heading and upper rewards are above the viewport; visibility/state and actual return are separately asserted. Dark area under the panel is normal captured page background, not evidence of complete reward UX."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/02-terror-desktop-zh-CN-terror-title-viewport.png",
+      "archiveMember": "browser-images/02-terror-desktop-zh-CN-terror-title-viewport.png",
+      "sha256": "7f4839c1e7f09cf1ed9a77e7fb86d38ad86f5b74f21831e99c447be09da5ea33",
+      "dimensionsPixels": [
+        1280,
+        800
+      ],
+      "project": "terror-desktop",
+      "locale": "zh-CN",
+      "attachment": "terror-title-viewport",
+      "finding": "Desktop viewport shows title/rank20/MAX at the bottom beneath the skill tree; description and stat rows are below the fold."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/02-terror-desktop-zh-CN-terror-stats-viewport.png",
+      "archiveMember": "browser-images/02-terror-desktop-zh-CN-terror-stats-viewport.png",
+      "sha256": "52a652cd2c11172e9b944e0fab7f1f0ae9ece58bfa775b350447437901e45a78",
+      "dimensionsPixels": [
+        1280,
+        800
+      ],
+      "project": "terror-desktop",
+      "locale": "zh-CN",
+      "attachment": "terror-stats-viewport",
+      "finding": "Desktop viewport shows complete detail panel: localized description, mana7, cooldown2s, fear1s/boss0.5s, Applies name, MAX and prerequisites; navigation remains visible."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/02-terror-desktop-zh-CN-terror-panel.png",
+      "archiveMember": "browser-images/02-terror-desktop-zh-CN-terror-panel.png",
+      "sha256": "7dd9ce4f24083b46f6e85ad1cfe00848caf3e43d7845a6aadac5f64f1bed1726",
+      "dimensionsPixels": [
+        1152,
+        336
+      ],
+      "project": "terror-desktop",
+      "locale": "zh-CN",
+      "attachment": "terror-panel",
+      "finding": "Desktop element capture fully shows localized title/current/next-MAX/requirements, actual durations, payment, cooldown and Applies; no raw untranslated status or interpolation placeholder."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/02-terror-desktop-zh-CN-victory-viewport.png",
+      "archiveMember": "browser-images/02-terror-desktop-zh-CN-victory-viewport.png",
+      "sha256": "ec3aea62351a4c78721880ac2a0817b7ab1f2c92578c7b575aaf6ce6663e9d8c",
+      "dimensionsPixels": [
+        1280,
+        800
+      ],
+      "project": "terror-desktop",
+      "locale": "zh-CN",
+      "attachment": "victory-viewport",
+      "finding": "Viewport shows lower loot list and visible Continue/Return to map/Return to town controls with navigation. Victory heading and upper rewards are above the viewport; visibility/state and actual return are separately asserted. Dark area under the panel is normal captured page background, not evidence of complete reward UX."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/03-terror-mobile-en-terror-title-viewport.png",
+      "archiveMember": "browser-images/03-terror-mobile-en-terror-title-viewport.png",
+      "sha256": "2c662408637b031338f52c779fa4b2f25669a0d08950364ed5196fd3502c19f2",
+      "dimensionsPixels": [
+        990,
+        1760
+      ],
+      "project": "terror-mobile",
+      "locale": "en",
+      "attachment": "terror-title-viewport",
+      "finding": "Mobile viewport shows localized title, rank20/MAX and full fear/payment/cooldown description; lower stat rows remain below the fold."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/03-terror-mobile-en-terror-stats-viewport.png",
+      "archiveMember": "browser-images/03-terror-mobile-en-terror-stats-viewport.png",
+      "sha256": "2c662408637b031338f52c779fa4b2f25669a0d08950364ed5196fd3502c19f2",
+      "dimensionsPixels": [
+        990,
+        1760
+      ],
+      "project": "terror-mobile",
+      "locale": "en",
+      "attachment": "terror-stats-viewport",
+      "finding": "Mobile capture is identical to title viewport: scrolling the already partly visible Current heading did not expose lower fear rows. This image alone does not prove stat readability."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/03-terror-mobile-en-terror-panel.png",
+      "archiveMember": "browser-images/03-terror-mobile-en-terror-panel.png",
+      "sha256": "dd62e9a1d6ea014e00cb6294f17a7781dd6067b91341995eab7804e1920c93f3",
+      "dimensionsPixels": [
+        924,
+        1496
+      ],
+      "project": "terror-mobile",
+      "locale": "en",
+      "attachment": "terror-panel",
+      "finding": "Mobile element capture shows complete localized description and current fear/boss/mana/cooldown/Applies rows plus MAX. Fixed bottom navigation intrudes and requirements are cropped; this is bounded detail evidence, not complete mobile UX/a11y proof."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/03-terror-mobile-en-victory-viewport.png",
+      "archiveMember": "browser-images/03-terror-mobile-en-victory-viewport.png",
+      "sha256": "0cab01c98605742b9b60b3c6db72072250cf02e6354504231d434762a21e1c82",
+      "dimensionsPixels": [
+        990,
+        1760
+      ],
+      "project": "terror-mobile",
+      "locale": "en",
+      "attachment": "victory-viewport",
+      "finding": "Viewport shows lower loot list and visible Continue/Return to map/Return to town controls with navigation. Victory heading and upper rewards are above the viewport; visibility/state and actual return are separately asserted. Dark area under the panel is normal captured page background, not evidence of complete reward UX."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/04-terror-mobile-zh-CN-terror-title-viewport.png",
+      "archiveMember": "browser-images/04-terror-mobile-zh-CN-terror-title-viewport.png",
+      "sha256": "60c8b86ecf2badf9a3fb690f911648566e204b297bb67b87b6baf3d307dfd7f0",
+      "dimensionsPixels": [
+        990,
+        1760
+      ],
+      "project": "terror-mobile",
+      "locale": "zh-CN",
+      "attachment": "terror-title-viewport",
+      "finding": "Mobile viewport shows localized title, rank20/MAX and full fear/payment/cooldown description; lower stat rows remain below the fold."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/04-terror-mobile-zh-CN-terror-stats-viewport.png",
+      "archiveMember": "browser-images/04-terror-mobile-zh-CN-terror-stats-viewport.png",
+      "sha256": "60c8b86ecf2badf9a3fb690f911648566e204b297bb67b87b6baf3d307dfd7f0",
+      "dimensionsPixels": [
+        990,
+        1760
+      ],
+      "project": "terror-mobile",
+      "locale": "zh-CN",
+      "attachment": "terror-stats-viewport",
+      "finding": "Mobile capture is identical to title viewport: scrolling the already partly visible Current heading did not expose lower fear rows. This image alone does not prove stat readability."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/04-terror-mobile-zh-CN-terror-panel.png",
+      "archiveMember": "browser-images/04-terror-mobile-zh-CN-terror-panel.png",
+      "sha256": "d2a0eefd397099a233d982bd11983d560d60451976656733d715bce3dfc48c17",
+      "dimensionsPixels": [
+        924,
+        1496
+      ],
+      "project": "terror-mobile",
+      "locale": "zh-CN",
+      "attachment": "terror-panel",
+      "finding": "Mobile element capture shows complete localized description and current fear/boss/mana/cooldown/Applies rows plus MAX. Fixed bottom navigation intrudes and requirements are cropped; this is bounded detail evidence, not complete mobile UX/a11y proof."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-terror-7j9sws2f/browser-images/04-terror-mobile-zh-CN-victory-viewport.png",
+      "archiveMember": "browser-images/04-terror-mobile-zh-CN-victory-viewport.png",
+      "sha256": "78a4a8db214aa57fd70bb9ef28b7081e0bca7dc60b0cfefe02f54b7819c53f97",
+      "dimensionsPixels": [
+        990,
+        1760
+      ],
+      "project": "terror-mobile",
+      "locale": "zh-CN",
+      "attachment": "victory-viewport",
+      "finding": "Viewport shows lower loot list and visible Continue/Return to map/Return to town controls with navigation. Victory heading and upper rewards are above the viewport; visibility/state and actual return are separately asserted. Dark area under the panel is normal captured page background, not evidence of complete reward UX."
+    }
+  ],
+  "scopeLimits": [
+    "Five-size automated document-overflow/allocation-target checks; screenshots cover default desktop/mobile, not a complete visual sweep of all five geometries.",
+    "Mobile title/stats viewport captures are identical and omit lower fear rows; element capture supplies bounded row evidence with explicit overlay/cropping limits.",
+    "No complete safe-area, screen-reader, contrast, all-navigation-target, broad mobile or performance acceptance.",
+    "Synthetic fixtures establish functional routes, not earned builds or balance."
+  ]
+}
