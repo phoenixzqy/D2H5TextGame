@@ -1097,7 +1097,7 @@
     },
     "telekinesis": {
       "name": "Telekinesis",
-      "desc": "Allows remote manipulation of objects and enemies."
+      "desc": "Interrupt one enemy with Stun for {{duration}} (bosses: {{bossDuration}}), without moving it. Costs {{mana}} MP; {{cooldown}} s cooldown. Deals no damage and does not manipulate world objects. Higher ranks reduce mana cost and cooldown. Changes during combat apply next wave."
     },
     "nova": {
       "name": "Nova",

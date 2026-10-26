@@ -571,7 +571,7 @@ export function computeSkillRankDisplayStats(
     skill.appliesStatus[0] === 'leap' && skill.appliesStatus[1] === 'stun' && skill.timedBuff !== undefined;
   const controlId = mindBlast || leap ? 'stun' : skill.appliesStatus?.[0];
   const howl = skill.id === 'skills-barbarian-howl';
-  const controlDefinition = (skill.damage !== undefined || leap || howl) && skill.trigger === 'active' &&
+  const controlDefinition = (skill.damage !== undefined || leap || howl || skill.id === 'skills-sorceress-telekinesis') && skill.trigger === 'active' &&
     (controlId === 'chill' || controlId === 'stun' || controlId === 'paralyze' || controlId === 'howl') ? STATUS_DEFAULTS[controlId] : undefined;
   const control = controlDefinition ? { durationSeconds: controlDefinition.duration,
     bossDurationSeconds: controlDefinition.duration * (controlDefinition.bossDurationMult ?? 1) } : undefined;

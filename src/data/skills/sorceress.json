@@ -614,17 +614,11 @@
       "mana": 7
     },
     "appliesStatus": [
-      "knockback"
-    ],
-    "appliesTags": [
-      "arcane"
+      "stun"
     ],
     "scaling": {
       "cooldownPerLevel": -0.05,
-      "costPerLevel": -0.1,
-      "passiveStatsPerLevel": {
-        "arcaneDamagePct": 0.01
-      }
+      "costPerLevel": -0.1
     }
   },
   {

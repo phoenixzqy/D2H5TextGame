@@ -1656,6 +1656,13 @@ function dynamicDescription(
         bossFreeze: t('details.seconds', { seconds: cold.freeze.bossDurationSeconds }) } : {})
     });
   }
+  if (skill.id === 'skills-sorceress-telekinesis' && stats?.control) {
+    return t('sorceress.telekinesis.desc', {
+      duration: t('details.seconds', { seconds: stats.control.durationSeconds }),
+      bossDuration: t('details.seconds', { seconds: stats.control.bossDurationSeconds }),
+      mana: stats.manaCost, cooldown: stats.cooldown
+    });
+  }
   if (stats?.warcry && ['skills-barbarian-howl', 'skills-barbarian-taunt', 'skills-barbarian-battle-cry'].includes(skill.id)) {
     return t(`barbarian.${skill.id.slice('skills-barbarian-'.length)}.desc`, {
       duration: t('details.seconds', { seconds: stats.warcry.durationSeconds }),

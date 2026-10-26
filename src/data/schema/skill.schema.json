@@ -533,6 +533,34 @@
       }
     },
     {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-sorceress-telekinesis" } } },
+      "then": {
+        "required": ["requiredLevel", "cost", "scaling", "appliesStatus"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "requiredLevel": { "const": 6 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": [] },
+          "appliesStatus": { "const": ["stun"],
+            "description": "Damage-free Telekinesis uses shared finite Stun to interrupt one enemy without movement." },
+          "scaling": {
+            "type": "object", "additionalProperties": false,
+            "required": ["cooldownPerLevel", "costPerLevel"],
+            "properties": {
+              "cooldownPerLevel": { "$ref": "#/properties/scaling/properties/cooldownPerLevel" },
+              "costPerLevel": { "$ref": "#/properties/scaling/properties/costPerLevel" }
+            }
+          },
+          "passive": { "const": false }, "aura": { "const": false }, "summon": { "const": false },
+          "damage": false, "damageType": false, "appliesTags": false, "timedBuff": false,
+          "statusEffect": false, "additionalStatusEffects": false, "aoeShape": false,
+          "hitSequence": false, "maxTargets": false, "onHitRecovery": false,
+          "onHitSelfDamage": false, "damageComposition": false, "ignoresDefense": false,
+          "ignoresMagicResist": false, "critChanceBonus": false, "heal": false,
+          "summonId": false, "requires": false, "synergies": false
+        }
+      }
+    },
+    {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-assassin-psychic-hammer" } } },
       "then": {
         "required": ["requiredLevel", "damage", "damageType", "cost", "scaling", "appliesStatus"],
