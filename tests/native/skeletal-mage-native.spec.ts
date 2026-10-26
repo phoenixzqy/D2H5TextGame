@@ -3,6 +3,7 @@ import { test, expect, type Page, type Locator, type TestInfo, type BrowserConte
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
+import type { SaveVersion } from '../../src/engine/types/save';
 
 interface ItemSnapshot { id: string; [key: string]: unknown }
 interface NativeSave {
@@ -20,6 +21,8 @@ interface NativeSave {
   formation: unknown;
 }
 const MAGE = 'skills-necromancer-raise-skeletal-mage';
+// Typecheck flags a future version bump without loading game-data imports in Node.
+const EXPECTED_SAVE_VERSION: SaveVersion = 22;
 const EPOCH = 1792454400000;
 const COPY = {
   en: {
@@ -89,7 +92,7 @@ async function download(page: Page, info: TestInfo, label: string): Promise<Nati
   const json = await readFile(path, 'utf8');
   await evidence(info, label + '.json', json);
   const save = JSON.parse(json) as NativeSave;
-  expect(save.version).toBe(11);
+  expect(save.version).toBe(EXPECTED_SAVE_VERSION);
   return save;
 }
 async function nav(page: Page, route: string) {
@@ -126,9 +129,9 @@ async function setup(page: Page, info: TestInfo, locale: 'en' | 'zh-CN') {
   await expect(page.getByTestId('town-screen')).toBeVisible();
   await nav(page, 'settings');
   await page.getByRole('button', { name: locale === 'en' ? 'English' : '简体中文', exact: true }).click();
-  const native = await download(page, info, 'native-v11');
+  const native = await download(page, info, 'native-current');
   const cap: ItemSnapshot = { id: 'native-mage-cap', baseId: 'items/base/helm-cap', rarity: 'rare',
-    level: 1, identified: true, equipped: true,
+    level: 1, identified: true, equipped: true, socketCapacity: 0, socketContents: [],
     affixes: [{ affixId: 'fixture-mage-survival', values: [
       ['statMods.life', 1000000], ['statMods.defense', 1000000], ['statMods.mana', 1000],
       ['statMods.attackSpeed', -63], ['statMods.attack', -79], ['statMods.critChance', -0.05]
@@ -150,7 +153,7 @@ async function setup(page: Page, info: TestInfo, locale: 'en' | 'zh-CN') {
   await evidence(info, 'unearned-fixture.json', json);
   await evidence(info, 'fixture-sha256.txt', createHash('sha256').update(json).digest('hex'));
   await importSave(page, json);
-  const imported = await download(page, info, 'imported-v11');
+  const imported = await download(page, info, 'imported-current');
   expect(imported.player.skillLevels).toEqual(fixture.player.skillLevels);
   expect(imported.player.comboOrder).toEqual([]);
   expect(imported.player.coreStats).toEqual(fixture.player.coreStats);
@@ -209,7 +212,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       await minTarget(slot); await slot.focus(); await expect(slot).toBeFocused();
       await visiblePart(page, info, 'native-combo', page.getByTestId('skills-active-panel'));
       await nav(page, 'settings');
-      const configured = await download(page, info, 'native-combo-v11');
+      const configured = await download(page, info, 'native-combo-current');
       expect(configured.player.comboOrder.filter(Boolean)).toEqual([MAGE]);
       expect(configured.inventory).toEqual(fixture.inventory);
       await nav(page, 'map');
@@ -225,7 +228,10 @@ for (const locale of ['zh-CN', 'en'] as const) {
       const identities = await cards.evaluateAll(elements => elements.map(element => element.getAttribute('data-testid')));
       expect(new Set(identities).size).toBe(4);
       expect(identities.every(id => id?.startsWith('unit-card-'))).toBe(true);
-      await expect(page.getByRole('group', { name: /^(MP|法力)$/ }).getByRole('progressbar')).toHaveAttribute('aria-valuenow', '78');
+      // Accepted fresh-challenge entry fills1197MP before the single22MP batch payment.
+      const mana = page.getByRole('group', { name: /^(MP|法力)$/ }).getByRole('progressbar');
+      await expect(mana).toHaveAttribute('aria-valuemax', '1197');
+      await expect(mana).toHaveAttribute('aria-valuenow', '1175');
       await noOverflow(page);
       expect(await page.getByTestId('allies-grid').evaluate(element => element.scrollWidth - element.clientWidth)).toBeLessThanOrEqual(0);
       await visiblePart(page, info, 'startup-grid', page.getByTestId('allies-grid'));
@@ -253,7 +259,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       await expect(page.getByTestId('wave-counter')).toHaveText(/^Wave 1 \/|^第 1 波/);
       const elemental = copy.bolts.map(pattern => observed.find(message => pattern.test(message)));
       await evidence(info, 'observed-playback.json', JSON.stringify({
-        fixture: 'unearned imported Save11; native Mage combo only; no fixture skills', epoch: EPOCH,
+        fixture: 'unearned imported current-version native save; native Mage combo only; no fixture skills', epoch: EPOCH,
         seedPolicy: 'native area and Date.now hash; no injected seed and no seed7 oracle',
         identities, elemental, log: observed, viewport: { width, height }, locale,
         limits: 'Shared log names do not expose source IDs. Exact ID/type/HP mapping is covered by engine/store/mounted tests.'
@@ -268,7 +274,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       await nav(page, 'settings');
       await page.getByRole('button', { name: names.save }).click();
       await expect(page.getByRole('status')).toHaveText(/^(Saved|已保存)$/);
-      const beforeClose = await download(page, info, 'before-close-v11');
+      const beforeClose = await download(page, info, 'before-close-current');
       // Live combat MP and durable player MP differ before settlement; compare actual exports.
       await page.close();
       const reopened = await context.newPage();
@@ -284,7 +290,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       await expect(reopened.getByRole('combobox', { name: names.slot })).toHaveValue(MAGE);
       await noOverflow(reopened); await visiblePart(reopened, info, 'continued-combo', reopened.getByTestId('skills-active-panel'));
       await nav(reopened, 'settings');
-      const restored = await download(reopened, info, 'continued-v11');
+      const restored = await download(reopened, info, 'continued-current');
       expect(restored.player).toEqual(beforeClose.player);
       expect(restored.inventory).toEqual(beforeClose.inventory);
       expect(restored.formation).toEqual(beforeClose.formation);
