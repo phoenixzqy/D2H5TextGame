@@ -1,6 +1,6 @@
 # D04 — Confuse / Attract finite target redirection
 
-2026-10-26; root owns all work, no delegation or independent approval. Local native RED is reproduced; production source is not yet changed. This is a provisional root-author v1 adaptation, not independent design approval or functional skill credit. [BUG254](../../../production/bugs/BUG-254-apply-confuse-attract-targeting.md) records original source/commands/failures.
+2026-10-26; root owns all work, no delegation or independent approval. Local native RED is reproduced; strict definition foundation `9bc03a22` is verified, while runtime redirection is still absent. This is a provisional root-author v1 adaptation, not independent design approval or functional skill credit. [BUG254](../../../production/bugs/BUG-254-apply-confuse-attract-targeting.md) records original source/commands/failures.
 
 ## Preserved authority
 
@@ -35,4 +35,6 @@ Both descriptions must state the actual finite duration,other living enemy eligi
 
 ## Current state
 
-Dim Vision closed locally in `b7d2dff8`; current inventory162bounded/49unverified/one engine-only/one review-needed,Necromancer20/32. Neither Confuse nor Attract is credited. Their original rank1/20 native RED4failed/2negative controls passed,with1600heroHP lost in every paid/control pair and no monster-on-monster damage. The retained task root and removal owner are in BUG254. Runtime/data/schema/presentation implementation and combined verification remain next. GenuineL33/Ancients claimed/Baal uncleared and all full-v1 requirements stay unchanged.
+Dim Vision closed locally in `b7d2dff8`; current inventory162bounded/49unverified/one engine-only/one review-needed,Necromancer20/32. Neither Confuse nor Attract is credited. Their original rank1/20 native RED4failed/2negative controls passed,with1600heroHP lost in every paid/control pair and no monster-on-monster damage. The retained task root and removal owner are in BUG254. Strict data/schema/immutable definitions now pass49new cases and9035engine tests. Paid runtime status/targeting,presentation/native/public implementation and combined verification remain next. GenuineL33/Ancients claimed/Baal uncleared and all full-v1 requirements stay unchanged.
+
+Foundation validation:81focused/3files3.129s,engine9035/338150.233s,typecheck122.374s and explicit lint11.230s PASS. The native numerical RED remains4failed/2controls passed after metadata,with1600heroHP loss/zero friendly hits. No bounded credit;inventory162unchanged. Eight terminal receipts and four source blobs are retained in BUG254's active task root. The remaining increments above still apply.

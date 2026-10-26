@@ -1,6 +1,6 @@
 # BUG-254 — Apply paid Confuse and Attract to real enemy target selection
 
-- Status: reproduced; no production implementation or skill credit.
+- Status: native numerical RED reproduced; strict JSON definition foundation `9bc03a22` verified. Paid status and attack redirection are not implemented; no skill credit.
 - Severity: High — two advertised targeting curses spend resources without their advertised behavior.
 - Owner: root engine/content/frontend; independent design/review/QA remain open.
 - Build:7b27fb0463cd8d6b9bfdbcaf03e1fd370c3c7b9f;Node24.21.0/Linux; native projection/engine reproduction, independent of browser/locale/viewport.
@@ -30,3 +30,11 @@ The catalog emits ordinary confuse/attract markers,but no combat target-selectio
 ## Next acceptance
 
 Implement a finite JSON-owned paid targeting contract with actual hostile same-side hits,exact onset/expiry/refresh,Cleansing,Attract/Confuse/Taunt precedence,singleton/death/converted/player/self safety,ordinary damage/death/reward semantics,bilingual current-next/MAX,native allocation/wave/import and production online/offline public proof. Preserve original cost/rank/prerequisite authority. Root author adaptation remains provisional;independent and earned balance acceptance remain open. Full privatev1 and remaining skill work are unchanged.
+
+## Definition foundation — still incomplete
+
+`9bc03a22` changes exactly four source paths:strict canonical schema,both JSON duration leaves,and immutable definition/helper tests. Existing class/unlock/prerequisites/cost/cooldown/scaling authority remains literal.49new definition cases/81focused across3files PASS3.129s;engine9035/338PASS150.233s,typecheckPASS122.374s,explicit lintPASS11.230s. Missing-module definition discovery RED is retained separately from the genuine numerical RED.
+
+The post-foundation native reproduction still has4failed/2passed8.620s,identical1600heroHP loss andzero friendly fire in all four positive cases;logSHA256`9602f57493f64afcfb7f6b2919332a5463b8598b16919b543345009c52876a35`. This is expected incomplete behavior,not a green mechanic or skill credit. All eight command starts have matching terminal/hash receipts. Four committed foundation source copies and the correct162-row-credit CSV baseline remain in the active task root;the earlier pre-DimVision161 baseline is preserved separately.
+
+Paid transient status capture/finite consumer,shared offensive targeting,bilingual current-next/MAX,native lifecycle/public online/offline proof and final combined validation/retention/cleanup remain next. The latest completed full17,874test/browser4case evidence belongs to Dim Vision's combined head,not this new foundation. Root retains the active raw task evidence through BUG254 consumers and owns eventual exact cleanup.
