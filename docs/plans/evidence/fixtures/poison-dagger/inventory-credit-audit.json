@@ -1,0 +1,27 @@
+{
+  "creditedId": "skills-necromancer-poison-dagger",
+  "beforeSha256": "2ac836f89424ca479b413dc5c809077acc634a9e68cfa65cd309704dc9771e66",
+  "afterSha256": "211eca3eaca166afe63380f65e9ef179a5e9cbd27ae9b51a689406e7206afe4d",
+  "totalIds": 213,
+  "otherRawRowsExact": 212,
+  "headerExact": true,
+  "idsOrderExact": true,
+  "counts": {
+    "unverified": 45,
+    "bounded-functional;independent-acceptance-open": 163,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "boundedFunctionalTotal": 166,
+  "necromancerBounded": 24,
+  "necromancerTotal": 32,
+  "featurePathsStillExact": 12,
+  "genuineUnchanged": true,
+  "retentionReadBackVerified": true,
+  "cleanupVerified": true,
+  "rootAbsent": true,
+  "independentAcceptance": "open",
+  "earnedBalance": "open",
+  "createdUnix": 1793039944.9977324
+}

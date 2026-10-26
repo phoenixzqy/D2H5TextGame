@@ -1,6 +1,6 @@
 # BUG-256 — Apply Poison Dagger periodic damage
 
-Status: fixed locally in `2e29ede8` with all final validation passing; retention/credit pending.
+Status: fixed in `2e29ede8` and locally verified; final evidence/cleanup complete, independent acceptance open.
 Severity: High — the advertised damaging Poison application has no periodic effect.
 Date: 2026-10-26. Root author only; no independent approval.
 
@@ -102,3 +102,12 @@ explicit PWA lint and final public4/4 pass. Original failures remain retained.
 See [current evidence](../../docs/plans/evidence/d04-poison-dagger.md) for exact
 results, source/build/save audits and visual limits. Independent/earned/full-v1
 acceptance remains open; no runtime or test-limit workaround was introduced.
+
+## Retention closeout
+
+All2332raw members archived/read-back verified, then2332exact disposable files/
+40directories and the driver removed; remaining[]/failures[]. Historical raw
+paths above now identify archive provenance. Required archive/four-path retention,
+original failures, individual visuals and one bounded credit are linked from
+[final evidence](../../docs/plans/evidence/d04-poison-dagger.md). Root owns eventual
+retained-evidence removal after BUG/full-v1 consumers finish.

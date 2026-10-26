@@ -98,15 +98,35 @@ remains unresolved; load contention is a hypothesis, not a diagnosed cause.
 
 ## Evidence ownership and remaining work
 
-Root owns required raw evidence at
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4`.
-Lossless archive/read-back and exact cleanup must finish before one Dagger
-bounded-functional credit. Current inventory remains165bounded/46unverified/
-one engine-only/one review-needed. Original failures and authoring/harness
-corrections are retained. GenuineL33/nextNormal402/Ancients-Rite claimed/Baal
-uncleared is unchanged. Independent acceptance, earned builds/balance, C2–C4,
-30–50hour pacing/economy/endgame and fullG0–G7/privatev1 remain open.
-No genuine campaign/replay, remote action or delegation occurred.
+All2332raw archive members (197465984bytes) were individually read-back verified.
+The exact2332disposable files/40directories and archived external driver are
+removed; remaining[]/failures[], readable task consumers clear and4545available.
+29restricted optional `/proc` entries limit visibility. Shared caches/tools and
+source/history remain intact. [Retention/cleanup](fixtures/poison-dagger/retention-summary.json)
+records the complete outcome. The raw task and worktree `dist` are absent.
+
+Root retains these four required paths through BUG180/256/257/258 and full-v1
+evidence consumers, and owns their eventual removal after readers finish:
+
+```text
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-retained.tar.xz
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-retention.json
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-deletion-manifest.json
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-cleanup.json
+```
+
+Archive SHA256: `77cda0f36ede7fa133fcecd37ad9517fa807f9e717eda11f869b9b59316cdd8b`.
+Historical raw paths in reports are archive-member provenance; no required raw
+failure or original screenshot was discarded.
+
+Only after verified cleanup, exactly one Dagger bounded-functional credit is
+recorded:166bounded/45unverified/one engine-only/one review-needed,
+Necromancer24/32. [Credit audit](fixtures/poison-dagger/inventory-credit-audit.json)
+proves212other raw rows/header/IDs/order exact and all12feature/protected-save
+hashes unchanged. GenuineL33/nextNormal402/Ancients-Rite claimed/Baal uncleared
+is unchanged. Independent acceptance, earned builds/balance, C2–C4,30–50hour
+pacing/economy/endgame and fullG0–G7/privatev1 remain open. No genuine campaign/
+replay, remote action or delegation occurred. Umbrella worktree and goal continue.
 
 Historical checkpoints below predate the final frozen result above.
 

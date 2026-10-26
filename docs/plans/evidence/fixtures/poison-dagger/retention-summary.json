@@ -1,0 +1,78 @@
+{
+  "retention": {
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-retained.tar.xz",
+    "sha256": "77cda0f36ede7fa133fcecd37ad9517fa807f9e717eda11f869b9b59316cdd8b",
+    "archiveBytes": 146647908,
+    "members": 2332,
+    "rawBytes": 197465984,
+    "readBackVerified": true,
+    "deletionManifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-deletion-manifest.json",
+    "deletionManifestSha256": "326a9cf649efa30b23acf5156fe087edaea4036f4a52015d43529f395be13e42",
+    "owner": "root",
+    "retainUntil": "BUG256/BUG257/BUG258/Dagger and full-v1 evidence consumers finish; root owns later removal",
+    "requiredRemainingPaths": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-retained.tar.xz",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-retention.json",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-deletion-manifest.json",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-cleanup.json"
+    ],
+    "createdUnix": 1793039884.9972646
+  },
+  "cleanup": {
+    "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4",
+    "removedFiles": 2332,
+    "removedDirectories": 40,
+    "remaining": [],
+    "failures": [],
+    "rootAbsent": true,
+    "taskConsumers": [],
+    "restrictedProcPids": [
+      1,
+      2,
+      7,
+      167,
+      168,
+      169,
+      173,
+      183,
+      207,
+      242,
+      253,
+      265,
+      287,
+      348,
+      349,
+      351,
+      394,
+      398,
+      149101,
+      149102,
+      350262,
+      631611,
+      631672,
+      631674,
+      631709,
+      2657445,
+      2657754,
+      2658059,
+      2701439
+    ],
+    "processesScanned": 35,
+    "port4545Free": true,
+    "signalsSent": [],
+    "externalDriverRemoved": {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-retention-driver.py",
+      "bytes": 6006,
+      "sha256": "9f4cf6ca247387f1e00eef5efb524612169150d9e1e7a62a7ba58dc67c2ecd6c",
+      "verifiedAbsent": true
+    },
+    "requiredRemainingPaths": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-retained.tar.xz",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-retention.json",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-deletion-manifest.json",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4-cleanup.json"
+    ]
+  },
+  "retentionSidecarSha256": "8baa2290a59b7ef5dc7e137d81fc2246d415da9b5072bb9fba8d7938fe64a8c0",
+  "cleanupSidecarSha256": "5d537cf7955db3d22cbd87d5b4a3db65bdf69c2198dbc6f63580b23bf4326f46"
+}
