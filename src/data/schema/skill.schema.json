@@ -8,6 +8,36 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["hydra"], "properties": { "hydra": {} } },
+      "then": { "properties": { "id": { "const": "skills-sorceress-hydra" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-sorceress-hydra" } } },
+      "then": {
+        "required": ["hydra", "summon", "summonId", "requiredLevel", "prerequisites", "damage", "damageType", "appliesStatus", "statusEffect", "cost", "scaling"],
+        "properties": {
+          "hydra": { "$ref": "#/properties/hydra" },
+          "damage": { "$ref": "#/properties/damage" },
+          "trigger": { "const": "active" }, "target": { "const": "summon" },
+          "summon": { "const": true }, "summonId": { "const": "hydra" },
+          "requiredLevel": { "const": 30 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-sorceress-fire-wall"] },
+          "damageType": { "const": "fire" }, "appliesStatus": { "const": ["burn"] },
+          "statusEffect": { "type": "object", "additionalProperties": false,
+            "required": ["dotPctOfDamage"], "properties": { "dotPctOfDamage": { "const": 0.1 } } },
+          "cost": { "type": "object", "additionalProperties": false, "required": ["mana"],
+            "properties": { "mana": { "type": "number", "exclusiveMinimum": 0 } } },
+          "scaling": { "type": "object", "additionalProperties": false,
+            "required": ["damagePerLevel"], "properties": { "damagePerLevel": { "type": "number", "minimum": 0 } } },
+          "periodicSpell": false, "timedBuff": false, "heal": false, "aoeShape": false,
+          "maxTargets": false, "hitSequence": false, "attackDamagePct": false,
+          "damageComposition": false, "additionalStatusEffects": false, "requires": false,
+          "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false,
+          "onHitRecovery": false, "onHitSelfDamage": false
+        }
+      }
+    },
+    {
       "if": { "required": ["enchantOnPhysicalHit"], "properties": { "enchantOnPhysicalHit": {} } },
       "then": { "properties": { "id": { "const": "skills-sorceress-enchant" } } }
     },
@@ -4801,6 +4831,42 @@
     }
   },
   "properties": {
+    "hydra": {
+      "description": "Paid battle-start Hydra only: body stats, independently rolled heads and finite half-open lifetime.",
+      "type": "object", "additionalProperties": false,
+      "required": ["heads", "durationMs", "maxCount", "bodyStats"],
+      "properties": {
+        "heads": { "type": "integer", "minimum": 1, "maximum": 8 },
+        "durationMs": { "type": "integer", "minimum": 1000, "maximum": 60000 },
+        "maxCount": { "const": 1 },
+        "bodyStats": {
+          "type": "object", "additionalProperties": false,
+          "required": ["lifeMax", "manaMax", "attack", "defense", "attackSpeed", "critChance", "critDamage", "physDodge", "magicDodge", "magicFind", "goldFind", "resistances"],
+          "properties": {
+            "lifeMax": { "type": "number", "exclusiveMinimum": 0 },
+            "manaMax": { "const": 0 }, "attack": { "const": 0 },
+            "defense": { "type": "number", "minimum": 0 },
+            "attackSpeed": { "type": "number", "minimum": 0 },
+            "critChance": { "type": "number", "minimum": 0, "maximum": 1 },
+            "critDamage": { "type": "number", "minimum": 1 },
+            "physDodge": { "type": "number", "minimum": 0, "maximum": 1 },
+            "magicDodge": { "type": "number", "minimum": 0, "maximum": 1 },
+            "magicFind": { "const": 0 }, "goldFind": { "const": 0 },
+            "resistances": { "type": "object", "additionalProperties": false,
+              "required": ["physical", "fire", "cold", "lightning", "arcane", "poison"],
+              "properties": {
+                "physical": { "type": "number", "minimum": -100, "maximum": 100 },
+                "fire": { "type": "number", "minimum": -100, "maximum": 100 },
+                "cold": { "type": "number", "minimum": -100, "maximum": 100 },
+                "lightning": { "type": "number", "minimum": -100, "maximum": 100 },
+                "arcane": { "type": "number", "minimum": -100, "maximum": 100 },
+                "poison": { "type": "number", "minimum": -100, "maximum": 100 }
+              }
+            }
+          }
+        }
+      }
+    },
     "periodicSpell": {
       "type": "object",
       "additionalProperties": false,

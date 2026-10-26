@@ -78,6 +78,7 @@ import { activeFeralRage, copyFeralRageStatuses, FERAL_RAGE_DEFINITION, gainFera
 import { activeFrenzy, copyFrenzyStatuses, FRENZY_DEFINITION, gainFrenzyStack } from '../skills/frenzy';
 import { copyDruidSummonRanks, isDruidSummonBody, qualifyDruidSummon } from '../skills/druid-summon-authority';
 import { DRUID_SUMMON_DEFINITION, type DruidSummonId } from '../skills/druid-summon-definition';
+import { HYDRA_DEFINITION, isHydraSkill, matchesHydra, hydraRank, buildHydra } from '../skills/hydra';
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
@@ -225,6 +226,8 @@ export interface CombatResult {
 }
 
 interface State {
+  /** Only successful paid Hydra registration creates a binding; input markers grant no power. */
+  readonly hydras: Map<string, { readonly ownerId: string; readonly rank: number; readonly expiresAtMs: number }>;
   /** Wave-local duplicate guard; paid phase itself is stored in standard status clocks. */
   readonly periodicSpellPulses: Map<string, Partial<Record<PeriodicSpellId, number>>>;
   /** Actual paid hits only; never copied from snapshot/status fields. */
@@ -1318,7 +1321,7 @@ function chooseSkillForState(
     const skill = getSkill(skillId);
     if (!skill || ((isCorpseExplosionId(skillId) || isCorpseExplosionId(skill.id)) && !matchesCorpseExplosion(skill)) ||
       ((isPoisonExplosionId(skillId) || isPoisonExplosionId(skill.id)) && !matchesPoisonExplosion(skill)) ||
-      isPreparationSummonSkill(skill) || isIronGolemSkill(skill)) continue;
+      isPreparationSummonSkill(skill) || isIronGolemSkill(skill) || isHydraSkill(skill, skillId)) continue;
     if (!canUseSkillForState(state, unit, skill, skillId, hasEnemyTarget)) continue;
     return { skill, orderId: skillId };
   }
@@ -1336,6 +1339,9 @@ function applyEffect(
   const acting = state.units.get(actorId);
   if (!acting || !alive(acting)) return;
   switch (effect.kind) {
+    case 'hydra':
+      // Hydra is committed only by its validated, paid battle-start preparation.
+      break;
     case 'periodic-spell': {
       if (!matchesPeriodicSpell(skill, effect.spell) || periodicSpellRank(acting, effect.spell) === 0) break;
       state.units.set(actorId, payPeriodicSpell(acting, effect.spell, skillLevel, state.simClockMs));
@@ -1693,6 +1699,20 @@ function basicAttack(state: State, actorId: string): void {
   applyDamageToUnit(state, actorId, target.id, effect, 1, true);
 }
 
+/** One scheduled body action, with an ordinary independently rolled hit for each living head. */
+function attackWithHydra(state: State, body: CombatUnit): void {
+  const bound = state.hydras.get(body.id), owner = bound && state.units.get(bound.ownerId);
+  if (!bound || !owner || !alive(owner) || state.simClockMs >= bound.expiresAtMs) return;
+  emit(state, { kind: 'action', actor: body.id, skillId: null });
+  for (let head = 0; head < HYDRA_DEFINITION.heads; head++) {
+    const current = state.units.get(body.id);
+    if (!current || !alive(current)) break;
+    const target = pickDefender(state, current, opponentsOf(state, current));
+    if (!target) break;
+    applyDamageToUnit(state, body.id, target.id, HYDRA_DEFINITION.bolt, bound.rank, true);
+  }
+}
+
 /** Revalidate the original living owner and exact registered body on each use. */
 function activeDruidSummon(state: State, bodyId: string) {
   const binding = state.druidSummons.get(bodyId);
@@ -1778,6 +1798,11 @@ function settlePeriodic(state: State, to: number): void {
     if (manaEvent) emit(state, manaEvent);
   }
   finishDeaths(state, dead);
+  const expiredHydras = [...state.hydras].flatMap(([id, binding]) => {
+    const body = state.units.get(id);
+    return body && alive(body) && binding.expiresAtMs <= to ? [body] : [];
+  });
+  if (expiredHydras.length > 0) finishDeaths(state, expiredHydras);
   for (const u of state.units.values()) {
     if (alive(u)) state.units.set(u.id, expireStatuses(u, to));
   }
@@ -1946,6 +1971,11 @@ function settleRedemption(state: State, aura: StatAuraProjection): void {
 /** Next action/status/deadline boundary; starts include non-DoT pending controls. */
 function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   let boundary = Math.min(MAX_SIM_MS, nextActionAt);
+  for (const [id, binding] of state.hydras) {
+    const body = state.units.get(id);
+    if (body && alive(body) && binding.expiresAtMs > state.simClockMs)
+      boundary = Math.min(boundary, binding.expiresAtMs);
+  }
   if (state.nextAuraPulseAtMs !== undefined && state.statAura &&
     activeStatAura(state.statAura, state.statAura.sourceHeroId, state.units)) {
     boundary = Math.min(boundary, state.nextAuraPulseAtMs);
@@ -2154,6 +2184,20 @@ function prepareIronGolem(state: State, owner: CombatUnit, skill: RegisteredSkil
     skillId: IRON_GOLEM_SKILL_ID, spawnedUnitId: spawned.id, paidMp: cost });
 }
 
+/** Build/validate the complete body before paying once; never bind a preloaded marker. */
+function prepareHydra(state: State, owner: CombatUnit, skill: RegisteredSkill): void {
+  const rank = hydraRank(owner);
+  if (!matchesHydra(skill) || rank === 0 || !Number.isFinite(owner.mana) ||
+    owner.mana < HYDRA_DEFINITION.manaCost || opponentsOf(state, owner).length === 0 || state.heroDead) return;
+  const candidate = buildHydra(owner);
+  if (!validPreparationCandidate(candidate)) return;
+  const registered = castSkill(state, owner.id, skill,
+    { summonId: 'hydra', units: [candidate], skillLevel: rank });
+  const body = registered?.[0];
+  if (registered?.length === 1 && body) state.hydras.set(body.id,
+    { ownerId: owner.id, rank, expiresAtMs: state.simClockMs + HYDRA_DEFINITION.durationMs });
+}
+
 function castSummonsOnStart(state: State, unitId: string): void {
   let unit = state.units.get(unitId);
   if (!unit) return;
@@ -2165,6 +2209,13 @@ function castSummonsOnStart(state: State, unitId: string): void {
       isPoisonExplosionId(skillId) || isPoisonExplosionId(skill.id)) continue;
     unit = state.units.get(unitId);
     if (!unit || !alive(unit)) return;
+    if (isHydraSkill(skill, skillId)) {
+      if (!prepared.has('sorceress.hydra')) {
+        prepared.add('sorceress.hydra');
+        prepareHydra(state, unit, skill);
+      }
+      continue;
+    }
     if (isIronGolemSkill(skill)) {
       if (opponentsOf(state, unit).length > 0 && !state.heroDead && !prepared.has(IRON_GOLEM_SKILL_ID)) {
         prepared.add(IRON_GOLEM_SKILL_ID);
@@ -2215,6 +2266,8 @@ function takeAction(state: State, unitId: string): void {
   }
 
   if (isChanneling(unit, state.simClockMs)) return;
+
+  if (state.hydras.has(unit.id)) { attackWithHydra(state, unit); return; }
 
   if (recoverDruidVine(state, unitId)) return;
 
@@ -2380,6 +2433,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const global = snapshot.summonPassives;
   const assassinVenom = copyAssassinVenomProjection(snapshot.assassinVenom);
   const state: State = {
+    hydras: new Map(),
     periodicSpellPulses: new Map(),
     conversions: new Map(),
     ...(spiritOfBarbs ? { spiritOfBarbs } : {}),

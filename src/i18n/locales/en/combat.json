@@ -81,6 +81,7 @@
   "acting": "Acting",
   "summon": "Summon",
   "summons": {
+    "hydra": "Hydra",
     "spirit_of_barbs": "Spirit of Barbs",
     "blood_raven_zombie": "Zombie",
     "skeleton": "Skeleton Warrior",

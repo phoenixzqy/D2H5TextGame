@@ -25,8 +25,10 @@ import { applySummonPassiveStats, type SummonPassiveProjection } from './summon-
 import { SPIRIT_OF_BARBS_DEFINITION, SPIRIT_OF_BARBS_IDS } from './spirit-of-barbs';
 import { DRUID_SUMMON_DEFINITION, DRUID_SUMMON_IDS } from './druid-summon-definition';
 import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
+import { HYDRA_DEFINITION, hydraBodyStats } from './hydra';
 
 export interface DisplaySkillSource {
+  readonly hydra?: import('../types/skills').SkillDef['hydra'];
   readonly enchantOnPhysicalHit?: { readonly attackPctPerRank: number };
   readonly periodicSpell?: { readonly durationMs: number; readonly intervalMs: number; readonly channelled?: true };
   readonly armorRetaliation?: import('../types/skills').ArmorRetaliationTuning;
@@ -164,6 +166,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Independent body attacks; damage rows describe one head's bolt. */
+  readonly hydra?: { readonly heads: number; readonly durationSeconds: number };
   /** Finite personal paid potency; Enchant is a weapon Fire base, not spell damage. */
   readonly sorceressBuff?: { readonly durationSeconds: number;
     readonly magicDodgePoints?: number; readonly enchantAttackPercent?: number };
@@ -357,6 +361,18 @@ function summonUnit(
 ): SkillSummonDisplayStats | undefined {
   const summonId = inferSummonId(skill);
   if (!summonId) return undefined;
+  if (skill.id === 'skills-sorceress-hydra' && skill.hydra && skill.target === 'summon') {
+    const body = hydraBodyStats();
+    return { summonId, nameKey: 'combat:summons.hydra', stats: [
+      ...(['lifeMax', 'defense', 'magicResist', 'attackSpeed'] as const).map(id => ({
+        id, labelKey: `details.summonStat.${id}`, value: body[id], valueKind: 'flat' as const })),
+      ...(['physDodge', 'magicDodge'] as const).map(id => ({
+        id, labelKey: `details.summonStat.${id}`, value: body[id], valueKind: 'percent' as const })),
+      ...(['physical', 'fire', 'cold', 'lightning', 'arcane', 'poison'] as const).map(type => ({
+        id: `${type}Resistance` as const, labelKey: `details.summonStat.${type}Resistance`,
+        value: body.resistances[type] / 100, valueKind: 'percent' as const }))
+    ] };
+  }
   const canonical = skill.id.startsWith('skills-druid-')
     ? 'druid.' + skill.id.slice('skills-druid-'.length).replaceAll('-', '_') : skill.id;
   const druid = canonical.startsWith('druid.') && skill.trigger === 'active' &&
@@ -612,6 +628,9 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(skill.id === 'skills-sorceress-hydra' && skill.hydra && skill.target === 'summon' ? {
+      hydra: { heads: HYDRA_DEFINITION.heads, durationSeconds: HYDRA_DEFINITION.durationMs / 1000 }
+    } : {}),
     ...(['skills-sorceress-teleport', 'skills-sorceress-enchant'].includes(skill.id) &&
       skill.trigger === 'active' && skill.target === 'self' && skill.timedBuff ? { sorceressBuff: {
         durationSeconds: skill.timedBuff.durationMs / 1000,

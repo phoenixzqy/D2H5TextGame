@@ -251,6 +251,13 @@ export interface ConversionTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Exact paid finite Hydra body; other summons keep their existing definitions. */
+  readonly hydra?: {
+    readonly heads: number;
+    readonly durationMs: number;
+    readonly maxCount: 1;
+    readonly bodyStats: Omit<import('./attributes').DerivedStats, 'life' | 'mana' | 'magicResist'>;
+  };
   /** Paid recurring timing; only explicit Inferno channel metadata occupies caster actions. */
   readonly periodicSpell?: { readonly durationMs: number; readonly intervalMs: number; readonly channelled?: true };
   readonly conversion?: ConversionTuning;

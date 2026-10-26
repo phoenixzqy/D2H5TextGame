@@ -64,6 +64,9 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "damagePerHead": "{{type}} damage per head bolt",
+    "hydraBody": "Hydra body",
+    "hydraBodyValue": "One body, {{heads}} heads; {{duration}} s; own Attack Speed",
     "damagePerPulse": "{{type}} damage per pulse",
     "spellTiming": "Persistent spell",
     "channelTiming": "Channel",
@@ -1149,7 +1152,7 @@
     },
     "hydra": {
       "name": "Hydra",
-      "desc": "Summons a multi-headed fire beast that attacks enemies."
+      "desc": "When each wave starts, pay {{mana}} MP once to prepare one targetable body for {{duration}} s ({{cooldown}} s cooldown). Each own scheduled action attempts {{heads}} separate bolts, each dealing {{min}}–{{max}} Fire base damage; after a kill, the next head selects another living enemy. There is no instant caster damage. Fire resistance and Defense apply; landed bolts apply ordinary Burn. The paid rank and your Fire damage bonus are captured at preparation. Body control blocks its actions; owner control does not. Expiry, body death or owner death stops attacks; no same-wave retry, replacement or refund. The next wave prepares again using carried mana."
     }
   },
   "monster": {

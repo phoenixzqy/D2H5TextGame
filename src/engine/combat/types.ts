@@ -87,6 +87,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Fresh learned native Hydra eligibility; paid bodies are bound privately inside each battle. */
+  readonly hydraRank?: number;
   /** Fresh legal native allocations, independent of carried paid buff potency. */
   readonly sorceressBuffRanks?: Readonly<Record<import('../skills/sorceress-buffs').SorceressBuffId, number>>;
   /** Fresh legal learned authority; governed equipment/native Blaze has its separate projection. */

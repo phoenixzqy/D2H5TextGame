@@ -147,6 +147,7 @@ export interface SummonEffect {
 
 /** Union of effect primitives. */
 export type SkillEffect =
+  | { readonly kind: 'hydra' }
   | { readonly kind: 'periodic-spell'; readonly spell: import('./periodic-spells').PeriodicSpellId }
   | { readonly kind: 'static-field' }
   | DamageEffect

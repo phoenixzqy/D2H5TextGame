@@ -29,6 +29,7 @@ export type PlayableSkillClass =
   | 'sorceress';
 
 interface JsonSkill {
+  readonly hydra?: NonNullable<import('../types/skills').SkillDef['hydra']>;
   readonly enchantOnPhysicalHit?: { readonly attackPctPerRank: number };
   readonly periodicSpell?: NonNullable<import('../types/skills').SkillDef['periodicSpell']>;
   readonly armorRetaliation?: import('../types/skills').ArmorRetaliationTuning;
@@ -141,6 +142,7 @@ function summonMaxForKind(kind: SummonMaxCountScalingKind | undefined): number {
 }
 
 function effectsForSkill(skill: JsonSkill): SkillEffect[] {
+  if (skill.id === 'skills-sorceress-hydra' && skill.hydra) return [{ kind: 'hydra' }];
   if (skill.periodicSpell) {
     const spell = (['blaze', 'fire-wall', 'thunder-storm', 'inferno'] as const)
       .find(id => skill.id === 'skills-sorceress-' + id);

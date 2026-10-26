@@ -975,6 +975,19 @@
   },
   {
     "id": "skills-sorceress-hydra",
+    "summon": true,
+    "summonId": "hydra",
+    "hydra": {
+      "heads": 3,
+      "durationMs": 10000,
+      "maxCount": 1,
+      "bodyStats": {
+        "lifeMax": 240, "manaMax": 0, "attack": 0, "defense": 10,
+        "attackSpeed": 100, "critChance": 0.05, "critDamage": 1.5,
+        "physDodge": 0.05, "magicDodge": 0.05, "magicFind": 0, "goldFind": 0,
+        "resistances": { "physical": 0, "fire": 50, "cold": 0, "lightning": 0, "arcane": 0, "poison": 0 }
+      }
+    },
     "name": "skills.sorceress.hydra.name",
     "description": "skills.sorceress.hydra.desc",
     "icon": "skills/sorceress/hydra.png",
@@ -984,7 +997,7 @@
       "skills-sorceress-fire-wall"
     ],
     "trigger": "active",
-    "target": "all-enemies",
+    "target": "summon",
     "cooldown": 4,
     "minLevel": 1,
     "maxLevel": 20,

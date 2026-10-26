@@ -864,11 +864,13 @@ function StatSection({
           {stats.damage.map((row) => (
             <StatLine
               key={`damage-${row.type}`}
-              label={t(stats.periodicSpell ? 'details.damagePerPulse' : 'details.damageAttack', { type: t(`damage-types:type.${row.type}`) })}
+              label={t(stats.hydra ? 'details.damagePerHead' : stats.periodicSpell ? 'details.damagePerPulse' : 'details.damageAttack', { type: t(`damage-types:type.${row.type}`) })}
               value={t('details.flatRange', { min: row.min, max: row.max })}
               delta={damageDelta(row, compare, t)}
             />
           ))}
+          {stats.hydra ? <StatLine label={t('details.hydraBody')}
+            value={t('details.hydraBodyValue', { heads: stats.hydra.heads, duration: stats.hydra.durationSeconds })} /> : null}
           {stats.periodicSpell ? <StatLine label={t(stats.periodicSpell.channelled ? 'details.channelTiming' : 'details.spellTiming')} value={t('details.spellTimingValue', {
             duration: stats.periodicSpell.durationSeconds, interval: stats.periodicSpell.intervalSeconds,
             pulses: stats.periodicSpell.pulses
@@ -1626,6 +1628,11 @@ function dynamicDescription(
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && stats.hydra) {
+    return t('sorceress.hydra.desc', { min: firstDamage.min, max: firstDamage.max,
+      mana: stats.manaCost, cooldown: stats.cooldown,
+      heads: stats.hydra.heads, duration: stats.hydra.durationSeconds });
+  }
   if (firstDamage && stats.periodicSpell) {
     return t('sorceress.' + skill.id.slice('skills-sorceress-'.length) + '.desc', {
       min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown,
