@@ -109,6 +109,52 @@ describe('Mage screen measurement contracts (synthetic event inputs)', () => {
     const inconsistent = { ...recorded, result: { ...recorded.result, enemyTeam: [{ ...enemy, life: 1 }] } };
     expect(() => measureMageBattle(snapshot, inconsistent)).toThrow('HP does not reconcile');
   });
+
+  it('counts periodic HP loss before direct overkill without assigning it to a Mage', () => {
+    const { snapshot, recorded, enemy } = sample('player', 2000);
+    const events = [...recorded.events];
+    events.splice(2, 0, { kind: 'dot', target: enemy.id, amount: 2, simClockMs: 2000, uiDelayMs: 50 });
+    const measured = measureMageBattle(snapshot, { ...recorded, events });
+    expect(measured.player).toMatchObject({ loggedDamage: 28, effectiveHpRemoved: 13 });
+    expect(measured.hero.effectiveHpRemoved).toBe(13);
+    expect(measured.mages.effectiveHpRemoved).toBe(0);
+    expect(measured.periodic).toEqual({
+      againstPlayer: { loggedDamage: 0, effectiveHpRemoved: 0, ticks: 0 },
+      againstEnemies: { loggedDamage: 2, effectiveHpRemoved: 2, ticks: 1 }
+    });
+  });
+
+  it('clamps periodic overkill, includes intervening healing and separates recipient sides', () => {
+    const { snapshot, recorded, hero, enemy } = sample(null, 2000);
+    const events = [
+      { kind: 'dot' as const, target: enemy.id, amount: 8, simClockMs: 2000, uiDelayMs: 50 },
+      { kind: 'heal' as const, target: enemy.id, amount: 5, simClockMs: 2000, uiDelayMs: 50 },
+      { kind: 'dot' as const, target: enemy.id, amount: 20, simClockMs: 2000, uiDelayMs: 50 },
+      { kind: 'dot' as const, target: hero.id, amount: 3, simClockMs: 2000, uiDelayMs: 50 },
+      { kind: 'end' as const, winner: null, simClockMs: 2000, uiDelayMs: 50 }
+    ];
+    const measured = measureMageBattle(snapshot, { ...recorded, events,
+      result: { ...recorded.result, playerTeam: [{ ...hero, life: hero.life - 3 }] } });
+    expect(measured.player.effectiveHpRemoved).toBe(0);
+    expect(measured.periodic).toEqual({
+      againstPlayer: { loggedDamage: 3, effectiveHpRemoved: 3, ticks: 1 },
+      againstEnemies: { loggedDamage: 28, effectiveHpRemoved: 15, ticks: 2 }
+    });
+  });
+
+  it.each([-1, NaN, Infinity])('rejects malformed periodic amount%s', amount => {
+    const { snapshot, recorded, enemy } = sample('player', 2000);
+    const events = [{ kind: 'dot' as const, target: enemy.id, amount, simClockMs: 0, uiDelayMs: 50 }, ...recorded.events];
+    expect(() => measureMageBattle(snapshot, { ...recorded, events })).toThrow('Invalid Mage screen periodic damage');
+  });
+
+  it('rejects unknown periodic targets and unreconciled positive periodic HP loss', () => {
+    const { snapshot, recorded, hero } = sample('player', 2000);
+    const dot = { kind: 'dot' as const, target: 'unknown', amount: 1, simClockMs: 0, uiDelayMs: 50 };
+    expect(() => measureMageBattle(snapshot, { ...recorded, events: [dot, ...recorded.events] })).toThrow('Unknown Mage screen event unit');
+    expect(() => measureMageBattle(snapshot, { ...recorded, events: [{ ...dot, target: hero.id }, ...recorded.events] }))
+      .toThrow('HP does not reconcile');
+  });
 });
 
 describe('closed Mage screen engine consumer', () => {

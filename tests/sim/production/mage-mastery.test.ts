@@ -183,9 +183,10 @@ describe('actual Mage Mastery observations', () => {
     expect(summarizeMageMasteryRuns([]).successfulTtkMs).toEqual({ count: 0, p50: null, p95: null });
   });
 
-  it('refuses source-less DoT rather than silently dropping damage from the shared direct-only meter', () => {
+  it('refuses malformed periodic damage in the shared direct and periodic meter', () => {
     const fixture = buildMageMasteryFixture(0), run = recordMageMasterySeed(fixture, 'elemental', 0);
-    const dot: RecordedBattleEvent = { kind: 'dot', target: fixture.snapshot.playerTeam[0]!.id, amount: 1, simClockMs: 0, uiDelayMs: 50 };
-    expect(() => measureMageBattle(fixture.snapshot, { ...run.recorded, events: [dot, ...run.recorded.events] })).toThrow(/DoT/);
+    const dot: RecordedBattleEvent = { kind: 'dot', target: fixture.snapshot.playerTeam[0]!.id, amount: -1, simClockMs: 0, uiDelayMs: 50 };
+    expect(() => measureMageBattle(fixture.snapshot, { ...run.recorded, events: [dot, ...run.recorded.events] }))
+      .toThrow('Invalid Mage screen periodic damage');
   });
 });

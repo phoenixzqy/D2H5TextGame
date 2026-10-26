@@ -44,7 +44,7 @@ describe('bounded rank audit recording contracts', () => {
     expect(JSON.stringify(fixture)).toBe(before);
     expect(run.preparation.mages).toHaveLength(cap);
     expect(run.preparation.startupPayment).toBe(22);
-    expect(run.summary.metrics.player.effectiveHpRemoved).toBe(330);
+    expect(run.summary.metrics.player.effectiveHpRemoved + run.summary.metrics.periodic.againstEnemies.effectiveHpRemoved).toBe(330);
     expect(run.summary.metrics.outcome).toBe('victory');
     expect(run.summary.mages).toHaveLength(cap);
     expect(run.summary.mages.every(mage => mage.attacks >= 0)).toBe(true);

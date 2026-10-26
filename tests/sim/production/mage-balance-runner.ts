@@ -17,11 +17,13 @@ function damageCounter() {
     critDenominator: 0, dodges: 0, dodgeDenominator: 0 };
 }
 
-/** Direct event damage only: logged amounts include overkill, effective amounts clamp it. */
+/** Attribute direct hits; account for source-less periodic loss by recipient side only. */
 export function measureMageBattle(snapshot: CombatSnapshot, recorded: RecordedBattleResult) {
   const units = new Map([...snapshot.playerTeam, ...snapshot.enemyTeam].map(unit => [unit.id, unit]));
   const mages = new Set<string>();
   const counters = { player: damageCounter(), hero: damageCounter(), mages: damageCounter(), enemy: damageCounter() };
+  const periodic = { againstPlayer: { loggedDamage: 0, effectiveHpRemoved: 0, ticks: 0 },
+    againstEnemies: { loggedDamage: 0, effectiveHpRemoved: 0, ticks: 0 } };
   const hero = snapshot.playerTeam.find(unit => unit.kind === 'hero');
   if (!hero) throw new Error('Missing Mage screen hero');
   const mana = { entry: hero.mana, minimum: hero.mana, final: hero.mana };
@@ -65,7 +67,14 @@ export function measureMageBattle(snapshot: CombatSnapshot, recorded: RecordedBa
     } else if (event.kind === 'death') {
       units.set(event.target, { ...unitAt(event.target), life: 0 });
     } else if (event.kind === 'dot') {
-      throw new Error('Source-less DoT is outside the direct-only Mage screen');
+      const target = unitAt(event.target);
+      if (!Number.isFinite(event.amount) || event.amount < 0) throw new Error('Invalid Mage screen periodic damage');
+      const effective = Math.min(Math.max(0, target.life), event.amount);
+      units.set(target.id, { ...target, life: Math.max(0, target.life - effective) });
+      const counter = target.side === 'player' ? periodic.againstPlayer : periodic.againstEnemies;
+      counter.loggedDamage += event.amount;
+      counter.effectiveHpRemoved += effective;
+      counter.ticks++;
     } else if (event.kind === 'mana' && event.target === hero.id) {
       mana.minimum = Math.min(mana.minimum, event.mana);
       mana.final = event.mana;
@@ -84,7 +93,8 @@ export function measureMageBattle(snapshot: CombatSnapshot, recorded: RecordedBa
   }
   return { outcome: end.winner === 'player' ? 'victory' : end.winner === 'enemy' ? 'defeat' : 'draw',
     heroDied: finalHero.life <= 0, durationMs, successfulTtkMs: end.winner === 'player' ? durationMs : null,
-    player: rates(counters.player), hero: rates(counters.hero), mages: rates(counters.mages), enemy: rates(counters.enemy), mana };
+    player: rates(counters.player), hero: rates(counters.hero), mages: rates(counters.mages), enemy: rates(counters.enemy),
+    periodic, mana };
 }
 
 /** Execute the closed recipe in the importing engine's own module domain. */
