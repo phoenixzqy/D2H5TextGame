@@ -1,0 +1,30 @@
+{
+  "source": {
+    "commit": "ba279f7a405fd8156e463d0faba5c85381aa11ee",
+    "files": 1495,
+    "allFrozenFilesMatchCommittedBlobs": true,
+    "implementationCommit": "d8171e71",
+    "browserCommit": "71c1123e",
+    "strictDefaultCommit": "ba279f7a405fd8156e463d0faba5c85381aa11ee"
+  },
+  "buildFiles": 761,
+  "bridgeScan": {
+    "chunks": [
+      "game-engine-CqIzUXqx.js",
+      "i18n-Bxr3rY09.js",
+      "index-BkEwkgSq.js",
+      "react-vendor-dRBhy6jq.js",
+      "validation-vendor-ejvZqCB8.js"
+    ],
+    "patterns": {
+      "__GAME__": "__GAME__",
+      "seedItem": "\\bseedItem\\b",
+      "seedMerc": "\\bseedMerc\\b",
+      "installTestBridge": "\\binstallTestBridge\\b",
+      "flushSave property": "[,{]flushSave:"
+    },
+    "violations": []
+  },
+  "genuineDecompressedSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "sourceDrift": []
+}

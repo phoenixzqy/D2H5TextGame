@@ -1,0 +1,29 @@
+{
+  "reviewer": "/root, sole author/reviewer; no independent approval",
+  "contract": "docs/plans/decisions/D06-find-item-v1.md",
+  "axes": {
+    "correctness": "Reviewed schema/JSON, current learned native authority, strict registered effect, FIFO selection/payment/one-draw search, immutable success capture and whole-wave reward settlement.63 definition/authority,49 causal,18 native,8 bilingual UI and6 new staging cases. Native nonvictory cases are constructed terminal-status injections, not earned losses.",
+    "readability": "Small skill module owns exact semantics/projection/chance/find validation. Existing combat selection/cast and guarded settlement paths remain the integration points; no parallel loot generator.",
+    "architecture": "JSON tuning; pure TS engine; type-only CombatSnapshot import; Find Potion composition enforces actual prerequisite. Separate salted loot stream calls ordinary reward service; original level/tier and current TC/act/difficulty/MF retained. Ephemeral finds are never saved; save22 unchanged.",
+    "security": "Private copied/frozen successes precede naming callbacks and public playback. Complete malformed/null/duplicate/foreign records fail settlement before mutation. Replay payout identity and whole participating-store rollback reused. No credentials, dependencies, CI, network publication or campaign actions.",
+    "performance": "Bounded by actual deaths and existing battle limits; no recurring timer. Engine8324/309 passes at161.317s; final entry1992.05kB/gzip503.16kB. Repository test/bundle budgets remain open."
+  },
+  "findings": [
+    {
+      "severity": "resolved",
+      "detail": "Replaced two initial lint exceptions with native destructuring defaults; undefined alone defaults to[], malformed null still throws. Existing43boundary tests pass unchanged. One task-owned full run intentionally cancelled for this equivalent cleanup; original receipts retained."
+    },
+    {
+      "severity": "limitation",
+      "detail": "12 screenshots inspected; mobile fixed header/navigation and tall reward-list captures overlap. Exact ownership/quantities from DOM+save assertions; no general UX/a11y approval."
+    },
+    {
+      "severity": "open acceptance",
+      "detail": "Chance tuning provisional; independent design/QA and earned economy/build/campaign acceptance remain open."
+    }
+  ],
+  "checksPending": [],
+  "status": "local bounded author review complete; independent design/QA and earned economy acceptance open",
+  "sourceCommit": "ba279f7a405fd8156e463d0faba5c85381aa11ee",
+  "fullSuite": "16800passed/755files/twoexisting skips"
+}

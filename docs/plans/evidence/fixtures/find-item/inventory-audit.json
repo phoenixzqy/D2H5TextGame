@@ -1,0 +1,23 @@
+{
+  "changedDataId": "skills-barbarian-find-item",
+  "rawRowsChanged": 1,
+  "otherRawRowsByteExact": 212,
+  "orderedIdsPreserved": 213,
+  "before": {
+    "unverified": 65,
+    "bounded-functional": 146,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "after": {
+    "unverified": 64,
+    "bounded-functional": 147,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "barbarianBounded": 28,
+  "barbarianTotal": 30,
+  "coldMasteryUnchanged": "review-needed",
+  "beforeSha256": "6eb315646dd3ad374009deaaa0ce98c210e737c3a90b2f8821371804384c448b",
+  "afterSha256": "169d7822dd79f2ca8a2448e15ead18e0740039ec2acb19b7b8f9e54617259402"
+}

@@ -1,0 +1,641 @@
+{
+  "sourceCommit": "ba279f7a405fd8156e463d0faba5c85381aa11ee",
+  "receipts": {
+    "authority-settlement-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/find-item.test.ts",
+        "src/stores/find-item-native.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 13.422,
+      "identity": {
+        "pid": 2845998,
+        "procStat": "2845998 (npx) R 2845997 2845997 2845997 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 89999127 11788288 33 18446744073709551615 103543019470848 103543024416445 140722788106656 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 103543028348624 103543029833496 103543524200448 140722788108357 140722788108527 140722788108527 140722788114372 0\n"
+      },
+      "logSha256": "19f909bbd9c6f45a4e076edbd1fdb77163604b9d76f9b9adf95288ab4af2caa2"
+    },
+    "boundary-final": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-item-native.test.ts",
+        "src/stores/recordedWaveStaging.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 10.654,
+      "identity": {
+        "pid": 2953680,
+        "procStat": "2953680 (npx) R 2953679 2953679 2953679 0 -1 4194304 8 0 0 0 0 0 0 0 20 0 1 0 90136010 11788288 0 18446744073709551615 98962364981248 98962369926845 140734792315344 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 98962373859024 98962375343896 98962497847296 140734792321090 140734792321263 140734792321263 140734792327108 0\n"
+      },
+      "logSha256": "a5e5c8d58bcc2087199809771fedfc5206078293e143b994a95ba77a8127649e"
+    },
+    "browser-audit-delivery": {
+      "command": [
+        "python3",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/audit-browser-delivery.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 0.264,
+      "identity": {
+        "pid": 2988589,
+        "procStat": "2988589 (python3) R 2988588 2988588 2988588 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 90181727 28303360 42 18446744073709551615 4329472 32300816 140732625563584 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 23068672 32300816 566231040 140732625569941 140732625570048 140732625570048 140732625575893 0\n"
+      },
+      "logSha256": "d4ecc9a464003fdad6986d573d53a532da53c96a51c70193d83a796739fab560"
+    },
+    "browser-audit": {
+      "command": [
+        "python3",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/audit-browser.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 0.276,
+      "identity": {
+        "pid": 2896065,
+        "procStat": "2896065 (python3) R 2896057 2896057 2896057 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 90080275 28303360 40 18446744073709551615 4329472 32300816 140723179201776 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 23068672 32300816 640843776 140723179202718 140723179202816 140723179202816 140723179208661 0\n"
+      },
+      "logSha256": "d4ecc9a464003fdad6986d573d53a532da53c96a51c70193d83a796739fab560",
+      "visualInspection": {
+        "screenshotsInspected": 12,
+        "findings": [
+          "Both locales show rank20/39%,5MP/3s and the actual successful-search feedback.",
+          "Mobile preview capture edges overlap existing fixed header/navigation.",
+          "Tall reward-summary captures show a subset of gear; fixed combat controls cover the heading/currency area. Exact 45 new owned items and1110shards per case are established by DOM/export assertions, not those cropped screenshots."
+        ],
+        "acceptance": "bounded mechanics/persistence only; no blanket mobile UX/a11y acceptance"
+      }
+    },
+    "browser-lint": {
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "tests/pwa/find-item.config.ts",
+        "tests/pwa/find-item.spec.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 10.186,
+      "identity": {
+        "pid": 2892420,
+        "procStat": "2892420 (npx) R 2892419 2892419 2892419 0 -1 4194304 12 0 0 0 0 0 0 0 20 0 1 0 90066314 11788288 0 18446744073709551615 99636972851200 99636977796797 140725573791824 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 99636981728976 99636983213848 99637765537792 140725573797963 140725573798127 140725573798127 140725573803972 0\n"
+      },
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "build-delivery": {
+      "command": [
+        "env",
+        "VITE_E2E=false",
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/dist-delivery"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 16.737,
+      "identity": {
+        "pid": 2954532,
+        "procStat": "2954532 (env) R 2954531 2954531 2954531 0 -1 4194304 7 0 0 0 0 0 0 0 20 0 1 0 90141139 11788288 0 18446744073709551615 106148290080768 106148295026365 140733365030240 0 0 0 0 0 0 0 0 0 17 11 0 0 0 0 0 106148298958544 106148300443416 106148661137408 140733365037202 140733365037334 140733365037334 140733365043179 0\n"
+      },
+      "logSha256": "49b82328ba28dbfc7d328abfae8d49bf7657fb0a6e1a449256a7d338acbbd286"
+    },
+    "build": {
+      "command": [
+        "npx",
+        "vite",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/dist",
+        "--emptyOutDir"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 19.872,
+      "identity": {
+        "pid": 2872652,
+        "procStat": "2872652 (npx) R 2872625 2872625 2872625 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 90033862 11788288 0 18446744073709551615 96010276696064 96010281641661 140726330994912 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 96010285573840 96010287058712 96011284520960 140726330996640 140726330996822 140726330996822 140726331002820 0\n"
+      },
+      "logSha256": "a3ca300293555765a8e4381b152b3f4c6b95d90694cf29487daad08f8f3f1ec4"
+    },
+    "causal-corrected": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/find-item.test.ts",
+        "src/stores/find-item.causal.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 13.208,
+      "identity": {
+        "pid": 2815755,
+        "procStat": "2815755 (npx) R 2815724 2815724 2815724 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89982173 11788288 33 18446744073709551615 99483249815552 99483254761149 140734968106304 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 99483258693328 99483260178200 99483881185280 140734968109125 140734968109295 140734968109295 140734968115140 0\n"
+      },
+      "logSha256": "64f47bf5ee26f0a158e47a713b27e0520a61df82f82246620520096e21742d99"
+    },
+    "causal-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/find-item.test.ts",
+        "src/stores/find-item.causal.test.ts",
+        "src/data/loaders/shared-skill-validator.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 9.603,
+      "identity": {
+        "pid": 2813065,
+        "procStat": "2813065 (npx) R 2813064 2813064 2813064 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89978093 11788288 32 18446744073709551615 98428619423744 98428624369341 140721371345488 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 98428628301520 98428629786392 98428859392000 140721371351061 140721371351279 140721371351279 140721371357124 0\n"
+      },
+      "logSha256": "e57d8632c16ac258ba7b3cefa6f4a251ba92ba9b94e47bcbc339496778be38e7"
+    },
+    "definition-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/find-item.test.ts",
+        "src/stores/find-item.causal.test.ts",
+        "src/data/loaders/shared-skill-validator.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 7.711,
+      "identity": {
+        "pid": 2812341,
+        "procStat": "2812341 (npx) R 2812340 2812340 2812340 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 89975151 11788288 33 18446744073709551615 107398788530176 107398793475773 140723347945168 0 0 0 0 0 0 0 0 0 17 1 0 0 0 0 0 107398797407952 107398798892824 107399530213376 140723347949589 140723347949807 140723347949807 140723347955652 0\n"
+      },
+      "logSha256": "2e12d6d509b400baf1b93e183417d17c517eb3c08bfbc5ec58bd9e871e0843b2"
+    },
+    "engine-final": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 161.317,
+      "identity": {
+        "pid": 2896066,
+        "procStat": "2896066 (npm) R 2896056 2896056 2896056 0 -1 4194304 7 0 0 0 0 0 0 0 20 0 1 0 90080275 11788288 0 18446744073709551615 110814917820416 110814922766013 140734719918768 0 0 0 0 0 0 0 0 0 17 11 0 0 0 0 0 110814926698192 110814928183064 110815753605120 140734719924357 140734719924463 140734719924463 140734719930308 0\n"
+      },
+      "logSha256": "cc1dc19e2b58f918505693cc072577307995a6f14eadcb2e06bd38d43fc08281"
+    },
+    "engine-first-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-item.causal.test.ts",
+        "src/engine/skills/find-potion.test.ts",
+        "src/engine/skills/dataCatalog.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 8.495,
+      "identity": {
+        "pid": 2810471,
+        "procStat": "2810471 (npx) R 2810470 2810470 2810470 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89971239 11788288 0 18446744073709551615 103786464702464 103786469648061 140722954502912 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 103786473580240 103786475065112 103787500945408 140722954508317 140722954508527 140722954508527 140722954514372 0\n"
+      },
+      "logSha256": "e1bec72346046e7d8b978be5daf575b4c96beacfd3321893dec231876f3cddb9"
+    },
+    "engine-suite": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 183.299,
+      "identity": {
+        "pid": 2826254,
+        "procStat": "2826254 (npm) R 2826223 2826223 2826223 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89985381 11788288 0 18446744073709551615 100311952171008 100311957116605 140737421642000 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 100311961048784 100311962533656 100312423411712 140737421650053 140737421650159 140737421650159 140737421656004 0\n"
+      },
+      "logSha256": "fd29783be919c3908c3c1ab496a7bc1ef4209ecfbdf8b76d7228252091d06b85"
+    },
+    "full-delivery": {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 1135.118,
+      "identity": {
+        "pid": 2988591,
+        "procStat": "2988591 (npm) R 2988590 2988590 2988590 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 90181760 11788288 33 18446744073709551615 111238545215488 111238550161085 140727734542320 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 111238554093264 111238555578136 111238998908928 140727734548624 140727734548719 140727734548719 140727734554564 0\n"
+      },
+      "logSha256": "82c29c2782d5cff6d59b37513bb7c973c9e77713327cae0021c94a2afb8043ed"
+    },
+    "full-final": {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": -15,
+      "seconds": 127.015,
+      "identity": {
+        "pid": 2942542,
+        "procStat": "2942542 (npm) R 2942541 2942541 2942541 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 90123296 11788288 33 18446744073709551615 98033471496192 98033476441789 140723974137200 0 0 0 0 0 0 0 0 0 17 11 0 0 0 0 0 98033480373968 98033481858840 98034434322432 140723974146192 140723974146287 140723974146287 140723974152132 0\n"
+      },
+      "logSha256": "02446786eb66e66381df2ebace2ab0821cf5f12c8f683490c46eb09c15161b49"
+    },
+    "integrated-focused": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/find-item.test.ts",
+        "src/engine/skills/registry.test.ts",
+        "src/stores/find-item.causal.test.ts",
+        "src/stores/find-item-native.test.ts",
+        "src/stores/recordedWaveStaging.test.ts",
+        "src/features/skills/SkillsScreen.find-item.test.tsx",
+        "src/features/skills/SkillsScreen.find-potion.test.tsx",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 16.492,
+      "identity": {
+        "pid": 2849537,
+        "procStat": "2849537 (npx) R 2849536 2849536 2849536 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 90011037 11763712 0 18446744073709551615 0 0 140720553047917 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 0 0 0 140720553047917 140720553048303 140720553048303 140720553048303 0\n"
+      },
+      "logSha256": "f4d955e41d3cbd1bce7bd2f86496cdd2eab9276cc672a311897baec7839453d0"
+    },
+    "lint-delivery": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 180.875,
+      "identity": {
+        "pid": 2954202,
+        "procStat": "2954202 (npm) R 2954200 2954200 2954200 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 90138137 11788288 0 18446744073709551615 111057749372928 111057754318525 140736805163968 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 111057758250704 111057759735576 111058381033472 140736805165216 140736805165295 140736805165295 140736805171140 0\n"
+      },
+      "logSha256": "29ca435f1f5c8728e1ee42ee8a1ba50546d8bc14a955ff2c881d84bead4ce0e3"
+    },
+    "lint-final": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 237.393,
+      "identity": {
+        "pid": 2917149,
+        "procStat": "2917149 (npm) R 2917148 2917148 2917148 0 -1 4194304 22 0 0 0 0 0 0 0 20 0 1 0 90098368 11796480 74 18446744073709551615 99759216545792 99759221491389 140728306958576 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 99759225423568 99759226908440 99759854948352 140728306964640 140728306964719 140728306964719 140728306970564 0\n"
+      },
+      "logSha256": "29ca435f1f5c8728e1ee42ee8a1ba50546d8bc14a955ff2c881d84bead4ce0e3"
+    },
+    "lint-first": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 218.016,
+      "identity": {
+        "pid": 2868851,
+        "procStat": "2868851 (npm) R 2868847 2868847 2868847 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 90031923 11788288 33 18446744073709551615 94561509273600 94561514219197 140733056609296 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 94561518151376 94561519636248 94561774088192 140733056612512 140733056612591 140733056612591 140733056618436 0\n"
+      },
+      "logSha256": "7a1c554d427c8a23cc14c312d3e9049b98ab2accafe0eaf301cd741b04b0255e"
+    },
+    "metrics-delivery": {
+      "command": [
+        "python3",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/audit-browser-final.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 0.266,
+      "identity": {
+        "pid": 2989942,
+        "procStat": "2989942 (python3) R 2989935 2989935 2989935 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 90185280 28303360 0 18446744073709551615 4329472 32300816 140726399279648 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 23068672 32300816 479887360 140726399281304 140726399281408 140726399281408 140726399287253 0\n"
+      },
+      "logSha256": "d4ecc9a464003fdad6986d573d53a532da53c96a51c70193d83a796739fab560"
+    },
+    "native-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-item.causal.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 7.937,
+      "identity": {
+        "pid": 2808615,
+        "procStat": "2808615 (npx) R 2808614 2808614 2808614 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89943387 11788288 0 18446744073709551615 100074189037568 100074193983165 140723127612768 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 100074197915344 100074199400216 100074667134976 140723127621737 140723127621871 140723127621871 140723127627716 0\n"
+      },
+      "logSha256": "68de0d944438f50d7b5d8cf28c4a8c127332ee75273e3a39a4caf18cc5e22fcf"
+    },
+    "precache-delivery": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/dist-delivery"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 0.266,
+      "identity": {
+        "pid": 2955748,
+        "procStat": "2955748 (node) R 2955746 2955746 2955746 0 -1 4194304 7 0 0 0 0 0 0 0 20 0 1 0 90148972 107352064 0 18446744073709551615 7626752 52430497 140722232900800 0 0 0 0 0 0 0 0 0 17 15 0 0 0 0 0 112535000 112706784 269905920 140722232907887 140722232908014 140722232908014 140722232913859 0\n"
+      },
+      "logSha256": "14924cbb043aac7c71ade5da11a5a2d77a16db500897056ae7091f5e9677f40f"
+    },
+    "precache": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/dist"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 0.273,
+      "identity": {
+        "pid": 2884589,
+        "procStat": "2884589 (node) R 2884562 2884562 2884562 0 -1 4194304 17 0 0 0 0 0 0 0 20 0 1 0 90042712 107352064 70 18446744073709551615 7626752 52430497 140731367445440 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 112535000 112706784 707350528 140731367450744 140731367450862 140731367450862 140731367456707 0\n"
+      },
+      "logSha256": "f8fe8cd3d021f9eeed959fcf016dab3c3272832be887d7a84f0dd5a3e2ebf962"
+    },
+    "production-browser-configured": {
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "tests/pwa/find-item.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 218.779,
+      "identity": {
+        "pid": 2889888,
+        "procStat": "2889888 (npx) R 2889887 2889887 2889887 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 90057801 11788288 0 18446744073709551615 0 0 140730864395880 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 105613564536528 105613566021400 105614498340864 140730864395880 140730864396005 140730864396005 140730864402372 0\n"
+      },
+      "logSha256": "3f52a874042d55495bb688c7c8ccfb9fd03531263bde52afe5f2c663fa2d2e43"
+    },
+    "production-browser-delivery": {
+      "command": [
+        "env",
+        "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/runtime/tmp",
+        "XDG_CACHE_HOME=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/runtime/cache",
+        "PLAYWRIGHT_BROWSERS_PATH=/home/felixzhao/.cache/ms-playwright",
+        "FIND_ITEM_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/dist-delivery",
+        "FIND_ITEM_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/browser-delivery-output",
+        "FIND_ITEM_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/browser-delivery-report.json",
+        "PWA_PORT=4521",
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "tests/pwa/find-item.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 248.689,
+      "identity": {
+        "pid": 2956406,
+        "procStat": "2956406 (env) R 2956395 2956395 2956395 0 -1 4194304 8 0 0 0 0 0 0 0 20 0 1 0 90156847 11788288 0 18446744073709551615 94555022749696 94555027695293 140733526605344 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 94555031627472 94555033112344 94555560873984 140733526607482 140733526608150 140733526608150 140733526613995 0\n"
+      },
+      "logSha256": "6462a3655943276b31b6e82e20d5287a45af37abe46302a0c234c3f9693325e3"
+    },
+    "production-browser": {
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "tests/pwa/find-item.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 4.428,
+      "identity": {
+        "pid": 2880769,
+        "procStat": "2880769 (npx) R 2880768 2880768 2880768 0 -1 4194304 7 0 0 0 0 0 0 0 20 0 1 0 90038974 11788288 0 18446744073709551615 105101728387072 105101733332669 140726647336544 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 105101737264848 105101738749720 105101852979200 140726647342758 140726647342883 140726647342883 140726647349188 0\n"
+      },
+      "logSha256": "bc862409b852a3ed3a110cb7062ca6635a140ac5d0f5b1c70a5d32c432bdeb4c"
+    },
+    "settlement-first-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-item-native.test.ts",
+        "src/stores/recordedWaveStaging.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 12.082,
+      "identity": {
+        "pid": 2831423,
+        "procStat": "2831423 (npx) R 2831422 2831422 2831422 0 -1 4194304 11 0 0 0 0 0 0 0 20 0 1 0 89988986 11788288 33 18446744073709551615 105139391098880 105139396044477 140736579355856 0 0 0 0 0 0 0 0 0 17 3 0 0 0 0 0 105139399976656 105139401461528 105139671482368 140736579364930 140736579365103 140736579365103 140736579370948 0\n"
+      },
+      "logSha256": "e39ed56a082340e7fce47b7c57484465eeae5d934312aa5a1800dc2297d9c7d3"
+    },
+    "settlement-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-item-native.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 15.7,
+      "identity": {
+        "pid": 2826718,
+        "procStat": "2826718 (npx) R 2826680 2826680 2826680 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 89985504 11788288 33 18446744073709551615 102513784836096 102513789781693 140730660913232 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 102513793713872 102513795198744 102514736762880 140730660915305 140730660915439 140730660915439 140730660921284 0\n"
+      },
+      "logSha256": "804195760ff3c0c56ce0f3ee0f156ec49137cee9ede0206947ef6b7746cd34f9"
+    },
+    "settlement-regressions": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-item-native.test.ts",
+        "src/stores/combatHelpers.receipt.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 17.958,
+      "identity": {
+        "pid": 2840631,
+        "procStat": "2840631 (npx) R 2840616 2840616 2840616 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89994575 11788288 33 18446744073709551615 111005400342528 111005405288125 140730181339744 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 111005409220304 111005410705176 111005634899968 140730181347392 140730181347567 140730181347567 140730181353412 0\n"
+      },
+      "logSha256": "ca67f41deae816edc60a2e62afd49de0bcccdbce5e019a19700818c76835678d"
+    },
+    "settlement-streams": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-item-native.test.ts",
+        "src/stores/recordedWaveStaging.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 12.227,
+      "identity": {
+        "pid": 2852923,
+        "procStat": "2852923 (npx) R 2852914 2852914 2852914 0 -1 4194304 12 0 0 0 0 0 0 0 20 0 1 0 90018803 11788288 33 18446744073709551615 95467737010176 95467741955773 140723791667456 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 95467745887952 95467747372824 95468059951104 140723791669314 140723791669487 140723791669487 140723791675332 0\n"
+      },
+      "logSha256": "904433db3024a32919d18dcaa35f226cae47f7c46987539156d8cfd6e96cad2b"
+    },
+    "settlement-terminal": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-item-native.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 13.038,
+      "identity": {
+        "pid": 2868760,
+        "procStat": "2868760 (npx) R 2868759 2868759 2868759 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 90031806 11788288 33 18446744073709551615 97786887663616 97786892609213 140731371341104 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 97786896541392 97786898026264 97787788734464 140731371350121 140731371350255 140731371350255 140731371356100 0\n"
+      },
+      "logSha256": "139bc0bc9b8a3e9111e682c3bda17b76de381e54c98a653eedd140859d618d43"
+    },
+    "staging-invalid-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/recordedWaveStaging.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 5.188,
+      "identity": {
+        "pid": 2848650,
+        "procStat": "2848650 (npx) R 2848649 2848649 2848649 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 90003493 11788288 0 18446744073709551615 101713424379904 101713429325501 140720324408912 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 101713433257680 101713434742552 101713493688320 140720324417638 140720324417775 140720324417775 140720324423620 0\n"
+      },
+      "logSha256": "238518e84c2cbbd22a17309a2972f82942fbaf7c8ae1252047bb48189d12ecc9"
+    },
+    "typecheck-final": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 120.99,
+      "identity": {
+        "pid": 2884477,
+        "procStat": "2884477 (npm) R 2884467 2884467 2884467 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 90042595 11788288 0 18446744073709551615 94877844946944 94877849892541 140727785485856 0 0 0 0 0 0 0 0 0 17 1 0 0 0 0 0 94877853824720 94877855309592 94878623805440 140727785494683 140727785494767 140727785494767 140727785500612 0\n"
+      },
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "typecheck-first": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 132.591,
+      "identity": {
+        "pid": 2843840,
+        "procStat": "2843840 (npm) R 2843802 2843802 2843802 0 -1 4194304 16 0 0 0 0 0 0 0 20 0 1 0 89995931 11788288 65 18446744073709551615 100868122456064 100868127401661 140726139141840 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 100868131333840 100868132818712 100868605349888 140726139144347 140726139144431 140726139144431 140726139150276 0\n"
+      },
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "types-delivery": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 104.587,
+      "identity": {
+        "pid": 2954203,
+        "procStat": "2954203 (npm) R 2954201 2954201 2954201 0 -1 4194304 7 0 0 0 0 0 0 0 20 0 1 0 90138138 11788288 0 18446744073709551615 107666814545920 107666819491517 140721877839152 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 107666823423696 107666824908568 107667862929408 140721877846171 140721877846255 140721877846255 140721877852100 0\n"
+      },
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "ui-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.find-item.test.tsx",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 15.397,
+      "identity": {
+        "pid": 2847330,
+        "procStat": "2847330 (npx) R 2847327 2847327 2847327 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 90000961 11788288 33 18446744073709551615 110078909857792 110078914803389 140728465529728 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 110078918735568 110078920220440 110079196401664 140728465537113 140728465537263 140728465537263 140728465543108 0\n"
+      },
+      "logSha256": "2173e922184ce07b43dbf0cf0a4cab13c80ef19c0378b31da3689f4dffb5e9d8"
+    }
+  },
+  "finalCounts": {
+    "newTests": 144,
+    "engineTests": 8324,
+    "engineFiles": 309,
+    "unitTestsPassed": 16800,
+    "unitFiles": 755,
+    "existingSkips": 2,
+    "browserCases": 4,
+    "browserRetries": 0
+  },
+  "intentionalCancellation": "full-final was stopped at127.015s for equivalent defaulting cleanup; not a timeout retry; four exact owned PIDs absent."
+}

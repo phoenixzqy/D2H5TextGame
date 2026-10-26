@@ -1,7 +1,7 @@
 # BUG-225 — Require real bodies before corpse searches or Grim Ward
 
-- Status: partially repaired locally; Find Potion verified, Find Item and Grim Ward remain reproduced/unfixed.
-- Severity: High — Find Item and Grim Ward still pay without any body to use.
+- Status: partially repaired locally; Find Potion and Find Item verified; Grim Ward remains reproduced/unfixed.
+- Severity: High — Grim Ward still pays without a body or an actual spawned ward.
 - Owner: root, engine/data/UI; independent design/QA and earned balance open.
 - Original reproduced build: `98ad7970` plus frozen warcry-control implementation; these three
   skill definitions and their generic self-buff/debuff routes are unchanged.
@@ -46,5 +46,18 @@ wave refresh and truthful bilingual UI.112 new regressions, engine8261/308,
 full16656/751/two existing skips, types/lint/build/precache and production4/4 pass.
 [Bounded evidence](../../docs/plans/evidence/d06-find-potion.md) retains raw failures,
 source/build identity and cleanup. Author tuning remains provisional; independent
-QA/design and earned balance are open. Find Item and Grim Ward still lack their
-real corpse-dependent outcomes and retain this bug. Do not close the whole bug.
+QA/design and earned balance are open. Find Item is subsequently repaired below. Grim Ward still lacks its
+real corpse-dependent outcome and retains this bug. Do not close the whole bug.
+
+## Find Item repair
+
+Source`d8171e71`/strict defaults`ba279f7a` replaces the inert MF marker with a
+real shared FIFO search, one paid seeded draw and private immutable successes.
+Guarded wave victory validates original slain bodies and grants ordinary salted
+bonus loot together with normal loot; no extra XP/quest credit, log-driven payout,
+partial grant or replay duplication.144new tests; engine8324/309, full16800/755/
+twoexisting skips, types/lint/build/precache and final production4/4 pass.
+[Bounded evidence](../../docs/plans/evidence/d06-find-item.md) records exact loot
+ownership, online/offline persistence, raw failures/cancellation, visual limits
+and cleanup. Root author review only; chance/earned economy and independent
+acceptance remain open. Grim Ward remains unfinished: do not close BUG225.

@@ -1,0 +1,60 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-retained-z06urnmb.tar.xz",
+  "sha256": "ae115690424676d400fac545abd9dbbe79ddee23ca28d88ff48364ae5ae6f950",
+  "bytes": 2050548,
+  "regularMembers": 225,
+  "allRegularMembersByteVerified": true,
+  "excludedDisposableDirectories": [
+    "dist",
+    "dist-delivery",
+    "runtime"
+  ],
+  "owner": "/root",
+  "reason": "Original failures/cancellation, exact receipts/logs, both browser reports/attachments, source/build identities and final audits for diagnosis and full-v1 consumers.",
+  "removeWhen": "Root removes this exact archive after original failure diagnosis and all full-v1 evidence consumers finish.",
+  "cleanupPlanArchiveMember": "cleanup-plan.json",
+  "processAudit": {
+    "observedIdentities": 884,
+    "stillPresent": [],
+    "profiles": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/runtime/tmp/playwright_chromiumdev_profile-1J325d",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/runtime/tmp/playwright_chromiumdev_profile-6x7LRU",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/runtime/tmp/playwright_chromiumdev_profile-GHqOX6",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j/runtime/tmp/playwright_chromiumdev_profile-QpqzJW"
+    ],
+    "existingProfiles": [],
+    "port4521Free": true,
+    "intentionalCancellation": {
+      "reason": "Intentional cancellation to replace lint exceptions with equivalent undefined-only destructuring defaults; not an observation-timeout restart. Existing null regressions unchanged.",
+      "root": 2942542,
+      "identities": [
+        {
+          "pid": 2942553,
+          "ppid": 2942542,
+          "starttime": "90123312"
+        },
+        {
+          "pid": 2942554,
+          "ppid": 2942553,
+          "starttime": "90123313"
+        },
+        {
+          "pid": 2942542,
+          "ppid": 2942541,
+          "starttime": "90123296"
+        },
+        {
+          "pid": 2942585,
+          "ppid": 2942554,
+          "starttime": "90123356"
+        }
+      ],
+      "signals": [
+        2942542,
+        2942585,
+        2942554,
+        2942553
+      ]
+    }
+  }
+}

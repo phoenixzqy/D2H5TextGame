@@ -1,0 +1,258 @@
+{
+  "cases": [
+    {
+      "project": "find-item-desktop",
+      "locale": "en",
+      "durationMs": 59869,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "savePairs": [
+        "online-save-pair",
+        "offline-save-pair"
+      ],
+      "exactDomainsPerPair": 6,
+      "observedSuccessLogSnapshots": 118,
+      "observerOverflow": false,
+      "newUniqueOwnedGear": 45,
+      "runeShardGain": 1110,
+      "skillRank": 20,
+      "preparedHeroLevel": 30,
+      "savedHeroLevel": 30,
+      "screenshots": [
+        {
+          "file": "delivery-find-item-desktop-en-skill-preview.png",
+          "sha256": "43d47566ce978174abfc79e54f1065e781c41d6d7f83a1d5e342971b82f9335b"
+        },
+        {
+          "file": "delivery-find-item-desktop-en-search-feedback.png",
+          "sha256": "769751dd6f76c34b94d7858fd919615552220f0e3319c2c6b4bbf8f5fe3ca89c"
+        },
+        {
+          "file": "delivery-find-item-desktop-en-victory-rewards.png",
+          "sha256": "ed9741e5435feb04d0b322f97c7211713cef105193978a2197e9f2939303bd28"
+        }
+      ]
+    },
+    {
+      "project": "find-item-desktop",
+      "locale": "zh-CN",
+      "durationMs": 73096,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "savePairs": [
+        "online-save-pair",
+        "offline-save-pair"
+      ],
+      "exactDomainsPerPair": 6,
+      "observedSuccessLogSnapshots": 118,
+      "observerOverflow": false,
+      "newUniqueOwnedGear": 45,
+      "runeShardGain": 1110,
+      "skillRank": 20,
+      "preparedHeroLevel": 30,
+      "savedHeroLevel": 30,
+      "screenshots": [
+        {
+          "file": "delivery-find-item-desktop-zh-CN-skill-preview.png",
+          "sha256": "2c54cd9277af44f83fafa07beef2ba1d63f6e2a4dca2b0c51500e347930c33b2"
+        },
+        {
+          "file": "delivery-find-item-desktop-zh-CN-search-feedback.png",
+          "sha256": "fffce80eea5641ff7ea9903569ceeeca2074696140571a0edf2d6e6821313026"
+        },
+        {
+          "file": "delivery-find-item-desktop-zh-CN-victory-rewards.png",
+          "sha256": "5d0ee3d610bae12ff29a82103623f1bf255b819547c05e6bfe420c497e9c8912"
+        }
+      ]
+    },
+    {
+      "project": "find-item-mobile",
+      "locale": "en",
+      "durationMs": 59695,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "savePairs": [
+        "online-save-pair",
+        "offline-save-pair"
+      ],
+      "exactDomainsPerPair": 6,
+      "observedSuccessLogSnapshots": 118,
+      "observerOverflow": false,
+      "newUniqueOwnedGear": 45,
+      "runeShardGain": 1110,
+      "skillRank": 20,
+      "preparedHeroLevel": 30,
+      "savedHeroLevel": 30,
+      "screenshots": [
+        {
+          "file": "delivery-find-item-mobile-en-skill-preview.png",
+          "sha256": "0a5abf8dfd21d07c2ebc1f3f421fcd211c10ae529b4dcc4eac00b47870063939"
+        },
+        {
+          "file": "delivery-find-item-mobile-en-search-feedback.png",
+          "sha256": "92b993b3cd1cc3827898c93d7235303b18d4ec8af502441ad79ebe8874327641"
+        },
+        {
+          "file": "delivery-find-item-mobile-en-victory-rewards.png",
+          "sha256": "94dfcfb6b3321355afbb3146a6b98a28cdd931820f05fa776ef569457c4d6916"
+        }
+      ]
+    },
+    {
+      "project": "find-item-mobile",
+      "locale": "zh-CN",
+      "durationMs": 50727,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "savePairs": [
+        "online-save-pair",
+        "offline-save-pair"
+      ],
+      "exactDomainsPerPair": 6,
+      "observedSuccessLogSnapshots": 118,
+      "observerOverflow": false,
+      "newUniqueOwnedGear": 45,
+      "runeShardGain": 1110,
+      "skillRank": 20,
+      "preparedHeroLevel": 30,
+      "savedHeroLevel": 30,
+      "screenshots": [
+        {
+          "file": "delivery-find-item-mobile-zh-CN-skill-preview.png",
+          "sha256": "756c80fe0772b2e6bb5d05be2cf341171e89145267ba51cd698c94c38fc47617"
+        },
+        {
+          "file": "delivery-find-item-mobile-zh-CN-search-feedback.png",
+          "sha256": "427722c58431036234493fa7a2169734bca1632c85c9bba33bd679fcc4e8d5be"
+        },
+        {
+          "file": "delivery-find-item-mobile-zh-CN-victory-rewards.png",
+          "sha256": "91b33bdd52182daa196477e9a6009a585ce61eaf7c19b4b2ce4d0774f47c1d1a"
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "startTime": "2026-10-26T04:07:45.441Z",
+    "duration": 247113.939,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "scope": "synthetic imported mechanics; no earned campaign/economy acceptance",
+  "checks": "public allocation/equip/battle/search/victory/generated ownership/save/online and actual service-worker offline Continue; assertions in committed browser spec",
+  "pageAndConsoleErrors": "empty across initial and fresh pages; asserted in browser spec",
+  "visualInspection": {
+    "originalScreenshotsInspected": 12,
+    "finalScreenshotsByteExactToInspectedOriginal": 12,
+    "comparisonArchiveMember": "final-screenshot-comparison.json",
+    "findings": [
+      "Bilingual rank20/39%,5MP/3s and successful-search feedback are readable.",
+      "Mobile preview edges overlap existing fixed header/navigation.",
+      "Tall reward captures show only part of the gear list; fixed combat controls cover heading/currency. Exact45unique additions/1110shards come from DOM/export assertions."
+    ],
+    "acceptance": "bounded mechanics/persistence; no general UX/accessibility acceptance"
+  }
+}

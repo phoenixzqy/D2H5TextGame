@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D06 Find Item / BUG225 partial | locally fixed/verified; independent and earned acceptance open | Source`d8171e71`/strict defaults`ba279f7a`: real shared corpse, paid one-draw search and private victory-settled ordinary bonus loot.144new tests; engine8324/309, full16800/755/two existing skips, types/lint/build/precache/bridge pass. Final production4/4, eight exact six-domain pairs/four offline Continues/20geometry;45new unique items/1110shards per synthetic case. One credit:147bounded/64unverified/one engine-only/one review-needed; Barbarian28/30. [Evidence](evidence/d06-find-item.md). 225 raw archive members verified; 2297 exact files cleaned, 884 process identities/four profiles absent,4521free,scratch absent,remaining[]/failures[]. Grim Ward keeps BUG225 open; Battle Command, Cold Mastery, genuine Baal and C2-C4/fullG0-G7/privatev1 remain unfinished. |
 | D06 Find Potion / BUG225 partial | locally fixed/verified; independent and earned acceptance open | Source `ef6e8dfc`: one shared real corpse,2MP, capped HP/MP recovery and pure no-benefit skip; native current rank and bilingual previews.112 new tests; engine8261/308, full16656/751/two existing skips, types/lint/build/precache/bridge pass. Production4/4, eight exact six-domain save pairs/four offline Continues/20geometry checks; eight screenshots inspected with mobile/observer limits. One credit:146bounded/65unverified/one engine-only/one review-needed; Barbarian27/30. [Evidence](evidence/d06-find-potion.md). BUG225 Find Item/Grim Ward and Battle Command unfinished; next Find Item contract drafted. GenuineL33/next402/Baal uncleared unchanged; C2–C4/fullG0–G7/privatev1 open. |
 | D06 Hydra / BUG240 | locally fixed/verified; independent design/QA and earned balance open | Source `5d37d537`: one paid targetable three-headed body per wave, ordinary independent Fire/Burn actions, finite lifetime/control/death and current-rank/mastery refresh.78new regressions; focused407/7, engine8224/307, full16544/747/two existing skips, types/lint/build/precache PASS. Production4/4, eight exact six-domain save pairs/four actual offline Continues/20geometry checks; eight original and four final targeted body screenshots inspected with mobile overlap limits. One credit:145bounded/66unverified/one engine-only/one review-needed; Sorceress29/30,212other CSV rows unchanged. [Evidence](evidence/d06-hydra.md).1494committed source blobs/761build/genuine exact;202raw archive members byte-verified.1504exact task files cleaned,678recorded process identities/four profiles absent,4519closed,scratch absent,remaining[]/failures[]. Provisional body tuning; Cold Mastery/independent/earned acceptance, Baal and C2–C4/fullG0–G7/privatev1 remain open. |
 | D04 Inferno / BUG239 | locally fixed/verified; independent design/QA and earned balance open | Source `65be2984`: paid three-pulse cone channel occupies caster actions, cancels at real control onset, shares Concentration semantics and carries paid rank/phase through native waves.95new tests; focused541/10, engine8194/306, quiet full16466/743/two existing skips, types/lint/build/precache PASS. Production4/4, eight exact six-domain save pairs/four actual offline Continues/20geometry/eight inspected screenshots with mobile overlap limits. One credit:144bounded/67unverified/one engine-only/one review-needed; Sorceress28/30,212other CSV rows unchanged. [Evidence](evidence/d04-inferno-channel.md).2230committed source blobs/761build/genuine exact;131raw archive members byte-verified;893exact task files cleaned,438observed process identities/two profiles absent,4518closed,scratch absent,remaining[]/failures[]. Provisional timing/cone; Hydra/Cold Mastery, earned builds, campaign/Baal and C2–C4/fullG0–G7/privatev1 remain open. |
@@ -12541,3 +12542,26 @@ C2 underway, C3/C4/fullG0-G7/all-class earned builds/pacing/economy/endgame/priv
 remain open. The preceding status-only goal turn was no progress; this turn
 revalidated ownership, completed checks and delivered the local repair. The
 umbrella worktree, branch and claim stay active.
+
+## 2026-10-25 — Find Item shared-corpse loot verified
+
+Source`d8171e71`, public tests`71c1123e`, strict optional defaults`ba279f7a`.
+144added regressions; engine8324/309, full16800/755/two existing skips, final
+types/lint/build/precache/five-chunk bridge scan and production4/4 pass. Eight
+exact six-domain save pairs/four actual offline Continues/20geometry;45new unique
+items/1110shards per synthetic run.12final screenshots byte-exact to inspected
+originals; mobile overlap/tall reward capture limits remain explicit. Original
+failures, intentional cancelled full run and report-extraction collision retained.
+No assertions/timeouts/retry settings weakened; final source has no new lint exceptions.
+
+Only Find Item credited:147bounded/64unverified/one engine-only/one review-needed;
+Barbarian28/30.212other CSV rows/29other Barbarian objects,1495committed frozen
+source blobs/761build files/genuine Ancients401 remain exact. Root author review
+supplies no independent acceptance. [Evidence](evidence/d06-find-item.md).
+GenuineL33/XP149261/nextNormal402/Nightmare0/Ancients-Rite claimed/Baal uncleared
+unchanged; no campaign or remote action. C0/C1 limited acceptance; C2 underway;
+C3/C4/fullG0-G7/all-class earned builds/pacing/economy/endgame/privatev1 open.
+Umbrella goal/worktree/claim remain active. Next: Grim Ward; Battle Command and
+Cold Mastery acceptance also remain unfinished. All 225 raw archive members byte-verified; 2297 exact files and 45 directories cleaned,
+884 recorded process identities/four profiles absent, port4521 free, scratch absent,
+remaining[]/failures[]. Exact retained path/hash/ownership/removal condition in evidence.

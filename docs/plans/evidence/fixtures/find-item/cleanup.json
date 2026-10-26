@@ -1,0 +1,16 @@
+{
+  "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-_l4a_b2j",
+  "removedFiles": 2297,
+  "removedDirectories": 45,
+  "rootAbsent": true,
+  "remaining": [],
+  "failures": [],
+  "recordedProcessIdentitiesAbsent": 884,
+  "liveIdentities": [],
+  "ownedBrowserProfilesAbsent": 4,
+  "port4521Free": true,
+  "cleanupPlanSha256": "779c280ecb4ddcdb2d78ea93758433f2e889b2d561d82a086a7a81c605944ff1",
+  "cleanupPlanArchive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-item-retained-z06urnmb.tar.xz",
+  "cleanupPlanArchiveMember": "cleanup-plan.json",
+  "preserved": "Source/history, genuine save, shared caches/tools/browser binaries, prior archives and active umbrella worktree/claim."
+}

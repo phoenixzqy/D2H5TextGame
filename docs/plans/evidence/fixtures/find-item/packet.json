@@ -1,0 +1,54 @@
+{
+  "status": "local bounded functionality verified; independent and earned acceptance open",
+  "owner": "/root",
+  "implementationCommit": "d8171e71",
+  "browserCommit": "71c1123ec802b503acdf37e837546bcac5f0d1b4",
+  "contract": "docs/plans/decisions/D06-find-item-v1.md",
+  "newTests": 144,
+  "independentAcceptance": "open; root is sole author/reviewer",
+  "earnedEconomy": "unverified",
+  "screenshots": [
+    {
+      "file": "find-item-desktop-en-skill-preview.png",
+      "sha256": "43d47566ce978174abfc79e54f1065e781c41d6d7f83a1d5e342971b82f9335b"
+    },
+    {
+      "file": "find-item-desktop-zh-CN-skill-preview.png",
+      "sha256": "2c54cd9277af44f83fafa07beef2ba1d63f6e2a4dca2b0c51500e347930c33b2"
+    },
+    {
+      "file": "find-item-mobile-en-skill-preview.png",
+      "sha256": "0a5abf8dfd21d07c2ebc1f3f421fcd211c10ae529b4dcc4eac00b47870063939"
+    },
+    {
+      "file": "find-item-mobile-en-search-feedback.png",
+      "sha256": "92b993b3cd1cc3827898c93d7235303b18d4ec8af502441ad79ebe8874327641"
+    },
+    {
+      "file": "find-item-mobile-zh-CN-skill-preview.png",
+      "sha256": "756c80fe0772b2e6bb5d05be2cf341171e89145267ba51cd698c94c38fc47617"
+    },
+    {
+      "file": "find-item-mobile-zh-CN-search-feedback.png",
+      "sha256": "427722c58431036234493fa7a2169734bca1632c85c9bba33bd679fcc4e8d5be"
+    }
+  ],
+  "fullSuite": {
+    "passed": 16800,
+    "files": 755,
+    "existingSkips": 2,
+    "seconds": 1135.118
+  },
+  "scope": "Find Item only; BUG225 Grim Ward remains unfinished. C2-C4/fullG0-G7/privatev1 remain open.",
+  "sourceCommit": "ba279f7a405fd8156e463d0faba5c85381aa11ee",
+  "strictDefaultCommit": "ba279f7a405fd8156e463d0faba5c85381aa11ee",
+  "browser": "final build4/4,retries0,eight exact six-domain save pairs/fouractual offline Continues/20geometry/12inspected byte-exact screenshots",
+  "credit": {
+    "unverified": 64,
+    "bounded-functional": 147,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "retention": "retention.json",
+  "cleanup": "cleanup.json"
+}
