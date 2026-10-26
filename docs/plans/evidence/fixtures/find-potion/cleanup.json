@@ -1,0 +1,33 @@
+{
+  "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk",
+  "scratchAbsent": true,
+  "deletedFiles": {
+    "all": 2354,
+    "build": 761,
+    "runtime": 541
+  },
+  "recordedIdentitiesAbsent": 661,
+  "profilesAbsent": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/runtime/playwright_chromiumdev_profile-182aye",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/runtime/playwright_chromiumdev_profile-QJZHBG",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/runtime/playwright_chromiumdev_profile-d1tl3p"
+  ],
+  "port4520Closed": true,
+  "processesKilled": [],
+  "remaining": [],
+  "failures": [],
+  "preserved": [
+    "source and Git history",
+    "genuine campaign fixture",
+    "shared tools and caches",
+    "required retained archive",
+    "prior archives",
+    "active umbrella worktree/branch/claim"
+  ],
+  "additionalTaskFilesRemoved": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-compact-vx2tnouk.py"
+  ],
+  "temporaryPathsAbsent": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-retained-vx2tnouk.compact.tar.xz"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "implementation": "ef6e8dfc22ef27b607651e4c24d1e96e7dedf205",
+  "owner": "/root",
+  "status": "local bounded functionality; independent design/QA and earned balance open",
+  "contract": "docs/plans/decisions/D06-find-potion-v1.md",
+  "originalRed": {
+    "archiveMember": "native-red.test.ts",
+    "sha256": "a6599b44da6d70e9514b8f3ba808729d25ee625531bde7ec0e2d76fb99e8a92c",
+    "failedTests": 6
+  },
+  "scope": "Find Potion only; BUG225 Find Item and Grim Ward remain unfinished",
+  "milestones": "C0/C1 limited acceptance; C2 underway; C3/C4/fullG0-G7/private-v1 unfinished",
+  "files": [
+    "terminal-results.json",
+    "browser-audit.json",
+    "source-delivered.json",
+    "integrity-delivered.json",
+    "inventory-audit.json",
+    "author-review.json",
+    "retention.json",
+    "cleanup.json"
+  ],
+  "representativeScreenshots": [
+    {
+      "file": "find-potion-desktop-en-combat.png",
+      "sha256": "05a1bf749a8168dc40a5dece78add2eab197c55fa71e287187e27d6b1ef0d848"
+    },
+    {
+      "file": "find-potion-desktop-zh-CN-combat.png",
+      "sha256": "57c53d9a6a43f97faf9f2dc4a553389ec49bd5bcc67ed888b35cd093d320facd"
+    },
+    {
+      "file": "find-potion-mobile-en-skill-preview.png",
+      "sha256": "81a317cbf11344b3e8692c9283fbfcc116d8da958d59068ec6f8dc0bc170ad28"
+    },
+    {
+      "file": "find-potion-mobile-zh-CN-skill-preview.png",
+      "sha256": "69157107dd782eda1648a20eda42d03911c7653cc63190d4c9b8393ffc8d3c8c"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-retained-vx2tnouk.tar.xz",
+  "sha256": "38e6fab72a6adfdd780eac252ac8b0b8f9e43e569ee35065675eb541922a807f",
+  "bytes": 43548420,
+  "regularMembers": 172,
+  "allRegularMembersByteVerified": true,
+  "excludedDisposableDirectories": [
+    "dist",
+    "runtime"
+  ],
+  "owner": "/root",
+  "reason": "Retain original failures, terminal receipts/logs, browser reports/attachments and final identity audits for diagnosis and full-v1 evidence consumers.",
+  "removeWhen": "Root removes this exact archive after original failure diagnosis and all full-v1 evidence consumers finish.",
+  "deduplicatedUnpackedTraceMembers": 881,
+  "duplicateMappingArchiveMember": "duplicate-artifact-audit.json",
+  "originalArchiveSha256": "4eb7eaf3d61e433b7cd86076e21e53815f2639b64922206d5ed40c37404d8c8c",
+  "allUniqueArtifactFilesRetained": true,
+  "allDroppedMembersByteExactInRetainedTraceZip": true
+}

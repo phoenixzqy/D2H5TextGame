@@ -1,0 +1,60 @@
+{
+  "cases": [
+    {
+      "case": "find-potion-desktop-en",
+      "status": "passed",
+      "retry": 0,
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "geometryChecks": 5,
+      "cappedRecoveryHp": 19,
+      "initialPageConsoleErrors": []
+    },
+    {
+      "case": "find-potion-desktop-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "geometryChecks": 5,
+      "cappedRecoveryHp": 19,
+      "initialPageConsoleErrors": []
+    },
+    {
+      "case": "find-potion-mobile-en",
+      "status": "passed",
+      "retry": 0,
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "geometryChecks": 5,
+      "cappedRecoveryHp": 19,
+      "initialPageConsoleErrors": []
+    },
+    {
+      "case": "find-potion-mobile-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "savePairs": 2,
+      "domainsPerPair": 6,
+      "geometryChecks": 5,
+      "cappedRecoveryHp": 19,
+      "initialPageConsoleErrors": []
+    }
+  ],
+  "attachmentsVerified": 32,
+  "savePairs": 8,
+  "offlineContinues": 4,
+  "geometryChecks": 20,
+  "allocationHeight": 48,
+  "screenshotsIndividuallyInspected": 8,
+  "visualLimits": [
+    "Mobile fixed navigation/header overlaps preview edges.",
+    "Mobile combat captures show the log tail; recovery rows are outside the visible capture. Desktop captures show recovery."
+  ],
+  "resourceLimits": [
+    "Observer used the wrong HP label and captured only stable MP=1181.",
+    "Browser does not prove exact MP payment/restoration; causal tests do.",
+    "No claim that all console warnings or fresh-page console errors were captured. Fresh-page pageerrors were asserted."
+  ],
+  "fixture": "Synthetic imported characters, no earned balance or campaign inference."
+}

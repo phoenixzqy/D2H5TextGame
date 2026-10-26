@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D06 Find Potion / BUG225 partial | locally fixed/verified; independent and earned acceptance open | Source `ef6e8dfc`: one shared real corpse,2MP, capped HP/MP recovery and pure no-benefit skip; native current rank and bilingual previews.112 new tests; engine8261/308, full16656/751/two existing skips, types/lint/build/precache/bridge pass. Production4/4, eight exact six-domain save pairs/four offline Continues/20geometry checks; eight screenshots inspected with mobile/observer limits. One credit:146bounded/65unverified/one engine-only/one review-needed; Barbarian27/30. [Evidence](evidence/d06-find-potion.md). BUG225 Find Item/Grim Ward and Battle Command unfinished; next Find Item contract drafted. GenuineL33/next402/Baal uncleared unchanged; C2–C4/fullG0–G7/privatev1 open. |
 | D06 Hydra / BUG240 | locally fixed/verified; independent design/QA and earned balance open | Source `5d37d537`: one paid targetable three-headed body per wave, ordinary independent Fire/Burn actions, finite lifetime/control/death and current-rank/mastery refresh.78new regressions; focused407/7, engine8224/307, full16544/747/two existing skips, types/lint/build/precache PASS. Production4/4, eight exact six-domain save pairs/four actual offline Continues/20geometry checks; eight original and four final targeted body screenshots inspected with mobile overlap limits. One credit:145bounded/66unverified/one engine-only/one review-needed; Sorceress29/30,212other CSV rows unchanged. [Evidence](evidence/d06-hydra.md).1494committed source blobs/761build/genuine exact;202raw archive members byte-verified.1504exact task files cleaned,678recorded process identities/four profiles absent,4519closed,scratch absent,remaining[]/failures[]. Provisional body tuning; Cold Mastery/independent/earned acceptance, Baal and C2–C4/fullG0–G7/privatev1 remain open. |
 | D04 Inferno / BUG239 | locally fixed/verified; independent design/QA and earned balance open | Source `65be2984`: paid three-pulse cone channel occupies caster actions, cancels at real control onset, shares Concentration semantics and carries paid rank/phase through native waves.95new tests; focused541/10, engine8194/306, quiet full16466/743/two existing skips, types/lint/build/precache PASS. Production4/4, eight exact six-domain save pairs/four actual offline Continues/20geometry/eight inspected screenshots with mobile overlap limits. One credit:144bounded/67unverified/one engine-only/one review-needed; Sorceress28/30,212other CSV rows unchanged. [Evidence](evidence/d04-inferno-channel.md).2230committed source blobs/761build/genuine exact;131raw archive members byte-verified;893exact task files cleaned,438observed process identities/two profiles absent,4518closed,scratch absent,remaining[]/failures[]. Provisional timing/cone; Hydra/Cold Mastery, earned builds, campaign/Baal and C2–C4/fullG0–G7/privatev1 remain open. |
 | D05 Teleport/Enchant / BUG238 | locally fixed/verified; independent design/QA and earned balance open | Engine `6d994bd2`, native/UI `7957c3ba`: finite paid magical dodge and captured-Attack weapon Fire, shared rolls/settlement, Physical-only reflection, native carry and bilingual details/chips. 95 new tests; engine8168/305, quiet full16371/740/two existing skips, types/lint/build/precache PASS. Production8/8,16exact six-domain save pairs/eight actual offline Continues/40geometry checks; six of16screenshots inspected with capture-edge limits. Two credits:143bounded/68unverified/one engine-only/one review-needed; Sorceress27/30,211other CSV rows unchanged. [Evidence](evidence/d05-sorceress-paid-buffs.md).1487source blobs/761build/genuine exact.328raw members/965verified ZIP references retained outside Git with root ownership/removal condition.2055exact task files cleaned;795observed process identities/two profiles absent,4517closed,scratch absent,remaining[]/failures[]. Initial cleanup path assertion corrected to recorded runtime TMPDIR before deletion. GenuineL33/next402/Baal uncleared; C2–C4/fullG0–G7/privatev1 remain open. |
@@ -12511,3 +12512,32 @@ pacing/economy/endgame/privatev1 unfinished. Umbrella goal, branch, worktree and
 claim remain active. Next candidate: BUG225 corpse skills under explicit no-potion/
 economy/ward contracts; Battle Command also remains unverified. Cold Mastery
 remains review-needed; no other implementation has started.
+
+## 2026-10-25 — Find Potion shared-corpse recovery verified
+
+Source `ef6e8dfc` implements the first BUG225 repair under the provisional author
+contract. Original six-test native RED is retained; final112 new regressions,
+engine8261/308, quiet full16656/751/two existing skips, final types/lint/build/
+precache and corrected five-chunk bridge scan pass. Production4/4, eight exact
+six-domain Save/Continue pairs, four actual offline Continues and20geometry
+checks pass. Desktop feedback is visible; mobile capture/HP observer limitations
+are explicit. [Evidence](evidence/d06-find-potion.md) records raw failures and limits.
+
+1255 frozen committed blobs/761 build files/genuine Ancients401 are exact; the
+other29 raw Barbarian objects and212 CSV rows remain unchanged. Only Find Potion
+gains credit:146bounded/65unverified/one engine-only/one review-needed, Barbarian
+27/30. Cold Mastery remains review-needed. Find Item and Grim Ward keep BUG225
+open; a separate Find Item draft specifies private victory-settled search loot.
+
+Archive172regular members byte-verified; 881unpacked trace
+duplicates represented byte-exact in the retained failure ZIP/mapping;
+2354exact task files cleaned,
+661recorded process identities and
+3profiles absent,4520closed,scratch absent,
+remaining[]/failures[]. Exact archive ownership/removal condition is in evidence.
+No genuine campaign or remote action. L33/XP149261/nextNormal402/Nightmare0/
+Ancients-Rite claimed/Baal uncleared unchanged. C0/C1 retain limited acceptance;
+C2 underway, C3/C4/fullG0-G7/all-class earned builds/pacing/economy/endgame/privatev1
+remain open. The preceding status-only goal turn was no progress; this turn
+revalidated ownership, completed checks and delivered the local repair. The
+umbrella worktree, branch and claim stay active.

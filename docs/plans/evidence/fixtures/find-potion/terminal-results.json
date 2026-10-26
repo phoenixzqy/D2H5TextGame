@@ -1,0 +1,469 @@
+{
+  "implementation": "ef6e8dfc22ef27b607651e4c24d1e96e7dedf205",
+  "receipts": {
+    "audit-final": {
+      "command": [
+        "python3",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/audit.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 0.518,
+      "identity": {
+        "pid": 2788520,
+        "procStat": "2788520 (python3) R 2788519 2788519 2788519 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 89824038 28266496 0 18446744073709551615 0 0 140725605828770 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 0 0 0 140725605828770 0 0 0 0\n"
+      },
+      "logSha256": "c19e2f2953d03cb463310e49bd81578f033cc0e457eaef76152b328b6291b4df"
+    },
+    "browser-first": {
+      "command": [
+        "env",
+        "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/runtime",
+        "FIND_POTION_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/dist",
+        "FIND_POTION_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/browser-first",
+        "FIND_POTION_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/browser-first-report.json",
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "tests/pwa/find-potion.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 22.459,
+      "identity": {
+        "pid": 2780563,
+        "procStat": "2780563 (env) R 2780562 2780562 2780562 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89778423 11788288 33 18446744073709551615 105540131254272 105540136199869 140722577800832 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 105540140132048 105540141616920 105540619284480 140722577807150 140722577807638 140722577807638 140722577813483 0\n"
+      },
+      "logSha256": "5e4928b490c70238da550a4d138e1199453e4e756463562ca356dcc80c13ab42"
+    },
+    "browser-second": {
+      "command": [
+        "env",
+        "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/runtime",
+        "FIND_POTION_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/dist",
+        "FIND_POTION_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/browser-second",
+        "FIND_POTION_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/browser-second-report.json",
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "tests/pwa/find-potion.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 71.558,
+      "identity": {
+        "pid": 2780998,
+        "procStat": "2780998 (env) R 2780997 2780997 2780997 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 89783816 11788288 33 18446744073709551615 110213918126080 110213923071677 140729321556320 0 0 0 0 0 0 0 0 0 17 15 0 0 0 0 0 110213927003856 110213928488728 110214467727360 140729321563948 140729321564438 140729321564438 140729321570283 0\n"
+      },
+      "logSha256": "afc612d39d21b6ff540a413520c4876532cbe7abec65d1d4d6ba2340058ffee7"
+    },
+    "build-first": {
+      "command": [
+        "env",
+        "-u",
+        "VITE_E2E",
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/dist"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 12.819,
+      "identity": {
+        "pid": 2780441,
+        "procStat": "2780441 (env) R 2780440 2780440 2780440 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89776163 11788288 33 18446744073709551615 99004944470016 99004949415613 140733403996640 0 0 0 0 0 0 0 0 0 17 13 0 0 0 0 0 99004953347792 99004954832664 99005205708800 140733404002458 140733404002582 140733404002582 140733404008427 0\n"
+      },
+      "logSha256": "bedf3a1247ffedf289bb4ce1f59d518d51fa6f329e4293f0e01ffd15b9c5de3e"
+    },
+    "causal-final": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-potion.causal.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 8.782,
+      "identity": {
+        "pid": 2781774,
+        "procStat": "2781774 (npx) R 2781773 2781773 2781773 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 89788358 11788288 33 18446744073709551615 102173298823168 102173303768765 140727777141408 0 0 0 0 0 0 0 0 0 17 15 0 0 0 0 0 102173307700944 102173309185816 102173472231424 140727777142887 140727777143023 140727777143023 140727777148868 0\n"
+      },
+      "logSha256": "5e914be34bd8b3034711c31943cbd33c45449dc74085107cc90bbe41b57aaad3"
+    },
+    "definition-causal-second": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/find-potion.test.ts",
+        "src/stores/find-potion.causal.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 7.419,
+      "identity": {
+        "pid": 2774235,
+        "procStat": "2774235 (npx) R 2774210 2774210 2774210 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 89755924 11751424 0 18446744073709551615 0 0 140726640867393 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 0 0 0 140726640867393 0 0 0 0\n"
+      },
+      "logSha256": "b7343c9587fad391b8f6e23102cd3ccf89b82d987904878e6ebe2c0783e45828"
+    },
+    "definition-causal": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/find-potion.test.ts",
+        "src/stores/find-potion.causal.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 7.684,
+      "identity": {
+        "pid": 2773892,
+        "procStat": "2773892 (npx) R 2773891 2773891 2773891 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89751189 11788288 0 18446744073709551615 104160003330048 104160008275645 140727686532944 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 104160012207824 104160013692696 104161034825728 140727686535233 140727686535407 140727686535407 140727686541252 0\n"
+      },
+      "logSha256": "26f0df9e1a04f1deb3c1cdfb95cf9c15512e1741fa618fe58e0bd913c740d16b"
+    },
+    "engine-final": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 121.849,
+      "identity": {
+        "pid": 2782069,
+        "procStat": "2782069 (npm) R 2782068 2782068 2782068 0 -1 4194304 8 0 0 0 0 0 0 0 20 0 1 0 89792758 11788288 0 18446744073709551615 97941978021888 97941982967485 140729896646032 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 97941986899664 97941988384536 97942902603776 140729896650885 140729896650991 140729896650991 140729896656836 0\n"
+      },
+      "logSha256": "e3603f99619dc9ed66e2b0dcea14deb2bb5d8b92448cb4b51216930f59aae173"
+    },
+    "engine-first": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 125.114,
+      "identity": {
+        "pid": 2774556,
+        "procStat": "2774556 (npm) R 2774555 2774555 2774555 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89759428 11788288 33 18446744073709551615 106294805184512 106294810130109 140722537170848 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 106294814062288 106294815547160 106294883397632 140722537175173 140722537175279 140722537175279 140722537181124 0\n"
+      },
+      "logSha256": "bd9a4897615db913d75319ff79d4ab887dd97083b8531610f5a653fb3149cdda"
+    },
+    "first-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-potion.causal.test.ts",
+        "src/data/loader.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 7.685,
+      "identity": {
+        "pid": 2773300,
+        "procStat": "2773300 (npx) R 2773299 2773299 2773299 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 89743466 11763712 0 18446744073709551615 0 0 140727111497807 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 0 0 0 140727111497807 0 0 0 0\n"
+      },
+      "logSha256": "a26b3a502a791f443c190e8aac47f938964517f502c7e8ccff183fbb7b7002a1"
+    },
+    "focused-complete": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/find-potion.test.ts",
+        "src/stores/find-potion.causal.test.ts",
+        "src/stores/find-potion-native.test.ts",
+        "src/features/skills/SkillsScreen.find-potion.test.tsx",
+        "src/engine/skills/dataCatalog.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 9.28,
+      "identity": {
+        "pid": 2787859,
+        "procStat": "2787859 (npx) R 2787849 2787849 2787849 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89812944 11788288 0 18446744073709551615 103934688067584 103934693013181 140725076251632 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 103934696945360 103934698430232 103935236407296 140725076260799 140725076261103 140725076261103 140725076266948 0\n"
+      },
+      "logSha256": "f00a8edb004ea6d0cffda3339bbee2f7373e60e0c85a2c2712e0290ad0c0f749"
+    },
+    "focused-final": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/find-potion.test.ts",
+        "src/stores/find-potion.causal.test.ts",
+        "src/stores/find-potion-native.test.ts",
+        "src/features/skills/SkillsScreen.find-potion.test.tsx",
+        "src/data/loader.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 13.578,
+      "identity": {
+        "pid": 2781021,
+        "procStat": "2781021 (npx) R 2781020 2781020 2781020 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89783934 11788288 33 18446744073709551615 95197473337344 95197478282941 140726708023152 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 95197482215120 95197483699992 95197912236032 140726708025293 140726708025583 140726708025583 140726708031428 0\n"
+      },
+      "logSha256": "7d9c4251ebd9a0f40ddeac131d6eb53ed2ddd869ff2d99b5b9278e4fea739d27"
+    },
+    "focused-second": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-potion.causal.test.ts",
+        "src/data/loader.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 7.941,
+      "identity": {
+        "pid": 2773606,
+        "procStat": "2773606 (npx) R 2773605 2773605 2773605 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 89746113 11751424 0 18446744073709551615 0 0 140727924443215 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 0 0 0 140727924443215 0 0 0 0\n"
+      },
+      "logSha256": "a6d11c5fb56242101e95223b818021703ca9031f08b7794bbf3c52871cdff1f0"
+    },
+    "full-final": {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 715.27,
+      "identity": {
+        "pid": 2788806,
+        "procStat": "2788806 (npm) R 2788805 2788805 2788805 0 -1 4194304 8 0 0 0 0 0 0 0 20 0 1 0 89829507 11788288 0 18446744073709551615 109711663349760 109711668295357 140734644997792 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 109711672227536 109711673712408 109711876034560 140734645000336 140734645000431 140734645000431 140734645006276 0\n"
+      },
+      "logSha256": "3b2c028a5215279e15d00c43ad75beb4e3fd72a0cbdf507e04bc011280e182af"
+    },
+    "lint-browser": {
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "tests/pwa/find-potion.spec.ts",
+        "tests/pwa/find-potion.config.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 10.994,
+      "identity": {
+        "pid": 2781104,
+        "procStat": "2781104 (npx) R 2781103 2781103 2781103 0 -1 4194304 9 0 0 0 0 0 0 0 20 0 1 0 89784052 11788288 0 18446744073709551615 96791420903424 96791425849021 140726557206128 0 0 0 0 0 0 0 0 0 17 15 0 0 0 0 0 96791429781200 96791431266072 96792123555840 140726557214791 140726557214959 140726557214959 140726557220804 0\n"
+      },
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "lint-final": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 162.665,
+      "identity": {
+        "pid": 2787861,
+        "procStat": "2787861 (npm) R 2787846 2787846 2787846 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89812944 11788288 33 18446744073709551615 94560910118912 94560915064509 140736780754576 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 94560918996688 94560920481560 94561140203520 140736780757152 140736780757231 140736780757231 140736780763076 0\n"
+      },
+      "logSha256": "ba25e2104bcd77e8ed0350777fe6d01b117e7abc5a095bb3c249ed8abe934d17"
+    },
+    "lint-first": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 184.858,
+      "identity": {
+        "pid": 2780480,
+        "procStat": "2780480 (npm) R 2780479 2780479 2780479 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 89776281 11788288 42 18446744073709551615 98866853744640 98866858690237 140722668655776 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 98866862622416 98866864107288 98867318730752 140722668656800 140722668656879 140722668656879 140722668662724 0\n"
+      },
+      "logSha256": "6b08ae97037ec59984171b4d5a65dec29381b8aff3537ebf5e833ba426d2c029"
+    },
+    "native-first": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-potion-native.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 9.803,
+      "identity": {
+        "pid": 2774663,
+        "procStat": "2774663 (npx) R 2774621 2774621 2774621 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89759550 11788288 33 18446744073709551615 102043188289536 102043193235133 140727888625648 0 0 0 0 0 0 0 0 0 17 15 0 0 0 0 0 102043197167312 102043198652184 102043653394432 140727888631911 140727888632047 140727888632047 140727888637892 0\n"
+      },
+      "logSha256": "bfaf52c1101d4179c4215924afa9414e1b4d23259f5ca6304d7e78026038d641"
+    },
+    "native-rank": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-potion-native.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 9.582,
+      "identity": {
+        "pid": 2779197,
+        "procStat": "2779197 (npx) R 2779196 2779196 2779196 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89770151 11788288 33 18446744073709551615 110856499724288 110856504669885 140722145210624 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 110856508602064 110856510086936 110857498406912 140722145216615 140722145216751 140722145216751 140722145222596 0\n"
+      },
+      "logSha256": "90475c015a1a6e3fe30cf265475d75c8e419329d475ebe660f2752337317c86b"
+    },
+    "native-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/find-potion.causal.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 7.951,
+      "identity": {
+        "pid": 2772946,
+        "procStat": "2772946 (npx) R 2772945 2772945 2772945 0 -1 4194304 16 0 0 0 0 0 0 0 20 0 1 0 89734651 11788288 68 18446744073709551615 104927894888448 104927899834045 140733081124384 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 104927903766224 104927905251096 104928260149248 140733081131111 140733081131247 140733081131247 140733081137092 0\n"
+      },
+      "logSha256": "5b68ddd4fa5a56d455095bac787ce2b531d059c72916d39afd110f528adf46e8"
+    },
+    "precache": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-find-recovery-vx2tnouk/dist"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 0.263,
+      "identity": {
+        "pid": 2780555,
+        "procStat": "2780555 (node) R 2780554 2780554 2780554 0 -1 4194304 7 0 0 0 0 0 0 0 20 0 1 0 89778390 107352064 0 18446744073709551615 7626752 52430497 140737084668688 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 112535000 112706784 296378368 140737084672116 140737084672238 140737084672238 140737084678083 0\n"
+      },
+      "logSha256": "a1875ae0b988ff91dd6901b2cafa1ea9adfe590dc193f2198919c346fb021e7b"
+    },
+    "types-final": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 94.69,
+      "identity": {
+        "pid": 2787860,
+        "procStat": "2787860 (npm) R 2787847 2787847 2787847 0 -1 4194304 18 0 0 0 0 0 0 0 20 0 1 0 89812944 11788288 75 18446744073709551615 111040374898688 111040379844285 140732996285296 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 111040383776464 111040385261336 111041205006336 140732996286619 140732996286703 140732996286703 140732996292548 0\n"
+      },
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "types-first": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 2,
+      "seconds": 92.529,
+      "identity": {
+        "pid": 2773664,
+        "procStat": "2773664 (npm) R 2773656 2773656 2773656 0 -1 4194304 8 0 0 0 0 0 0 0 20 0 1 0 89746231 11788288 0 18446744073709551615 105266911739904 105266916685501 140736281228224 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 105266920617680 105266922102552 105267839062016 140736281233563 140736281233647 140736281233647 140736281239492 0\n"
+      },
+      "logSha256": "097ca930aabfd10192b04c753b6c5a9e732df0e4bf0b30ed9d9f2da45f22fe56"
+    },
+    "types-second": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 101.107,
+      "identity": {
+        "pid": 2779308,
+        "procStat": "2779308 (npm) R 2779305 2779305 2779305 0 -1 4194304 15 0 0 0 0 0 0 0 20 0 1 0 89770269 11788288 33 18446744073709551615 97544016220160 97544021165757 140728764374720 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 97544025097936 97544026582808 97544529858560 140728764381339 140728764381423 140728764381423 140728764387268 0\n"
+      },
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "ui-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.find-potion.test.tsx",
+        "src/stores/find-potion-native.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 9.559,
+      "identity": {
+        "pid": 2777598,
+        "procStat": "2777598 (npx) R 2777596 2777596 2777596 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89767195 11788288 33 18446744073709551615 109909846286336 109909851231933 140720409069344 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 109909855164112 109909856648984 109910155309056 140720409077809 140720409077999 140720409077999 140720409083844 0\n"
+      },
+      "logSha256": "e8338de10a78a952c83f2e2984047d9283da9fafd122fc04d61c6399bd58b8a8"
+    },
+    "ui-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.find-potion.test.tsx",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 10.066,
+      "identity": {
+        "pid": 2775646,
+        "procStat": "2775646 (npx) R 2775637 2775637 2775637 0 -1 4194304 9 0 0 0 0 0 0 0 20 0 1 0 89762685 11788288 0 18446744073709551615 99594370625536 99594375571133 140732880126976 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 99594379503312 99594380988184 99594783612928 140732880128087 140732880128239 140732880128239 140732880134084 0\n"
+      },
+      "logSha256": "ec22a9fdb4fecd8d677cfb048f72c7f5cc41bc5470bfba28944e5ce7d1accf32"
+    }
+  },
+  "finalCounts": {
+    "newTests": 112,
+    "focusedTests": 112,
+    "focusedFiles": 4,
+    "engineTests": 8261,
+    "engineFiles": 308,
+    "unitTestsPassed": 16656,
+    "unitFiles": 751,
+    "existingSkips": 2
+  }
+}

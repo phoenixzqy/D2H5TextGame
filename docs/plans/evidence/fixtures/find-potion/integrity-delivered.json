@@ -1,0 +1,20 @@
+{
+  "genuineDecompressedSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "buildFilesVerified": 761,
+  "unchangedBarbarianObjects": 29,
+  "changedBarbarianObjects": [
+    "skills-barbarian-find-potion"
+  ],
+  "bridge": {
+    "chunks": 5,
+    "patterns": [
+      "__GAME__",
+      "\\bseedItem\\b",
+      "\\bseedMerc\\b",
+      "\\binstallTestBridge\\b",
+      "[,{]flushSave:"
+    ],
+    "matches": [],
+    "corrects": "Original word-boundary strings were overescaped; this rescan uses real regex boundaries."
+  }
+}

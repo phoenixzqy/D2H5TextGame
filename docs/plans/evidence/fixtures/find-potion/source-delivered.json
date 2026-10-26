@@ -1,0 +1,13 @@
+{
+  "implementation": "ef6e8dfc22ef27b607651e4c24d1e96e7dedf205",
+  "frozenManifestSha256": "355a9c2dfa8969c2c5809be947909bd45737ed7e220a07db5b33d3838104a670",
+  "frozenFiles": 1255,
+  "workingAndCommittedBlobsExact": true,
+  "postBuildTestChanges": [
+    "src/stores/find-potion.causal.test.ts",
+    "src/engine/skills/find-potion.test.ts",
+    "tests/pwa/find-potion.spec.ts"
+  ],
+  "productionSourceUnchangedSinceBuild": true,
+  "manifestArchiveMember": "source-final.json"
+}

@@ -1,0 +1,15 @@
+{
+  "beforeSha256": "a9f73e213eefe7c1211cada761382155c36003179f455d012a322be9dd3c3ade",
+  "afterSha256": "6eb315646dd3ad374009deaaa0ce98c210e737c3a90b2f8821371804384c448b",
+  "changedIds": [
+    "skills-barbarian-find-potion"
+  ],
+  "otherRowsByteExact": 212,
+  "idsAndOrderExact": 213,
+  "boundedFunctional": 146,
+  "unverified": 65,
+  "engineOnly": 1,
+  "reviewNeeded": 1,
+  "barbarianBounded": 27,
+  "coldMastery": "review-needed"
+}

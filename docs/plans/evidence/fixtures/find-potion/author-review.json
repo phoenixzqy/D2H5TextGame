@@ -1,0 +1,19 @@
+{
+  "reviewer": "/root (sole author; not independent approval)",
+  "contract": "docs/plans/decisions/D06-find-potion-v1.md",
+  "verdict": "local bounded author review complete; independent acceptance remains open",
+  "axes": {
+    "correctness": "Reviewed definition, native authority, pure selection and synchronous FIFO/payment/recovery. 112 targeted regressions cover no body, true death, exact recovery/payment, shared CE contention, caps, cooldown, replay and native next-wave invalidation.",
+    "readability": "One small Find Potion module owns exact semantics, native projection and pure capped recovery. Combat integrates existing selection and commit paths; no new generic resource abstraction.",
+    "architecture": "Reuses ordinary battle bodies, scheduling, healing/mana events and playback. Runtime authority derives from Player allocation every native wave. JSON owns tuning; no React/DOM imports, save22 change or reward implementation.",
+    "security": "Malformed/holey/duplicate/extra projection entries fail closed. Class, source, rank, live hero identity and exact registered semantics checked before payment. No credentials, CI changes, dependencies or network publication.",
+    "performance": "Reuses existing FIFO with no new scheduled repeated task, RNG or unbounded result collection. Engine suite 121.849s remains far above the repository 3s budget; no performance acceptance claimed."
+  },
+  "limits": [
+    "Provisional author numerical tuning; no independent design/QA or earned balance acceptance.",
+    "Find Item and Grim Ward still fail BUG225; Battle Command also unverified.",
+    "Browser MP/HP observer limits and mobile screenshot overlap retained in browser audit.",
+    "C2-C4, complete G0-G7 and private-v1 acceptance remain open."
+  ],
+  "fullSuite": "16656 passed, 751 files, two existing skips"
+}
