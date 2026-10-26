@@ -1,6 +1,6 @@
 # BUG-256 — Apply Poison Dagger periodic damage
 
-Status: reproduced; production fix pending.
+Status: production data fix committed in `2e29ede8`; complete local acceptance pending.
 Severity: High — the advertised damaging Poison application has no periodic effect.
 Date: 2026-10-26. Root author only; no independent approval.
 
@@ -65,3 +65,32 @@ Next: record a provisional root-author coefficient/refresh/display contract,
 then make the smallest JSON/schema/test correction after the current Amplify
 full-input audit closes. Preserve the original failures. No skill credit,
 campaign action, independent acceptance or full-v1 completion follows here.
+
+## Implementation checkpoint
+
+`2e29ede8` supplies the missing JSON potency through the unchanged adapter and
+periodic integrator. Core26tests and engine9154tests pass; `be7195f6` supplies
+truthful bilingual previews and allocation tests. The integrated400-test
+compatibility result and preserved BUG257 test-oracle failure are recorded in
+[the current evidence](../../docs/plans/evidence/d04-poison-dagger.md).
+Production browser/full validation, retention and final credit remain pending.
+
+### New-test type error before final acceptance
+
+The first canonical type check failsTS2769 at
+`SkillsScreen.poison-dagger.test.tsx:51`: Testing Library's `ByRoleOptions`
+does not accept Playwright's `exact` option. The12 runtime UI cases passed,
+but that does not prove type correctness. Preserve `canonical-typecheck.log`
+and its receipt (exit2,100.750s), plus the original test. Replace the unsupported
+option with anchored English/Chinese name regexes, preserving exact button
+matching and all allocation assertions; rerun UI cases and final type checking.
+
+### New-test lint errors before final acceptance
+
+The first full lint passes engine purity344files, then rejects two new-test
+expressions: an `expect.any(Number)` value assigned inside an expected object,
+and a redundant event-kind conditional after an exact `dot` filter. Preserve
+`canonical-lint.log`/receipt (exit1,213.701s) and both original tests. Replace
+the matcher with explicit finite/positive potency assertions and use the already
+narrowed periodic amount directly. No runtime, outcome, timeout or skip changes.
+Rerun affected tests, targeted lint and final whole-repository checks.

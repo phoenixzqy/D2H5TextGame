@@ -1,6 +1,6 @@
 # BUG-257 — Refresh the Poison Explosion fixture's Dagger oracle
 
-Status: reproduced; event diagnosis and test correction pending.
+Status: fixed locally in `69a3bb9e`; integrated final acceptance pending.
 Severity: Medium — one required integration test assumes the known Dagger defect.
 Date: 2026-10-26. Root author only; independent acceptance remains open.
 
@@ -39,3 +39,20 @@ Affected systems: native Poison Explosion regression oracle and Dagger
 compatibility. Root owns diagnosis and correction; no delegation or campaign
 action. No runtime workaround, skipped assertion or weakened comparison is
 authorized by this report. Verify the actual event cause before a test-only fix.
+
+## Diagnosis and local correction
+
+The trace-only reproduction repeats the original assertion failure. At6000ms
+Dagger Poison spreads from the first real death to the survivor with one stack,
+1HP/s and expiry11000ms. At7500ms the integrator settles1HP before PE casts.
+PE is dodged by that survivor; the original7700ms/2HP and9000ms/13HP events
+remain. The full literal is now `[[7500, 1], [7700, 2], [9000, 13]]`.
+
+The correction retains every old assertion and adds exact source/rate/expiry
+and pre-cast ordering assertions. Canonical compatibility passes400/13files
+in24.506s; the final explicitly narrowed death witness passes18/18 in8.523s.
+No engine, fixture, resource, timeout or skip changed. The first added witness
+accidentally selected the initial empty0ms status; its predicate now selects
+actual damaging Poison while preserving the6000ms/source/rate expectation.
+That authoring failure and an external workspace file-allowance failure remain
+retained with the original failure and full trace.
