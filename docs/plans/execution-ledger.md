@@ -13096,3 +13096,26 @@ GenuineL33/nextNormal402/Ancients-Rite claimed/Baal uncleared remains unchanged.
 Remaining skills,Epidemic/design reconciliation,earned builds/balance/economy/
 endgame,C2–C4/fullG0–G7/independent acceptance/privatev1 remain open. No campaign,
 remote action,delegation or worktree release. The original full goal continues.
+
+
+## 2026-10-26 — Plague payload/spread root correction; Epidemic RED
+
+`d18e689c` restores Plague Javelin's missing marker without duplicate DoT and
+selects spread stacks/potency from the same Poison record. Ten causal cases pass;
+169related/fourfiles PASS11.273s,focused types5.654s/lint12.048s PASS. Original
+engine9453pass/two stale omission oracles fail; both repaired without changing
+literal HP/payment/replay or unrelated controls. The fresh engine retry remains
+active at session13669; poll its existing receipt, do not restart. Current1665
+inputs are frozen in the continuing task. The preceding18461full pass belongs
+to the earlier Mage snapshot, not this new runtime.
+
+BUG282's actual paid MAX-Poison cast exposes the next missing Epidemic:
+five stacks/200HP lost instead of ten/400HP; pre-cast nine-stack control correctly
+retains half spread. One failing/eleven passing diagnostic cases, no repository
+skip or skill credit. Root owns the continuing artifacts and eventual exact
+retention/cleanup at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s`.
+Inventory stays174bounded/37unverified/oneengine/onereview,Necromancer32/32.
+GenuineL33/next402/Baal uncleared,earned/independent acceptance,C2–C4/fullG0–G7
+and the original full private-v1 objective remain open. No campaign,remote action,
+delegation or worktree release.

@@ -1,7 +1,7 @@
 # BUG-281 — Preserve Plague Javelin's authored secondary payload
 
 - Severity: Medium — an advertised effect is discarded by the catalog adapter.
-- Status: Reproduced; implementation/design reconciliation pending.
+- Status: Payload and spread-record defects fixed in `d18e689c`; engine retry and full skill acceptance pending.
 - Owner: root, engine/content; no delegation or independent approval.
 - Baseline: `7ae22e05` plus combat-label locale/test edits, which do not affect
   this diagnosis. Linux, Vite SSR, actual default registry and combat engine.
@@ -69,3 +69,32 @@ Workaround: its direct damage and three Poison stacks currently function; this
 does not supply the missing distinct Plague effect. Inventory remains unverified.
 Security check: pass for first-party local engine/data diagnosis; no dependency,
 credential, network, permissions, persistence or agent-control changes.
+
+## Bounded implementation and current verification
+
+`d18e689c` restores the authored rate-less Plague alongside the three damaging
+Poison stacks and takes spread stacks/potency from one Poison record, with legacy
+standalone Plague fallback. No new damage coefficient, saved field or second DoT.
+The original external ten-case RED is six failures/four controls. All ten cases
+now pass in the repository, including actual rank1/20 payment, miss/refusal,
+determinism/input immutability, mixed-record ordering and a real death spreading
+four captured8HP/s stacks for160HP to a living off-line neighbor.
+
+The first engine run finishes9453passed/twofailed across357files,233.552s. Its
+only failures explicitly require the former missing Plague payload. Both old
+oracles are corrected while retaining exact direct damage, HP, mana and replay
+assertions and all unrelated scalar/zero-field controls. The final related run
+passes169tests/fourfiles,11.273s; five-path strict types5.654s and explicit lint
+12.048s pass. Exactly four existing source/test paths and one new test change;
+1660other frozen inputs remain exact. The new engine retry is active at tool
+session13669; poll that existing run and its `plague-engine-retry.json` receipt.
+Do not treat the earlier Mage full-unit pass as validation of this later change.
+
+The continuing task is
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s`.
+Root retains original REDs, failures, source delta, current receipts and next
+Epidemic probes; root will archive/read-back and clean exact task-owned output
+after the active engine consumer and continuing implementation finish. No cleanup
+or inventory credit is claimed. [BUG282](BUG-282-implement-max-poison-epidemic.md)
+reproduces the separate unimplemented max-stack Epidemic. Native/class/public,
+earned/independent acceptance and the full private-v1 objective remain open.
