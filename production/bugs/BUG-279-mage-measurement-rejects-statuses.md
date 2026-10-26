@@ -1,7 +1,7 @@
 # BUG-279 — Measure Mage signatures without discarding periodic damage
 
 - Severity: Medium — historical simulation consumers reject valid new combat.
-- Status: Reproduced; repair pending.
+- Status: Partially repaired; combo consumer and full validation pending.
 - Owner: root, QA/measurement; no delegation or independent acceptance.
 - Baseline: `ccbf186c` plus uncommitted bilingual presentation. Linux, Vitest
   Node simulation project; no browser/locale/viewport dependency.
@@ -37,3 +37,21 @@ Workaround: focused engine/native/mounted checks verify mechanics, but cannot
 replace the repaired balance consumer or full unit acceptance.
 Security check: pass for local first-party simulation/test changes; no save,
 credential, network, dependency, permission or production runtime change.
+
+## Local repair progress
+
+`353f57a2` separates source-less periodic loss from direct attributed damage;
+balance/rank/mastery checks pass63/63, with focused strict types passing.
+`e6c79ed2` replays periodic HP loss in mitigation/mixed strata and actual status
+observations in mixed controls. Its32/32 checks and focused strict types pass.
+The independent mixed damage assertion now accounts for observed combo windows:
+Chill enables the existing1.3 Lightning multiplier, rather than changing MR.
+
+Explicit lint of the latter four paths still reports four existing errors and
+nine warnings in historical mitigation code; these are outside the changed
+lines. No lint pass or complete unit pass is claimed. The combo consumer still
+rejects legitimate enemy status refreshes and needs the same measurement repair.
+The earlier broad run remains interrupted, not passing. Receipts and the new
+`strata-tsconfig.json` remain in the task directory above for the continuing
+Mage/full-v1 work; root owns their eventual archive and cleanup. Skill inventory
+credit remains unchanged173 bounded/38 unverified/one engine-only/one review.
