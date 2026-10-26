@@ -191,9 +191,10 @@ for (const skill of ['poison-dagger'] as const) {
     expect(paidStatus).toMatchObject({
       id: 'poison',
       stacks: 1,
-      dotPerStack: expect.any(Number),
       sourceId: hero().id
     });
+    expect(Number.isFinite(paidStatus?.dotPerStack)).toBe(true);
+    expect(paidStatus?.dotPerStack).toBeGreaterThanOrEqual(1);
     expect((paidStatus?.expiresAtMs ?? 0) - (paidStatus?.appliedAtMs ?? 0)).toBe(5000);
     const paidRecording = recording(),
       paidFinal = structuredClone(finalHero());

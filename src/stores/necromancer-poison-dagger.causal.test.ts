@@ -121,7 +121,7 @@ it('uses Poison resistance and Defense once, retaining magic-resist independence
     expect.objectContaining({ source: 'hero', target: 'target', amount: 50, dodged: false })
   ]);
   expect(out.events.filter(e => e.kind === 'dot').reduce((sum,e) =>
-    sum + (e.kind === 'dot' ? e.amount : 0), 0)).toBe(10);
+    sum + e.amount, 0)).toBe(10);
   expect(out.result.enemyTeam[0]?.life).toBe(440);
   expect(out.result.enemyTeam[0]?.stats).toEqual(input.enemyTeam[0]?.stats);
   const withoutMR = { ...input, enemyTeam: input.enemyTeam.map(unit => ({
