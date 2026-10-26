@@ -95,6 +95,8 @@ export interface BuffEffect {
   readonly cycloneArmor?: true;
   /** Exact paid Holy Shield consumer; markers alone grant no power. */
   readonly holyShield?: true;
+  /** Exact paid finite personal Bone Wall consumer; presentation markers grant no power. */
+  readonly boneWall?: true;
   readonly kind: 'buff';
   readonly id: string;
   readonly duration: number;
