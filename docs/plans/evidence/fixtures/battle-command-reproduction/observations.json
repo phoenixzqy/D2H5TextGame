@@ -1,0 +1,469 @@
+{
+  "head": "775fc1aa",
+  "scope": "Synthetic pure-engine controlled probe, not native UI or earned state; fixture spell makes rank-dependent damage directly observable.",
+  "intentionalExitCode": 1,
+  "observations": [
+    {
+      "rank": 1,
+      "seed": 7,
+      "damageUnchanged": true,
+      "commandCasts": [
+        {
+          "kind": "action",
+          "actor": "hero",
+          "skillId": "barbarian.battle_command",
+          "simClockMs": 1700,
+          "uiDelayMs": 1700
+        }
+      ],
+      "manaPayments": [
+        {
+          "kind": "mana",
+          "target": "hero",
+          "mana": 89,
+          "reason": "cast",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "selfMarkers": [
+        {
+          "kind": "buff",
+          "target": "hero",
+          "buffId": "battle-command",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "firstLandedAllyDamage": {
+        "source": "ally",
+        "amount": 10,
+        "dodged": false,
+        "simClockMs": 2000
+      },
+      "finalRanks": [
+        {
+          "id": "hero",
+          "skillLevels": {
+            "barbarian.battle_command": 1,
+            "fixture.same_cost_control": 1,
+            "fixture.rank_probe": 1,
+            "skills-barbarian-shout": 1,
+            "skills-barbarian-battle-orders": 1
+          }
+        },
+        {
+          "id": "ally",
+          "skillLevels": {
+            "fixture.rank_probe": 1
+          }
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "seed": 19,
+      "damageUnchanged": true,
+      "commandCasts": [
+        {
+          "kind": "action",
+          "actor": "hero",
+          "skillId": "barbarian.battle_command",
+          "simClockMs": 1700,
+          "uiDelayMs": 1700
+        }
+      ],
+      "manaPayments": [
+        {
+          "kind": "mana",
+          "target": "hero",
+          "mana": 89,
+          "reason": "cast",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "selfMarkers": [
+        {
+          "kind": "buff",
+          "target": "hero",
+          "buffId": "battle-command",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "firstLandedAllyDamage": {
+        "source": "ally",
+        "amount": 10,
+        "dodged": false,
+        "simClockMs": 2000
+      },
+      "finalRanks": [
+        {
+          "id": "hero",
+          "skillLevels": {
+            "barbarian.battle_command": 1,
+            "fixture.same_cost_control": 1,
+            "fixture.rank_probe": 1,
+            "skills-barbarian-shout": 1,
+            "skills-barbarian-battle-orders": 1
+          }
+        },
+        {
+          "id": "ally",
+          "skillLevels": {
+            "fixture.rank_probe": 1
+          }
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "seed": 41,
+      "damageUnchanged": true,
+      "commandCasts": [
+        {
+          "kind": "action",
+          "actor": "hero",
+          "skillId": "barbarian.battle_command",
+          "simClockMs": 1700,
+          "uiDelayMs": 1700
+        }
+      ],
+      "manaPayments": [
+        {
+          "kind": "mana",
+          "target": "hero",
+          "mana": 89,
+          "reason": "cast",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "selfMarkers": [
+        {
+          "kind": "buff",
+          "target": "hero",
+          "buffId": "battle-command",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "firstLandedAllyDamage": {
+        "source": "ally",
+        "amount": 10,
+        "dodged": false,
+        "simClockMs": 4000
+      },
+      "finalRanks": [
+        {
+          "id": "hero",
+          "skillLevels": {
+            "barbarian.battle_command": 1,
+            "fixture.same_cost_control": 1,
+            "fixture.rank_probe": 1,
+            "skills-barbarian-shout": 1,
+            "skills-barbarian-battle-orders": 1
+          }
+        },
+        {
+          "id": "ally",
+          "skillLevels": {
+            "fixture.rank_probe": 1
+          }
+        }
+      ]
+    },
+    {
+      "rank": 1,
+      "seed": 97,
+      "damageUnchanged": true,
+      "commandCasts": [
+        {
+          "kind": "action",
+          "actor": "hero",
+          "skillId": "barbarian.battle_command",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "manaPayments": [
+        {
+          "kind": "mana",
+          "target": "hero",
+          "mana": 89,
+          "reason": "cast",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "selfMarkers": [
+        {
+          "kind": "buff",
+          "target": "hero",
+          "buffId": "battle-command",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "firstLandedAllyDamage": {
+        "source": "ally",
+        "amount": 10,
+        "dodged": false,
+        "simClockMs": 2000
+      },
+      "finalRanks": [
+        {
+          "id": "hero",
+          "skillLevels": {
+            "barbarian.battle_command": 1,
+            "fixture.same_cost_control": 1,
+            "fixture.rank_probe": 1,
+            "skills-barbarian-shout": 1,
+            "skills-barbarian-battle-orders": 1
+          }
+        },
+        {
+          "id": "ally",
+          "skillLevels": {
+            "fixture.rank_probe": 1
+          }
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "seed": 7,
+      "damageUnchanged": true,
+      "commandCasts": [
+        {
+          "kind": "action",
+          "actor": "hero",
+          "skillId": "barbarian.battle_command",
+          "simClockMs": 1700,
+          "uiDelayMs": 1700
+        }
+      ],
+      "manaPayments": [
+        {
+          "kind": "mana",
+          "target": "hero",
+          "mana": 91,
+          "reason": "cast",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "selfMarkers": [
+        {
+          "kind": "buff",
+          "target": "hero",
+          "buffId": "battle-command",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "firstLandedAllyDamage": {
+        "source": "ally",
+        "amount": 10,
+        "dodged": false,
+        "simClockMs": 2000
+      },
+      "finalRanks": [
+        {
+          "id": "hero",
+          "skillLevels": {
+            "barbarian.battle_command": 20,
+            "fixture.same_cost_control": 20,
+            "fixture.rank_probe": 1,
+            "skills-barbarian-shout": 1,
+            "skills-barbarian-battle-orders": 1
+          }
+        },
+        {
+          "id": "ally",
+          "skillLevels": {
+            "fixture.rank_probe": 1
+          }
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "seed": 19,
+      "damageUnchanged": true,
+      "commandCasts": [
+        {
+          "kind": "action",
+          "actor": "hero",
+          "skillId": "barbarian.battle_command",
+          "simClockMs": 1700,
+          "uiDelayMs": 1700
+        }
+      ],
+      "manaPayments": [
+        {
+          "kind": "mana",
+          "target": "hero",
+          "mana": 91,
+          "reason": "cast",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "selfMarkers": [
+        {
+          "kind": "buff",
+          "target": "hero",
+          "buffId": "battle-command",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "firstLandedAllyDamage": {
+        "source": "ally",
+        "amount": 10,
+        "dodged": false,
+        "simClockMs": 2000
+      },
+      "finalRanks": [
+        {
+          "id": "hero",
+          "skillLevels": {
+            "barbarian.battle_command": 20,
+            "fixture.same_cost_control": 20,
+            "fixture.rank_probe": 1,
+            "skills-barbarian-shout": 1,
+            "skills-barbarian-battle-orders": 1
+          }
+        },
+        {
+          "id": "ally",
+          "skillLevels": {
+            "fixture.rank_probe": 1
+          }
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "seed": 41,
+      "damageUnchanged": true,
+      "commandCasts": [
+        {
+          "kind": "action",
+          "actor": "hero",
+          "skillId": "barbarian.battle_command",
+          "simClockMs": 1700,
+          "uiDelayMs": 1700
+        }
+      ],
+      "manaPayments": [
+        {
+          "kind": "mana",
+          "target": "hero",
+          "mana": 91,
+          "reason": "cast",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "selfMarkers": [
+        {
+          "kind": "buff",
+          "target": "hero",
+          "buffId": "battle-command",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "firstLandedAllyDamage": {
+        "source": "ally",
+        "amount": 10,
+        "dodged": false,
+        "simClockMs": 4000
+      },
+      "finalRanks": [
+        {
+          "id": "hero",
+          "skillLevels": {
+            "barbarian.battle_command": 20,
+            "fixture.same_cost_control": 20,
+            "fixture.rank_probe": 1,
+            "skills-barbarian-shout": 1,
+            "skills-barbarian-battle-orders": 1
+          }
+        },
+        {
+          "id": "ally",
+          "skillLevels": {
+            "fixture.rank_probe": 1
+          }
+        }
+      ]
+    },
+    {
+      "rank": 20,
+      "seed": 97,
+      "damageUnchanged": true,
+      "commandCasts": [
+        {
+          "kind": "action",
+          "actor": "hero",
+          "skillId": "barbarian.battle_command",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "manaPayments": [
+        {
+          "kind": "mana",
+          "target": "hero",
+          "mana": 91,
+          "reason": "cast",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "selfMarkers": [
+        {
+          "kind": "buff",
+          "target": "hero",
+          "buffId": "battle-command",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "firstLandedAllyDamage": {
+        "source": "ally",
+        "amount": 10,
+        "dodged": false,
+        "simClockMs": 2000
+      },
+      "finalRanks": [
+        {
+          "id": "hero",
+          "skillLevels": {
+            "barbarian.battle_command": 20,
+            "fixture.same_cost_control": 20,
+            "fixture.rank_probe": 1,
+            "skills-barbarian-shout": 1,
+            "skills-barbarian-battle-orders": 1
+          }
+        },
+        {
+          "id": "ally",
+          "skillLevels": {
+            "fixture.rank_probe": 1
+          }
+        }
+      ]
+    }
+  ],
+  "replayExact": true,
+  "inputsUnchanged": true,
+  "probeSha256": "28494213eae8ccfea77c49f00e1b6eb60cc3d17eace54c04735f7560fb3472ff",
+  "rawObservationsSha256": "c64427ebee111c05086df3316124694600b8df06bec9d0cdffe82bfda465feb0",
+  "rawRetention": "Included with Grim Ward raw diagnostics; see ../grim-ward/retention.json after final retention.",
+  "securityCheck": "pass: own local deterministic probe; no credentials, dependencies, network or campaign mutation."
+}
