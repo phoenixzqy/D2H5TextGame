@@ -1,0 +1,146 @@
+{
+  "sourceCommit": "f767948b",
+  "scope": "Canonical production browser run only",
+  "inspectedCount": 12,
+  "images": [
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-desktop-en-amplify-damage-preview-viewport.png",
+      "bytes": 130278,
+      "sha256": "db3addc8da6091a897d4ea00dab18c54e5cc3e59aebd5bd0aca59e0f2e04edef",
+      "locale": "en",
+      "project": "amplify-acceptance-desktop",
+      "attachment": "amplify-damage-preview-viewport",
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Desktop localized rank20/MAX/name,complete50-percentage-point/3s/all-rank prose,current11MP/2s,next MAX and L1/no-prerequisite requirements are readable. No blank rectangular overlay observed."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-desktop-en-amplify-damage-current-stats.png",
+      "bytes": 5988,
+      "sha256": "13bf89627fb4cd8ae7d69577e8f187b2db15181784cc18cc4793642999186668",
+      "locale": "en",
+      "project": "amplify-acceptance-desktop",
+      "attachment": "amplify-damage-current-stats",
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized Current rows: mana11,cooldown2s,correct localized full skill name in Applies. This crop does not show the rest of the screen."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-desktop-en-victory.png",
+      "bytes": 315444,
+      "sha256": "d97f8c136d7d903fc1cf2454d607ff89b94e0a4e8d28c716cb4f787dccf99d76",
+      "locale": "en",
+      "project": "amplify-acceptance-desktop",
+      "attachment": "victory",
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Battlefield viewport after separate DOM victory check shows controls,MP,hero and dimmed enemy cards;victory panel/log lie below the crop. This image alone does not prove a visible victory panel,cast or resistance mechanic."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-desktop-zh-CN-amplify-damage-preview-viewport.png",
+      "bytes": 128584,
+      "sha256": "eb3e077a005522b4b8885f89716e59aad8631c00b840fbfa31b830e39dec4bf3",
+      "locale": "zh-CN",
+      "project": "amplify-acceptance-desktop",
+      "attachment": "amplify-damage-preview-viewport",
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Desktop localized rank20/MAX/name,complete50-percentage-point/3s/all-rank prose,current11MP/2s,next MAX and L1/no-prerequisite requirements are readable. No blank rectangular overlay observed."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-desktop-zh-CN-amplify-damage-current-stats.png",
+      "bytes": 5005,
+      "sha256": "e08b8e17e5fb7c7e1e7fe2d6d6fd38e7b8ea1db01a7dd2dcc533c200760fdbb9",
+      "locale": "zh-CN",
+      "project": "amplify-acceptance-desktop",
+      "attachment": "amplify-damage-current-stats",
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized Current rows: mana11,cooldown2s,correct localized full skill name in Applies. This crop does not show the rest of the screen."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-desktop-zh-CN-victory.png",
+      "bytes": 320457,
+      "sha256": "4e308d7853bb451abfc9d762b3412047df9b85cb56fccd8caa0073532e2d5b6b",
+      "locale": "zh-CN",
+      "project": "amplify-acceptance-desktop",
+      "attachment": "victory",
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Battlefield viewport after separate DOM victory check shows controls,MP,hero and dimmed enemy cards;victory panel/log lie below the crop. This image alone does not prove a visible victory panel,cast or resistance mechanic."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-mobile-en-amplify-damage-preview-viewport.png",
+      "bytes": 150993,
+      "sha256": "10d4ce0de3be25e70d8ef0c09fe36de331e7306c8d91bfa47f7a06c27f3e4821",
+      "locale": "en",
+      "project": "amplify-acceptance-mobile",
+      "attachment": "amplify-damage-preview-viewport",
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Mobile localized rank20/MAX/name,complete50-percentage-point/3s/all-rank prose and current11MP/2s rows are readable;next-level/requirements continue below viewport and require scrolling."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-mobile-en-amplify-damage-current-stats.png",
+      "bytes": 20293,
+      "sha256": "7a1b55774ab893e8d6d955e2b6fa9c077e550711d6c01890c1585f65e9ee6bd2",
+      "locale": "en",
+      "project": "amplify-acceptance-mobile",
+      "attachment": "amplify-damage-current-stats",
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized Current rows: mana11,cooldown2s,correct localized full skill name in Applies. This crop does not show the rest of the screen."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-mobile-en-victory.png",
+      "bytes": 129559,
+      "sha256": "347b1533808906332c12b56a41f1dbba1fb2d6e6985028aac066263a9dea6f86",
+      "locale": "en",
+      "project": "amplify-acceptance-mobile",
+      "attachment": "victory",
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Battlefield viewport after separate DOM victory check shows controls,MP and hero;enemy grid/log/victory panel lie below the crop. This image alone does not prove a visible victory panel,cast or resistance mechanic."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-mobile-zh-CN-amplify-damage-preview-viewport.png",
+      "bytes": 179206,
+      "sha256": "8638f2f40fd914eb336106f66418036a94cfa50b93450ef1f51c285deba3a893",
+      "locale": "zh-CN",
+      "project": "amplify-acceptance-mobile",
+      "attachment": "amplify-damage-preview-viewport",
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Mobile localized rank20/MAX/name,complete50-percentage-point/3s/all-rank prose and current11MP/2s rows are readable;next-level/requirements continue below viewport and require scrolling."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-mobile-zh-CN-amplify-damage-current-stats.png",
+      "bytes": 15229,
+      "sha256": "620ebee19e2470e21a929a5ad88ff27b9d7b1fb099e1ff38dd0f453ec7107a4a",
+      "locale": "zh-CN",
+      "project": "amplify-acceptance-mobile",
+      "attachment": "amplify-damage-current-stats",
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Readable localized Current rows: mana11,cooldown2s,correct localized full skill name in Applies. This crop does not show the rest of the screen."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-mobile-zh-CN-victory.png",
+      "bytes": 120663,
+      "sha256": "f2069d3467c33030429dc7bb21798f40d41d1a386d3587682e1e61e7484ce085",
+      "locale": "zh-CN",
+      "project": "amplify-acceptance-mobile",
+      "attachment": "victory",
+      "individuallyInspected": true,
+      "observer": "root author",
+      "observation": "Battlefield viewport after separate DOM victory check shows controls,MP and hero;enemy grid/log/victory panel lie below the crop. This image alone does not prove a visible victory panel,cast or resistance mechanic."
+    }
+  ],
+  "limits": [
+    "Root author only;no independent visual,full UX/a11y/performance or native-touch approval.",
+    "Mobile remaining Next Level/Requirements content needs scrolling;whole panel is not simultaneously visible.",
+    "Victory-labelled images are battlefield viewport crops;separate public DOM assertions prove victory/return.",
+    "Existing unrelated navigation/skill-node glyph boxes remain.",
+    "Exact native numerical tests supply causal resistance-reduction proof;public cast/chip markers alone do not."
+  ]
+}

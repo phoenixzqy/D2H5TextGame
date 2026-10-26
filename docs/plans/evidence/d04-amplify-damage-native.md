@@ -27,7 +27,7 @@ Amplify Damage remains uncredited while canonical/full validation is pending.
 - `tests/pwa/amplify-acceptance.spec.ts` and `.config.ts`:public production en/zh ×
   desktop/Pixel5,real19→20allocation/current-next/MAX resources/prose,actual casts
   and enemy chips,online and network-disabled activated-SW Continue,seven-domain
-  equality and five required geometries. Canonical repository run is still pending;
+  equality and five required geometries. Canonical repository run now passes4/4/213.057s;
   no test bridge or hidden store mutation is used.
 
 Canonical focused145tests/5files PASS14.516s,including existing status60/runtime52/
@@ -35,7 +35,7 @@ UI26 and seven new native cases. External draft native7/2filesPASS9.578s and pub
 precheck4/4PASS206.240s are retained separately. The precheck supplies four actual
 casts/chips,eight exact seven-domain pairs,four actual offlineContinues and20geometry
 checks. Its12original screenshots are retained but not yet individually inspected;
-no visual approval follows. Final canonical browser,types/full lint/full unit results
+no visual approval follows. Final canonical browser,types/full lint now pass as recorded below. Full units
 and exact final source/build/evidence audits remain required before credit.
 
 ## Corrected test authoring assumptions
@@ -63,8 +63,39 @@ remain skipped;no campaign action/replay or remote publication is authorized her
 Root owns required active evidence at
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs`
 through native/public/full-v1 consumers and later verified lossless retention and
-exact cleanup. Active canonical types/lint/browser handles are recorded in its
-start/terminal receipts. Inventory stays164bounded/47unverified/one engine-only/
+exact cleanup. Canonical types/lint/browser handles are terminal0 in their receipts;the exact
+combined-full handle69167/child296932 remains active. No source edits while its
+1636committed inputs remain frozen. Inventory stays164bounded/47unverified/one engine-only/
 one review-needed,Necromancer22/32. GenuineL33/Ancients claimed/nextNormal402/Baal
 uncleared remains unchanged. Independent acceptance,earned builds/balance,pacing/
 economy/endgame,C2–C4/fullG0–G7 and the full privatev1 objective remain open.
+
+## Canonical browser/types/lint checkpoint
+
+Test increment `f767948b` changes exactly four repository paths;documentation
+`a88db7dd` records acceptance boundaries. Canonical browser4/4PASS213.057s,
+logSHA256`ad0ea64ce489a4600228a710cfb22b552a43ba81a1df888a78b8abc8a3976142`.
+All four actual localized casts/chips,eight exact seven-domain save pairs,four
+actual network-disabled activated-SW Continues,20geometry and empty browser
+page/console warning-error arrays were parsed and verified. Command-side Node
+color warnings are separate. Types136.961s/full lint232.225s/343engine purity PASS.
+
+All12canonical original PNGs were individually inspected by root. Desktop MAX,
+50point/3s/all-rank prose and current11MP/2s/requirements are readable;mobile name,
+MAX,full prose and current stats are readable,with lower sections requiring
+scrolling. Victory-labelled images capture battlefield viewports;victory panel/log
+are below the crop. Only separate public DOM checks prove victory/return. Existing
+unrelated glyph boxes remain;no broad UX/a11y/performance or independent visual
+approval. [Attachment index](fixtures/amplify-native/attachment-index.json),
+[browser audit](fixtures/amplify-native/browser-audit.json),
+[visual review](fixtures/amplify-native/visual-review.json) and12adjacent originals
+are copied/read-back verified. [Author review](fixtures/amplify-native/author-review.json)
+records five axes/security and explicit incomplete final acceptance.
+
+The committed-source full suite is active against1636frozen inputs at `a88db7dd`.
+Expected only if actually green:18062passed/830files/two existing opt-in skips.
+No full result or Amplify credit is claimed yet. `final-audit.py` is syntax-checked
+but must run only after all recorded commands are terminal;browser-only extraction
+has run and is explicitly narrower than that audit. Next:observe the same full
+handle to terminal,verify final source/build/command/browser/protected state,
+retain/read-back raw evidence,exact cleanup,then consider one bounded credit.

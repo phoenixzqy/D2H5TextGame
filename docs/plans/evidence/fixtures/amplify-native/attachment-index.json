@@ -1,0 +1,124 @@
+{
+  "scope": "Canonical browser/native author evidence;combined full suite/source audit/required raw retention/exact cleanup remain pending. No Amplify skill credit or independent/earned approval.",
+  "sourceCommit": "f767948b",
+  "commandReceipt": {
+    "command": [
+      "env",
+      "AMPLIFY_ACCEPTANCE_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/production-dist",
+      "AMPLIFY_ACCEPTANCE_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/browser-output-canonical",
+      "AMPLIFY_ACCEPTANCE_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/browser-report-canonical.json",
+      "npx",
+      "playwright",
+      "test",
+      "--config",
+      "tests/pwa/amplify-acceptance.config.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 213.057,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/public-canonical.log",
+    "logBytes": 1603,
+    "logSha256": "ad0ea64ce489a4600228a710cfb22b552a43ba81a1df888a78b8abc8a3976142",
+    "pid": 294417,
+    "terminal": true
+  },
+  "files": [
+    {
+      "path": "browser-audit.json",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/final-browser-audit.json",
+      "bytes": 432594,
+      "sha256": "906e6fe131d38cdb5d052623cf8927306945d2c8e159e50f2446b5e2dde2c188"
+    },
+    {
+      "path": "visual-review.json",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/visual-review.json",
+      "bytes": 8902,
+      "sha256": "649429fa8e048a00aef44bdfd47cda688ee107b2d0443cdc195b1d4bbeea32e6"
+    },
+    {
+      "path": "author-review.json",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/author-review.json",
+      "bytes": 2790,
+      "sha256": "044b7a79fd72c0217a35ea2106e05cdfd1204d88d937b8b8d3c0a0fefbeae2b2"
+    },
+    {
+      "path": "amplify-acceptance-desktop-en-amplify-damage-preview-viewport.png",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-desktop-en-amplify-damage-preview-viewport.png",
+      "bytes": 130278,
+      "sha256": "db3addc8da6091a897d4ea00dab18c54e5cc3e59aebd5bd0aca59e0f2e04edef"
+    },
+    {
+      "path": "amplify-acceptance-desktop-en-amplify-damage-current-stats.png",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-desktop-en-amplify-damage-current-stats.png",
+      "bytes": 5988,
+      "sha256": "13bf89627fb4cd8ae7d69577e8f187b2db15181784cc18cc4793642999186668"
+    },
+    {
+      "path": "amplify-acceptance-desktop-en-victory.png",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-desktop-en-victory.png",
+      "bytes": 315444,
+      "sha256": "d97f8c136d7d903fc1cf2454d607ff89b94e0a4e8d28c716cb4f787dccf99d76"
+    },
+    {
+      "path": "amplify-acceptance-desktop-zh-CN-amplify-damage-preview-viewport.png",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-desktop-zh-CN-amplify-damage-preview-viewport.png",
+      "bytes": 128584,
+      "sha256": "eb3e077a005522b4b8885f89716e59aad8631c00b840fbfa31b830e39dec4bf3"
+    },
+    {
+      "path": "amplify-acceptance-desktop-zh-CN-amplify-damage-current-stats.png",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-desktop-zh-CN-amplify-damage-current-stats.png",
+      "bytes": 5005,
+      "sha256": "e08b8e17e5fb7c7e1e7fe2d6d6fd38e7b8ea1db01a7dd2dcc533c200760fdbb9"
+    },
+    {
+      "path": "amplify-acceptance-desktop-zh-CN-victory.png",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-desktop-zh-CN-victory.png",
+      "bytes": 320457,
+      "sha256": "4e308d7853bb451abfc9d762b3412047df9b85cb56fccd8caa0073532e2d5b6b"
+    },
+    {
+      "path": "amplify-acceptance-mobile-en-amplify-damage-preview-viewport.png",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-mobile-en-amplify-damage-preview-viewport.png",
+      "bytes": 150993,
+      "sha256": "10d4ce0de3be25e70d8ef0c09fe36de331e7306c8d91bfa47f7a06c27f3e4821"
+    },
+    {
+      "path": "amplify-acceptance-mobile-en-amplify-damage-current-stats.png",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-mobile-en-amplify-damage-current-stats.png",
+      "bytes": 20293,
+      "sha256": "7a1b55774ab893e8d6d955e2b6fa9c077e550711d6c01890c1585f65e9ee6bd2"
+    },
+    {
+      "path": "amplify-acceptance-mobile-en-victory.png",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-mobile-en-victory.png",
+      "bytes": 129559,
+      "sha256": "347b1533808906332c12b56a41f1dbba1fb2d6e6985028aac066263a9dea6f86"
+    },
+    {
+      "path": "amplify-acceptance-mobile-zh-CN-amplify-damage-preview-viewport.png",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-mobile-zh-CN-amplify-damage-preview-viewport.png",
+      "bytes": 179206,
+      "sha256": "8638f2f40fd914eb336106f66418036a94cfa50b93450ef1f51c285deba3a893"
+    },
+    {
+      "path": "amplify-acceptance-mobile-zh-CN-amplify-damage-current-stats.png",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-mobile-zh-CN-amplify-damage-current-stats.png",
+      "bytes": 15229,
+      "sha256": "620ebee19e2470e21a929a5ad88ff27b9d7b1fb099e1ff38dd0f453ec7107a4a"
+    },
+    {
+      "path": "amplify-acceptance-mobile-zh-CN-victory.png",
+      "originalPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs/selected-browser/amplify-acceptance-mobile-zh-CN-victory.png",
+      "bytes": 120663,
+      "sha256": "f2069d3467c33030429dc7bb21798f40d41d1a386d3587682e1e61e7484ce085"
+    }
+  ],
+  "visualLimits": [
+    "Root author only;no independent visual,full UX/a11y/performance or native-touch approval.",
+    "Mobile remaining Next Level/Requirements content needs scrolling;whole panel is not simultaneously visible.",
+    "Victory-labelled images are battlefield viewport crops;separate public DOM assertions prove victory/return.",
+    "Existing unrelated navigation/skill-node glyph boxes remain.",
+    "Exact native numerical tests supply causal resistance-reduction proof;public cast/chip markers alone do not."
+  ]
+}

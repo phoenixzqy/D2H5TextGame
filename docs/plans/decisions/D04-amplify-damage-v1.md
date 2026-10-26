@@ -103,7 +103,7 @@ Root is sole author;no new independent approval is attributed to historical
 reviews. Four test/config paths add actual native projection/allocation/fresh-wave
 resources/active-curse seven-domain import and production public actual casting/
 network-disabled Continue. Canonical focused145/5filesPASS;external draft native7
-and browser4prechecksPASS. Canonical types/lint/browser/full/source/evidence/
-retention/cleanup remain pending. [Current evidence](../evidence/d04-amplify-damage-native.md)
+and browser4prechecksPASS. Canonical browser4/4/213.057s/types136.961s/full lint232.225s now PASS;full/source/
+evidence/retention/cleanup remain pending. [Current evidence](../evidence/d04-amplify-damage-native.md)
 records exact numerical checks,test-authoring corrections,limits and root-owned
 active paths. No Amplify skill credit or earned campaign/balance change yet.
