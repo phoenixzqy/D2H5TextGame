@@ -18,6 +18,7 @@ import type { AoeShape } from '../combat/grid';
 import { isDecrepifyDefinition } from '../combat/decrepify-definition';
 import { isTerrorDefinition } from '../combat/terror-definition';
 import { isBonePrisonDefinition } from '../combat/bone-prison-definition';
+import { isBoneWallDefinition } from '../combat/bone-wall-definition';
 import { isWeakenDefinition } from '../combat/weaken-definition';
 import { isDimVisionDefinition } from '../combat/dim-vision-definition';
 import { damageCurseId } from '../combat/damage-curse-definition';
@@ -36,6 +37,7 @@ export type PlayableSkillClass =
   | 'sorceress';
 
 interface JsonSkill {
+  readonly boneWall?: import('../types/skills').SkillDef['boneWall'];
   readonly skillRankBuff?: import('../types/skills').SkillDef['skillRankBuff'];
   readonly corpseWard?: import('../types/skills').SkillDef['corpseWard'];
   readonly corpseSearch?: import('../types/skills').SkillDef['corpseSearch'];
@@ -271,16 +273,18 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       return effects;
     }
     if (skill.target === 'self') {
+      const wall = isBoneWallDefinition(skill);
       effects.push({
         kind: 'buff',
         id: skill.appliesStatus[0],
+        ...(wall ? { boneWall: true as const } : {}),
         ...((skill.id === 'skills-sorceress-teleport' || skill.id === 'skills-sorceress-enchant') && skill.timedBuff
           ? { sorceressBuff: skill.id === 'skills-sorceress-teleport' ? 'teleport' as const : 'enchant' as const } : {}),
         ...(skill.id === 'skills-druid-cyclone-armor' ? { cycloneArmor: true as const } : {}),
         ...(skill.id === 'skills-paladin-holy-shield' ? { holyShield: true as const } : {}),
         ...(skill.id === 'skills-sorceress-shiver-armor' ? { coldArmor: 'shiver-armor' as const } : {}),
         ...(skill.id === 'skills-sorceress-chilling-armor' ? { coldArmor: 'chilling-armor' as const } : {}),
-        duration: skill.timedBuff ? skill.timedBuff.durationMs / 1000 : -1,
+        duration: wall && skill.boneWall ? skill.boneWall.durationMs / 1000 : skill.timedBuff ? skill.timedBuff.durationMs / 1000 : -1,
         ...((skill.id === 'skills-druid-werewolf' || skill.id === 'skills-druid-werebear') && skill.trigger === 'active'
           ? { druidForm: skill.id === 'skills-druid-werewolf' ? 'werewolf' as const : 'werebear' as const } : {}),
         ...(skill.id === 'skills-assassin-burst-of-speed' && skill.timedBuff

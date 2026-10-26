@@ -93,6 +93,8 @@ import { activeDimVision, paidDimVision } from './dim-vision-definition';
 import { activeTerror } from './terror-definition';
 import { activeBonePrison, BONE_PRISON_IDS } from './bone-prison-definition';
 import { bonePrisonRank, matchesBonePrison } from '../skills/bone-prison';
+import { BONE_WALL_IDS } from './bone-wall-definition';
+import { boneWallPool, boneWallRank, copyBoneWallStatuses, matchesBoneWall, payBoneWall } from '../skills/bone-wall';
 import { activeDamageCurse, paidDamageCurse } from './damage-curse-definition';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
@@ -589,7 +591,7 @@ function pickDefender(
 }
 
 function registerUnit(state: State, u: CombatUnit): void {
-  const copiedBuffs = copySorceressBuffStatuses(u);
+  const copiedBuffs = copyBoneWallStatuses(copySorceressBuffStatuses(u));
   const native = u.druidSummonRanks === undefined ? copiedBuffs : { ...copiedBuffs, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
   const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyConcentrateStatuses(copyLeapStatuses(copyCloakOfShadowsStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(copyFrenzyStatuses(native))))))));
   const shaped = refreshPeriodicSpells(refreshHolyShieldState(refreshDruidFormState(copied)));
@@ -1209,6 +1211,7 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function learnedSkillLevel(state: State, unit: CombatUnit, skill: RegisteredSkill, legacyFallback = 1): number {
+  if (BONE_WALL_IDS.some(id => id === skill.id)) return boneWallRank(unit);
   if (BONE_PRISON_IDS.some(id => id === skill.id)) return bonePrisonRank(unit);
   if (isBattleCommandId(skill.id)) return battleCommandRank(unit);
   if (isCorpseExplosionId(skill.id)) return corpseExplosionRank(unit, state.corpseExplosion);
@@ -1364,6 +1367,11 @@ function canUseSkillForState(
   if (prison && (!matchesBonePrison(skill) || bonePrisonRank(unit) === 0 ||
     !hasEnemyTarget || !Number.isFinite(unit.mana) ||
     BONE_PRISON_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
+  const wall = BONE_WALL_IDS.some(id => id === skillOrderId || id === skill.id) ||
+    skill.effects.some(effect => effect.kind === 'buff' && effect.boneWall === true);
+  if (wall && (!matchesBoneWall(skill) || boneWallRank(unit) === 0 ||
+    boneWallPool(unit, state.simClockMs) !== undefined || !Number.isFinite(unit.mana) ||
+    BONE_WALL_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   const command = isBattleCommandId(skillOrderId) || isBattleCommandId(skill.id) ||
     skill.effects.some(effect => effect.kind === 'party-skill-ranks');
   if (command && (!matchesBattleCommand(skill) || battleCommandRank(unit) === 0 ||
@@ -1457,7 +1465,7 @@ function canUseSkillForState(
   if (unit.level < skill.minLevel) return false;
   if (isPaidFrozenArmorSkill(skill)) {
     if (hasPaidFrozenArmor(unit)) return false;
-  } else if (!armor && !burst && !cloak && !leap && !concentrate && !form && !personalBuff &&
+  } else if (!armor && !burst && !cloak && !leap && !concentrate && !form && !personalBuff && !wall &&
     skill.isBuff &&
     (unit.activeBuffIds.includes(skill.id) || activeBuffIdsForSkill(skill).some((id) => unit.activeBuffIds.includes(id)))
   ) return false;
@@ -1608,6 +1616,12 @@ function applyEffect(
     case 'buff': {
       const actor = state.units.get(actorId);
       if (!actor) return;
+      if (effect.boneWall === true && matchesBoneWall(skill)) {
+        state.units.set(actorId, payBoneWall(actor, skillLevel, state.simClockMs, paidRankBonus(state, actor)));
+        emit(state, { kind: 'buff', target: actorId, buffId: 'bone-wall', statusBacked: true });
+        observeStatuses(state, actorId);
+        break;
+      }
       if (effect.sorceressBuff && matchesSorceressBuff(skill, effect.sorceressBuff)) {
         const id = effect.sorceressBuff, d = SORCERESS_BUFF_DEFINITIONS[id];
         if (sorceressBuffRank(actor, id) === 0 || activeSorceressBuff(actor, id, state.simClockMs)) return;
