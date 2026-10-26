@@ -1,0 +1,15 @@
+{
+  "command": [
+    "npm",
+    "test"
+  ],
+  "toolSession": 45434,
+  "toolExitCode": 143,
+  "terminalChildReceiptPresent": false,
+  "npmPid": 45163,
+  "partialLogSha256": "142c10f021049e2fed93b8f3d3215099b8064d700f7fa4c0da11bdd48a62d5d5",
+  "lastLogModifiedUtc": "2026-10-26T13:58:17.499866+00:00",
+  "observed": "Tool session terminated before a Vitest summary; launcher and npm /proc identities are absent. No matching Vitest consumer remained in readable process cmdlines. No pass claimed.",
+  "cause": "External termination observed; precise sender/cause not established.",
+  "action": "Preserve original raw log; rerun once with task-local heartbeat launcher and PTY, keeping all source/test/config unchanged."
+}

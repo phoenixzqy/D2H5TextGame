@@ -1,0 +1,6 @@
+{
+  "original": "blood-golem-browser-original.spec.ts",
+  "failure": "production-browser",
+  "reason": "zh-CN combat.summons.blood_golem uses \u9c9c\u8840\u77f3\u9b54; skills use \u8840\u9b54\u50cf. Original substring also counted incoming hits. Require actual localized source verbs for repeated outgoing Physical hits; keep paid/heal/save checks unchanged.",
+  "productionChanged": false
+}

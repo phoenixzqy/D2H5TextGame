@@ -1,0 +1,11 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-golem-bogayo0q-retained.tar.xz",
+  "sha256": "e1613149d3c757a8a8e2fde53ad336e3eb7262be11291f2e2007797157244e69",
+  "memberCount": 4699,
+  "bytes": 162388184,
+  "terminalReceipts": 27,
+  "sourceFiles": 1417,
+  "buildFiles": 762,
+  "retainedBy": "root through BUG250/full-v1 evidence consumers; root removes archive and sidecars after consumers finish",
+  "verifiedLosslessly": true
+}

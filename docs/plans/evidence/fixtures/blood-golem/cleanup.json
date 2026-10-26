@@ -1,0 +1,22 @@
+{
+  "removedFiles": 3282,
+  "removedDirectories": 41,
+  "knownRecordedIdentitiesClear": 27,
+  "readableTaskConsumers": [],
+  "restrictedOptionalProcEntries": 24,
+  "port4535AvailableBeforeCleanup": true,
+  "remaining": [],
+  "failures": [],
+  "retained": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-golem-bogayo0q-retained.tar.xz",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-golem-bogayo0q-retention.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-golem-bogayo0q-deletion-manifest.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-golem-bogayo0q-cleanup.json"
+  ],
+  "scope": "Exact verified task-owned leaf files and empty directories only; shared caches/source/Git history untouched.",
+  "cleanupDriver": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-golem-bogayo0q-cleanup-driver.py",
+    "sha256": "7c296645bc88d88289838c8207a4f0bd638b3684d06bcce089e1a7b78a7cf41a",
+    "removedAfterTerminal": true
+  }
+}

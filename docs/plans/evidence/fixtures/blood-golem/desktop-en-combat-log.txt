@@ -1,0 +1,46 @@
+05:00:00Turn 1 begins
+05:00:00Golem Browser casts Blood Golem.
+05:00:00Golem Browser summons Blood Golem.
+05:00:00Golem Browser readies an attack.
+05:00:00Bone Warrior A dodges Golem Browser's attack!
+05:00:00Bone Warrior F casts Strong Melee.
+05:00:00Blood Golem dodges Bone Warrior F's attack!
+05:00:00Bone Warrior D casts Strong Melee.
+05:00:00Bone Warrior D attacks Blood Golem for 1 physical damage.
+05:00:00Bone Warrior A casts Strong Melee.
+05:00:00Bone Warrior A attacks Blood Golem for 1 physical damage.
+05:00:00Bone Warrior B casts Strong Melee.
+05:00:00Bone Warrior B attacks Golem Browser for 1 physical damage.
+05:00:00Bone Warrior C casts Strong Melee.
+05:00:00Golem Browser dodges Bone Warrior C's attack!
+05:00:00Bone Warrior E casts Strong Melee.
+05:00:00Bone Warrior E attacks Golem Browser for 1 physical damage.
+05:00:00Blood Golem readies an attack.
+05:00:00Blood Golem attacks Bone Warrior A for 1 physical damage.
+05:00:00Zombie B casts Weak Melee.
+05:00:00Zombie B attacks Blood Golem for 1 physical damage.
+05:00:00Zombie A casts Weak Melee.
+05:00:00Blood Golem dodges Zombie A's attack!
+05:00:00Golem Browser readies an attack.
+05:00:00Golem Browser attacks Bone Warrior A for 5 physical damage.
+05:00:00Bone Warrior F casts Strong Melee.
+05:00:00Bone Warrior F attacks Golem Browser for 1 physical damage.
+05:00:00Bone Warrior D casts Strong Melee.
+05:00:00Bone Warrior D attacks Blood Golem for 7 physical damage.
+05:00:00Bone Warrior A casts Strong Melee.
+05:00:00Bone Warrior A attacks Blood Golem for 1 physical damage.
+05:00:00Bone Warrior B casts Strong Melee.
+05:00:00Bone Warrior B attacks Golem Browser for 1 physical damage.
+05:00:00Bone Warrior C casts Strong Melee.
+05:00:00Blood Golem dodges Bone Warrior C's attack!
+05:00:00Bone Warrior E casts Strong Melee.
+05:00:00Bone Warrior E attacks Blood Golem for 1 physical damage.
+05:00:00Blood Golem readies an attack.
+05:00:00Blood Golem attacks Bone Warrior A for 1 physical damage.
+05:00:00Zombie B casts Weak Melee.
+05:00:00Zombie B attacks Golem Browser for 1 physical damage.
+05:00:00Zombie A casts Weak Melee.
+05:00:00Zombie A attacks Blood Golem for 1 physical damage.
+05:00:00Golem Browser readies an attack.
+05:00:00CRITICAL! Golem Browser hits Bone Warrior A for 65 physical damage!
+05:00:00Golem Browser recovers 5 HP.

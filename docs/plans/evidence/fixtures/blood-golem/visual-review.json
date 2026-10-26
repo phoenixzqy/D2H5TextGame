@@ -1,0 +1,91 @@
+{
+  "reviewer": "root author only",
+  "files": {
+    "desktop-en-blood-golem-title-viewport.png": {
+      "sha256": "962de241e74e6a9be7ba76a5229945019d7ea3de7c1defa6b2a26b43223eb31f",
+      "individuallyViewed": true,
+      "observation": "Blood Golem localized title/MAX and complete described aura/preparation visible. Current leech10% row visible; lower complete body statistics extend below viewport. English attack-type row is clipped at the lower boundary; Chinese type row is visible."
+    },
+    "desktop-en-blood-golem-stats-viewport.png": {
+      "sha256": "962de241e74e6a9be7ba76a5229945019d7ea3de7c1defa6b2a26b43223eb31f",
+      "individuallyViewed": true,
+      "observation": "Blood Golem localized title/MAX and complete described aura/preparation visible. Current leech10% row visible; lower complete body statistics extend below viewport. English attack-type row is clipped at the lower boundary; Chinese type row is visible."
+    },
+    "desktop-en-blood-golem-body.png": {
+      "sha256": "9fa1f997d9cb1e502797a5a5ffa67513a01e23e9346792b7bf51e19d3d459650",
+      "individuallyViewed": true,
+      "observation": "Complete actual paid body portrait, localized name and life bar visible. Mobile English body name wraps to two lines."
+    },
+    "desktop-en-combat-viewport.png": {
+      "sha256": "fd2f486a0b7d43ba7136389d4635c25c510154bde88198f017bfdf8c1e423c6d",
+      "individuallyViewed": true,
+      "observation": "Paused actual public combat shows hero +5 recovery chip, paid body, contextual wave and enemy grid. Lower enemy rows/log extend beyond viewport; screenshot alone is not a complete combat-log proof."
+    },
+    "desktop-zh-CN-blood-golem-title-viewport.png": {
+      "sha256": "a4ff4992522ae7a3b96ff94e12c26e2596acce297e0ddf87afd3d8c710fc73fb",
+      "individuallyViewed": true,
+      "observation": "Blood Golem localized title/MAX and complete described aura/preparation visible. Current leech10% row visible; lower complete body statistics extend below viewport. English attack-type row is clipped at the lower boundary; Chinese type row is visible."
+    },
+    "desktop-zh-CN-blood-golem-stats-viewport.png": {
+      "sha256": "a4ff4992522ae7a3b96ff94e12c26e2596acce297e0ddf87afd3d8c710fc73fb",
+      "individuallyViewed": true,
+      "observation": "Blood Golem localized title/MAX and complete described aura/preparation visible. Current leech10% row visible; lower complete body statistics extend below viewport. English attack-type row is clipped at the lower boundary; Chinese type row is visible."
+    },
+    "desktop-zh-CN-blood-golem-body.png": {
+      "sha256": "712b5b71cd8e432237194ec75847e362f0db55b735e0059eaaaee1340138b72a",
+      "individuallyViewed": true,
+      "observation": "Complete actual paid body portrait, localized name and life bar visible. Mobile English body name wraps to two lines."
+    },
+    "desktop-zh-CN-combat-viewport.png": {
+      "sha256": "3374a647537f0e0cb5f3ed22026e9ec315f77cae5e93d99fc7dff3f239958c61",
+      "individuallyViewed": true,
+      "observation": "Paused actual public combat shows hero +5 recovery chip, paid body, contextual wave and enemy grid. Lower enemy rows/log extend beyond viewport; screenshot alone is not a complete combat-log proof."
+    },
+    "mobile-en-blood-golem-title-viewport.png": {
+      "sha256": "222a9fe708f721142dfd9ada0162614d10fd4e030e069bab0fcb61f400bd3377",
+      "individuallyViewed": true,
+      "observation": "Localized title/MAX and first aura paragraphs visible at360x640CSS with fixed header/bottom navigation. Description continues below viewport; screenshot does not prove all copy visible at once."
+    },
+    "mobile-en-blood-golem-stats-viewport.png": {
+      "sha256": "964d3b6c0e77fe8fdd1f32aec5b64cdb3cb25c3d76680d82b3b646e7879be503",
+      "individuallyViewed": true,
+      "observation": "Preparation paragraph ending and Current heading visible; actual stat rows lie below bottom navigation in this capture. DOM assertions/pure previews prove values, not this screenshot."
+    },
+    "mobile-en-blood-golem-body.png": {
+      "sha256": "8d92c23d917c7c489c6817e71baf7be1d872af3c018cec0a2149b23313c210a8",
+      "individuallyViewed": true,
+      "observation": "Complete actual paid body portrait, localized name and life bar visible. Mobile English body name wraps to two lines."
+    },
+    "mobile-en-combat-viewport.png": {
+      "sha256": "358826a9c8683f7e1845a37b49d921d02c25c196b082029fdb54443d2f86ac6d",
+      "individuallyViewed": true,
+      "observation": "Paused actual public combat shows hero +5 recovery chip, paid body, contextual wave and enemy grid. Lower enemy rows/log extend beyond viewport; screenshot alone is not a complete combat-log proof."
+    },
+    "mobile-zh-CN-blood-golem-title-viewport.png": {
+      "sha256": "a2eebdb8223d691883be855e360d3a4d6090acb479278612b713f423b0d4f56c",
+      "individuallyViewed": true,
+      "observation": "Localized title/MAX and first aura paragraphs visible at360x640CSS with fixed header/bottom navigation. Description continues below viewport; screenshot does not prove all copy visible at once."
+    },
+    "mobile-zh-CN-blood-golem-stats-viewport.png": {
+      "sha256": "57b3849c9e0f5abdbc166f284ea1c6c50802dd570d4b0f89b85efbb0202bf510",
+      "individuallyViewed": true,
+      "observation": "Current cap1/leech10%/Physical rows visible; lower body stats extend below capture. Header overlays upper description portion and empty black tail visible; no complete-panel visual approval."
+    },
+    "mobile-zh-CN-blood-golem-body.png": {
+      "sha256": "e7ea1fd727039f8a2cd1dacabbae6eee2aea7244bacc86da2b386b99e9e67c75",
+      "individuallyViewed": true,
+      "observation": "Complete actual paid body portrait, localized name and life bar visible. Mobile English body name wraps to two lines."
+    },
+    "mobile-zh-CN-combat-viewport.png": {
+      "sha256": "9e28cf21118d08b0b2a61728a07ef83f5c013cb1361b71ccde3494c8ebcd39cb",
+      "individuallyViewed": true,
+      "observation": "Paused actual public combat shows hero +5 recovery chip, paid body, contextual wave and enemy grid. Lower enemy rows/log extend beyond viewport; screenshot alone is not a complete combat-log proof."
+    }
+  },
+  "limits": [
+    "Desktop1280x800, mobile360x640CSS at deviceScaleFactor2.75; screenshot pixels990x1760 for mobile.",
+    "20geometry samples assert document overflow only and allocation44x44; no full safe-area/screen-reader/contrast/browser/device/WCAG acceptance.",
+    "Existing navigation icon glyphs appear as missing-glyph boxes in captured browser; this slice did not change icon/font paths.",
+    "Skill zh-CN name \u8840\u9b54\u50cf and existing combat body name \u9c9c\u8840\u77f3\u9b54 intentionally use their existing respective localization sources; no new identity mapping was invented."
+  ]
+}

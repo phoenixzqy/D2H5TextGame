@@ -1,0 +1,331 @@
+[
+  {
+    "receipt": "blood-golem-native-red.json",
+    "exitCode": 1,
+    "seconds": 7.076,
+    "logSha256": "b9ab7e7e209938fc32aed63a841f31a10dac02bc897003d58f6fea7c27b0f485",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-blood-golem.causal.test.ts"
+    ]
+  },
+  {
+    "receipt": "browser-v2-explicit-lint.json",
+    "exitCode": 1,
+    "seconds": 7.871,
+    "logSha256": "8ef71fd50eba7af30471b4d20c818b7fc7920f8b5e8092db9a8a6177fc826303",
+    "command": [
+      "node_modules/.bin/eslint",
+      "--no-ignore",
+      "tests/pwa/blood-golem.spec.ts",
+      "tests/pwa/blood-golem.config.ts",
+      "--max-warnings=0"
+    ]
+  },
+  {
+    "receipt": "browser-v2-lint.json",
+    "exitCode": 1,
+    "seconds": 1.863,
+    "logSha256": "cb7f187f1fe99c1051a4479ca00aadffc9cbb96616ad55f2e2dc0bcdf4fba91e",
+    "command": [
+      "node_modules/.bin/eslint",
+      "tests/pwa/blood-golem.spec.ts",
+      "tests/pwa/blood-golem.config.ts",
+      "--max-warnings=0"
+    ]
+  },
+  {
+    "receipt": "browser-v3-explicit-lint.json",
+    "exitCode": 0,
+    "seconds": 8.229,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "command": [
+      "node_modules/.bin/eslint",
+      "--no-ignore",
+      "tests/pwa/blood-golem.spec.ts",
+      "tests/pwa/blood-golem.config.ts",
+      "--max-warnings=0"
+    ]
+  },
+  {
+    "receipt": "core-counterexamples-corrected.json",
+    "exitCode": 0,
+    "seconds": 3.432,
+    "logSha256": "5985c331e9d82248e1796cd459e4bf854f99a61a39b64471088e9ff5dd9dd907",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/blood-golem.test.ts"
+    ]
+  },
+  {
+    "receipt": "core-counterexamples.json",
+    "exitCode": 1,
+    "seconds": 7.219,
+    "logSha256": "23e58194a7660b8fe5b1179491b42845bb9d5a2c417185f77d46fef2939e0452",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/blood-golem.test.ts",
+      "src/engine/skills/blood-golem.test.ts",
+      "src/stores/necromancer-blood-golem.causal.test.ts"
+    ]
+  },
+  {
+    "receipt": "core-engine.json",
+    "exitCode": 0,
+    "seconds": 136.231,
+    "logSha256": "d1d97cafabe9ffc4de2654aa88571a1f4fcc5705fac355343255a668d29416c6",
+    "command": [
+      "npm",
+      "run",
+      "test:engine"
+    ]
+  },
+  {
+    "receipt": "core-focused-green.json",
+    "exitCode": 0,
+    "seconds": 9.701,
+    "logSha256": "0989356487bd83c9c0eaa99a338b10538bbd8fc2ad1ea823032e90982fc4be92",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/blood-golem.test.ts",
+      "src/engine/skills/blood-golem.test.ts",
+      "src/stores/necromancer-blood-golem.causal.test.ts",
+      "src/engine/combat/fire-golem.test.ts",
+      "src/engine/combat/damage-curses.test.ts"
+    ]
+  },
+  {
+    "receipt": "core-types.json",
+    "exitCode": 0,
+    "seconds": 117.219,
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ]
+  },
+  {
+    "receipt": "directed-lint.json",
+    "exitCode": 0,
+    "seconds": 7.578,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "command": [
+      "node_modules/.bin/eslint",
+      "src/engine/combat/blood-golem.test.ts",
+      "src/engine/skills/blood-golem.ts",
+      "src/engine/skills/blood-golem.test.ts",
+      "src/engine/skills/displayStats.blood-golem.test.ts",
+      "src/features/skills/SkillsScreen.blood-golem.test.tsx",
+      "src/stores/necromancer-blood-golem-native.test.ts",
+      "src/stores/necromancer-blood-golem.causal.test.ts",
+      "--max-warnings=0"
+    ]
+  },
+  {
+    "receipt": "final-engine.json",
+    "exitCode": 0,
+    "seconds": 146.716,
+    "logSha256": "d2de8ddf8ecdb711b3b6c8bdf4bdc39c0f3b1c805194ede236eb1b7cdc40b8d2",
+    "command": [
+      "npm",
+      "run",
+      "test:engine"
+    ]
+  },
+  {
+    "receipt": "final-full-monitored.json",
+    "exitCode": 0,
+    "seconds": 703.194,
+    "logSha256": "6fcd276da3cd115624b804d8d14a4218fa5745815af9a475965723644cbb3876",
+    "command": [
+      "npm",
+      "test"
+    ]
+  },
+  {
+    "receipt": "final-lint.json",
+    "exitCode": 0,
+    "seconds": 205.79,
+    "logSha256": "8566041743d06a9b258a36dddd617b8bb49cc9322503a398304d860759267da9",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ]
+  },
+  {
+    "receipt": "final-precache.json",
+    "exitCode": 0,
+    "seconds": 0.051,
+    "logSha256": "2caedbd21b061a277cb3304ddbe99738a0a2833e765b270541e66246aa70779e",
+    "command": [
+      "node",
+      "scripts/check-offline-precache.mjs",
+      "dist"
+    ]
+  },
+  {
+    "receipt": "final-types-v2.json",
+    "exitCode": 0,
+    "seconds": 102.133,
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ]
+  },
+  {
+    "receipt": "final-types-v3.json",
+    "exitCode": 0,
+    "seconds": 107.672,
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ]
+  },
+  {
+    "receipt": "final-types.json",
+    "exitCode": 0,
+    "seconds": 122.794,
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ]
+  },
+  {
+    "receipt": "integrated-focused-corrected.json",
+    "exitCode": 0,
+    "seconds": 12.564,
+    "logSha256": "b1dc73c56fb618f6d7b0451ae2053f19ce540eb83704d01afa3ae65f4c329329",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/blood-golem.test.ts",
+      "src/engine/skills/blood-golem.test.ts",
+      "src/engine/skills/displayStats.blood-golem.test.ts",
+      "src/features/skills/SkillsScreen.blood-golem.test.tsx",
+      "src/stores/necromancer-blood-golem.causal.test.ts",
+      "src/stores/necromancer-blood-golem-native.test.ts"
+    ]
+  },
+  {
+    "receipt": "integrated-focused.json",
+    "exitCode": 1,
+    "seconds": 12.707,
+    "logSha256": "ab96e4b837e5c8cf57bf864e4943e2e7346b42e81e99ec128db2721b91f176ad",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/blood-golem.test.ts",
+      "src/engine/skills/blood-golem.test.ts",
+      "src/engine/skills/displayStats.blood-golem.test.ts",
+      "src/features/skills/SkillsScreen.blood-golem.test.tsx",
+      "src/stores/necromancer-blood-golem.causal.test.ts",
+      "src/stores/necromancer-blood-golem-native.test.ts"
+    ]
+  },
+  {
+    "receipt": "native-lifecycle.json",
+    "exitCode": 0,
+    "seconds": 6.555,
+    "logSha256": "f4c553fcdf3a58d8f2b6015144bc3087268961df35c54d47a14c6889132607eb",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-blood-golem-native.test.ts",
+      "src/stores/necromancer-blood-golem.causal.test.ts"
+    ]
+  },
+  {
+    "receipt": "numeric-red-corrected.json",
+    "exitCode": 1,
+    "seconds": 3.388,
+    "logSha256": "df603ca27b3da78cb00c60f3fe802f6232395356ccfd24bcd486c6da14576097",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/blood-golem.test.ts"
+    ]
+  },
+  {
+    "receipt": "numeric-red.json",
+    "exitCode": 1,
+    "seconds": 3.517,
+    "logSha256": "de0c332c326a2365356b75bec447c70b3ea978024bca7173e652ac4123959568",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/blood-golem.test.ts"
+    ]
+  },
+  {
+    "receipt": "official-build-bridge.json",
+    "exitCode": 0,
+    "seconds": 17.095,
+    "logSha256": "3ac00e78ba0f5847e94c9f8db8dac56f39bf8e79d4ef917ccea0067f9e09e813",
+    "command": [
+      "npm",
+      "run",
+      "check:test-bridge-shake"
+    ]
+  },
+  {
+    "receipt": "presentation-command-red.json",
+    "exitCode": 1,
+    "seconds": 8.373,
+    "logSha256": "203d4a2518e8bbff0083da5bb5ce721b740afca639a92060e463e2ebd36c7ee3",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/blood-golem.test.ts",
+      "src/engine/skills/displayStats.blood-golem.test.ts",
+      "src/features/skills/SkillsScreen.blood-golem.test.tsx"
+    ]
+  },
+  {
+    "receipt": "production-browser-v2.json",
+    "exitCode": 0,
+    "seconds": 77.055,
+    "logSha256": "f9337e5d51041dbb35bf1a6ceb914b4aa5915835c9ad4227afaaad55413b8193",
+    "command": [
+      "node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "tests/pwa/blood-golem.config.ts"
+    ]
+  },
+  {
+    "receipt": "production-browser-v3.json",
+    "exitCode": 0,
+    "seconds": 77.74,
+    "logSha256": "e88319cfffa98d062529ee3ec03f8bad1428d520fb1a088dc35f04073fbb5f38",
+    "command": [
+      "node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "tests/pwa/blood-golem.config.ts"
+    ]
+  },
+  {
+    "receipt": "production-browser.json",
+    "exitCode": 1,
+    "seconds": 57.862,
+    "logSha256": "e5bcb5418ae57f035bd65e0d1a88843cc1829d4863d953aa3883656d264c4c89",
+    "command": [
+      "node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "tests/pwa/blood-golem.config.ts"
+    ]
+  }
+]

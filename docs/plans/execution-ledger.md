@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D06 Blood Golem / BUG250 | locally fixed/verified; independent and earned acceptance open | Core`aeb19477`,presentation/native/public`aa33b6b7`: qualified paid living-body/original-party10% actual-hostile-HP recovery, shared direct/periodic/reflection/Static settlement and truthful bilingual previews.97new regressions; full17749/812/two existing skips703.194s,engine8875/333,finaltypes/lint/official build/bridge/756URLprecachePASS. Production4/4PASS77.740s:four paid bodies/repeated outgoing Physical hits/positive localized recovery,eight exact six-domain save pairs/four actual offlineContinues/20geometry/16individually inspected PNGs with explicit clipping limits. All1417committed source paths/762build/genuine hashes exact. Exactly one credit:161bounded/50unverified/one engine-only/one review-needed,Necromancer19/32,212other raw rows/header/IDs/order exact. [Evidence](evidence/d06-blood-golem.md), [provisional contract](decisions/D06-blood-golem-v1.md), [bug](../../production/bugs/BUG-250-apply-blood-golem-life-leech.md).4699raw members/27terminal receipts plus original interrupted full log retained;3282exact files/41directories cleaned,known identities/readable consumers clear/4535available,remaining[]/failures[]. Root retains archive/three sidecars through BUG250/full-v1 consumers; task root/dist/cleanup driver absent. Other summons,independent/earned acceptance and full privatev1 remain open. |
 | D06 Fire Golem / BUG249 | locally fixed/verified; independent and earned acceptance open | Core`71e12c15`,presentation/native/public`2fe4de9a`: paid35MP authoritative ordinary Fire/shared Burn,truthful current-next/MAX and native wave/import.62new regressions; full17652/806/two existing opt-in skips,engine8793/330,finaltypes/lint/official build/bridge/756URLprecachePASS. Production4/4PASS84.372s:four paid bodies/repeated Fire/positiveDoT/chips,eight exact six-domain pairs/four actual offlineContinues/20geometry;all16PNGs individually inspected with explicit clipping/mobile limits. All1587committed source blobs/762build/genuine exact. Exactly one credit:160bounded/51unverified/one engine-only/one review-needed,Necromancer18/32,212other raw rows/header/IDs/order exact. [Evidence](evidence/d06-fire-golem.md), [contract](decisions/D06-fire-golem-v1.md), [bug](../../production/bugs/BUG-249-apply-fire-golem-fire-and-burn.md).1968raw members/23terminal receipts verified;2841exact task files/38directories cleaned,known identities/readable consumers clear/4533available,remaining[]/failures[]. Root retains archive/three sidecars through BUG249/full-v1 consumers; task root/dist absent. Blood Golem recovery,other summons,independent/earned acceptance and full privatev1 remain open. |
 | D04 Terror / BUG247 and render regression / BUG248 | locally fixed/verified; independent and earned acceptance open | Core`1b192510`, preview`27f4acc9`, bilingual`a5008fce`, lifecycle/public`7f7149b7`: paid finite1000ms fear/0.5boss interrupts real scheduled actions/channels;77new regressions. Full17590/800/two existing skips, engine8745/327, types/lint/official build/bridge/756URLprecachePASS. Production4/4PASS228.374s: four localized casts/chips,eight exact six-domain pairs,four actual offlineContinues,20geometry,all16PNGs inspected with explicit mobile capture limits. All1594committed source blobs/762build/genuine exact. Exactly one credit:159bounded/52unverified/one engine-only/one review-needed,Necromancer17/32,212other raw rows/header/IDs/order exact. [Evidence](evidence/d04-terror.md), [contract](decisions/D04-terror-v1.md), [bug](../../production/bugs/BUG-247-apply-terror-fear.md).119raw archive members/23terminal receipts verified;992exact task files/32directories cleaned,54identities absent/readable consumers clear/4531closed,remaining[]/failures[]. Restricted optional /proc visibility recorded. Root retains archive/three sidecars through evidence consumers; task root/dist absent. GenuineL33/next402/Baal uncleared; full privatev1 remains open. |
 | D04 Iron Maiden/Life Tap/Lower Resist / BUG246 | locally fixed/verified; independent and earned acceptance open | Core29191112, presentation/native/publica6f9e19b, fractional reflectione165a1dd, exact shared-log oracle65d055f7.138new regressions; full17513/794/two existing skips, engine8691/325, latest types96.426s/lint163.883s/build/bridge/756URLprecachePASS. Final production12/12PASS588.764s:12localized casts/chips,24exact six-domain pairs,12actual offlineContinues,60geometry,all24PNGs inspected with explicit clipping/black-region limits. Original fractional and stale-copy REDs retained; only one provably stale literal changed. All1585actual HEAD source blobs/762build files/genuine save exact. Exactly three credits:158bounded/53unverified/one engine-only/one review-needed; Necromancer16/32,210other raw rows/header/IDs/order exact. [Evidence](evidence/d04-damage-curses.md), [contract](decisions/D04-damage-curses-v1.md), [bug](../../production/bugs/BUG-246-apply-necromancer-damage-curses.md). 184raw archive members/41terminal receipts verified;1059exact task files/57directories removed,71identities absent/no consumers/4529closed,remaining[]/failures[]. Root retains archive/three sidecars through BUG246/full-v1 evidence consumers; exact paths in evidence. GenuineL33/next402/Baal uncleared; full privatev1 remains open. |
@@ -12807,3 +12808,45 @@ Necromancer18/32;212other raw rows/header/IDs/order unchanged. Root owns retaine
 archive/three sidecars through evidence consumers. No genuine campaign/replay,
 remote publication or independent/earned/full-v1 acceptance. Next: resolve and
 repair Blood Golem's promised10% recovery, then reconcile remaining summons.
+
+## D06 Blood Golem — local life-leech closure
+
+Core`aeb19477` and presentation/native/public`aa33b6b7` repair the promised10%
+aura using actual hostile HP removed and fresh living original-party sources,
+with qualified newly paid body/owner authority. Direct/typed components,
+attributed periodic, reflection/Cold armor and Static Field share one capped
+recovery consumer. No free imported/preloaded aura, converted-enemy benefits,
+self/friendly/absorbed/overkill recovery, resurrection, stacking, new RNG/action/
+timer/payment/save shape. Complete unchanged body stats and coefficient use
+immutable validated JSON; actual paid Command carries learned1/20 authority
+with effective body2/21 potency. Party/rounding/DoT attribution remain explicit
+provisional author choices; independent design/reviewer/QA and earned balance open.
+
+97new regressions, engine8875/333, full17749/812/two existing opt-in skips703.194s,
+finaltypes107.672s/lint205.790s/explicit browser lint8.229s/official production
+build+six-chunk bridge17.095s/756URLprecache pass. The first full process ended
+externally at tool143 with no summary; its raw log is preserved and uncredited.
+Final monitored unchanged-source full run passed. No test/config weakening.
+
+Four final en/zh-CN desktop/mobile browser cases pass77.740s: actual25MP debit,
+one body, two outgoing Physical body hits and positive5HP hero recovery per case;
+eight exact six-domain pairs/four actual SWofflineContinues/20geometry and16PNGs
+individually inspected. Original wrong Chinese body-name/incoming-hit observer
+and redundant test fallback failures remain retained. Explicit viewport/clipping/
+icon/a11y and synthetic-fixture/earned limits are in the linked evidence.
+
+All1417frozen source paths match actual Git blobs,762served build files and
+protected genuine save hashes are exact.4699archive members/27terminal receipts
+verified losslessly;3282exact disposable files/41directories removed,27recorded
+identities/readable consumers clear/4535available.24restricted optional /proc
+entries limit visibility. Root retains four exact archive/sidecar paths in
+evidence through BUG250/full-v1 consumers and removes them when readers finish.
+Task root/dist/finished cleanup driver absent; remaining[]/failures[].
+
+Exactly one Blood credit:161bounded/50unverified/one engine-only/one review-needed,
+Necromancer19/32;213IDs/order/header/212other raw rows exact. This is bounded skill
+coverage, not overall completion. GenuineL33/XP149261/nextNormal402/Nightmare0/
+Ancients-Rite claimed/Baal uncleared is unchanged; no campaign/replay or remote
+action. C0/C1 retain narrow exits; C2-C4/fullG0-G7/all-class earned builds/pacing/
+economy/endgame/independent acceptance/privatev1 unfinished. Continue remaining
+Necromancer summons from accepted current contracts; no blanket family credits.

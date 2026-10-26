@@ -1,0 +1,38 @@
+{
+  "beforeSha256": "eb85b578991e2f73708cc70c041c3be7e2aa36d83e7b445b75230e9790f4c92b",
+  "afterSha256": "97bc1692001ac0fa4805e340c85486d58e8ec2bc2c8aae0110ae60fec62cc84a",
+  "rowCount": 213,
+  "rawHeaderAnd212OtherRowsExact": true,
+  "idsAndOrderExact": true,
+  "before": {
+    "class": "necromancer",
+    "data_id": "skills-necromancer-blood-golem",
+    "runtime_id": "necromancer.blood_golem",
+    "trigger": "active",
+    "adapter_route": "summon",
+    "declared_statuses": "",
+    "source": "src/data/skills/necromancer.json",
+    "risk_flags": "",
+    "behavior_verification": "unverified",
+    "contract_evidence": ""
+  },
+  "after": {
+    "class": "necromancer",
+    "data_id": "skills-necromancer-blood-golem",
+    "runtime_id": "necromancer.blood_golem",
+    "trigger": "active",
+    "adapter_route": "summon+qualified-paid-original-party-actual-hp-life-leech",
+    "declared_statuses": "",
+    "source": "src/data/skills/necromancer.json",
+    "risk_flags": "independent-design-qa-and-earned-balance-open",
+    "behavior_verification": "bounded-functional;independent-acceptance-open",
+    "contract_evidence": "docs/plans/decisions/D06-blood-golem-v1.md;docs/plans/evidence/d06-blood-golem.md;production/bugs/BUG-250-apply-blood-golem-life-leech.md"
+  },
+  "boundedFunctional": 161,
+  "unverified": 50,
+  "engineOnly": 1,
+  "reviewNeeded": 1,
+  "necromancerBounded": 19,
+  "necromancerTotal": 32,
+  "authority": "Exactly one local bounded skill credit after validation, lossless retention and exact cleanup; independent/earned acceptance open."
+}

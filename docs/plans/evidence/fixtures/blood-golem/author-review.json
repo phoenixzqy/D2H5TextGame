@@ -1,0 +1,26 @@
+{
+  "scope": "BUG250 Blood Golem; author-only review of 97 regressions plus engine/data/native/UI/public flow",
+  "security": {
+    "verdict": "pass",
+    "summary": "Local first-party combat/data/UI/test changes. No dependencies, credentials, CI permissions, network/export policy or save schema changed. Private native paid authority never imported from saves."
+  },
+  "fiveAxes": {
+    "correctness": "One fresh post-settlement capped recovery consumer receives actual hostile HP loss from direct/reflected/Static/attributed periodic settlement; owner/body/source liveness and original-side checks refuse resurrection and foreign sources. Per-interval DoT attribution is a documented provisional choice. Command learned authority is distinct from paid effective body growth.",
+    "readability": "Small production diff uses established summon/native/preview patterns; explicit comments explain periodic attribution and private Command qualification. No unrelated refactor.",
+    "architecture": "Engine remains pure TypeScript; immutable Ajv-validated JSON owns full unchanged body stats and coefficient. Private battle bindings are reconstructed per wave and never persisted. Existing damage/integral/event infrastructure is retained.",
+    "security": "No imported/preloaded aura grants, source semantics checked, no dependency or unsafe input execution. No new network or permissions.",
+    "performance": "All work bounded by current battle units/statuses/paid bodies. No new clocks, RNG draws, actions or playback events except positive capped heals. Existing bundle/time budgets remain unresolved; no broad performance approval."
+  },
+  "testEvidence": {
+    "localBehavior": "97 regressions:16 definition/schema,59 engine authority/numeric/interaction,7 pure preview,8 bilingual component,5 native causal,2 native lifecycle/import. Literal100\u219210, floor/cap/overkill/finite absorption/death/unknown-source/nonstack/Command and deterministic input/result assertions. Single-assertion schema rejection cases directly assert the required rejection.",
+    "public": "Final v3 production browser four/four PASS77.740s; outgoing body verbs corrected, repeated hits plus25MP/positive5HP recovery proved; eight exact six-domain save pairs/four actual offlineContinues/20geometry and16individually viewed PNGs with explicit clipping limits. Explicit browser lint PASS8.229s; full default lint PASS205.790s and finaltypes107.672s. Full regression final-full interrupted at tool143 before summary; original raw log retained, unchanged-source monitored rerun active.",
+    "independentVerdict": "INCOMPLETE: independent design/reviewer/QA and earned class/build balance acceptance remain open; root author review is not independent approval.",
+    "full": "Final unchanged-source monitored npm test PASS17749 tests/812 files, two pre-existing opt-in authentic campaign skips,703.194s; first interrupted run is not counted as passing."
+  },
+  "constraints": [
+    "No genuine campaign/replay or remote actions",
+    "No default-lint/TypeScript configuration changes",
+    "No inventory credit until completed proof, retention and exact cleanup"
+  ],
+  "localAuthorVerdict": "No blocking local defect found for the provisional full Blood Golem contract; independent approval and earned acceptance remain open."
+}

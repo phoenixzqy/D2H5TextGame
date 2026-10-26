@@ -1,0 +1,237 @@
+{
+  "scope": "BUG250 local functional closure; independent/earned acceptance open",
+  "coreCommit": "aeb19477",
+  "presentationCommit": "aa33b6b7",
+  "attachments": {
+    "author-review.json": {
+      "sha256": "bace445a0ca8b9a44d51c44f52d8ebe7ffd88060ac5d1562bac6b855953ea03c",
+      "bytes": 3313
+    },
+    "browser-audit.json": {
+      "sha256": "801148f62ee69ac5e4508939a28d278769de448188f057e4075b902ae6b6f87c",
+      "bytes": 11905
+    },
+    "browser-oracle-correction.json": {
+      "sha256": "b6f7f7e04cfed256eea80ef67244edf062c15cc2a98e3e17113ab9f59d83f52a",
+      "bytes": 392
+    },
+    "bug-original.md": {
+      "sha256": "dc4656c6ff1493c6ebd268bea1160f8f8d51630d945649a3dbc8040de4bf00f8",
+      "bytes": 2922
+    },
+    "build-manifest.json": {
+      "sha256": "965b51127769a2332d507305f8700625ebbc1047e39cd09f150a211413543d6b",
+      "bytes": 101885
+    },
+    "cleanup.json": {
+      "sha256": "1a6e13d69f2e88c473c2a7562bc4fd9a4d503554489f520d389e928916fe6b40",
+      "bytes": 1029
+    },
+    "committed-source.json": {
+      "sha256": "5dbdf55e0e9e9d2b858ac4237e4613086dc782d3e1ad097d2fe85b043663f41c",
+      "bytes": 156
+    },
+    "desktop-en-blood-golem-body.png": {
+      "sha256": "9fa1f997d9cb1e502797a5a5ffa67513a01e23e9346792b7bf51e19d3d459650",
+      "bytes": 41199
+    },
+    "desktop-en-blood-golem-stats-viewport.png": {
+      "sha256": "962de241e74e6a9be7ba76a5229945019d7ea3de7c1defa6b2a26b43223eb31f",
+      "bytes": 175083
+    },
+    "desktop-en-blood-golem-title-viewport.png": {
+      "sha256": "962de241e74e6a9be7ba76a5229945019d7ea3de7c1defa6b2a26b43223eb31f",
+      "bytes": 175083
+    },
+    "desktop-en-combat-log.txt": {
+      "sha256": "7be827bcd06b8818e642e391cb9ce466668b6697df6fa83b9dbfc782f3750d85",
+      "bytes": 2317
+    },
+    "desktop-en-combat-viewport.png": {
+      "sha256": "fd2f486a0b7d43ba7136389d4635c25c510154bde88198f017bfdf8c1e423c6d",
+      "bytes": 458164
+    },
+    "desktop-en-console-errors.json": {
+      "sha256": "6e6f435f37b79e54f32f88137d263c2598f9bedc2b89e6c633013a48e8aec874",
+      "bytes": 32
+    },
+    "desktop-en-geometry.json": {
+      "sha256": "4a18fbc579203694068974127bb5626fe22eac9d1f1d6b70c160e3de3d28fd76",
+      "bytes": 394
+    },
+    "desktop-en-offline-save-pair.json": {
+      "sha256": "ddd5df53965f9e42247fad98458ac19eeb2af900e12ea6cc39580bfa483f0bf2",
+      "bytes": 5396
+    },
+    "desktop-en-online-save-pair.json": {
+      "sha256": "ddd5df53965f9e42247fad98458ac19eeb2af900e12ea6cc39580bfa483f0bf2",
+      "bytes": 5396
+    },
+    "desktop-en-paid-body-life-leech.json": {
+      "sha256": "1b91f31540436157bccb039eb96e61956b30d6532b1143ebdf9683f38961c445",
+      "bytes": 496
+    },
+    "desktop-zh-CN-blood-golem-body.png": {
+      "sha256": "712b5b71cd8e432237194ec75847e362f0db55b735e0059eaaaee1340138b72a",
+      "bytes": 42449
+    },
+    "desktop-zh-CN-blood-golem-stats-viewport.png": {
+      "sha256": "a4ff4992522ae7a3b96ff94e12c26e2596acce297e0ddf87afd3d8c710fc73fb",
+      "bytes": 186217
+    },
+    "desktop-zh-CN-blood-golem-title-viewport.png": {
+      "sha256": "a4ff4992522ae7a3b96ff94e12c26e2596acce297e0ddf87afd3d8c710fc73fb",
+      "bytes": 186217
+    },
+    "desktop-zh-CN-combat-log.txt": {
+      "sha256": "26f38bdecd0c2650990d5b081e30a4bd32f7f3fd8eb25d96c594671314de48dd",
+      "bytes": 2555
+    },
+    "desktop-zh-CN-combat-viewport.png": {
+      "sha256": "3374a647537f0e0cb5f3ed22026e9ec315f77cae5e93d99fc7dff3f239958c61",
+      "bytes": 463735
+    },
+    "desktop-zh-CN-console-errors.json": {
+      "sha256": "6e6f435f37b79e54f32f88137d263c2598f9bedc2b89e6c633013a48e8aec874",
+      "bytes": 32
+    },
+    "desktop-zh-CN-geometry.json": {
+      "sha256": "649599d12b877cf0610033b76e785dd1cc07b89e86da927dff7ea886353a11a0",
+      "bytes": 359
+    },
+    "desktop-zh-CN-offline-save-pair.json": {
+      "sha256": "c1116267058e5f89b0bdb153238f22b8416b841f0e913023978b09af940df49c",
+      "bytes": 5402
+    },
+    "desktop-zh-CN-online-save-pair.json": {
+      "sha256": "c1116267058e5f89b0bdb153238f22b8416b841f0e913023978b09af940df49c",
+      "bytes": 5402
+    },
+    "desktop-zh-CN-paid-body-life-leech.json": {
+      "sha256": "e0f781d5509a5747f6c77bb6cb53e2302d4f467eca16682a5c70ddbad08014ee",
+      "bytes": 533
+    },
+    "evidence-original.md": {
+      "sha256": "4d59d4c8a5cf5c8401cc9272b7a9622686703ea99162a0ec44e2885f0ceea9a2",
+      "bytes": 2351
+    },
+    "final-full-interrupted.json": {
+      "sha256": "396c11a352259de9913eb0874fc87b95ddca5051c08444c4d448fcb4379b64b2",
+      "bytes": 719
+    },
+    "final-source-v3.json": {
+      "sha256": "dd8e7ac1e9f748434f7d5553eac253ca552334e2fada05c9b6fc4161e4847571",
+      "bytes": 162912
+    },
+    "inventory-credit.json": {
+      "sha256": "c84326b1c12ffaf677b3e91d61083c9b86c7b83cfddbc4b9de3a1669e82e4411",
+      "bytes": 1559
+    },
+    "mobile-en-blood-golem-body.png": {
+      "sha256": "8d92c23d917c7c489c6817e71baf7be1d872af3c018cec0a2149b23313c210a8",
+      "bytes": 67265
+    },
+    "mobile-en-blood-golem-stats-viewport.png": {
+      "sha256": "964d3b6c0e77fe8fdd1f32aec5b64cdb3cb25c3d76680d82b3b646e7879be503",
+      "bytes": 211743
+    },
+    "mobile-en-blood-golem-title-viewport.png": {
+      "sha256": "222a9fe708f721142dfd9ada0162614d10fd4e030e069bab0fcb61f400bd3377",
+      "bytes": 226286
+    },
+    "mobile-en-combat-log.txt": {
+      "sha256": "7be827bcd06b8818e642e391cb9ce466668b6697df6fa83b9dbfc782f3750d85",
+      "bytes": 2317
+    },
+    "mobile-en-combat-viewport.png": {
+      "sha256": "358826a9c8683f7e1845a37b49d921d02c25c196b082029fdb54443d2f86ac6d",
+      "bytes": 374529
+    },
+    "mobile-en-console-errors.json": {
+      "sha256": "6e6f435f37b79e54f32f88137d263c2598f9bedc2b89e6c633013a48e8aec874",
+      "bytes": 32
+    },
+    "mobile-en-geometry.json": {
+      "sha256": "4a18fbc579203694068974127bb5626fe22eac9d1f1d6b70c160e3de3d28fd76",
+      "bytes": 394
+    },
+    "mobile-en-offline-save-pair.json": {
+      "sha256": "ddd5df53965f9e42247fad98458ac19eeb2af900e12ea6cc39580bfa483f0bf2",
+      "bytes": 5396
+    },
+    "mobile-en-online-save-pair.json": {
+      "sha256": "ddd5df53965f9e42247fad98458ac19eeb2af900e12ea6cc39580bfa483f0bf2",
+      "bytes": 5396
+    },
+    "mobile-en-paid-body-life-leech.json": {
+      "sha256": "1b91f31540436157bccb039eb96e61956b30d6532b1143ebdf9683f38961c445",
+      "bytes": 496
+    },
+    "mobile-zh-CN-blood-golem-body.png": {
+      "sha256": "e7ea1fd727039f8a2cd1dacabbae6eee2aea7244bacc86da2b386b99e9e67c75",
+      "bytes": 65275
+    },
+    "mobile-zh-CN-blood-golem-stats-viewport.png": {
+      "sha256": "57b3849c9e0f5abdbc166f284ea1c6c50802dd570d4b0f89b85efbb0202bf510",
+      "bytes": 270066
+    },
+    "mobile-zh-CN-blood-golem-title-viewport.png": {
+      "sha256": "a2eebdb8223d691883be855e360d3a4d6090acb479278612b713f423b0d4f56c",
+      "bytes": 262024
+    },
+    "mobile-zh-CN-combat-log.txt": {
+      "sha256": "26f38bdecd0c2650990d5b081e30a4bd32f7f3fd8eb25d96c594671314de48dd",
+      "bytes": 2555
+    },
+    "mobile-zh-CN-combat-viewport.png": {
+      "sha256": "9e28cf21118d08b0b2a61728a07ef83f5c013cb1361b71ccde3494c8ebcd39cb",
+      "bytes": 397633
+    },
+    "mobile-zh-CN-console-errors.json": {
+      "sha256": "6e6f435f37b79e54f32f88137d263c2598f9bedc2b89e6c633013a48e8aec874",
+      "bytes": 32
+    },
+    "mobile-zh-CN-geometry.json": {
+      "sha256": "649599d12b877cf0610033b76e785dd1cc07b89e86da927dff7ea886353a11a0",
+      "bytes": 359
+    },
+    "mobile-zh-CN-offline-save-pair.json": {
+      "sha256": "c1116267058e5f89b0bdb153238f22b8416b841f0e913023978b09af940df49c",
+      "bytes": 5402
+    },
+    "mobile-zh-CN-online-save-pair.json": {
+      "sha256": "c1116267058e5f89b0bdb153238f22b8416b841f0e913023978b09af940df49c",
+      "bytes": 5402
+    },
+    "mobile-zh-CN-paid-body-life-leech.json": {
+      "sha256": "e0f781d5509a5747f6c77bb6cb53e2302d4f467eca16682a5c70ddbad08014ee",
+      "bytes": 533
+    },
+    "retention-summary.json": {
+      "sha256": "7f0c20fba1fe86baa849bbc16e7325e600855f7c167808be09320fcc6c1bb09c",
+      "bytes": 459
+    },
+    "validation-index.json": {
+      "sha256": "feeb67c5bf1879456e6a7f6dcea700532ecc882ca871a6bda55bee4e24629450",
+      "bytes": 9124
+    },
+    "visual-review.json": {
+      "sha256": "ab41b680794357b710495eb1089b721ba1c2cee44932e429d533528ff5849f05",
+      "bytes": 6813
+    }
+  },
+  "attachmentCount": 54,
+  "rawRetention": {
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-golem-bogayo0q-retained.tar.xz",
+    "sha256": "e1613149d3c757a8a8e2fde53ad336e3eb7262be11291f2e2007797157244e69",
+    "memberCount": 4699,
+    "bytes": 162388184,
+    "terminalReceipts": 27,
+    "sourceFiles": 1417,
+    "buildFiles": 762,
+    "retainedBy": "root through BUG250/full-v1 evidence consumers; root removes archive and sidecars after consumers finish",
+    "verifiedLosslessly": true
+  },
+  "cleanup": "cleanup.json",
+  "evidence": "../../d06-blood-golem.md"
+}
