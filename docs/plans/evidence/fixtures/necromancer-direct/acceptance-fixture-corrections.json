@@ -1,0 +1,15 @@
+{
+  "native": {
+    "observed": "Actual speed225; Nova cooldown3000 carried correctly, basics at700/1400/2100 kill all next-wave targets before eligible Nova",
+    "correction": "Synthetic affix attackSpeed -100 gives speed25 and the existing maximum2000ms action period; enemies survive fallback actions until carried Nova cooldown becomes ready. Preserve exact next-wave spell/payment assertions, no production change. It does not make the first action occur after the3s cooldown."
+  },
+  "reapplication": {
+    "seed7": "eight landed casts, cap10, zero misses",
+    "seed19": "first six land and reach cap10; seventh misses at22100; old Poison expires23700; eighth lands25500 with fresh two stacks/rate",
+    "correction": "Assert both peak10, exact final10/2 and miss0/1, preserving exact per-application state and independent cumulative DoT/HP integrals. Incorrect all-seeds-cap-and-miss assumptions superseded; initial and diagnosis logs retained."
+  },
+  "strictChecks": {
+    "types": "exactOptionalPropertyTypes rejects explicit undefined on Partial<ActiveStatus>; omit fields using Reflect.deleteProperty on fresh synthetic fixtures",
+    "lint": "String() for two numerical test-name interpolations, no suppression"
+  }
+}

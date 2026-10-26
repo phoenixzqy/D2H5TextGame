@@ -1,0 +1,1172 @@
+{
+  "cases": [
+    {
+      "skill": "teeth",
+      "locale": "en",
+      "device": "desktop",
+      "status": "passed",
+      "durationMs": 26594,
+      "screenshots": [
+        {
+          "name": "teeth-preview",
+          "sha256": "e611efa3c6d59927da841b6b372ba36b08002db8309b7c4dfa8a0c3d97f0113d",
+          "width": 1152,
+          "height": 336,
+          "archiveMember": "public-screenshots/desktop-en-teeth-teeth-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e",
+          "width": 1024,
+          "height": 1134,
+          "archiveMember": "public-screenshots/desktop-en-teeth-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "a0c64b2c38c543514dfc49f0ae7a0fc374a5242d5f0663f9fc1442a3fcd7ca09"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "a0c64b2c38c543514dfc49f0ae7a0fc374a5242d5f0663f9fc1442a3fcd7ca09"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "teeth",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "teeth",
+        "spellName": "Teeth",
+        "line": "05:00:00Bone Poison Brow casts Teeth."
+      }
+    },
+    {
+      "skill": "teeth",
+      "locale": "zh-CN",
+      "device": "desktop",
+      "status": "passed",
+      "durationMs": 26587,
+      "screenshots": [
+        {
+          "name": "teeth-preview",
+          "sha256": "ed5a2470e7c08215c2b238d3e93b49cb5ac0237942e2d280dcf257ef95117ff7",
+          "width": 1152,
+          "height": 336,
+          "archiveMember": "public-screenshots/desktop-zh-CN-teeth-teeth-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4",
+          "width": 1024,
+          "height": 1134,
+          "archiveMember": "public-screenshots/desktop-zh-CN-teeth-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "415ed43eef923f45b4ebfd512938b04f6f91bb96ea17a8dd85fda5015472ee93"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "415ed43eef923f45b4ebfd512938b04f6f91bb96ea17a8dd85fda5015472ee93"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "teeth",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "teeth",
+        "spellName": "\u5c38\u7259",
+        "line": "05:00:00Bone Poison Brow \u65bd\u653e\u4e86 \u5c38\u7259\u3002"
+      }
+    },
+    {
+      "skill": "bone-spear",
+      "locale": "en",
+      "device": "desktop",
+      "status": "passed",
+      "durationMs": 30563,
+      "screenshots": [
+        {
+          "name": "bone-spear-preview",
+          "sha256": "282acbb01339df4590f4f13e4abae7a201352bf74863fdabd3a1a9abdb22fa1c",
+          "width": 1152,
+          "height": 336,
+          "archiveMember": "public-screenshots/desktop-en-bone-spear-bone-spear-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e",
+          "width": 1024,
+          "height": 1134,
+          "archiveMember": "public-screenshots/desktop-en-bone-spear-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "33f5e12b62e39a2319898fd7b63fe1d267515190c59d1b9dc7a6b6f9ab589e5a"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "33f5e12b62e39a2319898fd7b63fe1d267515190c59d1b9dc7a6b6f9ab589e5a"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "bone-spear",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "bone-spear",
+        "spellName": "Bone Spear",
+        "line": "05:00:00Bone Poison Brow casts Bone Spear."
+      }
+    },
+    {
+      "skill": "bone-spear",
+      "locale": "zh-CN",
+      "device": "desktop",
+      "status": "passed",
+      "durationMs": 31596,
+      "screenshots": [
+        {
+          "name": "bone-spear-preview",
+          "sha256": "8edc6240f2e3d5dfb2083c5607ae11ab61a6d6f547fa217830dc8519c95e1a45",
+          "width": 1152,
+          "height": 336,
+          "archiveMember": "public-screenshots/desktop-zh-CN-bone-spear-bone-spear-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4",
+          "width": 1024,
+          "height": 1134,
+          "archiveMember": "public-screenshots/desktop-zh-CN-bone-spear-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "9bfba1964bb9e2e66764b34c40669e36fd14771e3626877614152ca6d03d26aa"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "9bfba1964bb9e2e66764b34c40669e36fd14771e3626877614152ca6d03d26aa"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "bone-spear",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "bone-spear",
+        "spellName": "\u9aa8\u77db",
+        "line": "05:00:00Bone Poison Brow \u65bd\u653e\u4e86 \u9aa8\u77db\u3002"
+      }
+    },
+    {
+      "skill": "bone-spirit",
+      "locale": "en",
+      "device": "desktop",
+      "status": "passed",
+      "durationMs": 34161,
+      "screenshots": [
+        {
+          "name": "bone-spirit-preview",
+          "sha256": "e1371552f540214398ec5c6f982d81bde304ad9f74a33c5b15b166e8b81b5f8b",
+          "width": 1152,
+          "height": 336,
+          "archiveMember": "public-screenshots/desktop-en-bone-spirit-bone-spirit-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e",
+          "width": 1024,
+          "height": 1134,
+          "archiveMember": "public-screenshots/desktop-en-bone-spirit-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "9dae688008f16602ac2cdad8559e2b55eb680931d89cd5d82251aa1e19116645"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "9dae688008f16602ac2cdad8559e2b55eb680931d89cd5d82251aa1e19116645"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "bone-spirit",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "bone-spirit",
+        "spellName": "Bone Spirit",
+        "line": "05:00:00Bone Poison Brow casts Bone Spirit."
+      }
+    },
+    {
+      "skill": "bone-spirit",
+      "locale": "zh-CN",
+      "device": "desktop",
+      "status": "passed",
+      "durationMs": 34626,
+      "screenshots": [
+        {
+          "name": "bone-spirit-preview",
+          "sha256": "785695d9373fb6902dea7c655b77f7c034123aa57d9079f24250d24303687acd",
+          "width": 1152,
+          "height": 336,
+          "archiveMember": "public-screenshots/desktop-zh-CN-bone-spirit-bone-spirit-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4",
+          "width": 1024,
+          "height": 1134,
+          "archiveMember": "public-screenshots/desktop-zh-CN-bone-spirit-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "f0841f0097789db9b59ae877e19cda8390220b03d346be2996ca9b8e4f616bf6"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "f0841f0097789db9b59ae877e19cda8390220b03d346be2996ca9b8e4f616bf6"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "bone-spirit",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "bone-spirit",
+        "spellName": "\u9aa8\u7075",
+        "line": "05:00:00Bone Poison Brow \u65bd\u653e\u4e86 \u9aa8\u7075\u3002"
+      }
+    },
+    {
+      "skill": "poison-nova",
+      "locale": "en",
+      "device": "desktop",
+      "status": "passed",
+      "durationMs": 22130,
+      "screenshots": [
+        {
+          "name": "poison-nova-preview",
+          "sha256": "e3ea80391a55761597016e8063a70f4421e30010a1cb16d813852d68226d98fc",
+          "width": 1152,
+          "height": 336,
+          "archiveMember": "public-screenshots/desktop-en-poison-nova-poison-nova-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e",
+          "width": 1024,
+          "height": 1134,
+          "archiveMember": "public-screenshots/desktop-en-poison-nova-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "d73850083647d361b6a137b1615ae8f76688e35769135469417a38ff63467ff8"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "d73850083647d361b6a137b1615ae8f76688e35769135469417a38ff63467ff8"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "poison-nova",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "poison-nova",
+        "spellName": "Poison Nova",
+        "line": "05:00:00Bone Poison Brow casts Poison Nova."
+      }
+    },
+    {
+      "skill": "poison-nova",
+      "locale": "zh-CN",
+      "device": "desktop",
+      "status": "passed",
+      "durationMs": 22043,
+      "screenshots": [
+        {
+          "name": "poison-nova-preview",
+          "sha256": "82ed5617f16e029943e6d45e2c7a381c9bb5fd50ceb0a871ce7a39848ada4353",
+          "width": 1152,
+          "height": 336,
+          "archiveMember": "public-screenshots/desktop-zh-CN-poison-nova-poison-nova-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4",
+          "width": 1024,
+          "height": 1134,
+          "archiveMember": "public-screenshots/desktop-zh-CN-poison-nova-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "9d511d0099ede4c45d9624bd26f09f0761fa5f23956f501c962e9596b2843936"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "9d511d0099ede4c45d9624bd26f09f0761fa5f23956f501c962e9596b2843936"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "poison-nova",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "poison-nova",
+        "spellName": "\u6bd2\u4e91\u672f",
+        "line": "05:00:00Bone Poison Brow \u65bd\u653e\u4e86 \u6bd2\u4e91\u672f\u3002"
+      }
+    },
+    {
+      "skill": "teeth",
+      "locale": "en",
+      "device": "mobile",
+      "status": "passed",
+      "durationMs": 27077,
+      "screenshots": [
+        {
+          "name": "teeth-preview",
+          "sha256": "8e00efc0fa0af5cd36f6f23c3dbf38a103d25d085149db3de877597c858bb260",
+          "width": 924,
+          "height": 1496,
+          "archiveMember": "public-screenshots/mobile-en-teeth-teeth-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc",
+          "width": 924,
+          "height": 3413,
+          "archiveMember": "public-screenshots/mobile-en-teeth-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "a0c64b2c38c543514dfc49f0ae7a0fc374a5242d5f0663f9fc1442a3fcd7ca09"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "a0c64b2c38c543514dfc49f0ae7a0fc374a5242d5f0663f9fc1442a3fcd7ca09"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "teeth",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "teeth",
+        "spellName": "Teeth",
+        "line": "05:00:00Bone Poison Brow casts Teeth."
+      }
+    },
+    {
+      "skill": "teeth",
+      "locale": "zh-CN",
+      "device": "mobile",
+      "status": "passed",
+      "durationMs": 27645,
+      "screenshots": [
+        {
+          "name": "teeth-preview",
+          "sha256": "4e5d157c67633c8a0dd1968ef0e3f232b7922cbf0a3175a9127a0bcdaf1dbe8a",
+          "width": 924,
+          "height": 1496,
+          "archiveMember": "public-screenshots/mobile-zh-CN-teeth-teeth-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2",
+          "width": 924,
+          "height": 3270,
+          "archiveMember": "public-screenshots/mobile-zh-CN-teeth-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "415ed43eef923f45b4ebfd512938b04f6f91bb96ea17a8dd85fda5015472ee93"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "415ed43eef923f45b4ebfd512938b04f6f91bb96ea17a8dd85fda5015472ee93"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "teeth",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "teeth",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "teeth",
+        "spellName": "\u5c38\u7259",
+        "line": "05:00:00Bone Poison Brow \u65bd\u653e\u4e86 \u5c38\u7259\u3002"
+      }
+    },
+    {
+      "skill": "bone-spear",
+      "locale": "en",
+      "device": "mobile",
+      "status": "passed",
+      "durationMs": 31736,
+      "screenshots": [
+        {
+          "name": "bone-spear-preview",
+          "sha256": "ff1c24cb53767ffc4c0bc8565eccba6b5fbeab4e0a16418eb58c4b5e5b45398d",
+          "width": 924,
+          "height": 1496,
+          "archiveMember": "public-screenshots/mobile-en-bone-spear-bone-spear-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc",
+          "width": 924,
+          "height": 3413,
+          "archiveMember": "public-screenshots/mobile-en-bone-spear-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "33f5e12b62e39a2319898fd7b63fe1d267515190c59d1b9dc7a6b6f9ab589e5a"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "33f5e12b62e39a2319898fd7b63fe1d267515190c59d1b9dc7a6b6f9ab589e5a"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "bone-spear",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "bone-spear",
+        "spellName": "Bone Spear",
+        "line": "05:00:00Bone Poison Brow casts Bone Spear."
+      }
+    },
+    {
+      "skill": "bone-spear",
+      "locale": "zh-CN",
+      "device": "mobile",
+      "status": "passed",
+      "durationMs": 32015,
+      "screenshots": [
+        {
+          "name": "bone-spear-preview",
+          "sha256": "8208abd56ef85dd2d9a4b1fe6c23d4450eb21a55cb3c9cbe3d991cf359e135fe",
+          "width": 924,
+          "height": 1496,
+          "archiveMember": "public-screenshots/mobile-zh-CN-bone-spear-bone-spear-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2",
+          "width": 924,
+          "height": 3270,
+          "archiveMember": "public-screenshots/mobile-zh-CN-bone-spear-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "9bfba1964bb9e2e66764b34c40669e36fd14771e3626877614152ca6d03d26aa"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "9bfba1964bb9e2e66764b34c40669e36fd14771e3626877614152ca6d03d26aa"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "bone-spear",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spear",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "bone-spear",
+        "spellName": "\u9aa8\u77db",
+        "line": "05:00:00Bone Poison Brow \u65bd\u653e\u4e86 \u9aa8\u77db\u3002"
+      }
+    },
+    {
+      "skill": "bone-spirit",
+      "locale": "en",
+      "device": "mobile",
+      "status": "passed",
+      "durationMs": 34348,
+      "screenshots": [
+        {
+          "name": "bone-spirit-preview",
+          "sha256": "37d3cd8163fa9daa0e8caebb653eae81b430b556db51511f776db25c3f50d0f2",
+          "width": 924,
+          "height": 1496,
+          "archiveMember": "public-screenshots/mobile-en-bone-spirit-bone-spirit-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc",
+          "width": 924,
+          "height": 3413,
+          "archiveMember": "public-screenshots/mobile-en-bone-spirit-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "9dae688008f16602ac2cdad8559e2b55eb680931d89cd5d82251aa1e19116645"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "9dae688008f16602ac2cdad8559e2b55eb680931d89cd5d82251aa1e19116645"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "bone-spirit",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "bone-spirit",
+        "spellName": "Bone Spirit",
+        "line": "05:00:00Bone Poison Brow casts Bone Spirit."
+      }
+    },
+    {
+      "skill": "bone-spirit",
+      "locale": "zh-CN",
+      "device": "mobile",
+      "status": "passed",
+      "durationMs": 34593,
+      "screenshots": [
+        {
+          "name": "bone-spirit-preview",
+          "sha256": "d6cf3dc4720076ab1b0b2ec482e3872ea12d4694461c3951b3086a7d07f5945d",
+          "width": 924,
+          "height": 1496,
+          "archiveMember": "public-screenshots/mobile-zh-CN-bone-spirit-bone-spirit-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2",
+          "width": 924,
+          "height": 3270,
+          "archiveMember": "public-screenshots/mobile-zh-CN-bone-spirit-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "f0841f0097789db9b59ae877e19cda8390220b03d346be2996ca9b8e4f616bf6"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "f0841f0097789db9b59ae877e19cda8390220b03d346be2996ca9b8e4f616bf6"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "bone-spirit",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "bone-spirit",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "bone-spirit",
+        "spellName": "\u9aa8\u7075",
+        "line": "05:00:00Bone Poison Brow \u65bd\u653e\u4e86 \u9aa8\u7075\u3002"
+      }
+    },
+    {
+      "skill": "poison-nova",
+      "locale": "en",
+      "device": "mobile",
+      "status": "passed",
+      "durationMs": 21984,
+      "screenshots": [
+        {
+          "name": "poison-nova-preview",
+          "sha256": "167e5a7d70c2904d5e8beb61bec447060cedbd03b9087a43cdf7b8fca867fbf5",
+          "width": 924,
+          "height": 1496,
+          "archiveMember": "public-screenshots/mobile-en-poison-nova-poison-nova-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc",
+          "width": 924,
+          "height": 3413,
+          "archiveMember": "public-screenshots/mobile-en-poison-nova-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "d73850083647d361b6a137b1615ae8f76688e35769135469417a38ff63467ff8"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "d73850083647d361b6a137b1615ae8f76688e35769135469417a38ff63467ff8"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "poison-nova",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "poison-nova",
+        "spellName": "Poison Nova",
+        "line": "05:00:00Bone Poison Brow casts Poison Nova."
+      }
+    },
+    {
+      "skill": "poison-nova",
+      "locale": "zh-CN",
+      "device": "mobile",
+      "status": "passed",
+      "durationMs": 22634,
+      "screenshots": [
+        {
+          "name": "poison-nova-preview",
+          "sha256": "2189e89ea151b2e2d98169d05e8bc64120dc88d366bbcd5a0ba21c7e658b4c6d",
+          "width": 924,
+          "height": 1496,
+          "archiveMember": "public-screenshots/mobile-zh-CN-poison-nova-poison-nova-preview.png"
+        },
+        {
+          "name": "victory",
+          "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2",
+          "width": 924,
+          "height": 3270,
+          "archiveMember": "public-screenshots/mobile-zh-CN-poison-nova-victory.png"
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "9d511d0099ede4c45d9624bd26f09f0761fa5f23956f501c962e9596b2843936"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "9d511d0099ede4c45d9624bd26f09f0761fa5f23956f501c962e9596b2843936"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "poison-nova",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "poison-nova",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "poison-nova",
+        "spellName": "\u6bd2\u4e91\u672f",
+        "line": "05:00:00Bone Poison Brow \u65bd\u653e\u4e86 \u6bd2\u4e91\u672f\u3002"
+      }
+    }
+  ],
+  "totals": {
+    "passed": 16,
+    "publicCasts": 16,
+    "sixDomainSavePairs": 32,
+    "actualOfflineContinues": 16,
+    "geometry": 80,
+    "screenshots": 32
+  },
+  "reportSha256": "80304cc857f80f0813646bd9446fb375cd892c251ece46dc239b390165a77599",
+  "rawArchive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necro-direct-eza_lfus-retained.tar.xz",
+  "visuallyInspectedFinal": [
+    "desktop-en-poison-nova-poison-nova-preview.png",
+    "mobile-zh-CN-poison-nova-poison-nova-preview.png",
+    "desktop-en-bone-spirit-victory.png",
+    "mobile-zh-CN-bone-spirit-victory.png"
+  ]
+}

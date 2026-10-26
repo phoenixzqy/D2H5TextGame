@@ -1,6 +1,6 @@
 # BUG-243 — Show actual Necromancer direct-spell rules
 
-- Status: local presentation repaired/verified in a0cf908b; complete skill acceptance remains open. No new skill credit.
+- Status: locally fixed in a0cf908b; four bounded functional contracts verified through c40fa1f1. Independent/earned acceptance remains open.
 - Severity: Medium — mechanics work in controlled fixtures, but detail omits rules.
 - Owners: root, engine display/frontend/i18n; independent design/QA open.
 - Base:2e70eddb; Node24.21.0, Vitest1.x, pure native simulation and jsdom UI.
@@ -26,7 +26,7 @@ rules (and Nova periodic details). One invalid-metadata control passes.
 ## Evidence and cause
 
 Initial direct-red log/terminal receipt retained by root in
-/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necro-direct-eza_lfus/.
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necro-direct-eza_lfus-retained.tar.xz (members direct-red.log and direct-red.json; original scratch cleaned).
 Run9.876s,exit1. New tests:src/stores/necromancer-direct.causal.test.ts,
 src/engine/skills/displayStats.necromancer-direct.test.ts and
 src/features/skills/SkillsScreen.necromancer-direct.test.tsx.
@@ -44,3 +44,7 @@ campaign/replay, external publication, dependency or tuning change occurred.
 ## Presentation validation
 
 [Evidence](../../docs/plans/evidence/d04-necromancer-direct.md): focused135/5, engine8484/317, full17173/775/two existing skips, types/lint/build/precache/bridge pass. Production4/4 en/zh desktop/mobile and exact save/offline pairs pass. This initial browser matrix does not assert individual casts. Native allocation/wave/import and repeated-Poison proof remain open; no inventory credit.
+
+## Complete bounded local verification
+
+Lifecycle/import and paid Poison reapplication17new tests, full17190/777/two existing skips, final types/lint and16single-spell production browser cases pass. Each spell actually casts in en/zh desktop/mobile;32exact six-domain save pairs/16actual offlineContinues. Four bounded credits bring inventory153/213 and Necromancer11/32. All1374committed blobs match tested frozen bytes. Element screenshots have documented clipping/black-region limits; no whole-app UX/a11y, independent/earned acceptance or private-v1 completion. Raw retention/cleanup are linked from the evidence above.

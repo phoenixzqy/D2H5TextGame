@@ -1,0 +1,117 @@
+{
+  "owner": "root",
+  "removedFiles": 1782,
+  "removedDirectories": 60,
+  "remaining": [],
+  "failures": [],
+  "recordedProcessIdentities": [
+    {
+      "pid": 3932011,
+      "startTicks": "91638461"
+    },
+    {
+      "pid": 3930065,
+      "startTicks": "91632279"
+    },
+    {
+      "pid": 3930067,
+      "startTicks": "91632279"
+    },
+    {
+      "pid": 3938610,
+      "startTicks": "91689510"
+    },
+    {
+      "pid": 3957593,
+      "startTicks": "91765920"
+    },
+    {
+      "pid": 3938024,
+      "startTicks": "91680261"
+    },
+    {
+      "pid": 3930068,
+      "startTicks": "91632279"
+    },
+    {
+      "pid": 3959665,
+      "startTicks": "91790392"
+    },
+    {
+      "pid": 3936262,
+      "startTicks": "91655175"
+    },
+    {
+      "pid": 3961105,
+      "startTicks": "91809199"
+    },
+    {
+      "pid": 3933956,
+      "startTicks": "91642893"
+    },
+    {
+      "pid": 3933929,
+      "startTicks": "91642834"
+    },
+    {
+      "pid": 3957151,
+      "startTicks": "91760866"
+    },
+    {
+      "pid": 3930066,
+      "startTicks": "91632279"
+    },
+    {
+      "pid": 3928680,
+      "startTicks": "91609072"
+    },
+    {
+      "pid": 3936260,
+      "startTicks": "91655175"
+    },
+    {
+      "pid": 3929292,
+      "startTicks": "91619532"
+    },
+    {
+      "pid": 3958096,
+      "startTicks": "91770120"
+    },
+    {
+      "pid": 3958284,
+      "startTicks": "91771873"
+    },
+    {
+      "pid": 3936263,
+      "startTicks": "91655175"
+    },
+    {
+      "pid": 3957076,
+      "startTicks": "91760059"
+    },
+    {
+      "pid": 3959667,
+      "startTicks": "91790393"
+    },
+    {
+      "pid": 3958285,
+      "startTicks": "91771873"
+    },
+    {
+      "pid": 3959666,
+      "startTicks": "91790392"
+    },
+    {
+      "pid": 3936261,
+      "startTicks": "91655175"
+    }
+  ],
+  "liveTaskConsumers": [],
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necro-direct-eza_lfus-retained.tar.xz",
+  "archiveSha256": "fe0445c8c2a6b2f01e6d616995ea8afadf01dcf95ee1acbbe86dab5babc21293",
+  "retentionRecord": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necro-direct-eza_lfus-retention.json",
+  "deletionManifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necro-direct-eza_lfus-deletion-manifest.json",
+  "retainedReason": "BUG243/four-skill and full private-v1 evidence consumers; contains decisive raw diagnostics, screenshots, source/build manifests and tested JS",
+  "retainedRemovalOwner": "root",
+  "retainedRemovalCondition": "root after BUG243/full-v1 evidence consumers finish; not routine shared-cache cleanup"
+}

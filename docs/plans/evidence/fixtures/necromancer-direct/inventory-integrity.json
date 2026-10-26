@@ -1,0 +1,20 @@
+{
+  "beforeSha256": "8e38ad6669d5698f90c91110e652d455d32cdb2ae629ad6e5ee516b08a29685b",
+  "afterSha256": "e2d59db336155d41907fed3047b5d7810a56c728ba585a3ce31ff5c290c9726d",
+  "changedIDs": [
+    "skills-necromancer-poison-nova",
+    "skills-necromancer-bone-spear",
+    "skills-necromancer-teeth",
+    "skills-necromancer-bone-spirit"
+  ],
+  "other209RawRowsByteExact": true,
+  "all213IDsAndOrderPreserved": true,
+  "counts": {
+    "boundedFunctional": 153,
+    "unverified": 58,
+    "engineOnly": 1,
+    "reviewNeeded": 1
+  },
+  "necromancerBounded": 11,
+  "necromancerTotal": 32
+}

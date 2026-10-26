@@ -91,3 +91,7 @@ legacy one-stack shape and real native/bilingual/browser boundaries. Root's
 review is author review, without an independent signoff claim.
 Security check:pass; first-party local tests/display only. Preserve native grants,
 allocations/genuine save, dependencies, permissions, CI and external state.
+
+## Bounded local outcome
+
+Presentation a0cf908b and lifecycle/public proof c40fa1f1 satisfy the complete local four-skill contract. [Evidence](../evidence/d04-necromancer-direct.md):115new tests; final full17190/777/two existing skips, types/lint/build/precache;16per-spell public casts and save/offline matrix pass. Exactly four bounded credits,153total. Visual capture/full-UX limitations and independent/earned acceptance remain open; provisional tuning is unchanged.
