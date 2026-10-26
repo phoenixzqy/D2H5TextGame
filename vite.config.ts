@@ -244,13 +244,22 @@ export default defineConfig({
     target: 'es2022',
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Keep schema tooling separate so application growth cannot silently
-          // push its entry chunk beyond Workbox's unchanged precache limit.
-          'validation-vendor': ['ajv', 'ajv-formats'],
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'game-engine': ['zustand', 'dexie', 'dexie-react-hooks'],
-          'i18n': ['i18next', 'react-i18next', 'i18next-browser-languagedetector']
+        manualChunks(id) {
+          // Static data has no side effects. Keep it separate from the growing
+          // entry so both remain below Workbox's unchanged precache limit.
+          const normalizedId = id.replaceAll('\\', '/');
+          if (normalizedId.startsWith(`${dataRoot.replaceAll('\\', '/')}/`) &&
+              normalizedId.endsWith('.json')) return 'game-data';
+
+          const vendorGroups = {
+            'validation-vendor': ['ajv', 'ajv-formats'],
+            'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+            'game-engine': ['zustand', 'dexie', 'dexie-react-hooks'],
+            'i18n': ['i18next', 'react-i18next', 'i18next-browser-languagedetector']
+          };
+          for (const [chunk, packages] of Object.entries(vendorGroups)) {
+            if (packages.some(name => normalizedId.includes(`/node_modules/${name}/`))) return chunk;
+          }
         }
       }
     }
