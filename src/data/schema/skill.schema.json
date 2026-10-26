@@ -8,6 +8,65 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["enchantOnPhysicalHit"], "properties": { "enchantOnPhysicalHit": {} } },
+      "then": { "properties": { "id": { "const": "skills-sorceress-enchant" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "enum": ["skills-sorceress-teleport", "skills-sorceress-enchant"] } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "cost", "scaling", "appliesStatus", "timedBuff"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "self" },
+          "requiredLevel": { "const": 18 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "$ref": "#/properties/prerequisites" },
+          "appliesStatus": { "$ref": "#/properties/appliesStatus" },
+          "scaling": { "$ref": "#/properties/scaling" },
+          "cost": { "type": "object", "additionalProperties": false, "required": ["mana"],
+            "properties": { "mana": { "$ref": "#/properties/cost/properties/mana" } } },
+          "timedBuff": { "$ref": "#/properties/timedBuff" },
+          "damage": false, "damageType": false, "attackDamagePct": false,
+          "statusEffect": false, "additionalStatusEffects": false, "periodicSpell": false,
+          "armorRetaliation": false, "aoeShape": false, "maxTargets": false,
+          "hitSequence": false, "requires": false, "heal": false, "summonId": false,
+          "onHitRecovery": false, "onHitSelfDamage": false, "damageComposition": false,
+          "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false,
+          "synergies": false, "summon": { "const": false },
+          "aura": { "const": false }, "passive": { "const": false }
+        }
+      }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-sorceress-teleport" } } },
+      "then": { "properties": {
+        "prerequisites": { "const": ["skills-sorceress-telekinesis"] },
+        "appliesStatus": { "const": ["teleport"] }, "appliesTags": false,
+        "enchantOnPhysicalHit": false,
+        "scaling": { "type": "object", "additionalProperties": false,
+          "required": ["cooldownPerLevel", "costPerLevel", "passiveStatsPerLevel"],
+          "properties": {
+            "cooldownPerLevel": { "$ref": "#/properties/scaling/properties/cooldownPerLevel" },
+            "costPerLevel": { "$ref": "#/properties/scaling/properties/costPerLevel" },
+            "passiveStatsPerLevel": { "type": "object", "additionalProperties": false,
+              "required": ["magicDodgePct"], "properties": {
+                "magicDodgePct": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 }
+              } }
+          } }
+      } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-sorceress-enchant" } } },
+      "then": { "required": ["enchantOnPhysicalHit"], "properties": {
+        "enchantOnPhysicalHit": { "$ref": "#/properties/enchantOnPhysicalHit" },
+        "prerequisites": { "const": ["skills-sorceress-fire-ball"] },
+        "appliesStatus": { "const": ["enchant"] }, "appliesTags": { "const": ["fire"] },
+        "scaling": { "type": "object", "additionalProperties": false,
+          "required": ["cooldownPerLevel", "costPerLevel"], "properties": {
+            "cooldownPerLevel": { "$ref": "#/properties/scaling/properties/cooldownPerLevel" },
+            "costPerLevel": { "$ref": "#/properties/scaling/properties/costPerLevel" }
+          } }
+      } }
+    },
+    {
       "if": {
         "required": [
           "periodicSpell"
@@ -1697,7 +1756,7 @@
       "then": {
         "properties": {
           "id": {
-            "enum": ["skills-assassin-burst-of-speed", "skills-assassin-cloak-of-shadows", "skills-barbarian-leap", "skills-barbarian-concentrate"]
+            "enum": ["skills-assassin-burst-of-speed", "skills-assassin-cloak-of-shadows", "skills-barbarian-leap", "skills-barbarian-concentrate", "skills-sorceress-teleport", "skills-sorceress-enchant"]
           }
         }
       }
@@ -4942,6 +5001,13 @@
           "type": "number", "minimum": 0, "maximum": 100,
           "description": "Finite percentage points subtracted from each enemy resistance while the selected source hero lives."
         }
+      }
+    },
+    "enchantOnPhysicalHit": {
+      "type": "object", "additionalProperties": false, "required": ["attackPctPerRank"],
+      "description": "Exact paid Enchant: extra Fire base per direct Physical hit as a fraction of Attack captured at cast, per paid rank.",
+      "properties": {
+        "attackPctPerRank": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 }
       }
     },
     "timedBuff": {

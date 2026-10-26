@@ -27,6 +27,7 @@ import { DRUID_SUMMON_DEFINITION, DRUID_SUMMON_IDS } from './druid-summon-defini
 import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 
 export interface DisplaySkillSource {
+  readonly enchantOnPhysicalHit?: { readonly attackPctPerRank: number };
   readonly periodicSpell?: { readonly durationMs: number; readonly intervalMs: number };
   readonly armorRetaliation?: import('../types/skills').ArmorRetaliationTuning;
   readonly attackDamagePct?: number;
@@ -163,6 +164,9 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Finite personal paid potency; Enchant is a weapon Fire base, not spell damage. */
+  readonly sorceressBuff?: { readonly durationSeconds: number;
+    readonly magicDodgePoints?: number; readonly enchantAttackPercent?: number };
   /** Persistent spell damage rows are per pulse, not totals or a once-only cast. */
   readonly periodicSpell?: { readonly durationSeconds: number; readonly intervalSeconds: number; readonly pulses: number };
   /** Counterattack range, distinct from direct damage at buff-cast time. */
@@ -607,6 +611,13 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(['skills-sorceress-teleport', 'skills-sorceress-enchant'].includes(skill.id) &&
+      skill.trigger === 'active' && skill.target === 'self' && skill.timedBuff ? { sorceressBuff: {
+        durationSeconds: skill.timedBuff.durationMs / 1000,
+        ...(skill.id === 'skills-sorceress-teleport'
+          ? { magicDodgePoints: Number(((skill.scaling?.passiveStatsPerLevel?.magicDodgePct ?? 0) * safeRank * 100).toFixed(4)) }
+          : { enchantAttackPercent: Number(((skill.enchantOnPhysicalHit?.attackPctPerRank ?? 0) * safeRank * 100).toFixed(4)) })
+      } } : {}),
     ...(skill.periodicSpell && ['skills-sorceress-blaze', 'skills-sorceress-fire-wall',
       'skills-sorceress-thunder-storm'].includes(skill.id) ? { periodicSpell: {
       durationSeconds: skill.periodicSpell.durationMs / 1000,

@@ -69,6 +69,9 @@ import { activeCloakOfShadows, cloakOfShadowsRank, copyCloakOfShadowsStatuses, m
   paidCloakOfShadows, CLOAK_OF_SHADOWS_IDS, CLOAK_OF_SHADOWS_DEFINITION } from '../skills/cloak-of-shadows';
 import { activeConcentrate, concentrateRank, copyConcentrateStatuses, matchesConcentrate,
   paidConcentrate, CONCENTRATE_IDS, CONCENTRATE_DEFINITION } from '../skills/concentrate';
+import { activeSorceressBuff, canCaptureEnchantAttack, copySorceressBuffStatuses,
+  matchesSorceressBuff, paySorceressBuff, sorceressBuffBonus, sorceressBuffId,
+  sorceressBuffRank, SORCERESS_BUFF_DEFINITIONS } from '../skills/sorceress-buffs';
 import { activeLeap, leapRank, copyLeapStatuses, matchesLeap,
   paidLeap, LEAP_IDS, LEAP_DEFINITION } from '../skills/leap';
 import { activeFeralRage, copyFeralRageStatuses, FERAL_RAGE_DEFINITION, gainFeralRageStack } from '../skills/druid-sustain';
@@ -536,7 +539,8 @@ function pickDefender(
 }
 
 function registerUnit(state: State, u: CombatUnit): void {
-  const native = u.druidSummonRanks === undefined ? u : { ...u, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
+  const copiedBuffs = copySorceressBuffStatuses(u);
+  const native = u.druidSummonRanks === undefined ? copiedBuffs : { ...copiedBuffs, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
   const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyConcentrateStatuses(copyLeapStatuses(copyCloakOfShadowsStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(copyFrenzyStatuses(native))))))));
   const shaped = refreshPeriodicSpells(refreshHolyShieldState(refreshDruidFormState(copied)));
   state.units.set(u.id, shaped);
@@ -640,7 +644,7 @@ function buildDamageInput(
       effect.damageType === 'physical' || effect.damageType === 'thorns'
         ? defender.stats.physDodge + druidFormBonuses(defender).physDodgePct + (activeBurstOfSpeed(defender, state.simClockMs)?.physDodgePct ?? 0) +
           (defenderAura?.bonuses.physDodgePct ?? 0)
-        : defender.stats.magicDodge + coldArmorBonuses(defender).dodge + (defenderAura?.bonuses.magicDodgePct ?? 0) + (defendingCloak?.magicDodgePct ?? 0),
+        : defender.stats.magicDodge + coldArmorBonuses(defender).dodge + (defenderAura?.bonuses.magicDodgePct ?? 0) + (defendingCloak?.magicDodgePct ?? 0) + sorceressBuffBonus(defender, 'teleport', state.simClockMs),
     ...(defender.resistPenalty !== undefined ? { resistPenalty: defender.resistPenalty } : {})
   };
 }
@@ -695,22 +699,33 @@ function applyDamageToUnit(
     ? COLD_ARMOR_IDS.map(id => ({ id, rank: paidColdArmorRank(activeDefender, id) }))
       .filter(({ id, rank }) => rank > 0 && (id === 'chilling-armor' || effect.damageType === 'physical')) : [];
   const input = buildDamageInput(state, attacker, activeDefender, effect, skillLevel);
+  const enchantBase = hostileHit && effect.damageType === 'physical' && !auraPulse && !armorReaction && !periodicSpell
+    ? sorceressBuffBonus(attacker, 'enchant', state.simClockMs) : 0;
+  const sharedRoll = effect.components !== undefined || enchantBase > 0 ? rollDamage(input, state.rng) : undefined;
   const scalarOutcome = () => auraPulse
     ? { hit: true, crit: false, dodged: false,
       ...mitigateDamage((input.baseMin + input.flatBonus) * (1 + input.increasedPct) * input.comboMult, input) }
-    : resolveDamage(input, state.rng);
+    : sharedRoll ? resolveRolledDamage(input, sharedRoll) : resolveDamage(input, state.rng);
   // All component inputs observe the same pre-strike units and statuses. One
   // hit/base/crit decision is shared; this strike cannot combo with its own statuses.
-  const sharedRoll = effect.components ? rollDamage(input, state.rng) : undefined;
   const totalWeight = effect.components?.reduce((sum, component) => sum + component.weight, 0) ?? 1;
-  const hits = effect.components && sharedRoll
+  const carrierHits = effect.components && sharedRoll
     ? effect.components.map(component => ({ damageType: component.damageType,
       outcome: resolveRolledDamage(buildDamageInput(state, attacker, activeDefender,
         { ...effect, damageType: component.damageType }, skillLevel), sharedRoll, component.weight / totalWeight) }))
     : [{ damageType: effect.damageType, outcome: scalarOutcome() }];
+  const hits = [...carrierHits];
+  if (enchantBase > 0 && sharedRoll?.hit) {
+    // A weapon coating shares hit/crit without copying carrier penetration,
+    // statuses or recovery, and without drawing another random number.
+    const fire: DamageEffect = { kind: 'damage', damageType: 'fire', base: [0, 0] };
+    hits.push({ damageType: 'fire', outcome: resolveRolledDamage(
+      buildDamageInput(state, attacker, activeDefender, fire, 1, enchantBase), sharedRoll, 0) });
+  }
   const outcome = hits[0]?.outcome;
   if (!outcome) return;
   let amount = 0;
+  let physicalHpRemoved = 0;
   let newLife = defender.life;
   let remainingDefenses = defender;
   for (const [index, hit] of hits.entries()) {
@@ -729,7 +744,9 @@ function applyDamageToUnit(
       crit: hit.outcome.crit, dodged: hit.outcome.dodged
     });
     if (hit.outcome.dodged) continue;
+    const previousLife = newLife;
     newLife = Math.max(0, newLife - absorption.damage);
+    if (hit.damageType === 'physical') physicalHpRemoved += previousLife - newLife;
     // Spend finite defenses in order, keeping original hit eligibility until the
     // final component commits HP. Death, orbs and corpse supply close once below.
     const manaEvent = commitPersonalDamage(state, remainingDefenses, { ...absorption.unit,
@@ -742,7 +759,7 @@ function applyDamageToUnit(
   if (outcome.dodged) return;
 
   const statuses = effect.applyStatuses ?? (effect.applyStatus ? [effect.applyStatus] : []);
-  for (const hit of hits) {
+  for (const hit of carrierHits) {
     for (const status of statuses) {
       // Scalar Physical carriers can apply elemental payloads. Only composite
       // statuses are bound to their matching component's damage and potency.
@@ -842,11 +859,10 @@ function applyDamageToUnit(
     (after ? activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, after, state.units)?.rank ?? 0 : 0) * SPIRIT_OF_BARBS_DEFINITION.thornsPerRank;
   if (after && !alive(after)) {
     finishDeaths(state, [activeStatusView(after, state.simClockMs)]);
-  } else if (after && hostileHit && effect.damageType === 'physical' &&
-    defender.life > newLife && reflectionPct > 0) {
+  } else if (after && hostileHit && physicalHpRemoved > 0 && reflectionPct > 0) {
     const target = state.units.get(attackerId);
     if (!target || !alive(target)) return;
-    const raw = Math.max(1, Math.floor((defender.life - newLife) * reflectionPct));
+    const raw = Math.max(1, Math.floor(physicalHpRemoved * reflectionPct));
     const thorns: DamageEffect = { kind: 'damage', damageType: 'thorns', base: [raw, raw] };
     const reflected = mitigateDamage(raw,
       buildDamageInput(state, after, activeStatusView(target, state.simClockMs), thorns));
@@ -1088,6 +1104,8 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
+  const personalBuff = sorceressBuffId(skill.id);
+  if (personalBuff) return sorceressBuffRank(unit, personalBuff);
   const periodic = periodicSpellId(skill.id);
   if (periodic) return periodicSpellRank(unit, periodic);
   if (CONVERSION_IDS.some(id => id === skill.id)) return conversionRank(unit);
@@ -1195,6 +1213,13 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  const buffEffect = skill.effects.find(effect => effect.kind === 'buff' && effect.sorceressBuff !== undefined);
+  const personalBuff = sorceressBuffId(skillOrderId) ?? sorceressBuffId(skill.id) ??
+    (buffEffect?.kind === 'buff' ? buffEffect.sorceressBuff : undefined);
+  if (personalBuff && (!matchesSorceressBuff(skill, personalBuff) || sorceressBuffRank(unit, personalBuff) === 0 ||
+    !Number.isFinite(unit.mana) || activeSorceressBuff(unit, personalBuff, state.simClockMs) !== undefined ||
+    [skill.id, skillOrderId, 'sorceress.' + personalBuff, 'skills-sorceress-' + personalBuff].some(id => (unit.cooldowns[id] ?? 0) > 0) ||
+    (personalBuff === 'enchant' && !canCaptureEnchantAttack(unit.stats.attack, sorceressBuffRank(unit, personalBuff))))) return false;
   const periodicEffect = skill.effects.find(effect => effect.kind === 'periodic-spell');
   const periodic = periodicSpellId(skillOrderId) ?? periodicSpellId(skill.id) ??
     (periodicEffect?.kind === 'periodic-spell' ? periodicEffect.spell : undefined);
@@ -1264,7 +1289,7 @@ function canUseSkillForState(
   if (unit.level < skill.minLevel) return false;
   if (isPaidFrozenArmorSkill(skill)) {
     if (hasPaidFrozenArmor(unit)) return false;
-  } else if (!armor && !burst && !cloak && !leap && !concentrate && !form &&
+  } else if (!armor && !burst && !cloak && !leap && !concentrate && !form && !personalBuff &&
     skill.isBuff &&
     (unit.activeBuffIds.includes(skill.id) || activeBuffIdsForSkill(skill).some((id) => unit.activeBuffIds.includes(id)))
   ) return false;
@@ -1383,6 +1408,20 @@ function applyEffect(
     case 'buff': {
       const actor = state.units.get(actorId);
       if (!actor) return;
+      if (effect.sorceressBuff && matchesSorceressBuff(skill, effect.sorceressBuff)) {
+        const id = effect.sorceressBuff, d = SORCERESS_BUFF_DEFINITIONS[id];
+        if (sorceressBuffRank(actor, id) === 0 || activeSorceressBuff(actor, id, state.simClockMs)) return;
+        const markers = [id, 'sorceress.' + id, 'skills-sorceress-' + id];
+        state.units.set(actorId, { ...actor, activeBuffIds: actor.activeBuffIds.filter(id => !markers.includes(id)),
+          statuses: [...actor.statuses.filter(status => !markers.includes(status.id)), {
+            id, sourceId: actorId, stacks: 1, remaining: d.durationMs / 1000,
+            appliedAtMs: state.simClockMs, expiresAtMs: state.simClockMs + d.durationMs,
+            sorceressBuff: paySorceressBuff(id, skillLevel, actor.stats.attack)
+          }] });
+        emit(state, { kind: 'buff', target: actorId, buffId: id, statusBacked: true });
+        observeStatuses(state, actorId);
+        break;
+      }
       if (matchesHolyShield(skill) && effect.holyShield === true) {
         state.units.set(actorId, payHolyShield(actor));
         const dealt = state.periodic.get(actorId)?.dealt ?? 0;

@@ -529,7 +529,8 @@ describe('skill registry JSON catalog', () => {
     expect(getSkill('skills-sorceress-teleport')?.effects).toContainEqual({
       kind: 'buff',
       id: 'teleport',
-      duration: -1
+      sorceressBuff: 'teleport',
+      duration: 1
     });
     expect(getSkill('skills-barbarian-find-item')?.effects).toContainEqual({
       kind: 'buff',

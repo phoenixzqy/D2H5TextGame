@@ -26,6 +26,8 @@ export interface GridPosition {
 
 /** Active status effect on a combat unit. */
 export interface ActiveStatus {
+  /** Paid personal Teleport/Enchant; Enchant also captures normal Attack at cast. */
+  readonly sorceressBuff?: { readonly rank: number; readonly attack?: number };
   /** Paid rank of a finite persistent spell; source and phase use this status's standard fields. */
   readonly periodicSpell?: { readonly rank: number };
   /** Copied finite enemy debuff potency, captured by one paid Battle Cry. */
@@ -85,6 +87,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Fresh legal native allocations, independent of carried paid buff potency. */
+  readonly sorceressBuffRanks?: Readonly<Record<import('../skills/sorceress-buffs').SorceressBuffId, number>>;
   /** Fresh legal learned authority; governed equipment/native Blaze has its separate projection. */
   readonly periodicSpellRanks?: Readonly<Record<'fire-wall' | 'thunder-storm', number>>;
   /** Fresh native Concentrate authority, independent of carried paid potency. */

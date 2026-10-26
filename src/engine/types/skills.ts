@@ -328,6 +328,9 @@ export interface SkillDef {
   /** Explicit finite paid stat-buff timing; exact skill ownership is schema guarded. */
   readonly timedBuff?: { readonly durationMs: number };
 
+  /** Exact paid Enchant weapon Fire, based on Attack captured at cast. */
+  readonly enchantOnPhysicalHit?: { readonly attackPctPerRank: number };
+
   /** Exact Venom-only basic-hit coating; strict JSON schema guards its owner and tuning. */
   readonly venomOnBasicHit?: { readonly attackPct: number; readonly durationMs: number };
 

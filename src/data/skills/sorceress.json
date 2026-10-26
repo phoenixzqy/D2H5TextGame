@@ -716,6 +716,9 @@
       "passiveStatsPerLevel": {
         "magicDodgePct": 0.01
       }
+    },
+    "timedBuff": {
+      "durationMs": 1000
     }
   },
   {
@@ -959,10 +962,13 @@
     ],
     "scaling": {
       "cooldownPerLevel": -0.05,
-      "costPerLevel": -0.15,
-      "passiveStatsPerLevel": {
-        "fireDamagePct": 0.02
-      }
+      "costPerLevel": -0.15
+    },
+    "timedBuff": {
+      "durationMs": 10000
+    },
+    "enchantOnPhysicalHit": {
+      "attackPctPerRank": 0.02
     }
   },
   {

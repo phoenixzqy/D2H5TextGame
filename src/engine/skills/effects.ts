@@ -89,6 +89,8 @@ export interface HealEffect {
 
 /** Buff primitive. */
 export interface BuffEffect {
+  /** Exact paid finite personal Teleport/Enchant consumer. */
+  readonly sorceressBuff?: import('./sorceress-buffs').SorceressBuffId;
   /** Exact paid Cyclone Armor consumer; bare buff markers confer no defensive power. */
   readonly cycloneArmor?: true;
   /** Exact paid Holy Shield consumer; markers alone grant no power. */

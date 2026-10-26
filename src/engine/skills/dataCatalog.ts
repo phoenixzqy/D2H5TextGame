@@ -29,6 +29,7 @@ export type PlayableSkillClass =
   | 'sorceress';
 
 interface JsonSkill {
+  readonly enchantOnPhysicalHit?: { readonly attackPctPerRank: number };
   readonly periodicSpell?: NonNullable<import('../types/skills').SkillDef['periodicSpell']>;
   readonly armorRetaliation?: import('../types/skills').ArmorRetaliationTuning;
   readonly attackDamagePct?: number;
@@ -256,6 +257,8 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       effects.push({
         kind: 'buff',
         id: skill.appliesStatus[0],
+        ...((skill.id === 'skills-sorceress-teleport' || skill.id === 'skills-sorceress-enchant') && skill.timedBuff
+          ? { sorceressBuff: skill.id === 'skills-sorceress-teleport' ? 'teleport' as const : 'enchant' as const } : {}),
         ...(skill.id === 'skills-druid-cyclone-armor' ? { cycloneArmor: true as const } : {}),
         ...(skill.id === 'skills-paladin-holy-shield' ? { holyShield: true as const } : {}),
         ...(skill.id === 'skills-sorceress-shiver-armor' ? { coldArmor: 'shiver-armor' as const } : {}),
