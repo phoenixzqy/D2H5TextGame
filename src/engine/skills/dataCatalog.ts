@@ -15,6 +15,7 @@ import necromancerSkills from '../../data/skills/necromancer.json';
 import paladinSkills from '../../data/skills/paladin.json';
 import sorceressSkills from '../../data/skills/sorceress.json';
 import type { AoeShape } from '../combat/grid';
+import { isDecrepifyDefinition } from '../combat/decrepify-definition';
 import type { DamageType } from '../types/attributes';
 import type { ComboTag, ConversionTuning, FeralRageTuning, HitSpeedStackTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
 import type { OnHitStatus, RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
@@ -287,11 +288,14 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
     const amplifyMetadata = skill.id === 'skills-necromancer-amplify-damage' &&
       skill.appliesStatus[0] === 'amplify-damage' ? skill.statusEffect : undefined;
     const warcry = ['skills-barbarian-howl', 'skills-barbarian-taunt', 'skills-barbarian-battle-cry'].includes(skill.id);
+    const decrepify = skill.id === 'skills-necromancer-decrepify' && isDecrepifyDefinition(skill);
     effects.push({
       kind: 'debuff',
       statusId: skill.appliesStatus[0],
-      ...(warcry && skill.statusEffect?.durationMs !== undefined ? { durationMs: skill.statusEffect.durationMs } : {}),
+      ...((warcry || decrepify) && skill.statusEffect?.durationMs !== undefined
+        ? { durationMs: skill.statusEffect.durationMs } : {}),
       ...(skill.id === 'skills-barbarian-battle-cry' ? { battleCry: true as const } : {}),
+      ...(decrepify ? { decrepify: true as const } : {}),
       ...(amplifyMetadata?.durationMs !== undefined ? { durationMs: amplifyMetadata.durationMs } : {}),
       ...(amplifyMetadata?.physicalResistReductionPct !== undefined
         ? { physicalResistReductionPct: amplifyMetadata.physicalResistReductionPct }

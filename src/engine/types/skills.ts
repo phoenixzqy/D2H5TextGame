@@ -180,7 +180,9 @@ export interface SkillRequirement {
 export interface SkillStatusEffectMetadata {
   /** Howl's boss/chapter-boss duration factor. */
   readonly bossDurationMultiplier?: number;
-  /** Battle Cry outgoing direct-damage reduction, in percentage points. */
+  /** Decrepify effective AttackSpeed reduction before cadence flooring/clamps. */
+  readonly attackSpeedReductionPct?: number;
+  /** Battle Cry or Decrepify outgoing direct-damage reduction, in percentage points. */
   readonly damageReductionPct?: number;
   readonly damageReductionPerRank?: number;
   /** Additional ordinary-Defense reduction per rank above one. */

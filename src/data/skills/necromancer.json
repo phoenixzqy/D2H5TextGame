@@ -191,6 +191,11 @@
     "appliesStatus": [
       "decrepify"
     ],
+    "statusEffect": {
+      "durationMs": 3000,
+      "attackSpeedReductionPct": 50,
+      "damageReductionPct": 33
+    },
     "appliesTags": [
       "amp-damage"
     ],

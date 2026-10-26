@@ -26,6 +26,8 @@ export interface GridPosition {
 
 /** Active status effect on a combat unit. */
 export interface ActiveStatus {
+  /** Complete paid finite Decrepify potency; never persisted or inferred from a marker. */
+  readonly decrepify?: { readonly attackSpeedReductionPct: number; readonly damageReductionPct: number };
   /** Paid personal Teleport/Enchant; Enchant also captures normal Attack at cast. */
   readonly sorceressBuff?: { readonly rank: number; readonly attack?: number };
   /** Paid rank of a finite persistent spell; source and phase use this status's standard fields. */

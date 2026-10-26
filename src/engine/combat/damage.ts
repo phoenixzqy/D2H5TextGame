@@ -33,7 +33,7 @@ export interface DamageInput {
   readonly comboMult: number;
   /** Independent direct Arcane multiplier for an active Mana Burn target at zero MP. */
   readonly manaBurnMult?: number;
-  /** Paid Battle Cry's outgoing direct-damage factor, before mitigation. */
+  /** Combined paid Battle Cry/Decrepify outgoing direct-damage factor, before mitigation. */
   readonly outgoingDamageMultiplier?: number;
   /** Damage type. */
   readonly type: DamageType;

@@ -118,6 +118,8 @@ export interface DebuffEffect {
   readonly durationMs?: number;
   /** Nonnegative physical resistance reduction in percentage points. */
   readonly physicalResistReductionPct?: number;
+  /** Capture the authored finite Decrepify speed/damage packet on payment. */
+  readonly decrepify?: true;
   /** Capture authored rank-scaled damage/Defense reduction on payment. */
   readonly battleCry?: true;
 }

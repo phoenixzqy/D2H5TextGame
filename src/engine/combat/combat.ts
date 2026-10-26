@@ -84,6 +84,7 @@ import { copyDruidSummonRanks, isDruidSummonBody, qualifyDruidSummon } from '../
 import { DRUID_SUMMON_DEFINITION, type DruidSummonId } from '../skills/druid-summon-definition';
 import { HYDRA_DEFINITION, isHydraSkill, matchesHydra, hydraRank, buildHydra } from '../skills/hydra';
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
+import { activeDecrepify, paidDecrepify } from './decrepify-definition';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
 import {
@@ -420,7 +421,9 @@ function effectiveActionPeriod(state: State, unit: CombatUnit): number {
     FERAL_RAGE_DEFINITION.attackSpeedPctPerStack;
   const frenzySpeed = unit.stats.attackSpeed * (activeFrenzy(unit, state.simClockMs)?.stacks ?? 0) *
     FRENZY_DEFINITION.attackSpeedPctPerStack;
-  return actionPeriodMs((unit.stats.attackSpeed * (1 + speedBonus) + feralSpeed + frenzySpeed) * enrage * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
+  const decrepify = activeDecrepify(unit, state.simClockMs);
+  return actionPeriodMs((unit.stats.attackSpeed * (1 + speedBonus) + feralSpeed + frenzySpeed) * enrage *
+    (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1) * (1 - (decrepify?.attackSpeedReductionPct ?? 0) / 100));
 }
 
 /** All new attempts start one full effective period after the current clock. */
@@ -617,6 +620,7 @@ function buildDamageInput(
   const emptyManaBurn = effect.damageType === 'arcane' && defender.mana === 0 && hasStatus(activeDefender, 'mana-burn');
   const stats = attacker.stats;
   const attackingCry = activeBattleCry(attacker, state.simClockMs);
+  const attackingDecrepify = activeDecrepify(attacker, state.simClockMs);
   const defendingCry = activeBattleCry(defender, state.simClockMs);
   const attackingCloak = activeCloakOfShadows(attacker, state.simClockMs);
   const defendingCloak = activeCloakOfShadows(defender, state.simClockMs);
@@ -663,7 +667,8 @@ function buildDamageInput(
       (effect.damageType === 'cold' && attacker.side === 'player' && alive(attacker) && holyFreezeSourceId(state) !== undefined
         ? MERC_HOLY_FREEZE_DEFINITION.coldDamagePct : 0),
     comboMult: combo,
-    ...(attackingCry ? { outgoingDamageMultiplier: 1 - attackingCry.damageReductionPct / 100 } : {}),
+    ...((attackingCry ?? attackingDecrepify) ? { outgoingDamageMultiplier:
+      (1 - (attackingCry?.damageReductionPct ?? 0) / 100) * (1 - (attackingDecrepify?.damageReductionPct ?? 0) / 100) } : {}),
     ...(emptyManaBurn ? { manaBurnMult: MANA_BURN_DEFINITION.zeroManaArcaneMultiplier } : {}),
     ...((effect.damageType === 'physical' || effect.damageType === 'thorns') &&
       hasStatus(activeStatusView(attacker, state.simClockMs), 'blind')
@@ -1667,6 +1672,7 @@ function applyEffect(
           t,
           {
             id: effect.statusId,
+            ...(effect.decrepify === true && effect.statusId === 'decrepify' ? { decrepify: paidDecrepify() } : {}),
             ...(effect.battleCry === true && effect.statusId === 'battle-cry'
               ? { battleCry: paidBattleCry(skillLevel, paidRankBonus(state, acting)) } : {}),
             ...cleansingDurationInput(state, t.id),
