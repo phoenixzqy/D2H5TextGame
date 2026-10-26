@@ -32,6 +32,8 @@ export interface ActiveStatus {
   readonly dimVision?: { readonly physicalHitChanceReductionPct: number };
   /** Paid finite Terror fear; transient and bounded by authored tier timing. */
   readonly terror?: true;
+  /** Paid finite Bone Prison trap; bare markers grant no action control. */
+  readonly bonePrison?: true;
   /** Copied paid finite damage-curse potency; transient and exact-identity checked. */
   readonly damageCurse?: { readonly id: 'iron-maiden' | 'life-tap' | 'lower-resist'; readonly percent: number };
   /** Complete paid finite Decrepify potency; never persisted or inferred from a marker. */
@@ -126,6 +128,8 @@ export interface CombatUnit {
   readonly fireGolemRank?: number;
   /** Fresh selected native Blood Golem authority; paid aura bindings remain battle-local. */
   readonly bloodGolemRank?: number;
+  /** Fresh native learned Prison authority; never inferred from a combo or saved timer. */
+  readonly bonePrisonRank?: number;
   /** Fresh native configured Feral authority, captured per wave; never persisted. */
   readonly feralRageRank?: number;
   /** Fresh native configured Frenzy authority, captured per wave; never persisted. */

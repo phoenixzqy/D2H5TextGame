@@ -30,6 +30,7 @@ import { WEAKEN_DEFINITION } from './weaken-definition';
 import { DIM_VISION_DEFINITION } from './dim-vision-definition';
 import { TARGET_CURSE_DEFINITIONS } from './target-curse-definition';
 import { TERROR_DEFINITION } from './terror-definition';
+import { BONE_PRISON_DEFINITION } from './bone-prison-definition';
 import { DAMAGE_CURSE_DEFINITIONS, isDamageCurseId } from './damage-curse-definition';
 
 /** Known status IDs handled with explicit defaults. */
@@ -37,6 +38,7 @@ export type StatusId =
   | 'confuse' | 'attract'
   | 'dim-vision'
   | 'terror'
+  | 'bone-prison'
   | 'iron-maiden' | 'life-tap' | 'lower-resist'
   | 'weaken'
   | 'decrepify'
@@ -70,6 +72,8 @@ export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.
   confuse: { duration: TARGET_CURSE_DEFINITIONS.confuse.durationMs / 1000, maxStacks: 1 },
   attract: { duration: TARGET_CURSE_DEFINITIONS.attract.durationMs / 1000, maxStacks: 1 },
   'dim-vision': { duration: DIM_VISION_DEFINITION.durationMs / 1000, maxStacks: 1 },
+  'bone-prison': { duration: BONE_PRISON_DEFINITION.durationMs / 1000, maxStacks: 1,
+    bossDurationMult: BONE_PRISON_DEFINITION.bossDurationMultiplier },
   terror: { duration: TERROR_DEFINITION.durationMs / 1000, maxStacks: 1,
     bossDurationMult: TERROR_DEFINITION.bossDurationMultiplier },
   'iron-maiden': { duration: DAMAGE_CURSE_DEFINITIONS['iron-maiden'].durationMs / 1000, maxStacks: 1 },
@@ -99,6 +103,7 @@ export interface ApplyStatusInput {
   readonly targetCurse?: ActiveStatus['targetCurse'];
   readonly dimVision?: ActiveStatus['dimVision'];
   readonly terror?: true;
+  readonly bonePrison?: true;
   readonly damageCurse?: ActiveStatus['damageCurse'];
   readonly weaken?: ActiveStatus['weaken'];
   readonly decrepify?: ActiveStatus['decrepify'];
@@ -251,7 +256,7 @@ export function applyStatusWithResult(
   }
 
   // Paid warcries and finite damage curses replace their source, potency and interval without stacking.
-  if (id === 'confuse' || id === 'attract' || id === 'dim-vision' || id === 'terror' || id === 'howl' || id === 'taunt' || id === 'battle-cry' || id === 'decrepify' || id === 'weaken' || isDamageCurseId(id))
+  if (id === 'confuse' || id === 'attract' || id === 'dim-vision' || id === 'terror' || id === 'bone-prison' || id === 'howl' || id === 'taunt' || id === 'battle-cry' || id === 'decrepify' || id === 'weaken' || isDamageCurseId(id))
     unit = { ...unit, statuses: unit.statuses.filter(s => s.id !== id) };
   const idx = unit.statuses.findIndex((s) => canonicalStatusId(s.id) === id);
   const expiresAtMs =
@@ -267,6 +272,7 @@ export function applyStatusWithResult(
       ...((id === 'confuse' || id === 'attract') && input.targetCurse === id ? { targetCurse: id } : {}),
       ...(id === 'dim-vision' && input.dimVision ? { dimVision: Object.freeze({ ...input.dimVision }) } : {}),
       ...(id === 'terror' && input.terror === true ? { terror: true as const } : {}),
+      ...(id === 'bone-prison' && input.bonePrison === true ? { bonePrison: true as const } : {}),
       ...(isDamageCurseId(id) && input.damageCurse?.id === id ? { damageCurse: Object.freeze({ ...input.damageCurse }) } : {}),
       ...(id === 'weaken' && input.weaken ? { weaken: Object.freeze({ ...input.weaken }) } : {}),
       ...(id === 'decrepify' && input.decrepify ? { decrepify: Object.freeze({ ...input.decrepify }) } : {}),

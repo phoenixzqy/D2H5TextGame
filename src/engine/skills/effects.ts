@@ -117,6 +117,8 @@ export interface DebuffEffect {
   readonly dimVision?: true;
   /** Complete authored finite fear, captured only at actual payment. */
   readonly terror?: true;
+  /** Complete authored player action trap, granted only at actual payment. */
+  readonly bonePrison?: true;
   /** Complete authored damage curse; copied into a finite status only on payment. */
   readonly damageCurse?: 'iron-maiden' | 'life-tap' | 'lower-resist';
   readonly kind: 'debuff';
