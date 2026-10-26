@@ -1,0 +1,110 @@
+{
+  "id": "summons/necromancer",
+  "templates": {
+    "skeleton": {
+      "lifeMax": 112,
+      "manaMax": 0,
+      "attack": 25,
+      "defense": 14,
+      "attackSpeed": 70,
+      "critChance": 0.05,
+      "critDamage": 1.5,
+      "physDodge": 0.05,
+      "magicDodge": 0.05,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "physical": 0,
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 0,
+        "arcane": 0
+      }
+    },
+    "clay_golem": {
+      "lifeMax": 220,
+      "manaMax": 0,
+      "attack": 24,
+      "defense": 34,
+      "attackSpeed": 55,
+      "critChance": 0.05,
+      "critDamage": 1.5,
+      "physDodge": 0.02,
+      "magicDodge": 0.02,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "physical": 10,
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 0,
+        "arcane": 0
+      }
+    },
+    "skeletal_mage": {
+      "lifeMax": 88,
+      "manaMax": 0,
+      "attack": 30,
+      "defense": 10,
+      "attackSpeed": 70,
+      "critChance": 0.05,
+      "critDamage": 1.5,
+      "physDodge": 0.05,
+      "magicDodge": 0.08,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "physical": 0,
+        "fire": 10,
+        "cold": 10,
+        "lightning": 10,
+        "poison": 10,
+        "arcane": 0
+      }
+    },
+    "iron_golem": {
+      "lifeMax": 260,
+      "manaMax": 0,
+      "attack": 36,
+      "defense": 48,
+      "attackSpeed": 60,
+      "critChance": 0.05,
+      "critDamage": 1.5,
+      "physDodge": 0.05,
+      "magicDodge": 0.05,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "physical": 20,
+        "fire": 0,
+        "cold": 0,
+        "lightning": 20,
+        "poison": 0,
+        "arcane": 0
+      }
+    },
+    "revived": {
+      "lifeMax": 150,
+      "manaMax": 0,
+      "attack": 28,
+      "defense": 18,
+      "attackSpeed": 65,
+      "critChance": 0.05,
+      "critDamage": 1.5,
+      "physDodge": 0.05,
+      "magicDodge": 0.05,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "physical": 0,
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 0,
+        "arcane": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d2h5://schema/necromancer-summons",
+  "description": "Complete unchanged Skeleton, Clay Golem, Skeletal Mage, Iron Golem and Revived Minion base stats. Rank growth and magical mitigation remain separately authored.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "templates"],
+  "properties": {
+    "id": { "const": "summons/necromancer" },
+    "templates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["skeleton", "clay_golem", "skeletal_mage", "iron_golem", "revived"],
+      "properties": {
+        "skeleton": { "$ref": "#/$defs/bodyStats" },
+        "clay_golem": { "$ref": "#/$defs/bodyStats" },
+        "skeletal_mage": { "$ref": "#/$defs/bodyStats" },
+        "iron_golem": { "$ref": "#/$defs/bodyStats" },
+        "revived": { "$ref": "#/$defs/bodyStats" }
+      }
+    }
+  },
+  "$defs": {
+    "bodyStats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lifeMax", "manaMax", "attack", "defense", "attackSpeed", "critChance", "critDamage", "physDodge", "magicDodge", "magicFind", "goldFind", "resistances"],
+      "properties": {
+        "lifeMax": { "type": "integer", "minimum": 1 },
+        "manaMax": { "type": "integer", "minimum": 0 },
+        "attack": { "type": "integer", "minimum": 0 },
+        "defense": { "type": "integer", "minimum": 0 },
+        "attackSpeed": { "type": "integer", "minimum": 0 },
+        "critChance": { "type": "number", "minimum": 0, "maximum": 1 },
+        "critDamage": { "type": "number", "minimum": 1 },
+        "physDodge": { "type": "number", "minimum": 0, "maximum": 1 },
+        "magicDodge": { "type": "number", "minimum": 0, "maximum": 1 },
+        "magicFind": { "type": "number", "minimum": 0 },
+        "goldFind": { "type": "number", "minimum": 0 },
+        "resistances": { "$ref": "#/$defs/resistances" }
+      }
+    },
+    "resistances": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["physical", "fire", "cold", "lightning", "poison", "arcane"],
+      "properties": {
+        "physical": { "type": "number", "minimum": -100, "maximum": 100 },
+        "fire": { "type": "number", "minimum": -100, "maximum": 100 },
+        "cold": { "type": "number", "minimum": -100, "maximum": 100 },
+        "lightning": { "type": "number", "minimum": -100, "maximum": 100 },
+        "poison": { "type": "number", "minimum": -100, "maximum": 100 },
+        "arcane": { "type": "number", "minimum": -100, "maximum": 100 }
+      }
+    }
+  }
+}

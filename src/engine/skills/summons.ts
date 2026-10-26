@@ -5,7 +5,7 @@
  * onto a factory that produces a fresh {@link CombatUnit} for the spawned
  * minion. The factory receives the *owner* unit so it can inherit level/side.
  *
- * Engine-side defaults; production tuning may be loaded from JSON later.
+ * Native Druid/Necromancer body tuning is loaded from validated JSON.
  *
  * @module engine/skills/summons
  */
@@ -22,6 +22,7 @@ import { SPIRIT_OF_BARBS_DEFINITION } from './spirit-of-barbs';
 import { getDruidSummonStats } from './druid-summon-definition';
 import { fireGolemBodyStats } from './fire-golem';
 import { bloodGolemBodyStats } from './blood-golem';
+import { getNecromancerSummonStats } from './necromancer-summon-definition';
 
 /** @deprecated Templates are pure; battles now own their summon identity. */
 export function resetSummonCounters(): void {
@@ -123,67 +124,16 @@ function baseSummonStats(): DerivedStats {
   };
 }
 
-function skeletonStats(): DerivedStats {
-  return {
-    ...baseSummonStats(),
-    life: 112,
-    lifeMax: 112,
-    attack: 25,
-    defense: 14
-  };
-}
-
 function baseStatsForSummon(summonId: string): DerivedStats | undefined {
   const druid = getDruidSummonStats(summonId);
   if (druid) return druid;
+  const necromancer = getNecromancerSummonStats(summonId);
+  if (necromancer) return necromancer;
   switch (summonId) {
-    case 'skeleton':
-      return skeletonStats();
-    case 'clay_golem':
-      return {
-        ...baseSummonStats(),
-        life: 220,
-        lifeMax: 220,
-        attack: 24,
-        defense: 34,
-        attackSpeed: 55,
-        physDodge: 0.02,
-        magicDodge: 0.02,
-        resistances: { ...ZERO_RES, physical: 10 }
-      };
     case 'blood_golem':
       return bloodGolemBodyStats();
-    case 'iron_golem':
-      return {
-        ...baseSummonStats(),
-        life: 260,
-        lifeMax: 260,
-        attack: 36,
-        defense: 48,
-        attackSpeed: 60,
-        resistances: { ...ZERO_RES, physical: 20, lightning: 20 }
-      };
     case 'fire_golem':
       return fireGolemBodyStats();
-    case 'skeletal_mage':
-      return {
-        ...baseSummonStats(),
-        life: 88,
-        lifeMax: 88,
-        attack: 30,
-        defense: 10,
-        magicDodge: 0.08,
-        resistances: { ...ZERO_RES, fire: 10, cold: 10, lightning: 10, poison: 10 }
-      };
-    case 'revived':
-      return {
-        ...baseSummonStats(),
-        life: 150,
-        lifeMax: 150,
-        attack: 28,
-        defense: 18,
-        attackSpeed: 65
-      };
     case 'valkyrie':
       return { ...baseSummonStats(), life: 200, lifeMax: 200, attack: 40, defense: 20 };
     case 'spirit_of_barbs': {
