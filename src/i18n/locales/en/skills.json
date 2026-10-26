@@ -815,7 +815,7 @@
     },
     "decrepify": {
       "name": "Decrepify",
-      "desc": "Curses all enemies, reducing their attack speed by 50% and damage by 33%."
+      "desc": "Curses all living enemies for {{duration}}, reducing AttackSpeed by {{slow}}% and outgoing direct damage by {{reduction}}% before resistance and flat mitigation. Existing damage-over-time rates stay unchanged; attack intervals follow the usual speed limits. Pays {{mana}} MP and starts a {{cooldown}} s cooldown. Refreshes without stacking."
     },
     "summon-mastery": {
       "name": "Summon Mastery",

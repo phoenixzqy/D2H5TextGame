@@ -14,6 +14,7 @@ import type { ColdMasteryTuning, FeralRageTuning, HitSpeedStackTuning, OnHitReco
 import { STATUS_DEFAULTS } from '../combat/status';
 import { CHILL_DEFINITION } from '../combat/chill-definition';
 import { paidBattleCry } from '../combat/warcry-definition';
+import { isDecrepifyDefinition, resolveDecrepifyDefinition } from '../combat/decrepify-definition';
 import { MANA_BURN_DEFINITION } from '../combat/mana-burn-definition';
 import { coldMasteryReductionAtRank } from './cold-mastery';
 import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
@@ -196,6 +197,9 @@ export interface SkillRankDisplayStats {
   /** Paid hostile warcry interval and, for Battle Cry, rank-scaled reductions. */
   readonly warcry?: { readonly durationSeconds: number; readonly damageReductionPercent?: number;
     readonly defenseReductionPercent?: number };
+  /** Complete finite hostile curse; AttackSpeed reduction precedes normal cadence clamps. */
+  readonly decrepify?: { readonly durationSeconds: number; readonly attackSpeedReductionPercent: number;
+    readonly damageReductionPercent: number };
   /** Paid personal Defense interval and Attack converted into an Arcane hit. */
   readonly concentrate?: { readonly durationSeconds: number };
   readonly convertedAttackPercent?: number;
@@ -547,6 +551,8 @@ export function computeSkillRankDisplayStats(
   global?: SummonPassiveProjection
 ): SkillRankDisplayStats {
   const safeRank = clampRank(rank, skill.maxLevel);
+  const decrepify = skill.id === 'skills-necromancer-decrepify' && isDecrepifyDefinition(skill)
+    ? resolveDecrepifyDefinition([skill]) : undefined;
   const damage = damageRows(skill, safeRank);
   const totalDamage = skill.damage
     ? {
@@ -689,6 +695,9 @@ export function computeSkillRankDisplayStats(
         bossFreezeSeconds: STATUS_DEFAULTS.freeze.duration * (STATUS_DEFAULTS.freeze.bossDurationMult ?? 1)
       } } : {}),
     ...(coldAttack ? { coldAttack } : {}),
+    ...(decrepify ? { decrepify: { durationSeconds: decrepify.durationMs / 1000,
+      attackSpeedReductionPercent: decrepify.attackSpeedReductionPct,
+      damageReductionPercent: decrepify.damageReductionPct } } : {}),
     ...(['skills-barbarian-howl', 'skills-barbarian-taunt', 'skills-barbarian-battle-cry'].includes(skill.id) ? {
       warcry: { durationSeconds: (skill.statusEffect?.durationMs ?? 0) / 1000,
         ...(skill.id === 'skills-barbarian-battle-cry' ? {

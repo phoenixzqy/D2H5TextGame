@@ -1006,6 +1006,11 @@ function StatSection({
             {stats.warcry.defenseReductionPercent !== undefined ? <StatLine label={t('details.warcryDefenseReduction')}
               value={t('details.percentValue', { value: stats.warcry.defenseReductionPercent })} /> : null}
           </> : null}
+          {stats.decrepify ? <>
+            <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.decrepify.durationSeconds })} />
+            <StatLine label={t('details.coldChillSlow')} value={t('details.percentValue', { value: stats.decrepify.attackSpeedReductionPercent })} />
+            <StatLine label={t('details.warcryDamageReduction')} value={t('details.percentValue', { value: stats.decrepify.damageReductionPercent })} />
+          </> : null}
           {stats.concentrate ? <StatLine label={t('details.concentrateDuration')}
             value={t('details.seconds', { seconds: stats.concentrate.durationSeconds })} /> : null}
           {stats.convertedAttackPercent !== undefined ? <StatLine label={t('details.convertedAttack')}
@@ -1039,6 +1044,7 @@ function StatSection({
               value={stats.statuses.map((id) =>
                 id === AMPLIFY_DAMAGE_DEFINITION.canonicalStatusId || id === AMPLIFY_DAMAGE_DEFINITION.legacyStatusId
                   ? t('necromancer.amplify-damage.name')
+                  : id === 'decrepify' ? t('necromancer.decrepify.name')
                   : id === 'burst-of-speed' ? t('assassin.burst-of-speed.name')
                   : id === 'cloak-of-shadows' ? t('assassin.cloak-of-shadows.name')
                   : id === 'blind' ? t('combat:effect.status.blind')
@@ -1736,6 +1742,13 @@ function dynamicDescription(
       duration: t('details.seconds', { seconds: stats.warcry.durationSeconds }),
       bossDuration: t('details.seconds', { seconds: stats.control?.bossDurationSeconds }),
       damageReduction: stats.warcry.damageReductionPercent, defenseReduction: stats.warcry.defenseReductionPercent,
+      mana: stats.manaCost, cooldown: stats.cooldown
+    });
+  }
+  if (skill.id === 'skills-necromancer-decrepify' && stats?.decrepify) {
+    return t('necromancer.decrepify.desc', {
+      duration: t('details.seconds', { seconds: stats.decrepify.durationSeconds }),
+      slow: stats.decrepify.attackSpeedReductionPercent, reduction: stats.decrepify.damageReductionPercent,
       mana: stats.manaCost, cooldown: stats.cooldown
     });
   }
