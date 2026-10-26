@@ -120,6 +120,8 @@ export interface CombatUnit {
   readonly druidSummonRanks?: import('../skills/druid-summon-authority').DruidSummonRanks;
   /** Fresh selected native Fire Golem authority; paid body bindings remain battle-local. */
   readonly fireGolemRank?: number;
+  /** Fresh selected native Blood Golem authority; paid aura bindings remain battle-local. */
+  readonly bloodGolemRank?: number;
   /** Fresh native configured Feral authority, captured per wave; never persisted. */
   readonly feralRageRank?: number;
   /** Fresh native configured Frenzy authority, captured per wave; never persisted. */

@@ -83,6 +83,7 @@ import { activeFrenzy, copyFrenzyStatuses, FRENZY_DEFINITION, gainFrenzyStack } 
 import { copyDruidSummonRanks, isDruidSummonBody, qualifyDruidSummon } from '../skills/druid-summon-authority';
 import { DRUID_SUMMON_DEFINITION, type DruidSummonId } from '../skills/druid-summon-definition';
 import { FIRE_GOLEM_DEFINITION, qualifyFireGolem } from '../skills/fire-golem';
+import { BLOOD_GOLEM_DEFINITION, qualifyBloodGolem } from '../skills/blood-golem';
 import { HYDRA_DEFINITION, isHydraSkill, matchesHydra, hydraRank, buildHydra } from '../skills/hydra';
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
 import { activeDecrepify, paidDecrepify } from './decrepify-definition';
@@ -284,6 +285,8 @@ interface State {
     readonly skillId: string; readonly rank: number }>;
   /** Only new body IDs from a qualified paid Fire Golem batch gain Fire/Burn attacks. */
   readonly fireGolems: Map<string, { readonly ownerId: string; readonly rank: number }>;
+  /** Only a new qualified paid body can grant the non-stacking original-party leech aura. */
+  readonly bloodGolems: Map<string, { readonly ownerId: string; readonly rank: number }>;
   readonly ironGolem?: IronGolemInput;
   ironGolemPreparation?: IronGolemPreparationAttestation;
   readonly mightAura?: MightAuraProjection;
@@ -939,6 +942,7 @@ function applyDamageToUnit(
     if (manaEvent) emit(state, manaEvent);
     if (reflectionAbsorption.absorbed > 0) observeStatuses(state, attackerId);
     if (!alive(damaged)) finishDeaths(state, [activeStatusView(damaged, state.simClockMs)]);
+    recoverBloodGolem(state, defenderId, target.life - damaged.life, hostileHit);
   }
 
   // Explicit skill-hit recovery observes actual HP removed, after ordinary death/orb/reflection settlement.
@@ -982,6 +986,7 @@ function applyDamageToUnit(
       }
     }
   }
+  recoverBloodGolem(state, attackerId, hpRemoved, hostileHit);
 }
 
 /** Shared ambient layers, always applied over the current fresh personal capacity. */
@@ -1287,6 +1292,23 @@ function commitHealing(state: State, target: CombatUnit, amount: number): void {
   emit(state, { kind: 'heal', target: target.id, amount: restored });
 }
 
+/** Recover the living actual source once, using fresh post-settlement resources and paid authority. */
+function recoverBloodGolem(state: State, sourceId: string, hpRemoved: number, hostile: boolean): void {
+  if (!hostile || state.bloodGolems.size === 0 || !Number.isFinite(hpRemoved) || hpRemoved <= 0) return;
+  const source = state.units.get(sourceId);
+  if (!source || source.side !== 'player' || effectiveSide(state, source) !== 'player' ||
+    !['hero', 'merc', 'summon'].includes(inferKind(source)) || !alive(source)) return;
+  const active = [...state.bloodGolems].some(([id, binding]) => {
+    const body = state.units.get(id), owner = state.units.get(binding.ownerId), skill = getSkill('necromancer.blood_golem');
+    return body !== undefined && owner !== undefined && skill !== undefined &&
+      body.id !== owner.id && body.side === 'player' && inferKind(body) === 'summon' &&
+      body.summon === true && body.summonTemplateId === 'blood_golem' &&
+      body.summonOwnerId === owner.id && (body.ownerId === undefined || body.ownerId === owner.id) &&
+      Number.isFinite(body.life) && body.life > 0 && qualifyBloodGolem(owner, skill, binding.rank);
+  });
+  if (active) commitHealing(state, source, Math.floor(hpRemoved * BLOOD_GOLEM_DEFINITION.lifeLeechFraction));
+}
+
 /** Select fresh, same-side recipients, retaining insertion order for ratio ties. */
 function healingTargets(state: State, actorId: string, effect: HealEffect): CombatUnit[] {
   const actor = state.units.get(actorId);
@@ -1522,6 +1544,8 @@ function applyEffect(
           crit: false, dodged: false });
         if (manaEvent) emit(state, manaEvent);
         if (absorption.absorbed > 0) observeStatuses(state, target.id);
+        recoverBloodGolem(state, actorId, Math.min(target.life, absorption.damage),
+          effectiveSide(state, acting) !== effectiveSide(state, target));
       }
       break;
     }
@@ -1987,11 +2011,37 @@ function integratePeriodic(
   return { total, compensation, dealt: Math.floor(total / SECONDS) };
 }
 
+/** Attribute only actual lost HP; preserve the shared integral and pooled damage event exactly. */
+function periodicRecoveryShares(state: State, unit: CombatUnit, from: number, to: number, hpRemoved: number) {
+  const weights = new Map<string, number>();
+  if (state.bloodGolems.size === 0 || !Number.isFinite(hpRemoved) || hpRemoved <= 0) return [];
+  for (const status of unit.statuses) {
+    const elapsed = Math.max(0, Math.min(to, status.expiresAtMs ?? Infinity) -
+      Math.max(from, status.appliedAtMs ?? 0));
+    const weight = elapsed * (status.dotPerStack ?? 0) * status.stacks;
+    if (Number.isFinite(weight) && weight > 0) weights.set(status.sourceId, (weights.get(status.sourceId) ?? 0) + weight);
+  }
+  const total = [...weights.values()].reduce((sum, weight) => sum + weight, 0);
+  if (!Number.isFinite(total) || total <= 0) return [];
+  const shares = [...weights].map(([sourceId, weight], index) => {
+    const exact = hpRemoved * (weight / total), source = state.units.get(sourceId);
+    return { sourceId, index, amount: Math.floor(exact), remainder: exact - Math.floor(exact),
+      hostile: source !== undefined && effectiveSide(state, source) !== effectiveSide(state, unit) };
+  });
+  let remaining = hpRemoved - shares.reduce((sum, share) => sum + share.amount, 0);
+  for (const share of [...shares].sort((a, b) => b.remainder - a.remainder || a.index - b.index)) {
+    const extra = Math.min(1, Math.max(0, remaining));
+    share.amount += extra; remaining -= extra;
+  }
+  return shares;
+}
+
 /** Every HP write precedes events/deaths; sources freeze the just-integrated interval. */
 function settlePeriodic(state: State, to: number): void {
   const from = state.simClockMs;
   const damages: { unit: CombatUnit; amount: number; absorbed: number; cycloneAbsorbed: number; holyShieldAbsorbed: number; manaEvent: ManaEvent | undefined }[] = [];
   const dead: CombatUnit[] = [];
+  const recoveries: ReturnType<typeof periodicRecoveryShares> = [];
   for (const before of state.units.values()) {
     if (!alive(before)) continue;
     const previous = state.periodic.get(before.id);
@@ -2002,6 +2052,7 @@ function settlePeriodic(state: State, to: number): void {
     const absorption = splitPersonalDamage(before, amount, previous?.dealt ?? 0,
       state.cyclonePeriodicBaseline.get(before.id) ?? 0, state.holyShieldPeriodicBaseline.get(before.id) ?? 0);
     const after = { ...absorption.unit, life: Math.max(0, before.life - absorption.damage) };
+    recoveries.push(...periodicRecoveryShares(state, before, from, to, before.life - after.life));
     const manaEvent = commitPersonalDamage(state, before, after);
     damages.push({ unit: after, amount: absorption.damage, absorbed: absorption.absorbed,
       cycloneAbsorbed: absorption.cycloneAbsorbed, holyShieldAbsorbed: absorption.holyShieldAbsorbed, manaEvent });
@@ -2021,6 +2072,7 @@ function settlePeriodic(state: State, to: number): void {
     return body && alive(body) && binding.expiresAtMs <= to ? [body] : [];
   });
   if (expiredHydras.length > 0) finishDeaths(state, expiredHydras);
+  for (const recovery of recoveries) recoverBloodGolem(state, recovery.sourceId, recovery.amount, recovery.hostile);
   for (const u of state.units.values()) {
     if (alive(u)) state.units.set(u.id, expireStatuses(u, to));
   }
@@ -2398,6 +2450,13 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
     qualifyFireGolem(owner, skill, rank)) {
     for (const body of registered) state.fireGolems.set(body.id, { ownerId: owner.id, rank });
   }
+  if (registered?.length === candidates.length && effect.summonId === 'blood_golem') {
+    // Command raises paid body potency, including20→21; it never replaces learned authority.
+    const learned = rank - (paidRankBonus(state, owner) ?? 0);
+    if (qualifyBloodGolem(owner, skill, learned)) {
+      for (const body of registered) state.bloodGolems.set(body.id, { ownerId: owner.id, rank: learned });
+    }
+  }
   // Generic preparation/payment stays intact; elemental authority requires explicit provenance.
   if (!registered || registered.length !== candidates.length ||
     skill.id !== 'necromancer.raise_skeletal_mage' || skill.archetype !== 'necromancer' ||
@@ -2764,6 +2823,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     corpses: [],
     druidSummons: new Map(),
     fireGolems: new Map(),
+    bloodGolems: new Map(),
     ...(golemMastery ? { golemMastery: Object.freeze({ sourceHeroId: golemMastery.sourceHeroId,
       rank: golemMastery.rank, maxRank: golemMastery.maxRank, golemLifePct: golemMastery.golemLifePct,
       golemAttackSpeed: golemMastery.golemAttackSpeed }) } : {}),

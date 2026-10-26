@@ -21,6 +21,7 @@ import type { Rng } from '../rng';
 import { SPIRIT_OF_BARBS_DEFINITION } from './spirit-of-barbs';
 import { getDruidSummonStats } from './druid-summon-definition';
 import { fireGolemBodyStats } from './fire-golem';
+import { bloodGolemBodyStats } from './blood-golem';
 
 /** @deprecated Templates are pure; battles now own their summon identity. */
 export function resetSummonCounters(): void {
@@ -151,15 +152,7 @@ function baseStatsForSummon(summonId: string): DerivedStats | undefined {
         resistances: { ...ZERO_RES, physical: 10 }
       };
     case 'blood_golem':
-      return {
-        ...baseSummonStats(),
-        life: 180,
-        lifeMax: 180,
-        attack: 34,
-        defense: 24,
-        attackSpeed: 70,
-        resistances: { ...ZERO_RES, poison: 20 }
-      };
+      return bloodGolemBodyStats();
     case 'iron_golem':
       return {
         ...baseSummonStats(),
