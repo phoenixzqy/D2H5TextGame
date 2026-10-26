@@ -45,6 +45,8 @@ import {
 } from './status';
 import { CHILL_DEFINITION } from './chill-definition';
 import { MANA_BURN_DEFINITION } from './mana-burn-definition';
+import { PLAGUE_DEFINITION } from './plague-definition';
+import { PlagueTracker } from './plague';
 import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
 import { isMercHolyFreezeSource, MERC_HOLY_FREEZE_DEFINITION } from '../skills/merc-holy-freeze';
 import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
@@ -262,6 +264,8 @@ export interface CombatResult {
 }
 
 interface State {
+  /** Paid Plague casts and marker lifetimes belong only to this battle. */
+  readonly plague: PlagueTracker;
   /** Only actual paid casts establish recipient potency; imported markers are inert. */
   readonly battleCommands: Map<string, BattleCommandGrant>;
   readonly boostedCommandPassives: Set<string>;
@@ -890,6 +894,7 @@ function applyDamageToUnit(
           const manaEvent = drain > 0
             ? commitMana(state, cur, { ...updated, mana: updated.mana - drain }, 'mana-burn') : undefined;
           if (drain <= 0) state.units.set(defenderId, updated);
+          if (applied && status.id === 'plague') state.plague.mark(effect, updated, state.simClockMs);
           if (applied) emit(state, { kind: 'status', target: defenderId, statusId: status.id });
           if (manaEvent) emit(state, manaEvent);
           observeStatuses(state, defenderId);
@@ -1125,11 +1130,15 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
 function deathEffects(state: State, dead: CombatUnit): void {
   if (hasStatus(dead, 'plague') || hasStatus(dead, 'poison')) {
     const recipients = [...state.units.values()].filter(u => u.side === dead.side && alive(u));
-    for (const u of spreadPlague(dead, recipients, 0.5, state.rng, state.simClockMs,
+    const epidemic = state.plague.consume(dead);
+    const fraction = epidemic ? PLAGUE_DEFINITION.epidemicSpreadFraction : PLAGUE_DEFINITION.ordinarySpreadFraction;
+    for (const u of spreadPlague(dead, recipients, fraction, state.rng, state.simClockMs,
       recipient => activeStatAura(state.statAura, recipient.id, state.units)?.cleansingDurationMultiplier)) {
       state.units.set(u.id, u);
       observeStatuses(state, u.id);
     }
+    if (epidemic) emit(state, { kind: 'message', messageKey: 'combat:epidemic.triggered',
+      params: { percent: fraction * 100, targets: recipients.length } });
   }
 
   // Bug #3 (P0) - when a summon dies, refund the parent skill's mana cost
@@ -1932,7 +1941,7 @@ function castSkill(
     targetEnemies = resolveAoeTargets(enemies, skill.aoeShape, skill.maxTargets);
   }
 
-  for (const effect of skill.effects) {
+  for (const effect of state.plague.prepare(skill.effects, targetEnemies, state.simClockMs)) {
     applyEffect(state, actorId, skill, effect, skillLevel, targetEnemies);
   }
   return undefined;
@@ -2851,6 +2860,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
   const global = snapshot.summonPassives;
   const assassinVenom = copyAssassinVenomProjection(snapshot.assassinVenom);
   const state: State = {
+    plague: new PlagueTracker(),
     battleCommands: new Map(),
     boostedCommandPassives: new Set(),
     hydras: new Map(),

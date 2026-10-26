@@ -33,6 +33,9 @@
   "logEmpty": "Battle starting…",
   "logPaused": "Auto-scroll paused (move cursor away to resume)",
   "logHoverPausedHint": "Log auto-scroll paused",
+  "epidemic": {
+    "triggered": "Epidemic spreads {{percent}}% of Poison stacks to {{targets}} targets."
+  },
   "corpses": {
     "consumedGrimWard": "Grim Ward consumes a corpse: ward raised for {{duration}}s. Remaining corpses: {{count}}.",
     "grimWardPulse": "Grim Ward frightens {{targets}} enemies.",

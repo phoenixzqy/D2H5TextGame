@@ -33,6 +33,9 @@
   "logEmpty": "战斗即将开始…",
   "logPaused": "已暂停滚动 (移开光标继续)",
   "logHoverPausedHint": "日志已暂停滚动",
+  "epidemic": {
+    "triggered": "瘟疫爆发，向 {{targets}} 个目标传播 {{percent}}% 的中毒层数。"
+  },
   "corpses": {
     "consumedGrimWard": "恐怖图腾消耗一具尸体：图腾建立，持续{{duration}}秒。剩余尸体：{{count}}。",
     "grimWardPulse": "恐怖图腾使{{targets}}名敌人恐惧。",
