@@ -1,7 +1,7 @@
 # BUG-276 — Capture paid Command potency for Iron Golem and Hydra
 
 - Severity: Medium — summons work, but ignore a legitimately paid rank bonus.
-- Status: Fixed locally in `7628e872`; fresh full regression still pending.
+- Status: Fixed locally in `7628e872`; full regression passed, independent acceptance open.
 - Owner: root, engine/QA; no delegation or independent acceptance.
 - Baseline: `4b1b22cc2d1cb8dd5a213c0f2ba7e975d8cf1783` plus BUG273/274 runtime.
 - Environment: Linux, Node v24.21.0, pure TypeScript engine; browser/viewport/
@@ -67,5 +67,16 @@ Final full types126.237s pass. Full lint241.448s passes with inputsUnchanged:fal
 from that type-only correction; final changed-test lint9.345s passes unchanged.
 Production build/bridge16.732s,756URLprecache0.292s and final native Iron startup
 Save/Continue4/4pass48.766s. The earlier18401 full pass predates this runtime and
-is not carried over. A fresh exact-input full run is active at this checkpoint.
-Root owns its task evidence until consumers finish, then archive/read-back/cleanup.
+is not carried over. That checkpoint is superseded by the terminal full run:
+18,414 tests / 849 files pass, with two existing opt-in skips, in 979.723s;
+its inputsUnchanged receipt is true. The eight native Iron item/damage tests in
+`be6e436c` pass separately and are excluded from that full count. Focused strict
+compilation and lint pass for that new file; no later full typecheck is claimed.
+
+[Final evidence](../../docs/plans/evidence/d06-command-summon-capture.md) records
+the distinct browser build boundaries, all original failures, exact retained
+archive/sidecars and verified cleanup. The earlier task-directory references are
+historical: that directory and task-owned dist are removed. Root retains the
+archive and sidecars through BUG273–276/full-v1 consumers, then removes those exact
+paths. Only Iron receives bounded functional credit; earned balance, independent
+acceptance, Mage signature effects and the full private v1 remain open.

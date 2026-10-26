@@ -13042,3 +13042,35 @@ Mage's automatic signature effects, remaining skills, independent/earned builds,
 campaign/balance/economy/endgame,C2–C4/fullG0–G7/privatev1 remain open. Protected
 genuineL33/nextNormal402/Ancients-Rite claimed/Baal uncleared hashes stay exact.
 No campaign/replay/remote action or delegation. Original goal and claim continue.
+
+
+## 2026-10-26 — Command summon terminal closeout and Iron bounded verification
+
+The preceding active-full checkpoint is superseded: original session43300/
+npm594063 completed exit0,18414tests/849files/twoexisting opt-in skips,
+979.723s,inputsUnchanged:true. No full-suite restart. `be6e436c` adds eight
+native Short Sword/Chain Mail projection→Mastery→paid Iron→actual physical
+damage/target HP cases;8/1passes11.040s,focused strict compilation10.245s and
+lint10.050s. Those eight cases are excluded from the full discovery/count.
+Existing fulltypes126.237s predates only this test addition. Rank6's initial
+display-rounded360.4 oracle is corrected to stored360.40000000000003; production
+arithmetic unchanged and original two failures retained.
+
+[Final evidence](evidence/d06-command-summon-capture.md) and its compact packet
+retain40terminal receipts, all original failures, distinct earlier18/18browser
+versus latest4/4startup boundaries and six individual image inspections. All
+1662frozen source/test/script/config hashes and genuine save hashes are exact.
+Archive1343members read-back verified;1341files/twolinks/79directories removed,
+remaining[]/failures[]. Former task and task-owned dist are absent; process
+audits have no matches/liveobserved/restricted PIDs. Root retains the three exact
+archive/sidecar paths listed in the report through BUG273–276/full-v1 consumers,
+then removes them. Shared dependencies/caches and ongoing worktree claim remain.
+
+After terminal validation/cleanup, exactly one Iron credit:173bounded/
+38unverified/oneengine-only/onereview-needed,Necromancer31/32. All212other raw
+rows/header/IDs/order are exact against frozen inventory. No Mage or independent
+acceptance credit. Mage's automatic signature effects remain explicitly deferred;
+remaining Amazon/Assassin skills, earned builds/balance/economy/endgame,
+C2–C4/fullG0–G7/privatev1 are open. GenuineL33/nextNormal402/Ancients-Rite claimed/
+Baal uncleared remains unchanged; no campaign/replay/remote action/delegation.
+Original umbrella goal and registered worktree claim continue.

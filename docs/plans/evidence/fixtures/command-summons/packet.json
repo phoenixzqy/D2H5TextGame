@@ -1,0 +1,746 @@
+{
+  "date": "2026-10-26",
+  "author": "root, sole executor; independent acceptance open",
+  "head": "be6e436cf58e3d8a6c8df91be168efe1230f30f9",
+  "scope": "bounded Command summon capture repair and native Iron verification; not full v1 acceptance",
+  "receipts": [
+    {
+      "label": "build-next",
+      "exit": 0,
+      "seconds": 16.731904568965547,
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "build",
+      "exit": 0,
+      "seconds": 18.591106391046196,
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "corrected-red",
+      "exit": 1,
+      "seconds": 3.757354571018368,
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/combat/skeletal-mage-command.test.ts"
+      ],
+      "inputsUnchanged": null,
+      "totals": [
+        "Test Files  1 failed (1)",
+        "Tests  3 failed (3)"
+      ]
+    },
+    {
+      "label": "engine-next",
+      "exit": 0,
+      "seconds": 178.85077672300395,
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  354 passed (354)",
+        "Tests  9413 passed (9413)"
+      ]
+    },
+    {
+      "label": "family-control-red",
+      "exit": 1,
+      "seconds": 4.028122119954787,
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/skeletal-mage-command.test.ts"
+      ],
+      "inputsUnchanged": null,
+      "totals": [
+        "Test Files  1 failed (1)",
+        "Tests  3 failed | 15 passed (18)"
+      ]
+    },
+    {
+      "label": "family-corrected-red",
+      "exit": 1,
+      "seconds": 4.158860061084852,
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/skeletal-mage-command.test.ts"
+      ],
+      "inputsUnchanged": null,
+      "totals": [
+        "Test Files  1 failed (1)",
+        "Tests  3 failed | 15 passed (18)"
+      ]
+    },
+    {
+      "label": "family-final",
+      "exit": 0,
+      "seconds": 8.878209054004401,
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/engine/combat/druid-summon-effects.test.ts",
+        "src/engine/combat/fire-golem.test.ts",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/summon-preparation.test.ts",
+        "src/engine/combat/summon-preparation-corpses.test.ts"
+      ],
+      "inputsUnchanged": null,
+      "totals": [
+        "Test Files  6 passed (6)",
+        "Tests  399 passed (399)"
+      ]
+    },
+    {
+      "label": "family-green",
+      "exit": 1,
+      "seconds": 8.864155029994436,
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/engine/combat/druid-summon-effects.test.ts",
+        "src/engine/combat/fire-golem.test.ts",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/summon-preparation.test.ts",
+        "src/engine/combat/summon-preparation-corpses.test.ts"
+      ],
+      "inputsUnchanged": null,
+      "totals": [
+        "Test Files  1 failed | 5 passed (6)",
+        "Tests  1 failed | 398 passed (399)"
+      ]
+    },
+    {
+      "label": "family-red",
+      "exit": 1,
+      "seconds": 4.1324088900582865,
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "src/engine/combat/skeletal-mage-command.test.ts"
+      ],
+      "inputsUnchanged": null,
+      "totals": [
+        "Test Files  1 failed (1)",
+        "Tests  3 failed | 15 passed (18)"
+      ]
+    },
+    {
+      "label": "full-next",
+      "exit": 0,
+      "seconds": 979.7231809280347,
+      "command": [
+        "npm",
+        "test"
+      ],
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  849 passed (849)",
+        "Tests  18414 passed | 2 skipped (18416)"
+      ]
+    },
+    {
+      "label": "full",
+      "exit": 0,
+      "seconds": 997.9513167379191,
+      "command": [
+        "npm",
+        "test"
+      ],
+      "inputsUnchanged": false,
+      "totals": [
+        "Test Files  848 passed (848)",
+        "Tests  18401 passed | 2 skipped (18403)"
+      ]
+    },
+    {
+      "label": "green",
+      "exit": 0,
+      "seconds": 4.84074786293786,
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/engine/combat/skeletal-mage-elements.test.ts",
+        "src/engine/combat/battle-command-carry.test.ts"
+      ],
+      "inputsUnchanged": null,
+      "totals": [
+        "Test Files  3 passed (3)",
+        "Tests  81 passed (81)"
+      ]
+    },
+    {
+      "label": "iron-canonical",
+      "exit": 0,
+      "seconds": 139.65124627295882,
+      "command": [
+        "node",
+        "node_modules/playwright/cli.js",
+        "test",
+        "--config",
+        "playwright.iron-golem.config.ts"
+      ],
+      "inputsUnchanged": false,
+      "totals": [
+        "18 passed (2.3m)"
+      ]
+    },
+    {
+      "label": "iron-final-startup",
+      "exit": 0,
+      "seconds": 48.765890505048446,
+      "command": [
+        "node",
+        "node_modules/playwright/cli.js",
+        "test",
+        "--config",
+        "playwright.iron-golem.config.ts",
+        "--grep",
+        "startup save Continue"
+      ],
+      "inputsUnchanged": true,
+      "totals": [
+        "4 passed (47.5s)"
+      ]
+    },
+    {
+      "label": "iron-hydra-final",
+      "exit": 0,
+      "seconds": 3.855023415060714,
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/iron-hydra-command.test.ts"
+      ],
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  13 passed (13)"
+      ]
+    },
+    {
+      "label": "iron-hydra-green",
+      "exit": 0,
+      "seconds": 4.2614374270197,
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/iron-hydra-command.test.ts"
+      ],
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  13 passed (13)"
+      ]
+    },
+    {
+      "label": "iron-hydra-red",
+      "exit": 1,
+      "seconds": 4.504595950013027,
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/iron-hydra-command.test.ts"
+      ],
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 failed (1)",
+        "Tests  7 failed | 6 passed (13)"
+      ]
+    },
+    {
+      "label": "iron-matrix",
+      "exit": 0,
+      "seconds": 1.1358428259845823,
+      "command": [
+        "node",
+        "node_modules/playwright/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h/iron.config.ts",
+        "--list"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "iron-native-damage-final",
+      "exit": 0,
+      "seconds": 11.040109258028679,
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/stores/iron-golem-native-damage.test.ts"
+      ],
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  8 passed (8)"
+      ]
+    },
+    {
+      "label": "iron-native-damage",
+      "exit": 1,
+      "seconds": 9.506294869002886,
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/stores/iron-golem-native-damage.test.ts"
+      ],
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 failed (1)",
+        "Tests  2 failed | 6 passed (8)"
+      ]
+    },
+    {
+      "label": "iron-native-lint",
+      "exit": 0,
+      "seconds": 10.049656306044199,
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/iron-golem-native-damage.test.ts",
+        "--max-warnings=0"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "iron-native-types",
+      "exit": 0,
+      "seconds": 10.244544485001825,
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--project",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h/iron-native-tsconfig.json"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "iron-original",
+      "exit": 1,
+      "seconds": 7.008775815949775,
+      "command": [
+        "node",
+        "node_modules/playwright/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h/iron-original.config.ts",
+        "--grep",
+        "controls en 360x640"
+      ],
+      "inputsUnchanged": true,
+      "totals": [
+        "1 failed"
+      ]
+    },
+    {
+      "label": "iron-precheck",
+      "exit": 0,
+      "seconds": 10.973490423057228,
+      "command": [
+        "node",
+        "node_modules/playwright/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h/iron.config.ts",
+        "--grep",
+        "controls en 360x640"
+      ],
+      "inputsUnchanged": true,
+      "totals": [
+        "1 passed (9.7s)"
+      ]
+    },
+    {
+      "label": "iron-public-matrix",
+      "exit": 1,
+      "seconds": 166.63031900499482,
+      "command": [
+        "node",
+        "node_modules/playwright/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h/iron.config.ts"
+      ],
+      "inputsUnchanged": false,
+      "totals": [
+        "2 failed",
+        "16 passed (2.8m)"
+      ]
+    },
+    {
+      "label": "iron-refill",
+      "exit": 0,
+      "seconds": 48.241137636010535,
+      "command": [
+        "node",
+        "node_modules/playwright/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h/iron-refill.config.ts",
+        "--grep",
+        "startup save Continue"
+      ],
+      "inputsUnchanged": true,
+      "totals": [
+        "4 passed (47.1s)"
+      ]
+    },
+    {
+      "label": "lint-final",
+      "exit": 0,
+      "seconds": 259.38429051300045,
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "lint-next",
+      "exit": 0,
+      "seconds": 241.44833714910783,
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "inputsUnchanged": false,
+      "totals": []
+    },
+    {
+      "label": "lint-test-final",
+      "exit": 0,
+      "seconds": 9.34483828197699,
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/combat/iron-hydra-command.test.ts",
+        "--max-warnings=0"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "lint",
+      "exit": 1,
+      "seconds": 253.57832929096185,
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "native",
+      "exit": 0,
+      "seconds": 34.01527284597978,
+      "command": [
+        "npm",
+        "run",
+        "test:related",
+        "--",
+        "src/stores/skeletal-mage-command-native.test.ts"
+      ],
+      "inputsUnchanged": null,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  3 passed (3)"
+      ]
+    },
+    {
+      "label": "next-summon-probe",
+      "exit": 0,
+      "seconds": 4.272095072083175,
+      "command": [
+        "node",
+        "node_modules/vite-node/vite-node.mjs",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h/next-summon-probe.ts"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "precache-next",
+      "exit": 0,
+      "seconds": 0.2915135259972885,
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "precache",
+      "exit": 0,
+      "seconds": 0.2505537549732253,
+      "command": [
+        "npm",
+        "run",
+        "check:offline-precache"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "red",
+      "exit": 1,
+      "seconds": 3.891114347963594,
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/combat/skeletal-mage-command.test.ts"
+      ],
+      "inputsUnchanged": null,
+      "totals": [
+        "Test Files  1 failed (1)",
+        "Tests  3 failed (3)"
+      ]
+    },
+    {
+      "label": "tests-final",
+      "exit": 0,
+      "seconds": 13.401553140953183,
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/combat/skeletal-mage-command.test.ts",
+        "src/stores/skeletal-mage-command-native.test.ts"
+      ],
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  21 passed (21)"
+      ]
+    },
+    {
+      "label": "types-complete",
+      "exit": 0,
+      "seconds": 126.23714861203916,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "types-final",
+      "exit": 0,
+      "seconds": 156.8766621479299,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "types-next",
+      "exit": 2,
+      "seconds": 149.67794130102266,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "label": "types",
+      "exit": 0,
+      "seconds": 148.413427628926,
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "inputsUnchanged": true,
+      "totals": []
+    }
+  ],
+  "fullSuite": {
+    "passed": 18414,
+    "files": 849,
+    "existingOptInSkips": 2,
+    "newNativeCasesExcluded": 8,
+    "inputsUnchanged": true
+  },
+  "sourceHashes": {
+    "src/engine/combat/combat.ts": "5033b41c2e0350b2ab6d78fa6d5345613a2b41d9ff8ef20ea29e9a1c64d513d0",
+    "src/engine/combat/iron-hydra-command.test.ts": "9496db0933f812b501938e672a3f8f51fd2a3b2fb4c4821d17476288fd06c908",
+    "src/stores/iron-golem-native-damage.test.ts": "1d001e68b2ee184438e24c26f79567fcc20db446385c3b01cd2b8c68c6c0560b"
+  },
+  "frozenInputCount": 1662,
+  "frozenManifestArchiveMember": "task/final-inputs.json",
+  "protectedSave": {
+    "compressed": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "raw": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577"
+  },
+  "genuineProgress": {
+    "level": 33,
+    "nextNormal": 402,
+    "ancientsRiteClaimed": true,
+    "baalCleared": false
+  },
+  "browserBoundary": {
+    "canonical18": "earlier frozen production build; repository changed, served build did not",
+    "latest4": "latest production build; startup Save/Continue only; en/zh-CN, 34/35MP",
+    "canonicalBuildAudit": {
+      "files": 762,
+      "hashesExact": true,
+      "sourceSha256": "142f847dfefb77ef4ecffa55feb73f02109cc2b165ab2fc4d699c73be3aa0acf",
+      "testSha256": "f35c759c500244fd20a6096a43fc8108645f9270605b1cc4839323b8f258554d",
+      "note": "Browser served frozen old dist; repository runtime changed during the browser run, never the served artifact."
+    }
+  },
+  "visualNotes": {
+    "reviewer": "root, author inspection only",
+    "independentAcceptance": false,
+    "images": [
+      {
+        "path": "browser-evidence/canonical/controls-en-360x640/rules.png",
+        "sha256": "5dee387949feb33ed5388e7e2fae785b0520a1f755cb6ea9fee976722ad924f8",
+        "observed": "Body text readable; capture starts at rules body, not heading."
+      },
+      {
+        "path": "browser-evidence/canonical/controls-en-360x640/current.png",
+        "sha256": "cb1295070c91941691e8465eab301843502e9a7f5f205a1445bac48309557a1a",
+        "observed": "Life360.4, Attack54, Defense63, AttackSpeed61 readable."
+      },
+      {
+        "path": "browser-evidence/canonical/controls-en-360x640/keyboard-focus.png",
+        "sha256": "3dd8d29dc6eb49e462882592f830f7ea3cbb2adff6a1c19599d23c02b0086171",
+        "observed": "Checked acknowledgement focused; Arm/Clear readable. English lower status is below navigation crop; this view alone does not prove it readable."
+      },
+      {
+        "path": "browser-evidence/canonical/controls-zh-CN-360x640/rules.png",
+        "sha256": "697cce42f991758ecc6ca0d2440fec4d141d9a233304a17e94c709eb86197b9a",
+        "observed": "Body text readable; capture starts at rules body, not heading."
+      },
+      {
+        "path": "browser-evidence/canonical/controls-zh-CN-360x640/current.png",
+        "sha256": "17a8fe13ef30fc15455aac23a7870ce7d1951718fe06160ad18987f9cd46888f",
+        "observed": "Life360.4, Attack54, Defense63, AttackSpeed61 readable."
+      },
+      {
+        "path": "browser-evidence/canonical/controls-zh-CN-360x640/keyboard-focus.png",
+        "sha256": "e27dabe100fd67680f110fd37bfa2c06d88b2286f43564576c99a1fa0b658082",
+        "observed": "Checked acknowledgement focused; Arm/Clear readable. English lower status is below navigation crop; this view alone does not prove it readable."
+      }
+    ],
+    "limits": "Six individual images inspected, not the complete matrix or full app accessibility."
+  },
+  "retention": {
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h-retained.tar.gz",
+    "archiveSha256": "79ff8ae4b2f5fab0a46d9fb50849d692dde4dfb99a79678ba13237c1720119ea",
+    "archiveBytes": 40242853,
+    "verifiedMembers": 1343,
+    "validatedInputCount": 1662,
+    "owner": "root; retain through BUG273-276 and full-v1 evidence consumers, then remove exact archive/sidecars"
+  },
+  "retentionManifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h-retention.json",
+  "cleanupReceipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h-cleanup.json",
+  "cleanup": {
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h-retained.tar.gz",
+    "archiveSha256": "79ff8ae4b2f5fab0a46d9fb50849d692dde4dfb99a79678ba13237c1720119ea",
+    "retentionManifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-command-lq57fr2h-retention.json",
+    "removed": {
+      "files": 1341,
+      "links": 2,
+      "directories": 79
+    },
+    "remaining": [],
+    "failures": [],
+    "beforeProcessAudit": {
+      "matches": [],
+      "liveObserved": [],
+      "restrictedPids": []
+    },
+    "afterProcessAudit": {
+      "matches": [],
+      "liveObserved": [],
+      "restrictedPids": []
+    },
+    "protectedCompressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "owner": "root; retain archive and both sidecars through BUG273-276/full-v1 consumers, then remove those exact paths"
+  },
+  "inventory": {
+    "target": "necromancer.iron_golem",
+    "beforeSha256": "a60db861945ccd5a841b98002de16341636b252987e5e433b734957d0d2c9330",
+    "otherRawRowsUnchanged": 212,
+    "boundedAfter": 173,
+    "unverifiedAfter": 38,
+    "engineOnlyAfter": 1,
+    "reviewNeededAfter": 1,
+    "necromancerBoundedAfter": 31,
+    "total": 213
+  },
+  "remaining": [
+    "Mage automatic signature effects",
+    "Amazon/Assassin gaps",
+    "independent acceptance",
+    "earned builds and balance",
+    "campaign/economy/endgame",
+    "C2-C4 and full G0-G7/private v1"
+  ]
+}
