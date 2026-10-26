@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D04 Iron Maiden/Life Tap/Lower Resist / BUG246 | locally fixed/verified; independent and earned acceptance open | Core29191112, presentation/native/publica6f9e19b, fractional reflectione165a1dd, exact shared-log oracle65d055f7.138new regressions; full17513/794/two existing skips, engine8691/325, latest types96.426s/lint163.883s/build/bridge/756URLprecachePASS. Final production12/12PASS588.764s:12localized casts/chips,24exact six-domain pairs,12actual offlineContinues,60geometry,all24PNGs inspected with explicit clipping/black-region limits. Original fractional and stale-copy REDs retained; only one provably stale literal changed. All1585actual HEAD source blobs/762build files/genuine save exact. Exactly three credits:158bounded/53unverified/one engine-only/one review-needed; Necromancer16/32,210other raw rows/header/IDs/order exact. [Evidence](evidence/d04-damage-curses.md), [contract](decisions/D04-damage-curses-v1.md), [bug](../../production/bugs/BUG-246-apply-necromancer-damage-curses.md). 184raw archive members/41terminal receipts verified;1059exact task files/57directories removed,71identities absent/no consumers/4529closed,remaining[]/failures[]. Root retains archive/three sidecars through BUG246/full-v1 evidence consumers; exact paths in evidence. GenuineL33/next402/Baal uncleared; full privatev1 remains open. |
 | D04 Weaken / BUG245 | locally fixed/verified; independent and earned acceptance open | Runtime`cef44c4c`, presentation/native/public`2a71b623`: finite paid33%direct-damage reduction, provisional3s, unchanged cadence/resources and strict copied packet.92new regressions; full17375/789/two existing skips, engine8622/323, final types/lint/build/precache/bridge PASS. Production4/4, four actual casts/chips/eight exact six-domain pairs/four offline Continues/20geometry; all eight PNGs inspected with header/navigation and clipped/black-region victory limits. All1561committed source blobs/762build files/genuine exact. Exactly one credit:155bounded/56unverified/one engine-only/one review-needed; Necromancer13/32,212other raw rows exact. All60raw archive members byte-verified;933exact task files/28directories cleaned,15recorded identities absent/no task consumers/4527closed,remaining[]/failures[]. [Evidence](evidence/d04-weaken.md). GenuineL33/next402/Baal uncleared; independent/earned builds,C2-C4/fullG0-G7/privatev1 remain open. |
 | D04 Decrepify / BUG244 | locally fixed/verified; independent and earned acceptance open | Runtime`6a099c49`, presentation/native/public`ba6fa8e0`: finite paid50%AS/33%direct-damage curse, explicit provisional3s, phase-preserving cadence, strict copied payload and truthful bilingual previews.93new regressions; full17283/783/two existing skips, engine8553/320, final types/lint/build/precache/bridge PASS. Final production4/4, four actual casts/chips/eight exact six-domain pairs/four actual offlineContinues/20geometry; all eight final PNGs inspected with header/navigation and below-viewport victory limits. All1552committed blobs/762build files/genuine exact. Exactly one credit:154bounded/57unverified/one engine-only/one review-needed; Necromancer12/32,212other raw rows exact.107raw archive members byte-verified;981exact task files/38directories cleaned,27recorded identities absent/no task consumers/4525closed,remaining[]/failures[]. [Evidence and raw retention/cleanup](evidence/d04-decrepify.md). GenuineL33/next402/Baal uncleared; independent/earned builds,C2-C4/fullG0-G7/privatev1 remain open. |
 | D04 Necromancer Teeth/Bone Spear/Bone Spirit/Poison Nova / BUG243 | locally fixed/verified; independent and earned acceptance open | Presentation`a0cf908b`, lifecycle/public`c40fa1f1`: truthful two-stack Poison and bilingual direct rules;115new tests including native wave/import and exact reapplication/cap/miss/expiry integrals. Full17190/777/two existing skips; engine8484/317, final types/lint/build/precache/bridge PASS. Production16/16,16actual localized casts/32exact six-domain pairs/16actual offlineContinues/80geometry; screenshot clipping/black-region and broader UX/a11y limits explicit. All1374committed blobs/two762builds/genuine exact. Exactly four credits:153bounded/58unverified/one engine-only/one review-needed; Necromancer11/32,209other raw rows exact. [Evidence](evidence/d04-necromancer-direct.md). Exact raw retention/cleanup linked there. GenuineL33/next402/Baal uncleared; C2-C4/fullG0-G7/privatev1 remain unfinished. |
@@ -12747,3 +12748,24 @@ Nightmare0/Ancients-Rite claimed/Baal uncleared remains exact. Independent
 design/QA, earned builds/balance,30-50hour pacing/economy/endgame,C2-C4/fullG0-G7
 and privatev1 remain unfinished. Root sole writer/reviewer; umbrella claim stays
 active. Next: remaining Necromancer skill contracts and actual native outcomes.
+
+
+## 2026-10-26 — D04 damage curses locally verified / BUG246
+
+Iron Maiden/Life Tap/Lower Resist now have authored finite paid effects, actual
+HP/resistance consumers, truthful bilingual previews and native/public save and
+offline paths. Core29191112, presentationa6f9e19b, fractional floore165a1dd and
+exact stale shared-log oracle65d055f7.138new regressions; full17513/794/two existing
+skips, engine8691/325, types/lint/build/precache/bridge and production12/12PASS.
+Twelve localized casts/chips,24exact six-domain pairs,12actual offlineContinues,
+60geometry and24individually inspected PNGs; mobile/capture/a11y limits remain.
+Exactly three credits:158bounded/53unverified/one engine-only/one review-needed;
+Necromancer16/32,210other raw CSV rows/header/IDs/order exact. All1585committed
+source blobs/762build files and protected save hashes match tested freezes.
+Original fractional and stale-copy failures retained without weakened assertions.
+184raw members/41terminal receipts verified;1059files/57directories removed,
+71identities absent,no consumers,4529closed,remaining[]/failures[].
+[Evidence and exact retained paths](evidence/d04-damage-curses.md).
+Root author review only; independent/earned acceptance, campaign/Baal,
+C2-C4/fullG0-G7 and complete privatev1 remain open. No campaign/replay or remote
+action. Next Terror contract/test are archived unrun drafts; no new claim/credit.

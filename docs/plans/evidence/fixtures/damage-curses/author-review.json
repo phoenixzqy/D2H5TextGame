@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-26",
+  "scope": "BUG246 Iron Maiden / Life Tap / Lower Resist",
+  "reviewer": "root author only; not independent sign-off",
+  "security": {
+    "verdict": "pass",
+    "scope": "First-party local contract, source/schema/UI and public browser verification",
+    "finding": "No new dependency, credential/export, CI or permission surface; finite capability validation, native allocation and save22 remain in force."
+  },
+  "planReview": {
+    "verdict": "ready",
+    "resolved": [
+      "Lethal victim and post-retaliation attacker survival",
+      "Actual absorbed/overkill-limited HP bases",
+      "All six pools and existing DoT isolation",
+      "Source-specific preview authoring",
+      "Native lifecycle/import, public PWA, source/build/HEAD proof and exact cleanup"
+    ]
+  },
+  "codeReview": {
+    "verdict": "No unresolved author finding within reviewed local scope after fractional reflection repair and exact Life Tap oracle correction; independent review remains open.",
+    "correctness": "Actual absorbed/overkill-limited HP bases; pre-hit Life Tap eligibility; living post-retaliation attacker; lethal victim Iron Maiden. Pure curse floors sub-1HP loss to0, ordinary living Thorns retains minimum1. No extra hit/proc RNG.",
+    "architecture": "One small strict three-curse scalar resolver; authored tuning is copied/frozen, no React/DOM or store imports in production engine.",
+    "readability": "Exact identity fields and transient payload use existing finite curse/status conventions.",
+    "security": "Forged bare/future/expired/nonfinite/mismatched packets confer no power; no native authority relaxation.",
+    "performance": "Three bounded status scans per direct hit and one source validation per preview. No runtime budget claim; full checks/build size and benchmark limits remain open."
+  },
+  "evidenceReview": {
+    "verdict": "ADEQUATE for bounded local functional disposition only; INCOMPLETE for full acceptance",
+    "localAutomated": "Focused231/8PASS (138new); engine8691/325PASS142.574s; corrected shared-log/component138/2PASS9.928s; latest typesPASS96.426s; latest lint/purityPASS163.883s; build/bridgePASS16.855s;756URLprecachePASS.1585actual committed source blobs at65d055f7/762build files exact. Final full17513passed/794files/two existing skips,exit0,737.693s.",
+    "limitations": [
+      "Independent design and QA missing",
+      "Earned build/balance not exercised",
+      "Complete mobile UX/a11y/performance not established; screenshot clipping/black regions retained, no unsupported reopening of BUG063."
+    ],
+    "skipSuppressionAudit": "Actual7883b882..65d055f7 reviewed diff adds no it/test/describe.skip or.todo, @ts-ignore/@ts-nocheck or eslint-disable. Oracle fix changes only one existing expected Chinese string.",
+    "screenshotCaution": "BUG063 already fixed5e4a038; current ScreenShell reserves HUD height in normal flow. Element screenshot clipping cannot by itself reopen that accepted layout defect.",
+    "localBrowser": "Latest12/12PASS588.764s;12localized casts/chips,24exact six-domain save pairs,12actual SW offline Continues,60geometry,24PNGs individually inspected. No retry/skip/flaky/page or console error.",
+    "oracleCorrection": {
+      "firstFull": "1failed/17512passed/2existing skips,794files,exit1,734.789s",
+      "cause": "Existing literal expected Life Tap\u5077\u53d6\u751f\u547d; pre-existing skill name and corrected combat name use\u5438\u53d6\u751f\u547d.",
+      "change": "65d055f7 changes only the existing literal; exact full message equality and both locale matrices preserved.",
+      "focused": "138passed/2files/9.928s",
+      "sourceProof": "Only eventToLogI18n.test.ts changed; other1584source paths and762build files unchanged.",
+      "finalFull": "17513passed/794files/two existing skips,exit0,737.693s; original RED retained."
+    }
+  },
+  "protectedCampaign": "Compressed/raw hashes match original; no genuine campaign action or replay.",
+  "disposition": "Three bounded-functional skill credits now justified by local proof; independent design/QA, earned builds/balance and full private v1 remain open. Retention and exact cleanup still pending.",
+  "fractionalFollowup": {
+    "preRepairSource": "a6f9e19b",
+    "originalBrowser": "12passed/601.617s/24exactSavePairs/12offline/60geometry; superseded for final code proof",
+    "red": "1failed/44passed,exit1,3.793s",
+    "cause": "Inherited ordinary Thorns minimum1 rounds pure Iron Maiden0.5actualPhysicalHP up instead of contracted floor0.",
+    "fix": "Preserve minimum1 only for living ordinary Thorns; suppress zero-floor pure curse reflection.",
+    "newRegressions": 2,
+    "newTotalRegressions": 138,
+    "fullV1": "Incomplete; final local proof passed, three bounded credits authorized; retention/cleanup pending."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "preRepairSource": "a6f9e19b",
+  "originalBrowser": "12passed/601.617s/24exactSavePairs/12offline/60geometry; superseded for final code proof",
+  "red": "1failed/44passed,exit1,3.793s",
+  "cause": "Inherited ordinary Thorns minimum1 rounds pure Iron Maiden0.5actualPhysicalHP up instead of contracted floor0.",
+  "fix": "Preserve minimum1 only for living ordinary Thorns; suppress zero-floor pure curse reflection.",
+  "newRegressions": 2,
+  "newTotalRegressions": 138,
+  "fullV1": "Incomplete; no new inventory credit until final proof/retention/cleanup."
+}

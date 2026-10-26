@@ -1,0 +1,52 @@
+{
+  "initialCore": "2failed/143passed,10.996s; raw retained",
+  "corrections": [
+    {
+      "test": "Iron Maiden absorption",
+      "mistake": "Applied player-only Bone Armor to an enemy monster.",
+      "evidence": "boneArmorPool requires side player and kind hero.",
+      "change": "Use the eligible player hero shield and a cursed enemy attacker;76HP and28reflection expectations unchanged."
+    },
+    {
+      "test": "Lower Resist/Cold Mastery composition",
+      "mistake": "Expected115 from100*(1-(-15/100)); JavaScript produces114.99999999999999 and existing floor yields114.",
+      "change": "Assert114 with exact existing-arithmetic comment; no production arithmetic change."
+    },
+    {
+      "test": "Contradictory authoring negative fixture",
+      "mistake": "Initial added heal fixture omitted its required target and was already invalid independently.",
+      "change": "Use a complete self-heal shape; corrected native schema RED still fails3/25 before schema change."
+    },
+    {
+      "test": "Additional authoring schema validation",
+      "mistake": "First strict pass disallowed existing Iron Maiden physical and Lower Resist amp-damage tags and prevented module initialization.",
+      "change": "Keep exact original combo tags; reject foreign tags. No JSON or runtime tag behavior change.",
+      "originalRun": "damage-curses-focused-final:8failed suites/no tests; retained"
+    },
+    {
+      "test": "Self damage isolation",
+      "mistake": "Invented target:self damage fixture; ordinary DamageEffect selects hostile recipients.",
+      "change": "Exercise real supported onHitSelfDamage settlement used by Sacrifice; require exactly100hostile/100reflected/8selfdebit and one25heal, final817. No target engine behavior change.",
+      "originalRun": "damage-curses-focused-corrected:1failed/228passed; raw retained"
+    },
+    {
+      "test": "Malformed packet typing",
+      "mistake": "Negative fixture explicitly assigned undefined to readonly optional fields under exactOptionalPropertyTypes.",
+      "change": "Omit the three fields on task-local copies with Reflect.deleteProperty; preserve all missing/nonfinite/mismatch expectations. Production and browser sources unchanged.",
+      "originalRun": "damage-curses-types exit2,105.563s; raw retained"
+    },
+    {
+      "test": "Lint closure",
+      "mistake": "Redundant capability truthiness after string equality and redundant damage-kind check after narrowed filter.",
+      "change": "Remove repeated conditional; use single conditional flatMap for composite damage assertions. Original lint1 retained. Targeted run had0errors/two existing ignored-file warnings for tests/pwa; final lint uses normal repository scope."
+    },
+    {
+      "test": "Existing shared Chinese Life Tap status log literal",
+      "mistake": "Changed combat Life Tap label to agree with existing skill name, but missed the existing literal table in eventToLogI18n.test.ts.",
+      "evidence": "Final full run:1failed/17512passed/two existing skips across794files,exit1,734.789s. Expected偷取生命, actual吸取生命; skills.json already names Life Tap吸取生命.",
+      "change": "Update only the Chinese literal table entry; preserve exact full localized message equality, both locales and all existing test cases. No production/engine/build/browser source changes.",
+      "retained": "damage-curses-full-before-lifetap-oracle.log",
+      "logSha256": "6e1223e0c0580ac4ba828122b3eab4c5b7eb584ef7260c71fca494a7d46a15b3"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "head": "65d055f70f45cd9b3a1e0fcae9038fa4983cd73b",
+  "sourceCount": 1585,
+  "buildCount": 762,
+  "sourceBuildDrift": [],
+  "protectedSave": {
+    "path": "docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
+    "compressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "rawSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "level": 33,
+    "genuineActionOrReplay": false
+  },
+  "data": {
+    "changedIds": [
+      "skills-necromancer-iron-maiden",
+      "skills-necromancer-life-tap",
+      "skills-necromancer-lower-resist"
+    ],
+    "otherRowsExact": 29,
+    "originalFieldsExact": true
+  },
+  "browser": {
+    "casts": 12,
+    "savePairs": 24,
+    "offlineContinues": 12,
+    "geometry": 60,
+    "pngs": 24
+  }
+}

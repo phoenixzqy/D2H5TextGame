@@ -1,0 +1,9 @@
+{
+  "beforeHead": "e165a1dd77519da7a41fd1e85efc99aa45e1773e",
+  "changedPaths": [
+    "src/stores/eventToLogI18n.test.ts"
+  ],
+  "other1584PathsExact": true,
+  "productionEngineBrowserBuildSourcesUnchanged": true,
+  "reason": "Correct stale Chinese literal while retaining exact existing log assertions; preserve full RED and re-run focused/types/lint/full. Production browser/engine/build/precache proof remains byte-identical."
+}

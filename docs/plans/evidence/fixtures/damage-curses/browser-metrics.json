@@ -1,0 +1,655 @@
+{
+  "stats": {
+    "startTime": "2026-10-26T11:00:09.261Z",
+    "duration": 587793.615,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "title": "Necromancer iron-maiden public preview/cast/save/offline en",
+      "project": "damage-curses-desktop",
+      "durationMs": 50450,
+      "cast": {
+        "slug": "iron-maiden",
+        "spellName": "Iron Maiden",
+        "line": "05:00:00Curse Browser casts Iron Maiden.",
+        "enemyChip": "Iron Maiden"
+      },
+      "geometry": [
+        {
+          "skill": "iron-maiden",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "pngs": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/01-iron-maiden-damage-curses-desktop-en-iron-maiden-preview.png",
+          "sha256": "5da2ed1db56079c723145b890fc198f5c79a267235db21f64343442d25374c7e"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/01-iron-maiden-damage-curses-desktop-en-victory.png",
+          "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer iron-maiden public preview/cast/save/offline zh-CN",
+      "project": "damage-curses-desktop",
+      "durationMs": 50060,
+      "cast": {
+        "slug": "iron-maiden",
+        "spellName": "攻击反噬",
+        "line": "05:00:00Curse Browser 施放了 攻击反噬。",
+        "enemyChip": "攻击反噬"
+      },
+      "geometry": [
+        {
+          "skill": "iron-maiden",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "pngs": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/02-iron-maiden-damage-curses-desktop-zh-CN-iron-maiden-preview.png",
+          "sha256": "138e6c1f05505aa1fae44956ae81ede3f620d6d9323c86b6a7671a02d90068aa"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/02-iron-maiden-damage-curses-desktop-zh-CN-victory.png",
+          "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer life-tap public preview/cast/save/offline en",
+      "project": "damage-curses-desktop",
+      "durationMs": 49833,
+      "cast": {
+        "slug": "life-tap",
+        "spellName": "Life Tap",
+        "line": "05:00:00Curse Browser casts Life Tap.",
+        "enemyChip": "Life Tap"
+      },
+      "geometry": [
+        {
+          "skill": "life-tap",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "pngs": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/03-life-tap-damage-curses-desktop-en-life-tap-preview.png",
+          "sha256": "3aa6926460307594bc2338e47dab3f29c35fcb8b7f8ee6191b6a04d5eb3dd76b"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/03-life-tap-damage-curses-desktop-en-victory.png",
+          "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer life-tap public preview/cast/save/offline zh-CN",
+      "project": "damage-curses-desktop",
+      "durationMs": 49024,
+      "cast": {
+        "slug": "life-tap",
+        "spellName": "吸取生命",
+        "line": "05:00:00Curse Browser 施放了 吸取生命。",
+        "enemyChip": "吸取生命"
+      },
+      "geometry": [
+        {
+          "skill": "life-tap",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "pngs": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/04-life-tap-damage-curses-desktop-zh-CN-life-tap-preview.png",
+          "sha256": "7aa3a76fb26793c0ce4e69d9700230b401d825d3a9b5241e9dd841eae752489c"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/04-life-tap-damage-curses-desktop-zh-CN-victory.png",
+          "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer lower-resist public preview/cast/save/offline en",
+      "project": "damage-curses-desktop",
+      "durationMs": 46097,
+      "cast": {
+        "slug": "lower-resist",
+        "spellName": "Lower Resist",
+        "line": "05:00:00Curse Browser casts Lower Resist.",
+        "enemyChip": "Lower Resist"
+      },
+      "geometry": [
+        {
+          "skill": "lower-resist",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "pngs": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/05-lower-resist-damage-curses-desktop-en-lower-resist-preview.png",
+          "sha256": "1846853f441ea4f9dd6e636bc74404f1dfc449fa6abc36b224a349e698751918"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/05-lower-resist-damage-curses-desktop-en-victory.png",
+          "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer lower-resist public preview/cast/save/offline zh-CN",
+      "project": "damage-curses-desktop",
+      "durationMs": 46133,
+      "cast": {
+        "slug": "lower-resist",
+        "spellName": "降低抵抗",
+        "line": "05:00:00Curse Browser 施放了 降低抵抗。",
+        "enemyChip": "降低抵抗"
+      },
+      "geometry": [
+        {
+          "skill": "lower-resist",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "pngs": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/06-lower-resist-damage-curses-desktop-zh-CN-lower-resist-preview.png",
+          "sha256": "a3df3a6b9f4f6c2a6713bdcfa9aa6f485594c8afb08060f7f667cb13f43f0520"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/06-lower-resist-damage-curses-desktop-zh-CN-victory.png",
+          "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer iron-maiden public preview/cast/save/offline en",
+      "project": "damage-curses-mobile",
+      "durationMs": 50203,
+      "cast": {
+        "slug": "iron-maiden",
+        "spellName": "Iron Maiden",
+        "line": "05:00:00Curse Browser casts Iron Maiden.",
+        "enemyChip": "Iron Maiden"
+      },
+      "geometry": [
+        {
+          "skill": "iron-maiden",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "pngs": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/07-iron-maiden-damage-curses-mobile-en-iron-maiden-preview.png",
+          "sha256": "8df13537438a33ad7fe0181a8c5ad05e93f9e0aa3c3c891433a53ab47b4bdbb0"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/07-iron-maiden-damage-curses-mobile-en-victory.png",
+          "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer iron-maiden public preview/cast/save/offline zh-CN",
+      "project": "damage-curses-mobile",
+      "durationMs": 50146,
+      "cast": {
+        "slug": "iron-maiden",
+        "spellName": "攻击反噬",
+        "line": "05:00:00Curse Browser 施放了 攻击反噬。",
+        "enemyChip": "攻击反噬"
+      },
+      "geometry": [
+        {
+          "skill": "iron-maiden",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "iron-maiden",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "pngs": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/08-iron-maiden-damage-curses-mobile-zh-CN-iron-maiden-preview.png",
+          "sha256": "a58546b631fce8132faaf3dbcc62300a09b8d893dc8a2832bce679a0545702ea"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/08-iron-maiden-damage-curses-mobile-zh-CN-victory.png",
+          "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer life-tap public preview/cast/save/offline en",
+      "project": "damage-curses-mobile",
+      "durationMs": 50642,
+      "cast": {
+        "slug": "life-tap",
+        "spellName": "Life Tap",
+        "line": "05:00:00Curse Browser casts Life Tap.",
+        "enemyChip": "Life Tap"
+      },
+      "geometry": [
+        {
+          "skill": "life-tap",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "pngs": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/09-life-tap-damage-curses-mobile-en-life-tap-preview.png",
+          "sha256": "4bd4d4620236e6600dafeefb2e60e02d875a55c6e54c69b23e722ea8bcc7bee7"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/09-life-tap-damage-curses-mobile-en-victory.png",
+          "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer life-tap public preview/cast/save/offline zh-CN",
+      "project": "damage-curses-mobile",
+      "durationMs": 49760,
+      "cast": {
+        "slug": "life-tap",
+        "spellName": "吸取生命",
+        "line": "05:00:00Curse Browser 施放了 吸取生命。",
+        "enemyChip": "吸取生命"
+      },
+      "geometry": [
+        {
+          "skill": "life-tap",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "life-tap",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "pngs": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/10-life-tap-damage-curses-mobile-zh-CN-life-tap-preview.png",
+          "sha256": "8a4567efec21c56089f785bb952daea132607f022168ba45557edfa612defaec"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/10-life-tap-damage-curses-mobile-zh-CN-victory.png",
+          "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer lower-resist public preview/cast/save/offline en",
+      "project": "damage-curses-mobile",
+      "durationMs": 46033,
+      "cast": {
+        "slug": "lower-resist",
+        "spellName": "Lower Resist",
+        "line": "05:00:00Curse Browser casts Lower Resist.",
+        "enemyChip": "Lower Resist"
+      },
+      "geometry": [
+        {
+          "skill": "lower-resist",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "pngs": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/11-lower-resist-damage-curses-mobile-en-lower-resist-preview.png",
+          "sha256": "109ba51f4fb0119f0d85b0aa9a67e12354b51e7818c6f68ae4fa826012165e70"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/11-lower-resist-damage-curses-mobile-en-victory.png",
+          "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc"
+        }
+      ]
+    },
+    {
+      "title": "Necromancer lower-resist public preview/cast/save/offline zh-CN",
+      "project": "damage-curses-mobile",
+      "durationMs": 46212,
+      "cast": {
+        "slug": "lower-resist",
+        "spellName": "降低抵抗",
+        "line": "05:00:00Curse Browser 施放了 降低抵抗。",
+        "enemyChip": "降低抵抗"
+      },
+      "geometry": [
+        {
+          "skill": "lower-resist",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "lower-resist",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "pngs": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/12-lower-resist-damage-curses-mobile-zh-CN-lower-resist-preview.png",
+          "sha256": "a65d553a5b005b58aa49c39099c066f34720d552909a792872bae4179602c1cb"
+        },
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/12-lower-resist-damage-curses-mobile-zh-CN-victory.png",
+          "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "casts": 12,
+    "savePairs": 24,
+    "offlineContinues": 12,
+    "geometry": 60,
+    "pngs": 24
+  }
+}

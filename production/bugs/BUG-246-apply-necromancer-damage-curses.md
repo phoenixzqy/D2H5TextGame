@@ -1,10 +1,10 @@
 # BUG-246 — Apply Iron Maiden, Life Tap and Lower Resist to damage settlement
 
-- Status: implemented locally; integrated/browser verification in progress, no new skill credit yet.
+- Status: Fixed locally in29191112/a6f9e19b/e165a1dd, shared-log fixture65d055f7; locally verified with three bounded skill credits. Independent design/QA and earned balance remain open.
 - Severity: High — three advertised paid skills have no corresponding damage effect.
 - Owner: root, engine/content/frontend; independent design/QA and earned balance open.
 - Base:7883b882; Node24.21.0, Vitest1.6.1, real native adapter/registry/recorded engine.
-- Browser/viewport: native-engine reproduction, locale-independent; no browser claim.
+- Browser/viewport: native-engine reproduction is locale-independent; corrected production verification covers en/zh-CN at desktop1280×800/mobile360×640 and five-size geometry.
 - Seed:1; learned native ranks1/20 with actual transitive prerequisites.
 
 ## Reproduction
@@ -53,3 +53,41 @@ minimum1 and must stay unchanged. Seed1 regression RED1failed/44passed,exit1,
 3.793s; logSHA256:d40cb9bbb115c0d4753182d8c565c4d030ba6943a0c3fe5cef0096717357b520.
 The complete twelve-case browser pass predates this edge repair and is retained;
 final source/build/browser/full-unit proof must cover the correction.
+
+## Corrected implementation and local verification
+
+Core29191112, presentation/native/publica6f9e19b and fractional reflectione165a1dd
+replace the inert markers with complete JSON-owned, finite paid packets and
+shared actual damage/reflection/healing consumers. Pure curse reflection now
+floors the0.5HP basis to0; ordinary living Thorns keeps minimum1. Latest focused
+231/8PASS includes138new cases. Engine8691/325,types/lint/purity, official build,
+bridge removal and actual756URLprecache pass. All1585committed source blobs and
+762build files match tested freezes; protected genuine save hashes are exact.
+
+Final public browser12/12PASS588.764s with no retries/skips/flakies/page or
+console errors verifies12localized casts/chips,24exact six-domain save pairs,
+12actual SW offline Continues and60geometry samples. All24PNGs were inspected;
+clipping/black-region capture and broader UX/a11y limitations are explicit.
+Synthetic browser/native states do not establish earned balance or builds.
+Corrected full17513passed/794files/two existing skips,exit0,737.693s; latest
+types96.426s/lint163.883s pass. Exactly three bounded credits:158bounded,
+53unverified/one engine-only/one review-needed; Necromancer16/32,210other raw
+CSV rows/header/IDs/order exact. Verified raw retention/cleanup follows below. [Evidence](../../docs/plans/evidence/d04-damage-curses.md).
+
+The first complete full-unit run on the fractional repair finishes with one
+stale existing log-copy oracle:1failed/17512passed/two existing skips in794files,
+exit1,734.789s. eventToLogI18n.test.ts still expects Chinese Life Tap偷取生命,
+while the intentionally aligned combat label and pre-existing skill name both
+use吸取生命. Retain that RED and correct only the literal table entry, keeping
+exact message equality and both locale matrices. Production/engine/browser
+bytes are unchanged by this fixture correction. The corrected focused shared-log/component suite passes138/2,9.928s, followed
+by the complete full PASS above. Actual1585HEAD source blobs match65d055f7;
+all762build files remain exact. No production bytes change in the oracle fix.
+
+Final retention/cleanup:184raw archive members/41terminal receipts byte-verified;
+1059exact task-owned files/57directories removed. All71recorded identities absent,
+no task consumers,4529closed, task root/dist absent,remaining[]/failures[].
+[Cleanup receipt](../../docs/plans/evidence/fixtures/damage-curses/cleanup.json)
+and [retention](../../docs/plans/evidence/fixtures/damage-curses/retention.json).
+Root retains the four exact paths listed in the evidence until BUG246/full-v1
+consumers finish. No genuine campaign/replay or remote operation occurred.

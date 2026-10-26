@@ -1,0 +1,21 @@
+{
+  "base": "7883b882",
+  "beforeSha256": "53bc4d5de556d59aff2dd2bdf3da9bc371acfeab896fc09aeaffac656d4cdba4",
+  "afterSha256": "648b58ae87540981f7f89faa404619e497576ea3db888474b4b293d1acc5e377",
+  "changedIds": [
+    "skills-necromancer-iron-maiden",
+    "skills-necromancer-life-tap",
+    "skills-necromancer-lower-resist"
+  ],
+  "otherRawRowsExact": 210,
+  "headerExact": true,
+  "idsAndOrderExact": true,
+  "total": 213,
+  "statusCounts": {
+    "unverified": 53,
+    "bounded-functional;independent-acceptance-open": 155,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  }
+}

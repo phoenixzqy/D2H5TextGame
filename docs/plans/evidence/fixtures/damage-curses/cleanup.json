@@ -1,0 +1,24 @@
+{
+  "owner": "root/session01a1577a-5af4-70e3-8699-50a906877d8f",
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9-retained.tar.xz",
+  "archiveSha256": "46ebf46d226790319b1748a2513effa4f910823e5b8b6841a7f3d40e6fca9c8a",
+  "verifiedRawMembers": 184,
+  "terminalReceipts": 41,
+  "removedFiles": 1059,
+  "removedDirectories": 57,
+  "recordedIdentities": 71,
+  "liveKnownIdentities": [],
+  "consumers": [],
+  "port4529Closed": true,
+  "taskRootAbsent": true,
+  "distAbsent": true,
+  "remaining": [],
+  "failures": [],
+  "retainedPaths": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9-retained.tar.xz",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9-retention.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9-deletion-manifest.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9-cleanup.json"
+  ],
+  "removeWhen": "After all BUG246/full-v1 evidence consumers finish, root removes these exact retained paths."
+}

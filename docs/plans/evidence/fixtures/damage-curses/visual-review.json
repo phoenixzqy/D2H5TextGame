@@ -1,0 +1,330 @@
+{
+  "date": "2026-10-26",
+  "reviewer": "root author; no independent QA/UX sign-off",
+  "source": "e165a1dd77519da7a41fd1e85efc99aa45e1773e",
+  "browserReport": "browser-fractional-report.json",
+  "method": "Viewed every final PNG individually via view_image; original PNG dimensions/hashes checked with Python standard library.",
+  "inspectedPngs": 24,
+  "images": [
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/01-iron-maiden-damage-curses-desktop-en-iron-maiden-preview.png",
+      "sha256": "5da2ed1db56079c723145b890fc198f5c79a267235db21f64343442d25374c7e",
+      "archiveMember": "browser-images/01-iron-maiden-damage-curses-desktop-en-iron-maiden-preview.png",
+      "dimensionsPixels": [
+        1152,
+        336
+      ],
+      "project": "damage-curses-desktop",
+      "title": "Necromancer iron-maiden public preview/cast/save/offline en",
+      "finding": "Desktop preview fully shows bilingual name, rank20/MAX, authored duration/potency, actual mana cost/cooldown, next-level cap and prerequisite.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/01-iron-maiden-damage-curses-desktop-en-iron-maiden-preview.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/01-iron-maiden-damage-curses-desktop-en-victory.png",
+      "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e",
+      "archiveMember": "browser-images/01-iron-maiden-damage-curses-desktop-en-victory.png",
+      "dimensionsPixels": [
+        1024,
+        1134
+      ],
+      "project": "damage-curses-desktop",
+      "title": "Necromancer iron-maiden public preview/cast/save/offline en",
+      "finding": "Victory element capture shows clipped combat toolbar and lower loot list with substantial black regions. Victory heading/return control are not readable in this capture; ordinary visibility/return actions are proved separately by the browser assertions.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/01-iron-maiden-damage-curses-desktop-en-victory.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/02-iron-maiden-damage-curses-desktop-zh-CN-iron-maiden-preview.png",
+      "sha256": "138e6c1f05505aa1fae44956ae81ede3f620d6d9323c86b6a7671a02d90068aa",
+      "archiveMember": "browser-images/02-iron-maiden-damage-curses-desktop-zh-CN-iron-maiden-preview.png",
+      "dimensionsPixels": [
+        1152,
+        336
+      ],
+      "project": "damage-curses-desktop",
+      "title": "Necromancer iron-maiden public preview/cast/save/offline zh-CN",
+      "finding": "Desktop preview fully shows bilingual name, rank20/MAX, authored duration/potency, actual mana cost/cooldown, next-level cap and prerequisite.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/02-iron-maiden-damage-curses-desktop-zh-CN-iron-maiden-preview.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/02-iron-maiden-damage-curses-desktop-zh-CN-victory.png",
+      "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4",
+      "archiveMember": "browser-images/02-iron-maiden-damage-curses-desktop-zh-CN-victory.png",
+      "dimensionsPixels": [
+        1024,
+        1134
+      ],
+      "project": "damage-curses-desktop",
+      "title": "Necromancer iron-maiden public preview/cast/save/offline zh-CN",
+      "finding": "Victory element capture shows clipped combat toolbar and lower loot list with substantial black regions. Victory heading/return control are not readable in this capture; ordinary visibility/return actions are proved separately by the browser assertions.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/02-iron-maiden-damage-curses-desktop-zh-CN-victory.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/03-life-tap-damage-curses-desktop-en-life-tap-preview.png",
+      "sha256": "3aa6926460307594bc2338e47dab3f29c35fcb8b7f8ee6191b6a04d5eb3dd76b",
+      "archiveMember": "browser-images/03-life-tap-damage-curses-desktop-en-life-tap-preview.png",
+      "dimensionsPixels": [
+        1152,
+        336
+      ],
+      "project": "damage-curses-desktop",
+      "title": "Necromancer life-tap public preview/cast/save/offline en",
+      "finding": "Desktop preview fully shows bilingual name, rank20/MAX, authored duration/potency, actual mana cost/cooldown, next-level cap and prerequisite.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/03-life-tap-damage-curses-desktop-en-life-tap-preview.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/03-life-tap-damage-curses-desktop-en-victory.png",
+      "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e",
+      "archiveMember": "browser-images/03-life-tap-damage-curses-desktop-en-victory.png",
+      "dimensionsPixels": [
+        1024,
+        1134
+      ],
+      "project": "damage-curses-desktop",
+      "title": "Necromancer life-tap public preview/cast/save/offline en",
+      "finding": "Victory element capture shows clipped combat toolbar and lower loot list with substantial black regions. Victory heading/return control are not readable in this capture; ordinary visibility/return actions are proved separately by the browser assertions.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/03-life-tap-damage-curses-desktop-en-victory.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/04-life-tap-damage-curses-desktop-zh-CN-life-tap-preview.png",
+      "sha256": "7aa3a76fb26793c0ce4e69d9700230b401d825d3a9b5241e9dd841eae752489c",
+      "archiveMember": "browser-images/04-life-tap-damage-curses-desktop-zh-CN-life-tap-preview.png",
+      "dimensionsPixels": [
+        1152,
+        336
+      ],
+      "project": "damage-curses-desktop",
+      "title": "Necromancer life-tap public preview/cast/save/offline zh-CN",
+      "finding": "Desktop preview fully shows bilingual name, rank20/MAX, authored duration/potency, actual mana cost/cooldown, next-level cap and prerequisite.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/04-life-tap-damage-curses-desktop-zh-CN-life-tap-preview.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/04-life-tap-damage-curses-desktop-zh-CN-victory.png",
+      "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4",
+      "archiveMember": "browser-images/04-life-tap-damage-curses-desktop-zh-CN-victory.png",
+      "dimensionsPixels": [
+        1024,
+        1134
+      ],
+      "project": "damage-curses-desktop",
+      "title": "Necromancer life-tap public preview/cast/save/offline zh-CN",
+      "finding": "Victory element capture shows clipped combat toolbar and lower loot list with substantial black regions. Victory heading/return control are not readable in this capture; ordinary visibility/return actions are proved separately by the browser assertions.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/04-life-tap-damage-curses-desktop-zh-CN-victory.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/05-lower-resist-damage-curses-desktop-en-lower-resist-preview.png",
+      "sha256": "1846853f441ea4f9dd6e636bc74404f1dfc449fa6abc36b224a349e698751918",
+      "archiveMember": "browser-images/05-lower-resist-damage-curses-desktop-en-lower-resist-preview.png",
+      "dimensionsPixels": [
+        1152,
+        336
+      ],
+      "project": "damage-curses-desktop",
+      "title": "Necromancer lower-resist public preview/cast/save/offline en",
+      "finding": "Desktop preview fully shows bilingual name, rank20/MAX, authored duration/potency, actual mana cost/cooldown, next-level cap and prerequisite.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/05-lower-resist-damage-curses-desktop-en-lower-resist-preview.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/05-lower-resist-damage-curses-desktop-en-victory.png",
+      "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e",
+      "archiveMember": "browser-images/05-lower-resist-damage-curses-desktop-en-victory.png",
+      "dimensionsPixels": [
+        1024,
+        1134
+      ],
+      "project": "damage-curses-desktop",
+      "title": "Necromancer lower-resist public preview/cast/save/offline en",
+      "finding": "Victory element capture shows clipped combat toolbar and lower loot list with substantial black regions. Victory heading/return control are not readable in this capture; ordinary visibility/return actions are proved separately by the browser assertions.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/05-lower-resist-damage-curses-desktop-en-victory.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/06-lower-resist-damage-curses-desktop-zh-CN-lower-resist-preview.png",
+      "sha256": "a3df3a6b9f4f6c2a6713bdcfa9aa6f485594c8afb08060f7f667cb13f43f0520",
+      "archiveMember": "browser-images/06-lower-resist-damage-curses-desktop-zh-CN-lower-resist-preview.png",
+      "dimensionsPixels": [
+        1152,
+        336
+      ],
+      "project": "damage-curses-desktop",
+      "title": "Necromancer lower-resist public preview/cast/save/offline zh-CN",
+      "finding": "Desktop preview fully shows bilingual name, rank20/MAX, authored duration/potency, actual mana cost/cooldown, next-level cap and prerequisite.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/06-lower-resist-damage-curses-desktop-zh-CN-lower-resist-preview.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/06-lower-resist-damage-curses-desktop-zh-CN-victory.png",
+      "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4",
+      "archiveMember": "browser-images/06-lower-resist-damage-curses-desktop-zh-CN-victory.png",
+      "dimensionsPixels": [
+        1024,
+        1134
+      ],
+      "project": "damage-curses-desktop",
+      "title": "Necromancer lower-resist public preview/cast/save/offline zh-CN",
+      "finding": "Victory element capture shows clipped combat toolbar and lower loot list with substantial black regions. Victory heading/return control are not readable in this capture; ordinary visibility/return actions are proved separately by the browser assertions.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/06-lower-resist-damage-curses-desktop-zh-CN-victory.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/07-iron-maiden-damage-curses-mobile-en-iron-maiden-preview.png",
+      "sha256": "8df13537438a33ad7fe0181a8c5ad05e93f9e0aa3c3c891433a53ab47b4bdbb0",
+      "archiveMember": "browser-images/07-iron-maiden-damage-curses-mobile-en-iron-maiden-preview.png",
+      "dimensionsPixels": [
+        924,
+        1496
+      ],
+      "project": "damage-curses-mobile",
+      "title": "Necromancer iron-maiden public preview/cast/save/offline en",
+      "finding": "Mobile element capture shows readable localized rules and current values. Header region clips name/MAX top; navigation and capture boundary exclude lower requirements and some next-level content. Missing-glyph navigation icons remain visible.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/07-iron-maiden-damage-curses-mobile-en-iron-maiden-preview.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/07-iron-maiden-damage-curses-mobile-en-victory.png",
+      "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc",
+      "archiveMember": "browser-images/07-iron-maiden-damage-curses-mobile-en-victory.png",
+      "dimensionsPixels": [
+        924,
+        3413
+      ],
+      "project": "damage-curses-mobile",
+      "title": "Necromancer iron-maiden public preview/cast/save/offline en",
+      "finding": "Victory element capture shows clipped combat toolbar and lower loot list with substantial black regions. Victory heading/return control are not readable in this capture; ordinary visibility/return actions are proved separately by the browser assertions.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/07-iron-maiden-damage-curses-mobile-en-victory.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/08-iron-maiden-damage-curses-mobile-zh-CN-iron-maiden-preview.png",
+      "sha256": "a58546b631fce8132faaf3dbcc62300a09b8d893dc8a2832bce679a0545702ea",
+      "archiveMember": "browser-images/08-iron-maiden-damage-curses-mobile-zh-CN-iron-maiden-preview.png",
+      "dimensionsPixels": [
+        924,
+        1496
+      ],
+      "project": "damage-curses-mobile",
+      "title": "Necromancer iron-maiden public preview/cast/save/offline zh-CN",
+      "finding": "Mobile element capture shows readable localized rules and current values. Header region clips name/MAX top; navigation and capture boundary exclude lower requirements and some next-level content. Missing-glyph navigation icons remain visible.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/08-iron-maiden-damage-curses-mobile-zh-CN-iron-maiden-preview.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/08-iron-maiden-damage-curses-mobile-zh-CN-victory.png",
+      "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2",
+      "archiveMember": "browser-images/08-iron-maiden-damage-curses-mobile-zh-CN-victory.png",
+      "dimensionsPixels": [
+        924,
+        3270
+      ],
+      "project": "damage-curses-mobile",
+      "title": "Necromancer iron-maiden public preview/cast/save/offline zh-CN",
+      "finding": "Victory element capture shows clipped combat toolbar and lower loot list with substantial black regions. Victory heading/return control are not readable in this capture; ordinary visibility/return actions are proved separately by the browser assertions.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/08-iron-maiden-damage-curses-mobile-zh-CN-victory.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/09-life-tap-damage-curses-mobile-en-life-tap-preview.png",
+      "sha256": "4bd4d4620236e6600dafeefb2e60e02d875a55c6e54c69b23e722ea8bcc7bee7",
+      "archiveMember": "browser-images/09-life-tap-damage-curses-mobile-en-life-tap-preview.png",
+      "dimensionsPixels": [
+        924,
+        1496
+      ],
+      "project": "damage-curses-mobile",
+      "title": "Necromancer life-tap public preview/cast/save/offline en",
+      "finding": "Mobile element capture shows readable localized rules and current values. Header region clips name/MAX top; navigation and capture boundary exclude lower requirements and some next-level content. Missing-glyph navigation icons remain visible.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/09-life-tap-damage-curses-mobile-en-life-tap-preview.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/09-life-tap-damage-curses-mobile-en-victory.png",
+      "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc",
+      "archiveMember": "browser-images/09-life-tap-damage-curses-mobile-en-victory.png",
+      "dimensionsPixels": [
+        924,
+        3413
+      ],
+      "project": "damage-curses-mobile",
+      "title": "Necromancer life-tap public preview/cast/save/offline en",
+      "finding": "Victory element capture shows clipped combat toolbar and lower loot list with substantial black regions. Victory heading/return control are not readable in this capture; ordinary visibility/return actions are proved separately by the browser assertions.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/09-life-tap-damage-curses-mobile-en-victory.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/10-life-tap-damage-curses-mobile-zh-CN-life-tap-preview.png",
+      "sha256": "8a4567efec21c56089f785bb952daea132607f022168ba45557edfa612defaec",
+      "archiveMember": "browser-images/10-life-tap-damage-curses-mobile-zh-CN-life-tap-preview.png",
+      "dimensionsPixels": [
+        924,
+        1496
+      ],
+      "project": "damage-curses-mobile",
+      "title": "Necromancer life-tap public preview/cast/save/offline zh-CN",
+      "finding": "Mobile element capture shows readable localized rules and current values. Header region clips name/MAX top; navigation and capture boundary exclude lower requirements and some next-level content. Missing-glyph navigation icons remain visible.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/10-life-tap-damage-curses-mobile-zh-CN-life-tap-preview.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/10-life-tap-damage-curses-mobile-zh-CN-victory.png",
+      "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2",
+      "archiveMember": "browser-images/10-life-tap-damage-curses-mobile-zh-CN-victory.png",
+      "dimensionsPixels": [
+        924,
+        3270
+      ],
+      "project": "damage-curses-mobile",
+      "title": "Necromancer life-tap public preview/cast/save/offline zh-CN",
+      "finding": "Victory element capture shows clipped combat toolbar and lower loot list with substantial black regions. Victory heading/return control are not readable in this capture; ordinary visibility/return actions are proved separately by the browser assertions.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/10-life-tap-damage-curses-mobile-zh-CN-victory.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/11-lower-resist-damage-curses-mobile-en-lower-resist-preview.png",
+      "sha256": "109ba51f4fb0119f0d85b0aa9a67e12354b51e7818c6f68ae4fa826012165e70",
+      "archiveMember": "browser-images/11-lower-resist-damage-curses-mobile-en-lower-resist-preview.png",
+      "dimensionsPixels": [
+        924,
+        1496
+      ],
+      "project": "damage-curses-mobile",
+      "title": "Necromancer lower-resist public preview/cast/save/offline en",
+      "finding": "Mobile element capture shows readable localized rules and current values. Header region clips name/MAX top; navigation and capture boundary exclude lower requirements and some next-level content. Missing-glyph navigation icons remain visible.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/11-lower-resist-damage-curses-mobile-en-lower-resist-preview.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/11-lower-resist-damage-curses-mobile-en-victory.png",
+      "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc",
+      "archiveMember": "browser-images/11-lower-resist-damage-curses-mobile-en-victory.png",
+      "dimensionsPixels": [
+        924,
+        3413
+      ],
+      "project": "damage-curses-mobile",
+      "title": "Necromancer lower-resist public preview/cast/save/offline en",
+      "finding": "Victory element capture shows clipped combat toolbar and lower loot list with substantial black regions. Victory heading/return control are not readable in this capture; ordinary visibility/return actions are proved separately by the browser assertions.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/11-lower-resist-damage-curses-mobile-en-victory.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/12-lower-resist-damage-curses-mobile-zh-CN-lower-resist-preview.png",
+      "sha256": "a65d553a5b005b58aa49c39099c066f34720d552909a792872bae4179602c1cb",
+      "archiveMember": "browser-images/12-lower-resist-damage-curses-mobile-zh-CN-lower-resist-preview.png",
+      "dimensionsPixels": [
+        924,
+        1496
+      ],
+      "project": "damage-curses-mobile",
+      "title": "Necromancer lower-resist public preview/cast/save/offline zh-CN",
+      "finding": "Mobile element capture shows readable localized rules and current values. Header region clips name/MAX top; navigation and capture boundary exclude lower requirements and some next-level content. Missing-glyph navigation icons remain visible.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/12-lower-resist-damage-curses-mobile-zh-CN-lower-resist-preview.png"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-damage-curses-ef0g_tk9/browser-images/12-lower-resist-damage-curses-mobile-zh-CN-victory.png",
+      "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2",
+      "archiveMember": "browser-images/12-lower-resist-damage-curses-mobile-zh-CN-victory.png",
+      "dimensionsPixels": [
+        924,
+        3270
+      ],
+      "project": "damage-curses-mobile",
+      "title": "Necromancer lower-resist public preview/cast/save/offline zh-CN",
+      "finding": "Victory element capture shows clipped combat toolbar and lower loot list with substantial black regions. Victory heading/return control are not readable in this capture; ordinary visibility/return actions are proved separately by the browser assertions.",
+      "versionedPath": "docs/plans/evidence/fixtures/damage-curses/12-lower-resist-damage-curses-mobile-zh-CN-victory.png"
+    }
+  ],
+  "localResult": "Authored bilingual skill descriptions/current numbers readable; capture limitations explicitly prevent complete visual-flow acceptance.",
+  "limitations": [
+    "Synthetic levels, imported gear/pools and skill configuration do not establish earned progression or balance.",
+    "60 geometry assertions establish no document horizontal overflow and >=44px allocation height at five sizes; no claim of complete hit testing, safe areas, contrast, keyboard or a11y coverage.",
+    "Element screenshots are clipped around header/navigation or include black regions; do not prove full mobile/victory readability.",
+    "BUG063 is already fixed/accepted in5e4a038; current ScreenShell reserves HUD height in normal flow. These screenshots alone do not establish a new overlay regression or its cause.",
+    "Runtime performance and independent design/QA remain open."
+  ]
+}
