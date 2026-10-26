@@ -1,0 +1,22 @@
+{
+  "scope": "BUG249 Fire Golem core plus presentation/native/browser follow-up",
+  "reviewer": "root author; not independent acceptance",
+  "axes": {
+    "correctness": "Validated definition/source/rank/payment and private new-body bindings; ordinary shared Fire/Burn route. Numeric resisted/normal and paid inert controls retain actual HP/cost assertions. Preview reads the same definition/defaults. Native allocation preserves current recordings and absolute pools; imports do not restore transient fields.",
+    "readability": "Small display extension and shared periodic row renderer; no new UI mechanics, timer or status system. Browser observer bounds retained arrays, counts unique rendered elements, and disconnects in finally.",
+    "architecture": "Pure engine/data-owned numbers, existing preparation and native refresh, i18next description interpolation, unchanged save version.",
+    "security": "Exact source/native qualification remains; no imported transient authority, dependencies, credentials, permissions, CI or remote operations. Browser JS reads public DOM only; __GAME__ remains absent.",
+    "performance": "Only qualified paid bodies enter the private run map. Reuse ordinary action/status scheduling. Existing emitted chunk-size/art-manifest precache warnings remain broader performance/PWA limitations."
+  },
+  "testQuality": "62new regressions total:15definition/schema,26engine,4nativecausal,7preview,8bilingualcomponent,2nativelifecycle. Bounded synthetic stats/imports are functional evidence only. Final browser/full gates and screenshots still need terminal inspection. Final engine8793/330, full17652/806/two existing opt-in campaign skips, full lint, final corrected types, official build/bridge/precache and actual browser4/4 pass. All16PNG individually inspected with retained scope limits.",
+  "verdict": "Author functional review complete with no unresolved production defect found in BUG249. Independent design/reviewer/QA and earned balance acceptance remain open.",
+  "unclosed": [
+    "Durable raw retention and exact task-owned cleanup",
+    "One Fire Golem inventory credit after cleanup",
+    "Independent/earned acceptance and full C2-C4/G0-G7/privatev1"
+  ],
+  "skips": {
+    "tests/sim/production/fresh-campaign-continuation.test.ts:9": "Existing skipIf(selected === null): declared authentic continuation is opt-in; no genuine campaign/replay authorized.",
+    "tests/sim/production/fresh-campaign-economy.test.ts:9": "Existing skipIf(selected === null): authentic earned farming policy is opt-in; no genuine campaign/replay authorized."
+  }
+}

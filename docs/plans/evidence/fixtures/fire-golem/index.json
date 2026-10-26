@@ -1,0 +1,125 @@
+{
+  "attachmentsExcludingThisIndex": {
+    "author-review.json": {
+      "sha256": "4937d12272ce9b1a9989bd2c68d4e32720989e0f119023450e4efca58b934443",
+      "bytes": 2595
+    },
+    "browser-audit.json": {
+      "sha256": "4e77b53cc66b563ac2a97f9c253ee79d0b94c732e8dc8718c29574b75b0d72cc",
+      "bytes": 10631
+    },
+    "build.json": {
+      "sha256": "270cf6a02ac4d37582eb0fac8a9fce3c514c6e06bd53d907460ec1d930850ecf",
+      "bytes": 103646
+    },
+    "cleanup.json": {
+      "sha256": "f0dd7ebb0b06fc7e80cea9132b10180a93e13f386a4e6460afd8ef3b130671c9",
+      "bytes": 709
+    },
+    "deletion-manifest.json": {
+      "sha256": "06809d8461ac604a1c5ff59f457f62fe43ce7e69f67f02724ca3215444f684fe",
+      "bytes": 906422
+    },
+    "failures-and-corrections.json": {
+      "sha256": "1d728b94ff6dbea76954339eacbd8b83920f535b4e2e3da4a87e2e61fcf77ad3",
+      "bytes": 10618
+    },
+    "fire-golem-desktop-en-combat-viewport.png": {
+      "sha256": "8e4060f8a762da3f90d079cd7be24e1650a1dda34815b5977f9dc50888544f0d",
+      "bytes": 471989
+    },
+    "fire-golem-desktop-en-fire-golem-body.png": {
+      "sha256": "6fd0d25b95b88cc9e3d950ac5cf2441ac81f09c2a8b9042f016a1b393b6e27bc",
+      "bytes": 42183
+    },
+    "fire-golem-desktop-en-fire-golem-stats-viewport.png": {
+      "sha256": "da2401898aeb5e517376d9444a4bdd89384d49bc5f3e7f7e09f6796daae5d47b",
+      "bytes": 175202
+    },
+    "fire-golem-desktop-en-fire-golem-title-viewport.png": {
+      "sha256": "0dcad6a75567ba54a31dcafffec33a5e4e1e32e05b7267a1438351cf475eaeca",
+      "bytes": 189879
+    },
+    "fire-golem-desktop-zh-CN-combat-viewport.png": {
+      "sha256": "bde28b87da310434acb553aadd93615c07dc6c172357700ac0e4688d51ef89f6",
+      "bytes": 478954
+    },
+    "fire-golem-desktop-zh-CN-fire-golem-body.png": {
+      "sha256": "1d586a76ab6c91f22f2462fc92f3383556f0b79792bea7b0eb8c93806e23d0a3",
+      "bytes": 43806
+    },
+    "fire-golem-desktop-zh-CN-fire-golem-stats-viewport.png": {
+      "sha256": "eeba2b600c8bb0507a7d8ba87d7ebc14de9837150f54122528675cd03ad0a866",
+      "bytes": 183622
+    },
+    "fire-golem-desktop-zh-CN-fire-golem-title-viewport.png": {
+      "sha256": "a7318a93d2e1e29a4989628058baf3674542559ce51b69d1a9e4d4f61e3beec0",
+      "bytes": 190832
+    },
+    "fire-golem-mobile-en-combat-viewport.png": {
+      "sha256": "6008356edb7ad75377159f24faea572fd2c79cad2dfdf3e6091bca68783525f0",
+      "bytes": 432656
+    },
+    "fire-golem-mobile-en-fire-golem-body.png": {
+      "sha256": "a6e6330e1550c27264351655212f477741c87428e9148de7ca2084456c806c3d",
+      "bytes": 67907
+    },
+    "fire-golem-mobile-en-fire-golem-stats-viewport.png": {
+      "sha256": "da91189ddbe2dd41236bbc832ea5adf6898e4c9ae34730f543cce7ef80c299f9",
+      "bytes": 212588
+    },
+    "fire-golem-mobile-en-fire-golem-title-viewport.png": {
+      "sha256": "d3818218be3c28bad6fc95bc499f74e658021b7b65aa8962576d00e7edeb6164",
+      "bytes": 221065
+    },
+    "fire-golem-mobile-zh-CN-combat-viewport.png": {
+      "sha256": "3a0effa240911c84e62bdc34a5542061e6c0d8b7f19d3d6bd6157c6bf0b113d0",
+      "bytes": 427408
+    },
+    "fire-golem-mobile-zh-CN-fire-golem-body.png": {
+      "sha256": "81f6c1ce448eef7872b99ddf4ffd7e6ac686724a6e160c8573df3e04fdc52d7a",
+      "bytes": 69700
+    },
+    "fire-golem-mobile-zh-CN-fire-golem-stats-viewport.png": {
+      "sha256": "f60b24d03dbe2af2d12410eb72bfbd0de5b21c03380feb69a6e0586f88090b82",
+      "bytes": 239211
+    },
+    "fire-golem-mobile-zh-CN-fire-golem-title-viewport.png": {
+      "sha256": "ed75e1b5c2c9b816a167402bf19e17a66f407c6509a460e97a81a7d732f015f0",
+      "bytes": 267496
+    },
+    "inventory-integrity.json": {
+      "sha256": "104962004c92c5ae79d7d4b98dee2f290aeb7ae27e104aab7cafed1bc9afe820",
+      "bytes": 838
+    },
+    "preclosure-integrity.json": {
+      "sha256": "778e32147498e90f1a7da176536b7819238223fcd60cf8ce0a51b8974c319059",
+      "bytes": 447
+    },
+    "public-proof.json": {
+      "sha256": "7fd82f6a99eb8c2117fc3d3c26419f28dc69021cf62883537e6f277e7865b991",
+      "bytes": 105203
+    },
+    "retention.json": {
+      "sha256": "080cb7340200833b6f5dd65c139ff5e1dbfa99bb7f80376ce9994a0cfe15149e",
+      "bytes": 496968
+    },
+    "source.json": {
+      "sha256": "309dce8fa165f32508d6084d93208ced10d655c303bd1b4005fbaaba8d4a197c",
+      "bytes": 180818
+    },
+    "validation.json": {
+      "sha256": "46e6c696d99aa28b29be41d0b6050bafa857bae822ea43c8b0b6140a7f077868",
+      "bytes": 19382
+    },
+    "visual-review.json": {
+      "sha256": "41b6defb4625a252d3c64d6c2da69f78b494905433b8ff74977c8784b6f6c955",
+      "bytes": 12394
+    }
+  },
+  "attachmentCountIncludingIndex": 30,
+  "rawArchive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz-retained.tar.xz",
+  "rawArchiveSha256": "68cf35dc314dc40e07b4c1aa29aded271af800bb0a484219fe6908ebd6334e7d",
+  "owner": "root; retain external archive and three sidecars through BUG249/full-v1 evidence consumers; remove after those consumers finish.",
+  "scope": "One bounded Fire Golem functional credit; independent/earned acceptance remains open."
+}

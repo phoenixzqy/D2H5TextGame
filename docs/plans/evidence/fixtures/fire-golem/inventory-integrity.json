@@ -1,0 +1,21 @@
+{
+  "changedSkill": "skills-necromancer-fire-golem",
+  "changedRawRows": 1,
+  "unchangedOtherRawRows": 212,
+  "headerAndIdOrderExact": true,
+  "rowCount": 213,
+  "beforeSha256": "800f13df4e30fcb98d3c8b337572a0e974bca03c317babecb98637e711762cb1",
+  "afterSha256": "eb85b578991e2f73708cc70c041c3be7e2aa36d83e7b445b75230e9790f4c92b",
+  "unchangedRawRowsSha256": "b78988ee6ca4f63f1c3973cecd284097cd7a9b386203c2c8ee78ea082cf5e58d",
+  "verificationCounts": {
+    "unverified": 51,
+    "bounded-functional;independent-acceptance-open": 157,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "boundedFunctional": 160,
+  "necromancerBounded": 18,
+  "sourceCommit": "2fe4de9a7d6ab9e2b654fd90b28887289da84fcd",
+  "independentAndEarnedAcceptance": "open"
+}

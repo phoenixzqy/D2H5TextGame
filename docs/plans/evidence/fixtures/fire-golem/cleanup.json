@@ -1,0 +1,14 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz-retained.tar.xz",
+  "retention": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz-retention.json",
+  "deletionManifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz-deletion-manifest.json",
+  "removedFiles": 2841,
+  "removedDirectories": 38,
+  "remaining": [],
+  "failures": [],
+  "knownIdentityCount": 23,
+  "readableConsumers": [],
+  "restrictedProcEntries": 27,
+  "port4533Available": true,
+  "retainedOwner": "root; keep archive/sidecars through BUG249/full-v1 evidence consumers, then remove them after those consumers finish."
+}

@@ -1,0 +1,10 @@
+{
+  "sourceFiles": 1587,
+  "sourceDrift": [],
+  "buildFiles": 762,
+  "buildDrift": [],
+  "genuineCompressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+  "genuineRawSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "genuineAction": "Hash/decompression inspection only; no campaign/replay",
+  "inventoryBeforeSha256": "800f13df4e30fcb98d3c8b337572a0e974bca03c317babecb98637e711762cb1"
+}

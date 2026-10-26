@@ -1,0 +1,3918 @@
+{
+  "fire-golem-desktop-en-combat-log.txt": "05:00:00Turn 1 begins\n05:00:00Golem Browser casts Fire Golem.\n05:00:00Golem Browser summons Fire Golem.\n05:00:00Golem Browser readies an attack.\n05:00:00Bone Warrior A dodges Golem Browser's attack!\n05:00:00Bone Warrior F casts Strong Melee.\n05:00:00Fire Golem dodges Bone Warrior F's attack!\n05:00:00Bone Warrior D casts Strong Melee.\n05:00:00Bone Warrior D attacks Fire Golem for 1 physical damage.\n05:00:00Bone Warrior A casts Strong Melee.\n05:00:00Bone Warrior A attacks Fire Golem for 1 physical damage.\n05:00:00Bone Warrior B casts Strong Melee.\n05:00:00Bone Warrior B attacks Golem Browser for 1 physical damage.\n05:00:00Bone Warrior C casts Strong Melee.\n05:00:00Golem Browser dodges Bone Warrior C's attack!\n05:00:00Bone Warrior E casts Strong Melee.\n05:00:00Bone Warrior E attacks Golem Browser for 1 physical damage.\n05:00:00Fire Golem readies an attack.\n05:00:00Fire Golem attacks Bone Warrior A for 44 fire damage.\n05:00:00Bone Warrior A is afflicted with [Burn].\n05:00:00Zombie B casts Weak Melee.\n05:00:00Zombie B attacks Fire Golem for 1 physical damage.\n05:00:00Zombie A casts Weak Melee.\n05:00:00Zombie A attacks Fire Golem for 1 physical damage.\n05:00:00Bone Warrior A takes 4 damage over time.\n05:00:00Golem Browser readies an attack.\n05:00:00Golem Browser attacks Bone Warrior A for 20 physical damage.\n05:00:00Bone Warrior A takes 2 damage over time.\n05:00:00Bone Warrior F casts Strong Melee.\n05:00:00Fire Golem dodges Bone Warrior F's attack!\n05:00:00Bone Warrior D casts Strong Melee.\n05:00:00Fire Golem dodges Bone Warrior D's attack!\n05:00:00Bone Warrior A casts Strong Melee.\n05:00:00Golem Browser dodges Bone Warrior A's attack!\n05:00:00Bone Warrior B casts Strong Melee.\n05:00:00Bone Warrior B attacks Fire Golem for 1 physical damage.\n05:00:00Bone Warrior C casts Strong Melee.\n05:00:00Bone Warrior C attacks Golem Browser for 1 physical damage.\n05:00:00Bone Warrior E casts Strong Melee.\n05:00:00Fire Golem dodges Bone Warrior E's attack!\n05:00:00Bone Warrior A takes 1 damage over time.\n05:00:00Fire Golem readies an attack.\n05:00:00Fire Golem attacks Bone Warrior A for 44 fire damage.\n05:00:00Bone Warrior A is afflicted with [Burn].\n05:00:00Bone Warrior A takes 1 damage over time.\n05:00:00Zombie B casts Weak Melee.\n05:00:00Zombie B attacks Golem Browser for 1 physical damage.\n05:00:00Zombie A casts Weak Melee.\n05:00:00Fire Golem dodges Zombie A's attack!",
+  "fire-golem-desktop-en-console-errors.json": {
+    "errors": [],
+    "consoleErrors": []
+  },
+  "fire-golem-desktop-en-geometry.json": [
+    {
+      "width": 360,
+      "height": 640,
+      "allocationHeight": 48,
+      "allocationWidth": 120.921875
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "allocationHeight": 48,
+      "allocationWidth": 120.921875
+    },
+    {
+      "width": 640,
+      "height": 360,
+      "allocationHeight": 48,
+      "allocationWidth": 120.921875
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "allocationHeight": 48,
+      "allocationWidth": 120.921875
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "allocationHeight": 48,
+      "allocationWidth": 120.921875
+    }
+  ],
+  "fire-golem-desktop-en-offline-save-pair.json": {
+    "saved": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "en",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    },
+    "restored": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "en",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    }
+  },
+  "fire-golem-desktop-en-online-save-pair.json": {
+    "saved": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "en",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    },
+    "restored": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "en",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    }
+  },
+  "fire-golem-desktop-en-paid-body-fire-burn.json": {
+    "values": [
+      1203,
+      1168,
+      1175,
+      1176,
+      1177,
+      1178,
+      1183,
+      1185,
+      1187,
+      1188
+    ],
+    "bodyFire": [
+      "05:00:00Fire Golem attacks Bone Warrior A for 44 fire damage.",
+      "05:00:00Fire Golem attacks Bone Warrior A for 44 fire damage."
+    ],
+    "heroFire": [],
+    "casts": [
+      "05:00:00Golem Browser casts Fire Golem."
+    ],
+    "burns": [
+      "05:00:00Bone Warrior A is afflicted with [Burn].",
+      "05:00:00Bone Warrior A is afflicted with [Burn]."
+    ],
+    "dots": [
+      "05:00:00Bone Warrior A takes 4 damage over time.",
+      "05:00:00Bone Warrior A takes 2 damage over time.",
+      "05:00:00Bone Warrior A takes 1 damage over time.",
+      "05:00:00Bone Warrior A takes 1 damage over time."
+    ],
+    "enemyChip": "Ignite",
+    "overflow": false
+  },
+  "fire-golem-desktop-zh-CN-combat-log.txt": "05:00:00第 1 回合开始\n05:00:00Golem Browser 施放了 火焰石魔。\n05:00:00Golem Browser 召唤了 火焰石魔。\n05:00:00Golem Browser 准备出招。\n05:00:00骸骨战士 A 闪避了 Golem Browser 的攻击！\n05:00:00骸骨战士 F 施放了 强力近战。\n05:00:00火焰石魔 闪避了 骸骨战士 F 的攻击！\n05:00:00骸骨战士 D 施放了 强力近战。\n05:00:00骸骨战士 D 普攻 火焰石魔，造成 1 点物理伤害。\n05:00:00骸骨战士 A 施放了 强力近战。\n05:00:00骸骨战士 A 普攻 火焰石魔，造成 1 点物理伤害。\n05:00:00骸骨战士 B 施放了 强力近战。\n05:00:00骸骨战士 B 普攻 Golem Browser，造成 1 点物理伤害。\n05:00:00骸骨战士 C 施放了 强力近战。\n05:00:00Golem Browser 闪避了 骸骨战士 C 的攻击！\n05:00:00骸骨战士 E 施放了 强力近战。\n05:00:00骸骨战士 E 普攻 Golem Browser，造成 1 点物理伤害。\n05:00:00火焰石魔 准备出招。\n05:00:00火焰石魔 普攻 骸骨战士 A，造成 44 点火焰伤害。\n05:00:00骸骨战士 A 进入【燃烧】状态。\n05:00:00僵尸 B 施放了 弱近战。\n05:00:00僵尸 B 普攻 火焰石魔，造成 1 点物理伤害。\n05:00:00僵尸 A 施放了 弱近战。\n05:00:00僵尸 A 普攻 火焰石魔，造成 1 点物理伤害。\n05:00:00骸骨战士 A 因持续伤害受到 4 点伤害。\n05:00:00Golem Browser 准备出招。\n05:00:00Golem Browser 普攻 骸骨战士 A，造成 20 点物理伤害。\n05:00:00骸骨战士 A 因持续伤害受到 2 点伤害。\n05:00:00骸骨战士 F 施放了 强力近战。\n05:00:00火焰石魔 闪避了 骸骨战士 F 的攻击！\n05:00:00骸骨战士 D 施放了 强力近战。\n05:00:00火焰石魔 闪避了 骸骨战士 D 的攻击！\n05:00:00骸骨战士 A 施放了 强力近战。\n05:00:00Golem Browser 闪避了 骸骨战士 A 的攻击！\n05:00:00骸骨战士 B 施放了 强力近战。\n05:00:00骸骨战士 B 普攻 火焰石魔，造成 1 点物理伤害。\n05:00:00骸骨战士 C 施放了 强力近战。\n05:00:00骸骨战士 C 普攻 Golem Browser，造成 1 点物理伤害。\n05:00:00骸骨战士 E 施放了 强力近战。\n05:00:00火焰石魔 闪避了 骸骨战士 E 的攻击！\n05:00:00骸骨战士 A 因持续伤害受到 1 点伤害。\n05:00:00火焰石魔 准备出招。\n05:00:00火焰石魔 普攻 骸骨战士 A，造成 44 点火焰伤害。\n05:00:00骸骨战士 A 进入【燃烧】状态。\n05:00:00骸骨战士 A 因持续伤害受到 1 点伤害。\n05:00:00僵尸 B 施放了 弱近战。\n05:00:00僵尸 B 普攻 Golem Browser，造成 1 点物理伤害。\n05:00:00僵尸 A 施放了 弱近战。\n05:00:00火焰石魔 闪避了 僵尸 A 的攻击！",
+  "fire-golem-desktop-zh-CN-console-errors.json": {
+    "errors": [],
+    "consoleErrors": []
+  },
+  "fire-golem-desktop-zh-CN-geometry.json": [
+    {
+      "width": 360,
+      "height": 640,
+      "allocationHeight": 48,
+      "allocationWidth": 120
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "allocationHeight": 48,
+      "allocationWidth": 120
+    },
+    {
+      "width": 640,
+      "height": 360,
+      "allocationHeight": 48,
+      "allocationWidth": 120
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "allocationHeight": 48,
+      "allocationWidth": 120
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "allocationHeight": 48,
+      "allocationWidth": 120
+    }
+  ],
+  "fire-golem-desktop-zh-CN-offline-save-pair.json": {
+    "saved": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "zh-CN",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    },
+    "restored": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "zh-CN",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    }
+  },
+  "fire-golem-desktop-zh-CN-online-save-pair.json": {
+    "saved": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "zh-CN",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    },
+    "restored": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "zh-CN",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    }
+  },
+  "fire-golem-desktop-zh-CN-paid-body-fire-burn.json": {
+    "values": [
+      1203,
+      1168,
+      1175,
+      1176,
+      1177,
+      1178,
+      1183,
+      1185,
+      1187,
+      1188
+    ],
+    "bodyFire": [
+      "05:00:00火焰石魔 普攻 骸骨战士 A，造成 44 点火焰伤害。",
+      "05:00:00火焰石魔 普攻 骸骨战士 A，造成 44 点火焰伤害。"
+    ],
+    "heroFire": [],
+    "casts": [
+      "05:00:00Golem Browser 施放了 火焰石魔。"
+    ],
+    "burns": [
+      "05:00:00骸骨战士 A 进入【燃烧】状态。",
+      "05:00:00骸骨战士 A 进入【燃烧】状态。"
+    ],
+    "dots": [
+      "05:00:00骸骨战士 A 因持续伤害受到 4 点伤害。",
+      "05:00:00骸骨战士 A 因持续伤害受到 2 点伤害。",
+      "05:00:00骸骨战士 A 因持续伤害受到 1 点伤害。",
+      "05:00:00骸骨战士 A 因持续伤害受到 1 点伤害。"
+    ],
+    "enemyChip": "点燃",
+    "overflow": false
+  },
+  "fire-golem-mobile-en-combat-log.txt": "05:00:00Turn 1 begins\n05:00:00Golem Browser casts Fire Golem.\n05:00:00Golem Browser summons Fire Golem.\n05:00:00Golem Browser readies an attack.\n05:00:00Bone Warrior A dodges Golem Browser's attack!\n05:00:00Bone Warrior F casts Strong Melee.\n05:00:00Fire Golem dodges Bone Warrior F's attack!\n05:00:00Bone Warrior D casts Strong Melee.\n05:00:00Bone Warrior D attacks Fire Golem for 1 physical damage.\n05:00:00Bone Warrior A casts Strong Melee.\n05:00:00Bone Warrior A attacks Fire Golem for 1 physical damage.\n05:00:00Bone Warrior B casts Strong Melee.\n05:00:00Bone Warrior B attacks Golem Browser for 1 physical damage.\n05:00:00Bone Warrior C casts Strong Melee.\n05:00:00Golem Browser dodges Bone Warrior C's attack!\n05:00:00Bone Warrior E casts Strong Melee.\n05:00:00Bone Warrior E attacks Golem Browser for 1 physical damage.\n05:00:00Fire Golem readies an attack.\n05:00:00Fire Golem attacks Bone Warrior A for 44 fire damage.\n05:00:00Bone Warrior A is afflicted with [Burn].\n05:00:00Zombie B casts Weak Melee.\n05:00:00Zombie B attacks Fire Golem for 1 physical damage.\n05:00:00Zombie A casts Weak Melee.\n05:00:00Zombie A attacks Fire Golem for 1 physical damage.\n05:00:00Bone Warrior A takes 4 damage over time.\n05:00:00Golem Browser readies an attack.\n05:00:00Golem Browser attacks Bone Warrior A for 20 physical damage.\n05:00:00Bone Warrior A takes 2 damage over time.\n05:00:00Bone Warrior F casts Strong Melee.\n05:00:00Fire Golem dodges Bone Warrior F's attack!\n05:00:00Bone Warrior D casts Strong Melee.\n05:00:00Fire Golem dodges Bone Warrior D's attack!\n05:00:00Bone Warrior A casts Strong Melee.\n05:00:00Golem Browser dodges Bone Warrior A's attack!\n05:00:00Bone Warrior B casts Strong Melee.\n05:00:00Bone Warrior B attacks Fire Golem for 1 physical damage.\n05:00:00Bone Warrior C casts Strong Melee.\n05:00:00Bone Warrior C attacks Golem Browser for 1 physical damage.\n05:00:00Bone Warrior E casts Strong Melee.\n05:00:00Fire Golem dodges Bone Warrior E's attack!\n05:00:00Bone Warrior A takes 1 damage over time.\n05:00:00Fire Golem readies an attack.\n05:00:00Fire Golem attacks Bone Warrior A for 44 fire damage.\n05:00:00Bone Warrior A is afflicted with [Burn].\n05:00:00Bone Warrior A takes 1 damage over time.\n05:00:00Zombie B casts Weak Melee.\n05:00:00Zombie B attacks Golem Browser for 1 physical damage.\n05:00:00Zombie A casts Weak Melee.\n05:00:00Fire Golem dodges Zombie A's attack!",
+  "fire-golem-mobile-en-console-errors.json": {
+    "errors": [],
+    "consoleErrors": []
+  },
+  "fire-golem-mobile-en-geometry.json": [
+    {
+      "width": 360,
+      "height": 640,
+      "allocationHeight": 48,
+      "allocationWidth": 120.921875
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "allocationHeight": 48,
+      "allocationWidth": 120.921875
+    },
+    {
+      "width": 640,
+      "height": 360,
+      "allocationHeight": 48,
+      "allocationWidth": 120.921875
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "allocationHeight": 48,
+      "allocationWidth": 120.921875
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "allocationHeight": 48,
+      "allocationWidth": 120.921875
+    }
+  ],
+  "fire-golem-mobile-en-offline-save-pair.json": {
+    "saved": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "en",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    },
+    "restored": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "en",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    }
+  },
+  "fire-golem-mobile-en-online-save-pair.json": {
+    "saved": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "en",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    },
+    "restored": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "en",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    }
+  },
+  "fire-golem-mobile-en-paid-body-fire-burn.json": {
+    "values": [
+      1203,
+      1168,
+      1175,
+      1176,
+      1177,
+      1178,
+      1183,
+      1185,
+      1187,
+      1188
+    ],
+    "bodyFire": [
+      "05:00:00Fire Golem attacks Bone Warrior A for 44 fire damage.",
+      "05:00:00Fire Golem attacks Bone Warrior A for 44 fire damage."
+    ],
+    "heroFire": [],
+    "casts": [
+      "05:00:00Golem Browser casts Fire Golem."
+    ],
+    "burns": [
+      "05:00:00Bone Warrior A is afflicted with [Burn].",
+      "05:00:00Bone Warrior A is afflicted with [Burn]."
+    ],
+    "dots": [
+      "05:00:00Bone Warrior A takes 4 damage over time.",
+      "05:00:00Bone Warrior A takes 2 damage over time.",
+      "05:00:00Bone Warrior A takes 1 damage over time.",
+      "05:00:00Bone Warrior A takes 1 damage over time."
+    ],
+    "enemyChip": "Ignite",
+    "overflow": false
+  },
+  "fire-golem-mobile-zh-CN-combat-log.txt": "05:00:00第 1 回合开始\n05:00:00Golem Browser 施放了 火焰石魔。\n05:00:00Golem Browser 召唤了 火焰石魔。\n05:00:00Golem Browser 准备出招。\n05:00:00骸骨战士 A 闪避了 Golem Browser 的攻击！\n05:00:00骸骨战士 F 施放了 强力近战。\n05:00:00火焰石魔 闪避了 骸骨战士 F 的攻击！\n05:00:00骸骨战士 D 施放了 强力近战。\n05:00:00骸骨战士 D 普攻 火焰石魔，造成 1 点物理伤害。\n05:00:00骸骨战士 A 施放了 强力近战。\n05:00:00骸骨战士 A 普攻 火焰石魔，造成 1 点物理伤害。\n05:00:00骸骨战士 B 施放了 强力近战。\n05:00:00骸骨战士 B 普攻 Golem Browser，造成 1 点物理伤害。\n05:00:00骸骨战士 C 施放了 强力近战。\n05:00:00Golem Browser 闪避了 骸骨战士 C 的攻击！\n05:00:00骸骨战士 E 施放了 强力近战。\n05:00:00骸骨战士 E 普攻 Golem Browser，造成 1 点物理伤害。\n05:00:00火焰石魔 准备出招。\n05:00:00火焰石魔 普攻 骸骨战士 A，造成 44 点火焰伤害。\n05:00:00骸骨战士 A 进入【燃烧】状态。\n05:00:00僵尸 B 施放了 弱近战。\n05:00:00僵尸 B 普攻 火焰石魔，造成 1 点物理伤害。\n05:00:00僵尸 A 施放了 弱近战。\n05:00:00僵尸 A 普攻 火焰石魔，造成 1 点物理伤害。\n05:00:00骸骨战士 A 因持续伤害受到 4 点伤害。\n05:00:00Golem Browser 准备出招。\n05:00:00Golem Browser 普攻 骸骨战士 A，造成 20 点物理伤害。\n05:00:00骸骨战士 A 因持续伤害受到 2 点伤害。\n05:00:00骸骨战士 F 施放了 强力近战。\n05:00:00火焰石魔 闪避了 骸骨战士 F 的攻击！\n05:00:00骸骨战士 D 施放了 强力近战。\n05:00:00火焰石魔 闪避了 骸骨战士 D 的攻击！\n05:00:00骸骨战士 A 施放了 强力近战。\n05:00:00Golem Browser 闪避了 骸骨战士 A 的攻击！\n05:00:00骸骨战士 B 施放了 强力近战。\n05:00:00骸骨战士 B 普攻 火焰石魔，造成 1 点物理伤害。\n05:00:00骸骨战士 C 施放了 强力近战。\n05:00:00骸骨战士 C 普攻 Golem Browser，造成 1 点物理伤害。\n05:00:00骸骨战士 E 施放了 强力近战。\n05:00:00火焰石魔 闪避了 骸骨战士 E 的攻击！\n05:00:00骸骨战士 A 因持续伤害受到 1 点伤害。\n05:00:00火焰石魔 准备出招。\n05:00:00火焰石魔 普攻 骸骨战士 A，造成 44 点火焰伤害。\n05:00:00骸骨战士 A 进入【燃烧】状态。\n05:00:00骸骨战士 A 因持续伤害受到 1 点伤害。\n05:00:00僵尸 B 施放了 弱近战。\n05:00:00僵尸 B 普攻 Golem Browser，造成 1 点物理伤害。\n05:00:00僵尸 A 施放了 弱近战。\n05:00:00火焰石魔 闪避了 僵尸 A 的攻击！",
+  "fire-golem-mobile-zh-CN-console-errors.json": {
+    "errors": [],
+    "consoleErrors": []
+  },
+  "fire-golem-mobile-zh-CN-geometry.json": [
+    {
+      "width": 360,
+      "height": 640,
+      "allocationHeight": 48,
+      "allocationWidth": 120
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "allocationHeight": 48,
+      "allocationWidth": 120
+    },
+    {
+      "width": 640,
+      "height": 360,
+      "allocationHeight": 48,
+      "allocationWidth": 120
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "allocationHeight": 48,
+      "allocationWidth": 120
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "allocationHeight": 48,
+      "allocationWidth": 120
+    }
+  ],
+  "fire-golem-mobile-zh-CN-offline-save-pair.json": {
+    "saved": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "zh-CN",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    },
+    "restored": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "zh-CN",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    }
+  },
+  "fire-golem-mobile-zh-CN-online-save-pair.json": {
+    "saved": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "zh-CN",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    },
+    "restored": {
+      "version": 22,
+      "endgame": {
+        "attemptOrdinal": 0,
+        "clearCounts": {
+          "ashen": 0,
+          "glacial": 0
+        },
+        "achievementRewardClaimed": false
+      },
+      "timestamp": 1793016000000,
+      "player": {
+        "id": "player-1793016000000",
+        "name": "Golem Browser",
+        "type": "player",
+        "team": "player",
+        "level": 30,
+        "coreStats": {
+          "strength": 15,
+          "dexterity": 25,
+          "vitality": 15,
+          "energy": 25
+        },
+        "derivedStats": {
+          "life": 130,
+          "lifeMax": 1000242,
+          "mana": 87,
+          "manaMax": 1203,
+          "attack": 80,
+          "defense": 114,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "skills-necromancer-fire-golem"
+        ],
+        "skillLevels": {
+          "skills-necromancer-clay-golem": 1,
+          "skills-necromancer-golem-mastery": 1,
+          "skills-necromancer-blood-golem": 1,
+          "skills-necromancer-iron-golem": 1,
+          "skills-necromancer-fire-golem": 20
+        },
+        "alive": true,
+        "turnOrder": 0,
+        "class": "necromancer",
+        "experience": 0,
+        "experienceToNextLevel": 100,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "respecsRemaining": {
+          "stat": 3,
+          "skill": 3
+        },
+        "equipment": [
+          {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "inventory": {
+        "questServices": {},
+        "legacyGearQuarantine": [],
+        "socketQuarantine": [],
+        "materialActionOrdinal": 0,
+        "backpack": [],
+        "stash": [],
+        "equipped": {
+          "head": {
+            "id": "synthetic-fire-golem-cap",
+            "baseId": "items/base/helm-cap",
+            "rarity": "rare",
+            "level": 1,
+            "identified": true,
+            "equipped": true,
+            "socketCapacity": 0,
+            "socketContents": [],
+            "affixes": [
+              {
+                "affixId": "synthetic-import",
+                "values": [
+                  [
+                    "statMods.life",
+                    999880
+                  ],
+                  [
+                    "statMods.mana",
+                    1000
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        "currencies": {},
+        "materials": {},
+        "questItems": {}
+      },
+      "mercs": {
+        "ownedMercs": [],
+        "fieldedMercId": null,
+        "mercEquipment": {},
+        "mercProgress": {}
+      },
+      "map": {
+        "questTitles": {},
+        "questDifficulties": {},
+        "selectedTitle": null,
+        "selectedDifficulty": "normal",
+        "nightmareClearedSubAreas": [],
+        "challengeOrdinals": {
+          "normal": 1,
+          "nightmare": 0
+        },
+        "currentAct": 1,
+        "currentSubAreaId": "a1-catacombs",
+        "discoveredAreas": [],
+        "clearedSubAreas": [],
+        "questProgress": {},
+        "questReceipts": {}
+      },
+      "meta": {
+        "settings": {
+          "locale": "zh-CN",
+          "stealthMode": false,
+          "soundEnabled": true,
+          "musicEnabled": true,
+          "combatSpeed": 1,
+          "autoCombat": true
+        },
+        "idleState": {
+          "lastOnline": 1793016000000,
+          "offlineTime": 0,
+          "multiplierSecondsRemaining": 0,
+          "activeMultiplier": 1
+        },
+        "gachaState": {
+          "currency": 0,
+          "ownedMercIds": [],
+          "pityCounter": 0
+        }
+      },
+      "formation": {
+        "playerPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "mercPosition": {
+          "row": 0,
+          "col": 0
+        },
+        "summonPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      }
+    }
+  },
+  "fire-golem-mobile-zh-CN-paid-body-fire-burn.json": {
+    "values": [
+      1203,
+      1168,
+      1175,
+      1176,
+      1177,
+      1178,
+      1183,
+      1185,
+      1187,
+      1188
+    ],
+    "bodyFire": [
+      "05:00:00火焰石魔 普攻 骸骨战士 A，造成 44 点火焰伤害。",
+      "05:00:00火焰石魔 普攻 骸骨战士 A，造成 44 点火焰伤害。"
+    ],
+    "heroFire": [],
+    "casts": [
+      "05:00:00Golem Browser 施放了 火焰石魔。"
+    ],
+    "burns": [
+      "05:00:00骸骨战士 A 进入【燃烧】状态。",
+      "05:00:00骸骨战士 A 进入【燃烧】状态。"
+    ],
+    "dots": [
+      "05:00:00骸骨战士 A 因持续伤害受到 4 点伤害。",
+      "05:00:00骸骨战士 A 因持续伤害受到 2 点伤害。",
+      "05:00:00骸骨战士 A 因持续伤害受到 1 点伤害。",
+      "05:00:00骸骨战士 A 因持续伤害受到 1 点伤害。"
+    ],
+    "enemyChip": "点燃",
+    "overflow": false
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "images": [
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-desktop-en-fire-golem-title-viewport.png",
+      "sha256": "0dcad6a75567ba54a31dcafffec33a5e4e1e32e05b7267a1438351cf475eaeca",
+      "case": "fire-golem-desktop-en",
+      "name": "fire-golem-title-viewport",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Localized Fire Golem heading,rank20/20 and disabled Maxed control readable. Mobile title wraps naturally; lower description extends below viewport.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-desktop-en-fire-golem-stats-viewport.png",
+      "sha256": "da2401898aeb5e517376d9444a4bdd89384d49bc5f3e7f7e09f6796daae5d47b",
+      "case": "fire-golem-desktop-en",
+      "name": "fire-golem-stats-viewport",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Description/payment rules and Current section visible. Desktop shows attack type and some resistance rows. Mobile English captures Current heading at bottom, mobile Chinese shows Fire type/50% resistance; remaining numeric/Burn rows extend below capture. No full-panel visual claim.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-desktop-en-fire-golem-body.png",
+      "sha256": "6fd0d25b95b88cc9e3d950ac5cf2441ac81f09c2a8b9042f016a1b393b6e27bc",
+      "case": "fire-golem-desktop-en",
+      "name": "fire-golem-body",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Distinct localized Fire Golem body/art/name and HP bar readable; transient Dodge overlay does not cover the label.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-desktop-en-combat-viewport.png",
+      "sha256": "8e4060f8a762da3f90d079cd7be24e1650a1dda34815b5977f9dc50888544f0d",
+      "case": "fire-golem-desktop-en",
+      "name": "combat-viewport",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Paused actual Catacombs battle with one Fire Golem and hero. Desktop displays enemy Ignite×2/点燃×2. Mobile shows allied body; enemy chip and log are below captured viewport and instead supported by retained public DOM observer evidence.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-desktop-zh-CN-fire-golem-title-viewport.png",
+      "sha256": "a7318a93d2e1e29a4989628058baf3674542559ce51b69d1a9e4d4f61e3beec0",
+      "case": "fire-golem-desktop-zh-CN",
+      "name": "fire-golem-title-viewport",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Localized Fire Golem heading,rank20/20 and disabled Maxed control readable. Mobile title wraps naturally; lower description extends below viewport.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-desktop-zh-CN-fire-golem-stats-viewport.png",
+      "sha256": "eeba2b600c8bb0507a7d8ba87d7ebc14de9837150f54122528675cd03ad0a866",
+      "case": "fire-golem-desktop-zh-CN",
+      "name": "fire-golem-stats-viewport",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Description/payment rules and Current section visible. Desktop shows attack type and some resistance rows. Mobile English captures Current heading at bottom, mobile Chinese shows Fire type/50% resistance; remaining numeric/Burn rows extend below capture. No full-panel visual claim.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-desktop-zh-CN-fire-golem-body.png",
+      "sha256": "1d586a76ab6c91f22f2462fc92f3383556f0b79792bea7b0eb8c93806e23d0a3",
+      "case": "fire-golem-desktop-zh-CN",
+      "name": "fire-golem-body",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Distinct localized Fire Golem body/art/name and HP bar readable; transient Dodge overlay does not cover the label.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-desktop-zh-CN-combat-viewport.png",
+      "sha256": "bde28b87da310434acb553aadd93615c07dc6c172357700ac0e4688d51ef89f6",
+      "case": "fire-golem-desktop-zh-CN",
+      "name": "combat-viewport",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Paused actual Catacombs battle with one Fire Golem and hero. Desktop displays enemy Ignite×2/点燃×2. Mobile shows allied body; enemy chip and log are below captured viewport and instead supported by retained public DOM observer evidence.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-mobile-en-fire-golem-title-viewport.png",
+      "sha256": "d3818218be3c28bad6fc95bc499f74e658021b7b65aa8962576d00e7edeb6164",
+      "case": "fire-golem-mobile-en",
+      "name": "fire-golem-title-viewport",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Localized Fire Golem heading,rank20/20 and disabled Maxed control readable. Mobile title wraps naturally; lower description extends below viewport.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-mobile-en-fire-golem-stats-viewport.png",
+      "sha256": "da91189ddbe2dd41236bbc832ea5adf6898e4c9ae34730f543cce7ef80c299f9",
+      "case": "fire-golem-mobile-en",
+      "name": "fire-golem-stats-viewport",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Description/payment rules and Current section visible. Desktop shows attack type and some resistance rows. Mobile English captures Current heading at bottom, mobile Chinese shows Fire type/50% resistance; remaining numeric/Burn rows extend below capture. No full-panel visual claim.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-mobile-en-fire-golem-body.png",
+      "sha256": "a6e6330e1550c27264351655212f477741c87428e9148de7ca2084456c806c3d",
+      "case": "fire-golem-mobile-en",
+      "name": "fire-golem-body",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Distinct localized Fire Golem body/art/name and HP bar readable; transient Dodge overlay does not cover the label.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-mobile-en-combat-viewport.png",
+      "sha256": "6008356edb7ad75377159f24faea572fd2c79cad2dfdf3e6091bca68783525f0",
+      "case": "fire-golem-mobile-en",
+      "name": "combat-viewport",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Paused actual Catacombs battle with one Fire Golem and hero. Desktop displays enemy Ignite×2/点燃×2. Mobile shows allied body; enemy chip and log are below captured viewport and instead supported by retained public DOM observer evidence.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-mobile-zh-CN-fire-golem-title-viewport.png",
+      "sha256": "ed75e1b5c2c9b816a167402bf19e17a66f407c6509a460e97a81a7d732f015f0",
+      "case": "fire-golem-mobile-zh-CN",
+      "name": "fire-golem-title-viewport",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Localized Fire Golem heading,rank20/20 and disabled Maxed control readable. Mobile title wraps naturally; lower description extends below viewport.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-mobile-zh-CN-fire-golem-stats-viewport.png",
+      "sha256": "f60b24d03dbe2af2d12410eb72bfbd0de5b21c03380feb69a6e0586f88090b82",
+      "case": "fire-golem-mobile-zh-CN",
+      "name": "fire-golem-stats-viewport",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Description/payment rules and Current section visible. Desktop shows attack type and some resistance rows. Mobile English captures Current heading at bottom, mobile Chinese shows Fire type/50% resistance; remaining numeric/Burn rows extend below capture. No full-panel visual claim.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-mobile-zh-CN-fire-golem-body.png",
+      "sha256": "81f6c1ce448eef7872b99ddf4ffd7e6ac686724a6e160c8573df3e04fdc52d7a",
+      "case": "fire-golem-mobile-zh-CN",
+      "name": "fire-golem-body",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Distinct localized Fire Golem body/art/name and HP bar readable; transient Dodge overlay does not cover the label.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-summons-1xe918fz/review/fire-golem-mobile-zh-CN-combat-viewport.png",
+      "sha256": "3a0effa240911c84e62bdc34a5542061e6c0d8b7f19d3d6bd6157c6bf0b113d0",
+      "case": "fire-golem-mobile-zh-CN",
+      "name": "combat-viewport",
+      "reviewedBy": "root author, individually via view_image",
+      "observation": "Paused actual Catacombs battle with one Fire Golem and hero. Desktop displays enemy Ignite×2/点燃×2. Mobile shows allied body; enemy chip and log are below captured viewport and instead supported by retained public DOM observer evidence.",
+      "scopeVerdict": "No new blocking defect observed within this bounded Fire Golem capture; not full UX/a11y approval."
+    }
+  ],
+  "limits": [
+    "Sixteen final PNGs inspected individually, not only existence checked.",
+    "Five-size geometry checks prove no document horizontal overflow and allocation control44px dimensions; do not prove every control or all content geometry.",
+    "Screenshots contain fixed header/navigation, clipped lower numeric rows and mobile offscreen enemy/log regions.",
+    "Existing navigation glyph fallback squares and broad typography/contrast/focus/performance need separate G5/G7 acceptance.",
+    "No independent UX,WCAG or earned balance approval."
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "fire-golem-native-red.json": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-fire-golem.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.129,
+    "identity": {
+      "pid": 4175545,
+      "procStat": "4175545 (vitest) R 4175544 4175544 4175544 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93173670 11788288 0 18446744073709551615 95991690985472 95991695931069 140729855800640 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 95991699863248 95991701348120 95991972855808 140729855805452 140729855805548 140729855805548 140729855811551 0\n"
+    },
+    "logSha256": "5f68d0ad60833387e1831ccf764cd270e17375a260f1ce437bf4b1ebcc2ddcdc"
+  },
+  "fire-golem-native-corrected-red.json": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-fire-golem.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.027,
+    "identity": {
+      "pid": 4176138,
+      "procStat": "4176138 (vitest) R 4176137 4176137 4176137 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93183026 11788288 0 18446744073709551615 106029829472256 106029834417853 140728522573872 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 106029838350032 106029839834904 106030463856640 140728522582028 140728522582124 140728522582124 140728522588127 0\n"
+    },
+    "logSha256": "e0ec2985ab1c8c6b7cfe7258422d9f8fe5c6030b4ee4ee4143d4e755e1704964"
+  },
+  "fire-golem-edge-focused.json": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/fire-golem.test.ts",
+      "src/engine/skills/fire-golem.test.ts",
+      "src/stores/necromancer-fire-golem.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.1,
+    "identity": {
+      "pid": 4177351,
+      "procStat": "4177351 (vitest) R 4177350 4177350 4177350 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 93202944 11751424 0 18446744073709551615 0 0 140723983550402 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 0 0 0 140723983550402 0 0 0 0\n"
+    },
+    "logSha256": "341491b418743b8113476ea329e5d5234020f1157fb9f851caeb9e488e68f2d9"
+  },
+  "fire-golem-core-lint.json": {
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 167.456,
+    "identity": {
+      "pid": 4183842,
+      "procStat": "4183842 (npm) R 4183815 4183815 4183815 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93228604 11788288 0 18446744073709551615 94209759252480 94209764198077 140725800608256 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 94209768130256 94209769615128 94210041425920 140725800609794 140725800609873 140725800609873 140725800615876 0\n"
+    },
+    "logSha256": "f9e596d8d82524e20f5fce20aa80edc8f4f244ebac6b42fc325aba9241cf88f3"
+  },
+  "fire-golem-presentation-red.json": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/displayStats.fire-golem.test.ts",
+      "src/features/skills/SkillsScreen.fire-golem.test.tsx",
+      "src/stores/necromancer-fire-golem-native.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.675,
+    "identity": {
+      "pid": 4185220,
+      "procStat": "4185220 (vitest) R 4185218 4185218 4185218 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 93256381 11788288 33 18446744073709551615 104271962214400 104271967159997 140720666393552 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 104271971092176 104271972577048 104272021053440 140720666400677 140720666400876 140720666400876 140720666406879 0\n"
+    },
+    "logSha256": "5d47b1f5b6e9c15134f05b4293f07f99089a2d1de94b9e1e63459f7197fe5704"
+  },
+  "fire-golem-browser-first.json": {
+    "command": [
+      "node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "tests/pwa/fire-golem.config.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 19.893,
+    "identity": {
+      "pid": 4187731,
+      "procStat": "4187731 (playwright) R 4187730 4187730 4187730 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93298663 11788288 0 18446744073709551615 98161353793536 98161358739133 140726517165872 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 98161362671312 98161364156184 98161702920192 140726517167732 140726517167824 140726517167824 140726517174235 0\n"
+    },
+    "logSha256": "3b3a38371d4c72ebe1b6cce741831dde837bb0e63e65cac51b954965865694c0"
+  },
+  "fire-golem-browser-corrected.json": {
+    "command": [
+      "node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "tests/pwa/fire-golem.config.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 21.908,
+    "identity": {
+      "pid": 4188234,
+      "procStat": "4188234 (playwright) R 4188210 4188210 4188210 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93305539 11788288 0 18446744073709551615 104954735857664 104954740803261 140723217100384 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 104954744735440 104954746220312 104955283296256 140723217102444 140723217102536 140723217102536 140723217108955 0\n"
+    },
+    "logSha256": "c156c9b4771859b5d7cc8740e47b93a2814c238aebf19e3dd1f0b6914f7367b4"
+  },
+  "fire-golem-final-browser-lint.json": {
+    "command": [
+      "node_modules/.bin/eslint",
+      "tests/pwa/fire-golem.spec.ts",
+      "tests/pwa/fire-golem.config.ts",
+      "--max-warnings=0"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 1.513,
+    "identity": {
+      "pid": 4188896,
+      "procStat": "4188896 (eslint) R 4188895 4188895 4188895 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 93317008 11788288 33 18446744073709551615 109509399777280 109509404722877 140724987653824 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 109509408655056 109509410139928 109510063435776 140724987660276 140724987660396 140724987660396 140724987666399 0\n"
+    },
+    "logSha256": "6a613ca95032387e7de02ab14e5db9058b8691cc4bcf5e7886dae47620203a6b"
+  },
+  "edge-fixture-correction.json": {
+    "originalFailure": "fire-golem-edge-focused.json",
+    "failed": 5,
+    "passed": 40,
+    "cause": "The synthetic AS0 body is scheduled at2000ms by clamp(2500-speed*8,400,2000), but the draft permanently stunned it from1001ms. Therefore neither Fire nor matched Physical control could hit.",
+    "correction": "Delay only the synthetic hold to2001ms; retain exact100/30/870 and50/15/935 damage/HP oracles, payment and no-effect controls; correct explicit hit clock to2000ms. No production change.",
+    "source": "src/engine/combat/combat.ts actionPeriodMs"
+  },
+  "lint-correction.json": {
+    "failure": "fire-golem-core-lint.json",
+    "cause": "Two test guards repeat event kinds already narrowed by their filter, detected by no-unnecessary-condition.",
+    "correction": "Remove only the redundant summon discriminant and filtered-dot ternary. Retain missing-body rejection and exact damage/HP/payment oracles; no suppression, skipped test or production change."
+  },
+  "browser-oracle-correction.json": {
+    "failure": "The permanent Next Level section was incorrectly expected to disappear at cap. Existing UI renders its localized empty state without stat rows.",
+    "evidence": "src/features/skills/SkillsScreen.tsx:826 and original error-context.md show max rank with retained heading; localization details.maxLevel provides exact expected text.",
+    "additional_fixture_fix": "Shorten the synthetic name to Golem Browser within the existing character limit, so public cast and hero-damage matching use the actual saved name.",
+    "production_changes": false,
+    "originalSpecSha256": "ebb48f01b892a4b5d5a5f758265dde1b20be144a3ff4add5bece9976343e10c6",
+    "correctedSpecSha256": "001cf0f23d51ecabc4d98e1c65be10bcbc07c57e2b0649dd9dc271988be149eb",
+    "assertions_preserved": "Keyboard rank19 to20, current/next/MAX, body identity,35MP,positiveFire/Burn/chip,noheroFire,save/offline,geometry and errors remain required."
+  },
+  "browser-row-observer-correction.json": {
+    "failure": "The initial observer deduplicated equal log strings; two actual separate Fire hits of44 against the same target at fixed wall time became one observation.",
+    "evidence": "Corrected-run error-context.md records repeated Fire Golem44fire lines and positive periodic damage. CombatScreen.tsx entries.map uses distinct entry IDs, while fixed wall-clock timestamps and equal damage produce identical text.",
+    "fix": "Count each newly rendered DOM row once with a WeakSet. Keep every matching occurrence. Require positive periodic damage in addition to Burn application and enemy chip; save observer output even on assertion failure. Allow20s for two landed ordinary attacks under existing dodge/cadence.",
+    "production_changes": false,
+    "beforeSha256": "001cf0f23d51ecabc4d98e1c65be10bcbc07c57e2b0649dd9dc271988be149eb",
+    "afterSha256": "bfc12ebd415a075fa2a4584e4607a1fde4c2a659daf487542305d83dcc4404e4",
+    "finalSpecSha256": "670bb39f491ad8b4b8941c43f758fae703de6287c2c51174be0c91edb48fbe07",
+    "numericGuard": "Match the localized positive periodic damage amount, excluding timestamps and target names."
+  },
+  "browser-lint-scope.json": {
+    "command": "Directed ESLint invocation of tests/pwa/fire-golem.spec.ts and .config.ts --max-warnings=0",
+    "result": "Exit1 solely because both paths are intentionally excluded by existing .eslintrc.cjs tests/**/*.ts; no source lint violations were reported.",
+    "requiredGate": "Full npm run lint passed172.172s including final production/unit source.",
+    "disposition": "Preserve exact optional diagnostic; no configuration change or suppression. Final typecheck and actual Playwright cover the browser files."
+  },
+  "oracle-review.json": {
+    "originalSha256": "866e6e8183cfd9b2e6f42c1882f9f161735ea9f671115103de1eee47bf6b03bc",
+    "originalRed": "fire-golem-native-red.json",
+    "correction": "Unreached status assertion used public alias burn; existing status.normalizeStatusId canonicalizes burn to ignite. Require actual ignite packet with Fire DoT. The three executed failures remain direct physical-versus-Fire damage failures; no runtime edit yet.",
+    "source": "src/engine/combat/status.ts normalizeStatusId",
+    "revisedSha256": "fb7f669d4af9f9e6f8854765a42089b6c728f8dbfb0fb288be72804c30564a08"
+  }
+}

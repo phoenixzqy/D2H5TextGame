@@ -2,7 +2,9 @@
 
 2026-10-26, baseline5cfed4e6, BUG249. Provisional root-author contract;
 independent design/QA and earned balance remain open. Native RED3failed/one
-unlearned control passes before production edits. No inventory credit.
+unlearned control passes before production edits. Bounded functional verification
+and one inventory credit are now recorded in [final evidence](../evidence/d06-fire-golem.md);
+this does not supply independent design/QA or earned balance approval.
 
 ## Intent and rules
 

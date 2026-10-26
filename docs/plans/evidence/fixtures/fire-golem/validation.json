@@ -1,0 +1,393 @@
+{
+  "sourceCommit": "2fe4de9a7d6ab9e2b654fd90b28887289da84fcd",
+  "sourceFiles": 1587,
+  "sourceAndGitBlobDrift": [],
+  "buildFiles": 762,
+  "buildDrift": [],
+  "receipts": {
+    "fire-golem-browser-corrected": {
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "--config",
+        "tests/pwa/fire-golem.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 21.908,
+      "identity": {
+        "pid": 4188234,
+        "procStat": "4188234 (playwright) R 4188210 4188210 4188210 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93305539 11788288 0 18446744073709551615 104954735857664 104954740803261 140723217100384 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 104954744735440 104954746220312 104955283296256 140723217102444 140723217102536 140723217102536 140723217108955 0\n"
+      },
+      "logSha256": "c156c9b4771859b5d7cc8740e47b93a2814c238aebf19e3dd1f0b6914f7367b4"
+    },
+    "fire-golem-browser-final": {
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "--config",
+        "tests/pwa/fire-golem.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 84.372,
+      "identity": {
+        "pid": 4188898,
+        "procStat": "4188898 (playwright) R 4188894 4188894 4188894 0 -1 4194304 7 0 0 0 0 0 0 0 20 0 1 0 93317009 11788288 0 18446744073709551615 95825137324032 95825142269629 140731761762160 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 95825146201808 95825147686680 95825248841728 140731761768052 140731761768144 140731761768144 140731761774555 0\n"
+      },
+      "logSha256": "a5475a5b5402a6bf98932da99915e6e1aed5230109cf69afb544bb7746114594"
+    },
+    "fire-golem-browser-first": {
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "--config",
+        "tests/pwa/fire-golem.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 19.893,
+      "identity": {
+        "pid": 4187731,
+        "procStat": "4187731 (playwright) R 4187730 4187730 4187730 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93298663 11788288 0 18446744073709551615 98161353793536 98161358739133 140726517165872 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 98161362671312 98161364156184 98161702920192 140726517167732 140726517167824 140726517167824 140726517174235 0\n"
+      },
+      "logSha256": "3b3a38371d4c72ebe1b6cce741831dde837bb0e63e65cac51b954965865694c0"
+    },
+    "fire-golem-core-corrected": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/fire-golem.test.ts",
+        "src/engine/skills/fire-golem.test.ts",
+        "src/stores/necromancer-fire-golem.causal.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 7.107,
+      "identity": {
+        "pid": 4184684,
+        "procStat": "4184684 (vitest) R 4184677 4184677 4184677 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93249388 11788288 0 18446744073709551615 106403671810048 106403676755645 140725005268752 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 106403680687824 106403682172696 106404465233920 140725005273026 140725005273196 140725005273196 140725005279199 0\n"
+      },
+      "logSha256": "884dfd97a92061650a0de14e20aacce73c2d67e817300036a35c2df74eeacb71"
+    },
+    "fire-golem-core-engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 128.151,
+      "identity": {
+        "pid": 4177846,
+        "procStat": "4177846 (npm) R 4177845 4177845 4177845 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 93210725 11755520 0 18446744073709551615 0 0 140727167330299 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 0 0 0 140727167330299 0 0 0 0\n"
+      },
+      "logSha256": "f3f8b6ba04ace203acb78e3cad49cfbfdfd5ab486d291c9c72a9f34aaba21662"
+    },
+    "fire-golem-core-focused": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/necromancer-fire-golem.causal.test.ts",
+        "src/engine/skills/fire-golem.test.ts",
+        "src/engine/skills/summons.test.ts",
+        "src/engine/combat/summon-preparation.test.ts",
+        "src/engine/combat/summon-preparation-corpses.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 10.73,
+      "identity": {
+        "pid": 4176771,
+        "procStat": "4176771 (vitest) R 4176770 4176770 4176770 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 93194851 11788288 0 18446744073709551615 98034350448640 98034355394237 140726695539392 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 98034359326416 98034360811288 98035167780864 140726695540579 140726695540844 140726695540844 140726695546847 0\n"
+      },
+      "logSha256": "e0366bc4db03de93d6584a50296afc70d3a24baa8753fd7bb66e14af386612ca"
+    },
+    "fire-golem-core-lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 167.456,
+      "identity": {
+        "pid": 4183842,
+        "procStat": "4183842 (npm) R 4183815 4183815 4183815 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93228604 11788288 0 18446744073709551615 94209759252480 94209764198077 140725800608256 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 94209768130256 94209769615128 94210041425920 140725800609794 140725800609873 140725800609873 140725800615876 0\n"
+      },
+      "logSha256": "f9e596d8d82524e20f5fce20aa80edc8f4f244ebac6b42fc325aba9241cf88f3"
+    },
+    "fire-golem-core-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 97.009,
+      "identity": {
+        "pid": 4183564,
+        "procStat": "4183564 (npm) R 4183563 4183563 4183563 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 93225783 11788288 0 18446744073709551615 96645433253888 96645438199485 140736625271744 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 96645442131664 96645443616536 96645955297280 140736625272829 140736625272913 140736625272913 140736625278916 0\n"
+      },
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "fire-golem-corrected-browser-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 98.943,
+      "identity": {
+        "pid": 339,
+        "procStat": "339 (npm) R 337 337 337 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93330177 11788288 0 18446744073709551615 94614696022016 94614700967613 140727011906672 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 94614704899792 94614706384664 94615395446784 140727011915773 140727011915857 140727011915857 140727011921860 0\n"
+      },
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "fire-golem-corrected-test-lint": {
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/combat/fire-golem.test.ts",
+        "src/stores/necromancer-fire-golem.causal.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 6.712,
+      "identity": {
+        "pid": 4184948,
+        "procStat": "4184948 (eslint) R 4184947 4184947 4184947 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93251368 11788288 0 18446744073709551615 110485567893504 110485572839101 140720602093792 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 110485576771280 110485578256152 110485613158400 140720602101722 140720602101868 140720602101868 140720602107871 0\n"
+      },
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fire-golem-edge-corrected": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/fire-golem.test.ts",
+        "src/engine/skills/fire-golem.test.ts",
+        "src/stores/necromancer-fire-golem.causal.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 7.152,
+      "identity": {
+        "pid": 4177538,
+        "procStat": "4177538 (vitest) R 4177536 4177536 4177536 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93206590 11788288 0 18446744073709551615 107291192770560 107291197716157 140727032685712 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 107291201648336 107291203133208 107291356426240 140727032690626 140727032690796 140727032690796 140727032696799 0\n"
+      },
+      "logSha256": "fe76ee89fde18636012cdeefdfd61ec1f01c9daf0089d33da5c95f8e4db3da54"
+    },
+    "fire-golem-edge-focused": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/fire-golem.test.ts",
+        "src/engine/skills/fire-golem.test.ts",
+        "src/stores/necromancer-fire-golem.causal.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 7.1,
+      "identity": {
+        "pid": 4177351,
+        "procStat": "4177351 (vitest) R 4177350 4177350 4177350 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 93202944 11751424 0 18446744073709551615 0 0 140723983550402 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 0 0 0 140723983550402 0 0 0 0\n"
+      },
+      "logSha256": "341491b418743b8113476ea329e5d5234020f1157fb9f851caeb9e488e68f2d9"
+    },
+    "fire-golem-final-browser-lint": {
+      "command": [
+        "node_modules/.bin/eslint",
+        "tests/pwa/fire-golem.spec.ts",
+        "tests/pwa/fire-golem.config.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 1.513,
+      "identity": {
+        "pid": 4188896,
+        "procStat": "4188896 (eslint) R 4188895 4188895 4188895 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 93317008 11788288 33 18446744073709551615 109509399777280 109509404722877 140724987653824 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 109509408655056 109509410139928 109510063435776 140724987660276 140724987660396 140724987660396 140724987666399 0\n"
+      },
+      "logSha256": "6a613ca95032387e7de02ab14e5db9058b8691cc4bcf5e7886dae47620203a6b"
+    },
+    "fire-golem-final-build-bridge": {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 13.142,
+      "identity": {
+        "pid": 4187317,
+        "procStat": "4187317 (npm) R 4187313 4187313 4187313 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93292833 11788288 0 18446744073709551615 102694947667968 102694952613565 140734623651792 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 102694956545744 102694958030616 102695692701696 140734623655919 140734623656017 140734623656017 140734623662020 0\n"
+      },
+      "logSha256": "eb408dfa77e6096da50a3882356f29dc3b197a5d5e3f4437a62775c4943fbb96"
+    },
+    "fire-golem-final-engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 145.802,
+      "identity": {
+        "pid": 4188897,
+        "procStat": "4188897 (npm) R 4188893 4188893 4188893 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93317008 11788288 0 18446744073709551615 0 0 140736412715003 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 140736412715003 140736412715089 140736412715089 140736412715089 0\n"
+      },
+      "logSha256": "13ac5b6f0ce3ed1bb380156c1ebe4157c484e89ea89ea7eb0c108fe3e7186d66"
+    },
+    "fire-golem-final-full": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 700.489,
+      "identity": {
+        "pid": 1619,
+        "procStat": "1619 (npm) R 1618 1618 1618 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93340584 11788288 0 18446744073709551615 107536466866176 107536471811773 140727820707440 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 107536475743952 107536477228824 107537373896704 140727820716038 140727820716113 140727820716113 140727820722116 0\n"
+      },
+      "logSha256": "9bf62727cf7b79cda8c25aab98564e4913f31c702d947a418021734dbea79b4e"
+    },
+    "fire-golem-final-lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 172.172,
+      "identity": {
+        "pid": 4187168,
+        "procStat": "4187168 (npm) R 4187165 4187165 4187165 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 93290724 11788288 40 18446744073709551615 110759485194240 110759490139837 140733682069280 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 110759494072016 110759495556888 110760463605760 140733682075650 140733682075729 140733682075729 140733682081732 0\n"
+      },
+      "logSha256": "5eb1d3b140a7070fb956ca86c4f5f532828c8110477dfdb0203c4ffe7c378694"
+    },
+    "fire-golem-final-precache": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "dist"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 0.055,
+      "identity": {
+        "pid": 4187709,
+        "procStat": "4187709 (node) R 4187703 4187703 4187703 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 93297994 107352064 0 18446744073709551615 7626752 52430497 140722022405200 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 112535000 112706784 1051422720 140722022406179 140722022406224 140722022406224 140722022412227 0\n"
+      },
+      "logSha256": "bb77668d39f9a2b44f839fa336ca502876f50ddd79aaac063179f15fadedd0b7"
+    },
+    "fire-golem-final-types": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 102.877,
+      "identity": {
+        "pid": 4187169,
+        "procStat": "4187169 (npm) R 4187164 4187164 4187164 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 93290724 11788288 33 18446744073709551615 99106699460608 99106704406205 140732413980512 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 99106708338384 99106709823256 99107049287680 140732413982717 140732413982801 140732413982801 140732413988804 0\n"
+      },
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "fire-golem-native-corrected-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/necromancer-fire-golem.causal.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 7.027,
+      "identity": {
+        "pid": 4176138,
+        "procStat": "4176138 (vitest) R 4176137 4176137 4176137 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93183026 11788288 0 18446744073709551615 106029829472256 106029834417853 140728522573872 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 106029838350032 106029839834904 106030463856640 140728522582028 140728522582124 140728522582124 140728522588127 0\n"
+      },
+      "logSha256": "e0ec2985ab1c8c6b7cfe7258422d9f8fe5c6030b4ee4ee4143d4e755e1704964"
+    },
+    "fire-golem-native-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/necromancer-fire-golem.causal.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 7.129,
+      "identity": {
+        "pid": 4175545,
+        "procStat": "4175545 (vitest) R 4175544 4175544 4175544 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 93173670 11788288 0 18446744073709551615 95991690985472 95991695931069 140729855800640 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 95991699863248 95991701348120 95991972855808 140729855805452 140729855805548 140729855805548 140729855811551 0\n"
+      },
+      "logSha256": "5f68d0ad60833387e1831ccf764cd270e17375a260f1ce437bf4b1ebcc2ddcdc"
+    },
+    "fire-golem-presentation-green": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/displayStats.fire-golem.test.ts",
+        "src/features/skills/SkillsScreen.fire-golem.test.tsx",
+        "src/stores/necromancer-fire-golem-native.test.ts",
+        "src/engine/skills/displayStats.druid-summons.test.ts",
+        "src/features/skills/SkillsScreen.druid-summons.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 12.551,
+      "identity": {
+        "pid": 4185559,
+        "procStat": "4185559 (vitest) R 4185557 4185557 4185557 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 93261503 11788288 33 18446744073709551615 96826255769600 96826260715197 140734522194976 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 96826264647376 96826266132248 96827150147584 140734522197816 140734522198124 140734522198124 140734522204127 0\n"
+      },
+      "logSha256": "8f81a7ab37c97a26b327bc02603ff879effc5dae6987104343a957d9f565ac0b"
+    },
+    "fire-golem-presentation-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/displayStats.fire-golem.test.ts",
+        "src/features/skills/SkillsScreen.fire-golem.test.tsx",
+        "src/stores/necromancer-fire-golem-native.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 7.675,
+      "identity": {
+        "pid": 4185220,
+        "procStat": "4185220 (vitest) R 4185218 4185218 4185218 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 93256381 11788288 33 18446744073709551615 104271962214400 104271967159997 140720666393552 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 104271971092176 104271972577048 104272021053440 140720666400677 140720666400876 140720666400876 140720666406879 0\n"
+      },
+      "logSha256": "5d47b1f5b6e9c15134f05b4293f07f99089a2d1de94b9e1e63459f7197fe5704"
+    }
+  },
+  "receiptCount": 23,
+  "failedTraceZips": [
+    {
+      "path": "runtime/pw-fire-golem-corrected/fire-golem-Fire-Golem-publ-9c30b-n-body-Burn-save-offline-en-fire-golem-desktop/trace.zip",
+      "members": 1004,
+      "sha256": "701e507fdb47f9111133f5eeb0826852ca0a86e959652888add82a36c423b592"
+    },
+    {
+      "path": "runtime/pw-fire-golem-first/fire-golem-Fire-Golem-publ-9c30b-n-body-Burn-save-offline-en-fire-golem-desktop/trace.zip",
+      "members": 847,
+      "sha256": "3fdd7b299a0abdfd301de98ee6b1c4aa3f94b6adbe23f919a06913479207966b"
+    }
+  ],
+  "full": {
+    "filesPassed": 806,
+    "testsPassed": 17652,
+    "existingSkips": 2
+  },
+  "scope": "Local functional author evidence; independent/earned/full-v1 acceptance remains open."
+}
