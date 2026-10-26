@@ -459,12 +459,13 @@ export function spreadPlague(
   simClockMs?: number,
   cleansingMultiplierFor?: (recipient: CombatUnit) => number | undefined
 ): readonly CombatUnit[] {
-  const stacks = getStacks(source, 'plague') || getStacks(source, 'poison');
+  // A Plague marker must not replace Poison's stack count or captured potency.
+  // Keep the legacy standalone Plague payload when no Poison record exists.
+  const dot = source.statuses.find(s => s.id === 'poison') ??
+    source.statuses.find(s => s.id === 'plague');
+  const stacks = dot?.stacks ?? 0;
   if (stacks <= 0) return others;
   const toSpread = Math.max(1, Math.floor(stacks * fraction));
-  const dot = source.statuses.find(
-    (s) => s.id === 'plague' || s.id === 'poison'
-  );
   return others.map((u) => {
     let updated = u;
     for (let i = 0; i < toSpread; i++) {

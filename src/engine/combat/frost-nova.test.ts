@@ -289,13 +289,13 @@ describe('shared damage status list compatibility (explicit synthetic probes)', 
   });
 
   it.each([
-    { id: 'skills-sorceress-fire-bolt', mana: 8, hit: 42, hp: 446, status: 'burn' },
-    { id: 'skills-amazon-plague-javelin', mana: 25, hit: 46, hp: 424, status: 'poison' }
-  ])('preserves actual scalar $id and leaves unconfigured tails disabled', ({ id, mana, hit, hp, status }) => {
+    { id: 'skills-sorceress-fire-bolt', mana: 8, hit: 42, hp: 446, statuses: ['burn'] },
+    { id: 'skills-amazon-plague-javelin', mana: 25, hit: 46, hp: 424, statuses: ['poison', 'plague'] }
+  ])('preserves actual $id ordered payloads and exact direct/periodic HP', ({ id, mana, hit, hp, statuses }) => {
     const input = quietTargets(withHero(snapshot(), { level: 40, mana, skillOrder: [id], skillLevels: { [id]: 1 } }), ['target']);
     const recorded = record(input);
     expect(recorded.events.filter(e => e.kind === 'damage').map(e => e.amount)).toEqual([hit]);
-    expect(recorded.events.filter(e => e.kind === 'status').map(e => e.statusId)).toEqual([status]);
+    expect(recorded.events.filter(e => e.kind === 'status').map(e => e.statusId)).toEqual(statuses);
     expect(recorded.result.enemyTeam[0]?.life).toBe(hp);
     expect(recorded.result.playerTeam[0]?.mana).toBe(0);
     assertReplay(input, recorded);

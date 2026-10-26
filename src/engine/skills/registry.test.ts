@@ -78,7 +78,7 @@ describe('P08a04b authored player Frost Nova secondary Freeze', () => {
     expect(registeredSkillFromJson(plain).effects).toEqual([base]);
   });
 
-  it('forwards explicit zeros and optional fields without enabling unconfigured tails', () => {
+  it('forwards explicit zeros and optional fields while retaining each authored payload shape', () => {
     const fixture = { ...frostRow(), id: 'skills-fixture-secondary-fields',
       statusEffect: { chance: 0, stacksOnApply: 2, dotPctOfDamage: 0 },
       additionalStatusEffects: { freeze: { chance: 1, stacksOnApply: 3, dotPctOfDamage: 0.25 } }
@@ -94,7 +94,7 @@ describe('P08a04b authored player Frost Nova secondary Freeze', () => {
     expect(fixture).toEqual(before);
     expect(getSkill('amazon.plague_javelin')?.effects).toEqual([
       { kind: 'damage', damageType: 'poison', base: [30, 50], perRank: [3, 3], tags: ['poison'],
-        applyStatus: { id: 'poison', stacksOnApply: 3, dotPctOfDamage: 0.05 } }
+        applyStatuses: [{ id: 'poison', stacksOnApply: 3, dotPctOfDamage: 0.05 }, { id: 'plague' }] }
     ]);
     expect(getSkill('sorceress.fire_bolt')?.effects).toEqual([
       { kind: 'damage', damageType: 'fire', base: [30, 45], perRank: [4, 4], tags: ['fire', 'burn'],
@@ -105,7 +105,7 @@ describe('P08a04b authored player Frost Nova secondary Freeze', () => {
     ]);
     expect(listSkills().filter(id => getSkill(id)?.effects.some(effect =>
       effect.kind === 'damage' && effect.applyStatuses !== undefined)).sort())
-      .toEqual(['amazon.freezing_arrow', 'amazon.ice_arrow', 'assassin.mind_blast', 'assassin.phoenix_strike', 'paladin.vengeance', 'sorceress.frost_nova', 'sorceress.glacial_spike',
+      .toEqual(['amazon.freezing_arrow', 'amazon.ice_arrow', 'amazon.plague_javelin', 'assassin.mind_blast', 'assassin.phoenix_strike', 'paladin.vengeance', 'sorceress.frost_nova', 'sorceress.glacial_spike',
         'sorceress.ice_blast', 'sorceress.meteor']);
   });
 });
