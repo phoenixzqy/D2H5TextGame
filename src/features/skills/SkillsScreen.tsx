@@ -1023,6 +1023,8 @@ function StatSection({
             <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.dimVision.durationSeconds })} />
             <StatLine label={t('details.cloakBlindPenalty')} value={t('details.cloakBlindPenaltyValue', { points: stats.dimVision.physicalHitChanceReductionPoints })} />
           </> : null}
+          {stats.targetCurse ? <StatLine label={t('details.warcryDuration')}
+            value={t('details.seconds', { seconds: stats.targetCurse.durationSeconds })} /> : null}
           {stats.statuses.includes('terror') && stats.control ? <>
             <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.control.durationSeconds })} />
             <StatLine label={t('details.bossEffectDuration')} value={t('details.seconds', { seconds: stats.control.bossDurationSeconds })} />
@@ -1070,7 +1072,7 @@ function StatSection({
                   : id === 'weaken' ? t('necromancer.weaken.name')
                   : id === 'dim-vision' ? t('necromancer.dim-vision.name')
                   : id === 'terror' ? t('necromancer.terror.name')
-                  : id === 'iron-maiden' || id === 'life-tap' || id === 'lower-resist' ? t('necromancer.' + id + '.name')
+                  : id === 'confuse' || id === 'attract' || id === 'iron-maiden' || id === 'life-tap' || id === 'lower-resist' ? t('necromancer.' + id + '.name')
                   : id === 'burst-of-speed' ? t('assassin.burst-of-speed.name')
                   : id === 'cloak-of-shadows' ? t('assassin.cloak-of-shadows.name')
                   : id === 'blind' ? t('combat:effect.status.blind')
@@ -1788,6 +1790,12 @@ function dynamicDescription(
     return t('necromancer.dim-vision.desc', {
       duration: t('details.seconds', { seconds: stats.dimVision.durationSeconds }),
       penalty: stats.dimVision.physicalHitChanceReductionPoints, mana: stats.manaCost, cooldown: stats.cooldown
+    });
+  }
+  if (stats?.targetCurse) {
+    return t('necromancer.' + stats.targetCurse.id + '.desc', {
+      duration: t('details.seconds', { seconds: stats.targetCurse.durationSeconds }),
+      mana: stats.manaCost, cooldown: stats.cooldown
     });
   }
   if (skill.id === 'skills-necromancer-terror' && stats?.control) {

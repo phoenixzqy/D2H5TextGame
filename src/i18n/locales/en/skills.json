@@ -912,7 +912,7 @@
     },
     "confuse": {
       "name": "Confuse",
-      "desc": "Causes enemies to attack each other."
+      "desc": "Curses all living enemies for {{duration}}. Their new attacks target other living enemies still hostile to your party. Attract takes priority over Confuse. If no eligible enemy remains, ordinary targeting resumes. Your party and converted allies never turn against each other. Refreshes without stacking. Pays {{mana}} MP; {{cooldown}} s cooldown."
     },
     "life-tap": {
       "name": "Life Tap",
@@ -920,7 +920,7 @@
     },
     "attract": {
       "name": "Attract",
-      "desc": "Curses an enemy, causing others to attack it."
+      "desc": "Curses one living enemy for {{duration}}. Other living enemies still hostile to your party target it with their new attacks. Attract takes priority over Confuse and Taunt. With several attracted enemies, the first other one in spawn order takes priority; a cursed enemy never targets itself. If no eligible bait remains, active Confuse applies; otherwise ordinary targeting resumes. Your party and converted allies never turn against each other. Refreshes without stacking. Pays {{mana}} MP; {{cooldown}} s cooldown."
     },
     "lower-resist": {
       "name": "Lower Resist",
