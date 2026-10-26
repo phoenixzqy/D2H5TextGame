@@ -272,7 +272,12 @@
       "life": "生命",
       "mana": "法力"
     },
-    "descriptionDruidSummon": "不同模板的召唤物可共存。特殊效果要求原主人存活；面板显示技能等级基础属性，尚未计入临时友方增益。"
+    "descriptionDruidSummon": "不同模板的召唤物可共存。特殊效果要求原主人存活；面板显示技能等级基础属性，尚未计入临时友方增益。",
+    "personalBuffDuration": "自身效果持续时间",
+    "teleportDodge": "魔法闪避加成",
+    "teleportDodgeValue": "+{{points}} 个百分点",
+    "enchantFire": "每次武器命中的火焰基础伤害",
+    "enchantFireValue": "施放时攻击力的 {{percent}}%"
   },
   "amazon": {
     "magic-arrow": {
@@ -1109,7 +1114,7 @@
     },
     "teleport": {
       "name": "传送",
-      "desc": "瞬间将施法者传送到新位置。"
+      "desc": "魔法闪避提高 {{points}} 个百分点，持续 {{duration}}，位置不变。消耗 {{mana}} 法力，冷却 {{cooldown}} 秒。不影响物理攻击或已有持续伤害。生效时不重复施放，可与附魔共存。战斗中调整从下一波生效。"
     },
     "thunder-storm": {
       "name": "雷暴",
@@ -1137,7 +1142,7 @@
     },
     "enchant": {
       "name": "附魔",
-      "desc": "为武器注入火焰伤害。"
+      "desc": "施放时记录攻击力与技能等级。持续 {{duration}}，之后每次对敌方的直接物理攻击额外造成相当于记录攻击力的 {{percent}}% 的火焰基础伤害，共用命中与暴击判定。消耗 {{mana}} 法力，冷却 {{cooldown}} 秒。受火焰抗性与防御影响，不附加灼烧或法术加成。生效时不重复施放，可与传送共存。已支付的强度与剩余时间跨波保留；战斗中调整从下一波的新施放生效。"
     },
     "hydra": {
       "name": "九头海蛇",

@@ -951,6 +951,13 @@ function StatSection({
             <StatLine label={t('details.lifeCost')} value={String(stats.lifeCost)} />
           ) : null}
           <StatLine label={t('details.cooldown')} value={t('details.seconds', { seconds: stats.cooldown })} />
+          {stats.sorceressBuff ? <>
+            <StatLine label={t('details.personalBuffDuration')} value={t('details.seconds', { seconds: stats.sorceressBuff.durationSeconds })} />
+            {stats.sorceressBuff.magicDodgePoints !== undefined ? <StatLine label={t('details.teleportDodge')}
+              value={t('details.teleportDodgeValue', { points: stats.sorceressBuff.magicDodgePoints })} /> : null}
+            {stats.sorceressBuff.enchantAttackPercent !== undefined ? <StatLine label={t('details.enchantFire')}
+              value={t('details.enchantFireValue', { percent: stats.sorceressBuff.enchantAttackPercent })} /> : null}
+          </> : null}
           {stats.coldArmor ? <>
             <StatLine label={t('details.armorRetaliation')} value={`${String(stats.coldArmor.min)} ~ ${String(stats.coldArmor.max)}`} />
             <StatLine label={t('details.armorFreeze')} value={t('details.armorFreezeValue', {
@@ -1014,6 +1021,7 @@ function StatSection({
                   : id === 'holy-shield' ? t('paladin.holy-shield.name')
                   : id === 'cyclone-armor' ? t('druid.cyclone-armor.name')
                   : id === 'shiver-armor' || id === 'chilling-armor' ? t('sorceress.' + id + '.name')
+                  : id === 'teleport' || id === 'enchant' ? t('sorceress.' + id + '.name')
                   : id === 'werewolf' || id === 'werebear' ? t('druid.' + id + '.name')
                   : t(`damage-types:status.${id}`, { defaultValue: humanizeId(id) })).join(', ')}
             />
@@ -1654,6 +1662,13 @@ function dynamicDescription(
       ...(cold.freeze ? { freezeChance: cold.freeze.chancePercent,
         freeze: t('details.seconds', { seconds: cold.freeze.durationSeconds }),
         bossFreeze: t('details.seconds', { seconds: cold.freeze.bossDurationSeconds }) } : {})
+    });
+  }
+  if (stats?.sorceressBuff && ['skills-sorceress-teleport', 'skills-sorceress-enchant'].includes(skill.id)) {
+    return t('sorceress.' + skill.id.slice('skills-sorceress-'.length) + '.desc', {
+      duration: t('details.seconds', { seconds: stats.sorceressBuff.durationSeconds }),
+      points: stats.sorceressBuff.magicDodgePoints, percent: stats.sorceressBuff.enchantAttackPercent,
+      mana: stats.manaCost, cooldown: stats.cooldown
     });
   }
   if (skill.id === 'skills-sorceress-telekinesis' && stats?.control) {

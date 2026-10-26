@@ -18,6 +18,7 @@ import { rebaseStatusClock } from '@/engine/combat/status';
 import { composeDruidShapeshifting, refreshDruidFormState } from '@/engine/skills/druid-shapeshifting';
 import { composeBurstOfSpeedRank } from '@/engine/skills/burst-of-speed';
 import { composeConcentrateRank } from '@/engine/skills/concentrate';
+import { composeSorceressBuffRanks } from '@/engine/skills/sorceress-buffs';
 import { composeCloakOfShadowsRank } from '@/engine/skills/cloak-of-shadows';
 import { composeLeapRank } from '@/engine/skills/leap';
 import type { CombatUnit, MonsterTier } from '@/engine/combat/types';
@@ -263,6 +264,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     staticFieldRank: composeStaticField(player),
     coldArmorRanks: composeColdArmorRanks(player),
     periodicSpellRanks: composePeriodicSpellRanks(player),
+    ...(player.class === 'sorceress' ? { sorceressBuffRanks: composeSorceressBuffRanks(player) } : {}),
     ...(energyShield.rank > 0 ? { energyShieldRank: energyShield.rank } : {}),
     ...(player.class === 'druid' ? { cycloneArmorRank: composeCycloneArmorRank(player) } : {}),
     ...(player.class === 'paladin' ? { holyShieldRank: composeHolyShieldRank(player), conversionRank: composeConversionRank(player) } : {}),
@@ -1197,6 +1199,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
         ? { druidShapeRanks: fresh.druidShapeRanks } : {}),
       coldArmorRanks: fresh.coldArmorRanks ?? { 'shiver-armor': 0, 'chilling-armor': 0 },
       periodicSpellRanks: fresh.periodicSpellRanks ?? { 'fire-wall': 0, 'thunder-storm': 0 },
+      ...((unit.sorceressBuffRanks !== undefined || fresh.sorceressBuffRanks !== undefined)
+        ? { sorceressBuffRanks: fresh.sorceressBuffRanks ?? { teleport: 0, enchant: 0 } } : {}),
       ...((unit.cycloneArmorRank !== undefined || fresh.cycloneArmorRank !== undefined)
         ? { cycloneArmorRank: fresh.cycloneArmorRank ?? 0 } : {}),
       ...((unit.holyShieldRank !== undefined || fresh.holyShieldRank !== undefined)

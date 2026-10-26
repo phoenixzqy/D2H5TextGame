@@ -155,7 +155,9 @@
       "frenzy": "狂乱",
       "feral-rage": "野性狂暴",
       "blind": "致盲",
-      "converted": "已转化"
+      "converted": "已转化",
+      "teleport": "传送",
+      "enchant": "附魔"
     },
     "buff": {
       "blaze": "炽烈之径",
@@ -198,7 +200,9 @@
       "inner_sight": "内视",
       "enrage": "狂怒",
       "frenzy": "狂乱",
-      "feral-rage": "野性狂暴"
+      "feral-rage": "野性狂暴",
+      "teleport": "传送",
+      "enchant": "附魔"
     }
   },
   "log_lines": {

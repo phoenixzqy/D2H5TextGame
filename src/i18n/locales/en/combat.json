@@ -155,7 +155,9 @@
       "frenzy": "Frenzy",
       "feral-rage": "Feral Rage",
       "blind": "Blinded",
-      "converted": "Converted"
+      "converted": "Converted",
+      "teleport": "Teleport",
+      "enchant": "Enchant"
     },
     "buff": {
       "blaze": "Blaze",
@@ -198,7 +200,9 @@
       "inner_sight": "Inner Sight",
       "enrage": "Enrage",
       "frenzy": "Frenzy",
-      "feral-rage": "Feral Rage"
+      "feral-rage": "Feral Rage",
+      "teleport": "Teleport",
+      "enchant": "Enchant"
     }
   },
   "log_lines": {

@@ -272,7 +272,12 @@
       "life": "life",
       "mana": "mana"
     },
-    "descriptionDruidSummon": "Different summon templates coexist. Special effects require the living original owner; the rows show base rank stats before temporary allied buffs."
+    "descriptionDruidSummon": "Different summon templates coexist. Special effects require the living original owner; the rows show base rank stats before temporary allied buffs.",
+    "personalBuffDuration": "Personal effect duration",
+    "teleportDodge": "Magical dodge bonus",
+    "teleportDodgeValue": "+{{points}} percentage points",
+    "enchantFire": "Fire base per weapon hit",
+    "enchantFireValue": "{{percent}}% of Attack at cast"
   },
   "amazon": {
     "magic-arrow": {
@@ -1109,7 +1114,7 @@
     },
     "teleport": {
       "name": "Teleport",
-      "desc": "Instantly transports the caster to a new location."
+      "desc": "Gain +{{points}} percentage points of magical dodge for {{duration}}, without moving. Costs {{mana}} MP; {{cooldown}} s cooldown. Physical attacks and existing damage over time are unchanged. Cannot recast while active; can coexist with Enchant. Changes during combat apply next wave."
     },
     "thunder-storm": {
       "name": "Thunder Storm",
@@ -1137,7 +1142,7 @@
     },
     "enchant": {
       "name": "Enchant",
-      "desc": "Imbues weapons with fire damage."
+      "desc": "Capture Attack and skill rank when cast. For {{duration}}, each later hostile direct Physical hit adds Fire base damage equal to {{percent}}% of Attack, with a shared hit and critical roll. Costs {{mana}} MP; {{cooldown}} s cooldown. Fire resistance and Defense apply; no Burn or spell bonus. Cannot recast while active; can coexist with Teleport. The paid snapshot carries between waves; changes during combat affect future casts from the next wave."
     },
     "hydra": {
       "name": "Hydra",
