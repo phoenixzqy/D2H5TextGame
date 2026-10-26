@@ -2529,10 +2529,11 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
 
 /** Qualify authority first; a fully staged singleton is the only path to payment. */
 function prepareIronGolem(state: State, owner: CombatUnit, skill: RegisteredSkill): void {
-  const rank = qualifyIronGolemSource(owner, skill);
+  const learnedRank = qualifyIronGolemSource(owner, skill);
   const effect = preparationEffect(skill, 'iron_golem');
-  if (rank === 0 || !effect) return;
+  if (learnedRank === 0 || !effect) return;
   if (skill.requires && owner.equippedWeapon !== undefined && !canCastSkill(skill, owner.equippedWeapon).ok) return;
+  const rank = effectiveLearnedSkillRank(learnedRank, paidRankBonus(state, owner) ?? 0);
   const cost = effectiveManaCost(skill, rank);
   const cooldown = effectiveCooldown(skill, rank);
   if (!Number.isFinite(cost) || !Number.isFinite(cooldown * SECONDS)) return;
@@ -2558,9 +2559,10 @@ function prepareIronGolem(state: State, owner: CombatUnit, skill: RegisteredSkil
 
 /** Build/validate the complete body before paying once; never bind a preloaded marker. */
 function prepareHydra(state: State, owner: CombatUnit, skill: RegisteredSkill): void {
-  const rank = hydraRank(owner);
-  if (!matchesHydra(skill) || rank === 0 || !Number.isFinite(owner.mana) ||
+  const learnedRank = hydraRank(owner);
+  if (!matchesHydra(skill) || learnedRank === 0 || !Number.isFinite(owner.mana) ||
     owner.mana < HYDRA_DEFINITION.manaCost || opponentsOf(state, owner).length === 0 || state.heroDead) return;
+  const rank = effectiveLearnedSkillRank(learnedRank, paidRankBonus(state, owner) ?? 0);
   const candidate = buildHydra(owner);
   if (!validPreparationCandidate(candidate)) return;
   const registered = castSkill(state, owner.id, skill,
