@@ -428,6 +428,9 @@
     "appliesStatus": [
       "confuse"
     ],
+    "statusEffect": {
+      "durationMs": 3000
+    },
     "scaling": {
       "costPerLevel": -0.25
     }
@@ -482,6 +485,9 @@
     "appliesStatus": [
       "attract"
     ],
+    "statusEffect": {
+      "durationMs": 3000
+    },
     "scaling": {
       "cooldownPerLevel": -0.05
     }
