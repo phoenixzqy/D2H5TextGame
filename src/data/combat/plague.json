@@ -1,0 +1,6 @@
+{
+  "id": "combat/plague",
+  "poisonStacksForEpidemic": 10,
+  "ordinarySpreadFraction": 0.5,
+  "epidemicSpreadFraction": 1
+}

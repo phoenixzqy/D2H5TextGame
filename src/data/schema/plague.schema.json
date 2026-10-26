@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/plague.json",
+  "title": "Combat Plague and Epidemic Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "poisonStacksForEpidemic", "ordinarySpreadFraction", "epidemicSpreadFraction"],
+  "properties": {
+    "id": { "type": "string", "const": "combat/plague" },
+    "poisonStacksForEpidemic": {
+      "type": "integer", "minimum": 1, "maximum": 10,
+      "description": "Active Poison stacks required before the paid Plague cast; bounded by the Poison cap."
+    },
+    "ordinarySpreadFraction": {
+      "type": "number", "exclusiveMinimum": 0, "maximum": 1,
+      "description": "Fraction of current Poison stacks spread by an ordinary death."
+    },
+    "epidemicSpreadFraction": {
+      "type": "number", "exclusiveMinimum": 0, "maximum": 1,
+      "description": "Fraction spread by the first eligible death of one paid Plague cast; cannot be below ordinary spread."
+    }
+  }
+}
