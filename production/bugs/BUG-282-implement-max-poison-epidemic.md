@@ -1,7 +1,7 @@
 # BUG-282 — Implement the max-Poison Plague Epidemic
 
 - Severity: Medium — the advertised max-stack combo uses ordinary half spread.
-- Status: Runtime implemented locally in `13a6d098`; focused checks pass. Full engine run active; native/public/full acceptance pending. No skill credit.
+- Status: Runtime implemented locally in `13a6d098`; full engine, native/UI, bounded production browser and full lint checks pass. Original full unit/types interrupted without results; sequential retry active. Independent/earned acceptance pending. No skill credit.
 - Owner: root, engine/design/QA; no delegation or independent approval.
 - Baseline: BUG281 payload/helper correction `d18e689c`; exact source hashes
   are retained with the continuing task below. Linux, Node/Vitest, seed7.
@@ -77,12 +77,36 @@ event narrowing; lint also caught numeric template interpolation. An explicit
 mana-event predicate and `String(index)` fix those test-only errors. Final strict
 types pass4.020s and explicit lint9.251s; engine purity passes359testfiles.
 
-Fresh full engine session22396/`epidemic-engine` is active. Its1668input manifest
-includes `src`, tests/sim, scripts and configuration, including all new files;
-do not restart the run. The older9455engine and18461full-unit results belong to
+The original full engine session22396/`epidemic-engine` completed exit0:
+9490tests/359files,163.189s,inputsUnchanged:true. Its1668input manifest includes
+`src`, tests/sim, scripts and configuration, including all new files; all hashes
+were read back exact before later UI/test edits. The older9455engine and18461full-unit results belong to
 their earlier snapshots. Genuine save compressed/raw hashes remain exact; no
 campaign action/replay occurred. Native/public log rendering, full skill/earned
 build/balance acceptance and integrated full units/types/lint/build remain open.
 The continuing task above retains every original failure, receipt and frozen
 input manifest; root owns its eventual retention/read-back/exact cleanup. No
 cleanup, independent approval or inventory credit is claimed here.
+
+## Public preview reproduction before correction
+
+At `c74de1e8`, rendering the actual Amazon skill panel in jsdom at ranks0,1,19,20
+in both locales gives a generic direct-damage sentence only; the zh-CN status
+list also displays the untranslated `Plague`. The description's source string
+promises poison clouds, but the actual panel does not explain finite Poison,
+rate-less Plague, death spread or the pre-cast maximum requirement. Selecting
+the node and allocating19→20 reproduces the gap in all ten new UI cases.
+Expected: actual line-3 targeting, current damage/payment and the implemented
+Poison/Plague/Epidemic rules in both locales, including the once-per-cast limit.
+`plague-preview-red.log/json` in the continuing task retains10failures/zero passes,
+9.298s. This is component evidence, not a real browser viewport or earned build.
+
+`176c6ad6` fixes the dynamic preview; `011c22e8` supplies the missing localized
+status labels. Native and public verification now pass at the precise boundaries
+in [current evidence](../../docs/plans/evidence/d04-plague-javelin.md). The fresh
+full lint checkpoint12885 passed223.626s. Original full unit37999/types78777
+returned tool exit143 without runner receipts; the audit found no surviving
+worktree Vitest/tsc process, with termination cause unestablished. All1673frozen
+inputs remain exact. Types retry97325 is active before a sequential unit retry.
+Original logs/audits remain retained. No inventory, independent or earned
+acceptance credit follows before that closeout.

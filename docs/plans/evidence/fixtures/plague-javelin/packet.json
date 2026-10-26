@@ -1,0 +1,284 @@
+{
+  "state": "functional-checkpoint-full-lint-pass-sequential-retry-no-credit",
+  "sourceHead": "36a8fdba6516ce8c8175f23baef4cc1547f28f04",
+  "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s",
+  "owner": "root",
+  "cleanup": "retention/read-back/exact disposal after active full and continuing consumers; not cleaned",
+  "receipts": {
+    "epidemic-engine": {
+      "label": "epidemic-engine",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "engine"
+      ],
+      "exit": 0,
+      "seconds": 163.18909857305698,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  359 passed (359)",
+        "Tests  9490 passed (9490)"
+      ]
+    },
+    "epidemic-lifecycle-final": {
+      "label": "epidemic-lifecycle-final",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/combat/plague.test.ts",
+        "src/engine/combat/plague-definition.test.ts",
+        "src/engine/skills/plague-javelin.test.ts",
+        "src/engine/combat/status.test.ts",
+        "src/engine/skills/registry.test.ts",
+        "src/engine/combat/frost-nova.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 6.733605760964565,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  6 passed (6)",
+        "Tests  204 passed (204)"
+      ]
+    },
+    "plague-preview-red": {
+      "label": "plague-preview-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "ui",
+        "src/features/skills/SkillsScreen.plague-javelin.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 9.297765459981747,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 10 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  10 failed (10)"
+      ]
+    },
+    "plague-preview-green": {
+      "label": "plague-preview-green",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "ui",
+        "src/features/skills/SkillsScreen.plague-javelin.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 9.394707009079866,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  10 passed (10)"
+      ]
+    },
+    "plague-native-focused-final": {
+      "label": "plague-native-focused-final",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "ui",
+        "src/features/skills/SkillsScreen.plague-javelin.test.tsx",
+        "src/stores/plague-javelin.causal.test.ts",
+        "src/stores/plague-javelin-native.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 9.883418395998888,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  3 passed (3)",
+        "Tests  22 passed (22)"
+      ]
+    },
+    "plague-native-types-final": {
+      "label": "plague-native-types-final",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s/plague-native-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 10.499001263990067,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    "plague-native-lint-final": {
+      "label": "plague-native-lint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.plague-javelin.test.tsx",
+        "src/stores/plague-javelin.causal.test.ts",
+        "src/stores/plague-javelin-native.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 11.949010343058035,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    "plague-production-build": {
+      "label": "plague-production-build",
+      "command": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s/plague-production-dist"
+      ],
+      "exit": 0,
+      "seconds": 13.242127877078019,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    "plague-production-bridge": {
+      "label": "plague-production-bridge",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s/scan-production.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.14928651705849916,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    "plague-production-precache": {
+      "label": "plague-production-precache",
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s/plague-production-dist"
+      ],
+      "exit": 0,
+      "seconds": 0.10248855908866972,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    "plague-browser": {
+      "label": "plague-browser",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "-c",
+        "tests/pwa/plague-javelin-acceptance.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 71.40029145299923,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u001b[1A\u001b[2K  4 passed (1.2m)"
+      ]
+    },
+    "plague-mobile-visible": {
+      "label": "plague-mobile-visible",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "-c",
+        "tests/pwa/plague-javelin-acceptance.config.ts",
+        "--project",
+        "plague-mobile"
+      ],
+      "exit": 0,
+      "seconds": 37.112148351967335,
+      "inputsUnchanged": true,
+      "totals": [
+        "\u001b[1A\u001b[2K  2 passed (36.1s)"
+      ]
+    },
+    "plague-public-types-final": {
+      "label": "plague-public-types-final",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s/plague-public-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 11.678733919048682,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    "plague-public-lint-final": {
+      "label": "plague-public-lint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--no-ignore",
+        "tests/pwa/plague-javelin-acceptance.config.ts",
+        "tests/pwa/plague-javelin-acceptance.spec.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 8.956008239998482,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    "plague-full-lint": {
+      "label": "plague-full-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 223.6255727360258,
+      "inputsUnchanged": true,
+      "totals": []
+    }
+  },
+  "engineFrozenInputs": 1668,
+  "functionalFrozenInputs": 1673,
+  "activeFull": {
+    "typesRetry1": 97325
+  },
+  "protectedSave": {
+    "compressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "rawSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "campaignActions": 0
+  },
+  "limits": [
+    "unearned native/public fixtures",
+    "Epidemic native/engine proof; public fixture does not force trigger",
+    "no independent acceptance",
+    "no integrated full result yet",
+    "whole-v1 gates remain open"
+  ],
+  "originalFullInterruption": {
+    "unit": {
+      "session": 37999,
+      "toolExit": 143,
+      "runnerReceipt": false
+    },
+    "types": {
+      "session": 78777,
+      "toolExit": 143,
+      "runnerReceipt": false
+    },
+    "terminationCause": "unestablished",
+    "matchingSurvivingVitestOrTsc": [],
+    "audits": [
+      "full-process-audit.json",
+      "full-interruption-audit.json",
+      "full-retry-input-audit.json"
+    ]
+  }
+}
