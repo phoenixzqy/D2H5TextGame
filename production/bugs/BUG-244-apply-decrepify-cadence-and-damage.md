@@ -20,7 +20,7 @@ Actual: paid action and debit occur, but enemy still attacks500ms increments thr
 
 ## Evidence and root cause
 
-Terminal decrepify-red-fixed:2failed/5passed,7.198s,exit1. Raw log/receipt retained under /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx/; logSHA2565ce50f82ced85c7d2765ea46ff6778db6bdd43b8dc5b0c0b1c9cc0c5ae96e1c3.
+Terminal decrepify-red-fixed:2failed/5passed,7.198s,exit1. Raw decrepify-red-fixed.log/.json are retained in /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx-retained.tar.xz; the original scratch directory was removed after verification. Root owns retention/removal through BUG244/full-v1 consumers; exact cleanup and sibling records are linked in the evidence below. LogSHA2565ce50f82ced85c7d2765ea46ff6778db6bdd43b8dc5b0c0b1c9cc0c5ae96e1c3.
 Initial test-only alias expectation was corrected: native priority retains authored ID until engine action lookup canonicalizes. Original decrepify-red log/receipt remains; gameplay expectations/seed were not weakened.
 
 JSON has only appliesStatus:decrepify and no authored duration/modifiers. dataCatalog emits only the generic marker, unknown status defaults1s, and neither effectiveActionPeriod nor outgoing-damage projection consumes Decrepify. Repair the complete authored payload and existing shared scheduler/damage consumers; do not fake a buff by mutating base stats or editing test expectations.

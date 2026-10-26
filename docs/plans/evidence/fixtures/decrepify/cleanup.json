@@ -1,0 +1,17 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx-retained.tar.xz",
+  "archiveSha256": "a64917f4fe78d00a0cfa2ccf76087e8da3f895bf4e7f76cd4c137250ba2243f8",
+  "archiveMembers": 107,
+  "deletedFiles": 981,
+  "deletedDirectories": 38,
+  "recordedProcessIdentitiesAbsent": 27,
+  "taskConsumers": [],
+  "port4525Closed": true,
+  "remaining": [],
+  "failures": [],
+  "retainedRecords": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx-retention.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx-deletion-manifest.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx-cleanup.json"
+  ]
+}

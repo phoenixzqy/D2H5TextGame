@@ -1,0 +1,11 @@
+{
+  "initialControl": "Native skillOrder retains authored data ID until engine lookup normalizes action ID; corrected positive control from canonical to authored ID. No mechanics expectation weakened.",
+  "redCollection": "Soft phase/damage/HP/payload assertions collect all actual failures in each test before source edits; original terminal result retained.",
+  "fractionalFixture": "Original consumer interval400.25\u20133400.5 is3000.25ms, exceeding the explicit3000ms paid cap and correctly grants no power. Corrected to400.25\u20133400.25; phase remains independently calculated699.5,2199.5,3500,4000,4500. Original failure retained.",
+  "dotSnapshot": "Existing applyDamageToUnit floors max(1,floor(finalHit*dotFraction));67*.1 snapshots6, not6.7. Corrected only this new expectation to existing documented runtime, retaining original failure.",
+  "registryBoundary": "Initial engine8484 run exposed two original registry negatives. Fixed production adapter to require a complete strictly validated Decrepify row; original expectations unchanged and new malformed controls added.",
+  "nextCostUI": "Next-level Mana Cost rows show a bare numeric value, not MP units; test checks the actual labeled next section14 while pure model verifies exact current15/next14 costs at rank19.",
+  "browserOracle": "Author review before first browser run removed spell-name substring from the synthetic hero name and requires actual localized casts/\u65bd\u653e\u4e86 action text in addition to the exact spell name. Enemy effect chip is separately required.",
+  "browserCache": "Initial run stopped at browser launch because task-local XDG_CACHE_HOME changed Playwright lookup. Existing shared chromium_headless_shell1217 verified; rerun with explicit PLAYWRIGHT_BROWSERS_PATH=/home/felixzhao/.cache/ms-playwright. No download, source, assertions, retry count or timeout changed. Original report/output retained.",
+  "lintFindings": "Initial lint163.692s reported five errors/one warning: nullable-object logical OR, optional chain, three void arrow shorthands and one non-null assertion. Apply local equivalent syntax/explicit guard, preserve original lint log, then rerun final checks. No rule suppressions or relaxed warnings."
+}

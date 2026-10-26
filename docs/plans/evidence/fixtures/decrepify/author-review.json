@@ -1,0 +1,26 @@
+{
+  "scope": "BUG244 Decrepify author self-review; not independent acceptance",
+  "result": "no outstanding source correctness/security findings after adapter boundary repair",
+  "correctness": "Native ranks1/20 pay exactly, phase and interval tests plus direct mitigation/composition/replay controls pass; duration3000ms explicitly provisional.",
+  "readability": "One small immutable definition follows existing warcry pattern; no general curse framework.",
+  "architecture": "Existing JSON/schema/adapter/status/cadence/direct pipeline, display model and bilingual UI; no persistent data or dependency change.",
+  "security": "Strict complete schema at authored adapter boundary, finite exact packets and native ownership guards; no new external access, permissions or save grants.",
+  "performance": "Linear bounded status lookup in existing scheduler/damage projection; no new RNG or additional battle simulation. Runtime/performance budgets not accepted.",
+  "limits": [
+    "Independent design/QA and earned builds/balance remain open.",
+    "Browser proof covers casting/chips/victory/save/offline; exact numerical consequences come from native/engine tests.",
+    "All8final screenshots inspected; header/navigation overlap and below-viewport victory limits remain.",
+    "Runtime performance budgets, broader UX/a11y and full C2-C4/G0-G7/private-v1 remain unaccepted.",
+    "Genuine campaign untouched. Root sole writer; no subagents."
+  ],
+  "sourcePathsFrozen": 1552,
+  "terminalVerification": {
+    "fullPassed": 17283,
+    "fullFiles": 783,
+    "existingSkips": 2,
+    "enginePassed": 8553,
+    "engineFiles": 320,
+    "typesLintBuildPrecacheBrowser": "PASS",
+    "all1552SourceAnd762BuildBytesExact": true
+  }
+}

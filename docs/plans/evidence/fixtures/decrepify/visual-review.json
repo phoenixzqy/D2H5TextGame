@@ -1,0 +1,62 @@
+{
+  "reviewer": "root author self-review; not independent design/QA",
+  "date": "2026-10-26",
+  "inspectedFinalScreenshots": [
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx/final-screenshots/desktop-en-decrepify-decrepify-preview.png",
+      "sha256": "c75f447ce5f46205f9710514b61656f3853d18c456cbdbec91ebfd1e94f6a017",
+      "width": 1152,
+      "height": 336
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx/final-screenshots/desktop-en-decrepify-victory.png",
+      "sha256": "a08053cab95f06a09d02a31477604469b1eaa86c2fd08d8ebcc75be2661ffb45",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx/final-screenshots/desktop-zh-CN-decrepify-decrepify-preview.png",
+      "sha256": "2a7cf1941f1ed0f8db09d308b4d5a6c31aaa16d8945705d1723861d15c37ae2c",
+      "width": 1152,
+      "height": 336
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx/final-screenshots/desktop-zh-CN-decrepify-victory.png",
+      "sha256": "10b835e8a16e382169e061f7a82d6d42b9721433f8afc42d235aab971b8102f3",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx/final-screenshots/mobile-en-decrepify-decrepify-preview.png",
+      "sha256": "c12435fd19e1f3e4d268120608bca8e93daaa99de6a0fabc5ffba77d0b73f9dd",
+      "width": 924,
+      "height": 1496
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx/final-screenshots/mobile-en-decrepify-victory.png",
+      "sha256": "0147b39840b02ab939934aaee9c3e3014d656489a81d0a680243601453dabce7",
+      "width": 990,
+      "height": 1760
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx/final-screenshots/mobile-zh-CN-decrepify-decrepify-preview.png",
+      "sha256": "9e3a15afb9256da5fad1b2e54cf44a98dfc3ea4030450614d1c5d6ec03cca43f",
+      "width": 924,
+      "height": 1496
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-decrepify-ncbcsyhx/final-screenshots/mobile-zh-CN-decrepify-victory.png",
+      "sha256": "eeb721eb15574cdd1b86a17091adbf96b1ff4a51706fd5586201000dafe79495",
+      "width": 990,
+      "height": 1760
+    }
+  ],
+  "desktopPreview": "Both locales show the complete rank20 header, description, duration/reductions, mana/CD, max level and requirements in the captured panel.",
+  "mobilePreview": "Both locales show readable duration/reduction/payment copy and current numbers. The fixed header overlaps the title/MAX control; bottom navigation and the capture edge hide lower panel content. English Next Level content is below the capture; Chinese MAX text is visible but requirements are below it. These are bounded content captures, not whole-screen UX acceptance.",
+  "victoryCapture": "All four images show the final-wave battlefield. Desktop enemy cards extend below the viewport; mobile captures show allies while enemies and the victory panel/log are below the viewport. English mobile wave text is ellipsized. The filenames do not establish a visually readable victory summary. Victory and cast/chip proof comes from explicit browser DOM assertions and the report attachments.",
+  "otherLimits": [
+    "No screenshot independently measures numerical cadence or outgoing damage. Those are proven by native/engine tests.",
+    "Navigation contains missing-glyph boxes in this browser environment.",
+    "No whole-app mobile, accessibility or performance acceptance."
+  ]
+}

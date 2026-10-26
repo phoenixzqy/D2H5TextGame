@@ -1,0 +1,20 @@
+{
+  "changedIds": [
+    "skills-necromancer-decrepify"
+  ],
+  "other212RawRowsExact": true,
+  "headerAnd213IdsOrderExact": true,
+  "beforeSha256": "e2d59db336155d41907fed3047b5d7810a56c728ba585a3ce31ff5c290c9726d",
+  "afterSha256": "8f17545acfb9fcd2e833bae51ee211367db54d039ec721188e092ff96bcc07f3",
+  "counts": {
+    "unverified": 57,
+    "bounded-functional;independent-acceptance-open": 151,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "boundedFunctional": 154,
+  "necromancerBounded": 12,
+  "necromancerTotal": 32,
+  "independentOrEarnedAcceptanceCredited": false
+}

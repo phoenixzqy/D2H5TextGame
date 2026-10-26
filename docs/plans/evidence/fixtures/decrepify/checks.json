@@ -1,0 +1,435 @@
+{
+  "decrepify-boundary-green": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/decrepify-definition.test.ts",
+      "src/engine/combat/decrepify-consumers.test.ts",
+      "src/stores/necromancer-decrepify.causal.test.ts",
+      "src/engine/skills/registry.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 7.299,
+    "identity": {
+      "pid": 3986947,
+      "procStat": "3986947 (vitest) R 3986946 3986946 3986946 0 -1 4194304 20 0 0 0 0 0 0 0 20 0 1 0 91955584 11788288 72 18446744073709551615 105545494487040 105545499432637 140729387238128 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 105545503364816 105545504849688 105546333806592 140729387243425 140729387243648 140729387243648 140729387249631 0\n"
+    },
+    "logSha256": "0c985484ab96d3d702fbbc07c8510e969ec6fc8193eb3c336a80142f8745e4fa"
+  },
+  "decrepify-browser-final": {
+    "command": [
+      "node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "tests/pwa/decrepify.config.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 226.748,
+    "identity": {
+      "pid": 3998882,
+      "procStat": "3998882 (playwright) R 3998875 3998875 3998875 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 92038320 11788288 42 18446744073709551615 106831888699392 106831893644989 140733917950176 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 106831897577168 106831899062040 106832817127424 140733917955741 140733917955832 140733917955832 140733917962203 0\n"
+    },
+    "logSha256": "bed5ccf220902ac7aec94287c340011376be28e2f080e2c5648ad417f417b1cf"
+  },
+  "decrepify-browser-installed": {
+    "command": [
+      "node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "tests/pwa/decrepify.config.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 216.967,
+    "identity": {
+      "pid": 3994863,
+      "procStat": "3994863 (playwright) R 3994862 3994862 3994862 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 92004857 11751424 0 18446744073709551615 0 0 140727156065943 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 0 0 0 140727156065943 0 0 0 0\n"
+    },
+    "logSha256": "d1e04064dc67c0337b3459cbf48e1ec5e5bd2307ca6695d7fb3705ccb216f002"
+  },
+  "decrepify-browser": {
+    "command": [
+      "node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "tests/pwa/decrepify.config.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 2.712,
+    "identity": {
+      "pid": 3994760,
+      "procStat": "3994760 (playwright) R 3994758 3994758 3994758 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 92002087 11788288 33 18446744073709551615 108959582494720 108959587440317 140728021410368 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 108959591372496 108959592857368 108960136499200 140728021411553 140728021411644 140728021411644 140728021417947 0\n"
+    },
+    "logSha256": "0c3dfc535e7f1baad9f043318521181138c01a5abae22f96fd72ba355f2fdff3"
+  },
+  "decrepify-corrected-focused": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/decrepify-definition.test.ts",
+      "src/engine/combat/decrepify-consumers.test.ts",
+      "src/engine/skills/displayStats.decrepify.test.ts",
+      "src/features/skills/SkillsScreen.decrepify.test.tsx",
+      "src/stores/necromancer-decrepify.causal.test.ts",
+      "src/stores/necromancer-decrepify-native.test.ts",
+      "src/engine/skills/registry.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 13.396,
+    "identity": {
+      "pid": 3996474,
+      "procStat": "3996474 (vitest) R 3996473 3996473 3996473 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 92028277 11788288 42 18446744073709551615 104920242675712 104920247621309 140736867471728 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 104920251553488 104920253038360 104920699281408 140736867477260 140736867477632 140736867477632 140736867483615 0\n"
+    },
+    "logSha256": "afac6ff821a1a0bf6a8ce4c929c01a686d3752ee674da339cb6369245fa36698"
+  },
+  "decrepify-definition-consumers": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/decrepify-definition.test.ts",
+      "src/engine/combat/decrepify-consumers.test.ts",
+      "src/stores/necromancer-decrepify.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 6.945,
+    "identity": {
+      "pid": 3986725,
+      "procStat": "3986725 (vitest) R 3986724 3986724 3986724 0 -1 4194304 16 0 0 0 0 0 0 0 20 0 1 0 91951702 11788288 66 18446744073709551615 103661780422656 103661785368253 140735628679824 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 103661789300432 103661790785304 103662520729600 140735628687300 140735628687488 140735628687488 140735628693471 0\n"
+    },
+    "logSha256": "c275e9262174c22f46af026955b8c3ff704097d5e6ea0024c569cdc0b053d931"
+  },
+  "decrepify-engine-corrected": {
+    "command": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 149.108,
+    "identity": {
+      "pid": 3996788,
+      "procStat": "3996788 (npm) R 3996787 3996787 3996787 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 92032199 11788288 0 18446744073709551615 103115169370112 103115174315709 140737260819376 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 103115178247888 103115179732760 103115607654400 140737260820495 140737260820581 140737260820581 140737260826564 0\n"
+    },
+    "logSha256": "7694fed13a0c23da563211e5c7bb483a587dc173fe0ab71cd43b4f3cbbc6946c"
+  },
+  "decrepify-engine-final": {
+    "command": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 126.73,
+    "identity": {
+      "pid": 3988442,
+      "procStat": "3988442 (npm) R 3988441 3988441 3988441 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 91976588 11788288 33 18446744073709551615 98677512568832 98677517514429 140735375900224 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 98677521446608 98677522931480 98678132793344 140735375902735 140735375902821 140735375902821 140735375908804 0\n"
+    },
+    "logSha256": "2dacdf06920b8b56f6587743e36f3bf7c44e18e9c7a0dc8cad53052aab9144cb"
+  },
+  "decrepify-engine-initial": {
+    "command": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 119.449,
+    "identity": {
+      "pid": 3980964,
+      "procStat": "3980964 (npm) R 3980963 3980963 3980963 0 -1 4194304 21 0 0 0 0 0 0 0 20 0 1 0 91935804 11788288 75 18446744073709551615 102918767276032 102918772221629 140722094017856 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 102918776153808 102918777638680 102919120375808 140722094020623 140722094020709 140722094020709 140722094026692 0\n"
+    },
+    "logSha256": "e8f7d72db4f5fd4948eadb6d37a3dc77d1eac65d7bbbad89c36d4de66264f2ed"
+  },
+  "decrepify-final-negative-controls": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-decrepify.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 12.028,
+    "identity": {
+      "pid": 4001780,
+      "procStat": "4001780 (vitest) R 4001777 4001777 4001777 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 92044947 11788288 0 18446744073709551615 0 0 140735136008225 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 0 0 0 140735136008225 140735136008320 140735136008320 140735136008320 0\n"
+    },
+    "logSha256": "ddb0e0ebc0017d3ccfde25fc589516303f4ba40a6272217ff6dd705dbfd5a538"
+  },
+  "decrepify-final-negative-lint": {
+    "command": [
+      "node_modules/.bin/eslint",
+      "src/stores/necromancer-decrepify.causal.test.ts",
+      "--max-warnings=0"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 7.438,
+    "identity": {
+      "pid": 4003414,
+      "procStat": "4003414 (eslint) R 4003411 4003411 4003411 0 -1 4194304 16 0 0 0 0 0 0 0 20 0 1 0 92058992 11788288 73 18446744073709551615 97104906731520 97104911677117 140735027653056 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 97104915609296 97104917094168 97105387483136 140735027656724 140735027656832 140735027656832 140735027662815 0\n"
+    },
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "decrepify-focused-ui": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/displayStats.decrepify.test.ts",
+      "src/features/skills/SkillsScreen.decrepify.test.tsx",
+      "src/engine/combat/decrepify-definition.test.ts",
+      "src/engine/combat/decrepify-consumers.test.ts",
+      "src/stores/necromancer-decrepify.causal.test.ts",
+      "src/engine/skills/registry.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 13.758,
+    "identity": {
+      "pid": 3987768,
+      "procStat": "3987768 (vitest) R 3987767 3987767 3987767 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 91967448 11788288 0 18446744073709551615 101629848760320 101629853705917 140729141920224 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 101629857638096 101629859122968 101630100598784 140729141921596 140729141921920 140729141921920 140729141927903 0\n"
+    },
+    "logSha256": "66adb69ac5804cc363f999e80fec5e62fd01d6aa7f7bbb77f389ee5f33ae8eeb"
+  },
+  "decrepify-full": {
+    "command": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 715.187,
+    "identity": {
+      "pid": 4004486,
+      "procStat": "4004486 (npm) R 4004485 4004485 4004485 0 -1 4194304 8 0 0 0 0 0 0 0 20 0 1 0 92078115 11788288 0 18446744073709551615 94919249297408 94919254243005 140736413859280 0 0 0 0 0 0 0 0 0 17 1 0 0 0 0 0 94919258175184 94919259660056 94919592501248 140736413866010 140736413866085 140736413866085 140736413872068 0\n"
+    },
+    "logSha256": "5a0a1730a289405acba6e44f95939e47a5ad0a455786fd0a12ab999005025f87"
+  },
+  "decrepify-green": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-decrepify.causal.test.ts",
+      "src/engine/combat/chill-timing.test.ts",
+      "src/engine/combat/warcry-definition.test.ts",
+      "src/engine/combat/skill-resolution.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 7.089,
+    "identity": {
+      "pid": 3980150,
+      "procStat": "3980150 (vitest) R 3980149 3980149 3980149 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 91921384 11788288 40 18446744073709551615 96103804366848 96103809312445 140736146851616 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 96103813244624 96103814729496 96103923101696 140736146859939 140736146860160 140736146860160 140736146866143 0\n"
+    },
+    "logSha256": "1968895a0b4128c4a096e79d28c9c243d5761f4ed6a9ff7269b31ac5de1e4089"
+  },
+  "decrepify-lint-corrected": {
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 209.758,
+    "identity": {
+      "pid": 3996757,
+      "procStat": "3996757 (npm) R 3996756 3996756 3996756 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 92032081 11780096 0 18446744073709551615 0 0 140736552642582 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 0 0 0 140736552642582 140736552642661 140736552642661 140736552642661 0\n"
+    },
+    "logSha256": "2eb9cce95f478918aae4e09ce8e4b6b5a5b047183ca60c6809ae4320431d7c8d"
+  },
+  "decrepify-lint": {
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 163.692,
+    "identity": {
+      "pid": 3994162,
+      "procStat": "3994162 (npm) R 3994161 3994161 3994161 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 91991462 11788288 40 18446744073709551615 101633073422336 101633078367933 140723967443312 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 101633082300112 101633083784984 101633351823360 140723967445014 140723967445093 140723967445093 140723967451076 0\n"
+    },
+    "logSha256": "c229505fdc6126a2cf8db2f7728233921db0b37ca3e3695d4546e4262e4d4d72"
+  },
+  "decrepify-native": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-decrepify-native.test.ts",
+      "src/stores/necromancer-decrepify.causal.test.ts",
+      "src/stores/necromancer-direct-native.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 7.216,
+    "identity": {
+      "pid": 3988053,
+      "procStat": "3988053 (vitest) R 3988051 3988051 3988051 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 91970813 11788288 33 18446744073709551615 110834132938752 110834137884349 140735495985584 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 110834141816528 110834143301400 110834679463936 140735495993284 140735495993472 140735495993472 140735495999455 0\n"
+    },
+    "logSha256": "1b26abb18ee440f3d34765c87771cbf093b45f1ab01a23f5ecba72208da4b149"
+  },
+  "decrepify-official-build-corrected": {
+    "command": [
+      "npm",
+      "run",
+      "check:test-bridge-shake"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 16.078,
+    "identity": {
+      "pid": 3997241,
+      "procStat": "3997241 (npm) R 3997231 3997231 3997231 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 92033758 11788288 33 18446744073709551615 111103206739968 111103211685565 140725094738704 0 0 0 0 0 0 0 0 0 17 11 0 0 0 0 0 111103215617744 111103217102616 111103606730752 140725094742019 140725094742117 140725094742117 140725094748100 0\n"
+    },
+    "logSha256": "69491502ce378593a358159ec3b87c90758a30974b346c41e988553da25ce84c"
+  },
+  "decrepify-official-build": {
+    "command": [
+      "npm",
+      "run",
+      "check:test-bridge-shake"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 12.419,
+    "identity": {
+      "pid": 3994328,
+      "procStat": "3994328 (npm) R 3994327 3994327 3994327 0 -1 4194304 3 0 0 0 0 0 0 0 20 0 1 0 91995233 11493376 0 18446744073709551615 0 0 140728309090307 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 0 0 0 140728309090307 0 0 0 0\n"
+    },
+    "logSha256": "857f122bd98d6dc228556ab5f08b5ff0cc9fbc9bb4640728aa49209795783400"
+  },
+  "decrepify-precache-corrected": {
+    "command": [
+      "npm",
+      "run",
+      "check:offline-precache",
+      "--",
+      "dist"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 0.235,
+    "identity": {
+      "pid": 3998851,
+      "procStat": "3998851 (npm) R 3998850 3998850 3998850 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 92038264 11788288 33 18446744073709551615 97038763446272 97038768391869 140736626940224 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 97038772324048 97038773808920 97039190536192 140736626948092 140736626948197 140736626948197 140736626954180 0\n"
+    },
+    "logSha256": "7e2027f53dad1d9f338382536f65ad7209c22d32cbb35f6e7f4ee4db0f222be2"
+  },
+  "decrepify-precache": {
+    "command": [
+      "npm",
+      "run",
+      "check:offline-precache",
+      "--",
+      "dist"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 0.209,
+    "identity": {
+      "pid": 3994739,
+      "procStat": "3994739 (npm) R 3994738 3994738 3994738 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 92002040 11751424 0 18446744073709551615 0 0 140734458550268 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 0 0 0 140734458550268 0 0 0 0\n"
+    },
+    "logSha256": "212adff5ddf8a97d74d19a0f5bf9cca4ff5ae7454e1f1377ab17301fdfc382d7"
+  },
+  "decrepify-preview-red": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/displayStats.decrepify.test.ts",
+      "src/features/skills/SkillsScreen.decrepify.test.tsx"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.928,
+    "identity": {
+      "pid": 3987238,
+      "procStat": "3987238 (vitest) R 3987237 3987237 3987237 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 91959751 11751424 0 18446744073709551615 0 0 140736368756716 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 0 0 0 140736368756716 0 0 0 0\n"
+    },
+    "logSha256": "726fb82cd770cf78bfea215d45db09f1f68d22f2968166a68e23fe7a8c9c8a1f"
+  },
+  "decrepify-red-fixed": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-decrepify.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.198,
+    "identity": {
+      "pid": 3979495,
+      "procStat": "3979495 (vitest) R 3979494 3979494 3979494 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 91910380 11788288 33 18446744073709551615 95613511200768 95613516146365 140737158341632 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 95613520078544 95613521563416 95613804150784 140737158342689 140737158342784 140737158342784 140737158348767 0\n"
+    },
+    "logSha256": "5ce50f82ced85c7d2765ea46ff6778db6bdd43b8dc5b0c0b1c9cc0c5ae96e1c3"
+  },
+  "decrepify-red": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-decrepify.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 6.973,
+    "identity": {
+      "pid": 3978916,
+      "procStat": "3978916 (vitest) R 3978915 3978915 3978915 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 91901196 11788288 41 18446744073709551615 97486562471936 97486567417533 140725044434608 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 97486571349712 97486572834584 97487325925376 140725044443169 140725044443264 140725044443264 140725044449247 0\n"
+    },
+    "logSha256": "6012b2d23536da83cf460872f7931556db9694c500d375e40f0fd8dece26b3ac"
+  },
+  "decrepify-types-corrected": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 129.391,
+    "identity": {
+      "pid": 3997303,
+      "procStat": "3997303 (npm) R 3997302 3997302 3997302 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 92033857 11755520 0 18446744073709551615 0 0 140736038488081 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 0 0 0 140736038488081 0 0 0 0\n"
+    },
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+  },
+  "decrepify-types-final": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 91.73,
+    "identity": {
+      "pid": 4003413,
+      "procStat": "4003413 (npm) R 4003412 4003412 4003412 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 92058992 11788288 33 18446744073709551615 99570946727936 99570951673533 140729807605840 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 99570955605712 99570957090584 99571995770880 140729807607825 140729807607909 140729807607909 140729807613892 0\n"
+    },
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+  },
+  "decrepify-types": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 103.761,
+    "identity": {
+      "pid": 3989779,
+      "procStat": "3989779 (npm) R 3989778 3989778 3989778 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 91980483 11788288 33 18446744073709551615 104770593378304 104770598323901 140733397936080 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 104770602256080 104770603740952 104770878316544 140733397940241 140733397940325 140733397940325 140733397946308 0\n"
+    },
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+  }
+}

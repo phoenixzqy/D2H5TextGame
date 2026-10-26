@@ -1,0 +1,17 @@
+{
+  "sourcePaths": 1552,
+  "sourceManifestSha256": "25f214e9cc36f5a7fe5461a82d506b12b8282bdb4f231f4308e7e8db0ee76da1",
+  "buildFiles": 762,
+  "buildManifestSha256": "ea5a548097aabafd856f3b409cfb9ef043bbd3deebf536ee00179a07e6f79743",
+  "sourceAndBuildBytesExactAfterFullTermination": true,
+  "genuineCompressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+  "genuineRawSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "headBeforeSourceCommit": "30e2e9a26f073887f7a95dcbd0e1a9119581eeae",
+  "fullTests": {
+    "passed": 17283,
+    "skipped": 2,
+    "files": 783,
+    "exitCode": 0,
+    "seconds": 715.187
+  }
+}
