@@ -16,6 +16,7 @@ import { CHILL_DEFINITION } from '../combat/chill-definition';
 import { paidBattleCry } from '../combat/warcry-definition';
 import { isDecrepifyDefinition, resolveDecrepifyDefinition } from '../combat/decrepify-definition';
 import { isWeakenDefinition, resolveWeakenDefinition } from '../combat/weaken-definition';
+import { isTerrorDefinition, resolveTerrorDefinition } from '../combat/terror-definition';
 import { resolveDamageCurseDefinition, type DamageCurseId } from '../combat/damage-curse-definition';
 import { MANA_BURN_DEFINITION } from '../combat/mana-burn-definition';
 import { coldMasteryReductionAtRank } from './cold-mastery';
@@ -561,6 +562,8 @@ export function computeSkillRankDisplayStats(
     ? resolveDecrepifyDefinition([skill]) : undefined;
   const weaken = skill.id === 'skills-necromancer-weaken' && isWeakenDefinition(skill)
     ? resolveWeakenDefinition([skill]) : undefined;
+  const terror = skill.id === 'skills-necromancer-terror' && isTerrorDefinition(skill)
+    ? resolveTerrorDefinition([skill]) : undefined;
   const damageCurse = resolveDamageCurseDefinition(skill);
   const damage = damageRows(skill, safeRank);
   const totalDamage = skill.damage
@@ -627,7 +630,9 @@ export function computeSkillRankDisplayStats(
   const howl = skill.id === 'skills-barbarian-howl';
   const controlDefinition = (skill.damage !== undefined || leap || howl || skill.id === 'skills-sorceress-telekinesis') && skill.trigger === 'active' &&
     (controlId === 'chill' || controlId === 'stun' || controlId === 'paralyze' || controlId === 'howl') ? STATUS_DEFAULTS[controlId] : undefined;
-  const control = controlDefinition ? { durationSeconds: controlDefinition.duration,
+  const control = terror ? { durationSeconds: terror.durationMs / 1000,
+    bossDurationSeconds: Math.max(1, Math.floor(terror.durationMs * terror.bossDurationMultiplier)) / 1000
+  } : controlDefinition ? { durationSeconds: controlDefinition.duration,
     bossDurationSeconds: controlDefinition.duration * (controlDefinition.bossDurationMult ?? 1) } : undefined;
   const maxTargets = skill.trigger === 'active' && skill.target === 'area-enemies' &&
     (((skill.id === 'skills-paladin-zeal' || strikesPerTarget !== undefined) && skill.aoeShape === 'cross' && skill.maxTargets === 3) ||

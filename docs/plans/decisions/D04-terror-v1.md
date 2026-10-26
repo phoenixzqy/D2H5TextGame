@@ -15,11 +15,12 @@ channels; it does not deal damage, change stats, grant dodge or force allegiance
 ## Rules and formula
 
 Preserve native requiredLevel12, Weaken and transitive Amplify prerequisite,
-cap20, all-enemies, mana7 and cooldown3-0.05*(rank-1) seconds. Propose JSON-owned
+cap20, all-enemies, mana7 and existing cooldown3-0.05*(rank-1), rounded
+to tenths by both combat and preview (cap20:2s; ranks18/19:2.1s). Propose JSON-owned
 1000ms fear, boss/chapter-boss duration multiplier0.5, all other tiers full.
 This is an explicit root-author choice grounded in existing accepted Howl1000ms/
 500ms semantics; the unknown-status1000ms fallback is not numerical authority.
-A3000ms choice would outlast rank20's2050ms cooldown, so avoid introducing that
+A3000ms choice would outlast rank20's2000ms resolved cooldown, so avoid introducing that
 unreviewed sustained-lock tuning. Numbers remain provisional until earned proof.
 
 One eligible action pays once, starts ordinary cooldown once and applies one
@@ -67,3 +68,11 @@ new targeting/allegiance/movement system, dependency, credential/CI/permission
 change or genuine campaign action. Security check:pass for first-party local
 code/data/tests; preserve existing native and save boundaries. This is a plan,
 not evidence that Terror works, an independent approval or full-v1 acceptance.
+
+## Presentation oracle correction
+
+The first draft preview test assumed unrounded2.05s at rank20. Inspection of
+existing combat effectiveCooldown and display scaleCooldown proves both already
+round to tenths; the correct actual cap value is2s. Preserve that existing
+mechanic and use explicit current/next expectations rather than silently
+changing global cooldown math. Original presentation RED receipt/log is retained.
