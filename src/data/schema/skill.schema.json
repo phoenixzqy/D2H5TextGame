@@ -10,6 +10,95 @@
     {
       "if": {
         "required": [
+          "boneWall"
+        ],
+        "properties": { "boneWall": {} }
+      },
+      "then": {
+        "properties": {
+          "id": {
+            "const": "skills-necromancer-bone-wall"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "const": "skills-necromancer-bone-wall"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "prerequisites",
+          "cost",
+          "scaling",
+          "appliesStatus",
+          "boneWall"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 12
+          },
+          "prerequisites": {
+            "const": [
+              "skills-necromancer-bone-armor"
+            ]
+          },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "self"
+          },
+          "cooldown": {
+            "const": 4
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "cost": {
+            "const": {
+              "mana": 17
+            }
+          },
+          "scaling": {
+            "const": {
+              "cooldownPerLevel": -0.05,
+              "costPerLevel": -0.2
+            }
+          },
+          "appliesStatus": {
+            "const": [
+              "bone-wall"
+            ]
+          },
+          "damage": false,
+          "damageType": false,
+          "heal": false,
+          "summon": false,
+          "summonId": false,
+          "effects": false,
+          "timedBuff": false,
+          "statusEffect": false,
+          "requires": false,
+          "aoeShape": false,
+          "maxTargets": false
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
           "id"
         ],
         "properties": {
@@ -5711,6 +5800,33 @@
     }
   },
   "properties": {
+    "boneWall": {
+      "description": "Finite paid personal barrier capacity and duration; exact player Bone Wall only.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "durationMs",
+        "baseCapacity",
+        "capacityPerRank"
+      ],
+      "properties": {
+        "durationMs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60000
+        },
+        "baseCapacity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000000
+        },
+        "capacityPerRank": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        }
+      }
+    },
     "skillRankBuff": {
       "description": "Paid finite Battle Command party potency; never changes learned allocations or grants skills.",
       "type": "object",

@@ -261,6 +261,8 @@ export interface ConversionTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** JSON-owned paid personal Bone Wall duration and finite absorption capacity. */
+  readonly boneWall?: { readonly durationMs: number; readonly baseCapacity: number; readonly capacityPerRank: number };
   /** Exact paid finite Battle Command party rank bonus, separate from allocation. */
   readonly skillRankBuff?: { readonly bonusRanks: number; readonly durationMs: number; readonly durationPerRankMs: number };
   /** Finite corpse-created area ward; no summon body or saved timer. */

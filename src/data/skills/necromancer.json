@@ -608,6 +608,11 @@
     "cost": {
       "mana": 17
     },
+    "boneWall": {
+      "durationMs": 6000,
+      "baseCapacity": 40,
+      "capacityPerRank": 10
+    },
     "appliesStatus": [
       "bone-wall"
     ],
