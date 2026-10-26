@@ -16,8 +16,10 @@
 Expected from the newly written Mage child: no spread. Actual shared behavior
 and older adopted D04 Poison Dagger, Rabies and combat-timing contracts: ordinary
 Poison retains death spread. This discrepancy is an error in the new child,
-not a newly introduced shared implementation. The main GDD phrase reserving
-spread for plague variants remains a broader design reconciliation requirement.
+not a newly introduced shared implementation. The main GDD describes plague
+variants spreading but does not explicitly prohibit ordinary Poison spread.
+Its relationship with the adopted extension remains a design reconciliation
+requirement; the earlier "reserving" interpretation was too strong.
 
 Evidence: `mounted-hp-inspection.log/json`, with `MAGE_C_HP` observations, under
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-mage-signatures-kwew5kh6`.

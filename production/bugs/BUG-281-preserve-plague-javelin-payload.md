@@ -34,10 +34,36 @@ its own Vite server and did not stop any other process. Future probes disable HM
 
 `dataCatalog.ts` takes the first authored status and admits secondary statuses
 only for explicitly supported skills. Plague Javelin is absent from that path.
-Before patching, define the intended Poison3+Plague relationship and shared
-spread behavior so adding a second status cannot accidentally double periodic
-damage. Reconcile the broad GDD plague-only spread wording with the adopted
-shared ordinary-Poison death contracts, already identified by BUG278.
+The bounded correction restores one ordinary finite Plague marker per landed
+hit, without copying Poison's damaging potency. Poison remains the sole periodic
+payload: three stacks,5% of the resolved hit per stack per second,5s,cap10.
+Preserve the authored line-3 area,25MP,2s cooldown and direct rank scaling.
+
+A second actual probe, `amazon-plague-mixed-probe.mjs/json` in the same task,
+finds that `spreadPlague` takes the Plague stack count but the first status's
+potency. Six Poison stacks at8HP/s plus one rate-less Plague marker spread only
+one stack; reversing record order also loses the rate (8HP/s versus0). Neither
+input is mutated. The correction must choose stacks and potency from the same
+Poison record, falling back to an old standalone Plague payload only when Poison
+is absent. Ordinary half-stack spread and existing source/expiry/recipient rules
+remain authoritative. Adding the missing marker must not weaken death spread or
+introduce duplicate DoT.
+
+Source clarification: the main GDD says plague variants spread; it does not
+explicitly forbid ordinary Poison spread. `combat-formulas.md`9.8 defines Plague
+as spreading50% of total Poison stacks. Adopted Dagger/Rabies/timing contracts
+also retain ordinary Poison spread. The earlier phrase "plague-only" was an
+interpretation, not an exact quotation. Preserve the adopted runtime extension.
+The separate max-stack Epidemic rule in `combo-matrix.md`4.3 still needs its own
+implementation and acceptance; restoring this payload does not close that rule,
+BUG278's full design reconciliation, or the skill's complete inventory entry.
+
+Author plan review: ready for a bounded adapter/helper correction after the
+current frozen full run finishes. Regression cases must prove real paid rank1/20
+casts, no duplicate periodic loss, miss/refusal, input immutability, repeat
+stacking, mixed-record ordering and legacy standalone Plague compatibility.
+Root-cause review: repair the discarded payload and shared record selection;
+do not patch playback expectations or change global Poison eligibility.
 
 Workaround: its direct damage and three Poison stacks currently function; this
 does not supply the missing distinct Plague effect. Inventory remains unverified.
