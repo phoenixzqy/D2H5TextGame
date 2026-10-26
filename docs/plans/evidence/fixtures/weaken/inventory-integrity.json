@@ -1,0 +1,17 @@
+{
+  "headBeforeCredit": "2a71b62360b7e92224147a8e3e88e37a3954c82b",
+  "changedDataIds": [
+    "skills-necromancer-weaken"
+  ],
+  "other212RawRowsExact": true,
+  "headerExact": true,
+  "all213IdsAndOrderExact": true,
+  "beforeSha256": "8f17545acfb9fcd2e833bae51ee211367db54d039ec721188e092ff96bcc07f3",
+  "afterSha256": "53bc4d5de556d59aff2dd2bdf3da9bc371acfeab896fc09aeaffac656d4cdba4",
+  "boundedFunctional": 155,
+  "unverified": 56,
+  "engineOnly": 1,
+  "reviewNeeded": 1,
+  "necromancerBounded": 13,
+  "independentOrEarnedAcceptanceCredited": false
+}

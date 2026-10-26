@@ -1,0 +1,7 @@
+{
+  "head": "2a71b62360b7e92224147a8e3e88e37a3954c82b",
+  "verifiedPaths": 1561,
+  "drift": [],
+  "sourceManifestSha256": "17e36a15ffa865b93b0330da01f5ce00deecf74b01793bae5d275c1e4277ad0d",
+  "method": "git cat-file --batch over actual HEAD blobs; SHA256 compared with frozen tested bytes"
+}

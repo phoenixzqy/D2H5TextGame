@@ -1,0 +1,20 @@
+{
+  "scope": "BUG245 Weaken author self-review; not independent acceptance",
+  "result": "No outstanding source correctness/security findings after full17375/789 with two existing skips, corrected engine/types/lint and production4/4. All1561actual committed source blobs match the tested freeze.",
+  "correctness": "Real native ranks1/20 retain exact payments/cadence and lower actual HP loss700->568. Strict metadata/status, exact and fractional expiry, seven damage types and double/triple composition controls pass.33%/3000ms is explicitly provisional author tuning.",
+  "readability": "Small immutable definition follows existing curse/warcry pattern; no general curse framework.",
+  "architecture": "Existing schema/JSON/adapter/status/direct-damage projection and pure display/i18n paths; no dependency, save or CI change.",
+  "security": "Complete strict authored boundary, exact finite packet and unchanged native ownership/rank/resource guards. No credentials, external data flow or permission changes.",
+  "performance": "One bounded status lookup in the existing direct-damage projection; no extra RNG or simulation. Performance gates remain unmeasured.",
+  "testEvidenceReview": "Local causal/negative coverage adequate for the bounded contract; complete story/independent/earned evidence remains INCOMPLETE.",
+  "limits": [
+    "Independent design/QA, earned builds/balance and full C2-C4/G0-G7/privatev1 remain open.",
+    "Mobile preview overlap and clipped/black-region victory captures do not establish complete UX/a11y acceptance.",
+    "Existing bundle/art-precache warnings and test-loop budget overruns remain open.",
+    "Root sole writer; no subagents. Genuine campaign unchanged."
+  ],
+  "frozenSourcePaths": 1561,
+  "visual": "All8PNG inspected; desktop skill panels readable; mobile header/nav overlap and all victory screenshot clipping/black regions remain explicit. DOM assertions establish controls, not complete UX/a11y acceptance.",
+  "runtimeCommit": "cef44c4c",
+  "presentationCommit": "2a71b623"
+}

@@ -1,0 +1,6 @@
+{
+  "battleCryInterval": "New test used an invalid3000ms Battle Cry interval. Existing authored duration is1000ms and activeBattleCry strictly rejects forged intervals. Use actual duration;0-1000 for the500ms paired hit and1000-2000 for the1500ms triple hit. Expected50/33 damage remains unchanged.",
+  "thornsResistance": "New typed mitigation fixture incorrectly wrote a thorns property. Existing resistAfterPenalty maps thorns to physical resistance. Set physical50 for thorns, keeping the intended pre-mitigation23-damage expectation. Original failed receipt/log retained.",
+  "dataFormatting": "Restored task-only multiline skeletal-mage array formatting introduced by JSON serialization; only authored Weaken metadata remains changed.",
+  "typeNarrowing": "Compiler and full lint flagged compound filter(...).map(e=>e.amount) in a new test because TypeScript does not carry that predicate narrowing. Replace with a conditional flatMap over the same damage events/amounts; numerical assertions and runtime behavior unchanged. Original failed receipts retained."
+}

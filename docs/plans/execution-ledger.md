@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D04 Weaken / BUG245 | locally fixed/verified; independent and earned acceptance open | Runtime`cef44c4c`, presentation/native/public`2a71b623`: finite paid33%direct-damage reduction, provisional3s, unchanged cadence/resources and strict copied packet.92new regressions; full17375/789/two existing skips, engine8622/323, final types/lint/build/precache/bridge PASS. Production4/4, four actual casts/chips/eight exact six-domain pairs/four offline Continues/20geometry; all eight PNGs inspected with header/navigation and clipped/black-region victory limits. All1561committed source blobs/762build files/genuine exact. Exactly one credit:155bounded/56unverified/one engine-only/one review-needed; Necromancer13/32,212other raw rows exact. All60raw archive members byte-verified;933exact task files/28directories cleaned,15recorded identities absent/no task consumers/4527closed,remaining[]/failures[]. [Evidence](evidence/d04-weaken.md). GenuineL33/next402/Baal uncleared; independent/earned builds,C2-C4/fullG0-G7/privatev1 remain open. |
 | D04 Decrepify / BUG244 | locally fixed/verified; independent and earned acceptance open | Runtime`6a099c49`, presentation/native/public`ba6fa8e0`: finite paid50%AS/33%direct-damage curse, explicit provisional3s, phase-preserving cadence, strict copied payload and truthful bilingual previews.93new regressions; full17283/783/two existing skips, engine8553/320, final types/lint/build/precache/bridge PASS. Final production4/4, four actual casts/chips/eight exact six-domain pairs/four actual offlineContinues/20geometry; all eight final PNGs inspected with header/navigation and below-viewport victory limits. All1552committed blobs/762build files/genuine exact. Exactly one credit:154bounded/57unverified/one engine-only/one review-needed; Necromancer12/32,212other raw rows exact.107raw archive members byte-verified;981exact task files/38directories cleaned,27recorded identities absent/no task consumers/4525closed,remaining[]/failures[]. [Evidence and raw retention/cleanup](evidence/d04-decrepify.md). GenuineL33/next402/Baal uncleared; independent/earned builds,C2-C4/fullG0-G7/privatev1 remain open. |
 | D04 Necromancer Teeth/Bone Spear/Bone Spirit/Poison Nova / BUG243 | locally fixed/verified; independent and earned acceptance open | Presentation`a0cf908b`, lifecycle/public`c40fa1f1`: truthful two-stack Poison and bilingual direct rules;115new tests including native wave/import and exact reapplication/cap/miss/expiry integrals. Full17190/777/two existing skips; engine8484/317, final types/lint/build/precache/bridge PASS. Production16/16,16actual localized casts/32exact six-domain pairs/16actual offlineContinues/80geometry; screenshot clipping/black-region and broader UX/a11y limits explicit. All1374committed blobs/two762builds/genuine exact. Exactly four credits:153bounded/58unverified/one engine-only/one review-needed; Necromancer11/32,209other raw rows exact. [Evidence](evidence/d04-necromancer-direct.md). Exact raw retention/cleanup linked there. GenuineL33/next402/Baal uncleared; C2-C4/fullG0-G7/privatev1 remain unfinished. |
 | D06 Battle Command complete local contract / BUG241 and offline precache / BUG242 | locally repaired/verified; independent and earned acceptance open | Build`664f8ea4`, presentation`90687c08`, equipped/browser`3e8221f9`: authored+1/duration/current-next/MAX; localized positive party/log/Applies names; eight actual equipped controls; bilingual desktop/mobile4/4, eight exact six-domain save pairs/four actual offline Continues/20geometry/eight final screenshots inspected.25new tests; engine8478/316, full17075/772/two existing skips, types/lint/build/precache/bridge PASS.1367frozen committed blobs/both762-file builds/genuine exact. [Evidence](evidence/d06-battle-command-ui.md). Exactly one credit:149bounded/62unverified/one engine-only/one review-needed; Barbarian30/30,212other raw rows exact.144raw archive members byte-verified;3286exact task files/72directories cleaned,31identities absent/no runtime users/4523closed,remaining[]/failures[]. Mobile capture and official/tested vendor emission limits explicit. GenuineL33/next402/Baal uncleared and C2-C4/fullG0-G7/privatev1 remain unfinished. |
@@ -12722,3 +12723,27 @@ historical acceptance; C2underway,C3/C4/fullG0-G7/all-class earned builds/
 claim stay active. Next: bounded Necromancer direct-spell investigation and
 causal/native/bilingual verification; no new skill is credited by existing
 JSON/schema tests alone.
+
+## 2026-10-26 — D04 Weaken locally verified / BUG245
+
+Runtime`cef44c4c`, presentation/native/public`2a71b623`: authored finite33%
+outgoing direct-damage reduction for provisional3s, preserving native payment,
+base stats, RNG and action cadence.92new regression cases; full17375/789/two
+existing skips, engine8622/323, corrected types/lint/purity, official build/
+bridge and756-URL precache pass. Production4/4passes with four actual localized
+casts/chips, eight exact six-domain save pairs, four actual offline Continues
+and20geometry checks. All eight PNGs inspected; mobile overlap and clipped/
+black-region victory capture limits remain explicit.
+
+All1561committed source blobs/762emitted build files/genuine protected hashes
+are exact. One Weaken credit:155bounded/56unverified/one engine-only/one
+review-needed; Necromancer13/32, other212raw rows/header/213IDs and order exact.
+All60raw archive members byte-verified;933exact task files and28directories
+cleaned,15recorded identities absent/no task consumers/4527closed,remaining[]/
+failures[]. [Evidence, retention and cleanup](evidence/d04-weaken.md).
+
+No genuine campaign/replay or remote action. GenuineL33/XP149261/nextNormal402/
+Nightmare0/Ancients-Rite claimed/Baal uncleared remains exact. Independent
+design/QA, earned builds/balance,30-50hour pacing/economy/endgame,C2-C4/fullG0-G7
+and privatev1 remain unfinished. Root sole writer/reviewer; umbrella claim stays
+active. Next: remaining Necromancer skill contracts and actual native outcomes.

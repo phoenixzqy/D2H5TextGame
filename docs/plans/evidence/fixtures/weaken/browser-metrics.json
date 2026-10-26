@@ -1,0 +1,305 @@
+{
+  "cases": [
+    {
+      "skill": "weaken",
+      "locale": "en",
+      "device": "desktop",
+      "status": "passed",
+      "durationMs": 50159,
+      "screenshots": [
+        {
+          "name": "weaken-preview",
+          "path": "docs/plans/evidence/fixtures/weaken/desktop-en-weaken-weaken-preview.png",
+          "sha256": "fd91e183a98851e810320a3106c96f4804888316d25adf8eb3a92e8a6c4d3729",
+          "width": 1152,
+          "height": 336
+        },
+        {
+          "name": "victory",
+          "path": "docs/plans/evidence/fixtures/weaken/desktop-en-weaken-victory.png",
+          "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e",
+          "width": 1024,
+          "height": 1134
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "bfc52b7b0d8d283458bf12548d332a1b76d2088f3fe5072985a433504d9399ba"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "bfc52b7b0d8d283458bf12548d332a1b76d2088f3fe5072985a433504d9399ba"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "weaken",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "weaken",
+        "spellName": "Weaken",
+        "line": "05:00:00Curse Browser casts Weaken.",
+        "enemyChip": "Weaken"
+      }
+    },
+    {
+      "skill": "weaken",
+      "locale": "zh-CN",
+      "device": "desktop",
+      "status": "passed",
+      "durationMs": 49385,
+      "screenshots": [
+        {
+          "name": "weaken-preview",
+          "path": "docs/plans/evidence/fixtures/weaken/desktop-zh-CN-weaken-weaken-preview.png",
+          "sha256": "9fef7f7c9ffaf992ac61f3dec6f6f7ec58b0b77025cefb26481d52f7bde69d8d",
+          "width": 1152,
+          "height": 336
+        },
+        {
+          "name": "victory",
+          "path": "docs/plans/evidence/fixtures/weaken/desktop-zh-CN-weaken-victory.png",
+          "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4",
+          "width": 1024,
+          "height": 1134
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "3e43e21d8e56127cced939ccb31e6f97c10723a61307544d64612c908437e8e6"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "3e43e21d8e56127cced939ccb31e6f97c10723a61307544d64612c908437e8e6"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "weaken",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "weaken",
+        "spellName": "\u524a\u5f31",
+        "line": "05:00:00Curse Browser \u65bd\u653e\u4e86 \u524a\u5f31\u3002",
+        "enemyChip": "\u524a\u5f31"
+      }
+    },
+    {
+      "skill": "weaken",
+      "locale": "en",
+      "device": "mobile",
+      "status": "passed",
+      "durationMs": 50481,
+      "screenshots": [
+        {
+          "name": "weaken-preview",
+          "path": "docs/plans/evidence/fixtures/weaken/mobile-en-weaken-weaken-preview.png",
+          "sha256": "5536a7964b3ad366ec7f1aa6563c936039d6e133480114187c85a21f62963f86",
+          "width": 924,
+          "height": 1496
+        },
+        {
+          "name": "victory",
+          "path": "docs/plans/evidence/fixtures/weaken/mobile-en-weaken-victory.png",
+          "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc",
+          "width": 924,
+          "height": 3413
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "bfc52b7b0d8d283458bf12548d332a1b76d2088f3fe5072985a433504d9399ba"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "bfc52b7b0d8d283458bf12548d332a1b76d2088f3fe5072985a433504d9399ba"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "weaken",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "weaken",
+        "spellName": "Weaken",
+        "line": "05:00:00Curse Browser casts Weaken.",
+        "enemyChip": "Weaken"
+      }
+    },
+    {
+      "skill": "weaken",
+      "locale": "zh-CN",
+      "device": "mobile",
+      "status": "passed",
+      "durationMs": 49578,
+      "screenshots": [
+        {
+          "name": "weaken-preview",
+          "path": "docs/plans/evidence/fixtures/weaken/mobile-zh-CN-weaken-weaken-preview.png",
+          "sha256": "0a908597ad0ac35dde66000926bcc6be866829341d52a5374e1033281bccf83b",
+          "width": 924,
+          "height": 1496
+        },
+        {
+          "name": "victory",
+          "path": "docs/plans/evidence/fixtures/weaken/mobile-zh-CN-weaken-victory.png",
+          "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2",
+          "width": 924,
+          "height": 3270
+        }
+      ],
+      "savePairs": [
+        {
+          "name": "online-save-pair",
+          "exactDomains": 6,
+          "sha256": "3e43e21d8e56127cced939ccb31e6f97c10723a61307544d64612c908437e8e6"
+        },
+        {
+          "name": "offline-save-pair",
+          "exactDomains": 6,
+          "sha256": "3e43e21d8e56127cced939ccb31e6f97c10723a61307544d64612c908437e8e6"
+        }
+      ],
+      "geometry": [
+        {
+          "skill": "weaken",
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "skill": "weaken",
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "publicCast": {
+        "slug": "weaken",
+        "spellName": "\u524a\u5f31",
+        "line": "05:00:00Curse Browser \u65bd\u653e\u4e86 \u524a\u5f31\u3002",
+        "enemyChip": "\u524a\u5f31"
+      }
+    }
+  ],
+  "totals": {
+    "passed": 4,
+    "publicCasts": 4,
+    "sixDomainSavePairs": 8,
+    "actualOfflineContinues": 4,
+    "geometry": 20,
+    "screenshots": 8
+  },
+  "reportSha256": "c2206824480a0d361490f60629e78cb5430c028636e64d18e4d0afc809afce2d"
+}

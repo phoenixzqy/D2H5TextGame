@@ -1,0 +1,13 @@
+{
+  "scope": "All8 final Weaken production PNGs manually inspected by root",
+  "screenshots": 8,
+  "desktopPreview": "Both locales complete and readable:3s,33%,rank20cost2,MAX and localized Applies/prerequisites.",
+  "mobilePreview": "Description and current stats readable in both locales; fixed header obscures skill title/MAX control; lower requirements outside capture/behind navigation. Missing-glyph navigation icons persist.",
+  "victory": "All four element screenshots show loot list/toolbar with black regions and clipping, without a readable victory heading or return button. These screenshots do not independently prove victory. Actual victory visibility and return-to-town controls are asserted in all four browser cases.",
+  "evidenceLimits": [
+    "Five-size DOM geometry and48px allocation do not establish full-screen UX/accessibility.",
+    "No browser numeric damage/cadence assertion; native/engine tests prove those outcomes.",
+    "Synthetic fixture does not establish earned builds or pacing."
+  ],
+  "independentAcceptance": false
+}

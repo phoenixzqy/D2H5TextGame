@@ -1,0 +1,10 @@
+{
+  "changedAuthoredRows": [
+    "skills-necromancer-weaken"
+  ],
+  "other31NecromancerRowsExact": true,
+  "otherWeakenFieldsExact": true,
+  "localesChangedOnlyWeakenDescription": true,
+  "inventoryBeforeCreditUnchanged": true,
+  "genuineCheckpointSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c"
+}

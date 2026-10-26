@@ -1,0 +1,17 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-weaken-3glz5mlx-retained.tar.xz",
+  "archiveSha256": "f4608767019a3b8d0885d19ed91dd2a764dbd24021378c739001d5e5058dd7b7",
+  "archiveMembers": 60,
+  "deletedFiles": 933,
+  "deletedDirectories": 28,
+  "recordedProcessIdentitiesAbsent": 15,
+  "taskConsumers": [],
+  "port4527Closed": true,
+  "remaining": [],
+  "failures": [],
+  "retainedRecords": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-weaken-3glz5mlx-retention.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-weaken-3glz5mlx-deletion-manifest.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-weaken-3glz5mlx-cleanup.json"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "sourcePaths": 1561,
+  "buildFiles": 762,
+  "sourceDrift": [],
+  "buildDrift": [],
+  "genuineCompressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+  "genuineRawSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "fullTestsPassed": 17375,
+  "testFilesPassed": 789,
+  "existingSkips": 2,
+  "fullWallSeconds": 677.78,
+  "sourceManifestSha256": "17e36a15ffa865b93b0330da01f5ce00deecf74b01793bae5d275c1e4277ad0d",
+  "buildManifestSha256": "c7270e7015a0a51ed83870d0670ac0dc5d07997a4eb8f74595f56db73bdae955"
+}

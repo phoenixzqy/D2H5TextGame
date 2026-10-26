@@ -1,0 +1,241 @@
+{
+  "weaken-browser": {
+    "command": [
+      "node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "tests/pwa/weaken.config.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 204.296,
+    "identity": {
+      "pid": 4039325,
+      "procStat": "4039325 (playwright) R 4039324 4039324 4039324 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 92290243 11788288 0 18446744073709551615 109633797943296 109633802888893 140729139722912 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 109633806821072 109633808305944 109634394238976 140729139726017 140729139726105 140729139726105 140729139732443 0\n"
+    },
+    "logSha256": "72b006f231dd1c536a4c6f00a4b2ec60be26eecff295cf9de792d9d7e3f05d2a"
+  },
+  "weaken-core": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/weaken-definition.test.ts",
+      "src/engine/combat/weaken-consumers.test.ts",
+      "src/stores/necromancer-weaken.causal.test.ts",
+      "src/engine/skills/registry.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.35,
+    "identity": {
+      "pid": 4025243,
+      "procStat": "4025243 (vitest) R 4025242 4025242 4025242 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 92222374 11788288 33 18446744073709551615 101205977153536 101205982099133 140731054405616 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 101205986031312 101205987516184 101206809448448 140731054409648 140731054409862 140731054409862 140731054415839 0\n"
+    },
+    "logSha256": "1f907e79ac08311b60391d02de853a67b7bbcd12f255ec609bfe681e67123bb0"
+  },
+  "weaken-engine-fixed": {
+    "command": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 139.831,
+    "identity": {
+      "pid": 4032584,
+      "procStat": "4032584 (npm) R 4032581 4032581 4032581 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 92268508 11788288 33 18446744073709551615 108908825960448 108908830906045 140735116142832 0 0 0 0 0 0 0 0 0 17 9 0 0 0 0 0 108908834838224 108908836323096 108909349408768 140735116150805 140735116150891 140735116150891 140735116156868 0\n"
+    },
+    "logSha256": "31599dd2d75ff0f8f80dc8ee6eea645b039170145bfee5cd0d819007a8b690d4"
+  },
+  "weaken-engine": {
+    "command": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 139.032,
+    "identity": {
+      "pid": 4026654,
+      "procStat": "4026654 (npm) R 4026649 4026649 4026649 0 -1 4194304 7 0 0 0 0 0 0 0 20 0 1 0 92244684 11788288 0 18446744073709551615 108655091605504 108655096551101 140726691974288 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 108655100483280 108655101968152 108655338323968 140726691981333 140726691981419 140726691981419 140726691987396 0\n"
+    },
+    "logSha256": "fa3af489d77fa88b29e70c2b4be3209e4587be9fb767fe6bf256f3e83dd2f3af"
+  },
+  "weaken-first-green": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-weaken.causal.test.ts",
+      "src/stores/necromancer-decrepify.causal.test.ts",
+      "src/engine/skills/registry.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 7.33,
+    "identity": {
+      "pid": 4024134,
+      "procStat": "4024134 (vitest) R 4024133 4024133 4024133 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 92201601 11788288 41 18446744073709551615 103300600950784 103300605896381 140736885598592 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 103300609828560 103300611313432 103301612736512 140736885606359 140736885606534 140736885606534 140736885612511 0\n"
+    },
+    "logSha256": "8a696f967e0baf8de3bae8b8bbfa10f87d1e222e1655eb7c296f38e43566ea82"
+  },
+  "weaken-focused": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/combat/weaken-definition.test.ts",
+      "src/engine/combat/weaken-consumers.test.ts",
+      "src/stores/necromancer-weaken.causal.test.ts",
+      "src/engine/skills/displayStats.weaken.test.ts",
+      "src/features/skills/SkillsScreen.weaken.test.tsx",
+      "src/stores/necromancer-weaken-native.test.ts",
+      "src/engine/skills/registry.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 13.299,
+    "identity": {
+      "pid": 4025756,
+      "procStat": "4025756 (vitest) R 4025755 4025755 4025755 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 92231451 11755520 0 18446744073709551615 0 0 140723356669732 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 0 0 0 140723356669732 0 0 0 0\n"
+    },
+    "logSha256": "0c3ab5ed7d1d2761aadd844c65c067b53d02ae5f33fa6a3189184eff4204947f"
+  },
+  "weaken-full": {
+    "command": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 677.78,
+    "identity": {
+      "pid": 4041065,
+      "procStat": "4041065 (npm) R 4041064 4041064 4041064 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 92311463 11788288 0 18446744073709551615 97016998834176 97017003779773 140722165663040 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 97017007711952 97017009196824 97017334747136 140722165671968 140722165672043 140722165672043 140722165678020 0\n"
+    },
+    "logSha256": "5edd3ff07040ba0249712c1ca8a1beeac9c9024aef463c39d8c94de6c7a81ad6"
+  },
+  "weaken-lint-fixed": {
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 188.767,
+    "identity": {
+      "pid": 4032585,
+      "procStat": "4032585 (npm) R 4032582 4032582 4032582 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 92268509 11788288 0 18446744073709551615 96787077533696 96787082479293 140734664923360 0 0 0 0 0 0 0 0 0 17 15 0 0 0 0 0 96787086411472 96787087896344 96787993133056 140734664927260 140734664927339 140734664927339 140734664933316 0\n"
+    },
+    "logSha256": "d68ca9870ff2201c4d10b66a997b4bf8b89f0307b249e11fc45f0d42bb1c8e4f"
+  },
+  "weaken-lint": {
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 190.139,
+    "identity": {
+      "pid": 4026653,
+      "procStat": "4026653 (npm) R 4026651 4026651 4026651 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 92244683 11788288 0 18446744073709551615 0 0 140727626156060 0 0 0 0 0 0 0 0 0 17 1 0 0 0 0 0 0 0 0 140727626156060 140727626156139 140727626156139 140727626156139 0\n"
+    },
+    "logSha256": "176a14b56de0f9af71e26ba6b2bf2e18708bbed6e657d478b128efb68c6c1d63"
+  },
+  "weaken-official-build": {
+    "command": [
+      "npm",
+      "run",
+      "check:test-bridge-shake"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 16.411,
+    "identity": {
+      "pid": 4032586,
+      "procStat": "4032586 (npm) R 4032583 4032583 4032583 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 92268510 11788288 0 18446744073709551615 108697247600640 108697252546237 140735667992256 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 108697256478416 108697257963288 108697714925568 140735667996681 140735667996779 140735667996779 140735668002756 0\n"
+    },
+    "logSha256": "2f19696654cef965ff668f8562f9a23aee9b19a5f1b6cd4fb3d51cf51da962a5"
+  },
+  "weaken-precache": {
+    "command": [
+      "npm",
+      "run",
+      "check:offline-precache",
+      "--",
+      "dist"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 0.218,
+    "identity": {
+      "pid": 4039214,
+      "procStat": "4039214 (npm) R 4039213 4039213 4039213 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 92289386 11751424 0 18446744073709551615 0 0 140724699092994 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 0 0 0 140724699092994 0 0 0 0\n"
+    },
+    "logSha256": "91c1d91e88e50f963d31d5fb3a4ddfe85471cdb3fc09ed92193ebde08660e96e"
+  },
+  "weaken-preview-red": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/engine/skills/displayStats.weaken.test.ts",
+      "src/features/skills/SkillsScreen.weaken.test.tsx"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 8.2,
+    "identity": {
+      "pid": 4024680,
+      "procStat": "4024680 (vitest) R 4024679 4024679 4024679 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 92209693 11763712 0 18446744073709551615 0 0 140728309946360 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 0 0 0 140728309946360 0 0 0 0\n"
+    },
+    "logSha256": "f0b1b26234d0a4c36e985e16ecb7a0a9295cf5b1397479c27c50082107448214"
+  },
+  "weaken-red": {
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "src/stores/necromancer-weaken.causal.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.147,
+    "identity": {
+      "pid": 4023624,
+      "procStat": "4023624 (vitest) R 4023618 4023618 4023618 0 -1 4194304 12 0 0 0 0 0 0 0 20 0 1 0 92194018 11788288 33 18446744073709551615 101570226036736 101570230982333 140724940755504 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 101570234914512 101570236399384 101571138195456 140724940761130 140724940761222 140724940761222 140724940767199 0\n"
+    },
+    "logSha256": "cf0f454f792630cd7ee967f00979fde172e28aad096850db62882d4d37b26805"
+  },
+  "weaken-types-fixed": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 113.829,
+    "identity": {
+      "pid": 4032511,
+      "procStat": "4032511 (npm) R 4032510 4032510 4032510 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 92267355 11788288 33 18446744073709551615 94407759908864 94407764854461 140729278266272 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 94407768786640 94407770271512 94408065351680 140729278273559 140729278273643 140729278273643 140729278279620 0\n"
+    },
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+  },
+  "weaken-types": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 2,
+    "seconds": 117.149,
+    "identity": {
+      "pid": 4026652,
+      "procStat": "4026652 (npm) R 4026650 4026650 4026650 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 92244683 11788288 0 18446744073709551615 105071537401856 105071542347453 140729909721216 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 105071546279632 105071547764504 105072123359232 140729909725207 140729909725291 140729909725291 140729909731268 0\n"
+    },
+    "logSha256": "714711138c0e4a3fabd058b72b5c147bb337c11f29f2ee6755e24d275dd79d0a"
+  }
+}
