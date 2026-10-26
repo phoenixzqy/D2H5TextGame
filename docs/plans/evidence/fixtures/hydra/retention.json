@@ -1,0 +1,16 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-retained-hw2sdxfx.tar.xz",
+  "sha256": "09765ff5231fc7877effcbe343f71a16e0496bbaa17cf2f2d3d212f2c7f7a94b",
+  "bytes": 6688292,
+  "regularMembers": 202,
+  "allMembersByteVerified": true,
+  "excludedDisposableRoots": [
+    "__pycache__",
+    "dist",
+    "runtime"
+  ],
+  "owner": "/root",
+  "reason": "Original failure diagnosis, implementation provenance and full-v1 evidence consumers",
+  "removeWhen": "Root removes this exact archive after original failure diagnosis and all full-v1 evidence consumers finish.",
+  "memberManifestSha256": "bbdc6033353531e34e45fa4c6f56e4788e116226520fe881d840b95cd4a8066d"
+}

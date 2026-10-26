@@ -1,0 +1,33 @@
+{
+  "recordedIdentities": 678,
+  "matchMethod": "PID and /proc starttime; all recorded live, observed and terminal process records",
+  "aliveMatchingIdentities": [],
+  "recordedBrowserProfiles": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/runtime/playwright_chromiumdev_profile-5RV3nX",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/runtime/playwright_chromiumdev_profile-BN0d31",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/runtime/playwright_chromiumdev_profile-FOE9T3",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/runtime/playwright_chromiumdev_profile-xO6Q5C"
+  ],
+  "allRecordedProfilesAbsent": true,
+  "port4519Closed": true,
+  "otherTaskUsers": [],
+  "killedProcesses": [],
+  "checkedAt": 1792983223.6842637,
+  "scratch": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx",
+  "scratchAbsent": true,
+  "removedExactFiles": 1504,
+  "removedBuildFiles": 761,
+  "removedRuntimeFiles": 541,
+  "removedDirectoriesIncludingScratch": 39,
+  "removedManifestSha256": "1de3b1b62247654084f5d9ba36b1fa3e5b09c34bab03922d04ffc54e7aa56f23",
+  "retainedArchive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-retained-hw2sdxfx.tar.xz",
+  "remainingPaths": [],
+  "failures": [],
+  "preserved": [
+    "source and Git history",
+    "shared caches and installed tools",
+    "genuine earned Ancients401 save",
+    "umbrella worktree, branch and live claim",
+    "prior retained archives"
+  ]
+}

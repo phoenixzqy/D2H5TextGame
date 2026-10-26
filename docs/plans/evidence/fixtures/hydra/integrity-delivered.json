@@ -1,0 +1,55 @@
+{
+  "sourceFiles": 1494,
+  "sourceChanged": [],
+  "buildFiles": 761,
+  "buildChanged": [],
+  "genuineExact": true,
+  "tests": 16544,
+  "files": 747,
+  "skips": 2,
+  "vitestSeconds": 706.03,
+  "processSeconds": 707.797,
+  "sorceressData": {
+    "sameSkillIdsAndOrder": true,
+    "onlyChanged": [
+      "skills-sorceress-hydra"
+    ],
+    "otherRawObjectsExact": 29
+  },
+  "bridgeScan": {
+    "chunks": 5,
+    "tokens": [
+      "__GAME__",
+      "\\bseedItem\\b",
+      "\\bseedMerc\\b",
+      "\\binstallTestBridge\\b",
+      "[,{]flushSave:"
+    ],
+    "matches": []
+  },
+  "precache": {
+    "directory": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/dist",
+    "precacheUrls": 755,
+    "required": [
+      "index.html",
+      "registerSW.js",
+      "assets/game-engine-CqIzUXqx.js",
+      "assets/i18n-Bxr3rY09.js",
+      "assets/index-Do3z9V3c.css",
+      "assets/index-YMvEFXdz.js",
+      "assets/react-vendor-dRBhy6jq.js",
+      "assets/validation-vendor-ejvZqCB8.js"
+    ],
+    "missing": []
+  },
+  "genuineDecompressedSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "genuineProgress": {
+    "level": 33,
+    "xp": 149261,
+    "nextNormal": 402,
+    "nightmare": 0,
+    "AncientsRite": "claimed",
+    "Baal": "uncleared"
+  },
+  "campaignOrRemoteActions": 0
+}

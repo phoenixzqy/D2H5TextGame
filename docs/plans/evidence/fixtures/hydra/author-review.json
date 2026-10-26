@@ -1,0 +1,29 @@
+{
+  "reviewer": "root author self-review only",
+  "security": "pass",
+  "scope": "Hydra implementation against D06; no independent gate approval",
+  "correctness": [
+    "Private bindings are created only after one validated paid startup registration.",
+    "Native current rank/Fire mastery refresh at wave boundaries; prior events and carried pools stay exact.",
+    "Independent seed/rank oracle covers damage, crit, Burn, Fire resistance/Defense, and excludes owner weapon stats.",
+    "Half-open expiry precedes tied body actions; source/body death, control and no refund/retry share existing settlement."
+  ],
+  "architecture": [
+    "Strict JSON tuning is copied/frozen; existing sixteen summon preparation templates and factory registrations are unchanged.",
+    "One dedicated effect chooses paid startup; ordinary chooser cannot spend it again.",
+    "Save22 unchanged; only existing configuration persists."
+  ],
+  "readability": [
+    "Existing combat scheduling/death/damage/spawn pathways reused; no parallel damage implementation."
+  ],
+  "securityFindings": [],
+  "performance": [
+    "At most one bound body per eligible hero, at most eight authored heads, finite duration.",
+    "Existing test/build/bundle budgets remain open; no performance acceptance claimed."
+  ],
+  "limits": [
+    "Independent design/QA and earned balance remain open.",
+    "Eight original captures inspected; mobile preview edges overlap fixed navigation and body was below fold. Four final targeted body captures inspected: names and HP readable in both locales/sizes; general UX/a11y acceptance remains open.",
+    "Full unit16544/747 passes with two existing skips; broader independent/earned acceptance remains open."
+  ]
+}

@@ -1,0 +1,527 @@
+{
+  "implementation": "5d37d5377d412e27c3a98ca32a7285db3758679f",
+  "receipts": {
+    "browser-final": {
+      "command": [
+        "env",
+        "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/runtime",
+        "HYDRA_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/dist",
+        "HYDRA_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/browser-final",
+        "HYDRA_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/browser-final-report.json",
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "tests/pwa/hydra.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 76.575,
+      "identity": {
+        "pid": 2751996,
+        "procStat": "2751996 (env) R 2751995 2751995 2751995 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 89583693 11763712 0 18446744073709551615 0 0 140728354793319 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 0 0 0 140728354793319 0 0 0 0\n"
+      },
+      "logSha256": "9dcc2532ec5589a17006a0f1a0a44ae808a28f6fd931eb66f537b398974446c0"
+    },
+    "browser-first": {
+      "command": [
+        "env",
+        "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/runtime",
+        "HYDRA_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/dist",
+        "HYDRA_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/browser-first",
+        "HYDRA_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/browser-first-report.json",
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "tests/pwa/hydra.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 93.595,
+      "identity": {
+        "pid": 2748086,
+        "procStat": "2748086 (env) R 2748083 2748083 2748083 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89566462 11788288 0 18446744073709551615 0 0 140730312640359 0 0 0 0 0 0 0 0 0 17 11 0 0 0 0 0 0 0 0 140730312640359 140730312640791 140730312640791 140730312640791 0\n"
+      },
+      "logSha256": "fbb39f9dbd6d341d760738cec0f7059039d8e5171d51337fb031abe4f73ac683"
+    },
+    "build-first": {
+      "command": [
+        "env",
+        "-u",
+        "VITE_E2E",
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/dist"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 16.151,
+      "identity": {
+        "pid": 2746708,
+        "procStat": "2746708 (env) R 2746706 2746706 2746706 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 89563043 11788288 33 18446744073709551615 111232002273280 111232007218877 140728557279472 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 111232011151056 111232012635928 111232588869632 140728557283491 140728557283607 140728557283607 140728557289451 0\n"
+      },
+      "logSha256": "87f3518379cd63bc73b6db655a3e7d2933b6d62de8c9545c6ba56184be544c2a"
+    },
+    "causal-first": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/hydra.causal.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 9.798,
+      "identity": {
+        "pid": 2739818,
+        "procStat": "2739818 (npx) R 2739817 2739817 2739817 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89505010 11788288 0 18446744073709551615 109966679560192 109966684505789 140736160601728 0 0 0 0 0 0 0 0 0 17 15 0 0 0 0 0 109966688437968 109966689922840 109967223222272 140736160610414 140736160610544 140736160610544 140736160616388 0\n"
+      },
+      "logSha256": "ca84cd4383af5231635becd560ee1a97f35ec267803d7d83bbf96549c4fd85b6"
+    },
+    "engine-final": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 152.169,
+      "identity": {
+        "pid": 2745266,
+        "procStat": "2745266 (npm) R 2745263 2745263 2745263 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89558370 11788288 0 18446744073709551615 108016611401728 108016616347325 140721102791488 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 108016620279504 108016621764376 108017411608576 140721102796934 140721102797040 140721102797040 140721102802884 0\n"
+      },
+      "logSha256": "3820c65af9bb34545545453957eacf79ee3a189e24fc0f66570c04288a2a28bf"
+    },
+    "engine-first": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 128.693,
+      "identity": {
+        "pid": 2735082,
+        "procStat": "2735082 (npm) R 2735076 2735076 2735076 0 -1 4194304 7 0 0 0 0 0 0 0 20 0 1 0 89493242 11788288 0 18446744073709551615 108045901893632 108045906839229 140727351369472 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 108045910771408 108045912256280 108045922467840 140727351376006 140727351376112 140727351376112 140727351381956 0\n"
+      },
+      "logSha256": "4bf03156d2d0ac80c5b97dd7dc52e219e05e9af8c6cf9ba9666fa08592c96fa2"
+    },
+    "first-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/hydra.causal.test.ts",
+        "src/engine/skills/skill-validator.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 7.684,
+      "identity": {
+        "pid": 2734743,
+        "procStat": "2734743 (npx) R 2734742 2734742 2734742 0 -1 4194304 11 0 0 0 0 0 0 0 20 0 1 0 89490167 11788288 33 18446744073709551615 111199484968960 111199489914557 140729139635216 0 0 0 0 0 0 0 0 0 17 11 0 0 0 0 0 111199493846736 111199495331608 111200161132544 140729139640388 140729139640560 140729139640560 140729139646404 0\n"
+      },
+      "logSha256": "307fcafe021eb542a01c81961529f444ab425f6a8e3f26124af6d8d4a076b3f4"
+    },
+    "focused-final": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/hydra-native.test.ts",
+        "src/stores/hydra.causal.test.ts",
+        "src/engine/skills/hydra.test.ts",
+        "src/features/skills/SkillsScreen.hydra.test.tsx",
+        "src/data/loader.test.ts",
+        "src/stores/inferno-native.test.ts",
+        "src/features/skills/SkillsScreen.periodic-spells.test.tsx",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 19.961,
+      "identity": {
+        "pid": 2745148,
+        "procStat": "2745148 (npx) R 2745147 2745147 2745147 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89557723 11788288 0 18446744073709551615 110665066758144 110665071703741 140734415587520 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 110665075635920 110665077120792 110665757687808 140734415591306 140734415591664 140734415591664 140734415597508 0\n"
+      },
+      "logSha256": "6e2193e84c7ff6f75b206bad2d0044fbc561f99e6fbccc0f80ea7e2df3faccdb"
+    },
+    "focused-second": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/hydra.causal.test.ts",
+        "src/engine/skills/hydra.test.ts",
+        "src/data/loader.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 7.943,
+      "identity": {
+        "pid": 2740683,
+        "procStat": "2740683 (npx) R 2740682 2740682 2740682 0 -1 4194304 10 0 0 0 0 0 0 0 20 0 1 0 89513276 11788288 33 18446744073709551615 97767045042176 97767049987773 140727550690128 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 97767053919952 97767055404824 97767415787520 140727550691382 140727550691568 140727550691568 140727550697412 0\n"
+      },
+      "logSha256": "f39b73db7898b01d04ff399e9ba94b1df853b9fac79ff6b9d47aab76e171b286"
+    },
+    "full-final": {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 707.797,
+      "identity": {
+        "pid": 2754299,
+        "procStat": "2754299 (npm) R 2754297 2754297 2754297 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 89621076 11751424 0 18446744073709551615 0 0 140721581918353 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 0 0 0 140721581918353 0 0 0 0\n"
+      },
+      "logSha256": "b2bb5dc92905e9bf644bc6adfdd2f6838b97d0825e6cf21076932c6ff59e03d3"
+    },
+    "lint-browser-explicit": {
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "tests/pwa/hydra.spec.ts",
+        "tests/pwa/hydra.config.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 12.166,
+      "identity": {
+        "pid": 2749376,
+        "procStat": "2749376 (npx) R 2749367 2749367 2749367 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 89569346 11788288 41 18446744073709551615 101571248848896 101571253794493 140729128913664 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 101571257726672 101571259211544 101571926315008 140729128921172 140729128921328 140729128921328 140729128927172 0\n"
+      },
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "lint-browser-final": {
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "tests/pwa/hydra.spec.ts",
+        "tests/pwa/hydra.config.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 9.64,
+      "identity": {
+        "pid": 2752283,
+        "procStat": "2752283 (npx) R 2752282 2752282 2752282 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89586334 11788288 33 18446744073709551615 101361509720064 101361514665661 140731259028032 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 101361518597840 101361520082712 101361655885824 140731259029588 140731259029744 140731259029744 140731259035588 0\n"
+      },
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "lint-browser": {
+      "command": [
+        "npx",
+        "eslint",
+        "tests/pwa/hydra.spec.ts",
+        "tests/pwa/hydra.config.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 2.346,
+      "identity": {
+        "pid": 2748088,
+        "procStat": "2748088 (npx) R 2748085 2748085 2748085 0 -1 4194304 8 0 0 0 0 0 0 0 20 0 1 0 89566463 11788288 0 18446744073709551615 100445037240320 100445042185917 140727953883712 0 0 0 0 0 0 0 0 0 17 11 0 0 0 0 0 100445046118096 100445047602968 100445447868416 140727953889376 140727953889520 140727953889520 140727953895364 0\n"
+      },
+      "logSha256": "81558e483ecfa48600c694bc332bc12502a5a0b54913e446744d643025502b17"
+    },
+    "lint-final-serial": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 153.796,
+      "identity": {
+        "pid": 2753433,
+        "procStat": "2753433 (npm) R 2753431 2753431 2753431 0 -1 4194304 15 0 0 0 0 0 0 0 20 0 1 0 89603899 11788288 33 18446744073709551615 107756465889280 107756470834877 140721971254208 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 107756474767056 107756476251928 107756484157440 140721971259553 140721971259632 140721971259632 140721971265476 0\n"
+      },
+      "logSha256": "28eea453fd362a011c0f360e8ca7952cfb588d312af2e1d27d3e79b1d3a45ebf"
+    },
+    "lint-first": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 208.65,
+      "identity": {
+        "pid": 2745265,
+        "procStat": "2745265 (npm) R 2745262 2745262 2745262 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89558369 11788288 33 18446744073709551615 108353964359680 108353969305277 140736761492192 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 108353973237456 108353974722328 108354058072064 140736761497761 140736761497840 140736761497840 140736761503684 0\n"
+      },
+      "logSha256": "383d7e168318e0803310e9c93863729e2e1d4e4d0bf24466ae93488f777f16c9"
+    },
+    "native-first": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/hydra-native.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 7.937,
+      "identity": {
+        "pid": 2744678,
+        "procStat": "2744678 (npx) R 2744677 2744677 2744677 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 89551706 11763712 0 18446744073709551615 0 0 140735189465198 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 0 0 0 140735189465198 0 0 0 0\n"
+      },
+      "logSha256": "4f58ba07de39846bb6a7023864a769f7d4fe7a9dda5d2e2514d5188fe6e78f70"
+    },
+    "native-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/hydra.causal.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 7.676,
+      "identity": {
+        "pid": 2733788,
+        "procStat": "2733788 (npx) R 2733787 2733787 2733787 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 89471055 11751424 0 18446744073709551615 0 0 140721595398254 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 0 0 0 140721595398254 0 0 0 0\n"
+      },
+      "logSha256": "a22806bc99fe0deab18d8414c1dd48d0142f4cda7f4f7495bc7aff28ff859164"
+    },
+    "native-second": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/hydra-native.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 7.673,
+      "identity": {
+        "pid": 2744877,
+        "procStat": "2744877 (npx) R 2744876 2744876 2744876 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89554348 11788288 0 18446744073709551615 108055606108160 108055611053757 140730992652336 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 108055614985936 108055616470808 108055895744512 140730992658542 140730992658672 140730992658672 140730992664516 0\n"
+      },
+      "logSha256": "0ea74c2ed6a7dcaaf34bf85f90fa16968c7e412df3edc08ff92a1dbc5959063f"
+    },
+    "precache": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-hydra-hw2sdxfx/dist"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 0.27,
+      "identity": {
+        "pid": 2748087,
+        "procStat": "2748087 (node) R 2748084 2748084 2748084 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 89566462 107319296 0 18446744073709551615 0 0 140731092211837 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 0 0 0 140731092211837 0 0 0 0\n"
+      },
+      "logSha256": "73fa48736f50e5598a5e3822fae2fd987aca65e00d2ddb97739c4e6dc9fba45d"
+    },
+    "schema-first": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/skill-validator.test.ts",
+        "src/data/__tests__/loader.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 1.798,
+      "identity": {
+        "pid": 2734224,
+        "procStat": "2734224 (npx) R 2734223 2734223 2734223 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89479296 11788288 0 18446744073709551615 103214376607744 103214381553341 140721142696096 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 103214385485520 103214386970392 103214412894208 140721142700098 140721142700272 140721142700272 140721142706116 0\n"
+      },
+      "logSha256": "9386686bdc43bba2038c1b02c8e3e6cfd6dccb83ed9eb79e105959fbd734f849"
+    },
+    "type-guard-focused": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/skills/hydra.test.ts",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 3.084,
+      "identity": {
+        "pid": 2751695,
+        "procStat": "2751695 (npx) R 2751693 2751693 2751693 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 89579256 11788288 33 18446744073709551615 98019845050368 98019849995965 140720377346176 0 0 0 0 0 0 0 0 0 17 13 0 0 0 0 0 98019853928144 98019855413016 98020878143488 140720377350254 140720377350384 140720377350384 140720377356228 0\n"
+      },
+      "logSha256": "014d78327d2153b8bda2bef3b781f7048537def1e0375dee2d65c55ebf50133c"
+    },
+    "types-final": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 98.669,
+      "identity": {
+        "pid": 2751177,
+        "procStat": "2751177 (npm) R 2751176 2751176 2751176 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89573451 11788288 33 18446744073709551615 109297177247744 109297182193341 140735626134880 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 109297186125520 109297187610392 109298075779072 140735626143900 140735626143984 140735626143984 140735626149828 0\n"
+      },
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "types-first": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 2,
+      "seconds": 111.404,
+      "identity": {
+        "pid": 2735083,
+        "procStat": "2735083 (npm) R 2735077 2735077 2735077 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 89493242 11788288 0 18446744073709551615 100289107304448 100289112250045 140729201100544 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 100289116182224 100289117667096 100289594785792 140729201105052 140729201105136 140729201105136 140729201110980 0\n"
+      },
+      "logSha256": "9c1c06f7a838c9a387e6aebb2b7047ed6a1ec7b977d97ffa8871194859225249"
+    },
+    "types-second": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 2,
+      "seconds": 134.802,
+      "identity": {
+        "pid": 2745264,
+        "procStat": "2745264 (npm) R 2745261 2745261 2745261 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 89558369 11751424 0 18446744073709551615 0 0 140736833276060 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 0 0 0 140736833276060 0 0 0 0\n"
+      },
+      "logSha256": "e047ed9da1e4206537deedcea72852feb602d0ded41df612ebd104323c212685"
+    },
+    "types-verified": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 101.051,
+      "identity": {
+        "pid": 2752285,
+        "procStat": "2752285 (npm) R 2752281 2752281 2752281 0 -1 4194304 15 0 0 0 0 0 0 0 20 0 1 0 89586334 11788288 33 18446744073709551615 107331256922112 107331261867709 140732733866656 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 107331265799888 107331267284760 107331910512640 140732733872284 140732733872368 140732733872368 140732733878212 0\n"
+      },
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "ui-green": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.hydra.test.tsx",
+        "src/features/skills/SkillsScreen.periodic-spells.test.tsx",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "seconds": 9.988,
+      "identity": {
+        "pid": 2744344,
+        "procStat": "2744344 (npx) R 2744342 2744342 2744342 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 89545251 11788288 33 18446744073709551615 99842370768896 99842375714493 140734575199408 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 99842379646672 99842381131544 99843172405248 140734575204388 140734575204592 140734575204592 140734575210436 0\n"
+      },
+      "logSha256": "dfe3cfcec2a6c906b3d2e81771f07918676d8f920e28869c8d165cf3c6ae0b09"
+    },
+    "ui-red": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/skills/SkillsScreen.hydra.test.tsx",
+        "--reporter=basic"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 1,
+      "seconds": 8.961,
+      "identity": {
+        "pid": 2743959,
+        "procStat": "2743959 (npx) R 2743958 2743958 2743958 0 -1 4194304 7 0 0 0 0 0 0 0 20 0 1 0 89539788 11788288 0 18446744073709551615 108164857683968 108164862629565 140721588419648 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 108164866561744 108164868046616 108165370585088 140721588426846 140721588426992 140721588426992 140721588432836 0\n"
+      },
+      "logSha256": "83563432e5d9afcea7a5d42ae4b7adc4626a9977177812e2cd5256f36950d929"
+    }
+  },
+  "requiredPasses": [
+    "focused-final",
+    "engine-final",
+    "full-final",
+    "types-verified",
+    "lint-final-serial",
+    "lint-browser-final",
+    "build-first",
+    "precache",
+    "browser-final"
+  ],
+  "fullUnit": {
+    "passed": 16544,
+    "files": 747,
+    "existingSkipped": 2,
+    "vitestSeconds": 706.03,
+    "processSeconds": 707.797
+  },
+  "engine": {
+    "passed": 8224,
+    "files": 307,
+    "processSeconds": 152.169
+  },
+  "focused": {
+    "passed": 407,
+    "files": 7,
+    "includesActualLoaderTests": 292
+  },
+  "newRegressions": {
+    "definitionSchema": 30,
+    "causal": 35,
+    "native": 5,
+    "bilingualUI": 8,
+    "total": 78
+  },
+  "interruptedLint": {
+    "wrapperSession": 15823,
+    "observedSessionExitCode": 143,
+    "directChildPid": 2752284,
+    "directChildAbsent": true,
+    "receiptMissing": true,
+    "descendantEslintProcessAbsent": true,
+    "cause": "unresolved; interrupted wrapper is not a successful validation",
+    "observedAt": 1792982134.6068366,
+    "next": "same lint command once, after all other checks terminal"
+  },
+  "limits": [
+    "Original failures are retained separately from final passes.",
+    "Initial browser-file lint ignored files; final --no-ignore lint is the applicable pass.",
+    "BUG180/237 and test/build/bundle performance budgets remain open."
+  ]
+}

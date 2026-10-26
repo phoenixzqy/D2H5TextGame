@@ -1,0 +1,23 @@
+{
+  "implementation": "5d37d5377d412e27c3a98ca32a7285db3758679f",
+  "owner": "/root",
+  "status": "local bounded functionality; independent design/QA and earned balance open",
+  "contract": "docs/plans/decisions/D06-hydra-v1.md",
+  "originalNativeRed": {
+    "archiveMember": "native-red.test.ts",
+    "sha256": "7b5cac3a4398d51f86cf8245cc695d3637bdcffc1f7227a161975a3cde234af7",
+    "failingCases": 2
+  },
+  "scope": "Hydra only; Cold Mastery remains review-needed",
+  "milestones": "C0/C1 limited acceptance retained; C2 underway; C3/C4/fullG0-G7/private-v1 unfinished",
+  "files": [
+    "terminal-results.json",
+    "browser-audit.json",
+    "source-delivered.json",
+    "integrity-delivered.json",
+    "inventory-audit.json",
+    "author-review.json",
+    "retention.json",
+    "cleanup.json"
+  ]
+}

@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D06 Hydra / BUG240 | locally fixed/verified; independent design/QA and earned balance open | Source `5d37d537`: one paid targetable three-headed body per wave, ordinary independent Fire/Burn actions, finite lifetime/control/death and current-rank/mastery refresh.78new regressions; focused407/7, engine8224/307, full16544/747/two existing skips, types/lint/build/precache PASS. Production4/4, eight exact six-domain save pairs/four actual offline Continues/20geometry checks; eight original and four final targeted body screenshots inspected with mobile overlap limits. One credit:145bounded/66unverified/one engine-only/one review-needed; Sorceress29/30,212other CSV rows unchanged. [Evidence](evidence/d06-hydra.md).1494committed source blobs/761build/genuine exact;202raw archive members byte-verified.1504exact task files cleaned,678recorded process identities/four profiles absent,4519closed,scratch absent,remaining[]/failures[]. Provisional body tuning; Cold Mastery/independent/earned acceptance, Baal and C2–C4/fullG0–G7/privatev1 remain open. |
 | D04 Inferno / BUG239 | locally fixed/verified; independent design/QA and earned balance open | Source `65be2984`: paid three-pulse cone channel occupies caster actions, cancels at real control onset, shares Concentration semantics and carries paid rank/phase through native waves.95new tests; focused541/10, engine8194/306, quiet full16466/743/two existing skips, types/lint/build/precache PASS. Production4/4, eight exact six-domain save pairs/four actual offline Continues/20geometry/eight inspected screenshots with mobile overlap limits. One credit:144bounded/67unverified/one engine-only/one review-needed; Sorceress28/30,212other CSV rows unchanged. [Evidence](evidence/d04-inferno-channel.md).2230committed source blobs/761build/genuine exact;131raw archive members byte-verified;893exact task files cleaned,438observed process identities/two profiles absent,4518closed,scratch absent,remaining[]/failures[]. Provisional timing/cone; Hydra/Cold Mastery, earned builds, campaign/Baal and C2–C4/fullG0–G7/privatev1 remain open. |
 | D05 Teleport/Enchant / BUG238 | locally fixed/verified; independent design/QA and earned balance open | Engine `6d994bd2`, native/UI `7957c3ba`: finite paid magical dodge and captured-Attack weapon Fire, shared rolls/settlement, Physical-only reflection, native carry and bilingual details/chips. 95 new tests; engine8168/305, quiet full16371/740/two existing skips, types/lint/build/precache PASS. Production8/8,16exact six-domain save pairs/eight actual offline Continues/40geometry checks; six of16screenshots inspected with capture-edge limits. Two credits:143bounded/68unverified/one engine-only/one review-needed; Sorceress27/30,211other CSV rows unchanged. [Evidence](evidence/d05-sorceress-paid-buffs.md).1487source blobs/761build/genuine exact.328raw members/965verified ZIP references retained outside Git with root ownership/removal condition.2055exact task files cleaned;795observed process identities/two profiles absent,4517closed,scratch absent,remaining[]/failures[]. Initial cleanup path assertion corrected to recorded runtime TMPDIR before deletion. GenuineL33/next402/Baal uncleared; C2–C4/fullG0–G7/privatev1 remain open. |
 | D04 Telekinesis / BUG236 | locally fixed/verified; independent design/QA and earned balance open | Source `431f453f`: paid single-hostile shared Stun1s/boss0.5s, no damage/movement, truthful bilingual payment/duration/next-wave details. Corrected40/4 focused, engine8106/303, quiet full16276/734/two existing skips, types/lint/build/precache PASS. Production4/4, eight exact six-domain save pairs/four actual offline Continues/20geometry checks; screenshot readability limits retained. One credit:141bounded/70unverified/one engine-only/one review-needed; Sorceress25/30,212other CSV rows unchanged. [Evidence](evidence/d04-telekinesis.md). Original empty-effects comparator superseded by equal-action/payment inert-Knockback controls. BUG180 first-full import timeout and BUG237 browser timeout remain open despite isolated/quiet passes.1477source blobs/761build/genuine exact;68direct raw members/1043byte-exact ZIP duplicates retained outside Git with owner/removal condition.1872exact scratch files removed,40recorded PIDs/one profile absent,4516closed,scratch absent,remaining[]/failures[]. GenuineL33/next402/Baal uncleared; C2–C4/fullG0–G7/privatev1 remain open. |
@@ -12474,3 +12475,39 @@ GenuineL33/nextNormal402/Baal uncleared is unchanged; no campaign or remote acti
 C0/C1 keep narrow acceptance; C2 underway,C3/C4/fullG0–G7/all-class earned builds/
 30–50hour pacing/economy/endgame/privatev1 remain unfinished. Umbrella goal, branch,
 worktree and claim stay active. Next: Hydra; Cold Mastery remains review-needed.
+
+## 2026-10-25 — Hydra paid summon / BUG240
+
+Source `5d37d537` replaces the owner one-shot with one separately targetable
+paid three-headed Hydra body per wave. Ordinary scheduler/damage/control/death
+settlement governs independent Fire/Burn bolts, retargeting and half-open expiry.
+Native tests exposed and fixed stale next-wave rank; each new body captures
+current learned rank/mastery and pays again from carried mana. The sixteen
+generic summon preparations and save22 are unchanged. Body tuning is provisional;
+root author review supplies no independent design/QA approval.
+
+78added regressions; final focused407/7 including actual loader292, engine8224/307,
+full16544/747/two existing skips (706.03s Vitest/707.797s process), types/lint/build/
+precache and four production browser cases pass. Eight exact six-domain save
+pairs/four actual service-worker offline Continues/20geometry checks pass.
+Eight original screenshots and four final targeted body captures were inspected;
+body names/HP are readable, existing mobile preview/navigation overlap remains.
+Synthetic fixtures establish mechanics only. Original failures and an interrupted
+lint wrapper remain distinct from final passes; no validation setting/assertion
+was weakened. BUG180/237 and test/build/bundle budgets stay open.
+
+Only Hydra gains credit:145bounded/66unverified/one engine-only/one review-needed;
+Sorceress29/30. Other212raw CSV rows and29other Sorceress JSON objects are exact.
+All1494 frozen committed source blobs and761build/genuine hashes were verified.
+[Evidence](evidence/d06-hydra.md) retains202raw archive members, all byte-verified,
+with exact ownership/removal condition.1504exact task-owned files removed,
+including761build/541runtime files;678recorded PID/starttime identities and four
+browser profiles absent,4519closed,scratch absent,remaining[]/failures[].
+
+GenuineL33/XP149261/nextNormal402/Nightmare0/Ancients-Rite claimed/Baal uncleared
+and decompressed SHA256 remain exact. No campaign or remote action. C0/C1 keep
+limited acceptance; C2 underway, C3/C4/fullG0–G7/all-class earned builds/30–50hour
+pacing/economy/endgame/privatev1 unfinished. Umbrella goal, branch, worktree and
+claim remain active. Next candidate: BUG225 corpse skills under explicit no-potion/
+economy/ward contracts; Battle Command also remains unverified. Cold Mastery
+remains review-needed; no other implementation has started.

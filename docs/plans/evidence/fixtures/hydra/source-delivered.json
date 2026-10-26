@@ -1,0 +1,22 @@
+{
+  "implementation": "5d37d5377d412e27c3a98ca32a7285db3758679f",
+  "frozenFiles": 1494,
+  "allCommittedBlobsExact": true,
+  "allBuildFilesExact": true,
+  "genuineExact": true,
+  "sourceManifest": {
+    "archiveMember": "source-verified.json",
+    "sha256": "bcaebcc0d7c1656772d3b99df3c8c6083430ec5e13d4a4fda32fa282cffb84b8"
+  },
+  "buildManifest": {
+    "archiveMember": "build-provenance.json",
+    "sha256": "cb29cfe33799f78cf0f3e1e6a5d6aad18583b9cfba9ef744271ac2a31d54fd87"
+  },
+  "postBuildChanges": {
+    "src/engine/skills/hydra.test.ts": "Typed schema guard and redundant fixture condition removal.",
+    "src/stores/hydra.causal.test.ts": "Use already narrowed death-event target; assertions unchanged.",
+    "tests/pwa/hydra.spec.ts": "Distinct hero name and targeted body capture after first screenshots left mobile body below fold."
+  },
+  "productionSourceUnchangedAfterBuild": true,
+  "sourceIdentityAppliesTo": "implementation commit; later evidence-only BUG240 status update is outside that frozen snapshot"
+}

@@ -1,0 +1,258 @@
+{
+  "stats": {
+    "startTime": "2026-10-26T02:32:13.870Z",
+    "duration": 74992.484,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "case": "hydra-desktop-en",
+      "status": "passed",
+      "retry": 0,
+      "bodyFireLines": 5,
+      "casts": 1,
+      "savePairs": [
+        "online-save-pair",
+        "offline-save-pair"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "manaFrames": [
+        1316,
+        1276,
+        1284,
+        1292,
+        1300,
+        1308,
+        1310,
+        1311,
+        1316
+      ],
+      "screenshots": {
+        "skill-preview": "browser-final-extracted/hydra-desktop-en-skill-preview.png",
+        "hydra-body": "browser-final-extracted/hydra-desktop-en-hydra-body.png",
+        "combat": "browser-final-extracted/hydra-desktop-en-combat.png"
+      }
+    },
+    {
+      "case": "hydra-desktop-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "bodyFireLines": 5,
+      "casts": 1,
+      "savePairs": [
+        "online-save-pair",
+        "offline-save-pair"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "manaFrames": [
+        1316,
+        1276,
+        1284,
+        1292,
+        1300,
+        1308,
+        1310,
+        1311,
+        1316
+      ],
+      "screenshots": {
+        "skill-preview": "browser-final-extracted/hydra-desktop-zh-CN-skill-preview.png",
+        "hydra-body": "browser-final-extracted/hydra-desktop-zh-CN-hydra-body.png",
+        "combat": "browser-final-extracted/hydra-desktop-zh-CN-combat.png"
+      }
+    },
+    {
+      "case": "hydra-mobile-en",
+      "status": "passed",
+      "retry": 0,
+      "bodyFireLines": 5,
+      "casts": 1,
+      "savePairs": [
+        "online-save-pair",
+        "offline-save-pair"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "manaFrames": [
+        1316,
+        1276,
+        1284,
+        1292,
+        1300,
+        1308,
+        1310,
+        1311,
+        1316
+      ],
+      "screenshots": {
+        "skill-preview": "browser-final-extracted/hydra-mobile-en-skill-preview.png",
+        "hydra-body": "browser-final-extracted/hydra-mobile-en-hydra-body.png",
+        "combat": "browser-final-extracted/hydra-mobile-en-combat.png"
+      }
+    },
+    {
+      "case": "hydra-mobile-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "bodyFireLines": 5,
+      "casts": 1,
+      "savePairs": [
+        "online-save-pair",
+        "offline-save-pair"
+      ],
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "manaFrames": [
+        1316,
+        1276,
+        1284,
+        1292,
+        1300,
+        1308,
+        1310,
+        1311,
+        1316
+      ],
+      "screenshots": {
+        "skill-preview": "browser-final-extracted/hydra-mobile-zh-CN-skill-preview.png",
+        "hydra-body": "browser-final-extracted/hydra-mobile-zh-CN-hydra-body.png",
+        "combat": "browser-final-extracted/hydra-mobile-zh-CN-combat.png"
+      }
+    }
+  ],
+  "implementation": "5d37d5377d412e27c3a98ca32a7285db3758679f",
+  "sixDomainSavePairs": 8,
+  "actualServiceWorkerOfflineContinues": 4,
+  "geometryChecks": 20,
+  "heroFireDamageLines": 0,
+  "paymentMP": 40,
+  "publicFlows": [
+    "create",
+    "export",
+    "import",
+    "equip",
+    "allocate",
+    "Catacombs",
+    "playback",
+    "Pause",
+    "Flee",
+    "Save",
+    "fresh-page Continue"
+  ],
+  "inspected": {
+    "originalScreenshots": 8,
+    "finalTargetedBodyScreenshots": 4
+  },
+  "limits": [
+    "Synthetic characters; no earned campaign, build or balance inference.",
+    "Original mobile body below fold; final targeted body names/HP readable.",
+    "Existing fixed navigation overlaps preview edges; general UX/a11y remains open.",
+    "Page errors asserted; console logging was not comprehensive.",
+    "Only four targeted screenshots from final run individually inspected; do not claim all final twelve."
+  ]
+}

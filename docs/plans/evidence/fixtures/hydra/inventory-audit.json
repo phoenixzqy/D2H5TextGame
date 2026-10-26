@@ -1,0 +1,47 @@
+{
+  "implementation": "5d37d5377d412e27c3a98ca32a7285db3758679f",
+  "changedDataIds": [
+    "skills-sorceress-hydra"
+  ],
+  "unchangedOtherRawRows": 212,
+  "all213IdsAndOrderExact": true,
+  "beforeSha256": "3fb4ff290b488e8d37fc72387d7cf1152d4f41bbfe43b236eb1acfca119a0060",
+  "afterSha256": "a9f73e213eefe7c1211cada761382155c36003179f455d012a322be9dd3c3ade",
+  "counts": {
+    "unverified": 66,
+    "bounded-functional": 145,
+    "bounded-engine-functional": 1,
+    "review-needed": 1
+  },
+  "sorceressBoundedFunctional": 29,
+  "coldMastery": "review-needed; independent coefficient acceptance remains open",
+  "otherClassCounts": {
+    "amazon": {
+      "unverified": 20,
+      "bounded-functional": 9,
+      "bounded-engine-functional": 1
+    },
+    "assassin": {
+      "unverified": 17,
+      "bounded-functional": 13
+    },
+    "barbarian": {
+      "bounded-functional": 26,
+      "unverified": 4
+    },
+    "druid": {
+      "bounded-functional": 31
+    },
+    "necromancer": {
+      "unverified": 25,
+      "bounded-functional": 7
+    },
+    "paladin": {
+      "bounded-functional": 30
+    },
+    "sorceress": {
+      "bounded-functional": 29,
+      "review-needed": 1
+    }
+  }
+}
