@@ -284,6 +284,9 @@ function composeNativeCombatUnit(player: Player, temporarySkillRankBonus: 0 | 1)
     ...(player.class === 'druid' ? { feralRageRank: composeFeralRageRank({ classId: player.class,
       level: player.level, ...configuration }) } : {}),
     ...(player.class === 'druid' ? { druidSummonRanks: composeDruidSummonRanks(player) } : {}),
+    ...(player.class === 'necromancer' ? { fireGolemRank:
+      configuration.skillOrder.some(id => id === 'skills-necromancer-fire-golem' || id === 'necromancer.fire_golem')
+        ? configuration.skillLevels?.['necromancer.fire_golem'] ?? 0 : 0 } : {}),
     burstOfSpeedRank: composeBurstOfSpeedRank(player),
     cloakOfShadowsRank: composeCloakOfShadowsRank(player),
     ...(player.class === 'barbarian' ? { leapRank: composeLeapRank(player),
@@ -1256,6 +1259,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
         ? { feralRageRank: fresh.feralRageRank ?? 0 } : {}),
       ...((unit.druidSummonRanks !== undefined || fresh.druidSummonRanks !== undefined)
         ? { druidSummonRanks: fresh.druidSummonRanks ?? {} } : {}),
+      ...((unit.fireGolemRank !== undefined || fresh.fireGolemRank !== undefined)
+        ? { fireGolemRank: fresh.fireGolemRank ?? 0 } : {}),
       physicalReflectionPct: fresh.physicalReflectionPct ?? 0,
       manaRegenCarry: capped ? 0 : unit.manaRegenCarry ?? 0,
       manaRegenCompensation: capped ? 0 : unit.manaRegenCompensation ?? 0,

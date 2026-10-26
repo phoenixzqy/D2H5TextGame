@@ -118,6 +118,8 @@ export interface CombatUnit {
   readonly conversionRank?: number;
   /** Selected native Druid summon ranks, copied at registration; never persisted. */
   readonly druidSummonRanks?: import('../skills/druid-summon-authority').DruidSummonRanks;
+  /** Fresh selected native Fire Golem authority; paid body bindings remain battle-local. */
+  readonly fireGolemRank?: number;
   /** Fresh native configured Feral authority, captured per wave; never persisted. */
   readonly feralRageRank?: number;
   /** Fresh native configured Frenzy authority, captured per wave; never persisted. */

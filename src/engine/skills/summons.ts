@@ -20,6 +20,7 @@ import type { MonsterDef } from '../types/monsters';
 import type { Rng } from '../rng';
 import { SPIRIT_OF_BARBS_DEFINITION } from './spirit-of-barbs';
 import { getDruidSummonStats } from './druid-summon-definition';
+import { fireGolemBodyStats } from './fire-golem';
 
 /** @deprecated Templates are pure; battles now own their summon identity. */
 export function resetSummonCounters(): void {
@@ -170,15 +171,7 @@ function baseStatsForSummon(summonId: string): DerivedStats | undefined {
         resistances: { ...ZERO_RES, physical: 20, lightning: 20 }
       };
     case 'fire_golem':
-      return {
-        ...baseSummonStats(),
-        life: 240,
-        lifeMax: 240,
-        attack: 42,
-        defense: 36,
-        attackSpeed: 65,
-        resistances: { ...ZERO_RES, fire: 50 }
-      };
+      return fireGolemBodyStats();
     case 'skeletal_mage':
       return {
         ...baseSummonStats(),

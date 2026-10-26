@@ -1,0 +1,28 @@
+{
+  "id": "summons/fire-golem",
+  "bodyStats": {
+    "lifeMax": 240,
+    "manaMax": 0,
+    "attack": 42,
+    "defense": 36,
+    "attackSpeed": 65,
+    "critChance": 0.05,
+    "critDamage": 1.5,
+    "physDodge": 0.05,
+    "magicDodge": 0.05,
+    "magicFind": 0,
+    "goldFind": 0,
+    "resistances": {
+      "physical": 0,
+      "fire": 50,
+      "cold": 0,
+      "lightning": 0,
+      "poison": 0,
+      "arcane": 0
+    }
+  },
+  "attack": {
+    "damageType": "fire",
+    "dotPctOfDamage": 0.1
+  }
+}

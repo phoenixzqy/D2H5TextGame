@@ -82,6 +82,7 @@ import { activeFeralRage, copyFeralRageStatuses, FERAL_RAGE_DEFINITION, gainFera
 import { activeFrenzy, copyFrenzyStatuses, FRENZY_DEFINITION, gainFrenzyStack } from '../skills/frenzy';
 import { copyDruidSummonRanks, isDruidSummonBody, qualifyDruidSummon } from '../skills/druid-summon-authority';
 import { DRUID_SUMMON_DEFINITION, type DruidSummonId } from '../skills/druid-summon-definition';
+import { FIRE_GOLEM_DEFINITION, qualifyFireGolem } from '../skills/fire-golem';
 import { HYDRA_DEFINITION, isHydraSkill, matchesHydra, hydraRank, buildHydra } from '../skills/hydra';
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
 import { activeDecrepify, paidDecrepify } from './decrepify-definition';
@@ -281,6 +282,8 @@ interface State {
   /** Only IDs committed/accepted by qualified preparation in this battle may use Druid effects. */
   readonly druidSummons: Map<string, { readonly ownerId: string; readonly template: DruidSummonId;
     readonly skillId: string; readonly rank: number }>;
+  /** Only new body IDs from a qualified paid Fire Golem batch gain Fire/Burn attacks. */
+  readonly fireGolems: Map<string, { readonly ownerId: string; readonly rank: number }>;
   readonly ironGolem?: IronGolemInput;
   ironGolemPreparation?: IronGolemPreparationAttestation;
   readonly mightAura?: MightAuraProjection;
@@ -1882,18 +1885,36 @@ function basicAttack(state: State, actorId: string): void {
     (activeStatAura(state.statAura, actorId, state.units)?.bonuses.attackPct ?? 0) +
     (activeDruidAllyAuras(state.druidAllyAuras, actor, state.units)?.heartRank ?? 0) * DRUID_ALLY_AURA_DEFINITIONS.heart.attackPerRank;
   const ordinaryRange = actor.attackRange ?? [actor.stats.attack, actor.stats.attack];
-  const damageType = actor.basicAttack?.damageType ?? state.skeletalMageElements.get(actorId) ?? 'physical';
+  const fireGolem = activeFireGolem(state, actorId);
+  const damageType = actor.basicAttack?.damageType ?? state.skeletalMageElements.get(actorId) ??
+    (fireGolem ? FIRE_GOLEM_DEFINITION.attack.damageType : 'physical');
   const druid = damageType === 'physical' ? activeDruidSummon(state, actorId) : undefined;
   const projectAttack = (value: number): number => Math.max(1, Math.floor(value * (1 + attackPct)));
   const effect: DamageEffect = {
     kind: 'damage',
     damageType,
     base: actor.basicAttack?.damage ?? [projectAttack(ordinaryRange[0]), projectAttack(ordinaryRange[1])],
-    ...(druid?.template === 'raven' ? { applyStatus: { id: 'blind' } }
+    ...(fireGolem ? { applyStatus: { id: 'burn', damageType: 'fire' as const,
+      dotPctOfDamage: FIRE_GOLEM_DEFINITION.attack.dotPctOfDamage } }
+      : druid?.template === 'raven' ? { applyStatus: { id: 'blind' } }
       : druid?.template === 'poison_creeper' ? { applyStatus: { id: 'poison', damageType: 'poison' as const,
         dotPctOfDamage: DRUID_SUMMON_DEFINITION.poison.dotPctOfDamage } } : {})
   };
   applyDamageToUnit(state, actorId, target.id, effect, 1, true);
+}
+
+/** Revalidate paid runtime identity and its original living native owner at each ordinary hit. */
+function activeFireGolem(state: State, bodyId: string): boolean {
+  const binding = state.fireGolems.get(bodyId);
+  if (!binding) return false;
+  const body = state.units.get(bodyId), owner = state.units.get(binding.ownerId),
+    skill = getSkill('necromancer.fire_golem');
+  return body !== undefined && owner !== undefined && skill !== undefined &&
+    body.id !== owner.id && body.side === 'player' && inferKind(body) === 'summon' &&
+    body.summon === true && body.summonTemplateId === 'fire_golem' &&
+    body.summonOwnerId === owner.id && (body.ownerId === undefined || body.ownerId === owner.id) &&
+    body.basicAttack === undefined && Number.isFinite(body.life) && body.life > 0 &&
+    qualifyFireGolem(owner, skill, binding.rank);
 }
 
 /** One scheduled body action, with an ordinary independently rolled hit for each living head. */
@@ -2373,6 +2394,10 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
   if (cost > owner.mana) return;
   const registered = castSkill(state, owner.id, skill, { summonId: effect.summonId, units: candidates });
   if (registered?.length === candidates.length) bindDruidBodies();
+  if (registered?.length === candidates.length && effect.summonId === 'fire_golem' &&
+    qualifyFireGolem(owner, skill, rank)) {
+    for (const body of registered) state.fireGolems.set(body.id, { ownerId: owner.id, rank });
+  }
   // Generic preparation/payment stays intact; elemental authority requires explicit provenance.
   if (!registered || registered.length !== candidates.length ||
     skill.id !== 'necromancer.raise_skeletal_mage' || skill.archetype !== 'necromancer' ||
@@ -2738,6 +2763,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     grimWards: new Map(),
     corpses: [],
     druidSummons: new Map(),
+    fireGolems: new Map(),
     ...(golemMastery ? { golemMastery: Object.freeze({ sourceHeroId: golemMastery.sourceHeroId,
       rank: golemMastery.rank, maxRank: golemMastery.maxRank, golemLifePct: golemMastery.golemLifePct,
       golemAttackSpeed: golemMastery.golemAttackSpeed }) } : {}),
