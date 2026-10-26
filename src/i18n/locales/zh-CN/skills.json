@@ -91,6 +91,7 @@
     "coldFreeze": "额外冰封",
     "coldFreezeValue": "{{chance}}% • {{seconds}} 秒（首领{{bossSeconds}} 秒）",
     "warcryDuration": "敌方效果持续时间",
+    "bossEffectDuration": "首领 / 章节首领效果持续时间",
     "damageCurse": {"iron-maiden": "物理生命损失反射比例", "life-tap": "直接生命损失治疗比例", "lower-resist": "全部抗性降低"},
     "percentagePoints": "{{value}}个百分点",
     "warcryDamageReduction": "对外直接伤害降低",
@@ -905,7 +906,7 @@
     },
     "terror": {
       "name": "恐惧",
-      "desc": "使敌人恐惧逃跑。"
+      "desc": "使所有存活敌人恐惧，持续{{duration}}（首领与章节首领持续{{bossDuration}}），阻止其按原计划行动并打断引导。消耗{{mana}} 点法力并开始{{cooldown}} 秒冷却。刷新持续时间，不叠加。"
     },
     "confuse": {
       "name": "迷乱",

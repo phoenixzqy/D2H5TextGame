@@ -1015,6 +1015,10 @@ function StatSection({
             <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.weaken.durationSeconds })} />
             <StatLine label={t('details.warcryDamageReduction')} value={t('details.percentValue', { value: stats.weaken.damageReductionPercent })} />
           </> : null}
+          {stats.statuses.includes('terror') && stats.control ? <>
+            <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.control.durationSeconds })} />
+            <StatLine label={t('details.bossEffectDuration')} value={t('details.seconds', { seconds: stats.control.bossDurationSeconds })} />
+          </> : null}
           {stats.damageCurse ? <>
             <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.damageCurse.durationSeconds })} />
             <StatLine label={t('details.damageCurse.' + stats.damageCurse.id)}
@@ -1056,6 +1060,7 @@ function StatSection({
                   ? t('necromancer.amplify-damage.name')
                   : id === 'decrepify' ? t('necromancer.decrepify.name')
                   : id === 'weaken' ? t('necromancer.weaken.name')
+                  : id === 'terror' ? t('necromancer.terror.name')
                   : id === 'iron-maiden' || id === 'life-tap' || id === 'lower-resist' ? t('necromancer.' + id + '.name')
                   : id === 'burst-of-speed' ? t('assassin.burst-of-speed.name')
                   : id === 'cloak-of-shadows' ? t('assassin.cloak-of-shadows.name')
@@ -1768,6 +1773,13 @@ function dynamicDescription(
     return t('necromancer.weaken.desc', {
       duration: t('details.seconds', { seconds: stats.weaken.durationSeconds }),
       reduction: stats.weaken.damageReductionPercent, mana: stats.manaCost, cooldown: stats.cooldown
+    });
+  }
+  if (skill.id === 'skills-necromancer-terror' && stats?.control) {
+    return t('necromancer.terror.desc', {
+      duration: t('details.seconds', { seconds: stats.control.durationSeconds }),
+      bossDuration: t('details.seconds', { seconds: stats.control.bossDurationSeconds }),
+      mana: stats.manaCost, cooldown: stats.cooldown
     });
   }
   if (stats?.damageCurse) {

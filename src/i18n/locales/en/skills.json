@@ -91,6 +91,7 @@
     "coldFreeze": "Secondary Freeze",
     "coldFreezeValue": "{{chance}}% • {{seconds}} s (bosses: {{bossSeconds}} s)",
     "warcryDuration": "Enemy effect duration",
+    "bossEffectDuration": "Boss / chapter boss effect duration",
     "damageCurse": {"iron-maiden": "Physical HP reflected", "life-tap": "Direct HP converted to healing", "lower-resist": "All resistance reduction"},
     "percentagePoints": "{{value}} percentage points",
     "warcryDamageReduction": "Outgoing direct damage reduction",
@@ -905,7 +906,7 @@
     },
     "terror": {
       "name": "Terror",
-      "desc": "Causes enemies to flee in fear."
+      "desc": "Curses all living enemies with fear for {{duration}} ({{bossDuration}} against bosses and chapter bosses), preventing scheduled actions and interrupting channels. Pays {{mana}} MP and starts a {{cooldown}} s cooldown. Refreshes without stacking."
     },
     "confuse": {
       "name": "Confuse",
