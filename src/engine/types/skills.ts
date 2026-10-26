@@ -178,6 +178,12 @@ export interface SkillRequirement {
 
 /** JSON-authored runtime metadata for the first applied status. */
 export interface SkillStatusEffectMetadata {
+  /** Iron Maiden: percent of actual hostile Physical HP removed to reflect. */
+  readonly reflectedPhysicalDamagePct?: number;
+  /** Life Tap: percent of actual hostile direct HP removed to restore. */
+  readonly lifeTapHealingPct?: number;
+  /** Lower Resist: percentage points removed from each resistance pool. */
+  readonly allResistReductionPct?: number;
   /** Howl's boss/chapter-boss duration factor. */
   readonly bossDurationMultiplier?: number;
   /** Decrepify effective AttackSpeed reduction before cadence flooring/clamps. */

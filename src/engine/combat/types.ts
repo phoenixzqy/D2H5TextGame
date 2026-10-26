@@ -26,6 +26,8 @@ export interface GridPosition {
 
 /** Active status effect on a combat unit. */
 export interface ActiveStatus {
+  /** Copied paid finite damage-curse potency; transient and exact-identity checked. */
+  readonly damageCurse?: { readonly id: 'iron-maiden' | 'life-tap' | 'lower-resist'; readonly percent: number };
   /** Complete paid finite Decrepify potency; never persisted or inferred from a marker. */
   readonly decrepify?: { readonly attackSpeedReductionPct: number; readonly damageReductionPct: number };
   /** Immutable paid finite Weaken potency; bare markers grant no damage reduction. */

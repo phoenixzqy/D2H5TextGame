@@ -5136,6 +5136,270 @@
           }
         }
       }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-necromancer-iron-maiden"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "prerequisites",
+          "cost",
+          "scaling",
+          "appliesStatus",
+          "statusEffect"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 12
+          },
+          "prerequisites": {
+            "const": [
+              "skills-necromancer-amplify-damage"
+            ]
+          },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "all-enemies"
+          },
+          "cooldown": {
+            "const": 3
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "cost": {
+            "const": {
+              "mana": 11
+            }
+          },
+          "scaling": {
+            "const": {
+              "costPerLevel": -0.25
+            }
+          },
+          "appliesStatus": {
+            "const": [
+              "iron-maiden"
+            ]
+          },
+          "damage": false,
+          "damageType": false,
+          "heal": false,
+          "summon": false,
+          "summonId": false,
+          "timedBuff": false,
+          "aoeShape": false,
+          "maxTargets": false,
+          "appliesTags": { "const": ["physical"] },
+          "statusEffect": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "durationMs",
+              "reflectedPhysicalDamagePct"
+            ],
+            "properties": {
+              "durationMs": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "reflectedPhysicalDamagePct": {
+                "$ref": "#/properties/statusEffect/properties/reflectedPhysicalDamagePct"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-necromancer-life-tap"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "prerequisites",
+          "cost",
+          "scaling",
+          "appliesStatus",
+          "statusEffect"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 18
+          },
+          "prerequisites": {
+            "const": [
+              "skills-necromancer-iron-maiden"
+            ]
+          },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "all-enemies"
+          },
+          "cooldown": {
+            "const": 3
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "cost": {
+            "const": {
+              "mana": 9
+            }
+          },
+          "scaling": {
+            "const": {
+              "costPerLevel": -0.2
+            }
+          },
+          "appliesStatus": {
+            "const": [
+              "life-tap"
+            ]
+          },
+          "damage": false,
+          "damageType": false,
+          "heal": false,
+          "summon": false,
+          "summonId": false,
+          "timedBuff": false,
+          "aoeShape": false,
+          "maxTargets": false,
+          "appliesTags": false,
+          "statusEffect": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "durationMs",
+              "lifeTapHealingPct"
+            ],
+            "properties": {
+              "durationMs": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "lifeTapHealingPct": {
+                "$ref": "#/properties/statusEffect/properties/lifeTapHealingPct"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-necromancer-lower-resist"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "prerequisites",
+          "cost",
+          "scaling",
+          "appliesStatus",
+          "statusEffect"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 30
+          },
+          "prerequisites": {
+            "const": [
+              "skills-necromancer-life-tap"
+            ]
+          },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "all-enemies"
+          },
+          "cooldown": {
+            "const": 3
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "cost": {
+            "const": {
+              "mana": 22
+            }
+          },
+          "scaling": {
+            "const": {
+              "costPerLevel": -0.3
+            }
+          },
+          "appliesStatus": {
+            "const": [
+              "lower-resist"
+            ]
+          },
+          "damage": false,
+          "damageType": false,
+          "heal": false,
+          "summon": false,
+          "summonId": false,
+          "timedBuff": false,
+          "aoeShape": false,
+          "maxTargets": false,
+          "appliesTags": { "const": ["amp-damage"] },
+          "statusEffect": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "durationMs",
+              "allResistReductionPct"
+            ],
+            "properties": {
+              "durationMs": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "allResistReductionPct": {
+                "$ref": "#/properties/statusEffect/properties/allResistReductionPct"
+              }
+            }
+          }
+        }
+      }
     }
   ],
   "if": {
@@ -5695,6 +5959,9 @@
         }
       },
       "properties": {
+        "reflectedPhysicalDamagePct": {"type": "number", "exclusiveMinimum": 0, "maximum": 1000, "description": "Iron Maiden: percent of hostile Physical HP removed reflected before recipient mitigation."},
+        "lifeTapHealingPct": {"type": "number", "exclusiveMinimum": 0, "maximum": 100, "description": "Life Tap: percent of actual hostile direct HP removed restored to the surviving attacker."},
+        "allResistReductionPct": {"type": "number", "exclusiveMinimum": 0, "maximum": 100, "description": "Lower Resist: percentage points subtracted from every resistance pool before clamps."},
         "chance": { "type": "number", "minimum": 0, "maximum": 1 },
         "bossDurationMultiplier": { "type": "number", "exclusiveMinimum": 0, "maximum": 1, "description": "Howl boss and chapter-boss finite disruption duration factor." },
         "attackSpeedReductionPct": { "type": "number", "minimum": 0, "exclusiveMaximum": 100, "description": "Decrepify effective AttackSpeed reduction in percentage points, before existing floor and cadence clamps." },

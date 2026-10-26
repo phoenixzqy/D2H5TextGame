@@ -86,6 +86,7 @@ import { HYDRA_DEFINITION, isHydraSkill, matchesHydra, hydraRank, buildHydra } f
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
 import { activeDecrepify, paidDecrepify } from './decrepify-definition';
 import { activeWeaken, paidWeaken } from './weaken-definition';
+import { activeDamageCurse, paidDamageCurse } from './damage-curse-definition';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
 import {
@@ -633,11 +634,17 @@ function buildDamageInput(
     ? activeStatAura(state.statAura, state.statAura.sourceHeroId, state.units) : undefined;
   const resistBonus = (defenderAura?.bonuses.resistAllPct ?? 0) * 100 + cycloneArmorResistance(defender) -
     (enemyAura?.enemyResistReductionPct ?? 0);
-  const resistances = resistBonus === 0 ? defender.stats.resistances : {
+  const auraResistances = resistBonus === 0 ? defender.stats.resistances : {
     physical: defender.stats.resistances.physical + resistBonus,
     fire: defender.stats.resistances.fire + resistBonus, cold: defender.stats.resistances.cold + resistBonus,
     lightning: defender.stats.resistances.lightning + resistBonus,
     arcane: defender.stats.resistances.arcane + resistBonus, poison: defender.stats.resistances.poison + resistBonus
+  };
+  const lowerResist = activeDamageCurse(defender, state.simClockMs, 'lower-resist');
+  const resistances = lowerResist === 0 ? auraResistances : {
+    physical: auraResistances.physical - lowerResist, fire: auraResistances.fire - lowerResist,
+    cold: auraResistances.cold - lowerResist, lightning: auraResistances.lightning - lowerResist,
+    arcane: auraResistances.arcane - lowerResist, poison: auraResistances.poison - lowerResist
   };
   const baseMin = scalePerRank(effect.base[0], effect.perRank?.[0], skillLevel);
   const baseMax = scalePerRank(effect.base[1], effect.perRank?.[1], skillLevel);
@@ -736,6 +743,9 @@ function applyDamageToUnit(
 
   const hostileHit = effectiveSide(state, attacker) !== effectiveSide(state, defender);
   const activeDefender = activeStatusView(defender, state.simClockMs);
+  // Capture pre-hit eligibility: a lethal victim hit may clear its curse during settlement.
+  const lifeTap = activeDamageCurse(activeDefender, state.simClockMs, 'life-tap');
+  const ironMaiden = activeDamageCurse(attacker, state.simClockMs, 'iron-maiden') / 100;
   const retaliates = !armorReaction && !periodicSpell && hasPaidFrozenArmor(activeDefender);
   const coldReactions = !armorReaction && !auraPulse && !periodicSpell && hostileHit
     ? COLD_ARMOR_IDS.map(id => ({ id, rank: paidColdArmorRank(activeDefender, id) }))
@@ -896,12 +906,15 @@ function applyDamageToUnit(
   }
 
   const after = state.units.get(defenderId);
-  const reflectionPct = (after?.physicalReflectionPct ?? 0) +
+  const ordinaryReflectionPct = (after?.physicalReflectionPct ?? 0) +
     (activeStatAura(state.statAura, defenderId, state.units)?.bonuses.thornsPct ?? 0) +
     (after ? activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, after, state.units)?.rank ?? 0 : 0) * SPIRIT_OF_BARBS_DEFINITION.thornsPerRank;
   if (after && !alive(after)) {
     finishDeaths(state, [activeStatusView(after, state.simClockMs)]);
-  } else if (after && hostileHit && physicalHpRemoved > 0 && reflectionPct > 0) {
+  }
+  // The curse punishes a paid attack even when its victim dies; ordinary Thorns keeps its living-wearer rule.
+  const reflectionPct = ironMaiden + (after && alive(after) ? ordinaryReflectionPct : 0);
+  if (after && hostileHit && physicalHpRemoved > 0 && reflectionPct > 0) {
     const target = state.units.get(attackerId);
     if (!target || !alive(target)) return;
     const raw = Math.max(1, Math.floor(physicalHpRemoved * reflectionPct));
@@ -924,6 +937,9 @@ function applyDamageToUnit(
 
   // Explicit skill-hit recovery observes actual HP removed, after ordinary death/orb/reflection settlement.
   const hpRemoved = defender.life - newLife;
+  const tappedAttacker = state.units.get(attackerId);
+  if (hostileHit && hpRemoved > 0 && lifeTap > 0 && tappedAttacker && alive(tappedAttacker))
+    commitHealing(state, tappedAttacker, Math.floor(hpRemoved * lifeTap / 100));
   const owner = state.units.get(attackerId);
   if (!basicHit && !auraPulse && !armorReaction && !periodicSpell && hostileHit && hpRemoved > 0 && owner && alive(owner)) {
     const fraction = effect.onHitRecovery?.lifeFraction;
@@ -1675,6 +1691,8 @@ function applyEffect(
           t,
           {
             id: effect.statusId,
+            ...(effect.damageCurse === effect.statusId
+              ? { damageCurse: paidDamageCurse(effect.damageCurse) } : {}),
             ...(effect.weaken === true && effect.statusId === 'weaken' ? { weaken: paidWeaken() } : {}),
             ...(effect.decrepify === true && effect.statusId === 'decrepify' ? { decrepify: paidDecrepify() } : {}),
             ...(effect.battleCry === true && effect.statusId === 'battle-cry'

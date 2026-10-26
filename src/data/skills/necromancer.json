@@ -366,6 +366,10 @@
     "appliesTags": [
       "physical"
     ],
+    "statusEffect": {
+      "durationMs": 3000,
+      "reflectedPhysicalDamagePct": 100
+    },
     "scaling": {
       "costPerLevel": -0.25
     }
@@ -441,6 +445,10 @@
     "appliesStatus": [
       "life-tap"
     ],
+    "statusEffect": {
+      "durationMs": 3000,
+      "lifeTapHealingPct": 25
+    },
     "scaling": {
       "costPerLevel": -0.2
     }
@@ -494,6 +502,10 @@
     "appliesTags": [
       "amp-damage"
     ],
+    "statusEffect": {
+      "durationMs": 3000,
+      "allResistReductionPct": 30
+    },
     "scaling": {
       "costPerLevel": -0.3
     }
