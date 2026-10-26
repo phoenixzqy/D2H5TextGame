@@ -71,17 +71,22 @@ it('uses exact onset/expiry, permits Cleansing and fractional native rebasing, a
   for (const clock of [NaN, Infinity, -Infinity]) expect(activeDimVision(base, clock)).toBeUndefined();
 });
 it.each<Partial<ActiveStatus>>([
-  { dimVision: undefined }, { dimVision: { physicalHitChanceReductionPct: 49 } },
+  { dimVision: { physicalHitChanceReductionPct: 49 } },
   { dimVision: { physicalHitChanceReductionPct: NaN } }, { dimVision: { physicalHitChanceReductionPct: Infinity } },
-  { id: 'blind' }, { stacks: 0 }, { stacks: 2 }, { appliedAtMs: undefined }, { expiresAtMs: undefined },
+  { id: 'blind' }, { stacks: 0 }, { stacks: 2 },
   { appliedAtMs: NaN }, { expiresAtMs: NaN }, { expiresAtMs: Infinity },
   { appliedAtMs: 1000 }, { expiresAtMs: 0 }, { expiresAtMs: 3400.01 }
 ])('bare/invalid/future/overlong payload %# confers no accuracy power at this clock', patch => {
   const status = { ...curse(), ...patch }, target = { ...unit('target', 'enemy'), statuses: [status] };
   expect(activeDimVision(target, 500)).toBeUndefined();
 });
+it.each(['dimVision', 'appliedAtMs', 'expiresAtMs'] as const)('missing %s grants no paid power', key => {
+  const status = { ...curse() }; Reflect.deleteProperty(status, key);
+  expect(activeDimVision({ ...unit('target', 'enemy'), statuses: [status] }, 500)).toBeUndefined();
+});
 it('a bare Dim Vision marker cannot change actual hit outcomes', () => {
-  expect(hits(record(fixture([{ ...curse(), dimVision: undefined }])))).toEqual(hits(record(fixture([]))));
+  const status = { ...curse() }; Reflect.deleteProperty(status, 'dimVision');
+  expect(hits(record(fixture([status])))).toEqual(hits(record(fixture([]))));
 });
 it('uses the strongest overlapping Raven blind, never adding or stacking duplicate Dim Vision packets', () => {
   const dim = record(fixture()), blind: ActiveStatus = { id: 'blind', sourceId: 'raven', stacks: 1,
