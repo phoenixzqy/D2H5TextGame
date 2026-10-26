@@ -13119,3 +13119,35 @@ Inventory stays174bounded/37unverified/oneengine/onereview,Necromancer32/32.
 GenuineL33/next402/Baal uncleared,earned/independent acceptance,C2–C4/fullG0–G7
 and the original full private-v1 objective remain open. No campaign,remote action,
 delegation or worktree release.
+
+
+## 2026-10-26 — Progress checkpoint and Epidemic runtime integration
+
+The original BUG281 engine retry is terminal:9455tests/357files PASS281.387s,
+inputsUnchanged:true; no restart. `72213405` adds closed JSON/schema tuning and
+19definition cases. `13a6d098` implements paid-cast Epidemic with pre-effect
+Poison snapshots, accepted marker lifetime and one shared allowance per cast.
+Sixteen lifecycle cases cover ten/nine, area and repeated hits, separate casts,
+miss/payment, expiry/replacement, frozen final-interval death, caster death,
+fresh-wave reset, replay and input immutability. Both locales have trigger copy.
+The original repository RED is three failures/one control. Final focused checks
+pass204tests/sixfiles6.734s; strict focused types4.020s/lint9.251s and engine
+purity pass. Original fixture/compiler/lint failures and their corrections remain
+in the continuing task and BUG282; no runtime assertion was weakened.
+
+Fresh full engine session22396/`epidemic-engine` is active against1668explicitly
+frozen inputs, including tests/sim and all new files. Poll it; no restart. The
+preceding full18461 result belongs to Mage and cannot validate this runtime.
+Root continues to own `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s`
+through native/public integration, then retention/read-back/exact cleanup. No
+cleanup claimed. Both protected genuine save hashes are exact; no campaign action.
+
+Inventory stays174bounded/37unverified/oneengine-only/onereview-needed. The
+bounded class checklists cover Barbarian30/30,Druid31/31,Paladin30/30,
+Necromancer32/32; Amazon20 and Assassin17 remain unverified. These counts are
+local verification, not independent/earned acceptance or a whole-v1 percentage.
+Genuine progress remainsL33,Ancients/Rite claimed,Baal uncleared,nextNormal402.
+Privatev1,C2–C4/fullG0–G7,remaining skills,native/public Plague verification,
+earned builds,balance/economy/endgame,mobile/offline/a11y/performance acceptance
+are open. User received a candid status report; the original goal remains active.
+No remote action,delegation,independent approval,worktree release or scope reduction.

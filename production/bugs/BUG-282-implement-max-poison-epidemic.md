@@ -1,7 +1,7 @@
 # BUG-282 — Implement the max-Poison Plague Epidemic
 
 - Severity: Medium — the advertised max-stack combo uses ordinary half spread.
-- Status: Reproduced; implementation pending. No skill or acceptance credit.
+- Status: Runtime implemented locally in `13a6d098`; focused checks pass. Full engine run active; native/public/full acceptance pending. No skill credit.
 - Owner: root, engine/design/QA; no delegation or independent approval.
 - Baseline: BUG281 payload/helper correction `d18e689c`; exact source hashes
   are retained with the continuing task below. Linux, Node/Vitest, seed7.
@@ -36,7 +36,7 @@ Root retains `epidemic-original-red.test.ts`, `epidemic-red.test.ts`,
 Root owns retention and exact cleanup after the continuing consumers finish.
 This evidence is unearned and does not establish native class/build viability.
 
-The engine currently supplies the same0.5 fraction for every Poison/Plague
+The reproduced engine supplied the same0.5 fraction for every Poison/Plague
 death. Capture eligibility from Poison before the paid hit, preserve ordinary
 spread otherwise, and enforce the once-per-cast limit across multiple targets
 and later deaths. Use authored tuning, transient battle-only authority and the
@@ -47,3 +47,42 @@ Do not grant Epidemic merely because a normal hit raises nine stacks to ten.
 Workaround: ordinary Poison/Plague death spread still functions. Security check:
 pass for first-party local engine/data/test work; no credentials, dependencies,
 network, permissions, CI or persistent save fields are requested.
+
+## Bounded runtime correction
+
+[D04 contract](../../docs/plans/decisions/D04-plague-epidemic-v1.md) freezes
+pre-cast eligibility, one allowance per paid cast and accepted-marker lifetime.
+`72213405` adds closed Ajv-validated JSON tuning and19passing definition tests;
+`13a6d098` captures selected active Poison before effects, binds only accepted
+landed Plague, and consumes at ordinary frozen death settlement. Multi-target
+and repeated hits share an allowance; independent casts retain separate ones.
+Marker expiry/replacement and new battles cannot inherit authority. Both locales
+have `combat:epidemic.triggered`; ordinary spread, RNG, saved fields and captured
+Poison damage remain unchanged apart from the specified qualified full spread.
+
+The repository's initial four-case RED has three failures/one control,3.829s.
+The first runtime run passes33tests/threefiles,4.299s. The final focused run
+passes204tests/sixfiles,6.734s,including16Epidemic lifecycle cases,19definition
+cases and all BUG281/status/registry/Frost Nova controls. Cases cover pre-cast
+ten versus nine, delayed death, one/multiple casts, repeated hits, payment/miss,
+future/expired records, source death, marker replacement, lethal final interval,
+fresh-battle observation reuse, deterministic replay and immutable input.
+
+One added final-interval fixture initially expected death6700ms from431HP but
+actually died6125ms: Poison10 multiplies seed7's31base hit by2.5 to77. Correct
+477HP =77direct+400periodic fixes the fixture; the test also asserts literal77
+and the exact6700death. The original failure is retained, no runtime arithmetic
+or expected timing was weakened. Focused strict types initially caught missing
+event narrowing; lint also caught numeric template interpolation. An explicit
+mana-event predicate and `String(index)` fix those test-only errors. Final strict
+types pass4.020s and explicit lint9.251s; engine purity passes359testfiles.
+
+Fresh full engine session22396/`epidemic-engine` is active. Its1668input manifest
+includes `src`, tests/sim, scripts and configuration, including all new files;
+do not restart the run. The older9455engine and18461full-unit results belong to
+their earlier snapshots. Genuine save compressed/raw hashes remain exact; no
+campaign action/replay occurred. Native/public log rendering, full skill/earned
+build/balance acceptance and integrated full units/types/lint/build remain open.
+The continuing task above retains every original failure, receipt and frozen
+input manifest; root owns its eventual retention/read-back/exact cleanup. No
+cleanup, independent approval or inventory credit is claimed here.
