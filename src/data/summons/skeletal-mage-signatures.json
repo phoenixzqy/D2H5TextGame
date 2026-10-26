@@ -1,0 +1,9 @@
+{
+  "id": "summons/skeletal-mage-signatures",
+  "effects": {
+    "fire": { "id": "burn", "damageType": "fire", "durationMs": 3000, "chance": 1, "dotPctOfDamage": 0.1 },
+    "cold": { "id": "chill", "damageType": "cold", "durationMs": 2000, "chance": 1 },
+    "lightning": { "id": "paralyze", "damageType": "lightning", "durationMs": 1000, "chance": 1 },
+    "poison": { "id": "poison", "damageType": "poison", "durationMs": 5000, "chance": 1, "dotPctOfDamage": 0.05 }
+  }
+}

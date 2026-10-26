@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d2h5://schema/skeletal-mage-signatures",
+  "description": "On-hit signatures for authenticated paid Mage elements. Shared status stacking and control rules remain authoritative.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "effects"],
+  "properties": {
+    "id": { "const": "summons/skeletal-mage-signatures" },
+    "effects": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fire", "cold", "lightning", "poison"],
+      "properties": {
+        "fire": { "$ref": "#/$defs/burning" },
+        "cold": { "$ref": "#/$defs/chilling" },
+        "lightning": { "$ref": "#/$defs/paralyzing" },
+        "poison": { "$ref": "#/$defs/poisoning" }
+      }
+    }
+  },
+  "$defs": {
+    "durationMs": { "type": "integer", "minimum": 1, "maximum": 60000 },
+    "dotPctOfDamage": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+    "burning": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "damageType", "durationMs", "chance", "dotPctOfDamage"],
+      "properties": {
+        "id": { "const": "burn" }, "damageType": { "const": "fire" },
+        "durationMs": { "$ref": "#/$defs/durationMs" }, "chance": { "const": 1 },
+        "dotPctOfDamage": { "$ref": "#/$defs/dotPctOfDamage" }
+      }
+    },
+    "chilling": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "damageType", "durationMs", "chance"],
+      "properties": {
+        "id": { "const": "chill" }, "damageType": { "const": "cold" },
+        "durationMs": { "$ref": "#/$defs/durationMs" }, "chance": { "const": 1 }
+      }
+    },
+    "paralyzing": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "damageType", "durationMs", "chance"],
+      "properties": {
+        "id": { "const": "paralyze" }, "damageType": { "const": "lightning" },
+        "durationMs": { "$ref": "#/$defs/durationMs" }, "chance": { "const": 1 }
+      }
+    },
+    "poisoning": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "damageType", "durationMs", "chance", "dotPctOfDamage"],
+      "properties": {
+        "id": { "const": "poison" }, "damageType": { "const": "poison" },
+        "durationMs": { "$ref": "#/$defs/durationMs" }, "chance": { "const": 1 },
+        "dotPctOfDamage": { "$ref": "#/$defs/dotPctOfDamage" }
+      }
+    }
+  }
+}
