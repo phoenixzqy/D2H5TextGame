@@ -94,20 +94,20 @@ function durable() {
     summonPositions: useFormationStore.getState().summonPositions };
 }
 const COPY = {
-  en: { mage: 'Skeletal Mage', targets: ['Fallen B', 'Fallen A', 'Quill Rat A', 'Fallen C'],
-    hits: ['Skeletal Mage attacks Fallen B for 50 fire damage.',
+  en: { mage: 'Skeletal Mage',
+    hits: ["Fallen B dodges Skeletal Mage's attack!",
       'Skeletal Mage attacks Fallen A for 61 cold damage.',
-      'Skeletal Mage attacks Quill Rat A for 61 lightning damage.',
-      'Skeletal Mage attacks Fallen C for 50 poison damage.'],
-    coldTarget: 'Fallen D', coldHit: 'Skeletal Mage attacks Fallen D for 61 cold damage.',
-    dodgeTarget: 'Fallen E', dodge: "Fallen E dodges Skeletal Mage's attack!" },
-  'zh-CN': { mage: '骷髅法师', targets: ['堕落者 B', '堕落者 A', '尖刺鼠 A', '堕落者 C'],
-    hits: ['骷髅法师 普攻 堕落者 B，造成 50 点火焰伤害。',
+      "Fallen C dodges Skeletal Mage's attack!",
+      'Skeletal Mage attacks Fallen B for 50 poison damage.'],
+    laterHit: 'Skeletal Mage attacks Fallen C for 61 lightning damage.',
+    dodge: "Fallen C dodges Skeletal Mage's attack!" },
+  'zh-CN': { mage: '骷髅法师',
+    hits: ['堕落者 B 闪避了 骷髅法师 的攻击！',
       '骷髅法师 普攻 堕落者 A，造成 61 点冰冷伤害。',
-      '骷髅法师 普攻 尖刺鼠 A，造成 61 点闪电伤害。',
-      '骷髅法师 普攻 堕落者 C，造成 50 点毒素伤害。'],
-    coldTarget: '堕落者 D', coldHit: '骷髅法师 普攻 堕落者 D，造成 61 点冰冷伤害。',
-    dodgeTarget: '堕落者 E', dodge: '堕落者 E 闪避了 骷髅法师 的攻击！' }
+      '堕落者 C 闪避了 骷髅法师 的攻击！',
+      '骷髅法师 普攻 堕落者 B，造成 50 点毒素伤害。'],
+    laterHit: '骷髅法师 普攻 堕落者 C，造成 61 点闪电伤害。',
+    dodge: '堕落者 C 闪避了 骷髅法师 的攻击！' }
 } as const;
 
 function hpBar(id: string): HTMLElement {
@@ -123,6 +123,11 @@ it.each(['zh-CN', 'en'] as const)('renders real scheduled Mage playback and elem
   const events = binding.recording.events, summons = mageSummons(binding);
   const bySource = new Map(summons.map((event, index) => [event.unit.id, index]));
   expect(summons).toHaveLength(4);
+  const spread = events.find(e => e.kind === 'status-state' && e.target.includes('fallen-2-') &&
+    e.statuses.some(status => status.id === 'poison'));
+  expect(spread).toMatchObject({ simClockMs: 1940, statuses: [expect.objectContaining({
+    id: 'poison', stacks: 1, dotPerStack: 2, sourceId: 'enemy-act1.fallen-1-1dff',
+    appliedAtMs: 1940, expiresAtMs: 6940 })] });
   vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
   render(<I18nextProvider i18n={i18n}><Suspense fallback={null}>
     <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -136,13 +141,12 @@ it.each(['zh-CN', 'en'] as const)('renders real scheduled Mage playback and elem
   expect(mp().getByRole('progressbar')).toHaveAttribute('aria-valuenow', '100');
   expect(mp().getByText('100 / 1197', { exact: true })).toBeVisible();
   summons.forEach(event => { expect(screen.queryByTestId(`unit-card-${event.unit.id}`)).not.toBeInTheDocument(); });
-  let spawned = 0, paid = 0, hits = 0, cold = 0, dodges = 0;
+  let spawned = 0, paid = 0, hits = 0, laterHits = 0, dodges = 0, earlyRepeatedDodge = 0, poisonLoss = 0;
   for (let remaining = events.length; remaining > 0; remaining--) {
     const previous = useCombatStore.getState();
     const pending = events[previous.eventCursor];
     if (!pending || pending.simClockMs > 3880) break;
     const priorLife = new Map(previous.enemyTeam.map(unit => [unit.id, unit.life]));
-    const hpStyles = new Map(previous.enemyTeam.map(unit => [unit.id, hpBar(unit.id).getAttribute('style')]));
     for (let timer = 0; timer < events.length && useCombatStore.getState().eventCursor === previous.eventCursor; timer++) {
       expect(vi.getTimerCount()).toBeGreaterThan(0);
       await act(async () => { await vi.advanceTimersToNextTimerAsync(); });
@@ -177,22 +181,32 @@ it.each(['zh-CN', 'en'] as const)('renders real scheduled Mage playback and elem
         const message = next.log.find(entry => entry.id === `${String(idx)}-damage`)?.message;
         if (event.simClockMs === 1940) {
           hits++;
-          expect(life).toBe([35, 46, 34, 35][index]);
+          expect(life).toBe([35, 46, 35, 35][index]);
+          expect(event).toMatchObject({ amount: [0, 61, 0, 50][index], dodged: index === 0 || index === 2 });
           expect(message).toBe(copy.hits[index]);
-          expect(hpBar(event.target)).toHaveStyle({ width: '0%' });
+          if (!event.dodged) expect(hpBar(event.target)).toHaveStyle({ width: '0%' });
+          if (message === copy.dodge) earlyRepeatedDodge++;
           expect(within(log).getByText(copy.hits[index] ?? '', { exact: true })).toBeVisible();
-        } else if (event.damageType === 'cold') {
-          cold++;
+        } else if (event.damageType === 'lightning') {
+          laterHits++;
           expect(event).toMatchObject({ simClockMs: 3880, amount: 61, dodged: false });
-          expect(life).toBe(41); expect(message).toBe(copy.coldHit);
+          expect(life).toBe(32); expect(message).toBe(copy.laterHit);
           expect(hpBar(event.target)).toHaveStyle({ width: '0%' });
-          expect(within(log).getByText(copy.coldHit, { exact: true })).toBeVisible();
+          expect(within(log).getByText(copy.laterHit, { exact: true })).toBeVisible();
         } else {
           dodges++;
           expect(event).toMatchObject({ simClockMs: 3880, amount: 0, dodged: true });
           expect(life).toBeGreaterThan(0); expect(message).toBe(copy.dodge);
-          expect(hpBar(event.target).getAttribute('style')).toBe(hpStyles.get(event.target));
         }
+      }
+      if (event.kind === 'dot' && event.target.includes('fallen-2-')) {
+        poisonLoss += event.amount;
+        expect(event.amount).toBe(event.simClockMs === 3080 ? 2 : 1);
+        const message = locale === 'en'
+          ? `Fallen C takes ${String(event.amount)} damage over time.`
+          : `堕落者 C 因持续伤害受到 ${String(event.amount)} 点伤害。`;
+        expect(next.log.find(entry => entry.id === `${String(idx)}-dot`)?.message).toBe(message);
+        expect(within(log).getByText(message, { exact: true })).toBeVisible();
       }
       if ('target' in event) {
         const life = priorLife.get(event.target);
@@ -202,13 +216,21 @@ it.each(['zh-CN', 'en'] as const)('renders real scheduled Mage playback and elem
         }
       }
     }
-    // The DOM presents the complete consumed group, including every same-time dodge.
-    expect(within(log).queryAllByText(copy.dodge, { exact: true })).toHaveLength(dodges);
+    // Validate final HP for the entire consumed group: a missed bolt can be
+    // followed by a successful same-time bolt against that very same target.
+    for (const enemy of next.enemyTeam) {
+      expect(enemy.life).toBe(priorLife.get(enemy.id));
+      const width = `${Math.max(0, Math.min(100, enemy.life / enemy.stats.lifeMax * 100)).toFixed(2)}%`;
+      expect(hpBar(enemy.id)).toHaveStyle({ width });
+    }
+    expect(within(log).queryAllByText(copy.dodge, { exact: true })).toHaveLength(dodges + earlyRepeatedDodge);
     expect(next.log.filter(entry => entry.type === 'damage' && bySource.has(entry.actorId)).map(entry => entry.id))
       .toEqual(events.slice(0, next.eventCursor).flatMap((event, idx) =>
         event.kind === 'damage' && bySource.has(event.source) ? [`${String(idx)}-damage`] : []));
   }
-  expect({ spawned, paid, hits, cold, dodges }).toEqual({ spawned: 4, paid: 1, hits: 4, cold: 1, dodges: 3 });
+  expect({ spawned, paid, hits, laterHits, dodges, earlyRepeatedDodge })
+    .toEqual({ spawned: 4, paid: 1, hits: 4, laterHits: 1, dodges: 3, earlyRepeatedDodge: 1 });
+  expect(poisonLoss).toBe(3);
   const stopped = useCombatStore.getState();
   expect(events[stopped.eventCursor]?.simClockMs).toBe(4000);
   expect(stopped.playbackComplete).toBe(false);

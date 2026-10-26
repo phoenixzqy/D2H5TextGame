@@ -878,7 +878,7 @@
     },
     "raise-skeletal-mage": {
       "name": "Raise Skeletal Mage",
-      "desc": "Each fresh batch assigns mages Fire → Cold → Lightning → Poison, repeating from Fire. Their basic attacks deal direct damage of their assigned element. No corpse is required; these attacks do not automatically apply statuses or damage over time."
+      "desc": "Each fresh batch assigns mages Fire → Cold → Lightning → Poison, repeating from Fire. Basic attacks deal their assigned element; no corpse is required. Landed Fire bolts apply 3s Burn (10% of hit damage/s/stack, max 5); Cold applies 2s Chill (−50% Attack Speed); Lightning attempts 1s Paralyze (50% rejection if repeated within 5s); Poison applies 5s Poison (5% of hit damage/s/stack, max 10). Each damage-over-time status retains the first hit rate until it ends, rounded down to at least 1 damage/s per stack. Further Burn or Poison hits add stacks up to the cap and refresh the duration. On death, half the Poison stacks (rounded down, minimum 1) spread to other living enemies for 5s at the captured rate."
     },
     "summon-resist": {
       "name": "Summon Resist",

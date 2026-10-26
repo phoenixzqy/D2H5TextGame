@@ -27,7 +27,7 @@ const EPOCH = 1792454400000;
 const COPY = {
   en: {
     mage: 'Skeletal Mage',
-    description: 'Each fresh batch assigns mages Fire → Cold → Lightning → Poison, repeating from Fire. Their basic attacks deal direct damage of their assigned element. No corpse is required; these attacks do not automatically apply statuses or damage over time.',
+    description: 'Each fresh batch assigns mages Fire → Cold → Lightning → Poison, repeating from Fire. Basic attacks deal their assigned element; no corpse is required. Landed Fire bolts apply 3s Burn (10% of hit damage/s/stack, max 5); Cold applies 2s Chill (−50% Attack Speed); Lightning attempts 1s Paralyze (50% rejection if repeated within 5s); Poison applies 5s Poison (5% of hit damage/s/stack, max 10). Each damage-over-time status retains the first hit rate until it ends, rounded down to at least 1 damage/s per stack. Further Burn or Poison hits add stacks up to the cap and refresh the duration. On death, half the Poison stacks (rounded down, minimum 1) spread to other living enemies for 5s at the captured rate.',
     preparation: 'fill missing living summons up to 4 for one payment of 22 MP for the whole batch.',
     bolts: [/^(?:Skeletal Mage attacks .+ for [1-9]\d* fire damage\.|CRITICAL! Skeletal Mage hits .+ for [1-9]\d* fire damage!)$/,
       /^(?:Skeletal Mage attacks .+ for [1-9]\d* cold damage\.|CRITICAL! Skeletal Mage hits .+ for [1-9]\d* cold damage!)$/,
@@ -36,7 +36,7 @@ const COPY = {
   },
   'zh-CN': {
     mage: '骷髅法师',
-    description: '每批新准备的法师按火焰→冰冷→闪电→毒素循环分配元素，每批从火焰开始。普通攻击造成所分配元素的直接伤害。无需尸体；这些攻击不会自动附加状态或持续伤害。',
+    description: '每批新准备的法师按火焰→冰冷→闪电→毒素循环分配元素，每批从火焰开始。普通攻击造成所分配元素的伤害，无需尸体。火焰命中附加3秒燃烧（每层每秒为命中伤害的10%，最多5层）；冰冷命中附加2秒冰冷（攻击速度−50%）；闪电命中尝试附加1秒麻痹（5秒内再次尝试有50%概率被抵抗）；毒素命中附加5秒中毒（每层每秒为命中伤害的5%，最多10层）。每种持续伤害在状态结束前沿用首次命中的每层伤害，向下取整且最低每秒1点。再次命中叠加燃烧或中毒至上限，并刷新持续时间。目标死亡时，一半中毒层数（向下取整，最低1层）以原每层伤害传播给其他存活敌人，持续5秒。',
     preparation: '以整批共 22 点法力补足存活召唤物，最多 4 名。',
     bolts: [/^(?:骷髅法师 普攻 .+，造成 [1-9]\d* 点火焰伤害。|暴击！骷髅法师 对 .+ 造成 [1-9]\d* 点火焰伤害！)$/,
       /^(?:骷髅法师 普攻 .+，造成 [1-9]\d* 点冰冷伤害。|暴击！骷髅法师 对 .+ 造成 [1-9]\d* 点冰冷伤害！)$/,
@@ -216,7 +216,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       expect(configured.player.comboOrder.filter(Boolean)).toEqual([MAGE]);
       expect(configured.inventory).toEqual(fixture.inventory);
       await nav(page, 'map');
-      const enter = page.getByTestId('sub-area-row-a1-blood-moor').getByRole('button', { name: /^(Enter|进入)$/ });
+      const enter = page.getByTestId('sub-area-row-a1-catacombs').getByRole('button', { name: /^(Enter|进入)$/ });
       await minTarget(enter); await enter.click();
       await expect(page.getByTestId('combat-screen')).toBeVisible();
       const cards = page.locator('[data-kind="summon"]');
@@ -247,10 +247,27 @@ for (const locale of ['zh-CN', 'en'] as const) {
       const log = page.getByTestId('combat-log');
       await expect(log).toHaveAttribute('role', 'log'); await expect(log).toHaveAttribute('aria-live', 'polite');
       let observed: string[] = [];
+      const effectNames = locale === 'en' ? ['Ignite', 'Chill', 'Paralyze', 'Poison']
+        : ['点燃', '冰冷', '麻痹', '中毒'];
+      const livingEffects = new Map<string, { id: string; hpPercent: number; labels: string[] }>();
+      const dotPattern = locale === 'en' ? /^.+ takes [1-9]\d* damage over time\.$/
+        : /^.+ 因持续伤害受到 [1-9]\d* 点伤害。$/;
       await expect.poll(async () => {
         await expect(page.getByTestId('wave-counter')).toHaveText(/^Wave 1 \/|^第 1 波/);
         observed = await log.locator(':scope > div > span:last-child').allTextContents();
-        return copy.bolts.every(pattern => observed.some(message => pattern.test(message)));
+        const living = await page.locator('[data-side-testid="combat-enemy-card"]:not([data-dead])')
+          .evaluateAll(elements => elements.map(element => ({
+            id: element.getAttribute('data-testid') ?? '',
+            hpPercent: Number.parseFloat(element.querySelector<HTMLElement>('.bg-red-600')?.style.width ?? '0'),
+            labels: Array.from(element.querySelectorAll('[data-testid="unit-effect-chips"] > span'))
+              .map(chip => chip.getAttribute('title') ?? '')
+          })));
+        for (const name of effectNames) {
+          const target = living.find(unit => unit.hpPercent > 0 && unit.hpPercent < 100 && unit.labels.includes(name));
+          if (target && !livingEffects.has(name)) livingEffects.set(name, target);
+        }
+        return copy.bolts.every(pattern => observed.some(message => pattern.test(message))) &&
+          effectNames.every(name => livingEffects.has(name)) && observed.some(message => dotPattern.test(message));
       }, { timeout: 20_000, intervals: [10, 20, 50] }).toBe(true);
       await page.getByRole('button', { name: names.pause }).click();
       await expect(page.getByRole('button', { name: names.resume })).toHaveAttribute('aria-pressed', 'true');
@@ -261,8 +278,10 @@ for (const locale of ['zh-CN', 'en'] as const) {
       await evidence(info, 'observed-playback.json', JSON.stringify({
         fixture: 'unearned imported current-version native save; native Mage combo only; no fixture skills', epoch: EPOCH,
         seedPolicy: 'native area and Date.now hash; no injected seed and no seed7 oracle',
-        identities, elemental, log: observed, viewport: { width, height }, locale,
-        limits: 'Shared log names do not expose source IDs. Exact ID/type/HP mapping is covered by engine/store/mounted tests.'
+        identities, elemental, livingEffects: Object.fromEntries(livingEffects),
+        positivePeriodicMessages: observed.filter(message => dotPattern.test(message)),
+        log: observed, viewport: { width, height }, locale, area: 'areas/act1-catacombs',
+        limits: 'Living effect chips and reduced positive HP are observed through the ordinary DOM; periodic loss has a positive native log witness. Exact source IDs, per-tick HP and controls are covered by engine/store/mounted tests.'
       }, null, 2));
       await noOverflow(page); await visiblePart(page, info, 'elemental-log', log);
       for (const [index, pattern] of copy.bolts.entries()) {
