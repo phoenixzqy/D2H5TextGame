@@ -395,6 +395,10 @@
     "appliesStatus": [
       "terror"
     ],
+    "statusEffect": {
+      "durationMs": 1000,
+      "bossDurationMultiplier": 0.5
+    },
     "scaling": {
       "cooldownPerLevel": -0.05
     }

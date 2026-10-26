@@ -111,6 +111,8 @@ export interface BuffEffect {
 
 /** Debuff primitive (applies a status to enemies, no damage). */
 export interface DebuffEffect {
+  /** Complete authored finite fear, captured only at actual payment. */
+  readonly terror?: true;
   /** Complete authored damage curse; copied into a finite status only on payment. */
   readonly damageCurse?: 'iron-maiden' | 'life-tap' | 'lower-resist';
   readonly kind: 'debuff';

@@ -86,6 +86,7 @@ import { HYDRA_DEFINITION, isHydraSkill, matchesHydra, hydraRank, buildHydra } f
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
 import { activeDecrepify, paidDecrepify } from './decrepify-definition';
 import { activeWeaken, paidWeaken } from './weaken-definition';
+import { activeTerror } from './terror-definition';
 import { activeDamageCurse, paidDamageCurse } from './damage-curse-definition';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
@@ -1696,6 +1697,7 @@ function applyEffect(
             ...(effect.damageCurse === effect.statusId
               ? { damageCurse: paidDamageCurse(effect.damageCurse) } : {}),
             ...(effect.weaken === true && effect.statusId === 'weaken' ? { weaken: paidWeaken() } : {}),
+            ...(effect.terror === true && effect.statusId === 'terror' ? { terror: true as const } : {}),
             ...(effect.decrepify === true && effect.statusId === 'decrepify' ? { decrepify: paidDecrepify() } : {}),
             ...(effect.battleCry === true && effect.statusId === 'battle-cry'
               ? { battleCry: paidBattleCry(skillLevel, paidRankBonus(state, acting)) } : {}),
@@ -2480,7 +2482,7 @@ function actionIsInterrupted(state: State, unit: CombatUnit): boolean {
   const blocking = activeStatAura(state.statAura, unit.id, state.units)?.preventStunInterruption
     ? { ...active, statuses: active.statuses.filter(status => status.id !== 'stun') }
     : active;
-  return isStunned(blocking) || isImmobilized(blocking);
+  return isStunned(blocking) || isImmobilized(blocking) || activeTerror(blocking, state.simClockMs);
 }
 
 /** Cancel at onset, including controls shorter than the interval between pulses. */

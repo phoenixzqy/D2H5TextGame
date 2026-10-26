@@ -16,6 +16,7 @@ import paladinSkills from '../../data/skills/paladin.json';
 import sorceressSkills from '../../data/skills/sorceress.json';
 import type { AoeShape } from '../combat/grid';
 import { isDecrepifyDefinition } from '../combat/decrepify-definition';
+import { isTerrorDefinition } from '../combat/terror-definition';
 import { isWeakenDefinition } from '../combat/weaken-definition';
 import { damageCurseId } from '../combat/damage-curse-definition';
 import type { DamageType } from '../types/attributes';
@@ -293,14 +294,16 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
     const decrepify = skill.id === 'skills-necromancer-decrepify' && isDecrepifyDefinition(skill);
     const weaken = skill.id === 'skills-necromancer-weaken' && isWeakenDefinition(skill);
     const damageCurse = damageCurseId(skill);
+    const terror = skill.id === 'skills-necromancer-terror' && isTerrorDefinition(skill);
     effects.push({
       kind: 'debuff',
       statusId: skill.appliesStatus[0],
-      ...((warcry || decrepify || weaken || damageCurse) && skill.statusEffect?.durationMs !== undefined
+      ...((warcry || decrepify || weaken || damageCurse !== undefined || terror) && skill.statusEffect?.durationMs !== undefined
         ? { durationMs: skill.statusEffect.durationMs } : {}),
       ...(skill.id === 'skills-barbarian-battle-cry' ? { battleCry: true as const } : {}),
       ...(decrepify ? { decrepify: true as const } : {}),
       ...(weaken ? { weaken: true as const } : {}),
+      ...(terror ? { terror: true as const } : {}),
       ...(damageCurse ? { damageCurse } : {}),
       ...(amplifyMetadata?.durationMs !== undefined ? { durationMs: amplifyMetadata.durationMs } : {}),
       ...(amplifyMetadata?.physicalResistReductionPct !== undefined
