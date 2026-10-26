@@ -308,6 +308,10 @@
     "appliesStatus": [
       "dim-vision"
     ],
+    "statusEffect": {
+      "durationMs": 3000,
+      "physicalHitChanceReductionPct": 50
+    },
     "scaling": {
       "cooldownPerLevel": -0.05,
       "costPerLevel": -0.2
