@@ -1,0 +1,109 @@
+{
+  "head": "7b27fb0463cd8d6b9bfdbcaf03e1fd370c3c7b9f",
+  "files": {
+    "src/data/schema/skill.schema.json": {
+      "sha256": "2105ee90ed90369ba2379338a028b71662edf65597a03d0d904dc9d2925d8b8b",
+      "bytes": 211581
+    },
+    "src/data/skills/necromancer.json": {
+      "sha256": "829abff754952321fdb96897eadd479097f9e01ddd0bf50e8070481111acf520",
+      "bytes": 21228
+    },
+    "src/engine/combat/combat.ts": {
+      "sha256": "664ecc3c5471fd88301400124f42cc006067f9c6b3cf3044c2fb0180fb3a3f54",
+      "bytes": 163707
+    },
+    "src/engine/combat/dim-vision-consumers.test.ts": {
+      "sha256": "18c4840a03e30bba0797a9c05cb14288fcc157a208051f216729796b9f9ed8b2",
+      "bytes": 9935
+    },
+    "src/engine/combat/dim-vision-definition.test.ts": {
+      "sha256": "08392be4002ecaffe32c9c04c07f635f4ce4146dc2cb4b3979e8d9cf755d30b0",
+      "bytes": 4079
+    },
+    "src/engine/combat/dim-vision-definition.ts": {
+      "sha256": "29f8e6a118ea7e23028548d7c79281fa533385c9b056a7a54c1e3e54f7793867",
+      "bytes": 2697
+    },
+    "src/engine/combat/status.ts": {
+      "sha256": "9496ec366dfff99e6cb55282bedf1f7c9cd67ae18a0615c7b2ad21119d6257a1",
+      "bytes": 20898
+    },
+    "src/engine/combat/types.ts": {
+      "sha256": "700d77aae8f8c5b4d374f5c48e7a5b3892bd119863ab44564f926f456fa30c92",
+      "bytes": 16047
+    },
+    "src/engine/skills/dataCatalog.ts": {
+      "sha256": "d700b4fcba5e6c9ddd66b99b5cfba3ff0ee49d27158eea44fd3ca53f2b4c2869",
+      "bytes": 17799
+    },
+    "src/engine/skills/displayStats.dim-vision.test.ts": {
+      "sha256": "0065f3386e565496e85f8f18c290be300c41e0c3c306ff7d6f85f0f75b380754",
+      "bytes": 1655
+    },
+    "src/engine/skills/displayStats.ts": {
+      "sha256": "db6e0c324e6c8525d1e160b5444fd9f9d7bbaf38475bfce7831ed39d89e73181",
+      "bytes": 46394
+    },
+    "src/engine/skills/effects.ts": {
+      "sha256": "70decf1b41a80a93e7dd0b6710180fd8300f1faad44450091202c699c2f3bace",
+      "bytes": 9352
+    },
+    "src/engine/types/skills.ts": {
+      "sha256": "b416712fd07aaa9f7c31013e704b8edb395cee297baee326b7f92423519164b5",
+      "bytes": 17968
+    },
+    "src/features/skills/SkillsScreen.dim-vision.test.tsx": {
+      "sha256": "a4ca88869daa26a9fb95986527be2bc175b314674860ff9e96798a4b72705806",
+      "bytes": 2654
+    },
+    "src/features/skills/SkillsScreen.tsx": {
+      "sha256": "9c06cc4d0a8dd83a5e3c1b9cb42a62611ae1433353af95a189c999d02b18f43a",
+      "bytes": 102947
+    },
+    "src/i18n/locales/en/skills.json": {
+      "sha256": "27dd938efcf34db7e2fce38afae271a768063531ca2e0c6db83b5676adbb9499",
+      "bytes": 98393
+    },
+    "src/i18n/locales/zh-CN/skills.json": {
+      "sha256": "91b79f565414f6d0f07bb4cfdc1359318e560d676a7fcfe95f02b1134447a207",
+      "bytes": 95172
+    },
+    "src/stores/necromancer-dim-vision-native.test.ts": {
+      "sha256": "e07a7e2ed1eefa3e1c57c72016c55d65d0d01815941404c4e3094737a4e6f6dd",
+      "bytes": 7150
+    },
+    "src/stores/necromancer-dim-vision.causal.test.ts": {
+      "sha256": "441a179df22cc30959f789ca4688262cb8769d02b609e41bcbca434d8ca9e715",
+      "bytes": 4588
+    },
+    "tests/pwa/dim-vision.config.ts": {
+      "sha256": "89275cb06a27786317cc75cc32f413dc013c438100b9a9c2bcacff2ebf298851",
+      "bytes": 1390
+    },
+    "tests/pwa/dim-vision.spec.ts": {
+      "sha256": "fbf0ad46aa32131308e35763ab0e3f270f48c9cfd29a3b3060a70cfa239dbd79",
+      "bytes": 10526
+    },
+    "package.json": {
+      "sha256": "4296abbd56d3b0f3cbfab2c9b094a19f3b4eca409222af80e576148cac7b5897",
+      "bytes": 2972
+    },
+    "package-lock.json": {
+      "sha256": "f6495e520df58ddaf1fceb8d92f1088aa8e4f58b810db28e5e28ff27d3791b5f",
+      "bytes": 395545
+    },
+    "vite.config.ts": {
+      "sha256": "70543a4e774af047f4f560acd8426e12fee4e9ecd6411a28fca621d19dec588c",
+      "bytes": 9508
+    },
+    "vitest.config.ts": {
+      "sha256": "e72fd5eb0460816e70bc1f889aa0b2d151bd7aee9ba17a5fe40cee6156d477fd",
+      "bytes": 1374
+    },
+    "vitest.workspace.ts": {
+      "sha256": "0208c27b6ef042b71a6d2e0a0759d373114511b6b663285cb66c6025cdc79f45",
+      "bytes": 2669
+    }
+  }
+}

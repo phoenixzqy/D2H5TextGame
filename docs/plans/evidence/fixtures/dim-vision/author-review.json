@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-26",
+  "head": "7b27fb0463cd8d6b9bfdbcaf03e1fd370c3c7b9f",
+  "reviewer": "root author; not independent approval",
+  "scope": "BUG253 Dim Vision source/tests/config and finite provisional D04 contract",
+  "securityCheck": {
+    "verdict": "pass",
+    "scope": "First-party local finite curse/data/schema/tests; no remote review content",
+    "findings": [],
+    "constraints": "No credential/network/dependency/CI/permission/decoder weakening or new persisted authority."
+  },
+  "axes": {
+    "correctness": "JSON duration/potency validated and copied at actual payment; exact [onset,expiry),finite interval,one stack,correct potency and Cleansing/rebase checked. Shared Physical/Thorns hit probability uses max with Raven. Successful hit magnitude,other direct types,periodic HP/reflection and no-extra-RNG controls reviewed. Native ownership/payment/wave freeze/import and both locales covered.",
+    "readability": "Named finite definition/helper follows neighboring paid-curse pattern; source increments <=5 paths; no unrelated refactor or suppression.",
+    "architecture": "Pure engine implementation uses the existing common damage-input boundary and transient status transport. No save field/version or dependency added.",
+    "security": "Canonical schema/copy boundary rejects incomplete or invalid capability. Bare marker alone confers no accuracy power. Synthetic import gear is test-only scaffolding.",
+    "performance": "Constant-time scalar comparisons inside existing bounded status scans; no new scheduled action, independent roll or unbounded collection. Load-time canonical validator follows existing architecture. Global performance gate remains unproven."
+  },
+  "testEvidence": "89 focused tests/six files incl literal first seeded draw against.35/.85 at exact onset/expiry,eight seeds,seven direct types,DoT integrals,actual reflection,invalid/missing/future/overlong payload,Raven max,refresh,immutable copy,playback and native lifecycle. Browser4/4 with eight exact seven-domain pairs. Existing rounded cooldown and exact optional fixture corrections independently justified; original faults retained.",
+  "rootCauseVerdict": "Shared missing accuracy consumer fixed once; own status identity and paid finite potency retained. No alias-only workaround or test weakening.",
+  "localBlockingSourceFindings": [],
+  "independentAcceptance": "open",
+  "earnedBalance": "open",
+  "combinedUnitSuite": {
+    "passedTests": 17874,
+    "passedFiles": 819,
+    "existingOptInSkips": 2,
+    "commandDurationSeconds": 827.397,
+    "exitCode": 0,
+    "logSha256": "31cb97a094feabca860325173ecc2172283329f5f4300a94afabe984d5ab960f"
+  },
+  "visualAcceptance": "bounded by visual-review.json; no broad UX/a11y/performance acceptance"
+}

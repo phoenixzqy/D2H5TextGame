@@ -1,0 +1,24 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50-retained.tar.xz",
+  "archiveSha256": "ab2a1d2ee6595d450d1f447483ec653bf3544a29ef04aadc08e63573cdccd4c8",
+  "archiveMembersReadback": 1463,
+  "removedFileCount": 2225,
+  "removedDirectoryCount": 59,
+  "remaining": [],
+  "failures": [],
+  "driver": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50-retain-and-clean.py",
+  "driverRemovalPending": false,
+  "knownChildrenAbsent": true,
+  "readableConsumers": [],
+  "restrictedProcEntries": 30,
+  "port4539": "bind available; no processes signaled",
+  "retainedPaths": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50-retained.tar.xz",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50-retention.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50-deletion-manifest.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50-cleanup.json"
+  ],
+  "retentionOwner": "root",
+  "retentionCondition": "BUG253/full-v1 evidence consumers finish",
+  "driverRemovedVerified": true
+}

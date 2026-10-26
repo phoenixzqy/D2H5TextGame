@@ -1,0 +1,10 @@
+{
+  "fullManifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50-deletion-manifest.json",
+  "sha256": "9c39d4b36c662217c47478975575d5ac098053b197d3fb31cc5e788dfc0928fd",
+  "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50",
+  "taskFileCount": 1463,
+  "buildRoot": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
+  "buildFileCount": 762,
+  "driverRemovedVerified": true,
+  "archiveSha256": "ab2a1d2ee6595d450d1f447483ec653bf3544a29ef04aadc08e63573cdccd4c8"
+}

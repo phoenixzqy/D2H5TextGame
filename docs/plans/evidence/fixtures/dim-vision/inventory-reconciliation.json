@@ -1,0 +1,42 @@
+{
+  "newBoundedCredits": 1,
+  "changedDataId": "skills-necromancer-dim-vision",
+  "beforeSha256": "97bc1692001ac0fa4805e340c85486d58e8ec2bc2c8aae0110ae60fec62cc84a",
+  "afterSha256": "82430154ed321f68491a3efc1d644aae4c5846d653e14295da59070194d56b59",
+  "beforeRow": {
+    "class": "necromancer",
+    "data_id": "skills-necromancer-dim-vision",
+    "runtime_id": "necromancer.dim_vision",
+    "trigger": "active",
+    "adapter_route": "debuff",
+    "declared_statuses": "dim-vision",
+    "source": "src/data/skills/necromancer.json",
+    "risk_flags": "pure-debuff-consumer-not-found-in-audit",
+    "behavior_verification": "unverified",
+    "contract_evidence": ""
+  },
+  "afterRow": {
+    "class": "necromancer",
+    "data_id": "skills-necromancer-dim-vision",
+    "runtime_id": "necromancer.dim_vision",
+    "trigger": "active",
+    "adapter_route": "debuff",
+    "declared_statuses": "dim-vision",
+    "source": "src/data/skills/necromancer.json",
+    "risk_flags": "independent-design-qa-and-earned-balance-open",
+    "behavior_verification": "bounded-functional;independent-acceptance-open",
+    "contract_evidence": "docs/plans/decisions/D04-dim-vision-v1.md;docs/plans/evidence/d04-dim-vision.md;production/bugs/BUG-253-apply-dim-vision-blindness.md"
+  },
+  "headerIdsOrderAnd212OtherRawRowsExact": true,
+  "rows": 213,
+  "counts": {
+    "unverified": 49,
+    "bounded-functional;independent-acceptance-open": 159,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "necromancerBounded": 20,
+  "independentAcceptance": "open",
+  "earnedBalance": "open"
+}

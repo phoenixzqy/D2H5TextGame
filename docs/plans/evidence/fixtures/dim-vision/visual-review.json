@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-26",
+  "reviewer": "root author",
+  "inspectedOriginals": 8,
+  "allOriginalPngsInspected": true,
+  "images": [
+    {
+      "path": "dim-vision-desktop-en-dim-vision-preview.png",
+      "sha256": "1bfbeb7b1209c4a768e81a89dae8c01ef8c406aced25270524a08ac7f169137c",
+      "inspectedIndividually": true,
+      "observations": "Complete desktop rank20 panel is legible: own localized name, duration3s,50-point penalty,5MP,2s cooldown,MAX and requirements. Text wraps inside the panel."
+    },
+    {
+      "path": "dim-vision-desktop-en-victory.png",
+      "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e",
+      "inspectedIndividually": true,
+      "observations": "Element capture contains large black regions, sticky battle header/navigation and a clipped loot list. Victory title/return control and cast/chip are not visible. Do not use this PNG as visual proof of those assertions; runtime locators and public-cast JSON are the separate evidence."
+    },
+    {
+      "path": "dim-vision-desktop-zh-CN-dim-vision-preview.png",
+      "sha256": "14cd36da026818737721a41ca49bc917c33346bf40d12563c5cb61da31bb0658",
+      "inspectedIndividually": true,
+      "observations": "Complete desktop rank20 panel is legible: own localized name, duration3s,50-point penalty,5MP,2s cooldown,MAX and requirements. Text wraps inside the panel."
+    },
+    {
+      "path": "dim-vision-desktop-zh-CN-victory.png",
+      "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4",
+      "inspectedIndividually": true,
+      "observations": "Element capture contains large black regions, sticky battle header/navigation and a clipped loot list. Victory title/return control and cast/chip are not visible. Do not use this PNG as visual proof of those assertions; runtime locators and public-cast JSON are the separate evidence."
+    },
+    {
+      "path": "dim-vision-mobile-en-dim-vision-preview.png",
+      "sha256": "54d529a482dad16cb1cc405b51cff448260b110a70cc10cb4d355d3ab3dc3e6e",
+      "inspectedIndividually": true,
+      "observations": "Visible mobile description/current values are legible and wrapped. Sticky character header clips the skill title/Maxed control; fixed navigation clips lower content. English Next/MAX remainder is below capture; Chinese MAX is visible. Screenshot alone does not prove all content simultaneously visible."
+    },
+    {
+      "path": "dim-vision-mobile-en-victory.png",
+      "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc",
+      "inspectedIndividually": true,
+      "observations": "Element capture contains large black regions, sticky battle header/navigation and a clipped loot list. Victory title/return control and cast/chip are not visible. Do not use this PNG as visual proof of those assertions; runtime locators and public-cast JSON are the separate evidence."
+    },
+    {
+      "path": "dim-vision-mobile-zh-CN-dim-vision-preview.png",
+      "sha256": "72343f19e112c0fe55d04283e78dfb55f8ee7b3f571b5e85327d71e3fc42585a",
+      "inspectedIndividually": true,
+      "observations": "Visible mobile description/current values are legible and wrapped. Sticky character header clips the skill title/Maxed control; fixed navigation clips lower content. English Next/MAX remainder is below capture; Chinese MAX is visible. Screenshot alone does not prove all content simultaneously visible."
+    },
+    {
+      "path": "dim-vision-mobile-zh-CN-victory.png",
+      "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2",
+      "inspectedIndividually": true,
+      "observations": "Element capture contains large black regions, sticky battle header/navigation and a clipped loot list. Victory title/return control and cast/chip are not visible. Do not use this PNG as visual proof of those assertions; runtime locators and public-cast JSON are the separate evidence."
+    }
+  ],
+  "limits": [
+    "No physical mobile-device inspection, screen reader, contrast audit or complete keyboard traversal.",
+    "Geometry asserts five viewport widths, absence of horizontal overflow and allocation height48px; does not audit every target.",
+    "Clipped/black-region element screenshots limit visual acceptance as described per original.",
+    "No numeric hit chance or campaign balance claim follows from a status chip, cast marker, victory or screenshot."
+  ]
+}

@@ -33,3 +33,7 @@ Duration/penalty are authored feel/curve knobs, unlock and existing resource/ran
 ## Author plan and security review
 
 Plan review: ready for local implementation with the numeric adaptation explicitly provisional. Shared hit resolution fixes the missing consumer once; retaining its own paid finite identity avoids aliasing away Cleansing/status feedback. Validate successful-hit damage and Raven nonstack controls, rather than counting markers as proof. Security check: pass for first-party local source/data/tests; no credential, network, dependency, CI, permission, decoder relaxation or persisted authority changes. Author review cannot substitute for independent acceptance. Remaining skills, earned builds/pacing, C2–C4/G0–G7 and complete private v1 remain open.
+
+## Local outcome and remaining acceptance
+
+Combined implementation `7b27fb04` satisfies the bounded local contract:89focused regressions,engine8,986/337,full17,874/819/two existing opt-in skips,final types/lint/official build/bridge/precache and production4/4pass. Eight exact seven-domain online/offline save pairs and all eight individually inspected PNGs retain explicit geometry/device/capture limits. [Final evidence](../evidence/d04-dim-vision.md) records originals,all25terminal receipts,source/build hashes,lossless retention and exact cleanup. Exactly one bounded skill credit;independent design/review/QA and earned balance are still open. This provisional adaptation does not establish full-v1 acceptance.

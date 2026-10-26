@@ -1,0 +1,502 @@
+{
+  "stats": {
+    "startTime": "2026-10-26T15:19:25.639Z",
+    "duration": 224072.353,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "runnerErrors": [],
+  "cases": [
+    {
+      "title": "Necromancer dim-vision public preview/cast/save/offline en",
+      "project": "dim-vision-desktop",
+      "status": "passed",
+      "retry": 0,
+      "durationMs": 57627,
+      "attachments": [
+        {
+          "name": "dim-vision-preview",
+          "contentType": "image/png",
+          "bytes": 44154,
+          "sha256": "1bfbeb7b1209c4a768e81a89dae8c01ef8c406aced25270524a08ac7f169137c"
+        },
+        {
+          "name": "geometry",
+          "contentType": "application/json",
+          "bytes": 354,
+          "sha256": "80aa867a2513ad4d8d53b6eadaf2fde88b9e41a55e107e1e4b59afcd5d0a40e5",
+          "data": [
+            {
+              "skill": "dim-vision",
+              "width": 360,
+              "height": 640,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 412,
+              "height": 915,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 640,
+              "height": 360,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 1280,
+              "height": 800,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 1920,
+              "height": 1080,
+              "allocationHeight": 48
+            }
+          ]
+        },
+        {
+          "name": "public-cast",
+          "contentType": "application/json",
+          "bytes": 120,
+          "sha256": "dc5f3535aeae6c986fb74cadec019ac4e074e30f78bcd082cb8a6425b5d6d364",
+          "data": {
+            "slug": "dim-vision",
+            "spellName": "Dim Vision",
+            "line": "05:00:00Curse Browser casts Dim Vision.",
+            "enemyChip": "Dim Vision"
+          }
+        },
+        {
+          "name": "victory",
+          "contentType": "image/png",
+          "bytes": 77333,
+          "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e"
+        },
+        {
+          "name": "online-save-pair",
+          "contentType": "application/json",
+          "bytes": 21284,
+          "sha256": "2115fe9a8692317b8b5581d7ff5dd2ce504c1f5eabca1008cee061d92518c156",
+          "equalDomains": {
+            "endgame": true,
+            "player": true,
+            "inventory": true,
+            "map": true,
+            "mercs": true,
+            "formation": true,
+            "meta": true
+          },
+          "versions": [
+            22,
+            22
+          ]
+        },
+        {
+          "name": "offline-save-pair",
+          "contentType": "application/json",
+          "bytes": 21284,
+          "sha256": "2115fe9a8692317b8b5581d7ff5dd2ce504c1f5eabca1008cee061d92518c156",
+          "equalDomains": {
+            "endgame": true,
+            "player": true,
+            "inventory": true,
+            "map": true,
+            "mercs": true,
+            "formation": true,
+            "meta": true
+          },
+          "versions": [
+            22,
+            22
+          ]
+        },
+        {
+          "name": "console-errors",
+          "contentType": "application/json",
+          "bytes": 32,
+          "sha256": "6e6f435f37b79e54f32f88137d263c2598f9bedc2b89e6c633013a48e8aec874",
+          "data": {
+            "errors": [],
+            "consoleErrors": []
+          }
+        }
+      ]
+    },
+    {
+      "title": "Necromancer dim-vision public preview/cast/save/offline zh-CN",
+      "project": "dim-vision-desktop",
+      "status": "passed",
+      "retry": 0,
+      "durationMs": 57661,
+      "attachments": [
+        {
+          "name": "dim-vision-preview",
+          "contentType": "image/png",
+          "bytes": 45483,
+          "sha256": "14cd36da026818737721a41ca49bc917c33346bf40d12563c5cb61da31bb0658"
+        },
+        {
+          "name": "geometry",
+          "contentType": "application/json",
+          "bytes": 354,
+          "sha256": "80aa867a2513ad4d8d53b6eadaf2fde88b9e41a55e107e1e4b59afcd5d0a40e5",
+          "data": [
+            {
+              "skill": "dim-vision",
+              "width": 360,
+              "height": 640,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 412,
+              "height": 915,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 640,
+              "height": 360,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 1280,
+              "height": 800,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 1920,
+              "height": 1080,
+              "allocationHeight": 48
+            }
+          ]
+        },
+        {
+          "name": "public-cast",
+          "contentType": "application/json",
+          "bytes": 132,
+          "sha256": "5174a4207202bd54712929be3bbf1d66dcbaf11b1875e3ffebc330aaf1e84a7f",
+          "data": {
+            "slug": "dim-vision",
+            "spellName": "昏暗灵视",
+            "line": "05:00:00Curse Browser 施放了 昏暗灵视。",
+            "enemyChip": "微暗灵视"
+          }
+        },
+        {
+          "name": "victory",
+          "contentType": "image/png",
+          "bytes": 67296,
+          "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4"
+        },
+        {
+          "name": "online-save-pair",
+          "contentType": "application/json",
+          "bytes": 21290,
+          "sha256": "703d61f7e7f38fb3296c8092fee3988ed584578df18c7a3ad9a62b033c6d090e",
+          "equalDomains": {
+            "endgame": true,
+            "player": true,
+            "inventory": true,
+            "map": true,
+            "mercs": true,
+            "formation": true,
+            "meta": true
+          },
+          "versions": [
+            22,
+            22
+          ]
+        },
+        {
+          "name": "offline-save-pair",
+          "contentType": "application/json",
+          "bytes": 21290,
+          "sha256": "703d61f7e7f38fb3296c8092fee3988ed584578df18c7a3ad9a62b033c6d090e",
+          "equalDomains": {
+            "endgame": true,
+            "player": true,
+            "inventory": true,
+            "map": true,
+            "mercs": true,
+            "formation": true,
+            "meta": true
+          },
+          "versions": [
+            22,
+            22
+          ]
+        },
+        {
+          "name": "console-errors",
+          "contentType": "application/json",
+          "bytes": 32,
+          "sha256": "6e6f435f37b79e54f32f88137d263c2598f9bedc2b89e6c633013a48e8aec874",
+          "data": {
+            "errors": [],
+            "consoleErrors": []
+          }
+        }
+      ]
+    },
+    {
+      "title": "Necromancer dim-vision public preview/cast/save/offline en",
+      "project": "dim-vision-mobile",
+      "status": "passed",
+      "retry": 0,
+      "durationMs": 51869,
+      "attachments": [
+        {
+          "name": "dim-vision-preview",
+          "contentType": "image/png",
+          "bytes": 169398,
+          "sha256": "54d529a482dad16cb1cc405b51cff448260b110a70cc10cb4d355d3ab3dc3e6e"
+        },
+        {
+          "name": "geometry",
+          "contentType": "application/json",
+          "bytes": 354,
+          "sha256": "80aa867a2513ad4d8d53b6eadaf2fde88b9e41a55e107e1e4b59afcd5d0a40e5",
+          "data": [
+            {
+              "skill": "dim-vision",
+              "width": 360,
+              "height": 640,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 412,
+              "height": 915,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 640,
+              "height": 360,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 1280,
+              "height": 800,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 1920,
+              "height": 1080,
+              "allocationHeight": 48
+            }
+          ]
+        },
+        {
+          "name": "public-cast",
+          "contentType": "application/json",
+          "bytes": 120,
+          "sha256": "dc5f3535aeae6c986fb74cadec019ac4e074e30f78bcd082cb8a6425b5d6d364",
+          "data": {
+            "slug": "dim-vision",
+            "spellName": "Dim Vision",
+            "line": "05:00:00Curse Browser casts Dim Vision.",
+            "enemyChip": "Dim Vision"
+          }
+        },
+        {
+          "name": "victory",
+          "contentType": "image/png",
+          "bytes": 179807,
+          "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc"
+        },
+        {
+          "name": "online-save-pair",
+          "contentType": "application/json",
+          "bytes": 21284,
+          "sha256": "2115fe9a8692317b8b5581d7ff5dd2ce504c1f5eabca1008cee061d92518c156",
+          "equalDomains": {
+            "endgame": true,
+            "player": true,
+            "inventory": true,
+            "map": true,
+            "mercs": true,
+            "formation": true,
+            "meta": true
+          },
+          "versions": [
+            22,
+            22
+          ]
+        },
+        {
+          "name": "offline-save-pair",
+          "contentType": "application/json",
+          "bytes": 21284,
+          "sha256": "2115fe9a8692317b8b5581d7ff5dd2ce504c1f5eabca1008cee061d92518c156",
+          "equalDomains": {
+            "endgame": true,
+            "player": true,
+            "inventory": true,
+            "map": true,
+            "mercs": true,
+            "formation": true,
+            "meta": true
+          },
+          "versions": [
+            22,
+            22
+          ]
+        },
+        {
+          "name": "console-errors",
+          "contentType": "application/json",
+          "bytes": 32,
+          "sha256": "6e6f435f37b79e54f32f88137d263c2598f9bedc2b89e6c633013a48e8aec874",
+          "data": {
+            "errors": [],
+            "consoleErrors": []
+          }
+        }
+      ]
+    },
+    {
+      "title": "Necromancer dim-vision public preview/cast/save/offline zh-CN",
+      "project": "dim-vision-mobile",
+      "status": "passed",
+      "retry": 0,
+      "durationMs": 52975,
+      "attachments": [
+        {
+          "name": "dim-vision-preview",
+          "contentType": "image/png",
+          "bytes": 160930,
+          "sha256": "72343f19e112c0fe55d04283e78dfb55f8ee7b3f571b5e85327d71e3fc42585a"
+        },
+        {
+          "name": "geometry",
+          "contentType": "application/json",
+          "bytes": 354,
+          "sha256": "80aa867a2513ad4d8d53b6eadaf2fde88b9e41a55e107e1e4b59afcd5d0a40e5",
+          "data": [
+            {
+              "skill": "dim-vision",
+              "width": 360,
+              "height": 640,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 412,
+              "height": 915,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 640,
+              "height": 360,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 1280,
+              "height": 800,
+              "allocationHeight": 48
+            },
+            {
+              "skill": "dim-vision",
+              "width": 1920,
+              "height": 1080,
+              "allocationHeight": 48
+            }
+          ]
+        },
+        {
+          "name": "public-cast",
+          "contentType": "application/json",
+          "bytes": 132,
+          "sha256": "5174a4207202bd54712929be3bbf1d66dcbaf11b1875e3ffebc330aaf1e84a7f",
+          "data": {
+            "slug": "dim-vision",
+            "spellName": "昏暗灵视",
+            "line": "05:00:00Curse Browser 施放了 昏暗灵视。",
+            "enemyChip": "微暗灵视"
+          }
+        },
+        {
+          "name": "victory",
+          "contentType": "image/png",
+          "bytes": 147581,
+          "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2"
+        },
+        {
+          "name": "online-save-pair",
+          "contentType": "application/json",
+          "bytes": 21290,
+          "sha256": "703d61f7e7f38fb3296c8092fee3988ed584578df18c7a3ad9a62b033c6d090e",
+          "equalDomains": {
+            "endgame": true,
+            "player": true,
+            "inventory": true,
+            "map": true,
+            "mercs": true,
+            "formation": true,
+            "meta": true
+          },
+          "versions": [
+            22,
+            22
+          ]
+        },
+        {
+          "name": "offline-save-pair",
+          "contentType": "application/json",
+          "bytes": 21290,
+          "sha256": "703d61f7e7f38fb3296c8092fee3988ed584578df18c7a3ad9a62b033c6d090e",
+          "equalDomains": {
+            "endgame": true,
+            "player": true,
+            "inventory": true,
+            "map": true,
+            "mercs": true,
+            "formation": true,
+            "meta": true
+          },
+          "versions": [
+            22,
+            22
+          ]
+        },
+        {
+          "name": "console-errors",
+          "contentType": "application/json",
+          "bytes": 32,
+          "sha256": "6e6f435f37b79e54f32f88137d263c2598f9bedc2b89e6c633013a48e8aec874",
+          "data": {
+            "errors": [],
+            "consoleErrors": []
+          }
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "cases": 4,
+    "retries": 0,
+    "skips": 0,
+    "flaky": 0,
+    "actualLocalizedCasts": 4,
+    "actualLocalizedEnemyChips": 4,
+    "sevenDomainPairs": 8,
+    "actualOfflineContinues": 4,
+    "geometryObservations": 20,
+    "attachedOriginalPngs": 8
+  },
+  "limits": "Synthetic public imports and equipped pools; no earned balance or numeric hit-probability proof. Offline proof checks response.fromServiceWorker in network-disabled activated-controller contexts. Browser automation uses desktop Chromium and Pixel5 device context, not physical devices."
+}

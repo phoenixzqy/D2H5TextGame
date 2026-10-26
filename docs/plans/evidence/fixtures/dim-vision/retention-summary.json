@@ -1,0 +1,14 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50-retained.tar.xz",
+  "archiveSha256": "ab2a1d2ee6595d450d1f447483ec653bf3544a29ef04aadc08e63573cdccd4c8",
+  "archiveBytes": 38129000,
+  "verifiedMembers": 1463,
+  "uncompressedBytes": 48090902,
+  "owner": "root",
+  "consumers": [
+    "BUG253",
+    "full private v1 acceptance"
+  ],
+  "removeWhen": "Root removes retained archive and sidecars only after all named evidence consumers finish.",
+  "losslessReadback": true
+}

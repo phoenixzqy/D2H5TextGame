@@ -1,0 +1,92 @@
+{
+  "head": "7b27fb0463cd8d6b9bfdbcaf03e1fd370c3c7b9f",
+  "files": {
+    "author-review.json": {
+      "sha256": "0bd9a58393222e3f1da6a68df7f1bd5afa72f0cfb29f6f3f9dccfa57b5b71ea4",
+      "bytes": 2765
+    },
+    "browser-audit.json": {
+      "sha256": "4ea64da87cb07d5acbcc97d3275ac6894bbcdd46a5b5db2f965d9bdac33ad299",
+      "bytes": 14613
+    },
+    "build-manifest.json": {
+      "sha256": "bd3e8f7e828fcffad505d0cddf88f15ba870c0a31f171e9f894d84cc18a73043",
+      "bytes": 132364
+    },
+    "cleanup.json": {
+      "sha256": "d4d6cde025d5d793127b237a2cc454b2c0918328cdc6b03c2e587630d0a0ea80",
+      "bytes": 1157
+    },
+    "commands.json": {
+      "sha256": "bb89118211c9b16fc1a3a93c166c1148281914ab7f007e58fef985fe5e540f51",
+      "bytes": 10968
+    },
+    "deletion-summary.json": {
+      "sha256": "ae46e690e5715baf901ab2690c5e3d1d1575a7d72e409cddae20269e4757a641",
+      "bytes": 565
+    },
+    "dim-vision-desktop-en-dim-vision-preview.png": {
+      "sha256": "1bfbeb7b1209c4a768e81a89dae8c01ef8c406aced25270524a08ac7f169137c",
+      "bytes": 44154
+    },
+    "dim-vision-desktop-en-victory.png": {
+      "sha256": "69030a3c3c0992022243f3e728af0f9ab15551e35b714e457d759a542a46602e",
+      "bytes": 77333
+    },
+    "dim-vision-desktop-zh-CN-dim-vision-preview.png": {
+      "sha256": "14cd36da026818737721a41ca49bc917c33346bf40d12563c5cb61da31bb0658",
+      "bytes": 45483
+    },
+    "dim-vision-desktop-zh-CN-victory.png": {
+      "sha256": "cd24ea21f8c37272fa23ada145dcd36bd9105fd425b15bd19f776152e3e923c4",
+      "bytes": 67296
+    },
+    "dim-vision-mobile-en-dim-vision-preview.png": {
+      "sha256": "54d529a482dad16cb1cc405b51cff448260b110a70cc10cb4d355d3ab3dc3e6e",
+      "bytes": 169398
+    },
+    "dim-vision-mobile-en-victory.png": {
+      "sha256": "3b9573391252b4cb87f842fac94275c5e32662770c87d1c8d6eaa1780d50b0cc",
+      "bytes": 179807
+    },
+    "dim-vision-mobile-zh-CN-dim-vision-preview.png": {
+      "sha256": "72343f19e112c0fe55d04283e78dfb55f8ee7b3f571b5e85327d71e3fc42585a",
+      "bytes": 160930
+    },
+    "dim-vision-mobile-zh-CN-victory.png": {
+      "sha256": "8c747a22875eb00854fd1a87ac2903fbb3ccf1b04515acd5f553d823ceb00fa2",
+      "bytes": 147581
+    },
+    "final-audit.json": {
+      "sha256": "5e988b7c8fe398df3670e2ab985db1b0239310870ca93e30532d9c317fc47368",
+      "bytes": 5154
+    },
+    "inventory-reconciliation.json": {
+      "sha256": "68e7c5717faad8f7ecedb1e1032890813f583935783ae0d1f64fec60c3861247",
+      "bytes": 1654
+    },
+    "process-cleanup-audit.json": {
+      "sha256": "365c96e20ccc61b96b62c9709c4ee024d19e9780d183955ba034d69ec5aba99f",
+      "bytes": 3623
+    },
+    "retention-summary.json": {
+      "sha256": "c58a3bf21d5375c5a9be1d135f1d919b1e7e3a6d5044c6ef1f291c26934c13ae",
+      "bytes": 510
+    },
+    "source-manifest.json": {
+      "sha256": "3b230efde40ea14ac21605db6e904c382ac6c141ae16c2c4ef425d07aa3a9373",
+      "bytes": 4070
+    },
+    "tooling-corrections.json": {
+      "sha256": "a6e986235330e09c66b9e83cec45bc660c49f312f4c03722b8e8d3cd01cca04c",
+      "bytes": 1539
+    },
+    "visual-review.json": {
+      "sha256": "1da53d8ce68177c15d805cb5d9e761ff103647fd85e11b15abb0282c99d60f1b",
+      "bytes": 4397
+    }
+  },
+  "owner": "root",
+  "rawEvidence": "See retention-summary.json for exact retained archive/sidecars and read-back verification.",
+  "limits": "Bounded author evidence only; independent/earned/full-v1 acceptance open."
+}

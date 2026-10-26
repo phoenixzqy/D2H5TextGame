@@ -1,0 +1,394 @@
+[
+  {
+    "label": "browser-discovery",
+    "command": [
+      "env",
+      "DIM_VISION_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50/production-dist",
+      "DIM_VISION_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50/browser-discovery-output",
+      "DIM_VISION_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50/browser-discovery-report.json",
+      "npx",
+      "playwright",
+      "test",
+      "--config",
+      "tests/pwa/dim-vision.config.ts",
+      "--list"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 1.527,
+    "logBytes": 504,
+    "logSha256": "e0ec0e12405329ab42a93c374326aeebdb1f7ea76a7a0274e2d3a9cf68bc11e5",
+    "terminal": true
+  },
+  {
+    "label": "browser-lint",
+    "command": [
+      "npx",
+      "eslint",
+      "--no-ignore",
+      "tests/pwa/dim-vision.spec.ts",
+      "tests/pwa/dim-vision.config.ts"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 7.472,
+    "logBytes": 472,
+    "logSha256": "8da2f5bc08cc4306650d55be006e12331cb435ed60887598d36cbd764e7dc069",
+    "terminal": true
+  },
+  {
+    "label": "browser-lint-v2",
+    "command": [
+      "npx",
+      "eslint",
+      "--no-ignore",
+      "tests/pwa/dim-vision.spec.ts",
+      "tests/pwa/dim-vision.config.ts"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 7.228,
+    "logBytes": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "terminal": true
+  },
+  {
+    "label": "browser",
+    "command": [
+      "env",
+      "DIM_VISION_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50/production-dist",
+      "DIM_VISION_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50/browser-output",
+      "DIM_VISION_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50/browser-report.json",
+      "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-dim-vision-gxjf3r50/runtime-tmp",
+      "npx",
+      "playwright",
+      "test",
+      "--config",
+      "tests/pwa/dim-vision.config.ts"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 226.198,
+    "logBytes": 1527,
+    "logSha256": "fdf47a2c4a6685f65e717b10030cf54318411d06acfbf364ea8a01ceb4ee67a7",
+    "terminal": true
+  },
+  {
+    "label": "build",
+    "command": [
+      "npm",
+      "run",
+      "check:test-bridge-shake"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 16.876,
+    "logBytes": 1954,
+    "logSha256": "b5b75a8cc2df2383da2e635db454f41cba257d119671fcf31a36c04bf61a9e89",
+    "terminal": true
+  },
+  {
+    "label": "consumer-lint-v2",
+    "command": [
+      "npx",
+      "eslint",
+      "src/engine/combat/dim-vision-consumers.test.ts"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 7.28,
+    "logBytes": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "terminal": true
+  },
+  {
+    "label": "definition",
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/combat/dim-vision-definition.test.ts",
+      "src/engine/combat/weaken-definition.test.ts",
+      "src/engine/skills/skill-validator.test.ts"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 2.966,
+    "logBytes": 1364,
+    "logSha256": "f6b3be9ba0ff8382f578a4719a339bd18c23a39275d3b69f7e26a36cc1c25e87",
+    "terminal": true
+  },
+  {
+    "label": "definition-v2",
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/combat/dim-vision-definition.test.ts",
+      "src/engine/combat/weaken-definition.test.ts",
+      "src/engine/skills/skill-validator.test.ts"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 2.679,
+    "logBytes": 508,
+    "logSha256": "547e0ab208849501c863dd9726f83f83e8c13e56fddec386ae21c25d66f47cd6",
+    "terminal": true
+  },
+  {
+    "label": "engine",
+    "command": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 172.838,
+    "logBytes": 71607,
+    "logSha256": "57e6d3cbe77aafe2d130cf6ffd2369fde17fec749f1f9896050fecc070a58019",
+    "terminal": true
+  },
+  {
+    "label": "explicit-lint",
+    "command": [
+      "npx",
+      "eslint",
+      "src/engine/combat/dim-vision-definition.ts",
+      "src/engine/combat/dim-vision-definition.test.ts",
+      "src/engine/combat/dim-vision-consumers.test.ts",
+      "src/stores/necromancer-dim-vision.causal.test.ts",
+      "src/engine/combat/combat.ts",
+      "src/engine/combat/status.ts",
+      "src/engine/combat/types.ts",
+      "src/engine/types/skills.ts",
+      "src/engine/skills/dataCatalog.ts",
+      "src/engine/skills/effects.ts"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 10.21,
+    "logBytes": 264,
+    "logSha256": "a42f7837686c86a84584bc8b1b7181f1bdebbe18200c3ab7d02d49de4fc3eb98",
+    "terminal": true
+  },
+  {
+    "label": "final-focused",
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/combat/dim-vision-definition.test.ts",
+      "src/engine/combat/dim-vision-consumers.test.ts",
+      "src/engine/skills/displayStats.dim-vision.test.ts",
+      "src/stores/necromancer-dim-vision.causal.test.ts",
+      "src/stores/necromancer-dim-vision-native.test.ts",
+      "src/features/skills/SkillsScreen.dim-vision.test.tsx"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 13.368,
+    "logBytes": 757,
+    "logSha256": "91f00e4feec8fd1c51f4ecd60016e7ddb4bc3309f1826a2728b6c396de61b754",
+    "terminal": true
+  },
+  {
+    "label": "focused",
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/combat/dim-vision-definition.test.ts",
+      "src/engine/combat/dim-vision-consumers.test.ts",
+      "src/stores/necromancer-dim-vision.causal.test.ts",
+      "src/engine/combat/weaken-consumers.test.ts",
+      "src/engine/combat/druid-summons.test.ts"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 8.019,
+    "logBytes": 2780,
+    "logSha256": "70aae36076ef32e87185194192fd498698bbdcc0290b378ddfba4af5e2384b22",
+    "terminal": true
+  },
+  {
+    "label": "focused-v2",
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/combat/dim-vision-definition.test.ts",
+      "src/engine/combat/dim-vision-consumers.test.ts",
+      "src/stores/necromancer-dim-vision.causal.test.ts",
+      "src/engine/combat/weaken-consumers.test.ts"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 7.734,
+    "logBytes": 2780,
+    "logSha256": "cda42ba5a480ab9fc7e67b5c6d44a80d49fbf169cf48cc9d14b563c4a5f924f2",
+    "terminal": true
+  },
+  {
+    "label": "focused-v3",
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/combat/dim-vision-definition.test.ts",
+      "src/engine/combat/dim-vision-consumers.test.ts",
+      "src/stores/necromancer-dim-vision.causal.test.ts",
+      "src/engine/combat/weaken-consumers.test.ts"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 7.885,
+    "logBytes": 594,
+    "logSha256": "022390ba79373e0224b6e6864d928e6b9280cfba1aee2e8b19c8ba541143278d",
+    "terminal": true
+  },
+  {
+    "label": "full",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 827.397,
+    "logBytes": 170163,
+    "logSha256": "31cb97a094feabca860325173ecc2172283329f5f4300a94afabe984d5ab960f",
+    "terminal": true
+  },
+  {
+    "label": "lint-final",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 230.141,
+    "logBytes": 197,
+    "logSha256": "51c5b1d2fefe1724dbc0caba1e12267edb6914872dfe9fe448630cc66ea500b0",
+    "terminal": true
+  },
+  {
+    "label": "native-green",
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/stores/necromancer-dim-vision.causal.test.ts"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 7.597,
+    "logBytes": 358,
+    "logSha256": "6eee1685e26c79f18c517cd2cc5b9febb0b4ce2af6952da5940eca7bcfbee7b6",
+    "terminal": true
+  },
+  {
+    "label": "native-red",
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/stores/necromancer-dim-vision.causal.test.ts"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 7.838,
+    "logBytes": 2666,
+    "logSha256": "03d3f05fe76ca384389a970eed25283b83423b2d46df6a0d9ce53ee0a813e2ca",
+    "terminal": true
+  },
+  {
+    "label": "precache",
+    "command": [
+      "node",
+      "scripts/check-offline-precache.mjs",
+      "dist"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 0.061,
+    "logBytes": 393,
+    "logSha256": "1b4d01fefe78618c282c0689f0682cb3ac869cff7dd197290eb50293f16569cd",
+    "terminal": true
+  },
+  {
+    "label": "presentation-green",
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/displayStats.dim-vision.test.ts",
+      "src/features/skills/SkillsScreen.dim-vision.test.tsx",
+      "src/engine/combat/dim-vision-consumers.test.ts",
+      "src/stores/necromancer-dim-vision.causal.test.ts"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 8.084,
+    "logBytes": 3642,
+    "logSha256": "a64946672097ed57411b0a2c70403ec9618cdb95bc376d79b6f743767b35e730",
+    "terminal": true
+  },
+  {
+    "label": "presentation-green-v2",
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/displayStats.dim-vision.test.ts",
+      "src/features/skills/SkillsScreen.dim-vision.test.tsx",
+      "src/engine/combat/dim-vision-consumers.test.ts",
+      "src/stores/necromancer-dim-vision.causal.test.ts"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 8.512,
+    "logBytes": 601,
+    "logSha256": "f5405593019707a0edcf989c39f036b7ba022bd080b5842976a8c1c9a1adee73",
+    "terminal": true
+  },
+  {
+    "label": "presentation-red",
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/displayStats.dim-vision.test.ts",
+      "src/features/skills/SkillsScreen.dim-vision.test.tsx"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 8.893,
+    "logBytes": 20301,
+    "logSha256": "0bcf13c7b5d4493f96973a2b4cd9852a3e21aa651ee9c18981915ae0a68f6c10",
+    "terminal": true
+  },
+  {
+    "label": "status-foundation",
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/combat/dim-vision-definition.test.ts",
+      "src/engine/combat/weaken-definition.test.ts",
+      "src/engine/combat/status.test.ts",
+      "src/engine/skills/dataCatalog.test.ts"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 2.779,
+    "logBytes": 500,
+    "logSha256": "3b419e64ff173271ca034b36554117697b3266ae433879dd43cc988222fe7356",
+    "terminal": true
+  },
+  {
+    "label": "types-final",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exitCode": 0,
+    "durationSeconds": 146.101,
+    "logBytes": 50,
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "terminal": true
+  },
+  {
+    "label": "types",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exitCode": 2,
+    "durationSeconds": 97.791,
+    "logBytes": 2375,
+    "logSha256": "26c79f1e11f3f51f0b21c02dbfe1350ee9709b305ba2d24688083870fe2d8cb9",
+    "terminal": true
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "schemaWriter": "Initial task-only Python helper failed parsing an unclosed dictionary before any mutation. Corrected with explicit patches.",
+  "definitionInitial": "Definition suite then correctly refused absent metadata at discovery;46existing controls passed. This setup failure is retained separately from native numeric RED.",
+  "periodicOracle": "Initial test wrongly demanded identical DoT event segmentation across curse onset400ms. Existing shared interval settlement splits at timed boundaries; both runs remove exactly150HP. Corrected to exact cumulative50HP/s at six fixed clocks, retaining full original failed source/logs. No production periodic code changed.",
+  "exactOptionalFixture": "Original invalid-input test explicitly assigned undefined to exact optional fields; full typecheck confirmed TS2375/spread inference errors. Tests now actually delete optional properties with Reflect.deleteProperty. No casts/suppressions/config changes; consumer explicit lint passes.",
+  "cooldownOracle": "Initial preview literals used unrounded2.95/2.15/2.05. Unchanged combat effectiveCooldown and display scaleCooldown both apply Number(toFixed(1)), so true rank2/18/20 cooldowns are3/2.1/2. Preserved original RED and test source; corrected only the three provably wrong expected literals.",
+  "browserExplicitLint": "Copied Weaken observer carried two unnecessary textContent fallbacks. Explicit --no-ignore lint detected them; removed only redundant ?? empty-string. No rule/config change or weakened browser assertion."
+}
