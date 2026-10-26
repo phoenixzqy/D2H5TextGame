@@ -8,6 +8,28 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["skillRankBuff"], "properties": { "skillRankBuff": {} } },
+      "then": { "properties": { "id": { "const": "skills-barbarian-battle-command" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-battle-command" } } },
+      "then": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["requiredLevel", "prerequisites", "cost", "scaling", "appliesStatus", "skillRankBuff"],
+        "properties": {
+          "id": {}, "name": {}, "description": {}, "icon": {}, "tree": {},
+          "requiredLevel": { "const": 30 }, "minLevel": { "const": 1 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-barbarian-battle-orders"] },
+          "trigger": { "const": "active" }, "target": { "const": "all-allies" },
+          "cooldown": { "const": 4 }, "cost": { "const": { "mana": 11 } },
+          "appliesStatus": { "const": ["battle-command"] },
+          "scaling": { "const": { "cooldownPerLevel": -0.05, "costPerLevel": -0.1 } },
+          "skillRankBuff": { "$ref": "#/properties/skillRankBuff" }
+        }
+      }
+    },
+    {
       "if": {
         "required": [
           "corpseWard"
@@ -4968,6 +4990,17 @@
     }
   },
   "properties": {
+    "skillRankBuff": {
+      "description": "Paid finite Battle Command party potency; never changes learned allocations or grants skills.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bonusRanks", "durationMs", "durationPerRankMs"],
+      "properties": {
+        "bonusRanks": { "const": 1 },
+        "durationMs": { "type": "integer", "minimum": 1, "maximum": 60000 },
+        "durationPerRankMs": { "type": "integer", "minimum": 0, "maximum": 60000 }
+      }
+    },
     "corpseWard": {
       "description": "Finite corpse-created ward lifetime and deterministic fear pulses; wave-local, no reward or summon body.",
       "type": "object",

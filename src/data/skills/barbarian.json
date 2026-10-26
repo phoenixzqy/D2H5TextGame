@@ -811,7 +811,7 @@
       "skills-barbarian-battle-orders"
     ],
     "trigger": "active",
-    "target": "self",
+    "target": "all-allies",
     "cooldown": 4,
     "minLevel": 1,
     "maxLevel": 20,
@@ -823,11 +823,12 @@
     ],
     "scaling": {
       "cooldownPerLevel": -0.05,
-      "costPerLevel": -0.1,
-      "passiveStatsPerLevel": {
-        "attackPct": 0.015,
-        "defensePct": 0.015
-      }
+      "costPerLevel": -0.1
+    },
+    "skillRankBuff": {
+      "bonusRanks": 1,
+      "durationMs": 8000,
+      "durationPerRankMs": 500
     }
   }
 ]

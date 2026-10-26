@@ -105,6 +105,7 @@ import { composeCorpseExplosion } from '@/engine/skills/corpse-explosion';
 import { composeFindPotion } from '@/engine/skills/find-potion';
 import { composeFindItem, findItemBonusEnemies } from '@/engine/skills/find-item';
 import { composeGrimWard } from '@/engine/skills/grim-ward';
+import { composeBattleCommandRank } from '@/engine/skills/battle-command';
 import { composePoisonExplosion } from '@/engine/skills/poison-explosion';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { IRON_GOLEM_SKILL_ID, isIronGolemSkill } from '@/engine/skills/iron-golem';
@@ -274,7 +275,7 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     burstOfSpeedRank: composeBurstOfSpeedRank(player),
     cloakOfShadowsRank: composeCloakOfShadowsRank(player),
     ...(player.class === 'barbarian' ? { leapRank: composeLeapRank(player),
-      concentrateRank: composeConcentrateRank(player) } : {}),
+      concentrateRank: composeConcentrateRank(player), battleCommandRank: composeBattleCommandRank(player) } : {}),
     manaRegenCarry: 0,
     manaRegenCompensation: 0,
     manaRegenExactCarry: '0',

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { effectiveLearnedSkillRank } from './effective-rank';
+import { effectiveLearnedSkillRank, validCapturedSkillRank } from './effective-rank';
 
 describe('learned authority versus temporary skill potency', () => {
   it.each([[1, 2], [20, 21], [31, 32]])('raises learned rank%s above allocation caps to %s', (learned, expected) => {
@@ -19,4 +19,17 @@ describe('learned authority versus temporary skill potency', () => {
     expect(effectiveLearnedSkillRank(20, Number.MAX_SAFE_INTEGER)).toBe(20);
     expect(effectiveLearnedSkillRank(20, Number.MAX_SAFE_INTEGER - 20)).toBe(Number.MAX_SAFE_INTEGER);
   });
+});
+
+describe('captured effective-rank provenance', () => {
+  it.each([[1, undefined], [20, undefined], [2, 1], [20, 1], [21, 1]])(
+    'accepts effective%s with captured bonus%s', (rank, bonus) => {
+      expect(validCapturedSkillRank(rank, 20, bonus)).toBe(true);
+    });
+  it.each([[21, undefined], [22, 1], [1, 1], [0, undefined], [-1, undefined],
+    [1.5, undefined], [NaN, undefined], [Infinity, 1], ['21', 1], [21, '1'],
+    [21, 2], [21, -1], [21, .5], [21, null], [20, 0]])(
+    'refuses effective%s with missing or malformed bonus%s', (rank, bonus) => {
+      expect(validCapturedSkillRank(rank, 20, bonus)).toBe(false);
+    });
 });

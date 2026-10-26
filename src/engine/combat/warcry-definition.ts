@@ -2,6 +2,7 @@ import rows from '../../data/skills/barbarian.json';
 import type { SkillDef } from '../types/skills';
 import type { ActiveStatus, CombatUnit } from './types';
 import { createSkillValidator } from '../skills/skill-validator';
+import { validCapturedSkillRank } from '../skills/effective-rank';
 
 const validate = createSkillValidator<SkillDef>();
 /** Copy complete finite authored warcry tuning without depending on the registry. */
@@ -31,10 +32,11 @@ export function resolveWarcryDefinitions(skills: readonly unknown[]) {
 export const WARCRY_DEFINITIONS = resolveWarcryDefinitions(rows);
 
 /** Immutable paid potency; rank is the native effective allocation at payment. */
-export function paidBattleCry(rank: number): NonNullable<ActiveStatus['battleCry']> {
+export function paidBattleCry(rank: number, rankBonus?: 1): NonNullable<ActiveStatus['battleCry']> {
   const d = WARCRY_DEFINITIONS.battleCry;
-  if (!Number.isInteger(rank) || rank < 1 || rank > d.maxRank) throw new Error('Invalid Battle Cry rank');
-  return Object.freeze({ rank, damageReductionPct: d.damageReductionPct + (rank - 1) * d.damageReductionPerRank,
+  if (!validCapturedSkillRank(rank, d.maxRank, rankBonus)) throw new Error('Invalid Battle Cry rank');
+  return Object.freeze({ rank, ...(rankBonus ? { rankBonus } : {}),
+    damageReductionPct: d.damageReductionPct + (rank - 1) * d.damageReductionPerRank,
     defenseReductionPct: d.defenseReductionPct + (rank - 1) * d.defenseReductionPerRank });
 }
 /** Only finite exact paid snapshots reduce damage/Defense; bare markers grant nothing. */
@@ -42,12 +44,12 @@ export function activeBattleCry(unit: CombatUnit, clock: number): ActiveStatus['
   if (!Number.isFinite(clock)) return undefined;
   for (const status of unit.statuses) {
     const p = status.battleCry, start = status.appliedAtMs, end = status.expiresAtMs;
-    if (status.id !== 'battle-cry' || !p || !Number.isInteger(p.rank) || p.rank < 1 ||
-      p.rank > WARCRY_DEFINITIONS.battleCry.maxRank || start === undefined || end === undefined ||
+    if (status.id !== 'battle-cry' || !p || !validCapturedSkillRank(p.rank, WARCRY_DEFINITIONS.battleCry.maxRank, p.rankBonus) ||
+      start === undefined || end === undefined ||
       !Number.isFinite(start) || !Number.isFinite(end) || clock < start || clock >= end ||
       Math.abs(end - start - WARCRY_DEFINITIONS.battleCry.durationMs) >
         Math.min(.000001, 8 * Number.EPSILON * Math.max(Math.abs(start), Math.abs(end), WARCRY_DEFINITIONS.battleCry.durationMs))) continue;
-    const expected = paidBattleCry(p.rank);
+    const expected = paidBattleCry(p.rank, p.rankBonus);
     if (p.damageReductionPct === expected.damageReductionPct && p.defenseReductionPct === expected.defenseReductionPct)
       return expected;
   }

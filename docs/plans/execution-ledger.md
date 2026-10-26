@@ -12608,3 +12608,48 @@ The previous goal turn was a verified wait; this turn completes the local ward
 repair/evidence and reproduces its next dependency. Umbrella goal/worktree/claim
 stay active. Next: reviewed Battle Command effective-rank contract spanning
 passives, specialist casts and allies without durable-allocation mutation.
+
+## 2026-10-25 — Battle Command paid party-rank increment in progress
+
+Over clean baseline`2a7e4600`, replaced the generic indefinite self buff with a
+strict JSON-owned paid finite party effect and independent native learned
+Command authority. Current eligible active ranks gain1 without allocation
+mutation; living recipients are captured once, with nonstacking and exact
+expiry. Leap/Concentrate/Battle Cry capture bonus provenance and support paid21
+while retaining ordinary forged21 rejection.59new tests; focused183/6,
+engine8453/314, corrected types, lint, build, strict213-row schema validation,
+actual755-URL precache and five-chunk controlled bridge scan pass.
+
+Full unit session9220/PID3598764 is still running on frozen19source/test/contract
+paths; no commit or full result claimed yet. All production/engine-test paths
+match their engine/build validation hashes; only a UI fixture optional-field
+correction followed those checks, with corrected types/test-file lint passing.
+[Evidence and exact active scratch/cleanup ownership](evidence/d06-battle-command-party-ranks.md).
+761build files/10directories byte-verified and removed; task runtime/logs remain
+for live validation/evidence consumers. Re-poll the same live handle.
+
+BUG241 remains open: native passive/life/recovery/scheduler recomposition,
+corpse-skill effective ranks and reward metadata, fresh-authority/wave carry,
+bilingual details and production browser/save/offline verification remain.
+No skill credit or independent/earned/balance acceptance added. Inventory stays
+148bounded/63unverified/one engine-only/one review-needed; Barbarian29/30.
+Genuine campaign remains unchanged; no remote action. C2/full privatev1 and
+umbrella goal/worktree claim remain active. Previous turn was a status-only
+no-progress turn; this turn changes implementation and retains causal evidence.
+
+### Paid party-rank validation collected
+
+Full16990passed/one source-identity refusal/two existing skips;763passing files
+and one failing file,828.049s process. Adding/strengthening the next passive
+test during the live restored-mode measurement changed its collected untracked
+source. All19 frozen prior paths stayed exact, but that freeze did not cover
+the harness's full source scope. Unchanged failing file passes with source held
+still (one test,11.326s). No green full-suite claim; subsequent measurement/full
+runs must freeze all collected source. Original failed receipt/log retained.
+
+54archive members byte-verified;594exact scratch files/seven directories removed,
+21recorded identities absent, scratch absent, remaining[]/failures[]. Exact
+retained archive/hash/cleanup ownership is in the paid-rank evidence. Prior
+status turn was a verified wait (live session9220); this continuation collects
+the terminal result and prepares the next native-passive regression increment.
+No skill credit, campaign or remote action. BUG241/full privatev1 remain open.

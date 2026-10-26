@@ -93,3 +93,12 @@ it('strips malformed/foreign/extended paid payloads and rejects dead/nonpersonal
     expect(activeLeap({ ...unit, ...patch }, 100)).toBeUndefined();
   expect(activeLeap(unit, NaN)).toBeUndefined(); expect(() => paidLeap(21)).toThrow(/Invalid/);
 });
+it('retains paid21 through copy/rebase without a live Command or learned allocation', () => {
+  const captured = { ...paid, leap: paidLeap(21, 1) };
+  const input = { ...unit, leapRank: 0, statuses: [captured] }, before = structuredClone(input);
+  const copied = copyLeapStatuses(input), carried = rebaseStatusClock(copied, 1000.25);
+  expect(activeLeap(carried, 0)).toEqual({ rank: 21, rankBonus: 1, physicalDamagePct: .21 });
+  expect(activeLeap(carried, 1999.85)).toBeUndefined();
+  expect(input).toEqual(before);
+  expect(() => paidLeap(21)).toThrow(); expect(() => paidLeap(22, 1)).toThrow();
+});

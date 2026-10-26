@@ -147,6 +147,7 @@ export interface SummonEffect {
 
 /** Union of effect primitives. */
 export type SkillEffect =
+  | { readonly kind: 'party-skill-ranks' }
   | { readonly kind: 'corpse-ward' }
   | { readonly kind: 'corpse-search' }
   | { readonly kind: 'corpse-recovery' }

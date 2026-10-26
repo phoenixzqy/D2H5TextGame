@@ -23,6 +23,9 @@ import { assassinVenomRawDps, copyAssassinVenomProjection, ASSASSIN_SHADOW_DEFIN
 import type { Rng } from '../rng';
 import { createRng } from '../rng';
 import { activeBattleCry, paidBattleCry } from './warcry-definition';
+import { BATTLE_COMMAND_IDS, battleCommandBonus, battleCommandDuration, battleCommandRank,
+  isBattleCommandId, matchesBattleCommand, type BattleCommandGrant } from '../skills/battle-command';
+import { effectiveLearnedSkillRank } from '../skills/effective-rank';
 import type { ActiveStatus, CombatUnit, CombatSide, GridPosition } from './types';
 import { inferKind } from './types';
 import { resolveDamage, rollDamage, resolveRolledDamage, mitigateDamage, type DamageInput } from './damage';
@@ -240,6 +243,8 @@ export interface CombatResult {
 }
 
 interface State {
+  /** Only actual paid casts establish recipient potency; imported markers are inert. */
+  readonly battleCommands: Map<string, BattleCommandGrant>;
   /** Only successful paid Hydra registration creates a binding; input markers grant no power. */
   readonly hydras: Map<string, { readonly ownerId: string; readonly rank: number; readonly expiresAtMs: number }>;
   /** Wave-local duplicate guard; paid phase itself is stored in standard status clocks. */
@@ -1057,7 +1062,7 @@ function deathEffects(state: State, dead: CombatUnit): void {
           !!s && s.effects.some((e): e is SummonEffect => e.kind === 'summon')
         );
       if (summonSkill) {
-        const summonSkillLevel = effectiveSkillLevel(owner, summonSkill);
+        const summonSkillLevel = effectiveSkillLevel(state, owner, summonSkill);
         const refundedMana = Math.min(
           owner.stats.manaMax,
           owner.mana + effectiveManaCost(summonSkill, summonSkillLevel)
@@ -1128,7 +1133,8 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
   ];
 }
 
-function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
+function learnedSkillLevel(unit: CombatUnit, skill: RegisteredSkill, legacyFallback = 1): number {
+  if (isBattleCommandId(skill.id)) return battleCommandRank(unit);
   const personalBuff = sorceressBuffId(skill.id);
   if (personalBuff) return sorceressBuffRank(unit, personalBuff);
   const periodic = periodicSpellId(skill.id);
@@ -1152,12 +1158,29 @@ function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
   }
   if (skill.id === 'sorceress.frozen_armor') return resolveFrozenArmorRank(unit.skillLevels);
   const levels = unit.skillLevels;
-  if (!levels) return 1;
+  if (!levels) return legacyFallback;
   for (const id of skillLevelCandidates(skill)) {
     const level = levels[id];
     if (typeof level === 'number' && level > 0) return Math.floor(level);
   }
-  return 1;
+  return legacyFallback;
+}
+
+/** Resolve permission first; a party bonus never grants a missing learned skill. */
+function effectiveSkillLevel(state: State, unit: CombatUnit, skill: RegisteredSkill): number {
+  const learned = learnedSkillLevel(unit, skill), bonus = battleCommandBonus(unit, state.simClockMs, state.battleCommands);
+  if (!bonus) return learned;
+  // Dedicated native projections already resolve learned authority. Merc/summon
+  // orders contain their owned abilities; a missing hero allocation stays absent.
+  const authorized = learnedSkillLevel(unit, skill, 0) > 0 ||
+    ((unit.kind === 'merc' || unit.kind === 'summon') &&
+      skillLevelCandidates(skill).some(id => unit.skillOrder.includes(id)));
+  return authorized ? effectiveLearnedSkillRank(learned, bonus) : learned;
+}
+
+/** Captured provenance travels with paid potency after the live grant expires. */
+function paidRankBonus(state: State, unit: CombatUnit): 1 | undefined {
+  return battleCommandBonus(unit, state.simClockMs, state.battleCommands) > 0 ? 1 : undefined;
 }
 
 function effectiveManaCost(skill: RegisteredSkill, skillLevel: number): number {
@@ -1238,6 +1261,11 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  const command = isBattleCommandId(skillOrderId) || isBattleCommandId(skill.id) ||
+    skill.effects.some(effect => effect.kind === 'party-skill-ranks');
+  if (command && (!matchesBattleCommand(skill) || battleCommandRank(unit) === 0 ||
+    !Number.isFinite(unit.mana) || battleCommandBonus(unit, state.simClockMs, state.battleCommands) > 0 ||
+    BATTLE_COMMAND_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   const buffEffect = skill.effects.find(effect => effect.kind === 'buff' && effect.sorceressBuff !== undefined);
   const personalBuff = sorceressBuffId(skillOrderId) ?? sorceressBuffId(skill.id) ??
     (buffEffect?.kind === 'buff' ? buffEffect.sorceressBuff : undefined);
@@ -1301,7 +1329,7 @@ function canUseSkillForState(
     : pe ? poisonExplosionRank(unit, state.poisonExplosion)
     : gw ? grimWardRank(unit, state.grimWard)
     : fi ? findItemRank(unit, state.findItem)
-    : fp ? findPotionRank(unit, state.findPotion) : effectiveSkillLevel(unit, skill);
+    : fp ? findPotionRank(unit, state.findPotion) : effectiveSkillLevel(state, unit, skill);
   if (gw && (!matchesGrimWard(skill) || skillLevel === 0 || state.corpses.length === 0 || !hasEnemyTarget ||
     !Number.isFinite(unit.mana) || state.grimWards.has(unit.id) ||
     GRIM_WARD_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
@@ -1376,6 +1404,23 @@ function applyEffect(
   const acting = state.units.get(actorId);
   if (!acting || !alive(acting)) return;
   switch (effect.kind) {
+    case 'party-skill-ranks': {
+      if (!matchesBattleCommand(skill) || battleCommandRank(acting) === 0) break;
+      const duration = battleCommandDuration(skillLevel), grant = Object.freeze({ sourceId: actorId,
+        appliedAtMs: state.simClockMs, expiresAtMs: state.simClockMs + duration });
+      for (const recipient of state.units.values()) {
+        if (recipient.side !== 'player' || effectiveSide(state, recipient) !== 'player' ||
+          !Number.isFinite(recipient.life) || recipient.life <= 0 ||
+          battleCommandBonus(recipient, state.simClockMs, state.battleCommands) > 0) continue;
+        state.battleCommands.set(recipient.id, grant);
+        state.units.set(recipient.id, { ...recipient, statuses: [...recipient.statuses,
+          { id: 'battle-command', sourceId: actorId, stacks: 1, remaining: duration / SECONDS,
+            appliedAtMs: grant.appliedAtMs, expiresAtMs: grant.expiresAtMs }] });
+        emit(state, { kind: 'buff', target: recipient.id, buffId: 'battle-command', statusBacked: true });
+        observeStatuses(state, recipient.id);
+      }
+      break;
+    }
     case 'corpse-ward':
       // Private paid ward state is created only by the validated synchronous corpse cast.
       break;
@@ -1535,7 +1580,7 @@ function applyEffect(
           statuses: [...actor.statuses.filter(status => !markers.includes(status.id)), {
             id: 'concentrate', sourceId: actorId, stacks: 1, remaining: duration / 1000,
             appliedAtMs: state.simClockMs, expiresAtMs: state.simClockMs + duration,
-            concentrate: paidConcentrate(skillLevel)
+            concentrate: paidConcentrate(skillLevel, paidRankBonus(state, actor))
           }] });
         emit(state, { kind: 'buff', target: actorId, buffId: effect.id, statusBacked: true });
         observeStatuses(state, actorId);
@@ -1549,7 +1594,7 @@ function applyEffect(
           statuses: [...actor.statuses.filter(status => !markers.includes(status.id)), {
             id: 'leap', sourceId: actorId, stacks: 1, remaining: duration / 1000,
             appliedAtMs: state.simClockMs, expiresAtMs: state.simClockMs + duration,
-            leap: paidLeap(skillLevel)
+            leap: paidLeap(skillLevel, paidRankBonus(state, actor))
           }] });
         emit(state, { kind: 'buff', target: actorId, buffId: effect.id, statusBacked: true });
         observeStatuses(state, actorId);
@@ -1588,7 +1633,8 @@ function applyEffect(
           t,
           {
             id: effect.statusId,
-            ...(effect.battleCry === true && effect.statusId === 'battle-cry' ? { battleCry: paidBattleCry(skillLevel) } : {}),
+            ...(effect.battleCry === true && effect.statusId === 'battle-cry'
+              ? { battleCry: paidBattleCry(skillLevel, paidRankBonus(state, acting)) } : {}),
             ...cleansingDurationInput(state, t.id),
             sourceId: actorId,
             simClockMs: state.simClockMs,
@@ -1685,7 +1731,7 @@ function castSkill(
     : gw ? grimWardRank(actor, state.grimWard)
     : fi ? findItemRank(actor, state.findItem)
     : fp ? findPotionRank(actor, state.findPotion)
-    : prepared?.skillLevel ?? effectiveSkillLevel(actor, skill);
+    : prepared?.skillLevel ?? effectiveSkillLevel(state, actor, skill);
   const recovery = fp ? findPotionRecovery(actor, skillLevel) : undefined;
   // Synchronous commit: reserve exactly one oldest body before ordinary payment/effects.
   const corpseId = consumesCorpse ? state.corpses.shift() : undefined;
@@ -2231,7 +2277,7 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
   if (!effect || !Number.isFinite(owner.level) || owner.level < skill.minLevel ||
     !Number.isFinite(owner.mana) || owner.mana < 0) return;
   if (skill.requires && owner.equippedWeapon !== undefined && !canCastSkill(skill, owner.equippedWeapon).ok) return;
-  const rank = effectiveSkillLevel(owner, skill);
+  const rank = effectiveSkillLevel(state, owner, skill);
   const cap = resolveSummonMaxCount(effect, rank);
   const cost = effectiveManaCost(skill, rank);
   const cooldown = effectiveCooldown(skill, rank);
@@ -2562,6 +2608,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const global = snapshot.summonPassives;
   const assassinVenom = copyAssassinVenomProjection(snapshot.assassinVenom);
   const state: State = {
+    battleCommands: new Map(),
     hydras: new Map(),
     periodicSpellPulses: new Map(),
     conversions: new Map(),
@@ -2629,8 +2676,10 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
 
   // Wave-local visual markers cannot establish paid state or cross the wave boundary.
   const clearWardMarkers = (unit: CombatUnit): CombatUnit => ({ ...unit,
-    statuses: unit.statuses.filter(status => status.id !== 'grim-ward' && !isGrimWardId(status.id)),
-    activeBuffIds: unit.activeBuffIds.filter(id => id !== 'grim-ward' && !isGrimWardId(id)) });
+    statuses: unit.statuses.filter(status => status.id !== 'grim-ward' && !isGrimWardId(status.id) &&
+      status.id !== 'battle-command' && !isBattleCommandId(status.id)),
+    activeBuffIds: unit.activeBuffIds.filter(id => id !== 'grim-ward' && !isGrimWardId(id) &&
+      id !== 'battle-command' && !isBattleCommandId(id)) });
   for (const u of withDefaultGridPositions(snapshot.playerTeam)) registerUnit(state, clearWardMarkers(u));
   for (const u of withDefaultGridPositions(snapshot.enemyTeam)) registerUnit(state, clearWardMarkers(u));
   for (const unit of state.units.values()) {

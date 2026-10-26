@@ -92,3 +92,10 @@ it('rejects malformed/foreign paid payloads and nonpersonal consumers', () => {
   for (const patch of [{ sourceId: 'other' }, { expiresAtMs: 5000 }, { appliedAtMs: NaN }])
     expect(activeConcentrate({ ...unit, statuses: [{ ...paid, ...patch }] }, 2000)).toBeUndefined();
 });
+it('retains captured21 Defense after Command expiry and fractional carry without granting allocation', () => {
+  const input = { ...unit, concentrateRank: 0, statuses: [{ ...paid, concentrate: paidConcentrate(21, 1) }] };
+  const copied = copyConcentrateStatuses(input), carried = rebaseStatusClock(copied, 2000.25);
+  expect(activeConcentrate(carried, 0)).toEqual({ rank: 21, rankBonus: 1, defensePct: 1.05 });
+  expect(activeConcentrate(carried, 699.85)).toBeUndefined();
+  expect(() => paidConcentrate(21)).toThrow(); expect(() => paidConcentrate(22, 1)).toThrow();
+});

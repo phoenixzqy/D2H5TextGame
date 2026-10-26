@@ -10,3 +10,16 @@ export function effectiveLearnedSkillRank(learnedRank: number, temporaryBonus = 
   const effectiveRank = learnedRank + temporaryBonus;
   return Number.isSafeInteger(effectiveRank) ? effectiveRank : learnedRank;
 }
+
+/**
+ * Validate potency captured at payment against its separate allocation cap.
+ * The optional +1 provenance is carried by a paid effect, never live allocation.
+ * Legacy payloads without provenance retain their original allocation bounds.
+ */
+export function validCapturedSkillRank(rank: unknown, allocationCap: number, rankBonus?: unknown): rank is number {
+  if (typeof rank !== 'number' || !Number.isSafeInteger(rank) ||
+    !Number.isSafeInteger(allocationCap) || allocationCap < 1 ||
+    (rankBonus !== undefined && rankBonus !== 1)) return false;
+  const learned = rank - (rankBonus === 1 ? 1 : 0);
+  return learned >= 1 && learned <= allocationCap;
+}

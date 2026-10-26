@@ -6,6 +6,7 @@ import type { RegisteredSkill } from './effects';
 import { createSkillValidator } from './skill-validator';
 import { projectPlayerClassActives } from './player-class-actives';
 import { statusActiveAt } from '../combat/status';
+import { validCapturedSkillRank } from './effective-rank';
 
 export const CONCENTRATE_IDS = ['skills-barbarian-concentrate', 'barbarian.concentrate'] as const;
 const validate = createSkillValidator<SkillDef & { readonly requiredLevel: number }>();
@@ -64,20 +65,21 @@ export function matchesConcentrate(skill: RegisteredSkill): boolean {
     hit.tags?.length === 1 && hit.tags[0] === 'physical';
 }
 /** Immutable potency captured at payment; base stats remain untouched. */
-export function paidConcentrate(rank: number): NonNullable<ActiveStatus['concentrate']> {
-  if (!Number.isInteger(rank) || rank < 1 || rank > CONCENTRATE_DEFINITION.maxRank)
+export function paidConcentrate(rank: number, rankBonus?: 1): NonNullable<ActiveStatus['concentrate']> {
+  if (!validCapturedSkillRank(rank, CONCENTRATE_DEFINITION.maxRank, rankBonus))
     throw new Error('Invalid paid Concentrate rank');
-  return Object.freeze({ rank, defensePct: rank * CONCENTRATE_DEFINITION.defensePerRank });
+  return Object.freeze({ rank, ...(rankBonus ? { rankBonus } : {}), defensePct: rank * CONCENTRATE_DEFINITION.defensePerRank });
 }
 function validStatus(unit: CombatUnit, status: ActiveStatus): boolean {
   const payload: unknown = status.concentrate, d = CONCENTRATE_DEFINITION;
   if (payload === null || typeof payload !== 'object' || Array.isArray(payload) ||
-    Object.keys(payload).length !== 2 || !Object.hasOwn(payload, 'rank') || !Object.hasOwn(payload, 'defensePct')) return false;
+    Object.keys(payload).length !== (Object.hasOwn(payload, 'rankBonus') ? 3 : 2) ||
+    !Object.hasOwn(payload, 'rank') || !Object.hasOwn(payload, 'defensePct')) return false;
   const p = payload as Readonly<Record<string, unknown>>, start = status.appliedAtMs, end = status.expiresAtMs;
   if (start === undefined || end === undefined || !Number.isFinite(start) || !Number.isFinite(end)) return false;
   const tolerance = Math.min(.000001, 8 * Number.EPSILON * Math.max(d.durationMs, Math.abs(start), Math.abs(end)));
   return personalHero(unit) && status.id === 'concentrate' && status.sourceId === unit.id &&
-    typeof p.rank === 'number' && Number.isInteger(p.rank) && p.rank > 0 && p.rank <= d.maxRank &&
+    validCapturedSkillRank(p.rank, d.maxRank, p.rankBonus) &&
     p.defensePct === p.rank * d.defensePerRank && end > start &&
     Math.abs(end - start - d.durationMs) <= tolerance;
 }
@@ -87,7 +89,7 @@ export function copyConcentrateStatuses(unit: CombatUnit): CombatUnit {
   return { ...unit, statuses: unit.statuses.map(status => {
     if (status.concentrate === undefined) return status;
     const { concentrate, ...marker } = status;
-    return validStatus(unit, status) ? { ...marker, concentrate: paidConcentrate(concentrate.rank) } : marker;
+    return validStatus(unit, status) ? { ...marker, concentrate: paidConcentrate(concentrate.rank, concentrate.rankBonus) } : marker;
   }) };
 }
 /** One active paid stance; duplicate markers never stack and expiry is exclusive. */

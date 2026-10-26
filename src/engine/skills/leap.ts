@@ -6,6 +6,7 @@ import type { RegisteredSkill } from './effects';
 import { createSkillValidator } from './skill-validator';
 import { projectPlayerClassActives } from './player-class-actives';
 import { statusActiveAt } from '../combat/status';
+import { validCapturedSkillRank } from './effective-rank';
 
 /** Exact native learned identities; aliases never add ranks. */
 export const LEAP_IDS = ['skills-barbarian-leap', 'barbarian.leap'] as const;
@@ -59,21 +60,22 @@ export function matchesLeap(skill: RegisteredSkill): boolean {
     control?.kind === 'debuff' && Object.keys(control).length === 2 && control.statusId === 'stun';
 }
 /** Immutable source-owned potency captured once after the real payment. */
-export function paidLeap(rank: number): PaidLeap {
-  if (!Number.isInteger(rank) || rank < 1 || rank > LEAP_DEFINITION.maxRank)
+export function paidLeap(rank: number, rankBonus?: 1): PaidLeap {
+  if (!validCapturedSkillRank(rank, LEAP_DEFINITION.maxRank, rankBonus))
     throw new Error('Invalid paid Leap rank');
-  return Object.freeze({ rank, physicalDamagePct: rank * LEAP_DEFINITION.physicalDamagePerRank });
+  return Object.freeze({ rank, ...(rankBonus ? { rankBonus } : {}),
+    physicalDamagePct: rank * LEAP_DEFINITION.physicalDamagePerRank });
 }
 function validLeapStatus(unit: CombatUnit, status: ActiveStatus): boolean {
   const payload: unknown = status.leap, d = LEAP_DEFINITION;
   if (payload === null || typeof payload !== 'object' || Array.isArray(payload) ||
-    Object.keys(payload).length !== 2 ||
+    Object.keys(payload).length !== (Object.hasOwn(payload, 'rankBonus') ? 3 : 2) ||
     !['rank', 'physicalDamagePct'].every(key => Object.hasOwn(payload, key))) return false;
   const p = payload as Readonly<Record<string, unknown>>, start = status.appliedAtMs, end = status.expiresAtMs;
   if (start === undefined || end === undefined || !Number.isFinite(start) || !Number.isFinite(end)) return false;
   const tolerance = Math.min(.000001, 8 * Number.EPSILON * Math.max(d.durationMs, Math.abs(start), Math.abs(end)));
   return personalHero(unit) && status.id === 'leap' && status.sourceId === unit.id &&
-    typeof p.rank === 'number' && Number.isInteger(p.rank) && p.rank > 0 && p.rank <= d.maxRank &&
+    validCapturedSkillRank(p.rank, d.maxRank, p.rankBonus) &&
     p.physicalDamagePct === p.rank * d.physicalDamagePerRank && end > start &&
     Math.abs(end - start - d.durationMs) <= tolerance;
 }
@@ -83,7 +85,7 @@ export function copyLeapStatuses(unit: CombatUnit): CombatUnit {
   return { ...unit, statuses: unit.statuses.map(status => {
     if (status.leap === undefined) return status;
     const { leap, ...marker } = status;
-    return validLeapStatus(unit, status) ? { ...marker, leap: paidLeap(leap.rank) } : marker;
+    return validLeapStatus(unit, status) ? { ...marker, leap: paidLeap(leap.rank, leap.rankBonus) } : marker;
   }) };
 }
 /** Read one active paid payload; duplicates never stack and expiry is exclusive. */

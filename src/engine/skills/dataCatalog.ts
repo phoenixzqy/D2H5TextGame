@@ -29,6 +29,7 @@ export type PlayableSkillClass =
   | 'sorceress';
 
 interface JsonSkill {
+  readonly skillRankBuff?: import('../types/skills').SkillDef['skillRankBuff'];
   readonly corpseWard?: import('../types/skills').SkillDef['corpseWard'];
   readonly corpseSearch?: import('../types/skills').SkillDef['corpseSearch'];
   readonly corpseRecovery?: import('../types/skills').SkillDef['corpseRecovery'];
@@ -145,6 +146,7 @@ function summonMaxForKind(kind: SummonMaxCountScalingKind | undefined): number {
 }
 
 function effectsForSkill(skill: JsonSkill): SkillEffect[] {
+  if (skill.id === 'skills-barbarian-battle-command' && skill.skillRankBuff) return [{ kind: 'party-skill-ranks' }];
   if (skill.id === 'skills-barbarian-grim-ward' && skill.corpseWard) return [{ kind: 'corpse-ward' }];
   if (skill.id === 'skills-barbarian-find-item' && skill.corpseSearch) return [{ kind: 'corpse-search' }];
   if (skill.id === 'skills-barbarian-find-potion' && skill.corpseRecovery) return [{ kind: 'corpse-recovery' }];

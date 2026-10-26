@@ -251,6 +251,8 @@ export interface ConversionTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Exact paid finite Battle Command party rank bonus, separate from allocation. */
+  readonly skillRankBuff?: { readonly bonusRanks: number; readonly durationMs: number; readonly durationPerRankMs: number };
   /** Finite corpse-created area ward; no summon body or saved timer. */
   readonly corpseWard?: { readonly durationMs: number; readonly durationPerRankMs: number;
     readonly intervalMs: number; readonly fearDurationMs: number; readonly bossDurationMultiplier: number };

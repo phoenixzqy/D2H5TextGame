@@ -31,11 +31,11 @@ export interface ActiveStatus {
   /** Paid rank of a finite persistent spell; source and phase use this status's standard fields. */
   readonly periodicSpell?: { readonly rank: number };
   /** Copied finite enemy debuff potency, captured by one paid Battle Cry. */
-  readonly battleCry?: { readonly rank: number; readonly damageReductionPct: number; readonly defenseReductionPct: number };
+  readonly battleCry?: { readonly rank: number; readonly rankBonus?: 1; readonly damageReductionPct: number; readonly defenseReductionPct: number };
   /** Source-bound paid finite Concentrate Defense; never persisted. */
-  readonly concentrate?: { readonly rank: number; readonly defensePct: number };
+  readonly concentrate?: { readonly rank: number; readonly rankBonus?: 1; readonly defensePct: number };
   /** Source-bound paid Leap potency; finite, personal and never persisted. */
-  readonly leap?: { readonly rank: number; readonly physicalDamagePct: number };
+  readonly leap?: { readonly rank: number; readonly rankBonus?: 1; readonly physicalDamagePct: number };
   /** Source-bound finite personal Cloak potency, independent of Burst's paid payload. */
   readonly cloakOfShadows?: { readonly rank: number; readonly defensePct: number;
     readonly critChancePct: number; readonly magicDodgePct: number };
@@ -87,6 +87,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Native learned Command authority, independent of temporary paid recipient state. */
+  readonly battleCommandRank?: number;
   /** Fresh learned native Hydra eligibility; paid bodies are bound privately inside each battle. */
   readonly hydraRank?: number;
   /** Fresh legal native allocations, independent of carried paid buff potency. */
