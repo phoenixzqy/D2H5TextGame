@@ -28,8 +28,8 @@ describe('tDataKey', () => {
     expect(result).not.toBe('skills.necromancer.confuse.desc');
     // Must be a non-empty translated string
     expect(result.length).toBeGreaterThan(0);
-    // zh-CN translation is "使敌人互相攻击。"
-    expect(result).toBe('使敌人互相攻击。');
+    // Exact authored template; the Skills view supplies dynamic duration and payment values.
+    expect(result).toBe('诅咒所有存活敌人，持续{{duration}}。受诅咒者发动新的攻击时，会选择仍敌对我方的其他存活敌人；吸引优先于迷乱。没有合适敌人时恢复正常选敌。不会使我方或已转化的盟友自相残杀。再次施放刷新持续时间，不叠加。消耗{{mana}}点法力；冷却{{cooldown}}秒。');
   });
 
   it('resolves skills.necromancer.confuse.desc to non-key in en', async () => {
@@ -38,7 +38,7 @@ describe('tDataKey', () => {
     const result = tDataKey(t, 'skills.necromancer.confuse.desc');
     expect(result).not.toBe('skills.necromancer.confuse.desc');
     expect(result.length).toBeGreaterThan(0);
-    expect(result).toBe('Causes enemies to attack each other.');
+    expect(result).toBe('Curses all living enemies for {{duration}}. Their new attacks target other living enemies still hostile to your party. Attract takes priority over Confuse. If no eligible enemy remains, ordinary targeting resumes. Your party and converted allies never turn against each other. Refreshes without stacking. Pays {{mana}} MP; {{cooldown}} s cooldown.');
   });
 
   // ── Bug 2 ─────────────────────────────────────────────────────────────────
