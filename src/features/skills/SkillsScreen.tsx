@@ -1906,7 +1906,7 @@ function dynamicDescription(
     return t(skill.description.replace('skills.', ''), { min: firstDamage.min, max: firstDamage.max });
   }
   if (stats && firstDamage && ['skills-necromancer-teeth', 'skills-necromancer-bone-spear',
-    'skills-necromancer-bone-spirit', 'skills-necromancer-poison-nova'].includes(skill.id)) {
+    'skills-necromancer-bone-spirit', 'skills-necromancer-poison-nova', 'skills-necromancer-poison-dagger'].includes(skill.id)) {
     return t('necromancer.' + skill.id.slice('skills-necromancer-'.length) + '.desc', {
       min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown
     });

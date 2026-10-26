@@ -844,7 +844,7 @@
     },
     "poison-dagger": {
       "name": "Poison Dagger",
-      "desc": "A melee attack that applies deadly poison."
+      "desc": "One attempt at one prioritized living enemy, dealing {{min}}–{{max}} Poison base damage. Poison resistance and Defense mitigate the hit; magic resist does not. A hit adds one Poison stack. Pays {{mana}} MP and starts {{cooldown}} s cooldown once per cast, including misses. Misses apply no Poison."
     },
     "bone-wall": {
       "name": "Bone Wall",
