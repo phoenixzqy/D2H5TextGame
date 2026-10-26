@@ -913,11 +913,13 @@ function applyDamageToUnit(
     finishDeaths(state, [activeStatusView(after, state.simClockMs)]);
   }
   // The curse punishes a paid attack even when its victim dies; ordinary Thorns keeps its living-wearer rule.
-  const reflectionPct = ironMaiden + (after && alive(after) ? ordinaryReflectionPct : 0);
-  if (after && hostileHit && physicalHpRemoved > 0 && reflectionPct > 0) {
+  const livingReflectionPct = after && alive(after) ? ordinaryReflectionPct : 0;
+  const reflectionPct = ironMaiden + livingReflectionPct;
+  // Only ordinary Thorns retains its minimum-one rule; a pure curse floors tiny HP loss to zero.
+  const raw = Math.max(livingReflectionPct > 0 ? 1 : 0, Math.floor(physicalHpRemoved * reflectionPct));
+  if (after && hostileHit && physicalHpRemoved > 0 && reflectionPct > 0 && raw > 0) {
     const target = state.units.get(attackerId);
     if (!target || !alive(target)) return;
-    const raw = Math.max(1, Math.floor(physicalHpRemoved * reflectionPct));
     const thorns: DamageEffect = { kind: 'damage', damageType: 'thorns', base: [raw, raw] };
     const reflected = mitigateDamage(raw,
       buildDamageInput(state, after, activeStatusView(target, state.simClockMs), thorns));

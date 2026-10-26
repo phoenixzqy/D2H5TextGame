@@ -281,3 +281,18 @@ it('Lower Resist preserves the existing upper and lower resistance clamps', () =
     expect(out.result.enemyTeam[0]?.stats.resistances.physical).toBe(resistance);
   }
 });
+it.each([0, .1])('Iron Maiden floors sub-1 HP loss while preserving ordinary Thorns minimum (%s)', ordinaryReflection => {
+  const victim = unit('victim', 'player');
+  const armor = composeBoneArmor({ id: victim.id, class: 'necromancer', level: 30,
+    skillLevels: { 'skills-necromancer-bone-armor': 20 } }).map(status => ({ ...status,
+      boneArmor: { rank: 20, remaining: 99.5 } }));
+  const out = record({ seed: 1,
+    playerTeam: [{ ...victim, physicalReflectionPct: ordinaryReflection, statuses: [hold(), ...armor] }],
+    enemyTeam: [{ ...unit('striker', 'enemy'), life: 900, statuses: [hold(501), curse('iron-maiden')] }] });
+  expect(out.events.find(e => e.kind === 'damage' && e.source === 'striker'))
+    .toMatchObject({ amount: .5, absorbed: 99.5 });
+  expect(out.events.filter(e => e.kind === 'damage' && e.damageType === 'thorns'))
+    .toEqual(ordinaryReflection > 0 ? [expect.objectContaining({ amount: 1 })] : []);
+  expect(out.result.enemyTeam[0]?.life).toBe(ordinaryReflection > 0 ? 899 : 900);
+  expect(out.result.playerTeam[0]?.life).toBe(999.5);
+});

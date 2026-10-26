@@ -42,3 +42,14 @@ or alter assertions around the inert markers.
 
 No genuine campaign/replay, external publication, save22, dependency or CI change.
 Independent/earned acceptance and C2-C4/G0-G7/privatev1 remain open.
+
+## Fractional absorption follow-up
+
+Before local closure, a new meaningful counterexample on a6f9e19b uses eligible
+Bone Armor with99.5remaining against100Physical damage. Actual HP removed is0.5,
+but the inherited reflection minimum rounds pure Iron Maiden up to1 instead of
+its contracted floor0. Ordinary Thorns intentionally retains its existing
+minimum1 and must stay unchanged. Seed1 regression RED1failed/44passed,exit1,
+3.793s; logSHA256:d40cb9bbb115c0d4753182d8c565c4d030ba6943a0c3fe5cef0096717357b520.
+The complete twelve-case browser pass predates this edge repair and is retained;
+final source/build/browser/full-unit proof must cover the correction.
