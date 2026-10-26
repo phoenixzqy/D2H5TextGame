@@ -5,7 +5,7 @@ semantics remain the existing [D04 contract](../decisions/D04-amplify-damage-v1.
 The [historical bilingual UI closure](p08a02d-amplify-damage-ui.md) explicitly did
 not prove actual native casting or offline continuation. This continuation adds
 those missing checks; no production defect or runtime/locale/save change is inferred.
-Amplify Damage remains uncredited while canonical/full validation is pending.
+Amplify Damage remains uncredited while final full validation/audit/retention is pending.
 
 ## Four-path test increment
 
@@ -64,8 +64,8 @@ Root owns required active evidence at
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amplify-acceptance-9d6_97gs`
 through native/public/full-v1 consumers and later verified lossless retention and
 exact cleanup. Canonical types/lint/browser handles are terminal0 in their receipts;the exact
-combined-full handle69167/child296932 remains active. No source edits while its
-1636committed inputs remain frozen. Inventory stays164bounded/47unverified/one engine-only/
+original combined-full handle69167/child296932 is terminal1 with the provenance
+failure recorded below. The replacement must freeze HEAD as well as1636inputs. Inventory stays164bounded/47unverified/one engine-only/
 one review-needed,Necromancer22/32. GenuineL33/Ancients claimed/nextNormal402/Baal
 uncleared remains unchanged. Independent acceptance,earned builds/balance,pacing/
 economy/endgame,C2–C4/fullG0–G7 and the full privatev1 objective remain open.
@@ -92,10 +92,27 @@ approval. [Attachment index](fixtures/amplify-native/attachment-index.json),
 are copied/read-back verified. [Author review](fixtures/amplify-native/author-review.json)
 records five axes/security and explicit incomplete final acceptance.
 
-The committed-source full suite is active against1636frozen inputs at `a88db7dd`.
-Expected only if actually green:18062passed/830files/two existing opt-in skips.
-No full result or Amplify credit is claimed yet. `final-audit.py` is syntax-checked
-but must run only after all recorded commands are terminal;browser-only extraction
-has run and is explicitly narrower than that audit. Next:observe the same full
-handle to terminal,verify final source/build/command/browser/protected state,
-retain/read-back raw evidence,exact cleanup,then consider one bounded credit.
+## Full validation provenance failure and recovery
+
+The original committed-source full run is terminal1:18061passed/one failed/two
+existing opt-in skips,829passed/one failed file,876.030s command duration. LogSHA256
+`f8a284c1647324fc53eeeae4ea1695d432c872a9dd0d8109683127db25e598cc`.
+The sole failure is `earned-measurement.test.ts`'s genuine-restored-refusal case:
+`Earned source/tool identity drift during measurement`. Its source collection
+includes actual Git HEAD. Root incorrectly allowed documentation commits while
+freezing only source bytes,changing HEAD during measurement. The provenance
+protection correctly refused that run;this is no Amplify runtime defect or full
+green result. Original log/start/terminal and `full-provenance-drift-diagnosis.json`
+remain required raw evidence. No test/assertion/timeout/runtime change was made.
+
+With HEAD stable,the unchanged complete affected file passes19/19 in14.810s
+command duration (`provenance-isolated.json`). Finish and commit documentation
+before replacement validation,then freeze actual HEAD together with all1636
+source/test/script/config inputs in a separate `frozen-full-inputs-manifest.json`.
+No repository edit or commit is permitted until the replacement
+`combined-full-frozen` and final audit finish. Expected only if observed green:
+18062passed/830files/two existing opt-in skips. Update the audit to verify that
+exact frozen HEAD,all command hashes and original failure,then retain/read-back
+raw evidence and perform exact cleanup before considering one bounded credit.
+Native/public/type/lint evidence above remains scoped to its actual checks;
+no final full result,cleanup or Amplify credit is claimed here.
