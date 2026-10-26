@@ -48,7 +48,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
   });
   it(`allocates the actual final Dagger rank and shows MAX with unchanged5MP/1s (${locale})`, async () => {
     const panel = await arrange(locale, 19);
-    fireEvent.click(within(panel).getByRole('button', { name: locale === 'en' ? 'Allocate' : '分配', exact: true }));
+    fireEvent.click(within(panel).getByRole('button', { name: locale === 'en' ? /^Allocate$/ : /^分配$/ }));
     expect(usePlayerStore.getState().player?.skillLevels?.[id]).toBe(20);
     expect(usePlayerStore.getState().player?.skillPoints).toBe(1);
     expect(panel).toHaveTextContent(locale === 'en' ? 'Lv. 20/20' : '等级 20/20');
