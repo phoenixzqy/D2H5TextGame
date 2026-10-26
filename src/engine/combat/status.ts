@@ -26,9 +26,11 @@ import { MANA_BURN_DEFINITION } from './mana-burn-definition';
 import { DRUID_SUMMON_DEFINITION } from '../skills/druid-summon-definition';
 import { WARCRY_DEFINITIONS } from './warcry-definition';
 import { DECREPIFY_DEFINITION } from './decrepify-definition';
+import { WEAKEN_DEFINITION } from './weaken-definition';
 
 /** Known status IDs handled with explicit defaults. */
 export type StatusId =
+  | 'weaken'
   | 'decrepify'
   | 'howl'
   | 'chill'
@@ -57,6 +59,7 @@ export interface StatusConfig {
 
 /** Default per-status configuration table, derived from §9. */
 export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.freeze({
+  weaken: { duration: WEAKEN_DEFINITION.durationMs / 1000, maxStacks: 1 },
   decrepify: { duration: DECREPIFY_DEFINITION.durationMs / 1000, maxStacks: 1 },
   howl: { duration: WARCRY_DEFINITIONS.howl.durationMs / 1000, maxStacks: 1,
     bossDurationMult: WARCRY_DEFINITIONS.howl.bossDurationMultiplier },
@@ -77,6 +80,7 @@ export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.
 
 /** Description of a status to apply. */
 export interface ApplyStatusInput {
+  readonly weaken?: ActiveStatus['weaken'];
   readonly decrepify?: ActiveStatus['decrepify'];
   readonly battleCry?: ActiveStatus['battleCry'];
   /** Eligible recipient's selected Cleansing factor; affects finite timed poison/curse applications only. */
@@ -226,8 +230,8 @@ export function applyStatusWithResult(
     }
   }
 
-  // Paid warcries and Decrepify replace their own source, potency and interval; they never stack.
-  if (id === 'howl' || id === 'taunt' || id === 'battle-cry' || id === 'decrepify')
+  // Paid warcries and finite damage curses replace their source, potency and interval without stacking.
+  if (id === 'howl' || id === 'taunt' || id === 'battle-cry' || id === 'decrepify' || id === 'weaken')
     unit = { ...unit, statuses: unit.statuses.filter(s => s.id !== id) };
   const idx = unit.statuses.findIndex((s) => canonicalStatusId(s.id) === id);
   const expiresAtMs =
@@ -240,6 +244,7 @@ export function applyStatusWithResult(
   if (!existing || (input.simClockMs !== undefined && !statusActiveAt(existing, input.simClockMs))) {
     const newStatus: ActiveStatus = {
       id,
+      ...(id === 'weaken' && input.weaken ? { weaken: Object.freeze({ ...input.weaken }) } : {}),
       ...(id === 'decrepify' && input.decrepify ? { decrepify: Object.freeze({ ...input.decrepify }) } : {}),
       stacks: 1,
       remaining: dur,

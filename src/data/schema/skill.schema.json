@@ -5055,6 +5055,87 @@
           }
         }
       }
+    },
+    {
+      "if": {
+        "properties": {
+          "id": {
+            "const": "skills-necromancer-weaken"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "then": {
+        "required": [
+          "requiredLevel",
+          "prerequisites",
+          "cost",
+          "scaling",
+          "appliesStatus",
+          "statusEffect"
+        ],
+        "properties": {
+          "requiredLevel": {
+            "const": 6
+          },
+          "prerequisites": {
+            "const": [
+              "skills-necromancer-amplify-damage"
+            ]
+          },
+          "trigger": {
+            "const": "active"
+          },
+          "target": {
+            "const": "all-enemies"
+          },
+          "cooldown": {
+            "const": 3
+          },
+          "minLevel": {
+            "const": 1
+          },
+          "maxLevel": {
+            "const": 20
+          },
+          "cost": {
+            "const": {
+              "mana": 6
+            }
+          },
+          "scaling": {
+            "const": {
+              "costPerLevel": -0.2
+            }
+          },
+          "appliesStatus": {
+            "const": [
+              "weaken"
+            ]
+          },
+          "damage": false,
+          "damageType": false,
+          "statusEffect": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "durationMs",
+              "damageReductionPct"
+            ],
+            "properties": {
+              "durationMs": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "damageReductionPct": {
+                "$ref": "#/properties/statusEffect/properties/damageReductionPct"
+              }
+            }
+          }
+        }
+      }
     }
   ],
   "if": {
@@ -5617,7 +5698,7 @@
         "chance": { "type": "number", "minimum": 0, "maximum": 1 },
         "bossDurationMultiplier": { "type": "number", "exclusiveMinimum": 0, "maximum": 1, "description": "Howl boss and chapter-boss finite disruption duration factor." },
         "attackSpeedReductionPct": { "type": "number", "minimum": 0, "exclusiveMaximum": 100, "description": "Decrepify effective AttackSpeed reduction in percentage points, before existing floor and cadence clamps." },
-        "damageReductionPct": { "type": "number", "minimum": 0, "exclusiveMaximum": 100, "description": "Battle Cry or Decrepify outgoing direct damage reduction in percentage points." },
+        "damageReductionPct": { "type": "number", "minimum": 0, "exclusiveMaximum": 100, "description": "Battle Cry, Decrepify or Weaken outgoing direct damage reduction in percentage points." },
         "damageReductionPerRank": { "type": "number", "minimum": 0, "description": "Additional Battle Cry outgoing damage reduction per rank above one." },
         "defenseReductionPerRank": { "type": "number", "minimum": 0, "description": "Additional Battle Cry ordinary Defense reduction per rank above one." },
         "stacksOnApply": { "type": "integer", "minimum": 1 },

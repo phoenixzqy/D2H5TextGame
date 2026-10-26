@@ -182,7 +182,7 @@ export interface SkillStatusEffectMetadata {
   readonly bossDurationMultiplier?: number;
   /** Decrepify effective AttackSpeed reduction before cadence flooring/clamps. */
   readonly attackSpeedReductionPct?: number;
-  /** Battle Cry or Decrepify outgoing direct-damage reduction, in percentage points. */
+  /** Battle Cry, Decrepify or Weaken outgoing direct-damage reduction, in percentage points. */
   readonly damageReductionPct?: number;
   readonly damageReductionPerRank?: number;
   /** Additional ordinary-Defense reduction per rank above one. */

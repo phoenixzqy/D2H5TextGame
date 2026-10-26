@@ -120,6 +120,8 @@ export interface DebuffEffect {
   readonly physicalResistReductionPct?: number;
   /** Capture the authored finite Decrepify speed/damage packet on payment. */
   readonly decrepify?: true;
+  /** Complete authored Weaken, captured only when the eligible action pays. */
+  readonly weaken?: true;
   /** Capture authored rank-scaled damage/Defense reduction on payment. */
   readonly battleCry?: true;
 }

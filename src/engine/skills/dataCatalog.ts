@@ -16,6 +16,7 @@ import paladinSkills from '../../data/skills/paladin.json';
 import sorceressSkills from '../../data/skills/sorceress.json';
 import type { AoeShape } from '../combat/grid';
 import { isDecrepifyDefinition } from '../combat/decrepify-definition';
+import { isWeakenDefinition } from '../combat/weaken-definition';
 import type { DamageType } from '../types/attributes';
 import type { ComboTag, ConversionTuning, FeralRageTuning, HitSpeedStackTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
 import type { OnHitStatus, RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
@@ -289,13 +290,15 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       skill.appliesStatus[0] === 'amplify-damage' ? skill.statusEffect : undefined;
     const warcry = ['skills-barbarian-howl', 'skills-barbarian-taunt', 'skills-barbarian-battle-cry'].includes(skill.id);
     const decrepify = skill.id === 'skills-necromancer-decrepify' && isDecrepifyDefinition(skill);
+    const weaken = skill.id === 'skills-necromancer-weaken' && isWeakenDefinition(skill);
     effects.push({
       kind: 'debuff',
       statusId: skill.appliesStatus[0],
-      ...((warcry || decrepify) && skill.statusEffect?.durationMs !== undefined
+      ...((warcry || decrepify || weaken) && skill.statusEffect?.durationMs !== undefined
         ? { durationMs: skill.statusEffect.durationMs } : {}),
       ...(skill.id === 'skills-barbarian-battle-cry' ? { battleCry: true as const } : {}),
       ...(decrepify ? { decrepify: true as const } : {}),
+      ...(weaken ? { weaken: true as const } : {}),
       ...(amplifyMetadata?.durationMs !== undefined ? { durationMs: amplifyMetadata.durationMs } : {}),
       ...(amplifyMetadata?.physicalResistReductionPct !== undefined
         ? { physicalResistReductionPct: amplifyMetadata.physicalResistReductionPct }

@@ -336,6 +336,10 @@
     ],
     "scaling": {
       "costPerLevel": -0.2
+    },
+    "statusEffect": {
+      "durationMs": 3000,
+      "damageReductionPct": 33
     }
   },
   {

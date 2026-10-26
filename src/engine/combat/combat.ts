@@ -85,6 +85,7 @@ import { DRUID_SUMMON_DEFINITION, type DruidSummonId } from '../skills/druid-sum
 import { HYDRA_DEFINITION, isHydraSkill, matchesHydra, hydraRank, buildHydra } from '../skills/hydra';
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
 import { activeDecrepify, paidDecrepify } from './decrepify-definition';
+import { activeWeaken, paidWeaken } from './weaken-definition';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
 import {
@@ -621,6 +622,7 @@ function buildDamageInput(
   const stats = attacker.stats;
   const attackingCry = activeBattleCry(attacker, state.simClockMs);
   const attackingDecrepify = activeDecrepify(attacker, state.simClockMs);
+  const attackingWeaken = activeWeaken(attacker, state.simClockMs);
   const defendingCry = activeBattleCry(defender, state.simClockMs);
   const attackingCloak = activeCloakOfShadows(attacker, state.simClockMs);
   const defendingCloak = activeCloakOfShadows(defender, state.simClockMs);
@@ -667,8 +669,9 @@ function buildDamageInput(
       (effect.damageType === 'cold' && attacker.side === 'player' && alive(attacker) && holyFreezeSourceId(state) !== undefined
         ? MERC_HOLY_FREEZE_DEFINITION.coldDamagePct : 0),
     comboMult: combo,
-    ...((attackingCry ?? attackingDecrepify) ? { outgoingDamageMultiplier:
-      (1 - (attackingCry?.damageReductionPct ?? 0) / 100) * (1 - (attackingDecrepify?.damageReductionPct ?? 0) / 100) } : {}),
+    ...((attackingCry ?? attackingDecrepify ?? attackingWeaken) ? { outgoingDamageMultiplier:
+      (1 - (attackingCry?.damageReductionPct ?? 0) / 100) * (1 - (attackingDecrepify?.damageReductionPct ?? 0) / 100) *
+      (1 - (attackingWeaken?.damageReductionPct ?? 0) / 100) } : {}),
     ...(emptyManaBurn ? { manaBurnMult: MANA_BURN_DEFINITION.zeroManaArcaneMultiplier } : {}),
     ...((effect.damageType === 'physical' || effect.damageType === 'thorns') &&
       hasStatus(activeStatusView(attacker, state.simClockMs), 'blind')
@@ -1672,6 +1675,7 @@ function applyEffect(
           t,
           {
             id: effect.statusId,
+            ...(effect.weaken === true && effect.statusId === 'weaken' ? { weaken: paidWeaken() } : {}),
             ...(effect.decrepify === true && effect.statusId === 'decrepify' ? { decrepify: paidDecrepify() } : {}),
             ...(effect.battleCry === true && effect.statusId === 'battle-cry'
               ? { battleCry: paidBattleCry(skillLevel, paidRankBonus(state, acting)) } : {}),
