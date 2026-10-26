@@ -1,8 +1,9 @@
-# D04 — Confuse / Attract runtime integration
+# D04 — Confuse / Attract local implementation and acceptance
 
 2026-10-26; root author evidence, not independent acceptance. Runtime source head
-`e636b8feda324a6f79a0d624586c1f6fd1c3e51a`. Both skills remain uncredited pending
-presentation, native lifecycle, browser/offline and combined final verification.
+`e636b8feda324a6f79a0d624586c1f6fd1c3e51a`. Both skills remain uncredited pending final full-unit retry and evidence retention/cleanup.
+Presentation/native lifecycle/public proof are now locally verified through `6d4f5009`;
+`c0b20f1d` corrects two stale translation-helper literals without changing runtime.
 [Contract](../decisions/D04-target-curses-v1.md),
 [BUG254](../../../production/bugs/BUG-254-apply-confuse-attract-targeting.md).
 
@@ -83,12 +84,12 @@ credentials, CI, permissions or persisted decoders change. Candidate scans remai
 linear in the current roster; this is not a measured performance-budget signoff.
 This review is not independent approval.
 
-Next: truthful zh-CN/en descriptions/current-next/MAX; native actual allocation,
+At the runtime checkpoint, remaining work was truthful zh-CN/en descriptions/current-next/MAX; native actual allocation,
 current-wave freeze/next-wave resource/import lifecycle; production public
 en/zh desktop/Pixel5 actual casts/chips and online/offline seven-domain save
 continuity; combined full/types/lint/build/bridge/precache verification and final
-evidence retention/cleanup. No post-runtime full unit suite, build or browser run
-is claimed. The prior17,874full/4browser evidence belongs to Dim Vision's head.
+evidence retention/cleanup. That checkpoint claimed no post-runtime full unit suite,
+build or browser run; the later continuation below supersedes it. The prior17,874full/4browser evidence belongs to Dim Vision's head.
 
 Inventory is byte-identical to the post-DimVision162credit baseline:
 162bounded/49unverified/one engine-only/one review-needed,213IDs. Neither target
@@ -109,5 +110,75 @@ and eventual lossless archive/read-back verification and exact disposable cleanu
 receipts/log hashes; live owned command identities `[]`. `runtime-proof.json`
 records numerical cases, unchanged inventory and both genuine-save hashes.
 Raw fixtures, logs, receipts, source copies and task-only configuration remain
-required active evidence. All recorded command handles are terminal; no process was signaled. The
-umbrella worktree/branch/registration remains active; no remote or campaign action.
+required active evidence. Those33runtime-checkpoint command handles are terminal; no process was signaled.
+Continuation command liveness is recorded below. The umbrella worktree/branch/registration
+remains active; no remote or campaign action.
+
+## Presentation, native lifecycle and public continuation
+
+`f20d7e3c` adds pure canonical finite previews and16cases. `da771f12` adds bilingual
+targeting/safety/refresh/resource descriptions, localized status names and16component
+cases spanning both skills/locales/ranks0/1/19/20. Preview engine9139/343files
+PASS158.350s; final UI focused48/3files11.310s/types109.849s/scopedlint14.405sPASS.
+Initial missing-presentation failures and heading/test-option authoring corrections
+remain raw evidence; related pre-existing MercsScreen act warnings are disclosed.
+
+`fd6dd6bd` adds two persistent native test files:8causal cases preserve the original
+native fixture and assert exact rank1/20 HP/events/monster losses, nine-action cadence
+per enemy, singleton fallback, ownership/MP negatives and immutable deterministic
+recorded/plain equality.4lifecycle cases allocate real prerequisites/priority, preserve
+the current recording, project rank1 then2 only in fresh waves, carry exact HP/MP,
+and assert exact actual cast mana debits. Real import occurs after paid enemy power
+is visible; all seven domains (`endgame,player,inventory,map,mercs,formation,meta`)
+roundtrip exactly, combat clears, transient capability is absent from the save and
+a fresh legal cast still works. Constructed gear/pools are unearned scaffolding.
+Focused20/3files11.252s/native types157.981s/scopedlint10.447sPASS.
+
+`6d4f5009` adds the two-path production public browser spec/config. Final8/8PASS
+574.059s:both skills × en/zh × desktop/Pixel5, actual public import/equip/allocation
+19→20/priority, correct current-next/MAX resources/duration, eight actual localized
+casts/enemy chips,16exact seven-domain online/offline save pairs,eight actual
+network-disabled activated-service-worker Continues and40geometry checks with
+44×44minimum allocation targets. No test bridge or hidden store mutation. Source-wide
+types212.261s/full lint443.579s/purityPASS before the later test-literal-only fix.
+
+The initial8/8PASS537.064s is retained with its exact spec. Coverage review found
+its geometry loop clicked Allocate after ending at1920px. The final spec resets
+to the actual desktop/mobile viewport before clicking and explicitly checks updated
+rank20 duration/mana/cooldown. This corrects test coverage, not production code.
+All24final original PNGs were individually inspected. Desktop previews show the
+localized MAX/current details; all eight current-stat crops are readable. Mobile
+long descriptions/stats require scrolling. Victory-labelled images capture the
+battlefield viewport and omit the below-fold victory panel/log; only the separate
+public DOM flow proves victory/return. Existing unrelated glyph boxes remain.
+The initial desktop blank rectangle is absent from final desktop previews. No
+full-screen/a11y/performance or independent visual acceptance is inferred.
+
+Both task-isolated production builds contain762byte-identical files. Official build
+24.934s/copied official six-chunk bridge guard17.524s/756-URL required precache0.055s
+PASS. Guard adaptation changes only repository/output paths and build outDir;
+forbidden checks/environment clearing are preserved. Existing Browserslist,large
+chunk and2.57MB generated-manifest-not-precache warnings remain. Browser page and
+console warning/error arrays are empty; command-side Node color warnings are separate.
+
+## Full-suite regression and current hold
+
+First combined full:onefailed/827passed files,2failed/18053passed/2existing opt-in
+skips,1345.413s/exit1. Both failures are provably stale exact Confuse copy literals
+in `src/ui/i18nKey.test.ts`; current template routing is correct. [BUG255](../../../production/bugs/BUG-255-refresh-confuse-translation-oracles.md)
+was filed before the test-only correction. Focused RED2failed/4controls3.220s;
+`c0b20f1d` changes only both exact expectations and their comment, preserving all
+six tests/assertions. GREEN22/2files10.107s/scopedlint7.360sPASS. No locale/helper
+or other production workaround.
+
+A fresh full run `combined-full-final`, final typecheck and full lint are active
+in the task root. Before that run,1632source/test/script/config inputs were frozen
+and verified against committed `c0b20f1d`; manifest is `full-final-inputs-manifest.json`.
+No fresh full-green or skill credit is claimed yet. The two pre-existing skipped
+checks are opt-in fresh campaign economy/continuation simulations, not new skips.
+Inventory remains162bounded/49unverified/one engine-only/one review-needed.
+GenuineL33/Ancients claimed/next402/Baal uncleared and protected hashes remain exact.
+Root author/security/five-axis review and24individual visual records are retained;
+no independent approval or earned balance/full-v1 completion. Next:terminal full
+results, final source/build/command/browser audit, lossless required-evidence
+retention/read-back and exact disposable cleanup before considering two credits.

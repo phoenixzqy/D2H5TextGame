@@ -1,6 +1,6 @@
 # BUG-254 — Apply paid Confuse and Attract to real enemy target selection
 
-- Status: paid status and offensive targeting locally implemented/verified through `e636b8fe`; original native RED now6/6GREEN. Presentation/native lifecycle/browser/final combined acceptance remain open; no skill credit.
+- Status: runtime/presentation/native lifecycle/public online-offline proof locally verified through `6d4f5009`; first full exposed two stale helper-copy oracles, corrected test-only in `c0b20f1d`/BUG255. Fresh full/types/lint, final audit/retention/exact cleanup remain open; no skill credit.
 - Severity: High — two advertised targeting curses spend resources without their advertised behavior.
 - Owner: root engine/content/frontend; independent design/review/QA remain open.
 - Build:7b27fb0463cd8d6b9bfdbcaf03e1fd370c3c7b9f;Node24.21.0/Linux; native projection/engine reproduction, independent of browser/locale/viewport.
@@ -66,3 +66,15 @@ production public en/zh desktop/Pixel5 online/offline seven-domain proof and fin
 combined full/types/lint/build/bridge/precache,retention/exact cleanup. No current
 full/browser/build or independent/earned acceptance claim. Root owns required
 active evidence through BUG254/full-v1 consumers; umbrella goal remains active.
+
+## Native/public continuation
+
+Preview `f20d7e3c`, bilingual UI `da771f12`,12persistent native cases `fd6dd6bd`,
+production8case public online/offline proof `6d4f5009` are locally verified. Actual
+allocation/wave freeze/exact HP/MP/payment/import,16exact seven-domain browser save
+pairs/eight actual offlineContinues/40geometry and24individually inspected originals
+are recorded in the evidence document, with explicit mobile/victory crop limits.
+Official build/bridge/precache and types/full lint pass. First full2failed/18053passed
+found only old Confuse description literals; BUG255/c0b20f1d fixes those with focused
+22PASS and unchanged exact assertions. Fresh combined full/type/lint remains live.
+No bounded credits, independent/earned approval or genuine campaign change yet.

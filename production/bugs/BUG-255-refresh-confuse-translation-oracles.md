@@ -1,6 +1,6 @@
 # BUG-255 — Refresh stale Confuse description oracles
 
-- Status: reproduced before correction; test-only fix pending.
+- Status: test-only correction committed in `c0b20f1d`; focused RED/GREEN verified, fresh full suite pending.
 - Severity: Medium — the required full-unit gate fails on two obsolete copy literals; public bilingual UI/native/browser behavior is already separately asserted by other tests. No runtime translation defect is established.
 - Owner: root test/frontend author; no delegation or independent approval.
 - Build: `6d4f5009`; Node24.21.0/Linux/Vitest1.6.1. Browser/viewport/engine seed: not applicable; localization-helper unit test, both en and zh-CN.
@@ -19,3 +19,11 @@ Actual: both cases still expect the former one-sentence copy (`Causes enemies to
 Required active evidence is retained at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-target-curses-6i4lfede`: `combined-full.log` SHA256 `010d9db80c34190f1a8c2dfc060dd86b1b14c23fe8d10992250eb8a58571f140`, matching terminal/start receipts, and untouched `i18nKey-original.test.ts`. The locale templates changed intentionally in `da771f12`; the helper implementation did not change.
 
 Correct the two demonstrably stale exact literals and their comment only. Preserve all six helper tests and their assertions; no locale/runtime workaround, mocking, skipped test or weaker assertion. Focused RED/GREEN and a fresh full-unit result are required before local closure. This does not add a skill credit or complete BUG254/privatev1. Root retains required raw evidence through BUG254/BUG255/full-v1 consumers and owns final lossless retention/read-back and exact cleanup.
+
+## Test-only correction
+
+`c0b20f1d` changes exactly one source test path:both obsolete equality literals
+and their explanatory comment. All six tests and their assertions remain. Reduced
+RED2failed/4passed3.220s; GREEN22/2files10.107s and scopedlint7.360sPASS. No runtime
+or locale change. Fresh `combined-full-final` and final types/lint are active;
+local closure waits for their terminal evidence. Original source/failures retained.
