@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D06 Mage signatures / BUG277–280 | bounded local verification closed; independent/earned acceptance open | Four JSON-authored signatures and shared meter/replay repairs;326related/18files and production10/10 pass. Original full retry18461/852/two existing skips PASS1018.442s,1664frozen inputs exact. All1977archive members verified;2648files/102directories/helper and both owned builds cleaned,remaining[]/failures[]. Exactly one Mage credit:174bounded/37unverified/oneengine/onereview,Necromancer32/32;212other raw rows/header/IDs/order exact. [Evidence](evidence/d06-mage-signatures.md) lists retained archive/sidecars and71terminal receipts. Root retains through full-v1 consumers. GenuineL33/next402/Baal uncleared remains unchanged; Amazon/Assassin, Epidemic/design reconciliation, earned/independent and full-v1 acceptance remain open. |
 | D06 Skeleton / Clay / Revive / BUG269–272 | bounded local native/public verification closed; independent/earned acceptance open | Test-only `6c4b2b58`:21new native/186related cases, fulltypes120.220s and focusedlint8.784s PASS. Eight completed Skeleton/Clay contexts from failed aggregate command plus separate Revive4/4PASS80.285s;24seven-domain pairs/12actual offlineContinues/60geometry;24of72originals individually viewed with crop/text-fallback limits.125terminal log/2557existing non-doc/762build/source/genuine hashes exact. Together with Wall/Prison,1588archive members verified and exact1559files/29directories/helper cleaned before exactly5credits:172bounded/39unverified/oneengine/onereview,Necromancer30/32,208other raw rows exact. [Evidence](evidence/d06-basic-necromancer-summons.md). Root retains exact archive/three sidecars through full-v1 consumers. GenuineL33/next402/Baal uncleared, independent/earned/fullv1 open; next Mage/Iron. |
 | D06 Bone Wall / Prison / BUG262–268 | bounded local verification closed; independent/earned acceptance open | Code `bdc747b8`: native paid Wall100000HP vs99975 without protection; Prison0actions vs1control. Full18359/845/two existing skips PASS848.172s, engine9382/352, types/lint/officialbuild/bridge/precache PASS. Production combat4/4 plus visible-chip4/4; preview4/4 with eight seven-domain pairs/four actual offlineContinues. Frozen4893tracked/762build/31feature/115terminal log hashes and genuine save exact. [Integrated evidence](evidence/d06-bone-defenses-core.md) preserves historical packet and all failed attempts/visual limits. Final1588member archive/read-back and1559file/29directory/helper cleanup complete; five combined credits yield172/39/one engine/one review,Necromancer30/32. Root retains exact archive/three sidecars; raw task/dist absent. GenuineL33/next402/Baal uncleared and full-v1 scope unchanged. |
 | D06 Poison Explosion public acceptance / BUG259–261 | bounded local verification closed; independent and earned acceptance open | Test-only`761fa2f1`; production4/4PASS137.842s: native allocation0→1→2, actual Teeth first kill/body1→0, exact public10140/max10155 supported by native within-batch15MP witness at18000ms/seed2688559832, direct/chip/positivePoison,8seven-domain pairs/4actual offlineContinues/20geometry/12individually inspected originals. Final explicitlint/types/officialbuild/bridge/756URLprecachePASS; unchanged18100/834/two existing skips carried through2540exact baseline inputs, no fresh full.4860frozen tracked/2public/762build/genuine exact. All3377archive members read-back verified;3376files/27directories/driver removed,remaining[]/failures[],118restrictedproc entries disclosed. Root retains archive/three sidecars through BUG259–261/full-v1 consumers. Exactly1credit:167bounded/44unverified/oneengine-only/onereview,Necromancer25/32;212other raw rows exact. [Evidence](evidence/d06-poison-explosion-public.md). GenuineL33/next402/Baal uncleared;independent/earned/manual-feel/fullv1 open. |
@@ -13074,3 +13075,24 @@ remaining Amazon/Assassin skills, earned builds/balance/economy/endgame,
 C2–C4/fullG0–G7/privatev1 are open. GenuineL33/nextNormal402/Ancients-Rite claimed/
 Baal uncleared remains unchanged; no campaign/replay/remote action/delegation.
 Original umbrella goal and registered worktree claim continue.
+
+## 2026-10-26 — Mage terminal regression and bounded credit
+
+The original full retry completed18461tests/852files/two existing skips,
+exit0,1018.442s,inputsUnchanged:true. All1664frozen inputs and762build hashes
+were exact. No full-suite restart. [Current evidence](evidence/d06-mage-signatures.md)
+and the compact packet preserve71terminal receipts, original failures, browser
+and screening limits, protected-save hashes and retention/cleanup audits.
+All1977archive members were read back sequentially and verified before disposal;
+2648regular files/102directories/external helper and both owned builds are removed,
+remaining[]/failures[]. Root retains the exact archive/sidecars listed there
+through BUG277–281/full-v1 consumers and owns their later removal.
+
+Only then one Mage row is credited:174bounded/37unverified/oneengine-only/
+onereview-needed,Necromancer32/32;212other raw rows/header/IDs/order unchanged.
+Next Amazon BUG281 has an actual mixed-status spread reproduction and ten
+prepared cases (six genuine failures/four controls); no Amazon credit follows.
+GenuineL33/nextNormal402/Ancients-Rite claimed/Baal uncleared remains unchanged.
+Remaining skills,Epidemic/design reconciliation,earned builds/balance/economy/
+endgame,C2–C4/fullG0–G7/independent acceptance/privatev1 remain open. No campaign,
+remote action,delegation or worktree release. The original full goal continues.
