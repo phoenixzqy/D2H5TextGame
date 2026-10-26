@@ -1,6 +1,6 @@
 # BUG-254 — Apply paid Confuse and Attract to real enemy target selection
 
-- Status: native numerical RED reproduced; strict JSON definition foundation `9bc03a22` verified. Paid status and attack redirection are not implemented; no skill credit.
+- Status: paid status and offensive targeting locally implemented/verified through `e636b8fe`; original native RED now6/6GREEN. Presentation/native lifecycle/browser/final combined acceptance remain open; no skill credit.
 - Severity: High — two advertised targeting curses spend resources without their advertised behavior.
 - Owner: root engine/content/frontend; independent design/review/QA remain open.
 - Build:7b27fb0463cd8d6b9bfdbcaf03e1fd370c3c7b9f;Node24.21.0/Linux; native projection/engine reproduction, independent of browser/locale/viewport.
@@ -31,10 +31,38 @@ The catalog emits ordinary confuse/attract markers,but no combat target-selectio
 
 Implement a finite JSON-owned paid targeting contract with actual hostile same-side hits,exact onset/expiry/refresh,Cleansing,Attract/Confuse/Taunt precedence,singleton/death/converted/player/self safety,ordinary damage/death/reward semantics,bilingual current-next/MAX,native allocation/wave/import and production online/offline public proof. Preserve original cost/rank/prerequisite authority. Root author adaptation remains provisional;independent and earned balance acceptance remain open. Full privatev1 and remaining skill work are unchanged.
 
-## Definition foundation — still incomplete
+## Definition foundation — historical incomplete checkpoint
 
 `9bc03a22` changes exactly four source paths:strict canonical schema,both JSON duration leaves,and immutable definition/helper tests. Existing class/unlock/prerequisites/cost/cooldown/scaling authority remains literal.49new definition cases/81focused across3files PASS3.129s;engine9035/338PASS150.233s,typecheckPASS122.374s,explicit lintPASS11.230s. Missing-module definition discovery RED is retained separately from the genuine numerical RED.
 
 The post-foundation native reproduction still has4failed/2passed8.620s,identical1600heroHP loss andzero friendly fire in all four positive cases;logSHA256`9602f57493f64afcfb7f6b2919332a5463b8598b16919b543345009c52876a35`. This is expected incomplete behavior,not a green mechanic or skill credit. All eight command starts have matching terminal/hash receipts. Four committed foundation source copies and the correct162-row-credit CSV baseline remain in the active task root;the earlier pre-DimVision161 baseline is preserved separately.
 
-Paid transient status capture/finite consumer,shared offensive targeting,bilingual current-next/MAX,native lifecycle/public online/offline proof and final combined validation/retention/cleanup remain next. The latest completed full17,874test/browser4case evidence belongs to Dim Vision's combined head,not this new foundation. Root retains the active raw task evidence through BUG254 consumers and owns eventual exact cleanup.
+At that checkpoint,paid transient status capture/finite consumer,shared offensive targeting,bilingual current-next/MAX,native lifecycle/public online/offline proof and final combined validation/retention/cleanup remained next. The latest completed full17,874test/browser4case evidence belongs to Dim Vision's combined head,not this new foundation. Root retains the active raw task evidence through BUG254 consumers and owns eventual exact cleanup.
+
+## Paid runtime integration — locally verified, acceptance still open
+
+`a6b9c101` adds finite exact-identity status/defaults/replacement; `7bacc916`
+captures canonical capability only on the actual paid debuff; `e636b8fe` shares
+offensive candidate selection across basic/direct skill/Hydra acquisition without
+changing allegiance/support/ambient or captured-channel ownership. Each increment
+changes four repository paths.88new runtime cases plus49definition cases.
+
+Original unchanged native reproduction is6/6GREEN8.475s: Confuse ranks1/20 each
+reduce hero loss1600→600 with12same-side events/1000monsterHP removed; Attract
+ranks1/20 each reduce1600→1100 with6events/500monsterHP removed. Post-payment
+RED remained4failed/2passed until targeting connected. Actual cadence/payment,
+immutable inputs and deterministic recorded/plain checks retain their assertions.
+
+Final focused209/7files13.158s,engine9123/342files175.291s,typecheck147.354s,
+scoped lint14.588s and engine purity0.289s PASS. All14final committed feature blobs
+and33terminal receipt/log hashes verified in the active task root; no live owned
+command identities. [Runtime evidence](../../docs/plans/evidence/d04-target-curses.md)
+records source heads, fixture corrections, causal/negative controls and author
+review limitations. Inventory stays byte-identical at162credits; neither skill
+is credited. Genuine campaign/save hashes unchanged.
+
+Next:bilingual current-next/MAX,native allocation/wave/resource/import lifecycle,
+production public en/zh desktop/Pixel5 online/offline seven-domain proof and final
+combined full/types/lint/build/bridge/precache,retention/exact cleanup. No current
+full/browser/build or independent/earned acceptance claim. Root owns required
+active evidence through BUG254/full-v1 consumers; umbrella goal remains active.
