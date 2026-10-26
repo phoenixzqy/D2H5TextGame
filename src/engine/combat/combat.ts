@@ -88,6 +88,7 @@ import { HYDRA_DEFINITION, isHydraSkill, matchesHydra, hydraRank, buildHydra } f
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
 import { activeDecrepify, paidDecrepify } from './decrepify-definition';
 import { activeWeaken, paidWeaken } from './weaken-definition';
+import { activeDimVision, paidDimVision } from './dim-vision-definition';
 import { activeTerror } from './terror-definition';
 import { activeDamageCurse, paidDamageCurse } from './damage-curse-definition';
 import { comboMultiplier, shouldShatter } from './combo';
@@ -631,6 +632,11 @@ function buildDamageInput(
   const attackingCry = activeBattleCry(attacker, state.simClockMs);
   const attackingDecrepify = activeDecrepify(attacker, state.simClockMs);
   const attackingWeaken = activeWeaken(attacker, state.simClockMs);
+  const blindnessPenalty = Math.max(
+    hasStatus(activeStatusView(attacker, state.simClockMs), 'blind')
+      ? DRUID_SUMMON_DEFINITION.raven.physicalHitChancePenalty : 0,
+    (activeDimVision(attacker, state.simClockMs)?.physicalHitChanceReductionPct ?? 0) / 100
+  );
   const defendingCry = activeBattleCry(defender, state.simClockMs);
   const attackingCloak = activeCloakOfShadows(attacker, state.simClockMs);
   const defendingCloak = activeCloakOfShadows(defender, state.simClockMs);
@@ -688,8 +694,7 @@ function buildDamageInput(
       (1 - (attackingWeaken?.damageReductionPct ?? 0) / 100) } : {}),
     ...(emptyManaBurn ? { manaBurnMult: MANA_BURN_DEFINITION.zeroManaArcaneMultiplier } : {}),
     ...((effect.damageType === 'physical' || effect.damageType === 'thorns') &&
-      hasStatus(activeStatusView(attacker, state.simClockMs), 'blind')
-      ? { hitChancePenalty: DRUID_SUMMON_DEFINITION.raven.physicalHitChancePenalty } : {}),
+      blindnessPenalty > 0 ? { hitChancePenalty: blindnessPenalty } : {}),
     type: effect.damageType,
     critChance: stats.critChance + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.critPerRank + (effect.critChanceBonus ?? 0) + (attackingCloak?.critChancePct ?? 0),
     critMult: stats.critDamage,
@@ -1721,6 +1726,7 @@ function applyEffect(
           t,
           {
             id: effect.statusId,
+            ...(effect.dimVision === true && effect.statusId === 'dim-vision' ? { dimVision: paidDimVision() } : {}),
             ...(effect.damageCurse === effect.statusId
               ? { damageCurse: paidDamageCurse(effect.damageCurse) } : {}),
             ...(effect.weaken === true && effect.statusId === 'weaken' ? { weaken: paidWeaken() } : {}),

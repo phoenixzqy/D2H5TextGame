@@ -1,6 +1,7 @@
 import { expect, it } from 'vitest';
 import rows from '../../data/skills/necromancer.json';
 import { createSkillValidator } from '../skills/skill-validator';
+import { PLAYABLE_CLASS_SKILL_DATA, registeredSkillFromJson } from '../skills/dataCatalog';
 import { DIM_VISION_DEFINITION, isDimVisionDefinition, paidDimVision, resolveDimVisionDefinition } from './dim-vision-definition';
 
 const row = rows.find(r => r.id === 'skills-necromancer-dim-vision');
@@ -44,4 +45,17 @@ it('freezes a detached scalar copy, preserves caller ownership and refuses dupli
   expect(() => resolveDimVisionDefinition([])).toThrow();
   expect(() => resolveDimVisionDefinition([...rows, row])).toThrow();
   expect(() => resolveDimVisionDefinition([...rows, null, {}, rows[0]])).not.toThrow();
+});
+it('grants a paid adapter capability only for complete canonical metadata', () => {
+  const typed = PLAYABLE_CLASS_SKILL_DATA.necromancer.find(r => r.id === row.id);
+  if (!typed) throw new Error('Missing typed Dim Vision');
+  expect(registeredSkillFromJson(typed).effects)
+    .toEqual([{ kind: 'debuff', statusId: 'dim-vision', durationMs: 3000, dimVision: true }]);
+  for (const statusEffect of [{}, { durationMs: 3000 }, { physicalHitChanceReductionPct: 50 },
+    { durationMs: 3000, physicalHitChanceReductionPct: Infinity },
+    { durationMs: 3000, physicalHitChanceReductionPct: 50, chance: .5 }])
+    expect(registeredSkillFromJson({ ...typed, statusEffect }).effects)
+      .toEqual([{ kind: 'debuff', statusId: 'dim-vision' }]);
+  expect(registeredSkillFromJson({ ...typed, appliesStatus: ['blind'] }).effects)
+    .toEqual([{ kind: 'debuff', statusId: 'blind' }]);
 });
