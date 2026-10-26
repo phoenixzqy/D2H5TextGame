@@ -41,8 +41,8 @@ function sourceFor(id: string): SkillDef {
 
 describe('complete pre-migration Necromancer body compatibility', () => {
   it.each(bodies.map(([id, life, attack, defense, attackSpeed, physDodge, magicDodge, physical, fire, cold, lightning, poison]) =>
-    ({ id, life, attack, defense, attackSpeed, physDodge, magicDodge, physical, fire, cold, lightning, poison })))
-    ('$id preserves every base stat in factory and pure lookup',
+    ({ id, life, attack, defense, attackSpeed, physDodge, magicDodge, physical, fire, cold, lightning, poison })))(
+    '$id preserves every base stat in factory and pure lookup',
     ({ id, life, attack, defense, attackSpeed, physDodge, magicDodge, physical, fire, cold, lightning, poison }) => {
       const expected = { life, lifeMax: life, mana: 0, manaMax: 0, attack, defense,
         magicResist: Math.max(0, Math.floor(MITIGATION_DEFINITION.friendlyBase.summon)),
