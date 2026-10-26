@@ -3,6 +3,7 @@ import { test, expect, type Page, type Locator, type TestInfo, type BrowserConte
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
+import type { SaveVersion } from '../../src/engine/types/save';
 
 interface ItemSnapshot { id: string; [key: string]: unknown }
 interface NativeSave {
@@ -18,6 +19,8 @@ interface NativeSave {
   mercs: { fieldedMercId: string | null; mercEquipment: Record<string, unknown> };
   meta: { settings: { locale: string }; idleState: Record<string, unknown> };
 }
+// Typecheck catches a future version bump without loading data in the browser runner.
+const EXPECTED_SAVE_VERSION: SaveVersion = 22;
 const IRON = 'skills-necromancer-iron-golem';
 const BLOOD = 'skills-necromancer-blood-golem';
 const FIRST = 'native-iron-short-sword';
@@ -68,7 +71,7 @@ async function download(page: Page, info: TestInfo, label: string): Promise<Nati
   const json = await readFile(path, 'utf8');
   await evidence(info, label + '.json', json);
   const save = JSON.parse(json) as NativeSave;
-  expect(save.version).toBe(11);
+  expect(save.version).toBe(EXPECTED_SAVE_VERSION);
   return save;
 }
 async function nav(page: Page, route: string) {
@@ -102,7 +105,7 @@ async function setup(page: Page, info: TestInfo, locale: string, mana = 35) {
   await expect(page.getByTestId('town-screen')).toBeVisible();
   await nav(page, 'settings');
   await page.getByRole('button', { name: locale === 'en' ? 'English' : '简体中文', exact: true }).click();
-  const native = await download(page, info, 'native-v11');
+  const native = await download(page, info, 'native-current');
   // Explicitly unearned eligibility and capped core-stat edits; never an earned-clear claim.
   const fixture: NativeSave = {
     ...native,
@@ -110,14 +113,14 @@ async function setup(page: Page, info: TestInfo, locale: string, mana = 35) {
       ...native.player, level: 24, skillPoints: 1,
       coreStats: { strength: 15, dexterity: 500, vitality: 500, energy: 25 },
       derivedStats: { ...native.player.derivedStats, life: 984, lifeMax: 984, mana, manaMax: 179 },
-      skillLevels: { 'necromancer.iron_golem': 6, 'necromancer.blood_golem': 1 },
+      skillLevels: { 'necromancer.iron_golem': 6, 'necromancer.blood_golem': 1, 'necromancer.golem_mastery': 1, 'necromancer.clay_golem': 1 },
       comboOrder: [IRON]
     },
     inventory: {
       ...native.inventory,
       backpack: [
-        { id: FIRST, baseId: 'items/base/wp1h-short-sword', rarity: 'normal', level: 1, identified: true, equipped: false },
-        { id: SECOND, baseId: 'items/base/armor-chain-mail', rarity: 'normal', level: 1, identified: true, equipped: false }
+        { id: FIRST, baseId: 'items/base/wp1h-short-sword', rarity: 'normal', level: 1, identified: true, equipped: false, socketCapacity: 0, socketContents: [] },
+        { id: SECOND, baseId: 'items/base/armor-chain-mail', rarity: 'normal', level: 1, identified: true, equipped: false, socketCapacity: 0, socketContents: [] }
       ],
       stash: [], equipped: Object.fromEntries(Object.keys(native.inventory.equipped).map((slot) => [slot, null]))
     },
@@ -128,7 +131,7 @@ async function setup(page: Page, info: TestInfo, locale: string, mana = 35) {
   await evidence(info, 'controlled-fixture.json', json);
   await evidence(info, 'fixture-sha256.txt', createHash('sha256').update(json).digest('hex'));
   await importSave(page, json);
-  const observed = await download(page, info, 'imported-v11');
+  const observed = await download(page, info, 'imported-current');
   expect(observed.player.level).toBe(24);
   expect(observed.player.skillLevels).toEqual(fixture.player.skillLevels);
   expect(observed.player.comboOrder).toEqual([IRON]);
@@ -215,7 +218,7 @@ for (const locale of ['en', 'zh-CN']) {
       await expect(ack(page)).not.toBeChecked();
       await expect(panel(page).getByRole('button', { name: names.arm })).toBeDisabled();
       await select(page).selectOption(FIRST);
-      for (const [id, values] of [['iron-preview-current', ['340', '54', '63']], ['iron-preview-next', ['356', '56', '66']]] as const) {
+      for (const [id, values] of [['iron-preview-current', ['360.4', '54', '63']], ['iron-preview-next', ['377.36', '56', '66']]] as const) {
         for (const value of values) await expect(page.getByTestId(id).getByText(value, { exact: true })).toBeVisible();
       }
       await ack(page).check();
@@ -284,17 +287,17 @@ for (const locale of ['en', 'zh-CN']) {
       await page.setViewportSize({ width: 360, height: 640 });
       const fixture = await setup(page, info, locale, mana);
       await skills(page); await arm(page); await enter(page);
-      if (mana === 35) await progressedAndPaused(page);
-      else await page.getByRole('button', { name: names.pause }).click();
+      // Fresh challenge entry refills MP before startup, even when the save held34MP.
+      await progressedAndPaused(page);
       await skills(page);
-      await expect(status(page)).toContainText(mana === 35 ? names.paid : names.unpaid);
+      await expect(status(page)).toContainText(names.paid);
       await expect(status(page)).toContainText(names.none);
       await nav(page, 'settings');
       await save(page);
       const after = await download(page, info, 'after-startup');
-      expect(after.inventory).toEqual({ ...fixture.inventory, backpack: fixture.inventory.backpack.filter((item) => mana === 34 || item.id !== FIRST) });
+      expect(after.inventory).toEqual({ ...fixture.inventory, backpack: fixture.inventory.backpack.filter((item) => item.id !== FIRST) });
       await skills(page);
-      await expect(status(page)).toContainText(mana === 35 ? names.paid : names.unpaid);
+      await expect(status(page)).toContainText(names.paid);
       await arm(page, SECOND);
       await nav(page, 'settings');
       await save(page);
@@ -359,7 +362,7 @@ for (const locale of ['en', 'zh-CN']) {
     await skills(page); await arm(page); await enter(page); await progressedAndPaused(page);
     await skills(page); await arm(page, SECOND); await nav(page, 'settings');
     const before = await download(page, info, 'before-rejected-import');
-    await importSave(page, '{"version":11}', false);
+    await importSave(page, '{"version":22}', false);
     const rejected = await download(page, info, 'after-rejected-import');
     expect(rejected.inventory).toEqual(before.inventory);
     await skills(page);
