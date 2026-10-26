@@ -1,0 +1,64 @@
+{
+  "status": "bounded-functional; independent design/QA and earned acceptance open",
+  "scope": "Grim Ward BUG225 finite shared-corpse fear ward; no independent/earned acceptance",
+  "sourceCommits": [
+    "e67f0349",
+    "775fc1aa"
+  ],
+  "nextDefectReproductionCommit": "1c837a80",
+  "newTests": 75,
+  "focusedFiles": 4,
+  "engineTestsPassed": 8350,
+  "engineFilesPassed": 310,
+  "productionBrowserCases": 4,
+  "rawOwner": "root",
+  "rawRetention": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-retained-bjimq__6.tar.xz",
+    "sha256": "5f543d8085b88bf9c86bf8ef47cbf6a6cf4c9d0d4e90d3529e22b0382ff4ab8a",
+    "bytes": 4423232,
+    "regularMembers": 172,
+    "allMembersByteVerified": true,
+    "owner": "root",
+    "reason": "Retain original Grim Ward REDs/schema/lint failures, final receipts/report/screenshots/source-build identities, exact cleanup plan and BUG241 controlled reproduction/rank dependency map.",
+    "removeWhen": "Root removes this exact archive after original-failure diagnosis and all full-v1/BUG241 evidence consumers finish.",
+    "excludedDisposableRoots": [
+      "dist",
+      "runtime"
+    ],
+    "cleanupPlanFiles": 1482,
+    "cleanupPlanDirectories": 27
+  },
+  "genuineSaveSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "campaignActions": false,
+  "remoteActions": false,
+  "fullUnitSourceScope": "Started before two assertion-equivalent test style corrections and 14 review additions; focused75/4 and final typecheck/lint cover final tests. No production change during final validation.",
+  "fullUnit": {
+    "testsPassed": 16875,
+    "filesPassed": 759,
+    "existingSkips": 2,
+    "seconds": 1496.679
+  },
+  "inventoryAfter": "148bounded/63unverified/oneengine-only/onereview-needed; Barbarian29/30",
+  "newGrimWardCredit": 1,
+  "cleanup": {
+    "owner": "root",
+    "removedFiles": 1482,
+    "removedDirectories": 27,
+    "scratchRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-r8y5puhc",
+    "scratchAbsent": true,
+    "recordedIdentitiesAbsent": 819,
+    "observedBrowserProfilesAbsent": 2,
+    "port4522Free": true,
+    "remainingPaths": [],
+    "failures": [],
+    "preserved": [
+      "172member byte-verified diagnostic archive",
+      "source changes/Git history",
+      "genuine Ancients401 save",
+      "prior retained evidence archives",
+      "installed tools/shared caches/browser binaries",
+      "active umbrella worktree/branch/claim"
+    ]
+  },
+  "integratedCodeAndReproductionHead": "1c837a80"
+}

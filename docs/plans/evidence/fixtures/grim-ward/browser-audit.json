@@ -1,0 +1,285 @@
+{
+  "reportSha256": "44a2a7936bb0af0ca4efd1bf1054493648af51ac9de208bc6f9cba71cec00020",
+  "cases": [
+    {
+      "case": "grim-ward-desktop-en",
+      "newUniqueItems": 34,
+      "runeShards": 855,
+      "priorItemsExact": 2,
+      "savedPaidWardAbsent": true,
+      "savePairs": [
+        {
+          "mode": "online",
+          "domainsExact": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        },
+        {
+          "mode": "offline",
+          "domainsExact": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        }
+      ],
+      "observed": {
+        "fearChipsSeen": true,
+        "wardChipsSeen": true,
+        "blockedActionSeen": true,
+        "repeatedPulsesSeen": true
+      },
+      "snapshots": 99,
+      "logOverflow": false,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "case": "grim-ward-desktop-zh-CN",
+      "newUniqueItems": 34,
+      "runeShards": 855,
+      "priorItemsExact": 2,
+      "savedPaidWardAbsent": true,
+      "savePairs": [
+        {
+          "mode": "online",
+          "domainsExact": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        },
+        {
+          "mode": "offline",
+          "domainsExact": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        }
+      ],
+      "observed": {
+        "fearChipsSeen": true,
+        "wardChipsSeen": true,
+        "blockedActionSeen": true,
+        "repeatedPulsesSeen": true
+      },
+      "snapshots": 99,
+      "logOverflow": false,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "case": "grim-ward-mobile-en",
+      "newUniqueItems": 34,
+      "runeShards": 855,
+      "priorItemsExact": 2,
+      "savedPaidWardAbsent": true,
+      "savePairs": [
+        {
+          "mode": "online",
+          "domainsExact": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        },
+        {
+          "mode": "offline",
+          "domainsExact": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        }
+      ],
+      "observed": {
+        "fearChipsSeen": true,
+        "wardChipsSeen": true,
+        "blockedActionSeen": true,
+        "repeatedPulsesSeen": true
+      },
+      "snapshots": 99,
+      "logOverflow": false,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "case": "grim-ward-mobile-zh-CN",
+      "newUniqueItems": 34,
+      "runeShards": 855,
+      "priorItemsExact": 2,
+      "savedPaidWardAbsent": true,
+      "savePairs": [
+        {
+          "mode": "online",
+          "domainsExact": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        },
+        {
+          "mode": "offline",
+          "domainsExact": [
+            "player",
+            "inventory",
+            "map",
+            "mercs",
+            "formation",
+            "meta"
+          ]
+        }
+      ],
+      "observed": {
+        "fearChipsSeen": true,
+        "wardChipsSeen": true,
+        "blockedActionSeen": true,
+        "repeatedPulsesSeen": true
+      },
+      "snapshots": 99,
+      "logOverflow": false,
+      "geometry": [
+        {
+          "width": 360,
+          "height": 640,
+          "allocationHeight": 48
+        },
+        {
+          "width": 412,
+          "height": 915,
+          "allocationHeight": 48
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1280,
+          "height": 800,
+          "allocationHeight": 48
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allocationHeight": 48
+        }
+      ],
+      "consoleErrors": []
+    }
+  ],
+  "expected": 4,
+  "unexpected": 0,
+  "flaky": 0,
+  "sixDomainPairs": 8,
+  "geometryChecks": 20,
+  "offlineServiceWorkerContinues": 4,
+  "evidenceLimits": [
+    "Synthetic public imported characters do not prove earned balance or campaign acceptance.",
+    "No fear chip is visible in the inspected battlefield screenshots; continuous DOM observers assert its actual appearance.",
+    "Mobile fixed header/navigation overlap skill/battlefield captures; no broad UX/a11y acceptance.",
+    "Page errors are asserted empty by the passing test; separate attachment retains console errors only."
+  ]
+}

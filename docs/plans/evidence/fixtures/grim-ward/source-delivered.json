@@ -1,0 +1,14 @@
+{
+  "commit": "775fc1aad86089978fd71cdfa37f383a57c5f97c",
+  "sourceCommits": [
+    "e67f0349",
+    "775fc1aa"
+  ],
+  "filesExactToCommittedBlobs": 1497,
+  "productionUnchangedAfterBuild": true,
+  "testOnlyChangesDuringFinalChecks": [
+    "src/engine/skills/grim-ward.test.ts: two lint-style corrections without behavior/assertion changes",
+    "src/stores/grim-ward.causal.test.ts: 14 added review boundary tests"
+  ],
+  "contractStatusUpdatedAfterImplementation": true
+}

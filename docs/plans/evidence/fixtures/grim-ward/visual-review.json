@@ -1,0 +1,50 @@
+[
+  {
+    "file": "grim-ward-desktop-en-skill-preview.png",
+    "sha256": "0f30a4c0488b6b760577c951aaac847dd78206a31d62121c6638e0a834d38f9b",
+    "inspectedBy": "root",
+    "limitation": "Fixed mobile header/navigation can overlap captures; paused battlefield does not retain visible fear chip; reward heading/currency may be covered."
+  },
+  {
+    "file": "grim-ward-mobile-zh-CN-skill-preview.png",
+    "sha256": "8234d110e3721c5a74c317741103d7d955da81860d6ec3d2af583f5188226eb1",
+    "inspectedBy": "root",
+    "limitation": "Fixed mobile header/navigation can overlap captures; paused battlefield does not retain visible fear chip; reward heading/currency may be covered."
+  },
+  {
+    "file": "grim-ward-desktop-zh-CN-ward-battlefield.png",
+    "sha256": "ccffdc437d20584d4fbbdc21fe442232b3e278a75bbfa860f5718f1895734bd1",
+    "inspectedBy": "root",
+    "limitation": "Fixed mobile header/navigation can overlap captures; paused battlefield does not retain visible fear chip; reward heading/currency may be covered."
+  },
+  {
+    "file": "grim-ward-mobile-en-ward-battlefield.png",
+    "sha256": "8366f5e91276e3087ad07bf9d4033a65d4e6669d11bbff171728320a1d0f259c",
+    "inspectedBy": "root",
+    "limitation": "Fixed mobile header/navigation can overlap captures; paused battlefield does not retain visible fear chip; reward heading/currency may be covered."
+  },
+  {
+    "file": "grim-ward-desktop-en-ward-feedback.png",
+    "sha256": "6a8a4f8c627cf23bf16f6a4ead7cc06fb8f4a2c3d8073caf1529da916cc1d5f3",
+    "inspectedBy": "root",
+    "limitation": "Fixed mobile header/navigation can overlap captures; paused battlefield does not retain visible fear chip; reward heading/currency may be covered."
+  },
+  {
+    "file": "grim-ward-mobile-zh-CN-ward-feedback.png",
+    "sha256": "0f15e30a3cc7cc7e4f276ded7acb727edc1beeb90951d4ed41c494954752fc69",
+    "inspectedBy": "root",
+    "limitation": "Fixed mobile header/navigation can overlap captures; paused battlefield does not retain visible fear chip; reward heading/currency may be covered."
+  },
+  {
+    "file": "grim-ward-desktop-en-victory-rewards.png",
+    "sha256": "e33b592ac96a5e4b8a68e8e8595a844ec5cfaadd8cbcaaec7c30f1b330dea23b",
+    "inspectedBy": "root",
+    "limitation": "Fixed mobile header/navigation can overlap captures; paused battlefield does not retain visible fear chip; reward heading/currency may be covered."
+  },
+  {
+    "file": "grim-ward-mobile-zh-CN-victory-rewards.png",
+    "sha256": "2d520283ef5b626db3d2db8f5acff9793108052573a7065f6354c5790dd27fbb",
+    "inspectedBy": "root",
+    "limitation": "Fixed mobile header/navigation can overlap captures; paused battlefield does not retain visible fear chip; reward heading/currency may be covered."
+  }
+]

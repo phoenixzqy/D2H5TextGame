@@ -1,0 +1,15 @@
+{
+  "changedAuthoredRows": [
+    "skills-barbarian-grim-ward"
+  ],
+  "otherBarbarianRawObjectsByteExact": 29,
+  "inventoryStillByteExactNoGrimCredit": true,
+  "sourceFilesExact": 1497,
+  "buildFilesExact": 761,
+  "genuineDecompressedSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "campaignOrRemoteActions": false,
+  "rawOtherBarbarianObjectsStillExact": 29,
+  "inventoryBeforeCreditStillExact": true,
+  "sourceDeliveredCommit": "775fc1aa",
+  "frozenSourceBlobs": 1497
+}

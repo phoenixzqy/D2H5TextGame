@@ -12565,3 +12565,45 @@ Umbrella goal/worktree/claim remain active. Next: Grim Ward; Battle Command and
 Cold Mastery acceptance also remain unfinished. All 225 raw archive members byte-verified; 2297 exact files and 45 directories cleaned,
 884 recorded process identities/four profiles absent, port4521 free, scratch absent,
 remaining[]/failures[]. Exact retained path/hash/ownership/removal condition in evidence.
+
+## 2026-10-25 — Grim Ward finite shared-corpse fear verified
+
+Source`e67f0349`, production browser tests`775fc1aa`. One copied native-authorized
+FIFO corpse/payment creates one private indestructible wave-local area ward;
+real timed Howl pulses interrupt current hostiles, with exact boss/source-death/
+expiry/no-active-recast behavior. No reward/summon/save identity or carried ward.
+75new tests; focused75/4, engine8350/310, full16875/759/two existing skips
+(1494.68s Vitest/1496.679s process), final types/lint/build/precache755/bridge5
+and production4/4 pass. Full run included final36causal/26definition cases; it
+started before test-only style/review edits, so frozen-production and final-test
+scope are recorded explicitly. No assertions/timeouts/retries/skips weakened.
+
+Eight exact six-domain Save/Continue pairs, four actual service-worker offline
+Continues and20geometry checks pass;34new unique items/855shards per synthetic
+case, both prior owned items exact. DOM observers prove actual Fear/ward chips,
+blocked actions and repeated pulses. Eight inspected screenshots retain the
+readable copy/ward feedback and existing mobile/tall-reward overlap limits;
+paused battlefield captures themselves do not show fear. Author review is not
+independent design/QA or earned acceptance. [Evidence](evidence/d06-grim-ward.md).
+
+Only Grim Ward credited:148bounded/63unverified/one engine-only/one review-needed;
+Barbarian29/30.212other raw CSV rows/29Barbarian raw objects and all213IDs/order
+remain exact;1497frozen committed source blobs/761build hashes and genuine
+Ancients401 remain exact. BUG225 is locally repaired/verified for all three
+corpse skills; independent/earned acceptance remains open. Next Battle Command
+was separately reproduced in`1c837a80`/BUG241: eight rank1/20 seed7/19/41/97
+controlled comparisons pay/self-marker but no caster/allied rank benefit. Its
+intentional RED/raw map is retained; no implementation or skill credit yet.
+Cold Mastery remains review-needed.
+
+172raw archive members byte-verified;1482exact files/27directories removed,
+819recorded identities/two observed browser profiles absent,4522free, scratch
+absent,remaining[]/failures[]. Exact retained archive path/hash/owner/removal
+condition is in evidence. No genuine campaign or remote action. GenuineL33/
+XP149261/nextNormal402/Nightmare0/Ancients-Rite claimed/Baal uncleared remains
+unchanged. C0/C1 keep limited acceptance; C2 underway; C3/C4/fullG0–G7/all-class
+earned builds/30–50hour pacing/economy/endgame/privatev1 remain unfinished.
+The previous goal turn was a verified wait; this turn completes the local ward
+repair/evidence and reproduces its next dependency. Umbrella goal/worktree/claim
+stay active. Next: reviewed Battle Command effective-rank contract spanning
+passives, specialist casts and allies without durable-allocation mutation.

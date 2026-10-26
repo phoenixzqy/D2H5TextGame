@@ -464,6 +464,12 @@
   "inputsUnchanged": true,
   "probeSha256": "28494213eae8ccfea77c49f00e1b6eb60cc3d17eace54c04735f7560fb3472ff",
   "rawObservationsSha256": "c64427ebee111c05086df3316124694600b8df06bec9d0cdffe82bfda465feb0",
-  "rawRetention": "Included with Grim Ward raw diagnostics; see ../grim-ward/retention.json after final retention.",
+  "rawRetention": {
+    "packet": "../grim-ward/packet.json",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-retained-bjimq__6.tar.xz",
+    "sha256": "5f543d8085b88bf9c86bf8ef47cbf6a6cf4c9d0d4e90d3529e22b0382ff4ab8a",
+    "owner": "root",
+    "removeWhen": "Root removes this exact archive after original-failure diagnosis and all full-v1/BUG241 evidence consumers finish."
+  },
   "securityCheck": "pass: own local deterministic probe; no credentials, dependencies, network or campaign mutation."
 }

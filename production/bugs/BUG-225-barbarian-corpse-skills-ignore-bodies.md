@@ -1,7 +1,7 @@
 # BUG-225 — Require real bodies before corpse searches or Grim Ward
 
-- Status: partially repaired locally; Find Potion and Find Item verified; Grim Ward remains reproduced/unfixed.
-- Severity: High — Grim Ward still pays without a body or an actual spawned ward.
+- Status: all three skills locally repaired and verified; independent design/QA and earned acceptance remain open.
+- Original severity: High — corpse-dependent skills paid without real bodies/outcomes.
 - Owner: root, engine/data/UI; independent design/QA and earned balance open.
 - Original reproduced build: `98ad7970` plus frozen warcry-control implementation; these three
   skill definitions and their generic self-buff/debuff routes are unchanged.
@@ -46,8 +46,8 @@ wave refresh and truthful bilingual UI.112 new regressions, engine8261/308,
 full16656/751/two existing skips, types/lint/build/precache and production4/4 pass.
 [Bounded evidence](../../docs/plans/evidence/d06-find-potion.md) retains raw failures,
 source/build identity and cleanup. Author tuning remains provisional; independent
-QA/design and earned balance are open. Find Item is subsequently repaired below. Grim Ward still lacks its
-real corpse-dependent outcome and retains this bug. Do not close the whole bug.
+QA/design and earned balance are open. Find Item is subsequently repaired below. At that stage Grim Ward still lacked its
+real corpse-dependent outcome; its subsequent local repair is recorded below.
 
 ## Find Item repair
 
@@ -60,4 +60,20 @@ twoexisting skips, types/lint/build/precache and final production4/4 pass.
 [Bounded evidence](../../docs/plans/evidence/d06-find-item.md) records exact loot
 ownership, online/offline persistence, raw failures/cancellation, visual limits
 and cleanup. Root author review only; chance/earned economy and independent
-acceptance remain open. Grim Ward remains unfinished: do not close BUG225.
+acceptance remain open. Grim Ward was still unfinished at that stage; see below.
+
+## Grim Ward repair
+
+Source`e67f0349`and production tests`775fc1aa`consume one shared FIFO corpse
+with ordinary payment and native learned authority, then create one private
+finite wave-local ward/caster. Real timed Howl pulses interrupt current hostiles;
+boss duration, source death, exact expiry and no active recast are enforced.
+No summon/reward identity, incoming-marker authority or saved paid state.
+75new regressions; engine8350/310, full16875/759/twoexisting skips, final types/
+lint/build/precache/bridge and production4/4 pass.
+[Bounded evidence](../../docs/plans/evidence/d06-grim-ward.md) records exact
+production save/ownership checks, original failures, author review and cleanup.
+All three original corpse-skill defects are locally repaired/verified. This is
+not independent design/QA, earned economy/balance or full campaign acceptance.
+No forge closure/approval is claimed. Battle Command is separately reproduced
+in BUG241 and remains unimplemented/uncredited.

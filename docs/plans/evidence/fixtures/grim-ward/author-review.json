@@ -1,0 +1,28 @@
+{
+  "reviewer": "root, sole author; no independent approval",
+  "scope": "Grim Ward engine/schema/native/UI and production-browser change against 1f768c20",
+  "correctness": [
+    "Reviewed private wave-local paid record, shared FIFO reservation, exact rank1/2/20 half-open pulse schedules, normal/boss timed fear and source-death-before-pulse order.",
+    "Inspected no-body/refusal/fallback and final-wave marker cleanup; native next-wave authority and save22 preservation.",
+    "Added 14 direct payment/finite mana/altered registry/shared-consumer contention cases; final focused75/4 pass."
+  ],
+  "readability": "Dedicated small authority/tuning module; private scheduler reuses existing corpse/payment/Howl/status lifecycle; no generic-stat marker fallback.",
+  "architecture": "Pure engine; native staging recomposes learned authority each wave. No summon/reward/save format added, no dependencies or CI changes.",
+  "security": "Complete projection validation/copy/freeze, registry semantics checks, runtime hero/owner/level checks and incoming marker removal prevent marker authority. No network/credentials/campaign actions.",
+  "performance": "Ward map normally empty; at most one finite ward/caster. Exact next-boundary scheduling avoids per-frame polling. Existing bundle/test budgets remain open.",
+  "verification": "Final focused75/4, engine8350/310, full16875/759/two existing skips, production4/4, final typecheck, repository+targeted lint, build/precache755/bridge5 pass.",
+  "requiredNewCodeFindings": [],
+  "limits": [
+    "No independent design/QA or earned balance acceptance.",
+    "Pillar files absent; independent pillar alignment unproven.",
+    "Ward-specific enemy channel/conversion interactions are supported through shared handlers but not independently exercised as live enemy channels in this slice.",
+    "Reviewed screenshots show readable owner chip/copy; mobile fixed overlays persist and fear-chip observation comes from passing DOM assertions.",
+    "Full unit began before test-only style changes and 14 additional review cases; final focused file and lint/type checks cover final tests."
+  ],
+  "productionBehaviorChangedDuringFinalChecks": false,
+  "reviewedSourceFiles": 1497,
+  "reviewSourceDeltaFromPreviousSnapshot": [
+    "docs/plans/decisions/D06-grim-ward-v1.md",
+    "src/stores/grim-ward.causal.test.ts"
+  ]
+}

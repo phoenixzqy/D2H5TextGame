@@ -1,0 +1,37 @@
+{
+  "changedAuthoredRows": [
+    "skills-barbarian-grim-ward"
+  ],
+  "otherBarbarianRawObjectsByteExact": 29,
+  "inventoryStillByteExactNoGrimCredit": true,
+  "sourceFilesExact": 1497,
+  "buildFilesExact": 761,
+  "genuineDecompressedSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "campaignOrRemoteActions": false,
+  "rawOtherBarbarianObjectsStillExact": 29,
+  "inventoryBeforeCreditStillExact": true,
+  "sourceDeliveredCommit": "775fc1aa",
+  "frozenSourceBlobs": 1497,
+  "inventoryAfterCredit": {
+    "onlyChangedDataId": "skills-barbarian-grim-ward",
+    "otherRawRowsByteExact": 212,
+    "allIdsAndOrderExact": true,
+    "rows": 213,
+    "counts": {
+      "unverified": 63,
+      "bounded-functional;independent-acceptance-open": 145,
+      "bounded-engine-functional;independent-acceptance-open": 1,
+      "bounded-functional;earned-balance-open": 3,
+      "review-needed": 1
+    },
+    "boundedSkills": 148,
+    "unverified": 63,
+    "engineOnly": 1,
+    "reviewNeeded": 1,
+    "barbarianBounded": 29,
+    "beforeSha256": "169d7822dd79f2ca8a2448e15ead18e0740039ec2acb19b7b8f9e54617259402",
+    "afterSha256": "6dc926ba2027915a0409f49ca97b1e48e63a0f5c1eaccf229547043f8996a9ce"
+  },
+  "buildFilesStillExact": 761,
+  "sourceFilesStillExact": 1497
+}

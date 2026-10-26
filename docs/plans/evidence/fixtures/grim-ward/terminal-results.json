@@ -1,0 +1,407 @@
+{
+  "boundary-first": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/grim-ward.test.ts",
+      "src/stores/grim-ward.causal.test.ts",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 7.962,
+    "identity": {
+      "pid": 3091406,
+      "procStat": "3091406 (npx) R 3091405 3091405 3091405 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 90336931 11788288 41 18446744073709551615 107882206121984 107882211067581 140725960890464 0 0 0 0 0 0 0 0 0 17 14 0 0 0 0 0 107882214999760 107882216484632 107883134517248 140725960894533 140725960894703 140725960894703 140725960900548 0\n"
+    },
+    "logSha256": "db5c17901d61019d99ec6de16ed25c69620c0e8d118ca5304316902f231de97c"
+  },
+  "browser-first": {
+    "command": [
+      "env",
+      "PWA_PORT=4522",
+      "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-r8y5puhc/runtime/tmp",
+      "XDG_CACHE_HOME=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-r8y5puhc/runtime/cache",
+      "PLAYWRIGHT_BROWSERS_PATH=/home/felixzhao/.cache/ms-playwright",
+      "GRIM_WARD_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-r8y5puhc/dist",
+      "GRIM_WARD_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-r8y5puhc/browser-output",
+      "GRIM_WARD_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-r8y5puhc/browser-report.json",
+      "npx",
+      "playwright",
+      "test",
+      "--config",
+      "tests/pwa/grim-ward.config.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 215.634,
+    "identity": {
+      "pid": 3108320,
+      "procStat": "3108320 (env) R 3108318 3108318 3108318 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 90357700 11788288 33 18446744073709551615 107868858867712 107868863813309 140721126239120 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 107868867745488 107868869230360 107869429555200 140721126246037 140721126246678 140721126246678 140721126252523 0\n"
+    },
+    "logSha256": "6a7af66a8d983ef110280b65670d382bb254ac5cb4cc494bd34925b9ea91c521"
+  },
+  "browser-lint-corrected": {
+    "command": [
+      "npx",
+      "eslint",
+      "--no-ignore",
+      "tests/pwa/grim-ward.config.ts",
+      "tests/pwa/grim-ward.spec.ts",
+      "--max-warnings=0"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 11.366,
+    "identity": {
+      "pid": 3107819,
+      "procStat": "3107819 (npx) R 3107818 3107818 3107818 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 90356515 11788288 33 18446744073709551615 96033950932992 96033955878589 140729848944768 0 0 0 0 0 0 0 0 0 17 13 0 0 0 0 0 96033959810768 96033961295640 96033961652224 140729848952907 140729848953071 140729848953071 140729848958916 0\n"
+    },
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "browser-lint": {
+    "command": [
+      "npx",
+      "eslint",
+      "tests/pwa/grim-ward.config.ts",
+      "tests/pwa/grim-ward.spec.ts",
+      "--max-warnings=0"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 2.908,
+    "identity": {
+      "pid": 3107215,
+      "procStat": "3107215 (npx) R 3107213 3107213 3107213 0 -1 4194304 30 0 0 0 0 0 0 0 20 0 1 0 90354562 12050432 103 18446744073709551615 100198111268864 100198116214461 140736156295824 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 100198120146640 100198121631512 100199058591744 140736156301399 140736156301551 140736156301551 140736156307396 0\n"
+    },
+    "logSha256": "5b4794975636376929fed5508dead1d851d5dd0ffb1bde637bf8d9193fd3ec09"
+  },
+  "build-first": {
+    "command": [
+      "env",
+      "VITE_E2E=false",
+      "npm",
+      "run",
+      "build",
+      "--",
+      "--outDir",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-r8y5puhc/dist"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 23.844,
+    "identity": {
+      "pid": 3103810,
+      "procStat": "3103810 (env) R 3103802 3103802 3103802 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 90348622 11788288 33 18446744073709551615 102189143035904 102189147981501 140730077750240 0 0 0 0 0 0 0 0 0 17 13 0 0 0 0 0 102189151913680 102189153398552 102189667053568 140730077751451 140730077751574 140730077751574 140730077757419 0\n"
+    },
+    "logSha256": "9c4f0b06613b0ec4001c9398e4e276f79da63c753d1ce83932f18a59ffb635b3"
+  },
+  "causal-green": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/grim-ward.test.ts",
+      "src/stores/grim-ward.causal.test.ts",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 8.245,
+    "identity": {
+      "pid": 3089648,
+      "procStat": "3089648 (npx) R 3089647 3089647 3089647 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 90330543 11788288 33 18446744073709551615 110837057138688 110837062084285 140723469158976 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 110837066016464 110837067501336 110837178273792 140723469162565 140723469162735 140723469162735 140723469168580 0\n"
+    },
+    "logSha256": "8fcea25e3489aacc384c56e6f8db0c38040135ace4ce6c1cf4e7821d2cc9930d"
+  },
+  "causal-red": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "--project",
+      "ui",
+      "src/stores/grim-ward.causal.test.ts",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 7.969,
+    "identity": {
+      "pid": 3086207,
+      "procStat": "3086207 (npx) R 3086206 3086206 3086206 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 90316585 11788288 40 18446744073709551615 99666035183616 99666040129213 140726556561744 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 99666044061392 99666045546264 99666221768704 140726556563548 140726556563695 140726556563695 140726556569540 0\n"
+    },
+    "logSha256": "3014ba74efe874dddf015e4ba60165fb3374d1df8a257b98720df6d50b16e7cb"
+  },
+  "definition-corrected": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "--project",
+      "engine",
+      "src/engine/skills/grim-ward.test.ts",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 2.58,
+    "identity": {
+      "pid": 3088642,
+      "procStat": "3088642 (npx) R 3088640 3088640 3088640 0 -1 4194304 6 0 0 0 0 0 0 0 20 0 1 0 90325797 11788288 0 18446744073709551615 105149305307136 105149310252733 140729296236288 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 105149314184912 105149315669784 105150021193728 140729296238680 140729296238831 140729296238831 140729296244676 0\n"
+    },
+    "logSha256": "9800ad20854ef0b1787fa4540cca0dd4db23560b3f5f71814f8293c6900f3d62"
+  },
+  "definition-final": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "--project",
+      "engine",
+      "src/engine/skills/grim-ward.test.ts",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 5.733,
+    "identity": {
+      "pid": 3131862,
+      "procStat": "3131862 (npx) R 3131860 3131860 3131860 0 -1 4194304 15 0 0 0 0 0 0 0 20 0 1 0 90383844 11788288 33 18446744073709551615 108383173484544 108383178430141 140724053824480 0 0 0 0 0 0 0 0 0 17 4 0 0 0 0 0 108383182362320 108383183847192 108384048570368 140724053829720 140724053829871 140724053829871 140724053835716 0\n"
+    },
+    "logSha256": "8b8cafdba906a81ee31e5683aac130b735e93d0b7a84a6ba704ac79e01e6c821"
+  },
+  "definition-green": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "--project",
+      "engine",
+      "src/engine/skills/grim-ward.test.ts",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 2.338,
+    "identity": {
+      "pid": 3088558,
+      "procStat": "3088558 (npx) R 3088557 3088557 3088557 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 90324657 11763712 0 18446744073709551615 0 0 140736918259800 0 0 0 0 0 0 0 0 0 17 10 0 0 0 0 0 0 0 0 140736918259800 0 0 0 0\n"
+    },
+    "logSha256": "43158a85cef0452d228f083cf8547c594baeacaaf4ebf23ce9e40b5a7363f814"
+  },
+  "definition-red": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "--project",
+      "engine",
+      "src/engine/skills/grim-ward.test.ts",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 1.803,
+    "identity": {
+      "pid": 3087804,
+      "procStat": "3087804 (npx) R 3087803 3087803 3087803 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 90322237 11788288 33 18446744073709551615 100511321759744 100511326705341 140734215161504 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 100511330637520 100511332122392 100512037773312 140734215170136 140734215170287 140734215170287 140734215176132 0\n"
+    },
+    "logSha256": "0c074d6ccf380875cca66bc518a00683297a4237f8b67c87fdc0d1e727de5011"
+  },
+  "engine-first": {
+    "command": [
+      "npm",
+      "run",
+      "test:engine",
+      "--",
+      "--reporter=basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 207.769,
+    "identity": {
+      "pid": 3103377,
+      "procStat": "3103377 (npm) R 3103374 3103374 3103374 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 90347290 11751424 0 18446744073709551615 0 0 140734685640837 0 0 0 0 0 0 0 0 0 17 6 0 0 0 0 0 0 0 0 140734685640837 0 0 0 0\n"
+    },
+    "logSha256": "6d228c1cce9e4fbb306a32f430f7b03e9459588cad34a8698dba6cccd1b1c9b9"
+  },
+  "focused-review": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/grim-ward.test.ts",
+      "src/stores/grim-ward.causal.test.ts",
+      "src/stores/grim-ward-native.test.ts",
+      "src/features/skills/SkillsScreen.grim-ward.test.tsx",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 19.149,
+    "identity": {
+      "pid": 3176124,
+      "procStat": "3176124 (npx) R 3176121 3176121 3176121 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 90406258 11788288 33 18446744073709551615 104120967036928 104120971982525 140727484447376 0 0 0 0 0 0 0 0 0 17 11 0 0 0 0 0 104120975914704 104120977399576 104121081073664 140727484450797 140727484451055 140727484451055 140727484456900 0\n"
+    },
+    "logSha256": "247c7c33c7a46250fee17ddf27592194d50ce367311b1592c698db18e6415eb1"
+  },
+  "full-first": {
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--reporter=basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 1496.679,
+    "identity": {
+      "pid": 3116342,
+      "procStat": "3116342 (npm) R 3116341 3116341 3116341 0 -1 4194304 23 0 0 0 0 0 0 0 20 0 1 0 90370344 11788288 107 18446744073709551615 95497759330304 95497764275901 140734657938912 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 95497768208080 95497769692952 95498782097408 140734657947792 140734657947887 140734657947887 140734657953732 0\n"
+    },
+    "logSha256": "888cb4de9380531523f0a448a48ecb8358084d0f029afdea4ec882f37ad56020"
+  },
+  "integrated-first": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/engine/skills/grim-ward.test.ts",
+      "src/stores/grim-ward.causal.test.ts",
+      "src/stores/grim-ward-native.test.ts",
+      "src/features/skills/SkillsScreen.grim-ward.test.tsx",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 11.704,
+    "identity": {
+      "pid": 3094981,
+      "procStat": "3094981 (npx) R 3094922 3094922 3094922 0 -1 4194304 9 0 0 0 0 0 0 0 20 0 1 0 90343333 11788288 0 18446744073709551615 111171330437120 111171335382717 140728194445824 0 0 0 0 0 0 0 0 0 17 11 0 0 0 0 0 111171339314896 111171340799768 111171807326208 140728194451437 140728194451695 140728194451695 140728194457540 0\n"
+    },
+    "logSha256": "cd841dd75a91ca04073d0d49921e9c5d0f3a51dfd520917c6282e92972905626"
+  },
+  "lint-final": {
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 337.276,
+    "identity": {
+      "pid": 3131871,
+      "procStat": "3131871 (npm) R 3131861 3131861 3131861 0 -1 4194304 14 0 0 0 0 0 0 0 20 0 1 0 90383853 11788288 33 18446744073709551615 99437607497728 99437612443325 140731508119696 0 0 0 0 0 0 0 0 0 17 1 0 0 0 0 0 99437616375504 99437617860376 99438516764672 140731508123808 140731508123887 140731508123887 140731508129732 0\n"
+    },
+    "logSha256": "55f6765632c4cc3c16a0de6dc21aa18823100a445a47635cc0be24ade6e44b1d"
+  },
+  "lint-first": {
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 325.534,
+    "identity": {
+      "pid": 3103379,
+      "procStat": "3103379 (npm) R 3103376 3103376 3103376 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 90347290 11788288 41 18446744073709551615 100095736930304 100095741875901 140725638863200 0 0 0 0 0 0 0 0 0 17 8 0 0 0 0 0 100095745808080 100095747292952 100096774496256 140725638867104 140725638867183 140725638867183 140725638873028 0\n"
+    },
+    "logSha256": "eb1bbf0d21d27c64b2fcb405eb7e7078c790c66aa6cb6fb46ec0cc1a0001a8cf"
+  },
+  "lint-review": {
+    "command": [
+      "npx",
+      "eslint",
+      "src/stores/grim-ward.causal.test.ts",
+      "--max-warnings",
+      "0"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 16.831,
+    "identity": {
+      "pid": 3176126,
+      "procStat": "3176126 (npx) R 3176122 3176122 3176122 0 -1 4194304 5 0 0 0 0 0 0 0 20 0 1 0 90406260 11788288 0 18446744073709551615 0 0 140721390872685 0 0 0 0 0 0 0 0 0 17 11 0 0 0 0 0 0 0 0 140721390872685 0 0 0 0\n"
+    },
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "native-ui-red": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "src/stores/grim-ward-native.test.ts",
+      "src/features/skills/SkillsScreen.grim-ward.test.tsx",
+      "--reporter",
+      "basic"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 10.588,
+    "identity": {
+      "pid": 3092211,
+      "procStat": "3092211 (npx) R 3092210 3092210 3092210 0 -1 4194304 8 0 0 0 0 0 0 0 20 0 1 0 90339640 11788288 0 18446744073709551615 109567703764992 109567708710589 140729874226176 0 0 0 0 0 0 0 0 0 17 2 0 0 0 0 0 109567712642768 109567714127640 109567899852800 140729874229301 140729874229487 140729874229487 140729874235332 0\n"
+    },
+    "logSha256": "e9b5770c5d4cf846ce7bf0250cd0e61baf308bff65bc08a10dbba13d5dc6f204"
+  },
+  "next-battle-command-probe": {
+    "command": [
+      "node_modules/.bin/vite-node",
+      "--config",
+      "vitest.config.ts",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-r8y5puhc/next-battle-command-probe.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "seconds": 9.903,
+    "identity": {
+      "pid": 3201947,
+      "procStat": "3201947 (vite-node) R 3201908 3201908 3201908 0 -1 4194304 23 0 0 0 0 0 0 0 20 0 1 0 90429967 11796480 98 18446744073709551615 105979410251776 105979415197373 140731083014592 0 0 0 0 0 0 0 0 0 17 7 0 0 0 0 0 105979419129552 105979420614424 105979608543232 140731083020377 140731083020551 140731083020551 140731083026396 0\n"
+    },
+    "logSha256": "f4c474a8f82458181835a4c1024a24d63bb2e755995575cfdccad4b85be58e06"
+  },
+  "types-first": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 182.03,
+    "identity": {
+      "pid": 3103378,
+      "procStat": "3103378 (npm) R 3103375 3103375 3103375 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 90347290 11751424 0 18446744073709551615 0 0 140728572106907 0 0 0 0 0 0 0 0 0 17 5 0 0 0 0 0 0 0 0 140728572106907 0 0 0 0\n"
+    },
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+  },
+  "types-review": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "seconds": 149.842,
+    "identity": {
+      "pid": 3176125,
+      "procStat": "3176125 (npm) R 3176123 3176123 3176123 0 -1 4194304 13 0 0 0 0 0 0 0 20 0 1 0 90406260 11788288 33 18446744073709551615 95474015629312 95474020574909 140720816900224 0 0 0 0 0 0 0 0 0 17 12 0 0 0 0 0 95474024507088 95474025991960 95474790719488 140720816904347 140720816904431 140720816904431 140720816910276 0\n"
+    },
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+  }
+}

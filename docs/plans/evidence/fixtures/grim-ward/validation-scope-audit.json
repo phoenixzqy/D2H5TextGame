@@ -1,0 +1,11 @@
+{
+  "browserToDeliveredSourceDelta": [
+    "docs/plans/decisions/D06-grim-ward-v1.md",
+    "src/engine/skills/grim-ward.test.ts",
+    "src/stores/grim-ward.causal.test.ts"
+  ],
+  "productionFilesChanged": [],
+  "productionBrowserBuildAndDeliveredSourcesExact": true,
+  "sourceFiles": 1497,
+  "fullRun": "exit0;16875passed/759files/twoexisting skips;1496.679s process; final36causal/26definition cases included"
+}

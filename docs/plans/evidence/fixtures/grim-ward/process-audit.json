@@ -1,0 +1,12 @@
+{
+  "identities": 819,
+  "liveIdentities": [],
+  "profiles": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-r8y5puhc/runtime/tmp/playwright_chromiumdev_profile-GXv1Lg",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-r8y5puhc/runtime/tmp/playwright_chromiumdev_profile-NX7CvS"
+  ],
+  "profilesRemaining": [],
+  "port": 4522,
+  "portFree": true,
+  "processesSignalled": []
+}

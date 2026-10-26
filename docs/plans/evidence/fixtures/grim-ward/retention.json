@@ -1,0 +1,16 @@
+{
+  "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-grim-ward-retained-bjimq__6.tar.xz",
+  "sha256": "5f543d8085b88bf9c86bf8ef47cbf6a6cf4c9d0d4e90d3529e22b0382ff4ab8a",
+  "bytes": 4423232,
+  "regularMembers": 172,
+  "allMembersByteVerified": true,
+  "owner": "root",
+  "reason": "Retain original Grim Ward REDs/schema/lint failures, final receipts/report/screenshots/source-build identities, exact cleanup plan and BUG241 controlled reproduction/rank dependency map.",
+  "removeWhen": "Root removes this exact archive after original-failure diagnosis and all full-v1/BUG241 evidence consumers finish.",
+  "excludedDisposableRoots": [
+    "dist",
+    "runtime"
+  ],
+  "cleanupPlanFiles": 1482,
+  "cleanupPlanDirectories": 27
+}
