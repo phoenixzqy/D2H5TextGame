@@ -26,6 +26,8 @@ export interface GridPosition {
 
 /** Active status effect on a combat unit. */
 export interface ActiveStatus {
+  /** Copied paid finite Dim Vision accuracy potency; bare markers grant no blindness. */
+  readonly dimVision?: { readonly physicalHitChanceReductionPct: number };
   /** Paid finite Terror fear; transient and bounded by authored tier timing. */
   readonly terror?: true;
   /** Copied paid finite damage-curse potency; transient and exact-identity checked. */

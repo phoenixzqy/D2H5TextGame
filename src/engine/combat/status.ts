@@ -27,11 +27,13 @@ import { DRUID_SUMMON_DEFINITION } from '../skills/druid-summon-definition';
 import { WARCRY_DEFINITIONS } from './warcry-definition';
 import { DECREPIFY_DEFINITION } from './decrepify-definition';
 import { WEAKEN_DEFINITION } from './weaken-definition';
+import { DIM_VISION_DEFINITION } from './dim-vision-definition';
 import { TERROR_DEFINITION } from './terror-definition';
 import { DAMAGE_CURSE_DEFINITIONS, isDamageCurseId } from './damage-curse-definition';
 
 /** Known status IDs handled with explicit defaults. */
 export type StatusId =
+  | 'dim-vision'
   | 'terror'
   | 'iron-maiden' | 'life-tap' | 'lower-resist'
   | 'weaken'
@@ -63,6 +65,7 @@ export interface StatusConfig {
 
 /** Default per-status configuration table, derived from §9. */
 export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.freeze({
+  'dim-vision': { duration: DIM_VISION_DEFINITION.durationMs / 1000, maxStacks: 1 },
   terror: { duration: TERROR_DEFINITION.durationMs / 1000, maxStacks: 1,
     bossDurationMult: TERROR_DEFINITION.bossDurationMultiplier },
   'iron-maiden': { duration: DAMAGE_CURSE_DEFINITIONS['iron-maiden'].durationMs / 1000, maxStacks: 1 },
@@ -89,6 +92,7 @@ export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.
 
 /** Description of a status to apply. */
 export interface ApplyStatusInput {
+  readonly dimVision?: ActiveStatus['dimVision'];
   readonly terror?: true;
   readonly damageCurse?: ActiveStatus['damageCurse'];
   readonly weaken?: ActiveStatus['weaken'];
@@ -242,7 +246,7 @@ export function applyStatusWithResult(
   }
 
   // Paid warcries and finite damage curses replace their source, potency and interval without stacking.
-  if (id === 'terror' || id === 'howl' || id === 'taunt' || id === 'battle-cry' || id === 'decrepify' || id === 'weaken' || isDamageCurseId(id))
+  if (id === 'dim-vision' || id === 'terror' || id === 'howl' || id === 'taunt' || id === 'battle-cry' || id === 'decrepify' || id === 'weaken' || isDamageCurseId(id))
     unit = { ...unit, statuses: unit.statuses.filter(s => s.id !== id) };
   const idx = unit.statuses.findIndex((s) => canonicalStatusId(s.id) === id);
   const expiresAtMs =
@@ -255,6 +259,7 @@ export function applyStatusWithResult(
   if (!existing || (input.simClockMs !== undefined && !statusActiveAt(existing, input.simClockMs))) {
     const newStatus: ActiveStatus = {
       id,
+      ...(id === 'dim-vision' && input.dimVision ? { dimVision: Object.freeze({ ...input.dimVision }) } : {}),
       ...(id === 'terror' && input.terror === true ? { terror: true as const } : {}),
       ...(isDamageCurseId(id) && input.damageCurse?.id === id ? { damageCurse: Object.freeze({ ...input.damageCurse }) } : {}),
       ...(id === 'weaken' && input.weaken ? { weaken: Object.freeze({ ...input.weaken }) } : {}),

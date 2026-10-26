@@ -1,5 +1,6 @@
 import rows from '../../data/skills/necromancer.json';
 import type { SkillDef } from '../types/skills';
+import type { ActiveStatus, CombatUnit } from './types';
 import { createSkillValidator } from '../skills/skill-validator';
 
 const validate = createSkillValidator<SkillDef>();
@@ -25,4 +26,19 @@ export const DIM_VISION_DEFINITION = resolveDimVisionDefinition(rows);
 /** Capture one immutable accuracy packet when an eligible action actually pays. */
 export function paidDimVision() {
   return Object.freeze({ physicalHitChanceReductionPct: DIM_VISION_DEFINITION.physicalHitChanceReductionPct });
+}
+
+/** Accept only a finite paid interval and exact copied potency, including valid Cleansing/rebasing. */
+export function activeDimVision(unit: CombatUnit, clock: number): ActiveStatus['dimVision'] {
+  if (!Number.isFinite(clock)) return undefined;
+  for (const status of unit.statuses) {
+    const payload = status.dimVision, start = status.appliedAtMs, end = status.expiresAtMs;
+    if (status.id !== 'dim-vision' || status.stacks !== 1 || !payload || start === undefined || end === undefined ||
+      !Number.isFinite(start) || !Number.isFinite(end) || end <= start || clock < start || clock >= end) continue;
+    const tolerance = Math.min(.000001, 8 * Number.EPSILON * Math.max(Math.abs(start), Math.abs(end), DIM_VISION_DEFINITION.durationMs));
+    if (end - start > DIM_VISION_DEFINITION.durationMs + tolerance ||
+      payload.physicalHitChanceReductionPct !== DIM_VISION_DEFINITION.physicalHitChanceReductionPct) continue;
+    return paidDimVision();
+  }
+  return undefined;
 }
