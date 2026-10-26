@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D06 Battle Command qualified native carry / BUG241 | locally fixed/verified increment; complete skill unfinished | `9a4433f2`: private paid intervals rebased at actual terminal clock; exact result-array/clock transfer, fresh learned/passive authority, initial status prefix, final HP layers and deterministic retry/replay.26new tests; focused74/5 plus playback8/1, engine8471/315, full17050/768/two existing skips, types/lint/build/755-URL precache/bridge PASS.1361source/committed blobs and protected hashes exact. [Evidence](evidence/d06-battle-command-carry.md).52raw members verified;593exact files/eight directories cleaned,17recorded identities/no runtime users,remaining[]/failures[]. Reachable equipped consumers, bilingual feedback/details and production save/offline/mobile proof remain open; no skill credit. Inventory148bounded/63unverified/one engine-only/one review-needed; genuineL33/next402/Baal uncleared and C2-C4/fullG0-G7/privatev1 unchanged. |
 | D06 Battle Command passive/corpse potency / BUG241 | locally fixed/verified increment; full skill unfinished | Source`2cb8d1e1` over paid-party`5e7f0e96`: fresh baseline/+1 native passive profiles, paid cast/expiry resources/recovery/phase and final layered HP; shared corpse effective ranks with strict captured Find Item settlement.33new tests; focused385/15, engine8453/314, full17024/766/two existing skips, types/lint/build/precache/bridge PASS. All1358collected paths/committed blobs and protected hashes exact. [Evidence](evidence/d06-battle-command-passives-corpses.md). Corrected earlier skipped inert-action control with actual matched paid actions/debits.43raw members byte-verified;583exact scratch files/seven directories cleaned,12recorded identities/no runtime users,remaining[]/failures[]. Qualified remaining-interval carry, other consumers, bilingual details, production save/offline/mobile proof and independent/earned acceptance remain open; no Battle Command credit. Inventory148bounded/63unverified/one engine-only/one review-needed, Barbarian29/30; genuineL33/next402/Baal uncleared and C2-C4/fullG0-G7/privatev1 unchanged. |
 | D06 temporary effective ranks / BUG241 dependency | rank/composition increment locally verified; actual Battle Command unfinished | `318ed060`: learned authority remains separate from temporary potency, including20->21; one native Barbarian passive projection preserves baseline stat arithmetic and ignores imported bonus fields.57new tests; engine8406/313, full16932/762/two existing skips, final types/lint/build/precache/bridge PASS. [Evidence](evidence/d06-temporary-skill-ranks.md). Raw35member archive verified; exact1336files/17directories cleaned,10process identities absent, scratch absent,remaining[]/failures[]. Inventory stays148bounded/63unverified/one engine-only/one review-needed, Barbarian29/30. Paid party buff, active/specialist/corpse ranks, passive lifecycle/resources, snapshots/wave carry, UI/browser saves and independent/earned acceptance remain open. GenuineL33/next402/Baal uncleared unchanged; C2-C4/fullG0-G7/privatev1 remain unfinished. |
 | D06 Find Item / BUG225 partial | locally fixed/verified; independent and earned acceptance open | Source`d8171e71`/strict defaults`ba279f7a`: real shared corpse, paid one-draw search and private victory-settled ordinary bonus loot.144new tests; engine8324/309, full16800/755/two existing skips, types/lint/build/precache/bridge pass. Final production4/4, eight exact six-domain pairs/four offline Continues/20geometry;45new unique items/1110shards per synthetic case. One credit:147bounded/64unverified/one engine-only/one review-needed; Barbarian28/30. [Evidence](evidence/d06-find-item.md). 225 raw archive members verified; 2297 exact files cleaned, 884 process identities/four profiles absent,4521free,scratch absent,remaining[]/failures[]. Grim Ward keeps BUG225 open; Battle Command, Cold Mastery, genuine Baal and C2-C4/fullG0-G7/privatev1 remain unfinished. |
@@ -12654,3 +12655,35 @@ retained archive/hash/cleanup ownership is in the paid-rank evidence. Prior
 status turn was a verified wait (live session9220); this continuation collects
 the terminal result and prepares the next native-passive regression increment.
 No skill credit, campaign or remote action. BUG241/full privatev1 remain open.
+
+## 2026-10-26 — Battle Command qualified native carry verified
+
+Source `9a4433f2` completes the paid remaining-interval carry increment, with
+fresh native learned/passive authority and exact engine-result/clock transfer.
+Full session64542 collected PASS17050tests/768files/two existing skips,
+862.94s Vitest/864.490s process. All1361 collected paths, exact HEAD/porcelain
+and protected hashes matched at terminal; all1361 committed blobs match tested
+source. Focused/engine/types/lint/build/precache/bridge also pass.
+[Evidence](evidence/d06-battle-command-carry.md) retains the causal RED, corrected
+initial observation-order failure, fixture limitations and source/cleanup proof.
+
+52raw members byte-verified;593exact task files/eight directories removed,
+17recorded identities absent, no runtime users, scratch absent,remaining[]/
+failures[]. Root retains the archive/receipt under the evidence removal
+condition. No genuine campaign or remote action; umbrella worktree/claim active.
+
+Previous status turn was a verified wait on live64542. This continuation
+collects its terminal result and commits source/evidence. Next: reachable
+equipped consumers, JSON-derived bilingual details, localized positive
+Command feedback and production mobile/desktop save/offline proof. The status
+is missing locale keys and classified as a debuff; regression drafts were
+prepared outside the repository during carry validation. BUG241 stays open
+and no skill credit is added. Inventory148bounded/63unverified/one engine-only/
+one review-needed; Barbarian29/30. GenuineL33/XP149261/nextNormal402/Nightmare0/
+Ancients-Rite claimed/Baal uncleared unchanged. C2-C4/fullG0-G7/all-class earned
+builds/30-50hour pacing/economy/endgame/complete privatev1 remain unfinished.
+
+Carry evidence was committed in25edc7d6 before this ledger update: an exact
+Markdown-table guard refused a duplicate generic separator before ledger or bug
+edits. The follow-up uses the unique complete Current cards header. No gameplay
+source or validation evidence changed during that documentation correction.

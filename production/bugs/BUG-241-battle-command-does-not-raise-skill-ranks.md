@@ -1,6 +1,6 @@
 # BUG-241 — Apply Battle Command skill levels to caster and allies
 
-- Status: reproduced, not implemented; no bounded skill credit.
+- Status: paid party/passive/corpse/carry increments locally repaired and verified; complete skill acceptance open; no bounded skill credit.
 - Severity: High — the advertised skill-rank benefit has no working consumer.
 - Owner: root, engine/native composition/data/UI; independent design/QA open.
 - Reproduced head: `775fc1aa`; Node24.21.0, pure engine, no browser viewport.
@@ -69,3 +69,20 @@ active/specialist/corpse ranks, passive application/removal and life/recovery,
 paid snapshots, expiry/death, wave carry, bilingual UI and production persistence
 remain unfinished. The original command reproduction is still open; no bounded
 skill credit or independent acceptance is added by the dependency increment.
+
+`5e7f0e96` adds the paid finite party effect and effective active/specialist
+ranks. `2cb8d1e1` adds native passive lifecycle and paid corpse potency
+([evidence](../../docs/plans/evidence/d06-battle-command-passives-corpses.md)).
+`9a4433f2` adds qualified native remaining-interval carry with fresh authority,
+exact initial observations, final HP layers and deterministic replay/retry
+([evidence](../../docs/plans/evidence/d06-battle-command-carry.md)). Final full
+17050tests/768files/two existing skips and engine/types/lint/build/precache/bridge
+checks pass; tested source and committed blobs match.
+
+Still open: reachable equipped-skill consumer proof, bilingual details
+and production mobile/desktop/save/offline acceptance. Read-only presentation
+audit found no effect.status/effect.buff battle-command keys in either combat
+locale and no positive Command classification in CombatScreen; current generic
+details also omit finite duration. These gaps are recorded before their repair.
+Root author review is not independent/earned/balance acceptance. Genuine
+campaign state and the148bounded skill inventory remain unchanged.
