@@ -886,7 +886,7 @@
     },
     "fire-golem": {
       "name": "火焰石魔",
-      "desc": "召唤燃烧敌人的火焰石魔。"
+      "desc": "普通攻击造成火焰伤害，命中后附加燃烧：每层每秒造成最终命中伤害的{{percentOfHit}}%（向下取整，最低{{minDps}}点），持续{{durationSeconds}} 秒，最多{{maxStacks}}层。再次命中会增加层数至上限并刷新持续时间。"
     },
     "revive": {
       "name": "复生",

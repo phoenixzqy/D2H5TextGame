@@ -886,7 +886,7 @@
     },
     "fire-golem": {
       "name": "Fire Golem",
-      "desc": "Summons a flaming golem that burns enemies."
+      "desc": "Ordinary attacks deal Fire damage. Each landed hit applies Burn: {{percentOfHit}}% of the final hit per second per stack, rounded down with minimum {{minDps}} damage per second, for {{durationSeconds}} s, up to {{maxStacks}} stacks. Further hits add stacks up to the cap and refresh the duration."
     },
     "revive": {
       "name": "Revive",

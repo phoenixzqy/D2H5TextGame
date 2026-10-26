@@ -948,13 +948,13 @@ function StatSection({
                 value={t('details.seconds', { seconds: summonEffect.durationSeconds })} />
             </>
           ) : null}
-          {summonEffect?.kind === 'poison' ? (
+          {summonEffect?.kind === 'poison' || summonEffect?.kind === 'burn' ? (
             <>
-              <StatLine label={t('details.periodicRate', { status: t('combat:effect.status.poison') })}
+              <StatLine label={t('details.periodicRate', { status: t(`combat:effect.status.${summonEffect.kind === 'burn' ? 'ignite' : 'poison'}`) })}
                 value={t('details.burnRateValue', summonEffect)} />
-              <StatLine label={t('details.periodicDuration', { status: t('combat:effect.status.poison') })}
+              <StatLine label={t('details.periodicDuration', { status: t(`combat:effect.status.${summonEffect.kind === 'burn' ? 'ignite' : 'poison'}`) })}
                 value={t('details.seconds', { seconds: summonEffect.durationSeconds })} />
-              <StatLine label={t('details.periodicMaxStacks', { status: t('combat:effect.status.poison') })}
+              <StatLine label={t('details.periodicMaxStacks', { status: t(`combat:effect.status.${summonEffect.kind === 'burn' ? 'ignite' : 'poison'}`) })}
                 value={String(summonEffect.maxStacks)} />
             </>
           ) : null}
