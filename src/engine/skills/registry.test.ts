@@ -525,18 +525,14 @@ describe('skill registry JSON catalog', () => {
     expect(emptyActiveEffects).toEqual([]);
   });
 
-  it('keeps utility-only active skills usable through runtime buff or debuff effects', () => {
+  it('preserves utility active effects, including real finite-corpse searches', () => {
     expect(getSkill('skills-sorceress-teleport')?.effects).toContainEqual({
       kind: 'buff',
       id: 'teleport',
       sorceressBuff: 'teleport',
       duration: 1
     });
-    expect(getSkill('skills-barbarian-find-item')?.effects).toContainEqual({
-      kind: 'buff',
-      id: 'find-item',
-      duration: -1
-    });
+    expect(getSkill('skills-barbarian-find-item')?.effects).toEqual([{ kind: 'corpse-search' }]);
     expect(getSkill('skills-amazon-decoy')?.effects).toContainEqual({
       kind: 'buff',
       id: 'decoy',

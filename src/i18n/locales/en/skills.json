@@ -66,6 +66,7 @@
   "details": {
     "damagePerHead": "{{type}} damage per head bolt",
     "hydraBody": "Hydra body",
+    "corpseSearchChance": "Search success chance",
     "corpseRecoveryLife": "Life recovered (% of maximum)",
     "corpseRecoveryMana": "Mana recovered (% of maximum)",
     "hydraBodyValue": "One body, {{heads}} heads; {{duration}} s; own Attack Speed",
@@ -638,7 +639,7 @@
     },
     "find-item": {
       "name": "Find Item",
-      "desc": "Searches corpses for items."
+      "desc": "Consumes one shared enemy corpse for a {{chance}}% chance of an extra ordinary loot roll from that monster, collected on wave victory with no extra XP or quest credit. Pay {{mana}} MP; cooldown {{cooldown}} s. Failure still consumes the corpse, mana and cooldown. A successful roll may yield no item; defeat or flee loses uncollected loot. With no corpse, skip to the next skill or basic attack. Changes apply next wave."
     },
     "battle-cry": {
       "name": "Battle Cry",

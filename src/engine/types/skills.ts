@@ -251,6 +251,8 @@ export interface ConversionTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** One paid real-corpse search; a successful result settles ordinary bonus loot on victory. */
+  readonly corpseSearch?: { readonly successChance: number; readonly successChancePerRank: number };
   /** Immediate paid recovery from one shared enemy body; creates no potion item. */
   readonly corpseRecovery?: { readonly lifePct: number; readonly lifePctPerRank: number;
     readonly manaPct: number; readonly manaPctPerRank: number };

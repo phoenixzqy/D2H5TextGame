@@ -6,6 +6,7 @@ import type { CombatSnapshot } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { KillRewards } from '@/engine/loot/award';
 import type { IronGolemPreparationAttestation } from '@/engine/skills/iron-golem';
+import type { FindItemFind } from '@/engine/skills/find-item';
 import type { ActiveRun, RunOrigin } from './combatRunLifecycle';
 import type { useCombatStore } from './combatStore';
 import type { RecordedBattlePublication } from './recordedBattlePublication';
@@ -35,6 +36,8 @@ export interface RecordedWaveBinding {
   readonly debitIntent: IronGolemDebitIntent | null;
   readonly engineInput: CombatSnapshot;
   readonly attestation: IronGolemPreparationAttestation | null;
+  /** Privately copied engine successes; public events never authorize search loot. */
+  readonly findItemFinds?: readonly FindItemFind[];
   readonly recording: NonNullable<ActiveRun['recording']>;
   readonly publication: RecordedBattlePublication;
   readonly councilEncounter?: CouncilEncounter;

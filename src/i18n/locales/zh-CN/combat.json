@@ -34,6 +34,8 @@
   "logPaused": "已暂停滚动 (移开光标继续)",
   "logHoverPausedHint": "日志已暂停滚动",
   "corpses": {
+    "findItemSuccess": "找物品消耗一具尸体：搜索成功。本波胜利后收取额外一次普通掉落。剩余尸体：{{count}}。",
+    "findItemEmpty": "找物品消耗一具尸体：未找到物品。已消耗法力并进入冷却。剩余尸体：{{count}}。",
     "consumedFindPotion": "找药水消耗一具尸体，即时恢复生命与法力。剩余尸体：{{count}}。",
     "available": "敌人倒下，留下一具尸体。可用尸体：{{count}}。",
     "consumed": "尸体爆炸消耗一具尸体。剩余尸体：{{count}}。",

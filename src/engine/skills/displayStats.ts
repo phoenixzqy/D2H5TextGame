@@ -28,6 +28,7 @@ import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 import { HYDRA_DEFINITION, hydraBodyStats } from './hydra';
 
 export interface DisplaySkillSource {
+  readonly corpseSearch?: import('../types/skills').SkillDef['corpseSearch'];
   readonly corpseRecovery?: import('../types/skills').SkillDef['corpseRecovery'];
   readonly hydra?: import('../types/skills').SkillDef['hydra'];
   readonly enchantOnPhysicalHit?: { readonly attackPctPerRank: number };
@@ -167,6 +168,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Probability of one bonus ordinary loot roll, collected only on victory. */
+  readonly corpseSearch?: { readonly successPercent: number };
   /** One shared corpse restores these independent percentages, capped after payment. */
   readonly corpseRecovery?: { readonly lifePercent: number; readonly manaPercent: number };
   /** Independent body attacks; damage rows describe one head's bolt. */
@@ -631,6 +634,9 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(skill.id === 'skills-barbarian-find-item' && skill.trigger === 'active' && skill.target === 'self' &&
+      skill.corpseSearch ? { corpseSearch: { successPercent: Number(((skill.corpseSearch.successChance +
+        skill.corpseSearch.successChancePerRank * (safeRank - 1)) * 100).toFixed(4)) } } : {}),
     ...(skill.id === 'skills-barbarian-find-potion' && skill.trigger === 'active' && skill.target === 'self' &&
       skill.corpseRecovery ? { corpseRecovery: {
         lifePercent: Number(((skill.corpseRecovery.lifePct + skill.corpseRecovery.lifePctPerRank * (safeRank - 1)) * 100).toFixed(4)),

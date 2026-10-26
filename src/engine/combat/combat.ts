@@ -97,6 +97,8 @@ import { copyPoisonExplosionProjections, poisonExplosionRank, isPoisonExplosionI
   type PoisonExplosionProjection } from '../skills/poison-explosion';
 import { copyFindPotionProjections, findPotionRank, findPotionRecovery, isFindPotionId, matchesFindPotion,
   FIND_POTION_IDS, type FindPotionProjection } from '../skills/find-potion';
+import { copyFindItemProjections, findItemRank, isFindItemId, matchesFindItem, rollFindItemSearch,
+  FIND_ITEM_IDS, type FindItemProjection, type FindItemFind } from '../skills/find-item';
 import type { SkeletonMasteryProjection } from '../skills/skeleton-mastery';
 import type { GolemMasteryProjection } from '../skills/golem-mastery';
 import { empowerNecromancerSummon, type SummonPassiveProjection } from '../skills/summon-passives';
@@ -193,6 +195,8 @@ export interface CombatSnapshot {
   readonly poisonExplosion?: readonly PoisonExplosionProjection[];
   /** Learned native Barbarian recovery authority; shares the empty wave-local body pool. */
   readonly findPotion?: readonly FindPotionProjection[];
+  /** Learned native corpse-search authority; no reward is granted during simulation/playback. */
+  readonly findItem?: readonly FindItemProjection[];
   /** Copied learned Assassin coating, bound to the exact player hero for this wave. */
   readonly assassinVenom?: AssassinVenomProjection;
   /** Frozen explicit player Might selection for this wave, active from simulation entry. */
@@ -225,6 +229,8 @@ export interface CombatResult {
   readonly enemyTeam: readonly CombatUnit[];
   /** Number of "turns" emitted (5-second sim-time boundaries crossed). */
   readonly rounds: number;
+  /** Successful paid corpse searches only; privately copied before native reward publication. */
+  readonly findItemFinds?: readonly FindItemFind[];
   /** Present only after successful registration; survives that summon's later death. */
   readonly ironGolemPreparation?: IronGolemPreparationAttestation;
 }
@@ -247,6 +253,8 @@ interface State {
   readonly corpseExplosion: Map<string, number>;
   readonly poisonExplosion: Map<string, number>;
   readonly findPotion: Map<string, number>;
+  readonly findItem: Map<string, number>;
+  readonly findItemFinds: FindItemFind[];
   readonly assassinVenom?: AssassinVenomProjection;
   readonly corpses: string[];
   /** Only IDs committed/accepted by qualified preparation in this battle may use Druid effects. */
@@ -999,7 +1007,7 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
   // Publish only after the complete closure/effects, in the existing death-event order.
   // Keep every outcome unit and handled death intact for rewards and replay.
   const aura = state.statAura;
-  if (state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0 || state.findPotion.size > 0 ||
+  if (state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0 || state.findPotion.size > 0 || state.findItem.size > 0 ||
     (aura?.redemption !== undefined && activeStatAura(aura, aura.sourceHeroId, state.units) !== undefined) ||
     [...state.druidSummons.keys()].some(id => {
       const bound = activeDruidSummon(state, id);
@@ -1277,9 +1285,14 @@ function canUseSkillForState(
   const pe = isPoisonExplosionId(skillOrderId) || isPoisonExplosionId(skill.id);
   const fp = isFindPotionId(skillOrderId) || isFindPotionId(skill.id) ||
     skill.effects.some(effect => effect.kind === 'corpse-recovery');
+  const fi = isFindItemId(skillOrderId) || isFindItemId(skill.id) ||
+    skill.effects.some(effect => effect.kind === 'corpse-search');
   const skillLevel = ce ? corpseExplosionRank(unit, state.corpseExplosion)
     : pe ? poisonExplosionRank(unit, state.poisonExplosion)
+    : fi ? findItemRank(unit, state.findItem)
     : fp ? findPotionRank(unit, state.findPotion) : effectiveSkillLevel(unit, skill);
+  if (fi && (!matchesFindItem(skill) || skillLevel === 0 || state.corpses.length === 0 || !hasEnemyTarget ||
+    !Number.isFinite(unit.mana) || FIND_ITEM_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   if (fp && (!matchesFindPotion(skill) || skillLevel === 0 || state.corpses.length === 0 || !hasEnemyTarget ||
     FIND_POTION_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0) || !findPotionRecovery(unit, skillLevel))) return false;
   if (burst && (!matchesBurstOfSpeed(skill) || burstOfSpeedRank(unit) === 0 || !Number.isFinite(unit.mana) ||
@@ -1349,6 +1362,9 @@ function applyEffect(
   const acting = state.units.get(actorId);
   if (!acting || !alive(acting)) return;
   switch (effect.kind) {
+    case 'corpse-search':
+      // Only the validated synchronous cast may consume a body or attest a successful search.
+      break;
     case 'corpse-recovery':
       // Synchronous finite-body recovery is committed once by castSkill, never as a generic effect.
       break;
@@ -1640,11 +1656,14 @@ function castSkill(
   const pe = isPoisonExplosionId(skillOrderId) || isPoisonExplosionId(skill.id);
   const fp = isFindPotionId(skillOrderId) || isFindPotionId(skill.id) ||
     skill.effects.some(effect => effect.kind === 'corpse-recovery');
-  const consumesCorpse = ce || pe || fp;
+  const fi = isFindItemId(skillOrderId) || isFindItemId(skill.id) ||
+    skill.effects.some(effect => effect.kind === 'corpse-search');
+  const consumesCorpse = ce || pe || fp || fi;
   if (consumesCorpse && !canUseSkillForState(state, actor, skill, skillOrderId,
     opponentsOf(state, actor).length > 0)) return;
   const skillLevel = ce ? corpseExplosionRank(actor, state.corpseExplosion)
     : pe ? poisonExplosionRank(actor, state.poisonExplosion)
+    : fi ? findItemRank(actor, state.findItem)
     : fp ? findPotionRank(actor, state.findPotion)
     : prepared?.skillLevel ?? effectiveSkillLevel(actor, skill);
   const recovery = fp ? findPotionRecovery(actor, skillLevel) : undefined;
@@ -1667,9 +1686,16 @@ function castSkill(
 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
   if (manaEvent) emit(state, manaEvent);
-  if (consumesCorpse) emit(state, { kind: 'message', messageKey: fp ? 'combat:corpses.consumedFindPotion'
+  if (consumesCorpse && !fi) emit(state, { kind: 'message', messageKey: fp ? 'combat:corpses.consumedFindPotion'
     : pe ? 'combat:corpses.consumedPoison' : 'combat:corpses.consumed',
     params: { count: state.corpses.length, ...(fp && corpseId !== undefined ? { corpseId } : {}) } });
+  if (fi && corpseId !== undefined) {
+    const found = rollFindItemSearch(skillLevel, state.rng);
+    if (found) state.findItemFinds.push(Object.freeze({ sourceHeroId: actorId, corpseId, rank: skillLevel }));
+    emit(state, { kind: 'message', messageKey: found ? 'combat:corpses.findItemSuccess' : 'combat:corpses.findItemEmpty',
+      params: { count: state.corpses.length, corpseId } });
+    return;
+  }
   if (recovery) {
     const paid = state.units.get(actorId);
     if (!paid) return;
@@ -2481,6 +2507,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     corpseExplosion: new Map(copyCorpseExplosionProjections(snapshot.corpseExplosion).map(p => [p.sourceHeroId, p.rank])),
     poisonExplosion: new Map(copyPoisonExplosionProjections(snapshot.poisonExplosion).map(p => [p.sourceHeroId, p.rank])),
     findPotion: new Map(copyFindPotionProjections(snapshot.findPotion).map(p => [p.sourceHeroId, p.rank])),
+    findItem: new Map(copyFindItemProjections(snapshot.findItem).map(p => [p.sourceHeroId, p.rank])),
+    findItemFinds: [],
     corpses: [],
     druidSummons: new Map(),
     ...(golemMastery ? { golemMastery: Object.freeze({ sourceHeroId: golemMastery.sourceHeroId,
@@ -2541,6 +2569,10 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   for (const id of state.findPotion.keys()) {
     const hero = state.units.get(id);
     if (!hero || findPotionRank(hero, state.findPotion) === 0) state.findPotion.delete(id);
+  }
+  for (const id of state.findItem.keys()) {
+    const hero = state.units.get(id);
+    if (!hero || findItemRank(hero, state.findItem) === 0) state.findItem.delete(id);
   }
 
   for (const u of state.units.values()) {
@@ -2621,6 +2653,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     playerTeam,
     enemyTeam,
     rounds: state.turnsEmitted,
+    ...(state.findItemFinds.length > 0 ? { findItemFinds: Object.freeze([...state.findItemFinds]) } : {}),
     ...(state.ironGolemPreparation ? { ironGolemPreparation: state.ironGolemPreparation } : {})
   };
   return { events: state.events, simTimes: state.simTimes, result };

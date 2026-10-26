@@ -2,6 +2,7 @@ import { MAX_SIM_MS, runBattleRecorded, type CombatSnapshot, type RecordedBattle
 import type { CombatUnit } from '@/engine/combat/types';
 import type { WaveSpec, WavePresentation } from '@/engine/combat';
 import type { IronGolemPreparationAttestation } from '@/engine/skills/iron-golem';
+import { copyFindItemFinds, type FindItemFind } from '@/engine/skills/find-item';
 import type { ActiveRun } from './combatRunLifecycle';
 import { stageRecordedBattle, type RecordedBattleDefaults, type RecordedBattlePublication } from './recordedBattlePublication';
 
@@ -25,6 +26,7 @@ export interface RecordedWaveStagingInput {
 export interface StagedRecordedWave {
   readonly engineInput: CombatSnapshot;
   readonly attestation: IronGolemPreparationAttestation | null;
+  readonly findItemFinds?: readonly FindItemFind[];
   readonly waveIdx: number;
   readonly elapsedMs: number;
   readonly recording: NonNullable<ActiveRun['recording']>;
@@ -57,6 +59,9 @@ export function stageRecordedWave(input: RecordedWaveStagingInput): StagedRecord
     ...(difficulty === 'nightmare' || input.snapshot.difficulty !== undefined ? { difficulty } : {}) });
   freezeOwnedInput(engineInput);
   const { events, result } = runBattleRecorded(engineInput);
+  // Own successful searches before naming callbacks or public playback can observe the result.
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- Only absent optional finds default; malformed null must fail staging.
+  const findItemFinds = copyFindItemFinds(result.findItemFinds === undefined ? [] : result.findItemFinds);
   const terminal = events.at(-1);
   if (terminal?.kind !== 'end' || !Number.isFinite(terminal.simClockMs) ||
     terminal.simClockMs < 0 || terminal.simClockMs > MAX_SIM_MS) {
@@ -84,6 +89,7 @@ export function stageRecordedWave(input: RecordedWaveStagingInput): StagedRecord
     ...(input.wavePresentation ? { wavePresentation: input.wavePresentation } : {})
   }, input.defaults);
   return Object.freeze({ engineInput, attestation: result.ironGolemPreparation ?? null,
+    ...(findItemFinds.length > 0 ? { findItemFinds } : {}),
     waveIdx: input.waveIdx, elapsedMs: terminal.simClockMs, publication,
     recording: Object.freeze({ outcome, events: playbackEvents,
       ...(input.replayProfileId ? { replayProfileId: input.replayProfileId } : {}),

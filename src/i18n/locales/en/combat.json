@@ -34,6 +34,8 @@
   "logPaused": "Auto-scroll paused (move cursor away to resume)",
   "logHoverPausedHint": "Log auto-scroll paused",
   "corpses": {
+    "findItemSuccess": "Find Item consumes a corpse: search successful. Collect the extra ordinary loot roll on wave victory. Remaining corpses: {{count}}.",
+    "findItemEmpty": "Find Item consumes a corpse: nothing found. Mana and cooldown spent. Remaining corpses: {{count}}.",
     "consumedFindPotion": "Find Potion consumes a corpse for immediate life and mana recovery. Remaining: {{count}}.",
     "available": "A fallen enemy leaves a corpse. Available: {{count}}.",
     "consumed": "Corpse Explosion consumes a corpse. Remaining: {{count}}.",

@@ -106,6 +106,7 @@ import { composeSummonPassives } from '@/engine/skills/summon-passives';
 import { composeGolemMastery } from '@/engine/skills/golem-mastery';
 import { composeCorpseExplosion } from '@/engine/skills/corpse-explosion';
 import { composeFindPotion } from '@/engine/skills/find-potion';
+import { composeFindItem, findItemBonusEnemies } from '@/engine/skills/find-item';
 import { composePoisonExplosion } from '@/engine/skills/poison-explosion';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { IRON_GOLEM_SKILL_ID, isIronGolemSkill } from '@/engine/skills/iron-golem';
@@ -598,6 +599,7 @@ export function refreshActivePlayerCombatConfig({
       // Unlocked replay keeps ordinary current-config semantics while suppressing Iron.
       const staged: StagedWaveAttempt = original.publication.ironGolemReplayLocked
         ? { engineInput: original.engineInput, attestation: null, waveIdx: original.targetWaveIdx,
+            ...(original.findItemFinds ? { findItemFinds: original.findItemFinds } : {}),
             elapsedMs: original.waveElapsedMs, recording: original.recording,
             publication: original.publication, debitIntent: null }
         : stageWave(run, run.waveIdx, attempt, false, run.carryPlayerTeam, false);
@@ -992,6 +994,10 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
         const slain = outcome.finalEnemyTeam.filter(
           (u) => u.life <= 0 && inferKind(u) !== 'summon'
         );
+        // Validate the entire private list before generating or publishing either reward bag.
+        // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- Only absent optional finds default; malformed null must fail settlement.
+        const searchEnemies = findItemBonusEnemies(binding.findItemFinds === undefined ? [] : binding.findItemFinds, binding.engineInput,
+          outcome.finalEnemyTeam, binding.heroId);
         if (slain.length > 0) {
           const now = Date.now();
           const multiplier = useMetaStore.getState().readIdleBonus(now).activeMultiplier;
@@ -1002,9 +1008,14 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
             act: run.act, treasureClassId: tcId,
             seed: run.seed ^ 0x9e3779b1 ^ binding.targetWaveIdx, magicFindMultiplier: multiplier
           });
+          const killRewards = searchEnemies.length > 0 ? mergeRewards(ordinaryRewards, prepareLootForVictory({
+            replayProfileId: binding.replayProfileId ?? 'normal', slainEnemies: searchEnemies,
+            act: run.act, treasureClassId: tcId,
+            seed: run.seed ^ 0x46494e44 ^ binding.targetWaveIdx, magicFindMultiplier: multiplier
+          })) : ordinaryRewards;
           const cache = endgameAdvance?.completion?.materials;
-          const rewards = cache ? mergeRewards(ordinaryRewards, { items: [], runeShards: 0, wishstones: 0,
-            runes: 0, gems: Object.values(cache).reduce((sum, count) => sum + count, 0), materials: cache }) : ordinaryRewards;
+          const rewards = cache ? mergeRewards(killRewards, { items: [], runeShards: 0, wishstones: 0,
+            runes: 0, gems: Object.values(cache).reduce((sum, count) => sum + count, 0), materials: cache }) : killRewards;
           // Own diagnostic output before any synchronous observer can touch the grant.
           preparedRewards = structuredClone(rewards);
           planRewardGrant(rewards, { ...useInventoryStore.getState(), mercEquipment: useMercStore.getState().mercEquipment });
@@ -1172,6 +1183,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const golemMastery = currentPlayer?.id === run.playerUnit.id
     ? composeGolemMastery(currentPlayer) : undefined;
   const findPotion = currentPlayer?.id === run.playerUnit.id ? composeFindPotion(currentPlayer) : undefined;
+  const findItem = currentPlayer?.id === run.playerUnit.id ? composeFindItem(currentPlayer) : undefined;
   const corpseExplosion = currentPlayer?.id === run.playerUnit.id
     ? composeCorpseExplosion(currentPlayer) : undefined;
   const assassinVenom = currentPlayer?.id === run.playerUnit.id
@@ -1301,6 +1313,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       ...(summonPassives ? { summonPassives } : {}),
       ...(corpseExplosion ? { corpseExplosion: [corpseExplosion] } : {}),
       ...(findPotion ? { findPotion: [findPotion] } : {}),
+      ...(findItem ? { findItem: [findItem] } : {}),
       ...(assassinVenom ? { assassinVenom } : {}),
       ...(poisonExplosion ? { poisonExplosion: [poisonExplosion] } : {})
     },
@@ -1385,6 +1398,7 @@ function commitStagedWave(run: ActiveRun, staged: StagedWaveAttempt, intent: Rec
     heroId: run.playerUnit.id, targetWaveIdx: staged.waveIdx, waveElapsedMs: staged.elapsedMs,
     selection: attempt.selection, ownership: attempt.ownership, debitIntent: staged.debitIntent,
     engineInput: staged.engineInput, attestation: staged.attestation,
+    ...(staged.findItemFinds ? { findItemFinds: staged.findItemFinds } : {}),
     ...(staged.councilEncounter ? { councilEncounter: staged.councilEncounter } : {}),
     ...(staged.guardianEncounter ? { guardianEncounter: staged.guardianEncounter } : {}),
     ...(staged.act4Encounter ? { act4Encounter: staged.act4Encounter } : {}),

@@ -728,15 +728,13 @@
     "cost": {
       "mana": 7
     },
-    "appliesStatus": [
-      "find-item"
-    ],
+    "corpseSearch": {
+      "successChance": 0.2,
+      "successChancePerRank": 0.01
+    },
     "scaling": {
       "cooldownPerLevel": -0.05,
-      "costPerLevel": -0.1,
-      "passiveStatsPerLevel": {
-        "magicFindPct": 0.015
-      }
+      "costPerLevel": -0.1
     }
   },
   {

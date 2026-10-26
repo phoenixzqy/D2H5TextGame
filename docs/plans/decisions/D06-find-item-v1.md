@@ -1,7 +1,7 @@
 # D06 — Find Item shared-corpse search and victory settlement
 
-Status: author draft for the next BUG225 repair. No implementation, skill credit,
-independent approval, earned economy or campaign acceptance is established here.
+Status: provisional author contract; BUG225 implementation is in progress.
+No skill credit, independent approval, earned economy or campaign acceptance is established here.
 Root remains sole writer/reviewer. Find Potion is a separate recovery consumer;
 Grim Ward remains unfinished.
 
@@ -75,7 +75,8 @@ Provisional author chance at integral rank r1–20:
 reward roll per successful consumed body; its TC may legitimately yield no item.
 
 Cost and cooldown use existing shared functions, including ordinary decimal
-rounding and1MP/1s minima. No chance multiplier or global MF bonus is introduced.
+rounding and0MP/1s minima (valid Find Item ranks still cost5–7MP).
+No chance multiplier or global MF bonus is introduced.
 For N eligible searches, expected extra ordinary reward rolls are N*p(r), not
 N extra kills. That expectation is a tuning input, not earned economy evidence.
 

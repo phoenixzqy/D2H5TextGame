@@ -66,6 +66,7 @@
   "details": {
     "damagePerHead": "每个头的火弹{{type}}伤害",
     "hydraBody": "海蛇实体",
+    "corpseSearchChance": "搜索成功率",
     "corpseRecoveryLife": "生命恢复（最大值百分比）",
     "corpseRecoveryMana": "法力恢复（最大值百分比）",
     "hydraBodyValue": "一个实体，{{heads}}个头；{{duration}} 秒；使用自身攻击速度",
@@ -638,7 +639,7 @@
     },
     "find-item": {
       "name": "找物品",
-      "desc": "从尸体中搜寻物品。"
+      "desc": "消耗一具共享敌人尸体，以 {{chance}}% 概率额外结算该怪物的一次普通掉落，本波胜利后收取，不额外增加经验或任务计数。消耗 {{mana}} 点法力，冷却 {{cooldown}} 秒。失败仍消耗尸体、法力并进入冷却。搜索成功也可能没有物品；战败或逃跑会失去未收取的掉落。没有尸体时，跳过并尝试下一技能或普攻。调整从下一波生效。"
     },
     "battle-cry": {
       "name": "战斗狂吼",

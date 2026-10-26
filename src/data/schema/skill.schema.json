@@ -8,6 +8,33 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["corpseSearch"], "properties": { "corpseSearch": {} } },
+      "then": { "properties": { "id": { "const": "skills-barbarian-find-item" } } }
+    },
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-find-item" } } },
+      "then": {
+        "required": ["requiredLevel", "prerequisites", "cost", "scaling", "corpseSearch"],
+        "properties": {
+          "requiredLevel": { "const": 12 }, "minLevel": { "const": 1 }, "maxLevel": { "const": 20 },
+          "prerequisites": { "const": ["skills-barbarian-find-potion"] },
+          "trigger": { "const": "active" }, "target": { "const": "self" }, "cooldown": { "const": 4 },
+          "cost": { "type": "object", "additionalProperties": false, "required": ["mana"],
+            "properties": { "mana": { "const": 7 } } },
+          "scaling": { "type": "object", "additionalProperties": false, "required": ["cooldownPerLevel", "costPerLevel"],
+            "properties": { "cooldownPerLevel": { "const": -0.05 }, "costPerLevel": { "const": -0.1 } } },
+          "corpseSearch": { "$ref": "#/properties/corpseSearch" },
+          "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false,
+          "damage": false, "damageType": false, "heal": false, "timedBuff": false, "periodicSpell": false,
+          "summon": false, "summonId": false, "aura": false, "passive": false,
+          "requires": false, "aoeShape": false, "maxTargets": false, "hitSequence": false,
+          "onHitRecovery": false, "onHitSelfDamage": false, "attackDamagePct": false,
+          "critChanceBonus": false, "damageComposition": false, "synergies": false,
+          "ignoresDefense": false, "ignoresMagicResist": false, "appliesTags": false
+        }
+      }
+    },
+    {
       "if": { "required": ["corpseRecovery"], "properties": { "corpseRecovery": {} } },
       "then": { "properties": { "id": { "const": "skills-barbarian-find-potion" } } }
     },
@@ -4857,6 +4884,15 @@
     }
   },
   "properties": {
+    "corpseSearch": {
+      "description": "Find Item paid shared-corpse search probability; victory settlement owns any reward.",
+      "type": "object", "additionalProperties": false,
+      "required": ["successChance", "successChancePerRank"],
+      "properties": {
+        "successChance": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+        "successChancePerRank": { "type": "number", "minimum": 0, "maximum": 0.04 }
+      }
+    },
     "corpseRecovery": {
       "type": "object", "additionalProperties": false,
       "required": ["lifePct", "lifePctPerRank", "manaPct", "manaPctPerRank"],

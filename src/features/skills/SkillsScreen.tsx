@@ -871,6 +871,8 @@ function StatSection({
           ))}
           {stats.hydra ? <StatLine label={t('details.hydraBody')}
             value={t('details.hydraBodyValue', { heads: stats.hydra.heads, duration: stats.hydra.durationSeconds })} /> : null}
+          {stats.corpseSearch ? <StatLine label={t('details.corpseSearchChance')}
+            value={t('details.percentValue', { value: stats.corpseSearch.successPercent })} /> : null}
           {stats.corpseRecovery ? <>
             <StatLine label={t('details.corpseRecoveryLife')}
               value={t('details.percentValue', { value: stats.corpseRecovery.lifePercent })} />
@@ -1632,6 +1634,10 @@ function dynamicDescription(
       duration: t('details.seconds', { seconds: stats.leap.durationSeconds }),
       stun: t('details.seconds', { seconds: stats.control.durationSeconds }),
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
+  }
+  if (stats?.corpseSearch) {
+    return t('barbarian.find-item.desc', { chance: stats.corpseSearch.successPercent,
+      mana: stats.manaCost, cooldown: stats.cooldown });
   }
   if (stats?.corpseRecovery) {
     return t('barbarian.find-potion.desc', { life: stats.corpseRecovery.lifePercent,

@@ -34,6 +34,36 @@ beforeEach(() => { loadDefaultSkills(); });
 afterEach(() => { vi.restoreAllMocks(); resetRegistry(); });
 
 describe('owned recorded-wave staging', () => {
+  it.each([false, true])('copies search results before naming callbacks (initial success%s)', success => {
+    const source = input(), result = engine.runBattleRecorded(source.snapshot);
+    const find = { sourceHeroId: 'hero', corpseId: 'enemy', rank: 1 };
+    // Deliberately mutable engine-boundary DTO; native success/payout uses separate real-battle tests.
+    const mutable = success ? [{ ...find }] : [];
+    vi.spyOn(engine, 'runBattleRecorded').mockReturnValueOnce({ ...result,
+      result: { ...result.result, findItemFinds: mutable } });
+    const staged = stageRecordedWave({ ...source, resolveDisplayName: value => {
+      const first = mutable[0]; if (first) first.corpseId = 'forged';
+      mutable.push({ sourceHeroId: 'forged', corpseId: 'other', rank: 20 });
+      return value.name;
+    } });
+    expect(staged.findItemFinds ?? []).toEqual(success ? [find] : []);
+    if (success) {
+      expect(staged.findItemFinds).not.toBe(mutable);
+      expect(Object.isFrozen(staged.findItemFinds)).toBe(true);
+      expect(Object.isFrozen(staged.findItemFinds?.[0])).toBe(true);
+    }
+  });
+
+  it.each([null, {}, new Array(1), [{ sourceHeroId: 'hero', corpseId: 'enemy', rank: 0 }]])(
+    'rejects malformed engine search evidence before naming/publication %j', finds => {
+      const source = input(), result = engine.runBattleRecorded(source.snapshot);
+      Object.assign(result.result, { findItemFinds: finds });
+      vi.spyOn(engine, 'runBattleRecorded').mockReturnValueOnce(result);
+      const names = vi.fn(source.resolveDisplayName);
+      expect(() => stageRecordedWave({ ...source, resolveDisplayName: names })).toThrow();
+      expect(names).not.toHaveBeenCalled();
+    });
+
   it.each(['normal', 'nightmare'] as const)('captures immutable %s run difficulty over contradictory input', difficulty => {
     const source = input(), hero = required(source.snapshot.playerTeam[0]), target = required(source.snapshot.enemyTeam[0]);
     const held = (appliedAtMs: number) => ({ id: 'stun', stacks: 1, remaining: -1, sourceId: 'fixture', appliedAtMs });
