@@ -64,6 +64,9 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "skillRankBonus": "Learned skill ranks",
+    "skillRankBonusValue": "+{{ranks}}",
+    "skillRankDuration": "Command duration",
     "wardDuration": "Ward duration",
     "wardFear": "Fear per pulse",
     "wardTimingValue": "{{duration}}s; every {{interval}}s, first immediately",
@@ -655,7 +658,7 @@
     },
     "battle-command": {
       "name": "Battle Command",
-      "desc": "Increases skill levels for you and allies."
+      "desc": "Spend {{mana}} MP to grant yourself and current living allies +{{bonus}} to already-learned skills for {{duration}}. Permanent allocations stay unchanged; this does not stack or refresh, and the caster cannot recast while active. Later arrivals receive no bonus. The remaining duration carries between waves; source death preserves it, recipient death ends it, and a fresh challenge clears it. Cooldown: {{cooldown}} s. Learning changes apply next wave."
     }
   },
   "druid": {

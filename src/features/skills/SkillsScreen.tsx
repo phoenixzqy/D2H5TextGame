@@ -869,6 +869,14 @@ function StatSection({
               delta={damageDelta(row, compare, t)}
             />
           ))}
+          {stats.skillRankBuff ? <>
+            <StatLine label={t('details.skillRankBonus')}
+              value={t('details.skillRankBonusValue', { ranks: stats.skillRankBuff.bonusRanks })} />
+            <StatLine label={t('details.skillRankDuration')}
+              value={t('details.seconds', { seconds: stats.skillRankBuff.durationSeconds })}
+              delta={compare?.skillRankBuff ? numberDelta(stats.skillRankBuff.durationSeconds,
+                compare.skillRankBuff.durationSeconds, t) : null} />
+          </> : null}
           {stats.hydra ? <StatLine label={t('details.hydraBody')}
             value={t('details.hydraBodyValue', { heads: stats.hydra.heads, duration: stats.hydra.durationSeconds })} /> : null}
           {stats.corpseWard ? <>
@@ -1034,7 +1042,7 @@ function StatSection({
                   : id === 'cloak-of-shadows' ? t('assassin.cloak-of-shadows.name')
                   : id === 'blind' ? t('combat:effect.status.blind')
                   : id === 'stun' ? t('combat:effect.status.stun')
-                  : id === 'howl' || id === 'taunt' || id === 'battle-cry' ? t(`combat:effect.status.${id}`)
+                  : id === 'battle-command' || id === 'howl' || id === 'taunt' || id === 'battle-cry' ? t(`combat:effect.status.${id}`)
                   : id === 'leap' ? t('barbarian.leap.name')
                   : id === 'holy-shield' ? t('paladin.holy-shield.name')
                   : id === 'cyclone-armor' ? t('druid.cyclone-armor.name')
@@ -1640,6 +1648,11 @@ function dynamicDescription(
       duration: t('details.seconds', { seconds: stats.leap.durationSeconds }),
       stun: t('details.seconds', { seconds: stats.control.durationSeconds }),
       bossStun: t('details.seconds', { seconds: stats.control.bossDurationSeconds }) });
+  }
+  if (stats?.skillRankBuff) {
+    return t('barbarian.battle-command.desc', { bonus: stats.skillRankBuff.bonusRanks,
+      duration: t('details.seconds', { seconds: stats.skillRankBuff.durationSeconds }),
+      mana: stats.manaCost, cooldown: stats.cooldown });
   }
   if (stats?.corpseWard) {
     return t('barbarian.grim-ward.desc', { duration: stats.corpseWard.durationSeconds,

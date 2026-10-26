@@ -64,6 +64,9 @@
     "minLevel": "需要等级 {{level}}"
   },
   "details": {
+    "skillRankBonus": "已学技能等级",
+    "skillRankBonusValue": "+{{ranks}}",
+    "skillRankDuration": "指挥持续时间",
     "wardDuration": "图腾持续时间",
     "wardFear": "每次恐惧",
     "wardTimingValue": "{{duration}}秒；立即及每{{interval}}秒生效",
@@ -655,7 +658,7 @@
     },
     "battle-command": {
       "name": "战斗指挥",
-      "desc": "为自己和盟友增加技能等级。"
+      "desc": "消耗{{mana}} 点法力，使自己与当前存活盟友的已学技能等级+{{bonus}}，持续{{duration}}。永久加点保持不变；效果不会叠加或刷新，生效期间施法者不会再次施放。后来加入的单位不获得加成。剩余时间延续到下一波；施法者死亡不取消已生效加成，受益者死亡时其加成结束，开始新的挑战时清除。冷却{{cooldown}} 秒。技能学习变化于下一波生效。"
     }
   },
   "druid": {

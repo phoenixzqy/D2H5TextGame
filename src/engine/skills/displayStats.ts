@@ -28,6 +28,7 @@ import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 import { HYDRA_DEFINITION, hydraBodyStats } from './hydra';
 
 export interface DisplaySkillSource {
+  readonly skillRankBuff?: import('../types/skills').SkillDef['skillRankBuff'];
   readonly corpseWard?: import('../types/skills').SkillDef['corpseWard'];
   readonly corpseSearch?: import('../types/skills').SkillDef['corpseSearch'];
   readonly corpseRecovery?: import('../types/skills').SkillDef['corpseRecovery'];
@@ -169,6 +170,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Finite party potency changes effective ranks, never permanent allocations. */
+  readonly skillRankBuff?: { readonly bonusRanks: number; readonly durationSeconds: number };
   /** Wave-local paid ward timing; fear reuses ordinary timed Howl interruption. */
   readonly corpseWard?: { readonly durationSeconds: number; readonly intervalSeconds: number;
     readonly fearSeconds: number; readonly bossFearSeconds: number };
@@ -638,6 +641,11 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(skill.id === 'skills-barbarian-battle-command' && skill.trigger === 'active' &&
+      skill.target === 'all-allies' && skill.skillRankBuff ? { skillRankBuff: {
+        bonusRanks: skill.skillRankBuff.bonusRanks,
+        durationSeconds: (skill.skillRankBuff.durationMs + skill.skillRankBuff.durationPerRankMs * (safeRank - 1)) / 1000
+      } } : {}),
     ...(skill.id === 'skills-barbarian-grim-ward' && skill.trigger === 'active' && skill.target === 'all-enemies' &&
       skill.corpseWard ? { corpseWard: {
         durationSeconds: (skill.corpseWard.durationMs + skill.corpseWard.durationPerRankMs * (safeRank - 1)) / 1000,

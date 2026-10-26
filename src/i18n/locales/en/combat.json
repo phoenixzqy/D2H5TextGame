@@ -119,6 +119,7 @@
     "summon": "Summon",
     "death": "Down",
     "status": {
+      "battle-command": "Battle Command",
       "grim-ward": "Grim Ward",
       "inferno": "Inferno",
       "blaze": "Blaze",
@@ -169,6 +170,7 @@
       "enchant": "Enchant"
     },
     "buff": {
+      "battle-command": "Battle Command",
       "inferno": "Inferno",
       "blaze": "Blaze",
       "fire-wall": "Fire Wall",
