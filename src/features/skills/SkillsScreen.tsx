@@ -1015,6 +1015,12 @@ function StatSection({
             <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.weaken.durationSeconds })} />
             <StatLine label={t('details.warcryDamageReduction')} value={t('details.percentValue', { value: stats.weaken.damageReductionPercent })} />
           </> : null}
+          {stats.damageCurse ? <>
+            <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.damageCurse.durationSeconds })} />
+            <StatLine label={t('details.damageCurse.' + stats.damageCurse.id)}
+              value={t(stats.damageCurse.id === 'lower-resist' ? 'details.percentagePoints' : 'details.percentValue',
+                { value: stats.damageCurse.percent })} />
+          </> : null}
           {stats.concentrate ? <StatLine label={t('details.concentrateDuration')}
             value={t('details.seconds', { seconds: stats.concentrate.durationSeconds })} /> : null}
           {stats.convertedAttackPercent !== undefined ? <StatLine label={t('details.convertedAttack')}
@@ -1050,6 +1056,7 @@ function StatSection({
                   ? t('necromancer.amplify-damage.name')
                   : id === 'decrepify' ? t('necromancer.decrepify.name')
                   : id === 'weaken' ? t('necromancer.weaken.name')
+                  : id === 'iron-maiden' || id === 'life-tap' || id === 'lower-resist' ? t('necromancer.' + id + '.name')
                   : id === 'burst-of-speed' ? t('assassin.burst-of-speed.name')
                   : id === 'cloak-of-shadows' ? t('assassin.cloak-of-shadows.name')
                   : id === 'blind' ? t('combat:effect.status.blind')
@@ -1761,6 +1768,12 @@ function dynamicDescription(
     return t('necromancer.weaken.desc', {
       duration: t('details.seconds', { seconds: stats.weaken.durationSeconds }),
       reduction: stats.weaken.damageReductionPercent, mana: stats.manaCost, cooldown: stats.cooldown
+    });
+  }
+  if (stats?.damageCurse) {
+    return t('necromancer.' + stats.damageCurse.id + '.desc', {
+      duration: t('details.seconds', { seconds: stats.damageCurse.durationSeconds }),
+      percent: stats.damageCurse.percent, mana: stats.manaCost, cooldown: stats.cooldown
     });
   }
   if (firstDamage && ['skills-barbarian-bash', 'skills-barbarian-whirlwind',

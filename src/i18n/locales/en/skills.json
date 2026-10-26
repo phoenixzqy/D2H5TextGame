@@ -91,6 +91,8 @@
     "coldFreeze": "Secondary Freeze",
     "coldFreezeValue": "{{chance}}% • {{seconds}} s (bosses: {{bossSeconds}} s)",
     "warcryDuration": "Enemy effect duration",
+    "damageCurse": {"iron-maiden": "Physical HP reflected", "life-tap": "Direct HP converted to healing", "lower-resist": "All resistance reduction"},
+    "percentagePoints": "{{value}} percentage points",
     "warcryDamageReduction": "Outgoing direct damage reduction",
     "warcryDefenseReduction": "Ordinary Defense reduction",
     "concentrateDuration": "Defense duration",
@@ -899,7 +901,7 @@
     },
     "iron-maiden": {
       "name": "Iron Maiden",
-      "desc": "Curses enemies to reflect physical damage back to attackers."
+      "desc": "Curses all living enemies for {{duration}}. When a cursed attacker removes Physical HP from an enemy, reflect {{percent}}% of Physical HP actually removed as Thorns, including lethal hits, before the attacker’s resistance and Defense. Absorbed damage, overkill, misses, damage-over-time and reflection add no reflected damage. Pays {{mana}} MP and starts a {{cooldown}} s cooldown. Refreshes without stacking."
     },
     "terror": {
       "name": "Terror",
@@ -911,7 +913,7 @@
     },
     "life-tap": {
       "name": "Life Tap",
-      "desc": "Curses enemies; damage dealt to them heals the attacker."
+      "desc": "Curses all living enemies for {{duration}}. After a direct hit removes HP from a cursed enemy, heal the surviving attacker for {{percent}}% of direct HP actually removed, rounded down and capped to missing HP. Settle retaliation first; lethal hits qualify, but dead attackers cannot revive. Absorbed damage and overkill add no healing. Damage-over-time and reflection do not heal. Pays {{mana}} MP and starts a {{cooldown}} s cooldown. Refreshes without stacking."
     },
     "attract": {
       "name": "Attract",
@@ -919,7 +921,7 @@
     },
     "lower-resist": {
       "name": "Lower Resist",
-      "desc": "Reduces all enemy resistances."
+      "desc": "Curses all living enemies for {{duration}}, reducing all six resistance pools, including Physical, by {{percent}} percentage points before resistance limits and flat mitigation. Adds with other resistance reductions; Thorns uses Physical resistance. Existing damage-over-time rates stay unchanged; new hit-derived rates use the modified hit. Pays {{mana}} MP and starts a {{cooldown}} s cooldown. Refreshes without stacking."
     }
   },
   "paladin": {
