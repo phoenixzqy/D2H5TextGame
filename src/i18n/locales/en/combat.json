@@ -146,6 +146,7 @@
       "chill": "Chill",
       "freeze": "Freeze",
       "paralyze": "Paralyze",
+      "paralyze-cd": "Paralyze Resistance",
       "stun": "Stun",
       "ignite": "Ignite",
       "burn": "Burn",

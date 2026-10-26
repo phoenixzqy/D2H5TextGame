@@ -247,8 +247,8 @@ for (const locale of ['zh-CN', 'en'] as const) {
       const log = page.getByTestId('combat-log');
       await expect(log).toHaveAttribute('role', 'log'); await expect(log).toHaveAttribute('aria-live', 'polite');
       let observed: string[] = [];
-      const effectNames = locale === 'en' ? ['Ignite', 'Chill', 'Paralyze', 'Poison']
-        : ['点燃', '冰冷', '麻痹', '中毒'];
+      const effectNames = locale === 'en' ? ['Ignite', 'Chill', 'Paralyze', 'Poison', 'Paralyze Resistance']
+        : ['点燃', '冰冷', '麻痹', '中毒', '麻痹抗性'];
       const livingEffects = new Map<string, { id: string; hpPercent: number; labels: string[] }>();
       const dotPattern = locale === 'en' ? /^.+ takes [1-9]\d* damage over time\.$/
         : /^.+ 因持续伤害受到 [1-9]\d* 点伤害。$/;
@@ -266,6 +266,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
           const target = living.find(unit => unit.hpPercent > 0 && unit.hpPercent < 100 && unit.labels.includes(name));
           if (target && !livingEffects.has(name)) livingEffects.set(name, target);
         }
+        expect(living.flatMap(unit => unit.labels)).not.toContain('Paralyze Cd');
         return copy.bolts.every(pattern => observed.some(message => pattern.test(message))) &&
           effectNames.every(name => livingEffects.has(name)) && observed.some(message => dotPattern.test(message));
       }, { timeout: 20_000, intervals: [10, 20, 50] }).toBe(true);
