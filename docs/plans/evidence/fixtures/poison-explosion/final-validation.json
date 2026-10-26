@@ -306,6 +306,6 @@
   "browserAudit": "public-batch-audit.json",
   "visualReview": "visual-review.json",
   "nativeBoundary": "native-payment-diagnosis.json",
-  "retention": "pending after evidence consumers terminal",
+  "retention": "complete; see retention-summary.json,3377 members individually read-back verified,3376files/27directories plus exact external driver removed;remaining[]/failures[]",
   "createdUnix": 1793041047.0099123
 }

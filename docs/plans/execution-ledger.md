@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D06 Poison Explosion public acceptance / BUG259–261 | bounded local verification closed; independent and earned acceptance open | Test-only`761fa2f1`; production4/4PASS137.842s: native allocation0→1→2, actual Teeth first kill/body1→0, exact public10140/max10155 supported by native within-batch15MP witness at18000ms/seed2688559832, direct/chip/positivePoison,8seven-domain pairs/4actual offlineContinues/20geometry/12individually inspected originals. Final explicitlint/types/officialbuild/bridge/756URLprecachePASS; unchanged18100/834/two existing skips carried through2540exact baseline inputs, no fresh full.4860frozen tracked/2public/762build/genuine exact. All3377archive members read-back verified;3376files/27directories/driver removed,remaining[]/failures[],118restrictedproc entries disclosed. Root retains archive/three sidecars through BUG259–261/full-v1 consumers. Exactly1credit:167bounded/44unverified/oneengine-only/onereview,Necromancer25/32;212other raw rows exact. [Evidence](evidence/d06-poison-explosion-public.md). GenuineL33/next402/Baal uncleared;independent/earned/manual-feel/fullv1 open. |
 | D04 Poison Dagger / BUG256, stale oracle / BUG257 and browser draw / BUG258 | bounded local verification closed; independent and earned acceptance open | Frozen`bee044a8` full18100/834/two existing opt-in skipsPASS1132.935s; finaltypes/lint/explicit PWA lint/build/bridge/756URLprecache/public4/4PASS. All4855tracked/12feature/548production-source/762build/genuine hashes exact;8seven-domain pairs/4actual SWofflineContinues/20geometry/16individual visuals. Original timeout/interruption and unchanged13PASS retained under unresolved BUG180.2332archive members read-back verified;2332files40directories/driver removed,remaining[]/failures[],29restrictedproc entries disclosed. Root retains archive/three sidecars through evidence consumers. Exactly1credit:166bounded/45unverified/oneengine-only/onereview,Necromancer24/32;212other raw rows/header/IDs/order exact. [Evidence](evidence/d04-poison-dagger.md). GenuineL33/next402/Baal uncleared;independent/earned/fullv1 open. |
 | D04 Amplify Damage native/public acceptance | bounded local verification closed;independent and earned acceptance open | Test-only4paths f767948b;focused145/5PASS;public4/4/213.057sPASS:4casts/chips,8exact seven-domain pairs,4actual offlineContinues,20geometry,12individually inspected originals. Types/lint/purityPASS. FrozenHEAD25e68f7d full18062/830/twoexisting skipsPASS808.684s;original soleHEAD-drift failure and unchanged isolated19pass retained without code/test/timeout changes. Final4feature/1636committed input/762reused build/12terminal receipt/genuine auditsPASS.1796members142145331rawbytes archived/read-back verified;1796files38directories and driver removed,remaining[]/failures[],29restrictedproc entries disclosed. Root retains archive/3sidecars through full-v1 consumers. Exactly1credit:165bounded/46unverified/oneengine-only/onereview,Necromancer23/32;212other raw rows/header/IDs/order exact. [Evidence](evidence/d04-amplify-damage-native.md). No runtime change or genuine campaign action;Baal/earned/independent/full privatev1 remain open. |
 | D04 Confuse / Attract / BUG254 and stale test / BUG255 | locally fixed/verified; independent and earned acceptance open | Runtime`e636b8fe`,preview`f20d7e3c`,UI`da771f12`,native`fd6dd6bd`,public`6d4f5009`,test-only oracle`c0b20f1d`. Original native rank1/20 numerical RED→GREEN; final full18055/828/two existing opt-in skips865.538s,post-copy types130.517s/lint216.273s/purity/officialbuild/bridge/756URLprecachePASS. Final public8/8:8localized casts/chips,16exact seven-domain pairs,8actual offlineContinues,40geometry,24originals individually inspected with explicit scroll/victory viewport limits.25feature/all1632frozen inputs/68terminal receipts/both762builds/genuine hashes exact.1896raw members archived/read-back verified;1896exact files/106directories and external driver removed,remaining[]/failures[],28restrictedproc entries disclosed. Root retains archive/three sidecars through BUG254/BUG255/full-v1 consumers. Exactly2credits:164bounded/47unverified/one engine-only/one review-needed,Necromancer22/32;211other raw rows exact. [Evidence](evidence/d04-target-curses.md). GenuineL33/next402/Baal uncleared;independent/earned/C2-C4/fullG0-G7/full privatev1 open. |
@@ -12899,3 +12900,31 @@ retained paths, original failures and limits. No genuine campaign/replay/remote
 action or delegation. Next root-owned public PE draft is prepared but unexecuted
 at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx`;
 Teeth opening isolates PE Poison from Dagger. Keep fullv1 active and worktree claimed.
+
+
+## 2026-10-26 — Poison Explosion bounded public closeout
+
+[Public evidence](evidence/d06-poison-explosion-public.md) records test-only
+`761fa2f1`, source/build audits, four production cases and all three diagnosed
+harness failures. Exact native fixture at18000ms proves regeneration10155 then
+15MP payment10140 in one timestamp batch; public asserts10140/max10155 without
+requiring an impossible second debit. Actual first kill, body1→0, direct Poison,
+living chips/positive enemy periodic HP, eight seven-domain pairs/four actual
+SWofflineContinues/20geometries and12individual PNG inspections pass.
+
+Final explicitlint8.061s/types6.853s/build12.833s/756URLprecache0.208s pass.
+18100/834/two existing skips full-suite evidence is explicitly carried from
+`bee044a8`:2540existing non-doc inputs exact, PWA paths outside unit discovery.
+No fresh full run or broad performance/PWA/a11y/manual acceptance is claimed.
+Fifteen terminal receipts,4860frozen inputs/two public/762build/genuine hashes
+are checked. All3377archive members read-back verified;3376files27directories
+and exact external driver removed,remaining[]/failures[],4547closed,118restricted
+optionalproc entries disclosed. Root retains four exact evidence paths listed
+in the report through BUG259/260/261 and full-v1 consumers, then removes them.
+
+Only after verified cleanup, one credit gives167bounded/44unverified/oneengine/
+onereview,Necromancer25/32;212other raw rows/header/IDs/order exact. GenuineL33/
+nextNormal402/Ancients-Rite claimed/Baal uncleared remains unchanged. Independent/
+earned builds/balance/feel,C2–C4/fullG0–G7/privatev1 remain open; umbrella
+goal/worktree continue. Next read-only finding is marker-only Bone Wall/Prison;
+no runtime reproduction or implementation yet and no credit follows a search.

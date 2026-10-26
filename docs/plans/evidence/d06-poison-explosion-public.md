@@ -84,7 +84,36 @@ player-feel acceptance remain explicit limits.
   Native exact-fixture diagnosis supports the corrected batch assertion; no
   gameplay, resource, fixture, clock, timeout or retry tuning was used.
 
-All original versions, failures, probes, raw reports, pairs and screenshots
-remain required evidence. Retention/read-back and exact disposable cleanup
-must finish before any inventory credit. Umbrella goal/worktree remain active;
-C2–C4/fullG0–G7/privatev1 and Baal remain unfinished.
+## Retention, cleanup and inventory credit
+
+All3377raw archive members (334616673bytes) were individually read-back
+verified, including the external closeout driver. Exact3376task files,
+27directories and the external driver are removed; remaining[]/failures[],
+readable consumers clear and preview4547closed.118restricted optional `/proc`
+entries limit visibility. Shared caches/tools, source/history and genuine save
+remain intact. [Retention/cleanup](fixtures/poison-explosion/retention-summary.json)
+records the complete result. Historical task paths in the reports are archive
+member provenance; raw task directory and worktree dist are absent.
+
+Root retains these four required paths through BUG259/260/261 and full-v1
+evidence consumers, then owns their eventual removal:
+
+```text
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx-retained.tar.xz
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx-retention.json
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx-deletion-manifest.json
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx-cleanup.json
+```
+
+Archive SHA256:
+`8fbe871249a764082bafed6e24a6cdcf3e54c5ac776625cefebd8f9f0ca0d5ff`.
+
+Only after verified cleanup, exactly one PE bounded-functional credit is
+recorded:167bounded/44unverified/oneengine-only/onereview-needed,
+Necromancer25/32. [Credit audit](fixtures/poison-explosion/inventory-credit-audit.json)
+proves212other raw rows/header/IDs/order exact and both public source hashes
+unchanged. GenuineL33/nextNormal402/Ancients-Rite claimed/Baal uncleared remains
+unchanged. Independent/earned builds and balance, manual feel, C2–C4,
+30–50hour pacing/economy/endgame/fullG0–G7/privatev1 remain open. No genuine
+campaign/replay, remote action or delegation occurred. Umbrella goal/worktree
+remain active.

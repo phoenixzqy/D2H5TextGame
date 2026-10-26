@@ -1,0 +1,25 @@
+{
+  "owner": "root",
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx-retained.tar.xz",
+  "archiveSha256": "8fbe871249a764082bafed6e24a6cdcf3e54c5ac776625cefebd8f9f0ca0d5ff",
+  "members": 3377,
+  "rawBytes": 334616673,
+  "allMembersReadBackVerified": true,
+  "removedFiles": 3376,
+  "removedDirectories": 27,
+  "remaining": [],
+  "failures": [],
+  "rawRootAbsent": true,
+  "preview4547Closed": true,
+  "externalDriverRemoved": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx-closeout.py",
+  "retentionReason": "BUG259/260/261 and full-v1 evidence consumers",
+  "eventualRemovalOwner": "root after consumers finish",
+  "restrictedOptionalProcEntries": 118,
+  "retainedPaths": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx-retained.tar.xz",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx-retention.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx-deletion-manifest.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-explosion-public-rt94uggx-cleanup.json"
+  ],
+  "rawPathProvenance": "Historical task paths in retained reports correspond to archive members; raw directory and external driver are absent."
+}

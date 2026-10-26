@@ -1,0 +1,54 @@
+{
+  "owner": "root",
+  "creditedSkill": "skills-necromancer-poison-explosion",
+  "credit": 1,
+  "beforeSha256": "211eca3eaca166afe63380f65e9ef179a5e9cbd27ae9b51a689406e7206afe4d",
+  "afterSha256": "809c7727bf5ce362e8474a32614b7f1428a457530a55da24262d28bf88d12d60",
+  "headerExact": true,
+  "idsAndOrderExact": true,
+  "otherRawRowsExact": 212,
+  "oldRow": {
+    "class": "necromancer",
+    "data_id": "skills-necromancer-poison-explosion",
+    "runtime_id": "necromancer.poison_explosion",
+    "trigger": "active",
+    "adapter_route": "damage",
+    "declared_statuses": "poison",
+    "source": "src/data/skills/necromancer.json",
+    "risk_flags": "dot-strength-metadata-missing",
+    "behavior_verification": "unverified",
+    "contract_evidence": ""
+  },
+  "newRow": {
+    "class": "necromancer",
+    "data_id": "skills-necromancer-poison-explosion",
+    "runtime_id": "necromancer.poison_explosion",
+    "trigger": "active",
+    "adapter_route": "damage",
+    "declared_statuses": "poison",
+    "source": "src/data/skills/necromancer.json",
+    "risk_flags": "dot-strength-metadata-missing",
+    "behavior_verification": "bounded-functional;independent-acceptance-open",
+    "contract_evidence": "docs/plans/decisions/D06-poison-explosion-v1.md;docs/plans/evidence/d06-poison-explosion-public.md;earned-balance-open"
+  },
+  "counts": {
+    "unverified": 44,
+    "bounded-functional;independent-acceptance-open": 164,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "boundedFunctional": 167,
+  "unverified": 44,
+  "engineOnly": 1,
+  "reviewNeeded": 1,
+  "necromancerBounded": 25,
+  "necromancerTotal": 32,
+  "publicFilesExact": {
+    "tests/pwa/poison-explosion-acceptance.spec.ts": "940e00d0ea739731dfd9d7591b9be9d81265a601193214cd55eac054862f5037",
+    "tests/pwa/poison-explosion-acceptance.config.ts": "fec025b063bffe01dae09be4b2f71db0d1da108536b7fd2bdb917a791b03246f"
+  },
+  "cleanupVerifiedBeforeCredit": true,
+  "genuineCompressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+  "independentEarnedBalanceAcceptance": "open"
+}
