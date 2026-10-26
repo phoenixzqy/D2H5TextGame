@@ -1,6 +1,6 @@
 # BUG-257 — Refresh the Poison Explosion fixture's Dagger oracle
 
-Status: fixed locally in `69a3bb9e`; integrated final acceptance pending.
+Status: fixed locally in `69a3bb9e`; final frozen full/native compatibility passes.
 Severity: Medium — one required integration test assumes the known Dagger defect.
 Date: 2026-10-26. Root author only; independent acceptance remains open.
 
@@ -56,3 +56,11 @@ accidentally selected the initial empty0ms status; its predicate now selects
 actual damaging Poison while preserving the6000ms/source/rate expectation.
 That authoring failure and an external workspace file-allowance failure remain
 retained with the original failure and full trace.
+
+## Final verification
+
+Frozen `bee044a8` full18100/834/two existing opt-in skips, final types/lint,
+explicit PWA lint and final public4/4 pass. Original failures remain retained.
+See [current evidence](../../docs/plans/evidence/d04-poison-dagger.md) for exact
+results, source/build/save audits and visual limits. Independent/earned/full-v1
+acceptance remains open; no runtime or test-limit workaround was introduced.

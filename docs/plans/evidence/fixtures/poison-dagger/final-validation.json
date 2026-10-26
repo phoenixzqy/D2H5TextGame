@@ -1,0 +1,303 @@
+{
+  "head": "bee044a8e17fd9935f7d2d176afe177e273251f7",
+  "trackedInputsExact": 4855,
+  "featurePathsExact": 12,
+  "productionSrcFilesExact": 548,
+  "buildFilesExact": 762,
+  "requiredChecks": {
+    "canonical-full-exclusive": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 1132.935,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-full-exclusive.log",
+      "logBytes": 171468,
+      "logSha256": "afb65dc524e81876598180f9eac32b639218cb562754c4cc4d5caf22030c3ef0",
+      "pid": 402035,
+      "terminal": true
+    },
+    "canonical-typecheck-complete": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 172.549,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-typecheck-complete.log",
+      "logBytes": 50,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "pid": 373516,
+      "terminal": true
+    },
+    "canonical-lint-complete": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 285.81,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-lint-complete.log",
+      "logBytes": 197,
+      "logSha256": "b20cc37b0f0c85ed92a36261de2170fec3333bbd7a63cf12f925a8baac7113a8",
+      "pid": 373518,
+      "terminal": true
+    },
+    "canonical-public-final": {
+      "command": [
+        "env",
+        "PWA_PORT=4545",
+        "POISON_DAGGER_ACCEPTANCE_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/production-dist",
+        "POISON_DAGGER_ACCEPTANCE_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/public-final-output",
+        "POISON_DAGGER_ACCEPTANCE_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/public-final-report.json",
+        "node",
+        "node_modules/playwright/cli.js",
+        "test",
+        "--config",
+        "tests/pwa/poison-dagger-acceptance.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 324.775,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-public-final.log",
+      "logBytes": 1667,
+      "logSha256": "c913dafef307468c15e9be203bb4d159d56c555aae753ccce3c3f07f6b35af5c",
+      "pid": 373519,
+      "terminal": true
+    },
+    "canonical-targeted-lint-final": {
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/necromancer-poison-dagger-native.test.ts",
+        "src/stores/necromancer-poison-dagger.causal.test.ts",
+        "src/features/skills/SkillsScreen.poison-dagger.test.tsx",
+        "tests/pwa/poison-dagger-acceptance.spec.ts",
+        "tests/pwa/poison-dagger-acceptance.config.ts",
+        "--no-ignore",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.997,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-targeted-lint-final.log",
+      "logBytes": 0,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pid": 372530,
+      "terminal": true
+    },
+    "canonical-official-build": {
+      "command": [
+        "env",
+        "-u",
+        "VITE_E2E",
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 12.961,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-official-build.log",
+      "logBytes": 1953,
+      "logSha256": "ca4edbc78253ba37249cdc14eb37afea40f96fbfc24f7f1f9c5644ca76d50bf1",
+      "pid": 349888,
+      "terminal": true
+    },
+    "canonical-precache": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/production-dist"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 0.045,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-precache.log",
+      "logBytes": 401,
+      "logSha256": "9d497d8723ee00003c492f005dfad0f74e298e70a2114587ab4c23ed8e9b3b52",
+      "pid": 350599,
+      "terminal": true
+    },
+    "canonical-core-engine": {
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 143.058,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-core-engine.log",
+      "logBytes": 72117,
+      "logSha256": "19308097d2ae87b9f6e1bfe4a887a63cfeb2fa04693adfb43af4f677feef4479",
+      "pid": 340877,
+      "terminal": true
+    },
+    "canonical-poison-compatibility-final": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/skills/poison-dagger.test.ts",
+        "src/stores/necromancer-poison-dagger.causal.test.ts",
+        "src/stores/necromancer-poison-dagger-native.test.ts",
+        "src/features/skills/SkillsScreen.poison-dagger.test.tsx",
+        "src/engine/skills/poison-explosion.test.ts",
+        "src/engine/combat/poison-explosion.test.ts",
+        "src/stores/poison-explosion-native.test.ts",
+        "src/stores/necromancer-direct.causal.test.ts",
+        "src/stores/necromancer-direct-native.test.ts",
+        "src/features/skills/SkillsScreen.necromancer-direct.test.tsx",
+        "src/features/skills/SkillsScreen.poison-explosion.test.tsx",
+        "src/engine/skills/displayStats.periodic.test.ts",
+        "src/engine/skills/skill-validator.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 24.506,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-poison-compatibility-final.log",
+      "logBytes": 1306,
+      "logSha256": "ab193f5af8bd4f9747c4139559a6fe2371efcec07f1a119fb6a5770d32208f70",
+      "pid": 349074,
+      "terminal": true
+    },
+    "canonical-poison-explosion-final": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/stores/poison-explosion-native.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 8.523,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-poison-explosion-final.log",
+      "logBytes": 355,
+      "logSha256": "6ddd1e0064959caa0d06ab89a52028ae269fee3b2e129e7226d723d1a1663c3a",
+      "pid": 349411,
+      "terminal": true
+    },
+    "canonical-ui-final": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/features/skills/SkillsScreen.poison-dagger.test.tsx"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 9.422,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-ui-final.log",
+      "logBytes": 369,
+      "logSha256": "86c60f4e1bcf9b3f5bf40a369368de63c4da902e6b8e584a7326073182f1a8df",
+      "pid": 350466,
+      "terminal": true
+    },
+    "canonical-native-lint-fixes": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/stores/necromancer-poison-dagger.causal.test.ts",
+        "src/stores/necromancer-poison-dagger-native.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 7.846,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-native-lint-fixes.log",
+      "logBytes": 444,
+      "logSha256": "25a32e4623e529ff7043c4a0e8176a3b2bb8975d22757259a026405c0a94637d",
+      "pid": 361741,
+      "terminal": true
+    },
+    "unchanged-module-entry-isolation": {
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/stores/playerStore.experience-equipment.test.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "exitCode": 0,
+      "durationSeconds": 10.532,
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/unchanged-module-entry-isolation.log",
+      "logBytes": 365,
+      "logSha256": "8dd5afe8780d5b7d9468fa86a71bf44e909ac011664d8f952bf044c8e75f2409",
+      "pid": 397583,
+      "terminal": true
+    }
+  },
+  "sevenDomainPairs": 8,
+  "actualOfflineContinues": 4,
+  "geometries": 20,
+  "originalPNGs": 16,
+  "genuineUnchanged": true,
+  "inventoryUnchanged165": true,
+  "independentAcceptance": "open",
+  "earnedBalance": "open",
+  "createdUnix": 1793039740.82197,
+  "fullResult": {
+    "passedTests": 18100,
+    "passedFiles": 834,
+    "existingOptInSkippedTests": 2,
+    "processSeconds": 1132.935
+  },
+  "failedFullAttempt": {
+    "command": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 130,
+    "durationSeconds": 399.589,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/canonical-full-frozen.log",
+    "logBytes": 15788,
+    "logSha256": "bd91df47a2a1fa9b58722d9957f455a9f917a0b484225b9f1c1d392f84d454f8",
+    "pid": 373517,
+    "terminal": true
+  },
+  "unchangedIsolation": {
+    "command": [
+      "node",
+      "node_modules/vitest/vitest.mjs",
+      "run",
+      "src/stores/playerStore.experience-equipment.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 10.532,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4/unchanged-module-entry-isolation.log",
+    "logBytes": 365,
+    "logSha256": "8dd5afe8780d5b7d9468fa86a71bf44e909ac011664d8f952bf044c8e75f2409",
+    "pid": 397583,
+    "terminal": true
+  },
+  "knownIntermittentBug": "BUG-180; cause unresolved; no timeout/source/test weakening",
+  "receiptCount": 36,
+  "featureHashes": {
+    "src/data/schema/skill.schema.json": "28f608f3da43b49dc2fcc2766c5742ba76cda1af7f818bcfe967eeaa7d51c4d3",
+    "src/data/skills/necromancer.json": "e01b62deead8333b48124b2945b6237aec7863ec79f8ba9d0f893bd5d5f5bf90",
+    "src/engine/skills/poison-dagger.test.ts": "f80ab18b98c17ec86f4c32f64456cdc66fcea22bffe5569583574394a7189ca3",
+    "src/features/skills/SkillsScreen.poison-dagger.test.tsx": "0d5d1de328b619cc6a5f638f43ad8b4b26e869b829b55550359cdace12fcf3e0",
+    "src/features/skills/SkillsScreen.tsx": "765b2dd90ebc29a58546f52dc09808b1dea1549323e6a6832981a59433a0d35b",
+    "src/i18n/locales/en/skills.json": "86d32ac1e3083900022b9d1dec367e22d6d28dc9a9c838403cfd4752bd8e25c9",
+    "src/i18n/locales/zh-CN/skills.json": "dfd56a75b1dde1ad461b6e8d9e3ace483be9c535923b7df5c7bb81a3ee24d4e5",
+    "src/stores/necromancer-poison-dagger-native.test.ts": "d805054443b58cdad5e364a661861754333deb77c9e438d0a81ccbfce9616afc",
+    "src/stores/necromancer-poison-dagger.causal.test.ts": "fe0c6f0619126f08c58357aa30c401ba474bf0e396415bc62e5f3048ff568148",
+    "src/stores/poison-explosion-native.test.ts": "6450b089b4934d7ab71bf03cf4f9f5c29ece48031f089ce4270dce760f222f12",
+    "tests/pwa/poison-dagger-acceptance.config.ts": "baad0f5da68b158024be101d2b22ff2086f9743cc29d2584ccbd7e95850fb78b",
+    "tests/pwa/poison-dagger-acceptance.spec.ts": "246f6868c85c7ddc3a32a5e45fab331bac175b2cc9cb5186736bb843449e13d0"
+  },
+  "limitations": [
+    "root-author evidence only; independent acceptance open",
+    "synthetic fixture draws; no campaign victory or earned balance acceptance",
+    "actual timings exceed existing test budgets; broad performance acceptance open"
+  ]
+}

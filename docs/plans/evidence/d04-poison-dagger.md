@@ -60,20 +60,55 @@ damaging Poison with the same6000ms/source/rate assertions. Both versions and
 logs remain retained, along with the original failed trace harness that omitted
 its explicit local-file allowance.
 
-## Pending acceptance and evidence ownership
+## Final frozen verification
 
-Production build/bridge/precache, canonical browser, full unit, final type/lint,
-source/build audits, retention/read-back and exact task cleanup remain pending.
-There is no Dagger inventory credit. The CSV remains165bounded-functional,
-46unverified, one engine-only and one review-needed. Genuine campaign state
-remainsL33, Ancients claimed, nextNormal402 and Baal uncleared; C2–C4, all-build
-viability,30–50hour pacing/economy/endgame and full G0–G7 remain open.
+Frozen HEAD `bee044a8e17fd9935f7d2d176afe177e273251f7` passes the unchanged
+full suite: **18100 tests /834 files**, two existing opt-in skipped tests,
+1132.935s process time. Final types172.549s, full lint285.810s and explicit
+`--no-ignore` native/UI/PWA lint7.997s pass. These measured timings exceed
+repository loop budgets; no performance-budget acceptance is inferred.
 
-Root owns required active evidence at
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4`
-through BUG256/BUG257/full-v1 consumers, followed by lossless retention/read-back
-and exact cleanup. Preserve original failures, drafts and command receipts.
-No remote publication, deployment, genuine campaign action or replay occurred.
+The final production browser batch passes4/4 in324.775s: actual paid Dagger
+casts, enemy Poison chips and positive enemy periodic HP, explicit draw/no-victory
+and uncleared Catacombs, eight exact seven-domain save pairs, four activated-SW
+network-disabled Continues and20geometry checks. Page/console issue arrays are
+empty. All16 final originals were individually inspected and hash-bound:
+[visual observations](fixtures/poison-dagger/visual-review.json). Mobile details
+and enemy section require vertical scrolling; the mobile battle viewport alone
+does not display the enemy chip. Current-stat/draw captures are element crops.
+Existing missing navigation glyphs, desktop lower-content clipping, full a11y,
+real-device and independent/earned acceptance remain explicit limits.
+
+The final audit proves4855tracked inputs and12feature paths unchanged throughout,
+548production source files identical to the official build and all762build files
+exact. Protected compressed/raw earned-save hashes and the165-credit inventory
+remain unchanged. [Validation](fixtures/poison-dagger/final-validation.json) and
+[public cases](fixtures/poison-dagger/public-cases.json) retain compact results;
+complete source hashes, commands, logs, save pairs and originals remain required
+raw evidence. Author review has no material local finding; it grants no independent
+approval, earned balance, broad PWA/performance or full-v1 acceptance.
+
+The first simultaneous full/types/lint/browser attempt timed out in the existing
+player/inventory module-entry test. Its exact owned Vitest process was gracefully
+interrupted after preserving the failure, exit130/399.589s; this is no full pass.
+The unchanged file passes13/13 alone in10.532s, then in the unchanged exclusive
+full run. No timeout, worker, discovery, assertion, skip or runtime workaround
+was introduced. [BUG180](../../../production/bugs/BUG-180-inventory-entry-test-timeout.md)
+remains unresolved; load contention is a hypothesis, not a diagnosed cause.
+
+## Evidence ownership and remaining work
+
+Root owns required raw evidence at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-poison-dagger-ujbpvvn4`.
+Lossless archive/read-back and exact cleanup must finish before one Dagger
+bounded-functional credit. Current inventory remains165bounded/46unverified/
+one engine-only/one review-needed. Original failures and authoring/harness
+corrections are retained. GenuineL33/nextNormal402/Ancients-Rite claimed/Baal
+uncleared is unchanged. Independent acceptance, earned builds/balance, C2–C4,
+30–50hour pacing/economy/endgame and fullG0–G7/privatev1 remain open.
+No genuine campaign/replay, remote action or delegation occurred.
+
+Historical checkpoints below predate the final frozen result above.
 
 ## Production and browser checkpoint before frozen full validation
 

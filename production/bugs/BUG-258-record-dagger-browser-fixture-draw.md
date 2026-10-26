@@ -1,6 +1,6 @@
 # BUG-258 — Record the Dagger browser fixture's actual draw
 
-Status: reproduced; public fixture correction pending.
+Status: fixed locally in `56da8adc`; final production4/4 passes with explicit draw/no-victory.
 Severity: Medium — a new acceptance fixture incorrectly assumes a full-area win.
 Date: 2026-10-26. Root author only; independent acceptance remains open.
 
@@ -69,3 +69,11 @@ exact seven-domain save pairs and four actual offline Continues. No fixture,
 production source, resource amount, timeout or retry changed. A final run after
 removing the redundant DOM fallback and adding saved transient-power absence
 remains required; no full-area victory or final acceptance is claimed here.
+
+## Final verification
+
+Frozen `bee044a8` full18100/834/two existing opt-in skips, final types/lint,
+explicit PWA lint and final public4/4 pass. Original failures remain retained.
+See [current evidence](../../docs/plans/evidence/d04-poison-dagger.md) for exact
+results, source/build/save audits and visual limits. Independent/earned/full-v1
+acceptance remains open; no runtime or test-limit workaround was introduced.

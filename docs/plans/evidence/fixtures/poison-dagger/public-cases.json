@@ -1,0 +1,218 @@
+[
+  {
+    "project": "poison-dagger-acceptance-desktop",
+    "title": "Necromancer poison-dagger public preview/cast/draw/save/offline en",
+    "status": "passed",
+    "publicCast": {
+      "slug": "poison-dagger",
+      "spellName": "Poison Dagger",
+      "chipName": "Poison",
+      "line": "05:00:00Poison Browser casts Poison Dagger.",
+      "enemyChip": "Poison",
+      "positiveEnemyPeriodicHP": "05:00:00Bone Warrior A takes 1 damage over time.",
+      "outcome": "draw"
+    },
+    "geometry": [
+      {
+        "skill": "poison-dagger",
+        "width": 360,
+        "height": 640,
+        "allocationHeight": 48,
+        "allocationWidth": 120.921875
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 412,
+        "height": 915,
+        "allocationHeight": 48,
+        "allocationWidth": 120.921875
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 640,
+        "height": 360,
+        "allocationHeight": 48,
+        "allocationWidth": 120.921875
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 1280,
+        "height": 800,
+        "allocationHeight": 48,
+        "allocationWidth": 120.921875
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 1920,
+        "height": 1080,
+        "allocationHeight": 48,
+        "allocationWidth": 120.921875
+      }
+    ],
+    "exactSevenDomainPairs": 2,
+    "actualOfflineContinue": true,
+    "pngs": 4
+  },
+  {
+    "project": "poison-dagger-acceptance-desktop",
+    "title": "Necromancer poison-dagger public preview/cast/draw/save/offline zh-CN",
+    "status": "passed",
+    "publicCast": {
+      "slug": "poison-dagger",
+      "spellName": "\u6dec\u6bd2\u5315\u9996",
+      "chipName": "\u4e2d\u6bd2",
+      "line": "05:00:00Poison Browser \u65bd\u653e\u4e86 \u6dec\u6bd2\u5315\u9996\u3002",
+      "enemyChip": "\u4e2d\u6bd2",
+      "positiveEnemyPeriodicHP": "05:00:00\u9ab8\u9aa8\u6218\u58eb A \u56e0\u6301\u7eed\u4f24\u5bb3\u53d7\u5230 1 \u70b9\u4f24\u5bb3\u3002",
+      "outcome": "draw"
+    },
+    "geometry": [
+      {
+        "skill": "poison-dagger",
+        "width": 360,
+        "height": 640,
+        "allocationHeight": 48,
+        "allocationWidth": 120
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 412,
+        "height": 915,
+        "allocationHeight": 48,
+        "allocationWidth": 120
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 640,
+        "height": 360,
+        "allocationHeight": 48,
+        "allocationWidth": 120
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 1280,
+        "height": 800,
+        "allocationHeight": 48,
+        "allocationWidth": 120
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 1920,
+        "height": 1080,
+        "allocationHeight": 48,
+        "allocationWidth": 120
+      }
+    ],
+    "exactSevenDomainPairs": 2,
+    "actualOfflineContinue": true,
+    "pngs": 4
+  },
+  {
+    "project": "poison-dagger-acceptance-mobile",
+    "title": "Necromancer poison-dagger public preview/cast/draw/save/offline en",
+    "status": "passed",
+    "publicCast": {
+      "slug": "poison-dagger",
+      "spellName": "Poison Dagger",
+      "chipName": "Poison",
+      "line": "05:00:00Poison Browser casts Poison Dagger.",
+      "enemyChip": "Poison",
+      "positiveEnemyPeriodicHP": "05:00:00Bone Warrior A takes 1 damage over time.",
+      "outcome": "draw"
+    },
+    "geometry": [
+      {
+        "skill": "poison-dagger",
+        "width": 360,
+        "height": 640,
+        "allocationHeight": 48,
+        "allocationWidth": 120.921875
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 412,
+        "height": 915,
+        "allocationHeight": 48,
+        "allocationWidth": 120.921875
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 640,
+        "height": 360,
+        "allocationHeight": 48,
+        "allocationWidth": 120.921875
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 1280,
+        "height": 800,
+        "allocationHeight": 48,
+        "allocationWidth": 120.921875
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 1920,
+        "height": 1080,
+        "allocationHeight": 48,
+        "allocationWidth": 120.921875
+      }
+    ],
+    "exactSevenDomainPairs": 2,
+    "actualOfflineContinue": true,
+    "pngs": 4
+  },
+  {
+    "project": "poison-dagger-acceptance-mobile",
+    "title": "Necromancer poison-dagger public preview/cast/draw/save/offline zh-CN",
+    "status": "passed",
+    "publicCast": {
+      "slug": "poison-dagger",
+      "spellName": "\u6dec\u6bd2\u5315\u9996",
+      "chipName": "\u4e2d\u6bd2",
+      "line": "05:00:00Poison Browser \u65bd\u653e\u4e86 \u6dec\u6bd2\u5315\u9996\u3002",
+      "enemyChip": "\u4e2d\u6bd2",
+      "positiveEnemyPeriodicHP": "05:00:00\u9ab8\u9aa8\u6218\u58eb A \u56e0\u6301\u7eed\u4f24\u5bb3\u53d7\u5230 1 \u70b9\u4f24\u5bb3\u3002",
+      "outcome": "draw"
+    },
+    "geometry": [
+      {
+        "skill": "poison-dagger",
+        "width": 360,
+        "height": 640,
+        "allocationHeight": 48,
+        "allocationWidth": 120
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 412,
+        "height": 915,
+        "allocationHeight": 48,
+        "allocationWidth": 120
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 640,
+        "height": 360,
+        "allocationHeight": 48,
+        "allocationWidth": 120
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 1280,
+        "height": 800,
+        "allocationHeight": 48,
+        "allocationWidth": 120
+      },
+      {
+        "skill": "poison-dagger",
+        "width": 1920,
+        "height": 1080,
+        "allocationHeight": 48,
+        "allocationWidth": 120
+      }
+    ],
+    "exactSevenDomainPairs": 2,
+    "actualOfflineContinue": true,
+    "pngs": 4
+  }
+]

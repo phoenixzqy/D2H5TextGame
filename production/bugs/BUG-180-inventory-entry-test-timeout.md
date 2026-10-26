@@ -88,3 +88,20 @@ linked from [Telekinesis evidence](../../docs/plans/evidence/d04-telekinesis.md)
 The later causal-comparator correction changes only a separate Vitest test;
 it does not alter this module-entry test, product code or production build.
 No diagnosed root cause, timeout increase or source workaround is claimed.
+
+
+Poison Dagger recurrence (2026-10-26), frozen `bee044a8`: player-first exceeds
+unchanged5000ms during the first full run overlapping types/lint/browser.
+The already-failed owned Vitest process is identified and gracefully interrupted;
+exit130 after399.589s is an interrupted attempt, not a full pass/final failure
+summary. Original log SHA256:
+`bd91df47a2a1fa9b58722d9957f455a9f917a0b484225b9f1c1d392f84d454f8`.
+The unchanged13-case file then passes alone in10.532s. The unchanged full run
+alone passes18100tests/834files/two existing skips in1132.935s; the13-case
+file completes in5633ms total, with both individual cases within5000ms.
+All4855tracked input hashes and HEAD remain exact throughout. No source,
+timeout, worker, discovery, assertion or skip is changed. CPU/load contention
+remains an unproven hypothesis; no gameplay defect or import-cycle exception is
+established. Status stays unresolved. Complete failed/isolation/exclusive receipts
+and owned-process interruption evidence live in the required Dagger retention
+linked from [its evidence](../../docs/plans/evidence/d04-poison-dagger.md).
