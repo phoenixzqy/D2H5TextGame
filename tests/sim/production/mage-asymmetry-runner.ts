@@ -41,6 +41,10 @@ function strata(fixture: MageAsymmetryFixture, recorded: RecordedBattleResult, m
         const values = event.crit ? row.critValues : row.noncritValues;
         values[String(event.amount)] = (values[String(event.amount)] ?? 0) + 1;
       }
+    } else if (event.kind === 'dot') {
+      const target = units.get(event.target);
+      if (!target) throw new Error('Mage asymmetry unknown periodic target');
+      units.set(target.id, { ...target, life: Math.max(0, target.life - event.amount) });
     } else if (event.kind === 'heal' || event.kind === 'orb' || event.kind === 'death') {
       const target = units.get(event.target);
       if (!target) throw new Error('Mage asymmetry unknown HP target');
