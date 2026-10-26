@@ -1,0 +1,481 @@
+{
+  "baseline": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "--project",
+      "engine",
+      "src/engine/skills/necromancer-summon-definition.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 3.051,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/baseline.log",
+    "logBytes": 366,
+    "logSha256": "330d87b9b9407898159336f8a6b7f8a8e0cbf8c9bb76c026de7aafc159149782",
+    "pid": 71084,
+    "terminal": true
+  },
+  "browser-file-lint-final": {
+    "command": [
+      "npx",
+      "eslint",
+      "--no-ignore",
+      "tests/native/skeletal-mage-native.spec.ts",
+      "--max-warnings=0"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 7.837,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-file-lint-final.log",
+    "logBytes": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pid": 85241,
+    "terminal": true
+  },
+  "browser-file-lint": {
+    "command": [
+      "npx",
+      "eslint",
+      "--no-ignore",
+      "tests/native/skeletal-mage-native.spec.ts",
+      "--max-warnings=0"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 7.163,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-file-lint.log",
+    "logBytes": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pid": 82615,
+    "terminal": true
+  },
+  "browser-file-lint-v2": {
+    "command": [
+      "npx",
+      "eslint",
+      "--no-ignore",
+      "tests/native/skeletal-mage-native.spec.ts",
+      "--max-warnings=0"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 8.038,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-file-lint-v2.log",
+    "logBytes": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pid": 84131,
+    "terminal": true
+  },
+  "browser": {
+    "command": [
+      "env",
+      "D06_MAGE_ARTIFACT_ROOT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2",
+      "D06_MAGE_RUN_ID=body-data-final",
+      "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/runtime-tmp",
+      "npx",
+      "playwright",
+      "test",
+      "--config",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser.config.mjs",
+      "--grep",
+      "360x640|1280x800"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "durationSeconds": 7.108,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser.log",
+    "logBytes": 3664,
+    "logSha256": "2b4ebb82abfac3b736ee48ceecc2b039749ba03b750714d0e424cd4e31618abb",
+    "pid": 81769,
+    "terminal": true
+  },
+  "browser-v2": {
+    "command": [
+      "env",
+      "D06_MAGE_ARTIFACT_ROOT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2",
+      "D06_MAGE_RUN_ID=body-data-v2",
+      "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/runtime-tmp",
+      "npx",
+      "playwright",
+      "test",
+      "--config",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-v2.config.mjs",
+      "--grep",
+      "360x640|1280x800"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "durationSeconds": 0.994,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-v2.log",
+    "logBytes": 929,
+    "logSha256": "76674d68903059656e264b70e3865a0d42fa2c04477a091bce3435cafa8ddef0",
+    "pid": 82567,
+    "terminal": true
+  },
+  "browser-v3": {
+    "command": [
+      "env",
+      "D06_MAGE_ARTIFACT_ROOT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2",
+      "D06_MAGE_RUN_ID=body-data-v2",
+      "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/runtime-tmp",
+      "npx",
+      "playwright",
+      "test",
+      "--config",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-v2.config.mjs",
+      "--grep",
+      "360x640|1280x800"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "durationSeconds": 2.334,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-v3.log",
+    "logBytes": 422,
+    "logSha256": "af127a3cc930a4d38078acb5c0d7be777e379df2149d281c108113108932c457",
+    "pid": 82592,
+    "terminal": true
+  },
+  "browser-v4": {
+    "command": [
+      "env",
+      "D06_MAGE_ARTIFACT_ROOT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2",
+      "D06_MAGE_RUN_ID=body-data-v4",
+      "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/runtime-tmp",
+      "npx",
+      "playwright",
+      "test",
+      "--config",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-v4.config.mjs",
+      "--grep",
+      "360x640|1280x800"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "durationSeconds": 17.022,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-v4.log",
+    "logBytes": 3999,
+    "logSha256": "fde782e9ef4e1e7509fa9f1f32a04482774c9b757f35515910d28bf7e0144ad9",
+    "pid": 83011,
+    "terminal": true
+  },
+  "browser-v5": {
+    "command": [
+      "env",
+      "D06_MAGE_ARTIFACT_ROOT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2",
+      "D06_MAGE_RUN_ID=body-data-v5",
+      "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/runtime-tmp",
+      "npx",
+      "playwright",
+      "test",
+      "--config",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-v5.config.mjs",
+      "--grep",
+      "360x640|1280x800"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "durationSeconds": 20.158,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-v5.log",
+    "logBytes": 5666,
+    "logSha256": "d31c89726cd7ffce2d9a22bc7fc598099144e48042541960e69d58e4b9f5cf0b",
+    "pid": 84108,
+    "terminal": true
+  },
+  "browser-v6": {
+    "command": [
+      "env",
+      "D06_MAGE_ARTIFACT_ROOT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2",
+      "D06_MAGE_RUN_ID=body-data-v6",
+      "TMPDIR=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/runtime-tmp",
+      "npx",
+      "playwright",
+      "test",
+      "--config",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-v6.config.mjs",
+      "--grep",
+      "360x640|1280x800"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 64.71,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/browser-v6.log",
+    "logBytes": 986,
+    "logSha256": "2549e3c75e97a3f117badbe780d04a449d4e937b285c5886896a5d2e38fca0cf",
+    "pid": 84635,
+    "terminal": true
+  },
+  "build": {
+    "command": [
+      "npm",
+      "run",
+      "check:test-bridge-shake"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 12.524,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/build.log",
+    "logBytes": 1953,
+    "logSha256": "caf7030a9d5df9fc10bbd483fe67f17236d9d6d693b32fa1789527d66e7e438d",
+    "pid": 81325,
+    "terminal": true
+  },
+  "definition-red": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "--project",
+      "engine",
+      "src/engine/skills/necromancer-summon-definition.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "durationSeconds": 2.855,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/definition-red.log",
+    "logBytes": 979,
+    "logSha256": "5b635b53221f55d38c0048dbb0a68ef300aeeeb0f477dfd060bfaeff8450c1dc",
+    "pid": 71410,
+    "terminal": true
+  },
+  "engine": {
+    "command": [
+      "npm",
+      "run",
+      "test:engine"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 133.313,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/engine.log",
+    "logBytes": 71336,
+    "logSha256": "907bc2b221b5a00c21fbdde8d13638222bbb8ddb06654e3b9419a673849a943a",
+    "pid": 71916,
+    "terminal": true
+  },
+  "explicit-lint": {
+    "command": [
+      "npx",
+      "eslint",
+      "src/engine/skills/necromancer-summon-definition.test.ts",
+      "src/engine/skills/necromancer-summon-definition.ts",
+      "src/engine/skills/summons.ts",
+      "--max-warnings=0"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 7.274,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/explicit-lint.log",
+    "logBytes": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pid": 81640,
+    "terminal": true
+  },
+  "focused": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "--project",
+      "engine",
+      "src/engine/skills/necromancer-summon-definition.test.ts",
+      "src/engine/skills/summons.test.ts",
+      "src/engine/skills/skeletal-mage.test.ts",
+      "src/engine/skills/druid-summon-definition.test.ts",
+      "src/engine/skills/blood-golem.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 4.431,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/focused.log",
+    "logBytes": 652,
+    "logSha256": "b45a546aa005eb28e994720bb2200d43325763b643d72b3b105f4a6a6e1e712f",
+    "pid": 71490,
+    "terminal": true
+  },
+  "focused-v2": {
+    "command": [
+      "npx",
+      "vitest",
+      "run",
+      "--project",
+      "engine",
+      "src/engine/skills/necromancer-summon-definition.test.ts",
+      "src/engine/skills/summons.test.ts",
+      "src/engine/skills/skeletal-mage.test.ts",
+      "src/engine/skills/druid-summon-definition.test.ts",
+      "src/engine/skills/blood-golem.test.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 4.407,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/focused-v2.log",
+    "logBytes": 652,
+    "logSha256": "59c5ad4dd5c756d7c57f7ba48905aa965d354ec126505a0b5b7959db64a6ee22",
+    "pid": 80297,
+    "terminal": true
+  },
+  "full": {
+    "command": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 766.066,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/full.log",
+    "logBytes": 169665,
+    "logSha256": "d674f51553d8411529a271d2e82c1aa919128e3230f6a7a400678fd65a46b0a6",
+    "pid": 85927,
+    "terminal": true
+  },
+  "import-probe": {
+    "command": [
+      "node_modules/.bin/vite-node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/import-probe.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "durationSeconds": 4.594,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/import-probe.log",
+    "logBytes": 1549,
+    "logSha256": "f8539307cd07c24a3e322ccd41e66a81aad0efdce52b23a69a15fc67fbd26727",
+    "pid": 83811,
+    "terminal": true
+  },
+  "import-probe-v2": {
+    "command": [
+      "node_modules/.bin/vite-node",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/import-probe-v2.ts"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 4.674,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/import-probe-v2.log",
+    "logBytes": 19,
+    "logSha256": "831bd2fd9f4e2f5a3bf4d31d498c8c840a3207d99c17f1857053b56ce5013d56",
+    "pid": 84075,
+    "terminal": true
+  },
+  "lint-committed": {
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 167.8,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/lint-committed.log",
+    "logBytes": 197,
+    "logSha256": "e380d53c632550b3cff42e46bb6047d2d4a191bf435a3c69af18a04627706e60",
+    "pid": 81961,
+    "terminal": true
+  },
+  "lint-final": {
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "durationSeconds": 166.02,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/lint-final.log",
+    "logBytes": 471,
+    "logSha256": "468ab0397fe3f780abb7ffb1fae7decc44cb46262ed3024797b0e13b178a913c",
+    "pid": 80708,
+    "terminal": true
+  },
+  "lint": {
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 1,
+    "durationSeconds": 167.736,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/lint.log",
+    "logBytes": 1391,
+    "logSha256": "76e2efd47018693e08a51fa6d118c623d17fca34f3db364020cd6de57de82e0f",
+    "pid": 78287,
+    "terminal": true
+  },
+  "precache": {
+    "command": [
+      "node",
+      "scripts/check-offline-precache.mjs",
+      "dist"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 0.047,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/precache.log",
+    "logBytes": 393,
+    "logSha256": "9b1fb1705f0e6c56ef7b8402de43de04c1544868ed34f9de831eb05066132ff4",
+    "pid": 81641,
+    "terminal": true
+  },
+  "types-browser-final": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 98.725,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/types-browser-final.log",
+    "logBytes": 50,
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "pid": 85240,
+    "terminal": true
+  },
+  "types-committed": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 97.95,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/types-committed.log",
+    "logBytes": 50,
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "pid": 81960,
+    "terminal": true
+  },
+  "types-final": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 0,
+    "durationSeconds": 97.735,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/types-final.log",
+    "logBytes": 50,
+    "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "pid": 80709,
+    "terminal": true
+  },
+  "types": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+    "exitCode": 2,
+    "durationSeconds": 100.127,
+    "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2/types.log",
+    "logBytes": 7902,
+    "logSha256": "a29a5383ae1d865205bc503e1057092611dba7fcff4a56df33400ff5a6f9a708",
+    "pid": 78288,
+    "terminal": true
+  }
+}

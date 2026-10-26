@@ -1,0 +1,170 @@
+{
+  "knownChildren": [
+    {
+      "receipt": "browser-v2-start.json",
+      "pid": 82567,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "import-probe-v2-start.json",
+      "pid": 84075,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "types-start.json",
+      "pid": 78288,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "browser-v3-start.json",
+      "pid": 82592,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "types-committed-start.json",
+      "pid": 81960,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "precache-start.json",
+      "pid": 81641,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "browser-v4-start.json",
+      "pid": 83011,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "lint-start.json",
+      "pid": 78287,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "browser-v6-start.json",
+      "pid": 84635,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "definition-red-start.json",
+      "pid": 71410,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "build-start.json",
+      "pid": 81325,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "explicit-lint-start.json",
+      "pid": 81640,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "browser-file-lint-v2-start.json",
+      "pid": 84131,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "browser-file-lint-final-start.json",
+      "pid": 85241,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "full-start.json",
+      "pid": 85927,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "browser-v5-start.json",
+      "pid": 84108,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "focused-v2-start.json",
+      "pid": 80297,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "lint-committed-start.json",
+      "pid": 81961,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "lint-final-start.json",
+      "pid": 80708,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "baseline-start.json",
+      "pid": 71084,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "import-probe-start.json",
+      "pid": 83811,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "engine-start.json",
+      "pid": 71916,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "types-final-start.json",
+      "pid": 80709,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "types-browser-final-start.json",
+      "pid": 85240,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "focused-start.json",
+      "pid": 71490,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "browser-start.json",
+      "pid": 81769,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    },
+    {
+      "receipt": "browser-file-lint-start.json",
+      "pid": 82615,
+      "sameIdentityLive": false,
+      "pidPresent": false
+    }
+  ],
+  "readableConsumers": [],
+  "restrictedProcEntries": 30,
+  "port4537": "bind available",
+  "limits": "Unreadable process entries cannot be audited; no unknown process was signaled."
+}

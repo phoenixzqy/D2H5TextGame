@@ -1,6 +1,6 @@
 # BUG-251 — Author remaining Necromancer summon bodies in validated JSON
 
-- Status: confirmed source/data compliance defect; implementation pending.
+- Status: locally fixed in `76603ca6` and verified through `ef0561d7`; independent review/QA remain open.
 - Severity: Medium — runtime works, but base-stat tuning bypasses the required JSON/schema boundary.
 - Owner: root engine/content; independent review and QA remain open.
 - Build: `462cf874`; Node 24.21.0, Linux; source/runtime independent of browser, viewport and locale.
@@ -21,3 +21,7 @@ Evidence: the five literal branches and `baseSummonStats`/`skeletonStats` in the
 ## Boundaries and workaround
 
 Existing runtime stats are the compatibility oracle, not new balance choices. Preserve startup costs/caps, Mage elemental identity, Iron selected-item transactions, Masteries, resources, RNG, saves, names and unrelated templates. Editing TypeScript is the current workaround. This migration alone grants no skill, earned-balance or full-v1 acceptance.
+
+## Local resolution
+
+Complete unchanged five-body JSON/schema/immutable loader now feeds both runtime and previews.36new definition/compatibility cases; focused130/5, engine8911/334, full17785/813/two existing opt-in skips, final types/lint/official production build/bridge/756URLprecache pass. Existing Mage production browser4/4 passes after BUG252 fixture corrections. No skill credit or new tuning/save/resource/RNG behavior. [Final evidence, exact retained paths and completed task-owned cleanup](../../docs/plans/evidence/d06-necromancer-body-data.md). Author review is not independent acceptance; remaining mechanics/earned builds/full v1 stay open.

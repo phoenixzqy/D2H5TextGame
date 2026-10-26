@@ -1,0 +1,180 @@
+{
+  "head": "ef0561d701d6aab9bd0b06287a9c1c860fe0f6f1",
+  "sourceFilesExact": 20,
+  "buildFilesExact": 762,
+  "buildBytes": 41924984,
+  "inventoryExact": true,
+  "inventorySha256": "97bc1692001ac0fa4805e340c85486d58e8ec2bc2c8aae0110ae60fec62cc84a",
+  "skills": 213,
+  "newSkillCredits": 0,
+  "protectedCampaign": {
+    "compressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "rawSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "campaignOrReplayRun": false
+  },
+  "receipts": [
+    {
+      "label": "baseline",
+      "exitCode": 0,
+      "durationSeconds": 3.051,
+      "logSha256": "330d87b9b9407898159336f8a6b7f8a8e0cbf8c9bb76c026de7aafc159149782"
+    },
+    {
+      "label": "browser-file-lint-final",
+      "exitCode": 0,
+      "durationSeconds": 7.837,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "browser-file-lint",
+      "exitCode": 0,
+      "durationSeconds": 7.163,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "browser-file-lint-v2",
+      "exitCode": 0,
+      "durationSeconds": 8.038,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "browser",
+      "exitCode": 1,
+      "durationSeconds": 7.108,
+      "logSha256": "2b4ebb82abfac3b736ee48ceecc2b039749ba03b750714d0e424cd4e31618abb"
+    },
+    {
+      "label": "browser-v2",
+      "exitCode": 1,
+      "durationSeconds": 0.994,
+      "logSha256": "76674d68903059656e264b70e3865a0d42fa2c04477a091bce3435cafa8ddef0"
+    },
+    {
+      "label": "browser-v3",
+      "exitCode": 1,
+      "durationSeconds": 2.334,
+      "logSha256": "af127a3cc930a4d38078acb5c0d7be777e379df2149d281c108113108932c457"
+    },
+    {
+      "label": "browser-v4",
+      "exitCode": 1,
+      "durationSeconds": 17.022,
+      "logSha256": "fde782e9ef4e1e7509fa9f1f32a04482774c9b757f35515910d28bf7e0144ad9"
+    },
+    {
+      "label": "browser-v5",
+      "exitCode": 1,
+      "durationSeconds": 20.158,
+      "logSha256": "d31c89726cd7ffce2d9a22bc7fc598099144e48042541960e69d58e4b9f5cf0b"
+    },
+    {
+      "label": "browser-v6",
+      "exitCode": 0,
+      "durationSeconds": 64.71,
+      "logSha256": "2549e3c75e97a3f117badbe780d04a449d4e937b285c5886896a5d2e38fca0cf"
+    },
+    {
+      "label": "build",
+      "exitCode": 0,
+      "durationSeconds": 12.524,
+      "logSha256": "caf7030a9d5df9fc10bbd483fe67f17236d9d6d693b32fa1789527d66e7e438d"
+    },
+    {
+      "label": "definition-red",
+      "exitCode": 1,
+      "durationSeconds": 2.855,
+      "logSha256": "5b635b53221f55d38c0048dbb0a68ef300aeeeb0f477dfd060bfaeff8450c1dc"
+    },
+    {
+      "label": "engine",
+      "exitCode": 0,
+      "durationSeconds": 133.313,
+      "logSha256": "907bc2b221b5a00c21fbdde8d13638222bbb8ddb06654e3b9419a673849a943a"
+    },
+    {
+      "label": "explicit-lint",
+      "exitCode": 0,
+      "durationSeconds": 7.274,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "focused",
+      "exitCode": 0,
+      "durationSeconds": 4.431,
+      "logSha256": "b45a546aa005eb28e994720bb2200d43325763b643d72b3b105f4a6a6e1e712f"
+    },
+    {
+      "label": "focused-v2",
+      "exitCode": 0,
+      "durationSeconds": 4.407,
+      "logSha256": "59c5ad4dd5c756d7c57f7ba48905aa965d354ec126505a0b5b7959db64a6ee22"
+    },
+    {
+      "label": "full",
+      "exitCode": 0,
+      "durationSeconds": 766.066,
+      "logSha256": "d674f51553d8411529a271d2e82c1aa919128e3230f6a7a400678fd65a46b0a6"
+    },
+    {
+      "label": "import-probe",
+      "exitCode": 1,
+      "durationSeconds": 4.594,
+      "logSha256": "f8539307cd07c24a3e322ccd41e66a81aad0efdce52b23a69a15fc67fbd26727"
+    },
+    {
+      "label": "import-probe-v2",
+      "exitCode": 0,
+      "durationSeconds": 4.674,
+      "logSha256": "831bd2fd9f4e2f5a3bf4d31d498c8c840a3207d99c17f1857053b56ce5013d56"
+    },
+    {
+      "label": "lint-committed",
+      "exitCode": 0,
+      "durationSeconds": 167.8,
+      "logSha256": "e380d53c632550b3cff42e46bb6047d2d4a191bf435a3c69af18a04627706e60"
+    },
+    {
+      "label": "lint-final",
+      "exitCode": 1,
+      "durationSeconds": 166.02,
+      "logSha256": "468ab0397fe3f780abb7ffb1fae7decc44cb46262ed3024797b0e13b178a913c"
+    },
+    {
+      "label": "lint",
+      "exitCode": 1,
+      "durationSeconds": 167.736,
+      "logSha256": "76e2efd47018693e08a51fa6d118c623d17fca34f3db364020cd6de57de82e0f"
+    },
+    {
+      "label": "precache",
+      "exitCode": 0,
+      "durationSeconds": 0.047,
+      "logSha256": "9b1fb1705f0e6c56ef7b8402de43de04c1544868ed34f9de831eb05066132ff4"
+    },
+    {
+      "label": "types-browser-final",
+      "exitCode": 0,
+      "durationSeconds": 98.725,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "label": "types-committed",
+      "exitCode": 0,
+      "durationSeconds": 97.95,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "label": "types-final",
+      "exitCode": 0,
+      "durationSeconds": 97.735,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "label": "types",
+      "exitCode": 2,
+      "durationSeconds": 100.127,
+      "logSha256": "a29a5383ae1d865205bc503e1057092611dba7fcff4a56df33400ff5a6f9a708"
+    }
+  ],
+  "runningReceiptLabels": []
+}

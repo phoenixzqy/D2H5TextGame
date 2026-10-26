@@ -1,0 +1,117 @@
+{
+  "runtimeCommit": "76603ca6",
+  "testCommit": "ef0561d7",
+  "scope": "Existing native Mage production test; en/zh-CN at360x640 and1280x800; default desktop Chromium context resized, no mobile-device UA claim.",
+  "stats": {
+    "startTime": "2026-10-26T14:40:09.752Z",
+    "duration": 63293.784999999996,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "case": "native-Mage-en-1280x800",
+      "version": 22,
+      "exactPayloadDomains": {
+        "endgame": true,
+        "player": true,
+        "inventory": true,
+        "mercs": true,
+        "map": true,
+        "meta": true,
+        "formation": true
+      },
+      "elemental": [
+        "Skeletal Mage attacks Fallen A for 50 fire damage.",
+        "Skeletal Mage attacks Fallen E for 61 cold damage.",
+        "Skeletal Mage attacks Fallen B for 61 lightning damage.",
+        "Skeletal Mage attacks Fallen C for 50 poison damage."
+      ],
+      "consoleErrors": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "case": "native-Mage-en-360x640",
+      "version": 22,
+      "exactPayloadDomains": {
+        "endgame": true,
+        "player": true,
+        "inventory": true,
+        "mercs": true,
+        "map": true,
+        "meta": true,
+        "formation": true
+      },
+      "elemental": [
+        "Skeletal Mage attacks Fallen A for 50 fire damage.",
+        "Skeletal Mage attacks Fallen E for 61 cold damage.",
+        "Skeletal Mage attacks Fallen B for 61 lightning damage.",
+        "Skeletal Mage attacks Fallen C for 50 poison damage."
+      ],
+      "consoleErrors": [],
+      "viewport": {
+        "width": 360,
+        "height": 640
+      }
+    },
+    {
+      "case": "native-Mage-zh-CN-1280x800",
+      "version": 22,
+      "exactPayloadDomains": {
+        "endgame": true,
+        "player": true,
+        "inventory": true,
+        "mercs": true,
+        "map": true,
+        "meta": true,
+        "formation": true
+      },
+      "elemental": [
+        "骷髅法师 普攻 堕落者 A，造成 50 点火焰伤害。",
+        "骷髅法师 普攻 堕落者 E，造成 61 点冰冷伤害。",
+        "骷髅法师 普攻 堕落者 B，造成 61 点闪电伤害。",
+        "骷髅法师 普攻 堕落者 C，造成 50 点毒素伤害。"
+      ],
+      "consoleErrors": [],
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "case": "native-Mage-zh-CN-360x640",
+      "version": 22,
+      "exactPayloadDomains": {
+        "endgame": true,
+        "player": true,
+        "inventory": true,
+        "mercs": true,
+        "map": true,
+        "meta": true,
+        "formation": true
+      },
+      "elemental": [
+        "骷髅法师 普攻 堕落者 A，造成 50 点火焰伤害。",
+        "骷髅法师 普攻 堕落者 E，造成 61 点冰冷伤害。",
+        "骷髅法师 普攻 堕落者 B，造成 61 点闪电伤害。",
+        "骷髅法师 普攻 堕落者 C，造成 50 点毒素伤害。"
+      ],
+      "consoleErrors": [],
+      "viewport": {
+        "width": 360,
+        "height": 640
+      }
+    }
+  ],
+  "limits": [
+    "Imported eligibility/gear/resources are unearned diagnostic scaffolding.",
+    "Only ordinary online reopen; network-disabled offline acceptance is not tested here.",
+    "DOM proves exact stats/payment/four names and elements; individual source IDs remain engine/store test scope.",
+    "Representative original screenshots will be reviewed; no claim every PNG was inspected."
+  ]
+}

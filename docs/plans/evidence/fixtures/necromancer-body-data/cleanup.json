@@ -1,0 +1,25 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2-retained.tar.xz",
+  "archiveSha256": "924ea143823dfa9937cad217b4e1675f95b61f8ccf4ef3280e9fa87694338eb5",
+  "archiveMembersReadback": 3567,
+  "removedFileCount": 4329,
+  "removedDirectoryCount": 85,
+  "remaining": [],
+  "failures": [],
+  "driver": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2-cleanup-driver.py",
+  "driverRemovalPending": false,
+  "knownChildrenAbsent": true,
+  "readableConsumers": [],
+  "restrictedProcEntries": 30,
+  "port4537": "bind available; no processes signaled",
+  "retainedPaths": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2-retained.tar.xz",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2-retention.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2-deletion-manifest.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2-cleanup.json"
+  ],
+  "retentionOwner": "root",
+  "retentionCondition": "BUG251/BUG252/full-v1 evidence consumers finish",
+  "driverRemoved": true,
+  "driverSha256": "1aa1d582e675911a071794db59a0ba4d2a90d001d42d123086b54878c53a72b2"
+}

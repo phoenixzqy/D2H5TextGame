@@ -1,0 +1,15 @@
+{
+  "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2-retained.tar.xz",
+  "archiveSha256": "924ea143823dfa9937cad217b4e1675f95b61f8ccf4ef3280e9fa87694338eb5",
+  "archiveBytes": 193742460,
+  "verifiedMembers": 3567,
+  "uncompressedBytes": 221821893,
+  "owner": "root",
+  "consumers": [
+    "BUG251",
+    "BUG252",
+    "full private v1 acceptance"
+  ],
+  "removeWhen": "Root removes retained archive and sidecars only after all named evidence consumers finish.",
+  "losslessReadback": true
+}

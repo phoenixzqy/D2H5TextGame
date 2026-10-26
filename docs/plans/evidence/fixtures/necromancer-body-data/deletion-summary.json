@@ -1,0 +1,10 @@
+{
+  "fullManifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2-deletion-manifest.json",
+  "fullManifestSha256": "675513fe69e7cdcef3e4883383dcad8b3f883fa5507772997414da57cef5a7ae",
+  "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-necromancer-body-data-hhwi2mk2",
+  "taskFiles": 3567,
+  "buildRoot": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
+  "buildFiles": 762,
+  "driverSha256": "1aa1d582e675911a071794db59a0ba4d2a90d001d42d123086b54878c53a72b2",
+  "driverRemoved": true
+}

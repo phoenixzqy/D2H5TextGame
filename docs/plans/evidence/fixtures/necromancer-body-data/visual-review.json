@@ -1,0 +1,24 @@
+{
+  "reviewer": "root author",
+  "independent": false,
+  "reviewedOriginalPngs": [
+    "native-Mage-zh-CN-360x640/skill-detail-visible-part.png",
+    "native-Mage-zh-CN-360x640/startup-grid-visible-part.png",
+    "native-Mage-en-1280x800/skill-detail-visible-part.png",
+    "native-Mage-en-1280x800/elemental-log-visible-part.png",
+    "native-Mage-en-360x640/skill-detail-visible-part.png",
+    "native-Mage-en-360x640/startup-grid-visible-part.png",
+    "native-Mage-zh-CN-1280x800/skill-detail-visible-part.png",
+    "native-Mage-zh-CN-1280x800/elemental-log-visible-part.png"
+  ],
+  "totalFinalOriginalPngs": 52,
+  "findings": [
+    "Desktop bilingual descriptions/current-next values and requirements are readable in the inspected upper-panel crops; lower rows extend below the capture.",
+    "Chinese mobile capture includes readable description and current numeric rows. English mobile capture contains a long description with lower numeric rows outside the crop. Both title tops are clipped.",
+    "Mobile startup crops show four Mage bodies, health bars, fallback portrait abbreviations and wrapping localized names. Summon/召唤 chips over both hero and bodies are transient startup effects: CombatScreen.tsx maps a summon event to both owner and body, then renders effect.summon; they are not a false unit-kind badge.",
+    "Desktop combat-log crops show all four actual localized elemental hits, with upper log context clipped.",
+    "These finite intersection crops do not prove full-panel visibility, all touch targets, mobile-device UA, screen readers, contrast or WCAG acceptance."
+  ],
+  "conclusion": "Representative inspection only; no full visual or skill acceptance. Existing DOM assertions preserve numeric, geometry, card, payment and message evidence.",
+  "sourceClarification": "src/features/combat/CombatScreen.tsx:1022-1023 and effectLabel summon case; read-only inspection."
+}

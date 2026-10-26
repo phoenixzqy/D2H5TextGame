@@ -14,3 +14,7 @@ Keep `life`/`mana` derived from authored maxima and magical mitigation from the 
 4. Record exact outcomes, failures, retained evidence and task-owned cleanup. Do not credit any skill merely for this migration. Full Mage signature statuses, remaining summon behavior/presentation, independent review/QA, earned builds, C2–C4/G0–G7 and full private v1 remain open.
 
 Plan review: ready. Exact complete body rows avoid a second fallback-tuning layer; shared mitigation, rank scaling and selected-item inheritance remain upstream owners. No save migration is needed because these definitions are not saved. Security check: pass for first-party local engine/data/tests; no new network, dependency, CI, credential, permission or persisted authority. Do not alter the genuine campaign or publish remotely.
+
+## Local delivery record
+
+Implemented`76603ca6`; test formatting`deb0b7b6`; current native browser fixture`ef0561d7` (BUG252). [Final evidence](../evidence/d06-necromancer-body-data.md): ten pre-migration literals,36new controls, focused130/5, engine8911/334, full17785/813/two existing opt-in skips, final types/lint/official production build/six-chunk bridge/756URLprecache and production4/4 pass.20source blobs and762build hashes exact; inventory unchanged/no credits; genuine campaign compressed/raw hashes unchanged. All3567raw members retained/read-back verified and exact disposable cleanup completed. Root author review only; independent/earned/full-skill/full-v1 acceptance remains open.

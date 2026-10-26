@@ -1,0 +1,22 @@
+{
+  "src/data/schema/necromancer-summons.schema.json": {
+    "sha256": "1d1b5a053eab3278b4cc6adaa28e97a365cca3facbcd368056927192674c371d",
+    "bytes": 2595
+  },
+  "src/data/summons/necromancer.json": {
+    "sha256": "c3a948c991a645ae1a6c264a566aa1b7fa4a0e64707a9195e2777b86a8fb484f",
+    "bytes": 2244
+  },
+  "src/engine/skills/necromancer-summon-definition.ts": {
+    "sha256": "3c0db40a717d8392e0bd60a4ccd7182f8d281dfb8fd112827dc7d8c75d0b3b28",
+    "bytes": 2217
+  },
+  "src/engine/skills/necromancer-summon-definition.test.ts": {
+    "sha256": "eca1fa9b0a67f8e9e8f7843c588bd0802fcb0daf453966f73f8c28867cb83041",
+    "bytes": 8606
+  },
+  "src/engine/skills/summons.ts": {
+    "sha256": "7731422708be2f84659dffbabab3519f7418483ed36a495faa971f50516bc277",
+    "bytes": 8116
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "verdict": "pass",
+  "scope": "BUG251/252 first-party source/data/test migration and exact task-owned evidence retention/cleanup",
+  "findings": [],
+  "constraints": [
+    "No network/dependency/credential/CI/permission change",
+    "No production decoder relaxation or save migration",
+    "No campaign/replay/remote publication",
+    "Only verified manifest files removed after lossless retention and process checks"
+  ]
+}

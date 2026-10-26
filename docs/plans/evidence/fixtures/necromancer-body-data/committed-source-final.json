@@ -1,0 +1,86 @@
+{
+  "head": "ef0561d701d6aab9bd0b06287a9c1c860fe0f6f1",
+  "files": {
+    "package.json": {
+      "sha256": "4296abbd56d3b0f3cbfab2c9b094a19f3b4eca409222af80e576148cac7b5897",
+      "bytes": 2972
+    },
+    "vitest.config.ts": {
+      "sha256": "e72fd5eb0460816e70bc1f889aa0b2d151bd7aee9ba17a5fe40cee6156d477fd",
+      "bytes": 1374
+    },
+    "package-lock.json": {
+      "sha256": "f6495e520df58ddaf1fceb8d92f1088aa8e4f58b810db28e5e28ff27d3791b5f",
+      "bytes": 395545
+    },
+    "vitest.workspace.ts": {
+      "sha256": "0208c27b6ef042b71a6d2e0a0759d373114511b6b663285cb66c6025cdc79f45",
+      "bytes": 2669
+    },
+    "vite.config.ts": {
+      "sha256": "70543a4e774af047f4f560acd8426e12fee4e9ecd6411a28fca621d19dec588c",
+      "bytes": 9508
+    },
+    "src/engine/skills/summons.ts": {
+      "sha256": "7731422708be2f84659dffbabab3519f7418483ed36a495faa971f50516bc277",
+      "bytes": 8116
+    },
+    "src/engine/skills/displayStats.ts": {
+      "sha256": "8e63fd5a9e68581df4b9285d24a9a2575586f81182aa7a1c21db53a491ccfbc9",
+      "bytes": 45781
+    },
+    "src/engine/skills/skeletal-mage.ts": {
+      "sha256": "7350cab4058d063a612089e3b30750c2fa8aeb16371877125af2da44ca249492",
+      "bytes": 2499
+    },
+    "src/engine/skills/iron-golem.ts": {
+      "sha256": "cdc9c58d43f6bd6284621376ce9185de3d3fc645862f0b0ae5dc7691e5761c3b",
+      "bytes": 4776
+    },
+    "src/engine/skills/scaling.ts": {
+      "sha256": "39fae0b993d9d4444ce0128deaa82037397f05f3c5337417e27c49194c9fa59d",
+      "bytes": 2972
+    },
+    "src/engine/skills/necromancer-summon-definition.test.ts": {
+      "sha256": "eca1fa9b0a67f8e9e8f7843c588bd0802fcb0daf453966f73f8c28867cb83041",
+      "bytes": 8606
+    },
+    "src/engine/skills/necromancer-summon-definition.ts": {
+      "sha256": "3c0db40a717d8392e0bd60a4ccd7182f8d281dfb8fd112827dc7d8c75d0b3b28",
+      "bytes": 2217
+    },
+    "src/engine/skills/summon-passives.ts": {
+      "sha256": "6fcb5de47d358b34baa344326dd1563ace28acee93a10c814bc9598fca731be4",
+      "bytes": 7723
+    },
+    "src/engine/types/save.ts": {
+      "sha256": "b5a4d4913ca19963ec494a4847ea6e4d6918833b3f9bee373cab15a4c2eb2088",
+      "bytes": 23902
+    },
+    "src/engine/combat/combat.ts": {
+      "sha256": "6496faf9eaa21a2aad9aa6894f802f044fb565c6f0483877ca0e77f4aabf6d61",
+      "bytes": 163332
+    },
+    "src/data/schema/necromancer-summons.schema.json": {
+      "sha256": "1d1b5a053eab3278b4cc6adaa28e97a365cca3facbcd368056927192674c371d",
+      "bytes": 2595
+    },
+    "src/data/skills/necromancer.json": {
+      "sha256": "5fe2713eaf6c5f621e64251569b8980df42bb9d1a203e6e5f25fab9b6ee94016",
+      "bytes": 21131
+    },
+    "src/data/combat/mitigation.json": {
+      "sha256": "0f27c4a62659168afc37ae4fa3337462239dfd534ece38f162c9cd6cff17f166",
+      "bytes": 336
+    },
+    "src/data/summons/necromancer.json": {
+      "sha256": "c3a948c991a645ae1a6c264a566aa1b7fa4a0e64707a9195e2777b86a8fb484f",
+      "bytes": 2244
+    },
+    "tests/native/skeletal-mage-native.spec.ts": {
+      "sha256": "4571c77b1a6557cee5fc27f3152ccb322f73f8322d67d85d096f149bc84be7d6",
+      "bytes": 19095
+    }
+  },
+  "workingTreeClean": true
+}

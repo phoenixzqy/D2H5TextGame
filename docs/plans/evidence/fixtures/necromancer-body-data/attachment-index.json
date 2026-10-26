@@ -1,0 +1,93 @@
+{
+  "files": {
+    "author-review.json": {
+      "sha256": "92e5d28104a38fa090b02d68c8747e4d4058be9e0958d9a313ec583f1e7a0659",
+      "bytes": 1573
+    },
+    "browser-audit.json": {
+      "sha256": "1a9c5bd89d3640cce321cb5ae7451ec2f60ef5c19bab483c915403f09b2f793d",
+      "bytes": 3558
+    },
+    "build-manifest.json": {
+      "sha256": "4d7c72f7c5eafe19e811e06eaf76f53dcd45bbb313a40eb3eb01ef7cdbfdd200",
+      "bytes": 132364
+    },
+    "cleanup.json": {
+      "sha256": "9446eebf9aff0e98be2bc7b1bf67d67a615698d8256a2773e74a081839b96e64",
+      "bytes": 1306
+    },
+    "command-receipts.json": {
+      "sha256": "ac7d532e830f17c17bc819f0329380598226bf7d3f3120930bdc5cf6ed0c7d91",
+      "bytes": 17556
+    },
+    "committed-source-final.json": {
+      "sha256": "7a8e5afd842c6a4de98d31e4b5677e16b5c7eab2b5e5b20bec27188cb67f9008",
+      "bytes": 3137
+    },
+    "deletion-summary.json": {
+      "sha256": "90de88b4d948eedb73f7419576eaaa34f6a56e110ebdbc99fcf1a807bf65079f",
+      "bytes": 582
+    },
+    "en-1280x800-elemental-log-visible-part.png": {
+      "sha256": "7f43c78ce232e766dc039870a9727849202bdd720eaa2936b1ef1fb013e2b3fb",
+      "bytes": 88792
+    },
+    "en-1280x800-skill-detail-visible-part.png": {
+      "sha256": "5f294500902e079d0781a9699d77765f6eb6a3c2521a5c64c3989037edb73253",
+      "bytes": 63880
+    },
+    "en-360x640-skill-detail-visible-part.png": {
+      "sha256": "c595354644f83b3665ddbbc8f5ac4a85851c5a952e857c9c2dc3ede7009c1b0d",
+      "bytes": 44935
+    },
+    "en-360x640-startup-grid-visible-part.png": {
+      "sha256": "8a5d5654fe666cef92813f16c29b4bcab69db1e5a4cc99868cb4b3ada96132fe",
+      "bytes": 22716
+    },
+    "final-audit.json": {
+      "sha256": "dfaca9f913f1bd2e8ef2f2e20e4242ddbff430483117d8236ab122b9fd2c220b",
+      "bytes": 5509
+    },
+    "process-cleanup-audit.json": {
+      "sha256": "62e3bac32a6ecc41b40ab4e4fb7491d34db399f1e313db5fc2e905489ec4f4b6",
+      "bytes": 3857
+    },
+    "retention-summary.json": {
+      "sha256": "2b0a741ed8f69524f00b9a2b1754137ee6503a1a1358c901cd8692d07e34e595",
+      "bytes": 537
+    },
+    "security-check.json": {
+      "sha256": "40e3b50ff8b0b2a1a50de3acb35d8cd6d536f90b3d534ace1302c465d4ebf51f",
+      "bytes": 429
+    },
+    "source-final-manifest.json": {
+      "sha256": "aace630bcd1b86343b12526c8ac896a0737e5108555babf0dbb4beb568384006",
+      "bytes": 781
+    },
+    "tooling-corrections.json": {
+      "sha256": "f01ac7d048328392d03a8912da6b0450a47551dfdc5b8b43ebcd2370dab19546",
+      "bytes": 415
+    },
+    "visual-review.json": {
+      "sha256": "57a3d29fee5878d38cb15a7a1eb37110e060b51a004c9b762a9209a3d4406695",
+      "bytes": 1906
+    },
+    "zh-CN-1280x800-elemental-log-visible-part.png": {
+      "sha256": "d1117b836fc92ebb92ec8506f967670e02888865f8fd8afdb3f8ce3769e50bc7",
+      "bytes": 103397
+    },
+    "zh-CN-1280x800-skill-detail-visible-part.png": {
+      "sha256": "328b97dd75c2627dd7a14bff7d33553f67d864fb48171a8d50977de68e642c8f",
+      "bytes": 66867
+    },
+    "zh-CN-360x640-skill-detail-visible-part.png": {
+      "sha256": "a5de783ed36a84677e228829d44e852dedd380ddec45865bf4b115bd24a604e0",
+      "bytes": 52702
+    },
+    "zh-CN-360x640-startup-grid-visible-part.png": {
+      "sha256": "e23fe168c83cd7b9f9eddd82e1911357bd301b242eb4f471b985fbfcf467cbac",
+      "bytes": 22455
+    }
+  },
+  "limits": "Index excludes itself. Raw failures/build/source/exports/traces and all52 final originals remain losslessly retained in the verified external archive."
+}
