@@ -239,15 +239,20 @@ export function SettingsScreen() {
         </Panel>
 
         <Panel className="text-center text-xs text-d2-white/60">
-          <a
-            href="https://www.buymeacoffee.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-d2-gold hover:underline focus:outline-none focus-visible:ring-2
-                       focus-visible:ring-d2-gold rounded inline-block min-h-[32px]"
-          >
-            ☕ {t('bmcLink')}
-          </a>
+          <details className="text-sm text-d2-white/80">
+            <summary className="min-h-[44px] cursor-pointer py-3 rounded focus-visible:ring-2 focus-visible:ring-d2-gold">
+              {t('supportDev')}
+            </summary>
+            <a
+              href="https://www.buymeacoffee.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-d2-gold hover:underline focus:outline-none focus-visible:ring-2
+                         focus-visible:ring-d2-gold rounded inline-flex min-h-[44px] items-center"
+            >
+              ☕ {t('bmcLink')}
+            </a>
+          </details>
           <div className="mt-2">
             {t('version')}: {String(APP_VERSION)}
           </div>
