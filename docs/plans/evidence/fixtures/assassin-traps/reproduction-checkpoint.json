@@ -130,5 +130,104 @@
   },
   "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red",
   "owner": "root",
-  "retention": "Required for continuing implementation; root owns archive/readback and exact cleanup after consumers. Only isolated Vite cache removed; evidence/prospective code retained."
+  "retention": "Required for continuing implementation; root owns archive/readback and exact cleanup after consumers. Only isolated Vite cache removed; evidence/prospective code retained.",
+  "branchFoundation": {
+    "sourceCommit": "345a641726f2428454a674bfb78945578dae90c9",
+    "runtimeIntegrated": false,
+    "checks": {
+      "trap-foundation-branch-unit": {
+        "label": "trap-foundation-branch-unit",
+        "command": [
+          "node",
+          "node_modules/vitest/vitest.mjs",
+          "run",
+          "--config",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+          "--workspace",
+          "vitest.workspace.ts",
+          "src/engine/skills/assassin-traps.test.ts"
+        ],
+        "exit": 0,
+        "seconds": 3.199020082014613,
+        "inputsUnchanged": true,
+        "inputCount": 2528,
+        "externalInputCount": 9,
+        "externalInputsUnchanged": true,
+        "headBefore": "0062c1a7676db82c86cc1a3ab4a80529ccf1d97e",
+        "headAfter": "0062c1a7676db82c86cc1a3ab4a80529ccf1d97e",
+        "headUnchanged": true,
+        "totals": [
+          "Test Files  1 passed (1)",
+          "Tests  13 passed (13)"
+        ]
+      },
+      "trap-foundation-branch-types": {
+        "label": "trap-foundation-branch-types",
+        "command": [
+          "node",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/check-branch-types.mjs",
+          "src/engine/skills/assassin-traps.ts",
+          "src/engine/skills/assassin-traps.test.ts"
+        ],
+        "exit": 0,
+        "seconds": 4.028825449990109,
+        "inputsUnchanged": true,
+        "inputCount": 2528,
+        "externalInputCount": 9,
+        "externalInputsUnchanged": true,
+        "headBefore": "0062c1a7676db82c86cc1a3ab4a80529ccf1d97e",
+        "headAfter": "0062c1a7676db82c86cc1a3ab4a80529ccf1d97e",
+        "headUnchanged": true,
+        "totals": []
+      },
+      "trap-foundation-branch-lint": {
+        "label": "trap-foundation-branch-lint",
+        "command": [
+          "node",
+          "node_modules/eslint/bin/eslint.js",
+          "src/engine/skills/assassin-traps.ts",
+          "src/engine/skills/assassin-traps.test.ts",
+          "--max-warnings",
+          "0"
+        ],
+        "exit": 0,
+        "seconds": 7.411940819933079,
+        "inputsUnchanged": true,
+        "inputCount": 2528,
+        "externalInputCount": 9,
+        "externalInputsUnchanged": true,
+        "headBefore": "0062c1a7676db82c86cc1a3ab4a80529ccf1d97e",
+        "headAfter": "0062c1a7676db82c86cc1a3ab4a80529ccf1d97e",
+        "headUnchanged": true,
+        "totals": []
+      },
+      "trap-foundation-engine": {
+        "label": "trap-foundation-engine",
+        "command": [
+          "npm",
+          "run",
+          "test:engine",
+          "--",
+          "--config",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+          "--workspace",
+          "vitest.workspace.ts"
+        ],
+        "exit": 0,
+        "seconds": 190.63755593600217,
+        "inputsUnchanged": true,
+        "inputCount": 2528,
+        "externalInputCount": 11,
+        "externalInputsUnchanged": true,
+        "headBefore": "345a641726f2428454a674bfb78945578dae90c9",
+        "headAfter": "345a641726f2428454a674bfb78945578dae90c9",
+        "headUnchanged": true,
+        "totals": [
+          "Test Files  382 passed (382)",
+          "Tests  9985 passed (9985)"
+        ]
+      }
+    },
+    "limitation": "Native16 mechanic failures remain valid; validated tuning/native projection helpers alone do not supply runtime behavior."
+  }
 }
