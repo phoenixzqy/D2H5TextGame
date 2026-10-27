@@ -1,8 +1,10 @@
 # D05 — Cold Mastery resistance penetration
 
 2026-10-24. Root implementation decision under the authorized full-v1 goal.
-Independent design/source/QA acceptance is pending; no independent approval is
-implied by this record. Existing earned level24 campaign input stays unchanged.
+Independent bounded design/source/evidence review approved at `7c01aceb` on
+2026-10-27; see the [review scope](../evidence/p07-cold-mastery.md#independent-bounded-review--2026-10-27).
+Independent current-head runtime QA and final balance acceptance remain open.
+The original earned level24 campaign input was unchanged by this slice.
 
 ## Problem and scope
 

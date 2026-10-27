@@ -66,7 +66,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 #### Passive Skills (4)
 | ID | Name (EN / ZH) | Effect | Notes |
 |---|---|---|---|
-| `sorceress.cold_mastery` | Cold Mastery / 冰系精通 | -15% enemy cold resist | Unlocks at L12 |
+| `sorceress.cold_mastery` | Cold Mastery / 冰系精通 | Personal direct cold hits ignore 15 resistance percentage points at rank 1, +4 per additional allocated rank (cap 20: 91); Chill unchanged | Unlocks at L30; automatic passive, no combo/MP/CD; [D05](../plans/decisions/D05-cold-mastery-v1.md) |
 | `sorceress.lightning_mastery` | Lightning Mastery / 闪电精通 | +4% direct lightning damage per allocated skill rank (cap 20: +80%); Paralyze unchanged | Unlocks at L30; automatic passive, no combo/MP/CD |
 | `sorceress.fire_mastery` | Fire Mastery / 火焰精通 | +4% fire damage per allocated skill rank (cap 20: +80%); additive with Warmth | Unlocks at L30; automatic passive, no combo/MP/CD |
 | `sorceress.energy_shield` | Energy Shield / 能量护盾 | 30% damage → mana instead of HP | Unlocks at L18 |

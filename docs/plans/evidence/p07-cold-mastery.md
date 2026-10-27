@@ -119,3 +119,35 @@ decision independently. No earned level30 proof, two-build/class balance or full
 213-skill acceptance is claimed. The retained earned Sorceress remains level24,
 so her Radament damage/progression is unaffected. No new ordinal was spent.
 C0/C1 remain accepted; earned ActsII–V/C2, C3/C4 and fullG0–G7 remain open.
+
+## Independent bounded review — 2026-10-27
+
+`[COLD-MASTERY-BOUNDED-REVIEW]: APPROVE` at `7c01aceb`. The independent
+design-contract reviewer inspected D05, production source, five regression
+files and the retained reports without running tests, gameplay or a browser.
+No material design/source blocker was found for personal direct penetration,
+level-30 eligibility, allocation aliases, transient composition, resistance
+pipeline, lifecycle or display. The archive SHA/byte count and all 86 unique
+regular member sizes/hashes match the packet. Historical reports retain the
+original REDs and later passing gates; they are not current-head runtime QA.
+
+The reviewer accepts `15 + 4 × (rank − 1)`, cap20/91, as **provisional authored
+tuning**. The +4 growth is a new reconciliation, not equivalent to the old
+4% damage payload. Earned progression, class/build comparisons, final balance,
+fourteen viable builds and full-v1 acceptance remain open. No human balance
+sign-off is implied. The reviewer released all readers and created no scratch
+or persistent processes; root retains original evidence for full-v1 consumers.
+
+The one documentation finding was recorded before correction as
+[BUG323](../../../production/bugs/BUG-323-sync-cold-mastery-design-contract.md):
+the old skills-spec row still promised flat/shared-looking −15% and level12.
+That row now summarizes D05's personal scope, growth and level30. The inventory
+uses the existing `bounded-functional;independent-acceptance-open` disposition
+and explicitly retains runtime-QA/campaign-balance flags. This yields 212
+bounded-functionality records and one unverified Cobra record, across all 213
+unique skill IDs; it does not accept all skills or C3.
+
+Independent follow-up `[COLD-MASTERY-DOC-SYNC]: APPROVE` checks the correction,
+all213uniqueIDs/212bounded/oneunverified and only this CSV row changed. No
+blocking findings; historical packet/runtime source unchanged, diff check passes.
+Readers released without writes, runtime tests or scratch.

@@ -1,7 +1,8 @@
 # BUG-144 — Apply the allocated Cold Mastery passive
 
 Status: fixed locally in `db3976b1550f113138f1544474dee2e707c0fcac`;
-independent design/source/QA acceptance pending.
+independent bounded design/source/evidence review approved at `7c01aceb`;
+current-head runtime QA and final balance acceptance remain open.
 Severity: High — this advertised passive has no combat effect.
 Owner: root integrator / engine-dev / content-designer / frontend-dev.
 
@@ -37,5 +38,6 @@ in `src/stores/cold-mastery-composition.test.ts`,
 `src/features/skills/SkillsScreen.cold-mastery.test.tsx`.
 Final focused78, engine5481, full11281with2existing skips, types/lint/build and
 production10/10plus2mobile scroll checks pass. See
-`docs/plans/evidence/p07-cold-mastery.md`. New rank-growth reconciliation and
-independent acceptance remain pending; full campaign/v1 is not certified.
+`docs/plans/evidence/p07-cold-mastery.md`. Independent review accepts the
+rank-growth reconciliation as provisional authored tuning. Current-head
+runtime QA, earned comparisons and final balance remain open; full v1 is not certified.
