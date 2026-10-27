@@ -7,6 +7,12 @@
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
   "allOf": [
+    {"if": {"required": ["onHitBolts"], "properties": {"onHitBolts": {}}}, "then": {"properties": {"id": {"enum": ["skills-amazon-power-strike", "skills-amazon-charged-strike"]}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-power-strike"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "onHitBolts", "damageComposition"], "properties": {"requiredLevel": {"const": 6}, "prerequisites": {"const": ["skills-amazon-jab"]}, "damage": {"const": {"min": 40, "max": 60, "breakdown": {"physical": 30, "lightning": 30}}}, "damageType": {"const": "lightning"}, "cost": {"const": {"mana": 10}}, "scaling": {"const": {"damagePerLevel": 4}}, "onHitBolts": {"const": {"count": 2, "targetMode": "original", "damage": {"min": 10, "max": 15, "perRank": 1}}}, "damageComposition": {"const": "weighted-components"}, "trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "maxLevel": {"const": 20}, "cooldown": {"const": 1}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}, "aoeShape": false, "maxTargets": false, "appliesStatus": false, "statusEffect": false}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-charged-strike"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "onHitBolts"], "properties": {"requiredLevel": {"const": 18}, "prerequisites": {"const": ["skills-amazon-lightning-bolt"]}, "damage": {"const": {"min": 70, "max": 100, "breakdown": {"lightning": 100}}}, "damageType": {"const": "lightning"}, "cost": {"const": {"mana": 20}}, "scaling": {"const": {"damagePerLevel": 6}}, "onHitBolts": {"const": {"count": 2, "targetMode": "adjacent-others", "damage": {"min": 35, "max": 50, "perRank": 3}}}, "trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}, "aoeShape": false, "maxTargets": false, "damageComposition": false, "appliesStatus": false, "statusEffect": false}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-poison-javelin"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "aoeShape", "maxTargets"], "properties": {"requiredLevel": {"const": 6}, "prerequisites": {"const": ["skills-amazon-jab"]}, "damage": {"const": {"min": 20, "max": 35, "breakdown": {"poison": 35}}}, "damageType": {"const": "poison"}, "cost": {"const": {"mana": 10}}, "scaling": {"const": {"damagePerLevel": 3}}, "aoeShape": {"const": "box-3x3"}, "maxTargets": {"const": 9}, "trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}, "onHitBolts": false, "damageComposition": false, "appliesStatus": {"const": ["poison"]}, "statusEffect": {"const": {"dotPctOfDamage": 0.05}}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-lightning-strike"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "scaling", "aoeShape", "maxTargets"], "properties": {"requiredLevel": {"const": 24}, "prerequisites": {"const": ["skills-amazon-charged-strike"]}, "damage": {"const": {"min": 80, "max": 110, "breakdown": {"lightning": 110}}}, "damageType": {"const": "lightning"}, "cost": {"const": {"mana": 25}}, "scaling": {"const": {"damagePerLevel": 7}}, "aoeShape": {"const": "chain"}, "maxTargets": {"const": 5}, "trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}, "onHitBolts": false, "damageComposition": false, "appliesStatus": {"const": ["paralyze"]}, "statusEffect": false}}},
+
     {"if": {"required": ["alwaysHits"], "properties": {"alwaysHits": {}}}, "then": {"properties": {"id": {"const": "skills-amazon-guided-arrow"}}}},
     {"if": {"required": ["aoeShape"], "properties": {"aoeShape": {"const": "cone-3"}}}, "then": {"properties": {"id": {"const": "skills-amazon-multiple-shot"}}}},
     {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-guided-arrow"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "alwaysHits"], "properties": {"trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "damageType": {"const": "physical"}, "requiredLevel": {"const": 18}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "cost": {"const": {"mana": 20}}, "prerequisites": {"const": ["skills-amazon-multiple-shot"]}, "damage": {"$ref": "#/properties/damage"}, "alwaysHits": {"const": true}, "hitSequence": false, "aoeShape": false, "maxTargets": false, "ignoresDefense": false, "ignoresMagicResist": false, "damageComposition": false, "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}}}},
@@ -1420,11 +1426,11 @@
     },
     {
       "if": { "required": ["maxTargets"], "properties": { "maxTargets": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-paladin-zeal", "skills-barbarian-double-swing", "skills-sorceress-chain-lightning", "skills-amazon-multiple-shot"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-paladin-zeal", "skills-barbarian-double-swing", "skills-sorceress-chain-lightning", "skills-amazon-multiple-shot", "skills-amazon-poison-javelin", "skills-amazon-lightning-strike"] } } }
     },
     {
       "if": { "required": ["aoeShape"], "properties": { "aoeShape": { "const": "chain" } } },
-      "then": { "properties": { "id": { "const": "skills-sorceress-chain-lightning" } } }
+      "then": { "properties": { "id": { "enum": ["skills-sorceress-chain-lightning", "skills-amazon-lightning-strike"] } } }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-sorceress-chain-lightning" } } },
@@ -1478,7 +1484,7 @@
     },
     {
       "if": { "required": ["damageComposition"], "properties": { "damageComposition": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-paladin-vengeance", "skills-assassin-phoenix-strike"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-paladin-vengeance", "skills-assassin-phoenix-strike", "skills-amazon-power-strike"] } } }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-paladin-vengeance" } } },
@@ -5805,6 +5811,7 @@
     }
   },
   "properties": {
+    "onHitBolts": {"type": "object", "additionalProperties": false, "description": "Independent Lightning attempts released by one landed paid primary;only authored Power/Charged Strike.", "required": ["count", "targetMode", "damage"], "properties": {"count": {"type": "integer", "minimum": 1, "maximum": 8}, "targetMode": {"enum": ["original", "adjacent-others"]}, "damage": {"type": "object", "additionalProperties": false, "required": ["min", "max", "perRank"], "properties": {"min": {"type": "number", "minimum": 0}, "max": {"type": "number", "minimum": 0}, "perRank": {"type": "number", "minimum": 0}}}}},
     "boneWall": {
       "description": "Finite paid personal barrier capacity and duration; exact player Bone Wall only.",
       "type": "object",
@@ -5995,7 +6002,7 @@
       }
     },
     "maxTargets": {
-      "type": "integer", "enum": [3, 5],
+      "type": "integer", "enum": [3, 5, 9],
       "description": "Identity-restricted cap: Zeal/Double Swing use three cross targets; Chain Lightning uses five distinct bouncing targets. Applied before direct-hit attempts."
     },
     "onHitSelfDamage": {

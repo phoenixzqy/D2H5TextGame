@@ -390,6 +390,16 @@
     ],
     "scaling": {
       "damagePerLevel": 4
+    },
+    "damageComposition": "weighted-components",
+    "onHitBolts": {
+      "count": 2,
+      "targetMode": "original",
+      "damage": {
+        "min": 10,
+        "max": 15,
+        "perRank": 1
+      }
     }
   },
   {
@@ -403,7 +413,7 @@
       "skills-amazon-jab"
     ],
     "trigger": "active",
-    "target": "single-enemy",
+    "target": "area-enemies",
     "cooldown": 2,
     "minLevel": 1,
     "maxLevel": 20,
@@ -429,7 +439,9 @@
     ],
     "scaling": {
       "damagePerLevel": 3
-    }
+    },
+    "aoeShape": "box-3x3",
+    "maxTargets": 9
   },
   {
     "id": "skills-amazon-impale",
@@ -538,6 +550,15 @@
     ],
     "scaling": {
       "damagePerLevel": 6
+    },
+    "onHitBolts": {
+      "count": 2,
+      "targetMode": "adjacent-others",
+      "damage": {
+        "min": 35,
+        "max": 50,
+        "perRank": 3
+      }
     }
   },
   {
@@ -608,7 +629,9 @@
     ],
     "scaling": {
       "damagePerLevel": 7
-    }
+    },
+    "aoeShape": "chain",
+    "maxTargets": 5
   },
   {
     "id": "skills-amazon-inner-sight",
