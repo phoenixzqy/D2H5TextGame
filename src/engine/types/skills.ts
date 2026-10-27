@@ -295,6 +295,8 @@ export interface SkillDef {
   readonly periodicSpell?: { readonly durationMs: number; readonly intervalMs: number; readonly channelled?: true };
   readonly conversion?: ConversionTuning;
   /** Normalize authored breakdown weights into one shared-roll composite strike. */
+  /** Opt-in normal projectile travel; never a movement/range stat or saved timer. */
+  readonly projectileFlightMs?: number;
   readonly damageComposition?: 'weighted-components';
   /** Explicit hit-only flat magic-resist bypass; percentage resistance still applies. */
   readonly ignoresMagicResist?: true;

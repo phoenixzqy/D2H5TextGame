@@ -10,6 +10,7 @@
   },
   {
     "id": "monster-blood-raven-fire-arrow",
+    "projectileFlightMs": 500,
     "name": "skills.monster.blood-raven-fire-arrow.name",
     "description": "skills.monster.blood-raven-fire-arrow.desc",
     "trigger": "active", "target": "single-enemy", "cooldown": 2,
@@ -90,6 +91,7 @@
   },
   {
     "id": "monster-poison-spit",
+    "projectileFlightMs": 500,
     "name": "skills.monster.poison-spit.name",
     "description": "skills.monster.poison-spit.desc",
     "icon": "skills/monster/poison-spit.png",
@@ -115,6 +117,7 @@
   },
   {
     "id": "monster-lightning-bolt",
+    "projectileFlightMs": 500,
     "name": "skills.monster.lightning-bolt.name",
     "description": "skills.monster.lightning-bolt.desc",
     "icon": "skills/monster/lightning-bolt.png",
@@ -227,6 +230,7 @@
   },
   {
     "id": "monster-ice-shard",
+    "projectileFlightMs": 500,
     "name": "skills.monster.ice-shard.name",
     "description": "skills.monster.ice-shard.desc",
     "icon": "skills/monster/ice-shard.png",
@@ -330,6 +334,7 @@
   },
   {
     "id": "monster-arcane-bolt",
+    "projectileFlightMs": 500,
     "name": "skills.monster.arcane-bolt.name",
     "description": "skills.monster.arcane-bolt.desc",
     "icon": "skills/monster/arcane-bolt.png",
@@ -378,6 +383,7 @@
   },
   {
     "id": "monster-frozen-orb",
+    "projectileFlightMs": 500,
     "name": "skills.monster.frozen-orb.name",
     "description": "skills.monster.frozen-orb.desc",
     "icon": "skills/monster/frozen-orb.png",
@@ -473,6 +479,7 @@
   },
   {
     "id": "monster-weak-ranged",
+    "projectileFlightMs": 500,
     "name": "skills.monster.weak-ranged.name",
     "description": "skills.monster.weak-ranged.desc",
     "icon": "skills/monster/weak-ranged.png",
@@ -491,6 +498,7 @@
   },
   {
     "id": "monster-fire-bolt",
+    "projectileFlightMs": 500,
     "name": "skills.monster.fire-bolt.name",
     "description": "skills.monster.fire-bolt.desc",
     "icon": "skills/monster/fire-bolt.png",
@@ -521,6 +529,7 @@
   },
   {
     "id": "monster-frost-bolt",
+    "projectileFlightMs": 500,
     "name": "skills.monster.frost-bolt.name",
     "description": "skills.monster.frost-bolt.desc",
     "icon": "skills/monster/frost-bolt.png",
@@ -540,6 +549,7 @@
   },
   {
     "id": "monster-fire-arrow",
+    "projectileFlightMs": 500,
     "name": "skills.monster.fire-arrow.name",
     "description": "skills.monster.fire-arrow.desc",
     "icon": "skills/monster/fire-arrow.png",
@@ -578,6 +588,7 @@
   },
   {
     "id": "monster-fire-ball",
+    "projectileFlightMs": 500,
     "name": "skills.monster.fire-ball.name",
     "description": "skills.monster.fire-ball.desc",
     "icon": "skills/monster/fire-ball.png",
@@ -679,6 +690,7 @@
   },
   {
     "id": "monster-bone-spirit",
+    "projectileFlightMs": 500,
     "name": "skills.monster.bone-spirit.name",
     "description": "skills.monster.bone-spirit.desc",
     "icon": "skills/monster/bone-spirit.png",
@@ -825,6 +837,7 @@
   },
   {
     "id": "monster-plague-spit",
+    "projectileFlightMs": 500,
     "name": "skills.monster.plague-spit.name",
     "description": "skills.monster.plague-spit.desc",
     "icon": "skills/monster/plague-spit.png",
