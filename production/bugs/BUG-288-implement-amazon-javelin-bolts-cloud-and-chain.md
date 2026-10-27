@@ -1,7 +1,7 @@
 # BUG-288 — Restore Amazon javelin secondary mechanics
 
 - Severity: High — four advertised active skill identities are incomplete.
-- Status: Reproduced; runtime correction pending original volley full-unit freeze.
+- Status: Runtime/schema/native/UI corrections committed; production browser and integrated checks pending.
 - Build: runtime/UI `dceffcf4`,test-only public `4a80c03a`,diagnosis HEAD `b9e0ed21`.
 - Environment: Linux,Vitest1.6.1/jsdom,native projection;no browser viewport claim.
 - Locale: en/zh-CN advertised copy checked;native simulation is locale-independent.
@@ -9,7 +9,7 @@
 - Owner: root (engine/content/schema/UI/native/public);independent acceptance open.
 - Evidence: [exact diagnostic packet](../../docs/plans/evidence/fixtures/amazon-volley/javelin-diagnostic.json);
   raw `amazon-javelin-identities-diagnostic-final.log`/`.json` and test under
-  `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6`.
+  the retained volley archive documented in [volley evidence](../../docs/plans/evidence/d04-amazon-volley.md); diagnostic copies also remain in the current javelin task.
 
 ## Reproduction
 
@@ -68,3 +68,23 @@ Root owns the active shared task and evidence through the original volley full
 consumer,then its retention/read-back/exact cleanup. These failures are outside
 repository test discovery;they do not alter the active full-suite inputs or
 credit any skill. Full privatev1 remains unfinished.
+
+## Implementation checkpoint — 2026-10-26
+
+`9ffd64cd` adds bounded nonrecursive impact bolts after full primary settlement;
+`df0a3c5b` activates exact schema/JSON tuning and native contracts; `72d4988a`
+adds source-backed bilingual previews. The subsequent test increment adds
+18 lifecycle cases and public production browser acceptance.
+
+Current repository checks: 124 native/schema/Vengeance cases pass (8.065s),
+40 bilingual UI cases pass (12.628s),18 lifecycle cases pass (9.219s).
+Focused UI types/lint and public types/explicit browser lint pass. The original
+Vengeance failure was a wrong registry-order literal; the closed inventory
+assertion now follows existing stable registration order without reordering
+production. Focused tsconfig omissions and default tests lint exclusions were
+corrected in external command configuration, with original receipts retained.
+
+The old volley task is terminal and removed after verified retention. Root now
+owns `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy`
+through fresh current engine/full/static/build/browser checks and exact cleanup.
+No new skill credit,independent approval,earned balance or campaign action.

@@ -13264,3 +13264,21 @@ root-owned task. GenuineL33/next402/Ancients-Rite claimed/Baal uncleared remains
 unchanged. Full privatev1,remaining skills,earned builds/balance/economy/endgame
 and C2–C4/fullG0–G7/independent acceptance remain open. Original goal/worktree
 continue;no campaign/replay,remote action,delegation or independent self-approval.
+
+
+## 2026-10-26 — Amazon javelin runtime and bilingual UI integrated
+
+`9ffd64cd`/`df0a3c5b` implement exact Power/Charged impact bolts,Poison3×3/cap9
+and Lightning chain/cap5;`72d4988a` installs source-backed current/next/MAX copy.
+Focused124native/schema/Vengeance,40UI and18lifecycle cases pass. Configured
+focused strict types/explicit browser lint pass. Original registry-order oracle
+and external check-config failures are preserved and corrected;no assertion
+suppression or production ordering change. Public production acceptance tests
+are committed but not yet executed. [Javelin evidence](evidence/d04-amazon-javelin.md)
+and BUG288 record current boundaries and the root-owned continuing task.
+
+Fresh integrated engine/full/static/build/browser validation is next,with both
+HEAD and captured inputs frozen through consumers. Inventory stays182bounded/
+29unverified/oneengine-only/onereview-needed. GenuineL33/Ancients-Rite claimed/
+nextNormal402/Baaluncleared unchanged;no campaign/replay,remote action,delegation
+or independent self-approval. Full privatev1/C2–C4/fullG0–G7 remain open.
