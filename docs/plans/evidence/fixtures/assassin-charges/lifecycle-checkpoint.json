@@ -1,0 +1,499 @@
+{
+  "kind": "root-author-native-charge-boundary-checkpoint",
+  "head": "bcf0e45faa122fb4f0fb1bd83f62e87edd0ecd85",
+  "sourceSteps": [
+    "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+    "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+    "bcf0e45faa122fb4f0fb1bd83f62e87edd0ecd85"
+  ],
+  "sourceHashes": {
+    "src/i18n/locales/en/damage-types.json": "a9685d4e541eb808c78a54a496f177121eef93d25025d6501ade0ce6114ecdb6",
+    "src/i18n/locales/zh-CN/damage-types.json": "9a438b2371d3f6bab0f10dece302df9af04a5a130ca77891b5992c86ed507ede",
+    "src/features/skills/SkillsScreen.assassin-charges.test.tsx": "cc2df3c4ad0e4e130198a1d64d78fa3b0c5318ec9dad8a6f3f5c25bbc602efc6",
+    "src/stores/assassin-charge-settlement.test.ts": "e4250c46c5b2e239e80f64ea2035d51fd04593daddea4e3de53c783e1facf365",
+    "src/stores/assassin-charge-command.test.ts": "66b82dc7fb4cf6069428cacbdd0e0ad5bd1d7977ae262b7d47310e0da2a3c152",
+    "src/stores/assassin-charge-lifecycle.test.ts": "218f0d43fe54a72db0db6042a50c2deb2586f3e3581fe334bba68f2bba8c33cb"
+  },
+  "receipts": {
+    "cobra-label-red": {
+      "label": "cobra-label-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/cobra-label.workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 19.336909981095232,
+      "inputsUnchanged": true,
+      "inputCount": 2519,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "81fbd496a7ca081910137c21956e100811b0fefb",
+      "headAfter": "81fbd496a7ca081910137c21956e100811b0fefb",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  4 failed | 76 passed (80)"
+      ]
+    },
+    "cobra-label-branch-green": {
+      "label": "cobra-label-branch-green",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/skills/SkillsScreen.assassin-charges.test.tsx",
+        "src/features/skills/SkillsScreen.hover-capability.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 14.777401193976402,
+      "inputsUnchanged": true,
+      "inputCount": 2519,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "1cf54d5a7e6d6f9350567b1c4eaf5a522056f944",
+      "headAfter": "1cf54d5a7e6d6f9350567b1c4eaf5a522056f944",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  84 passed (84)"
+      ]
+    },
+    "cobra-label-types": {
+      "label": "cobra-label-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/check-branch-types.mjs",
+        "src/features/skills/SkillsScreen.assassin-charges.test.tsx",
+        "src/test/setup.ts"
+      ],
+      "exit": 0,
+      "seconds": 9.73238537996076,
+      "inputsUnchanged": true,
+      "inputCount": 2519,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "1cf54d5a7e6d6f9350567b1c4eaf5a522056f944",
+      "headAfter": "1cf54d5a7e6d6f9350567b1c4eaf5a522056f944",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "cobra-label-lint": {
+      "label": "cobra-label-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/features/skills/SkillsScreen.assassin-charges.test.tsx",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 7.528545998968184,
+      "inputsUnchanged": true,
+      "inputCount": 2519,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "1cf54d5a7e6d6f9350567b1c4eaf5a522056f944",
+      "headAfter": "1cf54d5a7e6d6f9350567b1c4eaf5a522056f944",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-settlement-prospective": {
+      "label": "charge-settlement-prospective",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/settlement.workspace.mjs"
+      ],
+      "exit": 0,
+      "seconds": 8.028983917087317,
+      "inputsUnchanged": true,
+      "inputCount": 2519,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "1cf54d5a7e6d6f9350567b1c4eaf5a522056f944",
+      "headAfter": "1cf54d5a7e6d6f9350567b1c4eaf5a522056f944",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  10 passed (10)"
+      ]
+    },
+    "charge-settlement-branch": {
+      "label": "charge-settlement-branch",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-charge-settlement.test.ts",
+        "src/stores/assassin-charge-native.test.ts",
+        "src/stores/assassin-charge-observations.test.ts",
+        "src/stores/dragon-talon.causal.test.ts",
+        "src/stores/dragon-claw.causal.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 13.749000336043537,
+      "inputsUnchanged": true,
+      "inputCount": 2520,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headAfter": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  5 passed (5)",
+        "Tests  83 passed (83)"
+      ]
+    },
+    "charge-settlement-types": {
+      "label": "charge-settlement-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/check-branch-types.mjs",
+        "src/stores/assassin-charge-settlement.test.ts",
+        "src/test/setup.ts"
+      ],
+      "exit": 1,
+      "seconds": 9.177165601053275,
+      "inputsUnchanged": true,
+      "inputCount": 2520,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headAfter": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-settlement-lint": {
+      "label": "charge-settlement-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/assassin-charge-settlement.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 1,
+      "seconds": 8.620783834950998,
+      "inputsUnchanged": true,
+      "inputCount": 2520,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headAfter": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-settlement-corrected": {
+      "label": "charge-settlement-corrected",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-charge-settlement.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 8.697275614948012,
+      "inputsUnchanged": true,
+      "inputCount": 2520,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headAfter": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  10 passed (10)"
+      ]
+    },
+    "charge-settlement-corrected-types": {
+      "label": "charge-settlement-corrected-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/check-branch-types.mjs",
+        "src/stores/assassin-charge-settlement.test.ts",
+        "src/test/setup.ts"
+      ],
+      "exit": 0,
+      "seconds": 8.32634120201692,
+      "inputsUnchanged": true,
+      "inputCount": 2520,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headAfter": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-settlement-corrected-lint": {
+      "label": "charge-settlement-corrected-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/assassin-charge-settlement.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 7.92406674195081,
+      "inputsUnchanged": true,
+      "inputCount": 2520,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headAfter": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-command-prospective": {
+      "label": "charge-command-prospective",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/command.workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 7.678500359994359,
+      "inputsUnchanged": true,
+      "inputCount": 2520,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headAfter": "82396c1ae17dedc5d5b665bad35d95d445e6cf99",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  1 failed | 1 passed (2)"
+      ]
+    },
+    "charge-command-corrected": {
+      "label": "charge-command-corrected",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/command.workspace.mjs"
+      ],
+      "exit": 0,
+      "seconds": 7.896750821033493,
+      "inputsUnchanged": true,
+      "inputCount": 2520,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headAfter": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  2 passed (2)"
+      ]
+    },
+    "charge-lifecycle-prospective": {
+      "label": "charge-lifecycle-prospective",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/lifecycle.workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 7.923248999053612,
+      "inputsUnchanged": true,
+      "inputCount": 2520,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headAfter": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  1 failed | 2 passed (3)"
+      ]
+    },
+    "charge-lifecycle-diagnostic": {
+      "label": "charge-lifecycle-diagnostic",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/lifecycle.workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 7.850121430004947,
+      "inputsUnchanged": true,
+      "inputCount": 2520,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headAfter": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  1 failed | 2 passed (3)"
+      ]
+    },
+    "charge-lifecycle-corrected": {
+      "label": "charge-lifecycle-corrected",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/lifecycle.workspace.mjs"
+      ],
+      "exit": 0,
+      "seconds": 7.734379927045666,
+      "inputsUnchanged": true,
+      "inputCount": 2520,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headAfter": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  3 passed (3)"
+      ]
+    },
+    "charge-boundary-branch": {
+      "label": "charge-boundary-branch",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-charge-command.test.ts",
+        "src/stores/assassin-charge-lifecycle.test.ts",
+        "src/stores/assassin-charge-settlement.test.ts",
+        "src/stores/assassin-charge-native.test.ts",
+        "src/stores/assassin-charge-observations.test.ts",
+        "src/stores/assassin-shadow-skills-lifecycle.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 12.861304812016897,
+      "inputsUnchanged": true,
+      "inputCount": 2522,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headAfter": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  6 passed (6)",
+        "Tests  47 passed (47)"
+      ]
+    },
+    "charge-boundary-types": {
+      "label": "charge-boundary-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/check-branch-types.mjs",
+        "src/stores/assassin-charge-command.test.ts",
+        "src/stores/assassin-charge-lifecycle.test.ts",
+        "src/test/setup.ts"
+      ],
+      "exit": 0,
+      "seconds": 9.023528107092716,
+      "inputsUnchanged": true,
+      "inputCount": 2522,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headAfter": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-boundary-lint": {
+      "label": "charge-boundary-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/assassin-charge-command.test.ts",
+        "src/stores/assassin-charge-lifecycle.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 8.628697030013427,
+      "inputsUnchanged": true,
+      "inputCount": 2522,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headAfter": "85781f50e2dc298e1ae9f794aa10a835a39c421c",
+      "headUnchanged": true,
+      "totals": []
+    }
+  },
+  "fixtureCorrections": [
+    "Settlement event filters now discriminate kind before mapping fields; behavioral assertions unchanged; original type/lint failures retained",
+    "Command fixture assumed1400ms at200AS; actual actionPeriodMs(200)=900ms, so rank1 grant expires8900ms. Both original/corrected fixtures/logs retained",
+    "Town-respec initial assertion also covered enemy actors; diagnostic isolated enemy-act1.fallen-2-a054 monster.weak_melee. Final checks require positive hero action count and all hero skillIds null; original fixtures/logs retained"
+  ],
+  "coverage": [
+    "Paid builder reflected death grants no pool; finisher reflected death grants no discharge",
+    "Finite240HP personal shield absorbs reflection before caster death and stops remaining attempts",
+    "Lethal first victim consumes pools without retargeting payoff or remaining kicks",
+    "Cobra zero/partial victimMP, missingHP and missingMP limits, exact debit/credit and no extra damage",
+    "Tail AOE releases once at first original victim, one action/cost",
+    "Actual paid Command captured at gains: release equal while grant active or expired, ordinary Talon still gains current bonus",
+    "Independent native hero does not display or discharge another caster pools",
+    "Actual store allocations frozen current wave, refreshed next wave with carried resources and empty pools",
+    "Actual import preserves ranks/priority but discards runtime charge authority and recording",
+    "Active-wave respec refusal and real town respec remove native paid permission"
+  ],
+  "limits": [
+    "No current full unit/types/lint pass after latest integration; prior supervisors143 with no live children",
+    "Stronger production preview recheck pending after BUG303 translation",
+    "No public combat discharge/HP/MP proof, complete multi-pool/miss/absorption acceptance, earned builds/economy/campaign or independent approval",
+    "Constructed fixtures with overridden stats; only persistence I/O faked in lifecycle tests",
+    "No skill inventory credit or campaign/replay/delegation/remote action"
+  ],
+  "retention": {
+    "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc",
+    "owner": "root",
+    "removeAfter": "Ongoing feature/full-v1 consumers, read-back archive and exact task-owned cleanup"
+  }
+}

@@ -1,6 +1,6 @@
 # BUG-303 — Translate Cobra Strike recovery status labels
 
-Status: Reproduced; source correction pending.
+Status: Fixed locally in82396c1ae17dedc5d5b665bad35d95d445e6cf99; actual UI84PASS/scoped types/lint. Stronger production-browser label recheck pending.
 Severity: Low — Chinese skill details show English recovery labels.
 Build: 81fbd496a7ca081910137c21956e100811b0fefb.
 Environment: Chromium production preview, 360×640 mobile emulation, zh-CN. Constructed public imported level30 Assassin; no earned progression or combat claim.
@@ -20,3 +20,5 @@ Root cause: shared damage-types:status dictionary lacks life-steal and mana-stea
 Exact root-owned task: /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc. Full charge lifecycle/public-combat, earned/independent and whole-v1 acceptance remain open.
 
 Automated reproduction: cobra-label-red4FAIL/76PASS; all2519repository/fourexternalinputs/HEAD exact. The four failures are Chinese ranks0/1/19/20; English and other martial cases pass.
+
+Local fix adds life-steal/mana-steal to the shared en/zh-CN damage-types dictionaries. No per-skill UI exception or combat change. Existing martial UI regressions now assert current/prospective recovery names at ranks0/1/19/20. Original4FAIL/76PASS becomes84PASS including four hover regressions; strict scoped762-file types and lintPASS.
