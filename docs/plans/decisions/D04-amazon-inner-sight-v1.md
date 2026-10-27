@@ -84,3 +84,16 @@ question. This is an author plan challenge, not independent review approval.
 Security check:pass; local first-party gameplay/data/tests, unchanged dependency,
 credential, CI, networking and save format; no genuine campaign/replay or remote
 publication. Root is sole writer; independent acceptance remains open.
+
+
+## Implementation checkpoint
+
+Schema/data/definition30715967;paid native Defense consumer bcb809ed;composition/
+localized chips e714e91d;actual en/zh preview e4fc315f.97new focused cases pass,
+including pure rank model. The first seed7 tied ally hit precedes the cast and
+correctly remains50;later landed5100/6800/8500ms hits62,and10200ms after expiry50.
+Do not infer effect from the tied first-hit probe. Existing Melt1.25 Physical
+combo composes normally(final111 vs107). Exact failure/oracle/config corrections
+are retained in [evidence](../evidence/d04-amazon-inner-sight.md). Integrated engine/
+full static,lifecycle/public acceptance and independent/earned balance remain
+open. No skill-inventory credit yet.

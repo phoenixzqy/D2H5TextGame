@@ -13354,3 +13354,23 @@ and original goal/worktree continue,no campaign/replay/remote/delegation/approva
 Frozen f1fbd169: Test Files  874 passed (874); Tests  18978 passed | 2 skipped (18980) PASS921.313s;all2451inputs and HEAD exact. Prior engine9661/365,full types/lint/build/bridge/756URLprecache pass;sole observer correction retained. Public4/4PASS140.017s,16selected typed casts,80geometries,eight exact seven-domain pairs/four actual offlineContinues. Sixteen mobile originals individually inspected with explicit copy/viewport/sticky/nav/emoji limits;whole-app acceptance open. 1393raw members read-back verified;2157exact files/40directories removed,remaining[]/failures[],4601closed;shared dependencies preserved. Both genuine-save hashes/762build hashes exact. Root retains archive/two sidecars through full-v1 review consumers. [Area evidence](evidence/d04-amazon-area.md) and packet retain proof.
 
 Exactly Fend/Exploding/Immolation/Fury credited:190bounded/21unverified/oneengine-only/onereview-needed;209other rawrows/header/213IDs/order exact. Amazon25bounded/fourunverified/oneengine-only. Support diagnosis and focused InnerSight native8REDs/4guardcontrols retained outside repo;no support source promotion or credit yet. GenuineL33/Ancients-Rite/next402/Baaluncleared unchanged. Full privatev1,remaining skills,earned builds,balance/economy/endgame and final whole-app/independent acceptance remain open. Original goal/worktree continue;no campaign/replay/remote/delegation/self-signoff.
+
+
+## 2026-10-26 — Amazon Inner Sight actually reduces Defense and previews agree
+
+30715967/bcb809ed implement validated25%/8000ms paid enemy Defense reduction;
+strongest Amazon/Rogue effect applies once. Existing payment/CD/ownership stay.
+e714e91d covers21consumer cases/localized chips;e4fc315f supplies actual en/zh
+current/next/MAX previews.49definition+12native+21consumer+8UI+7model=97new focused
+cases pass;focused definition/runtime/UI types/lint pass. Old39Rogue definition/
+25consumer/90shared-preview cases pass in focused increments. First tied ally
+hit1700ms precedes the cast and stays50;later5100/6800/8500ms hits50→62,expiry
+9700ms restores10200ms hit50. Preserve actual tie/source proof,original failures,
+strict fixture/harness and existing Melt combo oracle corrections. No assertion/
+strictness weakening or scheduler/gameplay workaround. [Inner Sight evidence](evidence/d04-amazon-inner-sight.md)
+retains precise scope and root-owned active support task. Broad engine/full types/
+lint checkpoint next;freeze inputs AND HEAD through consumers. Lifecycle/public
+acceptance and all remaining Amazon support/IceArrow work remain open;no new
+inventory credit(190bounded/21unverified/oneengine-only/onereview-needed).
+GenuineL33/Ancients-Rite/next402/Baaluncleared unchanged. Full privatev1 and original
+goal/worktree remain active;no campaign/replay/remote/delegation/self-signoff.
