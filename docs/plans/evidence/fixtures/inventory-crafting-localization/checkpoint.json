@@ -1,6 +1,6 @@
 {
-  "at": "2026-10-27T13:36:13.643806+00:00",
-  "status": "Scoped source/native/production verification passed; fresh whole integration and final retention pending; no independent approval",
+  "at": "2026-10-27T13:57:23.464874+00:00",
+  "status": "Local source/native/production and complete whole integration passed; evidence archived/readback verified and raw task cleaned; independent/full-v1 acceptance open",
   "owner": "root sole executor/author",
   "sourceCommit": "6480ac1561e2a5bbff16e4b1c96185ded9983131",
   "bugReportCommit": "be8c7537359e1f93e83ec99638df8e81b6369182",
@@ -154,8 +154,8 @@
       "headBefore": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
       "headAfter": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
       "totals": [
-        " ❯ |craft-profile-red| ../../zai-temp/d2h5-inventory-profile-gbqp4wuf/CraftingPanel.target-work.test.tsx  (6 tests | 6 failed) 501ms",
-        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯",
+        " \u276f |craft-profile-red| ../../zai-temp/d2h5-inventory-profile-gbqp4wuf/CraftingPanel.target-work.test.tsx  (6 tests | 6 failed) 501ms",
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 6 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
         " Test Files  1 failed (1)",
         "      Tests  6 failed (6)"
       ]
@@ -870,14 +870,72 @@
     "Navigation retention initially compared two path sort orders; all bytes/file sets already matched and no cleanup had started. Corrected preflight rechecked the original archive then completed cleanup; original script/failure metadata retained in this task."
   ],
   "wholeValidation": {
-    "status": "pending",
-    "required": [
-      "full unit",
-      "full typecheck",
-      "full lint/purity"
-    ],
-    "previous": "Navigation full19929/939PASS at6c57da63 precedes this runtime change and six new tests; no new whole-suite count claimed.",
-    "resume": "Original future handles recorded in task whole-processes.json. Keep source/HEAD/eight critical task scripts/configs/fixed-dist unchanged until all original checks finish."
+    "status": "pass",
+    "head": "c882dfe642e9bdbd5e0f4567e14b7ab261a1e258",
+    "checks": {
+      "inventory-full-unit": {
+        "label": "inventory-full-unit",
+        "command": [
+          "npm",
+          "test",
+          "--",
+          "--config",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/branch.config.mjs",
+          "--workspace",
+          "vitest.workspace.ts"
+        ],
+        "exit": 0,
+        "seconds": 1027.326213345048,
+        "inputsUnchanged": true,
+        "inputCount": 2693,
+        "headBefore": "c882dfe642e9bdbd5e0f4567e14b7ab261a1e258",
+        "headAfter": "c882dfe642e9bdbd5e0f4567e14b7ab261a1e258",
+        "totals": [
+          " Test Files  940 passed (940)",
+          "      Tests  19935 passed | 2 skipped (19937)"
+        ],
+        "externalInputCount": 770,
+        "externalInputsUnchanged": true,
+        "headUnchanged": true
+      },
+      "inventory-full-types": {
+        "label": "inventory-full-types",
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        "exit": 0,
+        "seconds": 139.3184950640425,
+        "inputsUnchanged": true,
+        "inputCount": 2693,
+        "headBefore": "c882dfe642e9bdbd5e0f4567e14b7ab261a1e258",
+        "headAfter": "c882dfe642e9bdbd5e0f4567e14b7ab261a1e258",
+        "totals": [],
+        "externalInputCount": 770,
+        "externalInputsUnchanged": true,
+        "headUnchanged": true
+      },
+      "inventory-full-lint": {
+        "label": "inventory-full-lint",
+        "command": [
+          "npm",
+          "run",
+          "lint"
+        ],
+        "exit": 0,
+        "seconds": 236.32553871406708,
+        "inputsUnchanged": true,
+        "inputCount": 2693,
+        "headBefore": "c882dfe642e9bdbd5e0f4567e14b7ab261a1e258",
+        "headAfter": "c882dfe642e9bdbd5e0f4567e14b7ab261a1e258",
+        "totals": [],
+        "externalInputCount": 770,
+        "externalInputsUnchanged": true,
+        "headUnchanged": true
+      }
+    },
+    "verification": "All2693repository/770external inputs and HEAD remained exact through each original full run; separately rehashed before retention and later repository edits. Unit19935passed/940files/two existing opt-in skips. No new skips/suppressions/timeout changes."
   },
   "genuine": {
     "fixture": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
@@ -888,14 +946,66 @@
     "actions": "No genuine campaign/replay action; constructed disposable UI diagnostics only."
   },
   "limits": [
-    "Three local headless observations/context are not physical-device/whole-app0.5s, memory/frame/log/soak or bundle acceptance.100itemEnglish median114→120ms is retained; no universal speedup claim.",
+    "Three local headless observations/context are not physical-device/whole-app0.5s, memory/frame/log/soak or bundle acceptance.100itemEnglish median114\u2192120ms is retained; no universal speedup claim.",
     "Synthetic normal caps do not establish earned-loadout, economy, build or campaign acceptance.",
     "No independent approval or remote publication/push/PR/merge/deployment.",
     "Inventory remains211bounded/oneunverified/onereview; Cobra BUG304 contract and Cold Mastery review remain open; full private-v1 objective active."
   ],
   "retention": {
-    "status": "Active root-owned task required for upcoming whole checks and final evidence consumers; archive/readback/exact cleanup pending",
-    "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf",
-    "owner": "Root retains until all consumers terminate, archives required evidence/readbacks, then removes exact task-owned cache/build/disposables and dependency link without following/removing its shared target. Root retains resulting evidence archive/sidecars through independent/full-v1 consumers."
+    "at": "2026-10-27T13:56:12.006250+00:00",
+    "owner": "Root retains archive/manifest/receipt through independent/full-v1 consumers, then removes them after consumers finish. Original nav retention failure/script preserved as archive members.",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf-raw.tar.gz",
+    "archiveSHA256": "82d10f36089415a934c29a455c651633600aae0efec67e27e5d95c539f1bb3d9",
+    "archiveBytes": 40502608,
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf-raw-manifest.json",
+    "manifestSHA256": "4865fdf68ff762b485c4fa5c234196886173fc05ee2d20f1cbca392592f4cd55",
+    "retentionReceipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf-retention.json",
+    "allMembersReadBackVerified": true,
+    "memberCount": 970,
+    "removedFiles": 969,
+    "removedSymlinks": 1,
+    "removedDirectoriesIncludingTaskRoot": 17,
+    "rawRootAbsent": true,
+    "remaining": [],
+    "failures": [],
+    "knownPIDsAbsent": [
+      2974218,
+      2974232,
+      2976213,
+      2976854,
+      2977475,
+      2979010,
+      2980334,
+      2989855,
+      2989868,
+      2991473,
+      2991613,
+      2991614,
+      2991615,
+      2992227,
+      2992240,
+      2992755,
+      2992768,
+      2993965,
+      2993978,
+      2994885,
+      2994886,
+      2994887,
+      3001005,
+      3001019,
+      3002472,
+      3002486,
+      3004429,
+      3012433,
+      3012461,
+      3017870,
+      3017882,
+      3018246
+    ],
+    "seconds": 2.3660020580282435,
+    "sharedWorktreePreserved": true,
+    "sharedDependencyTargetPreserved": true,
+    "status": "Required raw evidence retained in verified archive; raw task and only task dependency symlink removed; shared dependency target preserved",
+    "rawTask": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf"
   }
 }

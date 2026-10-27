@@ -1,6 +1,6 @@
 # BUG-316 — Avoid unused crafting target localization
 
-Status: Implemented in6480ac15; scoped native/production checks pass, fresh whole integration and independent acceptance pending.
+Status: Fixed locally in6480ac15; native/production and complete whole integration pass; independent/full-v1 acceptance remains open.
 Severity: Medium — excess work delays inventory entry for retained large collections.
 Build: 6c57da6309f7b4bded1a63786a2922b2ba19c315; immutable production source b508e864.
 Environment: bundled headless Chromium, 360×640, en/zh-CN. Disposable freshly created Sorceress with constructed 100/24000-item imports; no genuine campaign/replay action. No engine RNG dependency.
@@ -46,5 +46,10 @@ reported. Production comparison4/4preserves exact ownership/100-card bounds;
 ten required locale/size cases additionally prove actual final-target selection.
 All contexts have zero captured page warnings/errors.
 See [bounded evidence](../../docs/plans/evidence/p16-inventory-crafting-localization.md).
-Fresh whole integration/retention is pending; no device/whole-app performance or
-independent acceptance is claimed.
+Full integration at unchanged c882dfe6 passes19935tests/940files/two existing
+opt-in skips, types and lint/purity; all2693repository/770external inputs/HEAD
+exact and separately rehashed.970archive members read-back verified; raw task
+removed exactly, including only its dependency link; shared target preserved.
+[Evidence](../../docs/plans/evidence/p16-inventory-crafting-localization.md) records
+archive/manifest/receipt retention paths and root ownership. No device/whole-app
+performance or independent acceptance is claimed.

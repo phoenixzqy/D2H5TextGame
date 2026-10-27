@@ -12,7 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
-| P16 crafting localization / BUG316 | scoped native/production checks pass; whole integration/retention pending | 6480ac15 removes unused material-only targets and translates each gear source once. Six causal bilingual REDs→GREEN, focused46/3/types/lint/buildPASS. Same24000-cap360px median236→119ms(en)/349→131ms(zh-CN);100-item English114→120ms retained. Production comparison4/4plus ten-size/locale cases preserve100-card bounds/exact import-export ownership/actual final-target selection; ten Inventory originals viewed. [Evidence](evidence/p16-inventory-crafting-localization.md). Root retains exact active profile task through original whole checks/final consumers then archive/readback/exact cleanup. No whole-app/device performance, offline/earned/independent acceptance;211bounded/oneunverified/onereview and genuine campaign unchanged. |
+| P16 crafting localization / BUG316 | locally resolved; integration/retention complete; independent open | 6480ac15 removes unused material-only targets and translates each gear source once. Six causal bilingual REDs→GREEN, focused46/3/types/lint/buildPASS. Same24000-cap360px median236→119ms(en)/349→131ms(zh-CN);100-item English114→120ms retained. Production comparison4/4plus ten-size/locale cases retain exact ownership/100-card bounds/final-target selection; ten originals viewed. Frozen c882dfe6 full19935/940/two existing opt-in skipsPASS1027.326s, types139.318s/lint236.326sPASS;2693repository/770external inputs/HEAD exact/rehashed.970archive members read-back verified;969files/one dependency link/17dirs/rawroot exactly removed,remaining[]/failures[]; shared target preserved. [Evidence](evidence/p16-inventory-crafting-localization.md) records root-owned archive/sidecars retained through consumers. Whole-app/device/earned/independent acceptance open;211bounded/oneunverified/onereview/genuine campaign unchanged. |
 | P16 navigation / BUG313–315 | locally resolved; integration/retention complete; independent open | Icons e7aeafcc, targets558c01f0, complete labels/reflow b508e864; bug resolution79ec0f7e. Frozen6c57da63 full19929/939/two existing skips PASS1056.547s, types133.670s/lint235.728s PASS;2692repository/766external inputs and HEAD exact/rehashed. Production10/10PASS71.111s,80complete44px-plus targets/ten actual SWofflineContinues; all20online/offline originals individually viewed. [Evidence](evidence/p16-navigation-icons.md).3316archive members read-back verified;3316files/95dirs/rawroot exactly cleaned,remaining[]/failures[]. Root retains archive/two sidecars through consumers. Whole-app a11y/performance/independent/full-v1 and211bounded/oneunverified/onereview/genuine campaign unchanged. |
 | D05/D06 Assassin final reconciliation / BUG311–312 | sixteen bounded local records reconciled; independent/earned acceptance open | Final d9447414 full19927/939/two existing skips, types/lint and corrected production8/8 PASS;16coherent first-wave shadow rank proofs,16seven-domain pairs/eight actual offlineContinues. Corrected charge HP, trap, Flight and original shadow evidence retain their own heads/scopes. [Reconciliation](evidence/assassin-skill-reconciliation.md):213IDs/header/order and197other raw rows preserved;211bounded/oneunverified/onereview, Assassin29/30. Cobra BUG304 user contract and Cold Mastery review remain. Source/evidence66153a52; exact shadow archive15148members read-back verified, raw task removed, root retains archive/manifest/receipt through consumers. GenuineL33/Ancientsclaimed/Baaluncleared/next402 unchanged; G0–G7/C2–C4/full-v1 acceptance open. |
 | D04/D06 Amazon support reconciliation | five bounded local credits; independent/earned acceptance open | Valkyrie, Inner Sight, Slow Missiles, Decoy and Ice Arrow individual native/public/lifecycle evidence plus combined full19270/901/types/lint and verified6961-member retention/cleanup audited.20public cases,40ranked casts,40save pairs/20offlineContinues,200geometry. Exactly208 other raw rows/header/IDs/order unchanged;195bounded/17unverified/onereview, Amazon30/30. [Audit](evidence/fixtures/amazon-support/inventory-reconciliation.json). Slow Missiles ADR-012 Proposed; whole-app/mobile/a11y/earned/independent/private-v1 gates open. Root retains exact existing archive/sidecars; no campaign action. |
@@ -13806,3 +13806,21 @@ and registered worktree are preserved. No independent/full-v1 acceptance or
 genuine campaign/replay/remote action. Next scoped finding: measured redundant
 CraftingPanel origin localization; six causal bilingual REDs and off-repository
 prototype GREENs precede any product change.
+
+## 2026-10-27 — Inventory localization integration and retention complete
+
+Original39805/25323/33081 checks terminalPASS at c882dfe6:19935tests/940files,
+two existing opt-in skips; full types/lint/purityPASS.2693repository/770external
+inputs and HEAD exact in receipts and rehashed before next edits. BUG316 locally
+resolved;970archive members verified/read back,969files/one dependency link/
+17dirs/rawroot removed,remaining[]/failures[]; shared dependency target preserved.
+Root retains [exact archive/two sidecars](evidence/p16-inventory-crafting-localization.md)
+through independent/full-v1 consumers. Genuine compressed/raw hashes remain exact:
+L33,Ancients/Rite claimed,next402,Baaluncleared.211bounded/oneunverified/onereview;
+Cobra/ColdMastery/earned/independent/full privatev1 gates remain open.
+
+Next read-only findings before product edits: GDD support default-collapse mismatch
+and32px link in both locale production captures; actual developer profile URL
+asked asynchronously, pending. PWA icons declared PNG are byte-identical to their
+SVG siblings and both fail actual image decoding; empty CDP installability errors
+alone did not catch them. Structured reproductions precede source correction.

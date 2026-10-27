@@ -1,7 +1,7 @@
 # P16 — Avoid unused full-inventory crafting localization
 
-Status: scoped source/native/production checks pass; fresh whole integration,
-final retention and independent acceptance pending. Root sole executor/author.
+Status: local source/native/production and whole integration pass; verified
+retention/cleanup complete. Independent/full-v1 acceptance remains open. Root sole executor/author.
 [Exact receipts and hashes](fixtures/inventory-crafting-localization/checkpoint.json).
 [BUG316](../../../production/bugs/BUG-316-avoid-unused-crafting-target-localization.md)
 was committed in be8c7537 before product correction6480ac15.
@@ -66,18 +66,28 @@ memory/log/full-loadout/soak and0.5sacceptance remain open.
 
 ## Integration and ownership
 
-Fresh full unit, full typecheck and lint/purity are next. Navigation's preceding
-19929/939PASS predates this runtime change and six new tests; no new whole total
-is claimed. Keep source/HEAD, critical task scripts/configs and the immutable
-build fixed until the original whole-check handles terminate.
+Original full checks completed at unchanged c882dfe6: **19935 tests/940files**,
+two existing opt-in skips,1027.326s; full types139.318s and lint/purity236.326sPASS.
+All2693repository/770external inputs and HEAD remain exact in each terminal
+receipt, and were separately rehashed before retention and next repository edits.
+This supersedes the earlier navigation total for this correction only.
 
-Root retains the active task
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf`
-through those checks/final consumers, then owns required evidence archive/readback
-and exact disposable cleanup, including only its dependency link rather than
-the shared target. No cleanup is claimed yet. This task also retains the original
-navigation retention-sort preflight failure/script; that separate navigation
-archive/readback/exact cleanup has completed.
+All970archive members (969regular files/one dependency link) were read-back
+verified by name/type/size/SHA or exact link target. Exact969files/one link/
+17directories including rawroot removed; remaining[]/failures[]. Shared
+node_modules target, worktree/source/history and shared caches preserved.
+Original navigation retention-sort failure/script remains inside this archive.
+
+Root retains these exact artifacts through independent/full-v1 consumers and
+removes them only when those consumers finish:
+
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf-raw.tar.gz`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf-raw-manifest.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf-retention.json`
+
+Archive SHA256: `82d10f36089415a934c29a455c651633600aae0efec67e27e5d95c539f1bb3d9`.
+Raw task is absent. Archive paths in earlier scoped reports refer to members
+relative to that removed task, and remain discoverable in the retained manifest.
 
 Genuine protected compressed/raw hashes remain exact: L33, Ancients/Rite claimed,
 nextNormal402, Baal uncleared. Inventory stays211bounded/oneunverified/onereview;
