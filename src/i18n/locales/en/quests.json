@@ -285,7 +285,7 @@
     },
     "act1-forgotten-tower": {
       "name": "The Forgotten Tower",
-      "desc": "Explore the Forgotten Tower in the Stony Field and defeat the Countess.",
+      "desc": "Challenge the Countess in the Dark Wood on Normal difficulty.",
       "obj1": "Defeat the Countess"
     },
     "act1-tools-of-the-trade": {
@@ -525,5 +525,10 @@
     "restoration-failed": "The action could not be restored. Stop here and reload your last saved game.",
     "not-owned": "Claim the required quest reward first."
   },
-  "act5RescueCount": "Prisoners freed: {{count}} / 15"
+  "act5RescueCount": "Prisoners freed: {{count}} / 15",
+  "countess": {
+    "name": "The Countess",
+    "challenge": "Challenge the Countess",
+    "refused": "This challenge is unavailable. Return to the map to choose an available encounter."
+  }
 }

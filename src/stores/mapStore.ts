@@ -1,4 +1,5 @@
 import { CAIN_QUEST } from '@/engine/map/cain-quest';
+import { COUNTESS } from '@/engine/map/countess-admission';
 import { talkToCain } from '@/features/quests/cainQuestActions';
 import type { CurrentMapSaveData } from '@/engine/types/save';
 import { emptyEndgameState } from '@/engine/endgame/state';
@@ -260,7 +261,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     let questProgress = state.questProgress;
     const targets = new Set(event.archetypeIds);
     for (const quest of loadQuests()) {
-      if ((ACT4_ENCOUNTERS.some(row => row.questId === quest.id) || ACT5_ENCOUNTERS.some(row => row.questId === quest.id))) continue;
+      if (quest.id === COUNTESS.quest || ACT4_ENCOUNTERS.some(row => row.questId === quest.id) || ACT5_ENCOUNTERS.some(row => row.questId === quest.id)) continue;
       if (quest.actId !== event.actId) continue;
       const progress = state.questProgress[quest.id];
       if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;

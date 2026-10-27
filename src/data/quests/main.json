@@ -55,9 +55,9 @@
       "giver": "objects/moldy_tome",
       "description": "A moldy tome speaks of a forgotten tower drowned in evil and gold. Descend the Forgotten Tower and slay the Countess in her bloody chamber.",
       "objectives": [
-        { "id": "obj-kill-countess", "type": "kill", "targetId": "monsters/the_countess", "areaId": "areas/act1_countess_chamber", "description": "Slay the Countess." }
+        { "id": "obj-kill-countess", "type": "kill", "targetId": "monsters/act1.the-countess", "areaId": "areas/act1-dark-wood", "description": "Slay the Countess." }
       ],
-      "rewards": { "xp": 3000, "gold": 5000, "lootTable": "loot/countess-runes" },
+      "rewards": { "xp": 3000, "lootTable": { "tableId": "loot/countess-runes", "ilvl": 13, "picks": 1 } },
       "unlocks": null,
       "order": 4
     },

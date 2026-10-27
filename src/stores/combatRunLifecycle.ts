@@ -1,3 +1,4 @@
+import type { CountessEncounter } from '@/engine/map/countess-admission';
 import type { EndgameProgress, EndgameRunContext } from '@/engine/endgame/runtime';
 import type { WavePlan } from '@/engine/combat';
 import type { CombatUnit } from '@/engine/combat/types';
@@ -9,7 +10,9 @@ import { assertWaveRestoreOwner, assertWaveSnapshotAllowed, type WaveRestoreLeas
 import { abandonRecordedWaves, clearRecordedWavesAfterRestore } from './recordedWaveReceipt';
 
 /** Immutable source authority shared by a native run and its exact wave receipts. */
-export type RunOrigin = Readonly<{ kind: 'area'; replayProfileId: 'normal' | 'nightmare' }> | EndgameRunContext;
+export type RunOrigin = Readonly<{ kind: 'area'; replayProfileId: 'normal' | 'nightmare';
+  /** Explicit optional-source identity survives replay even when proof admission is stripped. */
+  questEncounter?: CountessEncounter['encounterId'] }> | EndgameRunContext;
 
 /** Internal transient run shape; never persisted or exported through a public barrel. */
 export interface ActiveRun {

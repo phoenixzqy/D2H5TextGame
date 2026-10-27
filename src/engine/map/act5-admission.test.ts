@@ -36,6 +36,7 @@ describe.each(ACT5_ENCOUNTERS)('Act V exact original $questId', contract => {
     const outcome={winner:'player',finalPlayerTeam:[hero],finalEnemyTeam:enemies.map(unit=>({...unit,life:0}))};
     expect(hasOriginalAct5Victory(captured,hero.id,outcome)).toBe(true);
     expect(captureAct5Encounter(5,area.id,{...wave,source:{kind:'wave',waveId:'copy',encounterIds:[]}},enemies)).toBeUndefined();
+    expect(captureAct5Encounter(5,area.id,{...wave,source:{kind:'questEncounter',encounterId:'act1-dw-countess'}},enemies)).toBeUndefined();
     expect(hasOriginalAct5Victory(captured,hero.id,{...outcome,finalEnemyTeam:outcome.finalEnemyTeam.slice(1)})).toBe(false);
     expect(hasOriginalAct5Victory(captured,hero.id,{...outcome,finalPlayerTeam:[{...hero,life:0}]})).toBe(false);
   });

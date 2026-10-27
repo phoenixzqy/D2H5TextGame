@@ -1,3 +1,4 @@
+import { COUNTESS, type CountessEncounter } from '@/engine/map/countess-admission';
 import type { EndgameWaveBinding } from '@/engine/endgame/runtime';
 import type { EndgameState } from '@/engine/endgame/types';
 import type { Act5Encounter } from '@/engine/map/act5-admission';
@@ -23,6 +24,7 @@ export interface RecordedWaveReceipt { readonly [receiptBrand]: true }
 /** Validated staging values; original engine input must be privately owned and immutable. */
 export interface RecordedWaveBinding {
   readonly origin: RunOrigin;
+  readonly countessEncounter?: CountessEncounter;
   readonly endgameWave?: EndgameWaveBinding;
   readonly endgameState?: EndgameState;
   readonly replayProfileId?: 'normal' | 'nightmare';
@@ -190,6 +192,9 @@ function assertRunOrigin(origin: unknown): asserts origin is RunOrigin {
     !('kind' in origin) || (origin.kind !== 'area' && origin.kind !== 'endgame')) {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
+  if (origin.kind === 'area' && 'questEncounter' in origin && origin.questEncounter !== COUNTESS.encounter) {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
 }
 
 /**
@@ -205,6 +210,10 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
   const origin = binding.origin;
   assertRunOrigin(origin);
   if (origin !== candidateRun.origin) throw new RecordedWaveReceiptError('bindingMismatch');
+  if (binding.countessEncounter && (origin.kind !== 'area' || origin.questEncounter !== COUNTESS.encounter ||
+    origin.replayProfileId !== 'normal' || candidateRun.act !== 1 || candidateRun.mode !== 'manual' ||
+    candidateRun.plan.subAreaId !== COUNTESS.area || candidateRun.plan.waves.length !== 1 || binding.targetWaveIdx !== 0 ||
+    binding.countessEncounter.originalHeroId !== binding.heroId)) throw new RecordedWaveReceiptError('bindingMismatch');
   const replayProfileId: unknown = origin.kind === 'area' ? origin.replayProfileId : 'normal';
   if (origin.kind === 'endgame') {
     const progress = candidateRun.endgameProgress;
@@ -213,7 +222,7 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
       progress.status !== 'active' || binding.endgameWave?.progress !== progress || !binding.endgameState ||
       candidateRun.act !== 5 || candidateRun.mode !== 'manual' || candidateRun.seed !== origin.seed ||
       binding.councilEncounter !== undefined || binding.guardianEncounter !== undefined || binding.act4Encounter !== undefined ||
-      binding.act5Encounter !== undefined || binding.act5ThroneWave !== undefined) throw new RecordedWaveReceiptError('bindingMismatch');
+      binding.act5Encounter !== undefined || binding.act5ThroneWave !== undefined || binding.countessEncounter !== undefined) throw new RecordedWaveReceiptError('bindingMismatch');
   } else if (binding.endgameWave !== undefined || binding.endgameState !== undefined || candidateRun.endgameProgress !== undefined) {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
@@ -237,6 +246,7 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
   const receipt: RecordedWaveReceipt = Object.freeze({ [receiptBrand]: true as const });
   const captured: CapturedBinding = Object.freeze({ ...binding,
     replayProfileId,
+    ...(binding.countessEncounter ? { countessEncounter: Object.freeze({ ...binding.countessEncounter }) } : {}),
     ...(binding.guardianEncounter ? { guardianEncounter: Object.freeze({ ...binding.guardianEncounter }) } : {}),
     ...(binding.councilEncounter ? { councilEncounter: Object.freeze({ ...binding.councilEncounter,
       originalMemberIds: Object.freeze([...binding.councilEncounter.originalMemberIds]) }) } : {}),
@@ -286,7 +296,11 @@ export function prepareRecordedWaveInstallation(
     : intent.kind === 'newWave'
       ? sameRun && binding.targetWaveIdx === binding.expectedActiveRun.waveIdx + 1
       : sameRun && binding.targetWaveIdx === binding.expectedActiveRun.waveIdx && binding.debitIntent === null;
-  if (!valid) throw new RecordedWaveReceiptError('bindingMismatch');
+  if (!valid || (intent.kind === 'replay' && binding.countessEncounter !== undefined) ||
+    (intent.kind === 'newRun' && binding.origin.kind === 'area' && binding.origin.questEncounter !== undefined &&
+      (intent.nextDefaultChallengeOrdinal !== null || binding.countessEncounter === undefined))) {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
   if (intent.kind !== 'newRun') {
     if (!previous || !settlement || previous.binding.candidateRun !== binding.expectedActiveRun ||
       previous.binding.origin !== binding.origin ||

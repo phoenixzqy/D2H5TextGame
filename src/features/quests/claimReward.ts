@@ -33,6 +33,7 @@ import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import { hasTaintedSunCompletion, isQuestResistanceReward, TAINTED_SUN_QUEST_ID } from '@/engine/progression/quest-resistance';
 import { CAIN_QUEST, CAIN_SIDE_QUEST } from '@/engine/map/cain-quest';
 import { hasCainClaimCompletion, publishCainClaim } from './cainClaim';
+import { COUNTESS, hasCountessCompletion } from '@/engine/map/countess-admission';
 
 export type ClaimResult =
   | 'ok'
@@ -56,6 +57,11 @@ function isNumericReward(key: string): key is NumericReward {
 
 function findQuest(questId: string): QuestDef | undefined {
   return loadQuests().find((q) => q.id === questId);
+}
+
+function hasCountessClaimCompletion(questId: string): boolean {
+  const map = useMapStore.getState();
+  return questId !== COUNTESS.quest || hasCountessCompletion(map.questProgress, map.questReceipts);
 }
 
 /** Retained rewards require their actual action graph before Claim; legacy flags supply no item or proof. */
@@ -99,7 +105,7 @@ export function canClaim(questId: string): boolean {
   if (progress.status !== 'completed') return false;
   if (questId === TAINTED_SUN_QUEST_ID && !hasTaintedSunCompletion(useMapStore.getState().questProgress)) return false;
   if (progress.rewardClaimed) return false;
-  if (!hasCainClaimCompletion(questId)) return false;
+  if (!hasCainClaimCompletion(questId) || !hasCountessClaimCompletion(questId)) return false;
   const quest = findQuest(questId);
   return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0 &&
     hasQuestServiceCompletion(quest.id) &&
@@ -159,7 +165,7 @@ export function claimQuestReward(questId: string): ClaimResult {
     if (!progress || progress.status !== 'completed') return 'not-completed';
     if (questId === TAINTED_SUN_QUEST_ID && !hasTaintedSunCompletion(useMapStore.getState().questProgress)) return 'not-completed';
     if (progress.rewardClaimed) return 'already-claimed';
-    if (!hasCainClaimCompletion(questId)) return 'not-completed';
+    if (!hasCainClaimCompletion(questId) || !hasCountessClaimCompletion(questId)) return 'not-completed';
     const quest = findQuest(questId);
     if (!quest) return 'unknown-quest';
     if (!hasQuestServiceCompletion(quest.id) || !hasAct5Completion(quest.id, useMapStore.getState().questProgress, useMapStore.getState().questReceipts, useInventoryStore.getState().questItems) || !hasAct4Completion(quest) || !hasQuestDeliveryCompletion(quest) || !hasQuestAssemblyCompletion(quest) ||
@@ -371,9 +377,7 @@ export function claimQuestReward(questId: string): ClaimResult {
         if (kind === 'xp') {
           usePlayerStore.getState().gainExperience(amount);
           // This quest rewards the recipient fielded before any grant publication.
-          if (mercenaryUnlock) {
-            if (fieldedMercId !== null) useMercStore.getState().addExperience(fieldedMercId, Math.floor(amount * MERC_XP_SHARE));
-          } else useMercStore.getState().shareExperienceWithFielded(amount);
+          useMercStore.getState().shareExperienceWithFielded(amount, fieldedMercId);
         } else if (kind === 'skillPoints' || kind === 'statPoints') {
           usePlayerStore.setState((state) => state.player
             ? { player: { ...state.player, [kind]: state.player[kind] + amount } }
@@ -409,6 +413,10 @@ export function claimQuestReward(questId: string): ClaimResult {
         });
       }
       useMapStore.getState().markQuestRewardClaimed(questId);
+      const claimed = useMapStore.getState().questProgress[questId];
+      if (claimed?.id !== questId || claimed.status !== 'completed' || claimed.rewardClaimed !== true) {
+        throw new Error('Quest reward claimed publication was not retained');
+      }
       return 'ok';
     } catch (cause) {
       // Partial updates retain actions and unrelated data. Attempt every restore

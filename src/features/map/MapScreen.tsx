@@ -23,6 +23,8 @@ import { monsterLevelForReplay } from '@/engine/map/replay-profile';
 import { IdleTickerStrip } from '@/features/idle/IdleTickerStrip';
 import { hasAreaObjects, travelToAreaObjects, type ObjectActionResult } from '@/features/quests/interactObject';
 import { ReplayProfileControls } from './ReplayProfileControls';
+import { COUNTESS } from '@/engine/map/countess-admission';
+import { canSelectCountessEncounter, travelToCountessEncounter } from '@/features/quests/countessEncounter';
 import { EndgamePanel } from '@/features/endgame/EndgamePanel';
 import { AreaObjectsPanel } from './AreaObjectsPanel';
 import { resolveSubArea } from '@/stores/subAreaResolver';
@@ -66,6 +68,8 @@ export function MapScreen() {
   const navigate = useNavigate();
   const setLocation = useMapStore((s) => s.setCurrentLocation);
   const isActUnlocked = useMapStore((s) => s.isActUnlocked);
+  const questProgress = useMapStore(s => s.questProgress);
+  const questReceipts = useMapStore(s => s.questReceipts);
   const selectedDifficulty = useMapStore(s => s.selectedDifficulty);
   const clearedSubAreas = useMapStore(s => s.selectedDifficulty === 'nightmare' ? s.nightmareClearedSubAreas : s.clearedSubAreas);
   const setIdleTarget = useMetaStore((s) => s.setIdleTarget);
@@ -74,6 +78,7 @@ export function MapScreen() {
   const currentAreaId = useMapStore(s => s.currentSubAreaId);
   const [selectedObjectArea, setSelectedObjectArea] = useState<string | null>(null);
   const [objectFailure, setObjectFailure] = useState<{ areaId: string; result: ObjectActionResult | 'busy' } | null>(null);
+  const [countessRefused, setCountessRefused] = useState(false);
   const objectTrigger = useRef<HTMLButtonElement | null>(null);
   const currentArea = resolveSubArea(currentAct, currentAreaId);
 
@@ -310,6 +315,19 @@ export function MapScreen() {
                           </span>
                         ) : (
                           <div className="flex flex-wrap gap-2">
+                            {sa.id === COUNTESS.area && canSelectCountessEncounter({ selectedDifficulty, questProgress, questReceipts, isActUnlocked }) && (
+                              <Button type="button" variant="secondary" className="min-h-11 min-w-11 max-w-full whitespace-normal text-sm" data-testid="countess-challenge"
+                                onClick={() => {
+                                  try {
+                                    if (!travelToCountessEncounter()) { setCountessRefused(true); return; }
+                                    setCountessRefused(false);
+                                    navigate(`/combat?questEncounter=${COUNTESS.encounter}`);
+                                  } catch (error) {
+                                    if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
+                                    setCountessRefused(true);
+                                  }
+                                }}>{t('quests:countess.challenge')}</Button>
+                            )}
                             {hasAreaObjects(act.number, sa.id) && (
                               <button type="button"
                                 data-testid={`area-objects-${sa.alias}`}
@@ -376,6 +394,7 @@ export function MapScreen() {
                             </Button>
                           </div>
                         )}
+                        {sa.id === COUNTESS.area && countessRefused && <p role="alert" className="basis-full text-sm text-d2-white/90">{t('quests:countess.refused')}</p>}
                         {objectFailure?.areaId === sa.id && (
                           <p role="alert" className="basis-full text-sm text-d2-white/90">{t(`quests:areaObjects.feedback.${objectFailure.result}`)}</p>
                         )}

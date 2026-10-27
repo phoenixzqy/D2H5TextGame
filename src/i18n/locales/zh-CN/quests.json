@@ -285,7 +285,7 @@
     },
     "act1-forgotten-tower": {
       "name": "被遗忘的高塔",
-      "desc": "探索石旷野中的被遗忘高塔，击败伯爵。",
+      "desc": "在普通难度的黑暗森林挑战大伯爵。",
       "obj1": "击败大伯爵"
     },
     "act1-tools-of-the-trade": {
@@ -525,5 +525,10 @@
     "restoration-failed": "操作无法恢复，请停止操作并重新载入最近存档。",
     "not-owned": "请先领取对应的任务奖励。"
   },
-  "act5RescueCount": "已救出俘虏：{{count}} / 15"
+  "act5RescueCount": "已救出俘虏：{{count}} / 15",
+  "countess": {
+    "name": "大伯爵",
+    "challenge": "挑战大伯爵",
+    "refused": "当前无法挑战。请返回地图选择可用的战斗。"
+  }
 }

@@ -44,6 +44,9 @@ export interface SubAreaDef {
   /** Boss encounter (if any) */
   readonly bossEncounter?: Encounter;
 
+  /** Explicit optional encounters, excluded from ordinary manual/idle plans. */
+  readonly questEncounters?: readonly (Encounter & { readonly lootTable: string })[];
+
   /** Chapter-ending act boss gate. Replaces the final wave when present. */
   readonly chapterBoss?: ChapterBossDef;
 

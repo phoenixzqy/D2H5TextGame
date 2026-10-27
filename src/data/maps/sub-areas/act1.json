@@ -450,6 +450,16 @@
     "hasBoss": false,
     "lootTable": "loot/trash-act1",
     "flavor": "Twisted oaks ringed by quill volleys; the Tree of Inifuss shivers at the heart of the grove.",
+    "questEncounters": [
+      {
+        "id": "act1-dw-countess",
+        "level": 13,
+        "lootTable": "loot/act1-boss",
+        "monsters": [
+          { "archetypeId": "monsters/act1.the-countess", "count": 1, "boss": true }
+        ]
+      }
+    ],
     "waves": [
       {
         "id": "w1",

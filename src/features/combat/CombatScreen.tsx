@@ -37,7 +37,9 @@ import { ASSASSIN_CHARGE_DEFINITION } from '@/engine/skills/assassin-charges';
 import { ASSASSIN_TRAP_IDS } from '@/engine/skills/assassin-traps';
 import { ASSASSIN_FLIGHT_STATUS_ID } from '@/engine/skills/assassin-flight';
 import { endgameDefinition } from '@/data/loaders/endgame';
-import { readEndgameRequest } from '@/features/endgame/navigation';
+import { readCombatRequest } from './navigation';
+import { COUNTESS } from '@/engine/map/countess-admission';
+import { canStartCountessEncounter } from '@/features/quests/countessEncounter';
 import { checkEndgameEntry } from '@/stores/endgameActions';
 
 const MARTIAL_CHARGE_LABELS = new Map(ASSASSIN_CHARGE_DEFINITION.builders.map(id => {
@@ -66,10 +68,10 @@ function mapSubAreaNameKey(id: string): string {
 }
 
 export function CombatScreen() {
-  const { t } = useTranslation(['combat', 'common', 'map', 'endgame']);
+  const { t } = useTranslation(['combat', 'common', 'map', 'endgame', 'quests']);
   const navigate = useNavigate();
   const { search } = useLocation();
-  const request = useMemo(() => readEndgameRequest(search), [search]);
+  const request = useMemo(() => readCombatRequest(search), [search]);
 
   const player = usePlayerStore((s) => s.player);
   const hydrationStatus = useHydrationStore((s) => s.status);
@@ -116,12 +118,14 @@ export function CombatScreen() {
   const dungeonModifier = origin?.kind === 'endgame' ? origin.modifierId
     : origin === null && request.kind === 'endgame' ? request.modifierId : null;
   const isDungeon = dungeonModifier !== null;
-  const invalidRequest = origin === null && request.kind === 'invalid';
+  const isCountess = origin?.kind === 'area' && origin.questEncounter === COUNTESS.encounter || origin === null && request.kind === 'countess';
+  const questRequest = isCountess || request.kind === 'countess' || request.kind === 'invalid' && request.target === 'questEncounter';
+  const invalidRequest = request.kind === 'invalid' || request.kind === 'countess' && origin !== null && !isCountess;
   const recovery = readCombatTransitionRecovery();
   const transitionBlocked = invalidRequest || entryRefused || transitionFailed || recovery.kind !== 'ready' || hydrationStatus !== 'ready';
   // Inter-wave countdown banner; null = no pending advance.
   const [nextWaveCountingDown, setNextWaveCountingDown] = useState(false);
-  const isIdleLoop = !isDungeon && Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
+  const isIdleLoop = !isDungeon && !isCountess && Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
 
   // Explicit exits reset the store before deferred router navigation unmounts us.
   const exiting = useRef(false);
@@ -138,11 +142,16 @@ export function CombatScreen() {
           if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
           setTransitionFailed(true);
         }
+      } else if (isCountess) {
+        if (!canStartCountessEncounter()) { setEntryRefused(true); return; }
+        setTransitionFailed(!performCombatScreenTransition({ kind: 'start', options: {
+          act: 1, subAreaId: COUNTESS.area, mode: 'manual', questEncounter: COUNTESS.encounter
+        } }));
       } else {
         setTransitionFailed(!performCombatScreenTransition({ kind: 'start', options: { mode: isIdleLoop ? 'idle' : 'manual' } }));
       }
     }
-  }, [inCombat, isIdleLoop, dungeonModifier, player, runVictory, runDefeat, transitionBlocked, transitionRetry]);
+  }, [inCombat, isIdleLoop, isCountess, dungeonModifier, player, runVictory, runDefeat, transitionBlocked, transitionRetry]);
 
   // Schedule the same atomic timestamp group consumed by the store.
   useEffect(() => {
@@ -248,7 +257,7 @@ export function CombatScreen() {
       return;
     }
     exiting.current = true;
-    if (wasInRun && !isDungeon) {
+    if (wasInRun && !isDungeon && !isCountess) {
       setIdleTarget(undefined);
       resetIdleElitePity();
     }
@@ -258,8 +267,8 @@ export function CombatScreen() {
 
   // Compute next sub-area for the post-victory CTA.
   const nextSubArea = useMemo(
-    () => isDungeon ? null : nextSubAreaInAct(currentAct, subAreaRunId),
-    [isDungeon, currentAct, subAreaRunId]
+    () => isDungeon || isCountess ? null : nextSubAreaInAct(currentAct, subAreaRunId),
+    [isDungeon, isCountess, currentAct, subAreaRunId]
   );
 
   const handleContinueToNext = () => {
@@ -278,7 +287,7 @@ export function CombatScreen() {
       return;
     }
     exiting.current = true;
-    if (!isDungeon) { setIdleTarget(undefined); resetIdleElitePity(); }
+    if (!isDungeon && !isCountess) { setIdleTarget(undefined); resetIdleElitePity(); }
     endCombat();
     navigate(destination);
   };
@@ -315,10 +324,10 @@ export function CombatScreen() {
 
   const [logAutoScrollPaused, setLogAutoScrollPaused] = useState(false);
 
-  if (invalidRequest || entryRefused) return <ScreenShell testId="combat-screen" title={tDataKey(t, endgameDefinition.nameKey)}>
+  if (invalidRequest || entryRefused) return <ScreenShell testId="combat-screen" title={<h1>{questRequest ? t('quests:byId.act1-forgotten-tower.name') : tDataKey(t, endgameDefinition.nameKey)}</h1>}>
     <Panel>
-      <p role="alert" data-testid="endgame-entry-refusal" className="mb-3 text-d2-gold">
-        {t(invalidRequest ? 'endgame:combat.invalid' : 'endgame:combat.refused')}
+      <p role="alert" data-testid={questRequest ? 'quest-encounter-entry-refusal' : 'endgame-entry-refusal'} className="mb-3 text-d2-gold">
+        {t(questRequest ? 'quests:countess.refused' : invalidRequest ? 'endgame:combat.invalid' : 'endgame:combat.refused')}
       </p>
       <Button type="button" className="min-h-11" onClick={() => { navigate('/map'); }}>{t('returnToMap')}</Button>
     </Panel>
@@ -345,7 +354,7 @@ export function CombatScreen() {
                 <>
                   {' · '}
                   <span data-testid="combat-sub-area-name" className="text-d2-gold">
-                    {isDungeon ? tDataKey(t, endgameDefinition.nameKey) : tDataKey(t, mapSubAreaNameKey(currentSubAreaId ?? ''))}
+                    {isDungeon ? tDataKey(t, endgameDefinition.nameKey) : isCountess ? t('quests:countess.name') : tDataKey(t, mapSubAreaNameKey(currentSubAreaId ?? ''))}
                   </span>
                 </>
               )}

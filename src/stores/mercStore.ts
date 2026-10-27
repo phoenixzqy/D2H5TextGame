@@ -128,10 +128,11 @@ interface MercState {
   /** Read saved progress or a level-aware default without publishing state. */
   getMercProgress: (mercId: string) => MercProgress;
   /**
-   * Bug #12 — share `amount` XP with the currently fielded merc using
-   * {@link MERC_XP_SHARE}. Safe no-op when no merc is fielded.
+   * Share `amount` XP using {@link MERC_XP_SHARE}. Omitted recipient uses
+   * the currently fielded merc; a captured ID retains a reward's original
+   * recipient across synchronous observers. Explicit null grants no merc XP.
    */
-  shareExperienceWithFielded: (amount: number) => void;
+  shareExperienceWithFielded: (amount: number, recipientId?: string | null) => void;
   reset: () => void;
 }
 
@@ -362,9 +363,9 @@ export const useMercStore = create<MercState>((set, get) => ({
     );
   },
 
-  shareExperienceWithFielded: (amount) => {
+  shareExperienceWithFielded: (amount, recipientId) => {
     const state = get();
-    const id = state.fieldedMercId;
+    const id = recipientId === undefined ? state.fieldedMercId : recipientId;
     if (!id || amount <= 0) return;
     const share = Math.floor(amount * MERC_XP_SHARE);
     if (share <= 0) return;

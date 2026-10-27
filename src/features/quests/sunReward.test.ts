@@ -64,7 +64,7 @@ describe('Tainted Sun explicit permanent resistance Claim', () => {
     };
     const before = cumulative();
     const share = vi.spyOn(useMercStore.getState(), 'shareExperienceWithFielded');
-    complete(); expect(claimQuestReward(SUN)).toBe('ok'); expect(share).toHaveBeenCalledWith(4500);
+    complete(); expect(claimQuestReward(SUN)).toBe('ok'); expect(share).toHaveBeenCalledWith(4500, id);
     expect(cumulative()).toBe(before + 3375);
   });
   it.each([{}, { 'obj-destroy-altar': false }, { 'obj-amulet': true }])('refuses incomplete altar credit %j without writes', objectives => {

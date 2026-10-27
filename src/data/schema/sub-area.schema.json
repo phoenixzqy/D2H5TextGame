@@ -39,6 +39,12 @@
     "bossEncounter": {
       "$ref": "#/$defs/encounter"
     },
+    "questEncounters": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Explicit optional quest encounters, never included in ordinary area waves.",
+      "items": { "$ref": "#/$defs/questEncounter" }
+    },
     "chapterBoss": {
       "$ref": "#/$defs/chapterBoss"
     },
@@ -60,6 +66,17 @@
     }
   },
   "$defs": {
+    "questEncounter": {
+      "type": "object",
+      "required": ["id", "monsters", "level", "lootTable"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/encounter/properties/id" },
+        "monsters": { "$ref": "#/$defs/encounter/properties/monsters" },
+        "level": { "$ref": "#/$defs/encounter/properties/level" },
+        "lootTable": { "type": "string", "minLength": 1 }
+      }
+    },
     "monsterPoolEntry": {
       "type": "object",
       "required": ["archetypeId", "weight"],

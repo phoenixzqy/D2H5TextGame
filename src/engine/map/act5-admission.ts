@@ -47,7 +47,7 @@ function sameSource(actual: WaveSource | undefined, expected: WaveSource): boole
   if (actual?.kind !== expected.kind) return false;
   if (expected.kind === 'chapterBoss') return actual.kind === 'chapterBoss' && actual.archetypeId === expected.archetypeId;
   if (expected.kind === 'bossEncounter') return actual.kind === 'bossEncounter' && actual.encounterId === expected.encounterId;
-  return actual.kind === 'wave' && actual.waveId === expected.waveId && actual.encounterIds.length === expected.encounterIds.length &&
+  return expected.kind === 'wave' && actual.kind === 'wave' && actual.waveId === expected.waveId && actual.encounterIds.length === expected.encounterIds.length &&
     actual.encounterIds.every((id, index) => id === expected.encounterIds[index]);
 }
 function capture(contract: Act5EncounterContract, wave: WaveSpec, enemies: readonly CombatUnit[]): Act5Encounter | undefined {

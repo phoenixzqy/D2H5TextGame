@@ -37,6 +37,7 @@ import type { EliteAffixDef, EliteConfigDef } from '../types/elite';
 import { resolveIdleEncounter } from '../idle/online-tick';
 import { ACT1_LIGHTNING_AFFIX_ID } from '../skills/act1-lightning';
 import { ACT5_RUNTIME } from '../map/act5-admission';
+import { COUNTESS } from '../map/countess-admission';
 
 export const DEFAULT_ELITE_CONFIG = defaultEliteConfigJson as EliteConfigDef;
 
@@ -68,6 +69,7 @@ export interface WavePresentation {
 /** Authored origin, independent of generated runtime wave IDs and elite fitting. */
 export type WaveSource =
   | { readonly kind: 'wave'; readonly waveId: string; readonly encounterIds: readonly string[] }
+  | { readonly kind: 'questEncounter'; readonly encounterId: string }
   | { readonly kind: 'bossEncounter'; readonly encounterId: string }
   | { readonly kind: 'chapterBoss'; readonly archetypeId: string };
 
@@ -123,6 +125,31 @@ export interface ResolveChallengeWavePlanInput {
 
 /** Hard global cap for spawn counts per wave (UI/perf safety). */
 export const MAX_SPAWNS_PER_WAVE = 20;
+
+/** Resolve only the explicitly selected optional source; invalid requests never fall back. */
+export function resolveQuestEncounterPlan(input: {
+  readonly subArea: SubAreaDef; readonly encounterId: string; readonly seed: number;
+}): WavePlan {
+  const { subArea, encounterId, seed } = input;
+  // Preserve readonly element types before runtime array validation narrows the property.
+  const encounters = subArea.questEncounters ?? [];
+  if (subArea.id !== COUNTESS.area || subArea.actId !== COUNTESS.act ||
+    encounterId !== COUNTESS.encounter || !Array.isArray(subArea.questEncounters)) {
+    throw new RangeError('Unknown quest encounter');
+  }
+  const matches = encounters.filter(row => row.id === encounterId);
+  const encounter = matches[0];
+  const monster = encounter?.monsters[0];
+  if (matches.length !== 1 || !encounter || encounter.level !== COUNTESS.level ||
+    encounter.lootTable !== COUNTESS.lootTable || !Array.isArray(encounter.monsters) ||
+    encounter.monsters.length !== 1 || monster?.archetypeId !== COUNTESS.archetype ||
+    monster.count !== 1 || monster.countMin !== undefined || monster.countMax !== undefined ||
+    monster.boss !== true || monster.elite === true) throw new RangeError('Invalid quest encounter');
+  return { subAreaId: subArea.id, mode: 'manual', seed, defaultLootTable: encounter.lootTable,
+    waves: [{ id: encounter.id, source: { kind: 'questEncounter', encounterId }, waveTier: 'boss',
+      lootTable: encounter.lootTable,
+      spawns: [{ archetypeId: monster.archetypeId, encounterId, tier: 'boss', level: encounter.level, index: 0 }] }] };
+}
 
 /**
  * Default fall-back plan for sub-areas with no wave data. Mirrors the
