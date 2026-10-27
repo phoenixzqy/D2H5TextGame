@@ -1,7 +1,7 @@
 # BUG-284 — Make Guided Arrow honor its hit guarantee
 
 - Severity: High — advertised skill behavior is missing.
-- Status: Fixed locally in `677fb25d`; UI `dceffcf4`; final public/integrated acceptance pending.
+- Status: Fixed locally in `677fb25d`; UI `dceffcf4`; public `4a80c03a` locally verified; full-unit closeout pending.
 - Build: runtime `121fd691`, documentation-only head `bcfb6479`; Linux, Vitest1.6.1/jsdom.
 - Locale: en/zh-CN promises checked in source; no browser/viewport claim for native reproduction.
 - Owner: root (engine/content/UI/native/public); independent acceptance remains open.
@@ -49,5 +49,5 @@ replay. `dceffcf4` adds accurate bilingual current/next/MAX descriptions;30new
 UI tests plus40single-hit controls pass.
 
 See [batch evidence](../../docs/plans/evidence/d04-amazon-volley.md). Original
-failures remain retained; production browser and final full-regression work
-are active. No skill-inventory credit or independent/earned balance approval.
+failures remain retained. Production public4/4contexts pass100.913s;
+engine9556/362,fulltypes121.394s/fulllint200.933s pass. Fresh full unit is active. No skill-inventory credit or independent/earned balance approval.

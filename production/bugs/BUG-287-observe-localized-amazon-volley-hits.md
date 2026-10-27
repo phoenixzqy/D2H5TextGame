@@ -1,7 +1,7 @@
 # BUG-287 — Observe the actual localized Physical log
 
 - Severity: Medium — acceptance harness false negative, production hit observed.
-- Status: Reproduced; correction pending frozen type/lint consumers.
+- Status: Fixed locally in `4a80c03a`; public4/4PASS100.913s.
 - Build: runtime/UI `dceffcf4`, uncommitted public acceptance spec.
 - Environment: Linux Chromium Desktop Chrome,1280×800,en; no fixed engine seed.
 - Owner: root (QA acceptance); no product runtime change required.
@@ -40,3 +40,19 @@ repository configuration changes. All failures and raw trace remain retained.
 
 Security check: pass; first-party local acceptance/DOM observations only; no
 credentials,dependency,CI,remote or genuine campaign/save action.
+
+## Verified correction
+
+After both original type/lint consumers terminated successfully,the draft
+observer was corrected to lowercase `physical` and exact localized basic-action
+lines. Any following action closes selected-skill attribution,so another skill,
+basic attack or enemy-action reflection cannot supply the positive hit. No
+assertion,timeout or combat source was weakened/changed. Explicit final public
+lint8.448s/types7.981s and production4/4contextsPASS100.913s.
+
+All twelve selected casts have positive hostile Physical hits:Guided103,
+Multiple47,Strafe43 in both locales/device contexts. Eight seven-domain pairs,
+four actual service-worker offline Continues and60geometry samples pass.
+Original failure trace/log/screenshot/test source and both config-setup failures
+remain retained at the task path until terminal integrated closeout and exact
+owned retention/cleanup. Broader independent/earned acceptance remains open.

@@ -1,0 +1,1513 @@
+{
+  "state": "public-and-engine-green;full-unit-active;no-new-skill-credit",
+  "sourceHead": "4a80c03a",
+  "taskOwner": "root",
+  "activeTask": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6",
+  "activeFullUnitTool": 92363,
+  "receipts": [
+    {
+      "path": "always-hit-branch-green-final.json",
+      "sha256": "f522fc596ba345de52a361d8a2f42b21e8bdc3a137dc4dfd95a38b13b0de0f13",
+      "label": "always-hit-branch-green-final",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "--project",
+        "engine",
+        "src/engine/combat/always-hit.test.ts",
+        "src/engine/combat/damage.test.ts",
+        "src/engine/skills/registry.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 7.450958681991324,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  3 passed (3)",
+        "Tests  93 passed (93)"
+      ]
+    },
+    {
+      "path": "always-hit-branch-green.json",
+      "sha256": "6ada6c0ecbb4a259a0fab0300591d2a91a11f359145a9fc1b02ad3750e42eaf6",
+      "label": "always-hit-branch-green",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--project",
+        "engine",
+        "src/engine/combat/always-hit.test.ts",
+        "src/engine/combat/damage.test.ts",
+        "src/engine/skills/registry.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 1,
+      "seconds": 0.4922860038932413,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "path": "always-hit-lint.json",
+      "sha256": "46ffcf927b090ca720544712b8c6f33ad99700a9c81182bdd07e70222729849c",
+      "label": "always-hit-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/combat/always-hit.test.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/dataCatalog.ts",
+        "src/engine/skills/effects.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 9.089416785980575,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "path": "always-hit-prototype-final.json",
+      "sha256": "0fea35ff44ea32fba702cccf369704e092a8daf3274dda8e5f60415dad446f3d",
+      "label": "always-hit-prototype-final",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/overlay-always-hit-workspace.mjs",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 4.917559080990031,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  8 passed (8)"
+      ]
+    },
+    {
+      "path": "always-hit-prototype.json",
+      "sha256": "230ec0ac7fefcc19d60838d66d48288819b70f64342d3289fd23da8bc48b4e9e",
+      "label": "always-hit-prototype",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/overlay-always-hit-workspace.mjs",
+        "--reporter=basic"
+      ],
+      "exit": 1,
+      "seconds": 4.831820141058415,
+      "inputsUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  1 failed | 7 passed (8)"
+      ]
+    },
+    {
+      "path": "always-hit-types.json",
+      "sha256": "ec31bd11cc4d8a23a802e2b3769c0471393aacef4d523e76f91e7db2b192185b",
+      "label": "always-hit-types",
+      "command": [
+        "node_modules/.bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/capability-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 3.8897279090015218,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-contract-prototype.json",
+      "sha256": "2de5f7de176875000460a6b0e47cbd268934e1a6cdbb67c5468578dbe6851121",
+      "label": "amazon-volley-contract-prototype",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/overlay-contract-workspace.mjs",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 3.82371778099332,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  65 passed (65)"
+      ]
+    },
+    {
+      "path": "amazon-volley-draft-red.json",
+      "sha256": "054de85409644a31ac4b63dd3032b7d403fd04e5b040b1125ea3f6de29172671",
+      "label": "amazon-volley-draft-red",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/workspace.mjs",
+        "--reporter=basic"
+      ],
+      "exit": 1,
+      "seconds": 9.523100995924324,
+      "inputsUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  5 failed | 2 passed (7)"
+      ]
+    },
+    {
+      "path": "amazon-volley-engine.json",
+      "sha256": "0b3406f0ec34db2311693e057757b5609d367ddebf843cb7d6c82fc404da7989",
+      "label": "amazon-volley-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "exit": 0,
+      "seconds": 171.7999269820284,
+      "inputsUnchanged": true,
+      "inputCount": 2436,
+      "totals": [
+        "Test Files  362 passed (362)",
+        "Tests  9556 passed (9556)"
+      ]
+    },
+    {
+      "path": "amazon-volley-expanded-final-red.json",
+      "sha256": "555106e074e83927c916dd266909cee9643e7b57e1c23f1486ffbda8ee25ffe9",
+      "label": "amazon-volley-expanded-final-red",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/workspace.mjs",
+        "--reporter=basic"
+      ],
+      "exit": 1,
+      "seconds": 9.100841219886206,
+      "inputsUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  11 failed | 13 passed (24)"
+      ]
+    },
+    {
+      "path": "amazon-volley-expanded-red.json",
+      "sha256": "812db667b375e9261527a06b2a3f81f880912a394a4dc56439e8e02e3147775a",
+      "label": "amazon-volley-expanded-red",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/workspace.mjs",
+        "--reporter=basic"
+      ],
+      "exit": 1,
+      "seconds": 9.153583029983565,
+      "inputsUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯ Failed Tests 14 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  14 failed | 10 passed (24)"
+      ]
+    },
+    {
+      "path": "amazon-volley-full-lint.json",
+      "sha256": "e549c238faaa5d37a8b3c4aa57666981c628ad79d61bf8afdeef64ecfa88cbe4",
+      "label": "amazon-volley-full-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 200.93328596802894,
+      "inputsUnchanged": true,
+      "inputCount": 2438,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-full-types.json",
+      "sha256": "0a81bb9fa668f9e45c013492145ea5e14162d023a6137be1ffe16af6e747f1ca",
+      "label": "amazon-volley-full-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 121.39417748490814,
+      "inputsUnchanged": true,
+      "inputCount": 2438,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-native-branch-final.json",
+      "sha256": "48779be5dba94c001e134ecc5a16c7026354fcfcf4447706657bb290ff0d4845",
+      "label": "amazon-volley-native-branch-final",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/amazon-volley-schema.test.ts",
+        "src/stores/amazon-volley-native.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 9.626421463908628,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  80 passed (80)"
+      ]
+    },
+    {
+      "path": "amazon-volley-native-branch-green.json",
+      "sha256": "0f48264bf8b9b76e9f60ea414ea8d3c7b9574fcd8fe3bb1a856205b8fcb1b4b4",
+      "label": "amazon-volley-native-branch-green",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/amazon-volley-schema.test.ts",
+        "src/stores/amazon-volley-native.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 9.289492052048445,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  80 passed (80)"
+      ]
+    },
+    {
+      "path": "amazon-volley-native-lint-final.json",
+      "sha256": "cc3b78e40a8439e036ece0917f857704b3b2978efb0be5ebc8c81f71a099039e",
+      "label": "amazon-volley-native-lint-final",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/types/skills.ts",
+        "src/engine/skills/amazon-volley-schema.test.ts",
+        "src/stores/amazon-volley-native.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 7.703149565961212,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-native-lint.json",
+      "sha256": "6a00735729a4a27330caf0e6d83c184911344f6462499a38df61a2fc67e39eb2",
+      "label": "amazon-volley-native-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/types/skills.ts",
+        "src/engine/skills/amazon-volley-schema.test.ts",
+        "src/stores/amazon-volley-native.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 1,
+      "seconds": 7.497283543925732,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-native-red.json",
+      "sha256": "98d049f55ccb7b0170059b126aa38a14977105de6781df6443203628f4427ce6",
+      "label": "amazon-volley-native-red",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/workspace.mjs",
+        "--reporter=basic"
+      ],
+      "exit": 1,
+      "seconds": 23.28743287397083,
+      "inputsUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  6 failed | 1 passed (7)"
+      ]
+    },
+    {
+      "path": "amazon-volley-native-types-final.json",
+      "sha256": "47cbdff78814026433e825ea6a16d5a942f99e2c29fb07d256e8683e88ffe912",
+      "label": "amazon-volley-native-types-final",
+      "command": [
+        "node_modules/.bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/volley-native-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 7.126334412023425,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-native-types.json",
+      "sha256": "7343f036cbe340533d0b5f790aa91f8cb5574a74ae530deef964a88c7dc5b2a6",
+      "label": "amazon-volley-native-types",
+      "command": [
+        "node_modules/.bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/volley-native-tsconfig.json"
+      ],
+      "exit": 2,
+      "seconds": 6.694747111061588,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-overlay-prototype.json",
+      "sha256": "96e20572aa0f3808468f61fd000c6e2a4aa7abc21f38f60105f2b0b3c9eca08a",
+      "label": "amazon-volley-overlay-prototype",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/overlay-workspace.mjs",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 9.338577121961862,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  24 passed (24)"
+      ]
+    },
+    {
+      "path": "amazon-volley-precache.json",
+      "sha256": "1571e7b37fb6bea38405bc8ea45bf3d6e3c654cd539c959ecf05ca8f60ad683c",
+      "label": "amazon-volley-precache",
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/production-dist"
+      ],
+      "exit": 0,
+      "seconds": 0.20594184997025877,
+      "inputsUnchanged": true,
+      "inputCount": 2438,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-preview-prototype.json",
+      "sha256": "55b1acabd16b59881e2060733c511cb550754183b27402033d0e923115586657",
+      "label": "amazon-volley-preview-prototype",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/overlay-preview-workspace.mjs",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 11.975879656034522,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  30 passed (30)"
+      ]
+    },
+    {
+      "path": "amazon-volley-preview-red.json",
+      "sha256": "4757c24e0c289c78a05330685f1916a9dfc1ae1cc3aa66fc892b94c56ebe4eef",
+      "label": "amazon-volley-preview-red",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/preview-workspace.mjs",
+        "--reporter=basic"
+      ],
+      "exit": 1,
+      "seconds": 12.384268763009459,
+      "inputsUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯ Failed Tests 30 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  30 failed (30)"
+      ]
+    },
+    {
+      "path": "amazon-volley-production-build.json",
+      "sha256": "ac3365605fb6883c16d3b56dbcdc842c9b3d30eb5f7563fda59368bf4812ec65",
+      "label": "amazon-volley-production-build",
+      "command": [
+        "npm",
+        "run",
+        "build",
+        "--",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/production-dist"
+      ],
+      "exit": 0,
+      "seconds": 14.996777803986333,
+      "inputsUnchanged": true,
+      "inputCount": 2436,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-public-browser-final.json",
+      "sha256": "87008f0d78d9dac2a43b61c3107c44c02df6e59aa9e566a29e40669ec01f44c5",
+      "label": "amazon-volley-public-browser-final",
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "--config",
+        "tests/pwa/amazon-volley-acceptance.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 100.91312000399921,
+      "inputsUnchanged": true,
+      "inputCount": 2438,
+      "totals": [
+        "\u001b[1A\u001b[2K  4 passed (1.7m)"
+      ]
+    },
+    {
+      "path": "amazon-volley-public-browser.json",
+      "sha256": "9a385f407880c323da4f582dbae62c7267d03c84918cdeb796ad3cbc0bac4550",
+      "label": "amazon-volley-public-browser",
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "--config",
+        "tests/pwa/amazon-volley-acceptance.config.ts"
+      ],
+      "exit": 1,
+      "seconds": 30.7943530860357,
+      "inputsUnchanged": true,
+      "inputCount": 2438,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-public-lint-explicit.json",
+      "sha256": "34499e375c29af956d3eb4e389f73ff1919b50f094bd37bb9d6d6d4363b34283",
+      "label": "amazon-volley-public-lint-explicit",
+      "command": [
+        "node_modules/.bin/eslint",
+        "--no-ignore",
+        "tests/pwa/amazon-volley-acceptance.config.ts",
+        "tests/pwa/amazon-volley-acceptance.spec.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 8.962836944963783,
+      "inputsUnchanged": true,
+      "inputCount": 2438,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-public-lint-final.json",
+      "sha256": "d35feff5d45a09dc341f5ca4c2bae20db801ca7f0c0e8a4c263a6e826774c680",
+      "label": "amazon-volley-public-lint-final",
+      "command": [
+        "node_modules/.bin/eslint",
+        "--no-ignore",
+        "tests/pwa/amazon-volley-acceptance.config.ts",
+        "tests/pwa/amazon-volley-acceptance.spec.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 8.44823403796181,
+      "inputsUnchanged": true,
+      "inputCount": 2438,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-public-lint.json",
+      "sha256": "3dbc5ba68bc188cfd5214fe08564a7b87a19c5bc6fbe1f7d403f3000e02fedeb",
+      "label": "amazon-volley-public-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "tests/pwa/amazon-volley-acceptance.config.ts",
+        "tests/pwa/amazon-volley-acceptance.spec.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 1,
+      "seconds": 1.7324511399492621,
+      "inputsUnchanged": true,
+      "inputCount": 2438,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-public-types-configured.json",
+      "sha256": "eb107ff7ac623ee04843842e64006ee58997bae7553e729129872a0626d2ec20",
+      "label": "amazon-volley-public-types-configured",
+      "command": [
+        "node_modules/.bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/volley-public-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 9.022931894054636,
+      "inputsUnchanged": true,
+      "inputCount": 2438,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-public-types-final.json",
+      "sha256": "48f8f4eb78098488596aa06b39e8ad748d27d4d3f1f9f1d06a8018bd229c7ac2",
+      "label": "amazon-volley-public-types-final",
+      "command": [
+        "node_modules/.bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/volley-public-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 7.980544034973718,
+      "inputsUnchanged": true,
+      "inputCount": 2438,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-public-types.json",
+      "sha256": "6b747cd9cd7813e204c27b28045a8a96db5a3e27c38c5f0b8c027e14ba8e2853",
+      "label": "amazon-volley-public-types",
+      "command": [
+        "node_modules/.bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/volley-public-tsconfig.json"
+      ],
+      "exit": 2,
+      "seconds": 6.5424985740100965,
+      "inputsUnchanged": true,
+      "inputCount": 2438,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-ui-branch-green.json",
+      "sha256": "3083324c67639e46474b5e43bddf7bc2c7e0935efcb733e9aa6fa112aa6ed6f5",
+      "label": "amazon-volley-ui-branch-green",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/skills/SkillsScreen.amazon-volley.test.tsx",
+        "src/features/skills/SkillsScreen.amazon-single-hit.test.tsx",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 16.054800544981845,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  70 passed (70)"
+      ]
+    },
+    {
+      "path": "amazon-volley-ui-lint.json",
+      "sha256": "6397a41e244de8842f3feb935a4490e2874445f1b55d9b7782678ccde88c5125",
+      "label": "amazon-volley-ui-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/skills/displayStats.ts",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.amazon-volley.test.tsx",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 10.184639979968779,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "path": "amazon-volley-ui-types.json",
+      "sha256": "fa9b824ed40f59db892c97e9a1757f2d6f47c6ba85967e4e8487f1ae2acde188",
+      "label": "amazon-volley-ui-types",
+      "command": [
+        "node_modules/.bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/volley-ui-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 8.769104111008346,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    {
+      "path": "cone3-branch-final.json",
+      "sha256": "44868d809af60207ff82c22723db1f282f77e7a53d35f4da1fd44ef62d434d3a",
+      "label": "cone3-branch-final",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "--project",
+        "engine",
+        "src/engine/combat/grid.test.ts",
+        "src/engine/combat/grid-cone3.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 1.360134535934776,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  7 passed (7)"
+      ]
+    },
+    {
+      "path": "cone3-branch-green.json",
+      "sha256": "804748c056e4558bb20a6d427ce330046971668132700874664f39e2ac963057",
+      "label": "cone3-branch-green",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "--project",
+        "engine",
+        "src/engine/combat/grid.test.ts",
+        "src/engine/combat/grid-cone3.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 1.3336046600015834,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  7 passed (7)"
+      ]
+    },
+    {
+      "path": "cone3-lint-final.json",
+      "sha256": "27fdb8a6b0cdda7a28e31af27896dfc691920b1792fa37d07c4d54f8a89c4a15",
+      "label": "cone3-lint-final",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/combat/grid.ts",
+        "src/engine/combat/grid-cone3.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 6.682079246034846,
+      "inputsUnchanged": true,
+      "totals": []
+    }
+  ],
+  "sourceAudit": {
+    "amazon-volley-engine": {
+      "inputCount": 2436,
+      "changed": [],
+      "expectedTestOnlyCorrection": true
+    },
+    "amazon-volley-production-build": {
+      "inputCount": 2436,
+      "changed": [],
+      "expectedTestOnlyCorrection": true
+    },
+    "amazon-volley-full-types": {
+      "inputCount": 2438,
+      "changed": [
+        "tests/pwa/amazon-volley-acceptance.spec.ts"
+      ],
+      "expectedTestOnlyCorrection": true
+    },
+    "amazon-volley-full-lint": {
+      "inputCount": 2438,
+      "changed": [
+        "tests/pwa/amazon-volley-acceptance.spec.ts"
+      ],
+      "expectedTestOnlyCorrection": true
+    },
+    "amazon-volley-public-types-final": {
+      "inputCount": 2438,
+      "changed": [],
+      "expectedTestOnlyCorrection": true
+    },
+    "amazon-volley-public-lint-final": {
+      "inputCount": 2438,
+      "changed": [],
+      "expectedTestOnlyCorrection": true
+    },
+    "buildFilesUnchanged": 762,
+    "protectedSave": {
+      "compressed": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+      "raw": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577"
+    }
+  },
+  "browserAudit": {
+    "contexts": [
+      {
+        "key": "amazon-volley-desktop-en",
+        "status": "passed",
+        "durationMs": 24345,
+        "casts": [
+          {
+            "name": "guided-arrow-public-cast",
+            "cast": "Ama Volley Test casts Guided Arrow.",
+            "hit": "Ama Volley Test attacks Bone Warrior A for 103 physical damage."
+          },
+          {
+            "name": "multiple-shot-public-cast",
+            "cast": "Ama Volley Test casts Multiple Shot.",
+            "hit": "Ama Volley Test attacks Bone Warrior C for 47 physical damage."
+          },
+          {
+            "name": "strafe-public-cast",
+            "cast": "Ama Volley Test casts Strafe.",
+            "hit": "Ama Volley Test attacks Bone Warrior B for 43 physical damage."
+          }
+        ],
+        "savePairs": 2,
+        "geometry": [
+          {
+            "slug": "guided-arrow",
+            "width": 360,
+            "height": 640,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 412,
+            "height": 915,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 640,
+            "height": 360,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 1280,
+            "height": 800,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 1920,
+            "height": 1080,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 360,
+            "height": 640,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 412,
+            "height": 915,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 640,
+            "height": 360,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 1280,
+            "height": 800,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 1920,
+            "height": 1080,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 360,
+            "height": 640,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 412,
+            "height": 915,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 640,
+            "height": 360,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 1280,
+            "height": 800,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 1920,
+            "height": 1080,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          }
+        ],
+        "images": [
+          {
+            "path": "amazon-volley-desktop-en-guided-arrow-preview.png",
+            "sha256": "87ece7b7bb2437e3baccdbb840641bd2447a5c0b3ee8b99d0c505bf71151159d"
+          },
+          {
+            "path": "amazon-volley-desktop-en-multiple-shot-preview.png",
+            "sha256": "6fb5dae4061be31327df489edaa325055e18e3fc46739b04569a1b8a5fd548c9"
+          },
+          {
+            "path": "amazon-volley-desktop-en-strafe-preview.png",
+            "sha256": "7f378195bd1efc19fe4c3c55eda09623cdf9ecfb579fbe1dd88f146f0a7df368"
+          },
+          {
+            "path": "amazon-volley-desktop-en-guided-arrow-combat.png",
+            "sha256": "cf2c7b1d422f1f979be55840c7a47a0a42a2bd963de6d4cd0c5da7caf56fe6c0"
+          },
+          {
+            "path": "amazon-volley-desktop-en-multiple-shot-combat.png",
+            "sha256": "b50a74c3ec631294b24bcbf040fc7d855b38ac81c3843243ea04f1c3d02b4e00"
+          },
+          {
+            "path": "amazon-volley-desktop-en-strafe-combat.png",
+            "sha256": "f5c0588e4fc78e484875d16d9c76f361af44fdd6c9cbd9046d92f89e75773fb9"
+          }
+        ]
+      },
+      {
+        "key": "amazon-volley-desktop-zh-CN",
+        "status": "passed",
+        "durationMs": 23437,
+        "casts": [
+          {
+            "name": "guided-arrow-public-cast",
+            "cast": "Ama Volley Test 施放了 导引箭。",
+            "hit": "Ama Volley Test 普攻 骸骨战士 A，造成 103 点物理伤害。"
+          },
+          {
+            "name": "multiple-shot-public-cast",
+            "cast": "Ama Volley Test 施放了 多重箭。",
+            "hit": "Ama Volley Test 普攻 骸骨战士 C，造成 47 点物理伤害。"
+          },
+          {
+            "name": "strafe-public-cast",
+            "cast": "Ama Volley Test 施放了 扫射。",
+            "hit": "Ama Volley Test 普攻 骸骨战士 B，造成 43 点物理伤害。"
+          }
+        ],
+        "savePairs": 2,
+        "geometry": [
+          {
+            "slug": "guided-arrow",
+            "width": 360,
+            "height": 640,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 412,
+            "height": 915,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 640,
+            "height": 360,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 1280,
+            "height": 800,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 1920,
+            "height": 1080,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 360,
+            "height": 640,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 412,
+            "height": 915,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 640,
+            "height": 360,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 1280,
+            "height": 800,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 1920,
+            "height": 1080,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 360,
+            "height": 640,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 412,
+            "height": 915,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 640,
+            "height": 360,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 1280,
+            "height": 800,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 1920,
+            "height": 1080,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          }
+        ],
+        "images": [
+          {
+            "path": "amazon-volley-desktop-zh-CN-guided-arrow-preview.png",
+            "sha256": "d7408065b852f8a1c4a82b147faf3d5da4d47ad1ada45b50a5af15c3d68ba72a"
+          },
+          {
+            "path": "amazon-volley-desktop-zh-CN-multiple-shot-preview.png",
+            "sha256": "b76b08dac477e2c8ea6d58079a3255ec5c0db0a48ef0b4efcdd76394b6a24d15"
+          },
+          {
+            "path": "amazon-volley-desktop-zh-CN-strafe-preview.png",
+            "sha256": "6063e945ba4e46fb1a8032dc9211c68d1f17d1557a54ed2d54a239ffdd4e478f"
+          },
+          {
+            "path": "amazon-volley-desktop-zh-CN-guided-arrow-combat.png",
+            "sha256": "4bfdc9b89a524ebb02bc542b1951afe91f93394d3a3ab90cbb4313d890b123f4"
+          },
+          {
+            "path": "amazon-volley-desktop-zh-CN-multiple-shot-combat.png",
+            "sha256": "d856e8a9fd6aa66f6cdd17404497ce4f9aa92644e425df9dda3367bf0664d415"
+          },
+          {
+            "path": "amazon-volley-desktop-zh-CN-strafe-combat.png",
+            "sha256": "f57bbb57b9c3a614c35857a456c068ca259dc1d4be317c911d3d562b16b25fcb"
+          }
+        ]
+      },
+      {
+        "key": "amazon-volley-mobile-en",
+        "status": "passed",
+        "durationMs": 24324,
+        "casts": [
+          {
+            "name": "guided-arrow-public-cast",
+            "cast": "Ama Volley Test casts Guided Arrow.",
+            "hit": "Ama Volley Test attacks Bone Warrior A for 103 physical damage."
+          },
+          {
+            "name": "multiple-shot-public-cast",
+            "cast": "Ama Volley Test casts Multiple Shot.",
+            "hit": "Ama Volley Test attacks Bone Warrior C for 47 physical damage."
+          },
+          {
+            "name": "strafe-public-cast",
+            "cast": "Ama Volley Test casts Strafe.",
+            "hit": "Ama Volley Test attacks Bone Warrior B for 43 physical damage."
+          }
+        ],
+        "savePairs": 2,
+        "geometry": [
+          {
+            "slug": "guided-arrow",
+            "width": 360,
+            "height": 640,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 412,
+            "height": 915,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 640,
+            "height": 360,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 1280,
+            "height": 800,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 1920,
+            "height": 1080,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 360,
+            "height": 640,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 412,
+            "height": 915,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 640,
+            "height": 360,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 1280,
+            "height": 800,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 1920,
+            "height": 1080,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 360,
+            "height": 640,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 412,
+            "height": 915,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 640,
+            "height": 360,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 1280,
+            "height": 800,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 1920,
+            "height": 1080,
+            "allocationWidth": 120.921875,
+            "allocationHeight": 48
+          }
+        ],
+        "images": [
+          {
+            "path": "amazon-volley-mobile-en-guided-arrow-preview.png",
+            "sha256": "3c21733f4ba2567dff158893f4ccb15176dc533d329081bafbb0b2f3f604d81b"
+          },
+          {
+            "path": "amazon-volley-mobile-en-multiple-shot-preview.png",
+            "sha256": "d2e2cb410ebb37d8acb5a1bfad760e7b8f5166d7e5bef00c5db57ccd23092d76"
+          },
+          {
+            "path": "amazon-volley-mobile-en-strafe-preview.png",
+            "sha256": "4e8dcf7be75cc4596b84a353239962f1f8c439b37d172a44e448e041be435079"
+          },
+          {
+            "path": "amazon-volley-mobile-en-guided-arrow-combat.png",
+            "sha256": "c16fd991ab2c9bdff98af922be5d33ef65625cde777ebceea949953a34fb8864"
+          },
+          {
+            "path": "amazon-volley-mobile-en-multiple-shot-combat.png",
+            "sha256": "1c600536b8f063169d8a039c2cac7d34130e5eb51f714c1235c94f24a6ba267b"
+          },
+          {
+            "path": "amazon-volley-mobile-en-strafe-combat.png",
+            "sha256": "7d5e3367f6dfbf97f5d57a0b743b32b65e28fffa2f8c5957e63dc4507f8c6c81"
+          }
+        ]
+      },
+      {
+        "key": "amazon-volley-mobile-zh-CN",
+        "status": "passed",
+        "durationMs": 24105,
+        "casts": [
+          {
+            "name": "guided-arrow-public-cast",
+            "cast": "Ama Volley Test 施放了 导引箭。",
+            "hit": "Ama Volley Test 普攻 骸骨战士 A，造成 103 点物理伤害。"
+          },
+          {
+            "name": "multiple-shot-public-cast",
+            "cast": "Ama Volley Test 施放了 多重箭。",
+            "hit": "Ama Volley Test 普攻 骸骨战士 C，造成 47 点物理伤害。"
+          },
+          {
+            "name": "strafe-public-cast",
+            "cast": "Ama Volley Test 施放了 扫射。",
+            "hit": "Ama Volley Test 普攻 骸骨战士 B，造成 43 点物理伤害。"
+          }
+        ],
+        "savePairs": 2,
+        "geometry": [
+          {
+            "slug": "guided-arrow",
+            "width": 360,
+            "height": 640,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 412,
+            "height": 915,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 640,
+            "height": 360,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 1280,
+            "height": 800,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "guided-arrow",
+            "width": 1920,
+            "height": 1080,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 360,
+            "height": 640,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 412,
+            "height": 915,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 640,
+            "height": 360,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 1280,
+            "height": 800,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "multiple-shot",
+            "width": 1920,
+            "height": 1080,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 360,
+            "height": 640,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 412,
+            "height": 915,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 640,
+            "height": 360,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 1280,
+            "height": 800,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          },
+          {
+            "slug": "strafe",
+            "width": 1920,
+            "height": 1080,
+            "allocationWidth": 120,
+            "allocationHeight": 48
+          }
+        ],
+        "images": [
+          {
+            "path": "amazon-volley-mobile-zh-CN-guided-arrow-preview.png",
+            "sha256": "f5d45a6f8c272e5784462b677ede060e115581e5165d87601b95a718d92fb807"
+          },
+          {
+            "path": "amazon-volley-mobile-zh-CN-multiple-shot-preview.png",
+            "sha256": "39fe2ff391a845050952ab953294a420e5cae8f059f3781c6629ee0d962f2dab"
+          },
+          {
+            "path": "amazon-volley-mobile-zh-CN-strafe-preview.png",
+            "sha256": "c3ab9562c9ad131569568e73e54e244b8659ef79698be6fbf851a04d27a88e18"
+          },
+          {
+            "path": "amazon-volley-mobile-zh-CN-guided-arrow-combat.png",
+            "sha256": "e9fcfd02420a77352ce4d980b16634df5d1aecc1dbbe756f88f4f64fe02824df"
+          },
+          {
+            "path": "amazon-volley-mobile-zh-CN-multiple-shot-combat.png",
+            "sha256": "b3cef7b3cc47d521f9e4f3d0c06fbc14fefa0bb52590bc3413bcb192f289446c"
+          },
+          {
+            "path": "amazon-volley-mobile-zh-CN-strafe-combat.png",
+            "sha256": "36a6a43b30e19fbd32593b9ea06c6cb2c9256bc8201026b14a1ec691cdaa680f"
+          }
+        ]
+      }
+    ],
+    "totalCasts": 12,
+    "exactSevenDomainPairs": 8,
+    "actualOfflineContinues": 4,
+    "geometrySamples": 60,
+    "imagesExtracted": 24,
+    "visualInspection": {
+      "individuallyInspected": 12,
+      "totalExtracted": 24,
+      "review": "public-visual-review.json"
+    },
+    "reportStats": {
+      "startTime": "2026-10-27T00:46:26.525Z",
+      "duration": 99610.855,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "visualReview": {
+    "reviewer": "root author",
+    "independent": false,
+    "inspected": [
+      {
+        "path": "amazon-volley-mobile-en-guided-arrow-preview.png",
+        "sha256": "3c21733f4ba2567dff158893f4ccb15176dc533d329081bafbb0b2f3f604d81b",
+        "observed": "Localized MAX identity,damage,mana/CD and mechanic copy wrap readably; lower requirements/next sections partly cropped behind existing fixed navigation."
+      },
+      {
+        "path": "amazon-volley-mobile-en-guided-arrow-combat.png",
+        "sha256": "c16fd991ab2c9bdff98af922be5d33ef65625cde777ebceea949953a34fb8864",
+        "observed": "Localized enemy portraits/names and HP bars visible; Guided103 popup visible,Multiple HP loss visible,Strafe multiple HP losses/popups visible. Grid crop may include fixed header/nav overlays; event JSON proves selected-cast positive hit."
+      },
+      {
+        "path": "amazon-volley-mobile-en-multiple-shot-preview.png",
+        "sha256": "d2e2cb410ebb37d8acb5a1bfad760e7b8f5166d7e5bef00c5db57ccd23092d76",
+        "observed": "Localized MAX identity,damage,mana/CD and mechanic copy wrap readably; lower requirements/next sections partly cropped behind existing fixed navigation."
+      },
+      {
+        "path": "amazon-volley-mobile-en-multiple-shot-combat.png",
+        "sha256": "1c600536b8f063169d8a039c2cac7d34130e5eb51f714c1235c94f24a6ba267b",
+        "observed": "Localized enemy portraits/names and HP bars visible; Guided103 popup visible,Multiple HP loss visible,Strafe multiple HP losses/popups visible. Grid crop may include fixed header/nav overlays; event JSON proves selected-cast positive hit."
+      },
+      {
+        "path": "amazon-volley-mobile-en-strafe-preview.png",
+        "sha256": "4e8dcf7be75cc4596b84a353239962f1f8c439b37d172a44e448e041be435079",
+        "observed": "Localized MAX identity,damage,mana/CD and mechanic copy wrap readably; lower requirements/next sections partly cropped behind existing fixed navigation."
+      },
+      {
+        "path": "amazon-volley-mobile-en-strafe-combat.png",
+        "sha256": "7d5e3367f6dfbf97f5d57a0b743b32b65e28fffa2f8c5957e63dc4507f8c6c81",
+        "observed": "Localized enemy portraits/names and HP bars visible; Guided103 popup visible,Multiple HP loss visible,Strafe multiple HP losses/popups visible. Grid crop may include fixed header/nav overlays; event JSON proves selected-cast positive hit."
+      },
+      {
+        "path": "amazon-volley-mobile-zh-CN-guided-arrow-preview.png",
+        "sha256": "f5d45a6f8c272e5784462b677ede060e115581e5165d87601b95a718d92fb807",
+        "observed": "Localized MAX identity,damage,mana/CD and mechanic copy wrap readably; lower requirements/next sections partly cropped behind existing fixed navigation."
+      },
+      {
+        "path": "amazon-volley-mobile-zh-CN-guided-arrow-combat.png",
+        "sha256": "e9fcfd02420a77352ce4d980b16634df5d1aecc1dbbe756f88f4f64fe02824df",
+        "observed": "Localized enemy portraits/names and HP bars visible; Guided103 popup visible,Multiple HP loss visible,Strafe multiple HP losses/popups visible. Grid crop may include fixed header/nav overlays; event JSON proves selected-cast positive hit."
+      },
+      {
+        "path": "amazon-volley-mobile-zh-CN-multiple-shot-preview.png",
+        "sha256": "39fe2ff391a845050952ab953294a420e5cae8f059f3781c6629ee0d962f2dab",
+        "observed": "Localized MAX identity,damage,mana/CD and mechanic copy wrap readably; lower requirements/next sections partly cropped behind existing fixed navigation."
+      },
+      {
+        "path": "amazon-volley-mobile-zh-CN-multiple-shot-combat.png",
+        "sha256": "b3cef7b3cc47d521f9e4f3d0c06fbc14fefa0bb52590bc3413bcb192f289446c",
+        "observed": "Localized enemy portraits/names and HP bars visible; Guided103 popup visible,Multiple HP loss visible,Strafe multiple HP losses/popups visible. Grid crop may include fixed header/nav overlays; event JSON proves selected-cast positive hit."
+      },
+      {
+        "path": "amazon-volley-mobile-zh-CN-strafe-preview.png",
+        "sha256": "c3ab9562c9ad131569568e73e54e244b8659ef79698be6fbf851a04d27a88e18",
+        "observed": "Localized MAX identity,damage,mana/CD and mechanic copy wrap readably; lower requirements/next sections partly cropped behind existing fixed navigation."
+      },
+      {
+        "path": "amazon-volley-mobile-zh-CN-strafe-combat.png",
+        "sha256": "36a6a43b30e19fbd32593b9ea06c6cb2c9256bc8201026b14a1ec691cdaa680f",
+        "observed": "Localized enemy portraits/names and HP bars visible; Guided103 popup visible,Multiple HP loss visible,Strafe multiple HP losses/popups visible. Grid crop may include fixed header/nav overlays; event JSON proves selected-cast positive hit."
+      }
+    ],
+    "count": 12,
+    "remainingUninspected": 12,
+    "limits": "Individual originals inspected, not a contact sheet. No desktop-final visual inspection claimed. Mobile panel/grid captures partly crop lower content and contain existing header/navigation overlap and unavailable emoji glyphs; document overflow/allocation geometry assertions are separate. No whole-app mobile/a11y/performance signoff."
+  },
+  "bridge": {
+    "chunks": 6,
+    "violations": [],
+    "buildFiles": 762
+  },
+  "inventory": {
+    "bounded": 179,
+    "unverified": 32,
+    "engineOnly": 1,
+    "reviewNeeded": 1
+  },
+  "cleanup": "Not performed;full-unit consumer active. Root retains/read-backs/removes exact owned disposable paths after consumers finish.",
+  "limits": "Constructed native/public fixtures;independent/earned builds,balance,economy,endgame,full mobile/a11y/performance/PWA acceptance and privatev1 remain open."
+}

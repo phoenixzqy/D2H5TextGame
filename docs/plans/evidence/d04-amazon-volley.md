@@ -58,12 +58,32 @@ sensitive Physical observer,with actual103physical hit visible in retained DOM.
 Three first-attempt English desktop panel PNGs were individually inspected:
 MAX damage,identity,payment/CD and requirements are readable inside each captured
 panel;these crops do not establish whole-screen/mobile/Chinese/a11y acceptance.
-No passing public context or integrated full-suite result is claimed yet.
+Final public `4a80c03a` passes4/4contexts100.913s runner/99.611sPlaywright,
+zero skips/retries/flakes. English/Chinese × desktop/Pixel5 uses ordinary create/
+import/equip,all three19→20/MAX,priority,actual Catacombs selected-skill cast and
+positive hostile Physical hit,Pause/Flee/Save/close/new-page/Continue. Damage
+observed in every context:Guided103,Multiple47,Strafe43. Observer resets at every
+following action;native tests establish precise mechanic/lifecycle behavior.
+
+Eight exact seven-domain pairs,four actual service-worker offline Continues,
+60geometry samples at360×640,412×915,640×360,1280×800,1920×1080 with44px
+allocation targets/no document overflow pass. No `__GAME__` and zero page/
+console errors asserted. Final explicit publiclint8.448s/types7.981s pass.
+Twelve final mobile PNGs were individually inspected:all six localized previews
+are readable,Guided103 popup and Multiple/Strafe HP loss visible. Strafe grid
+crops include fixed-header/nav overlays;lower preview requirements are partly
+cropped,emoji/navigation clipping remains existing. Twelve desktop originals
+are retained but not individually reviewed. No whole-app visual/a11y acceptance.
+
+Fresh full-unit run is active;no integrated full-suite pass is claimed yet.
 
 Engine regression9556tests/362filesPASS171.800s,all2436captured inputs exact.
-Full types/full lint remain active against2438explicitly captured inputs. Earlier full18607/860/two existing opt-in skips belongs to the preceding
-snapshot and does not validate these runtime changes. Source is frozen through
-consumers; pending test-only observer correction follows terminal type/lint.
+Fulltypes121.394s/fulllint200.933s pass against2438explicit inputs. The sole
+subsequent change is BUG287's public-observer correction,then final focused
+public types/lint pass. All other2437inputs and all762build files remain exact.
+Earlier full18607/860/two existing opt-in skips belongs to the preceding
+snapshot and does not validate these runtime changes. Current source remains
+frozen through the fresh full-unit consumer at tool92363.
 
 ## Ownership and scope
 

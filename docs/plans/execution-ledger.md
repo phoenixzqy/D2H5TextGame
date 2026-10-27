@@ -13185,3 +13185,25 @@ acceptance is claimed. GenuineL33/nextNormal402/Ancients-Rite claimed/Baal
 uncleared unchanged;no campaign/replay,remote action,delegation or worktree
 release. C2–C4/fullG0–G7,remaining skills,earned builds,balance,economy,endgame
 and full privatev1 remain open. Original umbrella goal/worktree continue.
+
+## 2026-10-26 — Amazon volley public acceptance passes; fresh full unit active
+
+`4a80c03a` installs production public acceptance for Guided/Multiple/Strafe.
+BUG287's observer was corrected only after original fulltypes121.394s and
+fulllint200.933s terminated PASS. Final focused publictypes7.981s/lint8.448s
+pass;the sole post-full-check change is this public test,all2437other frozen
+inputs and762build files exact. Final browser4/4contextsPASS100.913s verifies
+12selected casts/positive hostile Physical hits,eight seven-domain pairs,four
+actual SWofflineContinues and60geometries. Twelve final mobile originals were
+individually inspected,with panel/grid/header/nav cropping and existing emoji/
+nav limits recorded. Original failing attempt/trace/test source remains intact.
+
+Fresh full unit is live at tool92363 against2438explicitly frozen inputs;poll
+that exact handle,do not restart. Engine9556/362 and production/build/bridge/
+precache evidence are current. [Batch evidence](evidence/d04-amazon-volley.md)
+and its compact packet preserve receipts,source and protected-save boundaries.
+No new skill credit:179bounded/32unverified/oneengine/onereview. Root owns the
+active task/build/receipts through terminal full consumer,then retains/read-backs
+and performs verified exact cleanup. Full privatev1 and original goal/worktree
+remain open;genuineL33/next402/Baaluncleared unchanged,no campaign/replay,remote
+action,delegation or independent self-approval.
