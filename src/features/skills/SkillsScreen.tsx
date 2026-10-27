@@ -1032,6 +1032,10 @@ function StatSection({
             <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.innerSight.durationSeconds })} />
             <StatLine label={t('details.warcryDefenseReduction')} value={t('details.percentValue', { value: stats.innerSight.defenseReductionPercent })} />
           </> : null}
+          {stats.slowMissiles ? <>
+            <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.slowMissiles.durationSeconds })} />
+            <StatLine label={t('details.projectileSpeed')} value={t('details.percentValue', { value: stats.slowMissiles.projectileSpeedPercent })} />
+          </> : null}
           {stats.weaken ? <>
             <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.weaken.durationSeconds })} />
             <StatLine label={t('details.warcryDamageReduction')} value={t('details.percentValue', { value: stats.weaken.damageReductionPercent })} />
@@ -1089,6 +1093,7 @@ function StatSection({
                   ? t('necromancer.amplify-damage.name')
                   : id === 'decrepify' ? t('necromancer.decrepify.name')
                   : id === 'inner-sight' ? t('amazon.inner-sight.name')
+                  : id === 'slow-missiles' ? t('amazon.slow-missiles.name')
                   : id === 'weaken' ? t('necromancer.weaken.name')
                   : id === 'dim-vision' ? t('necromancer.dim-vision.name')
                   : id === 'terror' ? t('necromancer.terror.name')
@@ -1810,6 +1815,12 @@ function dynamicDescription(
     return t('amazon.inner-sight.desc', {
       duration: t('details.seconds', { seconds: stats.innerSight.durationSeconds }),
       reduction: stats.innerSight.defenseReductionPercent, mana: stats.manaCost, cooldown: stats.cooldown
+    });
+  }
+  if (skill.id === 'skills-amazon-slow-missiles' && stats?.slowMissiles) {
+    return t('amazon.slow-missiles.desc', {
+      duration: t('details.seconds', { seconds: stats.slowMissiles.durationSeconds }),
+      speed: stats.slowMissiles.projectileSpeedPercent, mana: stats.manaCost, cooldown: stats.cooldown
     });
   }
   if (skill.id === 'skills-necromancer-weaken' && stats?.weaken) {

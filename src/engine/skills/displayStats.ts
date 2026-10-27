@@ -17,6 +17,7 @@ import { paidBattleCry } from '../combat/warcry-definition';
 import { isDecrepifyDefinition, resolveDecrepifyDefinition } from '../combat/decrepify-definition';
 import { isWeakenDefinition, resolveWeakenDefinition } from '../combat/weaken-definition';
 import { isAmazonInnerSightDefinition, resolveAmazonInnerSightDefinition } from '../combat/amazon-inner-sight-definition';
+import { isSlowMissilesDefinition, resolveSlowMissilesDefinition } from './slow-missiles';
 import { isDimVisionDefinition, resolveDimVisionDefinition } from '../combat/dim-vision-definition';
 import { isTerrorDefinition, resolveTerrorDefinition } from '../combat/terror-definition';
 import { isBoneWallDefinition, resolveBoneWallDefinition } from '../combat/bone-wall-definition';
@@ -226,6 +227,8 @@ export interface SkillRankDisplayStats {
   readonly weaken?: { readonly durationSeconds: number; readonly damageReductionPercent: number };
   /** Complete paid finite Amazon ordinary Defense reduction. */
   readonly innerSight?: { readonly durationSeconds: number; readonly defenseReductionPercent: number };
+  /** Complete paid finite hostile projectile travel window. */
+  readonly slowMissiles?: { readonly durationSeconds: number; readonly projectileSpeedPercent: number };
   /** Paid finite Physical/Thorns accuracy penalty in percentage points. */
   readonly dimVision?: { readonly durationSeconds: number; readonly physicalHitChanceReductionPoints: number };
   /** One complete finite offensive target-redirection curse, preserving its exact identity. */
@@ -620,6 +623,8 @@ export function computeSkillRankDisplayStats(
     ? resolveWeakenDefinition([skill]) : undefined;
   const innerSight = skill.id === 'skills-amazon-inner-sight' && isAmazonInnerSightDefinition(skill)
     ? resolveAmazonInnerSightDefinition([skill]) : undefined;
+  const slowMissiles = skill.id === 'skills-amazon-slow-missiles' && isSlowMissilesDefinition(skill)
+    ? resolveSlowMissilesDefinition([skill]) : undefined;
   const dimVision = skill.id === 'skills-necromancer-dim-vision' && isDimVisionDefinition(skill)
     ? resolveDimVisionDefinition([skill]) : undefined;
   const terror = skill.id === 'skills-necromancer-terror' && isTerrorDefinition(skill)
@@ -803,6 +808,8 @@ export function computeSkillRankDisplayStats(
       damageReductionPercent: weaken.damageReductionPct } } : {}),
     ...(innerSight ? { innerSight: { durationSeconds: innerSight.durationMs / 1000,
       defenseReductionPercent: innerSight.defenseReductionPct } } : {}),
+    ...(slowMissiles ? { slowMissiles: { durationSeconds: slowMissiles.durationMs / 1000,
+      projectileSpeedPercent: slowMissiles.projectileSpeedPct } } : {}),
     ...(dimVision ? { dimVision: { durationSeconds: dimVision.durationMs / 1000,
       physicalHitChanceReductionPoints: dimVision.physicalHitChanceReductionPct } } : {}),
     ...(targetCurse ? { targetCurse: { id: targetCurse.id, durationSeconds: targetCurse.durationMs / 1000 } } : {}),

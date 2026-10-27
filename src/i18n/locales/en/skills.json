@@ -94,6 +94,7 @@
     "coldFreeze": "Secondary Freeze",
     "coldFreezeValue": "{{chance}}% • {{seconds}} s (bosses: {{bossSeconds}} s)",
     "warcryDuration": "Enemy effect duration",
+    "projectileSpeed": "Projectile speed (% of normal)",
     "bossEffectDuration": "Boss / chapter boss effect duration",
     "damageCurse": {
       "iron-maiden": "Physical HP reflected",
@@ -414,7 +415,7 @@
     },
     "slow-missiles": {
       "name": "Slow Missiles",
-      "desc": "Reduces the speed of enemy projectiles."
+      "desc": "Slows all living enemies’ projectiles, including shots already in flight, to {{speed}}% normal speed for {{duration}}. Melee and enemy attack cadence stay unchanged. Damage and defenses resolve on impact. Pay {{mana}} MP; {{cooldown}} s cooldown. Reapplication refreshes the window."
     },
     "avoid": {
       "name": "Avoid",

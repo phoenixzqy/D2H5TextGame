@@ -94,6 +94,7 @@
     "coldFreeze": "额外冰封",
     "coldFreezeValue": "{{chance}}% • {{seconds}} 秒（首领{{bossSeconds}} 秒）",
     "warcryDuration": "敌方效果持续时间",
+    "projectileSpeed": "投射物速度（正常速度百分比）",
     "bossEffectDuration": "首领 / 章节首领效果持续时间",
     "damageCurse": {
       "iron-maiden": "物理生命损失反射比例",
@@ -414,7 +415,7 @@
     },
     "slow-missiles": {
       "name": "缓速飞弹",
-      "desc": "降低敌方投射物速度。"
+      "desc": "使所有存活敌人已发射及随后发射的投射物在{{duration}}内以正常速度的{{speed}}%飞行。近战与敌人出手频率不变；伤害和防御在命中时结算。消耗{{mana}} 点法力；冷却{{cooldown}} 秒。再次施放会刷新持续时间。"
     },
     "avoid": {
       "name": "躲避",
