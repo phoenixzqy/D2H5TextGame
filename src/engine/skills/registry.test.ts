@@ -533,11 +533,7 @@ describe('skill registry JSON catalog', () => {
       duration: 1
     });
     expect(getSkill('skills-barbarian-find-item')?.effects).toEqual([{ kind: 'corpse-search' }]);
-    expect(getSkill('skills-amazon-decoy')?.effects).toContainEqual({
-      kind: 'buff',
-      id: 'decoy',
-      duration: -1
-    });
+    expect(getSkill('skills-amazon-decoy')?.effects).toEqual([{ kind: 'decoy' }]);
   });
 
   it('uses JSON level scaling when overriding default Necromancer stubs', () => {

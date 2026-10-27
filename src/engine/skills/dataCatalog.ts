@@ -38,6 +38,7 @@ export type PlayableSkillClass =
   | 'sorceress';
 
 interface JsonSkill {
+  readonly decoy?: import('../types/skills').SkillDef['decoy'];
   readonly boneWall?: import('../types/skills').SkillDef['boneWall'];
   readonly skillRankBuff?: import('../types/skills').SkillDef['skillRankBuff'];
   readonly corpseWard?: import('../types/skills').SkillDef['corpseWard'];
@@ -158,6 +159,7 @@ function summonMaxForKind(kind: SummonMaxCountScalingKind | undefined): number {
 }
 
 function effectsForSkill(skill: JsonSkill): SkillEffect[] {
+  if (skill.id === 'skills-amazon-decoy' && skill.decoy) return [{ kind: 'decoy' }];
   if (skill.id === 'skills-barbarian-battle-command' && skill.skillRankBuff) return [{ kind: 'party-skill-ranks' }];
   if (skill.id === 'skills-barbarian-grim-ward' && skill.corpseWard) return [{ kind: 'corpse-ward' }];
   if (skill.id === 'skills-barbarian-find-item' && skill.corpseSearch) return [{ kind: 'corpse-search' }];

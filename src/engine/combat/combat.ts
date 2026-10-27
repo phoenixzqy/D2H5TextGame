@@ -23,6 +23,7 @@ import { assassinVenomRawDps, copyAssassinVenomProjection, ASSASSIN_SHADOW_DEFIN
 
 import type { Rng } from '../rng';
 import { createRng } from '../rng';
+import { DECOY_IDS, buildDecoy, decoyDuration, decoyRank, isDecoySkill, matchesDecoy } from '../skills/decoy';
 import { activeBattleCry, paidBattleCry } from './warcry-definition';
 import { BATTLE_COMMAND_IDS, battleCommandBonus, battleCommandDuration, battleCommandRank,
   captureBattleCommandPassiveProfile, isBattleCommandId, matchesBattleCommand,
@@ -265,6 +266,8 @@ export interface CombatResult {
 }
 
 interface State {
+  /** Actual paid duplicates alone receive finite lifetime and distraction authority. */
+  readonly decoys: Map<string, { readonly ownerId: string; readonly expiresAtMs: number }>;
   /** Paid Plague casts and marker lifetimes belong only to this battle. */
   readonly plague: PlagueTracker;
   /** Only actual paid casts establish recipient potency; imported markers are inert. */
@@ -453,7 +456,7 @@ function effectiveActionPeriod(state: State, unit: CombatUnit): number {
 
 /** All new attempts start one full effective period after the current clock. */
 function scheduleNextAction(state: State, unit: CombatUnit): void {
-  if (unit.id === state.barbsSpiritId) return;
+  if (unit.id === state.barbsSpiritId || state.decoys.has(unit.id)) return;
   const period = effectiveActionPeriod(state, unit);
   state.actionSchedule.set(unit.id, { at: state.simClockMs + period, period });
 }
@@ -581,6 +584,13 @@ function pickDefender(
     Number.isFinite(status.appliedAtMs) && Number.isFinite(status.expiresAtMs));
   const forced = taunt && candidates.find(candidate => candidate.id === taunt.sourceId && alive(candidate));
   if (forced) return forced;
+  if (effectiveSide(state, attacker) === 'enemy') {
+    const decoy = candidates.find(candidate => {
+      const binding = state.decoys.get(candidate.id), owner = binding && state.units.get(binding.ownerId);
+      return binding && binding.expiresAtMs > state.simClockMs && owner && alive(owner) && alive(candidate);
+    });
+    if (decoy) return decoy;
+  }
   if (candidates.length === 1) return candidates[0];
 
   if (effectiveSide(state, attacker) === 'player') {
@@ -1256,6 +1266,7 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function learnedSkillLevel(state: State, unit: CombatUnit, skill: RegisteredSkill, legacyFallback = 1): number {
+  if (DECOY_IDS.some(id => id === skill.id)) return decoyRank(unit);
   if (BONE_WALL_IDS.some(id => id === skill.id)) return boneWallRank(unit);
   if (BONE_PRISON_IDS.some(id => id === skill.id)) return bonePrisonRank(unit);
   if (isBattleCommandId(skill.id)) return battleCommandRank(unit);
@@ -1538,7 +1549,7 @@ function chooseSkillForState(
     const skill = getSkill(skillId);
     if (!skill || ((isCorpseExplosionId(skillId) || isCorpseExplosionId(skill.id)) && !matchesCorpseExplosion(skill)) ||
       ((isPoisonExplosionId(skillId) || isPoisonExplosionId(skill.id)) && !matchesPoisonExplosion(skill)) ||
-      isPreparationSummonSkill(skill) || isIronGolemSkill(skill) || isHydraSkill(skill, skillId)) continue;
+      isPreparationSummonSkill(skill) || isIronGolemSkill(skill) || isHydraSkill(skill, skillId) || isDecoySkill(skill, skillId)) continue;
     if (!canUseSkillForState(state, unit, skill, skillId, hasEnemyTarget)) continue;
     return { skill, orderId: skillId };
   }
@@ -2151,6 +2162,11 @@ function settlePeriodic(state: State, to: number): void {
     if (manaEvent) emit(state, manaEvent);
   }
   finishDeaths(state, dead);
+  const expiredDecoys = [...state.decoys].flatMap(([id, binding]) => {
+    const body = state.units.get(id);
+    return body && alive(body) && binding.expiresAtMs <= to ? [body] : [];
+  });
+  if (expiredDecoys.length > 0) finishDeaths(state, expiredDecoys);
   const expiredHydras = [...state.hydras].flatMap(([id, binding]) => {
     const body = state.units.get(id);
     return body && alive(body) && binding.expiresAtMs <= to ? [body] : [];
@@ -2362,6 +2378,11 @@ function settleRedemption(state: State, aura: StatAuraProjection): void {
 /** Next action/status/deadline boundary; starts include non-DoT pending controls. */
 function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   let boundary = Math.min(MAX_SIM_MS, nextActionAt);
+  for (const [id, binding] of state.decoys) {
+    const body = state.units.get(id);
+    if (body && alive(body) && binding.expiresAtMs > state.simClockMs)
+      boundary = Math.min(boundary, binding.expiresAtMs);
+  }
   for (const [id, ward] of state.grimWards) {
     const owner = state.units.get(id);
     if (owner && alive(owner)) boundary = Math.min(boundary, ward.expiresAtMs, ward.nextPulseAtMs);
@@ -2612,6 +2633,25 @@ function prepareHydra(state: State, owner: CombatUnit, skill: RegisteredSkill): 
     { ownerId: owner.id, rank, expiresAtMs: state.simClockMs + HYDRA_DEFINITION.durationMs });
 }
 
+/** Complete validation precedes one ranked payment; bare/preloaded bodies never gain authority. */
+function prepareDecoy(state: State, owner: CombatUnit, skill: RegisteredSkill): void {
+  const learned = decoyRank(owner), bonus = paidRankBonus(state, owner);
+  if (!matchesDecoy(skill) || learned === 0 || !Number.isFinite(owner.mana) ||
+    opponentsOf(state, owner).length === 0 || state.heroDead) return;
+  const rank = effectiveLearnedSkillRank(learned, bonus ?? 0), cost = effectiveManaCost(skill, rank);
+  if (!Number.isFinite(cost) || owner.mana < cost) return;
+  const candidate = buildDecoy(owner, rank, bonus);
+  if (!validPreparationCandidate(candidate)) return;
+  const registered = castSkill(state, owner.id, skill,
+    { summonId: 'decoy', units: [candidate], skillLevel: rank });
+  const body = registered?.[0];
+  if (registered?.length === 1 && body) {
+    state.decoys.set(body.id, { ownerId: owner.id,
+      expiresAtMs: state.simClockMs + decoyDuration(rank, bonus) });
+    state.actionSchedule.delete(body.id);
+  }
+}
+
 function castSummonsOnStart(state: State, unitId: string): void {
   let unit = state.units.get(unitId);
   if (!unit) return;
@@ -2623,6 +2663,13 @@ function castSummonsOnStart(state: State, unitId: string): void {
       isPoisonExplosionId(skillId) || isPoisonExplosionId(skill.id)) continue;
     unit = state.units.get(unitId);
     if (!unit || !alive(unit)) return;
+    if (isDecoySkill(skill, skillId)) {
+      if (!prepared.has(DECOY_IDS[1])) {
+        prepared.add(DECOY_IDS[1]);
+        prepareDecoy(state, unit, skill);
+      }
+      continue;
+    }
     if (isHydraSkill(skill, skillId)) {
       if (!prepared.has('sorceress.hydra')) {
         prepared.add('sorceress.hydra');
@@ -2673,6 +2720,7 @@ function cancelInterruptedChannels(state: State): void {
 }
 
 function takeAction(state: State, unitId: string): void {
+  if (state.decoys.has(unitId)) return;
   const unit = state.units.get(unitId);
   if (!unit || !alive(unit)) return;
   if (actionIsInterrupted(state, unit)) {
@@ -2892,6 +2940,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     battleCommands: new Map(),
     boostedCommandPassives: new Set(),
     hydras: new Map(),
+    decoys: new Map(),
     periodicSpellPulses: new Map(),
     conversions: new Map(),
     ...(spiritOfBarbs ? { spiritOfBarbs } : {}),
