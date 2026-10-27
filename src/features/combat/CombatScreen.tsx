@@ -9,7 +9,7 @@
  * Below lg, each team keeps three formation columns and teams stack
  * vertically so complete names remain readable in the scrolling main.
  */
-import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import { useEffect, useMemo, useRef, useState, useCallback, type TouchEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Modal, Panel, ScreenShell, StatBar, GameCard, GameImage, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey } from '@/ui';
@@ -313,10 +313,7 @@ export function CombatScreen() {
     navigate('/map');
   };
 
-  // Bug #4 — combat-log hover-pause hint is hoisted to the combat header
-  // (top-right). The CombatLog reports pause via this setter so the badge
-  // can render compactly next to the action buttons.
-  const [logHoverPaused, setLogHoverPaused] = useState(false);
+  const [logAutoScrollPaused, setLogAutoScrollPaused] = useState(false);
 
   if (invalidRequest || entryRefused) return <ScreenShell testId="combat-screen" title={tDataKey(t, endgameDefinition.nameKey)}>
     <Panel>
@@ -376,7 +373,7 @@ export function CombatScreen() {
             </span>
           </div>
           <div className="flex flex-wrap items-center justify-start gap-2 lg:justify-end">
-            {logHoverPaused && (
+            {logAutoScrollPaused && (
               <span
                 className="text-[10px] uppercase tracking-wide text-d2-gold/90 border border-d2-gold/50 rounded px-2 py-0.5 bg-black/30"
                 data-testid="log-hover-paused-hint"
@@ -473,7 +470,7 @@ export function CombatScreen() {
             </div>
           </Panel>
         )}
-        <CombatLog entries={recentLog} onHoverPausedChange={setLogHoverPaused} />
+        <CombatLog entries={recentLog} onAutoScrollPausedChange={setLogAutoScrollPaused} />
       </div>
       {nextWaveCountingDown && !runVictory && !runDefeat && (
         <div
@@ -1168,36 +1165,67 @@ function humanizeEffectId(id: string): string {
   return id.replace(/[-_]/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
-/** Combat log: virtualized-ish (DOM only renders last MAX_LOG via slice in parent),
- *  auto-scrolls to bottom unless the user is hovering or has scrolled away.
- *  Bug #4: pause hint is now reported up to the combat header. */
+/** Render the bounded log and follow new entries unless the reader pauses it. */
 function CombatLog({
   entries,
-  onHoverPausedChange,
+  onAutoScrollPausedChange,
 }: {
   entries: CombatLogEntry[];
-  onHoverPausedChange?: (paused: boolean) => void;
+  onAutoScrollPausedChange?: (paused: boolean) => void;
 }) {
   const { t } = useTranslation('combat');
   const logContainerRef = useRef<HTMLDivElement>(null);
-  const [paused, setPaused] = useState(false);
+  const activeTouchIds = useRef(new Set<number>());
+  const scrollGesture = useRef(false);
+  const [hoverPaused, setHoverPaused] = useState(false);
+  const [touchPaused, setTouchPaused] = useState(false);
   const [pinned, setPinned] = useState(true);
+  const paused = hoverPaused || touchPaused || !pinned;
 
   useEffect(() => {
-    if (paused || !pinned) return;
-    const el = logContainerRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
-  }, [entries.length, paused, pinned]);
-
-  useEffect(() => {
-    onHoverPausedChange?.(paused);
-  }, [paused, onHoverPausedChange]);
-
-  const onScroll = () => {
     const el = logContainerRef.current;
     if (!el) return;
-    const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 24;
+    // Observe the scroll container's native keyboard scrolling without turning
+    // the live log into a custom keyboard widget or preventing browser defaults.
+    const onKeyDown = (event: KeyboardEvent) => {
+      const up = ['ArrowUp', 'PageUp', 'Home'].includes(event.key) || (event.key === ' ' && event.shiftKey);
+      const down = ['ArrowDown', 'PageDown', 'End'].includes(event.key) || (event.key === ' ' && !event.shiftKey);
+      if (up && el.scrollTop > 0) {
+        scrollGesture.current = true;
+        setPinned(false);
+      } else if (down && el.scrollTop + el.clientHeight < el.scrollHeight) scrollGesture.current = true;
+    };
+    el.addEventListener('keydown', onKeyDown);
+    return () => { el.removeEventListener('keydown', onKeyDown); };
+  }, []);
+
+  useEffect(() => {
+    if (paused) return;
+    const el = logContainerRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [entries, paused]);
+
+  useEffect(() => {
+    onAutoScrollPausedChange?.(paused);
+  }, [paused, onAutoScrollPausedChange]);
+
+  const onScroll = () => {
+    // Row replacement can trigger native scroll anchoring during a stationary
+    // hover/touch. Only reader input should unpin that paused viewport.
+    if ((hoverPaused || touchPaused) && !scrollGesture.current) return;
+    const el = logContainerRef.current;
+    if (!el) return;
+    const distance = el.scrollHeight - el.scrollTop - el.clientHeight;
+    const atBottom = scrollGesture.current ? distance <= 1 : distance < 24;
     setPinned(atBottom);
+    if (distance <= 1) scrollGesture.current = false;
+  };
+
+  const endTouches = (event: TouchEvent<HTMLDivElement>) => {
+    onScroll();
+    for (const touch of Array.from(event.changedTouches)) activeTouchIds.current.delete(touch.identifier);
+    setTouchPaused(activeTouchIds.current.size > 0);
+    if (activeTouchIds.current.size === 0) scrollGesture.current = false;
   };
 
   return (
@@ -1208,11 +1236,35 @@ function CombatLog({
       <div
         ref={logContainerRef}
         onScroll={onScroll}
-        onMouseEnter={() => { setPaused(true); }}
-        onMouseLeave={() => { setPaused(false); }}
-        className="max-h-[40vh] md:max-h-[28rem] overflow-y-auto bg-black/40 rounded p-2
-                   font-mono text-xs leading-relaxed scrollbar-d2"
+        onPointerEnter={event => { if (event.pointerType !== 'touch') setHoverPaused(true); }}
+        onPointerLeave={event => {
+          if (event.pointerType !== 'touch') { onScroll(); setHoverPaused(false); scrollGesture.current = false; }
+        }}
+        onPointerCancel={event => {
+          if (event.pointerType !== 'touch') { onScroll(); setHoverPaused(false); scrollGesture.current = false; }
+        }}
+        onPointerDown={event => { if (event.pointerType !== 'touch') scrollGesture.current = true; }}
+        onPointerUp={event => { if (event.pointerType !== 'touch') { onScroll(); scrollGesture.current = false; } }}
+        onWheel={event => {
+          const el = logContainerRef.current;
+          if (!el) return;
+          // A wheel that cannot move this viewport must not make subsequent
+          // row anchoring look like an intentional scroll away.
+          if ((event.deltaY < 0 && el.scrollTop > 0) ||
+              (event.deltaY > 0 && el.scrollTop + el.clientHeight < el.scrollHeight)) scrollGesture.current = true;
+        }}
+        onTouchStart={event => {
+          if (activeTouchIds.current.size === 0) scrollGesture.current = false;
+          for (const touch of Array.from(event.changedTouches)) activeTouchIds.current.add(touch.identifier);
+          setTouchPaused(true);
+        }}
+        onTouchMove={() => { scrollGesture.current = true; }}
+        onTouchEnd={endTouches}
+        onTouchCancel={endTouches}
+        className="max-h-[40vh] md:max-h-[28rem] overflow-y-auto [overflow-anchor:none] bg-black/40 rounded p-2
+                   font-mono text-xs leading-relaxed scrollbar-d2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold"
         role="log"
+        aria-label={t('log')}
         aria-live="polite"
         aria-relevant="additions"
         data-testid="combat-log"
