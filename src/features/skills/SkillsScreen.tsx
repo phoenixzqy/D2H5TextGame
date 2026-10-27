@@ -912,6 +912,14 @@ function StatSection({
             <StatLine label={t('details.trapCorpseBurn', { burn: t('damage-types:status.burn') })}
               value={t('details.trapCorpseBurnValue', { percent: trap.corpseBurnPercent, seconds: trap.corpseBurnSeconds })} />
           </> : null}
+          {stats.assassinFlight ? <>
+            <StatLine label={t('details.teleportDodge')}
+              value={t('details.percentagePoints', { value: stats.assassinFlight.magicDodgePercent })}
+              delta={compare?.assassinFlight ? numberDelta(stats.assassinFlight.magicDodgePercent,
+                compare.assassinFlight.magicDodgePercent, t) : null} />
+            <StatLine label={t('details.flightDuration')}
+              value={t('details.seconds', { seconds: stats.assassinFlight.durationSeconds })} />
+          </> : null}
           {stats.assassinMartial ? <>
             <StatLine label={t('details.martialCap')} value={String(stats.assassinMartial.maxStacks)} />
             <StatLine label={t('details.martialLifetime')}
@@ -1791,6 +1799,11 @@ function dynamicDescription(
       duration: t('details.seconds', { seconds: stats.decoy.durationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && stats.assassinFlight) {
+    return t('assassin.dragon-flight.desc', { min: firstDamage.min, max: firstDamage.max,
+      dodge: stats.assassinFlight.magicDodgePercent, duration: stats.assassinFlight.durationSeconds,
+      mana: stats.manaCost, cooldown: stats.cooldown });
+  }
   if (firstDamage && stats.assassinTrap) {
     const trap = stats.assassinTrap;
     return `${t('details.trapDescription.' + trap.mode, {

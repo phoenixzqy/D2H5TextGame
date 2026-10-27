@@ -335,7 +335,8 @@
     "martialBuild": "When a paid hit removes enemy HP and the caster survives, gain one charge, up to {{maxStacks}} per skill. A gain refreshes that pool to {{duration}}. Misses, full absorption, damage over time and reflected damage add none. When any pool is full, all builders pause, allowing later priority skills or basic attacks. Pools expire independently and start empty each wave. Stored ranks include Command once; allocation changes apply next wave.",
     "martialRelease": "{{finishers}} and basic attacks release every active pool once per cast on their first hit that removes enemy HP. Misses and full absorption keep charges. Multi-hit and area attacks release only against that first victim, with no extra action, mana or cooldown. Releases cannot build or release more charges. A dead caster receives no payoff. Finishers remain usable without charges.",
     "martialDamageRules": "Release adds {{percent}}% of each charge's captured-rank base as {{types}} damage, summed then rounded down. Examples below assume every charge has the displayed rank, before hit, critical, defenses and resistances. Release keeps the builder's damage types and status effects.",
-    "martialCobraRules": "Each released charge restores {{life}}% HP and steals up to {{mana}}% MP of the triggering finisher's actual enemy HP removed, rounded down. Healing is capped by missing life. MP gained equals actual MP removed from the surviving victim and is capped by missing mana. Absorption and overkill add nothing. Cobra releases no extra damage."
+    "martialCobraRules": "Each released charge restores {{life}}% HP and steals up to {{mana}}% MP of the triggering finisher's actual enemy HP removed, rounded down. Healing is capped by missing life. MP gained equals actual MP removed from the surviving victim and is capped by missing mana. Absorption and overkill add nothing. Cobra releases no extra damage.",
+    "flightDuration": "Blink duration"
   },
   "amazon": {
     "magic-arrow": {
@@ -530,7 +531,7 @@
     },
     "dragon-flight": {
       "name": "Dragon Flight",
-      "desc": "Teleports to an enemy and kicks them."
+      "desc": "Gain +{{dodge}} percentage points of magical dodge for {{duration}} s and attempt one {{min}} ~ {{max}} Physical kick. The blink starts on payment, even if the kick misses. Make one payment of {{mana}} MP; cooldown {{cooldown}} s. The blink ends on death or the next wave."
     },
     "psychic-hammer": {
       "name": "Psychic Hammer",
