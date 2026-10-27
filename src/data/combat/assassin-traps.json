@@ -1,0 +1,64 @@
+{
+  "id": "combat/assassin-traps",
+  "skills": [
+    {
+      "id": "assassin.shock_web",
+      "mode": "pulse",
+      "durationMs": 3000,
+      "intervalMs": 1000
+    },
+    {
+      "id": "assassin.charged_bolt_sentry",
+      "mode": "pulse",
+      "durationMs": 3000,
+      "intervalMs": 1000
+    },
+    {
+      "id": "assassin.wake_of_fire",
+      "mode": "pulse",
+      "durationMs": 3000,
+      "intervalMs": 1000
+    },
+    {
+      "id": "assassin.blade_sentinel",
+      "mode": "pulse",
+      "durationMs": 3000,
+      "intervalMs": 1000
+    },
+    {
+      "id": "assassin.lightning_sentry",
+      "mode": "pulse",
+      "durationMs": 3000,
+      "intervalMs": 1000
+    },
+    {
+      "id": "assassin.wake_of_inferno",
+      "mode": "pulse",
+      "durationMs": 3000,
+      "intervalMs": 1000
+    },
+    {
+      "id": "assassin.death_sentry",
+      "mode": "corpse",
+      "durationMs": 3000,
+      "intervalMs": 1000,
+      "lightning": {
+        "base": [
+          85,
+          125
+        ],
+        "perRank": [
+          7,
+          7
+        ]
+      },
+      "corpseBurnFraction": 0.1
+    },
+    {
+      "id": "assassin.blade_shield",
+      "mode": "reactive",
+      "durationMs": 6000,
+      "intervalMs": 1000
+    }
+  ]
+}

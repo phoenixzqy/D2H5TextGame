@@ -1,0 +1,304 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d2h5://schema/assassin-traps",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "skills"
+  ],
+  "properties": {
+    "id": {
+      "const": "combat/assassin-traps"
+    },
+    "skills": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "mode",
+              "durationMs",
+              "intervalMs"
+            ],
+            "properties": {
+              "id": {
+                "const": "assassin.shock_web"
+              },
+              "mode": {
+                "const": "pulse"
+              },
+              "durationMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Half-open paid lifetime; source death also ends the instance."
+              },
+              "intervalMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Pulse cadence or per-attacker reactive internal interval."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "mode",
+              "durationMs",
+              "intervalMs"
+            ],
+            "properties": {
+              "id": {
+                "const": "assassin.charged_bolt_sentry"
+              },
+              "mode": {
+                "const": "pulse"
+              },
+              "durationMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Half-open paid lifetime; source death also ends the instance."
+              },
+              "intervalMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Pulse cadence or per-attacker reactive internal interval."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "mode",
+              "durationMs",
+              "intervalMs"
+            ],
+            "properties": {
+              "id": {
+                "const": "assassin.wake_of_fire"
+              },
+              "mode": {
+                "const": "pulse"
+              },
+              "durationMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Half-open paid lifetime; source death also ends the instance."
+              },
+              "intervalMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Pulse cadence or per-attacker reactive internal interval."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "mode",
+              "durationMs",
+              "intervalMs"
+            ],
+            "properties": {
+              "id": {
+                "const": "assassin.blade_sentinel"
+              },
+              "mode": {
+                "const": "pulse"
+              },
+              "durationMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Half-open paid lifetime; source death also ends the instance."
+              },
+              "intervalMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Pulse cadence or per-attacker reactive internal interval."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "mode",
+              "durationMs",
+              "intervalMs"
+            ],
+            "properties": {
+              "id": {
+                "const": "assassin.lightning_sentry"
+              },
+              "mode": {
+                "const": "pulse"
+              },
+              "durationMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Half-open paid lifetime; source death also ends the instance."
+              },
+              "intervalMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Pulse cadence or per-attacker reactive internal interval."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "mode",
+              "durationMs",
+              "intervalMs"
+            ],
+            "properties": {
+              "id": {
+                "const": "assassin.wake_of_inferno"
+              },
+              "mode": {
+                "const": "pulse"
+              },
+              "durationMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Half-open paid lifetime; source death also ends the instance."
+              },
+              "intervalMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Pulse cadence or per-attacker reactive internal interval."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "mode",
+              "durationMs",
+              "intervalMs",
+              "lightning",
+              "corpseBurnFraction"
+            ],
+            "properties": {
+              "id": {
+                "const": "assassin.death_sentry"
+              },
+              "mode": {
+                "const": "corpse"
+              },
+              "durationMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Half-open paid lifetime; source death also ends the instance."
+              },
+              "intervalMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Pulse cadence or per-attacker reactive internal interval."
+              },
+              "lightning": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "base",
+                  "perRank"
+                ],
+                "properties": {
+                  "base": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 100000
+                    }
+                  },
+                  "perRank": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 100000
+                    }
+                  }
+                },
+                "description": "Explicit no-corpse Lightning branch, independent of authored Fire explosion."
+              },
+              "corpseBurnFraction": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1,
+                "description": "Burn fraction of actual positive Fire explosion damage."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "mode",
+              "durationMs",
+              "intervalMs"
+            ],
+            "properties": {
+              "id": {
+                "const": "assassin.blade_shield"
+              },
+              "mode": {
+                "const": "reactive"
+              },
+              "durationMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Half-open paid lifetime; source death also ends the instance."
+              },
+              "intervalMs": {
+                "type": "integer",
+                "minimum": 1000,
+                "maximum": 60000,
+                "description": "Pulse cadence or per-attacker reactive internal interval."
+              }
+            }
+          }
+        ]
+      },
+      "description": "Complete exact trap catalog; loader additionally rejects duplicate identities."
+    }
+  }
+}
