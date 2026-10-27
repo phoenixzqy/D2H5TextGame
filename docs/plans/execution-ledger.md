@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D05/D06 Assassin final reconciliation / BUG311–312 | sixteen bounded local records reconciled; independent/earned acceptance open | Final d9447414 full19927/939/two existing skips, types/lint and corrected production8/8 PASS;16coherent first-wave shadow rank proofs,16seven-domain pairs/eight actual offlineContinues. Corrected charge HP, trap, Flight and original shadow evidence retain their own heads/scopes. [Reconciliation](evidence/assassin-skill-reconciliation.md):213IDs/header/order and197other raw rows preserved;211bounded/oneunverified/onereview, Assassin29/30. Cobra BUG304 user contract and Cold Mastery review remain. Source/evidence66153a52; exact shadow archive15148members read-back verified, raw task removed, root retains archive/manifest/receipt through consumers. GenuineL33/Ancientsclaimed/Baaluncleared/next402 unchanged; G0–G7/C2–C4/full-v1 acceptance open. |
 | D04/D06 Amazon support reconciliation | five bounded local credits; independent/earned acceptance open | Valkyrie, Inner Sight, Slow Missiles, Decoy and Ice Arrow individual native/public/lifecycle evidence plus combined full19270/901/types/lint and verified6961-member retention/cleanup audited.20public cases,40ranked casts,40save pairs/20offlineContinues,200geometry. Exactly208 other raw rows/header/IDs/order unchanged;195bounded/17unverified/onereview, Amazon30/30. [Audit](evidence/fixtures/amazon-support/inventory-reconciliation.json). Slow Missiles ADR-012 Proposed; whole-app/mobile/a11y/earned/independent/private-v1 gates open. Root retains exact existing archive/sidecars; no campaign action. |
 | D05 Assassin martial charges / BUG300–304,306 | stable full/static, localized preview and24-case combat gates pass; mana/visual decisions open | Frozenfc915ddd full19576/917/two existing opt-in skipsPASS;16new native cases separately pass. Frozen8709a8db production24/24PASS1098.951s,2524repository/765external inputs exact;48rank proofs,48seven-domain pairs,24actual offlineContinues. All24mobile originals individually viewed: ally/fixed-nav/black enemy-region limits; grouped hero HP observer null in48proofs (BUG306). Cobra actual positive victimMP conflict remains BUG304/user decision pending. [Final evidence](evidence/fixtures/assassin-charges/final-checkpoint.json). No charge credit/earned/independent acceptance; raw task archived/read-back verified/exactly cleaned, root retains archive/two sidecars listed in trap evidence. |
 | D06 Assassin traps / BUG305,307–309 and compact HP / BUG306 | paid runtime/UI and final local gates pass; evidence archived/cleaned; earned/independent open | Frozen19e5d096 full19833/931/two existing skips PASS1017.115s, fulltypes147.001s/lint252.688s PASS;2539repository/four external inputs/HEAD exact. Production trap32/32 with64rank/save pairs and32actualSWContinues; portrait10/10/five sizes/both locales with20originals viewed and known SW-block harness warning. Original charge BUG306 HP/capture gaps and whole-app mobile limits remain.9685raw members read-back verified;exact9685files/one link/222dirs cleaned,remaining[]/failures[],shared target preserved. [Evidence and retained archive paths](evidence/d06-assassin-traps.md). No new inventory/campaign/earned/independent acceptance. |
@@ -13721,3 +13722,34 @@ archives/two sidecars each through full-v1/independent consumers. Inventory195/
 BUG304 still needs its user design decision. Next decisive actual shadow charge/
 trap integration; no campaign/replay, delegation, remote action or self-signoff.
 Full privatev1 and registered worktree remain active.
+
+## 2026-10-27 — Final shadow evidence and sixteen skill records reconciled
+
+Previous goal turn was a requested read-only progress report, with no
+implementation progress. This continuation rechecks registry ownership/current
+source/retention and commits66153a52: final shadow packet, corrected current
+Master policy, BUG311/312 local resolutions and bounded evidence. Frozen
+d9447414 full19927/939/twoexisting-skips PASS1111.903s, fulltypes180.496s and
+lint317.945s PASS;2552repository/770external inputs/HEAD exact. Corrected
+production8/8PASS311.896s:16first-wave proofs/zero priorwaves,16seven-domain
+pairs/eight actual offlineContinues,80geometry/32decodedPNGs. Exactly16mobile
+matrix originals and two desktop probe originals individually viewed. Original
+cross-wave8/8 and later miss/death failures remain retained, not accepted.
+
+Shadow archive15148regular members/1612139625raw bytes read-back verified;
+publication independently rehashes archive/manifest/draft member/12source paths
+and verifies raw-root absence. Exact15148files/one shared-target link/60dirs
+removed,remaining[]/failures[], shared deps intact. Root retains the exact
+archive/manifest/receipt in the packet through full-v1/independent consumers and
+owns eventual removal.23restricted PIDs in consumer scans remain disclosed.
+
+The separate reconciliation audits five non-Cobra builders, eight traps, Flight
+and both shadows against actual current consumers and retained source/native/
+public/lifecycle evidence. Exactly16four-field CSV updates; all197other raw rows,
+213IDs/header/order preserved. Counts195→211bounded,17→1unverified,one review
+unchanged; Assassin29/30bounded locally. [Audit and limits](evidence/assassin-skill-reconciliation.md).
+No independent, earned-build/balance, whole-app mobile/a11y, performance, soak or
+full-v1 acceptance. BUG304 still needs its user contract decision; Cold Mastery
+stays review-needed. GenuineL33/Ancients-Rite/next402/Baaluncleared and protected
+hashes unchanged. No campaign/replay, delegation or remote action. Root sole
+executor; full privatev1 and claimed worktree continue.

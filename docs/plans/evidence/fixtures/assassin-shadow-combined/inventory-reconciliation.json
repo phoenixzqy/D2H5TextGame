@@ -1,0 +1,753 @@
+{
+  "status": "Local bounded-functional reconciliation only; independent/earned/full-v1 acceptance open",
+  "at": "2026-10-27T12:47:33.929824+00:00",
+  "owner": "root; sole executor; no independent approval",
+  "headBefore": "66153a52c22429c53d4f857eff522c134cafa3cf",
+  "inventory": "docs/plans/skill-inventory.csv",
+  "beforeSHA256": "51b719c80f8ff1944aea9d4f740664e424b78b86d8c8e4c76cd0281a263c841d",
+  "afterSHA256": "bbbbc2d64745794c32c3bcfa9da804004fd8d0a90ceea9c5146ce1f82f827715",
+  "rowCount": 213,
+  "changedRows": 16,
+  "unchangedRawRows": 197,
+  "headerAndOrderPreserved": true,
+  "unchangedRawRowsSHA256": "c65aece488426b414b3b96f39e1cc90be4c49f5ba5b931cae8a12a8a02077a55",
+  "beforeCounts": {
+    "bounded-functional;independent-acceptance-open": 192,
+    "unverified": 17,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "afterCounts": {
+    "bounded-functional;independent-acceptance-open": 208,
+    "unverified": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "remainingUnverified": ["skills-assassin-cobra-strike"],
+  "remainingReview": ["skills-sorceress-cold-mastery"],
+  "rows": [
+    {
+      "dataId": "skills-assassin-shock-web",
+      "runtimeId": "assassin.shock_web",
+      "group": "trap",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-traps.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-shock-web",
+        "runtime_id": "assassin.shock_web",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "paralyze",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-shock-web",
+        "runtime_id": "assassin.shock_web",
+        "trigger": "active",
+        "adapter_route": "native-paid-finite-trap+scheduled-autonomous-pulses",
+        "declared_statuses": "paralyze",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-assassin-traps-v1.md|docs/plans/evidence/d06-assassin-traps.md|docs/plans/evidence/fixtures/assassin-traps/integration-followup.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-traps.ts"
+      },
+      "originalRowSHA256": "b9fae558e6e3b67807766f3cea288484e0aab474beeffab400211890a0d6c56d"
+    },
+    {
+      "dataId": "skills-assassin-phoenix-strike",
+      "runtimeId": "assassin.phoenix_strike",
+      "group": "charge",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-charges.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-phoenix-strike",
+        "runtime_id": "assassin.phoenix_strike",
+        "trigger": "active",
+        "adapter_route": "shared-roll-typed-components+real-statuses",
+        "declared_statuses": "burn|chill|paralyze",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "on-hit-burn-repaired|charge-build-runtime-and-independent-acceptance-open",
+        "behavior_verification": "unverified",
+        "contract_evidence": "docs/plans/evidence/d04-assassin-burn-repro.md|production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md|docs/plans/evidence/d04-assassin-fire.md|docs/plans/decisions/D04-assassin-fire-v1.md|production/bugs/BUG-206-phoenix-summary-omits-components.md"
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-phoenix-strike",
+        "runtime_id": "assassin.phoenix_strike",
+        "trigger": "active",
+        "adapter_route": "native-paid-martial-builder+private-capped-charge+once-per-finisher-discharge",
+        "declared_statuses": "burn|chill|paralyze",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/evidence/d04-assassin-burn-repro.md|production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md|docs/plans/evidence/d04-assassin-fire.md|docs/plans/decisions/D04-assassin-fire-v1.md|production/bugs/BUG-206-phoenix-summary-omits-components.md|docs/plans/decisions/D05-assassin-martial-charges-v1.md|docs/plans/evidence/d05-assassin-martial-charges.md|docs/plans/evidence/fixtures/assassin-charges/compact-hp-checkpoint.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-charges.ts"
+      },
+      "originalRowSHA256": "341ad21f626b04a3470abf26074f9bc4349fa6d5f210ef19af3cbcede2293882"
+    },
+    {
+      "dataId": "skills-assassin-tiger-strike",
+      "runtimeId": "assassin.tiger_strike",
+      "group": "charge",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-charges.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-tiger-strike",
+        "runtime_id": "assassin.tiger_strike",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-tiger-strike",
+        "runtime_id": "assassin.tiger_strike",
+        "trigger": "active",
+        "adapter_route": "native-paid-martial-builder+private-capped-charge+once-per-finisher-discharge",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D05-assassin-martial-charges-v1.md|docs/plans/evidence/d05-assassin-martial-charges.md|docs/plans/evidence/fixtures/assassin-charges/compact-hp-checkpoint.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-charges.ts"
+      },
+      "originalRowSHA256": "c3582a41fef45150d0ec2bcb3a65639edfe436ad88cd90f75b9a8e9cc3d666b2"
+    },
+    {
+      "dataId": "skills-assassin-fists-of-fire",
+      "runtimeId": "assassin.fists_of_fire",
+      "group": "charge",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-charges.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-fists-of-fire",
+        "runtime_id": "assassin.fists_of_fire",
+        "trigger": "active",
+        "adapter_route": "damage+explicit-on-hit-burn",
+        "declared_statuses": "burn",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "on-hit-burn-repaired|charge-runtime-open",
+        "behavior_verification": "unverified",
+        "contract_evidence": "docs/plans/evidence/d04-assassin-burn-repro.md|production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md|docs/plans/evidence/d04-assassin-fire.md|docs/plans/decisions/D04-assassin-fire-v1.md"
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-fists-of-fire",
+        "runtime_id": "assassin.fists_of_fire",
+        "trigger": "active",
+        "adapter_route": "native-paid-martial-builder+private-capped-charge+once-per-finisher-discharge",
+        "declared_statuses": "burn",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/evidence/d04-assassin-burn-repro.md|production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md|docs/plans/evidence/d04-assassin-fire.md|docs/plans/decisions/D04-assassin-fire-v1.md|docs/plans/decisions/D05-assassin-martial-charges-v1.md|docs/plans/evidence/d05-assassin-martial-charges.md|docs/plans/evidence/fixtures/assassin-charges/compact-hp-checkpoint.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-charges.ts"
+      },
+      "originalRowSHA256": "e30005c6a8b62930890ea72d4e01d8d763a23e86bdd5bb17a82e2336e2dfbc40"
+    },
+    {
+      "dataId": "skills-assassin-claws-of-thunder",
+      "runtimeId": "assassin.claws_of_thunder",
+      "group": "charge",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-charges.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-claws-of-thunder",
+        "runtime_id": "assassin.claws_of_thunder",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-claws-of-thunder",
+        "runtime_id": "assassin.claws_of_thunder",
+        "trigger": "active",
+        "adapter_route": "native-paid-martial-builder+private-capped-charge+once-per-finisher-discharge",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D05-assassin-martial-charges-v1.md|docs/plans/evidence/d05-assassin-martial-charges.md|docs/plans/evidence/fixtures/assassin-charges/compact-hp-checkpoint.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-charges.ts"
+      },
+      "originalRowSHA256": "bc21129e6c18d448027575c6547e9c69cdb1b4850a5d0f811e2f4d949e797559"
+    },
+    {
+      "dataId": "skills-assassin-blades-of-ice",
+      "runtimeId": "assassin.blades_of_ice",
+      "group": "charge",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-charges.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-blades-of-ice",
+        "runtime_id": "assassin.blades_of_ice",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "chill",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-blades-of-ice",
+        "runtime_id": "assassin.blades_of_ice",
+        "trigger": "active",
+        "adapter_route": "native-paid-martial-builder+private-capped-charge+once-per-finisher-discharge",
+        "declared_statuses": "chill",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D05-assassin-martial-charges-v1.md|docs/plans/evidence/d05-assassin-martial-charges.md|docs/plans/evidence/fixtures/assassin-charges/compact-hp-checkpoint.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-charges.ts"
+      },
+      "originalRowSHA256": "4da356da76a5578939cf5ec85465c61dbd74ab1847b1b2ea54abb44b05264ced"
+    },
+    {
+      "dataId": "skills-assassin-dragon-flight",
+      "runtimeId": "assassin.dragon_flight",
+      "group": "flight",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-flight.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-dragon-flight",
+        "runtime_id": "assassin.dragon_flight",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-dragon-flight",
+        "runtime_id": "assassin.dragon_flight",
+        "trigger": "active",
+        "adapter_route": "native-paid-blink+unchanged-physical-kick+martial-finisher",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-assassin-flight-v1.md|docs/plans/evidence/d06-assassin-flight.md|docs/plans/evidence/fixtures/assassin-flight/integrated-checkpoint.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-flight.ts"
+      },
+      "originalRowSHA256": "7a7796f9a8483e43080109f1af6fe8b49905d73533b863498bb59871f087b122"
+    },
+    {
+      "dataId": "skills-assassin-shadow-warrior",
+      "runtimeId": "assassin.shadow_warrior",
+      "group": "shadow",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-shadow-skills.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-shadow-warrior",
+        "runtime_id": "assassin.shadow_warrior",
+        "trigger": "active",
+        "adapter_route": "summon",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-shadow-warrior",
+        "runtime_id": "assassin.shadow_warrior",
+        "trigger": "active",
+        "adapter_route": "paid-native-summon+captured-selected-learned-attacks+own-mana-cooldowns",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-assassin-shadow-skills-v1.md|docs/plans/evidence/d06-assassin-shadow-skills.md|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-shadow-skills.ts"
+      },
+      "originalRowSHA256": "6de2b201d2d9964da2e404f7310e191a5f57a2a3863daee7f859ed980d27817d"
+    },
+    {
+      "dataId": "skills-assassin-shadow-master",
+      "runtimeId": "assassin.shadow_master",
+      "group": "shadow",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-shadow-skills.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-shadow-master",
+        "runtime_id": "assassin.shadow_master",
+        "trigger": "active",
+        "adapter_route": "summon",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-shadow-master",
+        "runtime_id": "assassin.shadow_master",
+        "trigger": "active",
+        "adapter_route": "paid-native-summon+authored-independent-priority+own-mana-cooldowns",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-assassin-shadow-skills-v1.md|docs/plans/evidence/d06-assassin-shadow-skills.md|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-shadow-skills.ts"
+      },
+      "originalRowSHA256": "8199b2c031eac371919326ddbc9481760310f76949c0e510b35a87b3d52c8904"
+    },
+    {
+      "dataId": "skills-assassin-charged-bolt-sentry",
+      "runtimeId": "assassin.charged_bolt_sentry",
+      "group": "trap",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-traps.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-charged-bolt-sentry",
+        "runtime_id": "assassin.charged_bolt_sentry",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-charged-bolt-sentry",
+        "runtime_id": "assassin.charged_bolt_sentry",
+        "trigger": "active",
+        "adapter_route": "native-paid-finite-trap+scheduled-autonomous-pulses",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-assassin-traps-v1.md|docs/plans/evidence/d06-assassin-traps.md|docs/plans/evidence/fixtures/assassin-traps/integration-followup.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-traps.ts"
+      },
+      "originalRowSHA256": "ad66f1999e36f3dcc872d7afc9f5b83816e06d2212487ed8f62867415f88c7f4"
+    },
+    {
+      "dataId": "skills-assassin-wake-of-fire",
+      "runtimeId": "assassin.wake_of_fire",
+      "group": "trap",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-traps.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-wake-of-fire",
+        "runtime_id": "assassin.wake_of_fire",
+        "trigger": "active",
+        "adapter_route": "damage+explicit-on-hit-burn",
+        "declared_statuses": "burn",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "on-hit-burn-repaired|persistent-trap-runtime-open",
+        "behavior_verification": "unverified",
+        "contract_evidence": "docs/plans/evidence/d04-assassin-burn-repro.md|production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md|docs/plans/evidence/d04-assassin-fire.md|docs/plans/decisions/D04-assassin-fire-v1.md"
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-wake-of-fire",
+        "runtime_id": "assassin.wake_of_fire",
+        "trigger": "active",
+        "adapter_route": "native-paid-finite-trap+scheduled-autonomous-pulses",
+        "declared_statuses": "burn",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/evidence/d04-assassin-burn-repro.md|production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md|docs/plans/evidence/d04-assassin-fire.md|docs/plans/decisions/D04-assassin-fire-v1.md|docs/plans/decisions/D06-assassin-traps-v1.md|docs/plans/evidence/d06-assassin-traps.md|docs/plans/evidence/fixtures/assassin-traps/integration-followup.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-traps.ts"
+      },
+      "originalRowSHA256": "a1b6756a4cf02fc140e09e77443546ef1d3e8020a772193cc7a1e92d5a676b32"
+    },
+    {
+      "dataId": "skills-assassin-blade-sentinel",
+      "runtimeId": "assassin.blade_sentinel",
+      "group": "trap",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-traps.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-blade-sentinel",
+        "runtime_id": "assassin.blade_sentinel",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-blade-sentinel",
+        "runtime_id": "assassin.blade_sentinel",
+        "trigger": "active",
+        "adapter_route": "native-paid-finite-trap+scheduled-autonomous-pulses",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-assassin-traps-v1.md|docs/plans/evidence/d06-assassin-traps.md|docs/plans/evidence/fixtures/assassin-traps/integration-followup.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-traps.ts"
+      },
+      "originalRowSHA256": "cfb35478535109727d3080aedf97018c60d7cdb5e890fcaa06247bea259c202a"
+    },
+    {
+      "dataId": "skills-assassin-lightning-sentry",
+      "runtimeId": "assassin.lightning_sentry",
+      "group": "trap",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-traps.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-lightning-sentry",
+        "runtime_id": "assassin.lightning_sentry",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-lightning-sentry",
+        "runtime_id": "assassin.lightning_sentry",
+        "trigger": "active",
+        "adapter_route": "native-paid-finite-trap+scheduled-autonomous-pulses",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-assassin-traps-v1.md|docs/plans/evidence/d06-assassin-traps.md|docs/plans/evidence/fixtures/assassin-traps/integration-followup.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-traps.ts"
+      },
+      "originalRowSHA256": "4827fb56e8e9e0eeaa22cfbdb212a67d727362a101e5ef9bed615f3d375c4555"
+    },
+    {
+      "dataId": "skills-assassin-wake-of-inferno",
+      "runtimeId": "assassin.wake_of_inferno",
+      "group": "trap",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-traps.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-wake-of-inferno",
+        "runtime_id": "assassin.wake_of_inferno",
+        "trigger": "active",
+        "adapter_route": "damage+explicit-on-hit-burn",
+        "declared_statuses": "burn",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "on-hit-burn-repaired|persistent-trap-runtime-open",
+        "behavior_verification": "unverified",
+        "contract_evidence": "docs/plans/evidence/d04-assassin-burn-repro.md|production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md|docs/plans/evidence/d04-assassin-fire.md|docs/plans/decisions/D04-assassin-fire-v1.md"
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-wake-of-inferno",
+        "runtime_id": "assassin.wake_of_inferno",
+        "trigger": "active",
+        "adapter_route": "native-paid-finite-trap+scheduled-autonomous-pulses",
+        "declared_statuses": "burn",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/evidence/d04-assassin-burn-repro.md|production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md|docs/plans/evidence/d04-assassin-fire.md|docs/plans/decisions/D04-assassin-fire-v1.md|docs/plans/decisions/D06-assassin-traps-v1.md|docs/plans/evidence/d06-assassin-traps.md|docs/plans/evidence/fixtures/assassin-traps/integration-followup.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-traps.ts"
+      },
+      "originalRowSHA256": "8e7933cc4dfc0617c7f4ea03258f302b08367dafdf3be6f5ff21a484c50f0504"
+    },
+    {
+      "dataId": "skills-assassin-death-sentry",
+      "runtimeId": "assassin.death_sentry",
+      "group": "trap",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-traps.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-death-sentry",
+        "runtime_id": "assassin.death_sentry",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "burn",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "lightning-trap-corpse-identity-open-and-burn-still-unpowered",
+        "behavior_verification": "unverified",
+        "contract_evidence": "docs/plans/evidence/d04-assassin-burn-repro.md|production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md|docs/plans/evidence/d04-assassin-fire.md"
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-death-sentry",
+        "runtime_id": "assassin.death_sentry",
+        "trigger": "active",
+        "adapter_route": "native-paid-finite-trap+shared-fifo-corpse-fire-or-lightning-pulses",
+        "declared_statuses": "burn",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/evidence/d04-assassin-burn-repro.md|production/bugs/BUG-205-assassin-burn-missing-periodic-damage.md|docs/plans/evidence/d04-assassin-fire.md|docs/plans/decisions/D06-assassin-traps-v1.md|docs/plans/evidence/d06-assassin-traps.md|docs/plans/evidence/fixtures/assassin-traps/integration-followup.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-traps.ts"
+      },
+      "originalRowSHA256": "d4343904bfb93315f39b8fdd410bdc9aefd0cce8710d5e7fdd4adf87a7274d3a"
+    },
+    {
+      "dataId": "skills-assassin-blade-shield",
+      "runtimeId": "assassin.blade_shield",
+      "group": "trap",
+      "consumers": [
+        "src/stores/combatHelpers.ts",
+        "src/engine/combat/combat.ts",
+        "src/engine/skills/assassin-traps.ts"
+      ],
+      "before": {
+        "class": "assassin",
+        "data_id": "skills-assassin-blade-shield",
+        "runtime_id": "assassin.blade_shield",
+        "trigger": "active",
+        "adapter_route": "damage",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "",
+        "behavior_verification": "unverified",
+        "contract_evidence": ""
+      },
+      "after": {
+        "class": "assassin",
+        "data_id": "skills-assassin-blade-shield",
+        "runtime_id": "assassin.blade_shield",
+        "trigger": "active",
+        "adapter_route": "native-paid-finite-reactive-counter+ordinary-physical-hp-loss-trigger",
+        "declared_statuses": "",
+        "source": "src/data/skills/assassin.json",
+        "risk_flags": "provisional-tuning|independent-acceptance-open|earned-build-balance-open",
+        "behavior_verification": "bounded-functional;independent-acceptance-open",
+        "contract_evidence": "docs/plans/decisions/D06-assassin-traps-v1.md|docs/plans/evidence/d06-assassin-traps.md|docs/plans/evidence/fixtures/assassin-traps/integration-followup.json|docs/plans/evidence/d06-assassin-shadow-combined.md|docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json|src/stores/combatHelpers.ts|src/engine/combat/combat.ts|src/engine/skills/assassin-traps.ts"
+      },
+      "originalRowSHA256": "41b7100cd2f8ef948e4e27144af5ff84f330e2cc1ac1f1048f050f179cceac50"
+    }
+  ],
+  "evidenceAndConsumerHashes": {
+    "docs/plans/decisions/D05-assassin-martial-charges-v1.md": "d76e160b3b772f1ecb17e692c3ca7e171a2c0437f3b1af10d08045f7a8afc436",
+    "docs/plans/decisions/D06-assassin-flight-v1.md": "c28d9012ff91c641ead8a184a04d0cfd6b0252293aa7fc2a5aa4beaa438dfeab",
+    "docs/plans/decisions/D06-assassin-shadow-skills-v1.md": "098270590cc6ccb59ef86e72f6af3de24b77177e38b8c83f39959ef6cf412758",
+    "docs/plans/decisions/D06-assassin-traps-v1.md": "5f347dbf6d92742d5faad94260907f9e7ee3951a259048c729afc3cb1ee411a8",
+    "docs/plans/evidence/d05-assassin-martial-charges.md": "f096405118f77ae2079d93325b83aed65896b6e31331b1ce8f53a70c6e33eea1",
+    "docs/plans/evidence/d06-assassin-flight.md": "31adf16091c78d60ad63bf4314f71a8e0c93fb965acbced0fd75b3dc2de7b0a0",
+    "docs/plans/evidence/d06-assassin-shadow-combined.md": "b8427f8b6db3f09c5672b3e8ddcf0ec1da0dacc20468d5090e81914f5c014397",
+    "docs/plans/evidence/d06-assassin-shadow-skills.md": "1692bf10fb5f377acaea7c54d44605dc1eb3ed5365c33006c193f3797356c81d",
+    "docs/plans/evidence/d06-assassin-traps.md": "12a475763a202a1a96c48ff10ab11752f481fddadd9149c6a08e483e978cf3a2",
+    "docs/plans/evidence/fixtures/assassin-charges/compact-hp-checkpoint.json": "9aff1018b26360dbab052a0e9fd653fb7c4b55637f74d83317b48ed344e6b14e",
+    "docs/plans/evidence/fixtures/assassin-flight/integrated-checkpoint.json": "9794a5b5bfbe8320bfce4b70088b30f63772243b81be7c12f2b618256d4ad982",
+    "docs/plans/evidence/fixtures/assassin-shadow-combined/integrated-checkpoint.json": "01a86529611258c55cf6305eda0c51bd13f6480544c32aea0a0d466b51f1756f",
+    "docs/plans/evidence/fixtures/assassin-traps/integration-followup.json": "4ba52e82517689e48c6d3bda229878f4df06674ccb8e1f74a4d5909d97572bc7",
+    "src/engine/combat/combat.ts": "735a74aa9216541af53b1c87f54daf8d52b09a4553ed6400d2ac22ea4e223b71",
+    "src/engine/skills/assassin-charges.ts": "36d9f8c29bd8ce881f9a712b188b2241659621d4e508bbd04ede7b55ad52c032",
+    "src/engine/skills/assassin-flight.ts": "1ac680faa5db493191fbd31898b253f28b42ca4b1cdbaada14db87d75ff1cff2",
+    "src/engine/skills/assassin-shadow-skills.ts": "9b655b8576fe36cb51da0cbeed7af91cce521a320023de9e18a945467c672f94",
+    "src/engine/skills/assassin-traps.ts": "5e6cacf49ed599fde8f208cc3ada1d64ded40bcf892adea9a8489e06aef94bbf",
+    "src/stores/combatHelpers.ts": "05441eacfc33cd28ae68319c8f434a9ed0622f70e4b8c6704199497edfa590dc"
+  },
+  "integratedSourceHead": "d944741436fd73e9bf218f8c30d743156606dd63",
+  "integratedChecks": {
+    "shadow-final-matrix": {
+      "label": "shadow-final-matrix",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "tests/pwa/assassin-shadow-combined.config.ts",
+        "--workers",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 311.89563243009616,
+      "inputsUnchanged": true,
+      "inputCount": 2552,
+      "externalInputCount": 770,
+      "externalInputsUnchanged": true,
+      "headBefore": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headAfter": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headUnchanged": true,
+      "totals": ["8 passed (5.2m)"]
+    },
+    "shadow-full-unit": {
+      "label": "shadow-full-unit",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 1111.9028305460233,
+      "inputsUnchanged": true,
+      "inputCount": 2552,
+      "externalInputCount": 770,
+      "externalInputsUnchanged": true,
+      "headBefore": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headAfter": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headUnchanged": true,
+      "totals": ["Test Files  939 passed (939)", "Tests  19927 passed | 2 skipped (19929)"]
+    },
+    "shadow-full-types": {
+      "label": "shadow-full-types",
+      "command": ["npm", "run", "typecheck"],
+      "exit": 0,
+      "seconds": 180.49558845208958,
+      "inputsUnchanged": true,
+      "inputCount": 2552,
+      "externalInputCount": 770,
+      "externalInputsUnchanged": true,
+      "headBefore": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headAfter": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-full-lint": {
+      "label": "shadow-full-lint",
+      "command": ["npm", "run", "lint"],
+      "exit": 0,
+      "seconds": 317.94462719303556,
+      "inputsUnchanged": true,
+      "inputCount": 2552,
+      "externalInputCount": 770,
+      "externalInputsUnchanged": true,
+      "headBefore": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headAfter": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headUnchanged": true,
+      "totals": []
+    }
+  },
+  "limits": [
+    "Constructed L30/imported equipment/prior-act fixtures, not earned campaign/build/balance.",
+    "Warrior public attacks learned1 at summon1/20; native combined tests separately prove copied learned20/captured20. Master independently casts rank1/20 with owner learning/selecting none of those attacks.",
+    "Rank20 Master uses authored ActV enemies for durable4hit witness; others use ActIII. No tuning changed. Rank1 Warrior ActV death remains unaccepted.",
+    "Three separate browser Fire batches are not wall-clock schedule proof; native tests assert exact1000ms intervals.",
+    "BUG304 actual positive victim-MP transfer remains a design conflict; no Cobra credit. Cold Mastery remains review-needed.",
+    "No independent approval, earned build/campaign, whole-app mobile/a11y, physical touch, performance, soak or full-v1 acceptance.",
+    "No earned campaign/replay, remote publication, push/PR/merge/deployment or shared-cache deletion."
+  ],
+  "genuine": {
+    "fixture": "docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
+    "compressedSHA256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "rawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "unchanged": true,
+    "campaign": "L33; Ancients/Rite claimed; Baal uncleared; nextNormal402",
+    "actions": "No earned campaign, replay or genuine-save action performed."
+  },
+  "retention": {
+    "shadowArchive": {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e-raw.tar.gz",
+      "bytes": 1405619111,
+      "sha256": "68ba1103eb82279bb824cbfbd696d8efb296f050319264ce16cb5b07b9170955",
+      "members": 15148,
+      "rawBytes": 1612139625,
+      "allMembersReadBackVerified": true
+    },
+    "shadowReceipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e-retention.json",
+    "priorArchives": {
+      "artifacts": [
+        {
+          "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc-retention.json",
+          "receiptSHA256": "38385ca70b2f09bc0ac9436cf0744e1c34cb4a29821272d03ef2c619b06b7096",
+          "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc-raw.tar.gz",
+          "archiveSHA256": "aefbd85143cebde653daf664e98c8efa8f520c0525f52100072ff816be7bcd96",
+          "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc-raw-manifest.json",
+          "manifestSHA256": "ade73cbe24df4ef89f382f0748f20ab7b8db73fd083faedc3ada9126431f9204",
+          "members": 9685,
+          "priorReadbackVerified": true,
+          "priorCleanupVerified": true
+        },
+        {
+          "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj-retention.json",
+          "receiptSHA256": "885c675faa2b372a45ba8a31b015173b9c807e0780259a0aeb76386ec0d3426f",
+          "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj-raw.tar.gz",
+          "archiveSHA256": "a4542b02eb70b426836d714a79d5cc6570f7b85404c0825210a8d4611a8ed81d",
+          "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj-raw-manifest.json",
+          "manifestSHA256": "63f00e9efa1c9413ac66cc643da420586c0d808f1162a6c6ffa9450db630823d",
+          "members": 2143,
+          "priorReadbackVerified": true,
+          "priorCleanupVerified": true
+        },
+        {
+          "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy-retention.json",
+          "receiptSHA256": "74d834b028f85f7eb6c15ed728d90ce45ba944e89a41098f7ebd98e7acb739f9",
+          "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy-raw.tar.gz",
+          "archiveSHA256": "95b70fb419bef2988cb793a19c5f7fd4e7c65233dc42feb73d142353ed905d0e",
+          "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy-raw-manifest.json",
+          "manifestSHA256": "334c16626c453824e71049653439ef838c67ed409e8908f321f892ae52220ab5",
+          "members": 291,
+          "priorReadbackVerified": true,
+          "priorCleanupVerified": true
+        }
+      ],
+      "scope": "Three prior charge/trap, correctedHP and Flight archives/manifest hashes rechecked as current skill-disposition evidence; no archive or shared cache deletion."
+    },
+    "owner": "root retains through full-v1/independent consumers and owns eventual removal; no new disposable artifacts created"
+  }
+}
