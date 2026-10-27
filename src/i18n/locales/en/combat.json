@@ -136,7 +136,6 @@
       "howl": "Fear",
       "taunt": "Taunted",
       "battle-cry": "Battle Cry",
-
       "spirit-of-barbs": "Spirit of Barbs",
       "oak-sage": "Oak Sage",
       "heart-of-wolverine": "Heart of Wolverine",
@@ -229,7 +228,8 @@
       "enchant": "Enchant"
     },
     "martialCharge": "{{skill}} charges {{stacks}}/{{maxStacks}} · {{seconds}}s",
-    "assassinTrap": "{{skill}} · {{seconds}}s"
+    "assassinTrap": "{{skill}} · {{seconds}}s",
+    "assassinFlight": "{{skill}} · {{seconds}}s"
   },
   "log_lines": {
     "hit": "{{attacker}} hits {{target}} for {{amount}} {{type}} damage.",
@@ -256,7 +256,7 @@
     "manaOrb": "{{actor}} picks up a Mana Orb, restoring {{amount}} MP."
   },
   "status": {
-      "spirit-of-barbs": "Spirit of Barbs",
+    "spirit-of-barbs": "Spirit of Barbs",
     "applied": "{{target}} is afflicted with [{{status}}] ({{stacks}} stacks).",
     "appliedSimple": "{{target}} is afflicted with [{{status}}].",
     "expired": "{{target}}'s [{{status}}] expires.",

@@ -136,7 +136,6 @@
       "howl": "恐惧",
       "taunt": "被嘲讽",
       "battle-cry": "战斗呐喊",
-
       "spirit-of-barbs": "棘灵",
       "oak-sage": "橡树智者",
       "heart-of-wolverine": "狼獾之心",
@@ -229,7 +228,8 @@
       "enchant": "附魔"
     },
     "martialCharge": "{{skill}} 蓄气 {{stacks}}/{{maxStacks}} · {{seconds}}秒",
-    "assassinTrap": "{{skill}} · {{seconds}}秒"
+    "assassinTrap": "{{skill}} · {{seconds}}秒",
+    "assassinFlight": "{{skill}} · {{seconds}}秒"
   },
   "log_lines": {
     "hit": "{{attacker}} 对 {{target}} 造成 {{amount}} 点{{type}}伤害。",
@@ -256,7 +256,7 @@
     "manaOrb": "{{actor}} 拾取了法力之球，恢复 {{amount}} 点法力。"
   },
   "status": {
-      "spirit-of-barbs": "棘灵",
+    "spirit-of-barbs": "棘灵",
     "applied": "{{target}} 进入【{{status}}】状态 ({{stacks}} 层)。",
     "appliedSimple": "{{target}} 进入【{{status}}】状态。",
     "expired": "{{target}} 的【{{status}}】结束。",
