@@ -13956,3 +13956,26 @@ rawroot removed,remaining[]/failures[]; root retains listed sidecars through
 independent/full-v1 consumers. Full goal/umbrella claim remain active; C2 broader
 integration/independent, C3/C4/fullG0-G7/builds/pacing/economy/endgame/mobile/a11y/
 performance/PWA/soak/human acceptance stay open. Local only; no remote action.
+
+## P18 actual-earned build qualification and next genuine protocol
+
+Original pilot64381 and expanded qualification67145 finish0; both consumed.
+Separate artifact audit verifies96native routes/384original wave recordings.
+Ashen and Glacial each pass32/32qualification,16/16secondhalf,16/16disjointholdout
+under the predeclared policy. Original genuineL35stats/ranks/gear/mercenary/
+priority unchanged; only diagnostic attemptordinal varies. Native sources prove
+BloodLordFireBreath/fire/Ignite and FrozenTerrorFrostAura/cold/Chill on allies;
+mercenary chill excluded. Pilot last.at/seconds0 is invalid timing; corrected
+artifact audit uses actualsimClockMs without rerunning. Combat-only timings
+cannot prove active-hour pacing. [Evidence](evidence/p18-earned-endgame-qualification.md)
+and [frozen genuine protocol](p18-earned-endgame.md) retain scope and recovery.
+
+Genuine endgame attempt remains0/bothclear0/unclaimed. Next predetermined sequence
+is Ashen0,Ashen1,Ashen2,Glacial3, then once-onlyClaim/title and legal ownedcap
+perfectruby utility; every consumed action and firstnonwin/tooling prefix must
+be preserved. Plan review corrected invented manual nextwave control to authored
+1.5second automatic advance. Deliberate loss/retry experiments use disposable
+copies after genuine retention and are never promoted. No balance tuning or
+newpower required for this bounded route;14builds/P18/fullv1 remain unaccepted.
+Raw archive/readback/exact cleanup runs in original65632; receipt is authoritative
+before cleanup success is claimed. Full objective/umbrella claim stay active.
