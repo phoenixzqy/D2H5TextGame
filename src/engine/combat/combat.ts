@@ -1430,6 +1430,11 @@ function hasAvailableEffect(state: State, actorId: string, skill: RegisteredSkil
 function matchesSlowMissiles(skill: RegisteredSkill): boolean {
   const effect = skill.effects[0];
   return SLOW_MISSILES_IDS.some(id => id === skill.id) && skill.archetype === 'amazon' &&
+    skill.trigger === 'active' && skill.isBuff !== true && skill.summonOnStart !== true &&
+    skill.requires === undefined && skill.aoeShape === undefined && skill.maxTargets === undefined &&
+    skill.manaCost === SLOW_MISSILES_DEFINITION.manaCost && skill.cooldown === SLOW_MISSILES_DEFINITION.cooldown &&
+    skill.manaCostPerRank === SLOW_MISSILES_DEFINITION.costPerRank &&
+    skill.cooldownPerRank === SLOW_MISSILES_DEFINITION.cooldownPerRank &&
     skill.target === 'all-enemies' && skill.minLevel === SLOW_MISSILES_DEFINITION.requiredLevel &&
     skill.effects.length === 1 && effect?.kind === 'debuff' && effect.statusId === 'slow-missiles' &&
     effect.slowMissiles === true && effect.durationMs === SLOW_MISSILES_DEFINITION.durationMs;

@@ -24,10 +24,10 @@ it('accepts finite authored tuning and rejects incomplete or unrelated packets',
 it('copies exactly one complete definition without retaining mutable data', async () => {
  const { resolveSlowMissilesDefinition, SLOW_MISSILES_DEFINITION } = await import('./slow-missiles');
  const r = row(), before = structuredClone(r), d = resolveSlowMissilesDefinition([r]);
- expect(d).toEqual({ durationMs: 6000, projectileSpeedPct: 33, requiredLevel: 12, maxRank: 20 });
+ expect(d).toEqual({ durationMs: 6000, projectileSpeedPct: 33, requiredLevel: 12, maxRank: 20, manaCost: 10, cooldown: 3, costPerRank: -.1, cooldownPerRank: -.05 });
  expect(d).toEqual(SLOW_MISSILES_DEFINITION); expect(Object.isFrozen(d)).toBe(true); expect(r).toEqual(before);
  for (const list of [[], [r, r], [null, 42, {}], [{ ...r, statusEffect: {} }]])
   expect(() => resolveSlowMissilesDefinition(list)).toThrow(/Slow Missiles/);
  expect(resolveSlowMissilesDefinition([{ ...r, statusEffect: { durationMs: .5, projectileSpeedPct: 25.5 } }]))
-  .toEqual({ durationMs: .5, projectileSpeedPct: 25.5, requiredLevel: 12, maxRank: 20 });
+  .toEqual({ durationMs: .5, projectileSpeedPct: 25.5, requiredLevel: 12, maxRank: 20, manaCost: 10, cooldown: 3, costPerRank: -.1, cooldownPerRank: -.05 });
 });

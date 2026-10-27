@@ -16,10 +16,12 @@ export function resolveSlowMissilesDefinition(input: readonly unknown[]) {
     'id' in row && row.id === SLOW_MISSILES_IDS[0]);
   const row = matches[0];
   if (matches.length !== 1 || !isSlowMissilesDefinition(row) ||
-    row.statusEffect?.durationMs === undefined || row.statusEffect.projectileSpeedPct === undefined) throw new Error('Invalid authored Slow Missiles');
+    row.statusEffect?.durationMs === undefined || row.statusEffect.projectileSpeedPct === undefined ||
+    row.cost.mana === undefined || row.scaling === undefined) throw new Error('Invalid authored Slow Missiles');
   return Object.freeze({ durationMs: row.statusEffect.durationMs,
     projectileSpeedPct: row.statusEffect.projectileSpeedPct,
-    requiredLevel: row.requiredLevel, maxRank: row.maxLevel });
+    requiredLevel: row.requiredLevel, maxRank: row.maxLevel, manaCost: row.cost.mana, cooldown: row.cooldown,
+    costPerRank: row.scaling.costPerLevel ?? 0, cooldownPerRank: row.scaling.cooldownPerLevel ?? 0 });
 }
 export const SLOW_MISSILES_DEFINITION = resolveSlowMissilesDefinition(rows);
 
