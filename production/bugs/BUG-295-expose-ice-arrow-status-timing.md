@@ -1,7 +1,7 @@
 # BUG-295 — Expose Ice Arrow status timing in both languages
 
 - Severity: Medium; the native skill works, but its generic detail description hides the actual ordered control rules.
-- Status: Reproduced; UI correction pending.
+- Status: Fixed in d9384e40; public regression4e56f8a3,combined support acceptance pending.
 - Build:03bf3c7a3643f3b0accbce605e04847775284177, unchanged source through9729cc9a.
 - Environment: local Node/Vitest/jsdom, real SkillsScreen/Zustand/i18next, en/zh-CN; no browser viewport in this component reproduction.
 - Seed: native control7; natural miss41. Preview itself has no RNG.
@@ -22,3 +22,5 @@ Root cause: the specific description resolver handles other Amazon Cold attacks 
 Evidence: /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_/ice-arrow-ui-red-valid-config.json/log records8genuine bilingual rank failures; original test retained as SkillsScreen.amazon-ice-arrow-before-terminology.txt. A prior missing-workspace setup failure is not a behavior RED. ice-arrow-native-green-correct-units.json/log records11native PASS with actual allocation/payment/positive Cold HP loss,ordered statuses/exact boss expiry,ownership/resources/cooldown/miss/resistance/replay controls. The original resistance fixture used5000 instead of50 percentage units; source-backed correction preserves the strict21HP assertion,with original failure retained.
 
 Existing mechanic contract: [D04 ordered Freeze/Chill](../../docs/plans/decisions/D04-freeze-chill-v1.md). Author plan challenge: select the exact Ice Arrow identity before generic damage,source all displayed values from existing models/definitions,preserve both locales/current-next-MAX and view immutability. Security check: first-party local copy/render/tests only; no credential,network,dependency,CI,permission or save change. No independent design/QA or earned-balance approval is claimed.
+
+Regression: src/features/skills/SkillsScreen.amazon-ice-arrow.test.tsx (8),src/stores/amazon-ice-arrow-native.test.ts (11) and tests/pwa/amazon-ice-arrow-acceptance.spec.ts (4contexts). [Integrated evidence](../../docs/plans/evidence/d04-amazon-ice-arrow.md) records75related/19final cases,types/lint/build and public4/4 PASS,with original failures/visual limits/retention. No gameplay retuning or independent/earned acceptance.

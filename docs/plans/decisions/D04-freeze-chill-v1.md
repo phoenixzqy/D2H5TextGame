@@ -43,3 +43,5 @@ Raw task evidence is owned at
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ancients400-yg280ipi`;
 remove exact disposable cache/build paths after their consumers finish, retain
 diagnostics through full-v1 consumers. C2–C4/fullG0–G7 remain open.
+
+2026-10-26: [Amazon Ice Arrow native/UI/public proof](../evidence/d04-amazon-ice-arrow.md) extends the prior engine evidence with actual allocation,truthful bilingual control timing and production desktop/mobile/save/offline checks at4e56f8a3. Engine behavior remains unchanged; combined full-unit gate,retention and independent/earned acceptance remain open.
