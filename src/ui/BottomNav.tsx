@@ -79,7 +79,8 @@ export function BottomNav() {
     >
       <ul
         className="
-          flex justify-around items-stretch
+          grid grid-cols-4 items-stretch
+          sm:flex sm:justify-around
           md:flex-col md:items-stretch md:justify-start md:gap-1 md:p-2 md:overflow-y-auto
         "
       >
@@ -105,7 +106,7 @@ export function BottomNav() {
               className={({ isActive }) =>
                 [
                   'flex flex-col items-center justify-center gap-1',
-                  'min-h-[56px] md:min-h-[64px] px-1 py-2 text-xs',
+                  'min-h-[56px] md:min-h-[64px] py-2 text-xs',
                   'transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
                   isActive
                     ? 'text-d2-gold bg-black/40'
@@ -114,7 +115,7 @@ export function BottomNav() {
               }
             >
               <NavIcon name={item.icon} />
-              <span className="text-[10px] md:text-xs leading-tight truncate max-w-full">
+              <span className="text-xs leading-tight truncate max-w-full">
                 {item.label ?? (item.labelKey ? t(item.labelKey) : '')}
               </span>
             </NavLink>

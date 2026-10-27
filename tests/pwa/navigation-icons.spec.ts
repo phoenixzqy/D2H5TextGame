@@ -95,6 +95,7 @@ for (const viewport of sizes)
           expect(link.iconWidth).toBe(20);
           expect(link.stroke).not.toBe('none');
           expect(link.name).not.toMatch(/\p{Extended_Pictographic}/u);
+          expect(link.clippedLabel, `clipped navigation label ${String(link.href)}`).toBe(false);
         }
         expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(
           false
