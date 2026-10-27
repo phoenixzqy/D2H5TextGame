@@ -65,3 +65,12 @@ Root retains original drafts,all RED/GREEN receipts and
 After tool77646 terminates,apply the verified mechanics in bounded increments
 with effect/public types,schema regressions and actual branch tests,then finish
 bilingual previews and public acceptance. No skill credit yet.
+
+## Branch implementation checkpoint
+
+Old tool77646 completed successfully and its1677inputs were exact before engine
+changes. The described primitives/authored skills are now committed through
+`677fb25d`, with bilingual previews in `dceffcf4`. The off-repo experiment above
+is historical. [Batch evidence](../evidence/d04-amazon-volley.md) tracks actual
+checks,BUG287's public-observer correction and pending integrated acceptance;
+no new skill credit or independent/earned approval yet.
