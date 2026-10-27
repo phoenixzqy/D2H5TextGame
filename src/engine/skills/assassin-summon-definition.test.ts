@@ -28,7 +28,8 @@ it.each(cases)('preserves %s rank%i literal body and existing preview', (id, ran
   const expected = getSummonStats(id, { skillLevel: rank, statScaling: row.scaling.summonStatsPerLevel });
   const next = scaleSummonStats(required(getAssassinSummonStats(id)), row.scaling.summonStatsPerLevel, rank);
   expect(next).toEqual(expected);
-  expect(next).toMatchObject({ life, lifeMax: life, attack, defense, magicDodge: dodge, mana: 0, manaMax: 0 });
+  const mana = id === 'shadow_warrior' ? 100 : 150;
+  expect(next).toMatchObject({ life, lifeMax: life, attack, defense, magicDodge: dodge, mana, manaMax: mana });
   const display = Object.fromEntries(computeSkillRankDisplayStats(row, rank).summonUnit?.stats.map(stat => [stat.id, stat.value]) ?? []);
   expect(display).toMatchObject({ lifeMax: life, attack, defense });
 });

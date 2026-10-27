@@ -3,7 +3,7 @@
   "templates": {
     "shadow_warrior": {
       "lifeMax": 150,
-      "manaMax": 0,
+      "manaMax": 100,
       "attack": 32,
       "defense": 24,
       "attackSpeed": 80,
@@ -24,7 +24,7 @@
     },
     "shadow_master": {
       "lifeMax": 210,
-      "manaMax": 0,
+      "manaMax": 150,
       "attack": 40,
       "defense": 32,
       "attackSpeed": 85,
