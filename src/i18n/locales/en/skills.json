@@ -306,7 +306,9 @@
     "enchantFireValue": "{{percent}}% of Attack at cast",
     "periodicAppliedStacks": "{{status}} stacks per landed hit",
     "descriptionPeriodicMultiple": "On a successful hit, applies {{stacksOnApply}} {{status}} stacks. Each stack deals {{percentOfHit}}% of the final hit per second (rounded down, minimum {{minDps}}) for {{durationSeconds}} s, up to {{maxStacks}} stacks. Reapplying refreshes duration and adds {{stacksOnApply}} stacks up to the cap; an existing damaging status keeps its original rate.",
-    "cone3Value": "Cone: 1, 3, then 5 cells across three rows"
+    "cone3Value": "Cone: 1, 3, then 5 cells across three rows",
+    "impactBolts": "Additional Lightning attempts",
+    "impactBoltsValue": "Up to {{count}} × {{min}}–{{max}} base damage"
   },
   "amazon": {
     "magic-arrow": {
@@ -379,11 +381,11 @@
     },
     "power-strike": {
       "name": "Power Strike",
-      "desc": "A lightning-charged javelin attack that releases bolts on impact."
+      "desc": "One single-target attempt deals {{min}}–{{max}} base damage in equal Physical and Lightning shares, with one shared hit and critical decision. On landing, release up to {{bolts}} additional Lightning attempts at the same original target, each for {{boltMin}}–{{boltMax}} Lightning base damage. Dead originals are skipped; no spill. Physical resistance and Defense apply to the Physical share; Lightning resistance and magic resist apply to Lightning. Pay {{mana}} MP once with a {{cooldown}} s cooldown. Stop on caster death."
     },
     "poison-javelin": {
       "name": "Poison Javelin",
-      "desc": "Throws a javelin that releases a poison cloud."
+      "desc": "One independent attempt at each of up to {{maxTargets}} living enemies in a 3×3 impact cloud deals {{min}}–{{max}} base damage as Poison. Poison resistance and Defense apply. Each landed hit applies Poison for {{poisonSeconds}} s at {{poisonPercent}}% of the final hit per second (rounded down, minimum1), up to {{poisonCap}} stacks. Reapplication adds one stack and refreshes duration; active Poison keeps its original rate and any longer expiry. Pay {{mana}} MP once with a {{cooldown}} s cooldown. The cloud does not acquire later spawns."
     },
     "impale": {
       "name": "Impale",
@@ -395,7 +397,7 @@
     },
     "charged-strike": {
       "name": "Charged Strike",
-      "desc": "A melee attack that releases lightning bolts to nearby enemies."
+      "desc": "One single-target attempt deals {{min}}–{{max}} base damage as Lightning. On landing, up to {{bolts}} other original living hostiles in the cross around the primary each receive one independent Lightning bolt for {{boltMin}}–{{boltMax}} Lightning base damage. Lightning resistance and magic resist apply. Misses consume attempts; dead selections are skipped without replacements or outside fill. Pay {{mana}} MP once with a {{cooldown}} s cooldown. Stop on caster death."
     },
     "fend": {
       "name": "Fend",
@@ -403,7 +405,7 @@
     },
     "lightning-strike": {
       "name": "Lightning Strike",
-      "desc": "A javelin attack that chains lightning between enemies."
+      "desc": "One independent Lightning attempt at each of up to {{maxTargets}} distinct original living enemies deals {{min}}–{{max}} base damage. Start at target priority, then choose the nearest Manhattan neighbor, retaining priority on ties. Lightning resistance and magic resist apply. Each landed hit applies {{paralyzeSeconds}} s Paralyze. Misses consume attempts; no sixth replacement or repeated target. Pay {{mana}} MP once with a {{cooldown}} s cooldown. Stop on caster death."
     },
     "inner-sight": {
       "name": "Inner Sight",

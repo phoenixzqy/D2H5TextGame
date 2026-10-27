@@ -10,7 +10,7 @@
 
 import type { DamageType } from '../types/attributes';
 import type { AoeShape } from '../combat/grid';
-import type { ColdMasteryTuning, FeralRageTuning, HitSpeedStackTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillStatusEffectMetadata, SkillAdditionalStatusEffects, StaticFieldTuning } from '../types/skills';
+import type { ColdMasteryTuning, FeralRageTuning, HitSpeedStackTuning, OnHitBoltsTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillStatusEffectMetadata, SkillAdditionalStatusEffects, StaticFieldTuning } from '../types/skills';
 import { STATUS_DEFAULTS } from '../combat/status';
 import { CHILL_DEFINITION } from '../combat/chill-definition';
 import { paidBattleCry } from '../combat/warcry-definition';
@@ -56,6 +56,7 @@ export interface DisplaySkillSource {
   readonly ignoresDefense?: true;
   readonly alwaysHits?: true;
   readonly hitSequence?: SkillHitSequence;
+  readonly onHitBolts?: OnHitBoltsTuning;
   readonly critChanceBonus?: number;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   readonly onHitSelfDamage?: OnHitSelfDamageTuning;
@@ -232,7 +233,9 @@ export interface SkillRankDisplayStats {
   /** Paid personal bonuses and enemy Blind share this explicit finite duration. */
   readonly cloak?: { readonly durationSeconds: number; readonly blindHitPenaltyPoints: number };
   /** Explicit authored cone footprint; it counts covered cells, not enemy slots. */
-  readonly areaShape?: 'cone-2' | 'cone-3';
+  readonly areaShape?: 'cone-2' | 'cone-3' | 'box-3x3' | 'chain';
+  /** Per-attempt Lightning base after a landed primary; not a cast damage total. */
+  readonly onHitBolts?: { readonly count: number; readonly targetMode: 'original' | 'adjacent-others'; readonly min: number; readonly max: number };
   /** Authored limit after resolving the full area and its ordinary target order. */
   readonly maxTargets?: number;
   /** Explicit flat MR bypass; percentage resistance and personal absorption remain. */
@@ -622,6 +625,17 @@ export function computeSkillRankDisplayStats(
   const composite = ['skills-paladin-vengeance', 'skills-assassin-phoenix-strike'].includes(skill.id) && skill.trigger === 'active' &&
     skill.damageComposition === 'weighted-components'
     ? { chillSeconds: STATUS_DEFAULTS.chill.duration, paralyzeSeconds: STATUS_DEFAULTS.paralyze.duration } : undefined;
+  const bolt = skill.onHitBolts;
+  const boltIdentity = skill.id === 'skills-amazon-power-strike' ? 'original'
+    : skill.id === 'skills-amazon-charged-strike' ? 'adjacent-others' : undefined;
+  const onHitBolts = boltIdentity && skill.trigger === 'active' && skill.target === 'single-enemy' &&
+    skill.damageType === 'lightning' && bolt?.count === 2 && bolt.targetMode === boltIdentity &&
+    Number.isFinite(bolt.damage.min) && bolt.damage.min >= 0 &&
+    Number.isFinite(bolt.damage.max) && bolt.damage.max >= bolt.damage.min &&
+    Number.isFinite(bolt.damage.perRank) && bolt.damage.perRank >= 0
+    ? { count: bolt.count, targetMode: bolt.targetMode,
+      min: scaleValue(bolt.damage.min, bolt.damage.perRank, safeRank),
+      max: scaleValue(bolt.damage.max, bolt.damage.perRank, safeRank) } : undefined;
   const strikes = skill.hitSequence?.strikes;
   const supportsSequence = skill.id === 'skills-druid-fury' ||
     (skill.id === 'skills-barbarian-frenzy' && skill.target === 'single-enemy' && skill.damageType === 'physical' &&
@@ -676,7 +690,8 @@ export function computeSkillRankDisplayStats(
     bossDurationSeconds: controlDefinition.duration * (controlDefinition.bossDurationMult ?? 1) } : undefined;
   const maxTargets = skill.trigger === 'active' && skill.target === 'area-enemies' &&
     (((skill.id === 'skills-paladin-zeal' || strikesPerTarget !== undefined) && skill.aoeShape === 'cross' && skill.maxTargets === 3) ||
-      (skill.id === 'skills-sorceress-chain-lightning' && skill.aoeShape === 'chain' && skill.maxTargets === 5) ||
+      (['skills-sorceress-chain-lightning', 'skills-amazon-lightning-strike'].includes(skill.id) && skill.aoeShape === 'chain' && skill.maxTargets === 5) ||
+      (skill.id === 'skills-amazon-poison-javelin' && skill.aoeShape === 'box-3x3' && skill.maxTargets === 9) ||
       (skill.id === 'skills-amazon-multiple-shot' && skill.aoeShape === 'cone-3' && skill.maxTargets === 5))
     ? skill.maxTargets : undefined;
   const selfCost = skill.onHitSelfDamage;
@@ -785,6 +800,11 @@ export function computeSkillRankDisplayStats(
     ...(ignoresMagicResist ? { ignoresMagicResist: true as const } : {}),
     ...(ignoresDefense ? { ignoresDefense: true as const } : {}),
     ...(alwaysHits ? { alwaysHits: true as const } : {}),
+    ...(onHitBolts ? { onHitBolts } : {}),
+    ...(skill.trigger === 'active' && skill.target === 'area-enemies' &&
+      ((skill.id === 'skills-amazon-poison-javelin' && skill.aoeShape === 'box-3x3' && maxTargets === 9) ||
+       (skill.id === 'skills-amazon-lightning-strike' && skill.aoeShape === 'chain' && maxTargets === 5))
+      ? { areaShape: skill.aoeShape } : {}),
     ...(composite ? { composite } : {}),
     ...(strikesPerCast !== undefined ? { strikesPerCast } : {}),
     ...(strikesPerTarget !== undefined ? { strikesPerTarget } : {}),

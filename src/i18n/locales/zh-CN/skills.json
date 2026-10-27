@@ -306,7 +306,9 @@
     "enchantFireValue": "施放时攻击力的 {{percent}}%",
     "periodicAppliedStacks": "每次命中的{{status}}层数",
     "descriptionPeriodicMultiple": "命中后附加 {{stacksOnApply}} 层{{status}}；每层每秒造成最终命中伤害的{{percentOfHit}}%（向下取整，最低{{minDps}}点），持续{{durationSeconds}} 秒，最多{{maxStacks}}层。再次施加会刷新持续时间并增加{{stacksOnApply}}层，达到上限后不再增加；已有伤害的状态保留原伤害率。",
-    "cone3Value": "锥形：三排依次1、3、5格"
+    "cone3Value": "锥形：三排依次1、3、5格",
+    "impactBolts": "追加闪电判定",
+    "impactBoltsValue": "最多{{count}}次，每次{{min}}～{{max}} 点基础伤害"
   },
   "amazon": {
     "magic-arrow": {
@@ -379,11 +381,11 @@
     },
     "power-strike": {
       "name": "力量攻击",
-      "desc": "充能闪电的标枪攻击，撞击时释放闪电。"
+      "desc": "对单个目标进行一次共享命中与暴击判定，造成{{min}}～{{max}} 点基础伤害，物理与闪电各占一半。命中后对同一原目标最多追加{{bolts}}次独立闪电判定，每次造成{{boltMin}}～{{boltMax}} 点闪电基础伤害。原目标死亡后跳过，不转移剩余次数。物理部分受物理抗性与防御减免，闪电部分受闪电抗性与魔法抗性减免。每次施放仅支付{{mana}} 点法力，冷却{{cooldown}} 秒；施法者死亡立即停止。"
     },
     "poison-javelin": {
       "name": "毒枪",
-      "desc": "投出释放毒云的标枪。"
+      "desc": "3×3冲击毒云覆盖最多{{maxTargets}}名存活敌人，每名进行一次独立毒素判定，造成{{min}}～{{max}} 点基础伤害，受毒素抗性与防御减免。命中后施加{{poisonSeconds}} 秒中毒，每层每秒造成最终命中伤害的{{poisonPercent}}%（向下取整，至少1点），最多{{poisonCap}}层。重复命中增加一层并刷新持续时间，已有中毒保留原有速率与更晚的到期时间。每次施放仅支付{{mana}} 点法力，冷却{{cooldown}} 秒；毒云不会获取后续生成的目标。"
     },
     "impale": {
       "name": "刺入",
@@ -395,7 +397,7 @@
     },
     "charged-strike": {
       "name": "充能一击",
-      "desc": "近战攻击，释放闪电击中附近敌人。"
+      "desc": "对单个目标进行一次闪电判定，造成{{min}}～{{max}} 点基础伤害。命中后，主目标周围的十字范围内最多{{bolts}}名其他原始存活敌人各承受一次独立闪电判定，每次造成{{boltMin}}～{{boltMax}} 点闪电基础伤害。闪电抗性与魔法抗性生效。未命中也消耗次数，已死的原目标跳过，不补选或从范围外补足。每次施放仅支付{{mana}} 点法力，冷却{{cooldown}} 秒；施法者死亡立即停止。"
     },
     "fend": {
       "name": "防御",
@@ -403,7 +405,7 @@
     },
     "lightning-strike": {
       "name": "雷霆一击",
-      "desc": "标枪攻击，在敌人间连锁闪电。"
+      "desc": "对最多{{maxTargets}}名不同的原始存活敌人各进行一次独立闪电判定，造成{{min}}～{{max}} 点基础伤害。从既有目标优先级开始，随后选择曼哈顿距离最近的敌人，同距时保留原优先级。闪电抗性与魔法抗性生效，命中施加{{paralyzeSeconds}} 秒麻痹。未命中也消耗次数，不重复命中，不补选第六名。每次施放仅支付{{mana}} 点法力，冷却{{cooldown}} 秒；施法者死亡立即停止。"
     },
     "inner-sight": {
       "name": "心眼",

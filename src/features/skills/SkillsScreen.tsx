@@ -1053,6 +1053,8 @@ function StatSection({
             <StatLine label={t('details.cloakDuration')} value={t('details.seconds', { seconds: stats.cloak.durationSeconds })} />
             <StatLine label={t('details.cloakBlindPenalty')} value={t('details.cloakBlindPenaltyValue', { points: stats.cloak.blindHitPenaltyPoints })} />
           </> : null}
+          {stats.onHitBolts ? <StatLine label={t('details.impactBolts')}
+            value={t('details.impactBoltsValue', stats.onHitBolts)} /> : null}
           {stats.strikesPerCast !== undefined ? (
             <StatLine label={t('details.strikesPerCast')} value={String(stats.strikesPerCast)} />
           ) : null}
@@ -1896,6 +1898,18 @@ function dynamicDescription(
     ['skills-assassin-fire-blast', 'skills-assassin-blade-fury'].includes(skill.id)) {
     return t(skill.id === 'skills-assassin-blade-fury' ? 'assassin.blade-fury.desc' : 'assassin.fire-blast.desc',
       { min: firstDamage.min, max: firstDamage.max });
+  }
+  if (stats && firstDamage &&
+    ((['skills-amazon-power-strike', 'skills-amazon-charged-strike'].includes(skill.id) && stats.onHitBolts !== undefined) ||
+      (skill.id === 'skills-amazon-poison-javelin' && stats.areaShape === 'box-3x3' && stats.maxTargets === 9) ||
+      (skill.id === 'skills-amazon-lightning-strike' && stats.areaShape === 'chain' && stats.maxTargets === 5))) {
+    return t('amazon.' + skill.id.slice('skills-amazon-'.length) + '.desc', {
+      min: stats.totalDamage?.min ?? firstDamage.min, max: stats.totalDamage?.max ?? firstDamage.max,
+      mana: stats.manaCost, cooldown: stats.cooldown, maxTargets: stats.maxTargets,
+      bolts: stats.onHitBolts?.count, boltMin: stats.onHitBolts?.min, boltMax: stats.onHitBolts?.max,
+      poisonPercent: stats.periodic?.percentOfHit, poisonSeconds: stats.periodic?.durationSeconds,
+      poisonCap: stats.periodic?.maxStacks, paralyzeSeconds: stats.control?.durationSeconds
+    });
   }
   if (firstDamage && skill.id === 'skills-amazon-impale') {
     return t('amazon.impale.desc', { min: firstDamage.min, max: firstDamage.max });
