@@ -24,7 +24,7 @@
       "giver": "npc/kashya",
       "description": "Kashya, captain of the Rogues, demands you destroy Blood Raven, a former sister now twisted into a champion of evil who raises the dead in the Burial Grounds.",
       "objectives": [
-        { "id": "obj-kill-blood-raven", "type": "kill", "targetId": "monsters/blood_raven", "areaId": "areas/act1_burial_grounds", "description": "Slay Blood Raven." },
+        { "id": "obj-kill-blood-raven", "type": "kill", "targetId": "monsters/act1.blood-raven", "areaId": "areas/act1-burial-grounds", "description": "Slay Blood Raven." },
         { "id": "obj-return", "type": "talk", "npcId": "npc/kashya", "description": "Return to Kashya." }
       ],
       "rewards": { "xp": 1500, "mercenaryUnlock": "mercs/act1-rogue-trainee" },

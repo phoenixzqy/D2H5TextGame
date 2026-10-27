@@ -20,7 +20,6 @@ import type { Item } from '@/engine/types/items';
 import { canClaim, claimQuestReward } from './claimReward';
 
 const DEN = 'quests/act1-den-of-evil';
-const BLOOD_RAVEN = 'quests/act1-sisters-burial-grounds';
 const CAIN = 'quests/side-act1-cains-favor';
 const JADE = 'quests/side-act3-jade-statuette';
 const SUN = 'quests/act2-tainted-sun';
@@ -118,7 +117,7 @@ describe('shared quest claim safety and actual Den contract', () => {
     expectRefusal(DEN, 'no-player');
   });
 
-  it.each([CAIN, BLOOD_RAVEN, JADE])('refuses the entire actual unsupported bundle %s', id => {
+  it.each([CAIN, JADE])('refuses the entire actual unsupported bundle %s', id => {
     hire();
     complete(id);
     expect(canClaim(id)).toBe(true);

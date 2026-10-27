@@ -31,6 +31,7 @@ import { usePlayerStore } from '@/stores/playerStore';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { useMapStore } from '@/stores/mapStore';
 import { useMercStore, mercXpForLevel } from '@/stores/mercStore';
+import { createMercFromDef } from '@/stores/mercFactory';
 import { useMetaStore } from '@/stores/metaStore';
 import { useFormationStore } from '@/stores/formationStore';
 import { saveSave, loadSave, exportSave } from '@/stores/save-adapter';
@@ -100,6 +101,59 @@ afterEach(() => {
 });
 
 describe('claim settlement at real persistence boundaries', () => {
+  it('debounces the complete authored Blood Raven reward and preserves it through import and hydration', async () => {
+    const quest = 'quests/act1-sisters-burial-grounds';
+    const trainee = 'mercs/act1-rogue-trainee';
+    const mercId = required(useMercStore.getState().fieldedMercId);
+    const mercXp = () => {
+      const merc = required(useMercStore.getState().ownedMercs.find(row => row.id === mercId));
+      let total = useMercStore.getState().getMercProgress(mercId).experience;
+      for (let level = 1; level < merc.level; level++) total += mercXpForLevel(level);
+      return total;
+    };
+    const beforeMercXp = mercXp();
+    useMapStore.getState().updateQuestProgress(quest, { status: 'completed',
+      objectives: { 'obj-kill-blood-raven': true, 'obj-return': true } });
+    const before = snapshot();
+    startAutoSave();
+    try {
+      expect(claimQuestReward(quest)).toBe('ok');
+      const paid = snapshot();
+      expect(xpTotal(paid.player.level) + paid.player.experience)
+        .toBe(xpTotal(before.player.level) + before.player.experience + 1500);
+      expect(mercXp()).toBe(beforeMercXp + 1125);
+      expect(paid.mercs.fieldedMercId).toBe(mercId);
+      expect(paid.mercs.ownedMercs).toHaveLength(before.mercs.ownedMercs.length + 1);
+      expect(paid.mercs.ownedMercs.find(row => row.id === trainee)).toEqual(
+        createMercFromDef(required(loadMercPool().pool.find(row => row.id === trainee))));
+      expect(paid.mercs.mercProgress[trainee]).toEqual({
+        experience: 0, experienceToNextLevel: mercXpForLevel(3) });
+      expect(paid.inventory).toEqual(before.inventory);
+      expect(paid.map).toEqual({ ...before.map, questProgress: {
+        ...before.map.questProgress,
+        [quest]: { ...before.map.questProgress[quest], rewardClaimed: true }
+      } });
+      expect(disk.state.writes).toHaveLength(0);
+      await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
+      expect(disk.state.writes).toHaveLength(1);
+      expect(disk.state.writes[0]?.data).toEqual(flushed(paid));
+      const exported = required(await exportSave());
+      expect(JSON.parse(exported) as unknown).toEqual(toJsonSafe(flushed(paid)));
+      stopAutoSave();
+      for (const restore of [() => importIntoStores(exported), () => hydrateFromSave()]) {
+        for (const store of [usePlayerStore, useInventoryStore, useMercStore, useMapStore]) store.getState().reset();
+        await restore();
+        const restored = snapshot();
+        expect(restored.player).toEqual(paid.player);
+        expect(restored.inventory).toEqual(paid.inventory);
+        expect(restored.mercs).toEqual(paid.mercs);
+        expect(restored.map).toEqual(paid.map);
+        expect(claimQuestReward(quest)).toBe('already-claimed');
+        expect(snapshot()).toEqual(restored);
+      }
+    } finally { stopAutoSave(); }
+  });
+
   it('debounces the complete paid Den payload and preserves once-only safety through real hydration', async () => {
     startAutoSave();
     try {

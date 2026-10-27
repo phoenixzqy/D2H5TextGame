@@ -25,7 +25,9 @@ import { hasQuestAssemblyCompletion } from './questCrafting';
 import { loadQuestItems, questItemSource } from '@/data/loaders/quest-items';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import { awardXp, LEVEL_CAP, xpTotal } from '@/engine/progression/xp';
-import type { Player } from '@/engine/types/entities';
+import type { Mercenary, Player } from '@/engine/types/entities';
+import { loadMercPool } from '@/data/loaders/mercs';
+import { createMercFromDef } from '@/stores/mercFactory';
 import type { QuestItemLedger } from '@/engine/types/save';
 import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import { hasTaintedSunCompletion, isQuestResistanceReward, TAINTED_SUN_QUEST_ID } from '@/engine/progression/quest-resistance';
@@ -176,10 +178,24 @@ export function claimQuestReward(questId: string): ClaimResult {
     let resistanceReward = false;
     let questServices: QuestServiceLedger | undefined;
     let campaignReward = false;
+    let mercenaryUnlock = false;
+    let recruit: Mercenary | undefined;
     const serviceSource = `${questId}#reward:service`;
     for (const [kind, amount] of Object.entries(rewards)) {
       // Gold has no executable economy; authored zero is a harmless no-op.
       if (kind === 'gold' && amount === 0) continue;
+      if (kind === 'mercenaryUnlock') {
+        if (questId !== 'quests/act1-sisters-burial-grounds' || amount !== 'mercs/act1-rogue-trainee') return 'unsupported-rewards';
+        try {
+          const definition = loadMercPool().pool.find(row => row.id === amount);
+          if (!definition) return 'unsupported-rewards';
+          mercenaryUnlock = true;
+          if (!useMercStore.getState().ownedMercs.some(row => row.id.split('#')[0] === definition.id)) {
+            recruit = createMercFromDef(definition);
+          }
+        } catch { return 'unsupported-rewards'; }
+        continue;
+      }
       if (kind === 'stat') {
         if (!(questId === TAINTED_SUN_QUEST_ID && isQuestResistanceReward(amount)) &&
           !(questId === RESCUE_QUEST && amount !== null && typeof amount === 'object' && Object.keys(amount).length === 1 &&
@@ -237,7 +253,7 @@ export function claimQuestReward(questId: string): ClaimResult {
         || !safeCount(amount) || kind === 'gemShards' && amount <= 0) return 'unsupported-rewards';
       if (amount > 0) grants.push({ kind, amount });
     }
-    if (grants.length === 0 && !uniqueReward && !uniqueProfileReward && !tableReward && !questItems && !resistanceReward && !questServices && !campaignReward) return 'no-rewards';
+    if (grants.length === 0 && !uniqueReward && !uniqueProfileReward && !tableReward && !questItems && !resistanceReward && !questServices && !campaignReward && !mercenaryUnlock) return 'no-rewards';
     if (!safeGrants(player, grants)) return 'unsupported-rewards';
     if (uniqueProfileReward) {
       try {
@@ -324,7 +340,7 @@ export function claimQuestReward(questId: string): ClaimResult {
     const sharesXp = grants.some(({ kind }) => kind === 'xp');
     const changesCurrency = currencyGrants.size > 0;
     const changesMaterials = Object.keys(cacheRewards.materials).length > 0;
-    const { ownedMercs, mercProgress } = useMercStore.getState();
+    const { ownedMercs, mercProgress, mercEquipment, fieldedMercId } = useMercStore.getState();
     const inventorySnapshot = {
       ...(changesCurrency ? { currencies: inventory.currencies } : {}),
       ...(items.length > 0 ? { backpack: inventory.backpack } : {}),
@@ -336,13 +352,17 @@ export function claimQuestReward(questId: string): ClaimResult {
       for (const { kind, amount } of grants) {
         if (kind === 'xp') {
           usePlayerStore.getState().gainExperience(amount);
-          useMercStore.getState().shareExperienceWithFielded(amount);
+          // This quest rewards the recipient fielded before any grant publication.
+          if (mercenaryUnlock) {
+            if (fieldedMercId !== null) useMercStore.getState().addExperience(fieldedMercId, Math.floor(amount * MERC_XP_SHARE));
+          } else useMercStore.getState().shareExperienceWithFielded(amount);
         } else if (kind === 'skillPoints' || kind === 'statPoints') {
           usePlayerStore.setState((state) => state.player
             ? { player: { ...state.player, [kind]: state.player[kind] + amount } }
             : state);
         }
       }
+      if (recruit) useMercStore.getState().addMerc(recruit);
       for (const [target, amount] of currencyGrants) {
         preflightInventory();
         useInventoryStore.getState().addCurrency(target, amount);
@@ -380,7 +400,8 @@ export function claimQuestReward(questId: string): ClaimResult {
         try { operation(); } catch (error) { restoreErrors.push(error); }
       };
       if (changesPlayer) restore(() => { usePlayerStore.setState({ player }); });
-      if (sharesXp) restore(() => { useMercStore.setState({ ownedMercs, mercProgress }); });
+      if (sharesXp || recruit) restore(() => { useMercStore.setState({ ownedMercs, mercProgress,
+        ...(recruit ? { mercEquipment, fieldedMercId } : {}) }); });
       if (changesCurrency || changesMaterials || items.length > 0 || questItems !== undefined) {
         restore(() => { useInventoryStore.setState(inventorySnapshot); });
       }
