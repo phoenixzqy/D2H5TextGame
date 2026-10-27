@@ -1,12 +1,13 @@
 {
-  "at": "2026-10-27T09:33:26.640157+00:00",
-  "sourceHead": "5eb3948d7ef3d3ae4cafa5bdeb2a54728cf38609",
+  "at": "2026-10-27T10:08:20.346998+00:00",
+  "sourceHead": "433bd510fbc4ab827bbf514ffa887e2aadaf6d10",
   "owner": "root",
   "worktree": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
   "commits": {
     "fireCompatibility": "909f47dc",
     "nativeLifecycle": "efd15c95",
-    "compactHP": "5eb3948d"
+    "compactHP": "5eb3948d",
+    "sharedBoundaries": "433bd510"
   },
   "receipts": {
     "trap-integrated-full": {
@@ -30,7 +31,7 @@
       "headAfter": "ba1f1668e8b9a11321734474a4f9c856febecf00",
       "headUnchanged": true,
       "totals": [
-        "⎯⎯⎯⎯⎯⎯ Failed Tests 22 ⎯⎯⎯⎯⎯⎯⎯",
+        "\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 22 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
         "Test Files  2 failed | 924 passed (926)",
         "Tests  22 failed | 19780 passed | 2 skipped (19804)"
       ]
@@ -143,7 +144,7 @@
       "headAfter": "119c626531d7a49207b92d9c8d638e24372a210d",
       "headUnchanged": true,
       "totals": [
-        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯",
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
         "Test Files  1 failed | 3 passed (4)",
         "Tests  2 failed | 239 passed (241)"
       ]
@@ -326,7 +327,7 @@
       "headAfter": "ba1f1668e8b9a11321734474a4f9c856febecf00",
       "headUnchanged": true,
       "totals": [
-        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯",
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
         "Test Files  1 failed (1)",
         "Tests  2 failed (2)"
       ]
@@ -420,6 +421,314 @@
       "headAfter": "5eb3948d7ef3d3ae4cafa5bdeb2a54728cf38609",
       "headUnchanged": true,
       "totals": []
+    },
+    "trap-final-full": {
+      "label": "trap-final-full",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 1105.4486174900085,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  928 passed (928)",
+        "Tests  19813 passed | 2 skipped (19815)"
+      ]
+    },
+    "trap-final-types": {
+      "label": "trap-final-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 137.34239567397162,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-final-lint": {
+      "label": "trap-final-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 237.3129687170731,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-combat-public-high-life": {
+      "label": "trap-combat-public-high-life",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat.high-life.config.ts",
+        "--grep",
+        "paid (death-sentry|blade-shield) .* en$"
+      ],
+      "exit": 1,
+      "seconds": 250.17380611388944,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-combat-public-open-act": {
+      "label": "trap-combat-public-open-act",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat.open-act.config.ts",
+        "--grep",
+        "paid (death-sentry|blade-shield) .* en$"
+      ],
+      "exit": 0,
+      "seconds": 107.82087790896185,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 10,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": [
+        "\u001b[1A\u001b[2K  2 passed (1.8m)"
+      ]
+    },
+    "trap-combat-matrix-public": {
+      "label": "trap-combat-matrix-public",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat.matrix.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 1013.6987598399865,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 11,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": [
+        "32 passed (16.9m)"
+      ]
+    },
+    "trap-combat-matrix-types": {
+      "label": "trap-combat-matrix-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/combat-public.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 10.208665216923691,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 11,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-combat-matrix-lint": {
+      "label": "trap-combat-matrix-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--no-ignore",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/combat-public.eslint.cjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat.public.spec.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 5.992258373997174,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 11,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-boundary-final": {
+      "label": "trap-boundary-final",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/boundary.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/boundary.workspace.mjs"
+      ],
+      "exit": 0,
+      "seconds": 11.643375620013103,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 7,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  9 passed (9)"
+      ]
+    },
+    "trap-boundary-corrected-types": {
+      "label": "trap-boundary-corrected-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/boundary.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 10.18299098405987,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 7,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-boundary-corrected-lint": {
+      "label": "trap-boundary-corrected-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--no-ignore",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/boundary.eslint.cjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-shared-boundaries.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 6.1590378700057045,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 7,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-boundary-branch": {
+      "label": "trap-boundary-branch",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/boundary.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-traps-boundaries.test.ts",
+        "src/stores/assassin-traps-native.test.ts",
+        "src/stores/assassin-traps-lifecycle.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 16.8328784549376,
+      "inputsUnchanged": true,
+      "inputCount": 2537,
+      "externalInputCount": 8,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  3 passed (3)",
+        "Tests  74 passed (74)"
+      ]
+    },
+    "trap-boundary-branch-types": {
+      "label": "trap-boundary-branch-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/boundary-branch.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 7.655226110946387,
+      "inputsUnchanged": true,
+      "inputCount": 2537,
+      "externalInputCount": 8,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-boundary-branch-lint": {
+      "label": "trap-boundary-branch-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/assassin-traps-boundaries.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 7.771219328045845,
+      "inputsUnchanged": true,
+      "inputCount": 2537,
+      "externalInputCount": 8,
+      "externalInputsUnchanged": true,
+      "headBefore": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
+      "headUnchanged": true,
+      "totals": []
     }
   },
   "artifactSha256": {
@@ -494,13 +803,86 @@
     "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-build.json": "66fa8802ce97c12aa764f57ac908c5c48ac8e5f365609f116fb954af77345538",
     "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-build.log": "af125d38b26b8dbae07bd8ec6f6bf748b49155fa1a1fd58fbaba723d11f6a2cc",
     "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-build-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
-    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-build-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122"
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-build-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-final-full.json": "e0435fbacd687632ef1ec6b72ee97f226384ad058e3485a5e28d6433c508bf5d",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-final-full.log": "891707d1936f21970ce0963bc64afbcdfc3b99e7eb33ef11fb40d56566347c8d",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-final-full-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-final-full-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-final-types.json": "b70e086a90f03a92446c5d07a46ae02a4fc7652d7954cbde13197dfafe58fc75",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-final-types.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-final-types-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-final-types-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-final-lint.json": "7b088f26671edb0a20bc3c76d3fd15d4d0f985ee404a503ab83c1780fc7d2ae8",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-final-lint.log": "dca195bd8f73cc6e5d4ec685b1fcde693749b018c94f1e3cbb04c4908a1a4c91",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-final-lint-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-final-lint-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-public-high-life.json": "e87aa7618dd155b8517ab9d81f2441cb754e9f441144076a88295f534875f1b5",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-public-high-life.log": "599dae4694017153328c0e308a1ee7a8a428d70a354dbcf352738657197839b7",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-public-high-life-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-public-high-life-external-inputs.json": "2605473dc3e8bf7b2fbca817952e44b20c05d10f5fac88f96cf334541cebdacf",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-public-open-act.json": "26505a10e3b0aa0807fd4163400e75268fb591d9d2824a2dc6a48b3f138abe66",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-public-open-act.log": "3c35de0dac57e02b3772459235cd69d7406f6ae31ceeaa237bd7f07ff5a4a99f",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-public-open-act-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-public-open-act-external-inputs.json": "c3e94c169153ab5be8cf1f98f12612c95548634db2f6201f96bda90c733e8a33",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-matrix-public.json": "8cf03b62b6d3bb7c5785c4fce9f9bacd641284f7cf5c9697c7c033beb33bf1ee",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-matrix-public.log": "abdd82f30eaf98fa8bcceb8286178f147d902a0204e58c4ce6e1b826e6ab692b",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-matrix-public-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-matrix-public-external-inputs.json": "10bbfbb165057142d249e410179282a5661400249d20c9fed2ff666b4a371afe",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-matrix-types.json": "f7e509d6067b134569a526f65d7b936f804033a625e8dcc321244297470a2e98",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-matrix-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-matrix-types-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-matrix-types-external-inputs.json": "10bbfbb165057142d249e410179282a5661400249d20c9fed2ff666b4a371afe",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-matrix-lint.json": "645bcd657a0ef6f3555256f9283ffded823d080f2a29e220a2e6334c6bd72bae",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-matrix-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-matrix-lint-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-matrix-lint-external-inputs.json": "10bbfbb165057142d249e410179282a5661400249d20c9fed2ff666b4a371afe",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-final.json": "6105082e07d6055b01f3e31434bb5f33718f5428aa806d8b64336f8a8b03d29f",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-final.log": "f9c1fef739386e7416cc7568e75560cad33bd77b23dcc448c5e5ff211897ffee",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-final-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-final-external-inputs.json": "0d9a9c33beca660de1b7ebfeabab86a6d5a3e305df3e9c4602e71f219632def6",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-corrected-types.json": "e2f2d090ad3aec2841b2f3a3e7fa108d18bbbcd19c6d53f1fef763cfd420a453",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-corrected-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-corrected-types-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-corrected-types-external-inputs.json": "0d9a9c33beca660de1b7ebfeabab86a6d5a3e305df3e9c4602e71f219632def6",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-corrected-lint.json": "eb12ba2b46eb5ca30f9bd8839a2c0828fcc9a8c2850442ca96a78e2dce1aecdf",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-corrected-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-corrected-lint-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-corrected-lint-external-inputs.json": "0d9a9c33beca660de1b7ebfeabab86a6d5a3e305df3e9c4602e71f219632def6",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-branch.json": "1ae2123b93ae4a92b697872d455d9c75d833713cd50a409ed9eeb6c8a27bddac",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-branch.log": "ff56021a46462b1673f53f3e89b7abede1d43237f0d428603541f6e0ff4bbbed",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-branch-inputs.json": "630bf360849727d5d566071c828870ad8115ad7cee75638b0cba46fd0300c5a8",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-branch-external-inputs.json": "c55d6ed11671293fde8166d71a236c2c849f7e6108f9d8b5b2e4dbd84b85af81",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-branch-types.json": "9d9fbc5baddb29388ee1fa8d8fdadbba473a76e5d2ec5aba70628f976c1953fb",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-branch-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-branch-types-inputs.json": "630bf360849727d5d566071c828870ad8115ad7cee75638b0cba46fd0300c5a8",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-branch-types-external-inputs.json": "c55d6ed11671293fde8166d71a236c2c849f7e6108f9d8b5b2e4dbd84b85af81",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-branch-lint.json": "f5136554a016bec086dd90fa70d844e8564285e29baf8ed666704fe8f821bdad",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-branch-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-branch-lint-inputs.json": "630bf360849727d5d566071c828870ad8115ad7cee75638b0cba46fd0300c5a8",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundary-branch-lint-external-inputs.json": "c55d6ed11671293fde8166d71a236c2c849f7e6108f9d8b5b2e4dbd84b85af81",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/combat-matrix-audit.json": "d6c10a30e58a4f91cc646c0609a91b54dfebba91cecdc3252330168132745440",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/audit-combat-matrix.py": "75b8c6dd63cb65462036b0dd2b36d24f3a984a7b6157269f40b5056924bfb02b",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/combat-open-act-audit.json": "ebd64e055f279248853e30dfffa5c228b6538acbdf946acf603dfd3f7331f392",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/blood-lord-art-diagnosis.json": "c1ee0d6fcb3bd7e2baa4cada00acca512b163b5a75a414d2b2ba72f0e16a3c35",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/high-life-navigation-diagnosis.json": "043b219cafd336280e86d1ea498cf9953bd5116510442457ccac8ba6d5132d55",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/matrix-navigation-note.json": "6f2935ea9b6cf1b68caa9a2b4ba452447fe7aa7fc63568389eb315e6579247bb",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-boundaries-checkpoint.json": "43b44b7b2b8191aecdb56a7838b7fceab1b267f05035e67c9f57afb0642dab0c",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/boundary-fixture-diagnosis.json": "ccdcd8a340b5d5ff82fcf7260f3cee2872f51fb468f6f0bc7d80044939cf6276",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/boundary-clock-diagnosis.json": "bd548a3f9274828aecc523c5ced66e9484a8c9842b22204b4cd1ac41bbbfb0c5",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/boundary-period-rounding-note.json": "20ff7d2b3a1cde932d55d6177aff27834e344d39170986021174cae85d9df069",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat.public.spec.ts": "6a422cbed6476a3acf62b80c1c872795ffd5929dfaa8562442511dab860beffc",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat.matrix.config.ts": "b1584b6d63d1a3d7d64bad265f4b46a00aea5cc2108e39505aa119b959485411",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-shared-boundaries.test.ts": "00d153fe32c67f036044ef3cf112f7d93320b07613c739aef9693506de11f31b"
   },
   "corrections": [
     "Original full gate remains FAILED:22 failures/19780 passes/two existing skips. No aggregate pass is inferred from focused repairs.",
     "Historical Fire tests now require three exact seeded damage rolls, exact first-potency refreshed Ignite totals, independent later hits after an initial miss, and complete native rank projections. Monster fixtures explicitly carry no hero trap authority.",
     "Initial corrective alias comparison also exposed inherited hero ranks on the held target; an explicit undefined property failed exactOptionalPropertyTypes. Both original failed receipts are retained; final checks pass without source suppression.",
-    "Compact HP RED2 became GREEN2 as part of the complete201-case/20-file combat UI group. Actual fractional live HP is exposed for hero/merc/summon/enemy with localized names and death updates."
+    "Compact HP RED2 became GREEN2 as part of the complete201-case/20-file combat UI group. Actual fractional live HP is exposed for hero/merc/summon/enemy with localized names and death updates.",
+    "Fresh trap-final-full is PASS19813/928/two existing skips at33dc3239, with2536repository/nine external inputs exact. This supersedes the requirement for a new full gate, preserving the original22-failure result.",
+    "The new nine-case repository boundary test is separately verified in74cases/threefiles with scoped strict types/lint. The19813 whole-suite run predates this file; no new combined whole-suite total is inferred.",
+    "The first high-life public fixture never entered combat because the Act5 accordion was closed. Actual UI opens the observed localized chapter header; high-life failure/trace and both original navigation guesses remain retained.",
+    "Exact public MP assertions remain intact. Synthetic high-life Act5 inputs and explicit prior-act cleared markers let targets survive the paid first pulse; these are functional fixture gates, never earned campaign evidence."
   ],
   "production": {
     "previewCases": 4,
@@ -508,7 +890,38 @@
     "geometryChecks": 320,
     "sevenDomainSavePairs": 8,
     "actualOfflineContinues": 4,
-    "actualCombat": "New public fixture prepared; not yet executed at this checkpoint.",
+    "actualCombat": {
+      "cases": 32,
+      "rankProofs": 64,
+      "sevenDomainSavePairs": 64,
+      "actualOfflineContinues": 32,
+      "locales": [
+        "en",
+        "zh-CN"
+      ],
+      "viewports": [
+        "1280x800",
+        "360x640"
+      ],
+      "claims": [
+        "Actual UI rank1/20 allocation and paid repeated typed damage for eight trap identities",
+        "Finite actual HP/MP readback, real Death corpse consumption/Fire branch, positive Shield incoming/counter pairs"
+      ],
+      "constructed": true,
+      "earnedCampaignAcceptance": false,
+      "report": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/combat-matrix-report.json",
+      "audit": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/combat-matrix-audit.json",
+      "mobileOriginals": 64,
+      "mobileOriginalsIndividuallyInspected": 12,
+      "visualFindings": [
+        "12 of 64 mobile originals individually inspected, including both locales, ranks1/20, autonomous Fire/Lightning/Physical traps, Death and Shield. The other52 were not individually viewed.",
+        "Separate actual viewport scrolling visibly exposes allies and enemies; the original black enemy-region framing defect is absent from these inspected captures.",
+        "Fixed navigation clips lower ally/card content; lower enemy rows can remain outside the viewport. Existing nav glyph fallback and English header truncation remain.",
+        "Blood Lord portraits are broken images, documented as BUG309; available Death Mauler art remains visible.",
+        "No whole-app mobile, physical-touch, accessibility, independent QA or earned-balance acceptance."
+      ],
+      "buildAssetsUnchanged": 762
+    },
     "build": {
       "files": 762,
       "javascriptChunks": 6,
@@ -532,10 +945,10 @@
     }
   },
   "remaining": [
-    "Actual production trap combat: ranks1/20, both locales, desktop/mobile, repeated typed HP loss, real MP, corpse consumption and Shield reaction.",
-    "Corrected visible mobile ally/enemy captures and finite HP browser readback; BUG306 remains open.",
-    "Shared corpse competition/reactive boundary gaps and one fresh stable integrated full/static gate.",
-    "Retention/readback/owned disposable cleanup, inventory reconciliation, earned/independent and whole-v1 acceptance."
+    "BUG309 missing/error monster-art fallback source correction and public runtime verification.",
+    "Charge matrix BUG306 original absent absolute HP/captures remain deficient; trap proof does not retroactively repair charge evidence.",
+    "Retention/readback and exact task-owned disposable cleanup before any inventory reconciliation.",
+    "Dragon Flight and remaining Assassin/Cold Mastery/Cobra decisions, earned builds/campaign/balance/economy/endgame and whole-app/independent/mobile/a11y/performance/soak/full-v1 acceptance."
   ],
   "inventory": {
     "bounded": 195,
@@ -551,7 +964,7 @@
   },
   "retention": {
     "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc",
-    "reason": "Continuing feature and full-v1 evidence consumers; actual browser fixture uses combat-dist",
+    "reason": "Continuing feature/full-v1 consumers and next missing-art browser correction; raw matrix/report/captures retained, archive/readback/cleanup not yet complete.",
     "removeBy": "Root after terminal consumers, archive/readback and exact owned cleanup; no cleanup claimed"
   }
 }

@@ -1,6 +1,6 @@
 # BUG-307 — Align historical Fire regressions with finite trap semantics
 
-Status: Fixed in 909f47dc — focused integration checks pass; fresh whole-unit gate remains required.
+Status: Fixed in 909f47dc — focused integration and subsequent whole-unit gate pass.
 Severity: Medium — the complete unit gate fails; no production defect is inferred yet.
 Build: ba1f1668e8b9a11321734474a4f9c856febecf00.
 Environment: local Vitest Node/jsdom, English and Chinese UI; deterministic combat seeds 7 and 41.
@@ -51,3 +51,5 @@ Regression paths: the two original files above. Final combined241/4, scoped
 strict types and lint pass, with source/HEAD/input hashes exact in the retained
 trap-fire-compat-final receipts. Original22-failure full and subsequent two-alias
 failure/type error remain retained. No production engine semantics were changed.
+
+Final whole-gate verification at33dc3239: trap-final-full19813PASS/928files/two existing skips1105.449s; fulltypes137.342s/lint237.313sPASS,2536repository/nine external inputs and HEAD unchanged. Exact receipts are retained in the Assassin trap integration-followup packet. This does not claim later source increments or earned/independent acceptance.
