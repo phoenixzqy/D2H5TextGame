@@ -2,6 +2,7 @@ import { AssassinCharges, ASSASSIN_CHARGE_DEFINITION, matchesAssassinMartialSkil
   copyAssassinMartialRanks, cobraChargeRecovery } from '../skills/assassin-charges';
 import { ProjectileFlights } from './projectile-flight';
 import { copyAssassinShadowSkills, matchesAssassinShadowAttack, qualifyAssassinShadow } from '../skills/assassin-shadow-skills';
+import { copyAssassinTrapRanks } from '../skills/assassin-traps';
 import { SLOW_MISSILES_DEFINITION, SLOW_MISSILES_IDS, slowMissilesRank } from '../skills/slow-missiles';
 import { activeConversion, effectiveSide, opponentsOf, type ConversionBinding } from './allegiance';
 import { attackCandidates } from './attack-targets';
@@ -643,7 +644,8 @@ function pickDefender(
 }
 
 function registerUnit(state: State, u: CombatUnit): void {
-  const projected = u.assassinMartialRanks === undefined ? u : { ...u, assassinMartialRanks: copyAssassinMartialRanks(u.assassinMartialRanks) };
+  const traps = u.assassinTrapRanks === undefined ? u : { ...u, assassinTrapRanks: copyAssassinTrapRanks(u.assassinTrapRanks) };
+  const projected = u.assassinMartialRanks === undefined ? traps : { ...traps, assassinMartialRanks: copyAssassinMartialRanks(u.assassinMartialRanks) };
   const copiedBuffs = copyBoneWallStatuses(copySorceressBuffStatuses(projected));
   const shadowNative = u.assassinShadowSkills === undefined ? copiedBuffs : {
     ...copiedBuffs, assassinShadowSkills: copyAssassinShadowSkills(u.assassinShadowSkills) };

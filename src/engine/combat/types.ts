@@ -105,6 +105,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Selected learned native trap authority; paid instances are private to one battle. */
+  readonly assassinTrapRanks?: import('../skills/assassin-traps').AssassinTrapRanks;
   /** Native martial permission only; paid stacks live privately inside one battle. */
   readonly assassinMartialRanks?: import('../skills/assassin-charges').AssassinMartialRanks;
   /** Native captured shadow attacks; paid body bindings remain private to this battle. */

@@ -1,4 +1,5 @@
 import { composeAssassinMartialRanks } from '@/engine/skills/assassin-charges';
+import { composeAssassinTrapRanks } from '@/engine/skills/assassin-traps';
 import { advanceEndgameWave, captureEndgameWave, prepareEndgameAttempt, type EndgameWaveBinding } from '@/engine/endgame/runtime';
 import { readEndgameState } from '@/engine/endgame/state';
 import type { EndgameState } from '@/engine/endgame/types';
@@ -295,6 +296,7 @@ function composeNativeCombatUnit(player: Player, temporarySkillRankBonus: 0 | 1)
     ...(player.class === 'druid' ? { druidSummonRanks: composeDruidSummonRanks(player) } : {}),
     ...(player.class === 'assassin' ? { assassinShadowSkills: composeAssassinShadowSkills(player) } : {}),
     ...(player.class === 'assassin' ? { assassinMartialRanks: composeAssassinMartialRanks(player) } : {}),
+    ...(player.class === 'assassin' ? { assassinTrapRanks: composeAssassinTrapRanks(player) } : {}),
     ...(player.class === 'necromancer' ? { fireGolemRank:
       configuration.skillOrder.some(id => id === 'skills-necromancer-fire-golem' || id === 'necromancer.fire_golem')
         ? configuration.skillLevels?.['necromancer.fire_golem'] ?? 0 : 0 } : {}),
@@ -1280,6 +1282,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
         ? { druidSummonRanks: fresh.druidSummonRanks ?? {} } : {}),
       ...((unit.assassinMartialRanks !== undefined || fresh.assassinMartialRanks !== undefined)
         ? { assassinMartialRanks: fresh.assassinMartialRanks ?? {} } : {}),
+      ...((unit.assassinTrapRanks !== undefined || fresh.assassinTrapRanks !== undefined)
+        ? { assassinTrapRanks: fresh.assassinTrapRanks ?? {} } : {}),
       ...((unit.assassinShadowSkills !== undefined || fresh.assassinShadowSkills !== undefined)
         ? { assassinShadowSkills: fresh.assassinShadowSkills ?? {} } : {}),
       ...((unit.fireGolemRank !== undefined || fresh.fireGolemRank !== undefined)
