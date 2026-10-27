@@ -20,6 +20,7 @@ import { isTerrorDefinition } from '../combat/terror-definition';
 import { isBonePrisonDefinition } from '../combat/bone-prison-definition';
 import { isBoneWallDefinition } from '../combat/bone-wall-definition';
 import { isWeakenDefinition } from '../combat/weaken-definition';
+import { isAmazonInnerSightDefinition } from '../combat/amazon-inner-sight-definition';
 import { isDimVisionDefinition } from '../combat/dim-vision-definition';
 import { damageCurseId } from '../combat/damage-curse-definition';
 import { targetCurseId } from '../combat/target-curse-definition';
@@ -312,6 +313,7 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
     const warcry = ['skills-barbarian-howl', 'skills-barbarian-taunt', 'skills-barbarian-battle-cry'].includes(skill.id);
     const decrepify = skill.id === 'skills-necromancer-decrepify' && isDecrepifyDefinition(skill);
     const weaken = skill.id === 'skills-necromancer-weaken' && isWeakenDefinition(skill);
+    const innerSight = skill.id === 'skills-amazon-inner-sight' && isAmazonInnerSightDefinition(skill);
     const dimVision = skill.id === 'skills-necromancer-dim-vision' && isDimVisionDefinition(skill);
     const damageCurse = damageCurseId(skill);
     const terror = skill.id === 'skills-necromancer-terror' && isTerrorDefinition(skill);
@@ -320,11 +322,12 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
     effects.push({
       kind: 'debuff',
       statusId: skill.appliesStatus[0],
-      ...((warcry || decrepify || weaken || dimVision || damageCurse !== undefined || terror || bonePrison || targetCurse !== undefined) && skill.statusEffect?.durationMs !== undefined
+      ...((warcry || decrepify || weaken || innerSight || dimVision || damageCurse !== undefined || terror || bonePrison || targetCurse !== undefined) && skill.statusEffect?.durationMs !== undefined
         ? { durationMs: skill.statusEffect.durationMs } : {}),
       ...(skill.id === 'skills-barbarian-battle-cry' ? { battleCry: true as const } : {}),
       ...(decrepify ? { decrepify: true as const } : {}),
       ...(weaken ? { weaken: true as const } : {}),
+      ...(innerSight ? { innerSight: true as const } : {}),
       ...(dimVision ? { dimVision: true as const } : {}),
       ...(terror ? { terror: true as const } : {}),
       ...(bonePrison ? { bonePrison: true as const } : {}),

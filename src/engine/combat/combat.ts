@@ -91,6 +91,7 @@ import { HYDRA_DEFINITION, isHydraSkill, matchesHydra, hydraRank, buildHydra } f
 import { isStaticFieldId, matchesStaticField, staticFieldDamage, staticFieldRank } from '../skills/static-field';
 import { activeDecrepify, paidDecrepify } from './decrepify-definition';
 import { activeWeaken, paidWeaken } from './weaken-definition';
+import { activeAmazonInnerSight, paidAmazonInnerSight } from './amazon-inner-sight-definition';
 import { activeDimVision, paidDimVision } from './dim-vision-definition';
 import { activeTerror } from './terror-definition';
 import { activeBonePrison, BONE_PRISON_IDS } from './bone-prison-definition';
@@ -685,8 +686,9 @@ function buildDamageInput(
       : resistances;
   const meltFactor = hasStatus(defender, METEOR_ARMOR_MELT_DEFINITION.statusId)
     ? 1 - METEOR_ARMOR_MELT_DEFINITION.defenseReductionPct / 100 : 1;
-  const innerSightFactor = hasStatus(defender, MERC_INNER_SIGHT_DEFINITION.statusId)
-    ? 1 - MERC_INNER_SIGHT_DEFINITION.defenseReductionPct / 100 : 1;
+  const innerSightReduction = Math.max(activeAmazonInnerSight(defender, state.simClockMs)?.defenseReductionPct ?? 0,
+    hasStatus(defender, MERC_INNER_SIGHT_DEFINITION.statusId) ? MERC_INNER_SIGHT_DEFINITION.defenseReductionPct : 0);
+  const innerSightFactor = 1 - innerSightReduction / 100;
   const barbsDefense = defender.kind === 'summon'
     ? (activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, defender, state.units)?.rank ?? 0) * SPIRIT_OF_BARBS_DEFINITION.summonDefensePerRank : 0;
   const armorBonus = (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + coldArmorBonuses(defender).defense + barbsDefense + holyShieldDefense(defender) + (defendingCloak?.defensePct ?? 0) + (activeConcentrate(defender, state.simClockMs)?.defensePct ?? 0);
@@ -1798,6 +1800,7 @@ function applyEffect(
             ...(effect.damageCurse === effect.statusId
               ? { damageCurse: paidDamageCurse(effect.damageCurse) } : {}),
             ...(effect.weaken === true && effect.statusId === 'weaken' ? { weaken: paidWeaken() } : {}),
+            ...(effect.innerSight === true && effect.statusId === 'inner-sight' ? { innerSight: paidAmazonInnerSight() } : {}),
             ...(effect.terror === true && effect.statusId === 'terror' ? { terror: true as const } : {}),
             ...(effect.bonePrison === true && effect.statusId === 'bone-prison' ? { bonePrison: true as const } : {}),
             ...(effect.decrepify === true && effect.statusId === 'decrepify' ? { decrepify: paidDecrepify() } : {}),

@@ -137,6 +137,8 @@ export interface DebuffEffect {
   readonly decrepify?: true;
   /** Complete authored Weaken, captured only when the eligible action pays. */
   readonly weaken?: true;
+  /** Complete authored Amazon Defense reduction, captured only on payment. */
+  readonly innerSight?: true;
   /** Capture authored rank-scaled damage/Defense reduction on payment. */
   readonly battleCry?: true;
 }

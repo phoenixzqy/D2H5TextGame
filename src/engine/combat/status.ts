@@ -27,6 +27,7 @@ import { DRUID_SUMMON_DEFINITION } from '../skills/druid-summon-definition';
 import { WARCRY_DEFINITIONS } from './warcry-definition';
 import { DECREPIFY_DEFINITION } from './decrepify-definition';
 import { WEAKEN_DEFINITION } from './weaken-definition';
+import { AMAZON_INNER_SIGHT_DEFINITION } from './amazon-inner-sight-definition';
 import { DIM_VISION_DEFINITION } from './dim-vision-definition';
 import { TARGET_CURSE_DEFINITIONS } from './target-curse-definition';
 import { TERROR_DEFINITION } from './terror-definition';
@@ -41,6 +42,7 @@ export type StatusId =
   | 'bone-prison'
   | 'iron-maiden' | 'life-tap' | 'lower-resist'
   | 'weaken'
+  | 'inner-sight'
   | 'decrepify'
   | 'howl'
   | 'chill'
@@ -80,6 +82,7 @@ export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.
   'life-tap': { duration: DAMAGE_CURSE_DEFINITIONS['life-tap'].durationMs / 1000, maxStacks: 1 },
   'lower-resist': { duration: DAMAGE_CURSE_DEFINITIONS['lower-resist'].durationMs / 1000, maxStacks: 1 },
   weaken: { duration: WEAKEN_DEFINITION.durationMs / 1000, maxStacks: 1 },
+  'inner-sight': { duration: AMAZON_INNER_SIGHT_DEFINITION.durationMs / 1000, maxStacks: 1 },
   decrepify: { duration: DECREPIFY_DEFINITION.durationMs / 1000, maxStacks: 1 },
   howl: { duration: WARCRY_DEFINITIONS.howl.durationMs / 1000, maxStacks: 1,
     bossDurationMult: WARCRY_DEFINITIONS.howl.bossDurationMultiplier },
@@ -106,6 +109,7 @@ export interface ApplyStatusInput {
   readonly bonePrison?: true;
   readonly damageCurse?: ActiveStatus['damageCurse'];
   readonly weaken?: ActiveStatus['weaken'];
+  readonly innerSight?: ActiveStatus['innerSight'];
   readonly decrepify?: ActiveStatus['decrepify'];
   readonly battleCry?: ActiveStatus['battleCry'];
   /** Eligible recipient's selected Cleansing factor; affects finite timed poison/curse applications only. */
@@ -256,7 +260,7 @@ export function applyStatusWithResult(
   }
 
   // Paid warcries and finite damage curses replace their source, potency and interval without stacking.
-  if (id === 'confuse' || id === 'attract' || id === 'dim-vision' || id === 'terror' || id === 'bone-prison' || id === 'howl' || id === 'taunt' || id === 'battle-cry' || id === 'decrepify' || id === 'weaken' || isDamageCurseId(id))
+  if (id === 'confuse' || id === 'attract' || id === 'dim-vision' || id === 'terror' || id === 'bone-prison' || id === 'howl' || id === 'taunt' || id === 'battle-cry' || id === 'decrepify' || id === 'weaken' || id === 'inner-sight' || isDamageCurseId(id))
     unit = { ...unit, statuses: unit.statuses.filter(s => s.id !== id) };
   const idx = unit.statuses.findIndex((s) => canonicalStatusId(s.id) === id);
   const expiresAtMs =
@@ -275,6 +279,7 @@ export function applyStatusWithResult(
       ...(id === 'bone-prison' && input.bonePrison === true ? { bonePrison: true as const } : {}),
       ...(isDamageCurseId(id) && input.damageCurse?.id === id ? { damageCurse: Object.freeze({ ...input.damageCurse }) } : {}),
       ...(id === 'weaken' && input.weaken ? { weaken: Object.freeze({ ...input.weaken }) } : {}),
+      ...(id === 'inner-sight' && input.innerSight ? { innerSight: Object.freeze({ ...input.innerSight }) } : {}),
       ...(id === 'decrepify' && input.decrepify ? { decrepify: Object.freeze({ ...input.decrepify }) } : {}),
       stacks: 1,
       remaining: dur,
