@@ -156,7 +156,7 @@ for (const locale of ['en', 'zh-CN'] as const)
         .getByTestId('sub-area-row-a1-blood-moor')
         .getByRole('button', { name: english ? 'Enter' : '进入', exact: true })
         .click();
-      const cast = english ? `${character} casts Inner Sight.` : `${character} 施放了 内视。`;
+      const cast = english ? `${character} casts Inner Sight.` : `${character} 施放了 心眼。`;
       await expect(page.getByTestId('combat-log')).toContainText(cast);
       const chips = page
         .getByTestId('enemies-grid')
