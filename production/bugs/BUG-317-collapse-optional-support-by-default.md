@@ -1,6 +1,6 @@
 # BUG-317 — Collapse optional support in Settings by default
 
-Status: Reproduced before source correction. Root sole executor/author.
+Status: Implemented in1037886f; scoped native/production checks pass; fresh whole integration and independent acceptance pending. Root sole executor/author.
 Severity: Medium — optional support treatment violates the explicit GDD; workaround: ignore link.
 Build: c882dfe642e9bdbd5e0f4567e14b7ab261a1e258; ordinary production build from6480ac15.
 Environment: Chromium production preview,360×640,en/zh-CN; disposable no-character browser contexts; no engine/RNG dependency.
@@ -22,3 +22,9 @@ Affected systems: frontend/UX/a11y/localization. Root cause: Settings footer ren
 Native details/summary, default closed without persistent state/custom handlers; existing translated supportDev label,44px-plus controls, visible keyboard focus and protected external-link attributes; keep version outside hidden content. Actual developer support destination remains separately pending an asynchronous user question; do not invent a profile URL or claim full F20 acceptance. No payment/power/purchase flow.
 
 Security check: pass for authorized first-party local presentation; no new dependencies/permissions/telemetry/save-format change. Plan review: ready for default-collapse slice; author review is not independent acceptance. Browser baseline→fixed keyboard/pointer/remount/no-overflow checks in both locales/five sizes, existing Settings regressions, explicit lint/types/build and final integrated whole checks before handoff.
+
+## Implementation checkpoint
+
+Native default-closed details/summary is committed, existing Settings11tests/types/lintPASS. Final production20/20both-locale/five-size/no-character-and-fresh-character cases verify keyboard/pointer/remount,44px-plus controls, hit testing and no overflow; all20character originals viewed. Actual developer support profile remains pending user answer; fullF20 is not accepted.
+
+[Scoped evidence and continuing root ownership](../../docs/plans/evidence/p16-support-pwa-install-icons.md). Fresh whole integration/retention pending; no independent/full-v1 acceptance or remote action.

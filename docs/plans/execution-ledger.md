@@ -12,6 +12,8 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| P16 optional support / BUG317 | source/scoped production pass; destination/whole/retention pending | 1037886f native default-closed details/summary reuses translated support label,44px controls and visible focus; version stays visible. Existing11Settings tests/scopedtypes/lintPASS. Final20/20both locales/five sizes/no-character+fresh-character browser contexts pass keyboard/pointer/remount/geometry/hit testing;20character originals viewed. Actual developer profile URL asked asynchronously, no answer; generic homepage unchanged/fullF20 not accepted. [Evidence](evidence/p16-support-pwa-install-icons.md); root owns active raw task through final consumers, then archive/readback/exact cleanup. |
+| P17 installation PNG icons / BUG318 | source/scoped production pass; whole/retention/installation acceptance pending | b17552a6 converts existing SVG artwork into actual PNG192/512; SVG bytes unchanged. Both original MIMEPNG/SVG decode failures retained; original-build guardRED→finalguardGREEN. Ordinary12.447s build, six-chunk bridge/756unique-precache checks and actual PNG/MIME/dimensions/activated-controller browser proofPASS. Empty CDP errors also occurred broken; no prompt observed/headlessOS/Android/Lighthouse/fullG6/independent claim. [Evidence](evidence/p16-support-pwa-install-icons.md); source/shared worktree preserved;211bounded/oneunverified/onereview/genuine campaign unchanged. |
 | P16 crafting localization / BUG316 | locally resolved; integration/retention complete; independent open | 6480ac15 removes unused material-only targets and translates each gear source once. Six causal bilingual REDs→GREEN, focused46/3/types/lint/buildPASS. Same24000-cap360px median236→119ms(en)/349→131ms(zh-CN);100-item English114→120ms retained. Production comparison4/4plus ten-size/locale cases retain exact ownership/100-card bounds/final-target selection; ten originals viewed. Frozen c882dfe6 full19935/940/two existing opt-in skipsPASS1027.326s, types139.318s/lint236.326sPASS;2693repository/770external inputs/HEAD exact/rehashed.970archive members read-back verified;969files/one dependency link/17dirs/rawroot exactly removed,remaining[]/failures[]; shared target preserved. [Evidence](evidence/p16-inventory-crafting-localization.md) records root-owned archive/sidecars retained through consumers. Whole-app/device/earned/independent acceptance open;211bounded/oneunverified/onereview/genuine campaign unchanged. |
 | P16 navigation / BUG313–315 | locally resolved; integration/retention complete; independent open | Icons e7aeafcc, targets558c01f0, complete labels/reflow b508e864; bug resolution79ec0f7e. Frozen6c57da63 full19929/939/two existing skips PASS1056.547s, types133.670s/lint235.728s PASS;2692repository/766external inputs and HEAD exact/rehashed. Production10/10PASS71.111s,80complete44px-plus targets/ten actual SWofflineContinues; all20online/offline originals individually viewed. [Evidence](evidence/p16-navigation-icons.md).3316archive members read-back verified;3316files/95dirs/rawroot exactly cleaned,remaining[]/failures[]. Root retains archive/two sidecars through consumers. Whole-app a11y/performance/independent/full-v1 and211bounded/oneunverified/onereview/genuine campaign unchanged. |
 | D05/D06 Assassin final reconciliation / BUG311–312 | sixteen bounded local records reconciled; independent/earned acceptance open | Final d9447414 full19927/939/two existing skips, types/lint and corrected production8/8 PASS;16coherent first-wave shadow rank proofs,16seven-domain pairs/eight actual offlineContinues. Corrected charge HP, trap, Flight and original shadow evidence retain their own heads/scopes. [Reconciliation](evidence/assassin-skill-reconciliation.md):213IDs/header/order and197other raw rows preserved;211bounded/oneunverified/onereview, Assassin29/30. Cobra BUG304 user contract and Cold Mastery review remain. Source/evidence66153a52; exact shadow archive15148members read-back verified, raw task removed, root retains archive/manifest/receipt through consumers. GenuineL33/Ancientsclaimed/Baaluncleared/next402 unchanged; G0–G7/C2–C4/full-v1 acceptance open. |
@@ -13824,3 +13826,25 @@ and32px link in both locale production captures; actual developer profile URL
 asked asynchronously, pending. PWA icons declared PNG are byte-identical to their
 SVG siblings and both fail actual image decoding; empty CDP installability errors
 alone did not catch them. Structured reproductions precede source correction.
+
+## 2026-10-27 — Support disclosure and installation PNG root fixes implemented
+
+BUG317/318 committed before changes.1037886f native default-collapsed Settings
+support; b17552a6 actual192/512 PNGs from unchanged matching SVG artwork plus
+minimal existing production guard. Existing11Settings/scoped types/lintPASS;
+ordinary production build12.447s/bridge/precache checksPASS. Corrected production
+20/20both-locale/five-size/no-character+ordinary-fresh-character cases pass
+native keyboard/pointer/remount/44px/hit test/no-overflow; all20character originals
+viewed. Both broken/final actual icon decode/MIME/dimension observations retained;
+empty CDP installability errors did not catch old malformed PNGs. Final worker
+activated/document controlled; no prompt observed or real OS/Android installation,
+maskable safe-zone/Lighthouse/fullG6 claim. Actual developer profile URL pending.
+
+Fresh whole checks and archive/readback/exact cleanup are next. Root owns exact
+active support-disclosure task/build through consumers; [checkpoint](evidence/p16-support-pwa-install-icons.md)
+retains paths, original harness failures, scopes and next steps. Prior19935/940
+atc882dfe6 predates these4source paths; no fresh whole total. Genuine fixture
+compressed/raw hashes exact,L33/Ancientsclaimed/Baaluncleared/next402 unchanged;
+211bounded/oneunverified/onereview/Cobra/ColdMastery and full privatev1 gates
+remain open. No delegation, genuine campaign/replay, independent self-approval
+or remote action. Registered umbrella worktree remains claimed.

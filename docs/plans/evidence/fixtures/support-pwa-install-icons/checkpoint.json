@@ -1,0 +1,1120 @@
+{
+  "at": "2026-10-27T14:03:49.148816+00:00",
+  "status": "Committed local fixes and scoped production checks pass; final whole integration/retention pending; no full-v1/independent acceptance",
+  "owner": "root sole writer/executor",
+  "sourceCommits": {
+    "supportDisclosure": "1037886fe2ee8f810932de31fa7854c21b14a53a",
+    "pngIconsAndPrecacheGuard": "b17552a68b666c42e113319bd1d644ebc94f0a32",
+    "preChangeBugReports": "d34c13e76c700d85063d8797659936dfa76ba8b3"
+  },
+  "sourceHashes": {
+    "src/features/settings/SettingsScreen.tsx": "33e44945647d7509ce5a4d119cef4861b36933bb7dba22d634634c28fbc74691",
+    "public/icons/icon-192.png": "d64929a112925d7e3abc2c261bf95c3c7a432ef437ef108f48646930053a074f",
+    "public/icons/icon-512.png": "aad64950f807162377e7db8568a463233eb7c86a4c0cc7965eeeb5d59b4ef86e",
+    "public/icons/icon-192.svg": "484cbe08e934e697c22edfb8106542dc25326ef6647f065e79090a3b0a63b685",
+    "public/icons/icon-512.svg": "cb31051dd6da6071a7b808f78da945e6cdb4faffbc53ef45d4452b0062c0ff14",
+    "scripts/check-offline-precache.mjs": "027ab32167ea7ed51255100cca2563fa11889ed70a0ca95be0c9380313b740c7",
+    "vite.config.ts": "70543a4e774af047f4f560acd8426e12fee4e9ecd6411a28fca621d19dec588c",
+    "index.html": "3e68708301c68f2e4bc10779b107e90b00cc3dce41cd0750c6eb1fdf665363d7"
+  },
+  "checks": {
+    "support-prototype-unit": {
+      "label": "support-prototype-unit",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/branch.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/prototype.workspace.mjs"
+      ],
+      "exit": 0,
+      "seconds": 9.590831459965557,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "c882dfe642e9bdbd5e0f4567e14b7ab261a1e258",
+      "headAfter": "c882dfe642e9bdbd5e0f4567e14b7ab261a1e258",
+      "totals": [
+        " Test Files  1 passed (1)",
+        "      Tests  11 passed (11)"
+      ]
+    },
+    "support-unit": {
+      "label": "support-unit",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "--project",
+        "ui",
+        "src/features/settings/SettingsScreen.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 9.359639770002104,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "d34c13e76c700d85063d8797659936dfa76ba8b3",
+      "headAfter": "d34c13e76c700d85063d8797659936dfa76ba8b3",
+      "totals": [
+        " Test Files  1 passed (1)",
+        "      Tests  11 passed (11)"
+      ]
+    },
+    "support-types": {
+      "label": "support-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--project",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/ui.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 8.722665901994333,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "d34c13e76c700d85063d8797659936dfa76ba8b3",
+      "headAfter": "d34c13e76c700d85063d8797659936dfa76ba8b3",
+      "totals": []
+    },
+    "support-lint": {
+      "label": "support-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/features/settings/SettingsScreen.tsx",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 8.29099062597379,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "d34c13e76c700d85063d8797659936dfa76ba8b3",
+      "headAfter": "d34c13e76c700d85063d8797659936dfa76ba8b3",
+      "totals": []
+    },
+    "final-build": {
+      "label": "final-build",
+      "command": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/build.config.mjs"
+      ],
+      "exit": 0,
+      "seconds": 12.446951257996261,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "1037886fe2ee8f810932de31fa7854c21b14a53a",
+      "headAfter": "1037886fe2ee8f810932de31fa7854c21b14a53a",
+      "totals": []
+    },
+    "final-precache-guard": {
+      "label": "final-precache-guard",
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-dist"
+      ],
+      "exit": 0,
+      "seconds": 0.13805878499988467,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "1037886fe2ee8f810932de31fa7854c21b14a53a",
+      "headAfter": "1037886fe2ee8f810932de31fa7854c21b14a53a",
+      "totals": []
+    },
+    "pwa-icon-guard-red": {
+      "label": "pwa-icon-guard-red",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/check-offline-precache.prototype.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-dist"
+      ],
+      "exit": 1,
+      "seconds": 0.126112938974984,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "c882dfe642e9bdbd5e0f4567e14b7ab261a1e258",
+      "headAfter": "c882dfe642e9bdbd5e0f4567e14b7ab261a1e258",
+      "totals": []
+    }
+  },
+  "support": {
+    "requirement": "Diablo2TextGame.md line280: optional coffee link in Settings collapsed by default",
+    "baseline": {
+      "mode": "baseline",
+      "dist": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-dist",
+      "sourceHEAD": "c882dfe642e9bdbd5e0f4567e14b7ab261a1e258",
+      "cases": [
+        {
+          "locale": "en",
+          "viewport": {
+            "width": 360,
+            "height": 640
+          },
+          "supportVisibleByDefault": true,
+          "disclosures": 0,
+          "linkBox": {
+            "x": 123.8125,
+            "y": 566,
+            "width": 112.359375,
+            "height": 32
+          },
+          "href": "https://www.buymeacoffee.com/",
+          "observedRequirementFailure": "Support link visible without opening a disclosure; no default-collapsed support control.",
+          "status": "pass"
+        },
+        {
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 360,
+            "height": 640
+          },
+          "supportVisibleByDefault": true,
+          "disclosures": 0,
+          "linkBox": {
+            "x": 136.703125,
+            "y": 566,
+            "width": 86.578125,
+            "height": 32
+          },
+          "href": "https://www.buymeacoffee.com/",
+          "observedRequirementFailure": "Support link visible without opening a disclosure; no default-collapsed support control.",
+          "status": "pass"
+        }
+      ],
+      "errors": [],
+      "externalRequests": [],
+      "scope": "Disposable no-character Settings UI. No campaign, genuine replay, payment or external navigation. Baseline demonstrates GDD default-collapse mismatch; fixed validates local native disclosure only. Actual support destination/independent acceptance remains pending.",
+      "browser": "147.0.7727.15",
+      "status": "pass",
+      "serverExit": null,
+      "serverSignal": "SIGINT"
+    },
+    "withoutCharacter": {
+      "mode": "fixed",
+      "dist": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-dist",
+      "sourceHEAD": "1037886fe2ee8f810932de31fa7854c21b14a53a",
+      "cases": [
+        {
+          "locale": "en",
+          "viewport": {
+            "width": 360,
+            "height": 640
+          },
+          "withCharacter": false,
+          "summaryBox": {
+            "x": 30,
+            "y": 554,
+            "width": 300,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 114.453125,
+            "y": 554,
+            "width": 131.09375,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "en",
+          "viewport": {
+            "width": 412,
+            "height": 915
+          },
+          "withCharacter": false,
+          "summaryBox": {
+            "x": 30,
+            "y": 779,
+            "width": 352,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 140.453125,
+            "y": 823,
+            "width": 131.09375,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "en",
+          "viewport": {
+            "width": 640,
+            "height": 360
+          },
+          "withCharacter": false,
+          "summaryBox": {
+            "x": 30,
+            "y": 274,
+            "width": 580,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 254.453125,
+            "y": 274,
+            "width": 131.09375,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "en",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "withCharacter": false,
+          "summaryBox": {
+            "x": 322,
+            "y": 714,
+            "width": 636,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 574.453125,
+            "y": 714,
+            "width": 131.09375,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "en",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "withCharacter": false,
+          "summaryBox": {
+            "x": 642,
+            "y": 783,
+            "width": 636,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 894.453125,
+            "y": 827,
+            "width": 131.09375,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 360,
+            "height": 640
+          },
+          "withCharacter": false,
+          "summaryBox": {
+            "x": 30,
+            "y": 554,
+            "width": 300,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 129.484375,
+            "y": 554,
+            "width": 101.015625,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 412,
+            "height": 915
+          },
+          "withCharacter": false,
+          "summaryBox": {
+            "x": 30,
+            "y": 779,
+            "width": 352,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 155.484375,
+            "y": 823,
+            "width": 101.015625,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 640,
+            "height": 360
+          },
+          "withCharacter": false,
+          "summaryBox": {
+            "x": 30,
+            "y": 274,
+            "width": 580,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 269.484375,
+            "y": 274,
+            "width": 101.015625,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "withCharacter": false,
+          "summaryBox": {
+            "x": 322,
+            "y": 714,
+            "width": 636,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 589.484375,
+            "y": 714,
+            "width": 101.015625,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "withCharacter": false,
+          "summaryBox": {
+            "x": 642,
+            "y": 783,
+            "width": 636,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 909.484375,
+            "y": 827,
+            "width": 101.015625,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        }
+      ],
+      "errors": [],
+      "externalRequests": [],
+      "scope": "Disposable Settings UI, with ordinary fresh-character creation when requested. No campaign, genuine replay, payment or external navigation. Baseline demonstrates GDD default-collapse mismatch; fixed validates local native disclosure only. Actual support destination/independent acceptance remains pending.",
+      "browser": "147.0.7727.15",
+      "status": "pass",
+      "serverExit": null,
+      "serverSignal": "SIGINT"
+    },
+    "ordinaryFreshCharacter": {
+      "mode": "fixed",
+      "dist": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-dist",
+      "sourceHEAD": "b17552a68b666c42e113319bd1d644ebc94f0a32",
+      "cases": [
+        {
+          "locale": "en",
+          "viewport": {
+            "width": 360,
+            "height": 640
+          },
+          "withCharacter": true,
+          "summaryBox": {
+            "x": 30,
+            "y": 369,
+            "width": 300,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 114.453125,
+            "y": 413,
+            "width": 131.09375,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "en",
+          "viewport": {
+            "width": 412,
+            "height": 915
+          },
+          "withCharacter": true,
+          "summaryBox": {
+            "x": 30,
+            "y": 710,
+            "width": 352,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 140.453125,
+            "y": 716,
+            "width": 131.09375,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "en",
+          "viewport": {
+            "width": 640,
+            "height": 360
+          },
+          "withCharacter": true,
+          "summaryBox": {
+            "x": 30,
+            "y": 161,
+            "width": 580,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 254.453125,
+            "y": 205,
+            "width": 131.09375,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "en",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "withCharacter": true,
+          "summaryBox": {
+            "x": 362,
+            "y": 714,
+            "width": 636,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 614.453125,
+            "y": 714,
+            "width": 131.09375,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "en",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "withCharacter": true,
+          "summaryBox": {
+            "x": 682,
+            "y": 721,
+            "width": 636,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 934.453125,
+            "y": 765,
+            "width": 131.09375,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 360,
+            "height": 640
+          },
+          "withCharacter": true,
+          "summaryBox": {
+            "x": 30,
+            "y": 369,
+            "width": 300,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 129.484375,
+            "y": 413,
+            "width": 101.015625,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 412,
+            "height": 915
+          },
+          "withCharacter": true,
+          "summaryBox": {
+            "x": 30,
+            "y": 710,
+            "width": 352,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 155.484375,
+            "y": 716,
+            "width": 101.015625,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 640,
+            "height": 360
+          },
+          "withCharacter": true,
+          "summaryBox": {
+            "x": 30,
+            "y": 161,
+            "width": 580,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 269.484375,
+            "y": 205,
+            "width": 101.015625,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "withCharacter": true,
+          "summaryBox": {
+            "x": 362,
+            "y": 714,
+            "width": 636,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 629.484375,
+            "y": 714,
+            "width": 101.015625,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        },
+        {
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "withCharacter": true,
+          "summaryBox": {
+            "x": 682,
+            "y": 721,
+            "width": 636,
+            "height": 44
+          },
+          "linkBox": {
+            "x": 949.484375,
+            "y": 765,
+            "width": 101.015625,
+            "height": 44
+          },
+          "supportNotCovered": true,
+          "href": "https://www.buymeacoffee.com/",
+          "keyboardEnterTabSpaceAndPointer": true,
+          "remountCollapsed": true,
+          "noHorizontalOverflow": true,
+          "status": "pass"
+        }
+      ],
+      "errors": [],
+      "externalRequests": [],
+      "scope": "Disposable Settings UI, with ordinary fresh-character creation when requested. No campaign, genuine replay, payment or external navigation. Baseline demonstrates GDD default-collapse mismatch; fixed validates local native disclosure only. Actual support destination/independent acceptance remains pending.",
+      "browser": "147.0.7727.15",
+      "status": "pass",
+      "serverExit": null,
+      "serverSignal": "SIGINT"
+    },
+    "implementation": "Native details/summary; translated existing supportDev label; no persistent state or custom keyboard handlers;44px disclosure/link; version outside hidden content; external protections retained",
+    "remainingDestination": "Actual developer profile URL asked asynchronously; no response yet, generic pre-existing homepage unchanged. No external link activation, purchase or power flow. FullF20 not accepted."
+  },
+  "icons": {
+    "baseline": {
+      "dist": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-dist",
+      "scope": "Read-only localhost install-prerequisite diagnosis in headless bundled Chromium. No OS installation, actual Android prompt, Lighthouse score, campaign or save acceptance.",
+      "errors": [],
+      "browser": "147.0.7727.15",
+      "worker": {
+        "activeState": "activated",
+        "scriptURL": "http://127.0.0.1:4525/sw.js",
+        "controller": "http://127.0.0.1:4525/sw.js"
+      },
+      "controller": "http://127.0.0.1:4525/sw.js",
+      "manifest": {
+        "url": "http://127.0.0.1:4525/manifest.webmanifest",
+        "errors": [],
+        "data": "{\"name\":\"D2 H5 Text Game\",\"short_name\":\"D2 \u6587\u5b57\u7248\",\"start_url\":\"/\",\"display\":\"standalone\",\"background_color\":\"#0a0a0a\",\"lang\":\"zh-CN\",\"scope\":\"/\",\"description\":\"\u6697\u9ed1\u7834\u574f\u795e2 \u6587\u5b57\u6e38\u620f HTML5 \u7248\",\"theme_color\":\"#0a0a0a\",\"orientation\":\"portrait\",\"icons\":[{\"src\":\"icons/icon-192.png\",\"sizes\":\"192x192\",\"type\":\"image/png\",\"purpose\":\"any maskable\"},{\"src\":\"icons/icon-512.png\",\"sizes\":\"512x512\",\"type\":\"image/png\",\"purpose\":\"any maskable\"}]}\n",
+        "parsed": {
+          "scope": "http://127.0.0.1:4525/"
+        },
+        "manifest": {
+          "backgroundColor": "rgba(10,10,10,1)",
+          "description": "\u6697\u9ed1\u7834\u574f\u795e2 \u6587\u5b57\u6e38\u620f HTML5 \u7248",
+          "display": "kStandalone",
+          "icons": [
+            {
+              "url": "http://127.0.0.1:4525/icons/icon-192.png",
+              "sizes": "192x192",
+              "type": "image/png"
+            },
+            {
+              "url": "http://127.0.0.1:4525/icons/icon-512.png",
+              "sizes": "512x512",
+              "type": "image/png"
+            }
+          ],
+          "id": "http://127.0.0.1:4525/",
+          "name": "D2 H5 Text Game",
+          "orientation": "PORTRAIT",
+          "preferRelatedApplications": false,
+          "scope": "http://127.0.0.1:4525/",
+          "startUrl": "http://127.0.0.1:4525/",
+          "themeColor": "rgba(10,10,10,1)"
+        }
+      },
+      "installability": {
+        "installabilityErrors": []
+      },
+      "prompt": {
+        "observed": false,
+        "platforms": []
+      },
+      "bridgeAbsent": true,
+      "iconDimensions": [
+        {
+          "src": "icons/icon-192.png",
+          "declared": "192x192",
+          "purpose": "any maskable",
+          "decoded": false,
+          "mime": "image/png",
+          "error": "EncodingError: The source image cannot be decoded."
+        },
+        {
+          "src": "icons/icon-512.png",
+          "declared": "512x512",
+          "purpose": "any maskable",
+          "decoded": false,
+          "mime": "image/png",
+          "error": "EncodingError: The source image cannot be decoded."
+        }
+      ],
+      "allIconsDecode": false,
+      "status": "diagnosis-complete",
+      "serverExit": null,
+      "serverSignal": "SIGINT"
+    },
+    "fixed": {
+      "dist": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-dist",
+      "scope": "Read-only localhost install-prerequisite diagnosis in headless bundled Chromium. No OS installation, actual Android prompt, Lighthouse score, campaign or save acceptance.",
+      "errors": [],
+      "browser": "147.0.7727.15",
+      "worker": {
+        "activeState": "activated",
+        "scriptURL": "http://127.0.0.1:4525/sw.js",
+        "controller": "http://127.0.0.1:4525/sw.js"
+      },
+      "controller": "http://127.0.0.1:4525/sw.js",
+      "manifest": {
+        "url": "http://127.0.0.1:4525/manifest.webmanifest",
+        "errors": [],
+        "data": "{\"name\":\"D2 H5 Text Game\",\"short_name\":\"D2 \u6587\u5b57\u7248\",\"start_url\":\"/\",\"display\":\"standalone\",\"background_color\":\"#0a0a0a\",\"lang\":\"zh-CN\",\"scope\":\"/\",\"description\":\"\u6697\u9ed1\u7834\u574f\u795e2 \u6587\u5b57\u6e38\u620f HTML5 \u7248\",\"theme_color\":\"#0a0a0a\",\"orientation\":\"portrait\",\"icons\":[{\"src\":\"icons/icon-192.png\",\"sizes\":\"192x192\",\"type\":\"image/png\",\"purpose\":\"any maskable\"},{\"src\":\"icons/icon-512.png\",\"sizes\":\"512x512\",\"type\":\"image/png\",\"purpose\":\"any maskable\"}]}\n",
+        "parsed": {
+          "scope": "http://127.0.0.1:4525/"
+        },
+        "manifest": {
+          "backgroundColor": "rgba(10,10,10,1)",
+          "description": "\u6697\u9ed1\u7834\u574f\u795e2 \u6587\u5b57\u6e38\u620f HTML5 \u7248",
+          "display": "kStandalone",
+          "icons": [
+            {
+              "url": "http://127.0.0.1:4525/icons/icon-192.png",
+              "sizes": "192x192",
+              "type": "image/png"
+            },
+            {
+              "url": "http://127.0.0.1:4525/icons/icon-512.png",
+              "sizes": "512x512",
+              "type": "image/png"
+            }
+          ],
+          "id": "http://127.0.0.1:4525/",
+          "name": "D2 H5 Text Game",
+          "orientation": "PORTRAIT",
+          "preferRelatedApplications": false,
+          "scope": "http://127.0.0.1:4525/",
+          "startUrl": "http://127.0.0.1:4525/",
+          "themeColor": "rgba(10,10,10,1)"
+        }
+      },
+      "installability": {
+        "installabilityErrors": []
+      },
+      "prompt": {
+        "observed": false,
+        "platforms": []
+      },
+      "bridgeAbsent": true,
+      "iconDimensions": [
+        {
+          "src": "icons/icon-192.png",
+          "declared": "192x192",
+          "purpose": "any maskable",
+          "decoded": true,
+          "width": 192,
+          "height": 192,
+          "mime": "image/png"
+        },
+        {
+          "src": "icons/icon-512.png",
+          "declared": "512x512",
+          "purpose": "any maskable",
+          "decoded": true,
+          "width": 512,
+          "height": 512,
+          "mime": "image/png"
+        }
+      ],
+      "allIconsDecode": true,
+      "status": "diagnosis-complete",
+      "serverExit": null,
+      "serverSignal": "SIGINT"
+    },
+    "rasterization": {
+      "browser": "147.0.7727.15",
+      "method": "Standard local SVG image/canvas rasterization of unchanged existing repository artwork; no AI generation, new asset design or external requests",
+      "rows": [
+        {
+          "size": 192,
+          "source": "public/icons/icon-192.svg",
+          "sourceSHA256": "484cbe08e934e697c22edfb8106542dc25326ef6647f065e79090a3b0a63b685",
+          "priorPNGWasIdenticalSVG": true,
+          "priorSHA256": "484cbe08e934e697c22edfb8106542dc25326ef6647f065e79090a3b0a63b685",
+          "output": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/rasterized/icon-192.png",
+          "sha256": "d64929a112925d7e3abc2c261bf95c3c7a432ef437ef108f48646930053a074f",
+          "bytes": 7426
+        },
+        {
+          "size": 512,
+          "source": "public/icons/icon-512.svg",
+          "sourceSHA256": "cb31051dd6da6071a7b808f78da945e6cdb4faffbc53ef45d4452b0062c0ff14",
+          "priorPNGWasIdenticalSVG": true,
+          "priorSHA256": "cb31051dd6da6071a7b808f78da945e6cdb4faffbc53ef45d4452b0062c0ff14",
+          "output": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/rasterized/icon-512.png",
+          "sha256": "aad64950f807162377e7db8568a463233eb7c86a4c0cc7965eeeb5d59b4ef86e",
+          "bytes": 25477
+        }
+      ]
+    },
+    "implementation": "Existing matching SVG artwork retained; genuine PNG192/512 generated by standard local Chromium SVG/canvas rasterization. Existing precache guard now requires both icon URLs, PNG signatures/IHDR/dimensions. Header guard is not a full PNG decoder; real browser decoding supplies that local evidence.",
+    "limits": "Empty CDP installability error list also occurred for bad icons and cannot prove installation. No beforeinstallprompt event observed in this headless context. Desktop OS/Android installation, maskable safe-zone review, Lighthouse/fullG6 remain open."
+  },
+  "build": {
+    "files": 762,
+    "chunks": 6,
+    "sourceHashes": {
+      "src/features/settings/SettingsScreen.tsx": "33e44945647d7509ce5a4d119cef4861b36933bb7dba22d634634c28fbc74691",
+      "public/icons/icon-192.png": "d64929a112925d7e3abc2c261bf95c3c7a432ef437ef108f48646930053a074f",
+      "public/icons/icon-512.png": "aad64950f807162377e7db8568a463233eb7c86a4c0cc7965eeeb5d59b4ef86e",
+      "public/icons/icon-192.svg": "484cbe08e934e697c22edfb8106542dc25326ef6647f065e79090a3b0a63b685",
+      "public/icons/icon-512.svg": "cb31051dd6da6071a7b808f78da945e6cdb4faffbc53ef45d4452b0062c0ff14",
+      "scripts/check-offline-precache.mjs": "027ab32167ea7ed51255100cca2563fa11889ed70a0ca95be0c9380313b740c7",
+      "vite.config.ts": "70543a4e774af047f4f560acd8426e12fee4e9ecd6411a28fca621d19dec588c",
+      "index.html": "3e68708301c68f2e4bc10779b107e90b00cc3dce41cd0750c6eb1fdf665363d7"
+    },
+    "forbiddenPatterns": [
+      "__GAME__",
+      "installTestBridge",
+      "seedItem",
+      "/test-bridge",
+      "VITE_E2E"
+    ],
+    "violations": [],
+    "precacheEntries": 758,
+    "uniquePrecacheURLs": 756,
+    "missing": [],
+    "allSourceAndBuiltPNGsExact": true,
+    "limits": "Existing optional art-manifest/chunk size warnings persist; no whole-app performance or actual platform installation acceptance."
+  },
+  "visuals": {
+    "at": "2026-10-27T14:03:49.148816+00:00",
+    "owner": "root",
+    "characterOriginals": [
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/en-1280x800-closed.png",
+        "sha256": "cc6e9377b32cc5b0ca2b72f76c960cc1e2e305d257ae0e8881fcdd746badf7a3",
+        "bytes": 62152,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/en-1280x800-open.png",
+        "sha256": "14e3a09a2e5fe370ae5f3078febdd7e134b8dbae8488260917be2fc1fa561948",
+        "bytes": 63010,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/en-1920x1080-closed.png",
+        "sha256": "ba65c9d49a47a3ef8aec71b93df0aaedf73bcf86c9e405f03fe44b72b8918714",
+        "bytes": 68484,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/en-1920x1080-open.png",
+        "sha256": "816bc0d7cb8b4a2e12b48c19f904de06b522ef05c0627e1fa5a0efe5c0fc37ef",
+        "bytes": 70712,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/en-360x640-closed.png",
+        "sha256": "4b2da69b2abea68a1c91cc8ac7aec2c6e8a6cbd7066bf3f5692e1c1ce0161990",
+        "bytes": 31632,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/en-360x640-open.png",
+        "sha256": "a7db124600ab951a52fe162dfe9c99cd3bea5fff709210b64b992ae02f76df8a",
+        "bytes": 33753,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/en-412x915-closed.png",
+        "sha256": "88e59fc400752f9f75f61b2b0aef14e10392eb60d3ef090d7a482baf1cb52708",
+        "bytes": 53592,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/en-412x915-open.png",
+        "sha256": "7491af9850a94678d52a9b995788adbc7d6093ac7e416dabe6793608cdb5ec78",
+        "bytes": 55385,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/en-640x360-closed.png",
+        "sha256": "ac498fa4e0347880ff76f410280e1b4ad9f846ee12bdbf5b25c44926fdf0e982",
+        "bytes": 23455,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/en-640x360-open.png",
+        "sha256": "756772926848ea17235baa55b8d06926162e36937d372e4ae65fc222d754dce9",
+        "bytes": 25662,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/zh-CN-1280x800-closed.png",
+        "sha256": "d3a40fe9a1ed2a0e74659f6e2afd530c92a4134abd98af4ff7415b91fe96f62b",
+        "bytes": 55905,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/zh-CN-1280x800-open.png",
+        "sha256": "e609b6181e07a14632d27aa0ac0b70bca6b470e89cbf0653a60e8260adc69fe0",
+        "bytes": 57484,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/zh-CN-1920x1080-closed.png",
+        "sha256": "e499dfb6680c46a89d757f2a6d15dfcff4f2a200a3ad24b4c1d061de76fa4fdf",
+        "bytes": 61619,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/zh-CN-1920x1080-open.png",
+        "sha256": "aa67d930d3262ebc541c6732a38b5d1180a4ed584b6c2a8cc6b02022d0c079a9",
+        "bytes": 64611,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/zh-CN-360x640-closed.png",
+        "sha256": "6072373f720e28531edc9d99e66a2f7b319e20932f03c190240a0ef47fda41b1",
+        "bytes": 32716,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/zh-CN-360x640-open.png",
+        "sha256": "1962eaa7308f96f509bef72c220d492d22839430300da32785b7c1c00225a771",
+        "bytes": 35461,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/zh-CN-412x915-closed.png",
+        "sha256": "a8c080b1855879ac2ddff2894af8b4ec73a245a36cd62a36317f0bd872d233c9",
+        "bytes": 47505,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/zh-CN-412x915-open.png",
+        "sha256": "df96279bc89cf92e0c5857ed22d04b488f74b5d2a739e14b3aedc138fc7be068",
+        "bytes": 49610,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/zh-CN-640x360-closed.png",
+        "sha256": "a8c85d92900b73ef337c95e6c02b661597d59ba2d38f108b3c088f40fa74ef66",
+        "bytes": 23093,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/fixed-character/zh-CN-640x360-open.png",
+        "sha256": "c33cc5fcd01147ffbb992ef5fb5ab33c7c8ed19ed9be94f175746486ff0e820f",
+        "bytes": 25783,
+        "observed": "Original Settings footer viewport individually viewed. Closed state hides coffee link and retains version; open state shows readable localized label/link and visible keyboard focus. Footer clear of navigation. Other panels may lie above viewport at this footer scroll position; no whole-app a11y/zoom/contrast or independent acceptance."
+      }
+    ],
+    "rasterPNGsIndividuallyViewed": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/rasterized/icon-192.png",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/rasterized/icon-512.png"
+    ],
+    "limits": "All20character originals individually viewed.20no-character/prototype captures are retained but supply no separate visual approval; DOM/keyboard/geometry cases pass."
+  },
+  "originalFailuresAndLimits": [
+    "First browser Chinese selector guessed wrong text and timed out; original script/report retained. Corrected exact locale label reproduces both original mismatches without product changes.",
+    "First PWA audit observed serviceWorker.ready while activating and stopped at192PNG decode. Corrected baseline waits for activated/controller and observes both MIME/decoded failures before correction.",
+    "Support browser blocks service workers. Known Playwright SW-block warning excluded from product error array; this supplies no offline/service-worker acceptance. Separate PWA icon audit enables actual worker.",
+    "No performance latency/soak, genuine campaign/replay, save migration, earned build/economy/endgame or independent approval claim."
+  ],
+  "wholeValidation": {
+    "status": "pending",
+    "required": [
+      "full unit",
+      "full typecheck",
+      "full lint/purity"
+    ],
+    "previous": "Completed19935/940/two existing opt-in skips atc882dfe6 predates these4source paths; no fresh whole count claimed.",
+    "resume": "Original future handles recorded in task whole-processes.json. Keep source/HEAD/seven critical task scripts/configs/fixed-dist unchanged through all three terminal receipts."
+  },
+  "genuine": {
+    "fixture": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
+    "compressedSHA256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "rawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "campaign": "L33; Ancients/Rite claimed; nextNormal402; Baal uncleared",
+    "unchanged": true
+  },
+  "remainingFullScope": "211bounded/oneunverified/onereview; Cobra BUG304 contract and Cold Mastery review, C2\u2013C4/fullG0\u2013G7, earned builds/pacing/economy/endgame, whole-app mobile/a11y/performance, independent/human acceptance remain open.",
+  "retention": {
+    "status": "Active raw task required for final whole checks/evidence consumers; archive/readback/exact cleanup pending",
+    "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa",
+    "owner": "Root retains exact task until consumers finish, archives/readbacks required evidence, removes exact task-owned build/cache/disposables; then retains resulting archive/manifest/receipt through independent/full-v1 consumers. Shared dependencies/worktree preserved.",
+    "previousInventoryArchive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf-raw.tar.gz"
+  }
+}
