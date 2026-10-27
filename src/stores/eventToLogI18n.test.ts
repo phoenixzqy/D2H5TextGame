@@ -125,6 +125,7 @@ describe.each(['en', 'zh-CN'])('Rogue Inner Sight status feedback %s', locale =>
 
 const statusNames = [
   ['inner-sight', 'Inner Sight', '心眼'],
+  ['slow-missiles', 'Slow Missiles', '缓速飞弹'],
   ['merc-inner-sight', 'Inner Sight', '心眼'], ['chill', 'Chill', '冰冷'],
   ['freeze', 'Freeze', '冻结'], ['paralyze', 'Paralyze', '麻痹'], ['stun', 'Stun', '眩晕'],
   ['ignite', 'Ignite', '点燃'], ['burn', 'Burn', '燃烧'], ['poison', 'Poison', '中毒'],
