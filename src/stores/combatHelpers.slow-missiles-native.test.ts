@@ -148,6 +148,8 @@ for (const rank of [1, 20]) it('paid Slow Missiles rank' + String(rank) + ' dela
  expect(impacts(slow)[1]).toBeGreaterThan(impacts(base)[1] ?? Infinity);
  const marker = slow.events.flatMap(e => e.kind === 'status-state' && e.target === 'target' ? e.statuses.filter(s => s.id === 'slow-missiles') : [])[0];
  expect(marker?.expiresAtMs).toBe(7700);
+ expect(slow.events.find(e => e.kind === 'mana' && e.target === 'hero' && e.reason === 'cast'))
+ .toMatchObject({ mana: rank === 1 ? 90 : 92, simClockMs: 1700 });
 });
 
 function impactTimes(out: ReturnType<typeof probe>) {

@@ -29,7 +29,7 @@ import { isDimVisionDefinition } from '../combat/dim-vision-definition';
 import { damageCurseId } from '../combat/damage-curse-definition';
 import { targetCurseId } from '../combat/target-curse-definition';
 import type { DamageType } from '../types/attributes';
-import type { SkillDef, ComboTag, ConversionTuning, FeralRageTuning, HitSpeedStackTuning, OnHitBoltsTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
+import type { ComboTag, ConversionTuning, FeralRageTuning, HitSpeedStackTuning, OnHitBoltsTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
 import type { OnHitStatus, RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
 
 export type PlayableSkillClass =
@@ -394,12 +394,18 @@ export const PLAYABLE_CLASS_DATA_SKILLS: readonly RegisteredSkill[] = Object.fre
   registeredSkillsForClasses(ENABLED_PLAYABLE_SKILL_CLASSES)
 );
 
-const validateFlightSource = createSkillValidator<SkillDef>();
-const authoredFlights = new Map(monsterSkills.filter(row => 'projectileFlightMs' in row).map(row => {
-  if (!validateFlightSource(row) || row.projectileFlightMs === undefined)
+const validateFlightSource = createSkillValidator<JsonSkill>();
+const authoredProjectiles = monsterSkills.flatMap(row => {
+  if (!('projectileFlightMs' in row)) return [];
+  if (!validateFlightSource(row))
     throw new Error('Invalid authored hostile projectile flight');
-  return [aliasToCanonical(row.id) ?? row.id, row.projectileFlightMs] as const;
-}));
+  const id = aliasToCanonical(row.id) ?? row.id;
+  return [{ id, flightMs: row.projectileFlightMs,
+    skill: Object.freeze({ ...registeredSkillFromJson(row), id, archetype: 'monster' }) }];
+});
+/** Validated JSON fallback for missile identities missing from the legacy catalog only. */
+export const AUTHORED_PROJECTILE_SKILLS = Object.freeze(authoredProjectiles.map(row => row.skill));
+const authoredFlights = new Map(authoredProjectiles.map(row => [row.id, row.flightMs]));
 /** Attach only authored travel to existing monster tuning, without replacing damage/CD. */
 export function withAuthoredProjectileFlight(skill: RegisteredSkill): RegisteredSkill {
   const flight = authoredFlights.get(aliasToCanonical(skill.id) ?? skill.id);

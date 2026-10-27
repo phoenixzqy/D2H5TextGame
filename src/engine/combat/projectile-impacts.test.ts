@@ -74,3 +74,22 @@ it('refuses forged free, zero-CD or retuned cost/CD runtime definitions', () => 
   expect(shots(out)[0]?.simClockMs).toBe(2200);
  }
 });
+
+it('uses the same finite travel speed for trash, elite, boss and chapter boss', () => {
+ for (const tier of ['trash', 'elite', 'boss', 'chapter-boss'] as const) {
+  const out = record({ ...snapshot(), enemyTeam: [{ ...unit('archer', 'enemy'), tier }] });
+  expect(shots(out)[0]?.simClockMs).toBe(2607);
+  expect(out.events.flatMap(e => e.kind === 'status-state' && e.target === 'archer'
+   ? e.statuses.filter(s => s.id === 'slow-missiles') : [])[0]?.expiresAtMs).toBe(8000);
+ }
+});
+it('settles an impact exactly at60s and discards a flight still pending after the deadline', () => {
+ for (const cooldown of [59500, 59600]) {
+  const archer = unit('archer', 'enemy');
+  const out = record({ seed: 7, playerTeam: [{ ...unit('hero', 'player'), statuses: [hold()] }],
+   enemyTeam: [{ ...archer, stats: { ...archer.stats, attackSpeed: 250 }, cooldowns: { 'fixture.flight': cooldown } }] });
+  expect(out.result.winner).toBeNull();
+  expect(shots(out).map(e => e.simClockMs)).toEqual(cooldown === 59500 ? [60000] : []);
+  expect(out.events.at(-1)).toMatchObject({ kind: 'end', simClockMs: 60000 });
+ }
+});
