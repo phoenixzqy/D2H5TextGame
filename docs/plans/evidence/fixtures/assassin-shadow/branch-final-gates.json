@@ -1,0 +1,635 @@
+{
+  "owner": "root",
+  "sourceHead": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+  "all2509InputsAndHeadExact": true,
+  "receipts": {
+    "shadow-branch-final-full": {
+      "label": "shadow-branch-final-full",
+      "command": [
+        "npm",
+        "run",
+        "test"
+      ],
+      "exit": 0,
+      "seconds": 1359.4791222739732,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headAfter": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  907 passed (907)",
+        "Tests  19369 passed | 2 skipped (19371)"
+      ]
+    },
+    "shadow-branch-final-lint": {
+      "label": "shadow-branch-final-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 297.27553682995494,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headAfter": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-final-typecheck": {
+      "label": "shadow-branch-final-typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 180.55704903102014,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headAfter": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-public-final": {
+      "label": "shadow-branch-public-final",
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "--config",
+        "tests/pwa/assassin-shadow-acceptance.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 232.52794497308787,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headAfter": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headUnchanged": true,
+      "totals": [
+        "\u001b[1A\u001b[2K  8 passed (3.8m)"
+      ]
+    }
+  },
+  "public": {
+    "scope": "Actual committed branch production build; constructed public fixtures, not earned progression/balance or whole-app mobile/a11y acceptance",
+    "head": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+    "reportSha256": "fd97c32f44f16eaf4ed9da63c2ddbe368e6b1a8b0f39eead49969110f5cdbce2",
+    "stats": {
+      "startTime": "2026-10-27T06:02:38.012Z",
+      "duration": 230968.051,
+      "expected": 8,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "totals": {
+      "paidSummons": 16,
+      "typedPositiveHits": 16,
+      "damagedEnemyObservations": 16,
+      "geometrySamples": 80,
+      "sevenDomainSavePairs": 16,
+      "offlineContinues": 8,
+      "screenshots": 32,
+      "mobileScreenshots": 16
+    },
+    "visualInspection": {
+      "status": "all16mobileOriginalsIndividuallyViewed",
+      "at": "2026-10-27T06:09:18.089317+00:00",
+      "findings": [
+        "All16mobile original PNGs individually viewed: en/zh-CN,Warrior/Master,ranks1/20,preview/body.",
+        "Long policy/startup copy requires vertical scrolling; fixed navigation overlays/crops lower content at captured scroll. English preview contains no current/next numeric rows in top capture; zh-CN shows partial Current only.",
+        "English edge navigation labels clip; multiple emoji/navigation glyphs render fallback boxes.",
+        "All8mobile body captures show readable appropriate names, living red bars, portrait initials fallback; some transient dodge/-1 badges are visible. Body screenshots alone do not prove skill cast/damage. Typed JSON/log observations and DOM HP assertions supply causal scope.",
+        "These element screenshots and native control geometry are not whole-app mobile/a11y/art acceptance."
+      ]
+    },
+    "offlineEvidence": "Per-case test asserts activated SW before reopening and fromServiceWorker for offline response; report passing establishes execution. Save attachments establish exact domain equality."
+  },
+  "attachments": [
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-warrior/rank1-preview.png",
+      "bytes": 68632,
+      "sha256": "aa82c82aed3708ecb7ed29daa4bc629dbf47d08340ce15912e80915b723e9a0a",
+      "dimensions": [
+        1152,
+        336
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-warrior/rank1-cast.json",
+      "bytes": 2055,
+      "sha256": "480fd02e7246010209412a8c990a12d11a5bef42db3aec5ffa28b0ebc6d7b102"
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-warrior/rank1-combat.png",
+      "bytes": 2839,
+      "sha256": "a8bf2ff7238e496126894af553ad396d46ebaeeb93790dffd4b4ae6ba125f5cb",
+      "dimensions": [
+        153,
+        159
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-warrior/rank20-preview.png",
+      "bytes": 68114,
+      "sha256": "bc90076b1003ce5e2c576b4ebf04a6a4cfa83c8d4695e39152d6e34adfedb06f",
+      "dimensions": [
+        1152,
+        336
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-warrior/rank20-cast.json",
+      "bytes": 2069,
+      "sha256": "52c8d19e9f5b550ab72f05d1a154a0dbae163cd30cb3a8589b1f636c4e488414"
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-warrior/rank20-combat.png",
+      "bytes": 2847,
+      "sha256": "1a7dd69e57c9dbcae6b38bee978e8b138e1ba736b1cbf37ec2df4f3f8e12ac89",
+      "dimensions": [
+        153,
+        159
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-warrior/geometry.json",
+      "bytes": 734,
+      "sha256": "2753390ac5e4722b9fb82b47a4768ee076ee505ed8dd2d1af8f7a6f73a63fb5c"
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-warrior/online-save-pair.json",
+      "bytes": 5438,
+      "sha256": "b694d630dd0a76fac80f8a19b96a3d86104c58a16dff7d79c1f79e8e0be3c0ed"
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-warrior/offline-save-pair.json",
+      "bytes": 5438,
+      "sha256": "b694d630dd0a76fac80f8a19b96a3d86104c58a16dff7d79c1f79e8e0be3c0ed"
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-master/rank1-preview.png",
+      "bytes": 67163,
+      "sha256": "ee3e772e4cc030d9fd5679397dc11b702d20070c81fbbd3d8cf9995828c60dc8",
+      "dimensions": [
+        1152,
+        336
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-master/rank1-cast.json",
+      "bytes": 2264,
+      "sha256": "4a04f332e2df85014a89e12285a14f13cc8f6b12f47ff24ad620c7d700a99748"
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-master/rank1-combat.png",
+      "bytes": 2696,
+      "sha256": "59c1e8a98eb2eecc57dd8a2ba2452c2ef86dc9f08217add1f930e2f2228e8139",
+      "dimensions": [
+        153,
+        159
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-master/rank20-preview.png",
+      "bytes": 68226,
+      "sha256": "72ae1720f90d3ff22e63b29c8c2b9b363da455dbd29cc810af2cd28356572d0e",
+      "dimensions": [
+        1152,
+        336
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-master/rank20-cast.json",
+      "bytes": 2050,
+      "sha256": "b7879fbd522a0991290717446c30424fd1ebb46e87005952a330bf4f89733f16"
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-master/rank20-combat.png",
+      "bytes": 2827,
+      "sha256": "4ca738e0439026b906e4a16f6e1e3f8dd03e6068471fc8f6af2a7dab7d466d77",
+      "dimensions": [
+        153,
+        159
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-master/geometry.json",
+      "bytes": 734,
+      "sha256": "2753390ac5e4722b9fb82b47a4768ee076ee505ed8dd2d1af8f7a6f73a63fb5c"
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-master/online-save-pair.json",
+      "bytes": 5384,
+      "sha256": "7a6e9902af7ff73345f1af326385a0dbcfb5567d43d9916bf9e44c76de5fe29a"
+    },
+    {
+      "path": "branch-browser-proof/desktop-en-shadow-master/offline-save-pair.json",
+      "bytes": 5384,
+      "sha256": "7a6e9902af7ff73345f1af326385a0dbcfb5567d43d9916bf9e44c76de5fe29a"
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-warrior/rank1-preview.png",
+      "bytes": 71487,
+      "sha256": "99de7606f9b45c1305588317969f81664837719e813125f313bb187599e80e15",
+      "dimensions": [
+        1152,
+        336
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-warrior/rank1-cast.json",
+      "bytes": 2073,
+      "sha256": "5cf73b1978772f41d33edb52bdd02f8c3c2512d1b312c7a980d4bd4405d927d9"
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-warrior/rank1-combat.png",
+      "bytes": 3016,
+      "sha256": "ba2a1ee69d387d37b1190db0d4cf814d3520df9697376952e87bb67bd3b86ba9",
+      "dimensions": [
+        156,
+        159
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-warrior/rank20-preview.png",
+      "bytes": 71385,
+      "sha256": "0b972d12538c55a317c78607562b651ddfd6342ec87f3d19f474d87e1e13818b",
+      "dimensions": [
+        1152,
+        336
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-warrior/rank20-cast.json",
+      "bytes": 2315,
+      "sha256": "1e3ca22e4fd3921ab9187f86441b56c69a3102abf7f0a31075e8e3b311bb4a9c"
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-warrior/rank20-combat.png",
+      "bytes": 2531,
+      "sha256": "02a353d9c8434afc147bd6f0210e50c542e4af5d2d4982088955f6743db7f282",
+      "dimensions": [
+        156,
+        159
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-warrior/geometry.json",
+      "bytes": 734,
+      "sha256": "2753390ac5e4722b9fb82b47a4768ee076ee505ed8dd2d1af8f7a6f73a63fb5c"
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-warrior/online-save-pair.json",
+      "bytes": 5444,
+      "sha256": "6c5e57127c31bb6460a7dca0f95ef43c5f05914f3a0fad962798cdffd6f3b7f8"
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-warrior/offline-save-pair.json",
+      "bytes": 5444,
+      "sha256": "6c5e57127c31bb6460a7dca0f95ef43c5f05914f3a0fad962798cdffd6f3b7f8"
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-master/rank1-preview.png",
+      "bytes": 68957,
+      "sha256": "40e9176ea9db1c771905bad42237046387b725e5bdbd8518b2b7cf99a816db09",
+      "dimensions": [
+        1152,
+        336
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-master/rank1-cast.json",
+      "bytes": 2476,
+      "sha256": "ad8941152a09e3416e575566cccd9dc7819f4f99e4e492c144c8a7bd63973118"
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-master/rank1-combat.png",
+      "bytes": 2446,
+      "sha256": "25e7114e2d35019bc6fe0f15545311cabb355e9ebf358946b01a413dab0da620",
+      "dimensions": [
+        156,
+        159
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-master/rank20-preview.png",
+      "bytes": 69055,
+      "sha256": "c1b3f5fa043a2a2c3296542afbdfd3a0bc2438b58a4edd975d5ae914b6a9a034",
+      "dimensions": [
+        1152,
+        336
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-master/rank20-cast.json",
+      "bytes": 2272,
+      "sha256": "870e3647b9a172fc70b1017119314bee58514e4241c7d03b0aee50fd08436fa0"
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-master/rank20-combat.png",
+      "bytes": 2620,
+      "sha256": "75c6b41fba5df120aec9ca95bed21fdd32e624989766f17418b580930c8c4e83",
+      "dimensions": [
+        156,
+        159
+      ]
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-master/geometry.json",
+      "bytes": 734,
+      "sha256": "2753390ac5e4722b9fb82b47a4768ee076ee505ed8dd2d1af8f7a6f73a63fb5c"
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-master/online-save-pair.json",
+      "bytes": 5390,
+      "sha256": "dde5438240e8d364ef99a5ab6bbcb1824c8f1810ac43cdf7578d0939dbe47272"
+    },
+    {
+      "path": "branch-browser-proof/desktop-zh-CN-shadow-master/offline-save-pair.json",
+      "bytes": 5390,
+      "sha256": "dde5438240e8d364ef99a5ab6bbcb1824c8f1810ac43cdf7578d0939dbe47272"
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-warrior/rank1-preview.png",
+      "bytes": 202725,
+      "sha256": "9d6a12e612958083ea2871fa164188f4f3ab16805f2a999d48aeb67bbe99d395",
+      "dimensions": [
+        924,
+        1496
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-warrior/rank1-cast.json",
+      "bytes": 1854,
+      "sha256": "a6f0f5ebafc71e987f498e76537150e9b96c80e7af1e7d0041460bb7b8a607ae"
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-warrior/rank1-combat.png",
+      "bytes": 12847,
+      "sha256": "ce203cb6c654549e5103b4ec1ce29e121b90bb63c8f49ae88d5f7998f7b7b936",
+      "dimensions": [
+        237,
+        325
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-warrior/rank20-preview.png",
+      "bytes": 195505,
+      "sha256": "d6528ed5cdf1613a9d3a18ace146f143b99ba79da834f9685b367cd2cf555d1d",
+      "dimensions": [
+        924,
+        1496
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-warrior/rank20-cast.json",
+      "bytes": 2069,
+      "sha256": "52c8d19e9f5b550ab72f05d1a154a0dbae163cd30cb3a8589b1f636c4e488414"
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-warrior/rank20-combat.png",
+      "bytes": 10763,
+      "sha256": "412ba6ac50e77a4073e64dddd42acbca0a1fa66ca28c1df4a02c70a81e5aae4b",
+      "dimensions": [
+        237,
+        325
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-warrior/geometry.json",
+      "bytes": 734,
+      "sha256": "2753390ac5e4722b9fb82b47a4768ee076ee505ed8dd2d1af8f7a6f73a63fb5c"
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-warrior/online-save-pair.json",
+      "bytes": 5438,
+      "sha256": "b694d630dd0a76fac80f8a19b96a3d86104c58a16dff7d79c1f79e8e0be3c0ed"
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-warrior/offline-save-pair.json",
+      "bytes": 5438,
+      "sha256": "b694d630dd0a76fac80f8a19b96a3d86104c58a16dff7d79c1f79e8e0be3c0ed"
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-master/rank1-preview.png",
+      "bytes": 195751,
+      "sha256": "b82294320dacbd2b79847eab769544c272521d7c2d0d99d9bd7a1f23ea449b73",
+      "dimensions": [
+        924,
+        1496
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-master/rank1-cast.json",
+      "bytes": 2128,
+      "sha256": "73d1d93357fa961b73c0885f6dd27992cdb1b1543407e92fc9b375c93ba44adb"
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-master/rank1-combat.png",
+      "bytes": 9296,
+      "sha256": "2ec44d192807bb3fab4c26b3a16816a85bfab7335d59ab062d8b6a1ae31cada0",
+      "dimensions": [
+        237,
+        325
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-master/rank20-preview.png",
+      "bytes": 200997,
+      "sha256": "fc00d75e794c84b180acd1c3a697004c51111109e7a14ec2dd6a7ecae6fab1cb",
+      "dimensions": [
+        924,
+        1496
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-master/rank20-cast.json",
+      "bytes": 2050,
+      "sha256": "b7879fbd522a0991290717446c30424fd1ebb46e87005952a330bf4f89733f16"
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-master/rank20-combat.png",
+      "bytes": 10720,
+      "sha256": "7e1e6cdb1c9d023e059aefbd0c69642e7a0bfc2170cd3f3b921eece4c938b683",
+      "dimensions": [
+        237,
+        325
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-master/geometry.json",
+      "bytes": 734,
+      "sha256": "2753390ac5e4722b9fb82b47a4768ee076ee505ed8dd2d1af8f7a6f73a63fb5c"
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-master/online-save-pair.json",
+      "bytes": 5384,
+      "sha256": "7a6e9902af7ff73345f1af326385a0dbcfb5567d43d9916bf9e44c76de5fe29a"
+    },
+    {
+      "path": "branch-browser-proof/mobile-en-shadow-master/offline-save-pair.json",
+      "bytes": 5384,
+      "sha256": "7a6e9902af7ff73345f1af326385a0dbcfb5567d43d9916bf9e44c76de5fe29a"
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-warrior/rank1-preview.png",
+      "bytes": 220719,
+      "sha256": "23cf5f82081d9fd757f0fb6636f6e8aa1c451a8976c3676ea67974cc9188f5ae",
+      "dimensions": [
+        924,
+        1496
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-warrior/rank1-cast.json",
+      "bytes": 2073,
+      "sha256": "5cf73b1978772f41d33edb52bdd02f8c3c2512d1b312c7a980d4bd4405d927d9"
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-warrior/rank1-combat.png",
+      "bytes": 9750,
+      "sha256": "dd95f0eb4d17b0c3dd9422ed225a8259553936a90d427d268c7b451ada345715",
+      "dimensions": [
+        237,
+        281
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-warrior/rank20-preview.png",
+      "bytes": 223038,
+      "sha256": "830e3e99f5c6e24776960887071bd3dd991ba19134a9b90b62a7336a048be7cd",
+      "dimensions": [
+        924,
+        1496
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-warrior/rank20-cast.json",
+      "bytes": 2315,
+      "sha256": "1e3ca22e4fd3921ab9187f86441b56c69a3102abf7f0a31075e8e3b311bb4a9c"
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-warrior/rank20-combat.png",
+      "bytes": 7876,
+      "sha256": "0429015d0761a59686094e4e22bfae784c37b6821995da9fe179a57a583fd5e9",
+      "dimensions": [
+        237,
+        281
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-warrior/geometry.json",
+      "bytes": 734,
+      "sha256": "2753390ac5e4722b9fb82b47a4768ee076ee505ed8dd2d1af8f7a6f73a63fb5c"
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-warrior/online-save-pair.json",
+      "bytes": 5444,
+      "sha256": "6c5e57127c31bb6460a7dca0f95ef43c5f05914f3a0fad962798cdffd6f3b7f8"
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-warrior/offline-save-pair.json",
+      "bytes": 5444,
+      "sha256": "6c5e57127c31bb6460a7dca0f95ef43c5f05914f3a0fad962798cdffd6f3b7f8"
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-master/rank1-preview.png",
+      "bytes": 226686,
+      "sha256": "bc541ae70150bcd49967ec78dcca11bd97f0c9fe05903cb4f55ae7532e3ad899",
+      "dimensions": [
+        924,
+        1496
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-master/rank1-cast.json",
+      "bytes": 2322,
+      "sha256": "83c644e26cf16adf4938c398729a32e4afa8b44bea24f65b3dc1fd3973e65f0a"
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-master/rank1-combat.png",
+      "bytes": 6315,
+      "sha256": "93c26b31bff92b870afcd2b6e3852847cac6150b958c3d56f573c1dddd8b8f2c",
+      "dimensions": [
+        237,
+        281
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-master/rank20-preview.png",
+      "bytes": 219953,
+      "sha256": "ba1b23617522053b4c356839b97ca7140a70e5c7b1291f0aaf7ffd8120011356",
+      "dimensions": [
+        924,
+        1496
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-master/rank20-cast.json",
+      "bytes": 2272,
+      "sha256": "870e3647b9a172fc70b1017119314bee58514e4241c7d03b0aee50fd08436fa0"
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-master/rank20-combat.png",
+      "bytes": 7881,
+      "sha256": "bdd1b833d5a8a77e21f1ae5f6910d3b5811084a51d9bd18cccc52ab9ce74ed8c",
+      "dimensions": [
+        237,
+        281
+      ]
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-master/geometry.json",
+      "bytes": 734,
+      "sha256": "2753390ac5e4722b9fb82b47a4768ee076ee505ed8dd2d1af8f7a6f73a63fb5c"
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-master/online-save-pair.json",
+      "bytes": 5390,
+      "sha256": "dde5438240e8d364ef99a5ab6bbcb1824c8f1810ac43cdf7578d0939dbe47272"
+    },
+    {
+      "path": "branch-browser-proof/mobile-zh-CN-shadow-master/offline-save-pair.json",
+      "bytes": 5390,
+      "sha256": "dde5438240e8d364ef99a5ab6bbcb1824c8f1810ac43cdf7578d0939dbe47272"
+    }
+  ],
+  "retention": {
+    "owner": "root",
+    "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6-raw.tar.gz",
+    "archiveSha256": "722f0f7999d2657802721a97fea55df1d01a24212a1088915aa5971018c67a9c",
+    "archiveBytes": 88500805,
+    "readBackVerified": true,
+    "seconds": 5.821666921023279,
+    "cleanup": "Exact task-owned paths removed after full archive read-back; shared targets preserved",
+    "retainUntil": "Full private-v1 and independent evidence review consumers finish; root owns eventual archive removal"
+  },
+  "existingSkips": [
+    "tests/sim/production/fresh-campaign-economy.test.ts",
+    "tests/sim/production/fresh-campaign-continuation.test.ts"
+  ],
+  "limits": "Copied charge/trap runtime, full shadow coverage, earned builds/balance and independent/whole-private-v1 acceptance remain open",
+  "cleanup": {
+    "owner": "root",
+    "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6",
+    "at": "2026-10-27T06:28:06.589426+00:00",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6-raw.tar.gz",
+    "archiveSha256": "722f0f7999d2657802721a97fea55df1d01a24212a1088915aa5971018c67a9c",
+    "readBackVerifiedMembers": 2014,
+    "removed": {
+      "files": 1944,
+      "symlinks": 2,
+      "directories": 69
+    },
+    "remaining": [],
+    "failures": [],
+    "sharedSymlinkTargetsPreserved": true,
+    "retainUntil": "Full private-v1 and independent evidence review consumers finish; root owns eventual archive removal"
+  }
+}

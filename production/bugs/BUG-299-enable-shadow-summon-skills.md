@@ -1,6 +1,6 @@
 # BUG-299 — Enable advertised Shadow Warrior and Shadow Master skill use
 
-Status: Runtime/UI integrated locally through d4bce21f; focused branch gates pass. Broad/public branch rerun and actual charge/trap acceptance pending.
+Status: Open — initial native skill-use repair passes actual branch full/static/public checks; complete copied charge/trap and independent/earned acceptance remain open.
 Severity: High — both advertised skill-using summons only perform basic attacks.
 Affected systems: engine-dev, content-designer, frontend-dev, writer, qa-engineer.
 
@@ -40,3 +40,16 @@ remain open. No skill inventory credit yet.
 
 
 Local runtime/UI and permanent lifecycle/public tests are now committed. [D06 branch evidence](../../docs/plans/evidence/d06-assassin-shadow-skills.md) and its compact packet retain per-increment tests/types/lint,396distinct focused cases/10files, real branch production/precache checks and prospective public8/8 proof. Full shadow credit still waits actual charge/trap runtime and final branch/independent/earned gates. Original RED evidence now lives in the verified support raw archive linked by the packet; the original task directory was exactly cleaned.
+
+
+## Final committed checkpoint
+
+Frozenadc8528b/all2509inputs: full19369PASS/907files/two existing opt-in skips,
+fulltypes/lintPASS and actual branch public8/8PASS232.528s. Audit confirms16paid
+summons and positive typed skill hits,80geometries,16exact seven-domain pairs,
+eight actual offlineContinues. All16mobile originals inspected with documented
+limits. [Final evidence](../../docs/plans/evidence/fixtures/assassin-shadow/branch-final-gates.json)
+retains exact receipts and the2014-member read-back-verified raw archive, followed
+by exact cleanup with remaining[]/failures[]. The initial empty-order/zero-mana
+failure is repaired locally. Keep full copied charge/trap behavior and final
+independent/earned acceptance open; no shadow skill credit yet.

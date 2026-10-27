@@ -1,7 +1,7 @@
 {
   "owner": "root",
   "sourceHead": "d4bce21f50cc806fa444b6697ed5f5cf0d3a70a4",
-  "status": "Local runtime/UI integrated; broad real-branch and final charge/trap acceptance pending",
+  "status": "Local runtime/UI and actual branch full/static/build/public checkpoint passed; final copied charge/trap behavior and independent/earned acceptance remain open",
   "integration": {
     "owner": "root",
     "originalHead": "c2c9b246",
@@ -589,6 +589,76 @@
       "headAfter": "d4bce21f50cc806fa444b6697ed5f5cf0d3a70a4",
       "headUnchanged": true,
       "totals": []
+    },
+    "shadow-branch-final-full": {
+      "label": "shadow-branch-final-full",
+      "command": [
+        "npm",
+        "run",
+        "test"
+      ],
+      "exit": 0,
+      "seconds": 1359.4791222739732,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headAfter": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  907 passed (907)",
+        "Tests  19369 passed | 2 skipped (19371)"
+      ]
+    },
+    "shadow-branch-final-lint": {
+      "label": "shadow-branch-final-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 297.27553682995494,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headAfter": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-final-typecheck": {
+      "label": "shadow-branch-final-typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 180.55704903102014,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headAfter": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-public-final": {
+      "label": "shadow-branch-public-final",
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "--config",
+        "tests/pwa/assassin-shadow-acceptance.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 232.52794497308787,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headAfter": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+      "headUnchanged": true,
+      "totals": [
+        "\u001b[1A\u001b[2K  8 passed (3.8m)"
+      ]
     }
   },
   "prospectivePublic": {
@@ -748,5 +818,50 @@
   },
   "currentTask": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6",
   "retention": "Current shadow task remains necessary for actual-branch browser/broad validation and final archive/readback. Root owns cleanup after all consumers finish. Original support task was exactly cleaned; raw archive and two sidecars remain through full-v1/independent evidence review.",
-  "limits": "Constructed legal native/public fixtures; no earned build/balance, final charge/trap copying, whole-app mobile/a11y/performance/PWA, independent approval or full private-v1 completion. Inventory unchanged."
+  "limits": "Constructed legal native/public fixtures; no earned build/balance, final charge/trap copying, whole-app mobile/a11y/performance/PWA, independent approval or full private-v1 completion. Inventory unchanged.",
+  "finalFrozenHead": "adc8528b9f144cf4387cee8a91cc336dcae03ff4",
+  "finalBranch": {
+    "evidence": "docs/plans/evidence/fixtures/assassin-shadow/branch-final-gates.json",
+    "fullTests": 19369,
+    "fullFiles": 907,
+    "existingOptInSkips": 2,
+    "public": {
+      "paidSummons": 16,
+      "typedPositiveHits": 16,
+      "damagedEnemyObservations": 16,
+      "geometrySamples": 80,
+      "sevenDomainSavePairs": 16,
+      "offlineContinues": 8,
+      "screenshots": 32,
+      "mobileScreenshots": 16
+    },
+    "retention": {
+      "owner": "root",
+      "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6",
+      "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6-raw.tar.gz",
+      "archiveSha256": "722f0f7999d2657802721a97fea55df1d01a24212a1088915aa5971018c67a9c",
+      "archiveBytes": 88500805,
+      "readBackVerified": true,
+      "seconds": 5.821666921023279,
+      "cleanup": "Exact task-owned paths removed after full archive read-back; shared targets preserved",
+      "retainUntil": "Full private-v1 and independent evidence review consumers finish; root owns eventual archive removal"
+    },
+    "cleanup": {
+      "owner": "root",
+      "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6",
+      "at": "2026-10-27T06:28:06.589426+00:00",
+      "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6-raw.tar.gz",
+      "archiveSha256": "722f0f7999d2657802721a97fea55df1d01a24212a1088915aa5971018c67a9c",
+      "readBackVerifiedMembers": 2014,
+      "removed": {
+        "files": 1944,
+        "symlinks": 2,
+        "directories": 69
+      },
+      "remaining": [],
+      "failures": [],
+      "sharedSymlinkTargetsPreserved": true,
+      "retainUntil": "Full private-v1 and independent evidence review consumers finish; root owns eventual archive removal"
+    }
+  }
 }

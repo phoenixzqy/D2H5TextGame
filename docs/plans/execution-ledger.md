@@ -13486,3 +13486,30 @@ archive/two sidecars through full-v1/independent review. Current shadow task
 remains needed for branch gates and eventual own retention. Genuine protected
 fixture compressed/raw hashes exact; no campaign/replay, remote action or
 independent self-signoff. Original full-v1 objective and worktree claim continue.
+
+
+## 2026-10-26 — Shadow final full/browser gates pass; real charge defect reproduced
+
+Frozenadc8528b/all2509inputs and HEAD exact: full19369PASS/907files/two existing
+opt-in campaign skips1359.479s,types180.557s/lint297.276sPASS. Actual permanent
+public8/8PASS232.528s audited16paid summons/typed positive skill hits/damaged
+enemies,80geometries,16exact seven-domain pairs/eight actualSWofflineContinues.
+All72attachments hash-verified/16mobile originals individually viewed, explicit
+nav/copy/glyph/portrait limits retained.2014raw members read-back verified before
+exact1944files/two symlinks/69directories cleanup;remaining[]/failures[],shared
+targets intact. Root retains archive/two sidecars through full-v1/independent
+consumers. [Final D06 receipts](evidence/fixtures/assassin-shadow/branch-final-gates.json).
+
+New actual native charge reproduction: Tiger1s priority prevents Talon forever,
+rank1/20 twoREDs while unchargedTalon controlPASS; no source mutation. Separate
+root-owned charge task has full six-builder author contract and prospective
+17state/authority+22native+172existing compatibility=211PASS, including actual
+paid Warrior charge/finisher use. Strict source/runtime passes; observer type
+narrowing and two inherited lint findings corrected for final recheck. This is
+external experiment evidence, not branch promotion/public acceptance or credit.
+No shadow credit before complete copied charge/trap behavior. Inventory stays
+190bounded/21unverified/oneengine-only/onereview-needed pending accurate Amazon
+reconciliation. GenuineL33/Ancients-Rite/next402/Baaluncleared unchanged; full
+privatev1/earned builds/balance/economy/endgame/whole-app and independent gates
+remain open. Original objective and claimed worktree continue; no campaign/replay,
+remote action,delegation or self-signoff.

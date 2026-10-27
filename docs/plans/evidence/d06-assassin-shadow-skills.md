@@ -66,8 +66,7 @@ whole-viewport, touch, keyboard, accessibility or whole-app/art acceptance.
 Actual typed casts are asserted in log/DOM proof, not inferred from body images.
 
 The permanent public test/config now use repository-relative imports/server
-root. Actual-branch browser rerun plus consolidated engine/full/static checks
-remain. Actual charge/trap runtime and copying must land before full shadow
+root. Actual-branch browser and consolidated full/static checks now pass as recorded below. Actual charge/trap runtime and copying must land before full shadow
 credit. Inventory190bounded/21unverified/oneengine-only/onereview-needed and
 genuineL33/Ancients-Rite/next402/Baaluncleared remain unchanged.
 
@@ -75,10 +74,33 @@ genuineL33/Ancients-Rite/next402/Baaluncleared remain unchanged.
 
 [Compact packet](fixtures/assassin-shadow/packet.json) retains exact receipts,
 source commits, visual limits and original support archive/cleanup metadata.
-Current root-owned task remains necessary for branch browser/broad validation:
-/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6.
-Root archives/read-backs and removes exact owned paths after consumers finish;
-never follow node_modules or src/engine/types symlinks. No current whole-task
-cleanup is claimed. Original support task was cleaned only after6961archive
-members read-back verified; raw archive/two sidecars retained through full-v1
-and independent evidence review, eventual removal owned by root.
+Completed shadow task evidence now lives in the read-back-verified raw archive:
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6-raw.tar.gz.
+SHA256722f0f7999d2657802721a97fea55df1d01a24212a1088915aa5971018c67a9c;
+88500805bytes,2014members verified. Exact1944files/two symlinks/69directories
+removed after consumers finished; remaining[]/failures[], shared targets intact.
+Adjacent retention/cleanup receipts and this packet retain ownership. Root keeps
+the archive/sidecars through private-v1 and independent evidence review and owns
+eventual removal. Original support archive/sidecars remain retained similarly.
+
+## Final actual-branch checkpoint
+
+At frozenadc8528b/all2509inputs and HEAD unchanged: full19369PASS/907files,
+two existing opt-in campaign skips,1359.479s; fulltypes180.557s and lint297.276s
+PASS. [Final receipts](fixtures/assassin-shadow/branch-final-gates.json) include
+exact commands, source identity, original skip paths, public audit and retention.
+Every original supervisor/child was confirmed absent before later repository edits.
+
+Permanent actual-branch public8/8PASS232.528s, no skips/retries/flakes:
+16paid rank1/20 summons with typed positive skill hits and observed damaged
+enemies,80native priority-control geometries,16exact seven-domain save pairs,
+eight actual service-worker offline Continues. All72attachments extracted and
+hash-verified;32PNGs retained, all16mobile originals individually viewed. Prior
+copy/nav/glyph/initial-portrait limitations still apply. Passing log/DOM assertions,
+not portrait pictures, establish actual skill damage. This supersedes the earlier
+prospective browser result for the implemented branch scope.
+
+This completes the initial skill-use checkpoint only. Actual copied charge/trap
+mechanics, final independent Master policy, whole-shadow inventory credit, earned
+builds/balance and full private-v1/whole-app acceptance remain open. No campaign
+or remote action. The next root-owned external charge experiment is separate.
