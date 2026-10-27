@@ -846,6 +846,24 @@ function UnitCard({
                 style={{ width: `${Math.max(0, Math.min(100, (unit.life / Math.max(1, unit.stats.lifeMax)) * 100)).toFixed(2)}%` }}
               />
             </div>
+            {isSummon && unit.stats.manaMax > 0 ? (
+              <div>
+                <div className="text-[10px] leading-tight text-d2-white/80">
+                  {t('mp')} {Math.max(0, Math.min(unit.mana, unit.stats.manaMax))} / {unit.stats.manaMax}
+                </div>
+                <div
+                  className="h-1.5 rounded bg-black/60 lg:h-1"
+                  role="progressbar"
+                  aria-label={t('mp')}
+                  aria-valuemin={0}
+                  aria-valuemax={unit.stats.manaMax}
+                  aria-valuenow={Math.max(0, Math.min(unit.mana, unit.stats.manaMax))}
+                >
+                  <div className="h-full rounded bg-blue-600"
+                    style={{ width: `${Math.max(0, Math.min(100, (unit.mana / unit.stats.manaMax) * 100)).toFixed(2)}%` }} />
+                </div>
+              </div>
+            ) : null}
           </div>
           {stackCount > 1 ? (
             <div className="absolute left-1 top-1 rounded-full border border-d2-gold/60 bg-black/80 px-1.5 text-[10px] font-bold text-d2-gold">
