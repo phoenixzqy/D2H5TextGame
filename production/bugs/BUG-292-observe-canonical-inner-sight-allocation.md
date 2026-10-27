@@ -21,3 +21,7 @@ Evidence: root retains /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-ama
 ## Required correction
 
 Change only the two exported-rank key lookups to the canonical runtime ID. Preserve the actual public allocation, exact rank/points/priority, cast/chip, viewport, save and offline assertions. Keep all original evidence. Rerun using new task-isolated output/report names. No product, migration, skill data or production build change.
+
+## Second observer correction
+
+After the ID correction, English desktop passes both ranks, casts and exact online/offline save pairs. The Chinese desktop test then fails because it guesses the fallback combat-locale name 内视; the recorded public cast is `Ama Sight Test 施放了 心眼。`, followed by eight actual 心眼 debuff logs. The skill catalog uses skills.amazon.inner-sight.name=心眼. Preserve that existing product text and correct only the expected cast literal. Source and all 762 production build files remain unchanged. Root retains inner-sight-public-corrected-browser.log/report and the corrected-output trace/screenshot; original English pass is evidence for that context only. No timing, assertion scope or product change.
