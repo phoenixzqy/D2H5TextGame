@@ -1,8 +1,8 @@
 {
-  "state": "public-and-engine-green;full-unit-failed-head-drift;stable-head-retry-required;no-new-skill-credit",
+  "state": "bounded-functional;independent-and-earned-acceptance-open;retained-and-cleaned",
   "sourceHead": "4a80c03a",
   "taskOwner": "root",
-  "activeTask": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6",
+  "activeTask": null,
   "activeFullUnitTool": null,
   "receipts": [
     {
@@ -1527,5 +1527,73 @@
       "Tests  18648 passed | 2 skipped (18729)"
     ],
     "cause": "Root documentation commits changed HEAD while code/config/test bytes remained exact; existing provenance guard rejected sourceSha drift."
+  },
+  "stableFocusedRetry": {
+    "label": "volley-stable-head-focused",
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "--project",
+      "sim-contracts",
+      "tests/sim/production/earned-comparison.test.ts"
+    ],
+    "exit": 0,
+    "seconds": 25.227940551936626,
+    "inputsUnchanged": true,
+    "inputCount": 2438,
+    "headBefore": "bffa9517c7d638ab19040eb99d64045525866c24",
+    "headAfter": "bffa9517c7d638ab19040eb99d64045525866c24",
+    "headUnchanged": true,
+    "totals": [
+      "Test Files  1 passed (1)",
+      "Tests  79 passed (79)"
+    ]
+  },
+  "stableFullRetry": {
+    "label": "volley-stable-head-full",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit": 0,
+    "seconds": 825.8395313479705,
+    "inputsUnchanged": true,
+    "inputCount": 2438,
+    "headBefore": "bffa9517c7d638ab19040eb99d64045525866c24",
+    "headAfter": "bffa9517c7d638ab19040eb99d64045525866c24",
+    "headUnchanged": true,
+    "totals": [
+      "Test Files  865 passed (865)",
+      "Tests  18727 passed | 2 skipped (18729)"
+    ]
+  },
+  "retention": {
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6-retained.tar.gz",
+    "sha256": "bd337722c0bf806480beb92001797948b05928d1668faeee6685dc3468f0ab24",
+    "membersReadBack": 1268,
+    "retentionSidecar": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6-retention.json",
+    "cleanupSidecar": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6-cleanup.json",
+    "removedFiles": 2031,
+    "removedDirectories": 23,
+    "remaining": [],
+    "failures": []
+  },
+  "inventoryCredit": {
+    "creditedIds": [
+      "skills-amazon-guided-arrow",
+      "skills-amazon-multiple-shot",
+      "skills-amazon-strafe"
+    ],
+    "unchangedOtherRows": 210,
+    "headerAnd213IdsAndOrderExact": true,
+    "counts": {
+      "bounded-functional;independent-acceptance-open": 179,
+      "unverified": 29,
+      "bounded-engine-functional;independent-acceptance-open": 1,
+      "bounded-functional;earned-balance-open": 3,
+      "review-needed": 1
+    },
+    "basis": "Stable full18727/865;prior engine/native/UI/production/offline;1268archive members read back;2031files/23directories exactly removed."
   }
 }

@@ -1,0 +1,17 @@
+{
+  "creditedIds": [
+    "skills-amazon-guided-arrow",
+    "skills-amazon-multiple-shot",
+    "skills-amazon-strafe"
+  ],
+  "unchangedOtherRows": 210,
+  "headerAnd213IdsAndOrderExact": true,
+  "counts": {
+    "bounded-functional;independent-acceptance-open": 179,
+    "unverified": 29,
+    "bounded-engine-functional;independent-acceptance-open": 1,
+    "bounded-functional;earned-balance-open": 3,
+    "review-needed": 1
+  },
+  "basis": "Stable full18727/865;prior engine/native/UI/production/offline;1268archive members read back;2031files/23directories exactly removed."
+}

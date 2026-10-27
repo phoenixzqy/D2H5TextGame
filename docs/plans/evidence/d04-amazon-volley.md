@@ -92,18 +92,35 @@ snapshot and does not validate these runtime changes. The original full-unit con
 retry must pass before one fresh full suite;no repository edits or commits
 are permitted during either consumer.
 
+## Terminal checkpoint and retention
+
+Stable focused retry79/1PASS25.228s,then full18727tests/865files/two existing
+skipsPASS825.840s at `bffa9517`,with all2438captured inputs and before/after
+Git HEAD exact. No test or provenance assertion was changed. Original failed
+full receipt/log remains retained. This closes only the bounded local checkpoint.
+
+Root archived1268raw evidence members and read back/hash-verified every member
+before deleting2031exact task-owned files and23directories. All762build hashes
+and both protected-save hashes were exact;preview4597 was closed. Disposable
+production-dist/Vitest cache are removed;remaining[]/failures[]. Root retains:
+
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6-retained.tar.gz`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6-retention.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6-cleanup.json`
+
+Archive SHA256:`bd337722c0bf806480beb92001797948b05928d1668faeee6685dc3468f0ab24`.
+Root removes this archive and both sidecars only after full-v1 evidence consumers
+and independent review finish. New javelin diagnosis/prototypes are separately
+copied/root-owned and do not require the old raw task or build.
+
 ## Ownership and scope
 
-Continuing task owned by root:
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6`.
-All draft/prototype/failed and passing command logs,receipts,process identities,
-explicit manifests and production/browser artifacts remain active. Root must
-retain decisive evidence/read back hashes and remove exact disposable paths
-after all consumers finish;cleanup has not occurred. Retained earlier Plague
-archive remains a separate historical snapshot.
-
-Inventory unchanged:179bounded/32unverified/one engine-only/one review-needed.
-No new three-skill credit. Protected genuine campaign remainsL33,Ancients/Rite
+The former raw task is removed;the retained archive and sidecars above supply
+its historical evidence. Exactly Guided/Multiple/Strafe now receive bounded
+functional credit:182bounded/29unverified/one engine-only/one review-needed.
+The other210raw inventory rows,header,213IDs and order remain exact;this is not
+independent acceptance,earned build viability or a whole-game percentage.
+Protected genuine campaign remainsL33,Ancients/Rite
 claimed,Baal uncleared,nextNormal402;no campaign/replay,remote action,delegation
 or independent self-approval. Constructed fixtures do not establish earned
 builds,pacing,economy,endgame or complete mobile/a11y/PWA/performance acceptance.

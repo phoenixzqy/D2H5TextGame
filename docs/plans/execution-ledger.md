@@ -13240,3 +13240,27 @@ before/after HEAD alongside input hashes. Retain the failed receipt/log unchange
 No three-skill credit or cleanup yet;179bounded/32unverified/oneengine-only/
 onereview-needed. GenuineL33/next402/Ancients-Rite claimed/Baal uncleared remains
 unchanged. Full privatev1,original goal and registered worktree stay active.
+
+
+## 2026-10-26 — Stable volley full pass, retention and three bounded credits
+
+At frozen `bffa9517`,focused79/1PASS25.228s then full18727tests/865files/two
+existing skipsPASS825.840s. All2438input bytes and before/afterHEAD stayed exact.
+Original failure remains retained;no product/test/provenance guard was changed.
+Every1268archived member was read back/hash-verified;2031exact files/23directories
+including production build/cache removed,remaining[]/failures[],preview4597closed.
+Archive and two sidecars are listed in [volley evidence](evidence/d04-amazon-volley.md);
+root retains/removes them after full-v1 evidence/review consumers finish. Both
+protected-save hashes/all762build hashes were exact before cleanup.
+
+Exactly Guided/Multiple/Strafe receive bounded functional credit:182bounded/
+29unverified/oneengine-only/onereview-needed;210other rawrows/header/213IDs/order
+exact. Amazon17bounded/12unverified/oneengine-only. Javelin BUG288 now has an
+off-repository134case native/schema/primitive prototype and40bilingual preview
+cases passing,strict types11.271s/lint12.764s pass. No javelin source promotion
+or credit yet. Typed staging1402files/69directories removed after terminal
+validation;original prospective sources/REDs/receipts remain in its independent
+root-owned task. GenuineL33/next402/Ancients-Rite claimed/Baal uncleared remains
+unchanged. Full privatev1,remaining skills,earned builds/balance/economy/endgame
+and C2–C4/fullG0–G7/independent acceptance remain open. Original goal/worktree
+continue;no campaign/replay,remote action,delegation or independent self-approval.
