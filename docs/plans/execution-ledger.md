@@ -13207,3 +13207,18 @@ active task/build/receipts through terminal full consumer,then retains/read-back
 and performs verified exact cleanup. Full privatev1 and original goal/worktree
 remain open;genuineL33/next402/Baaluncleared unchanged,no campaign/replay,remote
 action,delegation or independent self-approval.
+
+## 2026-10-26 — Next javelin gaps reproduced without altering active full inputs
+
+While original volley full unit92363 remains active,external native diagnosis
+reproduces BUG288:Power/Charged scalar hits have no plural/nearby bolts,Poison
+has no nearby cloud,and Lightning Strike's absent shape uses first-two legacy
+fallback. Actual rank1/20 one-action/payment/HP/status assertions yield8feature
+failures/1ordinary Lightning Bolt controlPASS8.918s;all2438repository inputs
+remain unchanged. Original draft's wrong10MP Bolt control is preserved and
+corrected to authored15MP. [Bug](../../production/bugs/BUG-288-implement-amazon-javelin-bolts-cloud-and-chain.md)
+and its exact diagnostic packet retain literal results and raw root-owned paths.
+No production implementation,final count/potency contract,skill credit or
+independent/earned acceptance follows this diagnosis. Continue exact original
+full-unit handle before engine changes;then close volley retention/cleanup and
+author the explicit javelin contract before its bounded implementation.

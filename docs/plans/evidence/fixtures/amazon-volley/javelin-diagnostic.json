@@ -1,0 +1,395 @@
+{
+  "state": "eight-feature-REDs-one-ordinary-control;no-repository-runtime-change",
+  "sourceHead": "b9e0ed21",
+  "testPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/javelin-identities-diagnostic.test.ts",
+  "testSHA256": "1eb1e88549be7f82febb73ff4bbcc82aa0cf07b072b1c8301c450d41da45bdda",
+  "receipt": {
+    "label": "amazon-javelin-identities-diagnostic-final",
+    "command": [
+      "node_modules/.bin/vitest",
+      "run",
+      "--config",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/vitest.config.mjs",
+      "--workspace",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6/javelin-diagnostic-workspace.mjs"
+    ],
+    "exit": 1,
+    "seconds": 8.91825394204352,
+    "inputsUnchanged": true,
+    "inputCount": 2438,
+    "totals": [
+      "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 8 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+      "Test Files  1 failed (1)",
+      "Tests  8 failed | 1 passed (9)"
+    ]
+  },
+  "observations": [
+    {
+      "diagnostic": [
+        "skills-amazon-power-strike"
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "hero",
+          "target": "target",
+          "damageType": "lightning",
+          "amount": 41,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "statuses": [],
+      "finalHP": [
+        {
+          "id": "target",
+          "life": 1959
+        },
+        {
+          "id": "reserve",
+          "life": 2000
+        }
+      ],
+      "mana": 90
+    },
+    {
+      "diagnostic": [
+        "skills-amazon-charged-strike"
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "hero",
+          "target": "target",
+          "damageType": "lightning",
+          "amount": 71,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "statuses": [],
+      "finalHP": [
+        {
+          "id": "target",
+          "life": 1929
+        },
+        {
+          "id": "nearby",
+          "life": 2000
+        },
+        {
+          "id": "outside",
+          "life": 2000
+        }
+      ],
+      "mana": 80
+    },
+    {
+      "diagnostic": [
+        "skills-amazon-poison-javelin"
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "hero",
+          "target": "target",
+          "damageType": "poison",
+          "amount": 20,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "statuses": [
+        {
+          "kind": "status",
+          "target": "target",
+          "statusId": "poison",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "finalHP": [
+        {
+          "id": "target",
+          "life": 1975
+        },
+        {
+          "id": "nearby",
+          "life": 2000
+        },
+        {
+          "id": "outside",
+          "life": 2000
+        }
+      ],
+      "mana": 90
+    },
+    {
+      "diagnostic": [
+        "skills-amazon-lightning-strike"
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "hero",
+          "target": "target",
+          "damageType": "lightning",
+          "amount": 81,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        },
+        {
+          "kind": "damage",
+          "source": "hero",
+          "target": "diagonal",
+          "damageType": "lightning",
+          "amount": 92,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "statuses": [
+        {
+          "kind": "status",
+          "target": "target",
+          "statusId": "paralyze",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        },
+        {
+          "kind": "status",
+          "target": "diagonal",
+          "statusId": "paralyze",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "finalHP": [
+        {
+          "id": "target",
+          "life": 1919
+        },
+        {
+          "id": "diagonal",
+          "life": 1908
+        },
+        {
+          "id": "far",
+          "life": 2000
+        }
+      ],
+      "mana": 75
+    },
+    {
+      "diagnostic": [
+        "skills-amazon-power-strike"
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "hero",
+          "target": "target",
+          "damageType": "lightning",
+          "amount": 117,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "statuses": [],
+      "finalHP": [
+        {
+          "id": "target",
+          "life": 1883
+        },
+        {
+          "id": "reserve",
+          "life": 2000
+        }
+      ],
+      "mana": 90
+    },
+    {
+      "diagnostic": [
+        "skills-amazon-charged-strike"
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "hero",
+          "target": "target",
+          "damageType": "lightning",
+          "amount": 185,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "statuses": [],
+      "finalHP": [
+        {
+          "id": "target",
+          "life": 1815
+        },
+        {
+          "id": "nearby",
+          "life": 2000
+        },
+        {
+          "id": "outside",
+          "life": 2000
+        }
+      ],
+      "mana": 80
+    },
+    {
+      "diagnostic": [
+        "skills-amazon-poison-javelin"
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "hero",
+          "target": "target",
+          "damageType": "poison",
+          "amount": 77,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "statuses": [
+        {
+          "kind": "status",
+          "target": "target",
+          "statusId": "poison",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "finalHP": [
+        {
+          "id": "target",
+          "life": 1908
+        },
+        {
+          "id": "nearby",
+          "life": 2000
+        },
+        {
+          "id": "outside",
+          "life": 2000
+        }
+      ],
+      "mana": 90
+    },
+    {
+      "diagnostic": [
+        "skills-amazon-lightning-strike"
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "hero",
+          "target": "target",
+          "damageType": "lightning",
+          "amount": 214,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        },
+        {
+          "kind": "damage",
+          "source": "hero",
+          "target": "diagonal",
+          "damageType": "lightning",
+          "amount": 225,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "statuses": [
+        {
+          "kind": "status",
+          "target": "target",
+          "statusId": "paralyze",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        },
+        {
+          "kind": "status",
+          "target": "diagonal",
+          "statusId": "paralyze",
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "finalHP": [
+        {
+          "id": "target",
+          "life": 1786
+        },
+        {
+          "id": "diagonal",
+          "life": 1775
+        },
+        {
+          "id": "far",
+          "life": 2000
+        }
+      ],
+      "mana": 75
+    },
+    {
+      "diagnostic": [
+        "skills-amazon-lightning-bolt"
+      ],
+      "damage": [
+        {
+          "kind": "damage",
+          "source": "hero",
+          "target": "target",
+          "damageType": "lightning",
+          "amount": 51,
+          "crit": false,
+          "dodged": false,
+          "simClockMs": 1700,
+          "uiDelayMs": 50
+        }
+      ],
+      "statuses": [],
+      "finalHP": [
+        {
+          "id": "target",
+          "life": 1949
+        },
+        {
+          "id": "reserve",
+          "life": 2000
+        }
+      ],
+      "mana": 85
+    }
+  ],
+  "originalDraft": "amazon-javelin-identities-diagnostic.log retains nine failures including wrong10MP ordinary Bolt control;corrected to authored15MP without feature assertion changes.",
+  "owner": "root",
+  "activeTask": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6",
+  "cleanup": "Shared with active Amazon volley full-unit consumer;root retains evidence then exact cleanup after all consumers finish.",
+  "limits": "Constructed native one-action2000HP/100MP pools,not earned builds,independent approval,final potency/count decisions or production public verification."
+}
