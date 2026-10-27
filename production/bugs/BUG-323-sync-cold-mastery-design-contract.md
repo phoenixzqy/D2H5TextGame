@@ -1,6 +1,6 @@
 # BUG-323 — Synchronize the Cold Mastery design row with D05
 
-Status: Fixed locally; independently reproduced by design/source review at `7c01aceb`.
+Status: Fixed in `e6243272`; independently reproduced by design/source review at `7c01aceb`.
 Severity: Low — stale design documentation; the runtime already implements D05.
 Owner: design-contract reviewer / root documentation integrator.
 

@@ -105,3 +105,7 @@ P18/C2–C4/fullG0–G7,14viablebuilds,30–50active-hour pacing/economy, whole-
 mobile/a11y/localization, performance/PWA installation and independent/human
 acceptance remain open. Soak execution remains reserved for humans. Full goal
 and registered umbrella worktree continue; local work only.
+
+A later [solo control](p18-solo-loss-control.md) unfields the mercenary before
+admission and also draws. Both original results are retained; further setup
+experiments stop pending numerical review. No defeat acceptance follows.

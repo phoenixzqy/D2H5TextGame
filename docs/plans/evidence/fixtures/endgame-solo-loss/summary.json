@@ -1,0 +1,216 @@
+{
+  "kind": "stopped separately-labelled solo diagnostic control; never genuine successor",
+  "executionHEAD": "7c01aceb205e6b80902b8eb0cce61e0b914b775e",
+  "originalStatus": "stopped",
+  "actualDefeatEstablished": false,
+  "failedWaveSettlementEstablished": false,
+  "defeatRetryEstablished": false,
+  "unusedSuccessAuditorExecuted": false,
+  "rootConservationAudit": {
+    "status": "pass",
+    "scope": "root separate conservation/freeze audit of stopped inconclusive control; no passing defeat test or independent runtime QA",
+    "savedSnapshots": 19,
+    "exactDurablePairs": 2,
+    "originalOwned": 27633,
+    "stoppedOwned": 27634,
+    "waveOneXP": 3600,
+    "waveOneNewEquipment": [
+      "it-2txxw-lbm"
+    ],
+    "actualDefeatEstablished": false,
+    "outcome": "draw",
+    "unfieldOnlyDurableChange": true,
+    "noMercInObservedStages": true,
+    "exactStoppedStateEqualsWeakCheckpoint": true,
+    "preservedPriorWaveRewards": true,
+    "failedWaveSettlementEstablished": false,
+    "defeatRetryEstablished": false,
+    "noAncestralOrAcquiredPayloadLoss": true,
+    "noDiagnosticPromotion": true,
+    "sourceInputs": 2694,
+    "productionFiles": 762,
+    "inputGzipSHA256": "73c79b289f9c010ee5b75813aa14867f4cf7616e2847ac52245b7fb9e3bd70f6",
+    "weakHeroStats": {
+      "life": 120,
+      "lifeMax": 446,
+      "mana": 102,
+      "manaMax": 367,
+      "attack": 157,
+      "defense": 157,
+      "magicResist": 0,
+      "attackSpeed": 250,
+      "critChance": 0.16,
+      "critDamage": 2.21,
+      "physDodge": 0.37,
+      "magicDodge": 0.05,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "fire": 45,
+        "cold": 82,
+        "lightning": 43,
+        "poison": 15,
+        "arcane": 29,
+        "physical": 29
+      }
+    },
+    "actions": [
+      "unfield-owned-merc-before-admission",
+      "enter-ashen-native4",
+      "pause-settled-wave-two",
+      "equip-plain-weapon-it-3tshd-9r",
+      "equip-plain-chest-it-87vn9-a6",
+      "equip-plain-offhand-it-6fzu0-b4",
+      "equip-plain-amulet-it-3h1j3-5",
+      "equip-plain-gloves-it-8jv2k-6",
+      "equip-plain-boots-it-5iwwr-f",
+      "equip-plain-belt-it-61y50-a7",
+      "equip-plain-head-it-1owml-19",
+      "clear-priority-slot-3",
+      "clear-priority-slot-2",
+      "clear-priority-slot-1"
+    ],
+    "nextAction": "stop setup experiments; numerical review before a new defeat control"
+  },
+  "independentArtifactReview": {
+    "verdict": "APPROVE",
+    "scope": "independent read-only stopped-control artifact review; no runtime QA",
+    "findings": [],
+    "reviewed": [
+      "19snapshots",
+      "2exactdurablepairs",
+      "Unfield-onlychange",
+      "item/rubypayloadconservation",
+      "priorwave1rewards",
+      "journals",
+      "source/build/harnessfreezes",
+      "terminal/consumedhandles",
+      "cleanupreceipts"
+    ],
+    "actualDefeatEstablished": false,
+    "failedWaveSettlementEstablished": false,
+    "defeatRetryEstablished": false,
+    "unusedSuccessAuditorExecuted": false,
+    "allConsumersReleased": true,
+    "reviewerScratchPaths": []
+  },
+  "handles": {
+    "preparation": {
+      "handle": 67364,
+      "exitCode": 0,
+      "consumed": true
+    },
+    "preview": {
+      "handle": 48152,
+      "wrapperPID": 3858295,
+      "pid": 3858296,
+      "port": 39523,
+      "live": false,
+      "exitCode": 0,
+      "consumed": true
+    },
+    "soloLoss": {
+      "handle": 90706,
+      "running": false,
+      "exitCode": 1,
+      "consumed": true
+    },
+    "stoppedArtifactAudit": {
+      "handle": 5090,
+      "exitCode": 0,
+      "consumed": true,
+      "scope": "conservation/freeze only; no passing defeat test"
+    }
+  },
+  "cleanupPreconditions": {
+    "ownedPIDsAbsent": [
+      3858295,
+      3858296,
+      3858798,
+      3858800,
+      3858801,
+      3858815,
+      3858817
+    ],
+    "portClosed": 39523,
+    "profilesAndDownloadsAbsent": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/73babf73-45fe-476b-9e91-d25229fb730c",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/1109d1dd-b862-4949-98e8-b6c3684493d3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/bcfaae12-e6e2-459a-8404-43f12eee4cd7",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/5b5e5dbf-17f5-449d-924e-8f9d29399945",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/7abb85c3-37d9-4a0e-ac56-5c723cf90bdd",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/0fef7824-4163-420d-97a1-bb8c159db30e",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/953f3ead-f626-458b-83c0-72ff9c9e37d7",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/1d5a9423-60c6-4503-a11b-74482eec93c5",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/d7fe26cc-786a-4e60-9b5d-a94e1d8b8be9",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/dea63c3d-32c5-4463-8c46-9b920bfb8c28",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/1b163289-fa49-4543-84fa-c38f66e7fd5b",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/48f871fa-b44c-45df-a3bd-c65973d348d3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/dc96287c-34c8-4a4f-9753-03d4c4e1fa12",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/aa511012-204f-4253-af1d-808ecaea275a",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/b63cd44b-b045-480c-a2c6-434e3daddf7d",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/213b8aa2-0edf-4dda-a8f6-f19cfc146f8b",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/487b85dc-7309-44bd-851a-b35386d0133d",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/b3414914-c923-4801-a636-6e85daaff6ba",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright-artifacts-9A10Ze/b9bfec5d-be80-4f6e-bb72-24832f6ad8c3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113/tmp/playwright_chromiumdev_profile-lNSeYd"
+    ],
+    "remaining": [],
+    "failures": []
+  },
+  "harnessFreeze": {
+    "failure-controls.mjs": "46686d90918d438e2c28cc700d4d83b107c276af3fa2ce65b5d3c142ec96762e",
+    "serve.py": "2c7fbba5ef2a65981169c0a2a5c954408fcce130b2e0afb0d432f50de04f5770",
+    "plan-review.json": "b15555b5e61e2e3ae97eee4943317008b511a569ccd659cbcc910ced5956cf14"
+  },
+  "planReview": {
+    "verdict": "ready",
+    "reviewer": "/root/review_combat_log",
+    "scope": "independent plan/source only; no runtime QA",
+    "singlePredeterminedControl": true,
+    "previousDrawPreserved": true,
+    "difference": "public Unfield before admission, exact durable mercs.fieldedMercId:null only; no merc in staged team",
+    "assumptions": [
+      "strongwave1 victory not guaranteed",
+      "weakened solo wave2 actual defeat not guaranteed"
+    ],
+    "stopOnUnexpected": true,
+    "consumersReleased": true
+  },
+  "securityCheck": {
+    "verdict": "pass",
+    "scope": "first-party local production/public controls and local exports on separately labelled disposable save; exact owned retention",
+    "findings": [],
+    "constraints": [
+      "no diagnostic promotion",
+      "no state injection",
+      "no remote side effects",
+      "exact process and artifact cleanup"
+    ]
+  },
+  "retention": {
+    "owner": "root",
+    "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113-raw.tar.gz",
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113-raw-manifest.json",
+    "archiveSHA256": "4471de246e6a5d8fc12ca3c3951eb6b9f3ba06c759fa9210b2b56d45dd64563f",
+    "manifestSHA256": "dd2721c1fd657db38d88e9a75672736be2442cc60372fd312d7688d3d17bfe55",
+    "archiveBytes": 42600456,
+    "verifiedMembers": 835,
+    "verifiedFiles": 822,
+    "verifiedDirectories": 13,
+    "streamReadbackVerified": true,
+    "exactRawInventoryAndHashesVerified": true,
+    "cleanup": {
+      "remaining": [],
+      "failures": [],
+      "rootAbsent": true
+    },
+    "retainUntil": "independent/full-v1 evidence consumers released; root owns exact sidecar removal",
+    "wallSeconds": 2.7953512689564377,
+    "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-solo-loss-zxhrd113-retention.json",
+    "handle": 54760,
+    "exitCode": 0,
+    "consumed": true
+  }
+}
