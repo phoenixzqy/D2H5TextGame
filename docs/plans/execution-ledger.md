@@ -13404,3 +13404,34 @@ All processes terminal before repository edits. Continuing support task remains 
 d9384e40 fixes BUG295's generic damage description using existing rank/status models; no engine/data tuning.11native cases prove actual allocation,56/151Cold HP loss,one15MP payment,ordered Freeze/Chill and exact ordinary/boss expiry,ownership/resources/miss/resistance/replay.75related/5files and19final/2files PASS; types/lint pass.4e56f8a3 public4/4 PASS164.017s: eight rank1/20 casts,positiveCold/bothvisiblechips,40geometries,eight exact seven-domain pairs/four actual offlineContinues. All2482inputs/HEAD exact. Fresh build observed0,Vite10.26s,762files/sixchunks/fivebridgepatterns/requiredprecache pass. All587engine files unchanged from9804/371 checkpoint.16PNG hashes/eight mobile originals inspected; explicit nav/copy/glyph/capture limits retained. [Ice Arrow evidence](evidence/d04-amazon-ice-arrow.md) records original test-only resistance-unit/String lint/setup corrections without assertion weakening.
 
 All processes terminal. Active support task,Decoy/IceArrow outputs and raw proof remain needed for combined full-unit gate/read-back retention; root owns eventual exact cleanup. No new inventory credit:190bounded/21unverified/oneengine-only/onereview-needed. GenuineL33/Ancients-Rite/next402/Baaluncleared unchanged. Next remaining mechanics: SlowMissiles needs actual projectile-flight semantics within no-range/movement invariants;17Assassin remain. Whole privatev1,earned builds/balance/economy/endgame and independent/mobile/a11y/performance gates stay open. No campaign/replay,remote action,delegation or self-signoff.
+
+## 2026-10-26 — Slow Missiles finite flight implemented; focused checkpoint passes
+
+D04 and Proposed ADR-012 describe actual finite hostile flight and a paid,
+JSON-authored 6000ms window at33% normal projectile speed. Native allocation,
+MP/CD qualification, mid-flight onset/expiry, impact-time mitigation, source and
+target death, tier parity and combat-deadline settlement now have focused proof.
+BUG296 remains open for broader acceptance. BUG297 reproduced two unregistered
+authored missile identities; b6821075 fills only missing identities from validated
+JSON and preserves existing missile damage/CD tuning.
+
+The original running slow-missiles-focused-final consumer terminated PASS:
+139tests/9files,24.692s; all2490inputs and809b5112HEAD unchanged. Final focused
+types7.707s and lint8.464s PASS with the same exact repository inputs/HEAD before
+the five-path source increment was committed. This is not a fresh full-engine or
+full-unit result. Pre-feature9804/371 cannot establish the new integrated gate.
+All consumers from this checkpoint are terminal.
+
+Next: consolidated engine/full-unit/types/lint, bilingual duration/speed UI and
+real production/browser/save/offline proof. Independent design/technical/QA and
+earned balance remain open; ADR-012 is still Proposed. No skill credit added:
+190bounded/21unverified/oneengine-only/onereview-needed. GenuineL33/Ancients-Rite/
+next402/Baaluncleared unchanged.17Assassin and whole privatev1 acceptance remain.
+
+Root retains the continuing task directory
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_
+for combined support validation, including the new task-owned
+slow-missiles-final.tsconfig.json and final focused runner records. Root owns
+archive/read-back and exact cleanup after consumers finish; cleanup is not yet
+complete. Original goal/worktree remain active; no campaign/replay, remote
+action, delegation or independent self-approval.
