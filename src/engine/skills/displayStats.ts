@@ -39,6 +39,8 @@ import { BLOOD_GOLEM_DEFINITION, BLOOD_GOLEM_IDS } from './blood-golem';
 import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 import { HYDRA_DEFINITION, hydraBodyStats } from './hydra';
 import { decoyBodyStats, decoyDuration, resolveDecoyDefinition } from './decoy';
+import { getAssassinSummonStats } from './assassin-summon-definition';
+import { ASSASSIN_SHADOW_POLICY, type AssassinShadowTemplate } from './assassin-shadow-skills';
 
 export interface DisplaySkillSource {
   readonly decoy?: import('../types/skills').SkillDef['decoy'];
@@ -145,7 +147,7 @@ export interface SkillDamageDisplayRow {
 }
 
 export interface SkillSummonStatDisplayRow {
-  readonly id: 'lifeMax' | 'attack' | 'defense' | 'magicResist' | 'attackSpeed' | 'physDodge' | 'magicDodge' | 'physicalResistance' | 'fireResistance' | 'coldResistance' | 'lightningResistance' | 'arcaneResistance' | 'poisonResistance';
+  readonly id: 'lifeMax' | 'manaMax' | 'shadowSkillRankCap' | 'attack' | 'defense' | 'magicResist' | 'attackSpeed' | 'physDodge' | 'magicDodge' | 'physicalResistance' | 'fireResistance' | 'coldResistance' | 'lightningResistance' | 'arcaneResistance' | 'poisonResistance';
   readonly labelKey: string;
   readonly value: number;
   readonly valueKind: 'flat' | 'percent';
@@ -190,6 +192,9 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Body-owned resources and captured attack policy; preview alone grants no native authority. */
+  readonly assassinShadow?: { readonly template: AssassinShadowTemplate; readonly rankCap: number;
+    readonly manaMax: number; readonly independentSkills: readonly string[] };
   /** Finite paid personal barrier capacity after ordinary mitigation. */
   readonly boneWall?: { readonly capacity: number; readonly durationSeconds: number };
   /** Finite party potency changes effective ranks, never permanent allocations. */
@@ -417,6 +422,15 @@ function inferSummonId(skill: DisplaySkillSource): string | undefined {
   return undefined;
 }
 
+function shadowTemplate(skill: DisplaySkillSource): AssassinShadowTemplate | undefined {
+  if (skill.trigger !== 'active' || skill.target !== 'summon' || skill.summon !== true) return undefined;
+  for (const template of ['shadow_warrior', 'shadow_master'] as const) {
+    if (skill.summonId === template && (skill.id === `assassin.${template}` ||
+      skill.id === 'skills-assassin-' + template.replaceAll('_', '-'))) return template;
+  }
+  return undefined;
+}
+
 function summonUnit(
   skill: DisplaySkillSource,
   rank: number,
@@ -440,6 +454,7 @@ function summonUnit(
   }
   const summonId = inferSummonId(skill);
   if (!summonId) return undefined;
+  const shadow = shadowTemplate(skill) !== undefined;
   if (skill.id === 'skills-sorceress-hydra' && skill.hydra && skill.target === 'summon') {
     const body = hydraBodyStats();
     return { summonId, nameKey: 'combat:summons.hydra', stats: [
@@ -499,7 +514,7 @@ function summonUnit(
     if (!combined) return undefined;
     stats = combined;
   }
-  const resistanceRows: SkillSummonStatDisplayRow[] = druid || fireGolem || bloodGolem || (exactNecromancer && global?.resistRank)
+  const resistanceRows: SkillSummonStatDisplayRow[] = shadow || druid || fireGolem || bloodGolem || (exactNecromancer && global?.resistRank)
     ? (['physical', 'fire', 'cold', 'lightning', 'arcane', 'poison'] as const).map(type => ({
       id: `${type}Resistance`, labelKey: `details.summonStat.${type}Resistance`,
       value: stats.resistances[type] / 100, valueKind: 'percent' })) : [];
@@ -511,11 +526,15 @@ function summonUnit(
     stats: [
       ...resistanceRows,
       { id: 'lifeMax', labelKey: 'details.summonStat.lifeMax', value: stats.lifeMax, valueKind: 'flat' },
+      ...(shadow ? [
+        { id: 'manaMax' as const, labelKey: 'details.summonStat.manaMax', value: stats.manaMax, valueKind: 'flat' as const },
+        { id: 'shadowSkillRankCap' as const, labelKey: 'details.summonStat.shadowSkillRankCap', value: rank, valueKind: 'flat' as const }
+      ] : []),
       { id: 'attack', labelKey: 'details.summonStat.attack', value: stats.attack, valueKind: 'flat' },
       { id: 'defense', labelKey: 'details.summonStat.defense', value: stats.defense, valueKind: 'flat' },
-      ...(exactGolem || druid ? [{ id: 'attackSpeed' as const, labelKey: 'details.summonStat.attackSpeed',
+      ...(exactGolem || druid || shadow ? [{ id: 'attackSpeed' as const, labelKey: 'details.summonStat.attackSpeed',
         value: stats.attackSpeed, valueKind: 'flat' as const }] : []),
-      ...(druid ? [
+      ...(druid || shadow ? [
         { id: 'magicResist' as const, labelKey: 'details.summonStat.magicResist', value: stats.magicResist, valueKind: 'flat' as const },
         { id: 'physDodge' as const, labelKey: 'details.summonStat.physDodge', value: stats.physDodge, valueKind: 'percent' as const },
         { id: 'magicDodge' as const, labelKey: 'details.summonStat.magicDodge', value: stats.magicDodge, valueKind: 'percent' as const }
@@ -616,6 +635,7 @@ export function computeSkillRankDisplayStats(
   global?: SummonPassiveProjection
 ): SkillRankDisplayStats {
   const safeRank = clampRank(rank, skill.maxLevel);
+  const shadow = shadowTemplate(skill), shadowBody = shadow ? getAssassinSummonStats(shadow) : undefined;
   const decoy = decoyDisplayDefinition(skill);
   const decrepify = skill.id === 'skills-necromancer-decrepify' && isDecrepifyDefinition(skill)
     ? resolveDecrepifyDefinition([skill]) : undefined;
@@ -779,6 +799,8 @@ export function computeSkillRankDisplayStats(
       hydra: { heads: HYDRA_DEFINITION.heads, durationSeconds: HYDRA_DEFINITION.durationMs / 1000 }
     } : {}),
     ...(decoy ? { decoy: { durationSeconds: decoyDuration(safeRank, undefined, decoy) / 1000 } } : {}),
+    ...(shadow && shadowBody ? { assassinShadow: { template: shadow, rankCap: safeRank, manaMax: shadowBody.manaMax,
+      independentSkills: shadow === 'shadow_master' ? [...ASSASSIN_SHADOW_POLICY.master.attackSkills] : [] } } : {}),
     ...(['skills-sorceress-teleport', 'skills-sorceress-enchant'].includes(skill.id) &&
       skill.trigger === 'active' && skill.target === 'self' && skill.timedBuff ? { sorceressBuff: {
         durationSeconds: skill.timedBuff.durationMs / 1000,
