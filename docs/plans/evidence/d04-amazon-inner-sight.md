@@ -2,8 +2,8 @@
 
 Author checkpoint,2026-10-26. [Contract](../decisions/D04-amazon-inner-sight-v1.md),
 [BUG291](../../../production/bugs/BUG-291-apply-amazon-inner-sight-defense.md).
-Native/consumer/preview checks pass; broad engine/static checks and lifecycle/
-production-browser acceptance remain pending. No new inventory credit.
+Native/consumer/preview/lifecycle, broad engine/static and production-browser checks pass.
+Final combined support full-suite checkpoint and independent/earned acceptance remain open. No new inventory credit.
 
 ## Delivered behavior
 
@@ -72,3 +72,14 @@ GenuineL33/Ancients-Rite/next402/Baaluncleared unchanged. Full privatev1,remaini
 skills,earned builds,balance/economy/endgame and whole-app/independent acceptance
 remain open. Security check:pass;first-party local changes,no remote/campaign/
 replay,credential/dependency/CI change,delegation or independent self-signoff.
+
+
+## Native persistence and production browser checkpoint
+
+At frozen0052c1c6, engine9738/368PASS280.895s, fulltypes230.244s and fulllint324.475s; all2457inputs/HEAD exact. ae60f9cd adds two actual-store lifecycle cases: allocation leaves the recorded wave unchanged; later waves pay/apply finite packets to hostile targets and carry actual final HP/MP; save/import preserves rank/priority/equipment, clears transient combat and recasts legally in a fresh run. 99new focused cases total; combined native/UI22/3PASS18.634s, explicit publiclint8.938s and corrected focusedtypes6.976s pass. The focused compiler harness initially omitted existing test-bridge ambient declarations and collided with its own receipt filename; corrected external config uses the established declaration and a distinct .tsconfig suffix. Original failures retained, no product/compiler/assertion relaxation.
+
+Official production build14.152s, six-chunk/five-pattern bridge scan and756URL required-asset precache pass. Known build warnings remain: large chunks, and the optional2.57MB art manifest is excluded from precache. BUG292 preserves two observer errors: fresh allocations use canonical amazon.inner_sight rather than an existing data-ID alias; the public Chinese cast uses catalog心眼 rather than fallback内视. Only those literal test expectations change. All762 build hashes remain exact.
+
+Final fresh public matrix at frozen0a6914b1:4/4PASS90.411s runner/89.279sPlaywright, zero skips/retries/flakes/unexpected failures. Eight actual rank1/20 public casts/chips,40viewport priority-control checks, eight exact seven-domain online/offline save pairs and four real service-worker offline Continues. Public allocation spends exactly20points via real UI, rank20=4MP/2s, no test bridge. All2460inputs/HEAD exact. Audit retains16original PNGs; eight mobile originals individually viewed: correct bilingual25%/8s/payment/MAX and hostile chips visible. Long copy scrolls and fixed nav overlaps/crops lower panel content; English nav edge clipping and emoji fallback boxes remain. Desktop images retained but not individually visually reviewed. Whole-app/mobile/a11y acceptance remains open.
+
+Root retains the active support task, build, both failed traces, all original receipts and16PNG extracts through continuing support verification and evidence consumers. No cleanup or new skill inventory credit yet; final combined support full-unit gate, retention and exact cleanup remain pending. Prior18978full proves the preceding area snapshot, not Inner Sight. Slow Missiles/Decoy, Valkyrie data/native/public proof and Ice Arrow remain open; full privatev1 and registered worktree stay active.

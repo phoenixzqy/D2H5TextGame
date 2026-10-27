@@ -1,7 +1,7 @@
 # BUG-292 — Observe the canonical ID of newly allocated Inner Sight
 
 - Severity: Low (acceptance observer, no observed product defect).
-- Status: Reproduced; test correction pending.
+- Status: Fixed by 08490d2c and 0a6914b1; final four-context browser verification passed.
 - Build: ae60f9cdb1ee21bb1ec0f973f1acd49e9b64d966; real production build, no test bridge.
 - Environment: local Chromium desktop 1280×800; en; fixed browser date 2026-10-26; constructed L30/20-point Amazon, not earned balance. No fixed battle seed is used: failure occurs before combat.
 - Owner: QA/browser acceptance; root executes without delegation.
@@ -25,3 +25,7 @@ Change only the two exported-rank key lookups to the canonical runtime ID. Prese
 ## Second observer correction
 
 After the ID correction, English desktop passes both ranks, casts and exact online/offline save pairs. The Chinese desktop test then fails because it guesses the fallback combat-locale name 内视; the recorded public cast is `Ama Sight Test 施放了 心眼。`, followed by eight actual 心眼 debuff logs. The skill catalog uses skills.amazon.inner-sight.name=心眼. Preserve that existing product text and correct only the expected cast literal. Source and all 762 production build files remain unchanged. Root retains inner-sight-public-corrected-browser.log/report and the corrected-output trace/screenshot; original English pass is evidence for that context only. No timing, assertion scope or product change.
+
+## Terminal result
+
+Final fresh run at 0a6914b1: four contexts pass in 90.411s runner, no skips/retries/flakes/unexpected failures. Eight actual rank1/20 casts, 40 viewport checks, eight exact seven-domain save pairs and four real service-worker offline Continues. All 2460 captured inputs and HEAD remain unchanged; all 762 production build files remain exact. Earlier two failed runs and the successful English context are retained unchanged. Full private-v1 and independent/earned acceptance remain open.
