@@ -185,6 +185,8 @@ export interface SkillRequirement {
 
 /** JSON-authored runtime metadata for the first applied status. */
 export interface SkillStatusEffectMetadata {
+  /** Slow Missiles travel speed as percent of normal; never AttackSpeed or dodge. */
+  readonly projectileSpeedPct?: number;
   /** Dim Vision additive Physical/Thorns hit-chance reduction in percentage points. */
   readonly physicalHitChanceReductionPct?: number;
   /** Iron Maiden: percent of actual hostile Physical HP removed to reflect. */

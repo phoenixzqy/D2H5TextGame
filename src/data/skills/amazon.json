@@ -684,13 +684,13 @@
     "appliesStatus": [
       "slow-missiles"
     ],
+    "statusEffect": {
+      "durationMs": 6000,
+      "projectileSpeedPct": 33
+    },
     "scaling": {
       "cooldownPerLevel": -0.05,
-      "costPerLevel": -0.1,
-      "passiveStatsPerLevel": {
-        "physDodgePct": 0.005,
-        "magicDodgePct": 0.005
-      }
+      "costPerLevel": -0.1
     }
   },
   {
