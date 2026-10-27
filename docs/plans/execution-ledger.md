@@ -13,7 +13,7 @@ Current implementation evidence lives in `evidence/`.
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
 | D04/D06 Amazon support reconciliation | five bounded local credits; independent/earned acceptance open | Valkyrie, Inner Sight, Slow Missiles, Decoy and Ice Arrow individual native/public/lifecycle evidence plus combined full19270/901/types/lint and verified6961-member retention/cleanup audited.20public cases,40ranked casts,40save pairs/20offlineContinues,200geometry. Exactly208 other raw rows/header/IDs/order unchanged;195bounded/17unverified/onereview, Amazon30/30. [Audit](evidence/fixtures/amazon-support/inventory-reconciliation.json). Slow Missiles ADR-012 Proposed; whole-app/mobile/a11y/earned/independent/private-v1 gates open. Root retains exact existing archive/sidecars; no campaign action. |
-| D05 Assassin martial charges / BUG300–303 | core/previews and expanded native boundaries locally verified; full acceptance open | Runtime/observations/chips plus shared rank previews and touch-hover correction committed. Original preview browser4/4:80previews/400geometry/eight seven-domain pairs/four actual offlineContinues; eight originals viewed. BUG303 shared recovery-label fix82396c1a, actual UI84PASS/scoped types/lint; stronger browser recheck pending. Ten settlement cases85781f50 plus two Command/caster and three actual wave/import/town-respec cases: final47PASS/6files,types/lintPASS. [Evidence](evidence/d05-assassin-martial-charges.md). Full/types/lint attempts143 lack receipts and have no live children; stable final gates, public combat and remaining pool/miss/absorption/earned/independent acceptance open. No charge credit/campaign action; active task retained under root ownership. |
+| D05 Assassin martial charges / BUG300–304 | stable full/static and localized preview gates pass; combat matrix and mana decision open | Frozenfc915ddd full19576/917/two existing opt-in skips957.742s,types/lintPASS; all2522inputs/HEAD exact. Stronger localized browser4/4PASS80previews/400geometry/8seven-domain pairs/4offlineContinues;8mobile originals viewed.7bcaaefd adds16native mixed-pool/miss/expiry/public-fixture cases,related63/8 then16/2/scopedtypes/lintPASS; no runtime change. Desktop/en Tiger public1/1 ranks1/20 combat/save/offline proof. [Final evidence](evidence/fixtures/assassin-charges/final-checkpoint.json). Full combat matrix pending; BUG304 records Cobra positive MP versus explicit mana-free monster conflict, user question pending. No charge credit/earned/independent acceptance; task retained root-owned. |
 | D04 Amazon Inner Sight / BUG291–292 | bounded local verification closed; independent/earned acceptance open | Native99new cases/public4/4:8casts,40geometry,8seven-domain pairs/4actual offlineContinues. Combined full19270/901/types/lint and retained archive/read-back/cleanup complete. One of five reconciled support credits; Amazon30/30, total195bounded/17unverified/onereview. [Evidence](evidence/d04-amazon-inner-sight.md); whole-app mobile/a11y and private-v1 gates remain open. |
 | D06 Amazon Valkyrie body / BUG293 | bounded local verification closed; independent/earned acceptance open | Real paid body, native next-wave rank/payment/import and public4/4/eight bodies verified. Combined full19270/901/types/lint and retained archive cleanup complete. One of five support credits. [Evidence](evidence/d06-amazon-valkyrie.md); no whole-app/earned/independent acceptance. |
 | D06 Amazon Decoy / BUG294 | bounded local verification closed; independent/earned acceptance open | Actual paid finite inert body/targeting/death/expiry and native wave/import/save proof;143focused/8files and public4/4. Combined full19270/901/types/lint and retained archive cleanup complete. One of five support credits. [Evidence](evidence/d06-amazon-decoy.md); earned and independent/private-v1 gates open. |
@@ -13521,3 +13521,27 @@ remote action,delegation or self-signoff.
 Previous goal turn progressed by observing the original browser rerun terminal4/4. This turn decoded80rank previews/400geometries/eight exact seven-domain save pairs/four actual SWofflineContinues and inspected all eight mobile originals. Final hover build audit six JS chunks/five bridge patterns absent/756precacheURLscomplete; original mobile timeout retained as BUG302. The Chinese Cobra Applies row exposed BUG303 despite that run passing:4RED/76controls→shared en/zh dictionary fix82396c1a and actual84PASS/types/lint.
 
 85781f50 adds ten native reflection/shield/death/Cobra/AOE cases; final Command/caster and actual allocation/wave/import/town-respec proofs bring current boundary related47PASS/6files plus scoped types/lint. Original introduced test typing and two incorrect fixture assumptions remain in the boundary packet. Current full/types/lint supervisors ended143 without terminal receipts; exact child/root-cwd inspection found none live, no pass claim. Fresh stable final checks/stronger public label matrix are next. Inventory195bounded/17unverified/onereview stays exact; no charge credit, earned campaign/replay, delegation, remote action or independent self-approval. L33/Ancients-Rite/next402/Baaluncleared unchanged; full privatev1 and registered worktree remain active.
+
+## 2026-10-27 — Stable charge full gate and native/public combat preparation
+
+Original detached full run completes19576PASS/917files/two existing opt-in
+campaign skips957.742s; fulltypes163.366s/lint276.455sPASS at frozenfc915ddd.
+All2522source/externalinputs/HEAD exact. Stronger BUG303 production4/4PASS210.998s
+and original mobile review close localization;80previews/400geometries/eight
+seven-domain pairs/four actual offlineContinues retained. No partial-log pass.
+
+7bcaaefd promotes16native mixed-pool/miss/expiry and six-builder rank1/20 actual
+public-fixture cases. Related63/8 then final16/2 and strict709-file types/lintPASS;
+all prior2522inputs byte-identical. Desktop/en Tiger production1/1PASS47.738s
+observes actual3/3→consume/positivePhysical release/MP/bar changes plus two exact
+seven-domain online/offline pairs. Two original captures individually inspected;
+no full matrix/whole-app/earned acceptance. Original oracle/cadence/lint errors
+retained. [D05 final packet](evidence/fixtures/assassin-charges/final-checkpoint.json).
+
+BUG304 documents explicit mana-free-monster policy versus positive public Cobra
+transfer requirement. User choice pending; no invented enemy mana or weakened
+requirement. Root continues independent combat matrix then traps/Flight work.
+No inventory credit(195bounded/17unverified/onereview),campaign/replay,delegation,
+remote action or independent self-approval. L33/Ancients-Rite/next402/Baaluncleared
+and both protected fixture hashes exact. Continuing task/worktree remain needed;
+root owns later archive/readback/exact cleanup, none claimed. Full privatev1 open.

@@ -35,9 +35,56 @@ The next two files add actual paid Command and real store boundary proofs. Both 
 
 Final boundary/native/shadow lifecycle47PASS/6files, strict710-file types and lintPASS. Command's original timing assumption and town-respec's original all-actor assertion were provably wrong: authored200AS period is900ms, and the sole non-basic post-respec action belonged to an enemy Fallen. Original failing fixtures/logs/diagnostic are retained. [Boundary packet](fixtures/assassin-charges/lifecycle-checkpoint.json) records exact receipts, hashes and limits. These are root-author constructed proofs; no independent/earned/private-v1 acceptance or skill credit.
 
+## Stable full regression and actual combat preparation — 2026-10-27
+
+At frozen `fc915ddd`, the original detached full consumer terminated PASS:
+**19,576 tests /917 files**, two existing opt-in campaign skips,957.742s.
+Full typecheck163.366s and lint276.455s also pass. All2522 repository inputs,
+controlling external inputs and HEAD remain exact. Earlier143 attempts remain
+historical failures; this is a fresh completed gate. All2522 inputs still match
+after the following two test-only additions; no fresh combined full run including
+those additions is claimed.
+
+BUG303's stronger actual production preview run is4/4PASS210.998s with its
+literal recovery-label assertion. Independently decoded80previews,400geometry,
+eight exact seven-domain save pairs and four actual SW offlineContinues;
+all eight mobile originals individually viewed and hashes verified. Chinese
+生命偷取/法力偷取 are visibly correct. Build12.864s, six JS chunks, five forbidden
+patterns absent and all756distinct precache URLs present (build log758entries).
+Existing chunk/art warnings, scroll/nav/glyph/capture/a11y limits remain.
+
+`7bcaaefd` adds16actual native cases in two test paths: mixed Tiger/Fire rank1/20
+pools, global saturation and exact one-payment release order; seed13 finisher miss
+retention, next-hit release and original20100ms expiry; and six builders×ranks1/20
+through actual allocation, equipment, priority and authored Catacombs waves.
+All twelve public-fixture probes observe positive typed release (all three
+Phoenix components) or Cobra HP recovery. Phoenix's unchanged3s cooldown needs
+selected Tiger1 between casts; the constructed equipped speed reduction is
+explicit and no gameplay tuning changed. Related63/8PASS, then final16/2PASS,
+strict709-file types and lintPASS. Original oracle/cadence/lint errors remain
+retained; no assertion/rule/skill/rank/timeout weakening.
+
+A production desktop/en Tiger probe is1/1PASS47.738s: ranks1/20 each visibly
+reach3/3, consume, deal positive stored Physical damage after a basic action,
+spend actual public MP and damage a visible enemy bar. Two exact seven-domain
+online/offline pairs pass; offline response is actually service-worker served.
+Both original battlefield captures individually viewed: consumed chips gone,
+damaged/dead enemies visible; dark small labels and crop limits remain. This is
+only Tiger/desktop/en proof. The full en/zh desktop/mobile six-builder matrix is
+prepared, not yet accepted. [Final packet](fixtures/assassin-charges/final-checkpoint.json)
+retains exact commands/receipts, hashes and source boundaries.
+
+[BUG304](../../../production/bugs/BUG-304-cobra-mana-free-monster-contract.md)
+records a real contract conflict: combat-formulas §11 says monsters have no mana,
+factory construction enforces0MP, while D05 requires actual positive public Cobra
+victim debit. The existing Mind Blast contract explicitly supports zero-MP enemies
+and does not authorize inventing pools. Native constructed positive/zero/partial
+transfers pass. A user question asks whether to add JSON-defined caster mana or
+redesign recovery; no answer or mechanic change is assumed.
+
 ## Remaining acceptance and retention
 
-[Author contract](../decisions/D05-assassin-martial-charges-v1.md) still requires the stronger BUG303 production recheck, remaining multi-pool/miss/absorption boundaries, production en/zh desktop/mobile rank1/20 combat discharge/HP/MP proof and final stable full gates. Preview-only seven-domain saves/offline Continue do not replace combat proof. Assassin traps/Flight adaptation, earned builds/economy/campaign and independent G0–G7 remain open.
+[Author contract](../decisions/D05-assassin-martial-charges-v1.md) still requires remaining hostile-target absorption boundaries, the full production en/zh desktop/mobile rank1/20 combat discharge/HP/MP matrix, and resolution of BUG304. Stable full/static and localized preview gates now pass; multi-pool/miss native cases are covered above. Preview-only seven-domain saves/offline Continue do not replace combat proof. Assassin traps/Flight adaptation, earned builds/economy/campaign and independent G0–G7 remain open.
 
 Active exact root-owned evidence: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc`. Originals, scripts, hashes, logs, prototypes and task-local caches remain required for those consumers. Root owns eventual archive read-back and exact task-owned cleanup after consumers finish; no charge-task cleanup is claimed. The completed Amazon/shadow archives remain separately retained under their existing ownership conditions. Registered worktree remains in use for the unfinished umbrella goal.
 
