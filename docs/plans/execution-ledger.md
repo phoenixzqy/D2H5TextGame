@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| P16 navigation / BUG313–315 | source/browser locally validated; whole integration/retention pending | Icons e7aeafcc, equal targets558c01f0, complete labels/reflow b508e864. Final production10/10PASS71.111s/both locales/five sizes,80complete44px-plus targets/ten actual SWofflineContinues;20PNGs decoded/ten online originals viewed. Focused15/2/types/lint/build and bridge/precache PASS. [Evidence](evidence/p16-navigation-icons.md). Original target/readiness/label/static failures retained; no whole-app a11y/performance/independent acceptance. Root retains exact active task for upcoming whole checks/cleanup;211bounded/oneunverified/onereview and genuine campaign unchanged. |
 | D05/D06 Assassin final reconciliation / BUG311–312 | sixteen bounded local records reconciled; independent/earned acceptance open | Final d9447414 full19927/939/two existing skips, types/lint and corrected production8/8 PASS;16coherent first-wave shadow rank proofs,16seven-domain pairs/eight actual offlineContinues. Corrected charge HP, trap, Flight and original shadow evidence retain their own heads/scopes. [Reconciliation](evidence/assassin-skill-reconciliation.md):213IDs/header/order and197other raw rows preserved;211bounded/oneunverified/onereview, Assassin29/30. Cobra BUG304 user contract and Cold Mastery review remain. Source/evidence66153a52; exact shadow archive15148members read-back verified, raw task removed, root retains archive/manifest/receipt through consumers. GenuineL33/Ancientsclaimed/Baaluncleared/next402 unchanged; G0–G7/C2–C4/full-v1 acceptance open. |
 | D04/D06 Amazon support reconciliation | five bounded local credits; independent/earned acceptance open | Valkyrie, Inner Sight, Slow Missiles, Decoy and Ice Arrow individual native/public/lifecycle evidence plus combined full19270/901/types/lint and verified6961-member retention/cleanup audited.20public cases,40ranked casts,40save pairs/20offlineContinues,200geometry. Exactly208 other raw rows/header/IDs/order unchanged;195bounded/17unverified/onereview, Amazon30/30. [Audit](evidence/fixtures/amazon-support/inventory-reconciliation.json). Slow Missiles ADR-012 Proposed; whole-app/mobile/a11y/earned/independent/private-v1 gates open. Root retains exact existing archive/sidecars; no campaign action. |
 | D05 Assassin martial charges / BUG300–304,306 | stable full/static, localized preview and24-case combat gates pass; mana/visual decisions open | Frozenfc915ddd full19576/917/two existing opt-in skipsPASS;16new native cases separately pass. Frozen8709a8db production24/24PASS1098.951s,2524repository/765external inputs exact;48rank proofs,48seven-domain pairs,24actual offlineContinues. All24mobile originals individually viewed: ally/fixed-nav/black enemy-region limits; grouped hero HP observer null in48proofs (BUG306). Cobra actual positive victimMP conflict remains BUG304/user decision pending. [Final evidence](evidence/fixtures/assassin-charges/final-checkpoint.json). No charge credit/earned/independent acceptance; raw task archived/read-back verified/exactly cleaned, root retains archive/two sidecars listed in trap evidence. |
@@ -13753,3 +13754,39 @@ full-v1 acceptance. BUG304 still needs its user contract decision; Cold Mastery
 stays review-needed. GenuineL33/Ancients-Rite/next402/Baaluncleared and protected
 hashes unchanged. No campaign/replay, delegation or remote action. Root sole
 executor; full privatev1 and claimed worktree continue.
+
+
+## 2026-10-27 — Navigation root fixes and production matrix complete locally
+
+After sixteen Assassin records were reconciled in c49748d1, this continuation
+fixes navigation emoji-font dependence(e7aeafcc), unequal mobile touch widths
+(558c01f0), and complete-label fitting(b508e864). All bugs were recorded before
+product edits. The initial corrected locale2RED→GREEN joins15focused shell/HUD
+cases; latest scoped strict types/lint/buildPASS. Original guessed translations,
+act warnings, missing scoped Vite/global declarations and ignored browser-file
+lint warnings are retained; actual labels/isolated language instances and exact
+existing declarations/explicit no-ignore fix the harness, not product semantics.
+
+The original production41.3125px target failure is deliberately stopped via
+verified task-owned Playwright PID:1failed/2interrupted/7notrun, not a matrix pass.
+Equal-width targets pass; cold worker readiness9FAIL/1PASS requires explicit
+browser readiness before unchanged activation/offline assertions. The subsequent
+10/10readiness result merely records label clipping. Strict label RED and
+padding-only9/10failure lead to a proper four-column/two-row layout below640px,
+row from640px and existing side rail from768px; complete12px names, no shortcuts.
+
+Final production10/10PASS71.111s: both locales/five sizes,80complete visible
+44px-plus targets, native keyboard/emulated touch/current-route behavior and
+ten actual SWofflineContinues.30attachments decoded/20PNGs; ten original online
+whole-viewport captures individually viewed, offline ten retained but not viewed.
+All4committed source blobs match measured inputs. Build762files/sixchunks/five
+bridge-pattern scan/756precacheURLs pass; existing size warnings remain. Prior
+19,927whole-unit gate predates two navigation tests; fresh full/static integration
+is next. [Evidence and continuing ownership](evidence/p16-navigation-icons.md).
+
+Root retains exact task /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k
+for original failures/whole checks/final consumers; archive/readback/exact cleanup
+pending until consumers finish. No shared-cache deletion. GenuineL33/Ancients-Rite/
+next402/Baaluncleared/protected hashes and211bounded/oneunverified/onereview remain
+unchanged. No earned campaign/replay, delegation, remote action or independent
+self-approval. Full privatev1 and registered worktree stay active.

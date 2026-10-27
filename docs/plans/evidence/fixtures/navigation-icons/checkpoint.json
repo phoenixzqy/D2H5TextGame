@@ -1,0 +1,927 @@
+{
+  "status": "Local source/browser validated; whole-unit/static integration and final retention pending",
+  "at": "2026-10-27T13:06:34.521535+00:00",
+  "owner": "root; sole executor/author, no independent approval",
+  "sourceHead": "b508e8642bf9147de3664caef5a251294f40f486",
+  "commits": {
+    "icons": "e7aeafcc",
+    "equalTargetsAndBrowserRegression": "558c01f0",
+    "completeLabelsAndResponsiveReflow": "b508e864",
+    "skillReconciliation": "c49748d1",
+    "priorShadowEvidence": "66153a52"
+  },
+  "sourceHashes": {
+    "src/ui/BottomNav.tsx": "cfeb796d7ad8b5e2eba6a305c4d06cef692608f5bac599b88f76429ebefb862f",
+    "src/ui/BottomNav.test.tsx": "8d8b101412c88be5168c4f2534110233a8a6cd6ec28af7e4a754f3fa4cf3b008",
+    "tests/pwa/navigation-icons.spec.ts": "1b6a230adf15dc1026993c725a924fd1e5f3d3fa5da49b7b447f66b9be761a99",
+    "tests/pwa/navigation-icons.config.ts": "82fcda3531af474ba7895ab7f08fe83be819305e8edc6a28a07292ca59fd467a"
+  },
+  "checks": {
+    "nav-red": {
+      "label": "nav-red",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/ui/BottomNav.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 8.611162565997802,
+      "inputsUnchanged": true,
+      "inputCount": 1940,
+      "headBefore": "c49748d18e3176d5b4c84b05be802c41a3b6b0df",
+      "headAfter": "c49748d18e3176d5b4c84b05be802c41a3b6b0df",
+      "totals": [
+        " ❯ |ui| src/ui/BottomNav.test.tsx  (7 tests | 2 failed) 154ms",
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯",
+        " Test Files  1 failed (1)",
+        "      Tests  2 failed | 5 passed (7)"
+      ]
+    },
+    "nav-corrected-red": {
+      "label": "nav-corrected-red",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/ui/BottomNav.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 8.390717520960607,
+      "inputsUnchanged": true,
+      "inputCount": 1940,
+      "headBefore": "c49748d18e3176d5b4c84b05be802c41a3b6b0df",
+      "headAfter": "c49748d18e3176d5b4c84b05be802c41a3b6b0df",
+      "totals": [
+        " ❯ |ui| src/ui/BottomNav.test.tsx  (7 tests | 2 failed) 151ms",
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯",
+        " Test Files  1 failed (1)",
+        "      Tests  2 failed | 5 passed (7)"
+      ]
+    },
+    "nav-green": {
+      "label": "nav-green",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/ui/BottomNav.test.tsx",
+        "src/ui/ScreenShell.test.tsx",
+        "src/ui/CharacterHud.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 8.600880109006539,
+      "inputsUnchanged": true,
+      "inputCount": 1940,
+      "headBefore": "364f97b331cffe589fc731858dd3aaabfd4e7de7",
+      "headAfter": "364f97b331cffe589fc731858dd3aaabfd4e7de7",
+      "totals": [" Test Files  2 passed (2)", "      Tests  15 passed (15)"]
+    },
+    "nav-types": {
+      "label": "nav-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/ui.tsconfig.json"
+      ],
+      "exit": 2,
+      "seconds": 8.649463005014695,
+      "inputsUnchanged": true,
+      "inputCount": 1940,
+      "headBefore": "364f97b331cffe589fc731858dd3aaabfd4e7de7",
+      "headAfter": "364f97b331cffe589fc731858dd3aaabfd4e7de7",
+      "totals": []
+    },
+    "nav-types-final": {
+      "label": "nav-types-final",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/ui.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 7.622452831943519,
+      "inputsUnchanged": true,
+      "inputCount": 1940,
+      "headBefore": "364f97b331cffe589fc731858dd3aaabfd4e7de7",
+      "headAfter": "364f97b331cffe589fc731858dd3aaabfd4e7de7",
+      "totals": []
+    },
+    "nav-lint": {
+      "label": "nav-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/ui/BottomNav.tsx",
+        "src/ui/BottomNav.test.tsx",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 8.085222371970303,
+      "inputsUnchanged": true,
+      "inputCount": 1940,
+      "headBefore": "364f97b331cffe589fc731858dd3aaabfd4e7de7",
+      "headAfter": "364f97b331cffe589fc731858dd3aaabfd4e7de7",
+      "totals": []
+    },
+    "nav-build": {
+      "label": "nav-build",
+      "command": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/build.config.mjs"
+      ],
+      "exit": 0,
+      "seconds": 13.298810517066158,
+      "inputsUnchanged": true,
+      "inputCount": 1940,
+      "headBefore": "364f97b331cffe589fc731858dd3aaabfd4e7de7",
+      "headAfter": "364f97b331cffe589fc731858dd3aaabfd4e7de7",
+      "totals": []
+    },
+    "nav-browser": {
+      "label": "nav-browser",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "tests/pwa/navigation-icons.config.ts"
+      ],
+      "exit": 130,
+      "seconds": 42.894033286953345,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "e7aeafccea70b1d17bd711e6fab4c20fed4d0d35",
+      "headAfter": "e7aeafccea70b1d17bd711e6fab4c20fed4d0d35",
+      "totals": ["\u001b[1A\u001b[2K  1 failed"]
+    },
+    "nav-layout-green": {
+      "label": "nav-layout-green",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/ui/BottomNav.test.tsx",
+        "src/ui/CharacterHud.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 10.051754449028522,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "headAfter": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "totals": [" Test Files  2 passed (2)", "      Tests  15 passed (15)"]
+    },
+    "nav-layout-types": {
+      "label": "nav-layout-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/ui.tsconfig.json"
+      ],
+      "exit": 2,
+      "seconds": 9.621763342060149,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "headAfter": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "totals": []
+    },
+    "nav-layout-lint": {
+      "label": "nav-layout-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/ui/BottomNav.tsx",
+        "src/ui/BottomNav.test.tsx",
+        "tests/pwa/navigation-icons.spec.ts",
+        "tests/pwa/navigation-icons.config.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 1,
+      "seconds": 8.676943246042356,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "headAfter": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "totals": []
+    },
+    "nav-layout-types-final": {
+      "label": "nav-layout-types-final",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/ui.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 10.893571326043457,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "headAfter": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "totals": []
+    },
+    "nav-layout-lint-final": {
+      "label": "nav-layout-lint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--no-ignore",
+        "src/ui/BottomNav.tsx",
+        "src/ui/BottomNav.test.tsx",
+        "tests/pwa/navigation-icons.spec.ts",
+        "tests/pwa/navigation-icons.config.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 10.229919833946042,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "headAfter": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "totals": []
+    },
+    "nav-layout-build": {
+      "label": "nav-layout-build",
+      "command": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/final-build.config.mjs"
+      ],
+      "exit": 0,
+      "seconds": 14.004982365993783,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "headAfter": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "totals": []
+    },
+    "nav-browser-final": {
+      "label": "nav-browser-final",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "tests/pwa/navigation-icons.config.ts"
+      ],
+      "exit": 1,
+      "seconds": 83.80632092501037,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "headAfter": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "totals": ["\u001b[1A\u001b[2K  9 failed", "  1 passed (1.4m)"]
+    },
+    "nav-browser-ready": {
+      "label": "nav-browser-ready",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "tests/pwa/navigation-icons.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 69.3341184379533,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "headAfter": "a9d7b6ca945223d23e94e5788762c6553a84f235",
+      "totals": ["\u001b[1A\u001b[2K  10 passed (1.1m)"]
+    },
+    "nav-label-red": {
+      "label": "nav-label-red",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "tests/pwa/navigation-icons.config.ts",
+        "--grep",
+        "360x640.*offline en$",
+        "--workers",
+        "1"
+      ],
+      "exit": 1,
+      "seconds": 7.733895051991567,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
+      "headAfter": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
+      "totals": ["\u001b[1A\u001b[2K  1 failed"]
+    },
+    "nav-label-green": {
+      "label": "nav-label-green",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/ui/BottomNav.test.tsx",
+        "src/ui/CharacterHud.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 10.049562522093765,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
+      "headAfter": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
+      "totals": [" Test Files  2 passed (2)", "      Tests  15 passed (15)"]
+    },
+    "nav-label-types": {
+      "label": "nav-label-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/ui.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 9.493322134017944,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
+      "headAfter": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
+      "totals": []
+    },
+    "nav-label-lint": {
+      "label": "nav-label-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--no-ignore",
+        "src/ui/BottomNav.tsx",
+        "src/ui/BottomNav.test.tsx",
+        "tests/pwa/navigation-icons.spec.ts",
+        "tests/pwa/navigation-icons.config.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 9.14123060402926,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
+      "headAfter": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
+      "totals": []
+    },
+    "nav-label-build": {
+      "label": "nav-label-build",
+      "command": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/label-build.config.mjs"
+      ],
+      "exit": 0,
+      "seconds": 14.123299373080954,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
+      "headAfter": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
+      "totals": []
+    },
+    "nav-label-browser": {
+      "label": "nav-label-browser",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "tests/pwa/navigation-icons.config.ts"
+      ],
+      "exit": 1,
+      "seconds": 68.51605545403436,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
+      "headAfter": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
+      "totals": ["\u001b[1A\u001b[2K  1 failed", "  9 passed (1.1m)"]
+    },
+    "nav-responsive-build": {
+      "label": "nav-responsive-build",
+      "command": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-build.config.mjs"
+      ],
+      "exit": 0,
+      "seconds": 12.886542753083631,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
+      "headAfter": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
+      "totals": []
+    },
+    "nav-responsive-green": {
+      "label": "nav-responsive-green",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/ui/BottomNav.test.tsx",
+        "src/ui/CharacterHud.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 11.806482925079763,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
+      "headAfter": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
+      "totals": [" Test Files  2 passed (2)", "      Tests  15 passed (15)"]
+    },
+    "nav-responsive-types": {
+      "label": "nav-responsive-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/ui.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 11.299160894937813,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
+      "headAfter": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
+      "totals": []
+    },
+    "nav-responsive-lint": {
+      "label": "nav-responsive-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--no-ignore",
+        "src/ui/BottomNav.tsx",
+        "src/ui/BottomNav.test.tsx",
+        "tests/pwa/navigation-icons.spec.ts",
+        "tests/pwa/navigation-icons.config.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 10.585010432056151,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
+      "headAfter": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
+      "totals": []
+    },
+    "nav-responsive-browser": {
+      "label": "nav-responsive-browser",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "tests/pwa/navigation-icons.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 71.11097657494247,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
+      "headAfter": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
+      "totals": ["\u001b[1A\u001b[2K  10 passed (1.2m)"]
+    }
+  },
+  "public": {
+    "cases": 10,
+    "targets": 80,
+    "locales": ["en", "zh-CN"],
+    "sizes": [
+      [360, 640],
+      [412, 915],
+      [640, 360],
+      [1280, 800],
+      [1920, 1080]
+    ],
+    "offlineContinues": 10,
+    "pngsDecoded": 20,
+    "audit": [
+      {
+        "case": "360x640-en",
+        "status": "expected",
+        "records": [
+          {
+            "name": "navigation-geometry",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/360x640-en-navigation-geometry.json",
+            "sha256": "1a80b41a57b8e7229b0eb64371d4c03a3291a26510577b5be6581c955e0f737e",
+            "bytes": 1825
+          },
+          {
+            "name": "visible-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/360x640-en-visible-navigation.png",
+            "sha256": "1628b8bad00a5a3c4ee47db4728f3c2fccbbed0e8a705a00f061123dfb5731df",
+            "bytes": 44738
+          },
+          {
+            "name": "offline-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/360x640-en-offline-navigation.png",
+            "sha256": "009914d18d20612b39bdb2802e47746b6dfc94779dc2c151066aee4f6eb82a7f",
+            "bytes": 45786
+          }
+        ]
+      },
+      {
+        "case": "360x640-zh-CN",
+        "status": "expected",
+        "records": [
+          {
+            "name": "navigation-geometry",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/360x640-zh-CN-navigation-geometry.json",
+            "sha256": "80bd3cafc5dfee5767b03e07a70fd592a02d19857f4afa40e122b68c8de3bc02",
+            "bytes": 1829
+          },
+          {
+            "name": "visible-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/360x640-zh-CN-visible-navigation.png",
+            "sha256": "a2a2f524b2c61a84b6e5b271a756abdee4ae34ea38aa4dc696cca17e261ec7c5",
+            "bytes": 46474
+          },
+          {
+            "name": "offline-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/360x640-zh-CN-offline-navigation.png",
+            "sha256": "deb6c9d416d1d0c8eb0557c166a1ee4835c57a80e725dd70aa7f9a439c6c71b3",
+            "bytes": 49307
+          }
+        ]
+      },
+      {
+        "case": "412x915-en",
+        "status": "expected",
+        "records": [
+          {
+            "name": "navigation-geometry",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/412x915-en-navigation-geometry.json",
+            "sha256": "ef3e2708e188c193b4ea517de32606bd3cac5dc591f10cb7150ed6ba5367aeb9",
+            "bytes": 1837
+          },
+          {
+            "name": "visible-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/412x915-en-visible-navigation.png",
+            "sha256": "541151dc27d3009d57747faaaa39399602b97ef0d1286fd102b91c0284360e70",
+            "bytes": 68887
+          },
+          {
+            "name": "offline-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/412x915-en-offline-navigation.png",
+            "sha256": "63e15e7516b8d275c05e491c18c153354791d99362a736bcabb57398a843c081",
+            "bytes": 73960
+          }
+        ]
+      },
+      {
+        "case": "412x915-zh-CN",
+        "status": "expected",
+        "records": [
+          {
+            "name": "navigation-geometry",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/412x915-zh-CN-navigation-geometry.json",
+            "sha256": "f7d1aed1c4a3ac669ceb706686a8ae5fcbfa08572fba69cf3743c7a64cb02faa",
+            "bytes": 1841
+          },
+          {
+            "name": "visible-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/412x915-zh-CN-visible-navigation.png",
+            "sha256": "8f04a708b48321ebe9bfde294d0901a62036960d173b7404281a9997a2ded1e2",
+            "bytes": 77393
+          },
+          {
+            "name": "offline-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/412x915-zh-CN-offline-navigation.png",
+            "sha256": "36155cd189d1ab9aa339f77a3ec7934c6b1e3169ee583b028a33fb1efb6693cd",
+            "bytes": 82438
+          }
+        ]
+      },
+      {
+        "case": "640x360-en",
+        "status": "expected",
+        "records": [
+          {
+            "name": "navigation-geometry",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/640x360-en-navigation-geometry.json",
+            "sha256": "0a03816d2f95d7b7c4a3bedc54b64cf84d6de348bec34c263be154993205917f",
+            "bytes": 1829
+          },
+          {
+            "name": "visible-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/640x360-en-visible-navigation.png",
+            "sha256": "663d52b7c84a0c3053da35ec25168db159e13b77e6ccb53e76105736554f90c4",
+            "bytes": 33741
+          },
+          {
+            "name": "offline-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/640x360-en-offline-navigation.png",
+            "sha256": "8b003843c72ae9373b573a46de06ed7531927cefc22f7504d62ea0655540fd03",
+            "bytes": 39136
+          }
+        ]
+      },
+      {
+        "case": "640x360-zh-CN",
+        "status": "expected",
+        "records": [
+          {
+            "name": "navigation-geometry",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/640x360-zh-CN-navigation-geometry.json",
+            "sha256": "82c7009200e15f1b10324e2b7e8b399d6ce9c81509f1310db6b47e88235bb9da",
+            "bytes": 1833
+          },
+          {
+            "name": "visible-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/640x360-zh-CN-visible-navigation.png",
+            "sha256": "f7a9b0496a80e98abf3703f63735ad6e92f135789c7741cefe109f769c3ddd12",
+            "bytes": 36961
+          },
+          {
+            "name": "offline-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/640x360-zh-CN-offline-navigation.png",
+            "sha256": "84302df3e243b62f39ffc4a461b6eb21d8ce6ea2cc6cb7b5d1930b55f314fbd8",
+            "bytes": 37093
+          }
+        ]
+      },
+      {
+        "case": "1280x800-en",
+        "status": "expected",
+        "records": [
+          {
+            "name": "navigation-geometry",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1280x800-en-navigation-geometry.json",
+            "sha256": "baae1fc2031484840255f6219e17b04ef5b87f5deaedec2c57a98c9b5d421b8e",
+            "bytes": 1806
+          },
+          {
+            "name": "visible-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1280x800-en-visible-navigation.png",
+            "sha256": "c8ce078dacd81397b56c45f2058f740e468ddc5121461d6cdc51e9bd9627819c",
+            "bytes": 90352
+          },
+          {
+            "name": "offline-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1280x800-en-offline-navigation.png",
+            "sha256": "39e0b9fa5918bbcb16b9915e4d941d7d8688d75b54cd5363708d4fb0f35341bc",
+            "bytes": 95364
+          }
+        ]
+      },
+      {
+        "case": "1280x800-zh-CN",
+        "status": "expected",
+        "records": [
+          {
+            "name": "navigation-geometry",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1280x800-zh-CN-navigation-geometry.json",
+            "sha256": "13a1ccff266e1187de65bb55adfad22dc913a0874b2f65292eafa8fc31896108",
+            "bytes": 1810
+          },
+          {
+            "name": "visible-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1280x800-zh-CN-visible-navigation.png",
+            "sha256": "f30712ef961b5d59ffe2e30789315e719aef93323827669a5980ecf39aaf65e1",
+            "bytes": 92672
+          },
+          {
+            "name": "offline-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1280x800-zh-CN-offline-navigation.png",
+            "sha256": "a49776a30ed0c5b5257939bc6dba83a8dd027d5459281c96176a406d2303530c",
+            "bytes": 104184
+          }
+        ]
+      },
+      {
+        "case": "1920x1080-en",
+        "status": "expected",
+        "records": [
+          {
+            "name": "navigation-geometry",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1920x1080-en-navigation-geometry.json",
+            "sha256": "fecb4cdb2cf195a444a3ac24b54e3b8a8836cfa4a507c4653e0b6bab791565fb",
+            "bytes": 1807
+          },
+          {
+            "name": "visible-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1920x1080-en-visible-navigation.png",
+            "sha256": "c9803aadafbe350d5327b5c468b3f664ca54b9986a4c236bde273322befdd6f8",
+            "bytes": 117535
+          },
+          {
+            "name": "offline-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1920x1080-en-offline-navigation.png",
+            "sha256": "a5e1f13e36bd685dba0fc4115daa8901c7b57fa5c6ab651ed6a5446a4361d426",
+            "bytes": 130832
+          }
+        ]
+      },
+      {
+        "case": "1920x1080-zh-CN",
+        "status": "expected",
+        "records": [
+          {
+            "name": "navigation-geometry",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1920x1080-zh-CN-navigation-geometry.json",
+            "sha256": "bfa99bf15b1df4d98c816a8b51daae1fd222403f51c74b2b593d8fbdc15e2f2d",
+            "bytes": 1811
+          },
+          {
+            "name": "visible-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1920x1080-zh-CN-visible-navigation.png",
+            "sha256": "3666ee720bc0dea1bedc5da4a3763900ad559481e88c5d2ed549d0790e5a6cf7",
+            "bytes": 117996
+          },
+          {
+            "name": "offline-navigation",
+            "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1920x1080-zh-CN-offline-navigation.png",
+            "sha256": "fced6502a2972ec40f18a80a1e1eb5f3563fb9321ae6193a1347da89a238d9b1",
+            "bytes": 144260
+          }
+        ]
+      }
+    ],
+    "required": "All names complete/no clipping, eight decorative inline SVGs/nonzero visible paths, native links/current page, foreground/bounds, >=44px targets, no horizontal overflow, keyboard Enter and emulated touch, real SWofflineContinue, no production bridge, zero page warnings/errors."
+  },
+  "visuals": {
+    "individuallyInspected": [
+      {
+        "name": "visible-navigation",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/360x640-en-visible-navigation.png",
+        "sha256": "1628b8bad00a5a3c4ee47db4728f3c2fccbbed0e8a705a00f061123dfb5731df",
+        "bytes": 44738,
+        "case": "360x640-en",
+        "inspectedAt": "2026-10-27T13:06:34.521535+00:00",
+        "observed": "Eight recognizable vector icons and complete localized labels; selected Inventory highlight visible. Two-row narrow navigation, single landscape row and desktop rail. Main content continues below viewport through its scroll area; no whole-app a11y/zoom/physical-device claim."
+      },
+      {
+        "name": "visible-navigation",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/360x640-zh-CN-visible-navigation.png",
+        "sha256": "a2a2f524b2c61a84b6e5b271a756abdee4ae34ea38aa4dc696cca17e261ec7c5",
+        "bytes": 46474,
+        "case": "360x640-zh-CN",
+        "inspectedAt": "2026-10-27T13:06:34.521535+00:00",
+        "observed": "Eight recognizable vector icons and complete localized labels; selected Inventory highlight visible. Two-row narrow navigation, single landscape row and desktop rail. Main content continues below viewport through its scroll area; no whole-app a11y/zoom/physical-device claim."
+      },
+      {
+        "name": "visible-navigation",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/412x915-en-visible-navigation.png",
+        "sha256": "541151dc27d3009d57747faaaa39399602b97ef0d1286fd102b91c0284360e70",
+        "bytes": 68887,
+        "case": "412x915-en",
+        "inspectedAt": "2026-10-27T13:06:34.521535+00:00",
+        "observed": "Eight recognizable vector icons and complete localized labels; selected Inventory highlight visible. Two-row narrow navigation, single landscape row and desktop rail. Main content continues below viewport through its scroll area; no whole-app a11y/zoom/physical-device claim."
+      },
+      {
+        "name": "visible-navigation",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/412x915-zh-CN-visible-navigation.png",
+        "sha256": "8f04a708b48321ebe9bfde294d0901a62036960d173b7404281a9997a2ded1e2",
+        "bytes": 77393,
+        "case": "412x915-zh-CN",
+        "inspectedAt": "2026-10-27T13:06:34.521535+00:00",
+        "observed": "Eight recognizable vector icons and complete localized labels; selected Inventory highlight visible. Two-row narrow navigation, single landscape row and desktop rail. Main content continues below viewport through its scroll area; no whole-app a11y/zoom/physical-device claim."
+      },
+      {
+        "name": "visible-navigation",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/640x360-en-visible-navigation.png",
+        "sha256": "663d52b7c84a0c3053da35ec25168db159e13b77e6ccb53e76105736554f90c4",
+        "bytes": 33741,
+        "case": "640x360-en",
+        "inspectedAt": "2026-10-27T13:06:34.521535+00:00",
+        "observed": "Eight recognizable vector icons and complete localized labels; selected Inventory highlight visible. Two-row narrow navigation, single landscape row and desktop rail. Main content continues below viewport through its scroll area; no whole-app a11y/zoom/physical-device claim."
+      },
+      {
+        "name": "visible-navigation",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/640x360-zh-CN-visible-navigation.png",
+        "sha256": "f7a9b0496a80e98abf3703f63735ad6e92f135789c7741cefe109f769c3ddd12",
+        "bytes": 36961,
+        "case": "640x360-zh-CN",
+        "inspectedAt": "2026-10-27T13:06:34.521535+00:00",
+        "observed": "Eight recognizable vector icons and complete localized labels; selected Inventory highlight visible. Two-row narrow navigation, single landscape row and desktop rail. Main content continues below viewport through its scroll area; no whole-app a11y/zoom/physical-device claim."
+      },
+      {
+        "name": "visible-navigation",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1280x800-en-visible-navigation.png",
+        "sha256": "c8ce078dacd81397b56c45f2058f740e468ddc5121461d6cdc51e9bd9627819c",
+        "bytes": 90352,
+        "case": "1280x800-en",
+        "inspectedAt": "2026-10-27T13:06:34.521535+00:00",
+        "observed": "Eight recognizable vector icons and complete localized labels; selected Inventory highlight visible. Two-row narrow navigation, single landscape row and desktop rail. Main content continues below viewport through its scroll area; no whole-app a11y/zoom/physical-device claim."
+      },
+      {
+        "name": "visible-navigation",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1280x800-zh-CN-visible-navigation.png",
+        "sha256": "f30712ef961b5d59ffe2e30789315e719aef93323827669a5980ecf39aaf65e1",
+        "bytes": 92672,
+        "case": "1280x800-zh-CN",
+        "inspectedAt": "2026-10-27T13:06:34.521535+00:00",
+        "observed": "Eight recognizable vector icons and complete localized labels; selected Inventory highlight visible. Two-row narrow navigation, single landscape row and desktop rail. Main content continues below viewport through its scroll area; no whole-app a11y/zoom/physical-device claim."
+      },
+      {
+        "name": "visible-navigation",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1920x1080-en-visible-navigation.png",
+        "sha256": "c9803aadafbe350d5327b5c468b3f664ca54b9986a4c236bde273322befdd6f8",
+        "bytes": 117535,
+        "case": "1920x1080-en",
+        "inspectedAt": "2026-10-27T13:06:34.521535+00:00",
+        "observed": "Eight recognizable vector icons and complete localized labels; selected Inventory highlight visible. Two-row narrow navigation, single landscape row and desktop rail. Main content continues below viewport through its scroll area; no whole-app a11y/zoom/physical-device claim."
+      },
+      {
+        "name": "visible-navigation",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1920x1080-zh-CN-visible-navigation.png",
+        "sha256": "3666ee720bc0dea1bedc5da4a3763900ad559481e88c5d2ed549d0790e5a6cf7",
+        "bytes": 117996,
+        "case": "1920x1080-zh-CN",
+        "inspectedAt": "2026-10-27T13:06:34.521535+00:00",
+        "observed": "Eight recognizable vector icons and complete localized labels; selected Inventory highlight visible. Two-row narrow navigation, single landscape row and desktop rail. Main content continues below viewport through its scroll area; no whole-app a11y/zoom/physical-device claim."
+      }
+    ],
+    "inspectedCount": 10,
+    "offlinePNGsIndividuallyInspected": 0,
+    "priorInspections": [
+      "browser-output/navigation-icons-360x640-r-3f578-igation-survives-offline-en-navigation-icons/test-failed-1.png",
+      "pre-ready-decoded/360x640-en-visible-navigation.png",
+      "pre-ready-decoded/412x915-en-visible-navigation.png"
+    ]
+  },
+  "build": {
+    "files": 762,
+    "chunks": 6,
+    "forbiddenPatterns": 5,
+    "violations": [],
+    "precacheUrls": 756,
+    "missing": [],
+    "manifestSHA256": "c1caaa2550fe82c7be73c65f1e1822e70ad78db2b0d63f1115836354bf69073e"
+  },
+  "originalFailures": [
+    "Initial test guessed two localized names and changed global language after render; corrected exact names/isolated instances provide two causal missing-icon REDs.",
+    "First production target failure41.3125px; deliberately interrupted exact owned Playwright PID: one failed/two interrupted/seven not run, exit130.",
+    "Nine cold-install readiness failures/one pass before an explicit navigator.serviceWorker.ready precondition; original five-second activation and real offline assertions preserved. Readiness-aware10/10passes.",
+    "Initial scoped types omitted existing Vite/global bridge declarations; scoped lint initially ignored browser files by repository default. Explicit original declarations/--no-ignore resolve without suppression.",
+    "Strict360English label RED. Padding-only9/10leaves Inventory clipped; responsive4x2below640px plus12px labels resolves all10, no wording abbreviation or font reduction."
+  ],
+  "wholeValidation": {
+    "status": "pending",
+    "required": ["full unit", "full typecheck", "full lint/purity"],
+    "previous": "d9447414 full19927/939PASS predates the two added navigation tests; no new whole-suite count claimed.",
+    "resume": "Original handles will be retained in /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/whole-processes.json; do not restart a live check or edit source/HEAD while it consumes frozen inputs."
+  },
+  "genuine": {
+    "fixture": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
+    "compressedSHA256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "rawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "campaign": "L33; Ancients/Rite claimed; nextNormal402; Baal uncleared",
+    "unchanged": true,
+    "actions": "No genuine-save/campaign/replay action."
+  },
+  "limits": [
+    "Fresh disposable characters; no earned build/campaign, pacing, economy or endgame claim.",
+    "This is navigation acceptance only; no whole-app mobile/a11y, screen-reader/contrast/200% zoom, physical devices, performance or soak acceptance.",
+    "No independent approval, remote publication, push/PR/merge/deployment or shared-cache deletion.",
+    "Full private-v1 remains active; Cobra BUG304 contract and Cold Mastery review remain open;211bounded/oneunverified/onereview."
+  ],
+  "retention": {
+    "status": "active task required by whole-suite and final evidence consumers; archive/readback/exact cleanup pending",
+    "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k",
+    "owner": "root retains through consumers and will archive required evidence/remove exact task-owned disposables after all consumers terminate; shared caches/worktree preserved"
+  }
+}
