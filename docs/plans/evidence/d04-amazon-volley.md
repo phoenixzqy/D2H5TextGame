@@ -75,15 +75,22 @@ crops include fixed-header/nav overlays;lower preview requirements are partly
 cropped,emoji/navigation clipping remains existing. Twelve desktop originals
 are retained but not individually reviewed. No whole-app visual/a11y acceptance.
 
-Fresh full-unit run is active;no integrated full-suite pass is claimed yet.
+The original full-unit run92363 is terminal exit1 after808.491s:
+864files/18648tests passed,two existing skips,one suite failed during its
+79-case beforeAll. All2438code/config/test inputs stayed exact,but root committed
+documentation while it ran,changing Git HEAD. The existing provenance guard
+correctly rejected that drift in earned-comparison.test.ts. This is a validation
+procedure failure;no product/test assertion change is justified. No current
+integrated full-suite pass is claimed. Retry requires frozen bytes AND HEAD.
 
 Engine regression9556tests/362filesPASS171.800s,all2436captured inputs exact.
 Fulltypes121.394s/fulllint200.933s pass against2438explicit inputs. The sole
 subsequent change is BUG287's public-observer correction,then final focused
 public types/lint pass. All other2437inputs and all762build files remain exact.
 Earlier full18607/860/two existing opt-in skips belongs to the preceding
-snapshot and does not validate these runtime changes. Current source remains
-frozen through the fresh full-unit consumer at tool92363.
+snapshot and does not validate these runtime changes. The original full-unit consumer92363 has ended. A focused stable-HEAD
+retry must pass before one fresh full suite;no repository edits or commits
+are permitted during either consumer.
 
 ## Ownership and scope
 

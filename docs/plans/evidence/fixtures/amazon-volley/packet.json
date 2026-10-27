@@ -1,9 +1,9 @@
 {
-  "state": "public-and-engine-green;full-unit-active;no-new-skill-credit",
+  "state": "public-and-engine-green;full-unit-failed-head-drift;stable-head-retry-required;no-new-skill-credit",
   "sourceHead": "4a80c03a",
   "taskOwner": "root",
   "activeTask": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6",
-  "activeFullUnitTool": 92363,
+  "activeFullUnitTool": null,
   "receipts": [
     {
       "path": "always-hit-branch-green-final.json",
@@ -107,7 +107,7 @@
       "seconds": 4.831820141058415,
       "inputsUnchanged": true,
       "totals": [
-        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯",
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
         "Test Files  1 failed (1)",
         "Tests  1 failed | 7 passed (8)"
       ]
@@ -165,7 +165,7 @@
       "seconds": 9.523100995924324,
       "inputsUnchanged": true,
       "totals": [
-        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯",
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 5 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
         "Test Files  1 failed (1)",
         "Tests  5 failed | 2 passed (7)"
       ]
@@ -205,7 +205,7 @@
       "seconds": 9.100841219886206,
       "inputsUnchanged": true,
       "totals": [
-        "⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯",
+        "\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 11 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
         "Test Files  1 failed (1)",
         "Tests  11 failed | 13 passed (24)"
       ]
@@ -227,7 +227,7 @@
       "seconds": 9.153583029983565,
       "inputsUnchanged": true,
       "totals": [
-        "⎯⎯⎯⎯⎯⎯ Failed Tests 14 ⎯⎯⎯⎯⎯⎯⎯",
+        "\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 14 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
         "Test Files  1 failed (1)",
         "Tests  14 failed | 10 passed (24)"
       ]
@@ -357,7 +357,7 @@
       "seconds": 23.28743287397083,
       "inputsUnchanged": true,
       "totals": [
-        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯",
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 6 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
         "Test Files  1 failed (1)",
         "Tests  6 failed | 1 passed (7)"
       ]
@@ -466,7 +466,7 @@
       "seconds": 12.384268763009459,
       "inputsUnchanged": true,
       "totals": [
-        "⎯⎯⎯⎯⎯⎯ Failed Tests 30 ⎯⎯⎯⎯⎯⎯⎯",
+        "\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 30 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
         "Test Files  1 failed (1)",
         "Tests  30 failed (30)"
       ]
@@ -947,18 +947,18 @@
         "casts": [
           {
             "name": "guided-arrow-public-cast",
-            "cast": "Ama Volley Test 施放了 导引箭。",
-            "hit": "Ama Volley Test 普攻 骸骨战士 A，造成 103 点物理伤害。"
+            "cast": "Ama Volley Test \u65bd\u653e\u4e86 \u5bfc\u5f15\u7bad\u3002",
+            "hit": "Ama Volley Test \u666e\u653b \u9ab8\u9aa8\u6218\u58eb A\uff0c\u9020\u6210 103 \u70b9\u7269\u7406\u4f24\u5bb3\u3002"
           },
           {
             "name": "multiple-shot-public-cast",
-            "cast": "Ama Volley Test 施放了 多重箭。",
-            "hit": "Ama Volley Test 普攻 骸骨战士 C，造成 47 点物理伤害。"
+            "cast": "Ama Volley Test \u65bd\u653e\u4e86 \u591a\u91cd\u7bad\u3002",
+            "hit": "Ama Volley Test \u666e\u653b \u9ab8\u9aa8\u6218\u58eb C\uff0c\u9020\u6210 47 \u70b9\u7269\u7406\u4f24\u5bb3\u3002"
           },
           {
             "name": "strafe-public-cast",
-            "cast": "Ama Volley Test 施放了 扫射。",
-            "hit": "Ama Volley Test 普攻 骸骨战士 B，造成 43 点物理伤害。"
+            "cast": "Ama Volley Test \u65bd\u653e\u4e86 \u626b\u5c04\u3002",
+            "hit": "Ama Volley Test \u666e\u653b \u9ab8\u9aa8\u6218\u58eb B\uff0c\u9020\u6210 43 \u70b9\u7269\u7406\u4f24\u5bb3\u3002"
           }
         ],
         "savePairs": 2,
@@ -1259,18 +1259,18 @@
         "casts": [
           {
             "name": "guided-arrow-public-cast",
-            "cast": "Ama Volley Test 施放了 导引箭。",
-            "hit": "Ama Volley Test 普攻 骸骨战士 A，造成 103 点物理伤害。"
+            "cast": "Ama Volley Test \u65bd\u653e\u4e86 \u5bfc\u5f15\u7bad\u3002",
+            "hit": "Ama Volley Test \u666e\u653b \u9ab8\u9aa8\u6218\u58eb A\uff0c\u9020\u6210 103 \u70b9\u7269\u7406\u4f24\u5bb3\u3002"
           },
           {
             "name": "multiple-shot-public-cast",
-            "cast": "Ama Volley Test 施放了 多重箭。",
-            "hit": "Ama Volley Test 普攻 骸骨战士 C，造成 47 点物理伤害。"
+            "cast": "Ama Volley Test \u65bd\u653e\u4e86 \u591a\u91cd\u7bad\u3002",
+            "hit": "Ama Volley Test \u666e\u653b \u9ab8\u9aa8\u6218\u58eb C\uff0c\u9020\u6210 47 \u70b9\u7269\u7406\u4f24\u5bb3\u3002"
           },
           {
             "name": "strafe-public-cast",
-            "cast": "Ama Volley Test 施放了 扫射。",
-            "hit": "Ama Volley Test 普攻 骸骨战士 B，造成 43 点物理伤害。"
+            "cast": "Ama Volley Test \u65bd\u653e\u4e86 \u626b\u5c04\u3002",
+            "hit": "Ama Volley Test \u666e\u653b \u9ab8\u9aa8\u6218\u58eb B\uff0c\u9020\u6210 43 \u70b9\u7269\u7406\u4f24\u5bb3\u3002"
           }
         ],
         "savePairs": 2,
@@ -1509,5 +1509,23 @@
     "reviewNeeded": 1
   },
   "cleanup": "Not performed;full-unit consumer active. Root retains/read-backs/removes exact owned disposable paths after consumers finish.",
-  "limits": "Constructed native/public fixtures;independent/earned builds,balance,economy,endgame,full mobile/a11y/performance/PWA acceptance and privatev1 remain open."
+  "limits": "Constructed native/public fixtures;independent/earned builds,balance,economy,endgame,full mobile/a11y/performance/PWA acceptance and privatev1 remain open.",
+  "terminalFullUnitFailure": {
+    "path": "amazon-volley-full-unit.json",
+    "sha256": "acb4bef619d83967a6f3c05f57016b1bbeb4e35cbe68819108c9c60e9c8a1575",
+    "label": "amazon-volley-full-unit",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit": 1,
+    "seconds": 808.4905083470512,
+    "inputsUnchanged": true,
+    "inputCount": 2438,
+    "totals": [
+      "Test Files  1 failed | 864 passed (865)",
+      "Tests  18648 passed | 2 skipped (18729)"
+    ],
+    "cause": "Root documentation commits changed HEAD while code/config/test bytes remained exact; existing provenance guard rejected sourceSha drift."
+  }
 }

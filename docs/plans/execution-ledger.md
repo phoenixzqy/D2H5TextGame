@@ -13222,3 +13222,21 @@ No production implementation,final count/potency contract,skill credit or
 independent/earned acceptance follows this diagnosis. Continue exact original
 full-unit handle before engine changes;then close volley retention/cleanup and
 author the explicit javelin contract before its bounded implementation.
+
+
+## 2026-10-26 — Correct terminal volley failure and freeze Git identity
+
+Original full unit92363 is terminal exit1,808.491s:864files/18648tests pass,
+two existing skips,one suite fails its79-case beforeAll with production source/
+data drift. All2438captured source inputs were exact;root's documentation commits
+changed HEAD mid-run. tests/sim/production/provenance.ts:149 compares sourceSha
+as well as byte hashes,so the rejection is expected and must not be weakened.
+Earlier entries calling92363 active are historical and superseded here.
+
+No feature/source changes are needed. Correct these records before retry,then
+freeze both files and HEAD through focused earned-comparison and,if green,one
+fresh integrated full suite. New off-repository receipts will explicitly record
+before/after HEAD alongside input hashes. Retain the failed receipt/log unchanged.
+No three-skill credit or cleanup yet;179bounded/32unverified/oneengine-only/
+onereview-needed. GenuineL33/next402/Ancients-Rite claimed/Baal uncleared remains
+unchanged. Full privatev1,original goal and registered worktree stay active.
