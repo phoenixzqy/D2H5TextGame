@@ -38,7 +38,7 @@ function touch(log: HTMLElement, type: 'touchStart' | 'touchEnd' | 'touchCancel'
     changedTouches: changed.map(identifier => ({ identifier })) });
 }
 
-function pointer(log: HTMLElement, type: 'pointerover' | 'pointerout' | 'pointercancel', pointerType: 'mouse' | 'pen' | 'touch') {
+function pointer(log: HTMLElement, type: 'pointerover' | 'pointerout' | 'pointercancel' | 'pointerdown' | 'pointerup', pointerType: 'mouse' | 'pen' | 'touch') {
   fireEvent(log, Object.assign(new Event(type, { bubbles: true }), { pointerType }));
 }
 
@@ -247,6 +247,54 @@ describe('combat log reading and bounded automatic scrolling', () => {
     expect(log.scrollTop).toBe(100);
     expect(screen.getByTestId('log-hover-paused-hint')).toBeVisible();
   });
+
+  it.each(['touchEnd', 'touchCancel'] as const)('keeps an 8px touch scroll unpinned when the native scroll event arrives after %s', async end => {
+    const { log, grow } = await logFixture();
+    touch(log, 'touchStart', [1], [1]);
+    fireEvent.touchMove(log, { touches: [{ identifier: 1 }] });
+    const readingPosition = log.scrollHeight - log.clientHeight - 8;
+    log.scrollTop = readingPosition;
+    touch(log, end, [], [1]);
+    expect(screen.getByTestId('log-hover-paused-hint')).toBeVisible();
+    fireEvent.scroll(log);
+    expect(log.scrollTop).toBe(readingPosition);
+    expect(screen.getByTestId('log-hover-paused-hint')).toBeVisible();
+    grow();
+    append('Arrives after release and its delayed native scroll');
+    expect(log.scrollTop).toBe(readingPosition);
+    log.scrollTop = log.scrollHeight - log.clientHeight;
+    fireEvent.scroll(log);
+    expect(screen.queryByTestId('log-hover-paused-hint')).not.toBeInTheDocument();
+    grow();
+    append('Follows after returning to the physical bottom');
+    expect(log.scrollTop).toBe(log.scrollHeight);
+  });
+
+  for (const pointerType of ['mouse', 'pen'] as const) {
+    it.each(['pointerup', 'pointerout', 'pointercancel'] as const)('keeps an 8px ' + pointerType + ' scroll unpinned through %s and a delayed native scroll', async end => {
+      const { log, grow } = await logFixture();
+      pointer(log, 'pointerover', pointerType);
+      pointer(log, 'pointerdown', pointerType);
+      const readingPosition = log.scrollHeight - log.clientHeight - 8;
+      log.scrollTop = readingPosition;
+      pointer(log, end, pointerType);
+      // Releasing a scrollbar drag can precede both leaving and queued scroll.
+      if (end === 'pointerup') pointer(log, 'pointerout', pointerType);
+      expect(screen.getByTestId('log-hover-paused-hint')).toBeVisible();
+      fireEvent.scroll(log);
+      expect(log.scrollTop).toBe(readingPosition);
+      expect(screen.getByTestId('log-hover-paused-hint')).toBeVisible();
+      grow();
+      append('Arrives after pointer release and its delayed native scroll');
+      expect(log.scrollTop).toBe(readingPosition);
+      log.scrollTop = log.scrollHeight - log.clientHeight;
+      fireEvent.scroll(log);
+      expect(screen.queryByTestId('log-hover-paused-hint')).not.toBeInTheDocument();
+      grow();
+      append('Follows after returning to the physical bottom');
+      expect(log.scrollTop).toBe(log.scrollHeight);
+    });
+  }
 
   it('forgets completed reader scrolling after returning to the bottom during hover', async () => {
     const { log, grow } = await logFixture();

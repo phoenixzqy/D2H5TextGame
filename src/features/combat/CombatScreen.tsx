@@ -1216,7 +1216,9 @@ function CombatLog({
     const el = logContainerRef.current;
     if (!el) return;
     const distance = el.scrollHeight - el.scrollTop - el.clientHeight;
-    const atBottom = scrollGesture.current ? distance <= 1 : distance < 24;
+    // Release can clear the gesture before its queued native scroll arrives.
+    // An unpinned reader still has to reach the physical bottom to follow again.
+    const atBottom = scrollGesture.current || !pinned ? distance <= 1 : distance < 24;
     setPinned(atBottom);
     if (distance <= 1) scrollGesture.current = false;
   };
