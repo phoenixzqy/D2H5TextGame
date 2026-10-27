@@ -38,6 +38,8 @@ export interface WeightedDamageComponent {
 }
 
 interface DamageEffectBase {
+  /** Positive normal travel time; delayed impacts use the ordinary damage pipeline. */
+  readonly projectileFlightMs?: number;
   /** Exact paid Conversion hit; bare converted statuses never confer allegiance. */
   readonly conversion?: true;
   /** Opt-in shares of one hit/base/crit roll, settled before one death/retaliation closure. */
@@ -116,6 +118,8 @@ export interface BuffEffect {
 
 /** Debuff primitive (applies a status to enemies, no damage). */
 export interface DebuffEffect {
+  /** Exact paid finite projectile-speed consumer; markers alone confer no slowing. */
+  readonly slowMissiles?: true;
   /** Complete authored target curse, captured under its own finite status on payment. */
   readonly targetCurse?: 'confuse' | 'attract';
   /** Complete authored finite blindness, captured only when the action pays. */

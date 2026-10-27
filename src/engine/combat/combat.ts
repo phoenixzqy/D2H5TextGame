@@ -1,3 +1,5 @@
+import { ProjectileFlights } from './projectile-flight';
+import { SLOW_MISSILES_DEFINITION, SLOW_MISSILES_IDS, slowMissilesRank } from '../skills/slow-missiles';
 import { activeConversion, effectiveSide, opponentsOf, type ConversionBinding } from './allegiance';
 import { attackCandidates } from './attack-targets';
 import { CONVERSION_DEFINITION, CONVERSION_IDS, conversionRank, isConversionTarget, matchesConversion } from '../skills/conversion';
@@ -265,7 +267,17 @@ export interface CombatResult {
   readonly ironGolemPreparation?: IronGolemPreparationAttestation;
 }
 
+interface ProjectileImpact {
+  readonly attackerId: string;
+  readonly defenderId: string;
+  readonly effect: DamageEffect;
+  readonly skillLevel: number;
+}
+
 interface State {
+  /** Empty per battle; neither shots nor paid speed authority are accepted from input. */
+  readonly projectiles: ProjectileFlights<ProjectileImpact>;
+  readonly slowMissiles: Map<string, { readonly expiresAtMs: number; readonly projectileSpeedPct: number }>;
   /** Actual paid duplicates alone receive finite lifetime and distraction authority. */
   readonly decoys: Map<string, { readonly ownerId: string; readonly expiresAtMs: number }>;
   /** Paid Plague casts and marker lifetimes belong only to this battle. */
@@ -775,11 +787,12 @@ function applyDamageToUnit(
   basicHit = false,
   auraPulse = false,
   armorReaction = false,
-  periodicSpell = false
+  periodicSpell = false,
+  projectileImpact = false
 ): void {
   const attacker = state.units.get(attackerId);
   const defender = state.units.get(defenderId);
-  if (!attacker || !defender || (!alive(attacker) && !armorReaction) || !alive(defender)) return;
+  if (!attacker || !defender || (!alive(attacker) && !armorReaction && !projectileImpact) || !alive(defender)) return;
 
   const hostileHit = effectiveSide(state, attacker) !== effectiveSide(state, defender);
   const bolts = effect.onHitBolts;
@@ -1266,6 +1279,7 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function learnedSkillLevel(state: State, unit: CombatUnit, skill: RegisteredSkill, legacyFallback = 1): number {
+  if (SLOW_MISSILES_IDS.some(id => id === skill.id)) return slowMissilesRank(unit);
   if (DECOY_IDS.some(id => id === skill.id)) return decoyRank(unit);
   if (BONE_WALL_IDS.some(id => id === skill.id)) return boneWallRank(unit);
   if (BONE_PRISON_IDS.some(id => id === skill.id)) return bonePrisonRank(unit);
@@ -1411,6 +1425,16 @@ function hasAvailableEffect(state: State, actorId: string, skill: RegisteredSkil
   );
 }
 
+
+/** Refuse marker-only, borrowed or incomplete runtime definitions before payment. */
+function matchesSlowMissiles(skill: RegisteredSkill): boolean {
+  const effect = skill.effects[0];
+  return SLOW_MISSILES_IDS.some(id => id === skill.id) && skill.archetype === 'amazon' &&
+    skill.target === 'all-enemies' && skill.minLevel === SLOW_MISSILES_DEFINITION.requiredLevel &&
+    skill.effects.length === 1 && effect?.kind === 'debuff' && effect.statusId === 'slow-missiles' &&
+    effect.slowMissiles === true && effect.durationMs === SLOW_MISSILES_DEFINITION.durationMs;
+}
+
 function canUseSkillForState(
   state: State,
   unit: CombatUnit,
@@ -1418,6 +1442,10 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  const slow = SLOW_MISSILES_IDS.some(id => id === skillOrderId || id === skill.id) ||
+    skill.effects.some(effect => effect.kind === 'debuff' && effect.slowMissiles === true);
+  if (slow && (!matchesSlowMissiles(skill) || slowMissilesRank(unit) === 0 || !Number.isFinite(unit.mana) ||
+    SLOW_MISSILES_IDS.some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   const prison = BONE_PRISON_IDS.some(id => id === skillOrderId || id === skill.id) ||
     skill.effects.some(effect => effect.kind === 'debuff' && effect.bonePrison === true);
   if (prison && (!matchesBonePrison(skill) || bonePrisonRank(unit) === 0 ||
@@ -1666,7 +1694,10 @@ function applyEffect(
         break;
       }
       for (const t of enemySideAlive) {
-        applyDamageToUnit(state, actorId, t.id, effect, skillLevel);
+        if (effect.projectileFlightMs !== undefined) {
+          state.projectiles.launch(actorId, effect.projectileFlightMs,
+            { attackerId: actorId, defenderId: t.id, effect, skillLevel });
+        } else applyDamageToUnit(state, actorId, t.id, effect, skillLevel);
       }
       break;
     }
@@ -1801,6 +1832,21 @@ function applyEffect(
       break;
     }
     case 'debuff': {
+      if (effect.slowMissiles === true) {
+        if (!matchesSlowMissiles(skill) || slowMissilesRank(acting) === 0) break;
+        const d = SLOW_MISSILES_DEFINITION, expiresAtMs = state.simClockMs + d.durationMs;
+        for (const target of enemySideAlive) {
+          state.slowMissiles.set(target.id, { expiresAtMs, projectileSpeedPct: d.projectileSpeedPct });
+          state.units.set(target.id, { ...target, statuses: [
+            ...target.statuses.filter(status => status.id !== 'slow-missiles'),
+            { id: 'slow-missiles', sourceId: actorId, stacks: 1, remaining: d.durationMs / SECONDS,
+              appliedAtMs: state.simClockMs, expiresAtMs }
+          ] });
+          emit(state, { kind: 'status', target: target.id, statusId: 'slow-missiles' });
+          observeStatuses(state, target.id);
+        }
+        break;
+      }
       for (const t of enemySideAlive) {
         const application = applyStatusWithResult(
           t,
@@ -2376,8 +2422,18 @@ function settleRedemption(state: State, aura: StatAuraProjection): void {
 }
 
 /** Next action/status/deadline boundary; starts include non-DoT pending controls. */
+function projectileSpeed(state: State, sourceId: string): number {
+  const binding = state.slowMissiles.get(sourceId);
+  return binding && state.simClockMs < binding.expiresAtMs ? binding.projectileSpeedPct : 100;
+}
+
 function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   let boundary = Math.min(MAX_SIM_MS, nextActionAt);
+  boundary = Math.min(boundary, state.projectiles.nextImpactAt(id => projectileSpeed(state, id)) ?? Infinity);
+  // Dead sources can still have flying shots; their private paid window expires normally.
+  for (const binding of state.slowMissiles.values())
+    if (binding.expiresAtMs > state.simClockMs) boundary = Math.min(boundary, binding.expiresAtMs);
+
   for (const [id, binding] of state.decoys) {
     const body = state.units.get(id);
     if (body && alive(body) && binding.expiresAtMs > state.simClockMs)
@@ -2936,6 +2992,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
   const global = snapshot.summonPassives;
   const assassinVenom = copyAssassinVenomProjection(snapshot.assassinVenom);
   const state: State = {
+    projectiles: new ProjectileFlights<ProjectileImpact>(),
+    slowMissiles: new Map(),
     plague: new PlagueTracker(),
     battleCommands: new Map(),
     boostedCommandPassives: new Set(),
@@ -3087,6 +3145,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     const boundary = nextPeriodicBoundary(state, candidate.at);
     const from = state.simClockMs;
     const meditationRecipients = captureMeditationRecipients(state);
+    const impacts = state.projectiles.advance(boundary, id => projectileSpeed(state, id));
     settlePeriodic(state, boundary);
     settleManaRecovery(state, from, boundary, meditationRecipients);
     reconcileBattleCommandPassives(state);
@@ -3095,6 +3154,13 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     if (winnerOf(state) !== null) break;
     settleGrimWards(state);
     settlePaidSpells(state);
+    if (winnerOf(state) !== null) break;
+    // Existing periodic/ambient deaths settle first; impacts precede tied actions.
+    for (const impact of impacts) {
+      if (winnerOf(state) !== null) break;
+      applyDamageToUnit(state, impact.attackerId, impact.defenderId, impact.effect,
+        impact.skillLevel, false, false, false, false, true);
+    }
     if (winnerOf(state) !== null) break;
     reconcileActionPeriods(state);
     // Status settlement may change the next actor or its pending timestamp.

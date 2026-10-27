@@ -14,7 +14,7 @@
 import type { RegisteredSkill } from './effects';
 import { DEFAULT_SKILLS } from './builders';
 import { aliasToCanonical, MERC_STUB_SKILLS, MONSTER_STUB_SKILLS } from './aliases';
-import { PLAYABLE_CLASS_DATA_SKILLS } from './dataCatalog';
+import { PLAYABLE_CLASS_DATA_SKILLS, withAuthoredProjectileFlight } from './dataCatalog';
 import { MINOR_HEAL_SKILL } from './minor-heal';
 import { MERC_INNER_SIGHT_SKILL } from './inner-sight';
 import { MERC_ARROW_SKILLS } from './merc-arrows';
@@ -98,6 +98,7 @@ export function loadDefaultSkills(): void {
   }
   registry.set(ACT1_LIGHTNING_AFFIX_SKILL.id, ACT1_LIGHTNING_AFFIX_SKILL);
   for (const skill of BLOOD_RAVEN_SKILLS) registry.set(skill.id, skill);
+  for (const [id, skill] of registry) registry.set(id, withAuthoredProjectileFlight(skill));
 }
 
 // Auto-load defaults on import.

@@ -1,3 +1,7 @@
+import { aliasToCanonical } from './aliases';
+import monsterSkills from '../../data/skills/monsters.json';
+import { createSkillValidator } from './skill-validator';
+import { isSlowMissilesDefinition } from './slow-missiles';
 /**
  * JSON-authored skill catalog adapters.
  *
@@ -25,7 +29,7 @@ import { isDimVisionDefinition } from '../combat/dim-vision-definition';
 import { damageCurseId } from '../combat/damage-curse-definition';
 import { targetCurseId } from '../combat/target-curse-definition';
 import type { DamageType } from '../types/attributes';
-import type { ComboTag, ConversionTuning, FeralRageTuning, HitSpeedStackTuning, OnHitBoltsTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
+import type { SkillDef, ComboTag, ConversionTuning, FeralRageTuning, HitSpeedStackTuning, OnHitBoltsTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
 import type { OnHitStatus, RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
 
 export type PlayableSkillClass =
@@ -38,6 +42,7 @@ export type PlayableSkillClass =
   | 'sorceress';
 
 interface JsonSkill {
+  readonly projectileFlightMs?: number;
   readonly decoy?: import('../types/skills').SkillDef['decoy'];
   readonly boneWall?: import('../types/skills').SkillDef['boneWall'];
   readonly skillRankBuff?: import('../types/skills').SkillDef['skillRankBuff'];
@@ -232,6 +237,7 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
     });
     effects.push({
       kind: 'damage',
+      ...(skill.projectileFlightMs !== undefined ? { projectileFlightMs: skill.projectileFlightMs } : {}),
       ...(skill.id === 'skills-paladin-conversion' && skill.conversion ? { conversion: true as const } : {}),
       ...(components ? { components } : {}),
       ...(skill.ignoresMagicResist === true ? { ignoresMagicResist: true as const } : {}),
@@ -316,6 +322,7 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
     const decrepify = skill.id === 'skills-necromancer-decrepify' && isDecrepifyDefinition(skill);
     const weaken = skill.id === 'skills-necromancer-weaken' && isWeakenDefinition(skill);
     const innerSight = skill.id === 'skills-amazon-inner-sight' && isAmazonInnerSightDefinition(skill);
+    const slowMissiles = skill.id === 'skills-amazon-slow-missiles' && isSlowMissilesDefinition(skill);
     const dimVision = skill.id === 'skills-necromancer-dim-vision' && isDimVisionDefinition(skill);
     const damageCurse = damageCurseId(skill);
     const terror = skill.id === 'skills-necromancer-terror' && isTerrorDefinition(skill);
@@ -324,12 +331,13 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
     effects.push({
       kind: 'debuff',
       statusId: skill.appliesStatus[0],
-      ...((warcry || decrepify || weaken || innerSight || dimVision || damageCurse !== undefined || terror || bonePrison || targetCurse !== undefined) && skill.statusEffect?.durationMs !== undefined
+      ...((warcry || decrepify || weaken || innerSight || slowMissiles || dimVision || damageCurse !== undefined || terror || bonePrison || targetCurse !== undefined) && skill.statusEffect?.durationMs !== undefined
         ? { durationMs: skill.statusEffect.durationMs } : {}),
       ...(skill.id === 'skills-barbarian-battle-cry' ? { battleCry: true as const } : {}),
       ...(decrepify ? { decrepify: true as const } : {}),
       ...(weaken ? { weaken: true as const } : {}),
       ...(innerSight ? { innerSight: true as const } : {}),
+      ...(slowMissiles ? { slowMissiles: true as const } : {}),
       ...(dimVision ? { dimVision: true as const } : {}),
       ...(terror ? { terror: true as const } : {}),
       ...(bonePrison ? { bonePrison: true as const } : {}),
@@ -385,3 +393,16 @@ export function registeredSkillsForClasses(classes: readonly PlayableSkillClass[
 export const PLAYABLE_CLASS_DATA_SKILLS: readonly RegisteredSkill[] = Object.freeze(
   registeredSkillsForClasses(ENABLED_PLAYABLE_SKILL_CLASSES)
 );
+
+const validateFlightSource = createSkillValidator<SkillDef>();
+const authoredFlights = new Map(monsterSkills.filter(row => 'projectileFlightMs' in row).map(row => {
+  if (!validateFlightSource(row) || row.projectileFlightMs === undefined)
+    throw new Error('Invalid authored hostile projectile flight');
+  return [aliasToCanonical(row.id) ?? row.id, row.projectileFlightMs] as const;
+}));
+/** Attach only authored travel to existing monster tuning, without replacing damage/CD. */
+export function withAuthoredProjectileFlight(skill: RegisteredSkill): RegisteredSkill {
+  const flight = authoredFlights.get(aliasToCanonical(skill.id) ?? skill.id);
+  return flight === undefined ? skill : { ...skill, effects: skill.effects.map(effect =>
+    effect.kind === 'damage' ? { ...effect, projectileFlightMs: flight } : effect) };
+}
