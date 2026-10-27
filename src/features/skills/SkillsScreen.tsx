@@ -686,7 +686,10 @@ function SkillTreeBoard({
               onSelect(skill.id);
               onPreview(null);
             }}
-            onMouseEnter={() => { onPreview(skill.id); }}
+            onMouseEnter={() => {
+              if (typeof window.matchMedia !== 'function' || window.matchMedia('(any-hover: hover)').matches)
+                onPreview(skill.id);
+            }}
             onMouseLeave={() => { onPreview(null); }}
             onKeyDown={(event) => {
               // Restore the committed action before native Tab chooses its target.
