@@ -1,0 +1,5 @@
+{
+  "id": "combat/assassin-flight",
+  "durationMs": 1000,
+  "magicDodgePerRank": 0.01
+}

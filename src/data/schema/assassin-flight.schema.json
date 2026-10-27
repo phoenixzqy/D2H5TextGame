@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d2h5://schema/assassin-flight",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "durationMs", "magicDodgePerRank"],
+  "properties": {
+    "id": { "const": "combat/assassin-flight" },
+    "durationMs": {
+      "type": "integer",
+      "minimum": 1000,
+      "maximum": 60000,
+      "description": "Half-open paid blink lifetime; fresh waves and source death end it."
+    },
+    "magicDodgePerRank": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1,
+      "description": "Additive magical dodge fraction per paid rank, including one actual Command bonus."
+    }
+  }
+}
