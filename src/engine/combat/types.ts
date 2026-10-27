@@ -105,6 +105,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Fresh learned native Decoy eligibility; paid body bindings stay private to combat. */
+  readonly decoyRank?: number;
   /** Same fresh native composition at baseline/+1; only actual paid Command selects a profile. */
   readonly battleCommandPassives?: {
     readonly baseline: import('../skills/battle-command').BattleCommandPassiveProfile;

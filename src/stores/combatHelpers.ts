@@ -82,6 +82,7 @@ import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeColdArmorRanks, refreshColdArmorState } from '@/engine/skills/cold-armors';
 import { composePeriodicSpellRanks } from '@/engine/skills/periodic-spell-authority';
 import { composeHydraRank } from '@/engine/skills/hydra';
+import { composeDecoyRank } from '@/engine/skills/decoy';
 import { refreshPeriodicSpells } from '@/engine/skills/periodic-spells';
 import { composeMightAura } from '@/engine/skills/might';
 import { composeMeditationAura } from '@/engine/skills/meditation';
@@ -278,6 +279,7 @@ function composeNativeCombatUnit(player: Player, temporarySkillRankBonus: 0 | 1)
     coldArmorRanks: composeColdArmorRanks(player),
     periodicSpellRanks: composePeriodicSpellRanks(player),
     ...(player.class === 'sorceress' ? { hydraRank: composeHydraRank(player) } : {}),
+    ...(player.class === 'amazon' ? { decoyRank: composeDecoyRank(player) } : {}),
     ...(player.class === 'sorceress' ? { sorceressBuffRanks: composeSorceressBuffRanks(player) } : {}),
     ...(energyShield.rank > 0 ? { energyShieldRank: energyShield.rank } : {}),
     ...(player.class === 'druid' ? { cycloneArmorRank: composeCycloneArmorRank(player) } : {}),
@@ -1236,6 +1238,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       mana, ...((unit.druidShapeRanks !== undefined || fresh.druidShapeRanks !== undefined)
         ? { druidShapeRanks: fresh.druidShapeRanks } : {}),
       coldArmorRanks: fresh.coldArmorRanks ?? { 'shiver-armor': 0, 'chilling-armor': 0 },
+      ...((unit.decoyRank !== undefined || fresh.decoyRank !== undefined)
+        ? { decoyRank: fresh.decoyRank ?? 0 } : {}),
       ...((unit.hydraRank !== undefined || fresh.hydraRank !== undefined)
         ? { hydraRank: fresh.hydraRank ?? 0 } : {}),
       periodicSpellRanks: fresh.periodicSpellRanks ?? { 'fire-wall': 0, 'thunder-storm': 0 },
