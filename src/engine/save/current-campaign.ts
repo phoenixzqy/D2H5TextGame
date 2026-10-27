@@ -1,7 +1,8 @@
 import { endgameDefinition } from '../../data/loaders/endgame';
 import { readEndgameState } from '../endgame/state';
 import type { CurrentMapSaveData, QuestItemLedger } from '../types/save';
-import { validateAct5CampaignRewards } from './act5-campaign';
+import { BAAL_TITLE, validateAct5CampaignRewards } from './act5-campaign';
+import type { CampaignValidationDomain } from './quest-domain';
 
 export const RIFTWALKER_TITLE = endgameDefinition.achievement.reward.titleId;
 
@@ -11,14 +12,15 @@ export const RIFTWALKER_TITLE = endgameDefinition.achievement.reward.titleId;
  * The projection is validation-only; serialized/live selection is preserved.
  */
 export function validateCurrentCampaignRewards(map: CurrentMapSaveData, items: QuestItemLedger,
-  services: unknown, endgame: unknown): void {
+  services: unknown, endgame: unknown, domain?: CampaignValidationDomain): void {
   const selectedTitle = map.selectedTitle;
-  if (selectedTitle === RIFTWALKER_TITLE) {
+  if (selectedTitle === (domain?.achievementTitleId ?? RIFTWALKER_TITLE)) {
     const state = readEndgameState(endgame, { questProgress: map.questProgress,
-      questReceipts: map.questReceipts, questItems: items });
+      questReceipts: map.questReceipts, questItems: items }, domain?.act5);
     if (!state.achievementRewardClaimed) throw new Error('Invalid save: achievement title is not owned');
-    validateAct5CampaignRewards({ ...map, selectedTitle: null }, items, services);
+    validateAct5CampaignRewards({ ...map, selectedTitle: null }, items, services, domain);
   } else {
-    validateAct5CampaignRewards({ ...map, selectedTitle }, items, services);
+    if (selectedTitle !== null && selectedTitle !== BAAL_TITLE) throw new Error('Invalid save: selected title is not owned');
+    validateAct5CampaignRewards({ ...map, selectedTitle }, items, services, domain);
   }
 }

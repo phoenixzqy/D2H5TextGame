@@ -101,8 +101,14 @@ const validate = ajv.compile<{ readonly items: readonly QuestItemDef[] }>(schema
 
 /** Canonical source identity, independent of gear instances and allocation sequences. */
 export function questItemSource(item: QuestItemDef): string {
+  return questItemSourceWithActions(item, act5Runtime.actions);
+}
+
+/** Resolve a historical item using only the supplied action-source identities. */
+export function questItemSourceWithActions(item: QuestItemDef,
+  sourceActions: readonly { readonly id: string; readonly receiptSource: string }[]): string {
   if (item.kind === 'action') {
-    const action = act5Runtime.actions.find(row => row.id === item.sourceActionId);
+    const action = sourceActions.find(row => row.id === item.sourceActionId);
     if (!action) throw new Error('Missing bound potion source');
     return action.receiptSource;
   }

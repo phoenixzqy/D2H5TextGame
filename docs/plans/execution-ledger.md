@@ -14093,3 +14093,32 @@ Current genuine resume remains earned-endgame4. Actual-defeat/retry and broader
 P18/C2-C4/fullG0-G7/builds/pacing/economy/mobile/a11y/localization/performance/PWA/
 independent/human acceptance stay open; soak execution stays human-owned.
 Full objective and registered umbrella claim remain active; local only.
+
+## D11 literal22 quest authority — 2026-10-27
+
+[Compatibility boundary](evidence/d11-literal22-quest-boundary.md) implements
+BUG329's literal predecessor snapshot and threads one immutable domain through
+native17–22 raw/normalized quest, service, Act V campaign and nested endgame
+validation. All46quests/19items/sevenIV-Vvictorytriples/fiveservicemappings/
+29Nightmareareas and reciprocal action/potion/cage/Throne identities retain
+their historical authority. No grants, resets, inferred actions or gameplay.
+Existing post-migration Life/resistance/resource/runeword repairs remain intact.
+
+Final engine10077/386PASS, types/lint/buildPASS and production compatibility
+browser4/4PASS (en/zh-CN,360×640/1280×800). Final fullunit original90658 exits0/
+consumed:20040PASS/947files/twoexistingoptinskips,1303.81sVitest/1305.839swrapper.
+All1824finalinputs and14predecessorblobs/
+snapshot hash verified. Independent source review APPROVE after static fixes,
+no material findings/securitypass/readersreleased. Original failing/static/
+browser-oracle logs and supersededfull143 preserved. Disposable1524build/
+downloadfiles removed,remaining[]/failures[], bothpreviewportsclosed. All102
+archive members streamed/readback/originalhash verified, then exactly102rawfiles/
+fouremptydirs removed,remaining[]/failures[]/rawrootabsent. Root retains the three
+exact archive/manifest/receipt paths in evidence through downstream/fullv1
+consumers. ArchiveSHA16147a5b493c43bfb296e5c07855dae2c5597ba157aa570f0efd2d1ee60cfcc8.
+
+Save23 registration/reserved-vocabulary plan is reviewed ready. New Act I
+receipts/services remain refused until their full graph cards land. Cain/
+Identify/Countess/Malus/imbue ordinary gameplay and recovery→Claim/service→
+Save-close-Continue remain open, as do broader C2–C4/fullG0–G7. Full objective
+and umbrella claim remain active; local only.

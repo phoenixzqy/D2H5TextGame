@@ -1,5 +1,6 @@
 import { emptyEndgameState, readEndgameState, type EndgameCampaignEvidence } from '../endgame/state';
 import type { EndgameState } from '../endgame/types';
+import type { Act5QuestDomain } from './quest-domain';
 
 function object(value: unknown): value is object {
   return value !== null && typeof value === 'object';
@@ -36,12 +37,12 @@ export function rejectPreV20State(value: unknown): void {
 
 /** Strict raw enclosing descriptor, plus campaign-authorized private state copy. */
 export function readEndgameSaveField(value: object, campaign: EndgameCampaignEvidence,
-  allowMissing = false): EndgameState {
+  allowMissing = false, domain?: Act5QuestDomain): EndgameState {
   rejectEndgameShadows(value);
   const field = Object.getOwnPropertyDescriptor(value, 'endgame');
   if (!field && !('endgame' in value) && allowMissing) return emptyEndgameState();
   if (!field || field.enumerable !== true || !Object.hasOwn(field, 'value')) {
     throw new Error('Invalid save: endgame must be an own enumerable data field');
   }
-  return readEndgameState(field.value, campaign);
+  return readEndgameState(field.value, campaign, domain);
 }

@@ -1,5 +1,6 @@
 import { loadQuests, type QuestDef } from '@/data/loaders/quests';
 import type { QuestProgressData } from '../types/save';
+import type { QuestServiceValidationDomain } from '../save/quest-domain';
 
 /** Closed selected-item services; earlier identify/imbue/repair promises are separate. */
 export type QuestServiceId = 'socket_item' | 'socket_armor' | 'personalize_item';
@@ -50,14 +51,16 @@ function claimedSource(value: unknown, quest: QuestDef): value is QuestProgressD
  * legacy IDs); runtime consumers must select the actual uniquely owned instance.
  * A consumed target need not remain present after later salvage.
  */
-export function validateQuestServiceLedger(services: unknown, progress: unknown): QuestServiceLedger {
+export function validateQuestServiceLedger(services: unknown, progress: unknown,
+  domain?: QuestServiceValidationDomain): QuestServiceLedger {
   if (!jsonRecord(services) || !jsonRecord(progress)) throw new Error('Invalid quest service ledger/progress record');
-  const quests = loadQuests();
+  const quests = domain?.quests ?? loadQuests();
+  const sources: Readonly<Record<string, QuestServiceId>> = domain?.serviceSources ?? QUEST_SERVICE_SOURCES;
   for (const [source, entry] of Object.entries(services)) {
-    if (!Object.hasOwn(QUEST_SERVICE_SOURCES, source) || !jsonRecord(entry)) {
+    if (!Object.hasOwn(sources, source) || !jsonRecord(entry)) {
       throw new Error('Invalid quest service source or entry');
     }
-    const service = QUEST_SERVICE_SOURCES[source as keyof typeof QUEST_SERVICE_SOURCES];
+    const service = sources[source];
     if (!Object.hasOwn(entry, 'serviceId') || !Object.hasOwn(entry, 'state') || entry.serviceId !== service ||
       !(entry.state === 'available' && Object.keys(entry).length === 2 && !Object.hasOwn(entry, 'targetItemId') ||
         entry.state === 'consumed' && Object.keys(entry).length === 3 && Object.hasOwn(entry, 'targetItemId') &&
