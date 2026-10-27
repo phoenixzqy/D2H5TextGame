@@ -366,7 +366,7 @@
     },
     "ice-arrow": {
       "name": "Ice Arrow",
-      "desc": "Fires an icy arrow that freezes the target."
+      "desc": "One single-target attempt deals {{min}}–{{max}} Cold base damage. Cold resistance and magic resist apply. A landed hit applies Freeze for {{freeze}} (bosses: {{bossFreeze}}), then Chill for {{chill}}, reducing attack speed by {{slowPercent}}%. Reapplication refreshes duration without stacking. Pay {{mana}} MP with a {{cooldown}} s cooldown. Misses apply neither status."
     },
     "guided-arrow": {
       "name": "Guided Arrow",

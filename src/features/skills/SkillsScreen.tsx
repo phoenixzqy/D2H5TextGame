@@ -1959,6 +1959,15 @@ function dynamicDescription(
       slowPercent: (1 - CHILL_DEFINITION.attackSpeedMultiplier) * 100
     });
   }
+  if (stats && firstDamage && skill.id === 'skills-amazon-ice-arrow') {
+    return t('amazon.ice-arrow.desc', {
+      min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown,
+      freeze: t('details.seconds', { seconds: STATUS_DEFAULTS.freeze.duration }),
+      bossFreeze: t('details.seconds', { seconds: STATUS_DEFAULTS.freeze.duration * (STATUS_DEFAULTS.freeze.bossDurationMult ?? 1) }),
+      chill: t('details.seconds', { seconds: STATUS_DEFAULTS.chill.duration }),
+      slowPercent: (1 - CHILL_DEFINITION.attackSpeedMultiplier) * 100
+    });
+  }
   if (stats && firstDamage && skill.id === 'skills-amazon-plague-javelin') {
     return t('amazon.plague-javelin.desc', {
       min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown,
