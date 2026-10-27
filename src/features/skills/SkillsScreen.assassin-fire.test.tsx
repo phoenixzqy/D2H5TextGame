@@ -24,6 +24,7 @@ const copy = {
     next: 'Next Level',
     preview: 'Learned at Lv. 1',
     damage: 'Fire attack',
+    trapDamage: 'Fire damage per pulse',
     mana: 'Mana Cost',
     cd: 'Cooldown',
     rate: 'Burn per stack',
@@ -39,6 +40,7 @@ const copy = {
     next: '下一级',
     preview: '学习后 Lv.1',
     damage: '火焰攻击',
+    trapDamage: '每次脉冲火焰伤害',
     mana: '法力消耗',
     cd: '冷却',
     rate: '每层燃烧',
@@ -112,7 +114,9 @@ for (const locale of ['en', 'zh-CN'] as const) {
         text = copy[locale];
       const current = section(panel, text.current),
         growth = spell.growth * (rank - 1);
-      expect(row(current, text.damage).textContent.trim()).toBe(
+      const damageLabel = spell.slug === 'wake-of-fire' || spell.slug === 'wake-of-inferno'
+        ? text.trapDamage : text.damage;
+      expect(row(current, damageLabel).textContent.trim()).toBe(
         `${String(spell.min + growth)} ~ ${String(spell.max + growth)}`
       );
       expect(row(current, text.mana)).toHaveTextContent(String(spell.mana));

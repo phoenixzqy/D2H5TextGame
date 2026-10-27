@@ -79,6 +79,7 @@ function fixture(slug: string, rank = 1, seed = 7) {
     skillOrder: [],
     skillLevels: {},
     assassinMartialRanks: {},
+    assassinTrapRanks: {},
     activeBuffIds: [],
     statuses: [hold()]
   };
@@ -111,6 +112,7 @@ afterEach(() => {
 });
 
 for (const s of cases) {
+  const trap = s.slug === 'wake-of-fire' || s.slug === 'wake-of-inferno';
   it.each([1, 2, 20])(
     `BUG205 actual native ${s.slug} rank%i removes exact periodic HP from its Fire hit`,
     (rank) => {
@@ -122,17 +124,20 @@ for (const s of cases) {
       const hits = out.events.filter((e) => e.kind === 'damage');
       const total = s.first + s.growth * (rank - 1),
         phoenix = s.slug === 'phoenix-strike';
+      const pulseBases = s.slug === 'wake-of-fire' ? [61, 70, 78] : [92, 106, 119];
+      const expectedDirect = trap
+        ? pulseBases.map(base => ['fire', base + s.growth * (rank - 1)])
+        : phoenix
+          ? [['fire', total / 3], ['cold', total / 3], ['lightning', total / 3]]
+          : [['fire', total]];
       expect(hits.map((e) => [e.damageType, e.amount])).toEqual(
-        phoenix
-          ? [
-              ['fire', total / 3],
-              ['cold', total / 3],
-              ['lightning', total / 3]
-            ]
-          : [['fire', total]]
+        expectedDirect
       );
+      if (trap) expect(hits.map(e => e.simClockMs)).toEqual([1700, 2700, 3700]);
       const fire = phoenix ? total / 3 : total,
-        periodic = 3 * Math.max(1, Math.floor(fire * 0.1));
+        // Existing Ignite keeps first-hit potency and refreshes the entire stack.
+        // Three pulses give 5 + 4 + 3 stack-seconds through the last expiry.
+        periodic = (trap ? 12 : 3) * Math.max(1, Math.floor(fire * 0.1));
       const dots = out.events.filter((e) => e.kind === 'dot');
       expect(dots.reduce((n, e) => n + e.amount, 0)).toBe(periodic);
       expect(dots.every((e) => e.target === 'target')).toBe(true);
@@ -149,9 +154,10 @@ for (const s of cases) {
             )
         )
       ).toBe(true);
-      expect(out.result.enemyTeam[0]?.life).toBe(2000 - total - periodic);
+      const directTotal = trap ? pulseBases.reduce((sum, base) => sum + base + s.growth * (rank - 1), 0) : total;
+      expect(out.result.enemyTeam[0]?.life).toBe(2000 - directTotal - periodic);
       expect(out.events.filter((e) => e.kind === 'status').map((e) => e.statusId)).toEqual(
-        phoenix ? ['burn', 'chill', 'paralyze'] : ['burn']
+        trap ? ['burn', 'burn', 'burn'] : phoenix ? ['burn', 'chill', 'paralyze'] : ['burn']
       );
       expect(out.events.filter((e) => e.kind === 'action')).toEqual([
         expect.objectContaining({ actor: 'hero', skillId: canonical(s.slug), simClockMs: 1700 })
@@ -161,14 +167,29 @@ for (const s of cases) {
       expect(f.player).toEqual(before);
     }
   );
-  it(`${s.slug} miss pays once but grants no Burn or periodic HP loss`, () => {
+  it(`${s.slug} ${trap ? 'missed first pulse grants no Burn before later independently rolled pulses' : 'miss pays once but grants no Burn or periodic HP loss'}`, () => {
     const f = fixture(s.slug, 20, 41),
       out = record(f.input);
-    expect(
-      out.events.filter((e) => e.kind === 'damage').every((e) => e.dodged && e.amount === 0)
-    ).toBe(true);
-    expect(out.events.filter((e) => e.kind === 'status' || e.kind === 'dot')).toEqual([]);
-    expect(out.result.enemyTeam[0]?.life).toBe(2000);
+    const hits = out.events.filter(e => e.kind === 'damage');
+    expect(hits[0]).toMatchObject({ simClockMs: 1700, dodged: true, amount: 0 });
+    if (trap) {
+      const landed = s.slug === 'wake-of-fire' ? [171, 178] : [249, 260];
+      expect(hits.map(e => [e.simClockMs, e.amount, e.dodged])).toEqual([
+        [1700, 0, true], [2700, landed[0], false], [3700, landed[1], false]
+      ]);
+      expect(out.events.filter(e => e.simClockMs < 2700 && (e.kind === 'status' || e.kind === 'dot'))).toEqual([]);
+      expect(out.events.filter(e => e.kind === 'status').map(e => [e.simClockMs, e.statusId])).toEqual([
+        [2700, 'burn'], [3700, 'burn']
+      ]);
+      const periodic = 7 * (s.slug === 'wake-of-fire' ? 17 : 24);
+      expect(out.events.filter(e => e.kind === 'dot').reduce((sum, e) => sum + e.amount, 0)).toBe(periodic);
+      expect(out.result.enemyTeam[0]?.life).toBe(2000 - landed.reduce((sum, amount) => sum + amount, 0) - periodic);
+    } else {
+      expect(hits.every(e => e.dodged && e.amount === 0)).toBe(true);
+      expect(out.events.filter((e) => e.kind === 'status' || e.kind === 'dot')).toEqual([]);
+      expect(out.result.enemyTeam[0]?.life).toBe(2000);
+    }
+    expect(out.events.filter(e => e.kind === 'mana' && e.reason === 'cast')).toHaveLength(1);
     expect(out.result.playerTeam[0]?.mana).toBe(0);
   });
   it(`${s.slug} requires real class, unlock, rank and every prerequisite`, () => {
@@ -317,7 +338,8 @@ for (const s of cases) {
         playerTeam: f.input.playerTeam.map((u) => ({
           ...u,
           skillLevels: capturedLevels,
-          assassinMartialRanks: capturedMartialRanks
+          assassinMartialRanks: capturedMartialRanks,
+          ...(native.assassinTrapRanks === undefined ? {} : { assassinTrapRanks: native.assassinTrapRanks })
         }))
       });
     expect(out).toEqual(expected);
