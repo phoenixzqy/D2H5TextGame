@@ -20,7 +20,7 @@ interface NativeSave {
   meta: { settings: { locale: string }; idleState: Record<string, unknown> };
 }
 // Typecheck catches a future version bump without loading data in the browser runner.
-const EXPECTED_SAVE_VERSION: SaveVersion = 22;
+const EXPECTED_SAVE_VERSION: SaveVersion = 23;
 const IRON = 'skills-necromancer-iron-golem';
 const BLOOD = 'skills-necromancer-blood-golem';
 const FIRST = 'native-iron-short-sword';

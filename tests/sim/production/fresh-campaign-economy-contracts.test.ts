@@ -34,7 +34,7 @@ it('authenticates Rocky native ancestry and exactly hydrates every saved domain 
   expect(hydrateEconomyAncestry().rawSha256).toBe(policy.sourceRawSha256);
   const live = snapshotStores();
   if (!live) throw new Error('Missing migrated ancestry');
-  expect(live.version).toBe(22);
+  expect(live.version).toBe(23);
   expect(live.inventory.materials).toEqual({});
   expect(hashObservation(historicalV17Save(live, loadAuthenticEconomyAncestry().witness))).toBe(policy.sourceSaveHash);
   expect(hashObservation(historicalV17EarnedState(observeEarnedState(), loadAuthenticEconomyAncestry().witness))).toBe(policy.sourceEarnedHash);

@@ -14122,3 +14122,30 @@ receipts/services remain refused until their full graph cards land. Cain/
 Identify/Countess/Malus/imbue ordinary gameplay and recovery→Claim/service→
 Save-close-Continue remain open, as do broader C2–C4/fullG0–G7. Full objective
 and umbrella claim remain active; local only.
+
+## D11 save23 registration — 2026-10-27
+
+[Save23 prerequisite](evidence/d11-save23-registration.md) now separates current
+quest/service authority from the frozen17–22 domain. Migration validates the
+literal22 predecessor before changing only its version. Current-only Act I
+receipt/imbue vocabulary is reserved and refused until its actual source graphs
+and actions land. Town operations explicitly refuse unsupported services.
+Historical service payloads and genuine earned-endgame4 remain unchanged.
+
+Focused177/7, engine10091/387, fresh typecheck, whole lint plus final annotated
+helper lint, production build and compatibility browser4/4 PASS. Original full
+handle8922 exits0/consumed:20057PASS/948files/twoexistingoptinskips,
+1226.03sVitest/1227.719swrapper. All1827frozeninputs rehashed unchanged.
+Independent source review APPROVE including final generic fixture declaration;
+no material findings/securitypass/allreadersreleased. Original failing evidence
+retained. All89archive members streamed/readback/hash verified; exactly89rawfiles/
+twoemptydirs removed;remaining[]/failures[]/rawrootabsent. Root retains the four
+exact archive/manifest/retention/cleanup paths in evidence through downstream/
+fullv1 consumers, then owns removal. ArchiveSHA
+84a7e807687f70f437411ee758365438b5159ed32934793e713dc221e6313e5b.
+
+Cain plan is independently ready; scratch graph19/19PASS and physical/action
+integration draft prepared. No Cain gameplay or Claim change lands in this
+prerequisite. Cain/Identify/Countess/Malus/imbue ordinary gameplay and explicit
+legacy recovery remain open, as do C2–C4/fullG0–G7. Full objective and umbrella
+claim remain active; local only.

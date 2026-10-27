@@ -86,7 +86,7 @@ describe('native17 finite campaign save state', () => {
     const migrated = decodeSave({ ...old, map: { ...old.map, questProgress: {
       'quests/act5-eve-of-destruction': { id: 'quests/act5-eve-of-destruction', status: 'completed', rewardClaimed: true,
         objectives: { 'obj-throne-waves': true, 'obj-kill-baal': true } } } } });
-    expect(migrated.version).toBe(22); expect(migrated.inventory.questServices).toEqual({});
+    expect(migrated.version).toBe(23); expect(migrated.inventory.questServices).toEqual({});
     expect(migrated.map).toMatchObject({ questTitles: {}, questDifficulties: {}, selectedTitle: null,
       selectedDifficulty: 'normal', nightmareClearedSubAreas: [], challengeOrdinals: { normal: 0, nightmare: 0 } });
     expect(migrated.map.questReceipts).toEqual({}); expect(migrated.inventory.questItems).toEqual({});

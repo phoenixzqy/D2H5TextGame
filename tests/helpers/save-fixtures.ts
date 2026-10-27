@@ -3,14 +3,24 @@ import type { HistoricalItem } from '../../src/engine/save/historical-items';
 import type { SaveCurrent, LegacyGearQuarantineEntry, HistoricalPlayer, CampaignMapSaveData } from '../../src/engine/types/save';
 import { emptyEndgameState } from '../../src/engine/endgame/state';
 import type { PlayerAuraId } from '../../src/engine/types/auras';
+import type { HistoricalQuestServiceId, HistoricalQuestServiceLedger, QuestServiceEntry } from '../../src/engine/services/quest-services';
 
 /** Historical save roots never contain the new durable endgame namespace. */
-export function withoutV20Fields<T extends { endgame?: unknown; map: SaveCurrent['map']; player: { respecsRemaining?: unknown; selectedAuraId?: PlayerAuraId } }>(save: T):
-  Omit<T, 'endgame' | 'player' | 'map'> & {
+export function withoutV20Fields<T extends { endgame?: unknown; inventory: Pick<SaveCurrent['inventory'], 'questServices'>; map: SaveCurrent['map']; player: { respecsRemaining?: unknown; selectedAuraId?: PlayerAuraId } }>(save: T):
+  Omit<T, 'endgame' | 'player' | 'map' | 'inventory'> & {
+    inventory: Omit<T['inventory'], 'questServices'> & { questServices: HistoricalQuestServiceLedger };
     player: Omit<T['player'], 'respecsRemaining' | 'selectedAuraId'> & Pick<HistoricalPlayer, 'selectedAuraId'>;
     map: Omit<T['map'], 'selectedTitle'> & Pick<CampaignMapSaveData, 'selectedTitle'>;
   } {
-  const { endgame: _endgame, player: _player, map: _map, ...historical } = save;
+  const { endgame: _endgame, player: _player, map: _map, inventory: _inventory, ...historical } = save;
+  const currentInventory: T['inventory'] = save.inventory;
+  const { questServices, ...inventory } = currentInventory;
+  const historicalServices: Record<string, QuestServiceEntry<HistoricalQuestServiceId>> = {};
+  for (const [source, entry] of Object.entries(questServices)) {
+    const serviceId = entry.serviceId;
+    if (serviceId === 'imbue_item') throw new Error('Service has no historical representation');
+    historicalServices[source] = { ...entry, serviceId };
+  }
   const selectedTitle = save.map.selectedTitle;
   if (selectedTitle !== null && selectedTitle !== 'titles/slayer_of_baal') {
     throw new Error('An achievement title has no historical representation');
@@ -19,7 +29,8 @@ export function withoutV20Fields<T extends { endgame?: unknown; map: SaveCurrent
   if (selectedAuraId !== undefined && selectedAuraId !== 'paladin.might' && selectedAuraId !== 'paladin.meditation') {
     throw new Error('Aura selection has no historical representation');
   }
-  return { ...historical, player: { ...player, ...(selectedAuraId !== undefined ? { selectedAuraId } : {}) },
+  return { ...historical, inventory: { ...inventory, questServices: historicalServices },
+    player: { ...player, ...(selectedAuraId !== undefined ? { selectedAuraId } : {}) },
     map: { ...(save.map as T['map']), selectedTitle } };
 }
 
@@ -27,8 +38,9 @@ export function withoutV20Fields<T extends { endgame?: unknown; map: SaveCurrent
 export function withoutV19Fields<T extends Omit<SaveCurrent, 'inventory'> & {
   inventory: Omit<SaveCurrent['inventory'], 'questItems'> & { questItems?: unknown }
 }>(save: T) {
+  const predecessor = withoutV20Fields(save);
   const { materialActionOrdinal: _ordinal, latestMaterialAction: _receipt,
-    socketQuarantine: _quarantine, ...inventory } = save.inventory;
+    socketQuarantine: _quarantine, ...inventory } = predecessor.inventory;
   const item = (value: Item): HistoricalItem => {
     const { socketContents, ...historical } = value;
     if (socketContents === undefined) return historical;
@@ -39,10 +51,10 @@ export function withoutV19Fields<T extends Omit<SaveCurrent, 'inventory'> & {
   };
   const equipment = (slots: Readonly<Record<string, Item | null | undefined>>) =>
     Object.fromEntries(Object.entries(slots).map(([slot, value]) => [slot, value ? item(value) : null]));
-  return { ...withoutV20Fields(save), inventory: { ...inventory,
+  return { ...predecessor, inventory: { ...inventory,
     backpack: inventory.backpack.map(item), stash: inventory.stash.map(item),
     equipped: equipment(inventory.equipped) },
-  player: { ...withoutV20Fields(save).player, equipment: save.player.equipment.map(item) },
+  player: { ...predecessor.player, equipment: save.player.equipment.map(item) },
   mercs: { ...save.mercs,
     ownedMercs: save.mercs.ownedMercs.map(merc => ({ ...merc, equipment: merc.equipment.map(item) })),
     mercEquipment: Object.fromEntries(Object.entries(save.mercs.mercEquipment)
@@ -113,7 +125,13 @@ export function withV22Defaults<T extends { version: number }>(save: T) {
   return { ...unchanged, version: 22 as const };
 }
 
+/** v22→23 registers current authority without inferred quest actions or services. */
+export function withV23Defaults<T extends { version: number }>(save: T) {
+  const { version: _version, ...unchanged } = save;
+  return { ...unchanged, version: 23 as const };
+}
+
 /** Older fixture expectations explicitly compose every added empty ownership domain. */
 export function withCurrentDefaults<T extends { inventory: object; map: object; player: object }>(save: T) {
-  return withV22Defaults(withV21Defaults(withV20Defaults(withV19Defaults(save))));
+  return withV23Defaults(withV22Defaults(withV21Defaults(withV20Defaults(withV19Defaults(save)))));
 }

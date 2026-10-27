@@ -80,6 +80,29 @@ const bytes = () => JSON.stringify(stores.map(store => store.getState()));
 function noChange(source: string, id = 'selected', result = 'not-eligible'): void {
   const before = bytes(); expect(applyQuestService(source, id)).toBe(result); expect(bytes()).toBe(before);
 }
+
+describe('reserved Act I imbues cannot use socket or personalization dispatch', () => {
+  it.each(['quests/act1-tools-of-the-trade', 'quests/side-act1-charsis-imbue'])(
+    'refuses a flag-only available %s without changing its selected item', id => {
+      const source = `${id}#reward:service`;
+      useMapStore.setState({ currentAct: 1 });
+      track(id);
+      useInventoryStore.setState({ questServices: { [source]: { serviceId: 'imbue_item', state: 'available' } } });
+      const selected = inventory().backpack[0];
+      expect(questServicesForNpc('npc/charsi')).toEqual([]);
+      expect(questServiceCandidates(source)).toEqual([]);
+      noChange(source);
+      expect(inventory().backpack[0]).toBe(selected);
+    });
+
+  it('refuses an imbue service substituted into an existing socket source', () => {
+    useInventoryStore.setState({ questServices: { [SIEGE]: { serviceId: 'imbue_item', state: 'available' } } });
+    expect(questServicesForNpc('npc/larzuk')).toEqual([]);
+    expect(questServiceCandidates(SIEGE)).toEqual([]);
+    noChange(SIEGE);
+  });
+});
+
 beforeEach(() => {
   __resetPersistenceForTests(); stores.forEach(store => { store.getState().reset(); });
   useHydrationStore.getState().setStatus('ready');

@@ -11,7 +11,6 @@ import { readRespecsRemaining } from '../progression/respec';
 import {
   CURRENT_SAVE_VERSION,
   type SaveCurrent,
-  type SocketInventorySaveData,
   type QuestActionReceipts,
   type CurrentMapSaveData,
 
@@ -29,7 +28,7 @@ import { readEndgameSaveField } from './endgame-state';
 export interface BuildSaveInput {
   readonly endgame?: EndgameState;
   readonly player: Player;
-  readonly inventory: Pick<SocketInventorySaveData, 'backpack' | 'stash' | 'equipped' | 'currencies'> & Partial<Omit<SocketInventorySaveData, 'backpack' | 'stash' | 'equipped' | 'currencies' | 'latestMaterialAction'>> & { readonly latestMaterialAction?: MaterialActionReceipt | null };
+  readonly inventory: Pick<SaveCurrent['inventory'], 'backpack' | 'stash' | 'equipped' | 'currencies'> & Partial<Omit<SaveCurrent['inventory'], 'backpack' | 'stash' | 'equipped' | 'currencies' | 'latestMaterialAction'>> & { readonly latestMaterialAction?: MaterialActionReceipt | null };
   readonly mercs: SaveCurrent['mercs'];
   readonly map: MapSaveData & { readonly questReceipts?: QuestActionReceipts } & Partial<Pick<CurrentMapSaveData, 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'challengeOrdinals'>>;
   readonly meta: MetaSaveData;
@@ -50,7 +49,7 @@ export function buildSave(input: BuildSaveInput): SaveCurrent {
   if (Object.hasOwn(input.inventory, 'latestMaterialAction') && latestMaterialAction === undefined) {
     throw new Error('Invalid save: present material receipt is undefined');
   }
-  const inventory: SocketInventorySaveData = { questServices: {}, legacyGearQuarantine: [], socketQuarantine: [],
+  const inventory: SaveCurrent['inventory'] = { questServices: {}, legacyGearQuarantine: [], socketQuarantine: [],
     materialActionOrdinal: 0, ...owned, questItems, materials,
     ...(latestMaterialAction == null ? {} : { latestMaterialAction }) };
   readMaterialActionState(inventory);

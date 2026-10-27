@@ -25,7 +25,7 @@ it('authenticates exact captured native bytes and hydrates all persisted domains
   const authenticated = hydrateAuthenticV2Terminal();
   expect(authenticated.ancestry.rawSha256).toBe(policy.sourceRawSha256);
   expect(snapshotStores()).toEqual(authenticated.save);
-  expect(authenticated.save.version).toBe(22);
+  expect(authenticated.save.version).toBe(23);
   expect(authenticated.save.inventory.materials).toEqual({});
   expect(hashObservation(historicalV17Save(authenticated.save, authenticated.witness))).toBe(policy.sourceSaveHash);
   expect(hashObservation(historicalV17EarnedState(observeEarnedState(), authenticated.witness))).toBe(policy.sourceEarnedHash);
@@ -88,7 +88,7 @@ it('retains a no-combat production transfer refusal when native publication thro
   expect(report.nativeSaveCapture?.status).toBe('captured');
   const captured = report.nativeSaveCapture?.snapshot;
   if (!captured) throw new Error('Missing live capture');
-  expect(captured.version).toBe(22);
+  expect(captured.version).toBe(23);
   expect(captured.inventory.materials).toEqual({});
   expect(hashObservation(historicalV17Save(captured, loadAuthenticV2Terminal().witness))).toBe(policy.sourceSaveHash);
   expect(report.nativeSaveCapture?.snapshotHash).toBe(hashObservation(captured));

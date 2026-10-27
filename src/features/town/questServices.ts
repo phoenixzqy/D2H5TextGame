@@ -71,6 +71,7 @@ function uniqueBackpackItem(id: string): Item | undefined {
     && !inventory.legacyGearQuarantine.some(entry => entry.item.id === id) && !inventory.socketQuarantine.some(entry => entry.item.id === id) && !inActorEquipment(id) ? item : undefined;
 }
 function eligible(item: Item, serviceId: QuestServiceId): boolean {
+  if (serviceId !== 'socket_item' && serviceId !== 'socket_armor' && serviceId !== 'personalize_item') return false;
   const base = loadItemBases().get(item.baseId);
   if (!base || (base.type !== 'weapon' && base.type !== 'armor') || item.rarity === 'runeword'
     || 'runewordId' in item || !['normal', 'magic', 'rare', 'unique', 'set'].includes(item.rarity)) return false;
@@ -91,7 +92,8 @@ export function questServicesForNpc(npcId: string): readonly NpcQuestService[] {
   try { validateGraph(services); } catch { return []; }
   return sources.flatMap(source => {
     const entry = Object.hasOwn(services, source) ? services[source] : undefined;
-    return entry && destinations[source].npcId === npcId && atDestination(source) ? [{ source, ...entry }] : [];
+    return entry && (entry.serviceId === 'socket_item' || entry.serviceId === 'socket_armor' || entry.serviceId === 'personalize_item')
+      && destinations[source].npcId === npcId && atDestination(source) ? [{ source, ...entry }] : [];
   });
 }
 
@@ -168,9 +170,11 @@ export function useQuestService(source: string, itemId: string): QuestServiceRes
     const characterId = hero.id, characterName = hero.name;
     const base = loadItemBases().get(item.baseId);
     if (!base || typeof base.maxSockets !== 'number') return 'not-eligible';
-    const nextItem: Item = entry.serviceId === 'personalize_item'
-      ? { ...item, personalizedBy: { characterId, name: characterName } }
-      : { ...item, socketCapacity: item.rarity === 'normal' ? base.maxSockets : Math.min(1, base.maxSockets) };
+    let nextItem: Item;
+    if (entry.serviceId === 'personalize_item') nextItem = { ...item, personalizedBy: { characterId, name: characterName } };
+    else if (entry.serviceId === 'socket_item' || entry.serviceId === 'socket_armor') {
+      nextItem = { ...item, socketCapacity: item.rarity === 'normal' ? base.maxSockets : Math.min(1, base.maxSockets) };
+    } else return 'not-eligible';
     const nextEntry = { serviceId: entry.serviceId, state: 'consumed' as const, targetItemId: item.id };
     const services = { ...inventory.questServices, [source]: nextEntry };
     try { validateCanonicalSocketItem(nextItem, base); validateGraph(services); } catch { return 'not-eligible'; }

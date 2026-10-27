@@ -2,16 +2,20 @@ import { loadQuests, type QuestDef } from '@/data/loaders/quests';
 import type { QuestProgressData } from '../types/save';
 import type { QuestServiceValidationDomain } from '../save/quest-domain';
 
-/** Closed selected-item services; earlier identify/imbue/repair promises are separate. */
-export type QuestServiceId = 'socket_item' | 'socket_armor' | 'personalize_item';
+/** Literal17–22 selected-item service vocabulary never widens with current authoring. */
+export type HistoricalQuestServiceId = 'socket_item' | 'socket_armor' | 'personalize_item';
+/** Imbue is reserved until its physical/action graph and selected-item operation land. */
+export type QuestServiceId = HistoricalQuestServiceId | 'imbue_item';
 
 /** One source charge or its historical selected-instance use, including after salvage. */
-export type QuestServiceEntry =
-  | { readonly serviceId: QuestServiceId; readonly state: 'available'; readonly targetItemId?: never }
-  | { readonly serviceId: QuestServiceId; readonly state: 'consumed'; readonly targetItemId: string };
+export type QuestServiceEntry<Service extends QuestServiceId = QuestServiceId> =
+  | { readonly serviceId: Service; readonly state: 'available'; readonly targetItemId?: never }
+  | { readonly serviceId: Service; readonly state: 'consumed'; readonly targetItemId: string };
 
 /** Exact authored reward sources, never an inferred counter or a generated item ID. */
 export type QuestServiceLedger = Readonly<Record<string, QuestServiceEntry>>;
+/** Historical save types retain their literal selected-item service entries. */
+export type HistoricalQuestServiceLedger = Readonly<Record<string, QuestServiceEntry<HistoricalQuestServiceId>>>;
 
 /** Independently usable main/side charges; only these five sources enter this ledger. */
 export const QUEST_SERVICE_SOURCES = Object.freeze({

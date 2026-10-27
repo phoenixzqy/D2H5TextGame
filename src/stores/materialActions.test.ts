@@ -147,7 +147,7 @@ describe('live material actions', () => {
     expect(useInventoryStore.getState().equipItem(blade())).toEqual({ ok: true });
     expect(usePlayerStore.getState().player?.derivedStats.attack).toBe((unmodifiedAttack ?? 0) + 50);
     const saved = snapshotStores();
-    expect(saved?.version).toBe(22);
+    expect(saved?.version).toBe(23);
     await flushSave(); useInventoryStore.getState().reset(); usePlayerStore.getState().reset();
     expect(await hydrateFromSave()).toBe(true);
     expect(snapshotStores()?.inventory).toEqual(saved?.inventory);

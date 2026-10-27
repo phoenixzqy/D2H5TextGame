@@ -4,10 +4,11 @@ import type { HistoricalItem } from '../save/historical-items';
  * @module engine/types/save
  */
 
-import type { QuestServiceLedger } from '../services/quest-services';
+import type { HistoricalQuestServiceLedger, QuestServiceLedger } from '../services/quest-services';
 import { migrateSaveV19 } from '../save/migrate-v19';
 import { migrateSaveV21 } from '../save/migrate-v21';
 import { migrateSaveV22 } from '../save/migrate-v22';
+import { migrateSaveV23 } from '../save/migrate-v23';
 import type { PlayerAuraId } from './auras';
 import type { RespecsRemaining } from '../progression/respec';
 import { migrateSaveV20 } from '../save/migrate-v20';
@@ -28,7 +29,7 @@ import type { MaterialRecoveryEntry } from '../crafting/material-actions';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 22;
+export const CURRENT_SAVE_VERSION = 23;
 
 /**
  * Save file version (most recent).
@@ -350,7 +351,7 @@ export interface LegacyGearQuarantineEntry {
   readonly origin: LegacyGearOrigin;
 }
 export interface ServiceInventorySaveData extends QuestInventorySaveData {
-  readonly questServices: QuestServiceLedger;
+  readonly questServices: HistoricalQuestServiceLedger;
   readonly legacyGearQuarantine: readonly LegacyGearQuarantineEntry[];
 }
 /** Native v17: actual Act V sources, services, titles and difficulty-scoped replay state. */
@@ -404,7 +405,12 @@ export interface SaveV22 extends Omit<SaveV21, 'version' | 'player'> {
   readonly version: 22;
   readonly player: Omit<SaveV21['player'], 'selectedAuraId'> & { readonly selectedAuraId?: PlayerAuraId };
 }
-export type SaveCurrent = SaveV22;
+/** Native v23 separates current quest authority from the literal22 predecessor. */
+export interface SaveV23 extends Omit<SaveV22, 'version' | 'inventory'> {
+  readonly version: 23;
+  readonly inventory: Omit<SaveV22['inventory'], 'questServices'> & { readonly questServices: QuestServiceLedger };
+}
+export type SaveCurrent = SaveV23;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -615,5 +621,6 @@ export const MIGRATIONS: Record<number, Migration> = {
   19: (raw: unknown): SaveV19 => migrateSaveV19(raw as SaveV18),
   20: (raw: unknown): SaveV20 => migrateSaveV20(raw as SaveV19),
   21: (raw: unknown): SaveV21 => migrateSaveV21(raw as SaveV20),
-  22: (raw: unknown): SaveV22 => migrateSaveV22(raw as SaveV21)
+  22: (raw: unknown): SaveV22 => migrateSaveV22(raw as SaveV21),
+  23: (raw: unknown): SaveV23 => migrateSaveV23(raw as SaveV22)
 };

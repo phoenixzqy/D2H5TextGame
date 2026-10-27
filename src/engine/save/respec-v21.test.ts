@@ -18,7 +18,7 @@ function sample() {
 
 describe('v21 durable reset allowances', () => {
   it('creates three independent free uses and retains exhausted counters through JSON', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(22);
+    expect(CURRENT_SAVE_VERSION).toBe(23);
     const save = sample(); expect(save.player.respecsRemaining).toEqual({ stat: 3, skill: 3 });
     const spent = { ...save, player: { ...save.player, respecsRemaining: { stat: 1, skill: 0 } } };
     expect(decodeSave(JSON.parse(JSON.stringify(spent))).player.respecsRemaining).toEqual({ stat: 1, skill: 0 });

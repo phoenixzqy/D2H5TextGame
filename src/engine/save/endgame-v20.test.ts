@@ -6,7 +6,7 @@ import { buildSave, toJsonSafe } from './serialize';
 import { decodeSave, validateSave, validateSocketSave } from './validate';
 import { runMigrations } from './migrate';
 import { migrateSaveV20 } from './migrate-v20';
-import { withV20Defaults, withV21Defaults, withV22Defaults, withoutV20Fields } from '../../../tests/helpers/save-fixtures';
+import { withV20Defaults, withV21Defaults, withV23Defaults, withoutV20Fields } from '../../../tests/helpers/save-fixtures';
 import type { SaveV19 } from '../types/save';
 
 function sample() {
@@ -27,13 +27,13 @@ function predecessor() {
 const progress = { attemptOrdinal: 7, clearCounts: { ashen: 2, glacial: 1 }, achievementRewardClaimed: true };
 function unlocked() {
   const save = sample(), campaign = campaignEvidence();
-  return { ...save, version: 22, endgame: progress,
+  return { ...save, version: 23, endgame: progress,
     map: { ...save.map, questProgress: campaign.questProgress, questReceipts: campaign.questReceipts } };
 }
 
 describe('native endgame save20 ownership', () => {
   it('builds explicit empty state and preserves a valid authorized round trip', () => {
-    expect(sample()).toMatchObject({ version: 22, endgame: emptyEndgameState() });
+    expect(sample()).toMatchObject({ version: 23, endgame: emptyEndgameState() });
     const input = unlocked(), before = structuredClone(input);
     expect(validateSave(input)).toEqual(toJsonSafe(input));
     expect(decodeSave(toJsonSafe(input))).toEqual(input);
@@ -44,8 +44,8 @@ describe('native endgame save20 ownership', () => {
     const old = predecessor(), before = structuredClone(old);
     expect(validateSocketSave(old)).toEqual(old);
     const expected = { ...old, version: 20, endgame: emptyEndgameState() };
-    expect(runMigrations(old)).toEqual(withV22Defaults(withV21Defaults(expected)));
-    expect(decodeSave(old)).toEqual(withV22Defaults(withV21Defaults(expected)));
+    expect(runMigrations(old)).toEqual(withV23Defaults(withV21Defaults(expected)));
+    expect(decodeSave(old)).toEqual(withV23Defaults(withV21Defaults(expected)));
     expect(old).toEqual(before);
   });
   it('preserves sockets, both recovery families, receipts, Maps, mirrors and caches across19→20', () => {
@@ -70,9 +70,9 @@ describe('native endgame save20 ownership', () => {
     const before = structuredClone(old), expected = withV20Defaults(old);
     expect(validateSocketSave(old)).toEqual(toJsonSafe(old));
     expect(migrateSaveV20(old)).toEqual(expected);
-    expect(runMigrations(old)).toEqual(withV22Defaults(withV21Defaults(expected)));
-    expect(toJsonSafe(decodeSave(old))).toEqual(toJsonSafe(withV22Defaults(withV21Defaults(expected))));
-    expect(toJsonSafe(decodeSave(toJsonSafe(old)))).toEqual(toJsonSafe(withV22Defaults(withV21Defaults(expected))));
+    expect(runMigrations(old)).toEqual(withV23Defaults(withV21Defaults(expected)));
+    expect(toJsonSafe(decodeSave(old))).toEqual(toJsonSafe(withV23Defaults(withV21Defaults(expected))));
+    expect(toJsonSafe(decodeSave(toJsonSafe(old)))).toEqual(toJsonSafe(withV23Defaults(withV21Defaults(expected))));
     expect(old).toEqual(before);
     for (const corrupt of [
       { ...old, inventory: { ...old.inventory, materialActionOrdinal: 4 } },

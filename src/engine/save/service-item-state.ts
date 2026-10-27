@@ -43,7 +43,7 @@ export function validateNativeItemState(save: Pick<SaveV17, 'inventory' | 'playe
   if (save.inventory.legacyGearQuarantine.some(entry => ids.has(entry.item.id))) throw new Error('Invalid save: quarantined item remains active');
 }
 /** Preserved predecessor payloads are inspectable only; each has one exact finite original location. */
-export function validateLegacyQuarantine(save: Pick<SaveV17, 'inventory'>, validateItem: (value: unknown) => void): void {
+export function validateLegacyQuarantine(save: { readonly inventory: Pick<SaveV17['inventory'], 'legacyGearQuarantine'> }, validateItem: (value: unknown) => void): void {
   const origins = new Set<string>();
   if (!Array.isArray(save.inventory.legacyGearQuarantine)) throw new Error('Invalid save: quarantine must be an array');
   for (const entry of save.inventory.legacyGearQuarantine) {

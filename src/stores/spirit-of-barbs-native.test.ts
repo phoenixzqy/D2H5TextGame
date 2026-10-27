@@ -153,7 +153,7 @@ it('round-trips all five Save22 domains exactly and recreates the spirit without
   arrange(20);
   const save = snapshotStores();
   if (!save) throw new Error('Missing Save22');
-  expect(save.version).toBe(22);
+  expect(save.version).toBe(23);
   expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })).toBeTruthy();
   const spawn = spirit();
   const serialized = JSON.stringify(toJsonSafe(snapshotStores()));

@@ -8,7 +8,8 @@ import { campaignEvidence } from '../../../tests/helpers/endgame';
 import { buildSave, toJsonSafe } from './serialize';
 import { decodeSave, validateFrozenV22Save } from './validate';
 import { FROZEN_V22 } from './frozen-v22';
-import type { QuestItemLedger, QuestProgressData, SaveCurrent } from '../types/save';
+import { runMigrations } from './migrate';
+import type { QuestItemLedger, QuestProgressData, SaveV22 } from '../types/save';
 
 // Only the catalogs vary: the production validators and save data remain real.
 vi.mock('@/data/loaders/act5-runtime', async importOriginal => {
@@ -41,7 +42,7 @@ const serviceSources = [
 ] as const;
 
 /** Constructed authority graph, never evidence of earned gameplay. */
-function serviceHistory(): SaveCurrent {
+function serviceHistory(): SaveV22 {
   const save = sample(), prison = 'quests/act5-prison-of-ice', guardian = 'quests/act3-guardian';
   const khalim = 'quests/act3-khalims-will', forge = 'quests/act4-hellforge', staff = 'quests/act2-horadric-staff';
   const questItems: QuestItemLedger = {
@@ -75,16 +76,16 @@ describe('literal22 ownership and historical journals', () => {
           : { serviceId, state, targetItemId: 'salvaged-long-ago' } } } };
       const before = structuredClone(input);
       expect(validateFrozenV22Save(input)).toEqual(toJsonSafe(input));
-      expect(decodeSave(toJsonSafe(input))).toEqual(input);
+      expect(decodeSave(toJsonSafe(input))).toEqual({ ...input, version: 23 });
       expect(input).toEqual(before);
     }
   });
 
-  it.each([17, 18, 19, 20, 21, 22])('decodes native%s services using the frozen nested definitions', version => {
+  it.each([17, 18, 19, 20, 21, 22])('validates native%s through literal22 using the frozen nested definitions', version => {
     const save = serviceHistory();
     const services = Object.fromEntries(serviceSources.map(([id, serviceId], index) => [`${id}#reward:service`,
       index % 2 ? { serviceId, state: 'consumed', targetItemId: `salvaged-${String(index)}` } : { serviceId, state: 'available' }]));
-    const raw = toJsonSafe({ ...save, inventory: { ...save.inventory, questServices: services } }) as SaveCurrent;
+    const raw = toJsonSafe({ ...save, inventory: { ...save.inventory, questServices: services } }) as SaveV22;
     const input = { ...raw, version };
     if (version < 21) Reflect.deleteProperty(input.player, 'respecsRemaining');
     if (version < 20) Reflect.deleteProperty(input, 'endgame');
@@ -96,7 +97,7 @@ describe('literal22 ownership and historical journals', () => {
     const before = structuredClone(input);
     vi.spyOn(questLoader, 'loadQuests').mockReturnValue(quests.map(quest =>
       ({ ...quest, rewards: {}, objectives: [...quest.objectives, { id: 'future', type: 'talk', description: 'Future' }] })));
-    const decoded = decodeSave(input);
+    const decoded = validateFrozenV22Save(runMigrations(input, 22));
     expect(decoded.inventory.questServices).toEqual(services);
     expect(decoded.inventory.questItems).toEqual(save.inventory.questItems);
     expect(decoded.map).toEqual(save.map);
@@ -114,7 +115,7 @@ describe('literal22 ownership and historical journals', () => {
         const save = sample(), row = { id, status: 'completed' as const, rewardClaimed: claimed, objectives };
         const input = { ...save, map: { ...save.map, questProgress: { [id]: row } } };
         const before = structuredClone(input), decoded = decodeSave(toJsonSafe(input));
-        expect(decoded).toEqual(input);
+        expect(decoded).toEqual({ ...input, version: 23 });
         expect(decoded.inventory.questItems).toEqual({});
         expect(decoded.inventory.questServices).toEqual({});
         expect(decoded.map.questReceipts).toEqual({});
@@ -233,7 +234,7 @@ function completed(id: string): QuestProgressData {
     objectives: Object.fromEntries(quest.objectives.map(row => [row.id, true])) };
 }
 function sample() {
-  return buildSave({ timestamp: 1000, player: createMockPlayer('Literal22', 'sorceress'),
+  const save = buildSave({ timestamp: 1000, player: createMockPlayer('Literal22', 'sorceress'),
     inventory: { backpack: [], stash: [], equipped: {}, currencies: { wishstone: 17 } },
     mercs: { ownedMercs: [], fieldedMercId: null, mercEquipment: {}, mercProgress: {} },
     map: { currentAct: 1, currentSubAreaId: null, discoveredAreas: [], clearedSubAreas: [], questProgress: {} },
@@ -241,6 +242,7 @@ function sample() {
       combatSpeed: 1, autoCombat: false }, idleState: { lastOnline: 1000, offlineTime: 0,
       multiplierSecondsRemaining: 0, activeMultiplier: 1 }, gachaState: { currency: 0, ownedMercIds: [], pityCounter: 0 } },
     formation: { playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] } });
+  return { ...save, version: 22 as const, inventory: { ...save.inventory, questServices: {} } };
 }
 
 describe('literal22 catalogs remain independent of live authoring', () => {

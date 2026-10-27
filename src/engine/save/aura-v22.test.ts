@@ -32,7 +32,7 @@ function sample() {
 
 describe('v22 complete canonical player aura save domain', () => {
   it('matches all twenty authored aura IDs and freezes the historical v21 type', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(22);
+    expect(CURRENT_SAVE_VERSION).toBe(23);
     expect(paladinSkills.filter(row => 'aura' in row && row.aura).map(row => row.id.replace('skills-paladin-', '')).sort())
       .toEqual([...ids].sort());
     expectTypeOf<SaveV21['player']['selectedAuraId']>().toEqualTypeOf<'paladin.might' | 'paladin.meditation' | undefined>();
@@ -52,7 +52,7 @@ describe('v22 complete canonical player aura save domain', () => {
   it.each([undefined, 'paladin.might', 'paladin.meditation'])('migrates v21 selection %s by changing only version', selectedAuraId => {
     const base = sample(), old = { ...base, version: 21, player: { ...base.player,
       ...(selectedAuraId ? { selectedAuraId } : {}) } };
-    const before = structuredClone(old), expected = { ...old, version: 22 };
+    const before = structuredClone(old), expected = { ...old, version: 23 };
     const migrated = runMigrations(old);
     expect(migrated).toEqual(expected);
     expect(migrated.player).toBe(old.player);

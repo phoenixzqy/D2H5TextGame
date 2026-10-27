@@ -51,7 +51,7 @@ afterEach(() => { __resetPersistenceForTests(); vi.useRealTimers(); });
 describe('endgame durable store ownership', () => {
   it('saves root state and restores it through reset/Continue and repeated imports', async () => {
     prepare(); const before = snapshot();
-    expect(before).toMatchObject({ version: 22, endgame: progress });
+    expect(before).toMatchObject({ version: 23, endgame: progress });
     expect(before.map).not.toHaveProperty('endgame');
     const exported = exportCurrentSave();
     if (!exported) throw new Error('Missing export');
