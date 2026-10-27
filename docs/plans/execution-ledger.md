@@ -12,7 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
-| P16 navigation / BUG313–315 | source/browser locally validated; whole integration/retention pending | Icons e7aeafcc, equal targets558c01f0, complete labels/reflow b508e864. Final production10/10PASS71.111s/both locales/five sizes,80complete44px-plus targets/ten actual SWofflineContinues;20PNGs decoded/ten online originals viewed. Focused15/2/types/lint/build and bridge/precache PASS. [Evidence](evidence/p16-navigation-icons.md). Original target/readiness/label/static failures retained; no whole-app a11y/performance/independent acceptance. Root retains exact active task for upcoming whole checks/cleanup;211bounded/oneunverified/onereview and genuine campaign unchanged. |
+| P16 navigation / BUG313–315 | locally resolved; integration/retention complete; independent open | Icons e7aeafcc, targets558c01f0, complete labels/reflow b508e864; bug resolution79ec0f7e. Frozen6c57da63 full19929/939/two existing skips PASS1056.547s, types133.670s/lint235.728s PASS;2692repository/766external inputs and HEAD exact/rehashed. Production10/10PASS71.111s,80complete44px-plus targets/ten actual SWofflineContinues; all20online/offline originals individually viewed. [Evidence](evidence/p16-navigation-icons.md).3316archive members read-back verified;3316files/95dirs/rawroot exactly cleaned,remaining[]/failures[]. Root retains archive/two sidecars through consumers. Whole-app a11y/performance/independent/full-v1 and211bounded/oneunverified/onereview/genuine campaign unchanged. |
 | D05/D06 Assassin final reconciliation / BUG311–312 | sixteen bounded local records reconciled; independent/earned acceptance open | Final d9447414 full19927/939/two existing skips, types/lint and corrected production8/8 PASS;16coherent first-wave shadow rank proofs,16seven-domain pairs/eight actual offlineContinues. Corrected charge HP, trap, Flight and original shadow evidence retain their own heads/scopes. [Reconciliation](evidence/assassin-skill-reconciliation.md):213IDs/header/order and197other raw rows preserved;211bounded/oneunverified/onereview, Assassin29/30. Cobra BUG304 user contract and Cold Mastery review remain. Source/evidence66153a52; exact shadow archive15148members read-back verified, raw task removed, root retains archive/manifest/receipt through consumers. GenuineL33/Ancientsclaimed/Baaluncleared/next402 unchanged; G0–G7/C2–C4/full-v1 acceptance open. |
 | D04/D06 Amazon support reconciliation | five bounded local credits; independent/earned acceptance open | Valkyrie, Inner Sight, Slow Missiles, Decoy and Ice Arrow individual native/public/lifecycle evidence plus combined full19270/901/types/lint and verified6961-member retention/cleanup audited.20public cases,40ranked casts,40save pairs/20offlineContinues,200geometry. Exactly208 other raw rows/header/IDs/order unchanged;195bounded/17unverified/onereview, Amazon30/30. [Audit](evidence/fixtures/amazon-support/inventory-reconciliation.json). Slow Missiles ADR-012 Proposed; whole-app/mobile/a11y/earned/independent/private-v1 gates open. Root retains exact existing archive/sidecars; no campaign action. |
 | D05 Assassin martial charges / BUG300–304,306 | stable full/static, localized preview and24-case combat gates pass; mana/visual decisions open | Frozenfc915ddd full19576/917/two existing opt-in skipsPASS;16new native cases separately pass. Frozen8709a8db production24/24PASS1098.951s,2524repository/765external inputs exact;48rank proofs,48seven-domain pairs,24actual offlineContinues. All24mobile originals individually viewed: ally/fixed-nav/black enemy-region limits; grouped hero HP observer null in48proofs (BUG306). Cobra actual positive victimMP conflict remains BUG304/user decision pending. [Final evidence](evidence/fixtures/assassin-charges/final-checkpoint.json). No charge credit/earned/independent acceptance; raw task archived/read-back verified/exactly cleaned, root retains archive/two sidecars listed in trap evidence. |
@@ -13790,3 +13790,18 @@ pending until consumers finish. No shared-cache deletion. GenuineL33/Ancients-Ri
 next402/Baaluncleared/protected hashes and211bounded/oneunverified/onereview remain
 unchanged. No earned campaign/replay, delegation, remote action or independent
 self-approval. Full privatev1 and registered worktree stay active.
+
+## P16 navigation — completed integration and retention (2026-10-27)
+
+Original handles81470/61259/41061 finishedPASS at unchanged6c57da63: full19929
+tests/939files/two existing opt-in skips, types and lint/purity. All2692repository
+and766external inputs were rehashed before next edits; genuine compressed/raw
+save hashes remain exact. All20online/offline originals individually inspected.
+BUG313–315 locally resolved;3316archive members read-back verified and exact
+3316files/95directories/rawroot removed,remaining[]/failures[]. Root retains
+[exact archive/two sidecars](evidence/p16-navigation-icons.md#retention-and-continuing-ownership)
+through independent/full-v1 evidence consumers. Source/history/shared caches
+and registered worktree are preserved. No independent/full-v1 acceptance or
+genuine campaign/replay/remote action. Next scoped finding: measured redundant
+CraftingPanel origin localization; six causal bilingual REDs and off-repository
+prototype GREENs precede any product change.

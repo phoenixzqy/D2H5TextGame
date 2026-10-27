@@ -1,6 +1,6 @@
 {
-  "status": "Local source/browser validated; whole-unit/static integration and final retention pending",
-  "at": "2026-10-27T13:06:34.521535+00:00",
+  "status": "local integration and verified retention complete; independent/full-v1 acceptance open",
+  "at": "2026-10-27T13:28:59.386908+00:00",
   "owner": "root; sole executor/author, no independent approval",
   "sourceHead": "b508e8642bf9147de3664caef5a251294f40f486",
   "commits": {
@@ -87,7 +87,10 @@
       "inputCount": 1940,
       "headBefore": "364f97b331cffe589fc731858dd3aaabfd4e7de7",
       "headAfter": "364f97b331cffe589fc731858dd3aaabfd4e7de7",
-      "totals": [" Test Files  2 passed (2)", "      Tests  15 passed (15)"]
+      "totals": [
+        " Test Files  2 passed (2)",
+        "      Tests  15 passed (15)"
+      ]
     },
     "nav-types": {
       "label": "nav-types",
@@ -172,7 +175,9 @@
       "inputCount": 1942,
       "headBefore": "e7aeafccea70b1d17bd711e6fab4c20fed4d0d35",
       "headAfter": "e7aeafccea70b1d17bd711e6fab4c20fed4d0d35",
-      "totals": ["\u001b[1A\u001b[2K  1 failed"]
+      "totals": [
+        "\u001b[1A\u001b[2K  1 failed"
+      ]
     },
     "nav-layout-green": {
       "label": "nav-layout-green",
@@ -193,7 +198,10 @@
       "inputCount": 1942,
       "headBefore": "a9d7b6ca945223d23e94e5788762c6553a84f235",
       "headAfter": "a9d7b6ca945223d23e94e5788762c6553a84f235",
-      "totals": [" Test Files  2 passed (2)", "      Tests  15 passed (15)"]
+      "totals": [
+        " Test Files  2 passed (2)",
+        "      Tests  15 passed (15)"
+      ]
     },
     "nav-layout-types": {
       "label": "nav-layout-types",
@@ -300,7 +308,10 @@
       "inputCount": 1942,
       "headBefore": "a9d7b6ca945223d23e94e5788762c6553a84f235",
       "headAfter": "a9d7b6ca945223d23e94e5788762c6553a84f235",
-      "totals": ["\u001b[1A\u001b[2K  9 failed", "  1 passed (1.4m)"]
+      "totals": [
+        "\u001b[1A\u001b[2K  9 failed",
+        "  1 passed (1.4m)"
+      ]
     },
     "nav-browser-ready": {
       "label": "nav-browser-ready",
@@ -317,7 +328,9 @@
       "inputCount": 1942,
       "headBefore": "a9d7b6ca945223d23e94e5788762c6553a84f235",
       "headAfter": "a9d7b6ca945223d23e94e5788762c6553a84f235",
-      "totals": ["\u001b[1A\u001b[2K  10 passed (1.1m)"]
+      "totals": [
+        "\u001b[1A\u001b[2K  10 passed (1.1m)"
+      ]
     },
     "nav-label-red": {
       "label": "nav-label-red",
@@ -338,7 +351,9 @@
       "inputCount": 1942,
       "headBefore": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
       "headAfter": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
-      "totals": ["\u001b[1A\u001b[2K  1 failed"]
+      "totals": [
+        "\u001b[1A\u001b[2K  1 failed"
+      ]
     },
     "nav-label-green": {
       "label": "nav-label-green",
@@ -359,7 +374,10 @@
       "inputCount": 1942,
       "headBefore": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
       "headAfter": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
-      "totals": [" Test Files  2 passed (2)", "      Tests  15 passed (15)"]
+      "totals": [
+        " Test Files  2 passed (2)",
+        "      Tests  15 passed (15)"
+      ]
     },
     "nav-label-types": {
       "label": "nav-label-types",
@@ -430,7 +448,10 @@
       "inputCount": 1942,
       "headBefore": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
       "headAfter": "45f2c2818636f0cd86e5dded7af65fa54f30f424",
-      "totals": ["\u001b[1A\u001b[2K  1 failed", "  9 passed (1.1m)"]
+      "totals": [
+        "\u001b[1A\u001b[2K  1 failed",
+        "  9 passed (1.1m)"
+      ]
     },
     "nav-responsive-build": {
       "label": "nav-responsive-build",
@@ -468,7 +489,10 @@
       "inputCount": 1942,
       "headBefore": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
       "headAfter": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
-      "totals": [" Test Files  2 passed (2)", "      Tests  15 passed (15)"]
+      "totals": [
+        " Test Files  2 passed (2)",
+        "      Tests  15 passed (15)"
+      ]
     },
     "nav-responsive-types": {
       "label": "nav-responsive-types",
@@ -522,19 +546,39 @@
       "inputCount": 1942,
       "headBefore": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
       "headAfter": "bed4dc5e9b810b13343599d01f8a2dac5bc95484",
-      "totals": ["\u001b[1A\u001b[2K  10 passed (1.2m)"]
+      "totals": [
+        "\u001b[1A\u001b[2K  10 passed (1.2m)"
+      ]
     }
   },
   "public": {
     "cases": 10,
     "targets": 80,
-    "locales": ["en", "zh-CN"],
+    "locales": [
+      "en",
+      "zh-CN"
+    ],
     "sizes": [
-      [360, 640],
-      [412, 915],
-      [640, 360],
-      [1280, 800],
-      [1920, 1080]
+      [
+        360,
+        640
+      ],
+      [
+        412,
+        915
+      ],
+      [
+        640,
+        360
+      ],
+      [
+        1280,
+        800
+      ],
+      [
+        1920,
+        1080
+      ]
     ],
     "offlineContinues": 10,
     "pngsDecoded": 20,
@@ -873,10 +917,90 @@
         "case": "1920x1080-zh-CN",
         "inspectedAt": "2026-10-27T13:06:34.521535+00:00",
         "observed": "Eight recognizable vector icons and complete localized labels; selected Inventory highlight visible. Two-row narrow navigation, single landscape row and desktop rail. Main content continues below viewport through its scroll area; no whole-app a11y/zoom/physical-device claim."
+      },
+      {
+        "case": "1280x800-en",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1280x800-en-offline-navigation.png",
+        "sha256": "39e0b9fa5918bbcb16b9915e4d941d7d8688d75b54cd5363708d4fb0f35341bc",
+        "bytes": 95364,
+        "inspectedAt": "2026-10-27T13:12:35.043026+00:00",
+        "observed": "Original whole viewport individually viewed: eight vector destination icons and full localized labels, Map current-page highlight, four-column/two-row portrait navigation, single landscape row or desktop rail. Map content scrolls within reserved layout; no whole-app a11y/performance claim."
+      },
+      {
+        "case": "1280x800-zh-CN",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1280x800-zh-CN-offline-navigation.png",
+        "sha256": "a49776a30ed0c5b5257939bc6dba83a8dd027d5459281c96176a406d2303530c",
+        "bytes": 104184,
+        "inspectedAt": "2026-10-27T13:12:35.043026+00:00",
+        "observed": "Original whole viewport individually viewed: eight vector destination icons and full localized labels, Map current-page highlight, four-column/two-row portrait navigation, single landscape row or desktop rail. Map content scrolls within reserved layout; no whole-app a11y/performance claim."
+      },
+      {
+        "case": "1920x1080-en",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1920x1080-en-offline-navigation.png",
+        "sha256": "a5e1f13e36bd685dba0fc4115daa8901c7b57fa5c6ab651ed6a5446a4361d426",
+        "bytes": 130832,
+        "inspectedAt": "2026-10-27T13:12:35.043026+00:00",
+        "observed": "Original whole viewport individually viewed: eight vector destination icons and full localized labels, Map current-page highlight, four-column/two-row portrait navigation, single landscape row or desktop rail. Map content scrolls within reserved layout; no whole-app a11y/performance claim."
+      },
+      {
+        "case": "1920x1080-zh-CN",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/1920x1080-zh-CN-offline-navigation.png",
+        "sha256": "fced6502a2972ec40f18a80a1e1eb5f3563fb9321ae6193a1347da89a238d9b1",
+        "bytes": 144260,
+        "inspectedAt": "2026-10-27T13:12:35.043026+00:00",
+        "observed": "Original whole viewport individually viewed: eight vector destination icons and full localized labels, Map current-page highlight, four-column/two-row portrait navigation, single landscape row or desktop rail. Map content scrolls within reserved layout; no whole-app a11y/performance claim."
+      },
+      {
+        "case": "360x640-en",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/360x640-en-offline-navigation.png",
+        "sha256": "009914d18d20612b39bdb2802e47746b6dfc94779dc2c151066aee4f6eb82a7f",
+        "bytes": 45786,
+        "inspectedAt": "2026-10-27T13:12:35.043026+00:00",
+        "observed": "Original whole viewport individually viewed: eight vector destination icons and full localized labels, Map current-page highlight, four-column/two-row portrait navigation, single landscape row or desktop rail. Map content scrolls within reserved layout; no whole-app a11y/performance claim."
+      },
+      {
+        "case": "360x640-zh-CN",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/360x640-zh-CN-offline-navigation.png",
+        "sha256": "deb6c9d416d1d0c8eb0557c166a1ee4835c57a80e725dd70aa7f9a439c6c71b3",
+        "bytes": 49307,
+        "inspectedAt": "2026-10-27T13:12:35.043026+00:00",
+        "observed": "Original whole viewport individually viewed: eight vector destination icons and full localized labels, Map current-page highlight, four-column/two-row portrait navigation, single landscape row or desktop rail. Map content scrolls within reserved layout; no whole-app a11y/performance claim."
+      },
+      {
+        "case": "412x915-en",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/412x915-en-offline-navigation.png",
+        "sha256": "63e15e7516b8d275c05e491c18c153354791d99362a736bcabb57398a843c081",
+        "bytes": 73960,
+        "inspectedAt": "2026-10-27T13:12:35.043026+00:00",
+        "observed": "Original whole viewport individually viewed: eight vector destination icons and full localized labels, Map current-page highlight, four-column/two-row portrait navigation, single landscape row or desktop rail. Map content scrolls within reserved layout; no whole-app a11y/performance claim."
+      },
+      {
+        "case": "412x915-zh-CN",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/412x915-zh-CN-offline-navigation.png",
+        "sha256": "36155cd189d1ab9aa339f77a3ec7934c6b1e3169ee583b028a33fb1efb6693cd",
+        "bytes": 82438,
+        "inspectedAt": "2026-10-27T13:12:35.043026+00:00",
+        "observed": "Original whole viewport individually viewed: eight vector destination icons and full localized labels, Map current-page highlight, four-column/two-row portrait navigation, single landscape row or desktop rail. Map content scrolls within reserved layout; no whole-app a11y/performance claim."
+      },
+      {
+        "case": "640x360-en",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/640x360-en-offline-navigation.png",
+        "sha256": "8b003843c72ae9373b573a46de06ed7531927cefc22f7504d62ea0655540fd03",
+        "bytes": 39136,
+        "inspectedAt": "2026-10-27T13:12:35.043026+00:00",
+        "observed": "Original whole viewport individually viewed: eight vector destination icons and full localized labels, Map current-page highlight, four-column/two-row portrait navigation, single landscape row or desktop rail. Map content scrolls within reserved layout; no whole-app a11y/performance claim."
+      },
+      {
+        "case": "640x360-zh-CN",
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/responsive-decoded/640x360-zh-CN-offline-navigation.png",
+        "sha256": "84302df3e243b62f39ffc4a461b6eb21d8ce6ea2cc6cb7b5d1930b55f314fbd8",
+        "bytes": 37093,
+        "inspectedAt": "2026-10-27T13:12:35.043026+00:00",
+        "observed": "Original whole viewport individually viewed: eight vector destination icons and full localized labels, Map current-page highlight, four-column/two-row portrait navigation, single landscape row or desktop rail. Map content scrolls within reserved layout; no whole-app a11y/performance claim."
       }
     ],
-    "inspectedCount": 10,
-    "offlinePNGsIndividuallyInspected": 0,
+    "inspectedCount": 20,
+    "offlinePNGsIndividuallyInspected": 10,
     "priorInspections": [
       "browser-output/navigation-icons-360x640-r-3f578-igation-survives-offline-en-navigation-icons/test-failed-1.png",
       "pre-ready-decoded/360x640-en-visible-navigation.png",
@@ -900,10 +1024,79 @@
     "Strict360English label RED. Padding-only9/10leaves Inventory clipped; responsive4x2below640px plus12px labels resolves all10, no wording abbreviation or font reduction."
   ],
   "wholeValidation": {
-    "status": "pending",
-    "required": ["full unit", "full typecheck", "full lint/purity"],
-    "previous": "d9447414 full19927/939PASS predates the two added navigation tests; no new whole-suite count claimed.",
-    "resume": "Original handles will be retained in /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/whole-processes.json; do not restart a live check or edit source/HEAD while it consumes frozen inputs."
+    "status": "pass",
+    "head": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
+    "checks": {
+      "nav-full-unit": {
+        "label": "nav-full-unit",
+        "command": [
+          "npm",
+          "test",
+          "--",
+          "--config",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k/branch.config.mjs",
+          "--workspace",
+          "vitest.workspace.ts"
+        ],
+        "exit": 0,
+        "seconds": 1056.5473347249208,
+        "inputsUnchanged": true,
+        "inputCount": 2692,
+        "headBefore": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
+        "headAfter": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
+        "totals": [
+          " Test Files  939 passed (939)",
+          "      Tests  19929 passed | 2 skipped (19931)"
+        ],
+        "externalInputCount": 766,
+        "externalInputsUnchanged": true,
+        "headUnchanged": true
+      },
+      "nav-full-types": {
+        "label": "nav-full-types",
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        "exit": 0,
+        "seconds": 133.6698620399693,
+        "inputsUnchanged": true,
+        "inputCount": 2692,
+        "headBefore": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
+        "headAfter": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
+        "totals": [],
+        "externalInputCount": 766,
+        "externalInputsUnchanged": true,
+        "headUnchanged": true
+      },
+      "nav-full-lint": {
+        "label": "nav-full-lint",
+        "command": [
+          "npm",
+          "run",
+          "lint"
+        ],
+        "exit": 0,
+        "seconds": 235.72767932899296,
+        "inputsUnchanged": true,
+        "inputCount": 2692,
+        "headBefore": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
+        "headAfter": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
+        "totals": [],
+        "externalInputCount": 766,
+        "externalInputsUnchanged": true,
+        "headUnchanged": true
+      }
+    },
+    "all2692RepositoryInputsRehashed": true,
+    "all766ExternalInputsRehashed": true,
+    "originalHandlesTerminal": [
+      81470,
+      61259,
+      41061
+    ],
+    "limits": "Two pre-existing opt-in skips remain; no independent/whole-app acceptance."
   },
   "genuine": {
     "fixture": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
@@ -920,8 +1113,77 @@
     "Full private-v1 remains active; Cobra BUG304 contract and Cold Mastery review remain open;211bounded/oneunverified/onereview."
   ],
   "retention": {
-    "status": "active task required by whole-suite and final evidence consumers; archive/readback/exact cleanup pending",
-    "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k",
-    "owner": "root retains through consumers and will archive required evidence/remove exact task-owned disposables after all consumers terminate; shared caches/worktree preserved"
-  }
+    "status": "archive and every member read-back verified; exact task-owned cleanup complete",
+    "rawTask": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k-raw.tar.gz",
+    "archiveSHA256": "0591c5c814b7dede2ca1bcbbc2ddccdc8a0811589f46cfe2d34c0452b9f6a94b",
+    "archiveBytes": 575397869,
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k-raw-manifest.json",
+    "manifestSHA256": "e46d31225c24a545367eaa14ebb38863e5ec46d84a6cf9a1c897f86a4f8230af",
+    "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k-retention.json",
+    "memberCount": 3316,
+    "rawBytes": 607007094,
+    "allMembersReadBackVerified": true,
+    "cleanup": {
+      "at": "2026-10-27T13:27:40.687602+00:00",
+      "owner": "root",
+      "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k-raw.tar.gz",
+      "archiveSHA256": "0591c5c814b7dede2ca1bcbbc2ddccdc8a0811589f46cfe2d34c0452b9f6a94b",
+      "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k-raw-manifest.json",
+      "manifestSHA256": "e46d31225c24a545367eaa14ebb38863e5ec46d84a6cf9a1c897f86a4f8230af",
+      "retentionReceipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-nav-icons-xgw7t06k-retention.json",
+      "allMembersReadBackVerified": true,
+      "memberCount": 3316,
+      "removedFiles": 3316,
+      "removedDirectoriesIncludingTaskRoot": 95,
+      "rawRootAbsent": true,
+      "remaining": [],
+      "failures": [],
+      "knownPIDsAbsent": [
+        2956852,
+        2957023,
+        2957396,
+        2957706,
+        2957707,
+        2957708,
+        2957896,
+        2958223,
+        2959216,
+        2959217,
+        2959218,
+        2959220,
+        2959505,
+        2959506,
+        2959507,
+        2961358,
+        2962800,
+        2963050,
+        2963051,
+        2963052,
+        2963053,
+        2963377,
+        2964809,
+        2965194,
+        2965195,
+        2965196,
+        2965213,
+        2967336,
+        2967337,
+        2967338,
+        2974218,
+        2974232,
+        2976213,
+        2976854,
+        2977475,
+        2979010,
+        2989855,
+        2989868
+      ],
+      "seconds": 5.507506165071391,
+      "sharedWorktreePreserved": true
+    },
+    "owner": "Root retains archive and two sidecars through independent/full-v1 evidence consumers and removes them after consumers finish. Registered worktree/sources/history/shared caches preserved.",
+    "originalRetentionFailure": "First cleanup preflight compared string-sorted paths with Path-component-sorted manifest entries. Same file sets and all member hashes verified; no cleanup had started. Corrected both-side ordering, re-verified the retained partial archive and completed exact cleanup. Original script/failure metadata remain in the continuing inventory-profile task."
+  },
+  "bugResolutionCommit": "79ec0f7e"
 }
