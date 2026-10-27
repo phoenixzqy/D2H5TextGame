@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d2h5://schema/assassin-shadow-skills",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "warrior",
+    "master"
+  ],
+  "properties": {
+    "id": {
+      "const": "summons/assassin-shadow-skills"
+    },
+    "warrior": {
+      "description": "Warrior captures the owner’s selected legal attack skills in canonical priority order.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode"
+      ],
+      "properties": {
+        "mode": {
+          "const": "selected-learned-attacks"
+        }
+      }
+    },
+    "master": {
+      "description": "Master captures a stable independent attack priority, capped by its learned summon rank.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "attackSkills"
+      ],
+      "properties": {
+        "mode": {
+          "const": "independent-attacks"
+        },
+        "attackSkills": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^assassin\\.[a-z_]+$"
+          }
+        }
+      }
+    }
+  }
+}

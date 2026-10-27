@@ -1,0 +1,15 @@
+{
+  "id": "summons/assassin-shadow-skills",
+  "warrior": {
+    "mode": "selected-learned-attacks"
+  },
+  "master": {
+    "mode": "independent-attacks",
+    "attackSkills": [
+      "assassin.mind_blast",
+      "assassin.fire_blast",
+      "assassin.blade_fury",
+      "assassin.dragon_talon"
+    ]
+  }
+}
