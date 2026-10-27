@@ -1,0 +1,346 @@
+{
+  "status": "BUG306 missing charge HP/capture evidence locally resolved; original deficient evidence remains historical. Independent/skill/whole-app/earned acceptance open.",
+  "sourceHead": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+  "checks": {
+    "charge-hp-production.json": {
+      "label": "charge-hp-production",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy/charge-combat-matrix.public.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 619.7171124680899,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 768,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": [
+        "24 passed (10.3m)"
+      ]
+    },
+    "charge-hp-types-checked.json": {
+      "label": "charge-hp-types-checked",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy/public.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 9.162550764041953,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 768,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-hp-lint-final.json": {
+      "label": "charge-hp-lint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--no-ignore",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy/public-eslint.cjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy/charge-combat.public.spec.ts",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy/charge-combat-matrix.public.config.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 5.704209360992536,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 768,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    }
+  },
+  "proof": {
+    "cases": 24,
+    "savePairs": 48,
+    "actualServiceWorkerOfflineContinues": 24,
+    "imageCount": 96,
+    "limitations": [
+      "Constructed level30/synthetic cap fixture, no earned campaign/build/balance acceptance.",
+      "No positive victim-MP inference: BUG304 still conflicts with mana-free monsters.",
+      "Scroll/foreground DOM assertions establish visible relevant cards; full-app navigation/icon/a11y/performance limits remain."
+    ],
+    "visualReview": {
+      "at": "2026-10-27T11:41:03.302701+00:00",
+      "inspected": 36,
+      "totalPngs": 96,
+      "scope": "All24 mobile rank1/20 enemy originals and all12 mobile rank20 ally originals individually viewed across continuation turns. Desktop and rank1 ally originals not claimed visually inspected.",
+      "observations": [
+        "Relevant enemy cards and actual health loss are visible in scrolled originals; Phoenix20 captures the lower last-living-enemy grid.",
+        "All inspected ally originals show the hero HP strip and MP. MP can regenerate to maximum by paused capture; actual spending is in sampled proof frames.",
+        "Fixed navigation clips lower grid/effect rows; truncated headings/labels and missing glyphs remain."
+      ],
+      "acceptance": "Closes missing finite absolute hero/enemy HP observation and mobile enemy capture evidence only; no whole-app mobile/a11y, skill, earned or independent acceptance."
+    }
+  },
+  "rankProofCount": 48,
+  "visualScope": {
+    "at": "2026-10-27T11:41:03.302701+00:00",
+    "inspected": 36,
+    "totalPngs": 96,
+    "scope": "All24 mobile rank1/20 enemy originals and all12 mobile rank20 ally originals individually viewed across continuation turns. Desktop and rank1 ally originals not claimed visually inspected.",
+    "observations": [
+      "Relevant enemy cards and actual health loss are visible in scrolled originals; Phoenix20 captures the lower last-living-enemy grid.",
+      "All inspected ally originals show the hero HP strip and MP. MP can regenerate to maximum by paused capture; actual spending is in sampled proof frames.",
+      "Fixed navigation clips lower grid/effect rows; truncated headings/labels and missing glyphs remain."
+    ],
+    "acceptance": "Closes missing finite absolute hero/enemy HP observation and mobile enemy capture evidence only; no whole-app mobile/a11y, skill, earned or independent acceptance."
+  },
+  "visuallyInspected": [
+    {
+      "member": "decoded/combat-mobile-tiger-strike-en-rank1-visible-enemy.png",
+      "sha256": "b6442d7d9e5fa426f9a2c663c07bd5b8064a35a6215bf3d0429f52957149350c"
+    },
+    {
+      "member": "decoded/combat-mobile-tiger-strike-en-rank20-visible-enemy.png",
+      "sha256": "579fb39793092c13239fc3f9d316a71bdc5b935b82f8348f91ed5d2078b5e9b5"
+    },
+    {
+      "member": "decoded/combat-mobile-tiger-strike-en-rank20-visible-ally.png",
+      "sha256": "e28123b34b198b58224c368663ac94e1df9663f7d7c13d679c3a27bdd19c6aa0"
+    },
+    {
+      "member": "decoded/combat-mobile-tiger-strike-zh-CN-rank1-visible-enemy.png",
+      "sha256": "0683089ac850d1281c59477de7a105f8270dc2535f03dfb43930a591d3d4c8d1"
+    },
+    {
+      "member": "decoded/combat-mobile-tiger-strike-zh-CN-rank20-visible-enemy.png",
+      "sha256": "ad1655ee56a350f5d00b8fa5383e8708fdf45309d69fe71e1db446dc5c1a89cb"
+    },
+    {
+      "member": "decoded/combat-mobile-tiger-strike-zh-CN-rank20-visible-ally.png",
+      "sha256": "17f40fc048e9043efcc6f758c754ba2af8cd51412f0507656a97096f3bbe7026"
+    },
+    {
+      "member": "decoded/combat-mobile-fists-of-fire-en-rank1-visible-enemy.png",
+      "sha256": "b0186f2bb799cb017d010d6fc837fb03d6a2bdd7da8abd54f0164aefbd0d21b6"
+    },
+    {
+      "member": "decoded/combat-mobile-fists-of-fire-en-rank20-visible-enemy.png",
+      "sha256": "563b6aa0e91ed0a934ff75c4aaae462addb23291f49eec7c5f5dd7fe67f80fd0"
+    },
+    {
+      "member": "decoded/combat-mobile-fists-of-fire-en-rank20-visible-ally.png",
+      "sha256": "c3e53b5770a1ba3ab5ef1dd048d323e8ce50633dea4f01629e563897c50535a1"
+    },
+    {
+      "member": "decoded/combat-mobile-fists-of-fire-zh-CN-rank1-visible-enemy.png",
+      "sha256": "a539797a479cb5509b29e0d7705d920efc59f541b216fdc9a7c579a394c65df3"
+    },
+    {
+      "member": "decoded/combat-mobile-fists-of-fire-zh-CN-rank20-visible-enemy.png",
+      "sha256": "e7c31c2888c6c850c65aa525265f52f15968101a68cb57350cc46dfb36b3b8a6"
+    },
+    {
+      "member": "decoded/combat-mobile-fists-of-fire-zh-CN-rank20-visible-ally.png",
+      "sha256": "c8af5282043267bd96cf4efccad19b36d2af92375a5a3fe476c77fa9c8e5ff5e"
+    },
+    {
+      "member": "decoded/combat-mobile-cobra-strike-en-rank1-visible-enemy.png",
+      "sha256": "842394c43be820ee36aa636824a9045425b0276feb7e587a7c923c6cdc253bbe"
+    },
+    {
+      "member": "decoded/combat-mobile-cobra-strike-en-rank20-visible-enemy.png",
+      "sha256": "4484e9a67f33817a33fcae6148587ac51d0c339b0ab8415824eba53776424b64"
+    },
+    {
+      "member": "decoded/combat-mobile-cobra-strike-en-rank20-visible-ally.png",
+      "sha256": "d0f6434836c188283529796b26d438cd5d9097a456765647276b6d2ea9328717"
+    },
+    {
+      "member": "decoded/combat-mobile-cobra-strike-zh-CN-rank1-visible-enemy.png",
+      "sha256": "92fc909a46bcdad7df6c9a87265a87102af4760221d160f31813e83219686add"
+    },
+    {
+      "member": "decoded/combat-mobile-cobra-strike-zh-CN-rank20-visible-enemy.png",
+      "sha256": "5b2e487cb9246bde07c01ea9ce941882c65c069441b3591d563970fb1d7def1c"
+    },
+    {
+      "member": "decoded/combat-mobile-cobra-strike-zh-CN-rank20-visible-ally.png",
+      "sha256": "6bd9d06ac20860f4a47d1ea97e149505e73193ae0df40dc1e85693ddd8924ea3"
+    },
+    {
+      "member": "decoded/combat-mobile-claws-of-thunder-en-rank1-visible-enemy.png",
+      "sha256": "a9af4f52b46c95420838a5528ca32554b85a8285eef94c1927c6079bb40262f5"
+    },
+    {
+      "member": "decoded/combat-mobile-claws-of-thunder-en-rank20-visible-enemy.png",
+      "sha256": "e47f0f82b5f9013b37bc46363169cac34073532b1a43eb67ea93147131c8b864"
+    },
+    {
+      "member": "decoded/combat-mobile-claws-of-thunder-en-rank20-visible-ally.png",
+      "sha256": "ea26f1fe6109be75c09d7f2b3bdc74232d9d63e0e0b01b5b1a4f8ca8720a05a4"
+    },
+    {
+      "member": "decoded/combat-mobile-claws-of-thunder-zh-CN-rank1-visible-enemy.png",
+      "sha256": "0cda5ceb1c49d3b39ed46c22b0e2a0a6e1c279ddb8bdbec3e31130da4a083671"
+    },
+    {
+      "member": "decoded/combat-mobile-claws-of-thunder-zh-CN-rank20-visible-enemy.png",
+      "sha256": "1893daa4ee81c548bd99984a4a6d58402e44658f78ebe7811c59100e1afea093"
+    },
+    {
+      "member": "decoded/combat-mobile-claws-of-thunder-zh-CN-rank20-visible-ally.png",
+      "sha256": "c254ee40e06268c39611a41c8167ef25e9ee81a39062228bb6d68fb52559277f"
+    },
+    {
+      "member": "decoded/combat-mobile-blades-of-ice-en-rank1-visible-enemy.png",
+      "sha256": "f865fcb016873c1971e8366e2a7372c97f8b2337c64ea471b40602a869fa0dcd"
+    },
+    {
+      "member": "decoded/combat-mobile-blades-of-ice-en-rank20-visible-enemy.png",
+      "sha256": "9e656e92013a233ce1095861073748186cbdfba5364bb26b1622b7efeb13a2cb"
+    },
+    {
+      "member": "decoded/combat-mobile-blades-of-ice-en-rank20-visible-ally.png",
+      "sha256": "5f9268de96ab291fcd54a8e57bf27b8196275060ab2f4ba24d5a3cad1ab30e11"
+    },
+    {
+      "member": "decoded/combat-mobile-blades-of-ice-zh-CN-rank1-visible-enemy.png",
+      "sha256": "23f8e0eb9024ce2321f68b6e983fc45c04e4d602ab57c499b21d3dddff136fe4"
+    },
+    {
+      "member": "decoded/combat-mobile-blades-of-ice-zh-CN-rank20-visible-enemy.png",
+      "sha256": "2125d7a55f8a50de03a24402713120cfd4b60e94e6c6a6dbd09f1a9c691480c7"
+    },
+    {
+      "member": "decoded/combat-mobile-blades-of-ice-zh-CN-rank20-visible-ally.png",
+      "sha256": "ae23e10c0458d816bac2a737e690250856ec201909c976c629d945da9d070010"
+    },
+    {
+      "member": "decoded/combat-mobile-phoenix-strike-en-rank1-visible-enemy.png",
+      "sha256": "27e12481edd0b1cb9218aafa30898c492eb8e91dc5ffd0f9c1bc283ca8f6fabd"
+    },
+    {
+      "member": "decoded/combat-mobile-phoenix-strike-en-rank20-visible-enemy.png",
+      "sha256": "a26c5250a03566de5a5f5a462036e2726881e3fbdd0e3896ae00befce07eae70"
+    },
+    {
+      "member": "decoded/combat-mobile-phoenix-strike-en-rank20-visible-ally.png",
+      "sha256": "73ec119f112dcca26a895b22605df4bf825cba65d1d7840d7adabb345a7fbb24"
+    },
+    {
+      "member": "decoded/combat-mobile-phoenix-strike-zh-CN-rank1-visible-enemy.png",
+      "sha256": "ad993679ff0765232a4e8a1ddbc5829c1ad5c87029130fd240ac983cd890f9bf"
+    },
+    {
+      "member": "decoded/combat-mobile-phoenix-strike-zh-CN-rank20-visible-enemy.png",
+      "sha256": "d81da1c9c37762f82c0478f200a082c65b54a89cc5f18cd2994690cab3a2048b"
+    },
+    {
+      "member": "decoded/combat-mobile-phoenix-strike-zh-CN-rank20-visible-ally.png",
+      "sha256": "1bec49dc59cba534dd906b591f6fdeb11df4e5ef26b1a6116206d00f66689867"
+    }
+  ],
+  "artifacts": {
+    "charge-hp-audit.json": {
+      "bytes": 136942,
+      "sha256": "28a1895b581d7a4a87b4b45dca73d2ab4ec173da7f6a0f1c11e6aa452e0f3241"
+    },
+    "combat-matrix-public-report.json": {
+      "bytes": 32785187,
+      "sha256": "88f3a32bd9132137f8c0d8cfa7a6e4ac7909d160553e09c825e1f08ae2f8987b"
+    },
+    "charge-combat.public.spec.ts": {
+      "bytes": 12395,
+      "sha256": "967be29dd8d7777f2ebe89bfa1e3255739ffae1841cf819dde1da4a0e3fbf5c4"
+    },
+    "charge-combat-matrix.public.config.ts": {
+      "bytes": 1295,
+      "sha256": "737017c206de889e56ae3746d6a2fdf5e4f99064c53e41c6d9e060cd0c1ed2a7"
+    },
+    "charge-combat.public.spec.ts.original.txt": {
+      "bytes": 10069,
+      "sha256": "963bf18ab5daf061e2d750bc52df1ff58bb2c1eab3df4e5e368fae3cd21330c5"
+    },
+    "charge-combat-matrix.public.config.ts.original.txt": {
+      "bytes": 1328,
+      "sha256": "d71754b861e5172ddf10eccc82c4dbd397eb24ab22c2d7f820e5843d6576f1b7"
+    },
+    "lint-config-diagnosis.json": {
+      "bytes": 367,
+      "sha256": "90757349f479a835dd7dcf289a71a100cc989949044d3bdceb956c05a1c3ff7b"
+    },
+    "plan-review.json": {
+      "bytes": 1158,
+      "sha256": "cf15469a9c53fd8b987b95d2d1723e2494a3b4c67429d884adf475d10e42dd00"
+    },
+    "audit.py": {
+      "bytes": 4387,
+      "sha256": "54932d9a4062bed159581379af277eba028eb1103b7b9941c0a6a21eacc0c0f7"
+    }
+  },
+  "retention": {
+    "owner": "root",
+    "at": "2026-10-27T11:41:06.501677+00:00",
+    "sourceRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy-raw.tar.gz",
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy-raw-manifest.json",
+    "archiveSha256": "95b70fb419bef2988cb793a19c5f7fd4e7c65233dc42feb73d142353ed905d0e",
+    "manifestSha256": "334c16626c453824e71049653439ef838c67ed409e8908f321f892ae52220ab5",
+    "fileMembers": 291,
+    "rawBytes": 61033897,
+    "archiveBytes": 47930645,
+    "readbackVerified": true,
+    "excludedSymlinks": [
+      {
+        "path": "node_modules",
+        "target": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules",
+        "resolvedTarget": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules",
+        "targetInode": 1566283
+      }
+    ],
+    "activeConsumers": [],
+    "consumerScanInaccessibleEntries": 30,
+    "cleanup": {
+      "at": "2026-10-27T11:41:17.838046+00:00",
+      "filesRemoved": 291,
+      "symlinksUnlinked": 1,
+      "directoriesRemovedIncludingTaskRoot": 27,
+      "remaining": [],
+      "failures": [],
+      "sharedTargets": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules",
+          "preserved": true
+        }
+      ],
+      "consumerScanInaccessibleEntries": 30
+    },
+    "retentionOwner": "root through full-v1/independent consumers; no remote publication",
+    "retentionDriverCleanup": {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-flight-charge-hp-retention-driver.py",
+      "sha256": "3d16a93aef368706fbe930cb9d2d617b69c6ceadb6a5562a3c98760f9335e707",
+      "removed": true,
+      "archivedCopy": "d2h5-assassin-flight-z9y3pvvj-raw.tar.gz:retention-driver.py.txt"
+    }
+  },
+  "retentionReceiptPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy-retention.json",
+  "retentionReceiptSha256": "74d834b028f85f7eb6c15ed728d90ce45ba944e89a41098f7ebd98e7acb739f9",
+  "originalEvidence": "Original48missingHP/24deficientmobilecaptures remain in separately read-back-verified d2h5-assassin-charges-zt17emhc-raw.tar.gz. This new matrix never overwrites/backfills them.",
+  "limits": [
+    "Cobra positive victim MP remains unresolved BUG304.",
+    "No campaign/build/TTK/economy, whole-app mobile/a11y, physical touch, performance/soak, independent QA or skill inventory credit.",
+    "All cases use constructed L30 and synthetic equipment/prior-act fixtures, exact original rank/priority/discharge/resource assertions."
+  ],
+  "genuine": "L33; Ancients/Rite claimed; Baal uncleared; nextNormal402; no action/replay."
+}

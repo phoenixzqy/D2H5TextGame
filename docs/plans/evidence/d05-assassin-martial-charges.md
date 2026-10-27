@@ -92,8 +92,55 @@ Exact task paths: charge-combat-matrix-public.json/log, combat-matrix-public-rep
 
 ## Remaining acceptance and retention
 
-[Author contract](../decisions/D05-assassin-martial-charges-v1.md) still requires remaining hostile-target absorption boundaries, absolute hero HP/mobile visual proof (BUG306), and resolution of BUG304; the scoped production combat matrix is now terminal as recorded above. Stable full/static and localized preview gates now pass; multi-pool/miss native cases are covered above. Preview-only seven-domain saves/offline Continue do not replace combat proof. Assassin traps/Flight adaptation, earned builds/economy/campaign and independent G0–G7 remain open.
+[Author contract](../decisions/D05-assassin-martial-charges-v1.md) still requires remaining hostile-target absorption boundaries and resolution of BUG304. BUG306's missing charge-specific absolute HP/mobile enemy capture evidence is resolved in the follow-up below. Stable full/static and localized preview gates pass; multi-pool/miss native cases are covered above. Preview-only seven-domain saves/offline Continue do not replace combat proof. Actual shadow charge/trap integration, earned builds/economy/campaign and independent G0–G7 remain open.
 
-Active exact root-owned evidence: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc`. Originals, scripts, hashes, logs, prototypes and task-local caches remain required for those consumers. Root owns eventual archive read-back and exact task-owned cleanup after consumers finish; no charge-task cleanup is claimed. The completed Amazon/shadow archives remain separately retained under their existing ownership conditions. Registered worktree remains in use for the unfinished umbrella goal.
+The original charge/trap task was archived, individually read-back verified and
+removed in the later trap checkpoint. Its originals/scripts/failures remain in
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc-raw.tar.gz`
+and the adjacent `-raw-manifest.json`/`-retention.json`. Root retains these through
+full-v1/independent evidence consumers and owns eventual removal. See
+[trap integration retention](fixtures/assassin-traps/integration-followup.json).
+Completed Amazon/shadow archives retain their separate ownership conditions;
+the registered worktree remains in use for the unfinished umbrella goal.
 
 Protected earned fixture compressed SHA256 remains `3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c`: L33, Ancients/Rite claimed, Baal uncleared, nextNormal402. No campaign/replay, remote publication or independent self-approval.
+
+## Corrected compact-HP and mobile enemy proof — 2026-10-27
+
+At frozen30c93621, the corrected six-builder production matrix is24/24PASS
+619.717s; all2549repository/768external inputs and HEAD exact, no retries/skips/
+page warnings/errors. The observer reads actual compact hero/enemy HP resources,
+rejects absent/nonfinite values and requires actual hero/enemy HP loss. Audit
+verifies48rank proofs with finite bounded HP/MP,48exact seven-domain save pairs
+and24actual SWofflineContinues. Original rank1/20 allocation/priority/resource
+and positive actor-scoped typed discharge assertions remain, including every
+Phoenix component. No resources are injected to bypass BUG304.
+
+After actual scrolling, relevant ally/enemy cards must be in the viewport and
+foreground before separate viewport screenshots. All240attachments/96PNGs were
+decoded;36originals individually viewed and hashed: all24mobile enemy images
+and all12mobile rank20 ally images. Enemy damage/death and relevant status
+feedback are visible; Phoenix20 reaches the lower last-living-enemy grid. Hero
+HP strips and MP are visible. MP may regenerate before a paused image; sampled
+proof frames establish spending. Fixed-nav/lower-row clipping, truncated labels
+and missing glyphs remain. No whole-app mobile/a11y or physical-touch acceptance.
+
+[BUG306](../../../production/bugs/BUG-306-combat-browser-evidence-gaps.md) is
+locally resolved for its missing observations. Historical48missingHP/24deficient
+captures are preserved, not backfilled. Original lint-config/optional-chain and
+build-manifest-shape mistakes remain in the new archive. All762frozen Flight
+production assets were reverified; no production bridge or source change.
+
+[Compact follow-up packet](fixtures/assassin-charges/compact-hp-checkpoint.json)
+records exact receipts, original/audit hashes and retention. Root retains these
+exact new deliverables through full-v1/independent consumers and owns removal:
+
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy-raw.tar.gz`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy-raw-manifest.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy-retention.json`
+
+All291members/61033897raw bytes individually read-back verified; exact291files,
+one dependency symlink and27directories removed,remaining[]/failures[], shared
+dependency target intact. External retention driver removed after both Flight/
+charge consumers terminated; source retained in Flight archive. No skill credit,
+independent QA, earned builds/balance/campaign or private-v1 completion.

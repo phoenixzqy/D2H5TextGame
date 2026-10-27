@@ -1,6 +1,6 @@
 # BUG-306 — Observe actual combat HP and capture the mobile enemy section
 
-Status: Open — test/evidence defect; no product behavior inferred from missing observations.
+Status: Resolved locally — source compact HP correction and corrected charge-specific production evidence verified; whole-app mobile/a11y and independent acceptance remain open.
 Severity: Medium — the passing combat matrix cannot establish absolute hero HP or complete mobile visuals.
 Build: 8709a8db71235715ce6d5fcb49f3f61e578308aa; production build VITE_E2E unset.
 Environment: Chromium desktop1280×800 and mobile360×640 touch emulation, en/zh-CN. Constructed public imported level30 Assassin. Fixed date2026-10-27T12:00:00Z; a fixed engine seed is not needed to reproduce this DOM/capture defect, and this observer does not pin or modify it.
@@ -50,3 +50,26 @@ The historical charge24-case matrix was not rerun: its48absent absolute-HP
 observations and deficient original mobile captures remain unchanged. This bug
 therefore stays open for charge-specific evidence; no retroactive fill or claim.
 See docs/plans/evidence/fixtures/assassin-traps/integration-followup.json.
+
+## Charge-specific verification — 2026-10-27
+
+The corrected observer at frozen30c93621 now passes24/24 cases619.717s with
+all2549repository/768external inputs and HEAD unchanged, no retries/skips/page
+warnings/errors. It reads actual compact unit HP aria-valuenow/max, rejects
+absent/nonfinite values, and requires positive hero and enemy HP loss. All48
+rank1/20 proofs have finite bounded hero HP/MP and enemy HP, alongside the
+original positive typed discharge/MP assertions. All48exact seven-domain save
+pairs and24actual service-worker offline Continues pass. Both locales and
+desktop1280×800/mobile360×640 use the original six-builder fixture/rules.
+
+Actual scrolling and viewport/foreground assertions precede separate ally/enemy
+viewport captures. The audit decodes240original attachments/96PNGs. All24mobile
+rank1/20 enemy originals and all12mobile rank20 ally originals were individually
+viewed and hashed. Relevant cards are visible, including lower Phoenix20 enemies;
+fixed-nav clipping of other rows/effects, heading truncation and missing glyphs
+remain. Desktop and rank1 ally images are not claimed visually inspected.
+
+The original48missingHP/24deficientcaptures remain unmodified historical evidence.
+The new proof resolves this scoped observation/capture defect, not whole-app
+mobile/a11y, physical touch, earned balance, independent QA or skill acceptance.
+Cobra victim MP remains BUG304. [Receipts, exact hashes and verified retention](../../docs/plans/evidence/fixtures/assassin-charges/compact-hp-checkpoint.json).

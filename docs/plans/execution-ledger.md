@@ -13697,3 +13697,27 @@ ownership through full-v1/independent consumers, and external driver removal.
 Inventory195bounded/17unverified/onereview and genuineL33/Ancientsclaimed/
 Baaluncleared/next402 unchanged; no campaign/replay, delegation, remote action
 or independent self-approval. Full privatev1/claimed worktree continue.
+
+
+## 2026-10-27 — Charge-specific HP/capture evidence repaired and retained
+
+Corrected six-builder production24/24PASS619.717s at frozen30c93621; all2549
+repository/768external inputs and HEAD exact, no retries/skips/page warnings/
+errors. Actual compact hero/enemy resource reads require finite bounded HP/MP
+and positive hero/enemy HP loss. Audit48rank proofs/48exact seven-domain pairs/
+24actualSWofflineContinues, all original positive typed discharge assertions
+retained. All240attachments/96PNGs decoded;36originals individually viewed:
+24mobile enemies and12mobile rank20 allies. Fixed-nav/glyph/truncation limits
+remain; original deficient48HP/24images preserved. BUG306 locally resolved for
+its exact evidence scope, no whole-app/skill/earned/independent acceptance.
+
+[Packet](evidence/fixtures/assassin-charges/compact-hp-checkpoint.json) records
+receipts/hashes/exact retained paths and ownership. Archive291members/61033897
+raw bytes read-back verified;291files/one shared-target symlink/27dirs removed,
+remaining[]/failures[], shared deps intact. Both Flight/charge consumers terminal
+before cleanup; exact external driver removed, source archived. Root retains
+archives/two sidecars each through full-v1/independent consumers. Inventory195/
+17/onereview and genuineL33/Ancientsclaimed/Baaluncleared/next402 unchanged;
+BUG304 still needs its user design decision. Next decisive actual shadow charge/
+trap integration; no campaign/replay, delegation, remote action or self-signoff.
+Full privatev1 and registered worktree remain active.
