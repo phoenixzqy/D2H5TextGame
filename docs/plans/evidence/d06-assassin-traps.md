@@ -1,6 +1,6 @@
 # D06 — finite paid Assassin traps: implementation checkpoint
 
-Source through `a63d4ce9`; provisional [D06 contract](../decisions/D06-assassin-traps-v1.md).
+Source through `5eb3948d`; provisional [D06 contract](../decisions/D06-assassin-traps-v1.md).
 The [implementation packet](fixtures/assassin-traps/implementation-checkpoint.json)
 retains exact commands, results, source/configuration hashes and measured HEADs.
 Root is sole executor. This is functional implementation evidence; independent
@@ -41,12 +41,38 @@ Complete authored templates share immutable runtime definitions with previews.
 - Scoped strict types and lint pass for each implementation slice. Historical
   setup, fixture and source errors are retained and explained in the packet.
 
-The latest whole-unit checkpoint remains the earlier 19,576-pass / 917-file
-charge checkpoint with two existing opt-in skips. It predates the new traps;
-no fresh whole-unit pass is claimed here. Production build/browser trap
-allocation, combat, geometry, save/reopen and service-worker offline Continue
-remain to be established. Broader wave/import/respec, shared-corpse competition
-and reactive boundaries also remain. No skill-inventory credit has been added.
+The retained full trap run at `ba1f1668` completed with 19,780 passes, 22 failures
+and two existing opt-in skips across 926 files. BUG307 identifies obsolete
+single-hit/first-miss/label expectations and incomplete alias fixtures in two
+historical Fire test files. `909f47dc` preserves exact three-pulse seeded hits,
+existing refreshed Ignite potency/totals and complete native ranks. Its combined
+241-case/four-file run, scoped types and lint pass. The original full failure is
+retained; a new whole-unit gate remains required.
+
+`efd15c95` promotes nine actual native wave/import/respec/flee cases; 65 related
+cases, strict types and lint pass. Carried Death/Shield cooldowns correctly defer
+casting in short waves; fresh runs reset cooldowns and pay the new rank.
+`5eb3948d` fixes BUG306 compact HP semantics without a layout change. Hero,
+mercenary, summon and enemy cards expose named groups and localized progressbars
+with actual fractional HP, maximum and live death updates. Original two-case RED
+and the complete 201-case/20-file combat-screen GREEN, strict types and lint are
+retained.
+
+The production preview matrix at unchanged `ba1f1668` passed four cases: 64
+ranked allocations/previews, 320 geometry checks, eight seven-domain save/reopen
+pairs and four actual service-worker offline Continues. Eight original mobile
+captures were individually inspected, with their limited framing disclosed.
+This is preview evidence; actual trap combat remains open. The fresh production
+build at `5eb3948d`, with VITE_E2E unset, passes; 762 assets are hashed, six JS
+chunks contain none of five tested bridge patterns, and the actual offline
+precache checker finds all required assets among 756 URLs. Existing bundle-size
+and oversized-art-manifest build warnings remain; performance acceptance is open.
+
+The [follow-up packet](fixtures/assassin-traps/integration-followup.json) retains
+exact receipts and artifact hashes. Corrected actual-combat HP/MP, Death corpse
+and Shield attacker observations, visible mobile ally/enemy captures, remaining
+shared-corpse/reaction boundaries and final integrated/independent/earned gates
+are still required. No skill-inventory credit has been added.
 
 Root retains `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc`
 for continuing charge/trap evidence consumers. Exact owned files are tracked in

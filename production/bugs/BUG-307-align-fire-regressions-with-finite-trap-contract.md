@@ -1,6 +1,6 @@
 # BUG-307 — Align historical Fire regressions with finite trap semantics
 
-Status: Open — integration test expectations require contract reconciliation.
+Status: Fixed in 909f47dc — focused integration checks pass; fresh whole-unit gate remains required.
 Severity: Medium — the complete unit gate fails; no production defect is inferred yet.
 Build: ba1f1668e8b9a11321734474a4f9c856febecf00.
 Environment: local Vitest Node/jsdom, English and Chinese UI; deterministic combat seeds 7 and 41.
@@ -36,3 +36,18 @@ do not grant a full gate, skip cases, remove Burn assertions or restore scalar t
 
 Security check: pass for local test/fixture reconciliation; no credentials,
 dependencies, permissions, CI, save schema, remote or campaign changes.
+
+## Resolution
+
+The two named regressions now keep exact three-pulse seed7 damage and Ignite
+integrals, and seed41 explicitly proves the initial miss applies nothing before
+later independently rolled hits. Existing Ignite preserves the first positive
+potency while refreshing its stack lifetime: 5+4+3 stack-seconds for three hits,
+4+3 after the initial miss. Alias fixtures copy actual native trap ranks and
+clear inherited hero trap authority on the held monster. Strict optional types
+are preserved. The UI queries the actual bilingual per-pulse label.
+
+Regression paths: the two original files above. Final combined241/4, scoped
+strict types and lint pass, with source/HEAD/input hashes exact in the retained
+trap-fire-compat-final receipts. Original22-failure full and subsequent two-alias
+failure/type error remain retained. No production engine semantics were changed.

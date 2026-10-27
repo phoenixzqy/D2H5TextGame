@@ -20,3 +20,17 @@ Root cause: observer assumes the regular resource-group structure for a compact 
 Workaround: scope current evidence to actual log/MP/enemy-DOM observations; do not claim absent absolute HP or mobile visuals. Capture relevant sections after real scrolling and require finite observations in a corrected test. A product accessibility improvement should expose truthful compact resources rather than injecting test-only state. Re-run only the affected cases after the source/observer correction; preserve originals and do not weaken positive discharge/resource assertions.
 
 Current valid matrix evidence remains24cases/48rank combat proofs/48exact seven-domain save pairs/24actual offlineContinues. Cobra HP recovery is visible in actual positive combat log rows; positive victim MP transfer is independently unresolved under BUG304. No whole-mobile/a11y, earned, independent or skill acceptance is granted here.
+
+## Compact HP source correction — browser verification remains open
+
+5eb3948d adds the actual localized HP progressbar and names each unit group in
+src/features/combat/CombatScreen.tsx. The regression
+src/features/combat/CombatScreen.compact-health.test.tsx covers live fractional
+HP/max (including stale stats.life), all four unit kinds and death in both
+locales. Original compact-health-red two failures become part of the complete
+compact-health-branch201/20 PASS; scoped strict types and lint pass.
+
+No layout or combat resource behavior changes. A corrected production observer
+and visibly scrolled mobile ally/enemy screenshots are prepared but not yet
+executed here. This bug remains open until those missing observations exist;
+original charge matrix observations/captures are preserved.

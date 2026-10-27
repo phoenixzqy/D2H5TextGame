@@ -1,0 +1,557 @@
+{
+  "at": "2026-10-27T09:33:26.640157+00:00",
+  "sourceHead": "5eb3948d7ef3d3ae4cafa5bdeb2a54728cf38609",
+  "owner": "root",
+  "worktree": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+  "commits": {
+    "fireCompatibility": "909f47dc",
+    "nativeLifecycle": "efd15c95",
+    "compactHP": "5eb3948d"
+  },
+  "receipts": {
+    "trap-integrated-full": {
+      "label": "trap-integrated-full",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 1,
+      "seconds": 1122.006424905965,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "ba1f1668e8b9a11321734474a4f9c856febecf00",
+      "headAfter": "ba1f1668e8b9a11321734474a4f9c856febecf00",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯ Failed Tests 22 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  2 failed | 924 passed (926)",
+        "Tests  22 failed | 19780 passed | 2 skipped (19804)"
+      ]
+    },
+    "trap-integrated-types": {
+      "label": "trap-integrated-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 158.1293497440638,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "ba1f1668e8b9a11321734474a4f9c856febecf00",
+      "headAfter": "ba1f1668e8b9a11321734474a4f9c856febecf00",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-integrated-lint": {
+      "label": "trap-integrated-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 278.0117074329173,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "ba1f1668e8b9a11321734474a4f9c856febecf00",
+      "headAfter": "ba1f1668e8b9a11321734474a4f9c856febecf00",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-preview-public": {
+      "label": "trap-preview-public",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-preview.public.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 182.99819589301478,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "ba1f1668e8b9a11321734474a4f9c856febecf00",
+      "headAfter": "ba1f1668e8b9a11321734474a4f9c856febecf00",
+      "headUnchanged": true,
+      "totals": [
+        "\u001b[1A\u001b[2K  4 passed (3.0m)"
+      ]
+    },
+    "trap-native-lifecycle-cooldown-contract": {
+      "label": "trap-native-lifecycle-cooldown-contract",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/lifecycle.workspace.mjs"
+      ],
+      "exit": 0,
+      "seconds": 9.658632253063843,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "ba1f1668e8b9a11321734474a4f9c856febecf00",
+      "headAfter": "ba1f1668e8b9a11321734474a4f9c856febecf00",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  9 passed (9)"
+      ]
+    },
+    "trap-fire-compat-green": {
+      "label": "trap-fire-compat-green",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-fire.causal.test.ts",
+        "src/features/skills/SkillsScreen.assassin-fire.test.tsx",
+        "src/stores/assassin-traps-native.test.ts",
+        "src/features/skills/SkillsScreen.assassin-traps.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 31.706870269030333,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "119c626531d7a49207b92d9c8d638e24372a210d",
+      "headAfter": "119c626531d7a49207b92d9c8d638e24372a210d",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed | 3 passed (4)",
+        "Tests  2 failed | 239 passed (241)"
+      ]
+    },
+    "trap-fire-compat-types": {
+      "label": "trap-fire-compat-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/fire-compat.tsconfig.json"
+      ],
+      "exit": 2,
+      "seconds": 10.187554151052609,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "119c626531d7a49207b92d9c8d638e24372a210d",
+      "headAfter": "119c626531d7a49207b92d9c8d638e24372a210d",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-fire-compat-final": {
+      "label": "trap-fire-compat-final",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-fire.causal.test.ts",
+        "src/features/skills/SkillsScreen.assassin-fire.test.tsx",
+        "src/stores/assassin-traps-native.test.ts",
+        "src/features/skills/SkillsScreen.assassin-traps.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 31.098800346022472,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "119c626531d7a49207b92d9c8d638e24372a210d",
+      "headAfter": "119c626531d7a49207b92d9c8d638e24372a210d",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  4 passed (4)",
+        "Tests  241 passed (241)"
+      ]
+    },
+    "trap-fire-compat-final-types": {
+      "label": "trap-fire-compat-final-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/fire-compat.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 9.853002378018573,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "119c626531d7a49207b92d9c8d638e24372a210d",
+      "headAfter": "119c626531d7a49207b92d9c8d638e24372a210d",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-fire-compat-final-lint": {
+      "label": "trap-fire-compat-final-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/assassin-fire.causal.test.ts",
+        "src/features/skills/SkillsScreen.assassin-fire.test.tsx",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 8.544244295102544,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "119c626531d7a49207b92d9c8d638e24372a210d",
+      "headAfter": "119c626531d7a49207b92d9c8d638e24372a210d",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-lifecycle-branch": {
+      "label": "trap-lifecycle-branch",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-traps-lifecycle.test.ts",
+        "src/stores/assassin-traps-native.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 13.260068376082927,
+      "inputsUnchanged": true,
+      "inputCount": 2535,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "909f47dcfd8f105853d320d95e3968822c8b6aa1",
+      "headAfter": "909f47dcfd8f105853d320d95e3968822c8b6aa1",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  65 passed (65)"
+      ]
+    },
+    "trap-lifecycle-branch-types": {
+      "label": "trap-lifecycle-branch-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/lifecycle-branch.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 7.597535356064327,
+      "inputsUnchanged": true,
+      "inputCount": 2535,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "909f47dcfd8f105853d320d95e3968822c8b6aa1",
+      "headAfter": "909f47dcfd8f105853d320d95e3968822c8b6aa1",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-lifecycle-branch-lint": {
+      "label": "trap-lifecycle-branch-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/assassin-traps-lifecycle.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 7.794248312013224,
+      "inputsUnchanged": true,
+      "inputCount": 2535,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "909f47dcfd8f105853d320d95e3968822c8b6aa1",
+      "headAfter": "909f47dcfd8f105853d320d95e3968822c8b6aa1",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "compact-health-red": {
+      "label": "compact-health-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/health.workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 10.84782725700643,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "ba1f1668e8b9a11321734474a4f9c856febecf00",
+      "headAfter": "ba1f1668e8b9a11321734474a4f9c856febecf00",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  2 failed (2)"
+      ]
+    },
+    "compact-health-branch": {
+      "label": "compact-health-branch",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/combat"
+      ],
+      "exit": 0,
+      "seconds": 96.58139193698298,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "efd15c95310a8dd3aebab956d7258d448128613d",
+      "headAfter": "efd15c95310a8dd3aebab956d7258d448128613d",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  20 passed (20)",
+        "Tests  201 passed (201)"
+      ]
+    },
+    "compact-health-branch-types": {
+      "label": "compact-health-branch-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/health-branch.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 8.977907598949969,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "efd15c95310a8dd3aebab956d7258d448128613d",
+      "headAfter": "efd15c95310a8dd3aebab956d7258d448128613d",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "compact-health-branch-lint": {
+      "label": "compact-health-branch-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/features/combat/CombatScreen.tsx",
+        "src/features/combat/CombatScreen.compact-health.test.tsx",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 9.378370924037881,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "efd15c95310a8dd3aebab956d7258d448128613d",
+      "headAfter": "efd15c95310a8dd3aebab956d7258d448128613d",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-combat-build": {
+      "label": "trap-combat-build",
+      "command": [
+        "env",
+        "-u",
+        "VITE_E2E",
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/combat-dist"
+      ],
+      "exit": 0,
+      "seconds": 12.365536067984067,
+      "inputsUnchanged": true,
+      "inputCount": 2536,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "5eb3948d7ef3d3ae4cafa5bdeb2a54728cf38609",
+      "headAfter": "5eb3948d7ef3d3ae4cafa5bdeb2a54728cf38609",
+      "headUnchanged": true,
+      "totals": []
+    }
+  },
+  "artifactSha256": {
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-integrated-full.json": "389729ff476adccacdf11a7800aa8b6b3261484d56565931f8ded954d78b66cd",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-integrated-full.log": "5a3b6675c420e23cdbee5ab5e55f74e9f4ec04eaea7e0f5f92e497bff68f6498",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-integrated-full-inputs.json": "47922ff0949b827f21ee7a61fb38a6e45eebe71400538653a586f7c58bef0702",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-integrated-full-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-integrated-types.json": "1e2725c4d2f83a6f02e7f013b32b922af8ca89582e67cf9e00f6e0f8bee6b011",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-integrated-types.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-integrated-types-inputs.json": "47922ff0949b827f21ee7a61fb38a6e45eebe71400538653a586f7c58bef0702",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-integrated-types-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-integrated-lint.json": "f47f5eddef5f4a07c2276aa0b1ba19949efe2bc3920537ba275b3b7c23f2f087",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-integrated-lint.log": "dca195bd8f73cc6e5d4ec685b1fcde693749b018c94f1e3cbb04c4908a1a4c91",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-integrated-lint-inputs.json": "47922ff0949b827f21ee7a61fb38a6e45eebe71400538653a586f7c58bef0702",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-integrated-lint-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-preview-public.json": "8c18b19ec146764e19803a986120ab178626ab76c0507b0dfe91a8f3b8b526e3",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-preview-public.log": "4a4c558f5c1b6bc52902160fa73fc53dc8445f9690f5cdc25667e2a4fbb66ebc",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-preview-public-inputs.json": "47922ff0949b827f21ee7a61fb38a6e45eebe71400538653a586f7c58bef0702",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-preview-public-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-native-lifecycle-cooldown-contract.json": "de582d39f1e479808f73b8908979a2edb31638ca7427f7ee001bc6730d13dfd3",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-native-lifecycle-cooldown-contract.log": "911fa7e4930d3acb405865f4fee24d5e512f3a7f2891784bc1a1455703f6c33e",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-native-lifecycle-cooldown-contract-inputs.json": "47922ff0949b827f21ee7a61fb38a6e45eebe71400538653a586f7c58bef0702",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-native-lifecycle-cooldown-contract-external-inputs.json": "c0709da44814b88757a74eefe779e2d6654dc8720fcc41d19e134e25184bb8b9",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-green.json": "35b3a0e817fb9f2ab6b1a429f35957122f57d06fda368fe0d12a162ed5195355",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-green.log": "356a5a0ee2520143f0748cbac1b6ff6899c3a62aca64dfde58d4fdefb4b0b274",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-green-inputs.json": "6776e02a92ea1830ca20df3055a14696f7e6ff1fa8df823dacf7105a93f3f54e",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-green-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-types.json": "daadaad768c9893fd4872888bbb168288447445bb6635dcbb8d8cf5fd0efc1de",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-types.log": "2d631235402bf5066fcddfae1cbd07defc8d84a7e945e9cef86874f4ccb79923",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-types-inputs.json": "6776e02a92ea1830ca20df3055a14696f7e6ff1fa8df823dacf7105a93f3f54e",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-types-external-inputs.json": "06e0bbf24c1edaa75844399d928d9acd04618bc0565af6a1616dd3e8c41b6376",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-final.json": "c1890f2e1775f93dffba5a5c961a66cc8ccae796101d6d31944a409647f68fbb",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-final.log": "ec25ba6ecfa777a7965900dbcff6058a4ac094d52d0822627e4febdda6dd0949",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-final-inputs.json": "62e6b5e2f70ffb2ad8224261ac6fdd5f5f36ef386151e1e1e0c7cdd79f9410de",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-final-external-inputs.json": "06e0bbf24c1edaa75844399d928d9acd04618bc0565af6a1616dd3e8c41b6376",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-final-types.json": "0e11c1a0820fd021477f480a64eb94a7b6a26553972a7cd5a93f0b693262022d",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-final-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-final-types-inputs.json": "62e6b5e2f70ffb2ad8224261ac6fdd5f5f36ef386151e1e1e0c7cdd79f9410de",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-final-types-external-inputs.json": "06e0bbf24c1edaa75844399d928d9acd04618bc0565af6a1616dd3e8c41b6376",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-final-lint.json": "a11bfbd0324d64919c8bc8a180eaa97d8eefb11e2f91d5d3300c5546cb8394dd",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-final-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-final-lint-inputs.json": "62e6b5e2f70ffb2ad8224261ac6fdd5f5f36ef386151e1e1e0c7cdd79f9410de",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-fire-compat-final-lint-external-inputs.json": "06e0bbf24c1edaa75844399d928d9acd04618bc0565af6a1616dd3e8c41b6376",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-lifecycle-branch.json": "722722b431d27a68e0153a03623069f3ec9c3cb2bf57b1625760180dcdf4ce26",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-lifecycle-branch.log": "46b796e1292221c9497a4724e781925be2a323a0ad8c272cc70d845c9c7dcb1d",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-lifecycle-branch-inputs.json": "9ceee3bac9e6536e601f28753673d0f798d7bbf5227ad983c9d524b1738e2681",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-lifecycle-branch-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-lifecycle-branch-types.json": "669c1ae5e7e88e17be14cabf459d31eb76e20b03af4dc49a7bce9e0e1636fecb",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-lifecycle-branch-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-lifecycle-branch-types-inputs.json": "9ceee3bac9e6536e601f28753673d0f798d7bbf5227ad983c9d524b1738e2681",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-lifecycle-branch-types-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-lifecycle-branch-lint.json": "0b938b5a7f664bfcb70ac45d5d00a5dc8289b2bc57934cfcc6ee8fffb8d4928b",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-lifecycle-branch-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-lifecycle-branch-lint-inputs.json": "9ceee3bac9e6536e601f28753673d0f798d7bbf5227ad983c9d524b1738e2681",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-lifecycle-branch-lint-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-red.json": "b2936d6ccbbee399e6ca29ad83d1ed6270740e44bda41992742512e3b3f45af4",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-red.log": "4ea6c7015c362312d66143237cda6e91fe50310e16dbe314929404eeba0f75de",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-red-inputs.json": "47922ff0949b827f21ee7a61fb38a6e45eebe71400538653a586f7c58bef0702",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-red-external-inputs.json": "7356760aaaf735ced31e5b0436e1b2145478e55e4ca47d1b740b856de0e3c3bf",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-branch.json": "023cee2b824c84817b5b36bf354cf7f536372eea2c85338da57e844348ea734b",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-branch.log": "6f2b509b8e35ae732d1b1b1225154fea58fe3402f0f5eb702114fcb1dd9c4aaf",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-branch-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-branch-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-branch-types.json": "43d84127ac5f12fe66c0a7eb4d3524ddf3e14984e4d9eb93fca9eb319c10ce26",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-branch-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-branch-types-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-branch-types-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-branch-lint.json": "b67914c840d17f57b4736fb8724ea2c83c566edc50fccc40ce7fee710e6b0a36",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-branch-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-branch-lint-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/compact-health-branch-lint-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-build.json": "66fa8802ce97c12aa764f57ac908c5c48ac8e5f365609f116fb954af77345538",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-build.log": "af125d38b26b8dbae07bd8ec6f6bf748b49155fa1a1fd58fbaba723d11f6a2cc",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-build-inputs.json": "c51e4048d51adef306e3302c6d8c0ee8ba5345c3785699d9d6cb96e7ff275397",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-combat-build-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122"
+  },
+  "corrections": [
+    "Original full gate remains FAILED:22 failures/19780 passes/two existing skips. No aggregate pass is inferred from focused repairs.",
+    "Historical Fire tests now require three exact seeded damage rolls, exact first-potency refreshed Ignite totals, independent later hits after an initial miss, and complete native rank projections. Monster fixtures explicitly carry no hero trap authority.",
+    "Initial corrective alias comparison also exposed inherited hero ranks on the held target; an explicit undefined property failed exactOptionalPropertyTypes. Both original failed receipts are retained; final checks pass without source suppression.",
+    "Compact HP RED2 became GREEN2 as part of the complete201-case/20-file combat UI group. Actual fractional live HP is exposed for hero/merc/summon/enemy with localized names and death updates."
+  ],
+  "production": {
+    "previewCases": 4,
+    "rankPreviews": 64,
+    "geometryChecks": 320,
+    "sevenDomainSavePairs": 8,
+    "actualOfflineContinues": 4,
+    "actualCombat": "New public fixture prepared; not yet executed at this checkpoint.",
+    "build": {
+      "files": 762,
+      "javascriptChunks": 6,
+      "forbiddenPatterns": {
+        "__GAME__": [],
+        "seedPlayer": [],
+        "seedItem": [],
+        "forceVictory": [],
+        "jumpToAct": []
+      }
+    },
+    "precache": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/combat-dist"
+      ],
+      "exit": 0,
+      "precacheUrls": 756,
+      "missing": []
+    }
+  },
+  "remaining": [
+    "Actual production trap combat: ranks1/20, both locales, desktop/mobile, repeated typed HP loss, real MP, corpse consumption and Shield reaction.",
+    "Corrected visible mobile ally/enemy captures and finite HP browser readback; BUG306 remains open.",
+    "Shared corpse competition/reactive boundary gaps and one fresh stable integrated full/static gate.",
+    "Retention/readback/owned disposable cleanup, inventory reconciliation, earned/independent and whole-v1 acceptance."
+  ],
+  "inventory": {
+    "bounded": 195,
+    "unverified": 17,
+    "reviewNeeded": 1,
+    "newCredits": 0
+  },
+  "campaign": "L33; Ancients/Rite claimed; Baal uncleared; nextNormal402; no actions/replay",
+  "securityCheck": {
+    "verdict": "pass",
+    "scope": "authorized local component semantics and test/fixture reconciliation",
+    "constraints": "No credentials, dependencies, networking, CI, permissions, save version, remote publication or earned-campaign changes"
+  },
+  "retention": {
+    "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc",
+    "reason": "Continuing feature and full-v1 evidence consumers; actual browser fixture uses combat-dist",
+    "removeBy": "Root after terminal consumers, archive/readback and exact owned cleanup; no cleanup claimed"
+  }
+}
