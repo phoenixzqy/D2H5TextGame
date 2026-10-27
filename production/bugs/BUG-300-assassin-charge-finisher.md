@@ -1,6 +1,6 @@
 # BUG-300 — Implement real Assassin charge-up and finisher combat
 
-Status: Core runtime, exact charge observations and bilingual combat chips locally verified in cfa93bcc/04bf0ae4/a585900b; descriptions/previews, expanded lifecycle, public/whole-feature acceptance pending.
+Status: Core runtime, exact charge observations and bilingual combat chips locally verified in cfa93bcc/04bf0ae4/a585900b; shared bilingual descriptions/rank previews inab69b88d/9b0039a8 and preview-browser4/4 locally verified; BUG303 localization, expanded lifecycle, public combat and whole-feature acceptance pending.
 Severity: High — advertised charge mechanics have no functional path.
 Build: adc8528b9f144cf4387cee8a91cc336dcae03ff4.
 Environment: Vitest/jsdom native player projection, both locale-independent runtime paths; seed7. Constructed resources/target/stun bounds; no earned progression claim.
@@ -19,3 +19,5 @@ Workaround: select Talon first for ordinary uncharged kicks; charge-up fantasy r
 Prospective implementation passes17state/authority+22native+172existing compatibility=211cases outside the repository. Original failures and all external corrections retained; full branch/preview/lifecycle/public proof remains required.
 
 Integrated checkpoint: native/helper/compatibility276PASS/10files; full engine9931PASS/380files; actual UI related170PASS/19files and strict scoped types/lint. `docs/plans/evidence/d05-assassin-martial-charges.md` and its packet preserve original failures, complete increment hashes, scope and active evidence retention. No charge inventory credit or independent/earned/private-v1 acceptance.
+
+2026-10-27 preview checkpoint: engine9972/381, actual skill-screen/native1748/101, focused hover4/4 and original preview-browser4/4PASS. `fixtures/assassin-charges/preview-checkpoint.json` retains original browser failure, attachment audit and exact frozen inputs. Current full/types/lint attempts ended143 without receipts; no whole acceptance or new credit.

@@ -1,6 +1,6 @@
 # D05 — Assassin paid martial charges: integrated local checkpoint
 
-Root-author evidence, 2026-10-26. Core and charge chips verified locally; full feature, independent design/QA, earned balance and whole-private-v1 acceptance remain open. No skill inventory credit.
+Root-author evidence, 2026-10-26. Core, charge chips, bilingual rank previews and constructed preview/save browser flow verified locally; full feature, independent design/QA, earned balance and whole-private-v1 acceptance remain open. No skill inventory credit.
 
 ## Result
 
@@ -15,9 +15,19 @@ Root-author evidence, 2026-10-26. Core and charge chips verified locally; full f
 
 The preceding shadow19369PASS/907files full-unit result predates charges and does not establish current whole-unit acceptance. Constructed native/RTL cases are not production-browser, earned-campaign or whole-app mobile/a11y acceptance.
 
+## Rank previews and mobile selection checkpoint — 2026-10-27
+
+`ab69b88d` shares the actual captured-rank payout formula with previews, validates the complete authored martial template, and sums before flooring. Tiger rank1 examples are17–27/35–55/52–82; Cobra shows10/20/30% recovery without extra damage. `9b0039a8` explains cap/lifetime, paid survival/HP-loss conditions, independent expiry/wave reset, priority saturation, one Command capture, once-per-cast first-victim discharge and Cobra transfer limits in en/zh-CN across current/next/MAX. Ordinary finisher and Phoenix component semantics remain covered.
+
+Model RED40FAIL/1PASS→focused108PASS/7files; fresh full engine9972PASS/381files,188.632s. Preview RED80FAIL→GREEN80PASS; actual branch1748PASS/101files,173.937s; corrected80PASS and strict scoped762-file UI types/lintPASS. BUG302 documents the original public2PASS/1timeout/1not-run, caused by non-hover compatibility events replacing selected Tiger with locked Wake of Inferno during reflow. `81fbd496` checks `(any-hover: hover)` before mouse preview, preserving genuine hover, selection and keyboard focus. Canonical hover RED2FAIL/2PASS→4PASS; combined92PASS/3files and final scoped types/lint/buildPASS. Original fixture/RTL typing corrections and failures remain retained.
+
+Unchanged public spec/allocation/assertions/viewports/timeouts rerun at81fbd496:4/4PASS165.065s, repository2519inputs/external765inputs/HEAD exact. Attachment bodies independently decoded:80rank previews,400geometry samples,eight exact seven-domain save pairs,four actual service-worker offlineContinues. All eight original mobile PNGs individually inspected: Tiger/Cobra/Phoenix rank20 values readable; long rules need scrolling, fallback icons and clipped English Settings remain. Chinese Cobra still shows English Life Steal/Mana Steal; BUG303 reproduces4FAIL/76PASS at ranks0/1/19/20. This limits bilingual acceptance despite the original passing browser assertions. No public combat or earned claim.
+
+Final hover production audit: six JS chunks, all five bridge patterns absent,756precache URLs and no required assets missing. Only a test file changed since the successful build; all production inputs remain exact. Existing chunk/art-manifest warnings remain. See [preview packet](fixtures/assassin-charges/preview-checkpoint.json) for exact receipts, hashes, captures and limitations. Full unit/types/lint supervisors44015/63698/46258 ended143 without completion receipts; exact root-cwd child inspection found none live. Partial logs are retained; no current full/static pass is claimed.
+
 ## Remaining acceptance and retention
 
-[Author contract](../decisions/D05-assassin-martial-charges-v1.md) still requires bilingual descriptions/current-next-MAX previews, shield/death/reflection/Command/AOE and real wave/import/town-respec coverage, production en/zh desktop/mobile rank1/20 discharge/HP/MP proof, exact seven-domain saves/actual offline Continue and final stable full gates. Assassin traps/Flight adaptation, earned builds/economy/campaign and independent G0–G7 remain open.
+[Author contract](../decisions/D05-assassin-martial-charges-v1.md) still requires BUG303 localization correction, shield/death/reflection/Command/AOE and real wave/import/town-respec coverage, production en/zh desktop/mobile rank1/20 combat discharge/HP/MP proof and final stable full gates. Preview-only seven-domain saves/offline Continue do not replace combat proof. Assassin traps/Flight adaptation, earned builds/economy/campaign and independent G0–G7 remain open.
 
 Active exact root-owned evidence: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc`. Originals, scripts, hashes, logs, prototypes and task-local caches remain required for those consumers. Root owns eventual archive read-back and exact task-owned cleanup after consumers finish; no charge-task cleanup is claimed. The completed Amazon/shadow archives remain separately retained under their existing ownership conditions. Registered worktree remains in use for the unfinished umbrella goal.
 
