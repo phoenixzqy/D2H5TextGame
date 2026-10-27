@@ -54,5 +54,7 @@ Exact receipts/hashes and original browser/static errors are retained in
 [the follow-up packet](../../docs/plans/evidence/fixtures/assassin-traps/integration-followup.json).
 Original wrong Flee destination and intentional harness-warning classification
 failures were corrected in the observer; no app requirement or assertion was
-weakened. Root retains the raw charge/trap task for archive/readback and exact
-cleanup; no cleanup completion is claimed by this report.
+weakened. Raw evidence is now in the read-back-verified charge/trap archive and two sidecars
+listed in docs/plans/evidence/d06-assassin-traps.md. All9685raw files,one link and
+222directories were exactly cleaned with remaining[]/failures[]; shared dependency
+target preserved. Root retains archive/sidecars through full-v1/independent review.

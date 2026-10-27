@@ -1121,8 +1121,7 @@
       "src/features/combat/CombatScreen.monster-art.test.tsx": "3b5969314157c0222a570d975319a552d5a06edab14a399cfe9f4e4117b3e764"
     },
     "pending": [
-      "Archive/readback/exact task-owned disposable cleanup; no new inventory credit",
-      "Dragon Flight and remaining native/public/earned/independent acceptance remain open"
+      "Dragon Flight and remaining native/public/earned/independent acceptance; no new inventory credit"
     ],
     "independentAcceptance": false,
     "earnedCampaignAcceptance": false,
@@ -1383,5 +1382,46 @@
     }
   },
   "latestSourceHead": "19e5d0965cb95ca016538299311efc316bb431c3",
-  "latestFullIncludesSharedBoundariesAndMonsterArt": true
+  "latestFullIncludesSharedBoundariesAndMonsterArt": true,
+  "finalRetention": {
+    "owner": "root",
+    "at": "2026-10-27T10:35:06.244702+00:00",
+    "sourceRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc-raw.tar.gz",
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc-raw-manifest.json",
+    "archiveSha256": "aefbd85143cebde653daf664e98c8efa8f520c0525f52100072ff816be7bcd96",
+    "manifestSha256": "ade73cbe24df4ef89f382f0748f20ab7b8db73fd083faedc3ada9126431f9204",
+    "fileMembers": 9685,
+    "rawBytes": 756389226,
+    "archiveBytes": 619344846,
+    "readbackVerified": true,
+    "excludedSymlinks": [
+      {
+        "path": "node_modules",
+        "target": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules",
+        "resolvedTarget": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules",
+        "targetInode": 1566283
+      }
+    ],
+    "activeConsumers": [],
+    "consumerScanInaccessibleEntries": 31,
+    "cleanup": {
+      "at": "2026-10-27T10:35:29.207754+00:00",
+      "filesRemoved": 9685,
+      "symlinksUnlinked": 1,
+      "directoriesRemovedIncludingTaskRoot": 222,
+      "remaining": [],
+      "failures": [],
+      "sharedTargets": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules",
+          "preserved": true
+        }
+      ],
+      "consumerScanInaccessibleEntries": 30
+    },
+    "retentionOwner": "root through full-v1/independent consumers; no remote publication",
+    "stagingNote": "Archive/manifest/receipt moved byte-preservingly outside repository before Git staging; archive and manifest hashes unchanged."
+  },
+  "originalArtifactPathResolution": "Original absolute task paths resolve by removing sourceRoot prefix and reading that relative member from retained archive; raw task no longer exists."
 }

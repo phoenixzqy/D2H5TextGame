@@ -72,12 +72,11 @@ The [follow-up packet](fixtures/assassin-traps/integration-followup.json) retain
 exact receipts and artifact hashes. Subsequent completed local checks and remaining
 acceptance limits are recorded below. No skill-inventory credit has been added.
 
-Root retains `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc`
-for continuing charge/trap evidence consumers. Exact owned files are tracked in
-its manifests; root will archive, read back and clean disposables after consumers
-finish. Continuing evidence/cache cleanup is not yet complete. Shared tool caches
-and the registered worktree are preserved. No campaign or remote action occurred;
-the genuine earned state remains L33, Ancients/Rite claimed, Baal uncleared.
+The former raw task is now archived/read-back verified and exactly cleaned;
+see final retention below. Historical task paths in receipts resolve as relative
+archive members. Shared dependencies and the registered worktree are preserved.
+No campaign or remote action occurred; genuine earned state remains L33,
+Ancients/Rite claimed, Baal uncleared.
 
 ## Actual combat and final local gate — 2026-10-27
 
@@ -145,3 +144,26 @@ Updated exact receipts, source/build hashes, all original observer/static failur
 and protected genuine-save hashes are retained in the follow-up packet. Root
 will archive/read back and remove exact task-owned disposables now that the last
 original consumer is terminal. No new inventory or earned/independent acceptance.
+
+## Final raw retention and cleanup — 2026-10-27
+
+All9,685 regular-file members/756,389,226 raw bytes are archived and individually
+read-back SHA256/size verified. Root retains these exact evidence deliverables
+through full-v1 and independent review and owns their eventual removal:
+
+- /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc-raw.tar.gz
+- /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc-raw-manifest.json
+- /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc-retention.json
+
+Archive SHA256 aefbd85143cebde653daf664e98c8efa8f520c0525f52100072ff816be7bcd96.
+Manifest SHA256 ade73cbe24df4ef89f382f0748f20ab7b8db73fd083faedc3ada9126431f9204.
+Members use paths relative to the old task root; read them directly without
+extracting links. The shared node_modules link was excluded from the archive.
+
+After every original consumer was terminal, a fresh process scan found no owned
+consumer;30 inaccessible proc entries are disclosed. Exact rehash preceded
+9,685file removals/one symlink unlink/222directory removals including task root.
+Remaining[]/failures[]; shared dependency target inode/directory preserved. The
+packet carries full receipts. This closes disposable charge/trap cleanup, not
+BUG304/306, earned balance, independent acceptance or full-v1. No inventory
+credit is inferred; Flight has a separate continuing task.
