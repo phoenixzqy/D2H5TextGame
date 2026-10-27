@@ -11,3 +11,5 @@ Validate complete fields, finite bounded numbers, exact owner/template IDs, no u
 Before extraction: three independent literal rank/body/preview compatibility cases pass (valkyrie-before-extraction receipt) at ae60f9cd. Existing support diagnostic retains actual paid native rank1/20 Valkyrie body controls. Required next proof: complete schema/resolver rejection/copy tests, unchanged literal bodies/previews, actual buildSummon equality, affected/native checks, engine/static and public summon proof before inventory credit. No new credit from moving data alone.
 
 Root owns the active d2h5-amazon-support-ssrbktv_ task through all support/evidence consumers. No campaign, genuine replay, remote action, dependency or CI change. Security check: pass; first-party local JSON extraction and tests only. No delegation or independent self-approval.
+
+Implementation: fcf8503c. Native/public a75e1036 and lifecycle d90c002f pass. [Bounded evidence](../evidence/d06-amazon-valkyrie.md) records complete schema/copy/body oracles and production/browser/save limits. Combined support unit gate and retention remain pending; independent design/QA and earned balance remain open.

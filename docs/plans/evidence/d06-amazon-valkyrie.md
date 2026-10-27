@@ -1,0 +1,22 @@
+# D06 — Amazon Valkyrie body and lifecycle evidence
+
+Root-author evidence, 2026-10-26. Independent review, earned balance and full private-v1 acceptance remain open. No new inventory credit before the combined support gate and retention/cleanup.
+
+## Implementation and literal behavior
+
+fcf8503c moves the complete Valkyrie base body to strict closed JSON/schema and a pure copied/frozen definition; shared runtime and previews consume the same lookup. Values stay rank1/6/20: Life200/270/466, Attack40/55/97, Defense20/30/58. All other authored stats, shared MagicResist, +14/+3/+2 growth, eligibility, cost and preparation-only policy remain unchanged. a75e1036 adds five real native paid-body/eligibility/resource cases and production public proof; d90c002f adds two real-store lifecycle cases. Persistence I/O alone is mocked in lifecycle tests; allocated ranks, native waves, snapshot validation/import and combat preparation are real.
+
+## Terminal evidence
+
+- Before extraction: three literal body/preview controls PASS; external definition prototype24 PASS. Integrated engine9762/369 PASS193.002s before two unnecessary test optional chains were removed; final focused definitions/summons100/4 PASS4.417s, types4.505s/lint8.354s.
+- Promoted native Valkyrie and prior Inner Sight lifecycle7/2 PASS31.576s; public types19.990s/lint20.569s.
+- Two wrapped builds emitted complete output but terminated143 without runner receipts. Cause unknown; original logs/process/input/interruption records remain. Standard direct production build observed terminal0, Vite9.61s, all2467inputs and a75e1036 HEAD exact. Six chunks/five forbidden bridge patterns PASS; required756URLprecache PASS;762build hashes captured. All762files in each interrupted output exactly matched accepted direct output. Only those duplicate directories were removed; duplicate-build-cleanup.json records remaining[]/failures[] and accepted hashes exact. Existing chunk-size and optional-art warnings remain.
+- Public browser frozen a75e1036:4/4 PASS97.360s runner/95.764s Playwright; zero skipped/flaky/unexpected or retries. Four en/zh-CN desktop/mobile contexts, eight rank1/20 allocations/casts/real living bodies,40control geometry checks, eight exact seven-domain online/offline save pairs, four actual service-worker offline Continues. All2467inputs/HEAD exact.
+- External lifecycle2/1 PASS9.541s; current recording unchanged by allocation, next waves use ranks1→2, actual fresh200→214Life/40→43Attack/20→22Defense, one25MP payment at time0 from carried mana. Import preserves player/inventory/projection, clears transient bodies/events, and next run prepares a new paid body. Constructed L30/high-pool/equipment fixtures, never earned campaign evidence.
+- After promotion/formatting, focused native/lifecycle9/3 PASS10.227s, types10.409s/lint10.123s; all2468inputs/HEAD exact through terminals. No fresh full-unit run for combined support yet; previous18978 full belongs to the area snapshot.
+
+## Visual scope and retention
+
+valkyrie-public-audit.json verifies all16extracted original PNG hashes, eight casts,40geometries and eight domain pairs. Eight mobile originals individually viewed: en/zh-CN ranks1/20 previews and combat cards. Correct paid-body identity/art,200/466Life and40/97Attack visible; Chinese Defense/cost/CD visible. Long English preparation copy pushes stats below the first viewport; fixed nav crops/overlaps the lower panel, fallback emoji boxes and English nav clipping remain. Desktop originals retained but not individually visually inspected. These are bounded functional checks, not whole-app mobile/a11y acceptance.
+
+Exact task root: /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_. Key retained records: valkyrie-public-browser.json/log, valkyrie-public-report.json, valkyrie-public-audit.json, valkyrie-visuals/, valkyrie-lifecycle-external.json/log, valkyrie-lifecycle-promoted.json/log, valkyrie-direct-receipt.json, valkyrie-build-hashes.json, valkyrie-precache.log, duplicate-build-cleanup.json and original failures. Active support consumers still need this task; root owns eventual read-back retention and exact cleanup. node_modules is a symlink to shared worktree dependencies: unlink only when finished. No task cleanup or independent signoff claimed.
