@@ -1,6 +1,6 @@
 # BUG-296 — Implement actual finite Slow Missiles projectile slowing
 
-Status: Reproduced; source correction pending.
+Status: Runtime and skill previews implemented; integrated/public acceptance pending.
 Severity: High — advertised utility has no functional projectile consumer.
 Affected systems: engine-dev,content-designer,frontend-dev,writer,qa-engineer.
 
@@ -58,3 +58,12 @@ rows and bilingual description, add both status labels and retain native/public
 save/offline proof. No new tuning or permanent authority. Root author plan
 review: ready; security check: pass for authorized local gameplay presentation.
 Independent design/technical/QA and the full private-v1 gate remain open.
+
+c1a326db connects displayStats and Skills UI to the strict authored definition.
+All15external model/UI cases pass after14REDs, including current/next/MAX rank
+payment and malformed-source refusal. Scoped types/lint pass. The first scoped
+typecheck omitted the existing jest-dom setup augmentation; adding that existing
+setup to the external config fixes the harness without suppressions. The initial
+multi-file patch matched an outdated Chinese literal and failed atomically;
+repository status stayed clean before the corrected patch. All original outputs
+remain retained. Live combat labels and public production proof are still open.

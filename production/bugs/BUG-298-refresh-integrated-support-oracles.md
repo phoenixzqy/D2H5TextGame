@@ -57,3 +57,21 @@ Security check: pass. Scope: local first-party fixture/copy expectations and
 diagnostic traces; no credentials, dependency, networking, CI or save changes.
 Root author plan review: ready with the paired pre-flight control and complete
 trace. This is not an independent gate. Full integrated acceptance remains open.
+
+## First correction and engine catalog subcase
+
+5bd46eb7 updates only the three diagnosed test files. All409tests/3files PASS,
+16.807s; scoped types8.755s/lint10.160s PASS. Schema and gameplay are unchanged.
+
+The subsequent complete engine run reports9852PASS/onefailure across376files,
+561.523s, all2491inputs/HEAD exact. Its sole failure is
+`act1-lightning.test.ts` requiring every registered monster stub to be the original
+object reference. Authored projectile decoration intentionally returns a copy;
+unmarked stubs retain identity. This is not an engine-green result.
+
+An external unchanged-gameplay correction probe keeps reference checks for
+unmarked stubs, compares every field plus JSON flight for missiles, and checks
+the original stub array is unmodified. All31Lightning tests PASS,4.339s, with
+repository bytes/HEAD exact. Promote this source-backed expectation; preserve
+the original failure and run the combined gate again. Do not remove flight or
+relax damage, cooldown, RNG, affix, status or ordinary Lightning expectations.
