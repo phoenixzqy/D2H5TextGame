@@ -48,11 +48,13 @@ it('expires a paid pool at the exact idle boundary before the next uncharged bas
   const input = fixture(1), hero = input.playerTeam[0]; if (!hero) throw new Error('Missing hero');
   const out = runBattleRecorded({ ...input, playerTeam: [{ ...hero, mana: 3,
     statuses: [{ id: 'stun', sourceId: 'constructed-hold', stacks: 1, remaining: 15,
-      appliedAtMs: 1701, expiresAtMs: 16700 }] }] });
+      appliedAtMs: 1701, expiresAtMs: 16701 }] }] });
   expect(out.events.some(e => e.kind === 'status-state' && e.target === 'hero' && e.simClockMs === 1700 &&
     e.statuses.some(s => s.id === 'charge-tiger-strike' && s.stacks === 1))).toBe(true);
   expect(out.events.some(e => e.kind === 'status-state' && e.target === 'hero' && e.simClockMs === 16700 &&
     !e.statuses.some(s => s.id === 'charge-tiger-strike'))).toBe(true);
+  const expired = out.events.filter(e => e.kind === 'status-state').find(e => e.target === 'hero' && e.simClockMs === 16700);
+  expect(expired?.statuses).toEqual([expect.objectContaining({ id: 'stun', expiresAtMs: 16701 })]);
   const firstBasic = out.events.find(e => e.kind === 'action' && e.actor === 'hero' && e.skillId === null);
   expect(firstBasic?.simClockMs).toBe(17000);
   expect(out.events.filter(e => e.kind === 'damage' && e.source === 'hero' && e.simClockMs === 17000)).toHaveLength(1);

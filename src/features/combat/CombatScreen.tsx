@@ -33,9 +33,15 @@ import { recordedPlaybackBatch } from '@/stores/combatStore';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit, GridPosition } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
+import { ASSASSIN_CHARGE_DEFINITION } from '@/engine/skills/assassin-charges';
 import { endgameDefinition } from '@/data/loaders/endgame';
 import { readEndgameRequest } from '@/features/endgame/navigation';
 import { checkEndgameEntry } from '@/stores/endgameActions';
+
+const MARTIAL_CHARGE_LABELS = new Map(ASSASSIN_CHARGE_DEFINITION.builders.map(id => {
+  const slug = id.slice('assassin.'.length).replaceAll('_', '-');
+  return ['charge-' + slug, 'skills:assassin.' + slug + '.name'] as const;
+}));
 
 const MAX_LOG = 200;
 const SPEED_CYCLE = [1, 2, 4] as const;
@@ -740,25 +746,31 @@ function UnitCard({
   const sideTestId = isPlayerSide ? 'combat-ally-card' : 'combat-enemy-card';
   const chips = [
     ...unit.activeBuffIds.map((id) => ({ id, label: t(`effect.buff.${id}`, { defaultValue: humanizeEffectId(id) }), kind: 'buff' as const })),
-    ...unit.statuses.map((status) => ({
-      id: status.id,
-      label: status.id === 'bone-wall' && status.boneWall
-        ? t('effect.boneWallCapacity', { amount: status.boneWall.remaining })
-        : t(`effect.status.${status.id}`, { defaultValue: humanizeEffectId(status.id),
-          amount: status.boneArmor?.remaining ?? 0 }),
-      stacks: status.stacks,
-      kind: status.id === 'battle-command' || status.id === 'grim-ward' || status.id === 'oak-sage' || status.id === 'heart-of-wolverine' || status.id === 'spirit-of-barbs' ||
-        ((status.id === 'werewolf' || status.id === 'werebear') && unit.druidForm?.form === status.id) ||
-        (status.id === 'burst-of-speed' && status.statBuff !== undefined) ||
-        (status.id === 'feral-rage' && status.feralRage === true) ||
-        (status.id === 'frenzy' && status.frenzy === true) ||
-        (status.id === 'concentrate' && status.concentrate !== undefined) ||
-        ((status.id === 'teleport' || status.id === 'enchant') && status.sorceressBuff !== undefined) ||
-        (['blaze', 'fire-wall', 'thunder-storm', 'inferno'].includes(status.id) && status.periodicSpell !== undefined) ||
-        (status.id === 'bone-armor' && status.boneArmor !== undefined) ||
-        (status.id === 'bone-wall' && status.boneWall !== undefined) ? 'buff' as const
-        : status.dotPerStack !== undefined || status.id.includes('poison') || status.id.includes('ignite') || status.id.includes('plague') ? 'dot' as const : 'debuff' as const
-    }))
+    ...unit.statuses.map((status) => {
+      const chargeName = MARTIAL_CHARGE_LABELS.get(status.id);
+      return {
+        id: status.id,
+        label: chargeName !== undefined ? t('effect.martialCharge', {
+          skill: t(chargeName), stacks: status.stacks, maxStacks: ASSASSIN_CHARGE_DEFINITION.maxStacks,
+          seconds: Math.max(0, Math.ceil(status.remaining))
+        }) : status.id === 'bone-wall' && status.boneWall
+          ? t('effect.boneWallCapacity', { amount: status.boneWall.remaining })
+          : t(`effect.status.${status.id}`, { defaultValue: humanizeEffectId(status.id),
+            amount: status.boneArmor?.remaining ?? 0 }),
+        stacks: chargeName !== undefined ? 1 : status.stacks,
+        kind: chargeName !== undefined || status.id === 'battle-command' || status.id === 'grim-ward' || status.id === 'oak-sage' || status.id === 'heart-of-wolverine' || status.id === 'spirit-of-barbs' ||
+          ((status.id === 'werewolf' || status.id === 'werebear') && unit.druidForm?.form === status.id) ||
+          (status.id === 'burst-of-speed' && status.statBuff !== undefined) ||
+          (status.id === 'feral-rage' && status.feralRage === true) ||
+          (status.id === 'frenzy' && status.frenzy === true) ||
+          (status.id === 'concentrate' && status.concentrate !== undefined) ||
+          ((status.id === 'teleport' || status.id === 'enchant') && status.sorceressBuff !== undefined) ||
+          (['blaze', 'fire-wall', 'thunder-storm', 'inferno'].includes(status.id) && status.periodicSpell !== undefined) ||
+          (status.id === 'bone-armor' && status.boneArmor !== undefined) ||
+          (status.id === 'bone-wall' && status.boneWall !== undefined) ? 'buff' as const
+          : status.dotPerStack !== undefined || status.id.includes('poison') || status.id.includes('ignite') || status.id.includes('plague') ? 'dot' as const : 'debuff' as const
+      };
+    })
   ];
 
   return (

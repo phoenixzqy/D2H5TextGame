@@ -226,7 +226,8 @@
       "feral-rage": "野性狂暴",
       "teleport": "传送",
       "enchant": "附魔"
-    }
+    },
+    "martialCharge": "{{skill}} 蓄气 {{stacks}}/{{maxStacks}} · {{seconds}}秒"
   },
   "log_lines": {
     "hit": "{{attacker}} 对 {{target}} 造成 {{amount}} 点{{type}}伤害。",
