@@ -22,7 +22,7 @@ Only authenticated paid living unexpired Decoys draw hostile single-target picks
 
 Initial JSON-authored body:200Life,+20Life per additional paid rank;20Defense;0Attack/MP/attackSpeed/crit/dodge/find,crit multiplier1,all six resistances0. Shared friendly summon MagicResist remains authoritative. Life at ranks1/2/20 is200/220/580. Lifetime8000ms,+500ms per additional paid rank; ranks1/2/20 are8/8.5/17.5s. Do not copy owner equipment stats or grant Necromancer masteries. These are explicit provisional v1 tuning choices, not pre-existing balanced values.
 
-Preserve level24, prerequisite SlowMissiles, cap20,base15MP with−0.1/rank and base4sCD with−0.05/rank. Existing rounding yields rank1/20 payment15/13MP and4/3.1sCD. A real paid BattleCommand bonus changes captured body Life/lifetime/ranked payment once without changing allocation; it never learns/unlocks the skill. No inert passive dodge scaling remains advertised for this active utility.
+Preserve level24, prerequisite SlowMissiles, cap20,base15MP with−0.1/rank and base4sCD with−0.05/rank. Existing Number((4 - .05 *19).toFixed(1)) rounding yields rank1/20 payment15/13MP and4/3sCD; the earlier3.1s statement was a documentation error. A real paid BattleCommand bonus changes captured body Life/lifetime/ranked payment once without changing allocation; it never learns/unlocks the skill. No inert passive dodge scaling remains advertised for this active utility.
 
 ## Edge cases
 
@@ -43,3 +43,5 @@ Existing retained actual rank1/20 no-body REDs; strict schema rejection/copy/fin
 ## Author checks before implementation
 
 Security check:pass; first-party local engine/data/UI only, no credential/network/dependency/CI/permission change. Plan-review:ready after enforcing start-only preparation,paid private authority,inert scheduling,explicit taunt/AoE limits,exact expiry ties and no source/save mutation. DESIGN-REVIEW:CONCERNS. Eight sections are executable and combat invariants preserved; referenced pillars document is unavailable. New Life/lifetime tuning,independent review and earned balance remain open. No independent self-approval is claimed.
+
+Local implementation and bounded native/public checks are recorded in [Decoy evidence](../evidence/d06-amazon-decoy.md). Final engine9804/371,types/lint/build and four public contexts pass at03bf3c7a; combined full-unit support gate,retention,independent review and earned balance remain open. No inventory credit yet.
