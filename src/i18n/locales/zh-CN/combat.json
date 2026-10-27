@@ -46,6 +46,7 @@
     "available": "敌人倒下，留下一具尸体。可用尸体：{{count}}。",
     "consumed": "尸体爆炸消耗一具尸体。剩余尸体：{{count}}。",
     "consumedPoison": "尸体剧毒爆破消耗一具尸体。剩余尸体：{{count}}。",
+    "consumedDeathSentry": "亡者守卫消耗一具尸体，引发火焰爆炸。剩余尸体：{{count}}。",
     "consumedRedemption": "救赎消耗一具尸体。剩余尸体：{{count}}。",
     "consumedCarrion": "食尸藤消耗一具尸体恢复主人生命。剩余尸体：{{count}}。",
     "consumedSolar": "太阳藤消耗一具尸体恢复主人法力。剩余尸体：{{count}}。"

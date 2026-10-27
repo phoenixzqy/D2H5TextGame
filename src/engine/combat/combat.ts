@@ -2,7 +2,8 @@ import { AssassinCharges, ASSASSIN_CHARGE_DEFINITION, matchesAssassinMartialSkil
   copyAssassinMartialRanks, cobraChargeRecovery } from '../skills/assassin-charges';
 import { ProjectileFlights } from './projectile-flight';
 import { copyAssassinShadowSkills, matchesAssassinShadowAttack, qualifyAssassinShadow } from '../skills/assassin-shadow-skills';
-import { copyAssassinTrapRanks } from '../skills/assassin-traps';
+import { ASSASSIN_TRAP_IDS, assassinTrapDefinition, assassinTrapId, composeAssassinTrapRanks,
+  copyAssassinTrapRanks, matchesAssassinTrap, type AssassinTrapId } from '../skills/assassin-traps';
 import { SLOW_MISSILES_DEFINITION, SLOW_MISSILES_IDS, slowMissilesRank } from '../skills/slow-missiles';
 import { activeConversion, effectiveSide, opponentsOf, type ConversionBinding } from './allegiance';
 import { attackCandidates } from './attack-targets';
@@ -278,7 +279,19 @@ interface ProjectileImpact {
   readonly skillLevel: number;
 }
 
+interface PaidAssassinTrap {
+  readonly sourceId: string;
+  readonly id: AssassinTrapId;
+  readonly rank: number;
+  readonly createdAtMs: number;
+  readonly expiresAtMs: number;
+  nextPulseAtMs: number;
+  readonly counterDeadlines: Map<string, number>;
+}
+
 interface State {
+  /** Actual paid instances only, in global creation order; never copied from input. */
+  readonly assassinTraps: Map<string, PaidAssassinTrap>;
   readonly martialCharges: AssassinCharges;
   /** Only this battle's committed native paid bodies receive captured attack authority. */
   readonly assassinShadows: Map<string, { readonly ownerId: string;
@@ -448,12 +461,20 @@ function combatStatusView(state: State, unit: CombatUnit): CombatUnit {
 const MARTIAL_CHARGE_STATUS_IDS = new Set(ASSASSIN_CHARGE_DEFINITION.builders.map(id =>
   'charge-' + id.slice('assassin.'.length).replaceAll('_', '-')));
 
+const ASSASSIN_TRAP_STATUS_IDS = new Set(ASSASSIN_TRAP_IDS.map(id =>
+  'trap-' + id.slice('assassin.'.length).replaceAll('_', '-')));
+
 /** Observe committed state only; clocks, raw statuses and RNG remain authoritative. */
 function observeStatuses(state: State, target: string, initial = false): void {
   const unit = state.units.get(target);
   if (!unit) return;
   const active: ActiveStatus[] = alive(unit) ? [
-    ...combatStatusView(state, unit).statuses.filter(status => !MARTIAL_CHARGE_STATUS_IDS.has(status.id)),
+    ...combatStatusView(state, unit).statuses.filter(status =>
+      !MARTIAL_CHARGE_STATUS_IDS.has(status.id) && !ASSASSIN_TRAP_STATUS_IDS.has(status.id)),
+    ...[...state.assassinTraps.values()].filter(paid => paid.sourceId === target && activeAssassinTrap(state, paid))
+      .map(paid => ({ id: 'trap-' + paid.id.slice('assassin.'.length).replaceAll('_', '-'),
+        sourceId: target, stacks: 1, remaining: (paid.expiresAtMs - state.simClockMs) / SECONDS,
+        appliedAtMs: paid.createdAtMs, expiresAtMs: paid.expiresAtMs })),
     ...state.martialCharges.peek(target, state.simClockMs).map(pool => ({
       id: 'charge-' + pool.builder.slice('assassin.'.length).replaceAll('_', '-'),
       sourceId: target, stacks: pool.ranks.length,
@@ -646,7 +667,8 @@ function pickDefender(
 function registerUnit(state: State, u: CombatUnit): void {
   const traps = u.assassinTrapRanks === undefined ? u : { ...u, assassinTrapRanks: copyAssassinTrapRanks(u.assassinTrapRanks) };
   const projected = u.assassinMartialRanks === undefined ? traps : { ...traps, assassinMartialRanks: copyAssassinMartialRanks(u.assassinMartialRanks) };
-  const copiedBuffs = copyBoneWallStatuses(copySorceressBuffStatuses(projected));
+  const stripped = { ...projected, statuses: projected.statuses.filter(status => !ASSASSIN_TRAP_STATUS_IDS.has(status.id)) };
+  const copiedBuffs = copyBoneWallStatuses(copySorceressBuffStatuses(stripped));
   const shadowNative = u.assassinShadowSkills === undefined ? copiedBuffs : {
     ...copiedBuffs, assassinShadowSkills: copyAssassinShadowSkills(u.assassinShadowSkills) };
   const native = u.druidSummonRanks === undefined ? shadowNative : { ...shadowNative, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
@@ -814,7 +836,8 @@ function applyDamageToUnit(
   armorReaction = false,
   periodicSpell = false,
   projectileImpact = false,
-  martialSkill?: RegisteredSkill
+  martialSkill?: RegisteredSkill,
+  auxiliaryHit?: 'trap' | 'martial-release'
 ): void {
   const attacker = state.units.get(attackerId);
   const defender = state.units.get(defenderId);
@@ -1010,7 +1033,7 @@ function applyDamageToUnit(
   }
   // The curse punishes a paid attack even when its victim dies; ordinary Thorns keeps its living-wearer rule.
   const livingReflectionPct = after && alive(after) ? ordinaryReflectionPct : 0;
-  const reflectionPct = ironMaiden + livingReflectionPct;
+  const reflectionPct = auxiliaryHit === 'trap' ? 0 : ironMaiden + livingReflectionPct;
   // Only ordinary Thorns retains its minimum-one rule; a pure curse floors tiny HP loss to zero.
   const raw = Math.max(livingReflectionPct > 0 ? 1 : 0, Math.floor(physicalHpRemoved * reflectionPct));
   if (after && hostileHit && physicalHpRemoved > 0 && reflectionPct > 0 && raw > 0) {
@@ -1038,7 +1061,7 @@ function applyDamageToUnit(
   // Explicit skill-hit recovery observes actual HP removed, after ordinary death/orb/reflection settlement.
   const hpRemoved = defender.life - newLife;
   const tappedAttacker = state.units.get(attackerId);
-  if (hostileHit && hpRemoved > 0 && lifeTap > 0 && tappedAttacker && alive(tappedAttacker))
+  if (auxiliaryHit !== 'trap' && hostileHit && hpRemoved > 0 && lifeTap > 0 && tappedAttacker && alive(tappedAttacker))
     commitHealing(state, tappedAttacker, Math.floor(hpRemoved * lifeTap / 100));
   const owner = state.units.get(attackerId);
   if (!basicHit && !auraPulse && !armorReaction && !periodicSpell && hostileHit && hpRemoved > 0 && owner && alive(owner)) {
@@ -1102,12 +1125,15 @@ function applyDamageToUnit(
             if (debit) emit(state, debit); if (credit) emit(state, credit);
           }
         } else if (victim && alive(victim) && release.effect) {
-          applyDamageToUnit(state, attackerId, defenderId, release.effect);
+          applyDamageToUnit(state, attackerId, defenderId, release.effect, 1, false, false, false, false, false, undefined, 'martial-release');
         }
       }
     }
   }
-  recoverBloodGolem(state, attackerId, hpRemoved, hostileHit);
+  if (auxiliaryHit !== 'trap') recoverBloodGolem(state, attackerId, hpRemoved, hostileHit);
+  if (auxiliaryHit === undefined && !auraPulse && !armorReaction && !periodicSpell && hostileHit &&
+    effect.damageType === 'physical' && physicalHpRemoved > 0)
+    reactBladeShield(state, defenderId, attackerId);
   if (bolts && hostileHit && outcome.hit && !basicHit && !auraPulse && !armorReaction && !periodicSpell) {
     const bolt: DamageEffect = { kind: 'damage', damageType: 'lightning',
       base: [bolts.damage.min, bolts.damage.max], perRank: [bolts.damage.perRank, bolts.damage.perRank] };
@@ -1218,7 +1244,10 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
   // Publish only after the complete closure/effects, in the existing death-event order.
   // Keep every outcome unit and handled death intact for rewards and replay.
   const aura = state.statAura;
-  if (state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0 || state.findPotion.size > 0 || state.findItem.size > 0 || state.grimWard.size > 0 ||
+  const deathSentry = getSkill('assassin.death_sentry');
+  const hasDeathSentry = deathSentry !== undefined && [...state.units.values()].some(unit =>
+    authorizedAssassinTrapRank(state, unit, deathSentry) > 0);
+  if (hasDeathSentry || state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0 || state.findPotion.size > 0 || state.findItem.size > 0 || state.grimWard.size > 0 ||
     (aura?.redemption !== undefined && activeStatAura(aura, aura.sourceHeroId, state.units) !== undefined) ||
     [...state.druidSummons.keys()].some(id => {
       const bound = activeDruidSummon(state, id);
@@ -1338,6 +1367,7 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 function learnedSkillLevel(state: State, unit: CombatUnit, skill: RegisteredSkill, legacyFallback = 1): number {
   const shadow = state.assassinShadows.get(unit.id);
   if (shadow) return shadow.plan.attacks.find(entry => entry.id === skill.id)?.rank ?? 0;
+  if (assassinTrapId(skill.id)) return authorizedAssassinTrapRank(state, unit, skill);
   if (SLOW_MISSILES_IDS.some(id => id === skill.id)) return slowMissilesRank(unit);
   if (DECOY_IDS.some(id => id === skill.id)) return decoyRank(unit);
   if (BONE_WALL_IDS.some(id => id === skill.id)) return boneWallRank(unit);
@@ -1510,6 +1540,33 @@ function authorizedMartialSkill(state: State, unit: CombatUnit, skill: Registere
     rank !== undefined && rank > 0 && unit.skillLevels?.[skill.id] === rank;
 }
 
+/** Native learned projection or this battle's committed shadow alone authorizes payment. */
+function authorizedAssassinTrapRank(state: State, unit: CombatUnit, skill: RegisteredSkill): number {
+  const id = assassinTrapId(skill.id);
+  if (!id || unit.id.length === 0 || !matchesAssassinTrap(skill) || unit.side !== 'player' || effectiveSide(state, unit) !== 'player' ||
+    !Number.isFinite(unit.life) || !alive(unit) || !Number.isInteger(unit.level) || unit.level < skill.minLevel) return 0;
+  const binding = state.assassinShadows.get(unit.id), owner = binding && state.units.get(binding.ownerId);
+  if (binding) return owner && alive(owner) && unit.kind === 'summon' && unit.summon === true &&
+    unit.summonOwnerId === binding.ownerId && (unit.ownerId === undefined || unit.ownerId === binding.ownerId) &&
+    unit.summonTemplateId === binding.template ? binding.plan.attacks.find(row => row.id === id)?.rank ?? 0 : 0;
+  if (unit.kind !== 'hero' || unit.summon === true || unit.ownerId !== undefined || unit.summonOwnerId !== undefined) return 0;
+  const rank = unit.assassinTrapRanks?.[id];
+  if (rank === undefined) return 0;
+  const native = composeAssassinTrapRanks({ class: 'assassin', level: unit.level,
+    comboOrder: unit.skillOrder, ...(unit.skillLevels ? { skillLevels: unit.skillLevels } : {}) });
+  return rank === native[id] ? rank : 0;
+}
+
+function trapKey(sourceId: string, id: AssassinTrapId): string { return JSON.stringify([sourceId, id]); }
+
+function activeAssassinTrap(state: State, paid: PaidAssassinTrap): boolean {
+  const source = state.units.get(paid.sourceId), binding = state.assassinShadows.get(paid.sourceId);
+  const owner = binding && state.units.get(binding.ownerId);
+  return state.simClockMs < paid.expiresAtMs && source !== undefined && alive(source) &&
+    source.side === 'player' && effectiveSide(state, source) === 'player' &&
+    (!binding || (owner !== undefined && alive(owner)));
+}
+
 function canUseSkillForState(
   state: State,
   unit: CombatUnit,
@@ -1517,6 +1574,12 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  const trap = assassinTrapId(skillOrderId) ?? assassinTrapId(skill.id);
+  const activeTrap = trap && state.assassinTraps.get(trapKey(unit.id, trap));
+  if (trap && (assassinTrapId(skill.id) !== trap || authorizedAssassinTrapRank(state, unit, skill) === 0 ||
+    !Number.isFinite(unit.mana) || unit.mana < 0 || !Number.isFinite(unit.stats.manaMax) ||
+    unit.mana > unit.stats.manaMax || (activeTrap !== undefined && activeAssassinTrap(state, activeTrap)) ||
+    [trap, 'skills-assassin-' + trap.slice(9).replaceAll('_', '-')].some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   if (ASSASSIN_CHARGE_DEFINITION.builders.some(id => id === skill.id) &&
     authorizedMartialSkill(state, unit, skill) && state.martialCharges.saturated(unit.id, state.simClockMs)) return false;
   if (unit.summonTemplateId === 'shadow_warrior' || unit.summonTemplateId === 'shadow_master') {
@@ -2030,6 +2093,8 @@ function castSkill(
   const actor = state.units.get(actorId);
   if (!actor) return;
 
+  const trap = assassinTrapId(skillOrderId) ?? assassinTrapId(skill.id);
+  if (trap && !canUseSkillForState(state, actor, skill, skillOrderId, opponentsOf(state, actor).length > 0)) return;
   const ce = isCorpseExplosionId(skillOrderId) || isCorpseExplosionId(skill.id);
   const pe = isPoisonExplosionId(skillOrderId) || isPoisonExplosionId(skill.id);
   const fp = isFindPotionId(skillOrderId) || isFindPotionId(skill.id) ||
@@ -2063,6 +2128,18 @@ function castSkill(
 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
   if (manaEvent) emit(state, manaEvent);
+  if (trap) {
+    const definition = assassinTrapDefinition(trap), key = trapKey(actorId, trap);
+    // Expired recasts are new creations and therefore go to the end of the stable order.
+    state.assassinTraps.delete(key);
+    const paid: PaidAssassinTrap = { sourceId: actorId, id: trap, rank: skillLevel,
+      createdAtMs: state.simClockMs, expiresAtMs: state.simClockMs + definition.durationMs,
+      nextPulseAtMs: state.simClockMs, counterDeadlines: new Map() };
+    state.assassinTraps.set(key, paid);
+    observeStatuses(state, actorId);
+    if (definition.mode !== 'reactive') pulseAssassinTrap(state, paid);
+    return;
+  }
   if (consumesCorpse && !fi && !gw) emit(state, { kind: 'message', messageKey: fp ? 'combat:corpses.consumedFindPotion'
     : pe ? 'combat:corpses.consumedPoison' : 'combat:corpses.consumed',
     params: { count: state.corpses.length, ...(fp && corpseId !== undefined ? { corpseId } : {}) } });
@@ -2377,6 +2454,52 @@ function pulsePaidSpell(state: State, actorId: string, id: PeriodicSpellId): voi
   }
 }
 
+/** One scheduled opportunity, with no action, repeated payment, or banked targets. */
+function pulseAssassinTrap(state: State, paid: PaidAssassinTrap): void {
+  if (!activeAssassinTrap(state, paid)) return;
+  const definition = assassinTrapDefinition(paid.id);
+  paid.nextPulseAtMs = state.simClockMs + definition.intervalMs;
+  if (definition.mode === 'reactive') return;
+  const source = state.units.get(paid.sourceId);
+  if (!source) return;
+  // Reserve exactly one oldest real body before damage can create another one.
+  const corpseId = definition.mode === 'corpse' ? state.corpses.shift() : undefined;
+  const effect: DamageEffect = definition.mode === 'corpse' && corpseId === undefined
+    ? { kind: 'damage', damageType: 'lightning', ...definition.lightning } : definition.pulse;
+  if (corpseId !== undefined) emit(state, { kind: 'message', messageKey: 'combat:corpses.consumedDeathSentry',
+    params: { count: state.corpses.length, corpseId } });
+  for (const target of targetPriority(state, opponentsOf(state, source))) {
+    if (!activeAssassinTrap(state, paid)) break;
+    applyDamageToUnit(state, paid.sourceId, target.id, effect, paid.rank,
+      false, false, false, true, false, undefined, 'trap');
+  }
+}
+
+/** Expiry/death precedes pulses; map insertion order is battle-local creation order. */
+function settleAssassinTraps(state: State): void {
+  for (const [key, paid] of state.assassinTraps) {
+    if (!activeAssassinTrap(state, paid)) {
+      state.assassinTraps.delete(key);
+      observeStatuses(state, paid.sourceId);
+    } else if (assassinTrapDefinition(paid.id).mode !== 'reactive' && paid.nextPulseAtMs <= state.simClockMs) {
+      pulseAssassinTrap(state, paid);
+      if (winnerOf(state) !== null) return;
+    }
+  }
+}
+
+/** Positive ordinary Physical HP loss only; attempts reserve the per-attacker interval. */
+function reactBladeShield(state: State, defenderId: string, attackerId: string): void {
+  const paid = state.assassinTraps.get(trapKey(defenderId, 'assassin.blade_shield'));
+  const attacker = state.units.get(attackerId);
+  if (!paid || !activeAssassinTrap(state, paid) || !attacker || !alive(attacker) ||
+    state.simClockMs < (paid.counterDeadlines.get(attackerId) ?? -Infinity)) return;
+  const definition = assassinTrapDefinition(paid.id);
+  paid.counterDeadlines.set(attackerId, state.simClockMs + definition.intervalMs);
+  applyDamageToUnit(state, defenderId, attackerId, definition.pulse, paid.rank,
+    false, false, false, true, false, undefined, 'trap');
+}
+
 /** Periodic deaths/expiry and ambient auras precede spells; spells precede same-time ordinary actions. */
 function settlePaidSpells(state: State): void {
   cancelInterruptedChannels(state);
@@ -2516,6 +2639,10 @@ function projectileSpeed(state: State, sourceId: string): number {
 
 function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   let boundary = Math.min(MAX_SIM_MS, nextActionAt);
+  for (const paid of state.assassinTraps.values()) if (activeAssassinTrap(state, paid)) {
+    boundary = Math.min(boundary, paid.expiresAtMs);
+    if (assassinTrapDefinition(paid.id).mode !== 'reactive') boundary = Math.min(boundary, paid.nextPulseAtMs);
+  }
   boundary = Math.min(boundary, state.projectiles.nextImpactAt(id => projectileSpeed(state, id)) ?? Infinity);
   // Dead sources can still have flying shots; their private paid window expires normally.
   for (const binding of state.slowMissiles.values())
@@ -3120,6 +3247,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     grimWards: new Map(),
     corpses: [],
     druidSummons: new Map(),
+    assassinTraps: new Map(),
     martialCharges: new AssassinCharges(),
     assassinShadows: new Map(),
     fireGolems: new Map(),
@@ -3253,6 +3381,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     if (winnerOf(state) !== null) break;
     settleGrimWards(state);
     settlePaidSpells(state);
+    if (winnerOf(state) !== null) break;
+    settleAssassinTraps(state);
     if (winnerOf(state) !== null) break;
     // Existing periodic/ambient deaths settle first; impacts precede tied actions.
     for (const impact of impacts) {

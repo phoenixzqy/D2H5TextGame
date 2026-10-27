@@ -46,6 +46,7 @@
     "available": "A fallen enemy leaves a corpse. Available: {{count}}.",
     "consumed": "Corpse Explosion consumes a corpse. Remaining: {{count}}.",
     "consumedPoison": "Poison Explosion consumes a corpse. Remaining: {{count}}.",
+    "consumedDeathSentry": "Death Sentry consumes a corpse for a Fire explosion. Remaining: {{count}}.",
     "consumedRedemption": "Redemption consumes a corpse. Remaining: {{count}}.",
     "consumedCarrion": "Carrion Vine consumes a corpse to restore its owner’s life. Remaining: {{count}}.",
     "consumedSolar": "Solar Creeper consumes a corpse to restore its owner’s mana. Remaining: {{count}}."
