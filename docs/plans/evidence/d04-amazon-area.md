@@ -1,6 +1,6 @@
 # D04 — Amazon cross, explosions and uncapped chain
 
-Author functional implementation checkpoint,2026-10-26. [Contract](../decisions/D04-amazon-area-v1.md),[BUG289](../../../production/bugs/BUG-289-give-amazon-area-attacks-spatial-selectors.md).
+Bounded author functional verification complete,2026-10-26. [Contract](../decisions/D04-amazon-area-v1.md),[BUG289](../../../production/bugs/BUG-289-give-amazon-area-attacks-spatial-selectors.md).
 Independent design/QA,earned builds and balance remain open.
 
 ## Behavior
@@ -35,7 +35,7 @@ include. No gameplay assertion,suppression,skip,threshold or production rule was
 weakened. Prospective typed staging1399files/71directories removed after terminal
 checks,shared dependencies preserved.
 
-## Integrated checkpoint pending
+## Initial integrated checkpoint (historical)
 
 Freeze source/config/test bytes AND HEAD through full engine/unit/types/lint,
 production build/bridge/precache and en/zh desktop/mobile public browser tests.
@@ -68,3 +68,38 @@ types7.502s/lint4.906s pass. Original report/trace/test source retained unchange
 Fresh four-context public acceptance and full unit are next;freeze both bytes
 and Git HEAD throughout. No passing final browser/full result or inventory credit
 is claimed yet. Independent/earned acceptance and full privatev1 remain open.
+
+
+## Terminal integrated result and bounded credit
+
+At frozen `f1fbd169`,Test Files  874 passed (874); Tests  18978 passed | 2 skipped (18980) PASS in 921.313s; all2451 captured inputs
+and before/afterHEAD exact. Production4/4PASS140.017s runner/138.728sPlaywright,
+zero skips/retries/flakes/errors. Actual en/zh desktop/mobile16 selected typed
+casts,80geometries,eight exact seven-domain online/offline pairs and four actual
+service-worker offline Continues pass. Sixteen mobile originals individually
+viewed; exact names/MAX/ranges and Ignite/点燃/Paralyze/麻痹 visible. Long copy
+requires scrolling; element captures include sticky controls/nav overlap and
+clipped rows; emoji fallback boxes and English nav edge clipping persist.
+Whole-app mobile/a11y/P16 acceptance remains open.
+
+Original20b07133 engine9661/365,full types/lint/build/bridge/756URLprecache pass.
+The sole later input delta is BUG290's two public chip-title literals;all2450
+other inputs and762 build outputs exact. Final focused public types/lint and
+fresh full/browser validate the corrected test. Original failure retained.
+
+1393 raw archive members read back/hash-verified;2157 exact files/40
+directories removed,remaining[]/failures[],port4601closed;shared dependencies
+preserved. Protected genuine save compressed/raw hashes and762build outputs
+exact. Root retains /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-area-8f7ngk0q-retained.tar.gz plus its -retention.json/-cleanup.json sidecars
+through full-v1 evidence/independent review consumers;root removes afterward.
+Archive SHA256: 27e65f3ededa5cd620cfbb771319104d5ad0024d6c603690f4b0d2206d49ccf5.
+[Compact packet](fixtures/amazon-area/packet.json) retains receipts,visual limits,
+public counts and exact inventory reconciliation.
+
+Exactly Fend/Exploding/Immolation/Fury receive bounded credit:190bounded/
+21unverified/oneengine-only/onereview-needed;209other raw rows/header/213IDs/order
+preserved. Amazon25bounded/fourunverified/oneengine-only. Provisional author
+footprints/caps remain unmeasured tuning;no independent or earned acceptance.
+Next support diagnosis retains paid InnerSight/SlowMissiles/Decoy REDs and
+Valkyrie controls. GenuineL33/Ancients-Rite/next402/Baaluncleared unchanged.
+Original full-v1 goal and registered worktree remain active.

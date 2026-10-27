@@ -1,0 +1,338 @@
+{
+  "state": "bounded-functional;independent-and-earned-acceptance-open;retained-and-cleaned",
+  "sourceHead": "f1fbd1698b6cffc303944683dc45b934d52123fa",
+  "taskOwner": "root",
+  "receipts": {
+    "area-integrated-engine": {
+      "label": "area-integrated-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "exit": 0,
+      "seconds": 191.03175219800323,
+      "inputsUnchanged": true,
+      "inputCount": 2451,
+      "headBefore": "20b07133481d9c6f4db18c5b1bbd5fd4ec74894a",
+      "headAfter": "20b07133481d9c6f4db18c5b1bbd5fd4ec74894a",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  365 passed (365)",
+        "Tests  9661 passed (9661)"
+      ]
+    },
+    "area-integrated-types": {
+      "label": "area-integrated-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 149.5510655210819,
+      "inputsUnchanged": true,
+      "inputCount": 2451,
+      "headBefore": "20b07133481d9c6f4db18c5b1bbd5fd4ec74894a",
+      "headAfter": "20b07133481d9c6f4db18c5b1bbd5fd4ec74894a",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "area-integrated-lint": {
+      "label": "area-integrated-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 236.34487153496593,
+      "inputsUnchanged": true,
+      "inputCount": 2451,
+      "headBefore": "20b07133481d9c6f4db18c5b1bbd5fd4ec74894a",
+      "headAfter": "20b07133481d9c6f4db18c5b1bbd5fd4ec74894a",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "area-integrated-build": {
+      "label": "area-integrated-build",
+      "command": [
+        "env",
+        "-u",
+        "VITE_E2E",
+        "node_modules/.bin/vite",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-area-8f7ngk0q/production-dist",
+        "--emptyOutDir"
+      ],
+      "exit": 0,
+      "seconds": 16.917894692975096,
+      "inputsUnchanged": true,
+      "inputCount": 2451,
+      "headBefore": "20b07133481d9c6f4db18c5b1bbd5fd4ec74894a",
+      "headAfter": "20b07133481d9c6f4db18c5b1bbd5fd4ec74894a",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "area-integrated-bridge": {
+      "label": "area-integrated-bridge",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-area-8f7ngk0q/verify-area-build.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-area-8f7ngk0q/production-dist"
+      ],
+      "exit": 0,
+      "seconds": 0.2257284539518878,
+      "inputsUnchanged": true,
+      "inputCount": 2451,
+      "headBefore": "20b07133481d9c6f4db18c5b1bbd5fd4ec74894a",
+      "headAfter": "20b07133481d9c6f4db18c5b1bbd5fd4ec74894a",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "area-integrated-precache": {
+      "label": "area-integrated-precache",
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-area-8f7ngk0q/production-dist"
+      ],
+      "exit": 0,
+      "seconds": 0.19623231596779078,
+      "inputsUnchanged": true,
+      "inputCount": 2451,
+      "headBefore": "20b07133481d9c6f4db18c5b1bbd5fd4ec74894a",
+      "headAfter": "20b07133481d9c6f4db18c5b1bbd5fd4ec74894a",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "area-public-attempt2": {
+      "label": "area-public-attempt2",
+      "command": [
+        "env",
+        "AMAZON_AREA_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-area-8f7ngk0q/production-dist",
+        "AMAZON_AREA_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-area-8f7ngk0q/public-attempt2-output",
+        "AMAZON_AREA_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-area-8f7ngk0q/public-attempt2-report.json",
+        "PWA_PORT=4601",
+        "node_modules/.bin/playwright",
+        "test",
+        "--config",
+        "tests/pwa/amazon-area-acceptance.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 140.01650207699277,
+      "inputsUnchanged": true,
+      "inputCount": 2451,
+      "headBefore": "f1fbd1698b6cffc303944683dc45b934d52123fa",
+      "headAfter": "f1fbd1698b6cffc303944683dc45b934d52123fa",
+      "headUnchanged": true,
+      "totals": [
+        "\u001b[1A\u001b[2K  4 passed (2.3m)"
+      ]
+    },
+    "area-integrated-full": {
+      "label": "area-integrated-full",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "seconds": 921.3127594620455,
+      "inputsUnchanged": true,
+      "inputCount": 2451,
+      "headBefore": "f1fbd1698b6cffc303944683dc45b934d52123fa",
+      "headAfter": "f1fbd1698b6cffc303944683dc45b934d52123fa",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  874 passed (874)",
+        "Tests  18978 passed | 2 skipped (18980)"
+      ]
+    },
+    "area-public-final-types": {
+      "label": "area-public-final-types",
+      "command": [
+        "node_modules/.bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-area-8f7ngk0q/public-tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 7.50211355695501,
+      "inputsUnchanged": true,
+      "inputCount": 2451,
+      "headBefore": "7637216e236a7816653b0818b7c546642dff4e12",
+      "headAfter": "7637216e236a7816653b0818b7c546642dff4e12",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "area-public-final-lint": {
+      "label": "area-public-final-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "--no-ignore",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-area-8f7ngk0q/public-eslint.cjs",
+        "tests/pwa/amazon-area-acceptance.spec.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 4.905555048957467,
+      "inputsUnchanged": true,
+      "inputCount": 2451,
+      "headBefore": "7637216e236a7816653b0818b7c546642dff4e12",
+      "headAfter": "7637216e236a7816653b0818b7c546642dff4e12",
+      "headUnchanged": true,
+      "totals": []
+    }
+  },
+  "retention": {
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-area-8f7ngk0q-retained.tar.gz",
+    "sha256": "27e65f3ededa5cd620cfbb771319104d5ad0024d6c603690f4b0d2206d49ccf5",
+    "membersReadBack": 1393,
+    "buildFilesVerified": 762,
+    "cleanup": {
+      "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-area-8f7ngk0q",
+      "removedFiles": 2157,
+      "removedDirectories": 40,
+      "remaining": [],
+      "failures": [],
+      "sharedNodeModulesPreserved": true
+    },
+    "retainUntil": "full-v1 evidence and independent review consumers finish; root removes afterward"
+  },
+  "publicProof": {
+    "attachments": 60,
+    "selectedCasts": 16,
+    "geometryChecks": 80,
+    "sevenDomainSavePairs": 8,
+    "actualSWOfflineContinues": 4,
+    "stats": {
+      "startTime": "2026-10-27T02:04:01.135Z",
+      "duration": 138728.44199999998,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "mobileVisualInspection": {
+    "owner": "root",
+    "head": "f1fbd1698b6cffc303944683dc45b934d52123fa",
+    "scope": "Author visual inspection of 16 actual mobile originals; no independent QA or whole-game acceptance",
+    "inspectionProvenance": "12 originals inspected in preceding continuous turn; final four Chinese combat originals inspected during progress-status turn",
+    "images": [
+      {
+        "path": "inspected-browser/amazon-area-mobile-en-exploding-arrow-combat.png",
+        "sha256": "c005899d73c815c0b538ae31ece3efea948864838cfd5cd02554e4bc19c48d9b",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-en-exploding-arrow-preview.png",
+        "sha256": "2267e29096dfa424aff3c2116af74d31ae716fd82113fd9a05e680c6d78ae48c",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-en-fend-combat.png",
+        "sha256": "27da0935b18a3300a61e58bfd12137022d912ea639432caca2a177a624fe8c7a",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-en-fend-preview.png",
+        "sha256": "342a36386e355d8e3f51d0912b69341290fa2ed0887577f09f980fb184f00361",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-en-immolation-arrow-combat.png",
+        "sha256": "5e37bd240a86ae8085804624491792fbcc88b1642d8d1e177ddc350d08610b00",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-en-immolation-arrow-preview.png",
+        "sha256": "e2a87870a9347821bf6cc14eebd566548df6080f71d4576abd7772f26654726a",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-en-lightning-fury-combat.png",
+        "sha256": "eabc108d1d18981b9bec72b5265ba3d2be70d4da1ca02514dffb1a048758139a",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-en-lightning-fury-preview.png",
+        "sha256": "6b08bc5be957259a0001e64d611c6bcef9f042d7d2ff9e7dbd1cccc6df4b80d9",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-zh-CN-exploding-arrow-combat.png",
+        "sha256": "a789bb1390a59a80f92b77df3ca373cbe27fa3c93849325f805f134100e80fe4",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-zh-CN-exploding-arrow-preview.png",
+        "sha256": "815fce6fc6c23c48ecd9ec7a28f2dca31625af4544aa0b5e04073899a6733caa",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-zh-CN-fend-combat.png",
+        "sha256": "ccb1d4ad515fed9cf95ff18e4bc97a681e3bcfbe3f0fc1787bb709c5d3d493d1",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-zh-CN-fend-preview.png",
+        "sha256": "84c06b0337d984f177b56d8213ae9ffee3f29c594a37634f575cbb13a6100b4a",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-zh-CN-immolation-arrow-combat.png",
+        "sha256": "1c99adb523be7f701ea0037afc2dbc6d6af170d98f421bca2333b210b9cccdc6",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-zh-CN-immolation-arrow-preview.png",
+        "sha256": "fcd1394e06b80f3d7e4f6f87b4f3a473042844c158b8c39c68885dd1ce03c29c",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-zh-CN-lightning-fury-combat.png",
+        "sha256": "709c1727e5a2767b7f4511b3e857d2e7646844b10b9722e79d3b48d846ae34b1",
+        "individuallyViewed": true
+      },
+      {
+        "path": "inspected-browser/amazon-area-mobile-zh-CN-lightning-fury-preview.png",
+        "sha256": "6538bccf76b6af5695f15fae0e65fd67c7a1c65221390dc9e6febd456bf884a7",
+        "individuallyViewed": true
+      }
+    ],
+    "observed": [
+      "English and Chinese current/next/MAX skill previews readable; rank20 ranges Fend184-209, Exploding150-175, Immolation242-282, Fury174-204",
+      "English and Chinese Fend combat shows101/83/95 physical hits",
+      "English and Chinese Fire combat shows Ignite/点燃 chips and hostile HP loss",
+      "English and Chinese Fury combat shows Paralyze/麻痹 and resistance chips"
+    ],
+    "limits": [
+      "Long Fire descriptions require scrolling",
+      "Preview captures can omit lower content behind existing navigation",
+      "Combat element captures include sticky controls/navigation overlaps and cropped top/bottom rows",
+      "Emoji fallback boxes and English navigation edge clipping persist",
+      "Does not accept whole-game mobile, accessibility or P16"
+    ]
+  },
+  "protectedSaveCompressedAndRawVerified": true,
+  "inventoryCredit": {
+    "creditedIds": [
+      "skills-amazon-lightning-fury",
+      "skills-amazon-fend",
+      "skills-amazon-exploding-arrow",
+      "skills-amazon-immolation-arrow"
+    ],
+    "unchangedOtherRawRows": 209,
+    "headerAnd213IdsAndOrderExact": true,
+    "beforeSha256": "8ec7585f9a3cab3b72ca3c798c3793018e051810f81f489c36d9483790d75c26",
+    "afterSha256": "d0ed23382230e388712a4d5875b26fba75b90eb687637fda0451012dd82905f1",
+    "boundedTotal": 190,
+    "unverifiedTotal": 21,
+    "engineOnly": 1,
+    "reviewNeeded": 1
+  },
+  "limits": "Constructed native/public fixtures; independent review, earned builds, balance/economy/endgame and whole-app mobile/a11y/performance/PWA acceptance remain open."
+}

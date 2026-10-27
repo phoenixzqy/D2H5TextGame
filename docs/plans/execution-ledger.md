@@ -13347,3 +13347,10 @@ no body despite paid cast,at both ranks1/20. All2451repository inputs/HEAD exact
 Separate root-owned task recorded in area next-support-task.json;no production
 support fix/credit yet. GenuineL33/next402/Baaluncleared unchanged;full privatev1
 and original goal/worktree continue,no campaign/replay/remote/delegation/approval.
+
+
+## 2026-10-26 — Area terminal pass, retention and four functional credits
+
+Frozen f1fbd169: Test Files  874 passed (874); Tests  18978 passed | 2 skipped (18980) PASS921.313s;all2451inputs and HEAD exact. Prior engine9661/365,full types/lint/build/bridge/756URLprecache pass;sole observer correction retained. Public4/4PASS140.017s,16selected typed casts,80geometries,eight exact seven-domain pairs/four actual offlineContinues. Sixteen mobile originals individually inspected with explicit copy/viewport/sticky/nav/emoji limits;whole-app acceptance open. 1393raw members read-back verified;2157exact files/40directories removed,remaining[]/failures[],4601closed;shared dependencies preserved. Both genuine-save hashes/762build hashes exact. Root retains archive/two sidecars through full-v1 review consumers. [Area evidence](evidence/d04-amazon-area.md) and packet retain proof.
+
+Exactly Fend/Exploding/Immolation/Fury credited:190bounded/21unverified/oneengine-only/onereview-needed;209other rawrows/header/213IDs/order exact. Amazon25bounded/fourunverified/oneengine-only. Support diagnosis and focused InnerSight native8REDs/4guardcontrols retained outside repo;no support source promotion or credit yet. GenuineL33/Ancients-Rite/next402/Baaluncleared unchanged. Full privatev1,remaining skills,earned builds,balance/economy/endgame and final whole-app/independent acceptance remain open. Original goal/worktree continue;no campaign/replay/remote/delegation/self-signoff.

@@ -1,7 +1,7 @@
 # BUG-290 — Observe canonical Ignite chips in area acceptance
 
 Severity: Medium (false negative blocks production acceptance;no runtime defect).
-Status: fixed locally in `f97b84d1`;production rerun pending.
+Status: fixed locally in `f97b84d1`;production rerun4/4PASS,full regression PASS.
 Build:20b07133. Linux/Playwright Chromium1280×800,en;constructed L90 Amazon,
 public Catacombs entry;native seed7 mechanics separately established.
 Owner:root (public browser QA);independent acceptance remains open.
@@ -36,3 +36,6 @@ Original consumers are terminal:engine9661/365,full types/lint/build/bridge/
 precache all pass. Only exact Burn→Ignite and 燃烧→点燃 expected chip literals
 changed;2450 other inputs/all762 build files exact. Final focused public types/
 lint pass. Fresh browser/full run pending;no runtime or assertion weakening.
+
+
+Final frozen f1fbd169: Test Files  874 passed (874); Tests  18978 passed | 2 skipped (18980) PASS921.313s;production4/4PASS140.017s,all2451inputs/HEAD exact. Sixteen actual casts,eight seven-domain pairs/four offlineContinues;16mobile originals viewed with explicit limitations. Archive read-back and exact cleanup complete;see [final evidence](../../docs/plans/evidence/d04-amazon-area.md) and compact packet. Root retains raw archive through full-v1 review consumers;independent/earned/full-v1 acceptance open.

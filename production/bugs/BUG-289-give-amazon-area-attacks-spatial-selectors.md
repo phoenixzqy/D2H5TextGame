@@ -1,6 +1,6 @@
 # BUG-289 — Give Amazon area attacks explicit spatial selectors
 
-Severity: High. Status: fixed locally in `8ff84618`/`61fbe690`;current integrated/browser validation pending.
+Severity: High. Status: fixed locally in `8ff84618`/`61fbe690`;bounded final validation complete,independent/earned acceptance open.
 Build: 9f04c8a8; Vitest1.6.1/jsdom on Linux; engine diagnosis, no viewport claim.
 Locale: locale-independent; existing en/zh-CN skill promises inspected. Seed7.
 Owner: root, engine/data/schema/UI/QA; independent acceptance open.
@@ -42,3 +42,6 @@ lifecycle8 and public production pair now committed. Focused native/schema/UI/
 lifecycle/static checks pass;engine9661/365 passes166.985s. [Evidence](../../docs/plans/evidence/d04-amazon-area.md)
 retains exact commands and original oracle/config/command-path errors. Fresh
 integrated full/static/build/public checks pending;no skill credit yet.
+
+
+Final frozen f1fbd169: Test Files  874 passed (874); Tests  18978 passed | 2 skipped (18980) PASS921.313s;production4/4PASS140.017s,all2451inputs/HEAD exact. Sixteen actual casts,eight seven-domain pairs/four offlineContinues;16mobile originals viewed with explicit limitations. Archive read-back and exact cleanup complete;see [final evidence](../../docs/plans/evidence/d04-amazon-area.md) and compact packet. Root retains raw archive through full-v1 review consumers;independent/earned/full-v1 acceptance open.
