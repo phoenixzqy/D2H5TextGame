@@ -6,10 +6,12 @@
   "master": {
     "mode": "independent-attacks",
     "attackSkills": [
+      "assassin.tiger_strike",
+      "assassin.wake_of_fire",
+      "assassin.dragon_talon",
       "assassin.mind_blast",
       "assassin.fire_blast",
-      "assassin.blade_fury",
-      "assassin.dragon_talon"
+      "assassin.blade_fury"
     ]
   }
 }

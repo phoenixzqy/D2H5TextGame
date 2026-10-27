@@ -147,7 +147,8 @@ function assertPaidBody(slug: Slug, rank: number, hasWarriorAttack = true) {
   expect(event.unit).toMatchObject({ kind: 'summon', summonOwnerId: hero().id, summonTemplateId: template,
     mana: ownMana, stats: { manaMax: ownMana },
     skillLevels: slug === 'shadow-warrior' ? (hasWarriorAttack ? { 'assassin.fire_blast': rank } : {}) : {
-      'assassin.mind_blast': rank, 'assassin.fire_blast': rank, 'assassin.blade_fury': rank, 'assassin.dragon_talon': rank
+      'assassin.tiger_strike': rank, 'assassin.wake_of_fire': rank, 'assassin.dragon_talon': rank,
+      'assassin.mind_blast': rank, 'assassin.fire_blast': rank, 'assassin.blade_fury': rank
     }
   });
   const runtime = 'assassin.' + template;
@@ -157,9 +158,9 @@ function assertPaidBody(slug: Slug, rank: number, hasWarriorAttack = true) {
   expect(state.recordedEvents.filter(event => event.kind === 'mana' && event.reason === 'cast' && event.target === hero().id && event.simClockMs === 0))
     .toEqual([expect.objectContaining({ mana: hero().mana - cost })]);
   if (slug === 'shadow-master' || hasWarriorAttack) {
-    const attack = slug === 'shadow-warrior' ? 'assassin.fire_blast' : 'assassin.mind_blast';
+    const attack = slug === 'shadow-warrior' ? 'assassin.fire_blast' : 'assassin.tiger_strike';
     expect(state.recordedEvents.some(action => action.kind === 'action' && action.actor === event.unit.id && action.skillId === attack)).toBe(true);
-    expect(state.recordedEvents.some(hit => hit.kind === 'damage' && hit.source === event.unit.id && hit.amount > 0 && hit.damageType === (slug === 'shadow-warrior' ? 'fire' : 'arcane'))).toBe(true);
+    expect(state.recordedEvents.some(hit => hit.kind === 'damage' && hit.source === event.unit.id && hit.amount > 0 && hit.damageType === (slug === 'shadow-warrior' ? 'fire' : 'physical'))).toBe(true);
   } else {
     expect(state.recordedEvents.some(action => action.kind === 'action' && action.actor === event.unit.id && action.skillId !== null)).toBe(false);
   }
@@ -178,7 +179,8 @@ for (const slug of ['shadow-warrior', 'shadow-master'] as const) {
     expect([hero().life, hero().mana]).toEqual([firstFinal.life, firstFinal.mana]);
     const secondBody = assertPaidBody(slug, 2);
     expect(body.skillLevels).toEqual(slug === 'shadow-warrior' ? { 'assassin.fire_blast': 1 } : {
-      'assassin.mind_blast': 1, 'assassin.fire_blast': 1, 'assassin.blade_fury': 1, 'assassin.dragon_talon': 1 });
+      'assassin.tiger_strike': 1, 'assassin.wake_of_fire': 1, 'assassin.dragon_talon': 1,
+      'assassin.mind_blast': 1, 'assassin.fire_blast': 1, 'assassin.blade_fury': 1 });
     expect(secondBody.skillLevels).not.toEqual(body.skillLevels);
     const second = recording(), secondFinal = structuredClone(finalHero());
     usePlayerStore.getState().setComboOrder(['skills-assassin-' + slug]);

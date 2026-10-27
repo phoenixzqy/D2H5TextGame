@@ -62,15 +62,15 @@ for (const slug of ['shadow-warrior', 'shadow-master']) for (const rank of [1, 2
     expect(spawn.unit.stats.manaMax).toBe(slug === 'shadow-warrior' ? 100 : 150);
     expect(spawn.unit.mana).toBe(spawn.unit.stats.manaMax);
     expect(spawn.unit.skillLevels).toEqual(slug === 'shadow-warrior' ? { 'assassin.fire_blast': 1 } : {
-      'assassin.mind_blast': rank, 'assassin.fire_blast': rank,
-      'assassin.blade_fury': rank, 'assassin.dragon_talon': rank });
+      'assassin.tiger_strike': rank, 'assassin.wake_of_fire': rank, 'assassin.dragon_talon': rank,
+      'assassin.mind_blast': rank, 'assassin.fire_blast': rank, 'assassin.blade_fury': rank });
     const first = out.events.find(event => event.kind === 'action' && event.actor === spawn.unit.id);
-    expect(first).toMatchObject({ skillId: slug === 'shadow-warrior' ? 'assassin.fire_blast' : 'assassin.mind_blast' });
+    expect(first).toMatchObject({ skillId: slug === 'shadow-warrior' ? 'assassin.fire_blast' : 'assassin.tiger_strike' });
     expect(out.events.some(event => event.kind === 'damage' && event.source === spawn.unit.id &&
       event.target === 'target' && event.simClockMs === first?.simClockMs && event.amount > 0 &&
-      event.damageType === (slug === 'shadow-warrior' ? 'fire' : 'arcane'))).toBe(true);
+      event.damageType === (slug === 'shadow-warrior' ? 'fire' : 'physical'))).toBe(true);
     expect(out.events.find(event => event.kind === 'mana' && event.reason === 'cast' && event.target === spawn.unit.id))
-      .toMatchObject({ mana: slug === 'shadow-warrior' ? 75 : 120, simClockMs: first?.simClockMs });
+      .toMatchObject({ mana: slug === 'shadow-warrior' ? 75 : 147, simClockMs: first?.simClockMs });
     expect(out.result.enemyTeam.find(unit => unit.id === 'target')?.life).toBeLessThan(10000);
     const cost = slug === 'shadow-warrior' ? (rank === 1 ? 22 : 18) : (rank === 1 ? 35 : 30);
     expect(out.result.playerTeam.find(unit => unit.id === 'hero')?.mana).toBe(100 - cost);
@@ -136,7 +136,7 @@ it.each(['shadow-warrior', 'shadow-master'])('%s without a selected owner attack
     expect(body.skillOrder).toEqual([]);
     expect(casts).toEqual([]);
     expect(out.result.playerTeam.find(unit => unit.id === body.id)?.mana).toBe(100);
-  } else expect(casts[0]).toMatchObject({ skillId: 'assassin.mind_blast' });
+  } else expect(casts[0]).toMatchObject({ skillId: 'assassin.tiger_strike' });
 });
 
 it.each(['shadow-warrior', 'shadow-master'])('%s refuses copied skills on preloaded marker bodies and makes no redundant payment', slug => {
@@ -213,15 +213,15 @@ it.each(['shadow-warrior', 'shadow-master'])('%s receives one actual party Comma
   expect(actual.events.find(event => event.kind === 'action' && event.actor === commander.id))
     .toMatchObject({ skillId: 'barbarian.battle_command', simClockMs: 1700 });
   expect(body.skillLevels).toEqual(controlBody.skillLevels);
-  expect(body.skillLevels?.[slug === 'shadow-warrior' ? 'assassin.fire_blast' : 'assassin.mind_blast'])
+  expect(body.skillLevels?.[slug === 'shadow-warrior' ? 'assassin.fire_blast' : 'assassin.tiger_strike'])
     .toBe(slug === 'shadow-warrior' ? 1 : 20);
   const firstHit = (out: typeof actual, id: string) => out.events.find(event =>
     event.kind === 'damage' && event.source === id && event.target === 'target');
   const boosted = firstHit(actual, body.id), base = firstHit(control, controlBody.id);
   if (boosted?.kind !== 'damage' || base?.kind !== 'damage') throw new Error('Missing actual shadow skill damage');
   expect(boosted.simClockMs).toBe(base.simClockMs);
-  expect(boosted.amount - base.amount).toBeGreaterThanOrEqual(5);
-  expect(boosted.amount - base.amount).toBeLessThanOrEqual(8);
+  expect(boosted.amount - base.amount).toBeGreaterThanOrEqual(slug === 'shadow-warrior' ? 5 : 3);
+  expect(boosted.amount - base.amount).toBeLessThanOrEqual(slug === 'shadow-warrior' ? 8 : 5);
 });
 
 it('owner death ends the actual shadow before its first skill action', () => {
