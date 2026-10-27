@@ -1,7 +1,7 @@
 # BUG-290 — Observe canonical Ignite chips in area acceptance
 
 Severity: Medium (false negative blocks production acceptance;no runtime defect).
-Status: reproduced;test observer correction pending original consumers.
+Status: fixed locally in `f97b84d1`;production rerun pending.
 Build:20b07133. Linux/Playwright Chromium1280×800,en;constructed L90 Amazon,
 public Catacombs entry;native seed7 mechanics separately established.
 Owner:root (public browser QA);independent acceptance remains open.
@@ -30,3 +30,9 @@ then file this bug before correction and run focused strict public checks and
 fresh four-context production acceptance. Preserve initial report/trace/source.
 Security check:pass;first-party local test-only correction,no secrets,remote or
 campaign/replay. Root owns exact retention/read-back/cleanup;full privatev1 open.
+
+
+Original consumers are terminal:engine9661/365,full types/lint/build/bridge/
+precache all pass. Only exact Burn→Ignite and 燃烧→点燃 expected chip literals
+changed;2450 other inputs/all762 build files exact. Final focused public types/
+lint pass. Fresh browser/full run pending;no runtime or assertion weakening.

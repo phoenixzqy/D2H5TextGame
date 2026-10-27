@@ -13327,3 +13327,23 @@ Ancients-Rite/next402/Baaluncleared unchanged. Full privatev1/C2–C4/fullG0–G
 remaining skills,earned builds,balance,economy,endgame and final whole-app gates
 remain open. Original objective and registered worktree continue;no campaign/
 replay,remote action,delegation or independent self-approval.
+
+
+## 2026-10-26 — Area static/build pass; canonical Ignite observer fixed
+
+Original area engine9661/365PASS191.032s,fulltypes149.551s/fulllint236.345s,
+build16.918s,six-chunkbridge/756URLprecache pass at frozen20b07133/all2451inputs.
+Public attempt1 fails only BUG290's Burn-vs-Ignite chip-name expectation:trace
+proves exact Ignite title alongside positive Fire hits/Burn events/positiveDoT.
+All original consumers terminal before correction. Sole delta is two expected
+chip-name literals in public test;2450other inputs/762build hashes exact. Final
+focused publictypes7.502s/lint4.906s pass. Fresh public matrix and full unit next;
+freeze source AND HEAD through consumers. Inventory stays186bounded,area credit
+pending terminal proof/retention/read-back/cleanup. Root owns active area task.
+
+Independent external support diagnosis now6featureREDs/2ValkyriecontrolsPASS:
+InnerSight ally hit50vs50,SlowMissiles exact unchanged1700ms bow cadence,Decoy
+no body despite paid cast,at both ranks1/20. All2451repository inputs/HEAD exact.
+Separate root-owned task recorded in area next-support-task.json;no production
+support fix/credit yet. GenuineL33/next402/Baaluncleared unchanged;full privatev1
+and original goal/worktree continue,no campaign/replay/remote/delegation/approval.

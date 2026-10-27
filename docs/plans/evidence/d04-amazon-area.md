@@ -50,3 +50,21 @@ Security check:pass;first-party local data/UI/tests,no new credential,dependency
 CI,remote or campaign/replay action. No delegation or independent self-approval.
 Full privatev1,C2–C4/fullG0–G7,remaining skills,earned builds,balance,economy,
 endgame and final mobile/a11y/performance/PWA acceptance remain open.
+
+
+## Integrated static/build checkpoint and observer correction
+
+At `20b07133`,engine9661/365PASS191.032s,fulltypes149.551s/fulllint236.345s,
+production build16.918s,six-chunk/five-pattern bridge scan and756URLprecache pass.
+All2451 captured inputs and HEAD remain exact through each original consumer.
+First browser attempt1failed/3notrun38.283s:actual Exploding Fire hits/Burn events/
+positive DoT are present,but test expects Burn instead of canonical Ignite chip.
+Trace contains exact Ignite titles;zh-CN canonical title is 点燃. BUG290 records
+this causal observer error. No product/status/lifecycle change is needed.
+
+Only the two expected chip-name literals in the public test change afterward;
+all2450 other inputs and all762 build outputs remain exact. Final focused public
+types7.502s/lint4.906s pass. Original report/trace/test source retained unchanged.
+Fresh four-context public acceptance and full unit are next;freeze both bytes
+and Git HEAD throughout. No passing final browser/full result or inventory credit
+is claimed yet. Independent/earned acceptance and full privatev1 remain open.
