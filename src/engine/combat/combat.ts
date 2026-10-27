@@ -444,11 +444,23 @@ function combatStatusView(state: State, unit: CombatUnit): CombatUnit {
     { id: 'chill', stacks: 1, remaining: -1, sourceId, tags: ['cold', 'chill'] }] };
 }
 
+const MARTIAL_CHARGE_STATUS_IDS = new Set(ASSASSIN_CHARGE_DEFINITION.builders.map(id =>
+  'charge-' + id.slice('assassin.'.length).replaceAll('_', '-')));
+
 /** Observe committed state only; clocks, raw statuses and RNG remain authoritative. */
 function observeStatuses(state: State, target: string, initial = false): void {
   const unit = state.units.get(target);
   if (!unit) return;
-  const active = alive(unit) ? combatStatusView(state, unit).statuses : [];
+  const active: ActiveStatus[] = alive(unit) ? [
+    ...combatStatusView(state, unit).statuses.filter(status => !MARTIAL_CHARGE_STATUS_IDS.has(status.id)),
+    ...state.martialCharges.peek(target, state.simClockMs).map(pool => ({
+      id: 'charge-' + pool.builder.slice('assassin.'.length).replaceAll('_', '-'),
+      sourceId: target, stacks: pool.ranks.length,
+      remaining: (pool.expiresAtMs - state.simClockMs) / 1000,
+      appliedAtMs: pool.expiresAtMs - ASSASSIN_CHARGE_DEFINITION.durationMs,
+      expiresAtMs: pool.expiresAtMs
+    }))
+  ] : [];
   const previous = state.observedStatuses.get(target);
   if (!initial && previous !== undefined && sameStatusView(previous, active)) return;
   const statuses = active.map(s => ({ ...s, ...(s.tags !== undefined ? { tags: [...s.tags] } : {}) }));
@@ -1067,11 +1079,13 @@ function applyDamageToUnit(
     martialOwner && alive(martialOwner)) {
     const builder = martialSkill && ASSASSIN_CHARGE_DEFINITION.builders.find(id => id === martialSkill.id);
     if (builder && authorizedMartialSkill(state, martialOwner, martialSkill)) {
-      state.martialCharges.gain(attackerId, builder, skillLevel, state.simClockMs);
+      if (state.martialCharges.gain(attackerId, builder, skillLevel, state.simClockMs))
+        observeStatuses(state, attackerId);
     } else if (basicHit || (martialSkill && ASSASSIN_CHARGE_DEFINITION.finishers.some(id => id === martialSkill.id) &&
       authorizedMartialSkill(state, martialOwner, martialSkill))) {
       // Delete all paid pools before invoking ordinary damage recursively.
       const releases = state.martialCharges.consume(attackerId, state.simClockMs);
+      if (releases.length > 0) observeStatuses(state, attackerId);
       for (const release of releases) {
         const source = state.units.get(attackerId), victim = state.units.get(defenderId);
         if (!source || !alive(source)) break;
@@ -2525,6 +2539,8 @@ function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   }
   for (const unit of state.units.values()) {
     if (!alive(unit)) continue;
+    for (const pool of state.martialCharges.peek(unit.id, state.simClockMs))
+      boundary = Math.min(boundary, pool.expiresAtMs);
     for (const id of PERIODIC_SPELL_IDS) {
       const at = nextPeriodicSpellPulse(unit, id, state.simClockMs);
       if (at !== undefined) boundary = Math.min(boundary, at);
