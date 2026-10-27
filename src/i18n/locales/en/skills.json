@@ -312,7 +312,16 @@
     "descriptionPeriodicMultiple": "On a successful hit, applies {{stacksOnApply}} {{status}} stacks. Each stack deals {{percentOfHit}}% of the final hit per second (rounded down, minimum {{minDps}}) for {{durationSeconds}} s, up to {{maxStacks}} stacks. Reapplying refreshes duration and adds {{stacksOnApply}} stacks up to the cap; an existing damaging status keeps its original rate.",
     "cone3Value": "Cone: 1, 3, then 5 cells across three rows",
     "impactBolts": "Additional Lightning attempts",
-    "impactBoltsValue": "Up to {{count}} × {{min}}–{{max}} base damage"
+    "impactBoltsValue": "Up to {{count}} × {{min}}–{{max}} base damage",
+    "martialCap": "Charges per skill",
+    "martialLifetime": "Lifetime after last charge",
+    "martialDamage": "{{stacks}}-charge release base",
+    "martialRecovery": "{{stacks}}-charge recovery",
+    "martialRecoveryValue": "{{lifePercent}}% HP / {{manaPercent}}% MP",
+    "martialBuild": "When a paid hit removes enemy HP and the caster survives, gain one charge, up to {{maxStacks}} per skill. A gain refreshes that pool to {{duration}}. Misses, full absorption, damage over time and reflected damage add none. When any pool is full, all builders pause, allowing later priority skills or basic attacks. Pools expire independently and start empty each wave. Stored ranks include Command once; allocation changes apply next wave.",
+    "martialRelease": "{{finishers}} and basic attacks release every active pool once per cast on their first hit that removes enemy HP. Misses and full absorption keep charges. Multi-hit and area attacks release only against that first victim, with no extra action, mana or cooldown. Releases cannot build or release more charges. A dead caster receives no payoff. Finishers remain usable without charges.",
+    "martialDamageRules": "Release adds {{percent}}% of each charge's captured-rank base as {{types}} damage, summed then rounded down. Examples below assume every charge has the displayed rank, before hit, critical, defenses and resistances. Release keeps the builder's damage types and status effects.",
+    "martialCobraRules": "Each released charge restores {{life}}% HP and steals up to {{mana}}% MP of the triggering finisher's actual enemy HP removed, rounded down. Healing is capped by missing life. MP gained equals actual MP removed from the surviving victim and is capped by missing mana. Absorption and overkill add nothing. Cobra releases no extra damage."
   },
   "amazon": {
     "magic-arrow": {
@@ -459,7 +468,7 @@
     },
     "phoenix-strike": {
       "name": "Phoenix Strike",
-      "desc": "A combo strike that releases fire, cold, and lightning charges on a single target."
+      "desc": "A paid hit builds weighted Fire, Cold and Lightning charges for a finisher to release."
     },
     "claw-mastery": {
       "name": "Claw Mastery",
@@ -479,7 +488,7 @@
     },
     "tiger-strike": {
       "name": "Tiger Strike",
-      "desc": "First charge-up strike that adds damage."
+      "desc": "A paid hit builds Physical charges for a finisher to release."
     },
     "dragon-talon": {
       "name": "Dragon Talon",
@@ -487,15 +496,15 @@
     },
     "fists-of-fire": {
       "name": "Fists of Fire",
-      "desc": "Charge-up attack that releases fire."
+      "desc": "A paid hit builds Fire charges for a finisher to release."
     },
     "cobra-strike": {
       "name": "Cobra Strike",
-      "desc": "Charge-up attack that steals life and mana."
+      "desc": "A paid hit builds charges that restore life and steal mana when a finisher releases them."
     },
     "claws-of-thunder": {
       "name": "Claws of Thunder",
-      "desc": "Charge-up attack that releases lightning."
+      "desc": "A paid hit builds Lightning charges for a finisher to release."
     },
     "dragon-tail": {
       "name": "Dragon Tail",
@@ -503,7 +512,7 @@
     },
     "blades-of-ice": {
       "name": "Blades of Ice",
-      "desc": "Charge-up attack that releases cold."
+      "desc": "A paid hit builds Cold charges for a finisher to release."
     },
     "dragon-flight": {
       "name": "Dragon Flight",

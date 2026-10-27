@@ -784,6 +784,7 @@ function SkillDetailPanel({
         <p className="rounded border border-d2-border/70 bg-black/30 px-3 py-2 text-sm text-d2-white/80">
           {dynamicDescription(name, skill, primaryStats, t)}
         </p>
+        {primaryStats?.assassinMartial ? <MartialChargeDescription stats={primaryStats.assassinMartial} t={t} /> : null}
         {primaryStats?.recovery ? (
           <p className="text-sm text-d2-white/90">{t('details.descriptionRecovery', primaryStats.recovery)}</p>
         ) : null}
@@ -844,6 +845,26 @@ function SkillDetailPanel({
   );
 }
 
+function MartialChargeDescription({ stats, t }: {
+  readonly stats: NonNullable<SkillRankDisplayStats['assassinMartial']>;
+  readonly t: Translate;
+}) {
+  const payout = stats.payout;
+  return <div className="space-y-2 text-sm text-d2-white/90">
+    {stats.kind === 'builder' ? <p>{t('details.martialBuild', {
+      maxStacks: stats.maxStacks, duration: t('details.seconds', { seconds: stats.durationSeconds })
+    })}</p> : null}
+    <p>{t('details.martialRelease', { finishers: stats.finishers.map(id =>
+      t('assassin.' + id.slice('assassin.'.length).replaceAll('_', '-') + '.name')).join(' / ') })}</p>
+    {payout?.kind === 'damage' ? <p>{t('details.martialDamageRules', {
+      percent: payout.percentPerStack, types: payout.damageTypes.map(type => t(`damage-types:type.${type}`)).join(' / ')
+    })}</p> : null}
+    {payout?.kind === 'recovery' ? <p>{t('details.martialCobraRules', {
+      life: payout.releases[0]?.lifePercent, mana: payout.releases[0]?.manaPercent
+    })}</p> : null}
+  </div>;
+}
+
 function StatSection({
   title,
   stats,
@@ -871,6 +892,19 @@ function StatSection({
               delta={damageDelta(row, compare, t)}
             />
           ))}
+          {stats.assassinMartial ? <>
+            <StatLine label={t('details.martialCap')} value={String(stats.assassinMartial.maxStacks)} />
+            <StatLine label={t('details.martialLifetime')}
+              value={t('details.seconds', { seconds: stats.assassinMartial.durationSeconds })} />
+            {stats.assassinMartial.payout?.kind === 'damage' ? stats.assassinMartial.payout.releases.map(release =>
+              <StatLine key={`charge-damage-${String(release.stacks)}`}
+                label={t('details.martialDamage', { stacks: release.stacks })}
+                value={t('details.flatRange', { min: release.min, max: release.max })} />) : null}
+            {stats.assassinMartial.payout?.kind === 'recovery' ? stats.assassinMartial.payout.releases.map(release =>
+              <StatLine key={`charge-recovery-${String(release.stacks)}`}
+                label={t('details.martialRecovery', { stacks: release.stacks })}
+                value={t('details.martialRecoveryValue', release)} />) : null}
+          </> : null}
           {stats.skillRankBuff ? <>
             <StatLine label={t('details.skillRankBonus')}
               value={t('details.skillRankBonusValue', { ranks: stats.skillRankBuff.bonusRanks })} />

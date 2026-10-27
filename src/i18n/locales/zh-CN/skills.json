@@ -312,7 +312,16 @@
     "descriptionPeriodicMultiple": "命中后附加 {{stacksOnApply}} 层{{status}}；每层每秒造成最终命中伤害的{{percentOfHit}}%（向下取整，最低{{minDps}}点），持续{{durationSeconds}} 秒，最多{{maxStacks}}层。再次施加会刷新持续时间并增加{{stacksOnApply}}层，达到上限后不再增加；已有伤害的状态保留原伤害率。",
     "cone3Value": "锥形：三排依次1、3、5格",
     "impactBolts": "追加闪电判定",
-    "impactBoltsValue": "最多{{count}}次，每次{{min}}～{{max}} 点基础伤害"
+    "impactBoltsValue": "最多{{count}}次，每次{{min}}～{{max}} 点基础伤害",
+    "martialCap": "每个技能聚气上限",
+    "martialLifetime": "最后一次聚气后的持续时间",
+    "martialDamage": "{{stacks}} 层聚气释放基础伤害",
+    "martialRecovery": "{{stacks}} 层聚气回复",
+    "martialRecoveryValue": "{{lifePercent}}% 生命 / {{manaPercent}}% 法力",
+    "martialBuild": "付费攻击造成敌方生命损失且施法者存活时，获得一层聚气，每个技能最多 {{maxStacks}} 层。每次获得聚气会将该池持续时间刷新为 {{duration}}。未命中、完全吸收、持续伤害和反射伤害不会获得聚气。任一聚气池已满时，所有聚气技能暂停，让后续优先技能或普攻出手。各池独立到期，每波开始时清空。聚气保存获得时的技能等级，战斗指挥只计入一次；加点变化在下一波生效。",
+    "martialRelease": "{{finishers}}和普攻在首次造成敌方生命损失时释放全部有效聚气，每次施放仅释放一次。未命中或完全吸收会保留聚气。多段和范围攻击仅向首个有效目标释放，无需额外行动、法力或冷却。释放不会递归获得或释放聚气，死亡施法者不会获得收益。终结技没有聚气时仍可使用。",
+    "martialDamageRules": "每层聚气额外释放获得时技能等级基础伤害的 {{percent}}%，类型为{{types}}；先累加，再向下取整。下列示例假定所有聚气均为显示等级，尚未计算命中、暴击、防御和抗性。释放保留聚气技能的伤害类型与状态效果。",
+    "martialCobraRules": "每层释放的聚气以触发终结技的实际敌方生命损失为基数，回复 {{life}}% 生命并窃取至多 {{mana}}% 法力，向下取整。回复不超过缺失生命；法力收益等于存活目标实际扣除的法力，且不超过自身缺失法力。吸收与溢出伤害不计入。眼镜蛇攻击释放时没有额外伤害。"
   },
   "amazon": {
     "magic-arrow": {
@@ -459,7 +468,7 @@
     },
     "phoenix-strike": {
       "name": "凤凰攻击",
-      "desc": "连击释放火、冰、电三种能量，单体目标。"
+      "desc": "付费命中积累火焰、冰冷和闪电混合聚气，由终结技释放。"
     },
     "claw-mastery": {
       "name": "爪类精通",
@@ -479,7 +488,7 @@
     },
     "tiger-strike": {
       "name": "虎击",
-      "desc": "第一段蓄力攻击，增加伤害。"
+      "desc": "付费命中积累物理聚气，由终结技释放。"
     },
     "dragon-talon": {
       "name": "龙爪踢",
@@ -487,15 +496,15 @@
     },
     "fists-of-fire": {
       "name": "火焰拳",
-      "desc": "蓄力攻击，释放火焰。"
+      "desc": "付费命中积累火焰聚气，由终结技释放。"
     },
     "cobra-strike": {
       "name": "眼镜蛇攻击",
-      "desc": "蓄力攻击，偷取生命和法力。"
+      "desc": "付费命中积累聚气，终结技释放时回复生命并窃取法力。"
     },
     "claws-of-thunder": {
       "name": "雷电爪",
-      "desc": "蓄力攻击，释放闪电。"
+      "desc": "付费命中积累闪电聚气，由终结技释放。"
     },
     "dragon-tail": {
       "name": "神龙摆尾",
@@ -503,7 +512,7 @@
     },
     "blades-of-ice": {
       "name": "寒冰刀",
-      "desc": "蓄力攻击，释放冰冷。"
+      "desc": "付费命中积累冰冷聚气，由终结技释放。"
     },
     "dragon-flight": {
       "name": "龙飞",
