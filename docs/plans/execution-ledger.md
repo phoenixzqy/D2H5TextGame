@@ -13306,3 +13306,24 @@ No next-area repository promotion yet. GenuineL33/Ancients-Rite/next402/Baal
 uncleared unchanged;no campaign/replay/remote/delegation/independent approval.
 Full privatev1,remaining skills,earned builds,balance/economy/endgame and C2–C4/
 fullG0–G7 remain open. Original goal and registered worktree continue.
+
+
+## 2026-10-26 — Four Amazon area mechanics integrated; next checkpoint frozen
+
+`8ff84618` repairs Fend cross5,Exploding/Immolation box3×3/cap9,Fury uncapped
+nearest-neighbor chain via existing selectors. `61fbe690` provides actual en/zh
+current/next/MAX damage/payment/identity. Lifecycle/public acceptance pair is
+committed. Focused29native/schema and60UI+native pass;engine9661/365PASS166.985s;
+8lifecycle,focused native/UI/public strict types/explicit lint pass. Failed
+focused ambient configs,one command-path typo and corrected pre-run Fend public
+phrase remain retained;no source suppression/assertion weakening. [Area evidence](evidence/d04-amazon-area.md)
+and BUG289 record exact proof and current root-owned task paths.
+
+Fresh integrated engine/full/types/lint/build/bridge/precache/public acceptance
+runs against frozen bytes AND HEAD next. No edits/commits while consumers live.
+Inventory stays186bounded/25unverified/oneengine-only/onereview-needed;no four-area
+credit before terminal proof and retention/read-back/exact cleanup. GenuineL33/
+Ancients-Rite/next402/Baaluncleared unchanged. Full privatev1/C2–C4/fullG0–G7,
+remaining skills,earned builds,balance,economy,endgame and final whole-app gates
+remain open. Original objective and registered worktree continue;no campaign/
+replay,remote action,delegation or independent self-approval.
