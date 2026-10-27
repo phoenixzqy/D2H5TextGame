@@ -313,7 +313,7 @@ for (const locale of ['en', 'zh-CN'] as const)
           character,
           damageType: skill.damageType,
           zhType: skill.zhType,
-          burnName: english ? 'Burn' : '燃烧',
+          burnName: english ? 'Ignite' : '点燃',
           paralyzeName: english ? 'Paralyze' : '麻痹'
         }
       );
