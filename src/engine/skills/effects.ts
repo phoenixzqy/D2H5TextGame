@@ -44,6 +44,8 @@ interface DamageEffectBase {
   readonly components?: readonly [WeightedDamageComponent, ...WeightedDamageComponent[]];
   /** Bypass only the target's flat magic-resist stat, never percentage resistance or absorption. */
   readonly ignoresMagicResist?: true;
+  /** Bypass ordinary hit/accuracy/dodge checks; retain mitigation, criticals and absorption. */
+  readonly alwaysHits?: true;
   /** Bypass only this hit's ordinary Defense input; never mutate target stats. */
   readonly ignoresDefense?: true;
   /** One bounded sequence of ordinary attempts, rotating within the original target pool. */

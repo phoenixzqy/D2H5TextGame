@@ -709,6 +709,7 @@ function buildDamageInput(
     ...(emptyManaBurn ? { manaBurnMult: MANA_BURN_DEFINITION.zeroManaArcaneMultiplier } : {}),
     ...((effect.damageType === 'physical' || effect.damageType === 'thorns') &&
       blindnessPenalty > 0 ? { hitChancePenalty: blindnessPenalty } : {}),
+    ...(effect.alwaysHits === true ? { ignoreDodge: true } : {}),
     type: effect.damageType,
     critChance: stats.critChance + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.critPerRank + (effect.critChanceBonus ?? 0) + (attackingCloak?.critChancePct ?? 0),
     critMult: stats.critDamage,

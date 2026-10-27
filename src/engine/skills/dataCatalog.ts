@@ -51,6 +51,7 @@ interface JsonSkill {
   readonly damageComposition?: 'weighted-components';
   readonly ignoresMagicResist?: true;
   readonly ignoresDefense?: true;
+  readonly alwaysHits?: true;
   readonly hitSequence?: SkillHitSequence;
   readonly critChanceBonus?: number;
   readonly onHitRecovery?: OnHitRecoveryTuning;
@@ -227,6 +228,7 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       ...(components ? { components } : {}),
       ...(skill.ignoresMagicResist === true ? { ignoresMagicResist: true as const } : {}),
       ...(skill.ignoresDefense === true ? { ignoresDefense: true as const } : {}),
+      ...(skill.alwaysHits === true ? { alwaysHits: true as const } : {}),
       ...(skill.hitSequence ? { hitSequence: { strikes: skill.hitSequence.strikes,
         ...(skill.hitSequence.targetMode ? { targetMode: skill.hitSequence.targetMode } : {}) } } : {}),
       ...(skill.critChanceBonus !== undefined ? { critChanceBonus: skill.critChanceBonus } : {}),
