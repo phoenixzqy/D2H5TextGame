@@ -33,14 +33,21 @@ export function CraftingPanel() {
   const recipes = [...materialRecipes.values()].filter(recipe => recipe.kind === kind);
   const recipe = materialRecipes.get(recipeId);
   const needsTarget = kind !== 'rune-fusion' && kind !== 'gem-fusion' && kind !== 'gem-dismantle';
-  const entries = useMemo(() => kind === 'recover-v18'
-    ? quarantine.map(entry => ({ item: entry.item, preservedRunes: entry.item.runes ?? [], origin: t(`quarantine.origin.${entry.origin.container}`, {
-      position: 'index' in entry.origin ? entry.origin.index + 1 : undefined,
-      slot: 'slot' in entry.origin ? t(`slots.${entry.origin.slot}`) : undefined,
-      mercenary: entry.origin.container === 'mercEquipment' ? entry.origin.mercId : undefined
-    }) }))
-    : [...backpack.map(item => ({ item, origin: t('crafting.backpack') })),
-      ...(kind === 'salvage' ? stash.map(item => ({ item, origin: t('crafting.stash') })) : [])], [kind, quarantine, backpack, stash, t]);
+  const entries = useMemo(() => {
+    if (!needsTarget) return [];
+    if (kind === 'recover-v18') return quarantine.map(entry => ({
+      item: entry.item, preservedRunes: entry.item.runes ?? [], origin: t(`quarantine.origin.${entry.origin.container}`, {
+        position: 'index' in entry.origin ? entry.origin.index + 1 : undefined,
+        slot: 'slot' in entry.origin ? t(`slots.${entry.origin.slot}`) : undefined,
+        mercenary: entry.origin.container === 'mercEquipment' ? entry.origin.mercId : undefined
+      })
+    }));
+    const backpackOrigin = t('crafting.backpack');
+    const targets = backpack.map(item => ({ item, origin: backpackOrigin }));
+    if (kind !== 'salvage') return targets;
+    const stashOrigin = t('crafting.stash');
+    return [...targets, ...stash.map(item => ({ item, origin: stashOrigin }))];
+  }, [needsTarget, kind, quarantine, backpack, stash, t]);
 
   function changeKind(value: string) {
     const next = kinds.find(entry => entry === value);
