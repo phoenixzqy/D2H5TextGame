@@ -4,9 +4,13 @@
 Root executor and separate saved-artifact audit; independent acceptance remains
 open. [Exact summary](fixtures/earned-baal427/summary.json).
 
-## Current earned resume
+## Historical earned resume
 
-Resume only the [genuine final export](fixtures/earned-baal427/retained-final.json.gz):
+Superseded by the [genuine all-areas next431 successor](d11-earned-all-areas431.md).
+The fixture below is immutable ancestry; do not resume or replay its consumed
+successor actions428–430, preparation427, Baal427 or Eve Start/Claim.
+
+This checkpoint's [genuine final export](fixtures/earned-baal427/retained-final.json.gz):
 level35, XP105381, zero unspent stat/skill points,27306 unique owned equipment
 items, next Normal428/Nightmare0. Eve is completed and claimed; Baal's area is
 cleared. Slayer of Baal is owned and Nightmare unlocked; title remains unselected.

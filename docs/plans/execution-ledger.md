@@ -13932,3 +13932,27 @@ pacing,economy/endgame,whole-app mobile/a11y/performance/PWAinstallation,soak
 and independent/human acceptance stay open. Next work audits remaining C2
 requirements and advances unfinished full-v1 gates from the current earned
 state. Original full objective and registered worktree stay active; local only.
+
+## D11/P15 all29 earned areas; current genuine next431 — 2026-10-27
+
+Ordinary once-only RockyWaste428/DryHills429/LostCity430 yields15victories,
+zero nonwins,32930XP/284equipment. Separate28save/four exact Save-close-Continue
+pair audit preserves all27306ancestral full item payloads at every barrier.
+Current resume is only [earned-all-areas431](evidence/d11-earned-all-areas431.md):
+L35/XP138311/stat0/skill0/27590uniqueequipment/all29areas/nextNormal431/Nightmare0,
+Eveclaimed/titleowned/Nightmareunlocked; endgame attempt0/bothclear0/unclaimed.
+Rawf86301c7592f8915dd08780356f623dc17c6d0bf48a0c3ae75b399f9abd28126.
+The old Baalnext428 fixture is immutable ancestry. Never replay428–430/427/
+preparation/EveClaim or promote diagnostic copies. View-only public browser
+confirms all three clear badges and earned endgame admission; zero actions.
+Seven originals viewed; Chromium360×640/en/proven100ms transport is not pacing.
+
+Runtime log correction4d0397d8 now has exact-source full19961/941/two existing
+opt-in skipsPASS1455.164s,types157.643s/lint255.964s/build12.94sPASS.2694source
+inputs/HEAD exact through original checks;6productionJS/5realguardregexesPASS.
+Continuous native log matrix10/10bothlocales/fivesizesPASS. Test-time budget
+remains exceeded. Area raw96members archived/readbackverified/exact92files4dirs/
+rawroot removed,remaining[]/failures[]; root retains listed sidecars through
+independent/full-v1 consumers. Full goal/umbrella claim remain active; C2 broader
+integration/independent, C3/C4/fullG0-G7/builds/pacing/economy/endgame/mobile/a11y/
+performance/PWA/soak/human acceptance stay open. Local only; no remote action.

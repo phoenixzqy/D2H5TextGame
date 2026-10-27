@@ -1,0 +1,913 @@
+{
+  "kind": "genuine earned first-clear of3remaining authoredareas; root executor/saved-artifact audit, independent acceptance remains open",
+  "sourceHead": "3f96a1d7647cfa5e307329d45619a9723dc757a8",
+  "runtimeDelta": "Current two-file combat-log candidate only; source/head2694 and762actualproductionbuild inputs frozen before/after. Product checks pending in separate combat-log root.",
+  "input": {
+    "sourceHead": "3f96a1d7647cfa5e307329d45619a9723dc757a8",
+    "sourceFrozenInputs": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-combat-log-h1uy0hmu/anchor-final-checks/frozen-inputs.json",
+    "productionBuild": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-combat-log-h1uy0hmu/anchor-production-dist",
+    "inputPath": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-baal427/retained-final.json.gz",
+    "inputRawSHA256": "0abd575b9e591d8a8dc42653ebe496509acc77f6dd566b84bcc6dc009c23d52b",
+    "inputGzipSHA256": "45ebbfbf5b04379af05c5c1de69c18d6a71460050145f7411399700265a29442",
+    "inputNextNormal": 428,
+    "orderedAreas": [
+      {
+        "id": "areas/act2-rocky-waste",
+        "alias": "rocky-waste",
+        "waves": 4
+      },
+      {
+        "id": "areas/act2-dry-hills",
+        "alias": "dry-hills",
+        "waves": 5
+      },
+      {
+        "id": "areas/act2-lost-city",
+        "alias": "lost-city",
+        "waves": 6
+      }
+    ],
+    "entry": "Exactly one ordinary manual Enter per still-uncleared area, ordinals428,429,430, from canonical postBaal earned save only. No supplied seed/ordinal, bridge, Skip, speed setting or diagnostic save import.",
+    "preparation": "None: retain all current L35stats/ranks/Static-IceBlast-Blizzard priority/gear/mercenary/currencies. No respec, healing, quest Start/Claim, title selection, endgame action or farming.",
+    "stop": "First nonwin,tooling,refusal or integrity error; preserve partial prefix/current native export and never blindly retry consumed actions.",
+    "observations": "Use inherited proven100ms timer transport/fixed historical Date; public Pause/Resume and Export per settled wave; Save-close-new-page Continue exact before entry and after each complete area. No ordinary-clock pacing claim.",
+    "integrity": "Every ancestral full item payload preserved; no duplicated IDs; exact skills/core/gear/merc gear/claimed Eve/title/difficulty/endgame unchanged. Three newly cleared area rows and next431 expected only after wins.",
+    "acceptance": "Bounded earned-state reachability of29authored areas; no fullC2/independent/wholev1/pacing/class-balance acceptance.",
+    "securityCheck": "First-party local production/publicUI only; loopback ephemeral server; no external messages/network/dependencies/permissions/credentials/code changes."
+  },
+  "executor": {
+    "runtime": "3f96a1d7647cfa5e307329d45619a9723dc757a8",
+    "inputPath": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-baal427/retained-final.json.gz",
+    "inputSHA256": "0abd575b9e591d8a8dc42653ebe496509acc77f6dd566b84bcc6dc009c23d52b",
+    "policy": {
+      "sourceHead": "3f96a1d7647cfa5e307329d45619a9723dc757a8",
+      "sourceFrozenInputs": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-combat-log-h1uy0hmu/anchor-final-checks/frozen-inputs.json",
+      "productionBuild": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-combat-log-h1uy0hmu/anchor-production-dist",
+      "inputPath": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-baal427/retained-final.json.gz",
+      "inputRawSHA256": "0abd575b9e591d8a8dc42653ebe496509acc77f6dd566b84bcc6dc009c23d52b",
+      "inputGzipSHA256": "45ebbfbf5b04379af05c5c1de69c18d6a71460050145f7411399700265a29442",
+      "inputNextNormal": 428,
+      "orderedAreas": [
+        {
+          "id": "areas/act2-rocky-waste",
+          "alias": "rocky-waste",
+          "waves": 4
+        },
+        {
+          "id": "areas/act2-dry-hills",
+          "alias": "dry-hills",
+          "waves": 5
+        },
+        {
+          "id": "areas/act2-lost-city",
+          "alias": "lost-city",
+          "waves": 6
+        }
+      ],
+      "entry": "Exactly one ordinary manual Enter per still-uncleared area, ordinals428,429,430, from canonical postBaal earned save only. No supplied seed/ordinal, bridge, Skip, speed setting or diagnostic save import.",
+      "preparation": "None: retain all current L35stats/ranks/Static-IceBlast-Blizzard priority/gear/mercenary/currencies. No respec, healing, quest Start/Claim, title selection, endgame action or farming.",
+      "stop": "First nonwin,tooling,refusal or integrity error; preserve partial prefix/current native export and never blindly retry consumed actions.",
+      "observations": "Use inherited proven100ms timer transport/fixed historical Date; public Pause/Resume and Export per settled wave; Save-close-new-page Continue exact before entry and after each complete area. No ordinary-clock pacing claim.",
+      "integrity": "Every ancestral full item payload preserved; no duplicated IDs; exact skills/core/gear/merc gear/claimed Eve/title/difficulty/endgame unchanged. Three newly cleared area rows and next431 expected only after wins.",
+      "acceptance": "Bounded earned-state reachability of29authored areas; no fullC2/independent/wholev1/pacing/class-balance acceptance.",
+      "securityCheck": "First-party local production/publicUI only; loopback ephemeral server; no external messages/network/dependencies/permissions/credentials/code changes."
+    },
+    "kind": "genuine earned ordinary-browser first-clear of3remaining authored ActIIareas from canonical next428; no build change or inherited action replay; fixed historical Date and proven100ms timer transport; no supplied seed/ordinal,Skip,speed setting or store bridge",
+    "launches": [
+      {
+        "ordinal": 428,
+        "alias": "rocky-waste"
+      },
+      {
+        "ordinal": 429,
+        "alias": "dry-hills"
+      },
+      {
+        "ordinal": 430,
+        "alias": "lost-city"
+      }
+    ],
+    "retries": 0,
+    "errors": [],
+    "console": [],
+    "states": [
+      "001-imported",
+      "002-imported-prepared-saved",
+      "003-imported-prepared-continued",
+      "prelaunch-428",
+      "428-w1-initial",
+      "428-w1-terminal",
+      "004-428-w1-settled",
+      "428-w2-initial",
+      "428-w2-terminal",
+      "005-428-w2-settled",
+      "428-w3-initial",
+      "428-w3-terminal",
+      "006-428-w3-settled",
+      "428-w4-initial",
+      "428-w4-terminal",
+      "007-428-w4-settled",
+      "008-428-won-saved",
+      "009-428-won-continued",
+      "prelaunch-429",
+      "429-w1-initial",
+      "429-w1-terminal",
+      "010-429-w1-settled",
+      "429-w2-initial",
+      "429-w2-terminal",
+      "011-429-w2-settled",
+      "429-w3-initial",
+      "429-w3-terminal",
+      "012-429-w3-settled",
+      "429-w4-initial",
+      "429-w4-terminal",
+      "013-429-w4-settled",
+      "429-w5-initial",
+      "429-w5-terminal",
+      "014-429-w5-settled",
+      "015-429-won-saved",
+      "016-429-won-continued",
+      "prelaunch-430",
+      "430-w1-initial",
+      "430-w1-terminal",
+      "017-430-w1-settled",
+      "430-w2-initial",
+      "430-w2-terminal",
+      "018-430-w2-settled",
+      "430-w3-initial",
+      "430-w3-terminal",
+      "019-430-w3-settled",
+      "430-w4-initial",
+      "430-w4-terminal",
+      "020-430-w4-settled",
+      "430-w5-initial",
+      "430-w5-terminal",
+      "021-430-w5-settled",
+      "430-w6-initial",
+      "430-w6-terminal",
+      "022-430-w6-settled",
+      "023-430-won-saved",
+      "024-430-won-continued",
+      "final"
+    ],
+    "areas": [
+      {
+        "alias": "rocky-waste",
+        "ordinal": 428,
+        "waves": [
+          {
+            "wave": 1,
+            "outcome": "victory",
+            "delta": {
+              "xp": 2800,
+              "newItems": [
+                "it-84uyk-l2j",
+                "it-57zbd-l2k",
+                "it-62jzf-l2l",
+                "it-9nxjh-l2m",
+                "it-68xsa-l2n",
+                "it-5p6q6-l2o"
+              ]
+            }
+          },
+          {
+            "wave": 2,
+            "outcome": "victory",
+            "delta": {
+              "xp": 1200,
+              "newItems": [
+                "it-4c0mq-l2p",
+                "it-7tmx9-l2q",
+                "it-5do3q-l2r",
+                "it-qj29-l2s",
+                "it-3bo13-l2t"
+              ]
+            }
+          },
+          {
+            "wave": 3,
+            "outcome": "victory",
+            "delta": {
+              "xp": 1530,
+              "newItems": [
+                "it-30380-l2u",
+                "it-6l1bc-l2v",
+                "it-5qvga-l2w",
+                "it-76rn4-l2x",
+                "it-3gu6d-l2y",
+                "it-7otr9-l2z",
+                "it-9vyij-l30",
+                "it-1y7m-l31",
+                "it-8is6i-l32",
+                "it-1nkin-l33",
+                "it-2cjmf-l34",
+                "it-4cxvq-l35",
+                "it-5xkno-l36",
+                "it-872b2-l37",
+                "it-4x1ki-l38",
+                "it-37gby-l39",
+                "it-8npd1-l3a",
+                "it-51vw1-l3b",
+                "it-4xs5x-l3c",
+                "it-5bq7d-l3d",
+                "it-8s0t2-l3e",
+                "it-1y8bc-l3f",
+                "it-4owd-l3g",
+                "it-46ji3-l3h",
+                "it-3i830-l3i",
+                "it-fylx-l3j",
+                "it-9mkbt-l3k",
+                "it-3c6v4-l3l",
+                "it-5a0di-l3m",
+                "it-2dbwu-l3n",
+                "it-2tkz8-l3o",
+                "it-pnkh-l3p",
+                "it-ua49-l3q",
+                "it-7vnrc-l3r",
+                "it-2yrqr-l3s",
+                "it-9lmaf-l3t",
+                "it-7yy5r-l3u",
+                "it-5mlmf-l3v",
+                "it-4567m-l3w",
+                "it-53s60-l3x",
+                "it-59jmf-l3y",
+                "it-r3hr-l3z",
+                "it-7ln53-l40",
+                "it-1k2tp-l41",
+                "it-4bw9c-l42"
+              ]
+            }
+          },
+          {
+            "wave": 4,
+            "outcome": "victory",
+            "delta": {
+              "xp": 1800,
+              "newItems": [
+                "it-7nfux-l43",
+                "it-7xu9u-l44",
+                "it-6amj8-l45",
+                "it-4rtdm-l46",
+                "it-4y5d7-l47",
+                "it-58njr-l48",
+                "it-1mzz1-l49",
+                "it-7uc5p-l4a",
+                "it-95ske-l4b",
+                "it-uwxv-l4c",
+                "it-6kgsv-l4d",
+                "it-4lpcr-l4e",
+                "it-7eg05-l4f",
+                "it-8neq9-l4g",
+                "it-503od-l4h",
+                "it-zc3t-l4i",
+                "it-7jk3k-l4j",
+                "it-1csbn-l4k",
+                "it-36l65-l4l",
+                "it-1elka-l4m"
+              ]
+            }
+          }
+        ],
+        "outcome": "victory",
+        "actions": "One ordinary first-clear of previously uncleared ActIIarea; prior Eve claim unchanged; no preparation/claim/replay action"
+      },
+      {
+        "alias": "dry-hills",
+        "ordinal": 429,
+        "waves": [
+          {
+            "wave": 1,
+            "outcome": "victory",
+            "delta": {
+              "xp": 1280,
+              "newItems": [
+                "it-813e9-l4n",
+                "it-c05j-l4o",
+                "it-5i4rf-l4p"
+              ]
+            }
+          },
+          {
+            "wave": 2,
+            "outcome": "victory",
+            "delta": {
+              "xp": 1440,
+              "newItems": [
+                "it-7r1uq-l4q",
+                "it-4s5b1-l4r",
+                "it-810xl-l4s",
+                "it-73gyi-l4t"
+              ]
+            }
+          },
+          {
+            "wave": 3,
+            "outcome": "victory",
+            "delta": {
+              "xp": 1800,
+              "newItems": [
+                "it-47k7g-l4u",
+                "it-6q0jv-l4v",
+                "it-84x6b-l4w",
+                "it-3i3h-l4x"
+              ]
+            }
+          },
+          {
+            "wave": 4,
+            "outcome": "victory",
+            "delta": {
+              "xp": 2090,
+              "newItems": [
+                "it-6l9cl-l4y",
+                "it-1yeg4-l4z",
+                "it-92buy-l50",
+                "it-9grnb-l51",
+                "it-2kvnp-l52",
+                "it-9demm-l53",
+                "it-1ad30-l54",
+                "it-30yd8-l55",
+                "it-24rwk-l56",
+                "it-1qyqk-l57",
+                "it-1idgu-l58",
+                "it-7xqq7-l59",
+                "it-56hjm-l5a",
+                "it-25amq-l5b",
+                "it-3g5qw-l5c",
+                "it-52jto-l5d",
+                "it-4w8wk-l5e",
+                "it-7nqeg-l5f",
+                "it-75r82-l5g",
+                "it-2lk01-l5h",
+                "it-48jpv-l5i",
+                "it-67dvr-l5j",
+                "it-9cosv-l5k",
+                "it-u1m1-l5l",
+                "it-3ot54-l5m",
+                "it-4bcci-l5n",
+                "it-3ltq9-l5o",
+                "it-f0ch-l5p",
+                "it-35ia6-l5q",
+                "it-1xol6-l5r",
+                "it-8kqp6-l5s",
+                "it-1z14v-l5t",
+                "it-4f6c-l5u",
+                "it-9buw9-l5v",
+                "it-922om-l5w",
+                "it-589d5-l5x",
+                "it-9c8ty-l5y",
+                "it-7gc3s-l5z",
+                "it-42whc-l60",
+                "it-73c7t-l61",
+                "it-9ymzd-l62",
+                "it-82ku7-l63",
+                "it-askl-l64",
+                "it-1q757-l65",
+                "it-8v296-l66",
+                "it-4t5k4-l67",
+                "it-429wq-l68",
+                "it-26s78-l69",
+                "it-4kjzu-l6a",
+                "it-8e8jv-l6b",
+                "it-7ek5d-l6c",
+                "it-4g1yg-l6d",
+                "it-i7nd-l6e",
+                "it-tl0v-l6f",
+                "it-650sw-l6g"
+              ]
+            }
+          },
+          {
+            "wave": 5,
+            "outcome": "victory",
+            "delta": {
+              "xp": 2400,
+              "newItems": [
+                "it-7zzly-l6h",
+                "it-9qtwz-l6i",
+                "it-88k5t-l6j",
+                "it-3yp5s-l6k",
+                "it-4vrfw-l6l",
+                "it-6yfsx-l6m",
+                "it-3spdv-l6n",
+                "it-2y6mb-l6o",
+                "it-8yg50-l6p",
+                "it-71vep-l6q",
+                "it-95lwz-l6r",
+                "it-98jpk-l6s",
+                "it-4gwi6-l6t",
+                "it-6qovf-l6u",
+                "it-185ht-l6v",
+                "it-7kzt0-l6w",
+                "it-4i3m3-l6x",
+                "it-11mhe-l6y",
+                "it-55184-l6z",
+                "it-7sd7u-l70",
+                "it-4ghd9-l71",
+                "it-50crk-l72",
+                "it-8w7p0-l73"
+              ]
+            }
+          }
+        ],
+        "outcome": "victory",
+        "actions": "One ordinary first-clear of previously uncleared ActIIarea; prior Eve claim unchanged; no preparation/claim/replay action"
+      },
+      {
+        "alias": "lost-city",
+        "ordinal": 430,
+        "waves": [
+          {
+            "wave": 1,
+            "outcome": "victory",
+            "delta": {
+              "xp": 1980,
+              "newItems": [
+                "it-9ejh8-l74",
+                "it-6esrs-l75"
+              ]
+            }
+          },
+          {
+            "wave": 2,
+            "outcome": "victory",
+            "delta": {
+              "xp": 2200,
+              "newItems": [
+                "it-8vgm8-l76",
+                "it-6xnz2-l77",
+                "it-61b1n-l78",
+                "it-6wt28-l79",
+                "it-7z2s2-l7a"
+              ]
+            }
+          },
+          {
+            "wave": 3,
+            "outcome": "victory",
+            "delta": {
+              "xp": 2640,
+              "newItems": [
+                "it-60jb6-l7b",
+                "it-67pfr-l7c",
+                "it-82wm2-l7d",
+                "it-9d05n-l7e",
+                "it-41eqo-l7f"
+              ]
+            }
+          },
+          {
+            "wave": 4,
+            "outcome": "victory",
+            "delta": {
+              "xp": 2880,
+              "newItems": [
+                "it-7gp3n-l7g",
+                "it-95oye-l7h",
+                "it-3pc9n-l7i",
+                "it-82wwt-l7j",
+                "it-6p2r9-l7k",
+                "it-4g4yz-l7l",
+                "it-7fzci-l7m",
+                "it-4clbg-l7n",
+                "it-3t3te-l7o",
+                "it-61run-l7p",
+                "it-1u5oi-l7q",
+                "it-4yiun-l7r",
+                "it-5r205-l7s",
+                "it-5sylo-l7t",
+                "it-1oa65-l7u",
+                "it-9klzk-l7v",
+                "it-5y92y-l7w",
+                "it-e3fv-l7x",
+                "it-7wnhd-l7y",
+                "it-6lspp-l7z"
+              ]
+            }
+          },
+          {
+            "wave": 5,
+            "outcome": "victory",
+            "delta": {
+              "xp": 3250,
+              "newItems": [
+                "it-80py1-l80",
+                "it-9bfct-l81",
+                "it-62s7a-l82",
+                "it-5il9n-l83",
+                "it-6sz32-l84",
+                "it-66mgy-l85",
+                "it-m6ud-l86",
+                "it-9p3cn-l87",
+                "it-3p1vw-l88",
+                "it-41ohn-l89",
+                "it-4fw3c-l8a",
+                "it-9u98y-l8b",
+                "it-2gtar-l8c",
+                "it-2wr3m-l8d",
+                "it-2ckk1-l8e",
+                "it-5caq7-l8f",
+                "it-dx6k-l8g",
+                "it-6kadj-l8h",
+                "it-8q8oz-l8i",
+                "it-7ity6-l8j",
+                "it-2ctd4-l8k",
+                "it-1wgt3-l8l",
+                "it-3pq7r-l8m",
+                "it-6fng5-l8n",
+                "it-95uik-l8o",
+                "it-3ia9x-l8p",
+                "it-2jgt0-l8q",
+                "it-9l9hw-l8r",
+                "it-3ztat-l8s",
+                "it-3wmr7-l8t",
+                "it-7a2oc-l8u",
+                "it-9dxoy-l8v",
+                "it-6wf9w-l8w",
+                "it-92vfg-l8x",
+                "it-4bbl5-l8y",
+                "it-5yg13-l8z",
+                "it-6x5qx-l90",
+                "it-5l4au-l91",
+                "it-5isg9-l92",
+                "it-b4tg-l93",
+                "it-8ca4o-l94",
+                "it-55g87-l95",
+                "it-6dljm-l96",
+                "it-7uwl2-l97",
+                "it-95mq9-l98",
+                "it-89h5w-l99",
+                "it-75gdu-l9a",
+                "it-5mqv1-l9b",
+                "it-4gf54-l9c",
+                "it-6q87y-l9d",
+                "it-5xtfo-l9e",
+                "it-506c9-l9f",
+                "it-8wq5v-l9g",
+                "it-na9v-l9h",
+                "it-3rmxf-l9i",
+                "it-2m9x3-l9j",
+                "it-2vmfz-l9k",
+                "it-1hgr4-l9l",
+                "it-771np-l9m",
+                "it-46e8v-l9n",
+                "it-492x8-l9o",
+                "it-9kvh5-l9p",
+                "it-7g1mr-l9q",
+                "it-342bp-l9r",
+                "it-3z1ew-l9s"
+              ]
+            }
+          },
+          {
+            "wave": 6,
+            "outcome": "victory",
+            "delta": {
+              "xp": 3640,
+              "newItems": [
+                "it-7bc4j-l9t",
+                "it-70tw5-l9u",
+                "it-4v19f-l9v",
+                "it-qkm3-l9w",
+                "it-2ri5p-l9x",
+                "it-5040e-l9y",
+                "it-9ed05-l9z",
+                "it-7sg6f-la0",
+                "it-3lfnf-la1",
+                "it-1ymm7-la2",
+                "it-6umbw-la3",
+                "it-2069-la4",
+                "it-1yosp-la5",
+                "it-6eakj-la6",
+                "it-9e941-la7",
+                "it-34eti-la8",
+                "it-2m6m7-la9",
+                "it-83g2k-laa",
+                "it-2ebo0-lab",
+                "it-635v5-lac",
+                "it-215ir-lad",
+                "it-3r8nf-lae"
+              ]
+            }
+          }
+        ],
+        "outcome": "victory",
+        "actions": "One ordinary first-clear of previously uncleared ActIIarea; prior Eve claim unchanged; no preparation/claim/replay action"
+      }
+    ],
+    "ownedBrowserProcesses": [
+      {
+        "pid": 3433964,
+        "ppid": 3433901,
+        "args": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright_chromiumdev_profile-1mNUW1 --remote-debugging-pipe --no-startup-window"
+      },
+      {
+        "pid": 3433966,
+        "ppid": 3433964,
+        "args": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-zygote-sandbox --no-sandbox --headless"
+      },
+      {
+        "pid": 3433967,
+        "ppid": 3433964,
+        "args": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-sandbox --headless"
+      },
+      {
+        "pid": 3433981,
+        "ppid": 3433966,
+        "args": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=gpu-process --no-sandbox --disable-dev-shm-usage --disable-breakpad --headless --ozone-platform=headless --use-angle=swiftshader-webgl --enable-unsafe-swiftshader --gpu-preferences=UAAAAAAAAAAgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAYAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --use-gl=angle --shared-files --field-trial-handle=3,i,17032004657799320940,15338880144819252641,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,11750092519961457441,4464848024931645145,4 --trace-process-track-uuid=3190708988185955192"
+      },
+      {
+        "pid": 3433983,
+        "ppid": 3433964,
+        "args": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --no-sandbox --disable-dev-shm-usage --use-angle=swiftshader-webgl --use-gl=angle --mute-audio --headless=old --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,17032004657799320940,15338880144819252641,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,11750092519961457441,4464848024931645145,4 --trace-process-track-uuid=3190708989122997041"
+      }
+    ],
+    "browserProfiles": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright_chromiumdev_profile-1mNUW1"
+    ],
+    "downloadPaths": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/fc234b77-db8b-4614-b158-1418d4089b87",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/e617a5a6-036d-49b9-949d-2373a6902fb0",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/1ea43f4c-34d6-42b2-bfc4-5bf2c03b1560",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/ef24a8a6-356e-4906-ba01-a2f63c02f608",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/037fcad5-d21e-47cc-80a2-a17cce67c2f8",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/c41b4049-56b8-4d6d-bf28-7d757a1720ea",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/3fa2a6d0-fb5f-4246-b39d-a682672d0fed",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/28f07f8c-e215-45a8-b055-04f8b570d627",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/82908bc1-c083-4d2a-9abd-1c7f2060ca35",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/f576e306-00ce-4e7c-87b8-76d27e627932",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/0c969b0d-d4e9-460a-a292-76f1d6f2925b",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/51b22793-644e-4d72-bbd9-9edb99642039",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/ca67589b-721a-4b36-a024-801d86c20d81",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/79ec7ad8-605f-421c-87e1-bea7601827bc",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/7b617f29-bdc9-4193-b3e6-00739707c018",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/5d22f726-ff61-4ac5-8f77-3976c2c19e2a",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/6811f0b7-ad29-4a1e-a9af-c37e1d00e54b",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/cc6bf5ee-8465-4d03-8df8-9199e4e8d1b0",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/ded12e26-27a6-47eb-9e18-e460de081288",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/3341c563-c408-4234-80c6-ff6e40601cd1",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/404bdb83-b2ad-407e-b9fc-8d1390c4c28e",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/e1fc4091-9e16-4779-9e1e-8e84ba7d9af2",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/0c24de72-be51-4fcb-bc01-1e9d1a025bd1",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright-artifacts-XU5Q8m/f595e551-706c-4744-8119-4d6c9b7705ae"
+    ],
+    "executionStartedAt": "2026-10-27T16:54:38.534Z",
+    "requestedClockAdvanceMs": 103500,
+    "outcome": "earned-authored-area-clear",
+    "stopReason": "three-ordered-first-clear-attempts-complete",
+    "authoredAreasCleared": 29,
+    "sourceAndBuildUnchanged": true,
+    "status": "observed",
+    "finalOrdinal": 431,
+    "ownedBefore": 27306,
+    "ownedAfter": 27590,
+    "totalXP": 32930,
+    "finalLevel": 35,
+    "executionWallMs": 123920.315903,
+    "ownedTemporaryPathsRemaining": []
+  },
+  "audit": {
+    "kind": "root saved-artifact audit, separate from executor assertions; independent acceptance remains open",
+    "status": "pass",
+    "savedSnapshots": 28,
+    "exactSaveCloseContinuePairs": [
+      [
+        "015-429-won-saved",
+        "016-429-won-continued"
+      ],
+      [
+        "008-428-won-saved",
+        "009-428-won-continued"
+      ],
+      [
+        "002-imported-prepared-saved",
+        "003-imported-prepared-continued"
+      ],
+      [
+        "023-430-won-saved",
+        "024-430-won-continued"
+      ]
+    ],
+    "ancestralFullPayloadsPreservedAtEverySnapshot": 27306,
+    "uniqueOwnedFinal": 27590,
+    "newOwnedEquipment": 284,
+    "earnedXP": 32930,
+    "launches": [
+      {
+        "ordinal": 428,
+        "alias": "rocky-waste"
+      },
+      {
+        "ordinal": 429,
+        "alias": "dry-hills"
+      },
+      {
+        "ordinal": 430,
+        "alias": "lost-city"
+      }
+    ],
+    "victoriousWaves": 15,
+    "nonwins": 0,
+    "allAuthoredAreasCleared": 29,
+    "nextNormal": 431,
+    "nextNightmare": 0,
+    "finalRawSHA256": "f86301c7592f8915dd08780356f623dc17c6d0bf48a0c3ae75b399f9abd28126",
+    "finalGzipSHA256": "f53f392732920c664e003bc8aa821a25388619fea77785d90b4e314813610276",
+    "canonicalBaalInputUnchanged": true
+  },
+  "mapObserver": {
+    "kind": "Diagnostic view-only import of already-earned final431; no gameplay action, export promotion or genuine state mutation",
+    "inputRawSHA256": "f86301c7592f8915dd08780356f623dc17c6d0bf48a0c3ae75b399f9abd28126",
+    "viewport": {
+      "width": 360,
+      "height": 640
+    },
+    "locale": "en",
+    "errors": [],
+    "console": [],
+    "retries": 0,
+    "areas": [
+      {
+        "alias": "rocky-waste",
+        "text": "Rocky Waste\n\u2713 CLEARED\nRecommended Lv: 14 \u00b7 Challenge loop: 8\u201320 monsters/wave\nFarm Here\nEnter",
+        "cleared": "true",
+        "enterEnabled": true
+      },
+      {
+        "alias": "dry-hills",
+        "text": "Dry Hills\n\u2713 CLEARED\nRecommended Lv: 16 \u00b7 Challenge loop: 8\u201320 monsters/wave\nInspect\nFarm Here\nEnter",
+        "cleared": "true",
+        "enterEnabled": true
+      },
+      {
+        "alias": "lost-city",
+        "text": "Lost City\n\u2713 CLEARED\nRecommended Lv: 21 \u00b7 Challenge loop: 8\u201320 monsters/wave\nInspect\nFarm Here\nEnter",
+        "cleared": "true",
+        "enterEnabled": true
+      }
+    ],
+    "processes": [
+      {
+        "pid": 3439421,
+        "ppid": 3439368,
+        "args": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright_chromiumdev_profile-YjNUJJ --remote-debugging-pipe --no-startup-window"
+      },
+      {
+        "pid": 3439423,
+        "ppid": 3439421,
+        "args": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-zygote-sandbox --no-sandbox --headless"
+      },
+      {
+        "pid": 3439424,
+        "ppid": 3439421,
+        "args": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=zygote --no-sandbox --headless"
+      },
+      {
+        "pid": 3439440,
+        "ppid": 3439423,
+        "args": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=gpu-process --no-sandbox --disable-dev-shm-usage --disable-breakpad --headless --ozone-platform=headless --use-angle=swiftshader-webgl --enable-unsafe-swiftshader --gpu-preferences=UAAAAAAAAAAgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAYAAAAAAAAABgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAA --use-gl=angle --shared-files --field-trial-handle=3,i,10419897191035837826,17436404754778240947,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,15741614841292048273,4583983083823458788,4 --trace-process-track-uuid=3190708988185955192"
+      },
+      {
+        "pid": 3439442,
+        "ppid": 3439421,
+        "args": "/home/felixzhao/.cache/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-linux64/chrome-headless-shell --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --no-sandbox --disable-dev-shm-usage --use-angle=swiftshader-webgl --use-gl=angle --mute-audio --headless=old --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,10419897191035837826,17436404754778240947,262144 --enable-features=CDPScreenshotNewSurface --disable-features=AutoDeElevate,AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,OptimizationHints,PaintHolding,RenderDocument,ThirdPartyStoragePartitioning,Translate --variations-seed-version --pseudonymization-salt-handle=7,i,15741614841292048273,4583983083823458788,4 --trace-process-track-uuid=3190708989122997041"
+      }
+    ],
+    "profiles": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt/browser-tmp/playwright_chromiumdev_profile-YjNUJJ"
+    ],
+    "earnedDungeonAdmission": {
+      "unlocked": true,
+      "enterEnabled": true,
+      "bothModifiersEnabled": true,
+      "claimDisabledBeforeClears": true,
+      "actionsConsumed": 0,
+      "text": "Worldstone Remnant\n\nLevel 90 \u00b7 4 waves \u00b7 Free entry \u00b7 Manual battles\n\nChoose your trial\nAshen Trial\nBlood Lords resist fire and attack with fire breath and ignite.\nEvery full clear: 1 \u00d7 Flawless Ruby\nClears: 0\nGlacial Trial\nFrozen Terrors resist cold and slow attacks with frost aura and chill.\nEvery full clear: 1 \u00d7 Flawless Sapphire\nClears: 0\n\nWon waves grant Act V rewards. A loss keeps settled wave rewards; the completion cache requires every wave.\n\nEnter dungeon\nRiftwalker\n\nClear each trial at least once, then claim your reward.\n\nClaim reward: 1 \u00d7 Perfect Ruby \u00b7 1 \u00d7 Perfect Sapphire and the Riftwalker title.\n\nClaim achievement"
+    },
+    "inputUnchanged": true,
+    "status": "pass",
+    "remainingProfiles": []
+  },
+  "visualReview": {
+    "reviewer": "root/same author; independent review still open",
+    "imagesIndividuallyViewed": 7,
+    "images": [
+      {
+        "path": "native-missing-areas/428-victory.png",
+        "sha256": "2fe9f596218431c28561726028f8864d1e1df72cd1b0b973392e97d942ed4ebf",
+        "viewedOriginal": true,
+        "observation": "Native screenshot shows large reward list; terminal heading may be above internal viewport. Ordinary terminal DOM and settled saved clear rows prove victory."
+      },
+      {
+        "path": "native-missing-areas/429-victory.png",
+        "sha256": "12aec4b60a896733ba6a8b453eba5dcb4bcf9f9410ed2e8ae6e115ac147800a1",
+        "viewedOriginal": true,
+        "observation": "Native screenshot shows large reward list; terminal heading may be above internal viewport. Ordinary terminal DOM and settled saved clear rows prove victory."
+      },
+      {
+        "path": "native-missing-areas/430-victory.png",
+        "sha256": "501a76e50e7f0679d4bf73822d4e453a81ace7a7f111289c3a9e49650eebc653",
+        "viewedOriginal": true,
+        "observation": "Native screenshot shows large reward list; terminal heading may be above internal viewport. Ordinary terminal DOM and settled saved clear rows prove victory."
+      },
+      {
+        "path": "map-observer/rocky-waste.png",
+        "sha256": "9a2160897afdbdf29fd1b209800f380b8759402ddca43c1c4c69978eceeacd36",
+        "viewedOriginal": true,
+        "observation": "Actual earned clear badge visible and ordinary Enter available; endgame screenshot shows enabled admission and zero clears. No gameplay action consumed by this observer."
+      },
+      {
+        "path": "map-observer/dry-hills.png",
+        "sha256": "a9b54c9a86d3f50501398796d220cad187b79ff8fddb7432d6194ed971f0b90d",
+        "viewedOriginal": true,
+        "observation": "Actual earned clear badge visible and ordinary Enter available; endgame screenshot shows enabled admission and zero clears. No gameplay action consumed by this observer."
+      },
+      {
+        "path": "map-observer/lost-city.png",
+        "sha256": "d8bea25758f990831bf4220f6f2f63489be0b8155492b318836122f59367d765",
+        "viewedOriginal": true,
+        "observation": "Actual earned clear badge visible and ordinary Enter available; endgame screenshot shows enabled admission and zero clears. No gameplay action consumed by this observer."
+      },
+      {
+        "path": "map-observer/earned-endgame-admission.png",
+        "sha256": "19f6ab605422ed19e3e67417f06c10da94fb8fdb553961bd4c4193d3df7f168a",
+        "viewedOriginal": true,
+        "observation": "Actual earned clear badge visible and ordinary Enter available; endgame screenshot shows enabled admission and zero clears. No gameplay action consumed by this observer."
+      }
+    ],
+    "scope": "Three earned area clears and earned endgame unlock projection only; not fullG5/P18/pacing acceptance."
+  },
+  "currentGenuineResume": {
+    "kind": "AUTHORITATIVE genuine successor after once-only428-430; auditpassed; never replay these areas/427/EveClaim or promote map-observer copies",
+    "path": "docs/plans/evidence/fixtures/earned-all-areas431/retained-final.json.gz",
+    "rawSHA256": "f86301c7592f8915dd08780356f623dc17c6d0bf48a0c3ae75b399f9abd28126",
+    "gzipSHA256": "f53f392732920c664e003bc8aa821a25388619fea77785d90b4e314813610276",
+    "nextNormal": 431,
+    "nextNightmare": 0,
+    "allAuthoredAreasCleared": 29,
+    "ancestry": "docs/plans/evidence/fixtures/earned-baal427/retained-final.json.gz unchanged; next428 now ancestry only",
+    "versionedRetention": "Exact original gzip bytes published after frozen consumers finished; original Baal checkpoint is immutable ancestry.",
+    "rawRootRemoved": true
+  },
+  "priorBaalFixture": "Immutable ancestry; next428 consumed. Never replay428-430/preparation427/EveClaim. Diagnostic observer copies are not promoted.",
+  "remaining": "FullC2integration/independent/pacing,C3fourteenbuilds/skills/economy,C4fullG0-G7/P18repeatclears/modifier/reward/loss/retry/PWA/device/soak/human acceptance stay open. Earned dungeon admission now observed, no dungeon entered.",
+  "retention": {
+    "owner": "root",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt-raw.tar.gz",
+    "archiveSHA256": "aec3827822fc0c762782540498bde1094681a08f6872c0b9dc510ba0a86c3aba",
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt-raw-manifest.json",
+    "manifestSHA256": "bfca0e2d949608f5ae72ed65216076b130b37dd6aafa143d24e42a16ca3ce69f",
+    "readBackVerifiedMembers": 96,
+    "exactCleanup": {
+      "filesRemoved": 92,
+      "directoriesRemovedIncludingRawRoot": 4,
+      "remaining": [],
+      "failures": []
+    },
+    "genuineFinal": {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt-retained-final.json.gz",
+      "gzipSHA256": "f53f392732920c664e003bc8aa821a25388619fea77785d90b4e314813610276",
+      "rawSHA256": "f86301c7592f8915dd08780356f623dc17c6d0bf48a0c3ae75b399f9abd28126",
+      "level": 35,
+      "experience": 138311,
+      "nextNormal": 431,
+      "nextNightmare": 0,
+      "ownedEquipment": 27590,
+      "authoredAreasCleared": 29
+    },
+    "retainedSummary": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt-summary.json",
+    "retentionPurpose": "Archive/manifest/receipt retained through campaign,independent,full-v1 consumers; root removes only these exact paths after consumers release.",
+    "genuineFilePurpose": "Genuine deliverable temporarily retained outside repository while frozen full-unit validates; root copies exact bytes to docs/plans/evidence/fixtures/earned-all-areas431/retained-final.json.gz then removes this external copy only after versioned read-back verification.",
+    "retainerArtifactsPending": [],
+    "retainerArtifactsRemovedAndVerified": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt-retain.py",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt-retain.log"
+    ]
+  },
+  "integrationValidation": {
+    "sourceCommit": "4d0397d865a262a53f81eb54ace916a1ea592b5b",
+    "exactRuntimeSourceValidated": true,
+    "unit": {
+      "passed": 19961,
+      "files": 941,
+      "skipped": 2,
+      "wallSeconds": 1455.163552916958,
+      "exit": 0
+    },
+    "typecheck": {
+      "exit": 0,
+      "wallSeconds": 157.64312598400284
+    },
+    "lint": {
+      "exit": 0,
+      "wallSeconds": 255.96386214205995
+    },
+    "productionBuild": {
+      "exit": 0,
+      "seconds": 12.94,
+      "bridgeGuard": "6JS chunks scanned against unchanged5 bridge regexes"
+    },
+    "browserLogMatrix": "10/10continuous-timer production native input cases, bothlocales/fivesizes",
+    "limitations": "Independent acceptance and test-time/performance budgets remain open."
+  }
+}
