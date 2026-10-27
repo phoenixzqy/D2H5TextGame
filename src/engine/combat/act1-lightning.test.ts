@@ -1,3 +1,4 @@
+import missileRows from '../../data/skills/monsters.json';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import act1Areas from '../../data/maps/sub-areas/act1.json';
 import type { SubAreaDef } from '../types/maps';
@@ -5,7 +6,7 @@ import type { EliteAffixDef } from '../types/elite';
 import type { MonsterDef } from '../types/monsters';
 import * as rngModule from '../rng';
 import { getSkill, listSkills, loadDefaultSkills, registerSkill, resetRegistry } from '../skills/registry';
-import { MONSTER_STUB_SKILLS } from '../skills/aliases';
+import { aliasToCanonical, MONSTER_STUB_SKILLS } from '../skills/aliases';
 import { ACT1_LIGHTNING_AFFIX_SKILL } from '../skills/act1-lightning';
 import { DEFAULT_ELITE_CONFIG, resolveChallengeWavePlan, resolveWavePlan } from './sub-area-run';
 import { buildMonsterUnit } from './monster-factory';
@@ -66,14 +67,22 @@ afterEach(() => { vi.restoreAllMocks(); resetRegistry(); loadDefaultSkills(); })
 
 describe('Act I Lightning affix integration', () => {
   it('registers both spell identities and preserves every shared monster stub on repeated default loads', () => {
-    const ids = [...listSkills()].sort();
+    const ids = [...listSkills()].sort(), originals = structuredClone(MONSTER_STUB_SKILLS);
+    const flights = new Map(missileRows.flatMap(row => 'projectileFlightMs' in row
+      ? [[aliasToCanonical(row.id), row.projectileFlightMs] as const] : []));
     expect(getSkill(id)).toBe(ACT1_LIGHTNING_AFFIX_SKILL);
     expect(getSkill(canonical)).toBe(ACT1_LIGHTNING_AFFIX_SKILL);
     registerSkill({ ...ACT1_LIGHTNING_AFFIX_SKILL, manaCost: 99 });
     loadDefaultSkills();
     expect(getSkill(id)).toBe(ACT1_LIGHTNING_AFFIX_SKILL);
     expect([...listSkills()].sort()).toEqual(ids);
-    for (const stub of MONSTER_STUB_SKILLS) expect(getSkill(stub.id)).toBe(stub);
+    for (const stub of MONSTER_STUB_SKILLS) {
+      const flight = flights.get(stub.id);
+      if (flight === undefined) expect(getSkill(stub.id)).toBe(stub);
+      else expect(getSkill(stub.id)).toEqual({ ...stub, effects: stub.effects.map(effect =>
+        effect.kind === 'damage' ? { ...effect, projectileFlightMs: flight } : effect) });
+    }
+    expect(MONSTER_STUB_SKILLS).toEqual(originals);
     expect(getSkill('monster-lightning')?.effects).toEqual([
       { kind: 'damage', damageType: 'lightning', base: [40, 60], tags: undefined, applyStatus: undefined }
     ]);
