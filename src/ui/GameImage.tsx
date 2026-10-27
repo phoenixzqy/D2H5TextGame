@@ -8,7 +8,7 @@
  */
 import { useState } from 'react';
 
-type ImageSize = 'xs' | 'sm' | 'md' | 'lg';
+type ImageSize = 'xs' | 'sm' | 'md' | 'lg' | 'fill';
 type ObjectPosition = 'top' | 'center';
 
 interface GameImageProps {
@@ -19,6 +19,8 @@ interface GameImageProps {
   fallbackIcon?: string;
   /** Extra Tailwind classes on the outer wrapper. */
   className?: string;
+  /** Complete image classes when the parent owns fitting and padding. */
+  imageClassName?: string;
   /** Preset size. Defaults to `'md'`. */
   size?: ImageSize;
   /** If true the outer wrapper is a plain span (for inline contexts). */
@@ -35,7 +37,8 @@ const SIZE_CLASSES: Record<ImageSize, string> = {
   xs: 'w-6 h-6 text-xs',
   sm: 'w-8 h-8 text-sm',
   md: 'w-10 h-10 text-base',
-  lg: 'w-16 h-16 text-xl'
+  lg: 'w-16 h-16 text-xl',
+  fill: 'w-full h-full text-xs'
 };
 
 export function GameImage({
@@ -43,6 +46,7 @@ export function GameImage({
   alt,
   fallbackIcon = '?',
   className = '',
+  imageClassName,
   size = 'md',
   inline = false,
   objectPosition = 'center'
@@ -64,7 +68,7 @@ export function GameImage({
       aria-hidden
     >
       {/* A source change gets its own loading/error state without replacing the wrapper. */}
-      <ImageContent key={src} src={src} alt={alt} fallbackIcon={fallbackIcon} posClass={posClass} />
+      <ImageContent key={src} src={src} alt={alt} fallbackIcon={fallbackIcon} posClass={posClass} imageClassName={imageClassName} />
     </Tag>
   );
 }
@@ -73,12 +77,14 @@ function ImageContent({
   src,
   alt,
   fallbackIcon,
-  posClass
+  posClass,
+  imageClassName
 }: {
   src: GameImageProps['src'];
   alt: string;
   fallbackIcon: string;
   posClass: string;
+  imageClassName: string | undefined;
 }) {
   const [errored, setErrored] = useState(false);
 
@@ -86,7 +92,7 @@ function ImageContent({
     <img
       src={src}
       alt={alt}
-      className={`w-full h-full object-cover ${posClass}`}
+      className={imageClassName ?? `w-full h-full object-cover ${posClass}`}
       loading="lazy"
       decoding="async"
       onError={() => {

@@ -13,7 +13,7 @@ const BASE = '/assets/d2/generated';
 
 import { loadMercPool } from '@/data/loaders/mercs';
 import { loadItemBases } from '@/data/loaders/loot';
-import { resolveItemIcon, resolveMercArt, resolveSkillIcon } from './cardAssets';
+import { resolveItemIcon, resolveMercArt, resolveMonsterArt, resolveSkillIcon } from './cardAssets';
 import {
   CLASS_PORTRAITS,
   NPC_PORTRAITS,
@@ -44,28 +44,15 @@ export function getClassPortraitUrl(className: string): string {
 /*  Monsters / Bosses                                                  */
 /* ------------------------------------------------------------------ */
 /**
- * Best-effort mapping from a combat-unit ID / name to an image URL.
- *
- * `extractMonsterSlug` typically strips the act prefix (e.g. `fallen`,
- * `quill-rat`, `andariel`). We scan the auto-generated MONSTER_ART map
- * for any `act<N>.<slug>` key and return the first match — so all 90+
- * ready-made monster portraits land automatically.
+ * Resolve registered monster art or a curated override, never a fabricated URL.
+ * Canonical act-qualified IDs keep their identity; legacy bare slugs use the
+ * first matching registered identity. Missing artwork returns null for fallback.
  */
-export function getMonsterImageUrl(monsterId: string): string {
-  const slug = toKebab(monsterId);
-
-  if (slug.includes('.') && slug in MONSTER_ART) {
-    return MONSTER_ART[slug] ?? `${BASE}/monsters/monsters.act1.${slug}.png`;
-  }
-
-  for (const key of Object.keys(MONSTER_ART)) {
-    const dot = key.indexOf('.');
-    if (dot >= 0 && key.slice(dot + 1) === slug) {
-      return MONSTER_ART[key] ?? `${BASE}/monsters/monsters.act1.${slug}.png`;
-    }
-  }
-
-  return `${BASE}/monsters/monsters.act1.${slug}.png`;
+export function getMonsterImageUrl(monsterId: string): string | null {
+  const slug = toKebab(monsterId.replace(/^monsters\//, ''));
+  if (slug.includes('.')) return resolveMonsterArt(slug);
+  const key = Object.keys(MONSTER_ART).find(key => key.slice(key.indexOf('.') + 1) === slug);
+  return key ? resolveMonsterArt(key) : null;
 }
 
 /* ------------------------------------------------------------------ */

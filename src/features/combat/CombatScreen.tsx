@@ -12,7 +12,7 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Modal, Panel, ScreenShell, StatBar, GameCard, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey } from '@/ui';
+import { Button, Modal, Panel, ScreenShell, StatBar, GameCard, GameImage, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey } from '@/ui';
 import { CombatRewardSummary } from './CombatRewardSummary';
 import { useCombatStore, useFormationStore, useMapStore, useMetaStore, usePlayerStore } from '@/stores';
 import {
@@ -711,7 +711,7 @@ function UnitCard({
   } else if (isPlayerSide && player) {
     avatarSrc = getClassPortraitUrl(player.class);
   } else {
-    avatarSrc = getMonsterImageUrl(extractMonsterSlug(unit.name, unit.id));
+    avatarSrc = getMonsterImageUrl(extractMonsterSlug(unit.name, unit.id, true)) ?? undefined;
   }
 
   const rarity = isPlayerSide
@@ -811,22 +811,21 @@ function UnitCard({
           title={displayName}
         >
           <div className="h-16 shrink-0 overflow-hidden bg-black/30 lg:h-auto lg:min-h-0 lg:flex-1">
-            {avatarSrc ? (
-              <img
-                src={avatarSrc}
-                alt={displayName}
-                className={[
-                  'h-full w-full',
-                  isSummon
-                    ? 'object-cover object-top'
-                    : isPlayerSide
-                      ? 'object-contain p-2'
-                      : 'object-cover object-top'
-                ].join(' ')}
-              />
-            ) : (
-              <div className="flex h-full items-center justify-center text-xs text-d2-white/40">{displayName.slice(0, 2)}</div>
-            )}
+            <GameImage
+              src={avatarSrc ?? null}
+              alt={displayName}
+              fallbackIcon={displayName.slice(0, 2)}
+              size="fill"
+              className="rounded-none border-0 bg-none"
+              imageClassName={[
+                'h-full w-full',
+                isSummon
+                  ? 'object-cover object-top'
+                  : isPlayerSide
+                    ? 'object-contain p-2'
+                    : 'object-cover object-top'
+              ].join(' ')}
+            />
           </div>
           <div className="space-y-0.5 bg-black/70 px-1 py-0.5">
             <div className="break-words text-sm leading-5 text-d2-white/80 [overflow-wrap:anywhere] lg:truncate lg:text-[10px] lg:leading-tight">{displayName}</div>
@@ -1297,12 +1296,16 @@ function orderAlliesWithSummons(team: readonly CombatUnit[]): CombatUnit[] {
  *   id="enemy-act2.sand-maggot-young-2-ef"  → "sand-maggot-young"
  *   name="Fallen Lv1"                       → "fallen"
  */
-function extractMonsterSlug(name: string, id: string): string {
+// Monster portraits retain the act for canonical registry/override lookup.
+function extractMonsterSlug(name: string, id: string, includeAct = false): string {
   // Preferred path: parse the engine-stamped id.
   // monster-factory builds: `enemy-${archetypeSlug}-${index}-${hexTag}`
   // where archetypeSlug is `act<N>.<kebab>` (last segment of `monsters/act<N>.<kebab>`).
-  const idMatch = /^enemy-(?:act\d+\.)?([a-z0-9-]+?)-\d+-[a-f0-9]+$/i.exec(id);
-  if (idMatch?.[1]) return idMatch[1].toLowerCase();
+  const idMatch = /^enemy-((?:act\d+\.)?[a-z0-9-]+?)-\d+-[a-f0-9]+$/i.exec(id);
+  if (idMatch?.[1]) {
+    const key = idMatch[1].toLowerCase();
+    return includeAct ? key : key.replace(/^act\d+\./, '');
+  }
 
   // Fallback: clean the display name. Strip — in this order —
   //   1) tier badge in trailing parens, e.g. " (Elite)", " (Boss)"
