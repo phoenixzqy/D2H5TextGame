@@ -1,0 +1,901 @@
+{
+  "at": "2026-10-27T13:36:13.643806+00:00",
+  "status": "Scoped source/native/production verification passed; fresh whole integration and final retention pending; no independent approval",
+  "owner": "root sole executor/author",
+  "sourceCommit": "6480ac1561e2a5bbff16e4b1c96185ded9983131",
+  "bugReportCommit": "be8c7537359e1f93e83ec99638df8e81b6369182",
+  "sourceHashes": {
+    "src/features/inventory/CraftingPanel.tsx": "fb83ba9c4b571c737a926a89eb34a8738501b27084b158ba96fbd56a8822c6b4",
+    "src/features/inventory/CraftingPanel.target-work.test.tsx": "553268ba66d2d7524d7810f21879ad192f8b9b1fb1f80fcfb0ef2eb238a0cd9e"
+  },
+  "checks": {
+    "inventory-focused": {
+      "label": "inventory-focused",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/inventory/CraftingPanel.target-work.test.tsx",
+        "src/features/inventory/CraftingPanel.test.tsx",
+        "src/features/inventory/InventoryScreen.pagination.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 11.514862130978145,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "be8c7537359e1f93e83ec99638df8e81b6369182",
+      "headAfter": "be8c7537359e1f93e83ec99638df8e81b6369182",
+      "totals": [
+        " Test Files  3 passed (3)",
+        "      Tests  46 passed (46)"
+      ]
+    },
+    "inventory-types": {
+      "label": "inventory-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/ui.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 9.056150627089664,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "be8c7537359e1f93e83ec99638df8e81b6369182",
+      "headAfter": "be8c7537359e1f93e83ec99638df8e81b6369182",
+      "totals": []
+    },
+    "inventory-lint": {
+      "label": "inventory-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--no-ignore",
+        "src/features/inventory/CraftingPanel.tsx",
+        "src/features/inventory/CraftingPanel.target-work.test.tsx",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 8.92144195199944,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "be8c7537359e1f93e83ec99638df8e81b6369182",
+      "headAfter": "be8c7537359e1f93e83ec99638df8e81b6369182",
+      "totals": []
+    },
+    "inventory-build": {
+      "label": "inventory-build",
+      "command": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/build.config.mjs"
+      ],
+      "exit": 0,
+      "seconds": 13.224366049980745,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "be8c7537359e1f93e83ec99638df8e81b6369182",
+      "headAfter": "be8c7537359e1f93e83ec99638df8e81b6369182",
+      "totals": []
+    },
+    "inventory-fixed-browser": {
+      "label": "inventory-fixed-browser",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/profile-v2.mjs",
+        "fixed-v2",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-dist"
+      ],
+      "exit": 0,
+      "seconds": 28.850099107949063,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "6480ac1561e2a5bbff16e4b1c96185ded9983131",
+      "headAfter": "6480ac1561e2a5bbff16e4b1c96185ded9983131",
+      "totals": []
+    },
+    "inventory-viewport-browser": {
+      "label": "inventory-viewport-browser",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/profile-viewports.mjs",
+        "fixed-viewports",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-dist"
+      ],
+      "exit": 0,
+      "seconds": 63.53269402298611,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "6480ac1561e2a5bbff16e4b1c96185ded9983131",
+      "headAfter": "6480ac1561e2a5bbff16e4b1c96185ded9983131",
+      "totals": []
+    },
+    "inventory-360-browser": {
+      "label": "inventory-360-browser",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/profile-360.mjs",
+        "fixed-360",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-dist"
+      ],
+      "exit": 0,
+      "seconds": 17.31427936803084,
+      "inputsUnchanged": true,
+      "inputCount": 1943,
+      "headBefore": "6480ac1561e2a5bbff16e4b1c96185ded9983131",
+      "headAfter": "6480ac1561e2a5bbff16e4b1c96185ded9983131",
+      "totals": []
+    }
+  },
+  "causal": {
+    "trueRed": {
+      "label": "inventory-target-work-red-resolved",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/branch.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 9.817010789993219,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
+      "headAfter": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
+      "totals": [
+        " ❯ |craft-profile-red| ../../zai-temp/d2h5-inventory-profile-gbqp4wuf/CraftingPanel.target-work.test.tsx  (6 tests | 6 failed) 501ms",
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯",
+        " Test Files  1 failed (1)",
+        "      Tests  6 failed (6)"
+      ]
+    },
+    "experimentalGreen": {
+      "label": "inventory-target-work-prototype-final",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/branch.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/prototype-workspace.mjs"
+      ],
+      "exit": 0,
+      "seconds": 9.918899973970838,
+      "inputsUnchanged": true,
+      "inputCount": 1942,
+      "headBefore": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
+      "headAfter": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
+      "totals": [
+        " Test Files  1 passed (1)",
+        "      Tests  6 passed (6)"
+      ]
+    },
+    "experimentScope": "Off-repository load hook only; actual committed source is byte-identical to the final prototype.",
+    "diagnosticCPUSummary": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/cpu-summary.json"
+  },
+  "comparison": {
+    "scope": "Same constructed saves, Chromium360x640, same corrected event-to-mounted-and-painted protocol and CPU sampling, three observations per context; full checks finished before both runs. Local headless observations only, no physical-device/whole-app performance acceptance.",
+    "beforeHead": "6c57da6309f7b4bded1a63786a2922b2ba19c315",
+    "afterHead": "6480ac1561e2a5bbff16e4b1c96185ded9983131",
+    "cases": [
+      {
+        "count": 100,
+        "locale": "en",
+        "inputSHA256": "98700079499fa86868336475cd2204e255d9698c37cc898c35f49d7487bf4938",
+        "beforeMs": [
+          187,
+          112,
+          114
+        ],
+        "afterMs": [
+          212,
+          114,
+          120
+        ],
+        "beforeMedianMs": 114,
+        "afterMedianMs": 120
+      },
+      {
+        "count": 100,
+        "locale": "zh-CN",
+        "inputSHA256": "c88934b2766107be3a9b53948f5015c185cdaf87ed38ef5adda6951be8dacff0",
+        "beforeMs": [
+          208,
+          102,
+          136
+        ],
+        "afterMs": [
+          271,
+          116,
+          116
+        ],
+        "beforeMedianMs": 136,
+        "afterMedianMs": 116
+      },
+      {
+        "count": 24000,
+        "locale": "en",
+        "inputSHA256": "bddb28793c8ec7d44c4e789578a7cac03ba17cf4925621106b4f75e9302adc07",
+        "beforeMs": [
+          380,
+          236,
+          227
+        ],
+        "afterMs": [
+          161,
+          105,
+          119
+        ],
+        "beforeMedianMs": 236,
+        "afterMedianMs": 119
+      },
+      {
+        "count": 24000,
+        "locale": "zh-CN",
+        "inputSHA256": "860d3b54b7d15a97095785493867260e133ef5de5d28b98e554c2c0c0c2ff10d",
+        "beforeMs": [
+          455,
+          329,
+          349
+        ],
+        "afterMs": [
+          187,
+          116,
+          131
+        ],
+        "beforeMedianMs": 349,
+        "afterMedianMs": 131
+      }
+    ],
+    "zeroWarningsErrors": true
+  },
+  "public": {
+    "comparisonFixed": {
+      "kind": "Constructed full-inventory interaction/CPU diagnosis; timings are local headless Chromium observations, not physical-device or whole-app acceptance",
+      "head": "6480ac1561e2a5bbff16e4b1c96185ded9983131",
+      "cases": [
+        {
+          "count": 100,
+          "locale": "en",
+          "viewport": {
+            "width": 360,
+            "height": 640
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 212,
+              "inventoryPresent": true,
+              "driverMs": 401.20656400000007,
+              "profile": "100-en-0.cpuprofile",
+              "cards": 100
+            },
+            {
+              "clickToPaintedInventoryMs": 114,
+              "inventoryPresent": true,
+              "driverMs": 145.51331799999934,
+              "profile": "100-en-1.cpuprofile",
+              "cards": 100
+            },
+            {
+              "clickToPaintedInventoryMs": 120,
+              "inventoryPresent": true,
+              "driverMs": 255.02413700000034,
+              "profile": "100-en-2.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "98700079499fa86868336475cd2204e255d9698c37cc898c35f49d7487bf4938",
+          "exactOwnership": true,
+          "status": "pass"
+        },
+        {
+          "count": 100,
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 360,
+            "height": 640
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 271,
+              "inventoryPresent": true,
+              "driverMs": 415.02635499999997,
+              "profile": "100-zh-CN-0.cpuprofile",
+              "cards": 100
+            },
+            {
+              "clickToPaintedInventoryMs": 116,
+              "inventoryPresent": true,
+              "driverMs": 246.98852499999884,
+              "profile": "100-zh-CN-1.cpuprofile",
+              "cards": 100
+            },
+            {
+              "clickToPaintedInventoryMs": 116,
+              "inventoryPresent": true,
+              "driverMs": 138.18961600000148,
+              "profile": "100-zh-CN-2.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "c88934b2766107be3a9b53948f5015c185cdaf87ed38ef5adda6951be8dacff0",
+          "exactOwnership": true,
+          "status": "pass"
+        },
+        {
+          "count": 24000,
+          "locale": "en",
+          "viewport": {
+            "width": 360,
+            "height": 640
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 161,
+              "inventoryPresent": true,
+              "driverMs": 376.0353130000003,
+              "profile": "24000-en-0.cpuprofile",
+              "cards": 100
+            },
+            {
+              "clickToPaintedInventoryMs": 105,
+              "inventoryPresent": true,
+              "driverMs": 143.7110930000017,
+              "profile": "24000-en-1.cpuprofile",
+              "cards": 100
+            },
+            {
+              "clickToPaintedInventoryMs": 119,
+              "inventoryPresent": true,
+              "driverMs": 244.50508900000204,
+              "profile": "24000-en-2.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "bddb28793c8ec7d44c4e789578a7cac03ba17cf4925621106b4f75e9302adc07",
+          "exactOwnership": true,
+          "status": "pass"
+        },
+        {
+          "count": 24000,
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 360,
+            "height": 640
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 187,
+              "inventoryPresent": true,
+              "driverMs": 418.95890699999654,
+              "profile": "24000-zh-CN-0.cpuprofile",
+              "cards": 100
+            },
+            {
+              "clickToPaintedInventoryMs": 116,
+              "inventoryPresent": true,
+              "driverMs": 143.76599200000055,
+              "profile": "24000-zh-CN-1.cpuprofile",
+              "cards": 100
+            },
+            {
+              "clickToPaintedInventoryMs": 131,
+              "inventoryPresent": true,
+              "driverMs": 251.58688599999732,
+              "profile": "24000-zh-CN-2.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "860d3b54b7d15a97095785493867260e133ef5de5d28b98e554c2c0c0c2ff10d",
+          "exactOwnership": true,
+          "status": "pass"
+        }
+      ],
+      "errors": [],
+      "browser": "147.0.7727.15",
+      "status": "pass",
+      "serverExit": null,
+      "serverSignal": "SIGINT"
+    },
+    "remainingViewports": {
+      "kind": "Constructed full-inventory interaction/CPU diagnosis; timings are local headless Chromium observations, not physical-device or whole-app acceptance",
+      "head": "6480ac1561e2a5bbff16e4b1c96185ded9983131",
+      "cases": [
+        {
+          "count": 24000,
+          "locale": "en",
+          "viewport": {
+            "width": 412,
+            "height": 915
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 172,
+              "inventoryPresent": true,
+              "driverMs": 382.8979079999999,
+              "profile": "24000-en-412x915-0.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "bddb28793c8ec7d44c4e789578a7cac03ba17cf4925621106b4f75e9302adc07",
+          "exactLastTargetSelection": true,
+          "targetControl": {
+            "x": 30,
+            "y": -68,
+            "width": 352,
+            "height": 44
+          },
+          "noHorizontalOverflow": true,
+          "exactOwnership": true,
+          "status": "pass"
+        },
+        {
+          "count": 24000,
+          "locale": "en",
+          "viewport": {
+            "width": 640,
+            "height": 360
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 165,
+              "inventoryPresent": true,
+              "driverMs": 365.27046100000007,
+              "profile": "24000-en-640x360-0.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "bddb28793c8ec7d44c4e789578a7cac03ba17cf4925621106b4f75e9302adc07",
+          "exactLastTargetSelection": true,
+          "targetControl": {
+            "x": 30,
+            "y": 4,
+            "width": 580,
+            "height": 44
+          },
+          "noHorizontalOverflow": true,
+          "exactOwnership": true,
+          "status": "pass"
+        },
+        {
+          "count": 24000,
+          "locale": "en",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 167,
+              "inventoryPresent": true,
+              "driverMs": 372.3056600000018,
+              "profile": "24000-en-1280x800-0.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "bddb28793c8ec7d44c4e789578a7cac03ba17cf4925621106b4f75e9302adc07",
+          "exactLastTargetSelection": true,
+          "targetControl": {
+            "x": 122,
+            "y": 78,
+            "width": 1116,
+            "height": 44
+          },
+          "noHorizontalOverflow": true,
+          "exactOwnership": true,
+          "status": "pass"
+        },
+        {
+          "count": 24000,
+          "locale": "en",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 170,
+              "inventoryPresent": true,
+              "driverMs": 365.96765199999936,
+              "profile": "24000-en-1920x1080-0.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "bddb28793c8ec7d44c4e789578a7cac03ba17cf4925621106b4f75e9302adc07",
+          "exactLastTargetSelection": true,
+          "targetControl": {
+            "x": 442,
+            "y": 531,
+            "width": 1116,
+            "height": 44
+          },
+          "noHorizontalOverflow": true,
+          "exactOwnership": true,
+          "status": "pass"
+        },
+        {
+          "count": 24000,
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 412,
+            "height": 915
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 187,
+              "inventoryPresent": true,
+              "driverMs": 384.17089999999735,
+              "profile": "24000-zh-CN-412x915-0.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "860d3b54b7d15a97095785493867260e133ef5de5d28b98e554c2c0c0c2ff10d",
+          "exactLastTargetSelection": true,
+          "targetControl": {
+            "x": 30,
+            "y": 56,
+            "width": 352,
+            "height": 44
+          },
+          "noHorizontalOverflow": true,
+          "exactOwnership": true,
+          "status": "pass"
+        },
+        {
+          "count": 24000,
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 640,
+            "height": 360
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 202,
+              "inventoryPresent": true,
+              "driverMs": 438.33196700000553,
+              "profile": "24000-zh-CN-640x360-0.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "860d3b54b7d15a97095785493867260e133ef5de5d28b98e554c2c0c0c2ff10d",
+          "exactLastTargetSelection": true,
+          "targetControl": {
+            "x": 30,
+            "y": 4,
+            "width": 580,
+            "height": 44
+          },
+          "noHorizontalOverflow": true,
+          "exactOwnership": true,
+          "status": "pass"
+        },
+        {
+          "count": 24000,
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 201,
+              "inventoryPresent": true,
+              "driverMs": 480.6445359999998,
+              "profile": "24000-zh-CN-1280x800-0.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "860d3b54b7d15a97095785493867260e133ef5de5d28b98e554c2c0c0c2ff10d",
+          "exactLastTargetSelection": true,
+          "targetControl": {
+            "x": 122,
+            "y": 98,
+            "width": 1116,
+            "height": 44
+          },
+          "noHorizontalOverflow": true,
+          "exactOwnership": true,
+          "status": "pass"
+        },
+        {
+          "count": 24000,
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 218,
+              "inventoryPresent": true,
+              "driverMs": 473.9824649999937,
+              "profile": "24000-zh-CN-1920x1080-0.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "860d3b54b7d15a97095785493867260e133ef5de5d28b98e554c2c0c0c2ff10d",
+          "exactLastTargetSelection": true,
+          "targetControl": {
+            "x": 442,
+            "y": 511,
+            "width": 1116,
+            "height": 44
+          },
+          "noHorizontalOverflow": true,
+          "exactOwnership": true,
+          "status": "pass"
+        }
+      ],
+      "errors": [],
+      "browser": "147.0.7727.15",
+      "status": "pass",
+      "serverExit": null,
+      "serverSignal": "SIGINT"
+    },
+    "portrait360": {
+      "kind": "Constructed full-inventory interaction/CPU diagnosis; timings are local headless Chromium observations, not physical-device or whole-app acceptance",
+      "head": "6480ac1561e2a5bbff16e4b1c96185ded9983131",
+      "cases": [
+        {
+          "count": 24000,
+          "locale": "en",
+          "viewport": {
+            "width": 360,
+            "height": 640
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 174,
+              "inventoryPresent": true,
+              "driverMs": 381.53546000000006,
+              "profile": "24000-en-360x640-0.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "bddb28793c8ec7d44c4e789578a7cac03ba17cf4925621106b4f75e9302adc07",
+          "exactLastTargetSelection": true,
+          "targetControl": {
+            "x": 30,
+            "y": -134,
+            "width": 300,
+            "height": 44
+          },
+          "noHorizontalOverflow": true,
+          "exactOwnership": true,
+          "status": "pass"
+        },
+        {
+          "count": 24000,
+          "locale": "zh-CN",
+          "viewport": {
+            "width": 360,
+            "height": 640
+          },
+          "measurements": [
+            {
+              "clickToPaintedInventoryMs": 184,
+              "inventoryPresent": true,
+              "driverMs": 392.86169399999926,
+              "profile": "24000-zh-CN-360x640-0.cpuprofile",
+              "cards": 100
+            }
+          ],
+          "inputSHA256": "860d3b54b7d15a97095785493867260e133ef5de5d28b98e554c2c0c0c2ff10d",
+          "exactLastTargetSelection": true,
+          "targetControl": {
+            "x": 30,
+            "y": -94,
+            "width": 300,
+            "height": 44
+          },
+          "noHorizontalOverflow": true,
+          "exactOwnership": true,
+          "status": "pass"
+        }
+      ],
+      "errors": [],
+      "browser": "147.0.7727.15",
+      "status": "pass",
+      "serverExit": null,
+      "serverSignal": "SIGINT"
+    },
+    "protocol": "UI creation/export, explicitly constructed valid item import, exact immediate export equality, native Inventory navigation,100-card bound, click capture to mounted content and two animation frames. Additional ten-size/locale cases search/select exact last item then restore material-only action,44px-high source control/no document overflow and exact unchanged export. No new Save-close-Continue/offline claim."
+  },
+  "visuals": {
+    "at": "2026-10-27T13:36:13.643806+00:00",
+    "count": 10,
+    "records": [
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-viewports/24000-en-412x915.png",
+        "sha256": "0445e88dfdd018bf9d8a6d9359bf15ae8152a9a45e989965de1fea75465c524b",
+        "bytes": 67704,
+        "inspectedAt": "2026-10-27T13:36:13.643806+00:00",
+        "locale": "en",
+        "viewport": {
+          "width": 412,
+          "height": 915
+        },
+        "observed": "Original Inventory viewport individually viewed after returning from target selection. Localized material/crafting/quest/tab content and navigation are readable in the current scroll position; some controls and cards lie above/below the viewport, and overflow tab labels use their existing horizontal tab scroller. No whole-app accessibility/foreground/zoom acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-viewports/24000-en-640x360.png",
+        "sha256": "ee2330a6d9f12967153bbb66508f2a8ca38e4c9a7ca4787f68ba8ea992478dd0",
+        "bytes": 31969,
+        "inspectedAt": "2026-10-27T13:36:13.643806+00:00",
+        "locale": "en",
+        "viewport": {
+          "width": 640,
+          "height": 360
+        },
+        "observed": "Original Inventory viewport individually viewed after returning from target selection. Localized material/crafting/quest/tab content and navigation are readable in the current scroll position; some controls and cards lie above/below the viewport, and overflow tab labels use their existing horizontal tab scroller. No whole-app accessibility/foreground/zoom acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-viewports/24000-en-1280x800.png",
+        "sha256": "afc7b67bc50e4ce73c8816968b53a067be70640ce825f99a24109d58655024e7",
+        "bytes": 89258,
+        "inspectedAt": "2026-10-27T13:36:13.643806+00:00",
+        "locale": "en",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "observed": "Original Inventory viewport individually viewed after returning from target selection. Localized material/crafting/quest/tab content and navigation are readable in the current scroll position; some controls and cards lie above/below the viewport, and overflow tab labels use their existing horizontal tab scroller. No whole-app accessibility/foreground/zoom acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-viewports/24000-en-1920x1080.png",
+        "sha256": "db3d161db67a4cd6c7ecbf55c91b5bbcc65dd96939d49ce9a7b023b2752be536",
+        "bytes": 117968,
+        "inspectedAt": "2026-10-27T13:36:13.643806+00:00",
+        "locale": "en",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "observed": "Original Inventory viewport individually viewed after returning from target selection. Localized material/crafting/quest/tab content and navigation are readable in the current scroll position; some controls and cards lie above/below the viewport, and overflow tab labels use their existing horizontal tab scroller. No whole-app accessibility/foreground/zoom acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-viewports/24000-zh-CN-412x915.png",
+        "sha256": "b395baaba38ebe931626a861589023da588e352e0670517213e53e47f99bed00",
+        "bytes": 68873,
+        "inspectedAt": "2026-10-27T13:36:13.643806+00:00",
+        "locale": "zh-CN",
+        "viewport": {
+          "width": 412,
+          "height": 915
+        },
+        "observed": "Original Inventory viewport individually viewed after returning from target selection. Localized material/crafting/quest/tab content and navigation are readable in the current scroll position; some controls and cards lie above/below the viewport, and overflow tab labels use their existing horizontal tab scroller. No whole-app accessibility/foreground/zoom acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-viewports/24000-zh-CN-640x360.png",
+        "sha256": "7db93de920e33773e66edb661999441fdc2834bddccfc18cf796ecad54f5f40d",
+        "bytes": 33885,
+        "inspectedAt": "2026-10-27T13:36:13.643806+00:00",
+        "locale": "zh-CN",
+        "viewport": {
+          "width": 640,
+          "height": 360
+        },
+        "observed": "Original Inventory viewport individually viewed after returning from target selection. Localized material/crafting/quest/tab content and navigation are readable in the current scroll position; some controls and cards lie above/below the viewport, and overflow tab labels use their existing horizontal tab scroller. No whole-app accessibility/foreground/zoom acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-viewports/24000-zh-CN-1280x800.png",
+        "sha256": "c8488110fa3ca8b041b5aa0d2484e879929d6ff9d518140cbd04e37568035abf",
+        "bytes": 79204,
+        "inspectedAt": "2026-10-27T13:36:13.643806+00:00",
+        "locale": "zh-CN",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "observed": "Original Inventory viewport individually viewed after returning from target selection. Localized material/crafting/quest/tab content and navigation are readable in the current scroll position; some controls and cards lie above/below the viewport, and overflow tab labels use their existing horizontal tab scroller. No whole-app accessibility/foreground/zoom acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-viewports/24000-zh-CN-1920x1080.png",
+        "sha256": "45fb4a0a4f08dbf829dd95cc17c33bc22035c14b5d7897f616d891c260ed280c",
+        "bytes": 118909,
+        "inspectedAt": "2026-10-27T13:36:13.643806+00:00",
+        "locale": "zh-CN",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "observed": "Original Inventory viewport individually viewed after returning from target selection. Localized material/crafting/quest/tab content and navigation are readable in the current scroll position; some controls and cards lie above/below the viewport, and overflow tab labels use their existing horizontal tab scroller. No whole-app accessibility/foreground/zoom acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-360/24000-en-360x640.png",
+        "sha256": "0cbcf42d9c1cbc26aec66af759028945fc2c377f2ed4c4f037c57c0ddf42b5a9",
+        "bytes": 42610,
+        "inspectedAt": "2026-10-27T13:36:13.643806+00:00",
+        "locale": "en",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "observed": "Original Inventory viewport individually viewed after returning from target selection. Localized material/crafting/quest/tab content and navigation are readable in the current scroll position; some controls and cards lie above/below the viewport, and overflow tab labels use their existing horizontal tab scroller. No whole-app accessibility/foreground/zoom acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf/fixed-360/24000-zh-CN-360x640.png",
+        "sha256": "fb749fbc7bea083b3b91730817746fd157e9e38b22cdccbd9c03dbd8ecf4f030",
+        "bytes": 45485,
+        "inspectedAt": "2026-10-27T13:36:13.643806+00:00",
+        "locale": "zh-CN",
+        "viewport": {
+          "width": 360,
+          "height": 640
+        },
+        "observed": "Original Inventory viewport individually viewed after returning from target selection. Localized material/crafting/quest/tab content and navigation are readable in the current scroll position; some controls and cards lie above/below the viewport, and overflow tab labels use their existing horizontal tab scroller. No whole-app accessibility/foreground/zoom acceptance."
+      }
+    ],
+    "limits": "First and comparison harness screenshots are Settings after export and supply no Inventory visual acceptance. Ten final matrix originals are Inventory, with existing scroll/clipping limits disclosed."
+  },
+  "build": {
+    "at": "2026-10-27T13:33:25.811331+00:00",
+    "files": 762,
+    "chunks": 6,
+    "forbiddenPatterns": [
+      "__GAME__",
+      "installTestBridge",
+      "seedItem",
+      "/test-bridge",
+      "VITE_E2E"
+    ],
+    "violations": [],
+    "precacheEntries": 758,
+    "uniquePrecacheUrls": 756,
+    "duplicateURLs": {
+      "icons/icon-512.png": 2,
+      "icons/icon-192.png": 2
+    },
+    "baselineSamePrecacheCounts": true,
+    "missing": [],
+    "manifestSHA256": "78f4aee91abf605033c9350df5fa5185ec99bb679c6cf7aa246a98512cd91eb4",
+    "limits": "Existing build chunk/precache warnings retained; no bundle or whole-app runtime performance acceptance."
+  },
+  "originalFailuresAndLimits": [
+    "Initial off-repository test could not resolve packages and ran no tests; retained original output, then supplied only a task-owned dependency symlink to existing shared dependencies. Six true localization failures follow.",
+    "Initial pointerdown two-frame metric precedes Inventory mount and is invalid for completion latency; driver time also includes profiler/file I/O. Corrected click-capture/MutationObserver/paint samples require actual mounted Inventory. Original reports/profiles preserved.",
+    "Initial build auditor expected756raw precache records. Baseline/fixed both have758records/756distinct URLs because existing manifest icons occur twice. Corrected count labels retain checks that every record resolves; no PWA/config change.",
+    "Navigation retention initially compared two path sort orders; all bytes/file sets already matched and no cleanup had started. Corrected preflight rechecked the original archive then completed cleanup; original script/failure metadata retained in this task."
+  ],
+  "wholeValidation": {
+    "status": "pending",
+    "required": [
+      "full unit",
+      "full typecheck",
+      "full lint/purity"
+    ],
+    "previous": "Navigation full19929/939PASS at6c57da63 precedes this runtime change and six new tests; no new whole-suite count claimed.",
+    "resume": "Original future handles recorded in task whole-processes.json. Keep source/HEAD/eight critical task scripts/configs/fixed-dist unchanged until all original checks finish."
+  },
+  "genuine": {
+    "fixture": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
+    "compressedSHA256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "rawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "unchanged": true,
+    "campaign": "L33; Ancients/Rite claimed; nextNormal402; Baal uncleared",
+    "actions": "No genuine campaign/replay action; constructed disposable UI diagnostics only."
+  },
+  "limits": [
+    "Three local headless observations/context are not physical-device/whole-app0.5s, memory/frame/log/soak or bundle acceptance.100itemEnglish median114→120ms is retained; no universal speedup claim.",
+    "Synthetic normal caps do not establish earned-loadout, economy, build or campaign acceptance.",
+    "No independent approval or remote publication/push/PR/merge/deployment.",
+    "Inventory remains211bounded/oneunverified/onereview; Cobra BUG304 contract and Cold Mastery review remain open; full private-v1 objective active."
+  ],
+  "retention": {
+    "status": "Active root-owned task required for upcoming whole checks and final evidence consumers; archive/readback/exact cleanup pending",
+    "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf",
+    "owner": "Root retains until all consumers terminate, archives required evidence/readbacks, then removes exact task-owned cache/build/disposables and dependency link without following/removing its shared target. Root retains resulting evidence archive/sidecars through independent/full-v1 consumers."
+  }
+}

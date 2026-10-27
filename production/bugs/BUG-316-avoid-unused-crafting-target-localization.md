@@ -1,6 +1,6 @@
 # BUG-316 — Avoid unused crafting target localization
 
-Status: Open — actual production CPU diagnosis and six causal regressions precede product correction.
+Status: Implemented in6480ac15; scoped native/production checks pass, fresh whole integration and independent acceptance pending.
 Severity: Medium — excess work delays inventory entry for retained large collections.
 Build: 6c57da6309f7b4bded1a63786a2922b2ba19c315; immutable production source b508e864.
 Environment: bundled headless Chromium, 360×640, en/zh-CN. Disposable freshly created Sorceress with constructed 100/24000-item imports; no genuine campaign/replay action. No engine RNG dependency.
@@ -33,3 +33,18 @@ Return no gear entries for material-only operations. Preserve quarantine's item-
 Six bilingual reproductions pass in an off-repository load-hook prototype; this is experimental evidence, not branch implementation or full acceptance. Validate the committed change with existing crafting/target/pagination regressions, strict types/lint, an ordinary production build and the same before/after constructed browser diagnostic. Complete full integration before handoff; whole-app/device performance and independent acceptance remain open.
 
 Author plan review: ready; no unresolved behavior choice. Security check: pass for authorized first-party presentation work, no credentials/network/permissions/CI/dependencies/save-format change. Root author review only; no independent approval or remote publication.
+
+## Implementation checkpoint
+
+The committed prototype and permanent
+`src/features/inventory/CraftingPanel.target-work.test.tsx` pass all six causal
+cases; existing crafting/pagination give46PASS/threefiles. Scoped strict types,
+explicit lint and ordinary production build pass. Identical constructed
+24000-item360px contexts improve local median click-to-painted Inventory from
+236→119ms(en) and349→131ms(zh-CN). The100-item English114→120ms variation remains
+reported. Production comparison4/4preserves exact ownership/100-card bounds;
+ten required locale/size cases additionally prove actual final-target selection.
+All contexts have zero captured page warnings/errors.
+See [bounded evidence](../../docs/plans/evidence/p16-inventory-crafting-localization.md).
+Fresh whole integration/retention is pending; no device/whole-app performance or
+independent acceptance is claimed.
