@@ -784,6 +784,8 @@ function UnitCard({
   return (
     <div
       className={`${wrapperCls} ${ringCls} relative flex h-full min-w-0 w-full flex-col rounded-md transition-opacity motion-reduce:transition-none`}
+      role="group"
+      aria-label={displayName}
       data-acting={acting || undefined}
       data-dead={isDead || undefined}
       data-kind={kind}
@@ -828,7 +830,14 @@ function UnitCard({
           </div>
           <div className="space-y-0.5 bg-black/70 px-1 py-0.5">
             <div className="break-words text-sm leading-5 text-d2-white/80 [overflow-wrap:anywhere] lg:truncate lg:text-[10px] lg:leading-tight">{displayName}</div>
-            <div className="h-1.5 rounded bg-black/60 lg:h-1">
+            <div
+              className="h-1.5 rounded bg-black/60 lg:h-1"
+              role="progressbar"
+              aria-label={t('hp')}
+              aria-valuemin={0}
+              aria-valuemax={Math.max(1, unit.stats.lifeMax)}
+              aria-valuenow={Math.max(0, Math.min(unit.life, Math.max(1, unit.stats.lifeMax)))}
+            >
               <div
                 className="h-full rounded bg-red-600"
                 style={{ width: `${Math.max(0, Math.min(100, (unit.life / Math.max(1, unit.stats.lifeMax)) * 100)).toFixed(2)}%` }}
