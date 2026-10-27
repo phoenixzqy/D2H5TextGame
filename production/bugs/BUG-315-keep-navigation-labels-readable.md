@@ -1,6 +1,6 @@
 # BUG-315 — Keep complete navigation labels readable
 
-Status: Open — actual production reproduction before padding correction.
+Status: Fixed in b508e864. Local verification complete; independent acceptance open.
 Severity: Medium — essential link labels visibly truncate, especially English.
 Environment: Chromium360×640/412×915/desktop1280×800/1920×1080, en.
 Reproduction source: e7aeafcc plus the BUG314 equal-width layout; the subsequent
@@ -55,3 +55,15 @@ with at least44px targets, standard12px labels and no abbreviations/font reducti
 The surrounding flex shell reserves the navigation's actual height, so the
 scrollable main shrinks without an overlay. This is the author plan revision;
 strict labels/geometry/foreground/keyboard/touch/offline assertions remain.
+
+## Local resolution
+
+b508e864 supplies the revised responsive layout. The strict no-clipping
+assertion in `tests/pwa/navigation-icons.spec.ts` passes all10production
+locale/viewport cases without abbreviations or smaller labels. All20online
+and offline original captures were individually inspected. Integrated6c57da63
+passes19929tests/939files (two existing skips), full strict types and lint/purity
+with2692repository/766external inputs and HEAD exact. The
+[navigation evidence](../../docs/plans/evidence/p16-navigation-icons.md)
+retains both the original clipping RED and insufficient padding-only9/10run.
+Root author verification only; independent/whole-app acceptance remains open.

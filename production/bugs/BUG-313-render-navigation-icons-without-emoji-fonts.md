@@ -1,6 +1,6 @@
 # BUG-313 — Render navigation icons without emoji fonts
 
-Status: Open — reproduced before product change.
+Status: Fixed in e7aeafcc; final responsive layout b508e864. Local verification complete; independent acceptance open.
 Severity: Medium — essential destinations keep text labels, but missing glyph
 boxes impair recognition on the supported mobile environment.
 Build: c49748d18e3176d5b4c84b05be802c41a3b6b0df.
@@ -50,3 +50,17 @@ route, font-independent rendering and scoped real-browser validation. Root
 author review only; no independent approval. Security check: pass for authorized
 first-party presentation code, with no credential/network/CI/save/permission
 change. Full-v1/whole-app mobile/a11y and performance gates remain open.
+
+## Local resolution
+
+The two bilingual missing-icon regressions now pass in
+`src/ui/BottomNav.test.tsx`. The permanent
+`tests/pwa/navigation-icons.spec.ts` passes all10production locale/viewport
+cases, including real service-worker offline continuation. All20online/offline
+original captures were individually inspected. Integrated6c57da63 passes
+19929tests/939files (two existing skips), full strict types and lint/purity;
+2692repository/766external inputs and HEAD remain exact. See the
+[navigation evidence](../../docs/plans/evidence/p16-navigation-icons.md) for
+original failures, source hashes and retained raw evidence. This resolves the
+font dependency locally; whole-app accessibility/performance and independent
+review remain open.

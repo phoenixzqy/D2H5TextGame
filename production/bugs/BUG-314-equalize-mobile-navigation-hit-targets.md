@@ -1,6 +1,6 @@
 # BUG-314 — Equalize mobile navigation hit targets
 
-Status: Open — actual production reproduction before layout change.
+Status: Fixed in 558c01f0; final responsive layout b508e864. Local verification complete; independent acceptance open.
 Severity: Medium — navigation works but violates required44px touch width.
 Build: e7aeafccea70b1d17bd711e6fab4c20fed4d0d35.
 Environment: Chromium mobile360×640, en; new disposable Sorceress in Settings.
@@ -43,3 +43,16 @@ Correct those literal selectors before the next run; no source translation
 change or timeout increase. This harness mistake is distinct from the observed
 41.3125px product failure. Security check: pass; scoped first-party CSS/tests,
 no permissions, networking, data or dependencies. Author plan review ready.
+
+## Local resolution
+
+`min-w-0` removes the content-derived minimum-width constraint. The final
+four-column/two-row layout below640px also preserves complete labels. The
+permanent `tests/pwa/navigation-icons.spec.ts` passes10/10production cases
+across both locales/five sizes, checking all80targets at44×44px or larger,
+foreground/bounds, keyboard/emulated touch and actual offline continuation.
+Integrated6c57da63 passes19929tests/939files (two existing skips), full strict
+types and lint/purity with2692repository/766external inputs and HEAD exact.
+The [navigation evidence](../../docs/plans/evidence/p16-navigation-icons.md)
+retains the original41.3125px failure/interruption and final validation.
+Root author verification only; independent/whole-app acceptance remains open.
