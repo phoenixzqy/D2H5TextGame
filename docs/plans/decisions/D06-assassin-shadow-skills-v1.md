@@ -28,3 +28,24 @@ No new source ownership may be inferred from summonTemplateId/name, copied statu
 ## Author plan review
 
 ready for the unchanged data extraction and explicit policy/projection increments. The plan includes all runtime/preview callers, native paid creation, independent resource/cooldown ownership, captured ranks, source/forged-body controls and Command/lifecycle semantics. Whole-shadow acceptance stays open until actual charge/trap copying is verified. This is an author plan challenge, not an independent gate. Security check: pass for authorized local first-party code/data/UI; no dependencies, credentials, CI, networking, save-format, campaign or remote action.
+
+## Final functional integration — 2026-10-27
+
+The implemented strict JSON policy at
+`src/data/summons/assassin-shadow-skills.json` now gives Master the independent
+priority Tiger Strike → Wake of Fire → Dragon Talon → Mind Blast → Fire Blast →
+Blade Fury. This extends the initial four-attack pool above to exercise actual
+charge/trap mechanics. Warrior retains selected eligible learned attack order
+and captured min(owner learned rank, shadow learned rank). The resolver at
+`src/engine/skills/assassin-shadow-skills.ts` validates the complete authored pool;
+no numeric or policy fallback grants attacks.
+
+5ace6e4d proves both actual paid shadows' combined cycle at ranks1/20, including
+copied learned20 for Warrior and no owner attacks for Master. 13967ef9 exposes
+live compact summon MP. d9447414 corrects the public observer's cross-wave
+contamination and supplies16coherent first-wave proofs across both locales and
+desktop/mobile, with exact saves and actual offline continuation. Full19927unit,
+typecheck and lint PASS. See [final evidence](../evidence/d06-assassin-shadow-combined.md)
+for source hashes, original failures, fixture/rank distinctions and retained
+archive/readback/cleanup. Local bounded functionality may now be reconciled;
+independent approval, earned build/balance and whole private-v1 gates stay open.

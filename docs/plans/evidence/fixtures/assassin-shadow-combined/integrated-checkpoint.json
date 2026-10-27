@@ -1,0 +1,1342 @@
+{
+  "status": "Local functional integration passes; independent, earned-balance and full private-v1 acceptance open",
+  "at": "2026-10-27T12:41:23.177912+00:00",
+  "owner": "root; sole executor and author, no independent approval",
+  "head": "d944741436fd73e9bf218f8c30d743156606dd63",
+  "commits": {
+    "summonMana": "13967ef956bf0878a0cdaa8bf41b1c05dff28782",
+    "nativeCombined": "5ace6e4d97747ebfc8adabdd7bceffba3ae153fe",
+    "publicCombined": "d944741436fd73e9bf218f8c30d743156606dd63",
+    "observerBugRecord": "32fd2febfdbe0d777a00bb72ff2944ccb14f28ff"
+  },
+  "sourceHashes": {
+    "src/features/combat/CombatScreen.tsx": "63d3d9f7d68e2828b38a9ee31490a2ec1694ab47fc96f28de1513c6af666414f",
+    "src/features/combat/CombatScreen.summon-mana.test.tsx": "6a6ac46bf2d52e07ffa8ea0086f6f95b190a49bb29e0a049375c10642eab8102",
+    "src/stores/assassin-master-traps.test.ts": "1e401fee440d13dccdfe7d8bb6ea15b070fdb7d52938ec1633ad2ce1db27e017",
+    "src/engine/combat/combat.ts": "735a74aa9216541af53b1c87f54daf8d52b09a4553ed6400d2ac22ea4e223b71",
+    "src/engine/skills/assassin-shadow-skills.ts": "9b655b8576fe36cb51da0cbeed7af91cce521a320023de9e18a945467c672f94",
+    "src/engine/skills/assassin-charges.ts": "36d9f8c29bd8ce881f9a712b188b2241659621d4e508bbd04ede7b55ad52c032",
+    "src/engine/skills/assassin-traps.ts": "5e6cacf49ed599fde8f208cc3ada1d64ded40bcf892adea9a8489e06aef94bbf",
+    "src/engine/skills/assassin-flight.ts": "1ac680faa5db493191fbd31898b253f28b42ca4b1cdbaada14db87d75ff1cff2",
+    "src/stores/combatHelpers.ts": "05441eacfc33cd28ae68319c8f434a9ed0622f70e4b8c6704199497edfa590dc",
+    "src/data/skills/assassin.json": "7273ff4466c4672ece0653ba4157c3262dc2799f0aa7fc8cd190e37d61192c03",
+    "tests/pwa/assassin-shadow-combined.spec.ts": "cd9a40f591fc3335394133a3705c75dacd82817b07973e00ac1f8c7beb466fc1",
+    "tests/pwa/assassin-shadow-combined.config.ts": "2bdca017cec8c72aeb3c9e76060479c7283ace41d4ef904952286f242bdc32e8"
+  },
+  "checks": {
+    "summon-mana-red": {
+      "label": "summon-mana-red",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/combat/CombatScreen.summon-mana.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 8.768029125058092,
+      "inputsUnchanged": true,
+      "inputCount": 2550,
+      "externalInputCount": 1,
+      "externalInputsUnchanged": true,
+      "headBefore": "478b91d4a2f1c1f06b8f4ca5c7db4d33b7d726dc",
+      "headAfter": "478b91d4a2f1c1f06b8f4ca5c7db4d33b7d726dc",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  2 failed (2)"
+      ]
+    },
+    "summon-mana-final": {
+      "label": "summon-mana-final",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/combat/CombatScreen.summon-mana.test.tsx",
+        "src/features/combat/CombatScreen.compact-health.test.tsx",
+        "src/features/combat/CombatScreen.assassin-traps.test.tsx",
+        "src/features/combat/CombatScreen.assassin-flight.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 11.019403951009735,
+      "inputsUnchanged": true,
+      "inputCount": 2550,
+      "externalInputCount": 2,
+      "externalInputsUnchanged": true,
+      "headBefore": "f6c3b2dc5d296e9a6631938cb30507e306cc3192",
+      "headAfter": "f6c3b2dc5d296e9a6631938cb30507e306cc3192",
+      "headUnchanged": true,
+      "totals": ["Test Files  4 passed (4)", "Tests  40 passed (40)"]
+    },
+    "summon-mana-types-final": {
+      "label": "summon-mana-types-final",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/ui.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 9.900573006947525,
+      "inputsUnchanged": true,
+      "inputCount": 2550,
+      "externalInputCount": 2,
+      "externalInputsUnchanged": true,
+      "headBefore": "f6c3b2dc5d296e9a6631938cb30507e306cc3192",
+      "headAfter": "f6c3b2dc5d296e9a6631938cb30507e306cc3192",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "summon-mana-lint-final": {
+      "label": "summon-mana-lint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/features/combat/CombatScreen.tsx",
+        "src/features/combat/CombatScreen.summon-mana.test.tsx",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 9.910480558057316,
+      "inputsUnchanged": true,
+      "inputCount": 2550,
+      "externalInputCount": 2,
+      "externalInputsUnchanged": true,
+      "headBefore": "f6c3b2dc5d296e9a6631938cb30507e306cc3192",
+      "headAfter": "f6c3b2dc5d296e9a6631938cb30507e306cc3192",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-combined-native": {
+      "label": "shadow-combined-native",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-master-traps.test.ts",
+        "src/stores/assassin-charge-native.test.ts",
+        "src/stores/assassin-traps-native.test.ts",
+        "src/stores/assassin-shadow-skills-native.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 9.567097033024766,
+      "inputsUnchanged": true,
+      "inputCount": 2550,
+      "externalInputCount": 2,
+      "externalInputsUnchanged": true,
+      "headBefore": "13967ef956bf0878a0cdaa8bf41b1c05dff28782",
+      "headAfter": "13967ef956bf0878a0cdaa8bf41b1c05dff28782",
+      "headUnchanged": true,
+      "totals": ["Test Files  4 passed (4)", "Tests  98 passed (98)"]
+    },
+    "shadow-combined-native-final": {
+      "label": "shadow-combined-native-final",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-master-traps.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 8.26069304603152,
+      "inputsUnchanged": true,
+      "inputCount": 2550,
+      "externalInputCount": 2,
+      "externalInputsUnchanged": true,
+      "headBefore": "13967ef956bf0878a0cdaa8bf41b1c05dff28782",
+      "headAfter": "13967ef956bf0878a0cdaa8bf41b1c05dff28782",
+      "headUnchanged": true,
+      "totals": ["Test Files  1 passed (1)", "Tests  4 passed (4)"]
+    },
+    "shadow-combined-types-final": {
+      "label": "shadow-combined-types-final",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/native.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 7.420704343006946,
+      "inputsUnchanged": true,
+      "inputCount": 2550,
+      "externalInputCount": 2,
+      "externalInputsUnchanged": true,
+      "headBefore": "13967ef956bf0878a0cdaa8bf41b1c05dff28782",
+      "headAfter": "13967ef956bf0878a0cdaa8bf41b1c05dff28782",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-combined-lint-final": {
+      "label": "shadow-combined-lint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/assassin-master-traps.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 7.2338844410842285,
+      "inputsUnchanged": true,
+      "inputCount": 2550,
+      "externalInputCount": 2,
+      "externalInputsUnchanged": true,
+      "headBefore": "13967ef956bf0878a0cdaa8bf41b1c05dff28782",
+      "headAfter": "13967ef956bf0878a0cdaa8bf41b1c05dff28782",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-combined-build": {
+      "label": "shadow-combined-build",
+      "command": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/build.config.mjs",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/dist"
+      ],
+      "exit": 0,
+      "seconds": 12.86998371197842,
+      "inputsUnchanged": true,
+      "inputCount": 2552,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "5ace6e4d97747ebfc8adabdd7bceffba3ae153fe",
+      "headAfter": "5ace6e4d97747ebfc8adabdd7bceffba3ae153fe",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-cycle-final-types": {
+      "label": "shadow-cycle-final-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/public.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 8.12558313505724,
+      "inputsUnchanged": true,
+      "inputCount": 2552,
+      "externalInputCount": 766,
+      "externalInputsUnchanged": true,
+      "headBefore": "32fd2febfdbe0d777a00bb72ff2944ccb14f28ff",
+      "headAfter": "32fd2febfdbe0d777a00bb72ff2944ccb14f28ff",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-cycle-final-lint": {
+      "label": "shadow-cycle-final-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--no-ignore",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/public-eslint.cjs",
+        "tests/pwa/assassin-shadow-combined.spec.ts",
+        "tests/pwa/assassin-shadow-combined.config.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 5.329532450065017,
+      "inputsUnchanged": true,
+      "inputCount": 2552,
+      "externalInputCount": 766,
+      "externalInputsUnchanged": true,
+      "headBefore": "32fd2febfdbe0d777a00bb72ff2944ccb14f28ff",
+      "headAfter": "32fd2febfdbe0d777a00bb72ff2944ccb14f28ff",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-final-matrix": {
+      "label": "shadow-final-matrix",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "tests/pwa/assassin-shadow-combined.config.ts",
+        "--workers",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 311.89563243009616,
+      "inputsUnchanged": true,
+      "inputCount": 2552,
+      "externalInputCount": 770,
+      "externalInputsUnchanged": true,
+      "headBefore": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headAfter": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headUnchanged": true,
+      "totals": ["8 passed (5.2m)"]
+    },
+    "shadow-full-unit": {
+      "label": "shadow-full-unit",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 1111.9028305460233,
+      "inputsUnchanged": true,
+      "inputCount": 2552,
+      "externalInputCount": 770,
+      "externalInputsUnchanged": true,
+      "headBefore": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headAfter": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headUnchanged": true,
+      "totals": ["Test Files  939 passed (939)", "Tests  19927 passed | 2 skipped (19929)"]
+    },
+    "shadow-full-types": {
+      "label": "shadow-full-types",
+      "command": ["npm", "run", "typecheck"],
+      "exit": 0,
+      "seconds": 180.49558845208958,
+      "inputsUnchanged": true,
+      "inputCount": 2552,
+      "externalInputCount": 770,
+      "externalInputsUnchanged": true,
+      "headBefore": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headAfter": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-full-lint": {
+      "label": "shadow-full-lint",
+      "command": ["npm", "run", "lint"],
+      "exit": 0,
+      "seconds": 317.94462719303556,
+      "inputsUnchanged": true,
+      "inputCount": 2552,
+      "externalInputCount": 770,
+      "externalInputsUnchanged": true,
+      "headBefore": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headAfter": "d944741436fd73e9bf218f8c30d743156606dd63",
+      "headUnchanged": true,
+      "totals": []
+    }
+  },
+  "public": {
+    "cases": 8,
+    "rankProofs": [
+      {
+        "case": "assassin-shadow-desktop-shadow-warrior-en",
+        "rank": 1,
+        "wave": "1/5",
+        "priorWaves": 0,
+        "frames": 31,
+        "builderAttempts": 4,
+        "cycle": {
+          "start": 0,
+          "placement": 4,
+          "finisher": 5,
+          "nextPlacement": 35,
+          "manaAfterCasts": [97, 94, 91, 88, 71, 67]
+        },
+        "ownManaExpected": [97, 94, 91, 88, 71, 67],
+        "ownManaMin": 67,
+        "ownManaMax": 100,
+        "fireBatches": 3,
+        "heroHpMin": 1000231,
+        "shadowHpMin": 130,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-desktop-shadow-warrior-en",
+        "rank": 20,
+        "wave": "1/5",
+        "priorWaves": 0,
+        "frames": 26,
+        "builderAttempts": 3,
+        "cycle": {
+          "start": 0,
+          "placement": 3,
+          "finisher": 4,
+          "nextPlacement": 30,
+          "manaAfterCasts": [97, 94, 91, 74, 70]
+        },
+        "ownManaExpected": [97, 94, 91, 74, 70],
+        "ownManaMin": 70,
+        "ownManaMax": 100,
+        "fireBatches": 3,
+        "heroHpMin": 1000232,
+        "shadowHpMin": 283,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-desktop-shadow-master-en",
+        "rank": 1,
+        "wave": "1/5",
+        "priorWaves": 0,
+        "frames": 38,
+        "builderAttempts": 6,
+        "cycle": {
+          "start": 0,
+          "placement": 6,
+          "finisher": 7,
+          "nextPlacement": 45,
+          "manaAfterCasts": [147, 144, 141, 138, 135, 132, 115, 111]
+        },
+        "ownManaExpected": [147, 144, 141, 138, 135, 132, 115, 111],
+        "ownManaMin": 108,
+        "ownManaMax": 150,
+        "fireBatches": 3,
+        "heroHpMin": 1000224,
+        "shadowHpMin": 183,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-desktop-shadow-master-en",
+        "rank": 20,
+        "wave": "1/6",
+        "priorWaves": 0,
+        "frames": 98,
+        "builderAttempts": 3,
+        "cycle": {
+          "start": 18,
+          "placement": 21,
+          "finisher": 22,
+          "nextPlacement": 104,
+          "manaAfterCasts": [48, 45, 42, 25, 21]
+        },
+        "ownManaExpected": [48, 45, 42, 25, 21],
+        "ownManaMin": 21,
+        "ownManaMax": 150,
+        "fireBatches": 3,
+        "heroHpMin": 1000082,
+        "shadowHpMin": 214,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-desktop-shadow-warrior-zh-CN",
+        "rank": 1,
+        "wave": "1/5",
+        "priorWaves": 0,
+        "frames": 32,
+        "builderAttempts": 4,
+        "cycle": {
+          "start": 0,
+          "placement": 4,
+          "finisher": 5,
+          "nextPlacement": 36,
+          "manaAfterCasts": [97, 94, 91, 88, 71, 67]
+        },
+        "ownManaExpected": [97, 94, 91, 88, 71, 67],
+        "ownManaMin": 67,
+        "ownManaMax": 100,
+        "fireBatches": 3,
+        "heroHpMin": 1000231,
+        "shadowHpMin": 129,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-desktop-shadow-warrior-zh-CN",
+        "rank": 20,
+        "wave": "1/5",
+        "priorWaves": 0,
+        "frames": 26,
+        "builderAttempts": 3,
+        "cycle": {
+          "start": 0,
+          "placement": 3,
+          "finisher": 4,
+          "nextPlacement": 30,
+          "manaAfterCasts": [97, 94, 91, 74, 70]
+        },
+        "ownManaExpected": [97, 94, 91, 74, 70],
+        "ownManaMin": 70,
+        "ownManaMax": 100,
+        "fireBatches": 3,
+        "heroHpMin": 1000232,
+        "shadowHpMin": 283,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-desktop-shadow-master-zh-CN",
+        "rank": 1,
+        "wave": "1/5",
+        "priorWaves": 0,
+        "frames": 38,
+        "builderAttempts": 6,
+        "cycle": {
+          "start": 0,
+          "placement": 6,
+          "finisher": 7,
+          "nextPlacement": 44,
+          "manaAfterCasts": [147, 144, 141, 138, 135, 132, 115, 111]
+        },
+        "ownManaExpected": [147, 144, 141, 138, 135, 132, 115, 111],
+        "ownManaMin": 108,
+        "ownManaMax": 150,
+        "fireBatches": 3,
+        "heroHpMin": 1000224,
+        "shadowHpMin": 183,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-desktop-shadow-master-zh-CN",
+        "rank": 20,
+        "wave": "1/6",
+        "priorWaves": 0,
+        "frames": 100,
+        "builderAttempts": 3,
+        "cycle": {
+          "start": 18,
+          "placement": 21,
+          "finisher": 22,
+          "nextPlacement": 106,
+          "manaAfterCasts": [48, 45, 42, 25, 21]
+        },
+        "ownManaExpected": [48, 45, 42, 25, 21],
+        "ownManaMin": 18,
+        "ownManaMax": 150,
+        "fireBatches": 3,
+        "heroHpMin": 1000077,
+        "shadowHpMin": 208,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-mobile-shadow-warrior-en",
+        "rank": 1,
+        "wave": "1/5",
+        "priorWaves": 0,
+        "frames": 31,
+        "builderAttempts": 4,
+        "cycle": {
+          "start": 0,
+          "placement": 4,
+          "finisher": 5,
+          "nextPlacement": 36,
+          "manaAfterCasts": [97, 94, 91, 88, 71, 67]
+        },
+        "ownManaExpected": [97, 94, 91, 88, 71, 67],
+        "ownManaMin": 67,
+        "ownManaMax": 100,
+        "fireBatches": 3,
+        "heroHpMin": 1000231,
+        "shadowHpMin": 130,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-mobile-shadow-warrior-en",
+        "rank": 20,
+        "wave": "1/5",
+        "priorWaves": 0,
+        "frames": 26,
+        "builderAttempts": 3,
+        "cycle": {
+          "start": 0,
+          "placement": 3,
+          "finisher": 4,
+          "nextPlacement": 30,
+          "manaAfterCasts": [97, 94, 91, 74, 70]
+        },
+        "ownManaExpected": [97, 94, 91, 74, 70],
+        "ownManaMin": 70,
+        "ownManaMax": 100,
+        "fireBatches": 3,
+        "heroHpMin": 1000232,
+        "shadowHpMin": 283,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-mobile-shadow-master-en",
+        "rank": 1,
+        "wave": "1/5",
+        "priorWaves": 0,
+        "frames": 38,
+        "builderAttempts": 6,
+        "cycle": {
+          "start": 0,
+          "placement": 6,
+          "finisher": 7,
+          "nextPlacement": 44,
+          "manaAfterCasts": [147, 144, 141, 138, 135, 132, 115, 111]
+        },
+        "ownManaExpected": [147, 144, 141, 138, 135, 132, 115, 111],
+        "ownManaMin": 108,
+        "ownManaMax": 150,
+        "fireBatches": 3,
+        "heroHpMin": 1000224,
+        "shadowHpMin": 183,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-mobile-shadow-master-en",
+        "rank": 20,
+        "wave": "1/6",
+        "priorWaves": 0,
+        "frames": 98,
+        "builderAttempts": 3,
+        "cycle": {
+          "start": 18,
+          "placement": 21,
+          "finisher": 22,
+          "nextPlacement": 105,
+          "manaAfterCasts": [48, 45, 42, 25, 21]
+        },
+        "ownManaExpected": [48, 45, 42, 25, 21],
+        "ownManaMin": 21,
+        "ownManaMax": 150,
+        "fireBatches": 3,
+        "heroHpMin": 1000082,
+        "shadowHpMin": 214,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-mobile-shadow-warrior-zh-CN",
+        "rank": 1,
+        "wave": "1/5",
+        "priorWaves": 0,
+        "frames": 32,
+        "builderAttempts": 4,
+        "cycle": {
+          "start": 0,
+          "placement": 4,
+          "finisher": 5,
+          "nextPlacement": 37,
+          "manaAfterCasts": [97, 94, 91, 88, 71, 67]
+        },
+        "ownManaExpected": [97, 94, 91, 88, 71, 67],
+        "ownManaMin": 67,
+        "ownManaMax": 100,
+        "fireBatches": 3,
+        "heroHpMin": 1000231,
+        "shadowHpMin": 129,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-mobile-shadow-warrior-zh-CN",
+        "rank": 20,
+        "wave": "1/5",
+        "priorWaves": 0,
+        "frames": 26,
+        "builderAttempts": 3,
+        "cycle": {
+          "start": 0,
+          "placement": 3,
+          "finisher": 4,
+          "nextPlacement": 31,
+          "manaAfterCasts": [97, 94, 91, 74, 70]
+        },
+        "ownManaExpected": [97, 94, 91, 74, 70],
+        "ownManaMin": 70,
+        "ownManaMax": 100,
+        "fireBatches": 3,
+        "heroHpMin": 1000232,
+        "shadowHpMin": 283,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-mobile-shadow-master-zh-CN",
+        "rank": 1,
+        "wave": "1/5",
+        "priorWaves": 0,
+        "frames": 38,
+        "builderAttempts": 6,
+        "cycle": {
+          "start": 0,
+          "placement": 6,
+          "finisher": 7,
+          "nextPlacement": 45,
+          "manaAfterCasts": [147, 144, 141, 138, 135, 132, 115, 111]
+        },
+        "ownManaExpected": [147, 144, 141, 138, 135, 132, 115, 111],
+        "ownManaMin": 108,
+        "ownManaMax": 150,
+        "fireBatches": 3,
+        "heroHpMin": 1000224,
+        "shadowHpMin": 183,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      },
+      {
+        "case": "assassin-shadow-mobile-shadow-master-zh-CN",
+        "rank": 20,
+        "wave": "1/6",
+        "priorWaves": 0,
+        "frames": 97,
+        "builderAttempts": 3,
+        "cycle": {
+          "start": 18,
+          "placement": 21,
+          "finisher": 22,
+          "nextPlacement": 103,
+          "manaAfterCasts": [48, 45, 42, 25, 21]
+        },
+        "ownManaExpected": [48, 45, 42, 25, 21],
+        "ownManaMin": 21,
+        "ownManaMax": 150,
+        "fireBatches": 3,
+        "heroHpMin": 1000083,
+        "shadowHpMin": 215,
+        "fullSeen": true,
+        "consumed": true,
+        "trapExpired": true
+      }
+    ],
+    "savePairs": 16,
+    "actualServiceWorkerOfflineContinues": 8,
+    "geometries": 80,
+    "imageCount": 32,
+    "singleWaveProof": true,
+    "limitations": [
+      "Constructed L30/synthetic equipment/prior-act fixtures, not earned campaign or balance. Warrior copies learned rank1 at shadow1/20; Master independently casts rank1/20.",
+      "Rank20 Master uses authored ActV enemies for a durable four-positive-hit finisher witness; other cases use ActIII. ActV rank1 Warrior death remains original failed evidence, not repaired or accepted.",
+      "Native tests establish exact1000ms pulse schedule; browser asserts3separate positive body fire batches and visible finite instance expiry.",
+      "No independent QA/skill inventory/whole-app mobile/a11y/physical touch/performance/soak/private-v1 acceptance."
+    ]
+  },
+  "visuals": {
+    "matrixImages": 32,
+    "individuallyInspectedMatrixImages": [
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-en-rank1-visible-shadow.png",
+        "sha256": "38ed76d2d4993cd35c9508ff4668adb60f268fc1e34dfd66f88e20945f23dd1f",
+        "bytes": 139198,
+        "inspectedAt": "2026-10-27T12:27:56.669184+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-en-rank1-visible-shadow.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-en-rank1-visible-enemy.png",
+        "sha256": "dcd9c08ef256794b09c1b828aaf08374328949f16513f311f94844219cdb9476",
+        "bytes": 148623,
+        "inspectedAt": "2026-10-27T12:27:56.669730+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-en-rank1-visible-enemy.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-en-rank20-visible-shadow.png",
+        "sha256": "0546ed424d700d5455ccf4faf4a40097469ece4c75bdbbc97ba5e23895718e20",
+        "bytes": 141980,
+        "inspectedAt": "2026-10-27T12:27:56.670005+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-en-rank20-visible-shadow.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-en-rank20-visible-enemy.png",
+        "sha256": "d19785772973515981103be7091d6215d7c9378594b528c6b50fd45ddc74c98a",
+        "bytes": 148320,
+        "inspectedAt": "2026-10-27T12:27:56.670227+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-en-rank20-visible-enemy.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-zh-CN-rank1-visible-shadow.png",
+        "sha256": "17af37e896b28bee4db832aa59d9946772fb328419390d0ab5bdf4a6a9f777c8",
+        "bytes": 142805,
+        "inspectedAt": "2026-10-27T12:27:56.670472+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-zh-CN-rank1-visible-shadow.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-zh-CN-rank1-visible-enemy.png",
+        "sha256": "79154b6c081b49bbb7bf9e2c20e87f18f0bbbb75b335875208d6b3dbecc560b5",
+        "bytes": 143400,
+        "inspectedAt": "2026-10-27T12:27:56.670688+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-zh-CN-rank1-visible-enemy.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-zh-CN-rank20-visible-shadow.png",
+        "sha256": "f465ca4ad58bbbfa1dda6d5934bf4ea8afe503d2f8dedd15729242d40104b60c",
+        "bytes": 138233,
+        "inspectedAt": "2026-10-27T12:27:56.670931+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-zh-CN-rank20-visible-shadow.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-zh-CN-rank20-visible-enemy.png",
+        "sha256": "4cb72a3ddbb6e91dfacdc906e7786a2a9282c871eebf56e4d606a43a9eb90a41",
+        "bytes": 143292,
+        "inspectedAt": "2026-10-27T12:27:56.671143+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-zh-CN-rank20-visible-enemy.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-master-en-rank1-visible-shadow.png",
+        "sha256": "c0351507348714daaecf88c0b0fef2612854c81222742a35273db5d80ebf6a5c",
+        "bytes": 144088,
+        "inspectedAt": "2026-10-27T12:27:56.671389+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-master-en-rank1-visible-shadow.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-master-en-rank1-visible-enemy.png",
+        "sha256": "802732eab32ae22055dcc9dae0ddc0313876f54de1f396e3995f4b5985ea1ee8",
+        "bytes": 139166,
+        "inspectedAt": "2026-10-27T12:27:56.671634+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-master-en-rank1-visible-enemy.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-master-en-rank20-visible-shadow.png",
+        "sha256": "35ff8e0fd5d573f6e25bd249de8d2b00f13ceb9d0b167fe036826c341d672cfd",
+        "bytes": 332627,
+        "inspectedAt": "2026-10-27T12:27:56.672337+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-master-en-rank20-visible-shadow.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-master-en-rank20-visible-enemy.png",
+        "sha256": "7972377b83b5342c6467f2f7a27b08805f76531c3dd639475751cfe4191a22d7",
+        "bytes": 337919,
+        "inspectedAt": "2026-10-27T12:27:56.673004+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-master-en-rank20-visible-enemy.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-master-zh-CN-rank1-visible-shadow.png",
+        "sha256": "ed840edf6c3e7691e612ecbe249854b7aeb73f3f760119dbe9472eaf6e564df2",
+        "bytes": 134141,
+        "inspectedAt": "2026-10-27T12:27:56.673184+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-master-zh-CN-rank1-visible-shadow.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-master-zh-CN-rank1-visible-enemy.png",
+        "sha256": "79b91d431cffadf94c507054f96ada3b9ec9d8d5545e59c8fca99054e8eda3b9",
+        "bytes": 132102,
+        "inspectedAt": "2026-10-27T12:27:56.673394+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-master-zh-CN-rank1-visible-enemy.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-master-zh-CN-rank20-visible-shadow.png",
+        "sha256": "29e51f75b86e076fe45a9df1fe31866cf80528fe34010e115877fad68bfbf1aa",
+        "bytes": 325682,
+        "inspectedAt": "2026-10-27T12:27:56.673841+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-master-zh-CN-rank20-visible-shadow.png"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/final-matrix-decoded/assassin-shadow-mobile-shadow-master-zh-CN-rank20-visible-enemy.png",
+        "sha256": "c0d84d258ecb4b2c508ce2510fb45ed6a97c256d6ca5733f1e1021f97dda34d2",
+        "bytes": 332825,
+        "inspectedAt": "2026-10-27T12:27:56.674172+00:00",
+        "observed": "Localized MP/current capacity and damaged enemy HP bars readable in separate scroll captures. Summon initials and some enemy art fallback, missing nav glyphs, English heading truncation, cropped neighboring rows and fixed header/footer remain; no whole-app mobile/a11y acceptance.",
+        "archiveMember": "final-matrix-decoded/assassin-shadow-mobile-shadow-master-zh-CN-rank20-visible-enemy.png"
+      }
+    ],
+    "probeImagesInspected": [
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/cycle-probe-decoded/assassin-shadow-desktop-shadow-master-en-rank20-visible-shadow.png",
+        "sha256": "8e2d409f55d846c4c5c032cb2af87064684cc9d5bc89f6136f4291ee74427d8c",
+        "bytes": 305231,
+        "inspectedAt": "2026-10-27T12:22:31.632741+00:00",
+        "observed": "Shadow MP21/150 visible in scrolled shadow capture, damaged enemy HP bars, actual wave1/6 and paused controls. Shadow/Blood Lord art fallback initials, missing nav glyphs, cropped neighboring cards/hero in separate scroll captures. No whole-app mobile/a11y/earned acceptance."
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/cycle-probe-decoded/assassin-shadow-desktop-shadow-master-en-rank20-visible-enemy.png",
+        "sha256": "1bfbbf4c8817ec2b4903579817d9932d13553242274fbdc99022da9ef27ee32a",
+        "bytes": 361882,
+        "inspectedAt": "2026-10-27T12:22:31.633401+00:00",
+        "observed": "Shadow MP21/150 visible in scrolled shadow capture, damaged enemy HP bars, actual wave1/6 and paused controls. Shadow/Blood Lord art fallback initials, missing nav glyphs, cropped neighboring cards/hero in separate scroll captures. No whole-app mobile/a11y/earned acceptance."
+      }
+    ],
+    "scope": "Exactly16mobile matrix originals plus2desktop Master probe originals viewed; no claim to16desktop matrix originals. Localized mana/capacity and damaged enemy HP bars readable. Missing nav glyphs, fallback portraits, English heading truncation, cropped neighboring rows and fixed header/footer remain."
+  },
+  "preparedFixtureAudit": {
+    "count": 16,
+    "records": [
+      {
+        "file": "final-matrix-decoded/assassin-shadow-desktop-shadow-master-en-rank1-prepared.json",
+        "sha256": "564690b010577d653469e6e59074e1db46a596c45021bdb612911046d9a49057",
+        "summonRank": 1,
+        "ownerAttackRanks": {
+          "tiger-strike": 0,
+          "wake-of-fire": 0,
+          "dragon-talon": 0
+        },
+        "selected": ["skills-assassin-shadow-master"]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-desktop-shadow-master-en-rank20-prepared.json",
+        "sha256": "b02889ae536e66aa22fb53cabc6fc22ffef531cd408bf6c5fdef8e08cd70db26",
+        "summonRank": 20,
+        "ownerAttackRanks": {
+          "tiger-strike": 0,
+          "wake-of-fire": 0,
+          "dragon-talon": 0
+        },
+        "selected": ["skills-assassin-shadow-master"]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-desktop-shadow-master-zh-CN-rank1-prepared.json",
+        "sha256": "43d75d2fc240d17aede3bdbe207ad11c1be7f5557202baf3e511958a6dd728a1",
+        "summonRank": 1,
+        "ownerAttackRanks": {
+          "tiger-strike": 0,
+          "wake-of-fire": 0,
+          "dragon-talon": 0
+        },
+        "selected": ["skills-assassin-shadow-master"]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-desktop-shadow-master-zh-CN-rank20-prepared.json",
+        "sha256": "c480acc6ac0e0f4bc3f04742ff14bdac67ebbfd8bc8be048e916f2c3d333be1c",
+        "summonRank": 20,
+        "ownerAttackRanks": {
+          "tiger-strike": 0,
+          "wake-of-fire": 0,
+          "dragon-talon": 0
+        },
+        "selected": ["skills-assassin-shadow-master"]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-desktop-shadow-warrior-en-rank1-prepared.json",
+        "sha256": "113eb4f136175e8baa11a98ba0e0f8e8d6171f1c789f32788bb28b55b06e1fea",
+        "summonRank": 1,
+        "ownerAttackRanks": {
+          "tiger-strike": 1,
+          "wake-of-fire": 1,
+          "dragon-talon": 1
+        },
+        "selected": [
+          "skills-assassin-shadow-warrior",
+          "skills-assassin-tiger-strike",
+          "skills-assassin-wake-of-fire",
+          "skills-assassin-dragon-talon"
+        ]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-desktop-shadow-warrior-en-rank20-prepared.json",
+        "sha256": "b6f77f7295f7456fa3eb53afd135df66267514210cced8646c049cce4b36fe2c",
+        "summonRank": 20,
+        "ownerAttackRanks": {
+          "tiger-strike": 1,
+          "wake-of-fire": 1,
+          "dragon-talon": 1
+        },
+        "selected": [
+          "skills-assassin-shadow-warrior",
+          "skills-assassin-tiger-strike",
+          "skills-assassin-wake-of-fire",
+          "skills-assassin-dragon-talon"
+        ]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-desktop-shadow-warrior-zh-CN-rank1-prepared.json",
+        "sha256": "e820531a2428f782249fab2cc4574a3899d2abd3eeecff6f91d762584eabb805",
+        "summonRank": 1,
+        "ownerAttackRanks": {
+          "tiger-strike": 1,
+          "wake-of-fire": 1,
+          "dragon-talon": 1
+        },
+        "selected": [
+          "skills-assassin-shadow-warrior",
+          "skills-assassin-tiger-strike",
+          "skills-assassin-wake-of-fire",
+          "skills-assassin-dragon-talon"
+        ]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-desktop-shadow-warrior-zh-CN-rank20-prepared.json",
+        "sha256": "345bd64a789f9becbcfa44ddc09adc28a72804687019badf62d9b9c2b3c2ba35",
+        "summonRank": 20,
+        "ownerAttackRanks": {
+          "tiger-strike": 1,
+          "wake-of-fire": 1,
+          "dragon-talon": 1
+        },
+        "selected": [
+          "skills-assassin-shadow-warrior",
+          "skills-assassin-tiger-strike",
+          "skills-assassin-wake-of-fire",
+          "skills-assassin-dragon-talon"
+        ]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-mobile-shadow-master-en-rank1-prepared.json",
+        "sha256": "564690b010577d653469e6e59074e1db46a596c45021bdb612911046d9a49057",
+        "summonRank": 1,
+        "ownerAttackRanks": {
+          "tiger-strike": 0,
+          "wake-of-fire": 0,
+          "dragon-talon": 0
+        },
+        "selected": ["skills-assassin-shadow-master"]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-mobile-shadow-master-en-rank20-prepared.json",
+        "sha256": "b02889ae536e66aa22fb53cabc6fc22ffef531cd408bf6c5fdef8e08cd70db26",
+        "summonRank": 20,
+        "ownerAttackRanks": {
+          "tiger-strike": 0,
+          "wake-of-fire": 0,
+          "dragon-talon": 0
+        },
+        "selected": ["skills-assassin-shadow-master"]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-mobile-shadow-master-zh-CN-rank1-prepared.json",
+        "sha256": "43d75d2fc240d17aede3bdbe207ad11c1be7f5557202baf3e511958a6dd728a1",
+        "summonRank": 1,
+        "ownerAttackRanks": {
+          "tiger-strike": 0,
+          "wake-of-fire": 0,
+          "dragon-talon": 0
+        },
+        "selected": ["skills-assassin-shadow-master"]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-mobile-shadow-master-zh-CN-rank20-prepared.json",
+        "sha256": "c480acc6ac0e0f4bc3f04742ff14bdac67ebbfd8bc8be048e916f2c3d333be1c",
+        "summonRank": 20,
+        "ownerAttackRanks": {
+          "tiger-strike": 0,
+          "wake-of-fire": 0,
+          "dragon-talon": 0
+        },
+        "selected": ["skills-assassin-shadow-master"]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-en-rank1-prepared.json",
+        "sha256": "113eb4f136175e8baa11a98ba0e0f8e8d6171f1c789f32788bb28b55b06e1fea",
+        "summonRank": 1,
+        "ownerAttackRanks": {
+          "tiger-strike": 1,
+          "wake-of-fire": 1,
+          "dragon-talon": 1
+        },
+        "selected": [
+          "skills-assassin-shadow-warrior",
+          "skills-assassin-tiger-strike",
+          "skills-assassin-wake-of-fire",
+          "skills-assassin-dragon-talon"
+        ]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-en-rank20-prepared.json",
+        "sha256": "b6f77f7295f7456fa3eb53afd135df66267514210cced8646c049cce4b36fe2c",
+        "summonRank": 20,
+        "ownerAttackRanks": {
+          "tiger-strike": 1,
+          "wake-of-fire": 1,
+          "dragon-talon": 1
+        },
+        "selected": [
+          "skills-assassin-shadow-warrior",
+          "skills-assassin-tiger-strike",
+          "skills-assassin-wake-of-fire",
+          "skills-assassin-dragon-talon"
+        ]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-zh-CN-rank1-prepared.json",
+        "sha256": "e820531a2428f782249fab2cc4574a3899d2abd3eeecff6f91d762584eabb805",
+        "summonRank": 1,
+        "ownerAttackRanks": {
+          "tiger-strike": 1,
+          "wake-of-fire": 1,
+          "dragon-talon": 1
+        },
+        "selected": [
+          "skills-assassin-shadow-warrior",
+          "skills-assassin-tiger-strike",
+          "skills-assassin-wake-of-fire",
+          "skills-assassin-dragon-talon"
+        ]
+      },
+      {
+        "file": "final-matrix-decoded/assassin-shadow-mobile-shadow-warrior-zh-CN-rank20-prepared.json",
+        "sha256": "345bd64a789f9becbcfa44ddc09adc28a72804687019badf62d9b9c2b3c2ba35",
+        "summonRank": 20,
+        "ownerAttackRanks": {
+          "tiger-strike": 1,
+          "wake-of-fire": 1,
+          "dragon-talon": 1
+        },
+        "selected": [
+          "skills-assassin-shadow-warrior",
+          "skills-assassin-tiger-strike",
+          "skills-assassin-wake-of-fire",
+          "skills-assassin-dragon-talon"
+        ]
+      }
+    ],
+    "scope": "Constructed imported fixture and real allocation/priority controls. Warrior copies learned1 at both summon ranks; Master owner learns/selects no attacks. No earned build or balance claim."
+  },
+  "buildAudit": {
+    "files": 762,
+    "chunks": 6,
+    "forbiddenPatterns": 5,
+    "violations": [],
+    "precacheUrls": 756,
+    "missing": [],
+    "manifestSha256": "360d44c688b4b3d69b8ec40618a9c0232ba4f879da4af90cdf845c88d3127b5b",
+    "production": "VITE_E2E unset; check browser __GAME__ absent separately; no performance/wholePWA acceptance"
+  },
+  "buildCompatibility": {
+    "head": "d944741436fd73e9bf218f8c30d743156606dd63",
+    "originalBuildReceipt": "shadow-combined-build.json",
+    "repositoryInputsChecked": 2552,
+    "changedInputs": ["tests/pwa/assassin-shadow-combined.spec.ts"],
+    "productionInputsUnchanged": true,
+    "buildFiles": 762,
+    "note": "Only public test observer changed since successful production build; runtime/UI/data/config/dependencies remain identical. No new build or performance acceptance inferred."
+  },
+  "originalFailures": {
+    "originalMatrix": "matrix-report.json: raw8/8success, four rank20 Master proofs contaminate waves, not accepted single-wave evidence (BUG312)",
+    "waveSeparatedAct3": "wave-probe-report.json: rank1 passes, rank20 first-finisher fails from normal target death/misses",
+    "firstCycleAct5": "wave-act5-probe-report.json: normal first-cycle misses; fourth cycle supplies4positivehits in samewave",
+    "finalCycle": "Selected complete cycle retains prior attempts, actual payments/charge/trap3positive batches/expiry/following4positivePhysical hits; every final proof is firstwave withzero priorwaves",
+    "typing": "Original array-index strict diagnostics retained; explicit guards, no suppression"
+  },
+  "genuine": {
+    "fixture": "docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
+    "compressedSHA256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "rawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "unchanged": true,
+    "campaign": "L33; Ancients/Rite claimed; Baal uncleared; nextNormal402",
+    "actions": "No earned campaign, replay or genuine-save action performed."
+  },
+  "priorRetainedEvidence": {
+    "artifacts": [
+      {
+        "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc-retention.json",
+        "receiptSHA256": "38385ca70b2f09bc0ac9436cf0744e1c34cb4a29821272d03ef2c619b06b7096",
+        "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc-raw.tar.gz",
+        "archiveSHA256": "aefbd85143cebde653daf664e98c8efa8f520c0525f52100072ff816be7bcd96",
+        "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc-raw-manifest.json",
+        "manifestSHA256": "ade73cbe24df4ef89f382f0748f20ab7b8db73fd083faedc3ada9126431f9204",
+        "members": 9685,
+        "priorReadbackVerified": true,
+        "priorCleanupVerified": true
+      },
+      {
+        "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj-retention.json",
+        "receiptSHA256": "885c675faa2b372a45ba8a31b015173b9c807e0780259a0aeb76386ec0d3426f",
+        "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj-raw.tar.gz",
+        "archiveSHA256": "a4542b02eb70b426836d714a79d5cc6570f7b85404c0825210a8d4611a8ed81d",
+        "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj-raw-manifest.json",
+        "manifestSHA256": "63f00e9efa1c9413ac66cc643da420586c0d808f1162a6c6ffa9450db630823d",
+        "members": 2143,
+        "priorReadbackVerified": true,
+        "priorCleanupVerified": true
+      },
+      {
+        "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy-retention.json",
+        "receiptSHA256": "74d834b028f85f7eb6c15ed728d90ce45ba944e89a41098f7ebd98e7acb739f9",
+        "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy-raw.tar.gz",
+        "archiveSHA256": "95b70fb419bef2988cb793a19c5f7fd4e7c65233dc42feb73d142353ed905d0e",
+        "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-charge-hp-2wvq1xcy-raw-manifest.json",
+        "manifestSHA256": "334c16626c453824e71049653439ef838c67ed409e8908f321f892ae52220ab5",
+        "members": 291,
+        "priorReadbackVerified": true,
+        "priorCleanupVerified": true
+      }
+    ],
+    "scope": "Three prior charge/trap, correctedHP and Flight archives/manifest hashes rechecked as current skill-disposition evidence; no archive or shared cache deletion."
+  },
+  "twoExistingSkips": [
+    "tests/sim/production/fresh-campaign-economy.test.ts",
+    "tests/sim/production/fresh-campaign-continuation.test.ts"
+  ],
+  "limits": [
+    "Constructed L30/imported equipment/prior-act fixtures, not earned campaign/build/balance.",
+    "Warrior public attacks learned1 at summon1/20; native combined tests separately prove copied learned20/captured20. Master independently casts rank1/20 with owner learning/selecting none of those attacks.",
+    "Rank20 Master uses authored ActV enemies for durable4hit witness; others use ActIII. No tuning changed. Rank1 Warrior ActV death remains unaccepted.",
+    "Three separate browser Fire batches are not wall-clock schedule proof; native tests assert exact1000ms intervals.",
+    "BUG304 actual positive victim-MP transfer remains a design conflict; no Cobra credit. Cold Mastery remains review-needed.",
+    "No independent approval, earned build/campaign, whole-app mobile/a11y, physical touch, performance, soak or full-v1 acceptance.",
+    "No earned campaign/replay, remote publication, push/PR/merge/deployment or shared-cache deletion."
+  ],
+  "rawEvidence": {
+    "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e",
+    "publicReport": "final-matrix-report.json",
+    "publicAudit": "final-matrix-decoded-audit.json",
+    "publicAuditSHA256": "03e3cac58a332a959b84ae0061361dfd3b111aeac723e88bd455044954512f75",
+    "ownership": "ownership.json",
+    "retentionDriver": "retention-driver.py"
+  },
+  "retention": {
+    "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e",
+    "session": "01a1577a-5af4-70e3-8699-50a906877d8f",
+    "owner": "root",
+    "head": "d944741436fd73e9bf218f8c30d743156606dd63",
+    "createdAt": "2026-10-27T12:42:31.391587+00:00",
+    "archive": {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e-raw.tar.gz",
+      "bytes": 1405619111,
+      "sha256": "68ba1103eb82279bb824cbfbd696d8efb296f050319264ce16cb5b07b9170955",
+      "members": 15148,
+      "rawBytes": 1612139625,
+      "allMembersReadBackVerified": true
+    },
+    "manifest": {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e-raw-manifest.json",
+      "sha256": "a5fec165e113664de80f6e73f60583ed987af55e274880cde94192c6b8a38c2b"
+    },
+    "consumerScans": [
+      {
+        "busy": [],
+        "restrictedPids": [
+          7, 167, 168, 169, 173, 183, 207, 242, 253, 265, 287, 351, 394, 398, 350262, 631611,
+          631672, 631674, 631709, 2657445, 2657754, 2658059, 2701439
+        ]
+      },
+      {
+        "busy": [],
+        "restrictedPids": [
+          7, 167, 168, 169, 173, 183, 207, 242, 253, 265, 287, 351, 394, 398, 350262, 631611,
+          631672, 631674, 631709, 2657445, 2657754, 2658059, 2701439
+        ]
+      }
+    ],
+    "checks": {
+      "shadow-final-matrix": {
+        "label": "shadow-final-matrix",
+        "command": [
+          "node",
+          "node_modules/@playwright/test/cli.js",
+          "test",
+          "--config",
+          "tests/pwa/assassin-shadow-combined.config.ts",
+          "--workers",
+          "2"
+        ],
+        "exit": 0,
+        "seconds": 311.89563243009616,
+        "inputsUnchanged": true,
+        "inputCount": 2552,
+        "externalInputCount": 770,
+        "externalInputsUnchanged": true,
+        "headBefore": "d944741436fd73e9bf218f8c30d743156606dd63",
+        "headAfter": "d944741436fd73e9bf218f8c30d743156606dd63",
+        "headUnchanged": true,
+        "totals": ["8 passed (5.2m)"]
+      },
+      "shadow-full-unit": {
+        "label": "shadow-full-unit",
+        "command": [
+          "npm",
+          "test",
+          "--",
+          "--config",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e/branch.config.mjs",
+          "--workspace",
+          "vitest.workspace.ts"
+        ],
+        "exit": 0,
+        "seconds": 1111.9028305460233,
+        "inputsUnchanged": true,
+        "inputCount": 2552,
+        "externalInputCount": 770,
+        "externalInputsUnchanged": true,
+        "headBefore": "d944741436fd73e9bf218f8c30d743156606dd63",
+        "headAfter": "d944741436fd73e9bf218f8c30d743156606dd63",
+        "headUnchanged": true,
+        "totals": ["Test Files  939 passed (939)", "Tests  19927 passed | 2 skipped (19929)"]
+      },
+      "shadow-full-types": {
+        "label": "shadow-full-types",
+        "command": ["npm", "run", "typecheck"],
+        "exit": 0,
+        "seconds": 180.49558845208958,
+        "inputsUnchanged": true,
+        "inputCount": 2552,
+        "externalInputCount": 770,
+        "externalInputsUnchanged": true,
+        "headBefore": "d944741436fd73e9bf218f8c30d743156606dd63",
+        "headAfter": "d944741436fd73e9bf218f8c30d743156606dd63",
+        "headUnchanged": true,
+        "totals": []
+      },
+      "shadow-full-lint": {
+        "label": "shadow-full-lint",
+        "command": ["npm", "run", "lint"],
+        "exit": 0,
+        "seconds": 317.94462719303556,
+        "inputsUnchanged": true,
+        "inputCount": 2552,
+        "externalInputCount": 770,
+        "externalInputsUnchanged": true,
+        "headBefore": "d944741436fd73e9bf218f8c30d743156606dd63",
+        "headAfter": "d944741436fd73e9bf218f8c30d743156606dd63",
+        "headUnchanged": true,
+        "totals": []
+      }
+    },
+    "retention": "Root retains archive/manifest/receipt through full-v1 and independent evidence consumers and owns their eventual removal.",
+    "cleanup": {
+      "status": "complete",
+      "filesRemoved": 15148,
+      "linksRemoved": 1,
+      "directoriesRemoved": 60,
+      "remaining": [],
+      "failures": []
+    },
+    "sharedTargetPreserved": true,
+    "receiptPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-shadow-combined-z66v6e4e-retention.json",
+    "receiptSHA256": "c8c150264088b4b6a19c20cd7b69040fcece4a69e7c215f655fc638307dfa681",
+    "publicationRecheck": {
+      "at": "2026-10-27T12:45:55.758615+00:00",
+      "archiveAndManifestHashesMatch": true,
+      "rawRootAbsent": true,
+      "sourceHashesMatch": 12,
+      "draftMemberSHA256": "f9e05d068509674d8a9713af2839f87b950906ca76bf1fba2cf979540b95ca7f"
+    }
+  }
+}
