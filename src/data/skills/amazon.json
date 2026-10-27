@@ -654,15 +654,13 @@
     "appliesStatus": [
       "inner-sight"
     ],
-    "appliesTags": [
-      "amp-damage"
-    ],
+    "statusEffect": {
+      "durationMs": 8000,
+      "defenseReductionPct": 25
+    },
     "scaling": {
       "cooldownPerLevel": -0.05,
-      "costPerLevel": -0.05,
-      "passiveStatsPerLevel": {
-        "physicalDamagePct": 0.01
-      }
+      "costPerLevel": -0.05
     }
   },
   {

@@ -4193,6 +4193,33 @@
       }
     }
   }, {
+    "if": { "required": ["id"], "properties": { "id": { "const": "skills-amazon-inner-sight" } } },
+    "then": {
+      "required": ["requiredLevel", "cost", "scaling", "appliesStatus", "statusEffect"],
+      "properties": {
+        "trigger": { "const": "active" }, "target": { "const": "all-enemies" },
+        "requiredLevel": { "const": 1 }, "minLevel": { "const": 1 }, "maxLevel": { "const": 20 },
+        "prerequisites": { "const": [] }, "cooldown": { "type": "number", "minimum": 1 },
+        "passive": { "const": false }, "aura": { "const": false }, "summon": { "const": false },
+        "cost": { "type": "object", "additionalProperties": false, "required": ["mana"],
+          "properties": { "mana": { "type": "number", "exclusiveMinimum": 0 } } },
+        "scaling": { "type": "object", "additionalProperties": false,
+          "required": ["cooldownPerLevel", "costPerLevel"], "properties": {
+            "cooldownPerLevel": { "$ref": "#/properties/scaling/properties/cooldownPerLevel" },
+            "costPerLevel": { "$ref": "#/properties/scaling/properties/costPerLevel" }
+          } },
+        "appliesStatus": { "const": ["inner-sight"] },
+        "statusEffect": { "type": "object", "additionalProperties": false,
+          "required": ["defenseReductionPct", "durationMs"], "properties": {
+            "defenseReductionPct": { "type": "number", "exclusiveMinimum": 0, "maximum": 100,
+              "description": "Amazon Inner Sight ordinary Defense reduction; strongest Inner Sight applies once." },
+            "durationMs": { "type": "number", "exclusiveMinimum": 0,
+              "description": "Finite paid Amazon Inner Sight interval in simulation milliseconds." }
+          } },
+        "damage": false, "damageType": false, "appliesTags": false
+      }
+    }
+  }, {
     "if": {
       "properties": { "id": { "const": "mskill-inner-sight" } },
       "required": ["id"]

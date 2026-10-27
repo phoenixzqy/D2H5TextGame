@@ -42,6 +42,8 @@ export interface ActiveStatus {
   readonly decrepify?: { readonly attackSpeedReductionPct: number; readonly damageReductionPct: number };
   /** Immutable paid finite Weaken potency; bare markers grant no damage reduction. */
   readonly weaken?: { readonly damageReductionPct: number };
+  /** Copied paid finite Amazon Defense reduction; independent of the Rogue marker. */
+  readonly innerSight?: { readonly defenseReductionPct: number };
   /** Paid personal Teleport/Enchant; Enchant also captures normal Attack at cast. */
   readonly sorceressBuff?: { readonly rank: number; readonly attack?: number };
   /** Paid rank of a finite persistent spell; source and phase use this status's standard fields. */
