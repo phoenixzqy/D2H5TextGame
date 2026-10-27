@@ -1,0 +1,379 @@
+{
+  "kind": "genuine earned Normal Baal427 victory and separate once-only Eve claim; root executor/artifact audit; independent acceptance open",
+  "head": "2850de61e5689956018cac0f0b985b4f56ef3b05",
+  "input": {
+    "versionedAncestry": "docs/plans/evidence/fixtures/earned-arreat408-continuation/retained-final.json.gz",
+    "rawSHA256": "62b5636d994541182c933d4a70daa8839b6c8624429582a2e0556898fde825d3",
+    "gzipSHA256": "e5bd68160be0b6cafc23f200fe2342e056f4dddc6108ac010b22e42e66e4aa2e",
+    "ordinal": 427
+  },
+  "nativePolicy": {
+    "scope": "native UI legal preparation then one genuine next427 Throne attempt, conditional once-only Eve claim after complete win",
+    "input": "original genuine earned next427 only; never import diagnostic prepared save",
+    "preparation": "Malah5Wishstones skill reset,48 legal skill points as qualified,20earnedEnergy,no gear change,no healing; Static-IceBlast-Blizzard priority",
+    "gates": {
+      "screen": [
+        29,
+        14
+      ],
+      "disjointHoldout": [
+        30,
+        15
+      ],
+      "threshold": [
+        26,
+        12
+      ]
+    },
+    "integrity": "prepared export exactly equals qualified snapshot; Save-close-new-page Continue exact before quest start and challenge",
+    "entry": "start Eve through Quests UI then ordinary Enter on Throne; no injected seed/ordinal/store bridge/Skip/speed override; one consumed next427",
+    "stop": "first nonwin,tooling,refusal or integrity error; preserve every consumed action and partial prefix; no blind retry",
+    "reward": "only complete eight-wave victory permits separate ordinary once-only Eve Claim; audit authored40000XP,5picks,title,Nightmare,save/durability",
+    "securityCheck": "pass; first-party local production/public UI only; loopback ephemeral preview; no network/dependency/code/security changes; exact task-owned browser/temporary cleanup",
+    "acceptance": "bounded campaign evidence; no pacing/class/build/full-v1 acceptance"
+  },
+  "diagnostics": [
+    {
+      "stage": "original-paired",
+      "kind": "diagnostic only; exact current earned L35/next427, no genuine actions or projected-save promotion, no source/balance/threshold changes",
+      "sourceHead": "2850de61e5689956018cac0f0b985b4f56ef3b05",
+      "seedNamespace": "baal427-ice-blizzard-paired-v1-",
+      "requiredWins": 26,
+      "requiredSecondHalfWins": 12,
+      "results": [
+        {
+          "id": "ice-blizzard-current-gear",
+          "energy": null,
+          "amulet": null,
+          "wins": 10,
+          "secondHalfWins": 7,
+          "qualified": false,
+          "timings": {
+            "successfulRoutes": 10,
+            "victoriousRouteSecondsP50": 211.64398546775658,
+            "victoriousRouteSecondsP95": 239.0534996646546,
+            "failedRoutes": 22,
+            "failedAttemptSeconds": [
+              222.0423608316566,
+              224.62816633132127,
+              209.5639854677566,
+              216.04322199865862,
+              216.688,
+              215.65153860127157,
+              218.37866666666667,
+              224.2178886653253,
+              221.464,
+              214.68599061032864,
+              214.54549966465459,
+              202.24966599597585,
+              215.31483299798793,
+              232.97577733065057,
+              210.85130516431926,
+              206.06966599597587,
+              212.29233534540575,
+              210.91749966465463,
+              207.13483299798793,
+              211.47711066398392,
+              204.47036083165662,
+              201.9362494969819
+            ]
+          }
+        },
+        {
+          "id": "ice-blizzard-owned-amulet",
+          "energy": null,
+          "amulet": "it-2sppy-5gm",
+          "wins": 10,
+          "secondHalfWins": 7,
+          "qualified": false,
+          "timings": {
+            "successfulRoutes": 10,
+            "victoriousRouteSecondsP50": 208.08330516431926,
+            "victoriousRouteSecondsP95": 222.90133333333333,
+            "failedRoutes": 22,
+            "failedAttemptSeconds": [
+              211.932,
+              210.46480482897385,
+              208.44260116192157,
+              222.66588866532527,
+              208.136,
+              209.75397183098593,
+              214.212,
+              206.66133333333335,
+              222.27066666666667,
+              209.50016633132128,
+              216.99466666666666,
+              198.05362397820164,
+              210.85194366197183,
+              208.06188866532528,
+              197.60399999999998,
+              201.92283299798794,
+              230.73522199865863,
+              213.53865213442324,
+              207.61066666666665,
+              206.7659718309859,
+              229.31599999999997,
+              207.6922494969819
+            ]
+          }
+        }
+      ],
+      "sourceCount": 2693,
+      "sourceUnchanged": true,
+      "genuineSaveUnchanged": true,
+      "wallSeconds": 157.84856672499998
+    },
+    {
+      "stage": "energy20-paired",
+      "kind": "diagnostic causal matched32seed Energy20 revision after both original variants fail10/32; preserve all originals, no genuine action or projected-save promotion",
+      "sourceHead": "2850de61e5689956018cac0f0b985b4f56ef3b05",
+      "seedNamespace": "baal427-ice-blizzard-paired-v1-",
+      "requiredWins": 26,
+      "requiredSecondHalfWins": 12,
+      "results": [
+        {
+          "id": "ice-blizzard-energy20-current-gear",
+          "energy": 20,
+          "amulet": null,
+          "wins": 29,
+          "secondHalfWins": 14,
+          "qualified": true,
+          "timings": {
+            "successfulRoutes": 29,
+            "victoriousRouteSecondsP50": 204.49953860127158,
+            "victoriousRouteSecondsP95": 222.7014996646546,
+            "failedRoutes": 3,
+            "failedAttemptSeconds": [
+              217.13036083165662,
+              202.53198546775658,
+              212.95711066398394
+            ]
+          }
+        }
+      ],
+      "sourceCount": 2693,
+      "sourceUnchanged": true,
+      "genuineSaveUnchanged": true,
+      "wallSeconds": 84.574080619
+    },
+    {
+      "stage": "energy20-disjoint-holdout",
+      "kind": "frozen disjoint32seed holdout of unchanged Energy20 current-gear policy; no genuine action",
+      "sourceHead": "2850de61e5689956018cac0f0b985b4f56ef3b05",
+      "seedNamespace": "baal427-energy20-holdout-v1-",
+      "requiredWins": 26,
+      "requiredSecondHalfWins": 12,
+      "results": [
+        {
+          "id": "ice-blizzard-energy20-current-gear",
+          "energy": 20,
+          "amulet": null,
+          "wins": 30,
+          "secondHalfWins": 15,
+          "qualified": true,
+          "timings": {
+            "successfulRoutes": 30,
+            "victoriousRouteSecondsP50": 204.08674983232729,
+            "victoriousRouteSecondsP95": 215.11083299798793,
+            "failedRoutes": 2,
+            "failedAttemptSeconds": [
+              208.67766599597587,
+              208.06551844399732
+            ]
+          }
+        }
+      ],
+      "sourceCount": 2693,
+      "sourceUnchanged": true,
+      "genuineSaveUnchanged": true,
+      "wallSeconds": 87.882220536
+    }
+  ],
+  "native": {
+    "status": "pass",
+    "auditor": "root separate saved-artifact audit; independent acceptance remains open",
+    "sourceHead": "2850de61e5689956018cac0f0b985b4f56ef3b05",
+    "sourcePathsRehashed": 2693,
+    "sourceDrift": [],
+    "saveSnapshots": 48,
+    "exactSaveCloseContinuePairs": 9,
+    "originalOwnedItems": 27238,
+    "allAncestralFullPayloadsPreservedAtEverySavedBarrier": true,
+    "finalOwnedItems": 27306,
+    "preparationExactQualifiedSnapshot": true,
+    "oneGenuineEntry": 427,
+    "victoriousWaves": 8,
+    "nonwins": 0,
+    "battleXP": 28130,
+    "questXP": 40000,
+    "totalXP": 68130,
+    "battleEquipmentItems": 66,
+    "questReward": {
+      "xp": 40000,
+      "items": [
+        "it-6263r-l2h",
+        "it-6dv2y-l2i"
+      ],
+      "runeShards": 143578,
+      "wishstones": 0,
+      "materials": {
+        "runes/ist": 1,
+        "runes/vex": 1
+      }
+    },
+    "allOwnedIDsUnique": true,
+    "final": {
+      "level": 35,
+      "xpIntoLevel": 105381,
+      "statPoints": 0,
+      "skillPoints": 0,
+      "core": {
+        "strength": 10,
+        "dexterity": 150,
+        "vitality": 12,
+        "energy": 83
+      },
+      "nextNormal": 428,
+      "nextNightmare": 0,
+      "eveClaimed": true,
+      "titleOwned": true,
+      "nightmareUnlocked": true,
+      "bossClearRows": [
+        "areas/act1-catacombs",
+        "areas/act2-tomb-of-tal-rasha",
+        "areas/act3-durance-of-hate",
+        "areas/act4-chaos-sanctuary",
+        "areas/act5-throne-of-destruction"
+      ]
+    },
+    "limits": "Earned final-boss completion and durable rewards; not independent C2/full-v1 acceptance,30-50h pacing,14builds,whole-app mobile/a11y,performance,soak or human acceptance."
+  },
+  "final": {
+    "level": 35,
+    "xpIntoLevel": 105381,
+    "statPoints": 0,
+    "skillPoints": 0,
+    "core": {
+      "strength": 10,
+      "dexterity": 150,
+      "vitality": 12,
+      "energy": 83
+    },
+    "nextNormal": 428,
+    "nextNightmare": 0,
+    "eveClaimed": true,
+    "titleOwned": true,
+    "nightmareUnlocked": true,
+    "bossClearRows": [
+      "areas/act1-catacombs",
+      "areas/act2-tomb-of-tal-rasha",
+      "areas/act3-durance-of-hate",
+      "areas/act4-chaos-sanctuary",
+      "areas/act5-throne-of-destruction"
+    ],
+    "fixture": "docs/plans/evidence/fixtures/earned-baal427/retained-final.json.gz",
+    "gzipSHA256": "45ebbfbf5b04379af05c5c1de69c18d6a71460050145f7411399700265a29442",
+    "rawSHA256": "0abd575b9e591d8a8dc42653ebe496509acc77f6dd566b84bcc6dc009c23d52b",
+    "ownedItems": 27306,
+    "life": 120,
+    "mana": 102,
+    "manaMax": 488,
+    "wishstones": 25637,
+    "titleSelected": null
+  },
+  "toolingStops": [
+    {
+      "originalSession": 56306,
+      "exitCode": 1,
+      "consumed": true,
+      "status": "tooling-failure",
+      "claimsClicked": 1,
+      "genuineStoppedRawSHA256": "0abd575b9e591d8a8dc42653ebe496509acc77f6dd566b84bcc6dc009c23d52b",
+      "rewardClaimed": true,
+      "cause": "stale observer expected claimed button removal; authored UI retains disabled button"
+    },
+    {
+      "originalSession": 39809,
+      "exitCode": 1,
+      "consumed": true,
+      "status": "tooling-failure",
+      "actions": [],
+      "cause": "pure expected-reward oracle omitted public item-sequence hydration; all non-ID item payloads match"
+    }
+  ],
+  "transport": {
+    "ordinaryPublicBrowser": true,
+    "viewport": {
+      "width": 360,
+      "height": 640
+    },
+    "locale": "en",
+    "fixedOriginalDate": true,
+    "injectedNativeSeedOrdinalOrStoreBridge": false,
+    "skipOrSpeedOverride": false,
+    "timerTransportMs": 100,
+    "requestedClockAdvanceMs": 202200,
+    "battleExecutionWallMs": 90173.652868,
+    "pacingAcceptance": false
+  },
+  "validation": {
+    "status": "pass",
+    "inputs": {
+      "final-build-inputs.json": {
+        "paths": 1943,
+        "allCurrentExact": true,
+        "manifestSHA256": "9b5b50f14bd56f096b1c82a47101a8fa584486329830ed52c1f91f06746d4551"
+      },
+      "support-full-unit-inputs.json": {
+        "paths": 2693,
+        "allCurrentExact": true,
+        "manifestSHA256": "613b2e2a4744d857466d350bca8d86899ac106cfd16a75974e0691371e1649ad"
+      },
+      "support-full-types-inputs.json": {
+        "paths": 2693,
+        "allCurrentExact": true,
+        "manifestSHA256": "613b2e2a4744d857466d350bca8d86899ac106cfd16a75974e0691371e1649ad"
+      },
+      "support-full-lint-inputs.json": {
+        "paths": 2693,
+        "allCurrentExact": true,
+        "manifestSHA256": "613b2e2a4744d857466d350bca8d86899ac106cfd16a75974e0691371e1649ad"
+      }
+    },
+    "basis": "unchanged source/build; prior full19935/940/two opt-in skips,types,lint; no new product-code edit",
+    "limits": "does not accept performance budgets,full-v1 or independent gates"
+  },
+  "visuals": {
+    "individuallyViewed": [
+      "native-baal427/427-victory.png",
+      "native-eve-recovery-r2/claimed.png"
+    ],
+    "limits": "Victory capture shows top mobile battlefield with final wave/merc/mana; terminal panel/enemies below internal scroll. Ordinary native terminal DOM/control and settled saves prove victory. Claimed screenshot visibly shows completed objectives,40000XP/title/Nightmare and disabled Claimed button; reward badges retain font glyph fallback. Other captures retained without individual visual acceptance. No whole-app mobile/a11y acceptance."
+  },
+  "remaining": "C2 independent/integration acceptance,211bounded skills/oneunverifiedCobraBUG304/onereviewColdMastery,two builds/class,30-50active-hour pacing,economy/endgame,whole-app mobile/a11y/performance/PWA installation,soak and independent/human/fullG0-G7 acceptance remain open. Local only.",
+  "retention": {
+    "status": "complete; all archive members readback verified and exact rawroot cleanup passed",
+    "formerTaskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-baal427-nfhiv849",
+    "owner": "Root retains archive/manifest/receipt through campaign/independent/full-v1 consumers, then removes only those exact paths; genuine fixture/source/history/worktree/shared caches remain.",
+    "receipt": {
+      "atUnix": 1793116215.479217,
+      "owner": "root",
+      "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-baal427-nfhiv849-raw.tar.gz",
+      "archiveSHA256": "b5997f1a4da4cbbd465d1ff36216818bb169f844b97d735cca0aed4eba82386e",
+      "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-baal427-nfhiv849-raw-manifest.json",
+      "manifestSHA256": "610501daa0f5751549f5db4abdfe88e70a73dd0de85b249d3a3c9b1a2a646453",
+      "readbackVerifiedMembers": 1063,
+      "removedFilesOrLinks": 1063,
+      "removedDirectoriesIncludingRoot": 30,
+      "remaining": [],
+      "failures": [],
+      "activeProcesses": [],
+      "restrictedProcEntries": [],
+      "retention": "Root retains archive/manifest/receipt through independent and full-v1 evidence consumers, then removes only these exact paths. Source/history/worktree/shared caches/dependencies and genuine campaign fixture are preserved."
+    },
+    "retainerOriginalSession": 87141,
+    "retainerExitCode": 0,
+    "retainerHandleConsumed": true,
+    "externalDisposableRetainerLogRemoved": true
+  }
+}
