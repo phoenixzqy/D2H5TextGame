@@ -1025,6 +1025,10 @@ function StatSection({
             <StatLine label={t('details.coldChillSlow')} value={t('details.percentValue', { value: stats.decrepify.attackSpeedReductionPercent })} />
             <StatLine label={t('details.warcryDamageReduction')} value={t('details.percentValue', { value: stats.decrepify.damageReductionPercent })} />
           </> : null}
+          {stats.innerSight ? <>
+            <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.innerSight.durationSeconds })} />
+            <StatLine label={t('details.warcryDefenseReduction')} value={t('details.percentValue', { value: stats.innerSight.defenseReductionPercent })} />
+          </> : null}
           {stats.weaken ? <>
             <StatLine label={t('details.warcryDuration')} value={t('details.seconds', { seconds: stats.weaken.durationSeconds })} />
             <StatLine label={t('details.warcryDamageReduction')} value={t('details.percentValue', { value: stats.weaken.damageReductionPercent })} />
@@ -1081,6 +1085,7 @@ function StatSection({
                 id === AMPLIFY_DAMAGE_DEFINITION.canonicalStatusId || id === AMPLIFY_DAMAGE_DEFINITION.legacyStatusId
                   ? t('necromancer.amplify-damage.name')
                   : id === 'decrepify' ? t('necromancer.decrepify.name')
+                  : id === 'inner-sight' ? t('amazon.inner-sight.name')
                   : id === 'weaken' ? t('necromancer.weaken.name')
                   : id === 'dim-vision' ? t('necromancer.dim-vision.name')
                   : id === 'terror' ? t('necromancer.terror.name')
@@ -1791,6 +1796,12 @@ function dynamicDescription(
       duration: t('details.seconds', { seconds: stats.decrepify.durationSeconds }),
       slow: stats.decrepify.attackSpeedReductionPercent, reduction: stats.decrepify.damageReductionPercent,
       mana: stats.manaCost, cooldown: stats.cooldown
+    });
+  }
+  if (skill.id === 'skills-amazon-inner-sight' && stats?.innerSight) {
+    return t('amazon.inner-sight.desc', {
+      duration: t('details.seconds', { seconds: stats.innerSight.durationSeconds }),
+      reduction: stats.innerSight.defenseReductionPercent, mana: stats.manaCost, cooldown: stats.cooldown
     });
   }
   if (skill.id === 'skills-necromancer-weaken' && stats?.weaken) {

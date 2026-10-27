@@ -409,7 +409,7 @@
     },
     "inner-sight": {
       "name": "Inner Sight",
-      "desc": "Reduces enemy defense, making them easier to hit."
+      "desc": "Reduces all living enemies’ ordinary Defense by {{reduction}}% for {{duration}}. This improves direct Physical, Fire, Poison and Thorns damage; hit chance, dodge, resistances, Magic Resist and existing damage-over-time rates stay unchanged. With the Rogue effect, the stronger Inner Sight applies once. Pay {{mana}} MP; {{cooldown}} s cooldown. Reapplication replaces the interval."
     },
     "slow-missiles": {
       "name": "Slow Missiles",
