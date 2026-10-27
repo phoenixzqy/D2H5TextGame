@@ -32,3 +32,18 @@ Exact root-owned continuing task:
 Key records: slow-missiles-focused-final, slow-missiles-integrated-full, slow-missiles-integrated-engine, slow-missiles-integration-green, slow-missiles-presentation-lifecycle-green, slow-missiles-status-log-green, slow-missiles-production-build, slow-missiles-public-final, slow-missiles-public-audit, slow-missiles-build-reuse-audit and amazon-support-final-typecheck-retry; associated JSON/log/input/process files preserve exact outcomes. amazon-support-final-*-interruption.json and continuation.json preserve the missing terminal broad results. Production builds, traces/configs and original screenshots remain needed for combined gate/retention; root owns archive read-back and exact cleanup after consumers finish. Never follow the task node_modules symlink.
 
 Inventory stays190 bounded/21 unverified/one engine-only/one review-needed. GenuineL33/Ancients-Rite claimed/nextNormal402/Baaluncleared and both protected fixture hashes remain exact. No campaign/replay, remote action, delegation, independent self-approval or full-v1 completion.
+
+
+## Terminal combined regression checkpoint
+
+Frozen6a2fc9dd full unit PASS:19,270tests/901files, two existing opt-in campaign
+measurement skips,3438.329s. Full lint PASS256.766s. Typecheck PASS221.147s
+at29c3b2ad;all2495captured source/test/config inputs exactly match all three
+runs (only documentation differs between the two commits). The interrupted
+original supervisors remain retained and are not counted as passes.
+[Combined gate receipts](fixtures/amazon-support/combined-gates.json) retain
+exact commands,heads,scope and pre-existing skip paths.
+
+Raw support/shadow consumers still need evidence retention/read-back and exact
+cleanup. No new inventory credit or independent/earned/private-v1 acceptance
+is inferred from the passing suite. Original umbrella work continues.

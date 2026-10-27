@@ -1,6 +1,6 @@
 # BUG-299 — Enable advertised Shadow Warrior and Shadow Master skill use
 
-Status: Reproduced; no implementation yet.
+Status: Reproduced; prospective runtime/UI/native/public proof prepared, branch integration and actual charge/trap acceptance pending.
 Severity: High — both advertised skill-using summons only perform basic attacks.
 Affected systems: engine-dev, content-designer, frontend-dev, writer, qa-engineer.
 
@@ -23,3 +23,17 @@ Root-owned task:/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-sup
 src/engine/skills/summons.ts defines both bodies in TS and registers both with the default empty skill list; common body tuning has zero mana. Native startup preparation creates real bodies but supplies no copied or independent skill configuration. Merely moving body stats to JSON or crediting their positive basic damage would leave the missing promise intact. Workaround: use them as basic attackers; skill use has none.
 
 Security check: pass for authorized first-party local data/combat/UI repair. No dependency, credentials, CI, networking, save format, campaign or remote action. Root sole writer; independent design/QA and earned balance remain open. No skill credit from this reproduction.
+
+
+## Prospective implementation checkpoint
+
+[D06 author contract](../../docs/plans/decisions/D06-assassin-shadow-skills-v1.md)
+records skill ownership, independent policy, resources, captured ranks and
+lifecycle boundaries. Original four native RED cases now pass in a strict
+19-path source overlay;212native/policy/body/preparation plus176model/UI
+cases pass, and six native lifecycle cases pass. Real production public
+8/8PASS187.274s covers both shadows/en/zh/desktop/mobile/rank1/20, positive
+typed skill damage,80geometries,16seven-domain pairs/eight actual offline
+Continues. Product source promotion and real-branch gates remain required;
+full copied charge/trap behavior, earned balance and independent acceptance
+remain open. No skill inventory credit yet.

@@ -1,0 +1,67 @@
+{
+  "owner": "root",
+  "sourceHead": "6a2fc9dda078aacb9e7a349742877d594eff352f",
+  "receipts": {
+    "amazon-support-final-full-retained": {
+      "label": "amazon-support-final-full-retained",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 3438.329482572968,
+      "inputsUnchanged": true,
+      "inputCount": 2495,
+      "headBefore": "6a2fc9dda078aacb9e7a349742877d594eff352f",
+      "headAfter": "6a2fc9dda078aacb9e7a349742877d594eff352f",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  901 passed (901)",
+        "Tests  19270 passed | 2 skipped (19272)"
+      ]
+    },
+    "amazon-support-final-lint-retained": {
+      "label": "amazon-support-final-lint-retained",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 256.7664221880259,
+      "inputsUnchanged": true,
+      "inputCount": 2495,
+      "headBefore": "6a2fc9dda078aacb9e7a349742877d594eff352f",
+      "headAfter": "6a2fc9dda078aacb9e7a349742877d594eff352f",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "amazon-support-final-typecheck-retry": {
+      "label": "amazon-support-final-typecheck-retry",
+      "command": [
+        "node_modules/.bin/tsc",
+        "--noEmit"
+      ],
+      "exit": 0,
+      "seconds": 221.14660642691888,
+      "inputsUnchanged": true,
+      "inputCount": 2495,
+      "headBefore": "29c3b2ad7ffd4818bae55546593bb63a1245bf7d",
+      "headAfter": "29c3b2ad7ffd4818bae55546593bb63a1245bf7d",
+      "headUnchanged": true,
+      "totals": []
+    }
+  },
+  "all2495CapturedInputsMatch": true,
+  "existingSkips": [
+    "tests/sim/production/fresh-campaign-economy.test.ts",
+    "tests/sim/production/fresh-campaign-continuation.test.ts"
+  ],
+  "retentionStatus": "Raw continuing task still needed for retention/readback and shared shadow receipts; no cleanup or new skill credit claimed",
+  "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_",
+  "limits": "Current local regression/static evidence; independent acceptance, earned builds/balance and full private-v1 gates remain open"
+}

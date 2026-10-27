@@ -13444,3 +13444,23 @@ action, delegation or independent self-approval.
 Current full types PASS221.147s at frozen29c3b2ad/all2495 inputs. Original typecheck,full-unit and lint supervisors terminated143; original children were monitored to absence, not restarted from observation timeout. Full log42completed file results has no terminal summary; no full/lint pass. All consumers terminal before this docs increment. Fresh full unit/lint will use independent task-owned completion-recording runners. Previous goal turn made progress via mobile review/check launches; this turn adds real type proof and native shadow reproduction, not a status-only wait.
 
 BUG299 external native rank1/20 Warrior/Master4REDs follow successful real allocation, one paid body spawn and positive basic damage: neither uses skills. Source traces default empty skillOrder/zero MP and hardcoded body tuning. No shadow implementation or credit yet. Active support task remains needed for combined gate/archive/read-back/exact cleanup; root owns continuing artifacts/new shadow probe/cache. Inventory190bounded/21unverified/oneengine-only/onereview-needed unchanged. GenuineL33/Ancients-Rite/next402/Baaluncleared and both protected fixture hashes exact. Whole privatev1,17Assassin,earned builds/balance/economy/endgame and independent/mobile/a11y/performance gates remain open. No campaign/replay,remote action,delegation or self-signoff; original goal/registered worktree continue.
+
+
+## 2026-10-26 — Support combined gate completed; shadow runtime prepared
+
+At6a2fc9dd,full19,270PASS/901files/two existing opt-in skips3438.329s and lint
+PASS256.766s; typecheck221.147s at29c3b2ad with all2495inputs byte-identical
+across all three runs. [Exact receipts](evidence/fixtures/amazon-support/combined-gates.json).
+No support credit before retention/readback/cleanup. Inventory190bounded/
+21unverified/oneengine-only/onereview-needed remains exact.
+
+BUG299 prepared actual owned skill use, own MP/CD/rank snapshots and strict
+paid-body binding, plus bilingual previews:388focused cases/8files and six
+actual native next-wave/import/town-respec cases pass prospectively. Public
+8/8PASS187.274s:16actual rank1/20 paid summons and typed skill hits,80control
+geometries,16exact seven-domain save pairs/eight service-worker offline
+Continues; no retries/skips/flakes/page warnings/errors. These are constructed
+fixtures against an external source overlay; branch promotion and final real
+branch checks remain. Actual charge/trap runtime is still required before full
+shadow credit. GenuineL33/Ancients-Rite/next402/Baaluncleared unchanged.
+Root-only; no campaign/replay, remote action or independent self-signoff.
