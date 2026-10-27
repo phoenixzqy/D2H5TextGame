@@ -185,3 +185,58 @@ it('removes a paid Warrior blink at original owner death before its natural expi
   expect(out.events.some(e => e.kind === 'status-state' && e.target === spawn.unit.id && e.simClockMs >= 2000 &&
     e.statuses.some(s => s.id === 'dragon-flight'))).toBe(false);
 });
+
+it.each([1, 20])('paid Flight rank%i retains actual crit, resistance and defense while rejecting forged enemy personal shields', rank => {
+  const input = fixture(rank), hero = input.playerTeam[0], target = input.enemyTeam[0];
+  if (!hero || !target) throw new Error('Missing native Flight settlement fixture');
+  const plain = record(input).events.find(e => e.kind === 'damage' && e.source === 'hero');
+  if (!plain || plain.kind !== 'damage') throw new Error('Missing ordinary paid kick');
+  expect(plain).toMatchObject({ dodged: false, crit: false, damageType: 'physical' });
+  expect(plain.amount).toBeGreaterThanOrEqual(80 + 7 * (rank - 1));
+  expect(plain.amount).toBeLessThanOrEqual(115 + 7 * (rank - 1));
+  const critical = { ...input, playerTeam: [{ ...hero, stats: { ...hero.stats, critChance: 1 } }] };
+  const critHit = record(critical).events.find(e => e.kind === 'damage' && e.source === 'hero');
+  expect(critHit).toMatchObject({ amount: plain.amount * 2, crit: true, dodged: false });
+  // Authored order: crit, then physical resistance, then flat DEF. Enemy markers cannot supply a player-only personal shield.
+  const mitigated = Math.max(1, Math.floor(plain.amount * 2 * .75 - 40));
+  for (const pool of [0, 17, 1000]) {
+    const out = record({ ...critical, enemyTeam: [{ ...target, stats: { ...target.stats,
+      defense: 40, resistances: { ...target.stats.resistances, physical: 25 } },
+      statuses: [...target.statuses, ...(pool > 0 ? [{ id: 'bone-armor', sourceId: 'target', stacks: 1,
+        remaining: -1, boneArmor: { rank: 20, remaining: pool } }] : [])] }] });
+    const hit = out.events.find(e => e.kind === 'damage' && e.source === 'hero');
+    if (!hit || hit.kind !== 'damage') throw new Error('Missing defended paid kick');
+    expect(hit).toMatchObject({ target: 'target', simClockMs: 1700, crit: true, dodged: false,
+      damageType: 'physical', amount: mitigated });
+    expect(hit.absorbed ?? 0).toBe(0);
+    expect(out.result.enemyTeam[0]?.life).toBe(target.life - hit.amount);
+    expect(out.result.enemyTeam[0]?.statuses.find(s => s.id === 'bone-armor')?.boneArmor?.remaining ?? 0)
+      .toBe(0);
+    expect(out.events.filter(e => e.kind === 'mana' && e.target === 'hero' && e.reason === 'cast'))
+      .toEqual([expect.objectContaining({ mana: 0, simClockMs: 1700 })]);
+    expect(out.events.some(e => e.kind === 'status-state' && e.target === 'hero' && e.simClockMs === 1700 &&
+      e.statuses.some(s => s.id === 'dragon-flight' && s.expiresAtMs === 2700))).toBe(true);
+  }
+});
+
+it.each([100, 240])('actual reflected kick settles against a valid finite source shield%i', pool => {
+  const input = fixture(20), hero = input.playerTeam[0], target = input.enemyTeam[0];
+  if (!hero || !target) throw new Error('Missing native reflection fixture');
+  const out = record({ ...input, playerTeam: [{ ...hero, life: 200,
+    statuses: [hold(1701), { id: 'bone-armor', sourceId: 'hero', stacks: 1,
+      remaining: -1, boneArmor: { rank: 20, remaining: pool } }] }],
+    enemyTeam: [{ ...target, physicalReflectionPct: 1 }] });
+  expect(out.events.find(e => e.kind === 'damage' && e.source === 'hero'))
+    .toMatchObject({ target: 'target', amount: 215, simClockMs: 1700 });
+  const reflected = out.events.find(e => e.kind === 'damage' && e.target === 'hero');
+  expect(reflected).toMatchObject({ damageType: 'thorns', simClockMs: 1700,
+    amount: Math.max(0, 215 - pool), absorbed: Math.min(pool, 215) });
+  expect(out.result.playerTeam[0]?.life).toBe(200 - Math.max(0, 215 - pool));
+  expect(out.result.playerTeam[0]?.statuses.find(s => s.id === 'bone-armor')?.boneArmor?.remaining ?? 0)
+    .toBe(Math.max(0, pool - 215));
+  expect(out.events.some(e => e.kind === 'death' && e.target === 'hero')).toBe(false);
+  expect(out.events.some(e => e.kind === 'status-state' && e.target === 'hero' && e.simClockMs === 1700 &&
+    e.statuses.some(s => s.id === 'dragon-flight' && s.expiresAtMs === 2700))).toBe(true);
+  expect(out.events.filter(e => e.kind === 'mana' && e.target === 'hero' && e.reason === 'cast'))
+    .toEqual([expect.objectContaining({ mana: 0, simClockMs: 1700 })]);
+});
