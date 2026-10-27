@@ -13578,7 +13578,7 @@ charge/trap task for consumers and owns later archive/readback/exact cleanup;
 none claimed complete. Full privatev1/claimed worktree stay active; no campaign,
 remote publication, delegation or independent self-approval.
 
-## 2026-10-28 — Trap combat evidence retained and shared boundaries promoted
+## 2026-10-27 — Trap combat evidence retained and shared boundaries promoted
 
 Previous requested status turn was no implementation progress. This continuation
 observes all three original branch checks terminal PASS and commits433bd510: nine
@@ -13602,3 +13602,29 @@ Baaluncleared/next402 unchanged. Root retains continuing charge/trap artifacts f
 source/browser consumers and later archive/readback/exact cleanup; none claimed
 complete. Root sole executor; no campaign/replay, remote action or independent
 self-approval. Full privatev1 and registered worktree remain active.
+
+
+## 2026-10-27 — Portrait root fix and integrated final gate complete
+
+19e5d096 fixes BUG309 registered/Act-qualified art and shared missing/decode-error
+fallback/recovery;11RED→250related/26PASS with scoped types/lint. Production
+10/10PASS80.400s en/zh×five sizes proves missing Blood Lord/no fabricated request,
+intentional HTTP200 HTML fallback and next native Death Mauler image recovery.
+All20 originals individually viewed; each case explicitly records only the known
+Playwright SW-block harness warning. No new PWA/whole-app mobile/a11y acceptance.
+
+Original61995 terminal: frozen19e5d096 full19833PASS/931files/two existing opt-in
+skips1017.115s, fulltypes147.001s/lint252.688sPASS;2539repository/four external
+inputs/HEAD exact. Production build12.317s/762assets/six chunks/five bridge
+patterns absent/756precacheURLscomplete; existing budget warnings remain.
+[Updated packet](evidence/fixtures/assassin-traps/integration-followup.json).
+
+Previous requested status turn was a verified wait: exact2750104 live, no source
+change or implementation credit. This continuation also reproduces Flight's
+missing paid blink at native ranks1/2/20:threeRED/one positive paid-Physical-kick
+control,9.241s, all2539inputs/HEAD exact. Root owns separate flight task and its
+pending provisional contract; no Flight runtime yet. Charge/trap archive/readback
+and exact disposable cleanup are next. Inventory195bounded/17unverified/one
+review-needed and genuineL33/Ancientsclaimed/Baaluncleared/next402 unchanged;
+protected compressed/raw hashes exact. No campaign/replay, delegation, remote
+action or independent self-approval. Full privatev1/worktree remain active.

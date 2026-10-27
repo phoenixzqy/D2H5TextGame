@@ -729,6 +729,31 @@
       "headAfter": "33dc323957ae2f462fe7d1bc6cbec812b5d7eab6",
       "headUnchanged": true,
       "totals": []
+    },
+    "trap-art-integrated-full": {
+      "label": "trap-art-integrated-full",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 1017.1152469560038,
+      "inputsUnchanged": true,
+      "inputCount": 2539,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headAfter": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  931 passed (931)",
+        "Tests  19833 passed | 2 skipped (19835)"
+      ]
     }
   },
   "artifactSha256": {
@@ -966,5 +991,397 @@
     "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc",
     "reason": "Continuing feature/full-v1 consumers and next missing-art browser correction; raw matrix/report/captures retained, archive/readback/cleanup not yet complete.",
     "removeBy": "Root after terminal consumers, archive/readback and exact owned cleanup; no cleanup claimed"
-  }
+  },
+  "monsterArt": {
+    "at": "2026-10-27T10:33:24.658463+00:00",
+    "owner": "root",
+    "securityCheck": {
+      "verdict": "pass",
+      "scope": "BUG309 local registered artwork/fallback and constructed same-origin browser fixtures",
+      "constraints": "No credentials, dependencies, remote destinations, save schema, CI, permissions, art generation or genuine campaign mutations"
+    },
+    "head": "cb59c7f60b7a889e3d51e49402939aec9e1d0ac0",
+    "red": {
+      "label": "monster-art-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/boundary.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/ui/imageHelpers.monsters.test.ts",
+        "src/features/combat/CombatScreen.monster-art.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 9.299799685017206,
+      "inputsUnchanged": true,
+      "inputCount": 2539,
+      "externalInputCount": 9,
+      "externalInputsUnchanged": true,
+      "headBefore": "cb59c7f60b7a889e3d51e49402939aec9e1d0ac0",
+      "headAfter": "cb59c7f60b7a889e3d51e49402939aec9e1d0ac0",
+      "headUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 11 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  2 failed (2)",
+        "Tests  11 failed (11)"
+      ]
+    },
+    "related": {
+      "label": "monster-art-final-related",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/boundary.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/combat",
+        "src/ui/GameImage.test.tsx",
+        "src/ui/imageHelpers.monsters.test.ts",
+        "src/ui/imageHelpers.test.ts",
+        "src/ui/cardAssets.test.ts",
+        "src/ui/cardAssets.overrides.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 104.2695391329471,
+      "inputsUnchanged": true,
+      "inputCount": 2539,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "cb59c7f60b7a889e3d51e49402939aec9e1d0ac0",
+      "headAfter": "cb59c7f60b7a889e3d51e49402939aec9e1d0ac0",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  26 passed (26)",
+        "Tests  250 passed (250)"
+      ]
+    },
+    "types": {
+      "label": "monster-art-final-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 8.260085188085213,
+      "inputsUnchanged": true,
+      "inputCount": 2539,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "cb59c7f60b7a889e3d51e49402939aec9e1d0ac0",
+      "headAfter": "cb59c7f60b7a889e3d51e49402939aec9e1d0ac0",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "lint": {
+      "label": "monster-art-final-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/ui/imageHelpers.ts",
+        "src/ui/GameImage.tsx",
+        "src/features/combat/CombatScreen.tsx",
+        "src/ui/imageHelpers.monsters.test.ts",
+        "src/features/combat/CombatScreen.monster-art.test.tsx",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 8.592116998042911,
+      "inputsUnchanged": true,
+      "inputCount": 2539,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "cb59c7f60b7a889e3d51e49402939aec9e1d0ac0",
+      "headAfter": "cb59c7f60b7a889e3d51e49402939aec9e1d0ac0",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "originalErrors": [
+      "afterEach shorthand returned VitestUtils instead of void; now explicit block",
+      "it.each call newline triggered no-unexpected-multiline; corrected formatting without suppression"
+    ],
+    "implementation": [
+      "getMonsterImageUrl resolves canonical art/overrides or null; no fabricated URL",
+      "CombatScreen retains act-qualified identity for lookup",
+      "Compact cards reuse source-keyed GameImage missing/decode-error fallback, with existing fitting/padding preserved"
+    ],
+    "sourceSha256": {
+      "src/ui/imageHelpers.ts": "33f3b96b9b88d7fb3c4d1d1a10b036ab31c4000b3d365ab73f02fe1fc8aaf239",
+      "src/ui/GameImage.tsx": "8968c9dc705b4e8a1a4463e20a31e67d05fc4b8f53c518bedb5f664adf91caa9",
+      "src/features/combat/CombatScreen.tsx": "4017bbdec22aedcb4dd4689bee8e5d4453f180162653a0ca2af27260ef691965",
+      "src/ui/imageHelpers.monsters.test.ts": "397d5c8d0a748cfe529a0d3d8b969b438c85184a6336d3f035049b734685068b",
+      "src/features/combat/CombatScreen.monster-art.test.tsx": "3b5969314157c0222a570d975319a552d5a06edab14a399cfe9f4e4117b3e764"
+    },
+    "pending": [
+      "Archive/readback/exact task-owned disposable cleanup; no new inventory credit",
+      "Dragon Flight and remaining native/public/earned/independent acceptance remain open"
+    ],
+    "independentAcceptance": false,
+    "earnedCampaignAcceptance": false,
+    "sourceCommit": "19e5d096",
+    "productionBrowser": {
+      "label": "monster-art-public-final",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art.public.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 80.40026760601904,
+      "inputsUnchanged": true,
+      "inputCount": 2539,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headAfter": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headUnchanged": true,
+      "totals": [
+        "\u001b[1A\u001b[2K  10 passed (1.3m)"
+      ]
+    },
+    "browserTypecheck": {
+      "exit": 0,
+      "toolSession": 15038,
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-browser.tsconfig.json"
+      ],
+      "elapsedUnmeasured": true
+    },
+    "visualAudit": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-audit.json",
+    "originalScreenshotsIndividuallyInspected": 20,
+    "retainedBrowserFailures": [
+      "monster-art-public.json: incorrect town destination after Flee",
+      "monster-art-public-corrected.json: exact Playwright SW-block harness warning in console list"
+    ],
+    "harnessWarning": "Every final case explicitly records/asserts exactly Service Worker registration blocked by Playwright and no other warning/error; fault isolation grants no PWA acceptance.",
+    "fullTypes": {
+      "label": "trap-art-integrated-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 147.00057658506557,
+      "inputsUnchanged": true,
+      "inputCount": 2539,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headAfter": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "fullLint": {
+      "label": "trap-art-integrated-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 252.68822004506364,
+      "inputsUnchanged": true,
+      "inputCount": 2539,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headAfter": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "browserLint": {
+      "label": "monster-art-browser-lint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--config",
+        ".eslintrc.cjs",
+        "--parser-options",
+        "{\"project\":[\"/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-browser.tsconfig.json\"],\"tsconfigRootDir\":\"/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2\"}",
+        "--no-ignore",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art.public.spec.ts",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art.public.config.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 4.69416296610143,
+      "inputsUnchanged": true,
+      "inputCount": 2539,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headAfter": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "build": {
+      "label": "monster-art-build",
+      "command": [
+        "env",
+        "-u",
+        "VITE_E2E",
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-dist"
+      ],
+      "exit": 0,
+      "seconds": 12.316866070963442,
+      "inputsUnchanged": true,
+      "inputCount": 2539,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "cb59c7f60b7a889e3d51e49402939aec9e1d0ac0",
+      "headAfter": "cb59c7f60b7a889e3d51e49402939aec9e1d0ac0",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "buildAudit": {
+      "files": 762,
+      "javascriptChunks": 6,
+      "forbiddenPatterns": {
+        "__GAME__": [],
+        "seedPlayer": [],
+        "seedItem": [],
+        "forceVictory": [],
+        "jumpToAct": []
+      },
+      "VITE_E2E": false
+    },
+    "precache": {
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-dist"
+      ],
+      "exit": 0,
+      "precacheUrls": 756,
+      "missing": [],
+      "note": "Observed tool result; fault-isolation browser matrix blocks service workers and grants no new PWA acceptance."
+    },
+    "protectedCampaignSha256": {
+      "compressed": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+      "raw": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577"
+    },
+    "activeConsumers": [],
+    "retainedStaticFailures": [
+      "monster-art-types: test hook returned VitestUtils; fixed block return",
+      "monster-art-lint: it.each call line break; corrected formatting",
+      "monster-art-browser-lint-invocation-failure: external config discovery",
+      "monster-art-browser-lint: external files absent from repository lint TS project; explicit scoped parser project now passes"
+    ],
+    "artifactSha256": {
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-red.json": "aca14620b45cc1227bbd699739c6f500d8b316cbe13620c128489c7e41611220",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-red.log": "805d17d25209684b0a5ebee02a34a8ddb70cd767c5b28b9cf2f3bbf9817577c3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-red-inputs.json": "2511725a048db426c53d438b5702f4563b8937e04a421e062d5f586ae0d95dd2",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-red-external-inputs.json": "525f8aec2077202d8b9ae60a6e2435962a250cd47ffc7053d40689ce593e6122",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-types.json": "7be5631a3adf5fb6e0a8b9f99a1a0446c35012f174938854d365c600292d46bc",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-types.log": "7bb2d490ac5dd38490fe184afab0d47672861ff3c238bba62e112b1fc38485aa",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-types-inputs.json": "6c9387a71c9feaacb9598e9bb12dc36ac4b8598e901ba7f0909b5962567256b7",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-types-external-inputs.json": "79a8d61760c6e067edc4cf419c749f6adff2ac101134f7d88571c10d490802a8",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-lint.json": "e8bba7123d096b63ed545cf9637661da50f63b92d77debf06ea8a29236de0042",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-lint.log": "b484a5e67cb75b50514519808b349636c84b27080345bb393addbae458280e00",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-lint-inputs.json": "6c9387a71c9feaacb9598e9bb12dc36ac4b8598e901ba7f0909b5962567256b7",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-lint-external-inputs.json": "79a8d61760c6e067edc4cf419c749f6adff2ac101134f7d88571c10d490802a8",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-final-related.json": "e522e0edc611926db5adb82c4e925b338fece877986ba57b65c5db0749187b6d",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-final-related.log": "d112bdaedbd93b3fefbc44c5d7053171a0b626877cf332908832670c2b086321",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-final-related-inputs.json": "24b6a1b9dfeed3a0d6f9a6e32ff305995ed3b8462f998a796f06b4e925b69984",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-final-related-external-inputs.json": "79a8d61760c6e067edc4cf419c749f6adff2ac101134f7d88571c10d490802a8",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-final-types.json": "6a24090d793927ead9c3d7f3747978ed77c352eaeae3973d10a46af02c84b947",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-final-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-final-types-inputs.json": "24b6a1b9dfeed3a0d6f9a6e32ff305995ed3b8462f998a796f06b4e925b69984",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-final-types-external-inputs.json": "79a8d61760c6e067edc4cf419c749f6adff2ac101134f7d88571c10d490802a8",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-final-lint.json": "f0fbdf46013844e3d99e9497a49e829a189c83e29cd6bbc34538955534502c32",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-final-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-final-lint-inputs.json": "24b6a1b9dfeed3a0d6f9a6e32ff305995ed3b8462f998a796f06b4e925b69984",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-final-lint-external-inputs.json": "79a8d61760c6e067edc4cf419c749f6adff2ac101134f7d88571c10d490802a8",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-build.json": "f08a7ec6ce9b1b9381ecf6d22ea01b7b2abf68127bd10f8556572a9147c902f9",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-build.log": "4779de96f19aaadfa7a04fe3550f2d4f3e374fd14d53628c04d8a6ec7f3c51c8",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-build-inputs.json": "24b6a1b9dfeed3a0d6f9a6e32ff305995ed3b8462f998a796f06b4e925b69984",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-build-external-inputs.json": "79a8d61760c6e067edc4cf419c749f6adff2ac101134f7d88571c10d490802a8",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-public.json": "2512c47394517f7a7bc0f292320b3e4c9f00df71a2ecedf4c7f1e9a6bed6e97e",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-public.log": "9254c5298e2cec7fbdb8347d69e02f45e2c4002c8cea4f60c82b5a7ed32827a1",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-public-inputs.json": "24b6a1b9dfeed3a0d6f9a6e32ff305995ed3b8462f998a796f06b4e925b69984",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-public-external-inputs.json": "5d1341a538b09e4e0b46c152c00dc6b08e2ea5ed8459fe121eab9f1cc7d9739c",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-public-corrected.json": "45a0f2cbc936212910027298ce3d1a94d1bcb5e996d77422c36abe0b62a2f6c2",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-public-corrected.log": "6ec0dd6d6712224a6074021b32073c7e676128c61239dac2c4ab06423dde080a",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-public-corrected-inputs.json": "24b6a1b9dfeed3a0d6f9a6e32ff305995ed3b8462f998a796f06b4e925b69984",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-public-corrected-external-inputs.json": "cd368bb22ac69392527ce887e5a0907fe6b8e99242472f93e4f0f34d424f1acf",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-public-final.json": "28fd806507749817711505a20967ac3c9e473bc2f7004fbe9ad43bc74308b0a6",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-public-final.log": "3d6f4d180e00ed731c173a4a75c3598059cf5b4231aa8b8690c663d60889c1e6",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-public-final-inputs.json": "24b6a1b9dfeed3a0d6f9a6e32ff305995ed3b8462f998a796f06b4e925b69984",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-public-final-external-inputs.json": "ba8b6e794ce2974207290777201b0eb4786e0554d0ecd8e16b6a8569cef7289e",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-browser-lint.json": "db6c7cb5e04eff1e0d1e9b5d2b05bde1a9c09dd8bef25d0c8e3c3517e2e7a577",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-browser-lint.log": "b0e3260a1332d5f5c503f48c1fe04d8716d6caa1c391ee1e4fd5e7102317bc6a",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-browser-lint-inputs.json": "24b6a1b9dfeed3a0d6f9a6e32ff305995ed3b8462f998a796f06b4e925b69984",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-browser-lint-external-inputs.json": "5359b329b4055d50c1a7d22b6cbc41ffa2b3dea1d5c4b62e0ff036d60a8f106b",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-browser-lint-final.json": "1326647246de4dd1b6656db8fa38209d5f3cee39bb66961c675a80191298cf28",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-browser-lint-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-browser-lint-final-inputs.json": "24b6a1b9dfeed3a0d6f9a6e32ff305995ed3b8462f998a796f06b4e925b69984",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-browser-lint-final-external-inputs.json": "5359b329b4055d50c1a7d22b6cbc41ffa2b3dea1d5c4b62e0ff036d60a8f106b",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-art-integrated-types.json": "c056299f192f21873a9c77d947d1845fb59ae2458a7fe092b4e5596546c905e3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-art-integrated-types.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-art-integrated-types-inputs.json": "24b6a1b9dfeed3a0d6f9a6e32ff305995ed3b8462f998a796f06b4e925b69984",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-art-integrated-types-external-inputs.json": "c237da8aa8c2c4ed20beb6d96bc00ef11a2b0b3dd76fde4b67c2458613b844ea",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-art-integrated-lint.json": "7c1c9f227332d4fee8af2657bb779e96fdc77fe05ef0bb7fa11ce4a3bad4f496",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-art-integrated-lint.log": "dca195bd8f73cc6e5d4ec685b1fcde693749b018c94f1e3cbb04c4908a1a4c91",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-art-integrated-lint-inputs.json": "24b6a1b9dfeed3a0d6f9a6e32ff305995ed3b8462f998a796f06b4e925b69984",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/trap-art-integrated-lint-external-inputs.json": "c237da8aa8c2c4ed20beb6d96bc00ef11a2b0b3dd76fde4b67c2458613b844ea",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-audit.json": "27102aaac943f15f18c0bd5c3cdf6d92eaee5af93151fb1118ca604d73c823b1",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art.public.spec.ts": "980add47570dcf50bf3aee7e59b24b18310668d69f2a6f54d6da0eb64a51d70c",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art.public.config.ts": "a1e566e8a45200e1f3de9783b6f388e12e780bcdc1d930892aefea5b37511c56",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-browser.tsconfig.json": "221566dbedf868e2d12a8f5388acea379ce4b127afb586efbe104b7cfd7678d0",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-before-flee-destination.ts.txt": "6566f8f591ce7a5b9b806153289936c2a10e63e12f3037add9b735651c3ece6b",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-before-console-classification.ts.txt": "7cd2a63d53d42de7e2fdf51b6da82cd942bdd0c6f94bf7d5cddd504577101dea",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-flee-diagnosis.json": "c9843ba7127e3aa6d47dda5a0cca5aac51d9435ed71ac1a2230b7e957d7facca",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-console-diagnosis.json": "9942d40069f3a7bedf7827d5edc96a4b6cf72f7ef85ff05cb71fe7d1d3ddf20f",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/audit-monster-art.py": "2437214938f5deb08956ef6ab32ee9ce6678de60821f8da36dfc88b4cf4330c3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-build-assets.json": "88c0f4edbce8d6db754fe0b332ef143ace931a98269b7f63ad165307e4d8a2c3",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/monster-art-precache.json": "508118c250f84b43ace9510fd77419a70b9c7c609e9bb2f6b0f1b435a2563410"
+    },
+    "fullUnit": {
+      "label": "trap-art-integrated-full",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 1017.1152469560038,
+      "inputsUnchanged": true,
+      "inputCount": 2539,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headAfter": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  931 passed (931)",
+        "Tests  19833 passed | 2 skipped (19835)"
+      ]
+    }
+  },
+  "latestSourceHead": "19e5d0965cb95ca016538299311efc316bb431c3",
+  "latestFullIncludesSharedBoundariesAndMonsterArt": true
 }

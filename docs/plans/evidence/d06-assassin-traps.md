@@ -118,3 +118,30 @@ Retention/readback/cleanup and inventory reconciliation remain open. Original
 charge24-case evidence still lacks absolute HP/correct enemy framing; trap
 observations do not retroactively fill it. Inventory195bounded/17unverified/
 onereview-needed and earnedL33/Ancientsclaimed/Baaluncleared/next402 unchanged.
+
+## Integrated portrait correction and whole-unit gate — 2026-10-27
+
+BUG309 is fixed by19e5d096. Registered/Act-qualified art resolves truthfully;
+missing or failed decoding gets the shared deliberate fallback, and a later
+source change recovers. Eleven original REDs become250related cases/26filesPASS;
+scoped types/lint pass. Production10/10PASS80.400s covers en/zh-CN at all five
+required sizes, missing artwork/no fabricated request, intentional HTTP200 HTML
+decode failure and the next real encounter's successful registered image.
+All20 original screenshots individually inspected; native names/HP, hero fitting
+and no horizontal overflow checked. Fault-isolation blocks service workers;
+each case explicitly records/asserts exactly the known Playwright SW-block
+harness warning and no other warnings/errors. No new PWA acceptance.
+
+The original full run at frozen19e5d096 completes **19,833tests/931filesPASS**,
+two existing opt-in skips,1017.115s. This includes the nine shared-boundary and
+11portrait regressions; it supersedes the older whole-unit count, without erasing
+historical failures. Fulltypes147.001s/lint252.688sPASS;2539repository/four external
+inputs/HEAD exact. Production build12.317s/762assets/six JS chunks/five tested
+bridge patterns absent/all required assets among756precacheURLs pass. Existing
+bundle/art-manifest warnings and disclosed mobile framing/glyph/header limits
+remain. The original charge24-case HP/capture gaps are still unresolved.
+
+Updated exact receipts, source/build hashes, all original observer/static failures
+and protected genuine-save hashes are retained in the follow-up packet. Root
+will archive/read back and remove exact task-owned disposables now that the last
+original consumer is terminal. No new inventory or earned/independent acceptance.
