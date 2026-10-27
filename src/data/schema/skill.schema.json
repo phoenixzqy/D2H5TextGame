@@ -7,6 +7,11 @@
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
   "allOf": [
+    {"if": {"required": ["alwaysHits"], "properties": {"alwaysHits": {}}}, "then": {"properties": {"id": {"const": "skills-amazon-guided-arrow"}}}},
+    {"if": {"required": ["aoeShape"], "properties": {"aoeShape": {"const": "cone-3"}}}, "then": {"properties": {"id": {"const": "skills-amazon-multiple-shot"}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-guided-arrow"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "alwaysHits"], "properties": {"trigger": {"const": "active"}, "target": {"const": "single-enemy"}, "damageType": {"const": "physical"}, "requiredLevel": {"const": 18}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "cost": {"const": {"mana": 20}}, "prerequisites": {"const": ["skills-amazon-multiple-shot"]}, "damage": {"$ref": "#/properties/damage"}, "alwaysHits": {"const": true}, "hitSequence": false, "aoeShape": false, "maxTargets": false, "ignoresDefense": false, "ignoresMagicResist": false, "damageComposition": false, "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-multiple-shot"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "aoeShape", "maxTargets"], "properties": {"trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "damageType": {"const": "physical"}, "requiredLevel": {"const": 6}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "cost": {"const": {"mana": 15}}, "prerequisites": {"const": ["skills-amazon-magic-arrow"]}, "damage": {"$ref": "#/properties/damage"}, "aoeShape": {"const": "cone-3"}, "maxTargets": {"const": 5}, "alwaysHits": false, "hitSequence": false, "ignoresDefense": false, "ignoresMagicResist": false, "damageComposition": false, "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-strafe"}}}, "then": {"required": ["requiredLevel", "prerequisites", "damage", "damageType", "cost", "hitSequence"], "properties": {"trigger": {"const": "active"}, "target": {"const": "all-enemies"}, "damageType": {"const": "physical"}, "requiredLevel": {"const": 24}, "maxLevel": {"const": 20}, "cooldown": {"const": 2}, "cost": {"const": {"mana": 20}}, "prerequisites": {"const": ["skills-amazon-guided-arrow"]}, "damage": {"$ref": "#/properties/damage"}, "hitSequence": {"const": {"strikes": 2, "targetMode": "each-original"}}, "alwaysHits": false, "aoeShape": false, "maxTargets": false, "ignoresDefense": false, "ignoresMagicResist": false, "damageComposition": false, "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false, "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false, "timedBuff": false, "heal": false, "requires": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}}}},
     {
       "if": {
         "required": [
@@ -1415,7 +1420,7 @@
     },
     {
       "if": { "required": ["maxTargets"], "properties": { "maxTargets": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-paladin-zeal", "skills-barbarian-double-swing", "skills-sorceress-chain-lightning"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-paladin-zeal", "skills-barbarian-double-swing", "skills-sorceress-chain-lightning", "skills-amazon-multiple-shot"] } } }
     },
     {
       "if": { "required": ["aoeShape"], "properties": { "aoeShape": { "const": "chain" } } },
@@ -1626,7 +1631,7 @@
     },
     {
       "if": { "required": ["hitSequence"], "properties": { "hitSequence": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw", "skills-barbarian-double-swing", "skills-barbarian-double-throw", "skills-barbarian-frenzy"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw", "skills-barbarian-double-swing", "skills-barbarian-double-throw", "skills-barbarian-frenzy", "skills-amazon-strafe"] } } }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-double-throw" } } },
@@ -1652,7 +1657,7 @@
       "if": { "required": ["hitSequence"], "properties": { "hitSequence": {
         "type": "object", "required": ["targetMode"], "properties": { "targetMode": {} }
       } } },
-      "then": { "properties": { "id": { "const": "skills-barbarian-double-swing" } } }
+      "then": { "properties": { "id": { "enum": ["skills-barbarian-double-swing", "skills-amazon-strafe"] } } }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-double-swing" } } },
@@ -6010,6 +6015,7 @@
       "const": true,
       "description": "Explicit Blessed Hammer flat magic-resist bypass; percentage resistance, dodge and personal absorption still apply."
     },
+    "alwaysHits": { "const": true, "description": "Explicit Guided Arrow hit/dodge bypass; resistance, Defense, criticals and personal absorption still apply." },
     "ignoresDefense": {
       "const": true,
       "description": "Explicit Impale ordinary Defense bypass for this hit only; resistance, dodge, critical rolls and personal absorption still apply."
@@ -6279,7 +6285,7 @@
     },
     "aoeShape": {
       "type": "string",
-      "enum": ["single", "line-3", "column-3", "cross", "cone-2", "chain", "box-3x3", "all-enemies"],
+      "enum": ["single", "line-3", "column-3", "cross", "cone-2", "cone-3", "chain", "box-3x3", "all-enemies"],
       "description": "Optional area targeting pattern on the 3-column battle grid. Chain chooses nearest unvisited neighbors up to maxTargets; it has no fixed cell footprint. Does not imply attack range or movement."
     },
     "cooldown": {

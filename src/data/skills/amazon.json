@@ -47,7 +47,7 @@
     ],
     "trigger": "active",
     "target": "area-enemies",
-    "aoeShape": "cross",
+    "aoeShape": "cone-3",
     "cooldown": 2,
     "minLevel": 1,
     "maxLevel": 20,
@@ -67,7 +67,8 @@
     ],
     "scaling": {
       "damagePerLevel": 4
-    }
+    },
+    "maxTargets": 5
   },
   {
     "id": "skills-amazon-freezing-arrow",
@@ -101,7 +102,9 @@
       "freeze"
     ],
     "additionalStatusEffects": {
-      "freeze": { "chance": 0.15 }
+      "freeze": {
+        "chance": 0.15
+      }
     },
     "appliesTags": [
       "cold",
@@ -228,6 +231,10 @@
     ],
     "scaling": {
       "damagePerLevel": 4
+    },
+    "hitSequence": {
+      "strikes": 2,
+      "targetMode": "each-original"
     }
   },
   {
@@ -939,7 +946,8 @@
     ],
     "scaling": {
       "damagePerLevel": 6
-    }
+    },
+    "alwaysHits": true
   },
   {
     "id": "skills-amazon-immolation-arrow",

@@ -287,6 +287,8 @@ export interface SkillDef {
   readonly damageComposition?: 'weighted-components';
   /** Explicit hit-only flat magic-resist bypass; percentage resistance still applies. */
   readonly ignoresMagicResist?: true;
+  /** Explicit ordinary hit/accuracy/dodge bypass; mitigation, criticals and absorption remain. */
+  readonly alwaysHits?: true;
   /** Explicit hit-only ordinary Defense bypass; resistance and dodge still apply. */
   readonly ignoresDefense?: true;
   readonly hitSequence?: SkillHitSequence;
