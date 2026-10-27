@@ -42,3 +42,19 @@ register skills; this is pure engine boundary hardening, not a remote exploit.
 The earlier barrier probe assumed100capacity; authored Bone Wall rank1 is40,
 so the source-backed literal is60HP loss/40absorbed at2200ms. Original failure
 remains in projectile-impacts-probe.log; no product tuning or relaxed assertion.
+
+## Presentation reproduction
+
+At809afe9a, a separate external preview workspace reports14assertion failures/
+one malformed-metadata guard PASS across model and en/zh-CN Skills UI ranks
+0/1/18/20. The model omits duration/speed, the panel uses generic active-skill
+copy, and combat locales lack `slow-missiles`. Original preview-red source,
+workspace/config, log and exact2490input/HEAD receipt remain in the task root.
+Expected: source-backed6s/33% travel, actual current/next/MAX payment, already-
+flying shots and impact-time damage/defense copy, plus a localized live chip.
+
+Plan: consume the existing strict definition in displayStats, render its finite
+rows and bilingual description, add both status labels and retain native/public
+save/offline proof. No new tuning or permanent authority. Root author plan
+review: ready; security check: pass for authorized local gameplay presentation.
+Independent design/technical/QA and the full private-v1 gate remain open.
