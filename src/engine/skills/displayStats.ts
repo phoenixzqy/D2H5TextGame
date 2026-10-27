@@ -37,8 +37,10 @@ import { FIRE_GOLEM_DEFINITION, FIRE_GOLEM_IDS } from './fire-golem';
 import { BLOOD_GOLEM_DEFINITION, BLOOD_GOLEM_IDS } from './blood-golem';
 import { SUMMON_PREPARATION_TEMPLATES } from './summon-preparation';
 import { HYDRA_DEFINITION, hydraBodyStats } from './hydra';
+import { decoyBodyStats, decoyDuration, resolveDecoyDefinition } from './decoy';
 
 export interface DisplaySkillSource {
+  readonly decoy?: import('../types/skills').SkillDef['decoy'];
   readonly boneWall?: import('../types/skills').SkillDef['boneWall'];
   readonly skillRankBuff?: import('../types/skills').SkillDef['skillRankBuff'];
   readonly corpseWard?: import('../types/skills').SkillDef['corpseWard'];
@@ -200,6 +202,8 @@ export interface SkillRankDisplayStats {
   readonly corpseRecovery?: { readonly lifePercent: number; readonly manaPercent: number };
   /** Independent body attacks; damage rows describe one head's bolt. */
   readonly hydra?: { readonly heads: number; readonly durationSeconds: number };
+  /** One paid inert body; lifetime is separate from enemy status durations. */
+  readonly decoy?: { readonly durationSeconds: number };
   /** Finite personal paid potency; Enchant is a weapon Fire base, not spell damage. */
   readonly sorceressBuff?: { readonly durationSeconds: number;
     readonly magicDodgePoints?: number; readonly enchantAttackPercent?: number };
@@ -384,7 +388,13 @@ function damageRows(skill: DisplaySkillSource, rank: number): readonly SkillDama
   return [{ type, min: totalMin, max: totalMax }];
 }
 
+function decoyDisplayDefinition(skill: DisplaySkillSource) {
+  if (skill.id !== 'skills-amazon-decoy') return undefined;
+  try { return resolveDecoyDefinition([skill]); } catch { return undefined; }
+}
+
 function summonCap(skill: DisplaySkillSource, rank: number): number | undefined {
+  if (decoyDisplayDefinition(skill)) return 1;
   if (SPIRIT_OF_BARBS_IDS.some(id => skill.id === id)) return 1;
   if (skill.scaling?.summonMaxCount?.kind === 'raise-skeleton-1-6-12-cap-3') {
     return maxSkeletonsForLevel(rank);
@@ -412,6 +422,19 @@ function summonUnit(
   golemMastery: GolemMasteryProjection | undefined,
   global: SummonPassiveProjection | undefined
 ): SkillSummonDisplayStats | undefined {
+  const decoy = decoyDisplayDefinition(skill);
+  if (decoy) {
+    const body = decoyBodyStats(rank, undefined, decoy);
+    return { summonId: 'decoy', nameKey: 'combat:summons.decoy', stats: [
+      ...(['lifeMax', 'attack', 'defense', 'magicResist', 'attackSpeed'] as const).map(id => ({
+        id, labelKey: `details.summonStat.${id}`, value: body[id], valueKind: 'flat' as const })),
+      ...(['physDodge', 'magicDodge'] as const).map(id => ({
+        id, labelKey: `details.summonStat.${id}`, value: body[id], valueKind: 'percent' as const })),
+      ...(['physical', 'fire', 'cold', 'lightning', 'arcane', 'poison'] as const).map(type => ({
+        id: `${type}Resistance` as const, labelKey: `details.summonStat.${type}Resistance`,
+        value: body.resistances[type] / 100, valueKind: 'percent' as const }))
+    ] };
+  }
   const summonId = inferSummonId(skill);
   if (!summonId) return undefined;
   if (skill.id === 'skills-sorceress-hydra' && skill.hydra && skill.target === 'summon') {
@@ -590,6 +613,7 @@ export function computeSkillRankDisplayStats(
   global?: SummonPassiveProjection
 ): SkillRankDisplayStats {
   const safeRank = clampRank(rank, skill.maxLevel);
+  const decoy = decoyDisplayDefinition(skill);
   const decrepify = skill.id === 'skills-necromancer-decrepify' && isDecrepifyDefinition(skill)
     ? resolveDecrepifyDefinition([skill]) : undefined;
   const weaken = skill.id === 'skills-necromancer-weaken' && isWeakenDefinition(skill)
@@ -749,6 +773,7 @@ export function computeSkillRankDisplayStats(
     ...(skill.id === 'skills-sorceress-hydra' && skill.hydra && skill.target === 'summon' ? {
       hydra: { heads: HYDRA_DEFINITION.heads, durationSeconds: HYDRA_DEFINITION.durationMs / 1000 }
     } : {}),
+    ...(decoy ? { decoy: { durationSeconds: decoyDuration(safeRank, undefined, decoy) / 1000 } } : {}),
     ...(['skills-sorceress-teleport', 'skills-sorceress-enchant'].includes(skill.id) &&
       skill.trigger === 'active' && skill.target === 'self' && skill.timedBuff ? { sorceressBuff: {
         durationSeconds: skill.timedBuff.durationMs / 1000,

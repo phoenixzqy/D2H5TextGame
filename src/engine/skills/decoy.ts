@@ -40,15 +40,14 @@ export function resolveDecoyDefinition(input: readonly unknown[]) {
   });
 }
 export const DECOY_DEFINITION = resolveDecoyDefinition(rows);
-function rankOffset(rank: number, rankBonus?: 1) {
-  if (!validCapturedSkillRank(rank, DECOY_DEFINITION.maxRank, rankBonus))
-    throw new Error('Invalid paid Decoy rank');
+function rankOffset(rank: number, rankBonus: 1 | undefined, maxRank: number) {
+  if (!validCapturedSkillRank(rank, maxRank, rankBonus)) throw new Error('Invalid paid Decoy rank');
   return rank - 1;
 }
 /** Fresh mutable body stats; no player equipment or unrelated summon mastery is inherited. */
-export function decoyBodyStats(rank: number, rankBonus?: 1) {
-  const d = DECOY_DEFINITION,
-    life = d.bodyStats.lifeMax + d.lifePerRank * rankOffset(rank, rankBonus);
+export function decoyBodyStats(rank: number, rankBonus?: 1, definition = DECOY_DEFINITION) {
+  const d = definition,
+    life = d.bodyStats.lifeMax + d.lifePerRank * rankOffset(rank, rankBonus, d.maxRank);
   return {
     ...d.bodyStats,
     life,
@@ -59,9 +58,10 @@ export function decoyBodyStats(rank: number, rankBonus?: 1) {
   };
 }
 /** Half-open lifetime captured once at the paid effective rank. */
-export function decoyDuration(rank: number, rankBonus?: 1): number {
+export function decoyDuration(rank: number, rankBonus?: 1, definition = DECOY_DEFINITION): number {
   return (
-    DECOY_DEFINITION.durationMs + DECOY_DEFINITION.durationPerRankMs * rankOffset(rank, rankBonus)
+    definition.durationMs +
+    definition.durationPerRankMs * rankOffset(rank, rankBonus, definition.maxRank)
   );
 }
 
