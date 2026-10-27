@@ -99,7 +99,7 @@ export function BottomNav() {
           </li>
         )}
         {NAV_ITEMS.map((item) => (
-          <li key={item.to} className="flex-1 md:flex-none">
+          <li key={item.to} className="flex-1 min-w-0 md:flex-none">
             <NavLink
               to={item.to}
               className={({ isActive }) =>
