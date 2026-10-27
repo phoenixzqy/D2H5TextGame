@@ -40,3 +40,18 @@ the existing clipping observation to a strict no-clipping assertion, and verify
 both locales/all five required sizes, native keyboard/emulated touch and actual
 offline continuation. Do not abbreviate translations or reduce font size.
 Security check: pass; scoped first-party CSS/tests only. Author plan review ready.
+
+## Layout constraint discovered before final correction
+
+The strict360English browser RED reproduces clipping in7.734s. Removing padding
+passes nine of ten matrix cases, but Inventory still clips at360px (original
+68.516s report retained). The initial45px-row proposal is insufficient and is
+superseded: do not claim its nine passes establish complete label acceptance.
+
+Eight complete English labels at the standard12px size cannot fit a360px
+single row. Use a four-column/two-row grid below640px, retaining a row from640px
+and the existing desktop side rail. All destinations remain immediately visible,
+with at least44px targets, standard12px labels and no abbreviations/font reduction.
+The surrounding flex shell reserves the navigation's actual height, so the
+scrollable main shrinks without an overlay. This is the author plan revision;
+strict labels/geometry/foreground/keyboard/touch/offline assertions remain.
