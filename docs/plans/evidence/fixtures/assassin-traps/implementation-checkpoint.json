@@ -1,0 +1,688 @@
+{
+  "at": "2026-10-27T09:06:35.027642+00:00",
+  "owner": "root",
+  "head": "a63d4ce9a7999ad67c116932806380279d69424e",
+  "commits": {
+    "authority": "3ac8b0b3",
+    "runtime": "fa35212c",
+    "masterPolicy": "97b9676b",
+    "combatChips": "f6c8e4cc",
+    "previewResolver": "f475784d",
+    "skillPanel": "a63d4ce9"
+  },
+  "checks": {
+    "trap-native-authority-red": {
+      "label": "trap-native-authority-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/workspace-authority.mjs"
+      ],
+      "exit": 1,
+      "seconds": 8.098014174960554,
+      "inputsUnchanged": true,
+      "inputCount": 2529,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "edb153d33f15e0971ba41579428ce08af98605b1",
+      "headAfter": "edb153d33f15e0971ba41579428ce08af98605b1",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯ Failed Tests 17 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  17 failed (17)"
+      ]
+    },
+    "trap-native-authority-green": {
+      "label": "trap-native-authority-green",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/workspace-authority.mjs"
+      ],
+      "exit": 0,
+      "seconds": 7.873792170896195,
+      "inputsUnchanged": true,
+      "inputCount": 2529,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "edb153d33f15e0971ba41579428ce08af98605b1",
+      "headAfter": "edb153d33f15e0971ba41579428ce08af98605b1",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  17 passed (17)"
+      ]
+    },
+    "trap-authority-engine": {
+      "label": "trap-authority-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 183.0529049510369,
+      "inputsUnchanged": true,
+      "inputCount": 2529,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "edb153d33f15e0971ba41579428ce08af98605b1",
+      "headAfter": "edb153d33f15e0971ba41579428ce08af98605b1",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  382 passed (382)",
+        "Tests  9985 passed (9985)"
+      ]
+    },
+    "trap-authority-full-types": {
+      "label": "trap-authority-full-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 130.97782942908816,
+      "inputsUnchanged": true,
+      "inputCount": 2529,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "edb153d33f15e0971ba41579428ce08af98605b1",
+      "headAfter": "edb153d33f15e0971ba41579428ce08af98605b1",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-runtime-related": {
+      "label": "trap-runtime-related",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-traps-native.test.ts",
+        "src/stores/assassin-trap-authority.test.ts",
+        "src/stores/assassin-charge-native.test.ts",
+        "src/stores/assassin-charge-settlement.test.ts",
+        "src/stores/assassin-shadow-skills-native.test.ts",
+        "src/stores/periodic-spells-native.test.ts",
+        "src/engine/skills/assassin-traps.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 35.70908374688588,
+      "inputsUnchanged": true,
+      "inputCount": 2530,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "3ac8b0b3c947f5454dcc0bca3a096b50e3b1c5d1",
+      "headAfter": "3ac8b0b3c947f5454dcc0bca3a096b50e3b1c5d1",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  7 passed (7)",
+        "Tests  149 passed (149)"
+      ]
+    },
+    "trap-runtime-engine": {
+      "label": "trap-runtime-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 187.2316742510302,
+      "inputsUnchanged": true,
+      "inputCount": 2530,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "3ac8b0b3c947f5454dcc0bca3a096b50e3b1c5d1",
+      "headAfter": "3ac8b0b3c947f5454dcc0bca3a096b50e3b1c5d1",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  382 passed (382)",
+        "Tests  9985 passed (9985)"
+      ]
+    },
+    "trap-runtime-types-checked": {
+      "label": "trap-runtime-types-checked",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--project",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/runtime-vite.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 7.2539299109485,
+      "inputsUnchanged": true,
+      "inputCount": 2530,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "3ac8b0b3c947f5454dcc0bca3a096b50e3b1c5d1",
+      "headAfter": "3ac8b0b3c947f5454dcc0bca3a096b50e3b1c5d1",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-runtime-lint-checked": {
+      "label": "trap-runtime-lint-checked",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/combat/combat.ts",
+        "src/stores/assassin-traps-native.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 9.577068646904081,
+      "inputsUnchanged": true,
+      "inputCount": 2530,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "3ac8b0b3c947f5454dcc0bca3a096b50e3b1c5d1",
+      "headAfter": "3ac8b0b3c947f5454dcc0bca3a096b50e3b1c5d1",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-master-cycle-red": {
+      "label": "trap-master-cycle-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/workspace-master.mjs"
+      ],
+      "exit": 1,
+      "seconds": 8.132277177996002,
+      "inputsUnchanged": true,
+      "inputCount": 2530,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "3ac8b0b3c947f5454dcc0bca3a096b50e3b1c5d1",
+      "headAfter": "3ac8b0b3c947f5454dcc0bca3a096b50e3b1c5d1",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  2 failed (2)"
+      ]
+    },
+    "trap-master-policy-first": {
+      "label": "trap-master-policy-first",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-master-traps.test.ts",
+        "src/stores/assassin-shadow-skills-native.test.ts",
+        "src/stores/assassin-shadow-skills-lifecycle.test.ts",
+        "src/engine/skills/assassin-shadow-skills.test.ts",
+        "src/engine/skills/assassin-shadow-schema.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 18.968107481021434,
+      "inputsUnchanged": true,
+      "inputCount": 2531,
+      "externalInputCount": 5,
+      "externalInputsUnchanged": true,
+      "headBefore": "fa35212cc2ffa41098e36a777201919bb2108f4b",
+      "headAfter": "fa35212cc2ffa41098e36a777201919bb2108f4b",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  5 passed (5)",
+        "Tests  65 passed (65)"
+      ]
+    },
+    "trap-master-policy-ui": {
+      "label": "trap-master-policy-ui",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/skills/SkillsScreen.assassin-shadow.test.tsx",
+        "src/engine/skills/displayStats.assassin-shadow-skills.test.ts",
+        "src/stores/assassin-traps-native.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 19.760365483001806,
+      "inputsUnchanged": true,
+      "inputCount": 2531,
+      "externalInputCount": 5,
+      "externalInputsUnchanged": true,
+      "headBefore": "fa35212cc2ffa41098e36a777201919bb2108f4b",
+      "headAfter": "fa35212cc2ffa41098e36a777201919bb2108f4b",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  3 passed (3)",
+        "Tests  68 passed (68)"
+      ]
+    },
+    "trap-master-policy-types": {
+      "label": "trap-master-policy-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "--project",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/master-native.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 10.044101586914621,
+      "inputsUnchanged": true,
+      "inputCount": 2531,
+      "externalInputCount": 5,
+      "externalInputsUnchanged": true,
+      "headBefore": "fa35212cc2ffa41098e36a777201919bb2108f4b",
+      "headAfter": "fa35212cc2ffa41098e36a777201919bb2108f4b",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-master-policy-lint": {
+      "label": "trap-master-policy-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/assassin-master-traps.test.ts",
+        "src/stores/assassin-shadow-skills-native.test.ts",
+        "src/stores/assassin-shadow-skills-lifecycle.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 10.28387088899035,
+      "inputsUnchanged": true,
+      "inputCount": 2531,
+      "externalInputCount": 5,
+      "externalInputsUnchanged": true,
+      "headBefore": "fa35212cc2ffa41098e36a777201919bb2108f4b",
+      "headAfter": "fa35212cc2ffa41098e36a777201919bb2108f4b",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-master-policy-engine": {
+      "label": "trap-master-policy-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 181.61105907091405,
+      "inputsUnchanged": true,
+      "inputCount": 2531,
+      "externalInputCount": 5,
+      "externalInputsUnchanged": true,
+      "headBefore": "fa35212cc2ffa41098e36a777201919bb2108f4b",
+      "headAfter": "fa35212cc2ffa41098e36a777201919bb2108f4b",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  382 passed (382)",
+        "Tests  9985 passed (9985)"
+      ]
+    },
+    "trap-chip-red": {
+      "label": "trap-chip-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/combat/CombatScreen.assassin-traps.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 9.166819637990557,
+      "inputsUnchanged": true,
+      "inputCount": 2532,
+      "externalInputCount": 5,
+      "externalInputsUnchanged": true,
+      "headBefore": "97b9676bd207de0037d41290988022aa2f678497",
+      "headAfter": "97b9676bd207de0037d41290988022aa2f678497",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯ Failed Tests 32 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  32 failed (32)"
+      ]
+    },
+    "trap-chip-green": {
+      "label": "trap-chip-green",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/combat/CombatScreen.assassin-traps.test.tsx",
+        "src/features/combat/CombatScreen.assassin-charges.test.tsx",
+        "src/features/combat/CombatScreen.periodic-spells.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 19.91011737496592,
+      "inputsUnchanged": true,
+      "inputCount": 2532,
+      "externalInputCount": 5,
+      "externalInputsUnchanged": true,
+      "headBefore": "97b9676bd207de0037d41290988022aa2f678497",
+      "headAfter": "97b9676bd207de0037d41290988022aa2f678497",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  3 passed (3)",
+        "Tests  64 passed (64)"
+      ]
+    },
+    "trap-chip-types-setup": {
+      "label": "trap-chip-types-setup",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/chip.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 8.026042595971376,
+      "inputsUnchanged": true,
+      "inputCount": 2532,
+      "externalInputCount": 5,
+      "externalInputsUnchanged": true,
+      "headBefore": "97b9676bd207de0037d41290988022aa2f678497",
+      "headAfter": "97b9676bd207de0037d41290988022aa2f678497",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-chip-lint": {
+      "label": "trap-chip-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/features/combat/CombatScreen.tsx",
+        "src/features/combat/CombatScreen.assassin-traps.test.tsx",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 9.118974479963072,
+      "inputsUnchanged": true,
+      "inputCount": 2532,
+      "externalInputCount": 5,
+      "externalInputsUnchanged": true,
+      "headBefore": "97b9676bd207de0037d41290988022aa2f678497",
+      "headAfter": "97b9676bd207de0037d41290988022aa2f678497",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-preview-corrected-red": {
+      "label": "trap-preview-corrected-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/displayStats.assassin-traps.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 3.2687291990732774,
+      "inputsUnchanged": true,
+      "inputCount": 2533,
+      "externalInputCount": 5,
+      "externalInputsUnchanged": true,
+      "headBefore": "f6c8e4cc65a0f31240c5bdf2d8cbe1423e80feed",
+      "headAfter": "f6c8e4cc65a0f31240c5bdf2d8cbe1423e80feed",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯ Failed Tests 25 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  25 failed | 1 passed (26)"
+      ]
+    },
+    "trap-preview-alias-green": {
+      "label": "trap-preview-alias-green",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/displayStats.assassin-traps.test.ts",
+        "src/engine/skills/assassin-traps.test.ts",
+        "src/engine/skills/displayStats.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 8.532283460954204,
+      "inputsUnchanged": true,
+      "inputCount": 2533,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "f6c8e4cc65a0f31240c5bdf2d8cbe1423e80feed",
+      "headAfter": "f6c8e4cc65a0f31240c5bdf2d8cbe1423e80feed",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  3 passed (3)",
+        "Tests  129 passed (129)"
+      ]
+    },
+    "trap-preview-types": {
+      "label": "trap-preview-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/preview.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 4.307365213986486,
+      "inputsUnchanged": true,
+      "inputCount": 2533,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "f6c8e4cc65a0f31240c5bdf2d8cbe1423e80feed",
+      "headAfter": "f6c8e4cc65a0f31240c5bdf2d8cbe1423e80feed",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-preview-lint": {
+      "label": "trap-preview-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/skills/assassin-traps.ts",
+        "src/engine/skills/displayStats.ts",
+        "src/engine/skills/displayStats.assassin-traps.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 9.264828974963166,
+      "inputsUnchanged": true,
+      "inputCount": 2533,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "f6c8e4cc65a0f31240c5bdf2d8cbe1423e80feed",
+      "headAfter": "f6c8e4cc65a0f31240c5bdf2d8cbe1423e80feed",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-preview-engine": {
+      "label": "trap-preview-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 213.66705696098506,
+      "inputsUnchanged": true,
+      "inputCount": 2533,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "f6c8e4cc65a0f31240c5bdf2d8cbe1423e80feed",
+      "headAfter": "f6c8e4cc65a0f31240c5bdf2d8cbe1423e80feed",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  383 passed (383)",
+        "Tests  10011 passed (10011)"
+      ]
+    },
+    "trap-detail-red": {
+      "label": "trap-detail-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/skills/SkillsScreen.assassin-traps.test.tsx"
+      ],
+      "exit": 1,
+      "seconds": 12.964727525017224,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "f475784de237c840758b000bb84670f3acc7d223",
+      "headAfter": "f475784de237c840758b000bb84670f3acc7d223",
+      "headUnchanged": true,
+      "totals": [
+        "⎯⎯⎯⎯⎯⎯ Failed Tests 64 ⎯⎯⎯⎯⎯⎯⎯",
+        "Test Files  1 failed (1)",
+        "Tests  64 failed (64)"
+      ]
+    },
+    "trap-detail-final": {
+      "label": "trap-detail-final",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/skills/SkillsScreen.assassin-traps.test.tsx",
+        "src/features/skills/SkillsScreen.assassin-charges.test.tsx",
+        "src/features/skills/SkillsScreen.assassin-shadow.test.tsx",
+        "src/features/skills/SkillsScreen.periodic-spells.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 33.40358591196127,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 7,
+      "externalInputsUnchanged": true,
+      "headBefore": "f475784de237c840758b000bb84670f3acc7d223",
+      "headAfter": "f475784de237c840758b000bb84670f3acc7d223",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  4 passed (4)",
+        "Tests  180 passed (180)"
+      ]
+    },
+    "trap-detail-final-types": {
+      "label": "trap-detail-final-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/detail.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 9.583017815020867,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 7,
+      "externalInputsUnchanged": true,
+      "headBefore": "f475784de237c840758b000bb84670f3acc7d223",
+      "headAfter": "f475784de237c840758b000bb84670f3acc7d223",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "trap-detail-final-lint": {
+      "label": "trap-detail-final-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.assassin-traps.test.tsx",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 10.785552909947,
+      "inputsUnchanged": true,
+      "inputCount": 2534,
+      "externalInputCount": 7,
+      "externalInputsUnchanged": true,
+      "headBefore": "f475784de237c840758b000bb84670f3acc7d223",
+      "headAfter": "f475784de237c840758b000bb84670f3acc7d223",
+      "headUnchanged": true,
+      "totals": []
+    }
+  },
+  "scope": "Actual native deterministic engine/component proof; no final skill credit, current full-suite pass, earned balance, production trap browser proof or independent acceptance yet.",
+  "retainedTask": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc",
+  "cleanupOwner": "root after final trap consumers, archive and readback verification",
+  "corrections": [
+    "Scoped chip type config initially omitted existing jest-dom setup; include original src/test/setup.ts without source suppression.",
+    "Preview test initially imported nonexistent skillRankStats and guessed three MP costs; corrected to actual computeSkillRankDisplayStats API and unchanged authored JSON costs. Original test copy and receipts retained.",
+    "Death Burn uses canonical STATUS_DEFAULTS.ignite; invalid burn property corrected after four focused failures.",
+    "Chinese at-most-one phrase corrected to actual wording without changing consumption requirement; explicit min/max translation object fixes TypeScript index-signature mismatch."
+  ],
+  "next": [
+    "Native wave/import/respec and shared corpse/reaction acceptance boundaries",
+    "Production build and real en/zh desktop/mobile rank1/20 trap combat/save/offline proof",
+    "Stable whole unit/full types/full lint gate",
+    "Earned campaign/build/economy/endgame and whole-app independent acceptance remain open"
+  ]
+}

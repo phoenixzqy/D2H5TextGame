@@ -13551,3 +13551,29 @@ root owns later archive/readback/exact cleanup, none claimed. Full privatev1 ope
 ## 2026-10-27 — Trap foundation branch engine gate completed
 
 Previous status turn yielded terminal evidence from the original trap-foundation-engine supervisor:9985tests/382filesPASS190.638s,2528repository/11external inputs and345a6417HEAD unchanged.13new foundation cases/scoped strict types/lint already pass. Durable packet now includes actual branch receipts; source freeze lifted only after terminal completion. This is definition/native-rank helper acceptance, not trap runtime or skill credit. Next native/private authority, finite scheduler, Death FIFO and Shield reactions follow D06/BUG305. Root sole executor; no campaign/replay, remote action or independent self-approval. Full privatev1 and registered worktree stay active.
+
+## 2026-10-27 — Native traps, Master cycle and bilingual feedback implemented
+
+3ac8b0b3/fa35212c/97b9676b implement fresh native authority, finite paid attacks,
+real shared Death Sentry corpse consumption, reactive Blade Shield and an actual
+Master charge→trap→finisher cycle. Native17authority/56runtime/2Master cases pass;
+runtime-related149/7 and Master-related65/5 then68/3 pass. Each source slice has
+strict types/lint and exact-input engine proof; latest runtime engine9985/382PASS.
+
+f6c8e4cc adds actual observation chips (32new/64relatedPASS). f475784d shares
+strict immutable preview values (26new/129relatedPASS). Its full engine gate is
+10011/383PASS213.667s, all2533repository/sixexternal inputs/HEAD exact.
+a63d4ce9 adds bilingual current/next/MAX timing, branch and trigger explanations
+(64new/180relatedPASS), scoped strict types/lintPASS. Original fixture/API,
+canonical Burn, translation typing and Chinese phrase corrections are retained.
+[D06 implementation evidence](evidence/d06-assassin-traps.md) records limits.
+
+Previous goal turn was a requested read-only status report, with no implementation
+progress; this continuation lands three source increments and durable evidence.
+Fresh whole/static/build gates and real production browser combat/save/offline,
+native lifecycle/shared-corpse/reactive boundaries remain. Inventory195bounded/
+17unverified/onereview stays unchanged; Cobra BUG304 decision remains pending.
+GenuineL33/Ancients-Rite/next402/Baaluncleared unchanged. Root retains the continuing
+charge/trap task for consumers and owns later archive/readback/exact cleanup;
+none claimed complete. Full privatev1/claimed worktree stay active; no campaign,
+remote publication, delegation or independent self-approval.
