@@ -1,3 +1,4 @@
+import { inferKind, type CombatUnit } from '../combat/types';
 import rows from '../../data/skills/amazon.json';
 import type { SkillDef } from '../types/skills';
 import { createSkillValidator } from './skill-validator';
@@ -21,3 +22,18 @@ export function resolveSlowMissilesDefinition(input: readonly unknown[]) {
     requiredLevel: row.requiredLevel, maxRank: row.maxLevel });
 }
 export const SLOW_MISSILES_DEFINITION = resolveSlowMissilesDefinition(rows);
+
+/** Require fresh native ownership and the same legal learned rank; no legacy teaching. */
+export function slowMissilesRank(owner: CombatUnit): number {
+  const rank = owner.slowMissilesRank ?? 0;
+  const allocated = Math.max(0, ...SLOW_MISSILES_IDS.map(id => {
+    const value = owner.skillLevels?.[id];
+    return typeof value === 'number' && Number.isInteger(value) && value > 0 &&
+      value <= SLOW_MISSILES_DEFINITION.maxRank ? value : 0;
+  }));
+  return owner.side === 'player' && inferKind(owner) === 'hero' && owner.summon !== true &&
+    owner.ownerId === undefined && owner.summonOwnerId === undefined && owner.id.length > 0 &&
+    Number.isFinite(owner.life) && owner.life > 0 && Number.isInteger(owner.level) &&
+    owner.level >= SLOW_MISSILES_DEFINITION.requiredLevel && Number.isInteger(rank) && rank > 0 &&
+    rank === allocated ? rank : 0;
+}

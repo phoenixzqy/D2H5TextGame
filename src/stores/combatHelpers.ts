@@ -280,6 +280,7 @@ function composeNativeCombatUnit(player: Player, temporarySkillRankBonus: 0 | 1)
     periodicSpellRanks: composePeriodicSpellRanks(player),
     ...(player.class === 'sorceress' ? { hydraRank: composeHydraRank(player) } : {}),
     ...(player.class === 'amazon' ? { decoyRank: composeDecoyRank(player) } : {}),
+    slowMissilesRank: player.class === 'amazon' ? configuration.skillLevels?.['amazon.slow_missiles'] ?? 0 : 0,
     ...(player.class === 'sorceress' ? { sorceressBuffRanks: composeSorceressBuffRanks(player) } : {}),
     ...(energyShield.rank > 0 ? { energyShieldRank: energyShield.rank } : {}),
     ...(player.class === 'druid' ? { cycloneArmorRank: composeCycloneArmorRank(player) } : {}),
@@ -1237,6 +1238,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       life: unit.life,
       mana, ...((unit.druidShapeRanks !== undefined || fresh.druidShapeRanks !== undefined)
         ? { druidShapeRanks: fresh.druidShapeRanks } : {}),
+      slowMissilesRank: fresh.slowMissilesRank ?? 0,
       coldArmorRanks: fresh.coldArmorRanks ?? { 'shiver-armor': 0, 'chilling-armor': 0 },
       ...((unit.decoyRank !== undefined || fresh.decoyRank !== undefined)
         ? { decoyRank: fresh.decoyRank ?? 0 } : {}),
