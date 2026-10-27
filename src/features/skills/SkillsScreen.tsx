@@ -882,6 +882,7 @@ function StatSection({
   readonly t: Translate;
 }) {
   const summonEffect = stats?.summonUnit?.effect;
+  const trap = stats?.assassinTrap;
   return (
     <section className="rounded border border-d2-border/70 bg-black/25 p-3">
       <h3 className="mb-2 font-serif text-sm text-d2-gold">{title}</h3>
@@ -890,11 +891,27 @@ function StatSection({
           {stats.damage.map((row) => (
             <StatLine
               key={`damage-${row.type}`}
-              label={t(stats.hydra ? 'details.damagePerHead' : stats.periodicSpell ? 'details.damagePerPulse' : 'details.damageAttack', { type: t(`damage-types:type.${row.type}`) })}
+              label={t(trap?.mode === 'reactive' ? 'details.trapCounterDamage' : trap?.mode === 'corpse'
+                ? 'details.trapShotDamage' : trap?.mode === 'pulse' || stats.periodicSpell ? 'details.damagePerPulse'
+                  : stats.hydra ? 'details.damagePerHead' : 'details.damageAttack', { type: t(`damage-types:type.${row.type}`) })}
               value={t('details.flatRange', { min: row.min, max: row.max })}
               delta={damageDelta(row, compare, t)}
             />
           ))}
+          {trap ? trap.mode === 'reactive' ? <>
+            <StatLine label={t('details.trapReactiveLifetime')}
+              value={t('details.seconds', { seconds: trap.durationSeconds })} />
+            <StatLine label={t('details.trapAttackerInterval')}
+              value={t('details.seconds', { seconds: trap.intervalSeconds })} />
+          </> : <StatLine label={t('details.trapTiming')} value={t('details.spellTimingValue', {
+            duration: trap.durationSeconds, interval: trap.intervalSeconds, pulses: trap.pulses
+          })} /> : null}
+          {trap?.mode === 'corpse' ? <>
+            <StatLine label={t('details.trapCorpseDamage', { type: t('damage-types:type.fire') })}
+              value={t('details.flatRange', { min: trap.corpseDamage.min, max: trap.corpseDamage.max })} />
+            <StatLine label={t('details.trapCorpseBurn', { burn: t('damage-types:status.burn') })}
+              value={t('details.trapCorpseBurnValue', { percent: trap.corpseBurnPercent, seconds: trap.corpseBurnSeconds })} />
+          </> : null}
           {stats.assassinMartial ? <>
             <StatLine label={t('details.martialCap')} value={String(stats.assassinMartial.maxStacks)} />
             <StatLine label={t('details.martialLifetime')}
@@ -1774,6 +1791,16 @@ function dynamicDescription(
       duration: t('details.seconds', { seconds: stats.decoy.durationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
+  if (firstDamage && stats.assassinTrap) {
+    const trap = stats.assassinTrap;
+    return `${t('details.trapDescription.' + trap.mode, {
+      skill: skillName, type: t(`damage-types:type.${firstDamage.type}`), min: firstDamage.min, max: firstDamage.max,
+      duration: trap.durationSeconds, interval: trap.intervalSeconds,
+      ...(trap.mode !== 'reactive' ? { pulses: trap.pulses } : {}),
+      ...(trap.mode === 'corpse' ? { fireMin: trap.corpseDamage.min, fireMax: trap.corpseDamage.max,
+        burn: t('damage-types:status.burn'), burnPercent: trap.corpseBurnPercent, burnSeconds: trap.corpseBurnSeconds } : {})
+    })} ${t('details.trapRules', { mana: stats.manaCost, cooldown: stats.cooldown })}`;
+  }
   if (firstDamage && stats.hydra) {
     return t('sorceress.hydra.desc', { min: firstDamage.min, max: firstDamage.max,
       mana: stats.manaCost, cooldown: stats.cooldown,
