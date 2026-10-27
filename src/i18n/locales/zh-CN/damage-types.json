@@ -30,6 +30,8 @@
     "thorns": "荆棘抗性"
   },
   "status": {
+    "life-steal": "生命偷取",
+    "mana-steal": "法力偷取",
     "mana-burn": "法力燃烧",
     "converted": "已转化",
     "bleed": "流血",

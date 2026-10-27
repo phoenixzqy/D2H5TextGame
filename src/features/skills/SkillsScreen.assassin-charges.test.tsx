@@ -52,6 +52,11 @@ for (const locale of ['en', 'zh-CN'] as const) for (const id of [...rules.builde
     ]) {
       const stats = section(title);
       const value = (label: string) => stats.getByText(label, { selector: 'dt' }).nextElementSibling;
+      if (id === 'assassin.cobra_strike') {
+        expect(value(locale === 'en' ? 'Applies' : '附加')).toHaveTextContent(
+          locale === 'en' ? 'Life Steal, Mana Steal' : '生命偷取, 法力偷取');
+        if (locale === 'zh-CN') expect(panel).not.toHaveTextContent('Life Steal');
+      }
       expect(value(locale === 'en' ? 'Charges per skill' : '每个技能聚气上限')).toHaveTextContent('3');
       expect(value(locale === 'en' ? 'Lifetime after last charge' : '最后一次聚气后的持续时间')).toHaveTextContent('15');
       for (const stacks of [1, 2, 3]) {
