@@ -863,7 +863,32 @@
     "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-endgame-probe-czttxuds-raw.tar.gz",
     "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-endgame-probe-czttxuds-raw-manifest.json",
     "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-endgame-probe-czttxuds-retention.json",
-    "purpose": "Retained through earned endgame,independent,full-v1 consumers; root removes exact sidecars after they release."
+    "purpose": "Retained through earned endgame,independent,full-v1 consumers; root removes exact sidecars after they release.",
+    "archiveSha256": "ceaac2f982b33f5d032100f62d96b00d0c28f9be70176f3de2738ad6c9495773",
+    "manifestSha256": "052370a5ee3031d9534869ec07666b1ab922564ff7f359e7e4e639299be15eed",
+    "verifiedMembers": 406,
+    "verifiedFiles": 403,
+    "verifiedDirectories": 3,
+    "streamReadbackVerified": true,
+    "exactRawInventoryAndHashesVerified": true,
+    "cleanup": {
+      "remaining": [],
+      "failures": [],
+      "rootAbsent": true
+    },
+    "originalCombinedRetainer": {
+      "handle": 65632,
+      "exitCode": 130,
+      "consumed": true,
+      "reason": "Demonstrated quadratic metadata lookup on first combat-log root; no files deleted by original attempt; not a passing retention."
+    },
+    "recovery": {
+      "handle": 85826,
+      "exitCode": 0,
+      "consumed": true,
+      "algorithm": "Indexed manifest; stream archive readback and original-file hash verification; exact member cleanup. First closed combat archive reused; this qualification archive created once.",
+      "scratchRemoved": true
+    }
   },
   "independentAcceptance": "open; root executor and root separate artifact audit only"
 }

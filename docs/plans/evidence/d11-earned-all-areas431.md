@@ -73,9 +73,10 @@ them after those consumers release:
 - `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-missing-areas-mp3nouxt-summary.json`
 
 Archive SHA256 `aec3827822fc0c762782540498bde1094681a08f6872c0b9dc510ba0a86c3aba`.
-The genuine deliverable is retained in the versioned fixture above. Root removes
-the temporary external gzip only after committed-blob byte verification and
-release by the finished endgame qualification consumer.
+The genuine deliverable is retained in the versioned fixture above. The finished
+endgame qualification consumer released the temporary external gzip, and root
+verified byte equality with the committed Git blob before removing that exact
+external file. Its absence is verified; the versioned fixture remains intact.
 
 This establishes earned29-area reachability. C2 integration/independent
 acceptance, C3/C4/fullG0–G7, 211bounded skills/oneunverifiedCobraBUG304/

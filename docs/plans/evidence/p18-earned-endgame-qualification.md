@@ -61,6 +61,18 @@ durability are not established by this qualification.
 
 Root retains archive/manifest/receipt at the exact paths in the summary through
 earned-endgame, independent and full-v1 consumers, then removes only those
-sidecars after release. The receipt records read-back verification and exact raw
-cleanup; no retention/cleanup success is inferred from this report alone.
+sidecars after release. Recovery handle85826 finished0 and was consumed: all406
+archive members (403 files/three directories including the root) passed streamed
+read-back and original-file hash verification before exact raw cleanup.
+Remaining[]/failures[] and raw-root absence are verified. Archive SHA256 is
+`ceaac2f982b33f5d032100f62d96b00d0c28f9be70176f3de2738ad6c9495773`.
+
+Original combined retainer65632 was interrupted with exit130 before any deletion
+because a demonstrated quadratic manifest lookup stalled the first, combat-log
+root. That original attempt is not a pass. Recovery reused its closed archive,
+indexed the manifest, verified every member and original file, and completed its
+4974-member cleanup before archiving this qualification root once. The retained
+combat-log interruption sidecar records the original failure and recovery source.
+The recovery's three disposable scratch files and their directory are removed;
+no shared cache, source, save deliverable or worktree was removed.
 Full P18/C2–C4/G0–G7,14builds,independent/human acceptance remain open. Local only.

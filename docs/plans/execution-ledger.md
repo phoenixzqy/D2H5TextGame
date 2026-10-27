@@ -13977,5 +13977,19 @@ be preserved. Plan review corrected invented manual nextwave control to authored
 1.5second automatic advance. Deliberate loss/retry experiments use disposable
 copies after genuine retention and are never promoted. No balance tuning or
 newpower required for this bounded route;14builds/P18/fullv1 remain unaccepted.
-Raw archive/readback/exact cleanup runs in original65632; receipt is authoritative
-before cleanup success is claimed. Full objective/umbrella claim stay active.
+Original retainer65632 was interrupted130/consumed before deletion for a proven
+quadratic lookup; it is not a pass. Indexed recovery85826 terminal0/consumed
+reuses the closed combat archive, verifies all4974members/4876files/98dirs and
+exact raw hashes, then archives/verifies the qualification406members/403files/
+three dirs. Both exact raw roots are absent,remaining[]/failures[]; recovery
+scratch is also absent. Root retains the archives/manifests/receipts and combat
+interruption sidecar through their documented consumers. The versioned genuine
+next431 gzip remains; its committed-byte-verified, released external duplicate
+was removed. Full objective/umbrella claim stay active.
+
+Independent read-only review of4d0397d8 approves with a nonblockingP2: near-bottom
+touch/pointer release clears gesture before a delayed scroll, allowing the24px
+tolerance to repin an8px-away reader. No independent runtime QA was performed.
+BUG322 stays open while the frontend specialist adds causal release→delayed-event
+regressions and a bounded correction. Earlier whole checks validate4d0397d8,
+not an unvalidated follow-up. No genuine endgame action has been consumed.
