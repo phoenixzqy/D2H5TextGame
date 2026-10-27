@@ -64,6 +64,7 @@
     "minLevel": "需要等级 {{level}}"
   },
   "details": {
+    "decoyDuration": "诱饵持续时间",
     "wallCapacity": "骨墙吸收量",
     "wallDuration": "骨墙持续时间",
     "skillRankBonus": "已学技能等级",
@@ -421,7 +422,7 @@
     },
     "decoy": {
       "name": "诱饵",
-      "desc": "创造一个分身来分散敌人注意力。"
+      "desc": "每波开始消耗{{mana}} 点法力，创造一个不攻击的诱饵，拥有{{life}} 点生命，持续{{duration}}。敌人的单体攻击优先瞄准诱饵；有效嘲讽优先。范围攻击仍可能命中你。本波不补召、不返还法力；法力不足时下一波再尝试。冷却{{cooldown}} 秒。"
     },
     "evade": {
       "name": "回避",

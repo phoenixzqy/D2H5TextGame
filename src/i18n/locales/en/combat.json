@@ -90,6 +90,7 @@
   "acting": "Acting",
   "summon": "Summon",
   "summons": {
+    "decoy": "Decoy",
     "hydra": "Hydra",
     "spirit_of_barbs": "Spirit of Barbs",
     "blood_raven_zombie": "Zombie",

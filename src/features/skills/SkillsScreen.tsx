@@ -879,6 +879,9 @@ function StatSection({
               delta={compare?.skillRankBuff ? numberDelta(stats.skillRankBuff.durationSeconds,
                 compare.skillRankBuff.durationSeconds, t) : null} />
           </> : null}
+          {stats.decoy ? <StatLine label={t('details.decoyDuration')}
+            value={t('details.seconds', { seconds: stats.decoy.durationSeconds })}
+            delta={compare?.decoy ? numberDelta(stats.decoy.durationSeconds, compare.decoy.durationSeconds, t) : null} /> : null}
           {stats.hydra ? <StatLine label={t('details.hydraBody')}
             value={t('details.hydraBodyValue', { heads: stats.hydra.heads, duration: stats.hydra.durationSeconds })} /> : null}
           {stats.boneWall ? <>
@@ -1722,6 +1725,11 @@ function dynamicDescription(
   if (stats?.corpseRecovery) {
     return t('barbarian.find-potion.desc', { life: stats.corpseRecovery.lifePercent,
       manaRecovery: stats.corpseRecovery.manaPercent, mana: stats.manaCost, cooldown: stats.cooldown });
+  }
+  if (stats?.decoy && stats.summonUnit) {
+    return t('amazon.decoy.desc', { mana: stats.manaCost, cooldown: stats.cooldown,
+      life: stats.summonUnit.stats.find(row => row.id === 'lifeMax')?.value,
+      duration: t('details.seconds', { seconds: stats.decoy.durationSeconds }) });
   }
   const firstDamage = stats?.damage[0];
   if (firstDamage && stats.hydra) {

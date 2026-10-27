@@ -64,6 +64,7 @@
     "minLevel": "Requires Level {{level}}"
   },
   "details": {
+    "decoyDuration": "Decoy lifetime",
     "wallCapacity": "Barrier capacity",
     "wallDuration": "Barrier duration",
     "skillRankBonus": "Learned skill ranks",
@@ -421,7 +422,7 @@
     },
     "decoy": {
       "name": "Decoy",
-      "desc": "Creates a duplicate to distract enemies."
+      "desc": "At each wave start, pay {{mana}} MP to create one non-attacking Decoy with {{life}} Life for {{duration}}. Enemies aim single-target attacks at it; Taunt takes priority. Area attacks can still hit you. No replacement or mana refund that wave. If mana is insufficient, it is not retried until the next wave. {{cooldown}} s cooldown."
     },
     "evade": {
       "name": "Evade",
