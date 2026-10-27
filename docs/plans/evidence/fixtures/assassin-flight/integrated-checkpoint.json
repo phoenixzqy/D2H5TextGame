@@ -1,0 +1,790 @@
+{
+  "status": "Local integrated Flight proof; independent design/QA, earned tuning and full private-v1 open",
+  "head": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+  "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj",
+  "checks": {
+    "flight-integrated-full": {
+      "label": "flight-integrated-full",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 1198.0634237340419,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 2,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  938 passed (938)",
+        "Tests  19919 passed | 2 skipped (19921)"
+      ]
+    },
+    "flight-integrated-types": {
+      "label": "flight-integrated-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 155.29767193703447,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 2,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-integrated-lint": {
+      "label": "flight-integrated-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 263.9988377389964,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 2,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-integrated-build": {
+      "label": "flight-integrated-build",
+      "command": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "build",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-build.config.mjs",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-dist"
+      ],
+      "exit": 0,
+      "seconds": 17.416794902994297,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-public-production": {
+      "label": "flight-public-production",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-public.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 182.44443606399,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 769,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": [
+        "\u001b[1A\u001b[2K  4 passed (3.0m)"
+      ]
+    },
+    "flight-public-types-geometry": {
+      "label": "flight-public-types-geometry",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/public.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 10.483079430065118,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-public-lint-geometry": {
+      "label": "flight-public-lint-geometry",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--no-ignore",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/public-eslint.cjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-public.spec.ts",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-public.config.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 6.554354368010536,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-row-production-final": {
+      "label": "flight-row-production-final",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-rows.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 33.03198429394979,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 772,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": [
+        "\u001b[1A\u001b[2K  4 passed (31.6s)"
+      ]
+    },
+    "flight-row-types-final": {
+      "label": "flight-row-types-final",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/rows.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 10.220660607912578,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 772,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-row-lint-final": {
+      "label": "flight-row-lint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--no-ignore",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/rows-eslint.cjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-rows.spec.ts",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-rows.config.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 5.521242463029921,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 772,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-settlement-corrected": {
+      "label": "flight-settlement-corrected",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/settlement.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/settlement.workspace.mjs"
+      ],
+      "exit": 0,
+      "seconds": 11.702949797036126,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  4 passed (4)"
+      ]
+    },
+    "flight-settlement-types": {
+      "label": "flight-settlement-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/settlement.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 11.029181150021031,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-settlement-lint": {
+      "label": "flight-settlement-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "--no-ignore",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/settlement-eslint.cjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-settlement.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 6.525880369008519,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 6,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-final-related": {
+      "label": "flight-final-related",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/assassin-flight.test.ts",
+        "src/engine/skills/displayStats.assassin-flight.test.ts",
+        "src/stores/assassin-flight-native.test.ts",
+        "src/stores/assassin-flight-boundaries.test.ts",
+        "src/stores/assassin-flight-lifecycle.test.ts",
+        "src/features/skills/SkillsScreen.assassin-flight.test.tsx",
+        "src/features/combat/CombatScreen.assassin-flight.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 15.84965723589994,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  7 passed (7)",
+        "Tests  90 passed (90)"
+      ]
+    },
+    "flight-final-types": {
+      "label": "flight-final-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/settlement-branch.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 8.569530254928395,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-final-lint": {
+      "label": "flight-final-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/assassin-flight-boundaries.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 8.967514891992323,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headAfter": "30c9362127d9d779296c0cca48465dc2c21dcf68",
+      "headUnchanged": true,
+      "totals": []
+    }
+  },
+  "production": {
+    "cases": 4,
+    "rankProofs": [
+      {
+        "case": "flight-desktop-en",
+        "rank": 1,
+        "frames": 6,
+        "casts": 2,
+        "heroActions": 2,
+        "heroHpMin": 1000235,
+        "heroHpMax": 1000252,
+        "mpMin": 999183,
+        "manaMax": 999203,
+        "firstExact15MpObserved": true,
+        "positiveKickRows": [
+          "Flight Test attacks Death Mauler A for 1 physical damage.",
+          "Flight Test attacks Death Mauler A for 1 physical damage."
+        ]
+      },
+      {
+        "case": "flight-desktop-en",
+        "rank": 20,
+        "frames": 6,
+        "casts": 2,
+        "heroActions": 2,
+        "heroHpMin": 1000230,
+        "heroHpMax": 1000252,
+        "mpMin": 999183,
+        "manaMax": 999203,
+        "firstExact15MpObserved": true,
+        "positiveKickRows": [
+          "Flight Test attacks Death Mauler A for 1 physical damage.",
+          "Flight Test attacks Death Mauler A for 1 physical damage."
+        ]
+      },
+      {
+        "case": "flight-desktop-zh-CN",
+        "rank": 1,
+        "frames": 6,
+        "casts": 2,
+        "heroActions": 2,
+        "heroHpMin": 1000235,
+        "heroHpMax": 1000252,
+        "mpMin": 999183,
+        "manaMax": 999203,
+        "firstExact15MpObserved": true,
+        "positiveKickRows": [
+          "Flight Test 普攻 死亡重击者 A，造成 1 点物理伤害。",
+          "Flight Test 普攻 死亡重击者 A，造成 1 点物理伤害。"
+        ]
+      },
+      {
+        "case": "flight-desktop-zh-CN",
+        "rank": 20,
+        "frames": 5,
+        "casts": 1,
+        "heroActions": 1,
+        "heroHpMin": 1000233,
+        "heroHpMax": 1000252,
+        "mpMin": 999188,
+        "manaMax": 999203,
+        "firstExact15MpObserved": true,
+        "positiveKickRows": [
+          "Flight Test 普攻 死亡重击者 A，造成 1 点物理伤害。"
+        ]
+      },
+      {
+        "case": "flight-mobile-en",
+        "rank": 1,
+        "frames": 6,
+        "casts": 2,
+        "heroActions": 2,
+        "heroHpMin": 1000235,
+        "heroHpMax": 1000252,
+        "mpMin": 999183,
+        "manaMax": 999203,
+        "firstExact15MpObserved": true,
+        "positiveKickRows": [
+          "Flight Test attacks Death Mauler A for 1 physical damage.",
+          "Flight Test attacks Death Mauler A for 1 physical damage."
+        ]
+      },
+      {
+        "case": "flight-mobile-en",
+        "rank": 20,
+        "frames": 5,
+        "casts": 1,
+        "heroActions": 1,
+        "heroHpMin": 1000233,
+        "heroHpMax": 1000252,
+        "mpMin": 999188,
+        "manaMax": 999203,
+        "firstExact15MpObserved": true,
+        "positiveKickRows": [
+          "Flight Test attacks Death Mauler A for 1 physical damage."
+        ]
+      },
+      {
+        "case": "flight-mobile-zh-CN",
+        "rank": 1,
+        "frames": 5,
+        "casts": 1,
+        "heroActions": 1,
+        "heroHpMin": 1000236,
+        "heroHpMax": 1000252,
+        "mpMin": 999188,
+        "manaMax": 999203,
+        "firstExact15MpObserved": true,
+        "positiveKickRows": [
+          "Flight Test 普攻 死亡重击者 A，造成 1 点物理伤害。"
+        ]
+      },
+      {
+        "case": "flight-mobile-zh-CN",
+        "rank": 20,
+        "frames": 5,
+        "casts": 1,
+        "heroActions": 1,
+        "heroHpMin": 1000233,
+        "heroHpMax": 1000252,
+        "mpMin": 999188,
+        "manaMax": 999203,
+        "firstExact15MpObserved": true,
+        "positiveKickRows": [
+          "Flight Test 普攻 死亡重击者 A，造成 1 点物理伤害。"
+        ]
+      }
+    ],
+    "savePairs": 16,
+    "actualServiceWorkerOfflineContinues": 8,
+    "geometries": 40,
+    "imageCount": 32,
+    "limitations": [
+      "Constructed level/equipment/ActV inputs; no earned progression or balance",
+      "Five geometry sizes prove overflow/priority-control bounds only; no whole-app a11y/performance/soak acceptance",
+      "All32public originals and16separate row originals individually viewed and hashed; existing glyph/navigation/lower-row limits remain.",
+      "Observed outgoing kick rows are1PhysicalHP against this high-life/mitigation fixture; no TTK/build viability inference."
+    ],
+    "auditCorrection": "The first derived summary selected incoming Physical rows. Actor-scoped correction now records positive Flight Test outgoing rows; underlying browser test already required the correct actor."
+  },
+  "visuals": {
+    "publicInspected": 32,
+    "rowInspected": 16,
+    "rowAssertions": "Actual full current/next/MAX damage/dodge/duration/mana/cooldown and unobstructed terms/values after ordinary scrolling.",
+    "limits": "See visual-review-checkpoint.json; no whole-app mobile/a11y/physical-touch acceptance."
+  },
+  "extraSettlement": "Four promoted repository native cases in b887df95: ordinary/critical/resistance/DEF, forged monster personal-shield refusal, actual partial/full source shield reflection. Final90/7PASS and scoped types/lintPASS. Earlier19919 full suite predates these4test-only additions; no19923full pass claimed. Original invalid enemy shield fixture retained; no production workaround.",
+  "twoExistingSkips": [
+    "tests/sim/production/fresh-campaign-economy.test.ts",
+    "tests/sim/production/fresh-campaign-continuation.test.ts"
+  ],
+  "genuine": {
+    "state": "L33; Ancients/Rite claimed; Baal uncleared; nextNormal402; no action/replay",
+    "compressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "rawSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577"
+  },
+  "artifacts": {
+    "flight-production-audit.json": {
+      "bytes": 52632,
+      "sha256": "f1d2832b3bf653b4c1aafa73617fc25e113a1dcdb5e5ca8db81677ab4370a2cc"
+    },
+    "visual-review-checkpoint.json": {
+      "bytes": 29765,
+      "sha256": "a38812dc692264154704ef96764ab26d805c4f510dc3bcbc49502e1908eedd69"
+    },
+    "rows-decoded-manifest.json": {
+      "bytes": 14781,
+      "sha256": "ac8684a3f6f8cf9223f5a128d6e02acde3a1995e65f8b05a11d6b86ffa058c08"
+    },
+    "flight-build-audit.json": {
+      "bytes": 828,
+      "sha256": "f93841c0b60d028c8055584232d8e2de430401876476061af552e7999c7fd19e"
+    },
+    "flight-build-manifest.json": {
+      "bytes": 132364,
+      "sha256": "6981ae5f9037779dd4a2af7343974fe6452c200d4c7f07fdbacb54dc69a7435e"
+    },
+    "public-report.json": {
+      "bytes": 7333055,
+      "sha256": "0f2bb02fbb51d2153cd6e95123323d26d5fbbbb0feb44cea9e8d168f91441b6c"
+    },
+    "rows-final-report.json": {
+      "bytes": 2026179,
+      "sha256": "b9be966de27368cc73d77c2ab8258d36d8d131bf68eae93122723cd8af492129"
+    },
+    "flight-row-production.json": {
+      "bytes": 567,
+      "sha256": "90cdea42e02aa042761341de5cfd6b454ff2496493daa6f62cc2fb8b0fec3345"
+    },
+    "rows-assertion-diagnosis.json": {
+      "bytes": 615,
+      "sha256": "65c36c8575252713af5c3f39401e605485fde5396e737a20911a24d3205084a6"
+    },
+    "settlement-fixture-diagnosis.json": {
+      "bytes": 457,
+      "sha256": "04305e8c64d1bdede3f9df714659aed7a1953ccd6fa4f2747c189e691afd75fc"
+    },
+    "flight-settlement.test.ts": {
+      "bytes": 6361,
+      "sha256": "92c124d0c4ab00cf9332ed7cadbfdbddef69d4299b6f5004bcaf4be2ce82b2e3"
+    },
+    "flight-settlement-invalid-enemy-shield.test.ts.txt": {
+      "bytes": 4782,
+      "sha256": "77ca17f0ce8a31170beb7336c12dd9c6a7960be2c2804bef15da88d2df06a0bc"
+    },
+    "flight-integrated-full.log": {
+      "bytes": 193536,
+      "sha256": "0dbbaf6ad97002eee536952a444446c69ee35b13078ef47537a7785c341a2c9f"
+    },
+    "flight-integrated-full-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-integrated-full-external-inputs.json": {
+      "bytes": 334,
+      "sha256": "01d949389fb19bb18e6c74b811b610c905d1efd7c88bc3fbecce1ddcb8605108"
+    },
+    "flight-integrated-types.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "flight-integrated-types-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-integrated-types-external-inputs.json": {
+      "bytes": 334,
+      "sha256": "01d949389fb19bb18e6c74b811b610c905d1efd7c88bc3fbecce1ddcb8605108"
+    },
+    "flight-integrated-lint.log": {
+      "bytes": 197,
+      "sha256": "ea56e5861fc223ac41e73756acb90c112f46c038c7851c2c3b2008190009255d"
+    },
+    "flight-integrated-lint-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-integrated-lint-external-inputs.json": {
+      "bytes": 334,
+      "sha256": "01d949389fb19bb18e6c74b811b610c905d1efd7c88bc3fbecce1ddcb8605108"
+    },
+    "flight-integrated-build.log": {
+      "bytes": 2463,
+      "sha256": "5ce2757b48a624e1ef58eee71eb2570ed3cc7fa7ec121c565f5c7d42fd1dac1e"
+    },
+    "flight-integrated-build-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-integrated-build-external-inputs.json": {
+      "bytes": 1040,
+      "sha256": "65c7b4e991c44e5c77cc9c0ca68847f94cf3a84370ce44578dab941365048dd4"
+    },
+    "flight-public-production.log": {
+      "bytes": 1688,
+      "sha256": "7ad11339e09c6b1c6357591aadc1d47a681ec1c48ddf48e353ff4ec9806ddc18"
+    },
+    "flight-public-production-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-public-production-external-inputs.json": {
+      "bytes": 172443,
+      "sha256": "7e5a6451196b81b34ce979defa87034be93b50dfcb8c7a6a075abc0313fe26da"
+    },
+    "flight-public-types-geometry.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "flight-public-types-geometry-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-public-types-geometry-external-inputs.json": {
+      "bytes": 1040,
+      "sha256": "65c7b4e991c44e5c77cc9c0ca68847f94cf3a84370ce44578dab941365048dd4"
+    },
+    "flight-public-lint-geometry.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "flight-public-lint-geometry-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-public-lint-geometry-external-inputs.json": {
+      "bytes": 1040,
+      "sha256": "65c7b4e991c44e5c77cc9c0ca68847f94cf3a84370ce44578dab941365048dd4"
+    },
+    "flight-row-production-final.log": {
+      "bytes": 1541,
+      "sha256": "508255d435c0b083fa2e41e118c5de6f455229efc43d5d5ebb8a9383b865bfcd"
+    },
+    "flight-row-production-final-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-row-production-final-external-inputs.json": {
+      "bytes": 173081,
+      "sha256": "dfd7604400b22bc6ef34d586bfb711db06e9e0ef69b2c1423473af7be8749b5a"
+    },
+    "flight-row-types-final.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "flight-row-types-final-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-row-types-final-external-inputs.json": {
+      "bytes": 173081,
+      "sha256": "dfd7604400b22bc6ef34d586bfb711db06e9e0ef69b2c1423473af7be8749b5a"
+    },
+    "flight-row-lint-final.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "flight-row-lint-final-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-row-lint-final-external-inputs.json": {
+      "bytes": 173081,
+      "sha256": "dfd7604400b22bc6ef34d586bfb711db06e9e0ef69b2c1423473af7be8749b5a"
+    },
+    "flight-settlement-corrected.log": {
+      "bytes": 666,
+      "sha256": "303cbfc4933c7e2d223b604e47b77ee29de77c5c77c901a35489ca2ebe9b8ca5"
+    },
+    "flight-settlement-corrected-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-settlement-corrected-external-inputs.json": {
+      "bytes": 704,
+      "sha256": "37901c2bb079eecfc6bb814c1a79b45b3b9154038d3252aba11454fb8857efd9"
+    },
+    "flight-settlement-types.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "flight-settlement-types-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-settlement-types-external-inputs.json": {
+      "bytes": 1055,
+      "sha256": "2b6b4f115248c21dc4c567488034d47b23ad68c2951919882e1c45e41409f061"
+    },
+    "flight-settlement-lint.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "flight-settlement-lint-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "flight-settlement-lint-external-inputs.json": {
+      "bytes": 1055,
+      "sha256": "2b6b4f115248c21dc4c567488034d47b23ad68c2951919882e1c45e41409f061"
+    },
+    "flight-final-related.json": {
+      "bytes": 1030,
+      "sha256": "231fe386b136b24c8c716daabbdd2d6f2ded8d2085ed8a2bcd8eb5413115e06e"
+    },
+    "flight-final-types.json": {
+      "bytes": 566,
+      "sha256": "1127cd88cd906edd55029597d1479c45f3f63ce36475ef7ef2527fa0c44b2189"
+    },
+    "flight-final-lint.json": {
+      "bytes": 507,
+      "sha256": "2357f43c04a00278ff30f5d83b8746a2d211c65a5cd74247889ea9c234c880df"
+    }
+  },
+  "retention": {
+    "owner": "root",
+    "at": "2026-10-27T11:41:11.791415+00:00",
+    "sourceRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj-raw.tar.gz",
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj-raw-manifest.json",
+    "archiveSha256": "a4542b02eb70b426836d714a79d5cc6570f7b85404c0825210a8d4611a8ed81d",
+    "manifestSha256": "63f00e9efa1c9413ac66cc643da420586c0d808f1162a6c6ffa9450db630823d",
+    "fileMembers": 2143,
+    "rawBytes": 163156465,
+    "archiveBytes": 132290484,
+    "readbackVerified": true,
+    "excludedSymlinks": [
+      {
+        "path": "node_modules",
+        "target": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules",
+        "resolvedTarget": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules",
+        "targetInode": 1566283
+      }
+    ],
+    "activeConsumers": [],
+    "consumerScanInaccessibleEntries": 30,
+    "cleanup": {
+      "at": "2026-10-27T11:41:18.594124+00:00",
+      "filesRemoved": 2143,
+      "symlinksUnlinked": 1,
+      "directoriesRemovedIncludingTaskRoot": 36,
+      "remaining": [],
+      "failures": [],
+      "sharedTargets": [
+        {
+          "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules",
+          "preserved": true
+        }
+      ],
+      "consumerScanInaccessibleEntries": 30
+    },
+    "retentionOwner": "root through full-v1/independent consumers; no remote publication",
+    "retentionDriverCleanup": {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-flight-charge-hp-retention-driver.py",
+      "sha256": "3d16a93aef368706fbe930cb9d2d617b69c6ceadb6a5562a3c98760f9335e707",
+      "removed": true,
+      "archivedCopy": "d2h5-assassin-flight-z9y3pvvj-raw.tar.gz:retention-driver.py.txt"
+    },
+    "receiptPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj-retention.json",
+    "receiptSha256": "885c675faa2b372a45ba8a31b015173b9c807e0780259a0aeb76386ec0d3426f",
+    "taskRootStatus": "Removed after all consumers terminal and per-member archive readback; use retained archive members directly, never extract links."
+  },
+  "finalTestCommit": "b887df95b454ffc461fabc27a57dc1a132225ee7",
+  "finalSourceBoundary": {
+    "productionUnchanged": true,
+    "uncommittedSourcePaths": [],
+    "note": "Only src/stores/assassin-flight-boundaries.test.ts gained four tests since frozen production/full proof."
+  }
+}

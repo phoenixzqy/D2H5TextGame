@@ -13674,3 +13674,26 @@ L33/Ancientsclaimed/Baaluncleared/next402 unchanged; no skill credit, campaign,
 remote action, delegation or independent self-approval. Root retains the active
 Flight task for ongoing checks and owns final archive/readback/exact cleanup.
 Full privatev1 and registered worktree stay active.
+
+## 2026-10-27 — Flight production and integrated proof retained
+
+Previous goal turn was the requested read-only status report: no implementation
+progress. This continuation commits b887df95 four actual critical/mitigation and
+legitimate partial/full source-reflection-shield cases. Final90/7PASS/types/lint,
+all2549inputs exact before commit. No production source changed.
+
+Original frozen30c93621 full19919/938PASS1198.063s/twoexisting-skips, fulltypes/
+lint/buildPASS; full gate predates those four added tests. Production4/4PASS,
+eight rank proofs/16seven-domain pairs/eight real SWofflineContinues; scrolled
+rows4/4PASS. All32public+16row originals individually viewed. All762build assets
+exact, five forbidden bridges absent/758precacheURLscomplete; warnings and
+whole-app/earned/independent limitations retained. Observed outgoing kicks1HP
+do not establish build balance. [Packet](evidence/fixtures/assassin-flight/integrated-checkpoint.json).
+
+Flight archive2143members/163156465raw bytes per-member read-back verified;
+exact2143files/one symlink/36dirs removed,remaining[]/failures[], shared deps
+preserved. Packet/evidence record exact retained archive and sidecars, root
+ownership through full-v1/independent consumers, and external driver removal.
+Inventory195bounded/17unverified/onereview and genuineL33/Ancientsclaimed/
+Baaluncleared/next402 unchanged; no campaign/replay, delegation, remote action
+or independent self-approval. Full privatev1/claimed worktree continue.

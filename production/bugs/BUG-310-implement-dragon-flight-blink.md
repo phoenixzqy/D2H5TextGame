@@ -1,6 +1,6 @@
 # BUG-310 — Implement Dragon Flight's missing movement adaptation
 
-Status: In progress — foundation/runtime locally validated in e76ad891/ea3ba9c3; shared preview, bilingual UI and native lifecycle now validated through acaa1cd2; production/integrated and independent acceptance remain open.
+Status: Implemented and locally verified through b887df95 — production/integrated runtime, UI and lifecycle proof complete; independent design/QA and earned balance remain open.
 Severity: High — advertised teleport behavior is absent; the physical kick works.
 Build: 19e5d0965cb95ca016538299311efc316bb431c3; later documentation-only commits do not alter this source.
 Environment: Vitest native store/engine in jsdom, no browser/viewport acceptance.
@@ -49,3 +49,16 @@ or genuine campaign changes. Independent design/QA and earned balance remain ope
 [Implementation evidence](../../docs/plans/evidence/d06-assassin-flight.md) retains the original REDs, causal33-case native proof,112relatedPASS and exact-input10034enginePASS. Blink and unchanged kick now coexist at one payment. Shared preview has three retained REDs; no full skill credit or complete resolution is claimed.
 
 Shared preview/UI/lifecycle checkpoint: f61e9d14/98416d5f/460ad299/acaa1cd2. Actual8screen+4chip+11boundary+3lifecycle cases pass; detailed scope and original failures in the linked evidence. Production and fresh whole acceptance pending; bug remains in progress.
+
+## Integrated follow-up
+
+Frozen30c93621 full19919/938PASS (two existing campaign skips), fulltypes/lint
+and production buildPASS. Actual production4/4PASS proves eight rank1/20 paid
+blinks and outgoing kicks,16exact seven-domain save pairs/eight real SWoffline
+Continues. Separate scrolled stat-row4/4PASS; all48Flight originals individually
+viewed. b887df95 adds four legitimate critical/mitigation/reflection-shield tests;
+final90/7PASS/types/lint. The full gate predates those four test-only additions.
+Original failures, exact command/hash receipts, limitations and verified archive/
+cleanup are in the linked implementation evidence and integrated checkpoint.
+The original missing mechanic is implemented. No whole-skill, independent,
+earned-balance, whole-app mobile/a11y or private-v1 completion is inferred.
