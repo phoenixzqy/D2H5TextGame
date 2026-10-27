@@ -1,0 +1,1307 @@
+{
+  "kind": "genuine native earned Arreat402-407; first nonwin preserved; no Baal/Eve or changed build",
+  "head": "18ed376cab0e78c4b4af714b6c4ce669ebb5ecbd",
+  "input": {
+    "fixture": "docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
+    "rawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+    "version": 21,
+    "decodedVersion": 22,
+    "playerInventoryMercExact": true
+  },
+  "final": {
+    "fixture": "docs/plans/evidence/fixtures/earned-arreat402-407/retained-final.json.gz",
+    "gzipSHA256": "0d7ef141e1a85ae06739a81b0d65a6622e0b990d7b36157155f31074b17f4962",
+    "rawSHA256": "201d9651127398bb9e261aa6cddac3901859c115a85c589808789501b2c12a74",
+    "level": 33,
+    "xp": 368701,
+    "statPoints": 10,
+    "skillPoints": 1,
+    "nextNormal": 408,
+    "nightmareOrdinal": 0,
+    "ownedItems": 24324,
+    "riteClaimed": true,
+    "eveNotStarted": true,
+    "baalUncleared": true
+  },
+  "native": {
+    "status": "pass",
+    "nativeStatus": "observed",
+    "nativeOutcome": "nonwin",
+    "stopReason": null,
+    "head": "18ed376cab0e78c4b4af714b6c4ce669ebb5ecbd",
+    "repositoryInputsVerified": 2693,
+    "buildInputsVerified": 762,
+    "externalInputsVerified": 8,
+    "saveSnapshots": 55,
+    "exactSaveCloseContinuePairs": 7,
+    "ancestralFullItemPayloadsPreserved": 23682,
+    "originalGenuineFixtureUnchanged": true,
+    "launches": 6,
+    "victoriousWaves": 32,
+    "nonwins": 1,
+    "finalLevel": 33,
+    "finalXP": 368701,
+    "totalEarnedXP": 219440,
+    "finalNextNormal": 408,
+    "finalOwnedItems": 24324,
+    "newItems": 642,
+    "finalRawSHA256": "201d9651127398bb9e261aa6cddac3901859c115a85c589808789501b2c12a74",
+    "limits": "Root-authored audit, not independent review. Genuine farming only; no Baal, Eve, changed build, campaign pacing, fullC2-C4 or G0-G7 acceptance."
+  },
+  "areas": [
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 402,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 12600,
+            "newItems": [
+              "it-4vvwq-i9v",
+              "it-931xt-i9w",
+              "it-6fomw-i9x",
+              "it-bt3a-i9y",
+              "it-8r999-i9z",
+              "it-47n2u-ia0",
+              "it-5j3pv-ia1",
+              "it-1e53o-ia2",
+              "it-85hnl-ia3"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5040,
+            "newItems": [
+              "it-8sbty-ia4",
+              "it-2ytvi-ia5"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5850,
+            "newItems": [
+              "it-2lqd3-ia6",
+              "it-79u3u-ia7",
+              "it-9x5h8-ia8",
+              "it-2c2np-ia9",
+              "it-6eepu-iaa",
+              "it-3gakz-iab",
+              "it-18oze-iac",
+              "it-42p8m-iad",
+              "it-4orth-iae",
+              "it-5nmu9-iaf",
+              "it-31zip-iag",
+              "it-2ap5o-iah",
+              "it-pbxz-iai",
+              "it-64ylr-iaj",
+              "it-9bc6m-iak"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6600,
+            "newItems": [
+              "it-7uno8-ial",
+              "it-2ywpb-iam",
+              "it-tnh3-ian",
+              "it-qpcj-iao",
+              "it-67apo-iap",
+              "it-79cyu-iaq",
+              "it-53agf-iar",
+              "it-762w9-ias",
+              "it-4nlb1-iat",
+              "it-4h80o-iau",
+              "it-5g7r3-iav",
+              "it-5suux-iaw",
+              "it-2vm9b-iax",
+              "it-4c3nx-iay",
+              "it-2r698-iaz",
+              "it-8vuem-ib0",
+              "it-6qvgp-ib1",
+              "it-3azwj-ib2",
+              "it-9pzl2-ib3",
+              "it-4y4f8-ib4",
+              "it-8a5q-ib5",
+              "it-9r74d-ib6",
+              "it-5a3aq-ib7",
+              "it-28itr-ib8",
+              "it-1sweo-ib9",
+              "it-4fkgw-iba",
+              "it-14fwk-ibb",
+              "it-4u2q7-ibc",
+              "it-4qdra-ibd",
+              "it-19lr8-ibe",
+              "it-1pq98-ibf",
+              "it-qs9o-ibg",
+              "it-1ct6o-ibh",
+              "it-56la6-ibi",
+              "it-7vj41-ibj",
+              "it-3dhpw-ibk",
+              "it-53hjq-ibl",
+              "it-9c97x-ibm",
+              "it-3thy0-ibn",
+              "it-89rxo-ibo",
+              "it-6k7ju-ibp",
+              "it-530i2-ibq",
+              "it-551a3-ibr",
+              "it-7b7xx-ibs",
+              "it-sjhv-ibt",
+              "it-7dijn-ibu",
+              "it-a747-ibv",
+              "it-93v1b-ibw",
+              "it-8fpf4-ibx",
+              "it-4p0m9-iby"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7370,
+            "newItems": [
+              "it-3ptz2-ibz",
+              "it-668vp-ic0",
+              "it-1991e-ic1",
+              "it-3lmjl-ic2",
+              "it-ic37-ic3",
+              "it-69qw1-ic4",
+              "it-3kdt8-ic5",
+              "it-y5zm-ic6",
+              "it-5l2tj-ic7",
+              "it-2orkq-ic8",
+              "it-6zn1j-ic9",
+              "it-6hfif-ica",
+              "it-85nyp-icb",
+              "it-mho9-icc",
+              "it-5x9bj-icd",
+              "it-13k8z-ice",
+              "it-5bwki-icf",
+              "it-8zuay-icg",
+              "it-7ytc4-ich",
+              "it-gxhj-ici",
+              "it-1oglc-icj",
+              "it-4iohq-ick"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-icl",
+              "it-9wv6i-icm",
+              "it-42f7g-icn",
+              "it-2dv9h-ico",
+              "it-73pgp-icp",
+              "it-6qqhv-icq",
+              "it-129u5-icr",
+              "it-brds-ics",
+              "it-5nfdi-ict",
+              "it-po4g-icu",
+              "it-6r1dk-icv",
+              "it-5ohj-icw",
+              "it-6ahxw-icx",
+              "it-6st63-icy",
+              "it-809gb-icz",
+              "it-9hm31-id0",
+              "it-7qnxy-id1"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest or preparation action; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 403,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5040,
+            "newItems": [
+              "it-4vvwq-id2",
+              "it-931xt-id3",
+              "it-6fomw-id4"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5670,
+            "newItems": [
+              "it-8sbty-id5",
+              "it-2ytvi-id6"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6500,
+            "newItems": [
+              "it-2lqd3-id7",
+              "it-79u3u-id8",
+              "it-9x5h8-id9",
+              "it-2c2np-ida",
+              "it-6eepu-idb",
+              "it-3gakz-idc",
+              "it-18oze-idd",
+              "it-42p8m-ide",
+              "it-4orth-idf",
+              "it-5nmu9-idg",
+              "it-31zip-idh",
+              "it-2ap5o-idi",
+              "it-pbxz-idj",
+              "it-64ylr-idk",
+              "it-9bc6m-idl",
+              "it-585gn-idm"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7260,
+            "newItems": [
+              "it-7uno8-idn",
+              "it-2ywpb-ido",
+              "it-tnh3-idp",
+              "it-qpcj-idq",
+              "it-67apo-idr",
+              "it-79cyu-ids",
+              "it-53agf-idt",
+              "it-762w9-idu",
+              "it-4nlb1-idv",
+              "it-4h80o-idw",
+              "it-5g7r3-idx",
+              "it-5suux-idy",
+              "it-2vm9b-idz",
+              "it-4c3nx-ie0",
+              "it-2r698-ie1",
+              "it-8vuem-ie2",
+              "it-6qvgp-ie3",
+              "it-3azwj-ie4",
+              "it-9pzl2-ie5",
+              "it-4y4f8-ie6",
+              "it-8a5q-ie7",
+              "it-9r74d-ie8",
+              "it-5a3aq-ie9",
+              "it-28itr-iea",
+              "it-1sweo-ieb",
+              "it-4fkgw-iec",
+              "it-14fwk-ied",
+              "it-4u2q7-iee",
+              "it-4qdra-ief",
+              "it-19lr8-ieg",
+              "it-1pq98-ieh",
+              "it-qs9o-iei",
+              "it-1ct6o-iej",
+              "it-56la6-iek",
+              "it-7vj41-iel",
+              "it-3dhpw-iem",
+              "it-53hjq-ien",
+              "it-9c97x-ieo",
+              "it-3thy0-iep",
+              "it-89rxo-ieq",
+              "it-6k7ju-ier",
+              "it-530i2-ies",
+              "it-551a3-iet",
+              "it-7b7xx-ieu",
+              "it-sjhv-iev",
+              "it-7dijn-iew",
+              "it-a747-iex",
+              "it-93v1b-iey",
+              "it-8fpf4-iez",
+              "it-4p0m9-if0",
+              "it-9o0jx-if1",
+              "it-5ikxf-if2",
+              "it-4l7nd-if3",
+              "it-3y1sl-if4",
+              "it-891lo-if5"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8040,
+            "newItems": [
+              "it-3ptz2-if6",
+              "it-668vp-if7",
+              "it-1991e-if8",
+              "it-3lmjl-if9",
+              "it-ic37-ifa",
+              "it-69qw1-ifb",
+              "it-3kdt8-ifc",
+              "it-y5zm-ifd",
+              "it-5l2tj-ife",
+              "it-2orkq-iff",
+              "it-6zn1j-ifg",
+              "it-6hfif-ifh",
+              "it-85nyp-ifi",
+              "it-mho9-ifj",
+              "it-5x9bj-ifk",
+              "it-13k8z-ifl",
+              "it-5bwki-ifm",
+              "it-8zuay-ifn",
+              "it-7ytc4-ifo",
+              "it-gxhj-ifp",
+              "it-1oglc-ifq",
+              "it-4iohq-ifr",
+              "it-7azk4-ifs",
+              "it-7qkoi-ift"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-ifu",
+              "it-9wv6i-ifv",
+              "it-42f7g-ifw",
+              "it-2dv9h-ifx",
+              "it-73pgp-ify",
+              "it-6qqhv-ifz",
+              "it-129u5-ig0",
+              "it-brds-ig1",
+              "it-5nfdi-ig2",
+              "it-po4g-ig3",
+              "it-6r1dk-ig4",
+              "it-5ohj-ig5",
+              "it-6ahxw-ig6",
+              "it-6st63-ig7",
+              "it-809gb-ig8",
+              "it-9hm31-ig9",
+              "it-7qnxy-iga"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest or preparation action; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 404,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5670,
+            "newItems": [
+              "it-4vvwq-igb",
+              "it-931xt-igc",
+              "it-6fomw-igd"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6300,
+            "newItems": [
+              "it-8sbty-ige",
+              "it-2ytvi-igf",
+              "it-11l0t-igg"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7150,
+            "newItems": [
+              "it-2lqd3-igh",
+              "it-79u3u-igi",
+              "it-9x5h8-igj",
+              "it-2c2np-igk",
+              "it-6eepu-igl",
+              "it-3gakz-igm",
+              "it-18oze-ign",
+              "it-42p8m-igo",
+              "it-4orth-igp",
+              "it-5nmu9-igq",
+              "it-31zip-igr",
+              "it-2ap5o-igs",
+              "it-pbxz-igt",
+              "it-64ylr-igu",
+              "it-9bc6m-igv",
+              "it-585gn-igw",
+              "it-2hof6-igx",
+              "it-25exv-igy"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7920,
+            "newItems": [
+              "it-7uno8-igz",
+              "it-2ywpb-ih0",
+              "it-tnh3-ih1",
+              "it-qpcj-ih2",
+              "it-67apo-ih3",
+              "it-79cyu-ih4",
+              "it-53agf-ih5",
+              "it-762w9-ih6",
+              "it-4nlb1-ih7",
+              "it-4h80o-ih8",
+              "it-5g7r3-ih9",
+              "it-5suux-iha",
+              "it-2vm9b-ihb",
+              "it-4c3nx-ihc",
+              "it-2r698-ihd",
+              "it-8vuem-ihe",
+              "it-6qvgp-ihf",
+              "it-3azwj-ihg",
+              "it-9pzl2-ihh",
+              "it-4y4f8-ihi",
+              "it-8a5q-ihj",
+              "it-9r74d-ihk",
+              "it-5a3aq-ihl",
+              "it-28itr-ihm",
+              "it-1sweo-ihn",
+              "it-4fkgw-iho",
+              "it-14fwk-ihp",
+              "it-4u2q7-ihq",
+              "it-4qdra-ihr",
+              "it-19lr8-ihs",
+              "it-1pq98-iht",
+              "it-qs9o-ihu",
+              "it-1ct6o-ihv",
+              "it-56la6-ihw",
+              "it-7vj41-ihx",
+              "it-3dhpw-ihy",
+              "it-53hjq-ihz",
+              "it-9c97x-ii0",
+              "it-3thy0-ii1",
+              "it-89rxo-ii2",
+              "it-6k7ju-ii3",
+              "it-530i2-ii4",
+              "it-551a3-ii5",
+              "it-7b7xx-ii6",
+              "it-sjhv-ii7",
+              "it-7dijn-ii8",
+              "it-a747-ii9",
+              "it-93v1b-iia",
+              "it-8fpf4-iib",
+              "it-4p0m9-iic",
+              "it-9o0jx-iid",
+              "it-5ikxf-iie",
+              "it-4l7nd-iif",
+              "it-3y1sl-iig",
+              "it-891lo-iih",
+              "it-62c9e-iii",
+              "it-a46b-iij",
+              "it-2jfsj-iik",
+              "it-75ngk-iil",
+              "it-2alk3-iim"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8710,
+            "newItems": [
+              "it-3ptz2-iin",
+              "it-668vp-iio",
+              "it-1991e-iip",
+              "it-3lmjl-iiq",
+              "it-ic37-iir",
+              "it-69qw1-iis",
+              "it-3kdt8-iit",
+              "it-y5zm-iiu",
+              "it-5l2tj-iiv",
+              "it-2orkq-iiw",
+              "it-6zn1j-iix",
+              "it-6hfif-iiy",
+              "it-85nyp-iiz",
+              "it-mho9-ij0",
+              "it-5x9bj-ij1",
+              "it-13k8z-ij2",
+              "it-5bwki-ij3",
+              "it-8zuay-ij4",
+              "it-7ytc4-ij5",
+              "it-gxhj-ij6",
+              "it-1oglc-ij7",
+              "it-4iohq-ij8",
+              "it-7azk4-ij9",
+              "it-7qkoi-ija",
+              "it-se94-ijb"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-ijc",
+              "it-9wv6i-ijd",
+              "it-42f7g-ije",
+              "it-2dv9h-ijf",
+              "it-73pgp-ijg",
+              "it-6qqhv-ijh",
+              "it-129u5-iji",
+              "it-brds-ijj",
+              "it-5nfdi-ijk",
+              "it-po4g-ijl",
+              "it-6r1dk-ijm",
+              "it-5ohj-ijn",
+              "it-6ahxw-ijo",
+              "it-6st63-ijp",
+              "it-809gb-ijq",
+              "it-9hm31-ijr",
+              "it-7qnxy-ijs"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest or preparation action; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 405,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6300,
+            "newItems": [
+              "it-4vvwq-ijt",
+              "it-931xt-iju",
+              "it-6fomw-ijv"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6930,
+            "newItems": [
+              "it-8sbty-ijw",
+              "it-2ytvi-ijx",
+              "it-11l0t-ijy"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7800,
+            "newItems": [
+              "it-2lqd3-ijz",
+              "it-79u3u-ik0",
+              "it-9x5h8-ik1",
+              "it-2c2np-ik2",
+              "it-6eepu-ik3",
+              "it-3gakz-ik4",
+              "it-18oze-ik5",
+              "it-42p8m-ik6",
+              "it-4orth-ik7",
+              "it-5nmu9-ik8",
+              "it-31zip-ik9",
+              "it-2ap5o-ika",
+              "it-pbxz-ikb",
+              "it-64ylr-ikc",
+              "it-9bc6m-ikd",
+              "it-585gn-ike",
+              "it-2hof6-ikf",
+              "it-25exv-ikg",
+              "it-1tf1u-ikh",
+              "it-7dkx1-iki"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8580,
+            "newItems": [
+              "it-7uno8-ikj",
+              "it-2ywpb-ikk",
+              "it-tnh3-ikl",
+              "it-qpcj-ikm",
+              "it-67apo-ikn",
+              "it-79cyu-iko",
+              "it-53agf-ikp",
+              "it-762w9-ikq",
+              "it-4nlb1-ikr",
+              "it-4h80o-iks",
+              "it-5g7r3-ikt",
+              "it-5suux-iku",
+              "it-2vm9b-ikv",
+              "it-4c3nx-ikw",
+              "it-2r698-ikx",
+              "it-8vuem-iky",
+              "it-6qvgp-ikz",
+              "it-3azwj-il0",
+              "it-9pzl2-il1",
+              "it-4y4f8-il2",
+              "it-8a5q-il3",
+              "it-9r74d-il4",
+              "it-5a3aq-il5",
+              "it-28itr-il6",
+              "it-1sweo-il7",
+              "it-4fkgw-il8",
+              "it-14fwk-il9",
+              "it-4u2q7-ila",
+              "it-4qdra-ilb",
+              "it-19lr8-ilc",
+              "it-1pq98-ild",
+              "it-qs9o-ile",
+              "it-1ct6o-ilf",
+              "it-56la6-ilg",
+              "it-7vj41-ilh",
+              "it-3dhpw-ili",
+              "it-53hjq-ilj",
+              "it-9c97x-ilk",
+              "it-3thy0-ill",
+              "it-89rxo-ilm",
+              "it-6k7ju-iln",
+              "it-530i2-ilo",
+              "it-551a3-ilp",
+              "it-7b7xx-ilq",
+              "it-sjhv-ilr",
+              "it-7dijn-ils",
+              "it-a747-ilt",
+              "it-93v1b-ilu",
+              "it-8fpf4-ilv",
+              "it-4p0m9-ilw",
+              "it-9o0jx-ilx",
+              "it-5ikxf-ily",
+              "it-4l7nd-ilz",
+              "it-3y1sl-im0",
+              "it-891lo-im1",
+              "it-62c9e-im2",
+              "it-a46b-im3",
+              "it-2jfsj-im4",
+              "it-75ngk-im5",
+              "it-2alk3-im6",
+              "it-69ptf-im7",
+              "it-627yn-im8",
+              "it-8p4hq-im9",
+              "it-2svjy-ima",
+              "it-5z32u-imb"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 9380,
+            "newItems": [
+              "it-3ptz2-imc",
+              "it-668vp-imd",
+              "it-1991e-ime",
+              "it-3lmjl-imf",
+              "it-ic37-img",
+              "it-69qw1-imh",
+              "it-3kdt8-imi",
+              "it-y5zm-imj",
+              "it-5l2tj-imk",
+              "it-2orkq-iml",
+              "it-6zn1j-imm",
+              "it-6hfif-imn",
+              "it-85nyp-imo",
+              "it-mho9-imp",
+              "it-5x9bj-imq",
+              "it-13k8z-imr",
+              "it-5bwki-ims",
+              "it-8zuay-imt",
+              "it-7ytc4-imu",
+              "it-gxhj-imv",
+              "it-1oglc-imw",
+              "it-4iohq-imx",
+              "it-7azk4-imy",
+              "it-7qkoi-imz",
+              "it-se94-in0",
+              "it-7e988-in1"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-in2",
+              "it-9wv6i-in3",
+              "it-42f7g-in4",
+              "it-2dv9h-in5",
+              "it-73pgp-in6",
+              "it-6qqhv-in7",
+              "it-129u5-in8",
+              "it-brds-in9",
+              "it-5nfdi-ina",
+              "it-po4g-inb",
+              "it-6r1dk-inc",
+              "it-5ohj-ind",
+              "it-6ahxw-ine",
+              "it-6st63-inf",
+              "it-809gb-ing",
+              "it-9hm31-inh",
+              "it-7qnxy-ini"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest or preparation action; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 406,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6930,
+            "newItems": [
+              "it-4vvwq-inj",
+              "it-931xt-ink",
+              "it-6fomw-inl"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7560,
+            "newItems": [
+              "it-8sbty-inm",
+              "it-2ytvi-inn",
+              "it-11l0t-ino",
+              "it-2iawb-inp"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8450,
+            "newItems": [
+              "it-2lqd3-inq",
+              "it-79u3u-inr",
+              "it-9x5h8-ins",
+              "it-2c2np-int",
+              "it-6eepu-inu",
+              "it-3gakz-inv",
+              "it-18oze-inw",
+              "it-42p8m-inx",
+              "it-4orth-iny",
+              "it-5nmu9-inz",
+              "it-31zip-io0",
+              "it-2ap5o-io1",
+              "it-pbxz-io2",
+              "it-64ylr-io3",
+              "it-9bc6m-io4",
+              "it-585gn-io5",
+              "it-2hof6-io6",
+              "it-25exv-io7",
+              "it-1tf1u-io8",
+              "it-7dkx1-io9",
+              "it-2y4bw-ioa"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 9240,
+            "newItems": [
+              "it-7uno8-iob",
+              "it-2ywpb-ioc",
+              "it-tnh3-iod",
+              "it-qpcj-ioe",
+              "it-67apo-iof",
+              "it-79cyu-iog",
+              "it-53agf-ioh",
+              "it-762w9-ioi",
+              "it-4nlb1-ioj",
+              "it-4h80o-iok",
+              "it-5g7r3-iol",
+              "it-5suux-iom",
+              "it-2vm9b-ion",
+              "it-4c3nx-ioo",
+              "it-2r698-iop",
+              "it-8vuem-ioq",
+              "it-6qvgp-ior",
+              "it-3azwj-ios",
+              "it-9pzl2-iot",
+              "it-4y4f8-iou",
+              "it-8a5q-iov",
+              "it-9r74d-iow",
+              "it-5a3aq-iox",
+              "it-28itr-ioy",
+              "it-1sweo-ioz",
+              "it-4fkgw-ip0",
+              "it-14fwk-ip1",
+              "it-4u2q7-ip2",
+              "it-4qdra-ip3",
+              "it-19lr8-ip4",
+              "it-1pq98-ip5",
+              "it-qs9o-ip6",
+              "it-1ct6o-ip7",
+              "it-56la6-ip8",
+              "it-7vj41-ip9",
+              "it-3dhpw-ipa",
+              "it-53hjq-ipb",
+              "it-9c97x-ipc",
+              "it-3thy0-ipd",
+              "it-89rxo-ipe",
+              "it-6k7ju-ipf",
+              "it-530i2-ipg",
+              "it-551a3-iph",
+              "it-7b7xx-ipi",
+              "it-sjhv-ipj",
+              "it-7dijn-ipk",
+              "it-a747-ipl",
+              "it-93v1b-ipm",
+              "it-8fpf4-ipn",
+              "it-4p0m9-ipo",
+              "it-9o0jx-ipp",
+              "it-5ikxf-ipq",
+              "it-4l7nd-ipr",
+              "it-3y1sl-ips",
+              "it-891lo-ipt",
+              "it-62c9e-ipu",
+              "it-a46b-ipv",
+              "it-2jfsj-ipw",
+              "it-75ngk-ipx",
+              "it-2alk3-ipy",
+              "it-69ptf-ipz",
+              "it-627yn-iq0",
+              "it-8p4hq-iq1",
+              "it-2svjy-iq2",
+              "it-5z32u-iq3",
+              "it-6sv02-iq4",
+              "it-oom9-iq5",
+              "it-5pgub-iq6",
+              "it-7by5r-iq7",
+              "it-1nf1q-iq8"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10050,
+            "newItems": [
+              "it-3ptz2-iq9",
+              "it-668vp-iqa",
+              "it-1991e-iqb",
+              "it-3lmjl-iqc",
+              "it-ic37-iqd",
+              "it-69qw1-iqe",
+              "it-3kdt8-iqf",
+              "it-y5zm-iqg",
+              "it-5l2tj-iqh",
+              "it-2orkq-iqi",
+              "it-6zn1j-iqj",
+              "it-6hfif-iqk",
+              "it-85nyp-iql",
+              "it-mho9-iqm",
+              "it-5x9bj-iqn",
+              "it-13k8z-iqo",
+              "it-5bwki-iqp",
+              "it-8zuay-iqq",
+              "it-7ytc4-iqr",
+              "it-gxhj-iqs",
+              "it-1oglc-iqt",
+              "it-4iohq-iqu",
+              "it-7azk4-iqv",
+              "it-7qkoi-iqw",
+              "it-se94-iqx",
+              "it-7e988-iqy",
+              "it-76lxr-iqz",
+              "it-5lnqh-ir0"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-ir1",
+              "it-9wv6i-ir2",
+              "it-42f7g-ir3",
+              "it-2dv9h-ir4",
+              "it-73pgp-ir5",
+              "it-6qqhv-ir6",
+              "it-129u5-ir7",
+              "it-brds-ir8",
+              "it-5nfdi-ir9",
+              "it-po4g-ira",
+              "it-6r1dk-irb",
+              "it-5ohj-irc",
+              "it-6ahxw-ird",
+              "it-6st63-ire",
+              "it-809gb-irf",
+              "it-9hm31-irg",
+              "it-7qnxy-irh"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest or preparation action; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 407,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7560,
+            "newItems": [
+              "it-4vvwq-iri",
+              "it-931xt-irj",
+              "it-6fomw-irk"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8190,
+            "newItems": [
+              "it-8sbty-irl",
+              "it-2ytvi-irm",
+              "it-11l0t-irn",
+              "it-2iawb-iro"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "nonwin",
+          "delta": {
+            "xp": 0,
+            "newItems": []
+          }
+        }
+      ],
+      "outcome": "nonwin"
+    }
+  ],
+  "stop": {
+    "reason": "first genuine nonwin:407wave3 timeout with2living enemies; preceding two-wave income kept, failed wave0income",
+    "terminalPanel": null,
+    "lastLog": [
+      "Frozen Terror G (Elite) attacks Desert Merc — Holy Freeze for 1 physical damage.",
+      "Frozen Terror H (Elite) casts Strong Melee.",
+      "Frozen Terror H (Elite) attacks Earned Act I for 1 physical damage.",
+      "The battle ends in a draw."
+    ],
+    "liveEnemies": 2,
+    "doNotReplay": "No402-407 entry or ancestral400/401/preparation/RiteClaim may replay. Resume only this new finalnext408."
+  },
+  "diagnostics": [
+    {
+      "stage": "historical-seed-paired",
+      "kind": "diagnostic only; no genuine action, projected-save promotion, source/balance/threshold change",
+      "sourceHead": "8fc0ae32de67e152f29bcaca420d0a56cb093199",
+      "seedNamespace": "baal402-ranked-ice-v1-",
+      "variantResults": [
+        {
+          "id": "ranked-ice-control",
+          "dexterity": 0,
+          "preparedStats": {
+            "life": 120,
+            "lifeMax": 593,
+            "mana": 102,
+            "manaMax": 450,
+            "attack": 173,
+            "defense": 277,
+            "magicResist": 40,
+            "attackSpeed": 250,
+            "critChance": 0.41,
+            "critDamage": 2.49,
+            "physDodge": 0.48,
+            "magicDodge": 0.19,
+            "magicFind": 0,
+            "goldFind": 0,
+            "resistances": {
+              "fire": 61,
+              "cold": 82,
+              "lightning": 56,
+              "poison": 40,
+              "arcane": 118,
+              "physical": 58
+            }
+          },
+          "preparedSkills": {
+            "sorceress.ice_bolt": 1,
+            "sorceress.ice_blast": 20,
+            "sorceress.static_field": 4,
+            "sorceress.warmth": 1,
+            "sorceress.cold_mastery": 20
+          },
+          "wins": 27,
+          "secondHalfWins": 14,
+          "qualified": true,
+          "timings": {
+            "successfulRoutes": 27,
+            "victoriousRouteSecondsP50": 211.485413493654,
+            "victoriousRouteSecondsP95": 235.35208016032067,
+            "failedRoutes": 5,
+            "failedAttemptSeconds": [
+              231.9050501002004,
+              211.52238343353372,
+              102.12677747989277,
+              93.49798391420912,
+              222.3311503006012
+            ]
+          }
+        },
+        {
+          "id": "ranked-ice-dex10",
+          "dexterity": 10,
+          "preparedStats": {
+            "life": 120,
+            "lifeMax": 593,
+            "mana": 102,
+            "manaMax": 450,
+            "attack": 178,
+            "defense": 277,
+            "magicResist": 40,
+            "attackSpeed": 260,
+            "critChance": 0.41,
+            "critDamage": 2.49,
+            "physDodge": 0.5,
+            "magicDodge": 0.19,
+            "magicFind": 0,
+            "goldFind": 0,
+            "resistances": {
+              "fire": 61,
+              "cold": 82,
+              "lightning": 56,
+              "poison": 40,
+              "arcane": 118,
+              "physical": 58
+            }
+          },
+          "preparedSkills": {
+            "sorceress.ice_bolt": 1,
+            "sorceress.ice_blast": 20,
+            "sorceress.static_field": 4,
+            "sorceress.warmth": 1,
+            "sorceress.cold_mastery": 20
+          },
+          "wins": 19,
+          "secondHalfWins": 10,
+          "qualified": false,
+          "timings": {
+            "successfulRoutes": 19,
+            "victoriousRouteSecondsP50": 207.61654794520547,
+            "victoriousRouteSecondsP95": 238.4098969481068,
+            "failedRoutes": 13,
+            "failedAttemptSeconds": [
+              238.73668290004665,
+              211.6605479452055,
+              203.64028107925424,
+              209.1805479452055,
+              202.01168023718668,
+              198.96033777143327,
+              217.11923287671232,
+              222.77303538584016,
+              222.99824800285506,
+              207.34899530567986,
+              207.11699530567984,
+              208.7616528399264,
+              210.24828297691275
+            ]
+          }
+        }
+      ],
+      "sourceCount": 2693,
+      "sourceUnchanged": true,
+      "genuineSaveUnchanged": true,
+      "wallSeconds": 131.975295552
+    },
+    {
+      "stage": "current-control-holdout",
+      "kind": "diagnostic only; no genuine action, projected-save promotion, source/balance/threshold change",
+      "sourceHead": "18ed376cab0e78c4b4af714b6c4ce669ebb5ecbd",
+      "seedNamespace": "baal402-ranked-ice-current-holdout-v1-",
+      "variantResults": [
+        {
+          "id": "ranked-ice-holdout",
+          "dexterity": 0,
+          "preparedStats": {
+            "life": 120,
+            "lifeMax": 593,
+            "mana": 102,
+            "manaMax": 450,
+            "attack": 173,
+            "defense": 277,
+            "magicResist": 40,
+            "attackSpeed": 250,
+            "critChance": 0.41,
+            "critDamage": 2.49,
+            "physDodge": 0.48,
+            "magicDodge": 0.19,
+            "magicFind": 0,
+            "goldFind": 0,
+            "resistances": {
+              "fire": 61,
+              "cold": 82,
+              "lightning": 56,
+              "poison": 40,
+              "arcane": 118,
+              "physical": 58
+            }
+          },
+          "preparedSkills": {
+            "sorceress.ice_bolt": 1,
+            "sorceress.ice_blast": 20,
+            "sorceress.static_field": 4,
+            "sorceress.warmth": 1,
+            "sorceress.cold_mastery": 20
+          },
+          "wins": 25,
+          "secondHalfWins": 12,
+          "qualified": false,
+          "timings": {
+            "successfulRoutes": 25,
+            "victoriousRouteSecondsP50": 208.26367668670676,
+            "victoriousRouteSecondsP95": 224.19090175346224,
+            "failedRoutes": 7,
+            "failedAttemptSeconds": [
+              233.32044355377423,
+              111,
+              98.81503006012025,
+              96.928,
+              217.35608016032063,
+              238.35911022044087,
+              194.57511022044088
+            ]
+          }
+        }
+      ],
+      "sourceCount": 2693,
+      "sourceUnchanged": true,
+      "genuineSaveUnchanged": true,
+      "wallSeconds": 68.626906013
+    },
+    {
+      "stage": "arreat-current-screen",
+      "kind": "diagnostic only; no genuine action, projected-save promotion, source/balance/threshold change",
+      "sourceHead": "18ed376cab0e78c4b4af714b6c4ce669ebb5ecbd",
+      "seedNamespace": "arreat-earned35-current-v1-",
+      "variantResults": [
+        {
+          "id": "unchanged-earned-orb-build",
+          "dexterity": 0,
+          "wins": 30,
+          "secondHalfWins": 15,
+          "qualified": true,
+          "timings": {
+            "successfulRoutes": 30,
+            "victoriousRouteSecondsP50": 208.83333333333334,
+            "victoriousRouteSecondsP95": 226,
+            "failedRoutes": 2,
+            "failedAttemptSeconds": [
+              195.16666666666666,
+              196.16666666666669
+            ]
+          }
+        }
+      ],
+      "sourceCount": 2693,
+      "sourceUnchanged": true,
+      "genuineSaveUnchanged": true,
+      "wallSeconds": 63.137613351
+    }
+  ],
+  "transport": {
+    "ordinaryPublicBrowser": true,
+    "viewport": {
+      "width": 360,
+      "height": 640
+    },
+    "locale": "en",
+    "preparation": "none",
+    "requestedClockAdvanceMs": 1208600,
+    "executionWallMs": 351649.7138,
+    "fixedOriginalDate": true,
+    "seedOrdinalOrStoreInjection": false,
+    "skipOrSpeedOverride": false,
+    "pacingAcceptance": false
+  },
+  "visuals": {
+    "individuallyViewed": [
+      "native-arreat402/407-nonwin.png"
+    ],
+    "scope": "Top360x640viewport shows formation/MP/fixednavigation; enemygrid and terminalpanel lie below this scroll. Runtime draw/liveenemy evidence is DOM, not that screenshot. Five victory captures retained without individual visual approval. No wholeapp/mobile/a11y acceptance."
+  },
+  "remaining": "Full211bounded/oneunverified/onereview; CobraBUG304/ColdMasteryreview, earnedBaal/C2-C4/two builds/class/pacing/economy/endgame/fullG0-G7/independenthuman acceptance remain open. Local only.",
+  "retention": {
+    "status": "all consumers terminal; archive/readback/exact raw-task cleanup complete",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-baal402-dex-ly7k_rec-raw.tar.gz",
+    "archiveSHA256": "833798d1a591457eb5e27452430331b7c40d744f3e488dc7a99213e7409545f7",
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-baal402-dex-ly7k_rec-raw-manifest.json",
+    "manifestSHA256": "88d9dfa8c450618544a4420e66897b5863249f391fa69539ae7d09ada95db673",
+    "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-baal402-dex-ly7k_rec-retention.json",
+    "verifiedMembers": 1083,
+    "removedFiles": 1083,
+    "removedDirectoriesIncludingRoot": 22,
+    "remaining": [],
+    "failures": [],
+    "formerTaskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-baal402-dex-ly7k_rec",
+    "formerTaskRootAbsent": true,
+    "owner": "Root retains archive/manifest/receipt through independent and full-v1 evidence consumers, then removes only these exact paths. Source/history/worktree/shared caches/dependencies and genuine campaign fixture are preserved.",
+    "sourceDeliverable": "Preserve versioned new native retained-final.json.gz; original Ancients ancestry also remains immutable."
+  }
+}

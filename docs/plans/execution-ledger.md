@@ -12,6 +12,8 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| C2 current earned Arreat402–407 | genuine prefix advanced; first nonwin stops; Baal/fullC2 open | Current18ed376c unchanged Orb30/32+15/16qualification. Ordinary authenticated21→22import,402–406five clears plus407W1/2:32victories,219440XP/642gear;407W3draw/two living enemies, zero failed-wave income.55native saves/seven exact close-Continue pairs/all23682ancestral full payloads preserved. New only resumeL33/XP368701/stat10/skill1/24324items/next408; Riteclaimed/Evenotstarted/Baaluncleared. [Evidence](evidence/d11-earned-arreat402-407.md).1083archive members verified;1083files/22dirs/rawroot exactly removed,remaining[]/failures[]; root retains archive/sidecars. Never replay402–407. |
+| P15 current Baal adaptation screens | control qualifies original set; holdout and Dexterity fail; no genuine boss action | Exact historical32seeds current ranked-Ice27/32+14/16 versus Dex10 19/32+10/16; unchanged independent holdout25/32+12/16fails26/32gate. Terminal cooldown-carry source evolution retained; example faster420ms actor period reduces IceBlast60→42casts.96Baal/32Arreat diagnostics preserve every outcome; no threshold/source tuning or projected-save promotion. [Evidence](evidence/d11-earned-arreat402-407.md). Next genuine input408; separately freeze any Blizzard1/all-enemy priority adaptation.211bounded/oneunverified/onereview and full-v1 gates remain open. |
 | P16 optional support / BUG317 | locally resolved; integration/retention complete; destination/independent open | 1037886f native default-closed details/summary reuses translated support label,44px controls and visible focus; version stays visible. Existing11Settings tests/scopedtypes/lintPASS. Final20/20both locales/five sizes/no-character+fresh-character browser contexts pass keyboard/pointer/remount/geometry/hit testing;20character originals viewed. Actual developer profile URL asked asynchronously, no answer; generic homepage unchanged/fullF20 not accepted. [Evidence](evidence/p16-support-pwa-install-icons.md); Frozen8fc0ae32 fresh19935/940/twoexisting skips1006.924s/types136.582s/lint237.917sPASS;2693repository/769external/HEAD exact/rehashed.1691archive members verified;1691files/32dirs/rawroot exactly removed,remaining[]/failures[]. Root retains archive/sidecars through consumers. |
 | P17 installation PNG icons / BUG318 | locally resolved; integration/retention complete; installation/independent open | b17552a6 converts existing SVG artwork into actual PNG192/512; SVG bytes unchanged. Both original MIMEPNG/SVG decode failures retained; original-build guardRED→finalguardGREEN. Ordinary12.447s build, six-chunk bridge/756unique-precache checks and actual PNG/MIME/dimensions/activated-controller browser proofPASS. Empty CDP errors also occurred broken; no prompt observed/headlessOS/Android/Lighthouse/fullG6/independent claim. [Evidence](evidence/p16-support-pwa-install-icons.md); Same fresh19935/940/types/lint integration and1691member retention/exact cleanup completed. Root retains archive/sidecars; source/shared worktree preserved;211bounded/oneunverified/onereview/genuine campaign unchanged. |
 | P16 crafting localization / BUG316 | locally resolved; integration/retention complete; independent open | 6480ac15 removes unused material-only targets and translates each gear source once. Six causal bilingual REDs→GREEN, focused46/3/types/lint/buildPASS. Same24000-cap360px median236→119ms(en)/349→131ms(zh-CN);100-item English114→120ms retained. Production comparison4/4plus ten-size/locale cases retain exact ownership/100-card bounds/final-target selection; ten originals viewed. Frozen c882dfe6 full19935/940/two existing opt-in skipsPASS1027.326s, types139.318s/lint236.326sPASS;2693repository/770external inputs/HEAD exact/rehashed.970archive members read-back verified;969files/one dependency link/17dirs/rawroot exactly removed,remaining[]/failures[]; shared target preserved. [Evidence](evidence/p16-inventory-crafting-localization.md) records root-owned archive/sidecars retained through consumers. Whole-app/device/earned/independent acceptance open;211bounded/oneunverified/onereview/genuine campaign unchanged. |
@@ -13862,3 +13864,24 @@ through independent/full-v1 consumers. BUG317/318 locally resolved; actual
 support destination, installation/device/Lighthouse/fullG6, independent and
 whole-v1 gates remain open. No source/campaign/remote action in this closure;
 full test timing budget remains exceeded. Umbrella goal/claim stay active.
+
+
+## D11/P15 current-source screens and genuine Arreat402–407
+
+Current-source ranked-Ice original-seed27/32+14/16 qualifies, but independent
+holdout25/32+12/16 fails. Ten-Dexterity alternative19/32+10/16 also fails;
+no genuine Baal/reset/allocation action follows. Unchanged genuine Orb build
+qualifies cleared Arreat30/32+15/16, then native ordinary402–406 clears plus
+407W1/2 add219440XP/642gear before407W3draw stops the frozen first-nonwin policy.
+55saved barriers/seven exact Save-close-Continue pairs/all23682ancestral full
+payloads pass root audit. Genuine new resumeL33/XP368701/stat10/skill1,
+24324owned/nextNormal408/Nightmare0; Riteclaimed/Evenotstarted/Baaluncleared.
+Raw201d9651127398bb9e261aa6cddac3901859c115a85c589808789501b2c12a74.
+Never replay402–407; previous402Ancients fixture stays ancestry, not current.
+All2693repository/762build/eight critical task inputs exact; existing19935/940
+whole result applies through unchanged product sources. All owned processes
+terminal/40383closed;1083archive members read-back verified, exact1083files/
+22dirs/rawroot cleanup remaining[]/failures[]. Root retains archive/sidecars
+in [evidence](evidence/d11-earned-arreat402-407.md); versioned native final kept.
+211bounded/oneunverified/onereview, C2–C4/fullG0–G7/earnedBaal/pacing/builds/
+independent/human acceptance remain open. Full umbrella goal/claim active.
