@@ -3,8 +3,10 @@
 Status: The predetermined genuine sequence, once-only Claim/title and actual
 ruby utility are verified in [earned endgame4](evidence/p18-earned-endgame4.md).
 The protocol below records the original frozen input and action order. It is not
-a replay instruction; resume only its audited successor. Deliberate actual-defeat/
-fresh-retry and partial-run-discard controls, broader P18 and full-v1 gates remain open.
+a replay instruction; resume only its audited successor. The separate
+[failure controls](evidence/p18-failure-controls.md) verify partial-run discard
+and fresh admission. The intended loss control drew and stopped; actual defeat/
+fresh retry, broader P18 and full-v1 gates remain open.
 Owner: root, existing registered umbrella worktree; preserve unrelated changes.
 
 ## Input and constraints

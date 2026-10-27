@@ -1,0 +1,221 @@
+{
+  "status": "partial-pass-loss-inconclusive",
+  "scope": "root separate saved-artifact audit, no runtime rerun or independent QA claim",
+  "scenarios": [
+    {
+      "scenario": "loss",
+      "savedSnapshots": 16,
+      "durablePairs": 1,
+      "waveOneXP": 3600,
+      "waveOneNewEquipment": 1,
+      "actualDefeatEstablished": false,
+      "lossControlOutcome": "draw; stopped without retry; settlement not established",
+      "stoppedExportPreservesPriorRewards": true,
+      "partialContinueExact": null,
+      "originalOwned": 27633,
+      "finalOwned": 27634,
+      "finalEndgame": {
+        "attemptOrdinal": 5,
+        "clearCounts": {
+          "ashen": 3,
+          "glacial": 1
+        },
+        "achievementRewardClaimed": true
+      },
+      "noAncestralPayloadLoss": true,
+      "noDuplicatedRewards": true,
+      "noDiagnosticPromotion": true,
+      "actions": [
+        "enter-ashen-native4",
+        "pause-settled-wave-two",
+        "equip-plain-weapon-it-3tshd-9r",
+        "equip-plain-chest-it-87vn9-a6",
+        "equip-plain-offhand-it-6fzu0-b4",
+        "equip-plain-amulet-it-3h1j3-5",
+        "equip-plain-gloves-it-8jv2k-6",
+        "equip-plain-boots-it-5iwwr-f",
+        "equip-plain-belt-it-61y50-a7",
+        "equip-plain-head-it-1owml-19",
+        "clear-priority-slot-3",
+        "clear-priority-slot-2",
+        "clear-priority-slot-1"
+      ]
+    },
+    {
+      "scenario": "partial",
+      "savedSnapshots": 10,
+      "durablePairs": 3,
+      "waveOneXP": 3600,
+      "waveOneNewEquipment": 1,
+      "actualDefeatEstablished": null,
+      "lossControlOutcome": null,
+      "stoppedExportPreservesPriorRewards": null,
+      "partialContinueExact": true,
+      "originalOwned": 27633,
+      "finalOwned": 27634,
+      "finalEndgame": {
+        "attemptOrdinal": 6,
+        "clearCounts": {
+          "ashen": 3,
+          "glacial": 1
+        },
+        "achievementRewardClaimed": true
+      },
+      "noAncestralPayloadLoss": true,
+      "noDuplicatedRewards": true,
+      "noDiagnosticPromotion": true,
+      "actions": [
+        "enter-ashen-native4",
+        "pause-settled-wave-two",
+        "enter-ashen-native5-after-partial-discard",
+        "pause-fresh-native5",
+        "flee-only-fresh-retry-cleanup"
+      ]
+    }
+  ],
+  "inputGzipSHA256": "73c79b289f9c010ee5b75813aa14867f4cf7616e2847ac52245b7fb9e3bd70f6",
+  "sourceInputs": 2694,
+  "productionFiles": 762,
+  "executionHEAD": "55fc0c40466482517faff997e747643f1fcc2d0e",
+  "genuineResume": "../earned-endgame4/retained-final.json.gz",
+  "noDiagnosticPromotion": true,
+  "bridgeGuard": {
+    "chunks": 6,
+    "unchangedRegexes": 5,
+    "violations": []
+  },
+  "buildReusedFrom": "3b226e8d5af41a7c41b74fefcf8e74287b848a98",
+  "executionHandles": {
+    "preview": {
+      "handle": 74584,
+      "pid": 3837380,
+      "wrapperPID": 3837379,
+      "port": 55095,
+      "live": false,
+      "exitCode": 0,
+      "consumed": true,
+      "pidAbsent": true,
+      "portClosed": true,
+      "connectExit": 111
+    },
+    "loss": {
+      "handle": 66068,
+      "exitCode": 1,
+      "consumed": true,
+      "status": "stopped draw, no actual-defeat acceptance"
+    },
+    "partial": {
+      "handle": 81399,
+      "exitCode": 0,
+      "consumed": true,
+      "status": "pass"
+    },
+    "audit": {
+      "handle": 79182,
+      "exitCode": 0,
+      "consumed": true
+    },
+    "strengthenedAudit": {
+      "handle": 59235,
+      "exitCode": 0,
+      "consumed": true
+    }
+  },
+  "cleanup": {
+    "previewPID": 3837380,
+    "pidAbsent": true,
+    "port": 55095,
+    "portClosed": true,
+    "browserProcessesAbsent": true,
+    "profilesDownloadsAbsent": true,
+    "previewHandleConsumed": true
+  },
+  "screenshotReview": {
+    "reviewer": "root",
+    "individuallyInspected": [
+      "loss/weak-wave-two-terminal.png"
+    ],
+    "observation": "Shows mobilewave2/4/header/cards; scroll container leaves terminal log outside visible screenshot. Draw/death conclusions come from saved DOM/log, not screenshot. No broad visual/mobile acceptance."
+  },
+  "remaining": [
+    "actual defeat with no failed-wave rewards and fresh retry",
+    "broader P18/C2-C4/full G0-G7 acceptance"
+  ],
+  "independentArtifactReview": {
+    "verdict": "approve",
+    "findings": [],
+    "reviewer": "/root/review_combat_log",
+    "scope": "independent read-only artifact evidence review; no runtime QA/builds/tests/gameplay",
+    "checked": {
+      "savedSnapshots": 26,
+      "exactDurablePairs": 4,
+      "fullOwnedAndRubyPayloads": true,
+      "counters": true,
+      "sourceBuildHarnessFreezes": true,
+      "strengthenedAuditAndDraftWording": true
+    },
+    "limitations": [
+      "actual defeat unestablished",
+      "draw settlement unestablished",
+      "retry after defeat unestablished"
+    ],
+    "consumersReleased": true,
+    "scratchFilesCreated": []
+  },
+  "buildProvenance": {
+    "status": "pass",
+    "originalBuildHEAD": "3b226e8d5af41a7c41b74fefcf8e74287b848a98",
+    "executionHEAD": "55fc0c40466482517faff997e747643f1fcc2d0e",
+    "documentationOnlyChanges": [
+      "docs/plans/evidence/d11-earned-all-areas431.md",
+      "docs/plans/evidence/fixtures/earned-endgame-qualification/summary.json",
+      "docs/plans/evidence/fixtures/earned-endgame4/retained-final.json.gz",
+      "docs/plans/evidence/fixtures/earned-endgame4/summary.json",
+      "docs/plans/evidence/p18-earned-endgame-qualification.md",
+      "docs/plans/evidence/p18-earned-endgame4.md",
+      "docs/plans/execution-ledger.md",
+      "docs/plans/p18-earned-endgame.md",
+      "production/bugs/BUG-322-combat-log-touch-and-bounded-scroll.md"
+    ],
+    "exactRuntimeInputs": 2694,
+    "exactProductionFiles": 762,
+    "reusedArchive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-log-release-validation-9chckk2b-raw.tar.gz",
+    "archiveSHA256": "20bfcbfa273baf88a328ef08d0067bcdd4b16c46b666d94c8c4608c766ec3134",
+    "genuineInputRawSHA256": "7fc4a5495355542b07a0cc05bb265ee0502d9e6ffd968938902203acf5da5007",
+    "genuineInputGzipSHA256": "73c79b289f9c010ee5b75813aa14867f4cf7616e2847ac52245b7fb9e3bd70f6"
+  },
+  "harnessHashes": {
+    "failure-controls.mjs": "04190d2efa4cddfb4734ba60c583d2e778048d2e07d64cade8c75fc2db3d97ee",
+    "serve.py": "2c7fbba5ef2a65981169c0a2a5c954408fcce130b2e0afb0d432f50de04f5770",
+    "plan-review.json": "88a9faea3eef8daace461ed3f75c437286d362c37162d7e8a06282f74ed24ba9"
+  },
+  "auditScriptHashes": {
+    "audit.py": "3cc62a94c1b962c1f9e1d46ffee91ff8f9d6d9696012e0f6dc0495347d3c7bc4",
+    "audit-v1.py": "37538ff36f0f392a4f5e554dc3c020391e5065e501230f012785bad47a4c9c40"
+  },
+  "retention": {
+    "owner": "root",
+    "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-failurecontrols-qg8kesc9",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-failurecontrols-qg8kesc9-raw.tar.gz",
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-failurecontrols-qg8kesc9-raw-manifest.json",
+    "archiveSHA256": "d6b55031ee20fa72f7724afb6f411f101801b404b05fd89973f7ac12adfd06ad",
+    "manifestSHA256": "a0fe26511831ab478fb4693bf4068522a4787f3254c0c81c3b4bdd05e7a15bb3",
+    "archiveBytes": 45089938,
+    "verifiedMembers": 857,
+    "verifiedFiles": 843,
+    "verifiedDirectories": 14,
+    "streamReadbackVerified": true,
+    "exactRawInventoryAndHashesVerified": true,
+    "cleanup": {
+      "remaining": [],
+      "failures": [],
+      "rootAbsent": true
+    },
+    "retainUntil": "independent/full-v1 evidence consumers released; root owns exact sidecar removal",
+    "wallSeconds": 2.84972989896778,
+    "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-failurecontrols-qg8kesc9-retention.json",
+    "handle": 88716,
+    "exitCode": 0,
+    "consumed": true
+  }
+}

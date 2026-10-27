@@ -385,7 +385,7 @@
     "wallSeconds": 1.749510442954488
   },
   "unaccepted": [
-    "deliberate actual defeat/fresh retry and partial-run discard",
+    "actual defeat/no failed-wave rewards/fresh retry",
     "14 viable builds",
     "30-50 active-hour pacing/economy",
     "whole-app mobile/a11y/localization",
@@ -454,5 +454,13 @@
       "ownership.json"
     ],
     "rootAbsent": true
+  },
+  "subsequentDisposableControls": {
+    "evidence": "../../p18-failure-controls.md",
+    "summary": "../endgame-failurecontrols/summary.json",
+    "partialRunDiscard": "pass",
+    "freshAdmissionAfterDiscard": "pass",
+    "actualDefeatRetry": "inconclusive draw; remains unaccepted",
+    "genuineFixtureUnchanged": true
   }
 }

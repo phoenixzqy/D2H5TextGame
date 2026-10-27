@@ -14041,3 +14041,47 @@ integration/independent,C3/C4/fullG0–G7,211boundedskills/oneunverifiedCobraBUG
 onereviewColdMastery,14builds,30–50activehourpacing/economy,wholeappmobile/a11y/
 localization,performance/PWA,humanplaytest/soak remainopen. Fullgoal/worktree
 claimactive;localonly.
+
+## P18 partial-run discard and stopped draw control — 2026-10-27
+
+[Disposable controls](evidence/p18-failure-controls.md) execute against55fc0c40
+using separate exact earned-endgame4 imports. Genuine raw/gzip hashes stay exact;
+no diagnostic save is promoted. Reused3b226e8d production build is supported by
+2694 exact runtime/config/test inputs,762 exact assets, verified ancestor archive
+and docs-only intervening commits. Unchanged five bridge regexes pass all six
+JS chunks; no bridge at runtime. No redundant full suite/build is claimed.
+
+Original loss66068 exits1/consumed: strong native4 wave1 victory settles3600XP/
+one item, then eight preplanned owned plain swaps and three public priority clears
+on unsettledwave2. Original wave2 draws; hero and all four enemies remain alive.
+Unexpected-outcome assertion stops the control.16 saved snapshots, original
+failure, DOM/log/screenshots and consumed-action journal retained. Stopped export
+exactly preserves last weak checkpoint/wave1 rewards/attempt5/clears3,1/claimed.
+No retune, seed hunt, retry or Flee. Draw settlement/actual defeat/no-failed-wave-
+reward settlement/retry after defeat remain unestablished; no passing loss claim.
+
+Independent partial81399 exits0/consumed: same strongwave1, nativewave2 Pause,
+Save/close/new-page Continue exactlyTown with every saved field unchanged and no
+serialized active route. Fresh native5 admission stageswave1/attempt6 and differs
+only by one admission counter; no duplicated earlier rewards or clear/cache.
+Flee ends only this fresh attempt for cleanup; final durable pair exact.10saved
+snapshots/threepairs,27634uniqueequipment; input27633 full ancestral payloads,
+campaign/claimed/ruby/mercgear remain preserved.
+
+Root separate strengthened artifact audit passes26snapshots/fourpairs/all acquired
+payloads, counters and freezes. Independent artifact review approves/no findings
+and releases consumers without scratch; no independent runtime QA. One inspected
+mobile screenshot showswave2 header/cards; terminal log is outside its scroll
+viewport, so draw conclusion comes from saved DOM/log. Fixed historicalDate/
+100ms transport is functional evidence, not pacing/physical-device acceptance.
+
+Owned previewPID3837380 absent/74584consumed/55095closed, browser PIDs/profiles/
+downloads absent. Retainer88716 exits0/consumed:857members/843files/14dirs verified
+by streamed readback and original hashes, then exact task-root cleanup. Remaining
+[]/failures[]/rawrootabsent. Root retains only archive/manifest/receipt at exact
+paths in evidence through independent/fullv1consumers, then owns removal.
+ArchiveSHAd6b55031ee20fa72f7724afb6f411f101801b404b05fd89973f7ac12adfd06ad.
+Current genuine resume remains earned-endgame4. Actual-defeat/retry and broader
+P18/C2-C4/fullG0-G7/builds/pacing/economy/mobile/a11y/localization/performance/PWA/
+independent/human acceptance stay open; soak execution stays human-owned.
+Full objective and registered umbrella claim remain active; local only.

@@ -122,9 +122,10 @@ The disposable two-file retainer utility is removed and absence verified.
 [BUG-322](../../../production/bugs/BUG-322-combat-log-touch-and-bounded-scroll.md)
 records the completed bounded combat-log validation; broader UI acceptance stays open.
 
-Deliberate actual-defeat/fresh-retry and partial-run-discard controls remain
-unexecuted; they require labelled disposable copies after genuine retention.
-Flee alone cannot establish defeat. Full P18/C2–C4/G0–G7,14 viable builds,
+Subsequent labelled disposable [failure controls](p18-failure-controls.md)
+verify partial-run discard and fresh admission. The loss control draws and stops;
+actual defeat/fresh retry remains unaccepted. Flee alone cannot establish defeat.
+Full P18/C2–C4/G0–G7,14 viable builds,
 30–50 active-hour pacing/economy, whole-app mobile/a11y/localization,
 performance/PWA installation, human soak/playtests and independent acceptance
 remain open. The full objective and registered umbrella worktree remain active.
