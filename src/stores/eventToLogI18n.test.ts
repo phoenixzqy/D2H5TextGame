@@ -111,7 +111,9 @@ describe.each(['en', 'zh-CN'])('Rogue Inner Sight status feedback %s', locale =>
       expect(i18n.t('combat:effect.status.merc-inner-sight')).toBe(english ? 'Inner Sight' : '心眼');
       expect(eventToLocalizedLogEntry({ kind: 'action', actor: 'rogue', skillId: 'mskill-inner-sight' }, names)?.message)
         .toBe(english ? 'Rogue Scout — Inner Sight casts Inner Sight.' : '罗格侦察兵 — 内视 施放了 心眼。');
-      for (const statusId of ['inner-sight', 'inner_sight', 'fixture-unknown-status']) {
+      expect(eventToLocalizedLogEntry({ kind: 'status', target: 'enemy', statusId: 'inner-sight' }, names)?.message)
+        .toBe(english ? 'Target is afflicted with [Inner Sight].' : 'Target 进入【心眼】状态。');
+      for (const statusId of ['inner_sight', 'fixture-unknown-status']) {
         expect(eventToLocalizedLogEntry({ kind: 'status', target: 'enemy', statusId }, names)?.message)
           .toBe(english ? `Target is afflicted with [${statusId}].` : `Target 进入【${statusId}】状态。`);
       }
@@ -122,6 +124,7 @@ describe.each(['en', 'zh-CN'])('Rogue Inner Sight status feedback %s', locale =>
 });
 
 const statusNames = [
+  ['inner-sight', 'Inner Sight', '心眼'],
   ['merc-inner-sight', 'Inner Sight', '心眼'], ['chill', 'Chill', '冰冷'],
   ['freeze', 'Freeze', '冻结'], ['paralyze', 'Paralyze', '麻痹'], ['stun', 'Stun', '眩晕'],
   ['ignite', 'Ignite', '点燃'], ['burn', 'Burn', '燃烧'], ['poison', 'Poison', '中毒'],
@@ -146,7 +149,7 @@ describe.each(['en', 'zh-CN'])('shared status log names in %s', locale => {
       await i18n.changeLanguage(previous);
     }
   });
-  it.each(['fixture-unknown-status', 'inner-sight', 'inner_sight', 'fixture.status', 'fixture/status', 'fixture:status'])(
+  it.each(['fixture-unknown-status', 'inner_sight', 'fixture.status', 'fixture/status', 'fixture:status'])(
     'retains exact unknown ID%s as fallback', async statusId => {
       const previous = i18n.language;
       try {

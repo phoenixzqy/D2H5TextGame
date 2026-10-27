@@ -227,14 +227,21 @@ it('settles once then carries real resources and creates a newly paid cycle from
     expect(summon.unit).not.toBe(mageSummons(first.binding)[index]?.unit);
   }); // Local IDs may repeat; fresh event/unit identity and zero-preload input prove creation.
   const cold = fresh[1];
+  // BUG298: Fire Bolt rolls at its 2320ms impact, after the 1940ms Mage actions.
+  const bolt = binding.recording.events.find(e => e.kind === 'action' && e.skillId === 'monster.fire_bolt');
+  expect(bolt).toMatchObject({ simClockMs: 1820 });
+  if (bolt?.kind !== 'action') throw new Error('Missing authored Fire Bolt launch');
+  expect(binding.recording.events.find(e => e.kind === 'damage' && e.source === bolt.actor))
+    .toMatchObject({ damageType: 'fire', simClockMs: 2320 });
   const earlyCold = binding.recording.events.filter(e => e.kind === 'damage' && e.source === cold?.unit.id && e.simClockMs < 4000);
   expect(earlyCold).toHaveLength(2);
   expect(earlyCold).toEqual([
-    expect.objectContaining({ dodged: true, amount: 0, damageType: 'cold', simClockMs: 1940 }),
-    expect.objectContaining({ dodged: false, amount: 58, damageType: 'cold', simClockMs: 3880 })
+    expect.objectContaining({ dodged: false, amount: 58, damageType: 'cold', simClockMs: 1940 }),
+    expect.objectContaining({ dodged: true, amount: 0, damageType: 'cold', simClockMs: 3880 })
   ]);
+  expect(binding.recording.events.at(-1)).toMatchObject({ kind: 'end', winner: 'player', simClockMs: 4000 });
   expect(binding.recording.outcome.finalPlayerTeam.find(u => u.id === HERO))
-    .toMatchObject({ mana: 694, manaRegenCarry: 0.888, manaRegenExactCarry: '0.888' });
+    .toMatchObject({ mana: 687, manaRegenCarry: 0.244, manaRegenExactCarry: '0.244' });
   const paid = structuredClone(durable());
   expect(paid.experience).toBeGreaterThan(unpaid.experience ?? Infinity);
   expect(paid.rewards).not.toEqual(unpaid.rewards);

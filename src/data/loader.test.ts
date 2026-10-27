@@ -112,10 +112,15 @@ describe('data/loader', () => {
     });
 
     it('does not impose mercenary metadata on the distinct Amazon identity', () => {
-      const candidate = { ...row, id: 'skills-amazon-inner-sight' };
-      Reflect.deleteProperty(candidate, 'statusEffect');
-      Reflect.deleteProperty(candidate, 'cost');
-      expect(() => validateGameData(skillSchema.$id, candidate)).not.toThrow();
+      const amazon = skills.find(skill => skill.id === 'skills-amazon-inner-sight');
+      expect(amazon).toMatchObject({ cost: { mana: 5 }, appliesStatus: ['inner-sight'],
+        statusEffect: { durationMs: 8000, defenseReductionPct: 25 } });
+      expect(() => validateGameData(skillSchema.$id, amazon)).not.toThrow();
+      // The Amazon has its own paid finite contract, rather than a renamed merc row.
+      for (const fields of [{ appliesStatus: ['merc-inner-sight'] }, { cost: undefined },
+        { statusEffect: undefined }])
+        expect(() => validateGameData(skillSchema.$id, { ...amazon, ...fields }))
+          .toThrow(GameDataValidationError);
     });
   });
 
