@@ -1900,6 +1900,15 @@ function dynamicDescription(
       { min: firstDamage.min, max: firstDamage.max });
   }
   if (stats && firstDamage &&
+    ((skill.id === 'skills-amazon-fend' && stats.areaShape === 'cross' && stats.maxTargets === 5) ||
+      (['skills-amazon-exploding-arrow', 'skills-amazon-immolation-arrow'].includes(skill.id) && stats.areaShape === 'box-3x3' && stats.maxTargets === 9) ||
+      (skill.id === 'skills-amazon-lightning-fury' && stats.areaShape === 'chain'))) {
+    return t('amazon.' + skill.id.slice('skills-amazon-'.length) + '.desc', {
+      min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost,
+      cooldown: stats.cooldown, maxTargets: stats.maxTargets, paralyzeSeconds: stats.control?.durationSeconds
+    });
+  }
+  if (stats && firstDamage &&
     ((['skills-amazon-power-strike', 'skills-amazon-charged-strike'].includes(skill.id) && stats.onHitBolts !== undefined) ||
       (skill.id === 'skills-amazon-poison-javelin' && stats.areaShape === 'box-3x3' && stats.maxTargets === 9) ||
       (skill.id === 'skills-amazon-lightning-strike' && stats.areaShape === 'chain' && stats.maxTargets === 5))) {

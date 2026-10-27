@@ -325,7 +325,7 @@
     },
     "lightning-fury": {
       "name": "Lightning Fury",
-      "desc": "Hurls a lightning javelin that splits and chains to all nearby enemies."
+      "desc": "Chain through every original living enemy, starting at target priority and then the nearest grid neighbor. Each receives one independent Lightning attempt for {{min}}–{{max}} base damage; landed hits apply {{paralyzeSeconds}} s Paralyze. Pay {{mana}} MP once; {{cooldown}} s cooldown."
     },
     "plague-javelin": {
       "name": "Plague Javelin",
@@ -361,7 +361,7 @@
     },
     "exploding-arrow": {
       "name": "Exploding Arrow",
-      "desc": "Fires an arrow that explodes on impact, hitting multiple enemies."
+      "desc": "A 3×3 explosion makes one independent Fire attempt at each of up to {{maxTargets}} living enemies for {{min}}–{{max}} base damage. Landed hits apply Burn. Pay {{mana}} MP once; {{cooldown}} s cooldown."
     },
     "ice-arrow": {
       "name": "Ice Arrow",
@@ -373,7 +373,7 @@
     },
     "immolation-arrow": {
       "name": "Immolation Arrow",
-      "desc": "Fires an explosive arrow that leaves a pyre, burning enemies over time."
+      "desc": "A 3×3 explosion makes one independent Fire attempt at each of up to {{maxTargets}} living enemies for {{min}}–{{max}} base damage. The pyre leaves Burn on struck foes. Pay {{mana}} MP once; {{cooldown}} s cooldown."
     },
     "jab": {
       "name": "Jab",
@@ -401,7 +401,7 @@
     },
     "fend": {
       "name": "Fend",
-      "desc": "A defensive flurry that strikes all surrounding enemies."
+      "desc": "Strike up to {{maxTargets}} living enemies in a cross, once each, for {{min}}–{{max}} Physical base damage. Pay {{mana}} MP once; {{cooldown}} s cooldown. Misses consume attempts."
     },
     "lightning-strike": {
       "name": "Lightning Strike",

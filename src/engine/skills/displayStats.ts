@@ -233,7 +233,7 @@ export interface SkillRankDisplayStats {
   /** Paid personal bonuses and enemy Blind share this explicit finite duration. */
   readonly cloak?: { readonly durationSeconds: number; readonly blindHitPenaltyPoints: number };
   /** Explicit authored cone footprint; it counts covered cells, not enemy slots. */
-  readonly areaShape?: 'cone-2' | 'cone-3' | 'box-3x3' | 'chain';
+  readonly areaShape?: 'cone-2' | 'cone-3' | 'box-3x3' | 'chain' | 'cross';
   /** Per-attempt Lightning base after a landed primary; not a cast damage total. */
   readonly onHitBolts?: { readonly count: number; readonly targetMode: 'original' | 'adjacent-others'; readonly min: number; readonly max: number };
   /** Authored limit after resolving the full area and its ordinary target order. */
@@ -691,7 +691,8 @@ export function computeSkillRankDisplayStats(
   const maxTargets = skill.trigger === 'active' && skill.target === 'area-enemies' &&
     (((skill.id === 'skills-paladin-zeal' || strikesPerTarget !== undefined) && skill.aoeShape === 'cross' && skill.maxTargets === 3) ||
       (['skills-sorceress-chain-lightning', 'skills-amazon-lightning-strike'].includes(skill.id) && skill.aoeShape === 'chain' && skill.maxTargets === 5) ||
-      (skill.id === 'skills-amazon-poison-javelin' && skill.aoeShape === 'box-3x3' && skill.maxTargets === 9) ||
+      (['skills-amazon-poison-javelin', 'skills-amazon-exploding-arrow', 'skills-amazon-immolation-arrow'].includes(skill.id) && skill.aoeShape === 'box-3x3' && skill.maxTargets === 9) ||
+      (skill.id === 'skills-amazon-fend' && skill.aoeShape === 'cross' && skill.maxTargets === 5) ||
       (skill.id === 'skills-amazon-multiple-shot' && skill.aoeShape === 'cone-3' && skill.maxTargets === 5))
     ? skill.maxTargets : undefined;
   const selfCost = skill.onHitSelfDamage;
@@ -802,7 +803,9 @@ export function computeSkillRankDisplayStats(
     ...(alwaysHits ? { alwaysHits: true as const } : {}),
     ...(onHitBolts ? { onHitBolts } : {}),
     ...(skill.trigger === 'active' && skill.target === 'area-enemies' &&
-      ((skill.id === 'skills-amazon-poison-javelin' && skill.aoeShape === 'box-3x3' && maxTargets === 9) ||
+      ((['skills-amazon-poison-javelin', 'skills-amazon-exploding-arrow', 'skills-amazon-immolation-arrow'].includes(skill.id) && skill.aoeShape === 'box-3x3' && maxTargets === 9) ||
+       (skill.id === 'skills-amazon-fend' && skill.aoeShape === 'cross' && maxTargets === 5) ||
+       (skill.id === 'skills-amazon-lightning-fury' && skill.aoeShape === 'chain' && skill.maxTargets === undefined) ||
        (skill.id === 'skills-amazon-lightning-strike' && skill.aoeShape === 'chain' && maxTargets === 5))
       ? { areaShape: skill.aoeShape } : {}),
     ...(composite ? { composite } : {}),
