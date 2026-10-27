@@ -1,6 +1,6 @@
 # BUG-318 — Serve actual PNG installation icons
 
-Status: Implemented inb17552a6; actual production PNG decode/precache checks pass; fresh whole integration and independent acceptance pending. Root sole executor/author.
+Status: Locally resolved inb17552a6; actual production PNG decode/precache checks pass; fresh whole integration/retention complete; independent acceptance pending. Root sole executor/author.
 Severity: High — declared installation/favicon icons are undecodable; no player workaround for malformed assets.
 Build: c882dfe642e9bdbd5e0f4567e14b7ab261a1e258; ordinary6480ac15 production build.
 Environment: bundled Chromium147,360×640,production loopback preview, no character; locale-independent; no engine/RNG dependency.
@@ -28,4 +28,4 @@ Corrected baseline auditor waits for an activated worker and actual controller, 
 
 Both .png files are now real PNGs at192/512, from unchanged existing .svg artwork. Standard local rasterization receipt records exact source/output hashes. Updated existing precache guard reproduces original RED and emitted-build GREEN; ordinary production actual decoding/MIME/dimensions and activated/controller evidence pass. Real desktop/Android installation, prompt, maskable safe zone, Lighthouse/fullG6 remain unmeasured.
 
-[Scoped evidence and continuing root ownership](../../docs/plans/evidence/p16-support-pwa-install-icons.md). Fresh whole integration/retention pending; no independent/full-v1 acceptance or remote action.
+[Scoped evidence and continuing root ownership](../../docs/plans/evidence/p16-support-pwa-install-icons.md). Fresh frozen8fc0ae32 full19935/940/two existing opt-in skips, types and lint/purityPASS;2693repository/769external inputs and HEAD exact/rehashed.1691archive members read-back verified,1691files/32dirs/rawroot exactly removed;remaining[]/failures[]. Root retains archive/manifest/receipt linked in the evidence through consumers. No independent/full-v1 acceptance or remote action.

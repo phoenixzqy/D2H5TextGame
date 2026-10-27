@@ -764,13 +764,13 @@
       "manifest": {
         "url": "http://127.0.0.1:4525/manifest.webmanifest",
         "errors": [],
-        "data": "{\"name\":\"D2 H5 Text Game\",\"short_name\":\"D2 \u6587\u5b57\u7248\",\"start_url\":\"/\",\"display\":\"standalone\",\"background_color\":\"#0a0a0a\",\"lang\":\"zh-CN\",\"scope\":\"/\",\"description\":\"\u6697\u9ed1\u7834\u574f\u795e2 \u6587\u5b57\u6e38\u620f HTML5 \u7248\",\"theme_color\":\"#0a0a0a\",\"orientation\":\"portrait\",\"icons\":[{\"src\":\"icons/icon-192.png\",\"sizes\":\"192x192\",\"type\":\"image/png\",\"purpose\":\"any maskable\"},{\"src\":\"icons/icon-512.png\",\"sizes\":\"512x512\",\"type\":\"image/png\",\"purpose\":\"any maskable\"}]}\n",
+        "data": "{\"name\":\"D2 H5 Text Game\",\"short_name\":\"D2 文字版\",\"start_url\":\"/\",\"display\":\"standalone\",\"background_color\":\"#0a0a0a\",\"lang\":\"zh-CN\",\"scope\":\"/\",\"description\":\"暗黑破坏神2 文字游戏 HTML5 版\",\"theme_color\":\"#0a0a0a\",\"orientation\":\"portrait\",\"icons\":[{\"src\":\"icons/icon-192.png\",\"sizes\":\"192x192\",\"type\":\"image/png\",\"purpose\":\"any maskable\"},{\"src\":\"icons/icon-512.png\",\"sizes\":\"512x512\",\"type\":\"image/png\",\"purpose\":\"any maskable\"}]}\n",
         "parsed": {
           "scope": "http://127.0.0.1:4525/"
         },
         "manifest": {
           "backgroundColor": "rgba(10,10,10,1)",
-          "description": "\u6697\u9ed1\u7834\u574f\u795e2 \u6587\u5b57\u6e38\u620f HTML5 \u7248",
+          "description": "暗黑破坏神2 文字游戏 HTML5 版",
           "display": "kStandalone",
           "icons": [
             {
@@ -838,13 +838,13 @@
       "manifest": {
         "url": "http://127.0.0.1:4525/manifest.webmanifest",
         "errors": [],
-        "data": "{\"name\":\"D2 H5 Text Game\",\"short_name\":\"D2 \u6587\u5b57\u7248\",\"start_url\":\"/\",\"display\":\"standalone\",\"background_color\":\"#0a0a0a\",\"lang\":\"zh-CN\",\"scope\":\"/\",\"description\":\"\u6697\u9ed1\u7834\u574f\u795e2 \u6587\u5b57\u6e38\u620f HTML5 \u7248\",\"theme_color\":\"#0a0a0a\",\"orientation\":\"portrait\",\"icons\":[{\"src\":\"icons/icon-192.png\",\"sizes\":\"192x192\",\"type\":\"image/png\",\"purpose\":\"any maskable\"},{\"src\":\"icons/icon-512.png\",\"sizes\":\"512x512\",\"type\":\"image/png\",\"purpose\":\"any maskable\"}]}\n",
+        "data": "{\"name\":\"D2 H5 Text Game\",\"short_name\":\"D2 文字版\",\"start_url\":\"/\",\"display\":\"standalone\",\"background_color\":\"#0a0a0a\",\"lang\":\"zh-CN\",\"scope\":\"/\",\"description\":\"暗黑破坏神2 文字游戏 HTML5 版\",\"theme_color\":\"#0a0a0a\",\"orientation\":\"portrait\",\"icons\":[{\"src\":\"icons/icon-192.png\",\"sizes\":\"192x192\",\"type\":\"image/png\",\"purpose\":\"any maskable\"},{\"src\":\"icons/icon-512.png\",\"sizes\":\"512x512\",\"type\":\"image/png\",\"purpose\":\"any maskable\"}]}\n",
         "parsed": {
           "scope": "http://127.0.0.1:4525/"
         },
         "manifest": {
           "backgroundColor": "rgba(10,10,10,1)",
-          "description": "\u6697\u9ed1\u7834\u574f\u795e2 \u6587\u5b57\u6e38\u620f HTML5 \u7248",
+          "description": "暗黑破坏神2 文字游戏 HTML5 版",
           "display": "kStandalone",
           "icons": [
             {
@@ -1094,14 +1094,86 @@
     "No performance latency/soak, genuine campaign/replay, save migration, earned build/economy/endgame or independent approval claim."
   ],
   "wholeValidation": {
-    "status": "pending",
-    "required": [
-      "full unit",
-      "full typecheck",
-      "full lint/purity"
+    "status": "pass",
+    "head": "8fc0ae32de67e152f29bcaca420d0a56cb093199",
+    "checks": {
+      "support-full-unit": {
+        "label": "support-full-unit",
+        "command": [
+          "npm",
+          "test",
+          "--",
+          "--config",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa/branch.config.mjs",
+          "--workspace",
+          "vitest.workspace.ts"
+        ],
+        "exit": 0,
+        "seconds": 1006.9240944029298,
+        "inputsUnchanged": true,
+        "inputCount": 2693,
+        "headBefore": "8fc0ae32de67e152f29bcaca420d0a56cb093199",
+        "headAfter": "8fc0ae32de67e152f29bcaca420d0a56cb093199",
+        "totals": [
+          " Test Files  940 passed (940)",
+          "      Tests  19935 passed | 2 skipped (19937)"
+        ],
+        "externalInputCount": 769,
+        "externalInputsUnchanged": true,
+        "headUnchanged": true
+      },
+      "support-full-types": {
+        "label": "support-full-types",
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        "exit": 0,
+        "seconds": 136.58236544998363,
+        "inputsUnchanged": true,
+        "inputCount": 2693,
+        "headBefore": "8fc0ae32de67e152f29bcaca420d0a56cb093199",
+        "headAfter": "8fc0ae32de67e152f29bcaca420d0a56cb093199",
+        "totals": [],
+        "externalInputCount": 769,
+        "externalInputsUnchanged": true,
+        "headUnchanged": true
+      },
+      "support-full-lint": {
+        "label": "support-full-lint",
+        "command": [
+          "npm",
+          "run",
+          "lint"
+        ],
+        "exit": 0,
+        "seconds": 237.916648794082,
+        "inputsUnchanged": true,
+        "inputCount": 2693,
+        "headBefore": "8fc0ae32de67e152f29bcaca420d0a56cb093199",
+        "headAfter": "8fc0ae32de67e152f29bcaca420d0a56cb093199",
+        "totals": [],
+        "externalInputCount": 769,
+        "externalInputsUnchanged": true,
+        "headUnchanged": true
+      }
+    },
+    "inputCount": 2693,
+    "externalInputCount": 769,
+    "independentlyRehashed": true,
+    "originalHandlesConsumed": [
+      81483,
+      89503,
+      78951
     ],
-    "previous": "Completed19935/940/two existing opt-in skips atc882dfe6 predates these4source paths; no fresh whole count claimed.",
-    "resume": "Original future handles recorded in task whole-processes.json. Keep source/HEAD/seven critical task scripts/configs/fixed-dist unchanged through all three terminal receipts."
+    "originalChildPIDsAbsent": [
+      3021999,
+      3021998,
+      3021997
+    ],
+    "timingBudget": "Full1006.924s exceeds repository budget; no timing/performance gate pass implied.",
+    "auditArchiveMember": "d2h5-support-disclosure-1rp6gaoa/terminal-process-audit.json"
   },
   "genuine": {
     "fixture": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
@@ -1110,11 +1182,22 @@
     "campaign": "L33; Ancients/Rite claimed; nextNormal402; Baal uncleared",
     "unchanged": true
   },
-  "remainingFullScope": "211bounded/oneunverified/onereview; Cobra BUG304 contract and Cold Mastery review, C2\u2013C4/fullG0\u2013G7, earned builds/pacing/economy/endgame, whole-app mobile/a11y/performance, independent/human acceptance remain open.",
+  "remainingFullScope": "211bounded/oneunverified/onereview; Cobra BUG304 contract and Cold Mastery review, C2–C4/fullG0–G7, earned builds/pacing/economy/endgame, whole-app mobile/a11y/performance, independent/human acceptance remain open.",
   "retention": {
-    "status": "Active raw task required for final whole checks/evidence consumers; archive/readback/exact cleanup pending",
-    "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa",
-    "owner": "Root retains exact task until consumers finish, archives/readbacks required evidence, removes exact task-owned build/cache/disposables; then retains resulting archive/manifest/receipt through independent/full-v1 consumers. Shared dependencies/worktree preserved.",
+    "status": "archive readback and exact raw-task cleanup complete",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa-raw.tar.gz",
+    "archiveSHA256": "2b7dba14c8f36585b33299866321dc7e1ba978a349837e62c1854c5ad90e33e9",
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa-raw-manifest.json",
+    "manifestSHA256": "ef13be0f41302f61cf48f94d530209a38394b6a47190abdebfb09bf2c31c069d",
+    "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa-retention.json",
+    "verifiedMembers": 1691,
+    "removedFiles": 1691,
+    "removedDirectoriesIncludingRoot": 32,
+    "remaining": [],
+    "failures": [],
+    "owner": "Root retains archive/manifest/receipt through independent and full-v1 evidence consumers, then removes only these exact paths. Source/history/worktree/shared caches/dependencies and genuine campaign fixture are preserved.",
+    "formerTaskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa",
+    "formerTaskRootAbsent": true,
     "previousInventoryArchive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-inventory-profile-gbqp4wuf-raw.tar.gz"
   }
 }

@@ -1,6 +1,6 @@
 # BUG-317 — Collapse optional support in Settings by default
 
-Status: Implemented in1037886f; scoped native/production checks pass; fresh whole integration and independent acceptance pending. Root sole executor/author.
+Status: Locally resolved in1037886f; scoped native/production checks pass; fresh whole integration/retention complete; independent acceptance pending. Root sole executor/author.
 Severity: Medium — optional support treatment violates the explicit GDD; workaround: ignore link.
 Build: c882dfe642e9bdbd5e0f4567e14b7ab261a1e258; ordinary production build from6480ac15.
 Environment: Chromium production preview,360×640,en/zh-CN; disposable no-character browser contexts; no engine/RNG dependency.
@@ -27,4 +27,4 @@ Security check: pass for authorized first-party local presentation; no new depen
 
 Native default-closed details/summary is committed, existing Settings11tests/types/lintPASS. Final production20/20both-locale/five-size/no-character-and-fresh-character cases verify keyboard/pointer/remount,44px-plus controls, hit testing and no overflow; all20character originals viewed. Actual developer support profile remains pending user answer; fullF20 is not accepted.
 
-[Scoped evidence and continuing root ownership](../../docs/plans/evidence/p16-support-pwa-install-icons.md). Fresh whole integration/retention pending; no independent/full-v1 acceptance or remote action.
+[Scoped evidence and continuing root ownership](../../docs/plans/evidence/p16-support-pwa-install-icons.md). Fresh frozen8fc0ae32 full19935/940/two existing opt-in skips, types and lint/purityPASS;2693repository/769external inputs and HEAD exact/rehashed.1691archive members read-back verified,1691files/32dirs/rawroot exactly removed;remaining[]/failures[]. Root retains archive/manifest/receipt linked in the evidence through consumers. No independent/full-v1 acceptance or remote action.

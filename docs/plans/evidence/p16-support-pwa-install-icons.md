@@ -1,7 +1,7 @@
 # P16/P17 — Optional support disclosure and valid installation icons
 
-Status: committed local fixes and scoped production checks pass; fresh whole
-integration/retention pending. Independent/full-v1 acceptance remains open.
+Status: local fixes, fresh whole integration and verified retention/cleanup
+complete. Independent/full-v1 acceptance remains open.
 Root sole executor/author. [Exact receipts/hashes](fixtures/support-pwa-install-icons/checkpoint.json).
 Pre-change bug reports committed d34c13e7 before product changes.
 
@@ -60,19 +60,27 @@ strategy/dependency/permission or telemetry change.
 
 ## Integration, retention and remaining scope
 
-The preceding inventory full19935/940/two existing opt-in skips atc882dfe6
-predates these four source paths. Fresh full unit/types/lint are next; do not
-claim the old total as a fresh final integration result. Freeze source/HEAD,
-seven critical task scripts/configs and immutable build through terminal receipts.
+Frozen8fc0ae32 fresh full19935tests/940files/two existing opt-in skipsPASS,
+1006.924s; full types136.582s and lint/purity237.917sPASS. All2693repository
+inputs,769external build/config/script inputs and HEAD remain exact through
+all three original terminal receipts, then independently rehashed. Original
+handles81483/89503/78951 are consumed; childPIDs3021999/3021998/3021997 are
+absent. This freshly integrates all four changed product paths. Full unit
+runtime exceeds the repository budget; no performance/whole-v1 gate follows.
 
-Root retains exact active task
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa`
-through whole checks/final consumers, then owns archive/readback/exact cleanup
-of task-owned builds/cache/disposables. Resulting archive/manifest/receipt stay
-root-owned through independent/full-v1 consumers. No cleanup claimed yet.
-Previous inventory raw task is already archived/read-back verified/exactly removed;
-its retained archive supplies earlier immutable build members referenced by baseline
-commands. Shared dependencies/caches/worktree/source/history are preserved.
+All1691regular archive members were read back and byte-verified before exact
+cleanup of1691files and32directories including rawroot. Remaining[]/failures[];
+raw task is absent, scoped processes are terminal, shared dependencies/caches,
+worktree/source/history and genuine campaign fixture are preserved. Root retains:
+
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-support-disclosure-1rp6gaoa-raw.tar.gz`
+- Adjacent `-raw-manifest.json` and `-retention.json` sidecars.
+
+Archive SHA256: `2b7dba14c8f36585b33299866321dc7e1ba978a349837e62c1854c5ad90e33e9`.
+Root removes these exact retained paths after independent/full-v1 consumers
+finish. Historical raw-root command paths can be reconstructed from archive
+members; no active raw task or disposable build is left. The previous inventory
+archive remains root-owned for its separate consumers.
 
 Genuine compressed/raw hashes remain exact: L33,Ancients/Rite claimed,next402,
 Baaluncleared.211bounded/oneunverified/onereview remain; Cobra/ColdMastery,
