@@ -1,0 +1,752 @@
+{
+  "owner": "root",
+  "sourceHead": "d4bce21f50cc806fa444b6697ed5f5cf0d3a70a4",
+  "status": "Local runtime/UI integrated; broad real-branch and final charge/trap acceptance pending",
+  "integration": {
+    "owner": "root",
+    "originalHead": "c2c9b246",
+    "steps": [
+      {
+        "name": "unchanged-body-extraction",
+        "paths": [
+          "src/data/schema/assassin-summons.schema.json",
+          "src/data/summons/assassin.json",
+          "src/engine/skills/assassin-summon-definition.ts",
+          "src/engine/skills/assassin-summon-definition.test.ts",
+          "src/engine/skills/summons.ts"
+        ],
+        "status": "verified and committed",
+        "commit": "d8f2bcf92cf28f381d1a3c15421f2d60a0927371",
+        "proof": [
+          "shadow-branch-body-unit",
+          "shadow-branch-body-types",
+          "shadow-branch-body-lint"
+        ]
+      },
+      {
+        "name": "native-policy",
+        "paths": [
+          "src/data/schema/assassin-shadow-skills.schema.json",
+          "src/data/summons/assassin-shadow-skills.json",
+          "src/engine/skills/assassin-shadow-skills.ts",
+          "src/engine/skills/assassin-shadow-skills.test.ts"
+        ],
+        "status": "verified and committed",
+        "commit": "6f4efd87604d89d01fbcf9e40a0eb8870b2f146d",
+        "proof": [
+          "shadow-branch-policy-unit",
+          "shadow-branch-policy-types",
+          "shadow-branch-policy-lint"
+        ]
+      },
+      {
+        "name": "own-mana",
+        "paths": [
+          "src/data/summons/assassin.json",
+          "src/engine/skills/assassin-summon-definition.test.ts"
+        ],
+        "status": "verified and committed",
+        "commit": "bfc4e80529765f2e69daf1b20613c823e486f7f3",
+        "proof": [
+          "shadow-branch-mana-unit",
+          "shadow-branch-mana-types",
+          "shadow-branch-mana-lint"
+        ]
+      },
+      {
+        "name": "paid-native-runtime",
+        "paths": [
+          "src/engine/combat/types.ts",
+          "src/engine/combat/combat.ts",
+          "src/stores/combatHelpers.ts",
+          "src/stores/assassin-shadow-skills-native.test.ts"
+        ],
+        "status": "verified and committed",
+        "commit": "a7498e34a1014f916fe1a99d5af3ce55e02ee9bb",
+        "proof": [
+          "shadow-branch-runtime-unit",
+          "shadow-branch-runtime-types",
+          "shadow-branch-runtime-lint"
+        ]
+      },
+      {
+        "name": "preview-model",
+        "paths": [
+          "src/engine/skills/displayStats.ts",
+          "src/engine/skills/displayStats.assassin-shadow-skills.test.ts"
+        ],
+        "status": "verified and committed",
+        "commit": "482b300ddf683a09bec0fdce3348c6a36da1020a",
+        "proof": [
+          "shadow-branch-model-unit",
+          "shadow-branch-model-types",
+          "shadow-branch-model-lint"
+        ]
+      },
+      {
+        "name": "bilingual-preview",
+        "paths": [
+          "src/features/skills/SkillsScreen.tsx",
+          "src/features/skills/SkillsScreen.shadow-summon-skills.test.tsx",
+          "src/i18n/locales/en/skills.json",
+          "src/i18n/locales/zh-CN/skills.json"
+        ],
+        "status": "verified and committed",
+        "commit": "33c883c28088ded4b90a44fadd7056e6f44ea062",
+        "proof": [
+          "shadow-branch-ui-unit",
+          "shadow-branch-ui-types",
+          "shadow-branch-ui-lint"
+        ]
+      }
+    ],
+    "limits": "No skill credit until final charge/trap runtime and required branch gates",
+    "additionalTests": {
+      "paths": [
+        "src/stores/assassin-shadow-skills-lifecycle.test.ts",
+        "tests/pwa/assassin-shadow-acceptance.spec.ts",
+        "tests/pwa/assassin-shadow-acceptance.config.ts"
+      ],
+      "status": "verified and committed",
+      "all19ProspectiveSourceHashesExact": true,
+      "commit": "d4bce21f50cc806fa444b6697ed5f5cf0d3a70a4",
+      "proof": [
+        "shadow-branch-lifecycle-unit",
+        "shadow-branch-lifecycle-types",
+        "shadow-branch-lifecycle-explicit-lint"
+      ],
+      "lintHarnessCorrection": "Repository default lint ignores tests/pwa; explicit inherited strict config includes these actual files. Initial ignored-file warning retained; no source/check suppression."
+    }
+  },
+  "receipts": {
+    "shadow-branch-body-unit": {
+      "label": "shadow-branch-body-unit",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/assassin-summon-definition.test.ts",
+        "src/engine/skills/summons.test.ts",
+        "src/engine/combat/summon-preparation.test.ts",
+        "src/stores/assassin-shadow-native.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 15.560921519994736,
+      "inputsUnchanged": true,
+      "inputCount": 2499,
+      "headBefore": "c2c9b24684f6de6743c3f4f23be8bd66df366933",
+      "headAfter": "c2c9b24684f6de6743c3f4f23be8bd66df366933",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  4 passed (4)",
+        "Tests  163 passed (163)"
+      ]
+    },
+    "shadow-branch-body-types": {
+      "label": "shadow-branch-body-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/check-branch-types.mjs",
+        "src/engine/skills/assassin-summon-definition.ts",
+        "src/engine/skills/assassin-summon-definition.test.ts",
+        "src/engine/skills/summons.ts"
+      ],
+      "exit": 0,
+      "seconds": 8.13570212200284,
+      "inputsUnchanged": true,
+      "inputCount": 2499,
+      "headBefore": "c2c9b24684f6de6743c3f4f23be8bd66df366933",
+      "headAfter": "c2c9b24684f6de6743c3f4f23be8bd66df366933",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-body-lint": {
+      "label": "shadow-branch-body-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/skills/assassin-summon-definition.ts",
+        "src/engine/skills/assassin-summon-definition.test.ts",
+        "src/engine/skills/summons.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 7.932346371002495,
+      "inputsUnchanged": true,
+      "inputCount": 2499,
+      "headBefore": "c2c9b24684f6de6743c3f4f23be8bd66df366933",
+      "headAfter": "c2c9b24684f6de6743c3f4f23be8bd66df366933",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-policy-unit": {
+      "label": "shadow-branch-policy-unit",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/assassin-shadow-skills.test.ts",
+        "src/engine/skills/assassin-summon-definition.test.ts",
+        "src/engine/combat/summon-preparation.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 7.99247654795181,
+      "inputsUnchanged": true,
+      "inputCount": 2503,
+      "headBefore": "d8f2bcf92cf28f381d1a3c15421f2d60a0927371",
+      "headAfter": "d8f2bcf92cf28f381d1a3c15421f2d60a0927371",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  3 passed (3)",
+        "Tests  196 passed (196)"
+      ]
+    },
+    "shadow-branch-policy-types": {
+      "label": "shadow-branch-policy-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/check-branch-types.mjs",
+        "src/engine/skills/assassin-shadow-skills.ts",
+        "src/engine/skills/assassin-shadow-skills.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 7.750923971063457,
+      "inputsUnchanged": true,
+      "inputCount": 2503,
+      "headBefore": "d8f2bcf92cf28f381d1a3c15421f2d60a0927371",
+      "headAfter": "d8f2bcf92cf28f381d1a3c15421f2d60a0927371",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-policy-lint": {
+      "label": "shadow-branch-policy-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/skills/assassin-shadow-skills.ts",
+        "src/engine/skills/assassin-shadow-skills.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 7.594652301049791,
+      "inputsUnchanged": true,
+      "inputCount": 2503,
+      "headBefore": "d8f2bcf92cf28f381d1a3c15421f2d60a0927371",
+      "headAfter": "d8f2bcf92cf28f381d1a3c15421f2d60a0927371",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-mana-unit": {
+      "label": "shadow-branch-mana-unit",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/assassin-summon-definition.test.ts",
+        "src/stores/assassin-shadow-native.test.ts",
+        "src/engine/combat/summon-preparation.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 14.782953368965536,
+      "inputsUnchanged": true,
+      "inputCount": 2503,
+      "headBefore": "6f4efd87604d89d01fbcf9e40a0eb8870b2f146d",
+      "headAfter": "6f4efd87604d89d01fbcf9e40a0eb8870b2f146d",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  3 passed (3)",
+        "Tests  159 passed (159)"
+      ]
+    },
+    "shadow-branch-mana-types": {
+      "label": "shadow-branch-mana-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/check-branch-types.mjs",
+        "src/engine/skills/assassin-summon-definition.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 8.715538355056196,
+      "inputsUnchanged": true,
+      "inputCount": 2503,
+      "headBefore": "6f4efd87604d89d01fbcf9e40a0eb8870b2f146d",
+      "headAfter": "6f4efd87604d89d01fbcf9e40a0eb8870b2f146d",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-mana-lint": {
+      "label": "shadow-branch-mana-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/skills/assassin-summon-definition.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 8.279669736046344,
+      "inputsUnchanged": true,
+      "inputCount": 2503,
+      "headBefore": "6f4efd87604d89d01fbcf9e40a0eb8870b2f146d",
+      "headAfter": "6f4efd87604d89d01fbcf9e40a0eb8870b2f146d",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-runtime-unit": {
+      "label": "shadow-branch-runtime-unit",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-shadow-skills-native.test.ts",
+        "src/stores/assassin-shadow-native.test.ts",
+        "src/engine/combat/summon-preparation.test.ts",
+        "src/engine/skills/assassin-shadow-skills.test.ts",
+        "src/engine/skills/assassin-summon-definition.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 19.895904071978293,
+      "inputsUnchanged": true,
+      "inputCount": 2504,
+      "headBefore": "bfc4e80529765f2e69daf1b20613c823e486f7f3",
+      "headAfter": "bfc4e80529765f2e69daf1b20613c823e486f7f3",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  5 passed (5)",
+        "Tests  214 passed (214)"
+      ]
+    },
+    "shadow-branch-runtime-types": {
+      "label": "shadow-branch-runtime-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/check-branch-types.mjs",
+        "src/engine/combat/types.ts",
+        "src/engine/combat/combat.ts",
+        "src/stores/combatHelpers.ts",
+        "src/stores/assassin-shadow-skills-native.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 8.206690741935745,
+      "inputsUnchanged": true,
+      "inputCount": 2504,
+      "headBefore": "bfc4e80529765f2e69daf1b20613c823e486f7f3",
+      "headAfter": "bfc4e80529765f2e69daf1b20613c823e486f7f3",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-runtime-lint": {
+      "label": "shadow-branch-runtime-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/combat/types.ts",
+        "src/engine/combat/combat.ts",
+        "src/stores/combatHelpers.ts",
+        "src/stores/assassin-shadow-skills-native.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 10.867821567924693,
+      "inputsUnchanged": true,
+      "inputCount": 2504,
+      "headBefore": "bfc4e80529765f2e69daf1b20613c823e486f7f3",
+      "headAfter": "bfc4e80529765f2e69daf1b20613c823e486f7f3",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-model-unit": {
+      "label": "shadow-branch-model-unit",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/displayStats.assassin-shadow-skills.test.ts",
+        "src/engine/skills/displayStats.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 6.6728136530146,
+      "inputsUnchanged": true,
+      "inputCount": 2505,
+      "headBefore": "a7498e34a1014f916fe1a99d5af3ce55e02ee9bb",
+      "headAfter": "a7498e34a1014f916fe1a99d5af3ce55e02ee9bb",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  98 passed (98)"
+      ]
+    },
+    "shadow-branch-model-types": {
+      "label": "shadow-branch-model-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/check-branch-types.mjs",
+        "src/engine/skills/displayStats.ts",
+        "src/engine/skills/displayStats.assassin-shadow-skills.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 8.590519997989759,
+      "inputsUnchanged": true,
+      "inputCount": 2505,
+      "headBefore": "a7498e34a1014f916fe1a99d5af3ce55e02ee9bb",
+      "headAfter": "a7498e34a1014f916fe1a99d5af3ce55e02ee9bb",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-model-lint": {
+      "label": "shadow-branch-model-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/skills/displayStats.ts",
+        "src/engine/skills/displayStats.assassin-shadow-skills.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 8.811549375997856,
+      "inputsUnchanged": true,
+      "inputCount": 2505,
+      "headBefore": "a7498e34a1014f916fe1a99d5af3ce55e02ee9bb",
+      "headAfter": "a7498e34a1014f916fe1a99d5af3ce55e02ee9bb",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-ui-unit": {
+      "label": "shadow-branch-ui-unit",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/skills/SkillsScreen.shadow-summon-skills.test.tsx",
+        "src/features/skills/SkillsScreen.summon-preparation.test.tsx",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 24.307140977936797,
+      "inputsUnchanged": true,
+      "inputCount": 2506,
+      "headBefore": "482b300ddf683a09bec0fdce3348c6a36da1020a",
+      "headAfter": "482b300ddf683a09bec0fdce3348c6a36da1020a",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  2 passed (2)",
+        "Tests  78 passed (78)"
+      ]
+    },
+    "shadow-branch-ui-types": {
+      "label": "shadow-branch-ui-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/check-branch-types.mjs",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.shadow-summon-skills.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 10.902781779994257,
+      "inputsUnchanged": true,
+      "inputCount": 2506,
+      "headBefore": "482b300ddf683a09bec0fdce3348c6a36da1020a",
+      "headAfter": "482b300ddf683a09bec0fdce3348c6a36da1020a",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-ui-lint": {
+      "label": "shadow-branch-ui-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.shadow-summon-skills.test.tsx",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 11.533957534004003,
+      "inputsUnchanged": true,
+      "inputCount": 2506,
+      "headBefore": "482b300ddf683a09bec0fdce3348c6a36da1020a",
+      "headAfter": "482b300ddf683a09bec0fdce3348c6a36da1020a",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-lifecycle-unit": {
+      "label": "shadow-branch-lifecycle-unit",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-shadow-skills-lifecycle.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 8.546450025984086,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "33c883c28088ded4b90a44fadd7056e6f44ea062",
+      "headAfter": "33c883c28088ded4b90a44fadd7056e6f44ea062",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  6 passed (6)"
+      ]
+    },
+    "shadow-branch-lifecycle-types": {
+      "label": "shadow-branch-lifecycle-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/check-branch-types.mjs",
+        "src/stores/assassin-shadow-skills-lifecycle.test.ts",
+        "tests/pwa/assassin-shadow-acceptance.spec.ts",
+        "tests/pwa/assassin-shadow-acceptance.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 8.501621668925509,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "33c883c28088ded4b90a44fadd7056e6f44ea062",
+      "headAfter": "33c883c28088ded4b90a44fadd7056e6f44ea062",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-lifecycle-explicit-lint": {
+      "label": "shadow-branch-lifecycle-explicit-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "--no-ignore",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/branch-lifecycle-eslint.cjs",
+        "src/stores/assassin-shadow-skills-lifecycle.test.ts",
+        "tests/pwa/assassin-shadow-acceptance.spec.ts",
+        "tests/pwa/assassin-shadow-acceptance.config.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 4.953596776002087,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "33c883c28088ded4b90a44fadd7056e6f44ea062",
+      "headAfter": "33c883c28088ded4b90a44fadd7056e6f44ea062",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-production-build": {
+      "label": "shadow-branch-production-build",
+      "command": [
+        "env",
+        "VITE_E2E=false",
+        "node_modules/.bin/vite",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/shadow-branch-dist",
+        "--emptyOutDir"
+      ],
+      "exit": 0,
+      "seconds": 12.831459366949275,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "d4bce21f50cc806fa444b6697ed5f5cf0d3a70a4",
+      "headAfter": "d4bce21f50cc806fa444b6697ed5f5cf0d3a70a4",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "shadow-branch-offline-precache": {
+      "label": "shadow-branch-offline-precache",
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/shadow-branch-dist"
+      ],
+      "exit": 0,
+      "seconds": 0.19054032303392887,
+      "inputsUnchanged": true,
+      "inputCount": 2509,
+      "headBefore": "d4bce21f50cc806fa444b6697ed5f5cf0d3a70a4",
+      "headAfter": "d4bce21f50cc806fa444b6697ed5f5cf0d3a70a4",
+      "headUnchanged": true,
+      "totals": []
+    }
+  },
+  "prospectivePublic": {
+    "owner": "root",
+    "prospective": true,
+    "stats": {
+      "startTime": "2026-10-27T05:48:23.828Z",
+      "duration": 186222.258,
+      "expected": 8,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "actualPaidSummonAndTypedSkillCasts": 16,
+    "geometries": 80,
+    "sevenDomainSavePairs": 16,
+    "actualSWOfflineContinues": 8,
+    "originalExternalRuntimeInputsExact": true,
+    "postProofDelta": {
+      "path": "pwa/assassin-shadow-acceptance.spec.ts",
+      "originalCopy": "browser-before-lint.spec.ts",
+      "scope": "three semantics-preserving lint corrections; runtime/UI/data/build unchanged"
+    },
+    "visualInspectionPending": false,
+    "scopeLimits": "Constructed legal allocation and synthetic life/mana cap; no earned build/balance or whole-app acceptance; actual charge/traps remain missing",
+    "mobileVisualInspection": "browser-mobile-visual-inspection.json"
+  },
+  "mobileVisualInspection": {
+    "owner": "root",
+    "images": [
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/04-assassin-shadow-mobile-rank1-preview.png",
+        "sha256": "d7d8a934171ae267ea78a261a7f37f355f74d7e315b9ba858273d6ae34997fff",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/04-assassin-shadow-mobile-rank1-combat.png",
+        "sha256": "197f019d4907d167a7ba47f0d430ae4d81ef55aab446a924c77d6d3ec59d19f0",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/04-assassin-shadow-mobile-rank20-preview.png",
+        "sha256": "7f2cb9cea2e8344e3f2bb79ac3805c16ef8d10f6d1d9cf420f60033ae379758f",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/04-assassin-shadow-mobile-rank20-combat.png",
+        "sha256": "99a032254791f4b1febe8f1c2a0451b12167218da07ea861f7cf73d90fd78a59",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/05-assassin-shadow-mobile-rank1-preview.png",
+        "sha256": "b82294320dacbd2b79847eab769544c272521d7c2d0d99d9bd7a1f23ea449b73",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/05-assassin-shadow-mobile-rank1-combat.png",
+        "sha256": "2ec44d192807bb3fab4c26b3a16816a85bfab7335d59ab062d8b6a1ae31cada0",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/05-assassin-shadow-mobile-rank20-preview.png",
+        "sha256": "16500e6164fbffe54f00628faf9b9ee4508dfb69f0caf7beea50e83cad67c276",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/05-assassin-shadow-mobile-rank20-combat.png",
+        "sha256": "b5389980f5b6f2dabaa670a0350d7e3b5bcbe7ca8e54614603335382fe7ae822",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/06-assassin-shadow-mobile-rank1-preview.png",
+        "sha256": "9542b94200b96da0d510ddd3ccbcc321b3fd4b2c82feea704d0a49699a1635fd",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/06-assassin-shadow-mobile-rank1-combat.png",
+        "sha256": "80d9abe1355cc82f59e039941a63f0d466e2584d65f17d4327a2ef2a6e7a753d",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/06-assassin-shadow-mobile-rank20-preview.png",
+        "sha256": "9bf3b894744cde7df49494b4cb85a1002a9e866c1ef9b4aff3cced1b098ac47a",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/06-assassin-shadow-mobile-rank20-combat.png",
+        "sha256": "1dee2b9ac2967032eb870f6971971403960eb905ed6433f27b06c29b42f82e3c",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/07-assassin-shadow-mobile-rank1-preview.png",
+        "sha256": "ab60a2f5272f243b9f36413863d5687fe8fc98ebecbadcb890bebb56536278b4",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/07-assassin-shadow-mobile-rank1-combat.png",
+        "sha256": "a43fb5e95ac767f06a286d914c39921520d9daf0b79ec27b8de9be2c61c28341",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/07-assassin-shadow-mobile-rank20-preview.png",
+        "sha256": "739091afd841d2952e704a6335d0637af49456fa4c8ddb7566bbee99df9a5f82",
+        "viewedIndividually": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6/browser-proof/07-assassin-shadow-mobile-rank20-combat.png",
+        "sha256": "8831408e7e62459901e7146bc052c8f142234fe82fc6d87313b3329cae3797f5",
+        "viewedIndividually": true
+      }
+    ],
+    "observations": [
+      "Both localized names and ranks1/20/MAX are visible; Warrior100/Master150 own mana and selected/independent policy text match authored behavior.",
+      "English preview description extends below the element viewport and requires scrolling; Chinese captures show only the top of Current statistics.",
+      "Fixed bottom navigation overlays/crops lower content; English edge navigation labels are clipped and several emoji glyphs show fallback boxes.",
+      "Compact combat body captures show localized body name, live HP bar and occasional Dodge/-1 badge; they do not prove a skill cast themselves. Positive typed casts/HP loss are separately asserted and retained in DOM/log observations.",
+      "Shadow art falls back to initial characters rather than a portrait in these captures.",
+      "Element captures at mobile device DPR are not full-viewport, all-control, touch/keyboard/a11y, performance or whole-app acceptance."
+    ],
+    "scope": "Prospective production build; runtime/UI source now being promoted; independent/earned/full-v1 acceptance remains open"
+  },
+  "buildAudit": {
+    "owner": "root",
+    "scope": "Real integrated branch production build; VITE_E2E=false",
+    "files": 762,
+    "jsChunks": 6,
+    "forbiddenPatterns": 5,
+    "violations": [],
+    "prospectiveOutputDelta": [
+      "index.html",
+      "sw.js",
+      "assets/game-data-B0fHZE4t.js",
+      "assets/index-0OSO_GO6.js"
+    ],
+    "warnings": [
+      "Existing >500kB chunk warning",
+      "Existing2.57MB art manifest not precached"
+    ],
+    "limits": "No performance or full-PWA acceptance"
+  },
+  "supportArchive": {
+    "owner": "root",
+    "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_-raw.tar.gz",
+    "archiveSha256": "92df7af964ab9af163d384b4c5d1883da2dad604d00e4bf853d848814970d2d7",
+    "readBackVerified": true,
+    "removedFiles": 6863,
+    "removedSymlinks": 1,
+    "removedDirectories": 98,
+    "remaining": [],
+    "failures": [],
+    "sharedTargetsPreserved": true,
+    "retainUntil": "Full private-v1 and independent evidence review consumers finish; root owns eventual archive removal",
+    "membersReadBack": 6961,
+    "retentionSidecar": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_-retention.json",
+    "cleanupSidecar": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_-cleanup.json"
+  },
+  "currentTask": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-shadow-mozsnhn6",
+  "retention": "Current shadow task remains necessary for actual-branch browser/broad validation and final archive/readback. Root owns cleanup after all consumers finish. Original support task was exactly cleaned; raw archive and two sidecars remain through full-v1/independent evidence review.",
+  "limits": "Constructed legal native/public fixtures; no earned build/balance, final charge/trap copying, whole-app mobile/a11y/performance/PWA, independent approval or full private-v1 completion. Inventory unchanged."
+}

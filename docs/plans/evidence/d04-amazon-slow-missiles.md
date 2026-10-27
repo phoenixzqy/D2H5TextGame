@@ -47,3 +47,17 @@ exact commands,heads,scope and pre-existing skip paths.
 Raw support/shadow consumers still need evidence retention/read-back and exact
 cleanup. No new inventory credit or independent/earned/private-v1 acceptance
 is inferred from the passing suite. Original umbrella work continues.
+
+
+## Support raw retention completed
+
+The original root-owned support task is now removed after6961archive members
+were read-back/hash-verified. Exactly6863files/one symlink/98directories removed,
+remaining[]/failures[]; shared dependency target preserved. Raw archive:
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_-raw.tar.gz
+SHA25692df7af964ab9af163d384b4c5d1883da2dad604d00e4bf853d848814970d2d7.
+Its -retention.json/-cleanup.json sidecars remain beside it. Root retains these
+through full-v1/independent evidence review and removes them afterward. Original
+failed/interrupted attempts and shared shadow receipts remain in that archive.
+[Combined packet](fixtures/amazon-support/combined-gates.json) carries exact
+metadata. No automatic inventory credit or independent acceptance.

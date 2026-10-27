@@ -1,6 +1,6 @@
 # BUG-299 — Enable advertised Shadow Warrior and Shadow Master skill use
 
-Status: Reproduced; prospective runtime/UI/native/public proof prepared, branch integration and actual charge/trap acceptance pending.
+Status: Runtime/UI integrated locally through d4bce21f; focused branch gates pass. Broad/public branch rerun and actual charge/trap acceptance pending.
 Severity: High — both advertised skill-using summons only perform basic attacks.
 Affected systems: engine-dev, content-designer, frontend-dev, writer, qa-engineer.
 
@@ -37,3 +37,6 @@ typed skill damage,80geometries,16seven-domain pairs/eight actual offline
 Continues. Product source promotion and real-branch gates remain required;
 full copied charge/trap behavior, earned balance and independent acceptance
 remain open. No skill inventory credit yet.
+
+
+Local runtime/UI and permanent lifecycle/public tests are now committed. [D06 branch evidence](../../docs/plans/evidence/d06-assassin-shadow-skills.md) and its compact packet retain per-increment tests/types/lint,396distinct focused cases/10files, real branch production/precache checks and prospective public8/8 proof. Full shadow credit still waits actual charge/trap runtime and final branch/independent/earned gates. Original RED evidence now lives in the verified support raw archive linked by the packet; the original task directory was exactly cleaned.

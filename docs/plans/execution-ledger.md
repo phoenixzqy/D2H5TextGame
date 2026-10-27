@@ -13464,3 +13464,25 @@ fixtures against an external source overlay; branch promotion and final real
 branch checks remain. Actual charge/trap runtime is still required before full
 shadow credit. GenuineL33/Ancients-Rite/next402/Baaluncleared unchanged.
 Root-only; no campaign/replay, remote action or independent self-signoff.
+
+
+## 2026-10-26 — Shadow runtime integrated in seven source/test increments
+
+Actual branch throughd4bce21f now implements paid shadow skill use, strict owner
+policy, own mana/CD, captured ranks, one Command bonus and bilingual previews.
+Each of six <=5path implementation slices passes focused tests/types/lint;
+separate three-path native lifecycle/public suite passes six native cases and
+strict types/lint.396distinct final focused cases/10files; all19original
+prospective source hashes exact. Real branch production build PASS12.831s,
+762files/sixchunks/fivebridgepatternsabsent/756precacheURLscomplete. Existing
+performance/art warnings remain. [D06 evidence](evidence/d06-assassin-shadow-skills.md)
+and packet retain proof and explicit visual limits. Real-branch public/broad
+gates and actual copied charge/trap behavior remain. No shadow skill credit.
+
+Original support full19270/901/twoexistingopt-inskips,fulltypes/lintpass retained
+in6961member read-back-verified raw archive; exact6863files/one symlink/98dirs
+cleaned,remaining[]/failures[],shared dependencies preserved. Root retains raw
+archive/two sidecars through full-v1/independent review. Current shadow task
+remains needed for branch gates and eventual own retention. Genuine protected
+fixture compressed/raw hashes exact; no campaign/replay, remote action or
+independent self-signoff. Original full-v1 objective and worktree claim continue.

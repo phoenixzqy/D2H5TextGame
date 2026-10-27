@@ -61,7 +61,24 @@
     "tests/sim/production/fresh-campaign-economy.test.ts",
     "tests/sim/production/fresh-campaign-continuation.test.ts"
   ],
-  "retentionStatus": "Raw continuing task still needed for retention/readback and shared shadow receipts; no cleanup or new skill credit claimed",
+  "retentionStatus": "Read-back and exact cleanup complete; no skill credit from the combined gate alone",
   "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_",
-  "limits": "Current local regression/static evidence; independent acceptance, earned builds/balance and full private-v1 gates remain open"
+  "limits": "Current local regression/static evidence; independent acceptance, earned builds/balance and full private-v1 gates remain open",
+  "retention": {
+    "owner": "root",
+    "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_-raw.tar.gz",
+    "archiveSha256": "92df7af964ab9af163d384b4c5d1883da2dad604d00e4bf853d848814970d2d7",
+    "readBackVerified": true,
+    "removedFiles": 6863,
+    "removedSymlinks": 1,
+    "removedDirectories": 98,
+    "remaining": [],
+    "failures": [],
+    "sharedTargetsPreserved": true,
+    "retainUntil": "Full private-v1 and independent evidence review consumers finish; root owns eventual archive removal",
+    "membersReadBack": 6961,
+    "retentionSidecar": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_-retention.json",
+    "cleanupSidecar": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_-cleanup.json"
+  }
 }
