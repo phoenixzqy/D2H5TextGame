@@ -78,6 +78,7 @@ function fixture(slug: string, rank = 1, seed = 7) {
     mana: 0,
     skillOrder: [],
     skillLevels: {},
+    assassinMartialRanks: {},
     activeBuffIds: [],
     statuses: [hold()]
   };
@@ -306,13 +307,18 @@ for (const s of cases) {
       before = structuredClone(player),
       native = playerToCombatUnit(player);
     expect(native.skillLevels?.[canonical(s.slug)]).toBe(20);
-    const capturedLevels = native.skillLevels;
-    if (!capturedLevels) throw new Error('Missing captured native allocation');
+    const capturedLevels = native.skillLevels,
+      capturedMartialRanks = native.assassinMartialRanks;
+    if (!capturedLevels || !capturedMartialRanks) throw new Error('Missing captured native allocation');
     expect(player).toEqual(before);
     const expected = record(fixture(s.slug, 20).input),
       out = record({
         ...f.input,
-        playerTeam: f.input.playerTeam.map((u) => ({ ...u, skillLevels: capturedLevels }))
+        playerTeam: f.input.playerTeam.map((u) => ({
+          ...u,
+          skillLevels: capturedLevels,
+          assassinMartialRanks: capturedMartialRanks
+        }))
       });
     expect(out).toEqual(expected);
     playerToCombatUnit({ ...player, skillLevels: { [id(s.slug)]: 1 } });

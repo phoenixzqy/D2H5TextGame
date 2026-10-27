@@ -1,3 +1,5 @@
+import { AssassinCharges, ASSASSIN_CHARGE_DEFINITION, matchesAssassinMartialSkill,
+  copyAssassinMartialRanks, cobraChargeRecovery } from '../skills/assassin-charges';
 import { ProjectileFlights } from './projectile-flight';
 import { copyAssassinShadowSkills, matchesAssassinShadowAttack, qualifyAssassinShadow } from '../skills/assassin-shadow-skills';
 import { SLOW_MISSILES_DEFINITION, SLOW_MISSILES_IDS, slowMissilesRank } from '../skills/slow-missiles';
@@ -202,7 +204,7 @@ export type BattleEvent =
   | { readonly kind: 'life-capacity'; readonly target: string; readonly lifeMax: number; readonly life: number; readonly vigorBaseLifeMax?: number;
       readonly druidFormState?: Pick<CombatUnit, 'druidForm' | 'druidFormLife'> }
   | { readonly kind: 'mana'; readonly target: string; readonly mana: number;
-      readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' | 'redemption' | 'energy-shield' | 'solar-creeper' | 'mana-burn' | 'find-potion' }
+      readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' | 'redemption' | 'energy-shield' | 'solar-creeper' | 'mana-burn' | 'find-potion' | 'cobra-strike' }
   | { readonly kind: 'death'; readonly target: string }
   | { readonly kind: 'enrage'; readonly target: string }
   | { readonly kind: 'orb'; readonly target: string; readonly orb: Orb }
@@ -276,6 +278,7 @@ interface ProjectileImpact {
 }
 
 interface State {
+  readonly martialCharges: AssassinCharges;
   /** Only this battle's committed native paid bodies receive captured attack authority. */
   readonly assassinShadows: Map<string, { readonly ownerId: string;
     readonly template: import('../skills/assassin-shadow-skills').AssassinShadowTemplate;
@@ -628,7 +631,8 @@ function pickDefender(
 }
 
 function registerUnit(state: State, u: CombatUnit): void {
-  const copiedBuffs = copyBoneWallStatuses(copySorceressBuffStatuses(u));
+  const projected = u.assassinMartialRanks === undefined ? u : { ...u, assassinMartialRanks: copyAssassinMartialRanks(u.assassinMartialRanks) };
+  const copiedBuffs = copyBoneWallStatuses(copySorceressBuffStatuses(projected));
   const shadowNative = u.assassinShadowSkills === undefined ? copiedBuffs : {
     ...copiedBuffs, assassinShadowSkills: copyAssassinShadowSkills(u.assassinShadowSkills) };
   const native = u.druidSummonRanks === undefined ? shadowNative : { ...shadowNative, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
@@ -795,7 +799,8 @@ function applyDamageToUnit(
   auraPulse = false,
   armorReaction = false,
   periodicSpell = false,
-  projectileImpact = false
+  projectileImpact = false,
+  martialSkill?: RegisteredSkill
 ): void {
   const attacker = state.units.get(attackerId);
   const defender = state.units.get(defenderId);
@@ -1054,6 +1059,35 @@ function applyDamageToUnit(
         state.units.set(attackerId, updated);
         emit(state, { kind: 'buff', target: attackerId, buffId: 'frenzy', statusBacked: true });
         observeStatuses(state, attackerId);
+      }
+    }
+  }
+  const martialOwner = state.units.get(attackerId);
+  if (!auraPulse && !armorReaction && !periodicSpell && !projectileImpact && hostileHit && hpRemoved > 0 &&
+    martialOwner && alive(martialOwner)) {
+    const builder = martialSkill && ASSASSIN_CHARGE_DEFINITION.builders.find(id => id === martialSkill.id);
+    if (builder && authorizedMartialSkill(state, martialOwner, martialSkill)) {
+      state.martialCharges.gain(attackerId, builder, skillLevel, state.simClockMs);
+    } else if (basicHit || (martialSkill && ASSASSIN_CHARGE_DEFINITION.finishers.some(id => id === martialSkill.id) &&
+      authorizedMartialSkill(state, martialOwner, martialSkill))) {
+      // Delete all paid pools before invoking ordinary damage recursively.
+      const releases = state.martialCharges.consume(attackerId, state.simClockMs);
+      for (const release of releases) {
+        const source = state.units.get(attackerId), victim = state.units.get(defenderId);
+        if (!source || !alive(source)) break;
+        if (release.builder === 'assassin.cobra_strike') {
+          const recovery = cobraChargeRecovery(hpRemoved, release.ranks.length,
+            source.stats.lifeMax - source.life, source.stats.manaMax - source.mana, victim && alive(victim) ? victim.mana : 0);
+          commitHealing(state, source, recovery.life);
+          const healed = state.units.get(attackerId);
+          if (victim && healed && recovery.mana > 0) {
+            const debit = commitMana(state, victim, { ...victim, mana: victim.mana - recovery.mana }, 'cobra-strike');
+            const credit = commitMana(state, healed, { ...healed, mana: healed.mana + recovery.mana }, 'cobra-strike');
+            if (debit) emit(state, debit); if (credit) emit(state, credit);
+          }
+        } else if (victim && alive(victim) && release.effect) {
+          applyDamageToUnit(state, attackerId, defenderId, release.effect);
+        }
       }
     }
   }
@@ -1449,6 +1483,17 @@ function matchesSlowMissiles(skill: RegisteredSkill): boolean {
     effect.slowMissiles === true && effect.durationMs === SLOW_MISSILES_DEFINITION.durationMs;
 }
 
+/** Only native selected ranks or this battle's committed shadow binding grant martial power. */
+function authorizedMartialSkill(state: State, unit: CombatUnit, skill: RegisteredSkill): boolean {
+  if (!matchesAssassinMartialSkill(skill) || unit.side !== 'player' || effectiveSide(state, unit) !== 'player') return false;
+  const bound = state.assassinShadows.get(unit.id), owner = bound && state.units.get(bound.ownerId);
+  if (bound) return owner !== undefined && alive(owner) && unit.kind === 'summon' && unit.summon === true &&
+    unit.summonOwnerId === bound.ownerId && bound.plan.attacks.some(row => row.id === skill.id && row.rank > 0);
+  const rank = copyAssassinMartialRanks(unit.assassinMartialRanks)[skill.id as keyof NonNullable<CombatUnit['assassinMartialRanks']>];
+  return unit.kind === 'hero' && unit.summon !== true && unit.ownerId === undefined && unit.summonOwnerId === undefined &&
+    rank !== undefined && rank > 0 && unit.skillLevels?.[skill.id] === rank;
+}
+
 function canUseSkillForState(
   state: State,
   unit: CombatUnit,
@@ -1456,6 +1501,8 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  if (ASSASSIN_CHARGE_DEFINITION.builders.some(id => id === skill.id) &&
+    authorizedMartialSkill(state, unit, skill) && state.martialCharges.saturated(unit.id, state.simClockMs)) return false;
   if (unit.summonTemplateId === 'shadow_warrior' || unit.summonTemplateId === 'shadow_master') {
     const binding = state.assassinShadows.get(unit.id), owner = binding && state.units.get(binding.ownerId);
     if (!binding || !owner || !alive(owner) || unit.side !== 'player' || unit.kind !== 'summon' ||
@@ -1679,6 +1726,8 @@ function applyEffect(
       break;
     }
     case 'damage': {
+      const strikeTarget = (target: string) => { applyDamageToUnit(state, actorId, target, effect, skillLevel,
+        false, false, false, false, false, skill); };
       if (effect.hitSequence !== undefined) {
         const strikes = effect.hitSequence.strikes;
         if (!Number.isInteger(strikes) || strikes < 2 || strikes > 8) {
@@ -1690,7 +1739,7 @@ function applyEffect(
               const actor = state.units.get(actorId);
               if (!actor || !alive(actor)) return;
               const target = state.units.get(original.id);
-              if (target && alive(target)) applyDamageToUnit(state, actorId, target.id, effect, skillLevel);
+              if (target && alive(target)) strikeTarget(target.id);
             }
           }
           break;
@@ -1711,7 +1760,7 @@ function applyEffect(
             }
           }
           if (!target) break;
-          applyDamageToUnit(state, actorId, target.id, effect, skillLevel);
+          strikeTarget(target.id);
         }
         break;
       }
@@ -1719,7 +1768,7 @@ function applyEffect(
         if (effect.projectileFlightMs !== undefined) {
           state.projectiles.launch(actorId, effect.projectileFlightMs,
             { attackerId: actorId, defenderId: t.id, effect, skillLevel });
-        } else applyDamageToUnit(state, actorId, t.id, effect, skillLevel);
+        } else strikeTarget(t.id);
       }
       break;
     }
@@ -3053,6 +3102,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     grimWards: new Map(),
     corpses: [],
     druidSummons: new Map(),
+    martialCharges: new AssassinCharges(),
     assassinShadows: new Map(),
     fireGolems: new Map(),
     bloodGolems: new Map(),
