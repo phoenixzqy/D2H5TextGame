@@ -43,6 +43,7 @@ import { getAssassinSummonStats } from './assassin-summon-definition';
 import { ASSASSIN_SHADOW_POLICY, type AssassinShadowTemplate } from './assassin-shadow-skills';
 import { resolveAssassinMartialDisplay, type AssassinMartialDisplay } from './assassin-charges';
 import { resolveAssassinTrapDisplay, type AssassinTrapDisplay } from './assassin-traps';
+import { resolveAssassinFlightDisplay, type AssassinFlightDisplay } from './assassin-flight';
 
 export interface DisplaySkillSource {
   readonly decoy?: import('../types/skills').SkillDef['decoy'];
@@ -194,6 +195,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Finite personal magical evasion accompanying one paid Physical finisher. */
+  readonly assassinFlight?: AssassinFlightDisplay;
   /** Finite paid trap timing and separate Lightning/corpse or reactive damage branches. */
   readonly assassinTrap?: AssassinTrapDisplay;
   /** Paid charge rules and base release examples, independent of live private pools. */
@@ -643,6 +646,7 @@ export function computeSkillRankDisplayStats(
   const safeRank = clampRank(rank, skill.maxLevel);
   const assassinMartial = resolveAssassinMartialDisplay(skill, safeRank);
   const assassinTrap = resolveAssassinTrapDisplay(skill, safeRank);
+  const assassinFlight = resolveAssassinFlightDisplay(skill, safeRank);
   const shadow = shadowTemplate(skill), shadowBody = shadow ? getAssassinSummonStats(shadow) : undefined;
   const decoy = decoyDisplayDefinition(skill);
   const decrepify = skill.id === 'skills-necromancer-decrepify' && isDecrepifyDefinition(skill)
@@ -787,6 +791,7 @@ export function computeSkillRankDisplayStats(
     rank: safeRank,
     ...(assassinMartial ? { assassinMartial } : {}),
     ...(assassinTrap ? { assassinTrap } : {}),
+    ...(assassinFlight ? { assassinFlight } : {}),
     ...(skill.id === 'skills-barbarian-battle-command' && skill.trigger === 'active' &&
       skill.target === 'all-allies' && skill.skillRankBuff ? { skillRankBuff: {
         bonusRanks: skill.skillRankBuff.bonusRanks,
