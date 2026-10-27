@@ -30,3 +30,15 @@ See docs/plans/decisions/D04-slow-missiles-v1.md and Proposed ADR-012.
 Root cause: synchronous skill damage plus marker-only adapter; no queued
 projectile progress or finite paid speed authority. Workaround:none for skill.
 Independent/earned/full-v1 acceptance remains open. No inventory credit.
+
+## Runtime payment qualification subcase
+At c9593f83, native flight/finite slow checks pass, but replacing the registered
+exact Slow Missiles with manaCost0 still creates its paid-authority window.
+Native seed7 isolated engine repro:slow-missiles-payment-red.json/log,1failure/
+5controls,4.197s,2489inputs/HEAD exact. Preserve the advertised JSON MP/CD/growth
+in the exact runtime matcher before granting private authority; a marker flag
+and matching duration alone are insufficient. No saved player can directly
+register skills; this is pure engine boundary hardening, not a remote exploit.
+The earlier barrier probe assumed100capacity; authored Bone Wall rank1 is40,
+so the source-backed literal is60HP loss/40absorbed at2200ms. Original failure
+remains in projectile-impacts-probe.log; no product tuning or relaxed assertion.
