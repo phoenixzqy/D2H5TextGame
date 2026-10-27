@@ -13154,3 +13154,34 @@ Privatev1,C2–C4/fullG0–G7,remaining skills,native/public Plague verification
 earned builds,balance/economy/endgame,mobile/offline/a11y/performance acceptance
 are open. User received a candid status report; the original goal remains active.
 No remote action,delegation,independent approval,worktree release or scope reduction.
+
+## 2026-10-26 — Five Amazon credits and next three mechanics implemented
+
+The terminal previous Amazon/Plague full checkpoint passed18607tests/860files
+with two existing opt-in skips,types113.204s/lint259.846s and1677exact inputs.
+`9822e925` reconciled exactly Plague/Magic Arrow/Lightning Bolt/Fire Arrow/Cold
+Arrow after370raw archive members were read-back verified and1897exact files/
+39directories removed,remaining[]/failures[]. Root retains the archive/two
+sidecars listed in [single-hit evidence](evidence/d04-amazon-single-hit.md) and
+[Plague evidence](evidence/d04-plague-javelin.md) through full-v1 consumers.
+Inventory is179bounded/32unverified/one engine-only/one review-needed;208other
+rawrows/header/213IDs/order exact.
+
+`52880d01`/`f366fb56`/`677fb25d` implement actual Guided guaranteed-hit,Multiple
+three-row cone/cap5 and Strafe two-pass mechanics;`dceffcf4` adds bilingual
+truthful current/next/MAX previews. New engine regression9556tests/362files
+PASS171.800s with2436captured inputs exact;focused authored native/schema80/2
+and UI70/2 pass. Production build14.997s,six-chunk bridge and756URLprecache pass.
+The old18607full is not carried over changed runtime. Full types/lint are still
+active;new full unit remains pending. BUG287 documents an initial public test
+observer false negative:actual Guided103physical hit is visible,but uppercase
+Physical comparison fails. Correct only the observer after current frozen
+consumers finish,then rerun production public acceptance.
+
+[Volley evidence](evidence/d04-amazon-volley.md) and BUG284–287 retain exact
+source/check/failure boundaries and active root-owned task paths. No credit for
+the three new skills yet,cleanup has not happened,and no independent/earned
+acceptance is claimed. GenuineL33/nextNormal402/Ancients-Rite claimed/Baal
+uncleared unchanged;no campaign/replay,remote action,delegation or worktree
+release. C2–C4/fullG0–G7,remaining skills,earned builds,balance,economy,endgame
+and full privatev1 remain open. Original umbrella goal/worktree continue.
