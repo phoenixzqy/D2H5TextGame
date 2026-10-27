@@ -94,7 +94,11 @@
     "coldFreezeValue": "{{chance}}% • {{seconds}} s (bosses: {{bossSeconds}} s)",
     "warcryDuration": "Enemy effect duration",
     "bossEffectDuration": "Boss / chapter boss effect duration",
-    "damageCurse": {"iron-maiden": "Physical HP reflected", "life-tap": "Direct HP converted to healing", "lower-resist": "All resistance reduction"},
+    "damageCurse": {
+      "iron-maiden": "Physical HP reflected",
+      "life-tap": "Direct HP converted to healing",
+      "lower-resist": "All resistance reduction"
+    },
     "percentagePoints": "{{value}} percentage points",
     "warcryDamageReduction": "Outgoing direct damage reduction",
     "warcryDefenseReduction": "Ordinary Defense reduction",
@@ -301,7 +305,8 @@
     "enchantFire": "Fire base per weapon hit",
     "enchantFireValue": "{{percent}}% of Attack at cast",
     "periodicAppliedStacks": "{{status}} stacks per landed hit",
-    "descriptionPeriodicMultiple": "On a successful hit, applies {{stacksOnApply}} {{status}} stacks. Each stack deals {{percentOfHit}}% of the final hit per second (rounded down, minimum {{minDps}}) for {{durationSeconds}} s, up to {{maxStacks}} stacks. Reapplying refreshes duration and adds {{stacksOnApply}} stacks up to the cap; an existing damaging status keeps its original rate."
+    "descriptionPeriodicMultiple": "On a successful hit, applies {{stacksOnApply}} {{status}} stacks. Each stack deals {{percentOfHit}}% of the final hit per second (rounded down, minimum {{minDps}}) for {{durationSeconds}} s, up to {{maxStacks}} stacks. Reapplying refreshes duration and adds {{stacksOnApply}} stacks up to the cap; an existing damaging status keeps its original rate.",
+    "cone3Value": "Cone: 1, 3, then 5 cells across three rows"
   },
   "amazon": {
     "magic-arrow": {
@@ -310,7 +315,7 @@
     },
     "multiple-shot": {
       "name": "Multiple Shot",
-      "desc": "Fires a spread of arrows hitting up to 5 enemies in a cone."
+      "desc": "One independent Physical attack attempt at each of up to {{maxTargets}} living enemies in a three-row widening cone (1, 3, then 5 cells), dealing {{min}}–{{max}} base damage per attempt. Misses consume attempts; Physical resistance and Defense apply. Pay {{mana}} MP once with a {{cooldown}} s cooldown. Sparse cones do not select enemies outside the footprint."
     },
     "freezing-arrow": {
       "name": "Freezing Arrow",
@@ -326,7 +331,7 @@
     },
     "strafe": {
       "name": "Strafe",
-      "desc": "A rapid volley of arrows that strikes all enemies in combat."
+      "desc": "{{strikes}} ordered passes across all original living enemies; each target gets up to {{strikes}} independent Physical attempts for {{min}}–{{max}} base damage each. Misses consume attempts; dead originals are skipped without redistributing attempts. Stop on caster death. Physical resistance and Defense apply. Pay {{mana}} MP once with a {{cooldown}} s cooldown."
     },
     "critical-strike": {
       "name": "Critical Strike",
@@ -362,7 +367,7 @@
     },
     "guided-arrow": {
       "name": "Guided Arrow",
-      "desc": "Fires a seeking arrow that never misses."
+      "desc": "One guaranteed single-target Physical hit deals {{min}}–{{max}} base damage. Ignores ordinary accuracy, dodge and Blind; Physical resistance, Defense, critical hits and personal absorption still apply. Pay {{mana}} MP with a {{cooldown}} s cooldown. A lethal hit does not switch targets."
     },
     "immolation-arrow": {
       "name": "Immolation Arrow",

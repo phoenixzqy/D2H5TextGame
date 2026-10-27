@@ -94,7 +94,11 @@
     "coldFreezeValue": "{{chance}}% • {{seconds}} 秒（首领{{bossSeconds}} 秒）",
     "warcryDuration": "敌方效果持续时间",
     "bossEffectDuration": "首领 / 章节首领效果持续时间",
-    "damageCurse": {"iron-maiden": "物理生命损失反射比例", "life-tap": "直接生命损失治疗比例", "lower-resist": "全部抗性降低"},
+    "damageCurse": {
+      "iron-maiden": "物理生命损失反射比例",
+      "life-tap": "直接生命损失治疗比例",
+      "lower-resist": "全部抗性降低"
+    },
     "percentagePoints": "{{value}}个百分点",
     "warcryDamageReduction": "对外直接伤害降低",
     "warcryDefenseReduction": "普通防御降低",
@@ -301,7 +305,8 @@
     "enchantFire": "每次武器命中的火焰基础伤害",
     "enchantFireValue": "施放时攻击力的 {{percent}}%",
     "periodicAppliedStacks": "每次命中的{{status}}层数",
-    "descriptionPeriodicMultiple": "命中后附加 {{stacksOnApply}} 层{{status}}；每层每秒造成最终命中伤害的{{percentOfHit}}%（向下取整，最低{{minDps}}点），持续{{durationSeconds}} 秒，最多{{maxStacks}}层。再次施加会刷新持续时间并增加{{stacksOnApply}}层，达到上限后不再增加；已有伤害的状态保留原伤害率。"
+    "descriptionPeriodicMultiple": "命中后附加 {{stacksOnApply}} 层{{status}}；每层每秒造成最终命中伤害的{{percentOfHit}}%（向下取整，最低{{minDps}}点），持续{{durationSeconds}} 秒，最多{{maxStacks}}层。再次施加会刷新持续时间并增加{{stacksOnApply}}层，达到上限后不再增加；已有伤害的状态保留原伤害率。",
+    "cone3Value": "锥形：三排依次1、3、5格"
   },
   "amazon": {
     "magic-arrow": {
@@ -310,7 +315,7 @@
     },
     "multiple-shot": {
       "name": "多重箭",
-      "desc": "扇形射出多支箭矢，最多命中 5 个敌人。"
+      "desc": "在三排逐渐展开的锥形范围内（每排1、3、5格），对最多{{maxTargets}}名存活敌人分别判定一次物理攻击，每次造成{{min}}～{{max}} 点基础伤害。未命中也消耗本次判定；物理抗性与防御仍生效。每次施放仅消耗{{mana}} 点法力，冷却{{cooldown}} 秒。范围内不足目标时，不从范围外补足。"
     },
     "freezing-arrow": {
       "name": "冰冻箭",
@@ -326,7 +331,7 @@
     },
     "strafe": {
       "name": "扫射",
-      "desc": "快速连射，命中战斗中所有敌人。"
+      "desc": "对本次选定的全部存活敌人依次进行{{strikes}}轮攻击，每名目标最多承受{{strikes}}次独立物理判定，每次造成{{min}}～{{max}} 点基础伤害。未命中也消耗次数；原目标死亡后跳过，不转移其剩余次数。施法者死亡立即停止。物理抗性与防御仍生效。每次施放仅消耗{{mana}} 点法力，冷却{{cooldown}} 秒。"
     },
     "critical-strike": {
       "name": "致命攻击",
@@ -362,7 +367,7 @@
     },
     "guided-arrow": {
       "name": "导引箭",
-      "desc": "射出追踪目标、必定命中的箭矢。"
+      "desc": "对单个存活敌人必定命中一次，造成{{min}}～{{max}} 点物理基础伤害。无视普通命中判定、闪避与致盲；物理抗性、防御、暴击和个人吸收仍生效。每次施放消耗{{mana}} 点法力，冷却{{cooldown}} 秒。致命一击不会转向其他敌人。"
     },
     "immolation-arrow": {
       "name": "献祭之箭",

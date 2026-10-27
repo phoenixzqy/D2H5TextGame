@@ -927,6 +927,9 @@ function StatSection({
           {stats.areaShape === 'cone-2' ? (
             <StatLine label={t('details.areaShape')} value={t('details.cone2Value')} />
           ) : null}
+          {stats.areaShape === 'cone-3' ? (
+            <StatLine label={t('details.areaShape')} value={t('details.cone3Value')} />
+          ) : null}
           {stats.summonUnit ? (
             <>
               {summonEffect?.kind === 'lifeLeech' ? (
@@ -1896,6 +1899,15 @@ function dynamicDescription(
   }
   if (firstDamage && skill.id === 'skills-amazon-impale') {
     return t('amazon.impale.desc', { min: firstDamage.min, max: firstDamage.max });
+  }
+  if (stats && firstDamage &&
+    ((skill.id === 'skills-amazon-guided-arrow' && stats.alwaysHits === true) ||
+      (skill.id === 'skills-amazon-multiple-shot' && stats.areaShape === 'cone-3' && stats.maxTargets === 5) ||
+      (skill.id === 'skills-amazon-strafe' && stats.strikesPerTarget !== undefined))) {
+    return t('amazon.' + skill.id.slice('skills-amazon-'.length) + '.desc', {
+      min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown,
+      maxTargets: stats.maxTargets, strikes: stats.strikesPerTarget
+    });
   }
   if (stats && firstDamage && ['skills-amazon-magic-arrow', 'skills-amazon-lightning-bolt',
     'skills-amazon-fire-arrow', 'skills-amazon-cold-arrow'].includes(skill.id)) {

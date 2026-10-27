@@ -54,6 +54,7 @@ export interface DisplaySkillSource {
   readonly damageComposition?: 'weighted-components';
   readonly ignoresMagicResist?: true;
   readonly ignoresDefense?: true;
+  readonly alwaysHits?: true;
   readonly hitSequence?: SkillHitSequence;
   readonly critChanceBonus?: number;
   readonly onHitRecovery?: OnHitRecoveryTuning;
@@ -231,13 +232,14 @@ export interface SkillRankDisplayStats {
   /** Paid personal bonuses and enemy Blind share this explicit finite duration. */
   readonly cloak?: { readonly durationSeconds: number; readonly blindHitPenaltyPoints: number };
   /** Explicit authored cone footprint; it counts covered cells, not enemy slots. */
-  readonly areaShape?: 'cone-2';
+  readonly areaShape?: 'cone-2' | 'cone-3';
   /** Authored limit after resolving the full area and its ordinary target order. */
   readonly maxTargets?: number;
   /** Explicit flat MR bypass; percentage resistance and personal absorption remain. */
   readonly ignoresMagicResist?: true;
   /** Explicit ordinary Defense bypass; hit rolls and percentage resistance remain. */
   readonly ignoresDefense?: true;
+  readonly alwaysHits?: true;
   /** One shared hit/critical decision with ordinary matching elemental control durations. */
   readonly composite?: { readonly chillSeconds: number; readonly paralyzeSeconds: number };
   /** Independent attack attempts; the displayed damage range remains per strike. */
@@ -615,6 +617,8 @@ export function computeSkillRankDisplayStats(
     skill.damageType === 'arcane' && skill.ignoresMagicResist === true;
   const ignoresDefense = skill.id === 'skills-amazon-impale' && skill.trigger === 'active' &&
     skill.damageType === 'physical' && skill.ignoresDefense === true;
+  const alwaysHits = skill.id === 'skills-amazon-guided-arrow' && skill.trigger === 'active' &&
+    skill.target === 'single-enemy' && skill.damageType === 'physical' && skill.alwaysHits === true;
   const composite = ['skills-paladin-vengeance', 'skills-assassin-phoenix-strike'].includes(skill.id) && skill.trigger === 'active' &&
     skill.damageComposition === 'weighted-components'
     ? { chillSeconds: STATUS_DEFAULTS.chill.duration, paralyzeSeconds: STATUS_DEFAULTS.paralyze.duration } : undefined;
@@ -629,8 +633,10 @@ export function computeSkillRankDisplayStats(
     skill.target === 'single-enemy' && skill.damageType === 'physical');
   const strikesPerCast = supportsSequence && skill.trigger === 'active' && skill.damage &&
     strikes !== undefined && Number.isInteger(strikes) && strikes >= 2 && strikes <= 8 ? strikes : undefined;
-  const strikesPerTarget = skill.id === 'skills-barbarian-double-swing' && skill.trigger === 'active' &&
-    skill.target === 'area-enemies' && skill.aoeShape === 'cross' && skill.maxTargets === 3 &&
+  const originalPasses = (skill.id === 'skills-barbarian-double-swing' &&
+    skill.target === 'area-enemies' && skill.aoeShape === 'cross' && skill.maxTargets === 3) ||
+    (skill.id === 'skills-amazon-strafe' && skill.target === 'all-enemies');
+  const strikesPerTarget = originalPasses && skill.trigger === 'active' &&
     skill.damageType === 'physical' && skill.damage !== undefined &&
     skill.hitSequence?.targetMode === 'each-original' && strikes === 2 ? strikes : undefined;
   const bonus = skill.critChanceBonus;
@@ -670,7 +676,8 @@ export function computeSkillRankDisplayStats(
     bossDurationSeconds: controlDefinition.duration * (controlDefinition.bossDurationMult ?? 1) } : undefined;
   const maxTargets = skill.trigger === 'active' && skill.target === 'area-enemies' &&
     (((skill.id === 'skills-paladin-zeal' || strikesPerTarget !== undefined) && skill.aoeShape === 'cross' && skill.maxTargets === 3) ||
-      (skill.id === 'skills-sorceress-chain-lightning' && skill.aoeShape === 'chain' && skill.maxTargets === 5))
+      (skill.id === 'skills-sorceress-chain-lightning' && skill.aoeShape === 'chain' && skill.maxTargets === 5) ||
+      (skill.id === 'skills-amazon-multiple-shot' && skill.aoeShape === 'cone-3' && skill.maxTargets === 5))
     ? skill.maxTargets : undefined;
   const selfCost = skill.onHitSelfDamage;
   const selfDamage = skill.id === 'skills-paladin-sacrifice' && skill.trigger === 'active' &&
@@ -771,9 +778,13 @@ export function computeSkillRankDisplayStats(
     ...(['skills-assassin-fire-blast', 'skills-assassin-blade-fury', 'skills-sorceress-frozen-orb', 'skills-sorceress-inferno'].includes(skill.id) && skill.trigger === 'active' &&
       skill.target === 'area-enemies' && skill.aoeShape === 'cone-2'
       ? { areaShape: skill.aoeShape } : {}),
+    ...(skill.id === 'skills-amazon-multiple-shot' && skill.trigger === 'active' &&
+      skill.target === 'area-enemies' && skill.aoeShape === 'cone-3' && skill.maxTargets === 5
+      ? { areaShape: skill.aoeShape } : {}),
     ...(maxTargets !== undefined ? { maxTargets } : {}),
     ...(ignoresMagicResist ? { ignoresMagicResist: true as const } : {}),
     ...(ignoresDefense ? { ignoresDefense: true as const } : {}),
+    ...(alwaysHits ? { alwaysHits: true as const } : {}),
     ...(composite ? { composite } : {}),
     ...(strikesPerCast !== undefined ? { strikesPerCast } : {}),
     ...(strikesPerTarget !== undefined ? { strikesPerTarget } : {}),
