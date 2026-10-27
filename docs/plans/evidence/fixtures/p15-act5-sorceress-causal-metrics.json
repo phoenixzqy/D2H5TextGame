@@ -1,0 +1,3885 @@
+{
+  "causalRecoveryCeiling": {
+    "derivation": "50MP maximum relevant cost / 0.4s minimum action period",
+    "limitation": "Diagnostic ceiling only, never proposed production recovery",
+    "mpPerSecond": 125
+  },
+  "interventionPolicy": {
+    "cold": [
+      "baseline",
+      "full-entry-mana",
+      "recovery125"
+    ],
+    "fire": [
+      "baseline",
+      "recovery125",
+      "blood-lord-fire0",
+      "recovery125+blood-lord-fire0"
+    ]
+  },
+  "kind": "P15 pure-combat causal diagnostic; no rewards or genuine successor",
+  "productionTuning": false,
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "independentSample": "Eight original seeds per frozen snapshot; interventions paired by seed, no independent holdout",
+  "baseCommit": "370aecb28d68e95485075a2a0426ef3bb96b71ee",
+  "review": "APPROVE, independent static/artifact review only; readers released",
+  "validation": {
+    "screen": {
+      "exitCode": 0,
+      "wallSeconds": 64.42433543794323
+    },
+    "postInputAudit": {
+      "count": 1810,
+      "drift": [],
+      "diagnosticConfigAndGenuineExact": true
+    },
+    "priorScreenRecordings": "16/16 original rep1 events/outcomes exact; enemy presentation is not raw native input"
+  },
+  "attribution": {
+    "manaCoverage": "MP below maximum ordered skill cost, including cooldown skills; not a count of mana-caused missed casts",
+    "directFire": "hero-sourced non-dodged damage events with damageType fire across all targets; excludes source-less periodic DoT",
+    "resistanceEdit": "Only native Blood Lord stats.resistances.fire 75 to0; no monster growth/MR/dodge changes"
+  },
+  "limits": [
+    "Single previously failed wave snapshots; no full area clears",
+    "Diagnostic intervention125MP/s is not proposed production tuning",
+    "No counterfactual rewards or successor saves; native baseline diagnostic settlement in isolated stores only",
+    "Mature earned gear atL35 versus nativeL56-58, no matched-level viability or pacing acceptance"
+  ],
+  "summaries": [
+    {
+      "build": "cold",
+      "variant": "baseline",
+      "n": 8,
+      "livingHeroWins": 0,
+      "heroDeaths": 0,
+      "victoryOnlySeconds": null,
+      "failedDurationsMs": [
+        60000,
+        60000,
+        60000,
+        60000,
+        60000,
+        60000,
+        60000,
+        60000
+      ],
+      "actions": 960,
+      "actionsBelowMaximumOrderedCost": 859,
+      "minimumPreActionMana": 8,
+      "directHeroFireHits": 0,
+      "directHeroFireOneDamageHits": 0
+    },
+    {
+      "build": "cold",
+      "variant": "full-entry-mana",
+      "n": 8,
+      "livingHeroWins": 8,
+      "heroDeaths": 0,
+      "victoryOnlySeconds": {
+        "min": 38.5,
+        "median": 46.75,
+        "max": 55.784
+      },
+      "failedDurationsMs": [],
+      "actions": 744,
+      "actionsBelowMaximumOrderedCost": 81,
+      "minimumPreActionMana": 8,
+      "directHeroFireHits": 0,
+      "directHeroFireOneDamageHits": 0
+    },
+    {
+      "build": "cold",
+      "variant": "recovery125",
+      "n": 8,
+      "livingHeroWins": 8,
+      "heroDeaths": 0,
+      "victoryOnlySeconds": {
+        "min": 38.5,
+        "median": 45.508,
+        "max": 47.5
+      },
+      "failedDurationsMs": [],
+      "actions": 719,
+      "actionsBelowMaximumOrderedCost": 0,
+      "minimumPreActionMana": 65,
+      "directHeroFireHits": 0,
+      "directHeroFireOneDamageHits": 0
+    },
+    {
+      "build": "fire",
+      "variant": "baseline",
+      "n": 8,
+      "livingHeroWins": 0,
+      "heroDeaths": 0,
+      "victoryOnlySeconds": null,
+      "failedDurationsMs": [
+        60000,
+        60000,
+        60000,
+        60000,
+        60000,
+        60000,
+        60000,
+        60000
+      ],
+      "actions": 960,
+      "actionsBelowMaximumOrderedCost": 489,
+      "minimumPreActionMana": 8,
+      "directHeroFireHits": 765,
+      "directHeroFireOneDamageHits": 305
+    },
+    {
+      "build": "fire",
+      "variant": "recovery125",
+      "n": 8,
+      "livingHeroWins": 0,
+      "heroDeaths": 0,
+      "victoryOnlySeconds": null,
+      "failedDurationsMs": [
+        60000,
+        60000,
+        60000,
+        60000,
+        60000,
+        60000,
+        60000,
+        60000
+      ],
+      "actions": 960,
+      "actionsBelowMaximumOrderedCost": 0,
+      "minimumPreActionMana": 474,
+      "directHeroFireHits": 959,
+      "directHeroFireOneDamageHits": 457
+    },
+    {
+      "build": "fire",
+      "variant": "blood-lord-fire0",
+      "n": 8,
+      "livingHeroWins": 8,
+      "heroDeaths": 0,
+      "victoryOnlySeconds": {
+        "min": 27.0,
+        "median": 34.0,
+        "max": 43.0
+      },
+      "failedDurationsMs": [],
+      "actions": 552,
+      "actionsBelowMaximumOrderedCost": 96,
+      "minimumPreActionMana": 8,
+      "directHeroFireHits": 580,
+      "directHeroFireOneDamageHits": 0
+    },
+    {
+      "build": "fire",
+      "variant": "recovery125+blood-lord-fire0",
+      "n": 8,
+      "livingHeroWins": 8,
+      "heroDeaths": 0,
+      "victoryOnlySeconds": {
+        "min": 27.0,
+        "median": 33.75,
+        "max": 37.5
+      },
+      "failedDurationsMs": [],
+      "actions": 536,
+      "actionsBelowMaximumOrderedCost": 0,
+      "minimumPreActionMana": 474,
+      "directHeroFireHits": 586,
+      "directHeroFireOneDamageHits": 0
+    }
+  ],
+  "rows": [
+    {
+      "build": "cold",
+      "changedInputHash": "499d5f2b7bc899e0b439e0eecc3e6b2d410b643d7caf11dc96b3d69b27e5f5c0",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 54,
+        "casts": {
+          "sorceress.blizzard": 5,
+          "sorceress.frozen_orb": 15,
+          "sorceress.ice_blast": 46
+        },
+        "directFireHitCount": 0,
+        "entryMana": 28,
+        "finalMana": 24,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 110,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1177,
+          "orb": 138,
+          "regeneration": 1035
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.death-mauler-2-6bbf",
+            "life": 2451
+          },
+          {
+            "id": "enemy-act5.death-mauler-3-57c8",
+            "life": 2983
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-2e80",
+            "life": 1403
+          },
+          {
+            "id": "enemy-act5.blood-lord-4-c07f",
+            "life": 3649
+          },
+          {
+            "id": "enemy-act5.blood-lord-5-bb30",
+            "life": 412
+          },
+          {
+            "id": "enemy-act5.death-mauler-5-a418",
+            "life": 461
+          }
+        ],
+        "remainingEnemyHp": 11359,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "499d5f2b7bc899e0b439e0eecc3e6b2d410b643d7caf11dc96b3d69b27e5f5c0",
+      "seed": 1,
+      "variant": "baseline",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "1079be943f92648b340cb51de8c55376328823cf72d693f411c0deb8c16b392b",
+      "edits": [
+        {
+          "after": 474,
+          "before": 28,
+          "field": "mana",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 25,
+        "casts": {
+          "sorceress.blizzard": 11,
+          "sorceress.frozen_orb": 24,
+          "sorceress.ice_blast": 36
+        },
+        "directFireHitCount": 0,
+        "entryMana": 474,
+        "finalMana": 33,
+        "livingHero": true,
+        "logicalMs": 48000,
+        "manaCoverageAtActions": {
+          "count": 96,
+          "insufficientActions": 7,
+          "minimumManaBeforeAction": 10,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1537,
+          "orb": 276,
+          "regeneration": 820
+        },
+        "minimumMana": 1,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 48000,
+        "winner": "player"
+      },
+      "nativeInputHash": "499d5f2b7bc899e0b439e0eecc3e6b2d410b643d7caf11dc96b3d69b27e5f5c0",
+      "seed": 1,
+      "variant": "full-entry-mana",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "9960d9f453a93cdd81dad0a689a03a6bf58c146afbf0cd024010f04d4140cb47",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 22,
+        "casts": {
+          "sorceress.blizzard": 12,
+          "sorceress.frozen_orb": 23,
+          "sorceress.ice_blast": 34
+        },
+        "directFireHitCount": 0,
+        "entryMana": 28,
+        "finalMana": 474,
+        "livingHero": true,
+        "logicalMs": 45508,
+        "manaCoverageAtActions": {
+          "count": 91,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 90,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1518,
+          "orb": 178,
+          "regeneration": 1786
+        },
+        "minimumMana": 28,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 45508,
+        "winner": "player"
+      },
+      "nativeInputHash": "499d5f2b7bc899e0b439e0eecc3e6b2d410b643d7caf11dc96b3d69b27e5f5c0",
+      "seed": 1,
+      "variant": "recovery125",
+      "wave": 3
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "8679b8cf48c9daf29eadf530a1d5bbf41795f34581ed8328b984b9c0489ea4d6",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 55,
+        "casts": {
+          "sorceress.fire_ball": 57,
+          "sorceress.meteor": 8
+        },
+        "directFireHitCount": 93,
+        "entryMana": 474,
+        "finalMana": 7,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 63,
+          "minimumManaBeforeAction": 9,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1540,
+          "orb": 46,
+          "regeneration": 1027
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 34,
+        "oneDamageFireHitFraction": 0.3655913978494624,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-73ea",
+            "life": 1686
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-bbd3",
+            "life": 4449
+          }
+        ],
+        "remainingEnemyHp": 6135,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "8679b8cf48c9daf29eadf530a1d5bbf41795f34581ed8328b984b9c0489ea4d6",
+      "seed": 1,
+      "variant": "baseline",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "ecc301181e9c72e1f22cf2f72b47819b91bf3f89dabfbc26ca1e65d2c86dcdbe",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 45,
+        "casts": {
+          "sorceress.fire_ball": 60,
+          "sorceress.meteor": 15
+        },
+        "directFireHitCount": 120,
+        "entryMana": 474,
+        "finalMana": 454,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1950,
+          "orb": 43,
+          "regeneration": 1887
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 53,
+        "oneDamageFireHitFraction": 0.44166666666666665,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-73ea",
+            "life": 2235
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-bbd3",
+            "life": 4396
+          }
+        ],
+        "remainingEnemyHp": 6631,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "8679b8cf48c9daf29eadf530a1d5bbf41795f34581ed8328b984b9c0489ea4d6",
+      "seed": 1,
+      "variant": "recovery125",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "98f04cbc722f81a52864b169a637608f12e272f2b4fcd068e738035dbd239806",
+      "edits": [
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-216b"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-7ecd"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-73ea"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-bbd3"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 28,
+        "casts": {
+          "sorceress.fire_ball": 35,
+          "sorceress.meteor": 8
+        },
+        "directFireHitCount": 72,
+        "entryMana": 474,
+        "finalMana": 24,
+        "livingHero": true,
+        "logicalMs": 35500,
+        "manaCoverageAtActions": {
+          "count": 71,
+          "insufficientActions": 14,
+          "minimumManaBeforeAction": 9,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1100,
+          "orb": 46,
+          "regeneration": 604
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 35500,
+        "winner": "player"
+      },
+      "nativeInputHash": "8679b8cf48c9daf29eadf530a1d5bbf41795f34581ed8328b984b9c0489ea4d6",
+      "seed": 1,
+      "variant": "blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "bee2572012942412cdb14891e6f0839215bd332fc3b8108c055c742c55dcfcc8",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-216b"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-7ecd"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-73ea"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-bbd3"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 26,
+        "casts": {
+          "sorceress.fire_ball": 34,
+          "sorceress.meteor": 9
+        },
+        "directFireHitCount": 71,
+        "entryMana": 474,
+        "finalMana": 474,
+        "livingHero": true,
+        "logicalMs": 34500,
+        "manaCoverageAtActions": {
+          "count": 69,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1130,
+          "orb": 20,
+          "regeneration": 1110
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 34500,
+        "winner": "player"
+      },
+      "nativeInputHash": "8679b8cf48c9daf29eadf530a1d5bbf41795f34581ed8328b984b9c0489ea4d6",
+      "seed": 1,
+      "variant": "recovery125+blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "3d1b36ef2871557958b5f90811323f66d2cff02eb7e1499cdd80a1d4b8b1cbde",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 53,
+        "casts": {
+          "sorceress.blizzard": 4,
+          "sorceress.frozen_orb": 15,
+          "sorceress.ice_blast": 48
+        },
+        "directFireHitCount": 0,
+        "entryMana": 31,
+        "finalMana": 16,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 111,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1166,
+          "orb": 115,
+          "regeneration": 1036
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-64b8",
+            "life": 929
+          },
+          {
+            "id": "enemy-act5.death-mauler-2-6aea",
+            "life": 4417
+          },
+          {
+            "id": "enemy-act5.death-mauler-3-738d",
+            "life": 4014
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-2cf4",
+            "life": 3707
+          },
+          {
+            "id": "enemy-act5.blood-lord-4-6980",
+            "life": 2664
+          },
+          {
+            "id": "enemy-act5.blood-lord-5-ec88",
+            "life": 3161
+          },
+          {
+            "id": "enemy-act5.death-mauler-4-da94",
+            "life": 595
+          }
+        ],
+        "remainingEnemyHp": 19487,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "3d1b36ef2871557958b5f90811323f66d2cff02eb7e1499cdd80a1d4b8b1cbde",
+      "seed": 2,
+      "variant": "baseline",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "11416ac160df34fcf8ea8e589ae1e7ad77cf99777fdda62c4c011ea75d6d58c2",
+      "edits": [
+        {
+          "after": 474,
+          "before": 31,
+          "field": "mana",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 19,
+        "casts": {
+          "sorceress.blizzard": 10,
+          "sorceress.frozen_orb": 19,
+          "sorceress.ice_blast": 29
+        },
+        "directFireHitCount": 0,
+        "entryMana": 474,
+        "finalMana": 132,
+        "livingHero": true,
+        "logicalMs": 38500,
+        "manaCoverageAtActions": {
+          "count": 77,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 111,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1268,
+          "orb": 276,
+          "regeneration": 650
+        },
+        "minimumMana": 99,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 38500,
+        "winner": "player"
+      },
+      "nativeInputHash": "3d1b36ef2871557958b5f90811323f66d2cff02eb7e1499cdd80a1d4b8b1cbde",
+      "seed": 2,
+      "variant": "full-entry-mana",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "40369060ca5dc7cd636143e6efa824295c3e457429e68d490881a53edb679115",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 19,
+        "casts": {
+          "sorceress.blizzard": 10,
+          "sorceress.frozen_orb": 19,
+          "sorceress.ice_blast": 29
+        },
+        "directFireHitCount": 0,
+        "entryMana": 31,
+        "finalMana": 462,
+        "livingHero": true,
+        "logicalMs": 38500,
+        "manaCoverageAtActions": {
+          "count": 77,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 94,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1268,
+          "orb": 149,
+          "regeneration": 1550
+        },
+        "minimumMana": 31,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 38500,
+        "winner": "player"
+      },
+      "nativeInputHash": "3d1b36ef2871557958b5f90811323f66d2cff02eb7e1499cdd80a1d4b8b1cbde",
+      "seed": 2,
+      "variant": "recovery125",
+      "wave": 3
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "d62550015b2c526b525aaa7128a5b0417c44b7e033cc4877e7ca2699d0e8f9b8",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 54,
+        "casts": {
+          "sorceress.fire_ball": 57,
+          "sorceress.meteor": 9
+        },
+        "directFireHitCount": 97,
+        "entryMana": 474,
+        "finalMana": 3,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 55,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1590,
+          "orb": 92,
+          "regeneration": 1027
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 46,
+        "oneDamageFireHitFraction": 0.4742268041237113,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-928d",
+            "life": 801
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-feab",
+            "life": 3581
+          }
+        ],
+        "remainingEnemyHp": 4382,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "d62550015b2c526b525aaa7128a5b0417c44b7e033cc4877e7ca2699d0e8f9b8",
+      "seed": 2,
+      "variant": "baseline",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "cccd191bb09735d19bef588f4bc50d404ae686f04e9af36a03cb97c2c801c4d9",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 45,
+        "casts": {
+          "sorceress.fire_ball": 60,
+          "sorceress.meteor": 15
+        },
+        "directFireHitCount": 109,
+        "entryMana": 474,
+        "finalMana": 454,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1950,
+          "orb": 66,
+          "regeneration": 1864
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 53,
+        "oneDamageFireHitFraction": 0.48623853211009177,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-3-feab",
+            "life": 2127
+          }
+        ],
+        "remainingEnemyHp": 2127,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "d62550015b2c526b525aaa7128a5b0417c44b7e033cc4877e7ca2699d0e8f9b8",
+      "seed": 2,
+      "variant": "recovery125",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "d427950a123dc498de3f10cff2745bdff1d8af859bd04a8e0961229fb6a387ba",
+      "edits": [
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-e82f"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-1590"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-928d"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-feab"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 20,
+        "casts": {
+          "sorceress.fire_ball": 27,
+          "sorceress.meteor": 7
+        },
+        "directFireHitCount": 61,
+        "entryMana": 474,
+        "finalMana": 133,
+        "livingHero": true,
+        "logicalMs": 27000,
+        "manaCoverageAtActions": {
+          "count": 54,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 144,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -890,
+          "orb": 92,
+          "regeneration": 457
+        },
+        "minimumMana": 133,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 27000,
+        "winner": "player"
+      },
+      "nativeInputHash": "d62550015b2c526b525aaa7128a5b0417c44b7e033cc4877e7ca2699d0e8f9b8",
+      "seed": 2,
+      "variant": "blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "595e52aab99f8cbdd487eb98b9e69ec2ff075beec2efbed8d4e2caf66eb45f32",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-e82f"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-1590"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-928d"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-feab"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 20,
+        "casts": {
+          "sorceress.fire_ball": 27,
+          "sorceress.meteor": 7
+        },
+        "directFireHitCount": 61,
+        "entryMana": 474,
+        "finalMana": 454,
+        "livingHero": true,
+        "logicalMs": 27000,
+        "manaCoverageAtActions": {
+          "count": 54,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -890,
+          "orb": 60,
+          "regeneration": 810
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 27000,
+        "winner": "player"
+      },
+      "nativeInputHash": "d62550015b2c526b525aaa7128a5b0417c44b7e033cc4877e7ca2699d0e8f9b8",
+      "seed": 2,
+      "variant": "recovery125+blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "2e91ba52c562ad62319de593f18bbb5bb96902309223a1b5a8a868180c85f140",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 52,
+        "casts": {
+          "sorceress.blizzard": 4,
+          "sorceress.frozen_orb": 17,
+          "sorceress.ice_blast": 47
+        },
+        "directFireHitCount": 0,
+        "entryMana": 34,
+        "finalMana": 39,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 106,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1214,
+          "orb": 184,
+          "regeneration": 1035
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.death-mauler-2-4799",
+            "life": 2819
+          },
+          {
+            "id": "enemy-act5.death-mauler-3-8586",
+            "life": 3679
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-fea6",
+            "life": 4608
+          },
+          {
+            "id": "enemy-act5.blood-lord-4-7685",
+            "life": 3721
+          }
+        ],
+        "remainingEnemyHp": 14827,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "2e91ba52c562ad62319de593f18bbb5bb96902309223a1b5a8a868180c85f140",
+      "seed": 3,
+      "variant": "baseline",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "52e6f0ada5b893bd8b6fd3baa4db20a28f5b97228047afe4c4d6d87552c1a593",
+      "edits": [
+        {
+          "after": 474,
+          "before": 34,
+          "field": "mana",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 24,
+        "casts": {
+          "sorceress.blizzard": 11,
+          "sorceress.frozen_orb": 23,
+          "sorceress.ice_blast": 36
+        },
+        "directFireHitCount": 0,
+        "entryMana": 474,
+        "finalMana": 45,
+        "livingHero": true,
+        "logicalMs": 47000,
+        "manaCoverageAtActions": {
+          "count": 94,
+          "insufficientActions": 7,
+          "minimumManaBeforeAction": 17,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1507,
+          "orb": 276,
+          "regeneration": 802
+        },
+        "minimumMana": 8,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 47000,
+        "winner": "player"
+      },
+      "nativeInputHash": "2e91ba52c562ad62319de593f18bbb5bb96902309223a1b5a8a868180c85f140",
+      "seed": 3,
+      "variant": "full-entry-mana",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "a70ca7279e3e69d73ecb164b2e0fb612aac5156e6255e8f822fef837951c19fe",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 23,
+        "casts": {
+          "sorceress.blizzard": 11,
+          "sorceress.frozen_orb": 24,
+          "sorceress.ice_blast": 36
+        },
+        "directFireHitCount": 0,
+        "entryMana": 34,
+        "finalMana": 474,
+        "livingHero": true,
+        "logicalMs": 47455.54393024815,
+        "manaCoverageAtActions": {
+          "count": 94,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 96,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1537,
+          "orb": 138,
+          "regeneration": 1839
+        },
+        "minimumMana": 34,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 47455.54393024815,
+        "winner": "player"
+      },
+      "nativeInputHash": "2e91ba52c562ad62319de593f18bbb5bb96902309223a1b5a8a868180c85f140",
+      "seed": 3,
+      "variant": "recovery125",
+      "wave": 3
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "1b618230a3175f243347ce923bfbc74a6f550fa95b7559bfeb78af7d4bbe513a",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 56,
+        "casts": {
+          "sorceress.fire_ball": 56,
+          "sorceress.meteor": 8
+        },
+        "directFireHitCount": 95,
+        "entryMana": 474,
+        "finalMana": 27,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 63,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1520,
+          "orb": 46,
+          "regeneration": 1027
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 44,
+        "oneDamageFireHitFraction": 0.4631578947368421,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.death-mauler-4-b2d7",
+            "life": 988
+          },
+          {
+            "id": "enemy-act5.death-mauler-5-c97a",
+            "life": 319
+          },
+          {
+            "id": "enemy-act5.blood-lord-2-0add",
+            "life": 3900
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-9cc6",
+            "life": 3571
+          }
+        ],
+        "remainingEnemyHp": 8778,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "1b618230a3175f243347ce923bfbc74a6f550fa95b7559bfeb78af7d4bbe513a",
+      "seed": 3,
+      "variant": "baseline",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "d68737347c665c712b96e03cfb8f753d4a2fc3baa417ae105ff71c1931c01f3b",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 45,
+        "casts": {
+          "sorceress.fire_ball": 60,
+          "sorceress.meteor": 15
+        },
+        "directFireHitCount": 121,
+        "entryMana": 474,
+        "finalMana": 454,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1950,
+          "orb": 20,
+          "regeneration": 1910
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 59,
+        "oneDamageFireHitFraction": 0.48760330578512395,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-0add",
+            "life": 2539
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-9cc6",
+            "life": 3549
+          }
+        ],
+        "remainingEnemyHp": 6088,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "1b618230a3175f243347ce923bfbc74a6f550fa95b7559bfeb78af7d4bbe513a",
+      "seed": 3,
+      "variant": "recovery125",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "59bb27f21da8c2efcfc927c585d79468d4a8d94dd51be0c28d9da50c68ec98fa",
+      "edits": [
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-8b5c"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-aa9c"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-0add"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-9cc6"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 28,
+        "casts": {
+          "sorceress.fire_ball": 35,
+          "sorceress.meteor": 9
+        },
+        "directFireHitCount": 69,
+        "entryMana": 474,
+        "finalMana": 28,
+        "livingHero": true,
+        "logicalMs": 36000,
+        "manaCoverageAtActions": {
+          "count": 72,
+          "insufficientActions": 14,
+          "minimumManaBeforeAction": 17,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1150,
+          "orb": 92,
+          "regeneration": 612
+        },
+        "minimumMana": 5,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 36000,
+        "winner": "player"
+      },
+      "nativeInputHash": "1b618230a3175f243347ce923bfbc74a6f550fa95b7559bfeb78af7d4bbe513a",
+      "seed": 3,
+      "variant": "blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "864e7b80656f2e45f7cb84e1bdb828b4b0d417afc4b0616501404350b02afe28",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-8b5c"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-aa9c"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-0add"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-9cc6"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 27,
+        "casts": {
+          "sorceress.fire_ball": 36,
+          "sorceress.meteor": 9
+        },
+        "directFireHitCount": 71,
+        "entryMana": 474,
+        "finalMana": 474,
+        "livingHero": true,
+        "logicalMs": 36000,
+        "manaCoverageAtActions": {
+          "count": 72,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1170,
+          "orb": 80,
+          "regeneration": 1090
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 36000,
+        "winner": "player"
+      },
+      "nativeInputHash": "1b618230a3175f243347ce923bfbc74a6f550fa95b7559bfeb78af7d4bbe513a",
+      "seed": 3,
+      "variant": "recovery125+blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "3df30e336e42109030e9ec00f4a6319b168563770bf515c251862f7b05d3654d",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 53,
+        "casts": {
+          "sorceress.blizzard": 5,
+          "sorceress.frozen_orb": 16,
+          "sorceress.ice_blast": 46
+        },
+        "directFireHitCount": 0,
+        "entryMana": 26,
+        "finalMana": 16,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 108,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1207,
+          "orb": 161,
+          "regeneration": 1036
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.death-mauler-2-3bd5",
+            "life": 2429
+          },
+          {
+            "id": "enemy-act5.death-mauler-3-398d",
+            "life": 2693
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-d9ed",
+            "life": 3393
+          },
+          {
+            "id": "enemy-act5.blood-lord-4-770b",
+            "life": 3271
+          },
+          {
+            "id": "enemy-act5.blood-lord-5-9090",
+            "life": 274
+          }
+        ],
+        "remainingEnemyHp": 12060,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "3df30e336e42109030e9ec00f4a6319b168563770bf515c251862f7b05d3654d",
+      "seed": 4,
+      "variant": "baseline",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "942493f41ec6aefdd94c3831e6ca35b8f5d1e71429e4f723fb3df3d28c3a3052",
+      "edits": [
+        {
+          "after": 474,
+          "before": 26,
+          "field": "mana",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 22,
+        "casts": {
+          "sorceress.blizzard": 11,
+          "sorceress.frozen_orb": 22,
+          "sorceress.ice_blast": 33
+        },
+        "directFireHitCount": 0,
+        "entryMana": 474,
+        "finalMana": 60,
+        "livingHero": true,
+        "logicalMs": 44040,
+        "manaCoverageAtActions": {
+          "count": 88,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 61,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1441,
+          "orb": 276,
+          "regeneration": 751
+        },
+        "minimumMana": 36,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 44040,
+        "winner": "player"
+      },
+      "nativeInputHash": "3df30e336e42109030e9ec00f4a6319b168563770bf515c251862f7b05d3654d",
+      "seed": 4,
+      "variant": "full-entry-mana",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "211c061f5c299f4d72f029a780e0d55f1305dc8e77f29951fed92302a1b8ff4a",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 22,
+        "casts": {
+          "sorceress.blizzard": 11,
+          "sorceress.frozen_orb": 22,
+          "sorceress.ice_blast": 33
+        },
+        "directFireHitCount": 0,
+        "entryMana": 26,
+        "finalMana": 472,
+        "livingHero": true,
+        "logicalMs": 44040,
+        "manaCoverageAtActions": {
+          "count": 88,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 89,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1441,
+          "orb": 138,
+          "regeneration": 1749
+        },
+        "minimumMana": 26,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 44040,
+        "winner": "player"
+      },
+      "nativeInputHash": "3df30e336e42109030e9ec00f4a6319b168563770bf515c251862f7b05d3654d",
+      "seed": 4,
+      "variant": "recovery125",
+      "wave": 3
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "425d24bc91901853ebe54b12cae100bb8d2c44b398ae3e4af231873d4045087b",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 57,
+        "casts": {
+          "sorceress.fire_ball": 55,
+          "sorceress.meteor": 8
+        },
+        "directFireHitCount": 94,
+        "entryMana": 474,
+        "finalMana": 1,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 63,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1500,
+          "regeneration": 1027
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 34,
+        "oneDamageFireHitFraction": 0.3617021276595745,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-bee4",
+            "life": 1295
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-71da",
+            "life": 3762
+          }
+        ],
+        "remainingEnemyHp": 5057,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "425d24bc91901853ebe54b12cae100bb8d2c44b398ae3e4af231873d4045087b",
+      "seed": 4,
+      "variant": "baseline",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "729c561c8c0b50b23b315583683e77939d5fae29ee300cb8dfad699c0566237f",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 45,
+        "casts": {
+          "sorceress.fire_ball": 60,
+          "sorceress.meteor": 15
+        },
+        "directFireHitCount": 123,
+        "entryMana": 474,
+        "finalMana": 454,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1950,
+          "regeneration": 1930
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 56,
+        "oneDamageFireHitFraction": 0.45528455284552843,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-bee4",
+            "life": 830
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-71da",
+            "life": 3728
+          }
+        ],
+        "remainingEnemyHp": 4558,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "425d24bc91901853ebe54b12cae100bb8d2c44b398ae3e4af231873d4045087b",
+      "seed": 4,
+      "variant": "recovery125",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "7deb82c7750cc3559277ced00508dc26038b71da621afb1f132ad302eca98d7c",
+      "edits": [
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-eb38"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-18f4"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-bee4"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-71da"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 24,
+        "casts": {
+          "sorceress.fire_ball": 32,
+          "sorceress.meteor": 8
+        },
+        "directFireHitCount": 79,
+        "entryMana": 474,
+        "finalMana": 23,
+        "livingHero": true,
+        "logicalMs": 32000,
+        "manaCoverageAtActions": {
+          "count": 64,
+          "insufficientActions": 7,
+          "minimumManaBeforeAction": 12,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1040,
+          "orb": 46,
+          "regeneration": 543
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 32000,
+        "winner": "player"
+      },
+      "nativeInputHash": "425d24bc91901853ebe54b12cae100bb8d2c44b398ae3e4af231873d4045087b",
+      "seed": 4,
+      "variant": "blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "d30daa793737e7a36174c060e81a40d5227c548a3ca49c471efa4307f2723ed9",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-eb38"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-18f4"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-bee4"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-71da"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 24,
+        "casts": {
+          "sorceress.fire_ball": 32,
+          "sorceress.meteor": 8
+        },
+        "directFireHitCount": 79,
+        "entryMana": 474,
+        "finalMana": 474,
+        "livingHero": true,
+        "logicalMs": 32000,
+        "manaCoverageAtActions": {
+          "count": 64,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1040,
+          "orb": 20,
+          "regeneration": 1020
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 32000,
+        "winner": "player"
+      },
+      "nativeInputHash": "425d24bc91901853ebe54b12cae100bb8d2c44b398ae3e4af231873d4045087b",
+      "seed": 4,
+      "variant": "recovery125+blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "e15d74fed3672308256c1b2a7c23fc0ea9e23f1e96d08ab9d12832ba9c27e98b",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 51,
+        "casts": {
+          "sorceress.blizzard": 4,
+          "sorceress.frozen_orb": 18,
+          "sorceress.ice_blast": 47
+        },
+        "directFireHitCount": 0,
+        "entryMana": 53,
+        "finalMana": 6,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 110,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1244,
+          "orb": 161,
+          "regeneration": 1036
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.death-mauler-2-1778",
+            "life": 2996
+          },
+          {
+            "id": "enemy-act5.death-mauler-3-5805",
+            "life": 3531
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-90b6",
+            "life": 6154
+          },
+          {
+            "id": "enemy-act5.blood-lord-4-c184",
+            "life": 4528
+          },
+          {
+            "id": "enemy-act5.blood-lord-5-f09b",
+            "life": 2325
+          }
+        ],
+        "remainingEnemyHp": 19534,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "e15d74fed3672308256c1b2a7c23fc0ea9e23f1e96d08ab9d12832ba9c27e98b",
+      "seed": 5,
+      "variant": "baseline",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "20ca14e478fae7654abeaad84afcfaa61c1aa5bb886efbab1c91e97c0e9c00c7",
+      "edits": [
+        {
+          "after": 474,
+          "before": 53,
+          "field": "mana",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 24,
+        "casts": {
+          "sorceress.blizzard": 11,
+          "sorceress.frozen_orb": 23,
+          "sorceress.ice_blast": 35
+        },
+        "directFireHitCount": 0,
+        "entryMana": 474,
+        "finalMana": 49,
+        "livingHero": true,
+        "logicalMs": 46500,
+        "manaCoverageAtActions": {
+          "count": 93,
+          "insufficientActions": 5,
+          "minimumManaBeforeAction": 20,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1495,
+          "orb": 276,
+          "regeneration": 794
+        },
+        "minimumMana": 12,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 46500,
+        "winner": "player"
+      },
+      "nativeInputHash": "e15d74fed3672308256c1b2a7c23fc0ea9e23f1e96d08ab9d12832ba9c27e98b",
+      "seed": 5,
+      "variant": "full-entry-mana",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "8625f5e6dfcb456dfd09bcd874e76b5b43081936a7c73cee775310e629b6fa3f",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 22,
+        "casts": {
+          "sorceress.blizzard": 12,
+          "sorceress.frozen_orb": 23,
+          "sorceress.ice_blast": 34
+        },
+        "directFireHitCount": 0,
+        "entryMana": 53,
+        "finalMana": 474,
+        "livingHero": true,
+        "logicalMs": 45508,
+        "manaCoverageAtActions": {
+          "count": 91,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 116,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1518,
+          "orb": 149,
+          "regeneration": 1790
+        },
+        "minimumMana": 53,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 45508,
+        "winner": "player"
+      },
+      "nativeInputHash": "e15d74fed3672308256c1b2a7c23fc0ea9e23f1e96d08ab9d12832ba9c27e98b",
+      "seed": 5,
+      "variant": "recovery125",
+      "wave": 3
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "5c1815754bae3dd26f227d85b2569ebb82c14d227703c874d778c8cfaf3807b6",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 57,
+        "casts": {
+          "sorceress.fire_ball": 54,
+          "sorceress.meteor": 9
+        },
+        "directFireHitCount": 103,
+        "entryMana": 474,
+        "finalMana": 17,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 62,
+          "minimumManaBeforeAction": 9,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1530,
+          "orb": 46,
+          "regeneration": 1027
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 36,
+        "oneDamageFireHitFraction": 0.34951456310679613,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-9719",
+            "life": 822
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-ea76",
+            "life": 3440
+          }
+        ],
+        "remainingEnemyHp": 4262,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "5c1815754bae3dd26f227d85b2569ebb82c14d227703c874d778c8cfaf3807b6",
+      "seed": 5,
+      "variant": "baseline",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "038900120b311de87ae20ef7ae401ad7e54b4840fd2cc5ff82c74ad8b408417e",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 45,
+        "casts": {
+          "sorceress.fire_ball": 60,
+          "sorceress.meteor": 15
+        },
+        "directFireHitCount": 125,
+        "entryMana": 474,
+        "finalMana": 454,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1950,
+          "regeneration": 1930
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 59,
+        "oneDamageFireHitFraction": 0.472,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-9719",
+            "life": 2316
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-ea76",
+            "life": 3404
+          }
+        ],
+        "remainingEnemyHp": 5720,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "5c1815754bae3dd26f227d85b2569ebb82c14d227703c874d778c8cfaf3807b6",
+      "seed": 5,
+      "variant": "recovery125",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "65d118f38ce7f6f322b38a7392e8bd38682dd447aa610b0af20fa780986554c6",
+      "edits": [
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-d3eb"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-f08d"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-9719"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-ea76"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 25,
+        "casts": {
+          "sorceress.fire_ball": 32,
+          "sorceress.meteor": 8
+        },
+        "directFireHitCount": 81,
+        "entryMana": 474,
+        "finalMana": 32,
+        "livingHero": true,
+        "logicalMs": 32500,
+        "manaCoverageAtActions": {
+          "count": 65,
+          "insufficientActions": 8,
+          "minimumManaBeforeAction": 14,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1040,
+          "orb": 46,
+          "regeneration": 552
+        },
+        "minimumMana": 6,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 32500,
+        "winner": "player"
+      },
+      "nativeInputHash": "5c1815754bae3dd26f227d85b2569ebb82c14d227703c874d778c8cfaf3807b6",
+      "seed": 5,
+      "variant": "blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "a4ee2db2b6cee8fa16a99122e62c643587068dbc05815f4f0233f70401f54ec0",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-d3eb"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-f08d"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-9719"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-ea76"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 24,
+        "casts": {
+          "sorceress.fire_ball": 33,
+          "sorceress.meteor": 9
+        },
+        "directFireHitCount": 83,
+        "entryMana": 474,
+        "finalMana": 454,
+        "livingHero": true,
+        "logicalMs": 33000,
+        "manaCoverageAtActions": {
+          "count": 66,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1110,
+          "orb": 20,
+          "regeneration": 1070
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 33000,
+        "winner": "player"
+      },
+      "nativeInputHash": "5c1815754bae3dd26f227d85b2569ebb82c14d227703c874d778c8cfaf3807b6",
+      "seed": 5,
+      "variant": "recovery125+blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "6495731b8579f75955850a4c5eb8e7b2fdfe2d6d5a425aa8cd331aee305948de",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 51,
+        "casts": {
+          "sorceress.blizzard": 5,
+          "sorceress.frozen_orb": 16,
+          "sorceress.ice_blast": 48
+        },
+        "directFireHitCount": 0,
+        "entryMana": 11,
+        "finalMana": 0,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 110,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1231,
+          "orb": 184,
+          "regeneration": 1036
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.death-mauler-2-56c9",
+            "life": 1043
+          },
+          {
+            "id": "enemy-act5.death-mauler-3-ccf3",
+            "life": 3718
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-7137",
+            "life": 2346
+          },
+          {
+            "id": "enemy-act5.blood-lord-4-3f82",
+            "life": 4538
+          }
+        ],
+        "remainingEnemyHp": 11645,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "6495731b8579f75955850a4c5eb8e7b2fdfe2d6d5a425aa8cd331aee305948de",
+      "seed": 6,
+      "variant": "baseline",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "cc8c6a4570751459c21d217a62b3c3ca4dd13b03e8ba81c1bb47f973a6cef133",
+      "edits": [
+        {
+          "after": 474,
+          "before": 11,
+          "field": "mana",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 27,
+        "casts": {
+          "sorceress.blizzard": 10,
+          "sorceress.frozen_orb": 23,
+          "sorceress.ice_blast": 51
+        },
+        "directFireHitCount": 0,
+        "entryMana": 474,
+        "finalMana": 52,
+        "livingHero": true,
+        "logicalMs": 55784,
+        "manaCoverageAtActions": {
+          "count": 111,
+          "insufficientActions": 40,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1652,
+          "orb": 276,
+          "regeneration": 954
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 55784,
+        "winner": "player"
+      },
+      "nativeInputHash": "6495731b8579f75955850a4c5eb8e7b2fdfe2d6d5a425aa8cd331aee305948de",
+      "seed": 6,
+      "variant": "full-entry-mana",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "5e6b1877b7b1f17aa7b91eaf2d68cfd276f59fb515516468bf68c1107c56a22f",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 12,
+        "casts": {
+          "sorceress.blizzard": 11,
+          "sorceress.frozen_orb": 24,
+          "sorceress.ice_blast": 46
+        },
+        "directFireHitCount": 0,
+        "entryMana": 11,
+        "finalMana": 474,
+        "livingHero": true,
+        "logicalMs": 46976,
+        "manaCoverageAtActions": {
+          "count": 93,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 74,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1657,
+          "orb": 160,
+          "regeneration": 1960
+        },
+        "minimumMana": 11,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 46976,
+        "winner": "player"
+      },
+      "nativeInputHash": "6495731b8579f75955850a4c5eb8e7b2fdfe2d6d5a425aa8cd331aee305948de",
+      "seed": 6,
+      "variant": "recovery125",
+      "wave": 3
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "a218626770c473c805d4d12895e42de5e595b3a7725bbe2ec9062b038b1ea764",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 57,
+        "casts": {
+          "sorceress.fire_ball": 55,
+          "sorceress.meteor": 8
+        },
+        "directFireHitCount": 92,
+        "entryMana": 474,
+        "finalMana": 1,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 63,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1500,
+          "regeneration": 1027
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 29,
+        "oneDamageFireHitFraction": 0.31521739130434784,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-805c",
+            "life": 2628
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-7ab4",
+            "life": 4337
+          }
+        ],
+        "remainingEnemyHp": 6965,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "a218626770c473c805d4d12895e42de5e595b3a7725bbe2ec9062b038b1ea764",
+      "seed": 6,
+      "variant": "baseline",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "bf57c48e91621870907273d364da466b863933f6a42bc331310cbe99b709eeae",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 45,
+        "casts": {
+          "sorceress.fire_ball": 60,
+          "sorceress.meteor": 15
+        },
+        "directFireHitCount": 119,
+        "entryMana": 474,
+        "finalMana": 454,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1950,
+          "regeneration": 1930
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 58,
+        "oneDamageFireHitFraction": 0.48739495798319327,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-805c",
+            "life": 3979
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-7ab4",
+            "life": 4313
+          }
+        ],
+        "remainingEnemyHp": 8292,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "a218626770c473c805d4d12895e42de5e595b3a7725bbe2ec9062b038b1ea764",
+      "seed": 6,
+      "variant": "recovery125",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "6d5e2b58352137877b4aa6605caf4b92b7d038a65de4f1ba8c614dd41460cede",
+      "edits": [
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-15b2"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-6cec"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-805c"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-7ab4"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 37,
+        "casts": {
+          "sorceress.fire_ball": 40,
+          "sorceress.meteor": 9
+        },
+        "directFireHitCount": 77,
+        "entryMana": 474,
+        "finalMana": 3,
+        "livingHero": true,
+        "logicalMs": 43000,
+        "manaCoverageAtActions": {
+          "count": 86,
+          "insufficientActions": 28,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1250,
+          "orb": 46,
+          "regeneration": 733
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 43000,
+        "winner": "player"
+      },
+      "nativeInputHash": "a218626770c473c805d4d12895e42de5e595b3a7725bbe2ec9062b038b1ea764",
+      "seed": 6,
+      "variant": "blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "89c68859438fc9d241e583312023cfe147cb74ee7e16381ac069f2fcfc64c5c9",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-15b2"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-6cec"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-805c"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-7ab4"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 27,
+        "casts": {
+          "sorceress.fire_ball": 36,
+          "sorceress.meteor": 9
+        },
+        "directFireHitCount": 78,
+        "entryMana": 474,
+        "finalMana": 454,
+        "livingHero": true,
+        "logicalMs": 36000,
+        "manaCoverageAtActions": {
+          "count": 72,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1170,
+          "regeneration": 1150
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 36000,
+        "winner": "player"
+      },
+      "nativeInputHash": "a218626770c473c805d4d12895e42de5e595b3a7725bbe2ec9062b038b1ea764",
+      "seed": 6,
+      "variant": "recovery125+blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "a36f224233da1ea0c61f63b4335ff65aca1f2adce849a48809ab81345a14ca2a",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 51,
+        "casts": {
+          "sorceress.blizzard": 4,
+          "sorceress.frozen_orb": 18,
+          "sorceress.ice_blast": 47
+        },
+        "directFireHitCount": 0,
+        "entryMana": 2,
+        "finalMana": 1,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 103,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1244,
+          "orb": 207,
+          "regeneration": 1036
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.death-mauler-3-078a",
+            "life": 1640
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-1cdc",
+            "life": 4585
+          },
+          {
+            "id": "enemy-act5.blood-lord-4-06f4",
+            "life": 6658
+          }
+        ],
+        "remainingEnemyHp": 12883,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "a36f224233da1ea0c61f63b4335ff65aca1f2adce849a48809ab81345a14ca2a",
+      "seed": 7,
+      "variant": "baseline",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "f5727516aa271921837adfb0b2262910d716d740d5a52152d8a80d8265c74e55",
+      "edits": [
+        {
+          "after": 474,
+          "before": 2,
+          "field": "mana",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 25,
+        "casts": {
+          "sorceress.blizzard": 11,
+          "sorceress.frozen_orb": 23,
+          "sorceress.ice_blast": 36
+        },
+        "directFireHitCount": 0,
+        "entryMana": 474,
+        "finalMana": 49,
+        "livingHero": true,
+        "logicalMs": 47500,
+        "manaCoverageAtActions": {
+          "count": 95,
+          "insufficientActions": 4,
+          "minimumManaBeforeAction": 20,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1507,
+          "orb": 276,
+          "regeneration": 806
+        },
+        "minimumMana": 12,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 47500,
+        "winner": "player"
+      },
+      "nativeInputHash": "a36f224233da1ea0c61f63b4335ff65aca1f2adce849a48809ab81345a14ca2a",
+      "seed": 7,
+      "variant": "full-entry-mana",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "8557f1859f5b204512a0987099e55118268ec5d38688ff1dc7135cf39bd378ba",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 24,
+        "casts": {
+          "sorceress.blizzard": 11,
+          "sorceress.frozen_orb": 24,
+          "sorceress.ice_blast": 36
+        },
+        "directFireHitCount": 0,
+        "entryMana": 2,
+        "finalMana": 467,
+        "livingHero": true,
+        "logicalMs": 47500,
+        "manaCoverageAtActions": {
+          "count": 95,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 65,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1537,
+          "orb": 206,
+          "regeneration": 1796
+        },
+        "minimumMana": 2,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 47500,
+        "winner": "player"
+      },
+      "nativeInputHash": "a36f224233da1ea0c61f63b4335ff65aca1f2adce849a48809ab81345a14ca2a",
+      "seed": 7,
+      "variant": "recovery125",
+      "wave": 3
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "73f075197fe031e4e946dc35abccf617daac5ee2c769599063a7eeea835e63a0",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 54,
+        "casts": {
+          "sorceress.fire_ball": 57,
+          "sorceress.meteor": 9
+        },
+        "directFireHitCount": 97,
+        "entryMana": 474,
+        "finalMana": 3,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 58,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1590,
+          "orb": 92,
+          "regeneration": 1027
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 39,
+        "oneDamageFireHitFraction": 0.4020618556701031,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-96f4",
+            "life": 1703
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-2fdd",
+            "life": 3979
+          }
+        ],
+        "remainingEnemyHp": 5682,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "73f075197fe031e4e946dc35abccf617daac5ee2c769599063a7eeea835e63a0",
+      "seed": 7,
+      "variant": "baseline",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "07ded314753e1301ece4c9e08cc2ac957d50fa82df13cb76797927b8c7e9e00c",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 45,
+        "casts": {
+          "sorceress.fire_ball": 60,
+          "sorceress.meteor": 15
+        },
+        "directFireHitCount": 118,
+        "entryMana": 474,
+        "finalMana": 454,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1950,
+          "orb": 63,
+          "regeneration": 1867
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 56,
+        "oneDamageFireHitFraction": 0.4745762711864407,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-96f4",
+            "life": 3180
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-2fdd",
+            "life": 3963
+          }
+        ],
+        "remainingEnemyHp": 7143,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "73f075197fe031e4e946dc35abccf617daac5ee2c769599063a7eeea835e63a0",
+      "seed": 7,
+      "variant": "recovery125",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "c2c969ab93660b069080717059947a7e7a5a9c1d3650953cd2ac6cf76d1f88ff",
+      "edits": [
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-a0ad"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-f013"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-96f4"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-2fdd"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 24,
+        "casts": {
+          "sorceress.fire_ball": 32,
+          "sorceress.meteor": 8
+        },
+        "directFireHitCount": 72,
+        "entryMana": 474,
+        "finalMana": 23,
+        "livingHero": true,
+        "logicalMs": 32000,
+        "manaCoverageAtActions": {
+          "count": 64,
+          "insufficientActions": 6,
+          "minimumManaBeforeAction": 35,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1040,
+          "orb": 46,
+          "regeneration": 543
+        },
+        "minimumMana": 23,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 32000,
+        "winner": "player"
+      },
+      "nativeInputHash": "73f075197fe031e4e946dc35abccf617daac5ee2c769599063a7eeea835e63a0",
+      "seed": 7,
+      "variant": "blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "32b7a4719212ecb26af21d423ca8f3fe7849c7799112f7d7f002eb2f723ae75b",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-a0ad"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-f013"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-96f4"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-2fdd"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 24,
+        "casts": {
+          "sorceress.fire_ball": 32,
+          "sorceress.meteor": 8
+        },
+        "directFireHitCount": 72,
+        "entryMana": 474,
+        "finalMana": 454,
+        "livingHero": true,
+        "logicalMs": 32000,
+        "manaCoverageAtActions": {
+          "count": 64,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1040,
+          "orb": 20,
+          "regeneration": 1000
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 32000,
+        "winner": "player"
+      },
+      "nativeInputHash": "73f075197fe031e4e946dc35abccf617daac5ee2c769599063a7eeea835e63a0",
+      "seed": 7,
+      "variant": "recovery125+blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "8aa0f697d309d88e9061f75e39cee4eed37fcfe14babcce79e179f57bfdf95ac",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 51,
+        "casts": {
+          "sorceress.blizzard": 6,
+          "sorceress.frozen_orb": 16,
+          "sorceress.ice_blast": 47
+        },
+        "directFireHitCount": 0,
+        "entryMana": 38,
+        "finalMana": 4,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 101,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1254,
+          "orb": 184,
+          "regeneration": 1036
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.death-mauler-2-1dcc",
+            "life": 745
+          },
+          {
+            "id": "enemy-act5.death-mauler-3-924c",
+            "life": 283
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-5908",
+            "life": 2992
+          },
+          {
+            "id": "enemy-act5.blood-lord-4-70ea",
+            "life": 3894
+          }
+        ],
+        "remainingEnemyHp": 7914,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "8aa0f697d309d88e9061f75e39cee4eed37fcfe14babcce79e179f57bfdf95ac",
+      "seed": 8,
+      "variant": "baseline",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "1c3548a6a628e9097b462420f4329c5c6eb1de4a8e3bc82f872e1c978eb7a9a6",
+      "edits": [
+        {
+          "after": 474,
+          "before": 38,
+          "field": "mana",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 18,
+        "casts": {
+          "sorceress.blizzard": 10,
+          "sorceress.frozen_orb": 21,
+          "sorceress.ice_blast": 41
+        },
+        "directFireHitCount": 0,
+        "entryMana": 474,
+        "finalMana": 37,
+        "livingHero": true,
+        "logicalMs": 45000,
+        "manaCoverageAtActions": {
+          "count": 90,
+          "insufficientActions": 18,
+          "minimumManaBeforeAction": 9,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1472,
+          "orb": 276,
+          "regeneration": 759
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 45000,
+        "winner": "player"
+      },
+      "nativeInputHash": "8aa0f697d309d88e9061f75e39cee4eed37fcfe14babcce79e179f57bfdf95ac",
+      "seed": 8,
+      "variant": "full-entry-mana",
+      "wave": 3
+    },
+    {
+      "build": "cold",
+      "changedInputHash": "524c1cc44b31d70683e168216b8f0bfadb4a8f7c1e6b0383667504a37f237a78",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 12,
+        "casts": {
+          "sorceress.blizzard": 11,
+          "sorceress.frozen_orb": 23,
+          "sorceress.ice_blast": 44
+        },
+        "directFireHitCount": 0,
+        "entryMana": 38,
+        "finalMana": 467,
+        "livingHero": true,
+        "logicalMs": 45000,
+        "manaCoverageAtActions": {
+          "count": 90,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 101,
+          "orderedCosts": {
+            "sorceress.blizzard": 35,
+            "sorceress.frozen_orb": 30,
+            "sorceress.ice_blast": 12
+          }
+        },
+        "manaFlows": {
+          "cast": -1603,
+          "orb": 167,
+          "regeneration": 1865
+        },
+        "minimumMana": 38,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": null,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 45000,
+        "winner": "player"
+      },
+      "nativeInputHash": "8aa0f697d309d88e9061f75e39cee4eed37fcfe14babcce79e179f57bfdf95ac",
+      "seed": 8,
+      "variant": "recovery125",
+      "wave": 3
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "e711fe8d51d5cb2e8e0278b61b9540b2d6c84021a2b8fe7464b780541fde37bb",
+      "edits": [],
+      "metrics": {
+        "basicAttacks": 55,
+        "casts": {
+          "sorceress.fire_ball": 56,
+          "sorceress.meteor": 9
+        },
+        "directFireHitCount": 94,
+        "entryMana": 474,
+        "finalMana": 0,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 62,
+          "minimumManaBeforeAction": 8,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1570,
+          "orb": 69,
+          "regeneration": 1027
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 43,
+        "oneDamageFireHitFraction": 0.4574468085106383,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-409a",
+            "life": 2753
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-a735",
+            "life": 4366
+          }
+        ],
+        "remainingEnemyHp": 7119,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "e711fe8d51d5cb2e8e0278b61b9540b2d6c84021a2b8fe7464b780541fde37bb",
+      "seed": 8,
+      "variant": "baseline",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "e940bbf9929fb00426da5864f351584b07f0002b9e6cac7df101d8070c7ee48d",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 45,
+        "casts": {
+          "sorceress.fire_ball": 60,
+          "sorceress.meteor": 15
+        },
+        "directFireHitCount": 124,
+        "entryMana": 474,
+        "finalMana": 454,
+        "livingHero": true,
+        "logicalMs": 60000,
+        "manaCoverageAtActions": {
+          "count": 120,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1950,
+          "regeneration": 1930
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 63,
+        "oneDamageFireHitFraction": 0.5080645161290323,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [
+          {
+            "id": "enemy-act5.blood-lord-2-409a",
+            "life": 3922
+          },
+          {
+            "id": "enemy-act5.blood-lord-3-a735",
+            "life": 4349
+          }
+        ],
+        "remainingEnemyHp": 8271,
+        "victoryOnlyTtkMs": null,
+        "winner": null
+      },
+      "nativeInputHash": "e711fe8d51d5cb2e8e0278b61b9540b2d6c84021a2b8fe7464b780541fde37bb",
+      "seed": 8,
+      "variant": "recovery125",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "c8eabcb90d28e3bc3efaa6c3b34b8e8693a9df27b185e9f6fe6431cb469893b0",
+      "edits": [
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-4e9e"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-1a32"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-409a"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-a735"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 32,
+        "casts": {
+          "sorceress.fire_ball": 36,
+          "sorceress.meteor": 8
+        },
+        "directFireHitCount": 69,
+        "entryMana": 474,
+        "finalMana": 1,
+        "livingHero": true,
+        "logicalMs": 38000,
+        "manaCoverageAtActions": {
+          "count": 76,
+          "insufficientActions": 19,
+          "minimumManaBeforeAction": 9,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1120,
+          "regeneration": 647
+        },
+        "minimumMana": 0,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 17.264000000000003,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 38000,
+        "winner": "player"
+      },
+      "nativeInputHash": "e711fe8d51d5cb2e8e0278b61b9540b2d6c84021a2b8fe7464b780541fde37bb",
+      "seed": 8,
+      "variant": "blood-lord-fire0",
+      "wave": 1
+    },
+    {
+      "build": "fire",
+      "changedInputHash": "088e4685b717c622bfebf12233c40d26a8ef99dff7e9da5f40abe21c5d309d9b",
+      "edits": [
+        {
+          "after": 125,
+          "before": 17.264000000000003,
+          "field": "manaRegenPerSecond",
+          "unit": "player-1792497600000"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-0-4e9e"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-1-1a32"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-2-409a"
+        },
+        {
+          "after": 0,
+          "before": 75,
+          "field": "stats.resistances.fire",
+          "unit": "enemy-act5.blood-lord-3-a735"
+        }
+      ],
+      "metrics": {
+        "basicAttacks": 28,
+        "casts": {
+          "sorceress.fire_ball": 37,
+          "sorceress.meteor": 10
+        },
+        "directFireHitCount": 71,
+        "entryMana": 474,
+        "finalMana": 474,
+        "livingHero": true,
+        "logicalMs": 37500,
+        "manaCoverageAtActions": {
+          "count": 75,
+          "insufficientActions": 0,
+          "minimumManaBeforeAction": 474,
+          "orderedCosts": {
+            "sorceress.fire_ball": 20,
+            "sorceress.meteor": 50
+          }
+        },
+        "manaFlows": {
+          "cast": -1240,
+          "orb": 20,
+          "regeneration": 1220
+        },
+        "minimumMana": 424,
+        "oneDamageFireHitCount": 0,
+        "oneDamageFireHitFraction": 0,
+        "recoveryPerSecond": 125,
+        "remainingEnemies": [],
+        "remainingEnemyHp": 0,
+        "victoryOnlyTtkMs": 37500,
+        "winner": "player"
+      },
+      "nativeInputHash": "e711fe8d51d5cb2e8e0278b61b9540b2d6c84021a2b8fe7464b780541fde37bb",
+      "seed": 8,
+      "variant": "recovery125+blood-lord-fire0",
+      "wave": 1
+    }
+  ],
+  "rawArtifacts": {
+    "screen-cold-seed1-baseline.json": {
+      "bytes": 628485,
+      "sha256": "c662f8f740d13e96195bdc6183f20ea7a9f26ac757e5a067fd294056af0a0ce0"
+    },
+    "screen-cold-seed1-full-entry-mana.json": {
+      "bytes": 524496,
+      "sha256": "532ce80586104d77fc112498cbf2256f123b7a8be8cbf4c0d7ed776d9340dfce"
+    },
+    "screen-cold-seed1-native.json": {
+      "bytes": 361270,
+      "sha256": "0f9f60a6b76039d8c862f36db572e6e0e19afcea3b79129914e7b72c2c03458e"
+    },
+    "screen-cold-seed1-recovery125.json": {
+      "bytes": 505894,
+      "sha256": "3424f248e6d3810bd3d30d666b587c4bb4e41020cae5b5030e2e48ba179ef77c"
+    },
+    "screen-cold-seed2-baseline.json": {
+      "bytes": 648686,
+      "sha256": "e37b81b81365d212740c0f1cc9cc6448fb207ea61b8f7ef5ae1f6ebd445aa812"
+    },
+    "screen-cold-seed2-full-entry-mana.json": {
+      "bytes": 479816,
+      "sha256": "943af8063475e41af9e4942b1a0ffbf6814c650ad96e20ee87b93866eb2a4b07"
+    },
+    "screen-cold-seed2-native.json": {
+      "bytes": 372107,
+      "sha256": "0cb3da63b32f8c26987e97178bbcf6bf09a6839e81b9158c4b8a1cd7febf58dd"
+    },
+    "screen-cold-seed2-recovery125.json": {
+      "bytes": 472433,
+      "sha256": "11d085275ea86e3e486782a01eec36b40876f716a2c4fc33fe294778755e99c3"
+    },
+    "screen-cold-seed3-baseline.json": {
+      "bytes": 666891,
+      "sha256": "31f77d1c9e856bd045831bda658dce5686842b9a90b01e3857f78031ac784470"
+    },
+    "screen-cold-seed3-full-entry-mana.json": {
+      "bytes": 538485,
+      "sha256": "c3c97904d589b289ea38d0668d606322aab3094c2a9409cb80c867aab822f346"
+    },
+    "screen-cold-seed3-native.json": {
+      "bytes": 384456,
+      "sha256": "edbcbfdc311ee1394ee5d4d53cec0aa0c56f37cdf7bf9af7bcdc94adfa41ec74"
+    },
+    "screen-cold-seed3-recovery125.json": {
+      "bytes": 531867,
+      "sha256": "fec53e5ada61bba27a911604cdc5bf20bcf0151c3ce260dc72811a1df8436ca4"
+    },
+    "screen-cold-seed4-baseline.json": {
+      "bytes": 630694,
+      "sha256": "329bb80d4922e72c3745fbc5f4874518dd6796cb9ee5f4247e56c6167cdcabc6"
+    },
+    "screen-cold-seed4-full-entry-mana.json": {
+      "bytes": 492662,
+      "sha256": "b259193d3ff00917b174d88569e22d1818f7ef4f27a03b1f7a21e757048ce8aa"
+    },
+    "screen-cold-seed4-native.json": {
+      "bytes": 362426,
+      "sha256": "1c68543be72968cb007e3018a6015485eadbaefec784fdbce336df5f9f1e509a"
+    },
+    "screen-cold-seed4-recovery125.json": {
+      "bytes": 484169,
+      "sha256": "672b08511337230d74fb27aa96f2814eca646ff1d8ab102b00dbd6eab5e8ed7b"
+    },
+    "screen-cold-seed5-baseline.json": {
+      "bytes": 661323,
+      "sha256": "8b1b67c5105110c97613f55713ba61d408dd78993bef3424a11d68df7d765168"
+    },
+    "screen-cold-seed5-full-entry-mana.json": {
+      "bytes": 554410,
+      "sha256": "7f2f4f92ad12af882d4def0424f092e2d7025021dfcfe0f3428bf848cd52939f"
+    },
+    "screen-cold-seed5-native.json": {
+      "bytes": 379591,
+      "sha256": "27b0fe4c4d699201081d90bf1a95b74d0b74981c60746349a87bf88589ee51bd"
+    },
+    "screen-cold-seed5-recovery125.json": {
+      "bytes": 542289,
+      "sha256": "6b57a5a03732ffb530e8b13eeba14df5758eb80ad132f842e8d5d02f3751b284"
+    },
+    "screen-cold-seed6-baseline.json": {
+      "bytes": 615402,
+      "sha256": "0d8d0decc1f32217850a5b36e9d78a63b0ecab1c61ffd3862591efe13e55fe37"
+    },
+    "screen-cold-seed6-full-entry-mana.json": {
+      "bytes": 615279,
+      "sha256": "877d7fee4c130fa2b377b5476282005da714acf9d84ddd3fed0f322fbd253982"
+    },
+    "screen-cold-seed6-native.json": {
+      "bytes": 354138,
+      "sha256": "f5832ff737aaa3b2b66a80750d37c9b2ec95e036dd3b878bec239539f4b23a4c"
+    },
+    "screen-cold-seed6-recovery125.json": {
+      "bytes": 549232,
+      "sha256": "26e5fcffaab1d704cabc919b36461d9095c5d713e3c4197c738687b85eb48f64"
+    },
+    "screen-cold-seed7-baseline.json": {
+      "bytes": 614080,
+      "sha256": "3fb94aa1afc154126490470c5423ca6bfad06b86cd3d3a9ab2dff74f34305e12"
+    },
+    "screen-cold-seed7-full-entry-mana.json": {
+      "bytes": 519067,
+      "sha256": "1460b6c7d845d7e86f9d923b474081f88f5704d2eec0abae562a17cbe22dd48d"
+    },
+    "screen-cold-seed7-native.json": {
+      "bytes": 353286,
+      "sha256": "2eb2a560006e01d0d510fd4fa0a0b49e87509a599a76cad09a7927a1cf393206"
+    },
+    "screen-cold-seed7-recovery125.json": {
+      "bytes": 511000,
+      "sha256": "9c75aa89c09ef2e1f3faedc659213ad78d439bdc76316ceb641a0e1311115f6b"
+    },
+    "screen-cold-seed8-baseline.json": {
+      "bytes": 631286,
+      "sha256": "e55ca8c9f267d1d6d89b8e1d472c6e2002bb28a4d6f7fcaa3def2a18258cc986"
+    },
+    "screen-cold-seed8-full-entry-mana.json": {
+      "bytes": 529788,
+      "sha256": "cb6040c16c0d0cd6afe1fab3c765e62dd24a97f7d5175ee5baa4f1d788bf33a1"
+    },
+    "screen-cold-seed8-native.json": {
+      "bytes": 363669,
+      "sha256": "6b638027a4504bdfe452b114fc86d9173d9d3118b85c458f2c1404da50972f2c"
+    },
+    "screen-cold-seed8-recovery125.json": {
+      "bytes": 530233,
+      "sha256": "4f35822566070bc00995cd889aeb2801430b6a9b1355b8b0294bcd48ecc88a9e"
+    },
+    "screen-fire-seed1-baseline.json": {
+      "bytes": 583867,
+      "sha256": "19650c39e259574b42c7eb97a95a010da6d9ac7479a8a61582100f5da9e00660"
+    },
+    "screen-fire-seed1-blood-lord-fire0.json": {
+      "bytes": 425654,
+      "sha256": "bfb79e3f600275b78ce20db23dfa818a68d9371bf4676e8d951566ae3ee9454d"
+    },
+    "screen-fire-seed1-native.json": {
+      "bytes": 334886,
+      "sha256": "fa36d713fee28e5078f2cc9c89a547cee2bf8f45f41c80b83398145e1d71f097"
+    },
+    "screen-fire-seed1-recovery125+blood-lord-fire0.json": {
+      "bytes": 415846,
+      "sha256": "566a95d9538b011273b7ee292a41eef744be329fc90bd6afc7cf50a30be2a3c7"
+    },
+    "screen-fire-seed1-recovery125.json": {
+      "bytes": 651896,
+      "sha256": "83fd33ddba6a88065efc20df4e4f9295631df4145c2a835705c2a8e71488a1ad"
+    },
+    "screen-fire-seed2-baseline.json": {
+      "bytes": 571457,
+      "sha256": "c6225813caa69c52bbe863d1cda235cf350fbdccd734468e7fe39d16121bd369"
+    },
+    "screen-fire-seed2-blood-lord-fire0.json": {
+      "bytes": 340874,
+      "sha256": "6cf18910d471050e1b561aedb2563b68f871a1f1359dde3fb8c804dbc0955043"
+    },
+    "screen-fire-seed2-native.json": {
+      "bytes": 327954,
+      "sha256": "82e47d8160c2419c094fcf1923bf18e38e65390287f0436b1d1b62fb605a6127"
+    },
+    "screen-fire-seed2-recovery125+blood-lord-fire0.json": {
+      "bytes": 333752,
+      "sha256": "afe4c260b09dced446ef12fa0f0fae694a30d85b3c02a30f102fe3588342f48c"
+    },
+    "screen-fire-seed2-recovery125.json": {
+      "bytes": 591456,
+      "sha256": "c9c7f0d119e11eba969ab2f9fb44ddba8299334887eb3b5d22aa250caf76a293"
+    },
+    "screen-fire-seed3-baseline.json": {
+      "bytes": 604233,
+      "sha256": "ae2962a5f54e59267e1fde3b9c7be12c921d92d4ee235922d0d668a5ca4e4a3f"
+    },
+    "screen-fire-seed3-blood-lord-fire0.json": {
+      "bytes": 415934,
+      "sha256": "f73a03746a52cd6616ee549ae050f0243bdbec5835ac8eeb29fb279ffe2043e5"
+    },
+    "screen-fire-seed3-native.json": {
+      "bytes": 345745,
+      "sha256": "9b1b76af2b9c9526f65aed1902f31cbd5530c2f88acd57d9213193e281001f76"
+    },
+    "screen-fire-seed3-recovery125+blood-lord-fire0.json": {
+      "bytes": 413189,
+      "sha256": "fb716d82ff4422872e2f66f44d66f097bbb15857e6a5a7b1597827823254c22e"
+    },
+    "screen-fire-seed3-recovery125.json": {
+      "bytes": 676347,
+      "sha256": "03ca7e30cc81d04a31c87af429e5a3ce231cc5ac0a798b9edc8095c090aa6894"
+    },
+    "screen-fire-seed4-baseline.json": {
+      "bytes": 603926,
+      "sha256": "1dbc0b55f4b8fc5f237edff4d9dc13063fe04ee04f8001075659e1f0f74f2c6c"
+    },
+    "screen-fire-seed4-blood-lord-fire0.json": {
+      "bytes": 434101,
+      "sha256": "276c17f7833d298d03909366b78ccadd17377a3b6038ebf1e7cc866e324fcd22"
+    },
+    "screen-fire-seed4-native.json": {
+      "bytes": 346137,
+      "sha256": "01ffc653a0decf3440d7f0983fc49e70ad39f27e3543a7074bacc74bcfe09510"
+    },
+    "screen-fire-seed4-recovery125+blood-lord-fire0.json": {
+      "bytes": 426063,
+      "sha256": "cda703d11471f05c581b48bd363f4bc8ef5527bbe0da6991c53c88ca8403077d"
+    },
+    "screen-fire-seed4-recovery125.json": {
+      "bytes": 659602,
+      "sha256": "81224c473a66c6f967e0bdf7c30b44f4d672f4a9e645165e72ddcc516c335963"
+    },
+    "screen-fire-seed5-baseline.json": {
+      "bytes": 634299,
+      "sha256": "214138617d3ec84a858c79d9c06bd768f93d1e299154e56befa1a8f893ca722c"
+    },
+    "screen-fire-seed5-blood-lord-fire0.json": {
+      "bytes": 454373,
+      "sha256": "111e52eb340b40df0d4c7a52b4a16882a5002fc0fd1dbd3cb5504d14bf868441"
+    },
+    "screen-fire-seed5-native.json": {
+      "bytes": 362874,
+      "sha256": "3f79c1af1e2dc4e13a375970315bd2ab8bd02d55aad929ad3d11514cceacf1bc"
+    },
+    "screen-fire-seed5-recovery125+blood-lord-fire0.json": {
+      "bytes": 450032,
+      "sha256": "20da4c8d635c620b953be63bd50fefd35bbefe16d87deb828e527e0df7b07a79"
+    },
+    "screen-fire-seed5-recovery125.json": {
+      "bytes": 671489,
+      "sha256": "1a04b589115c9137ac112c5306bb0c722caa90d5e10307a1a08c06a58a0b3131"
+    },
+    "screen-fire-seed6-baseline.json": {
+      "bytes": 591375,
+      "sha256": "ce97d0554fdcf5cd31a09f29cc9852b54605e9896ae6bd2a22614f5aa13f934d"
+    },
+    "screen-fire-seed6-blood-lord-fire0.json": {
+      "bytes": 472528,
+      "sha256": "f1ccf260216959ab3120159e2358c748c4542723aa3cd66cbf5366638648351e"
+    },
+    "screen-fire-seed6-native.json": {
+      "bytes": 339093,
+      "sha256": "f24dc195799ab2c3527f7f78cf5095d11c74a92153e01b7f0dfbdb1187bae3cd"
+    },
+    "screen-fire-seed6-recovery125+blood-lord-fire0.json": {
+      "bytes": 442805,
+      "sha256": "7dcb801f882b40870f06f838a819b2e7bda1870d159d50e98836e8f6df0c8140"
+    },
+    "screen-fire-seed6-recovery125.json": {
+      "bytes": 658275,
+      "sha256": "02506f51ca3149c39d04d7ee995fd3b39456e13fd507f6e4483312ccca0e63ec"
+    },
+    "screen-fire-seed7-baseline.json": {
+      "bytes": 607768,
+      "sha256": "f9ec90525f6bf837fc8e990e6efee887857d6259681d77b1ca7acb7126043d90"
+    },
+    "screen-fire-seed7-blood-lord-fire0.json": {
+      "bytes": 419388,
+      "sha256": "798b2b139cccb458c8bbb7d73559894985f5d8b8ff6fe8b091ec841249fe5467"
+    },
+    "screen-fire-seed7-native.json": {
+      "bytes": 348444,
+      "sha256": "9997c130f61ef88611aa7d35818751dc07696e2cc9c9bfe83b7ca436f35ed30e"
+    },
+    "screen-fire-seed7-recovery125+blood-lord-fire0.json": {
+      "bytes": 410919,
+      "sha256": "c39253dd25369732cab44f78e628df6e5364cb59566fe768863e9669e5e798bb"
+    },
+    "screen-fire-seed7-recovery125.json": {
+      "bytes": 665508,
+      "sha256": "07617a6bc8da7721e109e28193ea44420d66530905406be2ec5d06a726e86623"
+    },
+    "screen-fire-seed8-baseline.json": {
+      "bytes": 617192,
+      "sha256": "55072de2036c7dedceca8acd3ad269aa330dcc3771c9ca8f763ec09169a7917a"
+    },
+    "screen-fire-seed8-blood-lord-fire0.json": {
+      "bytes": 417658,
+      "sha256": "8b5988106710220c804acdee5fbba254d8be12d425dbfc5d481806db6237a4b6"
+    },
+    "screen-fire-seed8-native.json": {
+      "bytes": 353348,
+      "sha256": "1a488d302d25f9aa27adc887b46237652a63e392252c1a16e5a4ade386020072"
+    },
+    "screen-fire-seed8-recovery125+blood-lord-fire0.json": {
+      "bytes": 419970,
+      "sha256": "02a8196e99419ac2e1878008ce60aae539c5e2a09a84536ee5f0b7f47aadc3a8"
+    },
+    "screen-fire-seed8-recovery125.json": {
+      "bytes": 692860,
+      "sha256": "0507d73de6f8fe506ecff32dde6969a1063a2b6e690c1a128661579d8712c657"
+    },
+    "screen-inputs.json": {
+      "bytes": 211395,
+      "sha256": "9c1cc875e56108eeccb4f92fb3e5d360c6a60922904d52f4907029122be46a45"
+    },
+    "screen-post-input-audit.json": {
+      "bytes": 78,
+      "sha256": "5e0be9de34b345a156134ff5bec9c071edcf06ad919dc35c1834917594ca2ad7"
+    },
+    "screen-process.json": {
+      "bytes": 246,
+      "sha256": "69dd3e37d1c40e29b012c37c24b83d8ec16a03905c135ddfeb7a47c143482b63"
+    },
+    "screen-report.json": {
+      "bytes": 598426,
+      "sha256": "a8a2ef0b28260e81408581e3c41c0141072c5f3c1623587ffbf314b9f7816b01"
+    },
+    "screen-result.json": {
+      "bytes": 56,
+      "sha256": "3dff2098586aed75912d48d7e12894b2b417d7b3ea57afee6a459bda96c8a42b"
+    }
+  }
+}
