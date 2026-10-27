@@ -23,6 +23,7 @@ import { getDruidSummonStats } from './druid-summon-definition';
 import { fireGolemBodyStats } from './fire-golem';
 import { bloodGolemBodyStats } from './blood-golem';
 import { getNecromancerSummonStats } from './necromancer-summon-definition';
+import { getAmazonSummonStats } from './amazon-summon-definition';
 
 /** @deprecated Templates are pure; battles now own their summon identity. */
 export function resetSummonCounters(): void {
@@ -125,6 +126,8 @@ function baseSummonStats(): DerivedStats {
 }
 
 function baseStatsForSummon(summonId: string): DerivedStats | undefined {
+  const amazon = getAmazonSummonStats(summonId);
+  if (amazon) return amazon;
   const druid = getDruidSummonStats(summonId);
   if (druid) return druid;
   const necromancer = getNecromancerSummonStats(summonId);
@@ -134,8 +137,6 @@ function baseStatsForSummon(summonId: string): DerivedStats | undefined {
       return bloodGolemBodyStats();
     case 'fire_golem':
       return fireGolemBodyStats();
-    case 'valkyrie':
-      return { ...baseSummonStats(), life: 200, lifeMax: 200, attack: 40, defense: 20 };
     case 'spirit_of_barbs': {
       const { life, attack, defense } = SPIRIT_OF_BARBS_DEFINITION.stats;
       return { ...baseSummonStats(), life, lifeMax: life, attack, defense };
