@@ -1,6 +1,6 @@
 # BUG-301 — Capture complete native martial snapshots in fire alias fixtures
 
-Status: Reproduced; fixture correction pending.
+Status: Fixed in cfa93bcc1088484b738a7ad275e5dbf1ab6b71d8; exact compatibility assertions retained.
 Severity: Medium — three regression cases cannot verify rank aliases after martial integration.
 Build: 36a18d50778a3679c0ef58f30f91e8dbc53769ad plus four uncommitted charge runtime paths.
 Environment: Vitest normal engine/UI workspace, jsdom; no browser/viewport, locale-independent; seed7.
@@ -16,3 +16,5 @@ Evidence: root-owned task `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5
 Affected systems: qa-engineer fixture, engine-dev native authority. Root sole executor under umbrella authorization.
 Workaround: none applied; new native22 and helper17 tests pass separately but do not replace the failing compatibility cases.
 Security check: pass; local fixture correction only, no authority bypass, secrets, dependencies or remote operation.
+
+Regression: `src/stores/assassin-fire.causal.test.ts`; final272/9 and later276/10 actual-branch compatibility checks pass. See `docs/plans/evidence/d05-assassin-martial-charges.md`.

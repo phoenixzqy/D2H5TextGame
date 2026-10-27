@@ -1,0 +1,573 @@
+{
+  "owner": "root",
+  "sourceHead": "a585900b694e37ecb684f03ba7f932c10d89b210",
+  "increments": [
+    {
+      "name": "charge-definition-and-private-state",
+      "paths": [
+        "src/data/schema/assassin-charges.schema.json",
+        "src/data/combat/assassin-charges.json",
+        "src/engine/skills/assassin-charges.ts",
+        "src/engine/skills/assassin-charges.test.ts"
+      ],
+      "hashes": {
+        "src/data/schema/assassin-charges.schema.json": "aabfc4cd1e3927a21145978b02ee9baef836338e2c077d9372f93e8bae2ffb7d",
+        "src/data/combat/assassin-charges.json": "7103b7d79b6e0ff3d83f93fb430c47c4932c10bcd9cdbc25633281e1de741563",
+        "src/engine/skills/assassin-charges.ts": "ae8d777c7fb11fd25af9a0d536bf46b695a5e1de116dc8a119f3b8602afb0651",
+        "src/engine/skills/assassin-charges.test.ts": "ecee5516011e225af93850531bf99914197a1fb67fdcd83ecff74ac058ef449e"
+      },
+      "status": "verified and committed",
+      "commit": "36a18d50778a3679c0ef58f30f91e8dbc53769ad",
+      "proof": [
+        "charge-branch-state-unit",
+        "charge-branch-state-types",
+        "charge-branch-state-lint"
+      ]
+    },
+    {
+      "name": "native-charge-and-finisher-runtime",
+      "paths": [
+        "src/engine/combat/types.ts",
+        "src/engine/combat/combat.ts",
+        "src/stores/combatHelpers.ts",
+        "src/stores/assassin-charge-native.test.ts",
+        "src/stores/assassin-fire.causal.test.ts"
+      ],
+      "before": {
+        "src/engine/combat/types.ts": "b0ba2236e3279f9617642e0b112a922014ac6f17e80c1110e76c8085730097f1",
+        "src/engine/combat/combat.ts": "504718df60598a140609e6ee8649ef06312a6a14928c0f4eb3ebcce03bf4318a",
+        "src/stores/combatHelpers.ts": "46e84d00b0176e6205759b9528d2865e9c7490776eaaf04838532f7c83a8af9a",
+        "src/stores/assassin-charge-native.test.ts": null,
+        "src/stores/assassin-fire.causal.test.ts": "f7ec6b286f0f539a94cacac6ecfe2db420fa9b9b3d559c161a07da74ed69395c"
+      },
+      "hashes": {
+        "src/engine/combat/types.ts": "b925801cf2a36391f051948c96b387a8fa93ac21cdaf04a967eec4adbc9439d6",
+        "src/engine/combat/combat.ts": "8bb16041772d7036525203affe851caaed01c6ff1295c34daf9bb573a1bde128",
+        "src/stores/combatHelpers.ts": "4bd593015e0647121ec210c1c288a65ffba5bc606a6f064f469ab4c1ad8e68d5",
+        "src/stores/assassin-charge-native.test.ts": "f1939e1a7355ee27bb0c498b373896b04a241ac1f1968675c6081f0c7a99b434",
+        "src/stores/assassin-fire.causal.test.ts": "ee8c778a589b2d5b7002fac3c95912b570d2b9ecbd79ccb8e4490dd1ef2d62ac"
+      },
+      "status": "verified and committed",
+      "originalPromotedHashes": {
+        "src/engine/combat/types.ts": "72b7b40cf514df777ddb0f805fec9939479aae5a0555cfaef6eb174404dff7b7",
+        "src/engine/combat/combat.ts": "8bb16041772d7036525203affe851caaed01c6ff1295c34daf9bb573a1bde128",
+        "src/stores/combatHelpers.ts": "4bd593015e0647121ec210c1c288a65ffba5bc606a6f064f469ab4c1ad8e68d5",
+        "src/stores/assassin-charge-native.test.ts": "f1939e1a7355ee27bb0c498b373896b04a241ac1f1968675c6081f0c7a99b434"
+      },
+      "commit": "cfa93bcc1088484b738a7ad275e5dbf1ab6b71d8",
+      "proof": [
+        "charge-branch-runtime-corrected-unit",
+        "charge-branch-runtime-corrected-types",
+        "charge-branch-runtime-corrected-lint",
+        "charge-branch-runtime-engine"
+      ]
+    },
+    {
+      "name": "private-charge-observations",
+      "paths": [
+        "src/engine/combat/combat.ts",
+        "src/stores/assassin-charge-observations.test.ts"
+      ],
+      "before": {
+        "src/engine/combat/combat.ts": "8bb16041772d7036525203affe851caaed01c6ff1295c34daf9bb573a1bde128",
+        "src/stores/assassin-charge-observations.test.ts": null
+      },
+      "hashes": {
+        "src/engine/combat/combat.ts": "937b6b1eefc7b9603d1595504255c7e6c643fd5f671c3b32472cde79f12a7c0e",
+        "src/stores/assassin-charge-observations.test.ts": "7f6b8871761f5aa78e555da9c5ceaed25d56148aa56148462aa24c0311c01c86"
+      },
+      "status": "verified and committed",
+      "commit": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "proof": [
+        "charge-observations-branch-unit",
+        "charge-observations-branch-types",
+        "charge-observations-branch-lint",
+        "charge-observations-branch-engine"
+      ]
+    },
+    {
+      "name": "localized-charge-chips",
+      "paths": [
+        "src/features/combat/CombatScreen.tsx",
+        "src/features/combat/CombatScreen.assassin-charges.test.tsx",
+        "src/i18n/locales/en/combat.json",
+        "src/i18n/locales/zh-CN/combat.json",
+        "src/stores/assassin-charge-observations.test.ts"
+      ],
+      "before": {
+        "src/features/combat/CombatScreen.tsx": "f6b70b6f5167b4d436fc2b9fc315642717176f5fb027dd11f938e4c165d06984",
+        "src/features/combat/CombatScreen.assassin-charges.test.tsx": null,
+        "src/i18n/locales/en/combat.json": "b5ed7529e4ed3566edc3d4de4b1bd0eaac3aa14995dfc03aa978a60c9078034f",
+        "src/i18n/locales/zh-CN/combat.json": "cef65aec15a5db3ee499e42a4b43bde7f848f017d8806b137fd3e2f83a8e7826",
+        "src/stores/assassin-charge-observations.test.ts": "7f6b8871761f5aa78e555da9c5ceaed25d56148aa56148462aa24c0311c01c86"
+      },
+      "hashes": {
+        "src/features/combat/CombatScreen.tsx": "502bce6f0eacb1123898e4ec6179704faca1c891975c3ecf468b3078f83abc99",
+        "src/features/combat/CombatScreen.assassin-charges.test.tsx": "9bc4e5f38f55a0a967bb7eca5020caec84d88e110845dbd6f7e2f90ad7421452",
+        "src/i18n/locales/en/combat.json": "2fc51a735fbdc626f7400f46aad30024c6aee383e4c8b8da6943ae8a9628babf",
+        "src/i18n/locales/zh-CN/combat.json": "eb63534bce8537b0323d6bb821498cc3e51da336c944d7f2491ad151bb434f99",
+        "src/stores/assassin-charge-observations.test.ts": "f5728c259bbb9392f11d491ae72d72142613fa4c3e5dc3b3eab776b0e9e88bb0"
+      },
+      "status": "verified and committed",
+      "commit": "a585900b694e37ecb684f03ba7f932c10d89b210",
+      "proof": [
+        "charge-ui-branch-related",
+        "charge-ui-branch-types-with-setup",
+        "charge-ui-branch-lint",
+        "charge-independent-expiry-unit",
+        "charge-independent-expiry-types",
+        "charge-independent-expiry-lint"
+      ]
+    }
+  ],
+  "receipts": {
+    "charge-branch-state-unit": {
+      "label": "charge-branch-state-unit",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/assassin-charges.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 4.821202180930413,
+      "inputsUnchanged": true,
+      "inputCount": 2513,
+      "externalInputCount": 17,
+      "externalInputsUnchanged": true,
+      "headBefore": "47ad0eeadc3ac65c356ccd6a1269fab1cf061c4a",
+      "headAfter": "47ad0eeadc3ac65c356ccd6a1269fab1cf061c4a",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  17 passed (17)"
+      ]
+    },
+    "charge-branch-state-types": {
+      "label": "charge-branch-state-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/check-branch-types.mjs",
+        "src/engine/skills/assassin-charges.ts",
+        "src/engine/skills/assassin-charges.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 5.433255327981897,
+      "inputsUnchanged": true,
+      "inputCount": 2513,
+      "externalInputCount": 17,
+      "externalInputsUnchanged": true,
+      "headBefore": "47ad0eeadc3ac65c356ccd6a1269fab1cf061c4a",
+      "headAfter": "47ad0eeadc3ac65c356ccd6a1269fab1cf061c4a",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-branch-state-lint": {
+      "label": "charge-branch-state-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/skills/assassin-charges.ts",
+        "src/engine/skills/assassin-charges.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 11.596623424906284,
+      "inputsUnchanged": true,
+      "inputCount": 2513,
+      "externalInputCount": 17,
+      "externalInputsUnchanged": true,
+      "headBefore": "47ad0eeadc3ac65c356ccd6a1269fab1cf061c4a",
+      "headAfter": "47ad0eeadc3ac65c356ccd6a1269fab1cf061c4a",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-branch-runtime-corrected-unit": {
+      "label": "charge-branch-runtime-corrected-unit",
+      "command": [
+        "npm",
+        "run",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/assassin-charges.test.ts",
+        "src/stores/assassin-charge-native.test.ts",
+        "src/stores/dragon-talon.causal.test.ts",
+        "src/stores/dragon-claw.causal.test.ts",
+        "src/stores/assassin-fire.causal.test.ts",
+        "src/stores/assassin-shadow-skills-native.test.ts",
+        "src/engine/combat/skill-resolution.test.ts",
+        "src/stores/jab.causal.test.ts",
+        "src/stores/druid-fury-wind.causal.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 85.4318781910697,
+      "inputsUnchanged": true,
+      "inputCount": 2514,
+      "externalInputCount": 17,
+      "externalInputsUnchanged": true,
+      "headBefore": "bbf2d179978b9edac7d15cde85e180cad3f7b1ed",
+      "headAfter": "bbf2d179978b9edac7d15cde85e180cad3f7b1ed",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  9 passed (9)",
+        "Tests  272 passed (272)"
+      ]
+    },
+    "charge-branch-runtime-corrected-types": {
+      "label": "charge-branch-runtime-corrected-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/check-branch-types.mjs",
+        "src/engine/combat/combat.ts",
+        "src/engine/combat/types.ts",
+        "src/stores/combatHelpers.ts",
+        "src/stores/assassin-charge-native.test.ts",
+        "src/stores/assassin-fire.causal.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 84.32115371804684,
+      "inputsUnchanged": true,
+      "inputCount": 2514,
+      "externalInputCount": 17,
+      "externalInputsUnchanged": true,
+      "headBefore": "bbf2d179978b9edac7d15cde85e180cad3f7b1ed",
+      "headAfter": "bbf2d179978b9edac7d15cde85e180cad3f7b1ed",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-branch-runtime-corrected-lint": {
+      "label": "charge-branch-runtime-corrected-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/combat/combat.ts",
+        "src/engine/combat/types.ts",
+        "src/stores/combatHelpers.ts",
+        "src/stores/assassin-charge-native.test.ts",
+        "src/stores/assassin-fire.causal.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 97.66203023097478,
+      "inputsUnchanged": true,
+      "inputCount": 2514,
+      "externalInputCount": 17,
+      "externalInputsUnchanged": true,
+      "headBefore": "bbf2d179978b9edac7d15cde85e180cad3f7b1ed",
+      "headAfter": "bbf2d179978b9edac7d15cde85e180cad3f7b1ed",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-branch-runtime-engine": {
+      "label": "charge-branch-runtime-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 376.97848184907343,
+      "inputsUnchanged": true,
+      "inputCount": 2514,
+      "externalInputCount": 17,
+      "externalInputsUnchanged": true,
+      "headBefore": "bbf2d179978b9edac7d15cde85e180cad3f7b1ed",
+      "headAfter": "bbf2d179978b9edac7d15cde85e180cad3f7b1ed",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  380 passed (380)",
+        "Tests  9931 passed (9931)"
+      ]
+    },
+    "charge-observations-branch-unit": {
+      "label": "charge-observations-branch-unit",
+      "command": [
+        "npm",
+        "run",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/assassin-charges.test.ts",
+        "src/stores/assassin-charge-native.test.ts",
+        "src/stores/assassin-charge-observations.test.ts",
+        "src/stores/assassin-fire.causal.test.ts",
+        "src/stores/dragon-talon.causal.test.ts",
+        "src/stores/dragon-claw.causal.test.ts",
+        "src/stores/assassin-shadow-skills-native.test.ts",
+        "src/engine/combat/skill-resolution.test.ts",
+        "src/stores/jab.causal.test.ts",
+        "src/stores/druid-fury-wind.causal.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 121.08210222795606,
+      "inputsUnchanged": true,
+      "inputCount": 2515,
+      "externalInputCount": 26,
+      "externalInputsUnchanged": true,
+      "headBefore": "cfa93bcc1088484b738a7ad275e5dbf1ab6b71d8",
+      "headAfter": "cfa93bcc1088484b738a7ad275e5dbf1ab6b71d8",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  10 passed (10)",
+        "Tests  276 passed (276)"
+      ]
+    },
+    "charge-observations-branch-types": {
+      "label": "charge-observations-branch-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/check-branch-types.mjs",
+        "src/engine/combat/combat.ts",
+        "src/stores/assassin-charge-observations.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 44.38000351097435,
+      "inputsUnchanged": true,
+      "inputCount": 2515,
+      "externalInputCount": 26,
+      "externalInputsUnchanged": true,
+      "headBefore": "cfa93bcc1088484b738a7ad275e5dbf1ab6b71d8",
+      "headAfter": "cfa93bcc1088484b738a7ad275e5dbf1ab6b71d8",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-observations-branch-lint": {
+      "label": "charge-observations-branch-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/engine/combat/combat.ts",
+        "src/stores/assassin-charge-observations.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 61.09061961900443,
+      "inputsUnchanged": true,
+      "inputCount": 2515,
+      "externalInputCount": 26,
+      "externalInputsUnchanged": true,
+      "headBefore": "cfa93bcc1088484b738a7ad275e5dbf1ab6b71d8",
+      "headAfter": "cfa93bcc1088484b738a7ad275e5dbf1ab6b71d8",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-observations-branch-engine": {
+      "label": "charge-observations-branch-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 508.4273159080185,
+      "inputsUnchanged": true,
+      "inputCount": 2515,
+      "externalInputCount": 26,
+      "externalInputsUnchanged": true,
+      "headBefore": "cfa93bcc1088484b738a7ad275e5dbf1ab6b71d8",
+      "headAfter": "cfa93bcc1088484b738a7ad275e5dbf1ab6b71d8",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  380 passed (380)",
+        "Tests  9931 passed (9931)"
+      ]
+    },
+    "charge-ui-branch-related": {
+      "label": "charge-ui-branch-related",
+      "command": [
+        "npm",
+        "run",
+        "test:related",
+        "--",
+        "src/features/combat/CombatScreen.tsx",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 126.61116313596722,
+      "inputsUnchanged": true,
+      "inputCount": 2516,
+      "externalInputCount": 35,
+      "externalInputsUnchanged": true,
+      "headBefore": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "headAfter": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  19 passed (19)",
+        "Tests  170 passed (170)"
+      ]
+    },
+    "charge-ui-branch-types-with-setup": {
+      "label": "charge-ui-branch-types-with-setup",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/check-branch-types.mjs",
+        "src/features/combat/CombatScreen.tsx",
+        "src/features/combat/CombatScreen.assassin-charges.test.tsx",
+        "src/test/setup.ts"
+      ],
+      "exit": 0,
+      "seconds": 21.250438775052316,
+      "inputsUnchanged": true,
+      "inputCount": 2516,
+      "externalInputCount": 35,
+      "externalInputsUnchanged": true,
+      "headBefore": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "headAfter": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-ui-branch-lint": {
+      "label": "charge-ui-branch-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/features/combat/CombatScreen.tsx",
+        "src/features/combat/CombatScreen.assassin-charges.test.tsx",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 18.650823399890214,
+      "inputsUnchanged": true,
+      "inputCount": 2516,
+      "externalInputCount": 35,
+      "externalInputsUnchanged": true,
+      "headBefore": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "headAfter": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-independent-expiry-unit": {
+      "label": "charge-independent-expiry-unit",
+      "command": [
+        "npm",
+        "run",
+        "test",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/bounded.vitest.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-charge-observations.test.ts",
+        "--reporter=basic"
+      ],
+      "exit": 0,
+      "seconds": 21.041037033079192,
+      "inputsUnchanged": true,
+      "inputCount": 2516,
+      "externalInputCount": 35,
+      "externalInputsUnchanged": true,
+      "headBefore": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "headAfter": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  4 passed (4)"
+      ]
+    },
+    "charge-independent-expiry-types": {
+      "label": "charge-independent-expiry-types",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/check-branch-types.mjs",
+        "src/stores/assassin-charge-observations.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 21.860650890972465,
+      "inputsUnchanged": true,
+      "inputCount": 2516,
+      "externalInputCount": 35,
+      "externalInputsUnchanged": true,
+      "headBefore": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "headAfter": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "charge-independent-expiry-lint": {
+      "label": "charge-independent-expiry-lint",
+      "command": [
+        "node_modules/.bin/eslint",
+        "src/stores/assassin-charge-observations.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 20.220987993991002,
+      "inputsUnchanged": true,
+      "inputCount": 2516,
+      "externalInputCount": 35,
+      "externalInputsUnchanged": true,
+      "headBefore": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "headAfter": "04bf0ae4c4a66626cf9da2757602a0a0df233296",
+      "headUnchanged": true,
+      "totals": []
+    }
+  },
+  "uniqueNewCases": {
+    "stateAndAuthority": 17,
+    "nativeRuntime": 22,
+    "statusObservations": 4,
+    "localizedChargeChips": 24
+  },
+  "originalFailures": [
+    "charge-branch-runtime-unit.json",
+    "charge-observations-red-corrected.json",
+    "charge-ui-red-corrected-cadence.json"
+  ],
+  "corrections": [
+    "BUG301 native capture fixture; all exact result assertions preserved",
+    "External workspace imports made absolute",
+    "Observe actual gain after same-clock countdown; exact count/expiry/order assertions preserved",
+    "Cobra/Phoenix UI fixture honors2s/3s cooldowns with finite holds",
+    "Scoped UI compiler includes existing test/setup matcher declarations",
+    "Independent charge expiry16700 precedes existing stun expiry16701"
+  ],
+  "engineConfiguration": "Final observation engine check inherits repository four-worker root config; earlier cache-only override retained, timing is not standard budget proof.",
+  "currentWholeUnitGate": false,
+  "inventoryCredit": false,
+  "independentAcceptance": false,
+  "remaining": [
+    "Bilingual descriptions and current/next/MAX rank previews",
+    "Expanded native shield/death/reflection/Command/AOE lifecycle coverage",
+    "Actual store wave/import/town-respec boundaries",
+    "Production public mobile/desktop rank1/20, typed discharge and HP/MP, save/offline proof",
+    "Stable integrated full unit/type/lint/build and earned/independent private-v1 gates"
+  ],
+  "protectedCampaign": {
+    "path": "docs/plans/evidence/fixtures/earned-ancients401/retained-final.json.gz",
+    "sha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
+    "state": "L33; Ancients/Rite claimed; Baal uncleared; nextNormal402; no actions/replay"
+  },
+  "retention": {
+    "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc",
+    "owner": "root",
+    "status": "Active feature evidence and task-local caches retained; no charge-task archive or cleanup claimed",
+    "reason": "Required for continuing preview/lifecycle/public/full-v1 evidence consumers",
+    "removeWhen": "Root will archive/read-back and remove exact task-owned disposables after consumers finish; never follow dependency links"
+  }
+}
