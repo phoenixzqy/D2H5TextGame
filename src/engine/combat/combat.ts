@@ -1,4 +1,5 @@
 import { ProjectileFlights } from './projectile-flight';
+import { copyAssassinShadowSkills, matchesAssassinShadowAttack, qualifyAssassinShadow } from '../skills/assassin-shadow-skills';
 import { SLOW_MISSILES_DEFINITION, SLOW_MISSILES_IDS, slowMissilesRank } from '../skills/slow-missiles';
 import { activeConversion, effectiveSide, opponentsOf, type ConversionBinding } from './allegiance';
 import { attackCandidates } from './attack-targets';
@@ -275,6 +276,10 @@ interface ProjectileImpact {
 }
 
 interface State {
+  /** Only this battle's committed native paid bodies receive captured attack authority. */
+  readonly assassinShadows: Map<string, { readonly ownerId: string;
+    readonly template: import('../skills/assassin-shadow-skills').AssassinShadowTemplate;
+    readonly plan: import('../skills/assassin-shadow-skills').AssassinShadowPlan }>;
   /** Empty per battle; neither shots nor paid speed authority are accepted from input. */
   readonly projectiles: ProjectileFlights<ProjectileImpact>;
   readonly slowMissiles: Map<string, { readonly expiresAtMs: number; readonly projectileSpeedPct: number }>;
@@ -624,7 +629,9 @@ function pickDefender(
 
 function registerUnit(state: State, u: CombatUnit): void {
   const copiedBuffs = copyBoneWallStatuses(copySorceressBuffStatuses(u));
-  const native = u.druidSummonRanks === undefined ? copiedBuffs : { ...copiedBuffs, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
+  const shadowNative = u.assassinShadowSkills === undefined ? copiedBuffs : {
+    ...copiedBuffs, assassinShadowSkills: copyAssassinShadowSkills(u.assassinShadowSkills) };
+  const native = u.druidSummonRanks === undefined ? shadowNative : { ...shadowNative, druidSummonRanks: copyDruidSummonRanks(u.druidSummonRanks) };
   const copied = refreshCycloneArmorState(copyBoneArmorStatuses(copyConcentrateStatuses(copyLeapStatuses(copyCloakOfShadowsStatuses(copyBurstOfSpeedStatuses(copyFeralRageStatuses(copyFrenzyStatuses(native))))))));
   const shaped = refreshPeriodicSpells(refreshHolyShieldState(refreshDruidFormState(copied)));
   state.units.set(u.id, shaped);
@@ -1279,6 +1286,8 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function learnedSkillLevel(state: State, unit: CombatUnit, skill: RegisteredSkill, legacyFallback = 1): number {
+  const shadow = state.assassinShadows.get(unit.id);
+  if (shadow) return shadow.plan.attacks.find(entry => entry.id === skill.id)?.rank ?? 0;
   if (SLOW_MISSILES_IDS.some(id => id === skill.id)) return slowMissilesRank(unit);
   if (DECOY_IDS.some(id => id === skill.id)) return decoyRank(unit);
   if (BONE_WALL_IDS.some(id => id === skill.id)) return boneWallRank(unit);
@@ -1447,6 +1456,14 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  if (unit.summonTemplateId === 'shadow_warrior' || unit.summonTemplateId === 'shadow_master') {
+    const binding = state.assassinShadows.get(unit.id), owner = binding && state.units.get(binding.ownerId);
+    if (!binding || !owner || !alive(owner) || unit.side !== 'player' || unit.kind !== 'summon' ||
+      unit.summon !== true || unit.summonOwnerId !== binding.ownerId ||
+      (unit.ownerId !== undefined && unit.ownerId !== binding.ownerId) ||
+      unit.summonTemplateId !== binding.template || !binding.plan.attacks.some(entry => entry.id === skill.id) ||
+      !matchesAssassinShadowAttack(skill)) return false;
+  }
   const slow = SLOW_MISSILES_IDS.some(id => id === skillOrderId || id === skill.id) ||
     skill.effects.some(effect => effect.kind === 'debuff' && effect.slowMissiles === true);
   if (slow && (!matchesSlowMissiles(skill) || slowMissilesRank(unit) === 0 || !Number.isFinite(unit.mana) ||
@@ -2591,13 +2608,17 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
   if (!Number.isInteger(rank) || rank <= 0 || !Number.isInteger(cap) || cap <= 0 || learnedCap > effect.maxCount ||
     !Number.isFinite(cost) || !Number.isFinite(cooldown * SECONDS)) return;
   const missing = Math.max(0, cap - summonsOf(state, owner.id, effect.summonId).length);
+  const shadow = qualifyAssassinShadow(owner, skill, learnedRank);
   const candidates: CombatUnit[] = [];
   for (let i = 0; i < missing; i++) {
     const template = buildSummon(owner, effect.summonId, { skillLevel: rank, statScaling: effect.statScaling });
     if (!template) return;
     const candidate = empowerNecromancerSummon(owner, template, state.skeletonMastery, state.golemMastery, state.summonPassives);
     if (!candidate || !validPreparationCandidate(candidate)) return;
-    candidates.push(candidate);
+    candidates.push(shadow ? { ...candidate,
+      skillOrder: Object.freeze(shadow.plan.attacks.map(entry => entry.id)),
+      skillLevels: Object.freeze(Object.fromEntries(shadow.plan.attacks.map(entry => [entry.id, entry.rank])))
+    } : candidate);
   }
   let templates = state.preparationTemplates.get(owner.id);
   if (!templates) {
@@ -2616,6 +2637,10 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
   if (missing === 0) { bindDruidBodies(); return; }
   if (cost > owner.mana) return;
   const registered = castSkill(state, owner.id, skill, { summonId: effect.summonId, units: candidates });
+  if (shadow && registered?.length === candidates.length) {
+    for (const body of registered) state.assassinShadows.set(body.id, {
+      ownerId: owner.id, template: shadow.template, plan: shadow.plan });
+  }
   if (registered?.length === candidates.length) bindDruidBodies();
   if (registered?.length === candidates.length && effect.summonId === 'fire_golem' &&
     qualifyFireGolem(owner, skill, learnedRank)) {
@@ -3028,6 +3053,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     grimWards: new Map(),
     corpses: [],
     druidSummons: new Map(),
+    assassinShadows: new Map(),
     fireGolems: new Map(),
     bloodGolems: new Map(),
     ...(golemMastery ? { golemMastery: Object.freeze({ sourceHeroId: golemMastery.sourceHeroId,

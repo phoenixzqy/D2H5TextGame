@@ -105,6 +105,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Native captured shadow attacks; paid body bindings remain private to this battle. */
+  readonly assassinShadowSkills?: import('../skills/assassin-shadow-skills').AssassinShadowSkills;
   /** Fresh learned native Slow Missiles authority; paid flight windows stay battle-local. */
   readonly slowMissilesRank?: number;
   /** Fresh learned native Decoy eligibility; paid body bindings stay private to combat. */

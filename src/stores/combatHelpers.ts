@@ -128,6 +128,7 @@ import { projectPlayerClassActives } from '@/engine/skills/player-class-actives'
 import { composeFeralRageRank } from '@/engine/skills/druid-sustain';
 import { composeFrenzyRank } from '@/engine/skills/frenzy';
 import { composeDruidSummonRanks } from '@/engine/skills/druid-summon-authority';
+import { composeAssassinShadowSkills } from '@/engine/skills/assassin-shadow-skills';
 import { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
 export { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
 
@@ -291,6 +292,7 @@ function composeNativeCombatUnit(player: Player, temporarySkillRankBonus: 0 | 1)
     ...(player.class === 'druid' ? { feralRageRank: composeFeralRageRank({ classId: player.class,
       level: player.level, ...configuration }) } : {}),
     ...(player.class === 'druid' ? { druidSummonRanks: composeDruidSummonRanks(player) } : {}),
+    ...(player.class === 'assassin' ? { assassinShadowSkills: composeAssassinShadowSkills(player) } : {}),
     ...(player.class === 'necromancer' ? { fireGolemRank:
       configuration.skillOrder.some(id => id === 'skills-necromancer-fire-golem' || id === 'necromancer.fire_golem')
         ? configuration.skillLevels?.['necromancer.fire_golem'] ?? 0 : 0 } : {}),
@@ -1274,6 +1276,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
         ? { feralRageRank: fresh.feralRageRank ?? 0 } : {}),
       ...((unit.druidSummonRanks !== undefined || fresh.druidSummonRanks !== undefined)
         ? { druidSummonRanks: fresh.druidSummonRanks ?? {} } : {}),
+      ...((unit.assassinShadowSkills !== undefined || fresh.assassinShadowSkills !== undefined)
+        ? { assassinShadowSkills: fresh.assassinShadowSkills ?? {} } : {}),
       ...((unit.fireGolemRank !== undefined || fresh.fireGolemRank !== undefined)
         ? { fireGolemRank: fresh.fireGolemRank ?? 0 } : {}),
       ...((unit.bloodGolemRank !== undefined || fresh.bloodGolemRank !== undefined)
