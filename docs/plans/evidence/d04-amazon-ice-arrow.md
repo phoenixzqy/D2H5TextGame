@@ -1,5 +1,9 @@
 # D04 — Amazon Ice Arrow native, UI and public evidence
 
+Current local checkpoint, 2026-10-26: bounded functional verification is closed for this skill after its individual native/lifecycle/UI/public proof, combined full19270PASS/901files (two existing opt-in campaign skips), full types/lint and verified archive read-back/cleanup. Exactly five Amazon support credits bring the inventory to195 bounded/17 unverified/one review-needed; Amazon30/30 locally bounded. This is author verification, not independent design/QA, earned balance or whole-app mobile/a11y/private-v1 acceptance. Slow Missiles ADR-012 remains Proposed.
+
+[Reconciliation audit](fixtures/amazon-support/inventory-reconciliation.json) records the five exact rows and208 unchanged raw rows. [Combined receipts](fixtures/amazon-support/combined-gates.json) retain the original commands/heads and cleanup metadata. Raw task/builds are absent; root retains `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-support-ssrbktv_-raw.tar.gz` (SHA25692df7af964ab9af163d384b4c5d1883da2dad604d00e4bf853d848814970d2d7) and adjacent -retention.json/-cleanup.json sidecars through full-v1/independent evidence consumers. Root owns eventual removal. These current facts supersede earlier pending-gate/active-task statements in the historical checkpoints below; original failures and visual limits remain evidence.
+
 Root-author evidence, 2026-10-26. Independent review, earned builds/balance and full private-v1 acceptance remain open. No new inventory credit before the combined support gate and retention/cleanup.
 
 ## Result and scope
