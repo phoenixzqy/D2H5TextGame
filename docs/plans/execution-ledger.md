@@ -13282,3 +13282,27 @@ HEAD and captured inputs frozen through consumers. Inventory stays182bounded/
 29unverified/oneengine-only/onereview-needed. GenuineL33/Ancients-Rite claimed/
 nextNormal402/Baaluncleared unchanged;no campaign/replay,remote action,delegation
 or independent self-approval. Full privatev1/C2–C4/fullG0–G7 remain open.
+
+
+## 2026-10-26 — Javelin terminal pass, retention and four functional credits
+
+Frozen `9f04c8a8` full18901/870/two existing opt-in skipsPASS945.572s with all2445
+inputs and HEAD exact. Engine9652/364,full types/lint,production build,six-chunk
+bridge and756URLprecache pass. Public4/4PASS168.310s verifies16 selected typed
+hits,en/zh desktop/mobile,eight seven-domain pairs,four actual SWofflineContinues,
+80geometries. Sixteen mobile originals individually inspected with explicit long
+copy/viewport/sticky-header/nav/emoji limitations;whole-app acceptance not claimed.
+354raw archive members read-back verified,1118exact files/37directories removed,
+remaining[]/failures[],762build hashes/both genuine hashes exact,4599closed.
+Root retains archive/two sidecars through full-v1 evidence/review consumers.
+[Javelin evidence](evidence/d04-amazon-javelin.md) and compact packet retain proof.
+
+Exactly Power/Charged/Poison/Lightning Strike receive bounded credit:186bounded/
+25unverified/oneengine-only/onereview-needed;209other rawrows/header/213IDs/order
+exact. Amazon21bounded/8unverified/oneengine. Next area prototype29native/schema+
+8lifecycle+40bilingual UI pass;corrected prospective types14.227s/lint12.467s/UI
+16.621s pass;1399staged files/71directories removed,shared dependencies preserved.
+No next-area repository promotion yet. GenuineL33/Ancients-Rite/next402/Baal
+uncleared unchanged;no campaign/replay/remote/delegation/independent approval.
+Full privatev1,remaining skills,earned builds,balance/economy/endgame and C2–C4/
+fullG0–G7 remain open. Original goal and registered worktree continue.

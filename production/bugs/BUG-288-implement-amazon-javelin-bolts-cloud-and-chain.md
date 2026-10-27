@@ -1,7 +1,7 @@
 # BUG-288 — Restore Amazon javelin secondary mechanics
 
 - Severity: High — four advertised active skill identities are incomplete.
-- Status: Runtime/schema/native/UI corrections committed; production browser and integrated checks pending.
+- Status: Fixed locally in `9ffd64cd`/`df0a3c5b`/`72d4988a`/`d4f40c1a`; integrated checkpoint passes; independent and earned acceptance open.
 - Build: runtime/UI `dceffcf4`,test-only public `4a80c03a`,diagnosis HEAD `b9e0ed21`.
 - Environment: Linux,Vitest1.6.1/jsdom,native projection;no browser viewport claim.
 - Locale: en/zh-CN advertised copy checked;native simulation is locale-independent.
@@ -88,3 +88,15 @@ The old volley task is terminal and removed after verified retention. Root now
 owns `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy`
 through fresh current engine/full/static/build/browser checks and exact cleanup.
 No new skill credit,independent approval,earned balance or campaign action.
+
+## Terminal checkpoint
+
+Frozen `9f04c8a8`:18901tests/870files/two existing opt-in skips PASS945.572s,
+engine9652/364,full types/lint/build/bridge/precache PASS. Production public4/4
+PASS168.310s,en/zh desktop/mobile,16 selected typed hits,eight exact seven-domain
+pairs,four actual offline Continues,80 geometry checks. All2445 inputs/HEAD exact.
+All354 archive members read-back verified,1118 exact files/37 directories removed,
+remaining[]/failures[],762 build hashes/both genuine hashes exact. Sixteen mobile
+originals inspected with explicit scroll/crop/header/nav/emoji limits. Exact four
+bounded credits;independent/earned builds and balance/full privatev1 remain open.
+Current receipts,retention/cleanup and limitations: [javelin evidence](../../docs/plans/evidence/d04-amazon-javelin.md).

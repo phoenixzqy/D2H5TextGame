@@ -1,6 +1,6 @@
 # Amazon impact bolts, Poison cloud and Lightning chain
 
-Author functional evidence in progress,2026-10-26. Contract:
+Author functional checkpoint completed locally,2026-10-26. Contract:
 [accepted author mechanics](../decisions/D04-amazon-javelin-v1.md);
 [BUG288 and original failure](../../../production/bugs/BUG-288-implement-amazon-javelin-bolts-cloud-and-chain.md).
 Independent design/QA,earned builds and balance remain open.
@@ -31,18 +31,47 @@ External focused compiler configs initially omitted ambient declarations and
 ESLint default ignores excluded browser tests; configured retries pass without
 source suppressions. Original failed logs/configs remain retained.
 
-## Pending integrated checkpoint
+## Terminal integrated checkpoint
 
-Fresh engine/full/types/lint,production build/bridge/precache and four public
-locale×viewport contexts remain pending. The old volley18727full pass validates
-the preceding runtime,not javelin. Freeze input bytes AND HEAD through every
-consumer. No repository edits or commits during validation. No skill inventory
-credit before terminal proof,retention/read-back and verified task cleanup.
+At frozen `9f04c8a8`, full **18901 tests/870 files pass**, with two existing
+opt-in skips,945.572s. All2445 captured inputs and before/after Git HEAD exact.
+Engine9652/364 passes202.147s; full types156.267s/lint250.148s, production
+build17.635s,six-JS bridge scan and actual756URLprecache pass.
 
-Root-owned active artifacts:
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy`.
-Its node_modules is a symlink to shared installed dependencies; eventual cleanup
-must unlink only this exact link. No cleanup claimed while consumers remain.
-Both genuine save checkpoints remain protected; no campaign/replay,remote action
-or independent self-approval. Full privatev1 and original registered worktree
-remain active. Security check:pass;local first-party gameplay/data/UI/tests only.
+Production public4/4 passes168.310s with zero retries:en/zh-CN desktop and
+360×640 mobile;16 selected casts/typed positive hostile hits,Power Physical+
+Lightning,Poison chip+positive DoT,Lightning Paralyze,19→20/MAX,priority,
+Pause/Flee/Save,eight exact seven-domain online/offline pairs,four actual SW
+offline Continues and80 geometry checks/44px allocation/no horizontal page
+overflow. Tests assert no test bridge and no page/console errors.
+
+All16 mobile originals were individually inspected. MAX names/rank20 ranges,
+mechanics and Poison/Paralyze are visible. Long descriptions require vertical
+scrolling;panel captures show only the visible region;combat captures include
+sticky header/navigation overlap. Existing emoji fallback boxes and English
+navigation edge clipping remain. This is not whole-app mobile/a11y acceptance.
+
+## Retention and inventory reconciliation
+
+Every354 raw archive member was read back/hash-verified before deleting1118
+exact task-owned files and37 directories. All762 build hashes and compressed/
+raw protected-save hashes were exact;preview4599 closed. Remaining[]/failures[];
+shared installed dependencies preserved. Root retains these through full-v1
+evidence and independent review consumers,then removes them:
+
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy-retained.tar.gz`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy-retention.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy-cleanup.json`
+
+Archive SHA256:`8f93b12571b6deb49adb20311530659618c75c2d4855a31ebf53bf1f88004865`.
+[Compact packet](fixtures/amazon-javelin/packet.json) carries exact terminal
+receipts,visual limits,retention and reconciliation. Exactly Power Strike,
+Charged Strike,Poison Javelin and Lightning Strike receive bounded functional
+credit:186bounded/25unverified/one engine-only/one review-needed. Other209 raw
+rows,header,213 IDs and order remain exact;Amazon21bounded/8unverified/oneengine.
+
+Genuine L33,Ancients/Rite claimed,Baal uncleared,nextNormal402 is unchanged.
+No campaign/replay,remote action,delegation or independent self-approval. Full
+privatev1,C2–C4/fullG0–G7,earned builds,balance,economy,endgame and final mobile/
+a11y/performance/PWA acceptance remain open. Original goal/worktree continue.
+Security check:pass;first-party local gameplay/data/UI/tests only.

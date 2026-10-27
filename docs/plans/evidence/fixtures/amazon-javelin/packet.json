@@ -1,0 +1,377 @@
+{
+  "state": "bounded-functional;independent-and-earned-acceptance-open;retained-and-cleaned",
+  "sourceHead": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+  "taskOwner": "root",
+  "receipts": {
+    "javelin-integrated-engine": {
+      "label": "javelin-integrated-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine"
+      ],
+      "exit": 0,
+      "seconds": 202.1473564429907,
+      "inputsUnchanged": true,
+      "inputCount": 2445,
+      "headBefore": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headAfter": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  364 passed (364)",
+        "Tests  9652 passed (9652)"
+      ]
+    },
+    "javelin-integrated-types": {
+      "label": "javelin-integrated-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 156.26661907299422,
+      "inputsUnchanged": true,
+      "inputCount": 2445,
+      "headBefore": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headAfter": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "javelin-integrated-lint": {
+      "label": "javelin-integrated-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 250.14786833594553,
+      "inputsUnchanged": true,
+      "inputCount": 2445,
+      "headBefore": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headAfter": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "javelin-integrated-build": {
+      "label": "javelin-integrated-build",
+      "command": [
+        "env",
+        "-u",
+        "VITE_E2E",
+        "node_modules/.bin/vite",
+        "build",
+        "--outDir",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy/production-dist",
+        "--emptyOutDir"
+      ],
+      "exit": 0,
+      "seconds": 17.634743625996634,
+      "inputsUnchanged": true,
+      "inputCount": 2445,
+      "headBefore": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headAfter": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "javelin-integrated-bridge": {
+      "label": "javelin-integrated-bridge",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy/verify-javelin-build.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy/production-dist"
+      ],
+      "exit": 0,
+      "seconds": 0.23900667997077107,
+      "inputsUnchanged": true,
+      "inputCount": 2445,
+      "headBefore": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headAfter": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "javelin-integrated-precache": {
+      "label": "javelin-integrated-precache",
+      "command": [
+        "node",
+        "scripts/check-offline-precache.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy/production-dist"
+      ],
+      "exit": 0,
+      "seconds": 0.2169772400520742,
+      "inputsUnchanged": true,
+      "inputCount": 2445,
+      "headBefore": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headAfter": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "javelin-public-attempt1": {
+      "label": "javelin-public-attempt1",
+      "command": [
+        "env",
+        "AMAZON_JAVELIN_DIST=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy/production-dist",
+        "AMAZON_JAVELIN_OUTPUT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy/public-attempt1",
+        "AMAZON_JAVELIN_REPORT=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy/public-attempt1-report.json",
+        "node_modules/.bin/playwright",
+        "test",
+        "--config",
+        "tests/pwa/amazon-javelin-acceptance.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 168.30975655908696,
+      "inputsUnchanged": true,
+      "inputCount": 2445,
+      "headBefore": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headAfter": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headUnchanged": true,
+      "totals": [
+        "\u001b[1A\u001b[2K  4 passed (2.8m)"
+      ]
+    },
+    "javelin-integrated-full": {
+      "label": "javelin-integrated-full",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "seconds": 945.5718213350046,
+      "inputsUnchanged": true,
+      "inputCount": 2445,
+      "headBefore": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headAfter": "9f04c8a858906bd29b28a4ccedb513f998dded4f",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  870 passed (870)",
+        "Tests  18901 passed | 2 skipped (18903)"
+      ]
+    }
+  },
+  "retention": {
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy-retained.tar.gz",
+    "sha256": "8f93b12571b6deb49adb20311530659618c75c2d4855a31ebf53bf1f88004865",
+    "membersReadBack": 354,
+    "buildFilesVerified": 762,
+    "cleanup": {
+      "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-javelin-dhkq0oqy",
+      "removedFiles": 1118,
+      "removedDirectories": 37,
+      "remaining": [],
+      "failures": [],
+      "sharedNodeModulesPreserved": true
+    },
+    "retainUntil": "full-v1 evidence and independent review consumers finish; root removes afterward"
+  },
+  "mobileVisualInspection": {
+    "inspector": "root author, not independent review",
+    "originals": [
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-en-power-strike-preview.png",
+        "sha256": "3baa8a3b7bd67019ed744167d742aafec39b29ffbb10db3113024a684b492877",
+        "name": "power-strike-preview",
+        "project": "amazon-javelin-mobile",
+        "locale": "en",
+        "size": [
+          924,
+          1496
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-en-charged-strike-preview.png",
+        "sha256": "f89a8b3cde391ee9d4099bc56ebb8ab1bb4051af615acda64e3257b55cd58fdb",
+        "name": "charged-strike-preview",
+        "project": "amazon-javelin-mobile",
+        "locale": "en",
+        "size": [
+          924,
+          1496
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-en-poison-javelin-preview.png",
+        "sha256": "b721589e3b63a29f223142ca4f4b9539e8664706f60c8e3daffd00a5e1c1dbbd",
+        "name": "poison-javelin-preview",
+        "project": "amazon-javelin-mobile",
+        "locale": "en",
+        "size": [
+          924,
+          1496
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-en-lightning-strike-preview.png",
+        "sha256": "e080153c4c6000aa2ce7d59721ae99ea4fea4a790db43f24b0e3861745f71655",
+        "name": "lightning-strike-preview",
+        "project": "amazon-javelin-mobile",
+        "locale": "en",
+        "size": [
+          924,
+          1496
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-en-power-strike-combat.png",
+        "sha256": "a4f786b255c5247c59d7c83855f83e4e93465ac7cef591b64cf2198b15880e74",
+        "name": "power-strike-combat",
+        "project": "amazon-javelin-mobile",
+        "locale": "en",
+        "size": [
+          825,
+          1089
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-en-charged-strike-combat.png",
+        "sha256": "fb93134a996b715066e6d6029120224909c7d53a4b940ce762c3a5f6639dd1a9",
+        "name": "charged-strike-combat",
+        "project": "amazon-javelin-mobile",
+        "locale": "en",
+        "size": [
+          825,
+          1089
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-en-poison-javelin-combat.png",
+        "sha256": "0ea888f5dba068207dcce6dac25e789352af222959db2dd76125d50a7d915ef8",
+        "name": "poison-javelin-combat",
+        "project": "amazon-javelin-mobile",
+        "locale": "en",
+        "size": [
+          825,
+          1623
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-en-lightning-strike-combat.png",
+        "sha256": "7a6423dfb522841b80e9be940f0119422ed1727ff64ffecf0ff3e4f42bb787fe",
+        "name": "lightning-strike-combat",
+        "project": "amazon-javelin-mobile",
+        "locale": "en",
+        "size": [
+          825,
+          1595
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-zh-CN-power-strike-preview.png",
+        "sha256": "3bc3df025852b6272b8700717834252106458d5f614ae325ab516851d359fb35",
+        "name": "power-strike-preview",
+        "project": "amazon-javelin-mobile",
+        "locale": "zh-CN",
+        "size": [
+          924,
+          1496
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-zh-CN-charged-strike-preview.png",
+        "sha256": "4fe6e351a9da8bcee2c878c0569cebe8966cc0bdd7358f54e06ab566970079d9",
+        "name": "charged-strike-preview",
+        "project": "amazon-javelin-mobile",
+        "locale": "zh-CN",
+        "size": [
+          924,
+          1496
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-zh-CN-poison-javelin-preview.png",
+        "sha256": "4da585cfe0c903d5583016de4d1576735251e9b532014f374616caa650b259d7",
+        "name": "poison-javelin-preview",
+        "project": "amazon-javelin-mobile",
+        "locale": "zh-CN",
+        "size": [
+          924,
+          1496
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-zh-CN-lightning-strike-preview.png",
+        "sha256": "0e600a51becfbe032bb81a7201072a1675e9afba773a4689e4e9bb18150d3515",
+        "name": "lightning-strike-preview",
+        "project": "amazon-javelin-mobile",
+        "locale": "zh-CN",
+        "size": [
+          924,
+          1496
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-zh-CN-power-strike-combat.png",
+        "sha256": "6e9cc72cdcbdebcdb4e049ab815695f74f271ffcd84d2e359fcc99a4647bb773",
+        "name": "power-strike-combat",
+        "project": "amazon-javelin-mobile",
+        "locale": "zh-CN",
+        "size": [
+          825,
+          957
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-zh-CN-charged-strike-combat.png",
+        "sha256": "213f983bc8a6d3607cb838a4e3238f218b75ed06ea4b42bdf78382b50e4f979c",
+        "name": "charged-strike-combat",
+        "project": "amazon-javelin-mobile",
+        "locale": "zh-CN",
+        "size": [
+          825,
+          957
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-zh-CN-poison-javelin-combat.png",
+        "sha256": "628b8f15379af55badf34cb0f9678eb1ee3b15211306df19ac1f47737c16c6b6",
+        "name": "poison-javelin-combat",
+        "project": "amazon-javelin-mobile",
+        "locale": "zh-CN",
+        "size": [
+          825,
+          1414
+        ]
+      },
+      {
+        "path": "inspected-browser/amazon-javelin-mobile-zh-CN-lightning-strike-combat.png",
+        "sha256": "aa395bea1629ff69e1ab82ae78d78f0925e44c7176bbe10c4e7a69112d824e17",
+        "name": "lightning-strike-combat",
+        "project": "amazon-javelin-mobile",
+        "locale": "zh-CN",
+        "size": [
+          825,
+          1381
+        ]
+      }
+    ],
+    "result": "16 originals individually viewed. Both locales show correct MAX names, rank20 ranges and mechanics; Poison and Paralyze chips visible on hostiles.",
+    "limits": [
+      "Long descriptions require vertical scrolling; screenshots capture only current visible panel region.",
+      "Combat grid element images include sticky header/nav overlap; do not establish full-page accessibility or all controls visibility.",
+      "Existing emoji fallback boxes and English navigation edge clipping remain visible; whole-game P16/mobile/a11y acceptance stays open.",
+      "Constructed pools and allocation establish integration, not earned builds or balance."
+    ]
+  },
+  "protectedSaveCompressedAndRawVerified": true,
+  "limits": "Constructed native/public fixtures. Independent review, earned builds, balance, economy, endgame and full mobile/a11y/performance/PWA acceptance remain open.",
+  "inventoryCredit": {
+    "creditedIds": [
+      "skills-amazon-power-strike",
+      "skills-amazon-poison-javelin",
+      "skills-amazon-charged-strike",
+      "skills-amazon-lightning-strike"
+    ],
+    "unchangedOtherRawRows": 209,
+    "headerAnd213IdsAndOrderExact": true,
+    "beforeSha256": "0d2b9c6e7f03e26691ecad5822e31f71fe7d4ae542eaeb305c1cd1731863c35d",
+    "afterSha256": "8ec7585f9a3cab3b72ca3c798c3793018e051810f81f489c36d9483790d75c26",
+    "counts": {
+      "bounded-functional;independent-acceptance-open": 183,
+      "unverified": 25,
+      "bounded-engine-functional;independent-acceptance-open": 1,
+      "bounded-functional;earned-balance-open": 3,
+      "review-needed": 1
+    },
+    "boundedTotal": 186
+  }
+}
