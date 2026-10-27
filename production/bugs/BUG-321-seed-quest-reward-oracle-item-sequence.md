@@ -1,6 +1,7 @@
 # BUG-321 — Seed the quest reward oracle from the preclaim item IDs
 
 Status: Locally resolved; correctly seeded exact oracle and zero-action durability pass.
+Evidence/fix commit: `3768356e` (task-local oracle correction; no product change).
 Severity: Medium (campaign QA oracle; genuine claimed state is preserved).
 Owner: qa-engineer / root campaign driver.
 

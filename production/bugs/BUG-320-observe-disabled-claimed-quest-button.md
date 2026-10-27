@@ -1,6 +1,7 @@
 # BUG-320 — Observe the disabled claimed quest button
 
 Status: Locally resolved; zero-action public recovery and exact durability verified.
+Evidence/fix commit: `3768356e` (task-local observer correction; no product change).
 Severity: Medium (native QA harness; workaround preserves the consumed claim).
 Owner: qa-engineer / root campaign driver. Game UI is behaving as authored.
 

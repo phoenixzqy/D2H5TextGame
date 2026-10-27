@@ -12,7 +12,8 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
-| C2 current earned Arreat408–426 | level35 reached; native integrity/retention pass; Baal/fullC2 open | Frozen free Static→Blizzard1→Orb20 priority: paired32/32+16/16 and disjoint32/32+16/16, control11/32+6/16. Genuine408–426 nineteen complete clears/114 victories/zero nonwins earn968190XP/2914gear.176save snapshots/20exact close-Continue pairs/all24324ancestral full payloads preserved. Only current resumeL35/XP37251/stat20/skill3/27238items/next427; Riteclaimed/Evenotstarted/Baaluncleared. [Evidence](evidence/d11-earned-arreat408-continuation.md). BUG319 preaction inactive-tab stop preserved and corrected; no gameplay retry. All2693product/762build/13task inputs exact.1359archive members verified;1359files/18dirs/rawroot exactly removed,remaining[]/failures[]; root retains archive/sidecars. Never replay408–426. |
+| C2 earned Baal427 / Eve claimed | five-act boss route complete; C2 integration/independent acceptance open | Source2850de61/evidence3768356e. Initial two policies10/32+7/16 fail; causal legal20Energy current-gear policy29/32+14/16 then reserved disjoint30/32+15/16 qualify unchanged gate. Ordinary Malah5Wishstones/reset48skills/20earnedEnergy preparation exactly equals diagnostic; current pools preserved. One genuine427entry/eight victories earns28130XP/66gear; one separate EveClaim grants40000XP/two exact gear/Ist1/Vex1/143578rune-shards/title/Nightmare. BUG320disabledbutton and BUG321unseededoracle stopped after claim; both zero-replay recoveries retained; final no-action durability passes.48saved snapshots/nine exact close-Continue pairs/all27238ancestral full payloads preserved/final27306uniqueIDs. Only current resumeL35/XP105381/stat0/skill0/Energy83/nextNormal428/Nightmare0/Eveclaimed. [Evidence](evidence/d11-earned-baal427.md).2693product/762build hashes exact;1063archive members verified/exact1063files30dirs removed,remaining[]/failures[]; root retains archive/sidecars. Never replay preparation,427 or EveStart/Claim.211bounded/oneunverified/onereview/fullG0–G7 remain open. |
+| C2 earned Arreat408–426 ancestry | superseded by claimed Baal427; original level35/native proof preserved | Frozen free Static→Blizzard1→Orb20 priority: paired32/32+16/16 and disjoint32/32+16/16, control11/32+6/16. Genuine408–426 nineteen complete clears/114 victories/zero nonwins earn968190XP/2914gear.176save snapshots/20exact close-Continue pairs/all24324ancestral full payloads preserved. Only current resumeL35/XP37251/stat20/skill3/27238items/next427; Riteclaimed/Evenotstarted/Baaluncleared. [Evidence](evidence/d11-earned-arreat408-continuation.md). BUG319 preaction inactive-tab stop preserved and corrected; no gameplay retry. All2693product/762build/13task inputs exact.1359archive members verified;1359files/18dirs/rawroot exactly removed,remaining[]/failures[]; root retains archive/sidecars. Never replay408–426. |
 | C2 earned Arreat402–407 ancestry | superseded by current next427; genuine prefix preserved | Current18ed376c unchanged Orb30/32+15/16qualification. Ordinary authenticated21→22import,402–406five clears plus407W1/2:32victories,219440XP/642gear;407W3draw/two living enemies, zero failed-wave income.55native saves/seven exact close-Continue pairs/all23682ancestral full payloads preserved. New only resumeL33/XP368701/stat10/skill1/24324items/next408; Riteclaimed/Evenotstarted/Baaluncleared. [Evidence](evidence/d11-earned-arreat402-407.md).1083archive members verified;1083files/22dirs/rawroot exactly removed,remaining[]/failures[]; root retains archive/sidecars. Never replay402–407. |
 | P15 current Baal adaptation screens | control qualifies original set; holdout and Dexterity fail; no genuine boss action | Exact historical32seeds current ranked-Ice27/32+14/16 versus Dex10 19/32+10/16; unchanged independent holdout25/32+12/16fails26/32gate. Terminal cooldown-carry source evolution retained; example faster420ms actor period reduces IceBlast60→42casts.96Baal/32Arreat diagnostics preserve every outcome; no threshold/source tuning or projected-save promotion. [Evidence](evidence/d11-earned-arreat402-407.md). Historical input402; Blizzard adaptation now earned through426/current427 in the newer card.211bounded/oneunverified/onereview and full-v1 gates remain open. |
 | P16 optional support / BUG317 | locally resolved; integration/retention complete; destination/independent open | 1037886f native default-closed details/summary reuses translated support label,44px controls and visible focus; version stays visible. Existing11Settings tests/scopedtypes/lintPASS. Final20/20both locales/five sizes/no-character+fresh-character browser contexts pass keyboard/pointer/remount/geometry/hit testing;20character originals viewed. Actual developer profile URL asked asynchronously, no answer; generic homepage unchanged/fullF20 not accepted. [Evidence](evidence/p16-support-pwa-install-icons.md); Frozen8fc0ae32 fresh19935/940/twoexisting skips1006.924s/types136.582s/lint237.917sPASS;2693repository/769external/HEAD exact/rehashed.1691archive members verified;1691files/32dirs/rawroot exactly removed,remaining[]/failures[]. Root retains archive/sidecars through consumers. |
@@ -13907,3 +13908,27 @@ Never replay408–426; next408 fixture is ancestry only. Full private-v1 scope,
 economy/endgame/whole-app mobile/a11y/performance/soak/independent/human gates
 remain open. Goal/umbrella claim active. Prior status turn=no progress; this
 turn qualifies a concrete changed input and advances the authoritative save.
+
+## Earned Normal Baal427 completion — 2026-10-27
+
+Evidence3768356e preserves genuine single-entry eight-wave victory and separate
+once-only Eve claim, including two observer failures and zero-action recovery.
+Current genuine resume is only `evidence/fixtures/earned-baal427/retained-final.json.gz`:
+L35/XP105381/stat0/skill0/Energy83/27306uniqueequipment/nextNormal428/Nightmare0,
+Eveclaimed/titleowned/Nightmareunlocked. All five campaign boss clear rows exist.
+48saved snapshots/nine exact Save-close-Continue pairs/all27238ancestral full
+payloads preserved. Total68130earnedXP/68equipment; no repeated consumed action.
+2693product and762build inputs rehashed unchanged; prior19935/940/two opt-in
+skips/types/lint remain applicable without rerunning unchanged evidence-only code.
+All original handles consumed; exact previewPID3073886 absent/port43985closed;
+1063archive members readbackverified/exact1063files30dirs/rawroot and external
+retainerlog removed,remaining[]/failures[]. Root retains archive/manifest/receipt
+listed in the new evidence through campaign/independent/full-v1 consumers.
+
+This closes the earned final-boss route, not broader C2 integration/independent
+acceptance. C0/C1 accepted original exits; C3/C4/fullG0–G7,211bounded skills/
+oneunverifiedCobraBUG304/onereviewColdMastery,14viablebuilds,30–50active-hour
+pacing,economy/endgame,whole-app mobile/a11y/performance/PWAinstallation,soak
+and independent/human acceptance stay open. Next work audits remaining C2
+requirements and advances unfinished full-v1 gates from the current earned
+state. Original full objective and registered worktree stay active; local only.

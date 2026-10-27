@@ -1,10 +1,14 @@
 # D11/P15 — Earned level 35 through Arreat408–426
 
+Historical ancestry: superseded by the [earned Baal427 victory and claimed
+campaign reward](d11-earned-baal427.md). Resume only that newer final export,
+nextNormal428/Nightmare0; do not replay this checkpoint's preparation or runs.
+
 2026-10-27; runtime `048be7c0`, ordinary validated production assets from
 `8fc0ae32`. Root executor and separate artifact auditor; independent acceptance
 remains open. [Exact summary](fixtures/earned-arreat408-continuation/summary.json).
 
-## Current earned resume
+## Historical earned resume
 
 Resume only the [new final export](fixtures/earned-arreat408-continuation/retained-final.json.gz):
 level 35, XP 37,251, 20 unspent stat points, three unspent skill points,
@@ -111,7 +115,7 @@ then removes only these paths:
 Archive SHA256 `b211d9536c114addc6745584d88691bce2ae0429cacd2dabb16916131025e7c3`.
 The versioned genuine final export is a deliverable and remains preserved.
 
-Next campaign work starts only at427. Its actual earned level35, three unspent
+At this historical checkpoint, campaign work starts at427. Its earned level35, three unspent
 skills and newly eligible owned gear are changed inputs for a separately frozen
 legal Baal preparation/qualification. No reset, allocation, equipment change,
 Eve Start, boss attempt or promised clear is granted by this farming result.
