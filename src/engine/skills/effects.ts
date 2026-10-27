@@ -9,7 +9,7 @@
  * @module engine/skills/effects
  */
 
-import type { ComboTag, SkillTarget, SkillRequirement, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence } from '../types/skills';
+import type { ComboTag, SkillTarget, SkillRequirement, OnHitBoltsTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence } from '../types/skills';
 import type { DamageType } from '../types/attributes';
 import type { AoeShape } from '../combat/grid';
 
@@ -50,6 +50,7 @@ interface DamageEffectBase {
   readonly ignoresDefense?: true;
   /** One bounded sequence of ordinary attempts, rotating within the original target pool. */
   readonly hitSequence?: SkillHitSequence;
+  readonly onHitBolts?: OnHitBoltsTuning;
   /** Additive critical chance for this direct damage effect; ordinary overflow applies. */
   readonly critChanceBonus?: number;
   /** Explicit direct-hit recovery only; never inherited by ordinary/basic/periodic damage. */

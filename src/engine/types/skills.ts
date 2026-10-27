@@ -33,6 +33,13 @@ export interface OnHitRecoveryTuning {
   readonly lifeFraction: number;
 }
 
+/** JSON-owned independent Lightning attempts after one landed primary impact. */
+export interface OnHitBoltsTuning {
+  readonly count: number;
+  readonly targetMode: 'original' | 'adjacent-others';
+  readonly damage: { readonly min: number; readonly max: number; readonly perRank: number };
+}
+
 /** Bounded sequential attempts shared by one paid cast and its original target pool. */
 export interface SkillHitSequence {
   readonly strikes: number;
@@ -292,6 +299,7 @@ export interface SkillDef {
   /** Explicit hit-only ordinary Defense bypass; resistance and dodge still apply. */
   readonly ignoresDefense?: true;
   readonly hitSequence?: SkillHitSequence;
+  readonly onHitBolts?: OnHitBoltsTuning;
   /** Additive critical chance for this skill's direct attempts only. */
   readonly critChanceBonus?: number;
   readonly onHitRecovery?: OnHitRecoveryTuning;

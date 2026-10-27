@@ -24,7 +24,7 @@ import { isDimVisionDefinition } from '../combat/dim-vision-definition';
 import { damageCurseId } from '../combat/damage-curse-definition';
 import { targetCurseId } from '../combat/target-curse-definition';
 import type { DamageType } from '../types/attributes';
-import type { ComboTag, ConversionTuning, FeralRageTuning, HitSpeedStackTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
+import type { ComboTag, ConversionTuning, FeralRageTuning, HitSpeedStackTuning, OnHitBoltsTuning, OnHitRecoveryTuning, OnHitSelfDamageTuning, SkillHitSequence, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget, StaticFieldTuning } from '../types/skills';
 import type { OnHitStatus, RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
 
 export type PlayableSkillClass =
@@ -53,6 +53,7 @@ interface JsonSkill {
   readonly ignoresDefense?: true;
   readonly alwaysHits?: true;
   readonly hitSequence?: SkillHitSequence;
+  readonly onHitBolts?: OnHitBoltsTuning;
   readonly critChanceBonus?: number;
   readonly onHitRecovery?: OnHitRecoveryTuning;
   /** Explicit life debit after a real enemy HP loss; independent of personal shields. */
@@ -182,7 +183,11 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       }
       return weight;
     };
-    const components = composite ? Object.freeze([
+    const power = skill.id === 'skills-amazon-power-strike' && skill.damageComposition === 'weighted-components';
+    const components = power ? Object.freeze([
+      Object.freeze({ damageType: 'physical' as const, weight: componentWeight('physical') }),
+      Object.freeze({ damageType: 'lightning' as const, weight: componentWeight('lightning') })
+    ] as const) : composite ? Object.freeze([
       Object.freeze({ damageType: 'fire' as const, weight: componentWeight('fire') }),
       Object.freeze({ damageType: 'cold' as const, weight: componentWeight('cold') }),
       Object.freeze({ damageType: 'lightning' as const, weight: componentWeight('lightning') })
@@ -229,6 +234,8 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       ...(skill.ignoresMagicResist === true ? { ignoresMagicResist: true as const } : {}),
       ...(skill.ignoresDefense === true ? { ignoresDefense: true as const } : {}),
       ...(skill.alwaysHits === true ? { alwaysHits: true as const } : {}),
+      ...(skill.onHitBolts ? { onHitBolts: Object.freeze({ count: skill.onHitBolts.count,
+        targetMode: skill.onHitBolts.targetMode, damage: Object.freeze({ ...skill.onHitBolts.damage }) }) } : {}),
       ...(skill.hitSequence ? { hitSequence: { strikes: skill.hitSequence.strikes,
         ...(skill.hitSequence.targetMode ? { targetMode: skill.hitSequence.targetMode } : {}) } } : {}),
       ...(skill.critChanceBonus !== undefined ? { critChanceBonus: skill.critChanceBonus } : {}),

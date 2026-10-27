@@ -127,7 +127,7 @@ import { SKELETAL_MAGE_SIGNATURES } from '../skills/skeletal-mage-signatures';
 import { IRON_GOLEM_SKILL_ID, isIronGolemSkill, qualifyIronGolemSource, applyIronGolemItemStats,
   type IronGolemInput, type IronGolemPreparationAttestation } from '../skills/iron-golem';
 import { resolveSummonMaxCount, scalePerRank } from '../skills/scaling';
-import { resolveAoeTargets, withDefaultGridPositions } from './grid';
+import { cellsForAoeShape, isValidGridPosition, resolveAoeTargets, withDefaultGridPositions } from './grid';
 import type {
   RegisteredSkill,
   SkillEffect,
@@ -770,6 +770,20 @@ function applyDamageToUnit(
   if (!attacker || !defender || (!alive(attacker) && !armorReaction) || !alive(defender)) return;
 
   const hostileHit = effectiveSide(state, attacker) !== effectiveSide(state, defender);
+  const bolts = effect.onHitBolts;
+  if (bolts && (!Number.isInteger(bolts.count) || bolts.count < 1 || bolts.count > 8 ||
+    !['original', 'adjacent-others'].includes(bolts.targetMode) ||
+    !Number.isFinite(bolts.damage.min) || bolts.damage.min < 0 ||
+    !Number.isFinite(bolts.damage.max) || bolts.damage.max < bolts.damage.min ||
+    !Number.isFinite(bolts.damage.perRank) || bolts.damage.perRank < 0))
+    throw new Error('Invalid impact bolts: expected bounded attempts and nonnegative damage');
+  const impactCells = bolts?.targetMode === 'adjacent-others' && isValidGridPosition(defender.gridPosition)
+    ? cellsForAoeShape(defender.gridPosition, 'cross') : [];
+  const boltTargets = bolts?.targetMode === 'original' ? Array.from({ length: bolts.count }, () => defenderId)
+    : bolts ? targetPriority(state, attackCandidates(state, attacker).filter(candidate =>
+      candidate.id !== defenderId && effectiveSide(state, candidate) !== effectiveSide(state, attacker) &&
+      impactCells.some(cell => cell.row === candidate.gridPosition?.row && cell.col === candidate.gridPosition.col)))
+      .slice(0, bolts.count).map(candidate => candidate.id) : [];
   const activeDefender = activeStatusView(defender, state.simClockMs);
   // Capture pre-hit eligibility: a lethal victim hit may clear its curse during settlement.
   const lifeTap = activeDamageCurse(activeDefender, state.simClockMs, 'life-tap');
@@ -1012,6 +1026,16 @@ function applyDamageToUnit(
     }
   }
   recoverBloodGolem(state, attackerId, hpRemoved, hostileHit);
+  if (bolts && hostileHit && outcome.hit && !basicHit && !auraPulse && !armorReaction && !periodicSpell) {
+    const bolt: DamageEffect = { kind: 'damage', damageType: 'lightning',
+      base: [bolts.damage.min, bolts.damage.max], perRank: [bolts.damage.perRank, bolts.damage.perRank] };
+    for (const id of boltTargets) {
+      const current = state.units.get(attackerId), target = state.units.get(id);
+      if (!current || !alive(current)) break;
+      if (target && alive(target) && effectiveSide(state, target) !== effectiveSide(state, current))
+        applyDamageToUnit(state, attackerId, id, bolt, skillLevel);
+    }
+  }
 }
 
 /** Shared ambient layers, always applied over the current fresh personal capacity. */
