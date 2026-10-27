@@ -148,7 +148,7 @@ for (const locale of ['en', 'zh-CN'] as const)
           : { width: 1280, height: 800 }
       );
       const prepared = await backup(page);
-      expect(prepared.player.skillLevels?.[id]).toBe(rank);
+      expect(prepared.player.skillLevels?.['amazon.inner_sight']).toBe(rank);
       expect(prepared.player.skillPoints).toBe(20 - rank);
       expect(prepared.player.comboOrder.filter(Boolean)).toEqual([id]);
       await navTo(page, 'map');
@@ -184,7 +184,7 @@ for (const locale of ['en', 'zh-CN'] as const)
     await page.getByRole('button', { name: english ? 'Save' : '保存', exact: true }).click();
     await expect(page.getByRole('status')).toHaveText(english ? 'Saved' : '已保存');
     const saved = await backup(page);
-    expect(saved.player.skillLevels?.[id]).toBe(20);
+    expect(saved.player.skillLevels?.['amazon.inner_sight']).toBe(20);
     expect(saved.player.skillPoints).toBe(0);
     expect(saved.player.comboOrder.filter(Boolean)).toEqual([id]);
     expect(await page.evaluate(() => '__GAME__' in window)).toBe(false);
