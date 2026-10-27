@@ -14,7 +14,7 @@ Current implementation evidence lives in `evidence/`.
 | --- | --- | --- |
 | D04/D06 Amazon support reconciliation | five bounded local credits; independent/earned acceptance open | Valkyrie, Inner Sight, Slow Missiles, Decoy and Ice Arrow individual native/public/lifecycle evidence plus combined full19270/901/types/lint and verified6961-member retention/cleanup audited.20public cases,40ranked casts,40save pairs/20offlineContinues,200geometry. Exactly208 other raw rows/header/IDs/order unchanged;195bounded/17unverified/onereview, Amazon30/30. [Audit](evidence/fixtures/amazon-support/inventory-reconciliation.json). Slow Missiles ADR-012 Proposed; whole-app/mobile/a11y/earned/independent/private-v1 gates open. Root retains exact existing archive/sidecars; no campaign action. |
 | D05 Assassin martial charges / BUG300–304,306 | stable full/static, localized preview and24-case combat gates pass; mana/visual decisions open | Frozenfc915ddd full19576/917/two existing opt-in skipsPASS;16new native cases separately pass. Frozen8709a8db production24/24PASS1098.951s,2524repository/765external inputs exact;48rank proofs,48seven-domain pairs,24actual offlineContinues. All24mobile originals individually viewed: ally/fixed-nav/black enemy-region limits; grouped hero HP observer null in48proofs (BUG306). Cobra actual positive victimMP conflict remains BUG304/user decision pending. [Final evidence](evidence/fixtures/assassin-charges/final-checkpoint.json). No charge credit/earned/independent acceptance; root retains task. |
-| D06 Assassin traps / BUG305,307 and compact HP / BUG306 | paid runtime/UI and native lifecycle implemented; historical Fire regressions corrected; final actual-combat/full gate open | Source5eb3948d: eight finite paid identities, real Death corpse FIFO, reactive Shield, shadow policy, localized lifetimes/previews. Original ba1f1668 full19780PASS/22FAIL/two existing skips retained;909f47dc repairs two stale Fire files with exact hits/Burn/miss/alias checks,241/4+types/lintPASS. Native lifecycle9/9 promoted,65relatedPASS. CompactHP2RED→201/20combat UI+types/lintPASS. Production preview4/4:64previews/320geometry/8save pairs/4offlineContinues; fresh production build/762hashes/six bridge-clean chunks/756URL precachePASS. Actual combat, corrected mobile captures, shared-corpse/reaction boundaries, fresh full/static, retention and skill reconciliation remain. [Evidence](evidence/d06-assassin-traps.md), [follow-up](evidence/fixtures/assassin-traps/integration-followup.json). No new inventory credit, campaign action or independent acceptance; full private-v1 scope open. |
+| D06 Assassin traps / BUG305,307–309 and compact HP / BUG306 | paid runtime/UI, full/static and actual-combat matrix pass locally; art/retention/acceptance open | Frozen33dc3239 full19813/928/two existing skips PASS1105.449s, fulltypes137.342s/lint237.313s PASS;2536repository/nine external inputs exact. Actual production32/32PASS1013.699s:64rank proofs/64exact seven-domain pairs/32actual offlineContinues, all762build hashes exact. Finite HP/MP, repeated typed hits, Death bodies and Shield counters; constructed ActV gates, never earned proof.433bd510 promotes nine shared boundary cases,74/3+scopedtypes/lintPASS separately.12of64mobile originals inspected: actual scrolled allies/enemies, fixed-nav clipping/glyph/header limits and broken Blood Lord art(BUG309). Original failures and charge BUG306 gaps retained. [Evidence](evidence/d06-assassin-traps.md), [packet](evidence/fixtures/assassin-traps/integration-followup.json). Retention/cleanup/inventory, earned/independent/whole-app/full-v1 acceptance open; no new credit/campaign action. |
 | D04 Amazon Inner Sight / BUG291–292 | bounded local verification closed; independent/earned acceptance open | Native99new cases/public4/4:8casts,40geometry,8seven-domain pairs/4actual offlineContinues. Combined full19270/901/types/lint and retained archive/read-back/cleanup complete. One of five reconciled support credits; Amazon30/30, total195bounded/17unverified/onereview. [Evidence](evidence/d04-amazon-inner-sight.md); whole-app mobile/a11y and private-v1 gates remain open. |
 | D06 Amazon Valkyrie body / BUG293 | bounded local verification closed; independent/earned acceptance open | Real paid body, native next-wave rank/payment/import and public4/4/eight bodies verified. Combined full19270/901/types/lint and retained archive cleanup complete. One of five support credits. [Evidence](evidence/d06-amazon-valkyrie.md); no whole-app/earned/independent acceptance. |
 | D06 Amazon Decoy / BUG294 | bounded local verification closed; independent/earned acceptance open | Actual paid finite inert body/targeting/death/expiry and native wave/import/save proof;143focused/8files and public4/4. Combined full19270/901/types/lint and retained archive cleanup complete. One of five support credits. [Evidence](evidence/d06-amazon-decoy.md); earned and independent/private-v1 gates open. |
@@ -13577,3 +13577,28 @@ GenuineL33/Ancients-Rite/next402/Baaluncleared unchanged. Root retains the conti
 charge/trap task for consumers and owns later archive/readback/exact cleanup;
 none claimed complete. Full privatev1/claimed worktree stay active; no campaign,
 remote publication, delegation or independent self-approval.
+
+## 2026-10-28 — Trap combat evidence retained and shared boundaries promoted
+
+Previous requested status turn was no implementation progress. This continuation
+observes all three original branch checks terminal PASS and commits433bd510: nine
+actual CE/FindPotion/shared-FIFO/Shield exclusion/quota/expiry cases,74/3 with
+scoped strict types/lint. Constructed multi-hero snapshots are not a party feature.
+
+0c14a4a0 retains the latest frozen full19813/928/twoexisting-skips PASS1105.449s,
+fulltypes137.342s/lint237.313s and production actual-combat32/32PASS1013.699s.
+64rank proofs/64seven-domain pairs/32actualSWofflineContinues,2536repository/
+11external browser inputs and762build assets exact. The full19813 result predates
+the new nine-case file; no new whole-suite total. Exact MP assertions preserved
+through synthetic high-life ActV inputs/explicit prior-act gates; original payment
+and closed-accordion failures retained. No earned campaign inference.
+
+12of64mobile originals individually inspected and hashed: scrolled actual ally/
+enemy sections visible, fixed-nav clipping/lower-row/header/glyph limits remain.
+BUG309 records missing Blood Lord art before the next fix. Original charge24-case
+HP/capture gaps remain deficient; trap proof does not retroactively repair them.
+Inventory195bounded/17unverified/onereview-needed, genuineL33/Ancientsclaimed/
+Baaluncleared/next402 unchanged. Root retains continuing charge/trap artifacts for
+source/browser consumers and later archive/readback/exact cleanup; none claimed
+complete. Root sole executor; no campaign/replay, remote action or independent
+self-approval. Full privatev1 and registered worktree remain active.

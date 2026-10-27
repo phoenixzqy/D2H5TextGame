@@ -34,3 +34,19 @@ No layout or combat resource behavior changes. A corrected production observer
 and visibly scrolled mobile ally/enemy screenshots are prepared but not yet
 executed here. This bug remains open until those missing observations exist;
 original charge matrix observations/captures are preserved.
+
+## Subsequent trap verification — original charge evidence remains deficient
+
+The full trap actual-combat matrix at33dc3239 now passes32/32,64rank proofs with
+finite actual HP/MP,64exact seven-domain pairs and32actual offline Continues.
+Separate actual viewport scrolling captures real visible ally and enemy sections.
+Exactly12of64mobile originals are individually inspected and hashed in
+trap-red/combat-matrix-audit.json; fixed-nav clipping and lower rows outside the
+viewport remain. BUG309 records broken Blood Lord art. No whole-app mobile/a11y
+or physical-touch acceptance is granted.
+
+This validates the common compact-HP source correction for these trap contexts.
+The historical charge24-case matrix was not rerun: its48absent absolute-HP
+observations and deficient original mobile captures remain unchanged. This bug
+therefore stays open for charge-specific evidence; no retroactive fill or claim.
+See docs/plans/evidence/fixtures/assassin-traps/integration-followup.json.
