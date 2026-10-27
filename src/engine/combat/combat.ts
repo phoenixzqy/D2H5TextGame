@@ -1,5 +1,7 @@
 import { AssassinCharges, ASSASSIN_CHARGE_DEFINITION, matchesAssassinMartialSkill,
-  copyAssassinMartialRanks, cobraChargeRecovery } from '../skills/assassin-charges';
+  copyAssassinMartialRanks, composeAssassinMartialRanks, cobraChargeRecovery } from '../skills/assassin-charges';
+import { ASSASSIN_FLIGHT_DEFINITION, ASSASSIN_FLIGHT_ID, ASSASSIN_FLIGHT_STATUS_ID,
+  assassinFlightDodge, isAssassinFlightId } from '../skills/assassin-flight';
 import { ProjectileFlights } from './projectile-flight';
 import { copyAssassinShadowSkills, matchesAssassinShadowAttack, qualifyAssassinShadow } from '../skills/assassin-shadow-skills';
 import { ASSASSIN_TRAP_IDS, assassinTrapDefinition, assassinTrapId, composeAssassinTrapRanks,
@@ -289,7 +291,16 @@ interface PaidAssassinTrap {
   readonly counterDeadlines: Map<string, number>;
 }
 
+interface PaidAssassinFlight {
+  readonly rank: number;
+  readonly rankBonus?: 1;
+  readonly createdAtMs: number;
+  readonly expiresAtMs: number;
+}
+
 interface State {
+  /** Fresh per battle; visible markers never recreate a paid arrival blink. */
+  readonly assassinFlights: Map<string, PaidAssassinFlight>;
   /** Actual paid instances only, in global creation order; never copied from input. */
   readonly assassinTraps: Map<string, PaidAssassinTrap>;
   readonly martialCharges: AssassinCharges;
@@ -468,7 +479,11 @@ const ASSASSIN_TRAP_STATUS_IDS = new Set(ASSASSIN_TRAP_IDS.map(id =>
 function observeStatuses(state: State, target: string, initial = false): void {
   const unit = state.units.get(target);
   if (!unit) return;
+  const flight = activeAssassinFlight(state, target);
   const active: ActiveStatus[] = alive(unit) ? [
+    ...(flight ? [{ id: ASSASSIN_FLIGHT_STATUS_ID, sourceId: target, stacks: 1,
+      remaining: (flight.expiresAtMs - state.simClockMs) / SECONDS,
+      appliedAtMs: flight.createdAtMs, expiresAtMs: flight.expiresAtMs }] : []),
     ...combatStatusView(state, unit).statuses.filter(status =>
       !MARTIAL_CHARGE_STATUS_IDS.has(status.id) && !ASSASSIN_TRAP_STATUS_IDS.has(status.id)),
     ...[...state.assassinTraps.values()].filter(paid => paid.sourceId === target && activeAssassinTrap(state, paid))
@@ -667,7 +682,9 @@ function pickDefender(
 function registerUnit(state: State, u: CombatUnit): void {
   const traps = u.assassinTrapRanks === undefined ? u : { ...u, assassinTrapRanks: copyAssassinTrapRanks(u.assassinTrapRanks) };
   const projected = u.assassinMartialRanks === undefined ? traps : { ...traps, assassinMartialRanks: copyAssassinMartialRanks(u.assassinMartialRanks) };
-  const stripped = { ...projected, statuses: projected.statuses.filter(status => !ASSASSIN_TRAP_STATUS_IDS.has(status.id)) };
+  const stripped = { ...projected, statuses: projected.statuses.filter(status =>
+    !ASSASSIN_TRAP_STATUS_IDS.has(status.id) && status.id !== ASSASSIN_FLIGHT_STATUS_ID && !isAssassinFlightId(status.id)),
+    activeBuffIds: projected.activeBuffIds.filter(id => id !== ASSASSIN_FLIGHT_STATUS_ID && !isAssassinFlightId(id)) };
   const copiedBuffs = copyBoneWallStatuses(copySorceressBuffStatuses(stripped));
   const shadowNative = u.assassinShadowSkills === undefined ? copiedBuffs : {
     ...copiedBuffs, assassinShadowSkills: copyAssassinShadowSkills(u.assassinShadowSkills) };
@@ -791,7 +808,8 @@ function buildDamageInput(
       effect.damageType === 'physical' || effect.damageType === 'thorns'
         ? defender.stats.physDodge + druidFormBonuses(defender).physDodgePct + (activeBurstOfSpeed(defender, state.simClockMs)?.physDodgePct ?? 0) +
           (defenderAura?.bonuses.physDodgePct ?? 0)
-        : defender.stats.magicDodge + coldArmorBonuses(defender).dodge + (defenderAura?.bonuses.magicDodgePct ?? 0) + (defendingCloak?.magicDodgePct ?? 0) + sorceressBuffBonus(defender, 'teleport', state.simClockMs),
+        : defender.stats.magicDodge + coldArmorBonuses(defender).dodge + (defenderAura?.bonuses.magicDodgePct ?? 0) + (defendingCloak?.magicDodgePct ?? 0) + sorceressBuffBonus(defender, 'teleport', state.simClockMs) +
+          assassinFlightDodgeForUnit(state, defender.id),
     ...(defender.resistPenalty !== undefined ? { resistPenalty: defender.resistPenalty } : {})
   };
 }
@@ -1540,6 +1558,31 @@ function authorizedMartialSkill(state: State, unit: CombatUnit, skill: Registere
     rank !== undefined && rank > 0 && unit.skillLevels?.[skill.id] === rank;
 }
 
+/** Native selected learned prerequisites or the exact committed paid shadow authorize Flight. */
+function authorizedAssassinFlight(state: State, unit: CombatUnit, skill: RegisteredSkill): boolean {
+  if (!authorizedMartialSkill(state, unit, skill) || !Number.isInteger(unit.level) ||
+    unit.level < ASSASSIN_FLIGHT_DEFINITION.requiredLevel || !Number.isFinite(unit.life) || !alive(unit)) return false;
+  if (state.assassinShadows.has(unit.id)) return true;
+  const native = composeAssassinMartialRanks({ class: 'assassin', level: unit.level,
+    comboOrder: unit.skillOrder, ...(unit.skillLevels ? { skillLevels: unit.skillLevels } : {}) });
+  return native[ASSASSIN_FLIGHT_ID] !== undefined && native[ASSASSIN_FLIGHT_ID] === unit.assassinMartialRanks?.[ASSASSIN_FLIGHT_ID];
+}
+
+/** A living personal source or original-owner-bound shadow keeps its paid half-open blink. */
+function activeAssassinFlight(state: State, sourceId: string): PaidAssassinFlight | undefined {
+  const paid = state.assassinFlights.get(sourceId), source = state.units.get(sourceId);
+  if (!paid || state.simClockMs < paid.createdAtMs || state.simClockMs >= paid.expiresAtMs ||
+    !source || !alive(source) || source.side !== 'player' || effectiveSide(state, source) !== 'player') return undefined;
+  const binding = state.assassinShadows.get(sourceId), owner = binding && state.units.get(binding.ownerId);
+  return binding && (!owner || !alive(owner)) ? undefined : paid;
+}
+
+/** Only private actual payment modifies the ordinary magical dodge input. */
+function assassinFlightDodgeForUnit(state: State, sourceId: string): number {
+  const paid = activeAssassinFlight(state, sourceId);
+  return paid ? assassinFlightDodge(paid.rank, paid.rankBonus) : 0;
+}
+
 /** Native learned projection or this battle's committed shadow alone authorizes payment. */
 function authorizedAssassinTrapRank(state: State, unit: CombatUnit, skill: RegisteredSkill): number {
   const id = assassinTrapId(skill.id);
@@ -1574,6 +1617,12 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  const flight = isAssassinFlightId(skillOrderId) || isAssassinFlightId(skill.id);
+  if (flight && (skill.id !== ASSASSIN_FLIGHT_ID || !authorizedAssassinFlight(state, unit, skill) ||
+    !Number.isFinite(unit.mana) || unit.mana < 0 || !Number.isFinite(unit.stats.manaMax) || unit.mana > unit.stats.manaMax ||
+    activeAssassinFlight(state, unit.id) !== undefined ||
+    assassinFlightDodge(effectiveSkillLevel(state, unit, skill), paidRankBonus(state, unit)) === 0 ||
+    [ASSASSIN_FLIGHT_ID, 'skills-assassin-dragon-flight'].some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   const trap = assassinTrapId(skillOrderId) ?? assassinTrapId(skill.id);
   const activeTrap = trap && state.assassinTraps.get(trapKey(unit.id, trap));
   if (trap && (assassinTrapId(skill.id) !== trap || authorizedAssassinTrapRank(state, unit, skill) === 0 ||
@@ -2094,7 +2143,8 @@ function castSkill(
   if (!actor) return;
 
   const trap = assassinTrapId(skillOrderId) ?? assassinTrapId(skill.id);
-  if (trap && !canUseSkillForState(state, actor, skill, skillOrderId, opponentsOf(state, actor).length > 0)) return;
+  const flight = isAssassinFlightId(skillOrderId) || isAssassinFlightId(skill.id);
+  if ((trap !== undefined || flight) && !canUseSkillForState(state, actor, skill, skillOrderId, opponentsOf(state, actor).length > 0)) return;
   const ce = isCorpseExplosionId(skillOrderId) || isCorpseExplosionId(skill.id);
   const pe = isPoisonExplosionId(skillOrderId) || isPoisonExplosionId(skill.id);
   const fp = isFindPotionId(skillOrderId) || isFindPotionId(skill.id) ||
@@ -2128,6 +2178,11 @@ function castSkill(
 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
   if (manaEvent) emit(state, manaEvent);
+  if (flight) {
+    state.assassinFlights.set(actorId, Object.freeze({ rank: skillLevel, ...(rankBonus ? { rankBonus } : {}),
+      createdAtMs: state.simClockMs, expiresAtMs: state.simClockMs + ASSASSIN_FLIGHT_DEFINITION.durationMs }));
+    observeStatuses(state, actorId);
+  }
   if (trap) {
     const definition = assassinTrapDefinition(trap), key = trapKey(actorId, trap);
     // Expired recasts are new creations and therefore go to the end of the stable order.
@@ -2639,6 +2694,8 @@ function projectileSpeed(state: State, sourceId: string): number {
 
 function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   let boundary = Math.min(MAX_SIM_MS, nextActionAt);
+  for (const [sourceId, paid] of state.assassinFlights) if (activeAssassinFlight(state, sourceId))
+    boundary = Math.min(boundary, paid.expiresAtMs);
   for (const paid of state.assassinTraps.values()) if (activeAssassinTrap(state, paid)) {
     boundary = Math.min(boundary, paid.expiresAtMs);
     if (assassinTrapDefinition(paid.id).mode !== 'reactive') boundary = Math.min(boundary, paid.nextPulseAtMs);
@@ -3248,6 +3305,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     corpses: [],
     druidSummons: new Map(),
     assassinTraps: new Map(),
+    assassinFlights: new Map(),
     martialCharges: new AssassinCharges(),
     assassinShadows: new Map(),
     fireGolems: new Map(),
