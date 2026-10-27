@@ -1,0 +1,134 @@
+{
+  "reproduction": {
+    "at": "2026-10-27T08:13:31.311739+00:00",
+    "owner": "root",
+    "head": "8709a8db71235715ce6d5fcb49f3f61e578308aa",
+    "promoted": false,
+    "reason": "Existing production charge matrix is live; repository/HEAD remain frozen",
+    "nativePersistence": {
+      "skills": 6,
+      "ranks": [
+        1,
+        20
+      ],
+      "failures": 12,
+      "controlsPassed": 8,
+      "seconds": 8.535720727988519,
+      "failure": "No later autonomous kind=damage event while paid living caster is held; ordinary Burn dot events excluded",
+      "witnesses": "witnesses.json"
+    },
+    "nativeSpecials": {
+      "skills": [
+        "death-sentry",
+        "blade-shield"
+      ],
+      "ranks": [
+        1,
+        20
+      ],
+      "failures": 4,
+      "seconds": 8.705422415980138,
+      "witnesses": "special-final-witnesses.json",
+      "validity": "All cases pay exactly once; real initial victim death/real enemy hit controls pass before mechanic assertions"
+    },
+    "historicalSetupFailures": {
+      "initial": "Blade Shield prerequisite Blade Fury missing; those two initial cases are not mechanic proof",
+      "corrected": "Enemy first action incorrectly assumed3300ms; source actionPeriodMs clamps to2000ms. Final expectation corrected; no product mutation"
+    },
+    "inputIntegrity": true,
+    "nativeInputs": 2524,
+    "seed": 19,
+    "campaign": "No action or replay; protected retained save unchanged",
+    "next": "File BUG305/contract only after live matrix terminal; implement actual finite paid trap runtime including private shadow ownership, shared corpse FIFO and reactive shield; no skill credit from RED"
+  },
+  "prospectiveFoundation": {
+    "at": "2026-10-27T08:19:15.507458+00:00",
+    "kind": "prospective-only; not branch implementation or runtime acceptance",
+    "files": {
+      "src/data/schema/assassin-traps.schema.json": "ee471c505dd3079fa75ec927159f4ecc03ed4d06ff77328da6bc8eb4b61209f3",
+      "src/data/combat/assassin-traps.json": "0c6fd8c24ebfb520ae28ef4f7742b6e6c6ef5caeafca53cea8ef369c099bd45f",
+      "src/engine/skills/assassin-traps.ts": "fe3e151068db6863be733b3a3bffa6753cdec19f9acc7e4cdfcab20b2f09d214",
+      "src/engine/skills/assassin-traps.test.ts": "d5e0ea68b4e1652291442580e16219f48d2e6269398e697152dbdb30bda872bf"
+    },
+    "checks": {
+      "trap-foundations-final": {
+        "label": "trap-foundations-final",
+        "command": [
+          "node",
+          "node_modules/vitest/vitest.mjs",
+          "run",
+          "--config",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/config.mjs",
+          "--workspace",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/workspace-foundations.mjs"
+        ],
+        "exit": 0,
+        "seconds": 4.956505868001841,
+        "inputsUnchanged": true,
+        "inputCount": 2524,
+        "externalInputCount": 9,
+        "externalInputsUnchanged": true,
+        "headBefore": "8709a8db71235715ce6d5fcb49f3f61e578308aa",
+        "headAfter": "8709a8db71235715ce6d5fcb49f3f61e578308aa",
+        "headUnchanged": true,
+        "totals": [
+          "Test Files  1 passed (1)",
+          "Tests  13 passed (13)"
+        ]
+      },
+      "trap-foundations-final-types": {
+        "label": "trap-foundations-final-types",
+        "command": [
+          "node",
+          "node_modules/typescript/bin/tsc",
+          "--noEmit",
+          "--project",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/foundations.tsconfig.json"
+        ],
+        "exit": 0,
+        "seconds": 6.602205223985948,
+        "inputsUnchanged": true,
+        "inputCount": 2524,
+        "externalInputCount": 9,
+        "externalInputsUnchanged": true,
+        "headBefore": "8709a8db71235715ce6d5fcb49f3f61e578308aa",
+        "headAfter": "8709a8db71235715ce6d5fcb49f3f61e578308aa",
+        "headUnchanged": true,
+        "totals": []
+      },
+      "trap-foundations-final-lint": {
+        "label": "trap-foundations-final-lint",
+        "command": [
+          "node",
+          "node_modules/eslint/bin/eslint.js",
+          "--no-ignore",
+          "--resolve-plugins-relative-to",
+          "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+          "--config",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/foundations.eslintrc.json",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/prospective/src/engine/skills/assassin-traps.ts",
+          "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red/prospective/src/engine/skills/assassin-traps.test.ts"
+        ],
+        "exit": 0,
+        "seconds": 6.783210915978998,
+        "inputsUnchanged": true,
+        "inputCount": 2524,
+        "externalInputCount": 9,
+        "externalInputsUnchanged": true,
+        "headBefore": "8709a8db71235715ce6d5fcb49f3f61e578308aa",
+        "headAfter": "8709a8db71235715ce6d5fcb49f3f61e578308aa",
+        "headUnchanged": true,
+        "totals": []
+      }
+    },
+    "limitations": [
+      "Thirteen new unit cases only; native mechanic RED remains16 failures, runtime not integrated",
+      "No validate:data script or src/engine/dataLoader.ts exists despite repository skill examples. Strict Ajv schema/resolver boot tests used; follow existing actual architecture during integration.",
+      "Original scoped typing failures preserved: optional corpse tuning narrowed through discriminated mode, and compound status union explicitly rejected at the authored boundary; no suppressions",
+      "No source, HEAD, inventory or genuine campaign mutation; existing matrix freeze remains active"
+    ]
+  },
+  "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/trap-red",
+  "owner": "root",
+  "retention": "Required for continuing implementation; root owns archive/readback and exact cleanup after consumers. Only isolated Vite cache removed; evidence/prospective code retained."
+}

@@ -1,6 +1,6 @@
 {
   "kind": "root-author-martial-final-regression-and-native-expansion",
-  "at": "2026-10-27T08:00:53.705902+00:00",
+  "at": "2026-10-27T08:24:05.916443+00:00",
   "head": "7bcaaefd7954760a931b9e50ccda62e572ee4547",
   "fullGateHead": "fc915ddd3834b0927affa5843365620ff0bcef71",
   "fullGatePredatesTwoAddedTestFiles": true,
@@ -290,6 +290,28 @@
       "headAfter": "fc915ddd3834b0927affa5843365620ff0bcef71",
       "headUnchanged": true,
       "totals": []
+    },
+    "charge-combat-matrix-public": {
+      "label": "charge-combat-matrix-public",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/charge-combat-matrix.public.config.ts"
+      ],
+      "exit": 0,
+      "seconds": 1098.9507067879895,
+      "inputsUnchanged": true,
+      "inputCount": 2524,
+      "externalInputCount": 765,
+      "externalInputsUnchanged": true,
+      "headBefore": "8709a8db71235715ce6d5fcb49f3f61e578308aa",
+      "headAfter": "8709a8db71235715ce6d5fcb49f3f61e578308aa",
+      "headUnchanged": true,
+      "totals": [
+        "24 passed (18.3m)"
+      ]
     }
   },
   "localizedPreview": {
@@ -377,12 +399,37 @@
   "limits": [
     "No fresh full-unit run including the two new test files; existing2522 inputs exact and16new tests independently pass",
     "BUG304: positive public Cobra mana requirement conflicts with explicit mana-free-monster design; user decision pending, no mechanic change",
-    "Remaining public combat matrix, full hostile-target absorption, traps/Flight/copied traps, earned balance/campaign and independent/whole-private-v1 acceptance open",
+    "Public absolute hero HP/mobile visual gaps (BUG306), full hostile-target absorption, traps/Flight/copied traps, earned balance/campaign and independent/whole-private-v1 acceptance open",
     "Inventory195bounded/17unverified/1review unchanged; no earned campaign/replay/delegation/remote action or independent self-approval"
   ],
   "retention": {
     "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc",
     "owner": "root",
     "removeAfter": "Ongoing charge/full-v1 consumers, read-back archive and exact task-owned cleanup; no cleanup claimed"
+  },
+  "combatMatrix": {
+    "cases": 24,
+    "ranks": [
+      1,
+      20
+    ],
+    "rankProofs": 48,
+    "sevenDomainSavePairs": 48,
+    "actualOfflineContinues": 24,
+    "retries": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "reportSha256": "7b3b2eb15e6c17bb3e898b278a2618f31e9ff6b63cd7834888ca8f78734e8c60",
+    "attachmentAuditSha256": "b793d3e06f004041ca39c6278c9fe51976dc417af9490148b8f88c1729cfc20b",
+    "mobileOriginalsIndividuallyInspected": 24,
+    "captureDirectory": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/combat-matrix-captures",
+    "visualInspection": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc/combat-matrix-visual-inspection.json",
+    "limits": [
+      "Cobra proves public HP recovery logs; no positive victim MP debit/credit acceptance.",
+      "The observer queried a nonexistent grouped hero HP bar; absolute hero HP is not observed. Public MP and enemy HP bars are observed.",
+      "Constructed imported fixture; no earned build/campaign, physical touch, whole-app accessibility or independent acceptance.",
+      "Fixed bottom navigation crosses the capture; lower enemy section is black/off-screen, not visual proof of enemy damage",
+      "Fallback navigation glyphs, dark small labels and clipped edge navigation remain"
+    ]
   }
 }

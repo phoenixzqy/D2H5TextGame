@@ -82,9 +82,17 @@ and does not authorize inventing pools. Native constructed positive/zero/partial
 transfers pass. A user question asks whether to add JSON-defined caster mana or
 redesign recovery; no answer or mechanic change is assumed.
 
+## Completed combat matrix and evidence limits — 2026-10-27
+
+The original frozen8709a8db production run is terminal24/24PASS1098.951s, no retries/skips/flakes. All2524 repository runtime/test/config inputs,765 external inputs and HEAD remained exact. Actual public en/zh-CN desktop1280×800/mobile360×640 cases cover all six builders at ranks1/20: allocation/equip/priority, actual3/3→consumption, positive typed basic-action discharge groups (all three Phoenix components), Cobra positive HP recovery logs, public MP spending and damaged enemy HP bars. Independent decoding verifies48rank proofs,48exact seven-domain online/offline save pairs and24actual service-worker offlineContinues. This does not prove positive victim MP debit/credit; BUG304 remains unresolved.
+
+All24original mobile PNGs were individually inspected. Ally grid, hero HP strip and consumed-charge absence are visible; fixed bottom navigation crosses the capture and the enemy region is black/off-screen. Dark small labels, fallback glyphs and clipped navigation persist. The observer also queries a nonexistent grouped absolute hero HP bar, producing null HP in all48rank proofs. Public MP and enemy-bar/log observations are distinct valid evidence; these images/HP fields cannot establish complete mobile visual or absolute-hero-HP acceptance. BUG306 records both evidence limitations. No whole-app/a11y/physical touch acceptance or new skill credit.
+
+Exact task paths: charge-combat-matrix-public.json/log, combat-matrix-public-report.json, charge-combat-matrix-attachment-audit.json, combat-matrix-visual-inspection.json and combat-matrix-captures/ under the retained Assassin charge task below. The final checkpoint embeds the terminal receipt and report/audit hashes. No old failure is replaced by this pass.
+
 ## Remaining acceptance and retention
 
-[Author contract](../decisions/D05-assassin-martial-charges-v1.md) still requires remaining hostile-target absorption boundaries, the full production en/zh desktop/mobile rank1/20 combat discharge/HP/MP matrix, and resolution of BUG304. Stable full/static and localized preview gates now pass; multi-pool/miss native cases are covered above. Preview-only seven-domain saves/offline Continue do not replace combat proof. Assassin traps/Flight adaptation, earned builds/economy/campaign and independent G0–G7 remain open.
+[Author contract](../decisions/D05-assassin-martial-charges-v1.md) still requires remaining hostile-target absorption boundaries, absolute hero HP/mobile visual proof (BUG306), and resolution of BUG304; the scoped production combat matrix is now terminal as recorded above. Stable full/static and localized preview gates now pass; multi-pool/miss native cases are covered above. Preview-only seven-domain saves/offline Continue do not replace combat proof. Assassin traps/Flight adaptation, earned builds/economy/campaign and independent G0–G7 remain open.
 
 Active exact root-owned evidence: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc`. Originals, scripts, hashes, logs, prototypes and task-local caches remain required for those consumers. Root owns eventual archive read-back and exact task-owned cleanup after consumers finish; no charge-task cleanup is claimed. The completed Amazon/shadow archives remain separately retained under their existing ownership conditions. Registered worktree remains in use for the unfinished umbrella goal.
 
