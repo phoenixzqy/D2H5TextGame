@@ -1897,6 +1897,14 @@ function dynamicDescription(
   if (firstDamage && skill.id === 'skills-amazon-impale') {
     return t('amazon.impale.desc', { min: firstDamage.min, max: firstDamage.max });
   }
+  if (stats && firstDamage && ['skills-amazon-magic-arrow', 'skills-amazon-lightning-bolt',
+    'skills-amazon-fire-arrow', 'skills-amazon-cold-arrow'].includes(skill.id)) {
+    return t('amazon.' + skill.id.slice('skills-amazon-'.length) + '.desc', {
+      min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown,
+      chillSeconds: stats.control?.durationSeconds,
+      slowPercent: (1 - CHILL_DEFINITION.attackSpeedMultiplier) * 100
+    });
+  }
   if (stats && firstDamage && skill.id === 'skills-amazon-plague-javelin') {
     return t('amazon.plague-javelin.desc', {
       min: firstDamage.min, max: firstDamage.max, mana: stats.manaCost, cooldown: stats.cooldown,

@@ -306,7 +306,7 @@
   "amazon": {
     "magic-arrow": {
       "name": "Magic Arrow",
-      "desc": "Fires an arcane-imbued arrow that costs no ammunition."
+      "desc": "One single-target attempt deals {{min}}–{{max}} Arcane base damage. Arcane resistance and magic resist apply. Requires a bow or crossbow; uses no ammunition. Pay {{mana}} MP with a {{cooldown}} s cooldown."
     },
     "multiple-shot": {
       "name": "Multiple Shot",
@@ -346,11 +346,11 @@
     },
     "fire-arrow": {
       "name": "Fire Arrow",
-      "desc": "Fires a flaming arrow that burns the target."
+      "desc": "One single-target attempt deals {{min}}–{{max}} Fire base damage. Fire resistance and Defense apply. A landed hit applies Burn. Pay {{mana}} MP with a {{cooldown}} s cooldown. Misses apply no Burn."
     },
     "cold-arrow": {
       "name": "Cold Arrow",
-      "desc": "Fires an icy arrow that chills the target."
+      "desc": "One single-target attempt deals {{min}}–{{max}} Cold base damage. Cold resistance and magic resist apply. A landed hit applies Chill for {{chillSeconds}} s, reducing attack speed by {{slowPercent}}%; it refreshes without stacking. Pay {{mana}} MP with a {{cooldown}} s cooldown. Misses apply no Chill."
     },
     "exploding-arrow": {
       "name": "Exploding Arrow",
@@ -386,7 +386,7 @@
     },
     "lightning-bolt": {
       "name": "Lightning Bolt",
-      "desc": "Hurls a javelin charged with lightning energy."
+      "desc": "One single-target attempt deals {{min}}–{{max}} Lightning base damage. Lightning resistance and magic resist apply. Pay {{mana}} MP with a {{cooldown}} s cooldown."
     },
     "charged-strike": {
       "name": "Charged Strike",
