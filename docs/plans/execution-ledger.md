@@ -13642,3 +13642,19 @@ archive/two sidecars through full-v1/independent consumers and owns later remova
 Inventory195/17/one review, protected earned save and full scope unchanged.
 Separate Flight task retains its original threeRED/one control and draft contract;
 Flight implementation/whole private-v1 work continues in the claimed worktree.
+
+
+## 2026-10-27 — Flight paid runtime committed after terminal engine proof
+
+Previous requested status turn was a verified wait: original77288 polled terminal
+10034/384PASS190.285s; no implementation change. This continuation reverified all
+2544repository/three external inputs and committed ea3ba9c3 (two source paths).
+Foundation e76ad891 has23PASS/types/lint and exact10034enginePASS. Final native33,
+related112/8, strict types/lintPASS include actual Fire dodge, unchanged kick and
+Physical/Thorns/DoT, exact expiry, miss-time payment and three-charge release.
+[Flight packet](evidence/d06-assassin-flight.md) keeps original REDs/diagnoses and
+open scope. Shared preview threeREDs are next; UI/lifecycle/production/whole gates
+remain. Inventory195bounded/17unverified/one review, genuineL33/Ancientsclaimed/
+Baaluncleared/next402 unchanged. Root retains the active Flight task for ongoing
+consumers and owns eventual archive/readback/exact cleanup. No campaign/replay,
+remote action, delegation or independent self-approval. Full privatev1/worktree active.

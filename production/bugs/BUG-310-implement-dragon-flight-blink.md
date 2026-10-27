@@ -1,6 +1,6 @@
 # BUG-310 — Implement Dragon Flight's missing movement adaptation
 
-Status: Open — native reproduction retained before source changes.
+Status: In progress — foundation/runtime locally validated in e76ad891/ea3ba9c3; UI, lifecycle, production and independent acceptance remain open.
 Severity: High — advertised teleport behavior is absent; the physical kick works.
 Build: 19e5d0965cb95ca016538299311efc316bb431c3; later documentation-only commits do not alter this source.
 Environment: Vitest native store/engine in jsdom, no browser/viewport acceptance.
@@ -43,3 +43,7 @@ truthful bilingual UI according to the contract before skill credit.
 Security check: pass for authorized deterministic local data/engine/UI/tests.
 No dependencies, external destinations, credentials, permissions, CI, save schema
 or genuine campaign changes. Independent design/QA and earned balance remain open.
+
+## Runtime checkpoint
+
+[Implementation evidence](../../docs/plans/evidence/d06-assassin-flight.md) retains the original REDs, causal33-case native proof,112relatedPASS and exact-input10034enginePASS. Blink and unchanged kick now coexist at one payment. Shared preview has three retained REDs; no full skill credit or complete resolution is claimed.

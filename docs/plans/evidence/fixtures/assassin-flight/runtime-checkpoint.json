@@ -1,0 +1,509 @@
+{
+  "status": "local-runtime-validated; preview/UI/lifecycle/production/independent acceptance open",
+  "runtimeCommit": "ea3ba9c3",
+  "foundationCommit": "e76ad891",
+  "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj",
+  "owner": "root",
+  "session": "01a1577a-5af4-70e3-8699-50a906877d8f",
+  "checks": {
+    "flight-native-red": {
+      "label": "flight-native-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 9.241331425961107,
+      "inputsUnchanged": true,
+      "inputCount": 2539,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headAfter": "19e5d0965cb95ca016538299311efc316bb431c3",
+      "headUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 3 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  3 failed | 1 passed (4)"
+      ]
+    },
+    "flight-final-native-red": {
+      "label": "flight-final-native-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/native.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 8.47719429899007,
+      "inputsUnchanged": true,
+      "inputCount": 2543,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "58c232cc13d9467f69a3c678dffaff865862cc00",
+      "headAfter": "58c232cc13d9467f69a3c678dffaff865862cc00",
+      "headUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 21 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  21 failed | 9 passed (30)"
+      ]
+    },
+    "flight-definition-green": {
+      "label": "flight-definition-green",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/assassin-flight.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 2.7262310499791056,
+      "inputsUnchanged": true,
+      "inputCount": 2543,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "58c232cc13d9467f69a3c678dffaff865862cc00",
+      "headAfter": "58c232cc13d9467f69a3c678dffaff865862cc00",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  23 passed (23)"
+      ]
+    },
+    "flight-foundation-engine": {
+      "label": "flight-foundation-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 577.5483593540266,
+      "inputsUnchanged": true,
+      "inputCount": 2543,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "58c232cc13d9467f69a3c678dffaff865862cc00",
+      "headAfter": "58c232cc13d9467f69a3c678dffaff865862cc00",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  384 passed (384)",
+        "Tests  10034 passed (10034)"
+      ]
+    },
+    "flight-foundation-types": {
+      "label": "flight-foundation-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/foundation.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 3.6197548530763015,
+      "inputsUnchanged": true,
+      "inputCount": 2543,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "58c232cc13d9467f69a3c678dffaff865862cc00",
+      "headAfter": "58c232cc13d9467f69a3c678dffaff865862cc00",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-foundation-lint": {
+      "label": "flight-foundation-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/skills/assassin-flight.ts",
+        "src/engine/skills/assassin-flight.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 7.811438353965059,
+      "inputsUnchanged": true,
+      "inputCount": 2543,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "58c232cc13d9467f69a3c678dffaff865862cc00",
+      "headAfter": "58c232cc13d9467f69a3c678dffaff865862cc00",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-branch-native-boundaries": {
+      "label": "flight-branch-native-boundaries",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-flight-native.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 7.951490117004141,
+      "inputsUnchanged": true,
+      "inputCount": 2544,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "e76ad8919d53acb04a4a4f2aab8adddeb698ab30",
+      "headAfter": "e76ad8919d53acb04a4a4f2aab8adddeb698ab30",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  33 passed (33)"
+      ]
+    },
+    "flight-runtime-related-final": {
+      "label": "flight-runtime-related-final",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-flight-native.test.ts",
+        "src/stores/assassin-charge-native.test.ts",
+        "src/stores/assassin-charge-multipool.test.ts",
+        "src/stores/assassin-charge-settlement.test.ts",
+        "src/stores/assassin-charge-command.test.ts",
+        "src/stores/assassin-shadow-skills-native.test.ts",
+        "src/stores/assassin-master-traps.test.ts",
+        "src/engine/skills/assassin-flight.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 18.563767396030016,
+      "inputsUnchanged": true,
+      "inputCount": 2544,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "e76ad8919d53acb04a4a4f2aab8adddeb698ab30",
+      "headAfter": "e76ad8919d53acb04a4a4f2aab8adddeb698ab30",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  8 passed (8)",
+        "Tests  112 passed (112)"
+      ]
+    },
+    "flight-runtime-types-final": {
+      "label": "flight-runtime-types-final",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/runtime.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 8.765048502013087,
+      "inputsUnchanged": true,
+      "inputCount": 2544,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "e76ad8919d53acb04a4a4f2aab8adddeb698ab30",
+      "headAfter": "e76ad8919d53acb04a4a4f2aab8adddeb698ab30",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-runtime-lint-final": {
+      "label": "flight-runtime-lint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/combat/combat.ts",
+        "src/stores/assassin-flight-native.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 11.083852366078645,
+      "inputsUnchanged": true,
+      "inputCount": 2544,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "e76ad8919d53acb04a4a4f2aab8adddeb698ab30",
+      "headAfter": "e76ad8919d53acb04a4a4f2aab8adddeb698ab30",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-runtime-engine": {
+      "label": "flight-runtime-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 190.28456911502872,
+      "inputsUnchanged": true,
+      "inputCount": 2544,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "e76ad8919d53acb04a4a4f2aab8adddeb698ab30",
+      "headAfter": "e76ad8919d53acb04a4a4f2aab8adddeb698ab30",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  384 passed (384)",
+        "Tests  10034 passed (10034)"
+      ]
+    },
+    "flight-preview-red": {
+      "label": "flight-preview-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/preview.workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 3.8490678500384092,
+      "inputsUnchanged": true,
+      "inputCount": 2544,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "e76ad8919d53acb04a4a4f2aab8adddeb698ab30",
+      "headAfter": "e76ad8919d53acb04a4a4f2aab8adddeb698ab30",
+      "headUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 3 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  3 failed (3)"
+      ]
+    }
+  },
+  "artifacts": {
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-native-red.json": {
+      "bytes": 843,
+      "sha256": "069497d88c35f2bb21ed4fa038064d89242f17924e65f18546a6a8167cd7ce80"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-native-red.log": {
+      "bytes": 2465,
+      "sha256": "c5c4bc93b94b7d948fbeeb866f6fcbd12932a56a6f746a633ec4bebe8111ee10"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-native-red-inputs.json": {
+      "bytes": 307039,
+      "sha256": "24b6a1b9dfeed3a0d6f9a6e32ff305995ed3b8462f998a796f06b4e925b69984"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-native-red-external-inputs.json": {
+      "bytes": 667,
+      "sha256": "35263cbdc31e3ab19ed6cfbf10175276449b02b53848569cc5c676dc5a5eaff3"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-final-native-red.json": {
+      "bytes": 852,
+      "sha256": "4ecdf437f1148dee1d489fef308dbd153b82407ab882ea24aa6c8daccd2cc449"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-final-native-red.log": {
+      "bytes": 13808,
+      "sha256": "3d294782e2f4aa4f1efcc8eefbd97b76a5402445e2ffea3321c5b57c95a4baef"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-final-native-red-inputs.json": {
+      "bytes": 307491,
+      "sha256": "64e4d5e5bfe77cb513db9d613a87ad5b455b9464741df9e31614f7510b8110b5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-final-native-red-external-inputs.json": {
+      "bytes": 681,
+      "sha256": "38a238eaccc97f935756e9cdca1e4a2420776e8b6e2569fda44ee06417d73494"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-definition-green.json": {
+      "bytes": 709,
+      "sha256": "eb68b1ae79f3869ca5940252ab2ac25bf1db71229e36ce70f345451675b98b8c"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-definition-green.log": {
+      "bytes": 352,
+      "sha256": "346178a3ea167579cc2858d73fafe6dd673eabb7feaabb6c41e7da7fe8d0786c"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-definition-green-inputs.json": {
+      "bytes": 307491,
+      "sha256": "64e4d5e5bfe77cb513db9d613a87ad5b455b9464741df9e31614f7510b8110b5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-definition-green-external-inputs.json": {
+      "bytes": 667,
+      "sha256": "35263cbdc31e3ab19ed6cfbf10175276449b02b53848569cc5c676dc5a5eaff3"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-foundation-engine.json": {
+      "bytes": 660,
+      "sha256": "126979b6ce8f163f2f130fb86b1ff976ce266077639881730446fca1ffdf136f"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-foundation-engine.log": {
+      "bytes": 75336,
+      "sha256": "7ad8569541f9f7735e7f232f52c4d4e24396d8dbf2284e6129a5524dadbe58e7"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-foundation-engine-inputs.json": {
+      "bytes": 307491,
+      "sha256": "64e4d5e5bfe77cb513db9d613a87ad5b455b9464741df9e31614f7510b8110b5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-foundation-engine-external-inputs.json": {
+      "bytes": 504,
+      "sha256": "c63ab41bc1270f95f96355a2bd04f1e8d83de9acdfb9e0da9166c1e1f30d2bad"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-foundation-types.json": {
+      "bytes": 565,
+      "sha256": "efdaf9b31b2b14921bb57669188842674131bc605fbd42957566e84aa4359e44"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-foundation-types.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-foundation-types-inputs.json": {
+      "bytes": 307491,
+      "sha256": "64e4d5e5bfe77cb513db9d613a87ad5b455b9464741df9e31614f7510b8110b5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-foundation-types-external-inputs.json": {
+      "bytes": 504,
+      "sha256": "c63ab41bc1270f95f96355a2bd04f1e8d83de9acdfb9e0da9166c1e1f30d2bad"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-foundation-lint.json": {
+      "bytes": 552,
+      "sha256": "33ed208bfe2bdf49a1f8a3366d0daa790f238e8fdde0ba76d6c793650b7e4395"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-foundation-lint.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-foundation-lint-inputs.json": {
+      "bytes": 307491,
+      "sha256": "64e4d5e5bfe77cb513db9d613a87ad5b455b9464741df9e31614f7510b8110b5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-foundation-lint-external-inputs.json": {
+      "bytes": 504,
+      "sha256": "c63ab41bc1270f95f96355a2bd04f1e8d83de9acdfb9e0da9166c1e1f30d2bad"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-branch-native-boundaries.json": {
+      "bytes": 723,
+      "sha256": "24d305c7a83e3c0b3ddef53fe63b4abf0bb5502ff1406e8e6d95d9c37f72de19"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-branch-native-boundaries.log": {
+      "bytes": 354,
+      "sha256": "6023c314381802f886260b577236abd64a8575243df257769e73bf811a241f32"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-branch-native-boundaries-inputs.json": {
+      "bytes": 307606,
+      "sha256": "cf2c037b08668f36099010b32030895faf78f66137af08ac2bb265afae6a7d60"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-branch-native-boundaries-external-inputs.json": {
+      "bytes": 508,
+      "sha256": "c47b658dbb502197f39bb01813ee9e08203106d1cb381710df868bb54476a7ee"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-related-final.json": {
+      "bytes": 1080,
+      "sha256": "771c1d9247e9169ec04aadf2180c491d68d39829db291aaaaad8035ea52d36d8"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-related-final.log": {
+      "bytes": 863,
+      "sha256": "daaddbcd28557a51db6689d9212c5e941a6e4851daf0a481e3642fd62faff58c"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-related-final-inputs.json": {
+      "bytes": 307606,
+      "sha256": "c0ad696f8e263ef5feeba5274184bf443cc1e5f929de4aee6e9b96504bb5ebd5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-related-final-external-inputs.json": {
+      "bytes": 508,
+      "sha256": "c47b658dbb502197f39bb01813ee9e08203106d1cb381710df868bb54476a7ee"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-types-final.json": {
+      "bytes": 564,
+      "sha256": "997731e9f212b1f915d4c909f2c41a7bd95c1d136127ad47a7cc035de557802b"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-types-final.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-types-final-inputs.json": {
+      "bytes": 307606,
+      "sha256": "c0ad696f8e263ef5feeba5274184bf443cc1e5f929de4aee6e9b96504bb5ebd5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-types-final-external-inputs.json": {
+      "bytes": 508,
+      "sha256": "c47b658dbb502197f39bb01813ee9e08203106d1cb381710df868bb54476a7ee"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-lint-final.json": {
+      "bytes": 547,
+      "sha256": "11f5155af85bc859d51638361d5b92fc5ae0d73d0fb748c59376ea226164487b"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-lint-final.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-lint-final-inputs.json": {
+      "bytes": 307606,
+      "sha256": "c0ad696f8e263ef5feeba5274184bf443cc1e5f929de4aee6e9b96504bb5ebd5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-lint-final-external-inputs.json": {
+      "bytes": 508,
+      "sha256": "c47b658dbb502197f39bb01813ee9e08203106d1cb381710df868bb54476a7ee"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-engine.json": {
+      "bytes": 665,
+      "sha256": "e2332364d5d02708494f190045fc11221824c840e9d8d3e74ea76916cad0e5a2"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-engine.log": {
+      "bytes": 75388,
+      "sha256": "12125f703b48b2d3cd1e665050ecc55e006fa72729bd6b90923338aafa59a339"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-engine-inputs.json": {
+      "bytes": 307606,
+      "sha256": "c0ad696f8e263ef5feeba5274184bf443cc1e5f929de4aee6e9b96504bb5ebd5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-runtime-engine-external-inputs.json": {
+      "bytes": 508,
+      "sha256": "c47b658dbb502197f39bb01813ee9e08203106d1cb381710df868bb54476a7ee"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-red.json": {
+      "bytes": 849,
+      "sha256": "b7e73fd0baf538ff57cf8d67e7350087125451d443a5bce6233b791429550ec5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-red.log": {
+      "bytes": 4949,
+      "sha256": "3c881cd36b5d076ead873621d5ce3e871908b5406a78148ea5a238c07fc8aab2"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-red-inputs.json": {
+      "bytes": 307606,
+      "sha256": "c0ad696f8e263ef5feeba5274184bf443cc1e5f929de4aee6e9b96504bb5ebd5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-red-external-inputs.json": {
+      "bytes": 691,
+      "sha256": "43cc127f57c6895267a46020125132cd0a4d1f7938684b7374d81db0c3646086"
+    }
+  },
+  "sourceHashes": {
+    "src/data/schema/assassin-flight.schema.json": "f20719ea52fab67917c4eb08b6f871fb535cc72eea81633402ca6f40d52d13d8",
+    "src/data/combat/assassin-flight.json": "a5f64dc5a9c5880f89fe2ffbbd61d16112b6473f79a7f777b94248166a056c63",
+    "src/engine/skills/assassin-flight.ts": "1ac680faa5db493191fbd31898b253f28b42ca4b1cdbaada14db87d75ff1cff2",
+    "src/engine/skills/assassin-flight.test.ts": "b5a071e680a689e11484468c92113fbcabbd55c64f9f020cdf8ad018028fab65",
+    "src/engine/combat/combat.ts": "735a74aa9216541af53b1c87f54daf8d52b09a4553ed6400d2ac22ea4e223b71",
+    "src/stores/assassin-flight-native.test.ts": "f6333bd6fb0f4fa50371ac054959d27c3a9861321516dda64a7c4a5cc57d964e"
+  }
+}
