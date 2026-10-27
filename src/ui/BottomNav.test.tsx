@@ -20,13 +20,19 @@ import i18n from '@/i18n';
 import { ScreenShell } from './ScreenShell';
 
 const NAV_HREFS = [
-  '/town', '/map', '/combat', '/inventory',
-  '/skills', '/mercs', '/quests', '/settings',
+  '/town',
+  '/map',
+  '/combat',
+  '/inventory',
+  '/skills',
+  '/mercs',
+  '/quests',
+  '/settings'
 ] as const;
 
-function renderShell(props: { hideNav?: boolean } = {}) {
+function renderShell(props: { hideNav?: boolean } = {}, localization = i18n) {
   return render(
-    <I18nextProvider i18n={i18n}>
+    <I18nextProvider i18n={localization}>
       <Suspense fallback={null}>
         <MemoryRouter
           future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
@@ -37,11 +43,32 @@ function renderShell(props: { hideNav?: boolean } = {}) {
           </ScreenShell>
         </MemoryRouter>
       </Suspense>
-    </I18nextProvider>,
+    </I18nextProvider>
   );
 }
 
 describe('<ScreenShell hideNav /> — BottomNav gate', () => {
+  for (const locale of ['en', 'zh-CN']) {
+    it(`keeps every ${locale} destination named with a decorative font-independent icon`, () => {
+      renderShell({}, i18n.cloneInstance({ lng: locale, initImmediate: false }));
+      const names =
+        locale === 'en'
+          ? ['Town', 'Map', 'Combat', 'Inventory', 'Skills', 'Mercs', 'Quests', 'Settings']
+          : ['营地', '地图', '战斗', '背包', '技能', '佣兵', '任务', '设置'];
+      for (const [index, href] of NAV_HREFS.entries()) {
+        const link = document.querySelector(`a[href="${href}"]`);
+        expect(link).toHaveAccessibleName(names[index]);
+        const icon = link?.querySelector('svg');
+        expect(icon, `missing font-independent icon for ${href}`).not.toBeNull();
+        expect(icon).toHaveAttribute('aria-hidden', 'true');
+        expect(icon).toHaveAttribute('focusable', 'false');
+        expect(icon?.querySelector('path')?.getAttribute('d')).toBeTruthy();
+        expect(link?.textContent).not.toMatch(/\p{Extended_Pictographic}/u);
+      }
+      expect(document.querySelector('a[href="/town"]')).toHaveAttribute('aria-current', 'page');
+    });
+  }
+
   it('renders BottomNav with all player-facing nav-links when hideNav is false', () => {
     renderShell({ hideNav: false });
     for (const href of NAV_HREFS) {
