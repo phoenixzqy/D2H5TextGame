@@ -1,0 +1,1329 @@
+{
+  "kind": "P15-S01 diagnostic mature-gear two-build screen",
+  "baseCommit": "276101d4f5b9fe2ff4183d0079a23c4eb22c1e65",
+  "sourceTreeHash": "0ca5239f0b0002e8727230ae05bbaab9ad0a2c7f3db0bb29a9a43271ef93aca1",
+  "dataHash": "53e250d311123b537f8bc87f60b2621d75da43e28413d47ab170a6b0a8f88c04",
+  "nodeVersion": "v24.21.0",
+  "vitestVersion": "1.6.1",
+  "policy": {
+    "area": "areas/act5-bloody-foothills",
+    "builds": {
+      "cold": {
+        "priority": [
+          "sorceress.frozen_orb",
+          "sorceress.blizzard",
+          "sorceress.ice_blast"
+        ],
+        "ranks": [
+          [
+            "sorceress.ice_bolt",
+            1
+          ],
+          [
+            "sorceress.ice_blast",
+            1
+          ],
+          [
+            "sorceress.glacial_spike",
+            1
+          ],
+          [
+            "sorceress.blizzard",
+            4
+          ],
+          [
+            "sorceress.frozen_orb",
+            20
+          ],
+          [
+            "sorceress.cold_mastery",
+            20
+          ],
+          [
+            "sorceress.warmth",
+            1
+          ]
+        ]
+      },
+      "fire": {
+        "priority": [
+          "sorceress.meteor",
+          "sorceress.fire_ball"
+        ],
+        "ranks": [
+          [
+            "sorceress.fire_bolt",
+            1
+          ],
+          [
+            "sorceress.inferno",
+            1
+          ],
+          [
+            "sorceress.blaze",
+            1
+          ],
+          [
+            "sorceress.fire_wall",
+            1
+          ],
+          [
+            "sorceress.fire_ball",
+            20
+          ],
+          [
+            "sorceress.meteor",
+            3
+          ],
+          [
+            "sorceress.fire_mastery",
+            20
+          ],
+          [
+            "sorceress.warmth",
+            1
+          ]
+        ]
+      }
+    },
+    "challengeOrdinal": 431,
+    "clockEpochMs": 1792785263368,
+    "gzipSha256": "73c79b289f9c010ee5b75813aa14867f4cf7616e2847ac52245b7fb9e3bd70f6",
+    "location": "a5-bloody-foothills",
+    "rawSha256": "7fc4a5495355542b07a0cc05bb265ee0502d9e6ffd968938902203acf5da5007",
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "source": "docs/plans/evidence/fixtures/earned-endgame4/retained-final.json.gz",
+    "version": "p15-sorceress-act5-screen-v1"
+  },
+  "policyHash": "aad88b804120c178f7b689c50fb96313715069d676a634fd447b61cc736b2194",
+  "sampleDefinition": "8 seeds per build, two repeat measurements per seed; repeats are not independent samples",
+  "attemptCount": 32,
+  "settledWaveCount": 64,
+  "fullClears": {
+    "cold": {
+      "wins": 0,
+      "n": 8
+    },
+    "fire": {
+      "wins": 0,
+      "n": 8
+    }
+  },
+  "heroDeaths": 0,
+  "audit": {
+    "sourceIdentityAndManifestBeforeAfterExact": true,
+    "originalDirtyMetadataChanged": true,
+    "rawRepeatRecordingsExact": true,
+    "semanticRepeatRewardsExact": true,
+    "originalCorrectedRecordingsExact": true,
+    "originalCorrectedSemanticRewardsExact": true,
+    "all64JournalRowsExact": true,
+    "fixtureHashesExact": true,
+    "allRetainedSourceFilesMatchReportManifest": true
+  },
+  "reports": {
+    "benchmark.json": {
+      "bytes": 4737527,
+      "sha256": "bbbe6470ec0b0a02a93010e5f6eae2fd7e2ca983530e8046e01ad60b609a8525"
+    },
+    "screen.json": {
+      "bytes": 34395668,
+      "sha256": "18516f7004a0172f42eccf1fcb1f23b57ddddec3a710ef4ca508890b30a57f4d"
+    },
+    "benchmark-corrected.json": {
+      "bytes": 4739189,
+      "sha256": "72a9e9066d51703e51fad80ce4d3521cb06f8c54969048aa6470b548442fd105"
+    },
+    "screen-corrected.json": {
+      "bytes": 34399196,
+      "sha256": "f78c325961164a725545d284d5985589431cb1afb91c9cd204ac4fa6464b3795"
+    },
+    "screen-corrected.json.waves.jsonl": {
+      "bytes": 16384156,
+      "sha256": "c29dbbbdce3e876b7d622bcf83c9d0f34f55468a9b3bb41340b153f7006b32a3"
+    },
+    "screen-final.json": {
+      "bytes": 34399196,
+      "sha256": "cf18120e7e2f8335845bef210864d3f66b65ba7841df3cdd504f2cd9623caa9a"
+    },
+    "screen-final.json.waves.jsonl": {
+      "bytes": 16384156,
+      "sha256": "b83aac80e4e9518ff56ee66e9d8aca4a8df85582472710c3cf648637c15fd122"
+    }
+  },
+  "wallSeconds": 86.161228256,
+  "limits": [
+    "diagnostic service copies; no genuine successors or browser acceptance",
+    "mature earned L35 gear vs native L56-L58 enemies; not matched-level certification",
+    "boss unreached for both; elite unreached for fire",
+    "no fourteen-build, fresh acquisition, 30-50 active hour or independent runtime QA acceptance"
+  ],
+  "rows": [
+    {
+      "build": "cold",
+      "seed": 1,
+      "completeVictory": false,
+      "unreachedWaveCount": 3,
+      "logicalMs": 103833.33333333333,
+      "rewards": {
+        "heroXp": 11870,
+        "fieldedMercXp": 8902,
+        "itemCount": 9,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 6004,
+          "wishstone": 0
+        },
+        "materials": {
+          "gems/diamond/flawed": 1
+        },
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 22000,
+          "victoryOnlyTtkMs": 22000,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 579,
+          "heroEntryMana": 474,
+          "heroFinalMana": 159,
+          "minimumObservedMana": 130,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 5600,
+          "itemCount": 5
+        },
+        {
+          "index": 1,
+          "role": "trash",
+          "initialEnemyCount": 11,
+          "enemyLevels": [
+            57
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 21833.333333333332,
+          "victoryOnlyTtkMs": 21833.333333333332,
+          "heroDied": false,
+          "heroEntryLife": 579,
+          "heroFinalLife": 596,
+          "heroEntryMana": 159,
+          "heroFinalMana": 28,
+          "minimumObservedMana": 11,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 6270,
+          "itemCount": 4
+        },
+        {
+          "index": 2,
+          "role": "elite",
+          "initialEnemyCount": 12,
+          "enemyLevels": [
+            58
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 596,
+          "heroFinalLife": 553,
+          "heroEntryMana": 28,
+          "heroFinalMana": 24,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 6,
+          "remainingEnemyLife": 11359,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "fire",
+      "seed": 1,
+      "completeVictory": false,
+      "unreachedWaveCount": 5,
+      "logicalMs": 60000,
+      "rewards": {
+        "heroXp": 0,
+        "fieldedMercXp": 0,
+        "itemCount": 0,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 0,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 513,
+          "heroEntryMana": 474,
+          "heroFinalMana": 7,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 2,
+          "remainingEnemyLife": 6135,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "cold",
+      "seed": 2,
+      "completeVictory": false,
+      "unreachedWaveCount": 3,
+      "logicalMs": 101333.33333333334,
+      "rewards": {
+        "heroXp": 11870,
+        "fieldedMercXp": 8902,
+        "itemCount": 9,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 5689,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 19500,
+          "victoryOnlyTtkMs": 19500,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 634,
+          "heroEntryMana": 474,
+          "heroFinalMana": 182,
+          "minimumObservedMana": 173,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 5600,
+          "itemCount": 4
+        },
+        {
+          "index": 1,
+          "role": "trash",
+          "initialEnemyCount": 11,
+          "enemyLevels": [
+            57
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 21833.333333333336,
+          "victoryOnlyTtkMs": 21833.333333333336,
+          "heroDied": false,
+          "heroEntryLife": 634,
+          "heroFinalLife": 635,
+          "heroEntryMana": 182,
+          "heroFinalMana": 31,
+          "minimumObservedMana": 31,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 6270,
+          "itemCount": 5
+        },
+        {
+          "index": 2,
+          "role": "elite",
+          "initialEnemyCount": 12,
+          "enemyLevels": [
+            58
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 571,
+          "heroEntryMana": 31,
+          "heroFinalMana": 16,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 7,
+          "remainingEnemyLife": 19487,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "fire",
+      "seed": 2,
+      "completeVictory": false,
+      "unreachedWaveCount": 5,
+      "logicalMs": 60000,
+      "rewards": {
+        "heroXp": 0,
+        "fieldedMercXp": 0,
+        "itemCount": 0,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 0,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 487,
+          "heroEntryMana": 474,
+          "heroFinalMana": 3,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 2,
+          "remainingEnemyLife": 4382,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "cold",
+      "seed": 3,
+      "completeVictory": false,
+      "unreachedWaveCount": 3,
+      "logicalMs": 114666.66666666666,
+      "rewards": {
+        "heroXp": 11870,
+        "fieldedMercXp": 8902,
+        "itemCount": 9,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 5715,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 24500,
+          "victoryOnlyTtkMs": 24500,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 635,
+          "heroEntryMana": 474,
+          "heroFinalMana": 118,
+          "minimumObservedMana": 111,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 5600,
+          "itemCount": 4
+        },
+        {
+          "index": 1,
+          "role": "trash",
+          "initialEnemyCount": 11,
+          "enemyLevels": [
+            57
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 30166.666666666664,
+          "victoryOnlyTtkMs": 30166.666666666664,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 632,
+          "heroEntryMana": 118,
+          "heroFinalMana": 34,
+          "minimumObservedMana": 1,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 6270,
+          "itemCount": 5
+        },
+        {
+          "index": 2,
+          "role": "elite",
+          "initialEnemyCount": 12,
+          "enemyLevels": [
+            58
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 632,
+          "heroFinalLife": 634,
+          "heroEntryMana": 34,
+          "heroFinalMana": 39,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 4,
+          "remainingEnemyLife": 14827,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "fire",
+      "seed": 3,
+      "completeVictory": false,
+      "unreachedWaveCount": 5,
+      "logicalMs": 60000,
+      "rewards": {
+        "heroXp": 0,
+        "fieldedMercXp": 0,
+        "itemCount": 0,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 0,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 474,
+          "heroEntryMana": 474,
+          "heroFinalMana": 27,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 4,
+          "remainingEnemyLife": 8778,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "cold",
+      "seed": 4,
+      "completeVictory": false,
+      "unreachedWaveCount": 3,
+      "logicalMs": 107333.33333333333,
+      "rewards": {
+        "heroXp": 11870,
+        "fieldedMercXp": 8902,
+        "itemCount": 7,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 5656,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 22500,
+          "victoryOnlyTtkMs": 22500,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 635,
+          "heroEntryMana": 474,
+          "heroFinalMana": 160,
+          "minimumObservedMana": 150,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 5600,
+          "itemCount": 4
+        },
+        {
+          "index": 1,
+          "role": "trash",
+          "initialEnemyCount": 11,
+          "enemyLevels": [
+            57
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 24833.333333333332,
+          "victoryOnlyTtkMs": 24833.333333333332,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 635,
+          "heroEntryMana": 160,
+          "heroFinalMana": 26,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 6270,
+          "itemCount": 3
+        },
+        {
+          "index": 2,
+          "role": "elite",
+          "initialEnemyCount": 12,
+          "enemyLevels": [
+            58
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 610,
+          "heroEntryMana": 26,
+          "heroFinalMana": 16,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 5,
+          "remainingEnemyLife": 12060,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "fire",
+      "seed": 4,
+      "completeVictory": false,
+      "unreachedWaveCount": 5,
+      "logicalMs": 60000,
+      "rewards": {
+        "heroXp": 0,
+        "fieldedMercXp": 0,
+        "itemCount": 0,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 0,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 479,
+          "heroEntryMana": 474,
+          "heroFinalMana": 1,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 2,
+          "remainingEnemyLife": 5057,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "cold",
+      "seed": 5,
+      "completeVictory": false,
+      "unreachedWaveCount": 3,
+      "logicalMs": 116484.55533199196,
+      "rewards": {
+        "heroXp": 11870,
+        "fieldedMercXp": 8902,
+        "itemCount": 8,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 5682,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 26500,
+          "victoryOnlyTtkMs": 26500,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 569,
+          "heroEntryMana": 474,
+          "heroFinalMana": 75,
+          "minimumObservedMana": 75,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 5600,
+          "itemCount": 3
+        },
+        {
+          "index": 1,
+          "role": "trash",
+          "initialEnemyCount": 11,
+          "enemyLevels": [
+            57
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 29984.555331991956,
+          "victoryOnlyTtkMs": 29984.555331991956,
+          "heroDied": false,
+          "heroEntryLife": 569,
+          "heroFinalLife": 633,
+          "heroEntryMana": 75,
+          "heroFinalMana": 53,
+          "minimumObservedMana": 1,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 6270,
+          "itemCount": 5
+        },
+        {
+          "index": 2,
+          "role": "elite",
+          "initialEnemyCount": 12,
+          "enemyLevels": [
+            58
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 633,
+          "heroFinalLife": 604,
+          "heroEntryMana": 53,
+          "heroFinalMana": 6,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 5,
+          "remainingEnemyLife": 19534,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "fire",
+      "seed": 5,
+      "completeVictory": false,
+      "unreachedWaveCount": 5,
+      "logicalMs": 60000,
+      "rewards": {
+        "heroXp": 0,
+        "fieldedMercXp": 0,
+        "itemCount": 0,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 0,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 472,
+          "heroEntryMana": 474,
+          "heroFinalMana": 17,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 2,
+          "remainingEnemyLife": 4262,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "cold",
+      "seed": 6,
+      "completeVictory": false,
+      "unreachedWaveCount": 3,
+      "logicalMs": 102833.33333333334,
+      "rewards": {
+        "heroXp": 11870,
+        "fieldedMercXp": 8902,
+        "itemCount": 8,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 5991,
+          "wishstone": 0
+        },
+        "materials": {
+          "runes/nef": 1
+        },
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 24500,
+          "victoryOnlyTtkMs": 24500,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 614,
+          "heroEntryMana": 474,
+          "heroFinalMana": 95,
+          "minimumObservedMana": 72,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 5600,
+          "itemCount": 4
+        },
+        {
+          "index": 1,
+          "role": "trash",
+          "initialEnemyCount": 11,
+          "enemyLevels": [
+            57
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 18333.333333333336,
+          "victoryOnlyTtkMs": 18333.333333333336,
+          "heroDied": false,
+          "heroEntryLife": 614,
+          "heroFinalLife": 635,
+          "heroEntryMana": 95,
+          "heroFinalMana": 11,
+          "minimumObservedMana": 1,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 6270,
+          "itemCount": 4
+        },
+        {
+          "index": 2,
+          "role": "elite",
+          "initialEnemyCount": 12,
+          "enemyLevels": [
+            58
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 628,
+          "heroEntryMana": 11,
+          "heroFinalMana": 0,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 4,
+          "remainingEnemyLife": 11645,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "fire",
+      "seed": 6,
+      "completeVictory": false,
+      "unreachedWaveCount": 5,
+      "logicalMs": 60000,
+      "rewards": {
+        "heroXp": 0,
+        "fieldedMercXp": 0,
+        "itemCount": 0,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 0,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 513,
+          "heroEntryMana": 474,
+          "heroFinalMana": 1,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 2,
+          "remainingEnemyLife": 6965,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "cold",
+      "seed": 7,
+      "completeVictory": false,
+      "unreachedWaveCount": 3,
+      "logicalMs": 103456,
+      "rewards": {
+        "heroXp": 11870,
+        "fieldedMercXp": 8902,
+        "itemCount": 9,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 5937,
+          "wishstone": 0
+        },
+        "materials": {
+          "runes/nef": 1
+        },
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 24956,
+          "victoryOnlyTtkMs": 24956,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 627,
+          "heroEntryMana": 474,
+          "heroFinalMana": 149,
+          "minimumObservedMana": 141,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 5600,
+          "itemCount": 4
+        },
+        {
+          "index": 1,
+          "role": "trash",
+          "initialEnemyCount": 11,
+          "enemyLevels": [
+            57
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 18500,
+          "victoryOnlyTtkMs": 18500,
+          "heroDied": false,
+          "heroEntryLife": 627,
+          "heroFinalLife": 635,
+          "heroEntryMana": 149,
+          "heroFinalMana": 2,
+          "minimumObservedMana": 2,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 6270,
+          "itemCount": 5
+        },
+        {
+          "index": 2,
+          "role": "elite",
+          "initialEnemyCount": 12,
+          "enemyLevels": [
+            58
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 631,
+          "heroEntryMana": 2,
+          "heroFinalMana": 1,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 3,
+          "remainingEnemyLife": 12883,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "fire",
+      "seed": 7,
+      "completeVictory": false,
+      "unreachedWaveCount": 5,
+      "logicalMs": 60000,
+      "rewards": {
+        "heroXp": 0,
+        "fieldedMercXp": 0,
+        "itemCount": 0,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 0,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 573,
+          "heroEntryMana": 474,
+          "heroFinalMana": 3,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 2,
+          "remainingEnemyLife": 5682,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "cold",
+      "seed": 8,
+      "completeVictory": false,
+      "unreachedWaveCount": 3,
+      "logicalMs": 100000,
+      "rewards": {
+        "heroXp": 11870,
+        "fieldedMercXp": 8902,
+        "itemCount": 7,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 5676,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 24000,
+          "victoryOnlyTtkMs": 24000,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 623,
+          "heroEntryMana": 474,
+          "heroFinalMana": 208,
+          "minimumObservedMana": 130,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 5600,
+          "itemCount": 3
+        },
+        {
+          "index": 1,
+          "role": "trash",
+          "initialEnemyCount": 11,
+          "enemyLevels": [
+            57
+          ],
+          "outcome": "victory",
+          "engineWinner": "player",
+          "nativeSettlement": "next-wave",
+          "logicalMs": 15999.999999999998,
+          "victoryOnlyTtkMs": 15999.999999999998,
+          "heroDied": false,
+          "heroEntryLife": 623,
+          "heroFinalLife": 630,
+          "heroEntryMana": 208,
+          "heroFinalMana": 38,
+          "minimumObservedMana": 25,
+          "zeroManaObserved": false,
+          "livingEnemyCount": 0,
+          "remainingEnemyLife": 0,
+          "heroXp": 6270,
+          "itemCount": 4
+        },
+        {
+          "index": 2,
+          "role": "elite",
+          "initialEnemyCount": 12,
+          "enemyLevels": [
+            58
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 630,
+          "heroFinalLife": 622,
+          "heroEntryMana": 38,
+          "heroFinalMana": 4,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 4,
+          "remainingEnemyLife": 7914,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    },
+    {
+      "build": "fire",
+      "seed": 8,
+      "completeVictory": false,
+      "unreachedWaveCount": 5,
+      "logicalMs": 60000,
+      "rewards": {
+        "heroXp": 0,
+        "fieldedMercXp": 0,
+        "itemCount": 0,
+        "currencies": {
+          "gem-shard": 0,
+          "rune-shard": 0,
+          "wishstone": 0
+        },
+        "materials": {},
+        "removedItemIds": [],
+        "addedClears": []
+      },
+      "waves": [
+        {
+          "index": 0,
+          "role": "trash",
+          "initialEnemyCount": 10,
+          "enemyLevels": [
+            56
+          ],
+          "outcome": "draw",
+          "engineWinner": null,
+          "nativeSettlement": "defeat",
+          "logicalMs": 60000,
+          "victoryOnlyTtkMs": null,
+          "heroDied": false,
+          "heroEntryLife": 635,
+          "heroFinalLife": 472,
+          "heroEntryMana": 474,
+          "heroFinalMana": 0,
+          "minimumObservedMana": 0,
+          "zeroManaObserved": true,
+          "livingEnemyCount": 2,
+          "remainingEnemyLife": 7119,
+          "heroXp": 0,
+          "itemCount": 0
+        }
+      ]
+    }
+  ],
+  "postlint": {
+    "status": "pass",
+    "postlintBenchmarkComplete": true,
+    "attempts": 4,
+    "settledWaves": 8,
+    "fullSourceManifestMatchesCurrentBytes": true,
+    "sourceIdentityBeforeAfterExactIncludingAdvisoryMetadata": true,
+    "frozenPolicyUnchanged": true,
+    "seed1OriginalFinalRecordingsAndSemanticRewardsEqual": true,
+    "onlyExcludedRewardField": "top-level new Item.id",
+    "genuineFixtureHashesExact": true,
+    "postlintSourceTreeHash": "54bc5bafef48f3df12d3a3a16b20ce4fb17a06df3e66d23f16da13032133af33",
+    "reports": {
+      "benchmark-postlint.json": {
+        "bytes": 4739184,
+        "sha256": "c173f845f2db6e4f79ca4bdf712d7e5a47498758c7827f1d6f227ea1f0b7013e"
+      },
+      "benchmark-postlint.json.waves.jsonl": {
+        "bytes": 2207455,
+        "sha256": "fe739bc72c0f4aa3c4b026667ebf2b79480334de0cd5a14c3b9a8685146b6de2"
+      }
+    },
+    "sourceFiles": {
+      "p15-build-screen-measure.test.ts": "8e8ba63317b29dc3cca301303a9b0c7f53074a4f98c77199e854530b764a9f41",
+      "p15-build-screen.ts": "0c32aae1d944ca2142493f0f2678cff52c828fa01532d01565e5a56cb3182c6a",
+      "p15-build-screen-policy.ts": "4196a6c29056666679d6f13f9e2bcb8164f2da21b129796111ee4ab53340c4ae",
+      "p15-build-screen.test.ts": "13f2f79ce054cc40c843cb3cb4485d75a0a2ab322613f642d94eaed845a2b8ff",
+      "p15-build-screen-report.test.ts": "d3402ad4b48642bec74dcf1818759a9700c09867a269fd8259a1882d955f974b",
+      "p15-build-screen-report.ts": "d7735dc5a724d2f6d971486a9583036ea748570af339db7a6d5d84d067b3f9d1"
+    }
+  }
+}
