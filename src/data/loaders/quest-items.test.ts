@@ -21,7 +21,7 @@ describe('bound quest item definitions', () => {
     const before = JSON.stringify(document);
     const items = loadQuestItems();
     expect(items.find(item => item.id === book.id)).toEqual(book);
-    expect(items.map(item => item.id)).toEqual([book.id, 'quest/horadric_cube',
+    expect(items.map(item => item.id)).toEqual(['quest/scroll_of_inifuss', book.id, 'quest/horadric_cube',
       'quest/staff_of_kings', 'quest/viper_amulet', 'quest/horadric_staff',
       'quest/gidbinn', 'quest/lam_esens_tome', 'quest/jade_figurine',
       'quest/golden_bird', 'quest/khalims_heart', 'quest/khalims_brain',

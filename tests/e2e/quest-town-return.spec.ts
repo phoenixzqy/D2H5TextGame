@@ -66,7 +66,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
     await expect(akara).toBeFocused();
     await expect(page.getByRole('region', { name: english ? 'Akara' : '阿卡拉', exact: true })).toBeVisible();
     await expect(page.getByTestId('town-npc-warriv')).toBeVisible();
-    await expect(page.getByRole('status')).toContainText(english ? 'Track the Den of Evil in Quests' : '请到任务中追踪邪恶巢穴');
+    await expect(page.getByTestId('town-greeting')).toContainText(english ? 'Track the Den of Evil in Quests' : '请到任务中追踪邪恶巢穴');
     await expectConversationTargets(page);
     await page.getByTestId('town-conversation-close').click();
     await expect(akara).toBeFocused();
@@ -78,7 +78,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
     await page.getByTestId(`quest-start-${QUEST}`).click();
     await navTo(page, 'town');
     await akara.click();
-    await expect(page.getByRole('status')).toContainText(english ? 'Slay them all, then return to me.' : '消灭每一只怪物，再回来找我。');
+    await expect(page.getByTestId('town-greeting')).toContainText(english ? 'Slay them all, then return to me.' : '消灭每一只怪物，再回来找我。');
     const tracked = await exportBackup(page);
     expect(tracked.map.questProgress[QUEST]).toEqual({
       id: QUEST, status: 'inProgress', objectives: { 'obj-clear-den': false, 'obj-return': false }
@@ -124,7 +124,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
     expectSameRewards(wrong, cleared);
     await navTo(page, 'town');
     await akara.click();
-    await expect(page.getByRole('status')).toContainText(english ? 'Claim your reward in Quests.' : '请到任务中领取应得的奖励。');
+    await expect(page.getByTestId('town-greeting')).toContainText(english ? 'Claim your reward in Quests.' : '请到任务中领取应得的奖励。');
     await expectConversationTargets(page);
     const completed = await exportBackup(page);
     expect(completed.map.questProgress[QUEST]).toEqual({
@@ -154,7 +154,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
 
     await navTo(page, 'town');
     await akara.click();
-    await expect(page.getByRole('status')).toContainText(english ? 'May your new strength guard the camp.' : '愿你的新力量守护营地。');
+    await expect(page.getByTestId('town-greeting')).toContainText(english ? 'May your new strength guard the camp.' : '愿你的新力量守护营地。');
     await page.getByTestId('town-conversation-quests').click();
     await expect(claim).toBeDisabled();
     const repeated = await exportBackup(page);

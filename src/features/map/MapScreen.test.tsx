@@ -81,7 +81,7 @@ describe('MapScreen — idle gating + stop toggle', () => {
     const { container } = renderMap();
     await screen.findByTestId('map-screen');
 
-    const actToggles = Array.from(container.querySelectorAll<HTMLButtonElement>('button[aria-expanded]'));
+    const actToggles = screen.getAllByRole('button', { name: /(?:Act [1-5]|第 [1-5] 章) ·/ });
     expect(actToggles).toHaveLength(5);
     expect(container.textContent).not.toMatch(RAW_MAP_KEY_PATTERN);
 

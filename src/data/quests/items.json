@@ -2,6 +2,15 @@
   "$schema": "../schema/quest-item.schema.json",
   "items": [
     {
+      "id": "quest/scroll_of_inifuss",
+      "sourceQuestId": "quests/act1-search-for-cain",
+      "kind": "delivery",
+      "sourceObjectiveId": "obj-inifuss-tree",
+      "consumeObjectiveId": "obj-decode",
+      "nameKey": "inventory:questItems.scrollOfInifuss.name",
+      "descKey": "inventory:questItems.scrollOfInifuss.description"
+    },
+    {
       "id": "items/book_of_skill",
       "sourceQuestId": "quests/act2-radaments-lair",
       "nameKey": "inventory:questItems.bookOfSkill.name",

@@ -1,3 +1,6 @@
+import { isCainTownPresent, talkToCain } from '@/features/quests/cainQuestActions';
+import { WaveGuardError } from '@/stores/waveTransitionGuard';
+import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
 /**
  * TownScreen — act-themed hub.
  *
@@ -16,12 +19,13 @@ import { loadTownNpcs } from '@/data/loaders/towns';
 import { QuestDeliveryPanel } from './QuestDeliveryPanel';
 import { TownRespecPanel } from './TownRespecPanel';
 import { QuestServicePanel } from './QuestServicePanel';
+import { CainIdentifyPanel } from './CainIdentifyPanel';
 import { QuestTitleControls } from './QuestTitleControls';
 import { Act5QuestActionsPanel } from '@/features/quests/Act5QuestActionsPanel';
 import { isAnyaThawed, isAnyaTownPresent } from '@/features/quests/act5QuestActions';
 
 export function TownScreen() {
-  const { t } = useTranslation(['town', 'common']);
+  const { t } = useTranslation(['town', 'common', 'quests']);
   const navigate = useNavigate();
   const player = usePlayerStore((s) => s.player);
   const currentAct = useMapStore((s) => s.currentAct);
@@ -31,8 +35,11 @@ export function TownScreen() {
   useInventoryStore(s => s.questItems);
   const selectedTitle = useMapStore(s => s.selectedTitle);
   useMapStore(s => s.questProgress['quests/act5-prison-of-ice']);
+  useMapStore(s => s.questProgress['quests/act1-search-for-cain']);
+  const [talkFailure, setTalkFailure] = useState<string | null>(null);
   // Presence comes from the quest graph, including the supported legacy dialogue path.
-  const npcs = loadTownNpcs(currentAct).filter(npc => npc.id !== 'npc/anya' || isAnyaTownPresent());
+  const npcs = loadTownNpcs(currentAct).filter(npc => (npc.id !== 'npc/anya' || isAnyaTownPresent()) &&
+    (npc.id !== 'npc/cain' || isCainTownPresent()));
   const [selection, setSelection] = useState<{ act: number; npcId: string } | null>(null);
   const conversationTrigger = useRef<HTMLButtonElement | null>(null);
   // Town can stay mounted while the current act changes. Never retain another act's NPC.
@@ -84,7 +91,16 @@ export function TownScreen() {
                   aria-controls={selectedNpc?.id === npc.id ? 'town-conversation' : undefined}
                   data-testid={`town-npc-${npc.portraitId}`}
                   onClick={(event) => {
-                    recordNpcTalk(npc.id);
+                    try {
+                      if (npc.id === 'npc/cain' && currentAct === 1) {
+                        const result = talkToCain();
+                        setTalkFailure(result === 'ok' || result === 'already-read' ? null : result);
+                      } else { recordNpcTalk(npc.id); setTalkFailure(null); }
+                    } catch (error) {
+                      if (error instanceof AggregateError) setTalkFailure('restoration-failed');
+                      else if (error instanceof WaveGuardError || error instanceof RecordedWaveAccessError) setTalkFailure('busy');
+                      else throw error;
+                    }
                     setSelection({ act: currentAct, npcId: npc.id });
                     event.currentTarget.focus();
                   }}
@@ -105,6 +121,7 @@ export function TownScreen() {
           {npcs.length === 0 && <p className="text-sm text-d2-white/70">{t('noNpcs')}</p>}
         </Panel>
 
+        {talkFailure && <p role="alert" className="text-sm text-d2-white/90">{t(`quests:areaObjects.feedback.${talkFailure}`)}</p>}
         {selectedNpc && (
           <section
             id="town-conversation"
@@ -115,7 +132,7 @@ export function TownScreen() {
             <h3 id="town-conversation-title" className="text-d2-gold font-semibold">
               {t(selectedNpc.nameKey)}
             </h3>
-            <div role="status" aria-live="polite" className="space-y-2 text-sm text-d2-white/90">
+            <div role="status" aria-live="polite" data-testid="town-greeting" className="space-y-2 text-sm text-d2-white/90">
               <p>{t([`dialogue.greetings.act${String(currentAct)}.${selectedNpc.portraitId}`, `dialogue.greetings.${selectedNpc.portraitId}`])}</p>
               {selectedNpc.id === 'npc/anya' && !isAnyaThawed() && <p>{t('dialogue.legacyAnya')}</p>}
               {selectedNpc.id === 'npc/akara' && <p>{t(`dialogue.den.${denCopy}`)}</p>}
@@ -124,6 +141,7 @@ export function TownScreen() {
             <Act5QuestActionsPanel key={`actions:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
             <TownRespecPanel key={`reset:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
             <QuestServicePanel key={`services:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
+            <CainIdentifyPanel key={`identify:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
             <div className="flex flex-wrap gap-2">
               <Button
                 variant="secondary"

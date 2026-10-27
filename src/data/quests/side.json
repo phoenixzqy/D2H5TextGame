@@ -33,7 +33,7 @@
       "type": "side",
       "actId": "acts/act1",
       "giver": "npc/cain",
-      "description": "For freeing him from Tristram, Cain offers to identify your unidentified items free of charge for the rest of your journey.",
+      "description": "For rescuing him from the ruined village in the Dark Wood, Cain offers to identify your unidentified items free of charge for the rest of your journey.",
       "objectives": [
         { "id": "obj-talk", "type": "talk", "npcId": "npc/cain", "description": "Speak with Cain in the Rogue Encampment." }
       ],

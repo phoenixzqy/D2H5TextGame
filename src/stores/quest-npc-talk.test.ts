@@ -55,7 +55,7 @@ afterEach(() => {
 describe('ordered current-town quest talk events', () => {
   it('projects authored Act-I through Act-V NPCs without fallback in missing acts', () => {
     expect(loadTownNpcs(1).map((npc) => npc.id)).toEqual([
-      'npc/akara', 'npc/charsi', 'npc/gheed', 'npc/kashya', 'npc/warriv'
+      'npc/akara', 'npc/cain', 'npc/charsi', 'npc/gheed', 'npc/kashya', 'npc/warriv'
     ]);
     expect(loadTownNpcs(2)).toEqual([
       { id: 'npc/atma', portraitId: 'atma', nameKey: 'town.npc.atma' },

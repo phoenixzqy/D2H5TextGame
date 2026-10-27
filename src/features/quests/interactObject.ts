@@ -1,3 +1,5 @@
+import { CAIN_CAGE } from '@/engine/map/cain-quest';
+import { rescueCain } from './cainQuestActions';
 import { loadQuestItems, questItemSource, type QuestEncounterItemDef, type QuestToolDef, type QuestComponentDef, type QuestDeliveryDef } from '@/data/loaders/quest-items';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import { useInventoryStore } from '@/stores/inventoryStore';
@@ -15,7 +17,7 @@ import { PRISON_QUEST } from '@/engine/map/act5-admission';
 export { assembleQuestItem, questAssemblyStatus, areaQuestInsertions, questInsertionStatus, insertQuestItem } from './questCrafting';
 
 export type ObjectActionResult = 'ok' | 'already-read' | 'not-eligible' | 'not-ready'
-  | 'no-player' | 'combat-active' | 'locked-area' | 'unknown-area' | 'claim-in-progress';
+  | 'no-player' | 'combat-active' | 'locked-area' | 'unknown-area' | 'claim-in-progress' | 'grant-failed';
 
 /** Supported object identities come from canonical authored objectives, never inferred legacy areas. */
 export function areaObjectTargets(act: number, areaId: string): readonly string[] {
@@ -44,6 +46,7 @@ export function travelToAreaObjects(act: number, areaId: string): ObjectActionRe
  * is needed after Continue/import. Throws typed ownership/receipt refusals.
  */
 export function interactWithAreaObject(targetId: string): ObjectActionResult {
+  if (targetId === CAIN_CAGE) return rescueCain();
   const refusal = questActionPreflight();
   if (refusal) return refusal;
   const map = useMapStore.getState();

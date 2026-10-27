@@ -31,6 +31,8 @@ import { createMercFromDef } from '@/stores/mercFactory';
 import type { QuestItemLedger } from '@/engine/types/save';
 import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import { hasTaintedSunCompletion, isQuestResistanceReward, TAINTED_SUN_QUEST_ID } from '@/engine/progression/quest-resistance';
+import { CAIN_QUEST, CAIN_SIDE_QUEST } from '@/engine/map/cain-quest';
+import { hasCainClaimCompletion, publishCainClaim } from './cainClaim';
 
 export type ClaimResult =
   | 'ok'
@@ -97,6 +99,7 @@ export function canClaim(questId: string): boolean {
   if (progress.status !== 'completed') return false;
   if (questId === TAINTED_SUN_QUEST_ID && !hasTaintedSunCompletion(useMapStore.getState().questProgress)) return false;
   if (progress.rewardClaimed) return false;
+  if (!hasCainClaimCompletion(questId)) return false;
   const quest = findQuest(questId);
   return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0 &&
     hasQuestServiceCompletion(quest.id) &&
@@ -156,6 +159,7 @@ export function claimQuestReward(questId: string): ClaimResult {
     if (!progress || progress.status !== 'completed') return 'not-completed';
     if (questId === TAINTED_SUN_QUEST_ID && !hasTaintedSunCompletion(useMapStore.getState().questProgress)) return 'not-completed';
     if (progress.rewardClaimed) return 'already-claimed';
+    if (!hasCainClaimCompletion(questId)) return 'not-completed';
     const quest = findQuest(questId);
     if (!quest) return 'unknown-quest';
     if (!hasQuestServiceCompletion(quest.id) || !hasAct5Completion(quest.id, useMapStore.getState().questProgress, useMapStore.getState().questReceipts, useInventoryStore.getState().questItems) || !hasAct4Completion(quest) || !hasQuestDeliveryCompletion(quest) || !hasQuestAssemblyCompletion(quest) ||
@@ -179,6 +183,7 @@ export function claimQuestReward(questId: string): ClaimResult {
     let questServices: QuestServiceLedger | undefined;
     let campaignReward = false;
     let mercenaryUnlock = false;
+    let permanentIdentify = false;
     let recruit: Mercenary | undefined;
     const serviceSource = `${questId}#reward:service`;
     for (const [kind, amount] of Object.entries(rewards)) {
@@ -204,6 +209,10 @@ export function claimQuestReward(questId: string): ClaimResult {
         continue;
       }
       if (kind === 'service') {
+        if (amount === 'identify_free' && (questId === CAIN_QUEST || questId === CAIN_SIDE_QUEST)) {
+          permanentIdentify = true;
+          continue;
+        }
         try {
           if (Object.hasOwn(inventory.questServices, serviceSource)) return 'unsupported-rewards';
           questServices = validateQuestServiceLedger({ ...inventory.questServices,
@@ -253,7 +262,7 @@ export function claimQuestReward(questId: string): ClaimResult {
         || !safeCount(amount) || kind === 'gemShards' && amount <= 0) return 'unsupported-rewards';
       if (amount > 0) grants.push({ kind, amount });
     }
-    if (grants.length === 0 && !uniqueReward && !uniqueProfileReward && !tableReward && !questItems && !resistanceReward && !questServices && !campaignReward && !mercenaryUnlock) return 'no-rewards';
+    if (grants.length === 0 && !uniqueReward && !uniqueProfileReward && !tableReward && !questItems && !resistanceReward && !questServices && !campaignReward && !mercenaryUnlock && !permanentIdentify) return 'no-rewards';
     if (!safeGrants(player, grants)) return 'unsupported-rewards';
     if (uniqueProfileReward) {
       try {
@@ -331,6 +340,15 @@ export function claimQuestReward(questId: string): ClaimResult {
     };
     try { preflightInventory(); }
     catch { return 'unsupported-rewards'; }
+
+    if (permanentIdentify) {
+      // These two authored bundles are XP + permanent Identify, or Identify alone.
+      // They use no selected-item charge and no other reward publication.
+      if (grants.some(grant => grant.kind !== 'xp') || questId === CAIN_SIDE_QUEST && grants.length !== 0 ||
+        uniqueReward !== undefined || uniqueProfileReward || tableReward !== undefined || questItems !== undefined || resistanceReward || questServices !== undefined ||
+        campaignReward || mercenaryUnlock) return 'unsupported-rewards';
+      return publishCainClaim(questId, grants.find(grant => grant.kind === 'xp')?.amount ?? 0);
+    }
 
     const serviceEntry = questServices?.[serviceSource];
     if (questServices && !serviceEntry) return 'unsupported-rewards';

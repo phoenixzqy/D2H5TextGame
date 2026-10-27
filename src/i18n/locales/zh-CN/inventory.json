@@ -10,6 +10,10 @@
   },
   "inventory.title": "背包",
   "questItems": {
+    "scrollOfInifuss": {
+      "name": "艾尼弗斯卷轴",
+      "description": "清理黑暗森林后从艾尼弗斯之树取回。将其交给罗格营地的阿卡拉，再返回废村牢笼营救凯恩。"
+    },
     "malahsPotion": {
       "name": "马拉的药剂",
       "description": "绑定任务药剂。请在水晶通道用于被冰封的安雅，不能在战斗中恢复生命或法力。"

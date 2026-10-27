@@ -170,8 +170,21 @@ describe.each(['zh-CN', 'en'] as const)('QuestsScreen %s', locale => {
     expect(screen.getByTestId('quest-feedback-quests/act1-den-of-evil')).toHaveTextContent(/任务已加入追踪|Quest added/);
   });
 
-  it('keeps an unsupported service unclaimed and displays a localized refusal on every attempt', () => {
+  it('requires the real rescue and Talk graph before enabling the Cain side Claim', () => {
     const id = 'quests/side-act1-cains-favor';
+    act(() => { useMapStore.getState().completeQuest(id); });
+    renderScreen();
+    fireEvent.click(screen.getByRole('tab', { name: /支线|side/i }));
+    const claim = screen.getByTestId(`quest-claim-${id}`);
+    expect(claim).toBeDisabled();
+    const before = [usePlayerStore.getState(), useInventoryStore.getState(), useMapStore.getState()];
+    fireEvent.click(claim);
+    expect([usePlayerStore.getState(), useInventoryStore.getState(), useMapStore.getState()]).toEqual(before);
+    expect(useMapStore.getState().questProgress[id]?.rewardClaimed).not.toBe(true);
+  });
+
+  it('keeps an unsupported service unclaimed and displays a localized refusal on every attempt', () => {
+    const id = 'quests/side-act2-fara-favored';
     act(() => { useMapStore.getState().completeQuest(id); });
     renderScreen();
     fireEvent.click(screen.getByRole('tab', { name: /支线|side/i }));

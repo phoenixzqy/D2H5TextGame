@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act1/cain",
+  "npcId": "cain",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.act1.cain",
+      "text": "Thank you for freeing me. Let us uncover what the darkness conceals."
+    }
+  ],
+  "services": []
+}

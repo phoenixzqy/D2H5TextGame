@@ -1,3 +1,5 @@
+import { CAIN_CAGE, CAIN_AREA } from '@/engine/map/cain-quest';
+import { cainRescueStatus } from '@/features/quests/cainQuestActions';
 import { Act5QuestActionsPanel } from '@/features/quests/Act5QuestActionsPanel';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +31,9 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
       className="w-full min-w-0 rounded border border-d2-border bg-d2-bg/60 p-3 space-y-3">
       <h2 id="area-objects-title" className="text-d2-gold font-serif">{t('areaObjects.title')}</h2>
       {areaObjectTargets(act, areaId).map(targetId => {
-        const status = objectInteractionStatus(loadQuests(), subAreas, progress,
+        const status = targetId === CAIN_CAGE
+          ? (act === 1 && areaId === CAIN_AREA ? cainRescueStatus() : 'unavailable')
+          : objectInteractionStatus(loadQuests(), subAreas, progress,
           { actId: `acts/act${String(act)}`, areaId, targetId });
         const key = `areaObjects.objects.${targetId.replace(/^objects\//, '')}`;
         return (
@@ -47,8 +51,9 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
                   const result = interactWithAreaObject(targetId);
                   setFailure(result === 'ok' || result === 'already-read' ? null : result);
                 } catch (error) {
-                  if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
-                  setFailure('busy');
+                  if (error instanceof AggregateError) setFailure('restoration-failed');
+                  else if (error instanceof WaveGuardError || error instanceof RecordedWaveAccessError) setFailure('busy');
+                  else throw error;
                 }
               }}>{t(`${key}.action`, { defaultValue: t('areaObjects.read') })}</Button>
           </div>

@@ -32,6 +32,9 @@
   "dialogue": {
     "legacyAnya": "Anya is present from an older completed quest. This history does not grant new quest rewards or thaw proof.",
     "greetings": {
+      "act1": {
+        "cain": "Thank you for freeing me. Let us uncover what the darkness conceals."
+      },
       "act5": {
         "larzuk": "Track Siege on Harrogath before facing Shenk in the Bloody Foothills. After claiming the reward, bring an eligible unsocketed backpack item here to use your socket charge.",
         "malah": "Inspect frozen Anya in the Crystalline Passage, then return here for my potion. Take it back to thaw her before confronting Nihlathak. Claim your Scroll of Resistance in Quests and read it in Inventory.",
@@ -154,5 +157,12 @@
       "restoration-failed": "State recovery failed. Reload your last saved character before continuing."
     }
   },
-  "town.npc.drognan": "Drognan"
+  "town.npc.drognan": "Drognan",
+  "identify": {
+    "title": "Identify an item",
+    "description": "Permanently unlocked. Identify one selected backpack item for free.",
+    "noCandidates": "No unidentified backpack equipment is available.",
+    "use": "Identify selected item",
+    "success": "Item identified."
+  }
 }

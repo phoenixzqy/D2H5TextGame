@@ -1,3 +1,5 @@
+import { CAIN_QUEST } from '@/engine/map/cain-quest';
+import { talkToCain } from '@/features/quests/cainQuestActions';
 import type { CurrentMapSaveData } from '@/engine/types/save';
 import { emptyEndgameState } from '@/engine/endgame/state';
 import type { EndgameState } from '@/engine/endgame/types';
@@ -181,7 +183,9 @@ export const useMapStore = create<MapState>((set, get) => ({
 
   isCleared: (subAreaId) => get().clearedSubAreas.includes(subAreaId),
 
-  recordNpcTalk: (npcId) => { set((state) => {
+  recordNpcTalk: (npcId) => {
+    if (npcId === 'npc/cain' && get().currentAct === 1) { talkToCain(); return; }
+    set((state) => {
     if (npcId === 'npc/anya' && (state.currentAct !== 5 || !Object.hasOwn(state.questReceipts, THAW_PROOF))) return state;
     if (npcId === 'npc/anya') {
       try { validateQuestItemLedger(useInventoryStore.getState().questItems, state.questProgress, state.questReceipts); }
@@ -248,7 +252,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     const current = resolveSubArea(state.currentAct, state.currentSubAreaId);
     if (event.actId !== `acts/act${String(state.currentAct)}` || current?.actId !== event.actId ||
       current.id !== event.areaId) return state;
-    const questProgress = applyObjectInteraction(loadQuests().filter(quest => quest.id !== PRISON_QUEST), subAreas, state.questProgress, event);
+    const questProgress = applyObjectInteraction(loadQuests().filter(quest => quest.id !== PRISON_QUEST && quest.id !== CAIN_QUEST), subAreas, state.questProgress, event);
     return questProgress === state.questProgress ? state : { questProgress };
   }); },
 

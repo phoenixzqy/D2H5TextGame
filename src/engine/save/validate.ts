@@ -1,3 +1,4 @@
+import { CAIN_QUEST, CAIN_RECEIPTS, canEarnCainObjective, validateCainQuestGraph } from '@/engine/map/cain-quest';
 import { FROZEN_V22 } from './frozen-v22';
 import type { QuestStateDomain } from './quest-domain';
 import { readRespecsRemaining } from '../progression/respec';
@@ -248,7 +249,7 @@ const nativeSaveSchema = (version: 17 | 18 | 19 | 20 | 21 | 22 | 23) => saveSche
     properties: { [COUNCIL_RECEIPT_SOURCE]: { const: true },
       'quests/act3-guardian#action:break-compelling-orb': { const: true },
       ...Object.fromEntries((version === 23
-        ? [...ACT4_ENCOUNTERS.map(row => row.proof), ...ACT5_RECEIPTS, ...loadQuestActions().map(row => row.receiptSource)]
+        ? [...CAIN_RECEIPTS, ...ACT4_ENCOUNTERS.map(row => row.proof), ...ACT5_RECEIPTS, ...loadQuestActions().map(row => row.receiptSource)]
         : [...FROZEN_V22.victories.map(row => row.proof), ...FROZEN_V22.act5.receipts,
           ...FROZEN_V22.actions.map(row => row.receiptSource)]).map(source => [source, { const: true }])),
       'quests/act4-hellforge#action:shatter-soulstone': { const: true } } }
@@ -397,13 +398,14 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
   if (!record(receipts) || (Object.getPrototypeOf(receipts) !== Object.prototype &&
     Object.getPrototypeOf(receipts) !== null) || Reflect.ownKeys(receipts).some(key =>
       typeof key !== 'string' ||
-      (key !== COUNCIL_RECEIPT_SOURCE && !victories.some(row => row.proof === key) && !((domain?.act5?.receipts ?? (domain ? [] : ACT5_RECEIPTS)).includes(key)) && !actions.some(action => action.receiptSource === key)) || receipts[key] !== true)) {
+      (key !== COUNCIL_RECEIPT_SOURCE && !(domain === undefined && CAIN_RECEIPTS.includes(key)) && !victories.some(row => row.proof === key) && !((domain?.act5?.receipts ?? (domain ? [] : ACT5_RECEIPTS)).includes(key)) && !actions.some(action => action.receiptSource === key)) || receipts[key] !== true)) {
     throw new Error('Invalid save: questReceipts requires a closed JSON action receipt map');
   }
   const questReceipts = receipts as QuestActionReceipts;
   if (Object.hasOwn(questReceipts, COUNCIL_RECEIPT_SOURCE) && !isCouncilReceiptProgress(validated.questProgress)) {
     throw new Error('Invalid save: Council proof requires canonical tracked Khalim progress');
   }
+  if (domain === undefined) validateCainQuestGraph(validated.questItems, validated.questProgress, questReceipts);
   const entries = Object.entries(validated.questItems);
   const definitions = domain?.items ?? loadQuestItems();
   const quests = domain?.quests ?? loadQuests();
@@ -435,7 +437,10 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
     const quest = quests.find(row => row.id === definition.sourceQuestId);
     if (definition.kind === 'action') continue; // Validated as one reciprocal Act V action/potion graph above.
     if (definition.kind !== undefined && definition.kind !== 'retained') {
-      if (!quest || !validLiveObjectiveProgress(validated, quest, definition.sourceObjectiveId)) {
+      if (!quest || !(domain === undefined && quest.id === CAIN_QUEST
+        ? canEarnCainObjective(validated.questProgress, quest.id, definition.sourceObjectiveId, validated.questItems, questReceipts) &&
+          validated.questProgress[quest.id]?.objectives[definition.sourceObjectiveId] === true
+        : validLiveObjectiveProgress(validated, quest, definition.sourceObjectiveId))) {
         throw new Error('Invalid save: quest item requires its completed objective source');
       }
       if (definition.kind === 'tool' && entry.state !== 'owned') {
@@ -450,7 +455,10 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
         throw new Error('Invalid save: component requires its qualified action proof');
       }
       if (definition.kind === 'delivery' && entry.state === 'consumed' &&
-        !validLiveObjectiveProgress(validated, quest, definition.consumeObjectiveId)) {
+        !(domain === undefined && quest.id === CAIN_QUEST
+          ? canEarnCainObjective(validated.questProgress, quest.id, definition.consumeObjectiveId, validated.questItems, questReceipts) &&
+            validated.questProgress[quest.id]?.objectives[definition.consumeObjectiveId] === true
+          : validLiveObjectiveProgress(validated, quest, definition.consumeObjectiveId))) {
         throw new Error('Invalid save: delivered item requires its exact hand-in objective');
       }
       if (definition.kind === 'delivery') {

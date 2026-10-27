@@ -10,6 +10,10 @@
   },
   "inventory.title": "Inventory",
   "questItems": {
+    "scrollOfInifuss": {
+      "name": "Scroll of Inifuss",
+      "description": "Recovered at the Tree of Inifuss after clearing the Dark Wood. Give it to Akara in the Rogue Encampment; then return to the ruined-village cage to rescue Cain."
+    },
     "malahsPotion": {
       "name": "Malah’s Potion",
       "description": "Bound quest potion. Use it at frozen Anya in the Crystalline Passage. It cannot restore Life or Mana in combat."

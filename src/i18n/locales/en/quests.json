@@ -153,6 +153,15 @@
       }
     },
     "objects": {
+      "cain_cage": {
+        "name": "Ruined-village cage",
+        "action": "Rescue Cain",
+        "ready": "Akara has deciphered the scroll. Free Cain from his cage.",
+        "unavailable": "Recover the Scroll of Inifuss after clearing the Dark Wood, give it to Akara, then return to this cage.",
+        "completed": "Cain is safe in the Rogue Encampment. Claim the quest reward separately.",
+        "claimed": "Cain rescued; quest reward claimed.",
+        "excerpt": "Cain is safe in town. Speak with him for his gratitude quest."
+      },
       "horazon_journal": {
         "name": "Horazon's Journal",
         "completed": "Journal read. Claim your quest rewards from Quests.",
@@ -269,8 +278,10 @@
     },
     "act1-search-for-cain": {
       "name": "The Search for Cain",
-      "desc": "Travel to Tristram to rescue Deckard Cain.",
-      "obj1": "Find Cain in Tristram"
+      "desc": "Recover the Scroll of Inifuss in the Dark Wood, give it to Akara, then rescue Cain at the ruined-village cage. Claim the quest reward separately.",
+      "obj1": "Recover the Scroll of Inifuss after clearing the Dark Wood",
+      "obj2": "Give the scroll to Akara",
+      "obj3": "Rescue Cain at the ruined-village cage in the Dark Wood"
     },
     "act1-forgotten-tower": {
       "name": "The Forgotten Tower",
@@ -299,7 +310,7 @@
     },
     "act1-cains-favor": {
       "name": "Cain's Gratitude",
-      "desc": "For freeing him from Tristram, Cain will identify your unidentified items free of charge.",
+      "desc": "For rescuing him from the Dark Wood ruined village, Cain will identify your unidentified items free of charge.",
       "obj1": "Speak with Cain in the Rogue Encampment."
     },
     "act1-gheeds-gamble": {

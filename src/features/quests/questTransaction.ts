@@ -1,3 +1,5 @@
+import { CAIN_QUEST, CAIN_SIDE_QUEST, canEarnCainObjective } from '@/engine/map/cain-quest';
+import { publishCainChange } from './cainPublication';
 import { beginQuestTransaction, endQuestTransaction, assertIronGolemOwnershipMutationAllowed, WaveGuardError } from '@/stores/waveTransitionGuard';
 import { usePlayerStore } from '@/stores/playerStore';
 import { useCombatStore } from '@/stores/combatStore';
@@ -50,6 +52,10 @@ export function eligibleQuestObjective(quest: QuestDef, objectiveId: string): bo
   const act = /^acts\/act(\d+)$/.exec(quest.actId);
   if (!Object.hasOwn(map.questProgress, quest.id) || !progress || progress.id !== quest.id || index < 0 ||
     !act || !map.isActUnlocked(Number(act[1]))) return false;
+  if (quest.id === CAIN_QUEST || quest.id === CAIN_SIDE_QUEST) {
+    return map.currentAct === 1 && map.selectedDifficulty === 'normal' &&
+      canEarnCainObjective(map.questProgress, quest.id, objectiveId, useInventoryStore.getState().questItems, map.questReceipts);
+  }
   const ownTrue = (id: string) => Object.hasOwn(progress.objectives, id) && progress.objectives[id] === true;
   return progress.status === 'completed'
     ? quest.objectives.every(objective => ownTrue(objective.id))
@@ -86,6 +92,7 @@ function copyKeys<Value>(current: Readonly<Record<string, Value>>, source: Reado
 export function publishQuestItemChange(questId: string, progress: Progress, questItems: QuestItemLedger,
   questReceipts?: QuestActionReceipts):
   'ok' | 'not-eligible' | 'grant-failed' {
+  if (questId === CAIN_QUEST || questId === CAIN_SIDE_QUEST) return publishCainChange(questId, progress, questItems, questReceipts);
   const previousItems = useInventoryStore.getState().questItems;
   const map = useMapStore.getState(), previousProgress = map.questProgress[questId];
   if (!previousProgress) return 'not-eligible';

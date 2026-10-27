@@ -138,7 +138,7 @@ describe('synchronous quest consumer validation', () => {
     expect(second).toEqual(first);
     expect(new Set(first.flatMap(row => row.objectives.map(objective => objective.type))).size).toBe(16);
     expect([...new Set(first.flatMap(row => Object.keys(row.rewards ?? {})))].sort()).toEqual([
-      'areaUnlock', 'gemShards', 'gold', 'itemDrop', 'lootTable', 'mercenaryUnlock', 'npcUnlock', 'questItem',
+      'areaUnlock', 'gemShards', 'gold', 'itemDrop', 'lootTable', 'mercenaryUnlock', 'questItem',
       'service', 'skillPoints', 'stat', 'statPoints', 'title', 'vendorUnlock', 'xp'
     ]);
     expect(JSON.stringify([mainDocument, sideDocument])).toBe(before);

@@ -38,8 +38,8 @@ describe.each(['en', 'zh-CN'])('explicit Cube player path %s', locale => {
   it('offers Inspect, grants only on Recover and retains inert inventory ownership', async () => {
     const english = locale === 'en'; await i18n.changeLanguage(locale);
     const rendered = renderMap();
-    const toggle = screen.getAllByRole('button', { expanded: false })[0];
-    if (!toggle) throw new Error('Missing Act II'); fireEvent.click(toggle);
+    const toggle = screen.getByRole('button', { name: /Act 2 ·|第 2 章 ·/, expanded: false });
+    fireEvent.click(toggle);
     const trigger = await screen.findByTestId('area-objects-a2-dry-hills');
     const before = useMapStore.getState().questProgress;
     fireEvent.click(trigger);

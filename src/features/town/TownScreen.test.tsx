@@ -63,13 +63,15 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     expect(talk).toHaveBeenCalledWith('npc/akara');
     expect(akara).toHaveFocus();
     expect(screen.getByRole('region', { name: locale === 'en' ? 'Akara' : '阿卡拉' })).toBeVisible();
-    expect(screen.getByRole('status')).toHaveTextContent(i18n.t('dialogue.den.untracked', { ns: 'town' }));
-    expect(screen.getByRole('status')).toHaveAttribute('aria-live', 'polite');
+    expect(screen.getByTestId('town-greeting')).toHaveTextContent(i18n.t('dialogue.den.untracked', { ns: 'town' }));
+    expect(screen.getByTestId('town-greeting')).toHaveAttribute('role', 'status');
+    expect(screen.getByTestId('town-greeting')).toHaveAttribute('aria-live', 'polite');
     expect(screen.getAllByTestId(/^town-npc-/)).toHaveLength(5);
-    for (const npc of loadTownNpcs(1)) {
+    expect(screen.queryByTestId('town-npc-cain')).not.toBeInTheDocument();
+    for (const npc of loadTownNpcs(1).filter(npc => npc.id !== 'npc/cain')) {
       expect(screen.getByTestId(`town-npc-${npc.portraitId}`)).toHaveAccessibleName(i18n.t(npc.nameKey, { ns: 'town' }));
     }
-    expect(screen.getByRole('status')).not.toHaveTextContent(/heal|identify|trade|治疗|鉴定|交易/i);
+    expect(screen.getByTestId('town-greeting')).not.toHaveTextContent(/heal|identify|trade|治疗|鉴定|交易/i);
     view.rerender(<TownRoutes />);
     await act(async () => { await i18n.changeLanguage(locale === 'en' ? 'zh-CN' : 'en'); });
     expect(talk).toHaveBeenCalledTimes(1);
@@ -90,17 +92,17 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     const earlyState = useMapStore.getState();
     fireEvent.click(screen.getByTestId('town-npc-akara'));
     expect(useMapStore.getState()).toBe(earlyState);
-    expect(screen.getByRole('status')).toHaveTextContent(i18n.t('dialogue.den.preclear', { ns: 'town' }));
+    expect(screen.getByTestId('town-greeting')).toHaveTextContent(i18n.t('dialogue.den.preclear', { ns: 'town' }));
     act(() => { useMapStore.getState().markCleared('areas/act1-den-of-evil'); });
     expect(progress()?.objectives).toEqual({ 'obj-clear-den': true, 'obj-return': false });
     const beforeWrong = useMapStore.getState();
     fireEvent.click(screen.getByTestId('town-npc-charsi'));
     expect(useMapStore.getState()).toBe(beforeWrong);
-    expect(screen.getByRole('status')).not.toHaveTextContent(i18n.t('dialogue.den.readyToClaim', { ns: 'town' }));
+    expect(screen.getByTestId('town-greeting')).not.toHaveTextContent(i18n.t('dialogue.den.readyToClaim', { ns: 'town' }));
     fireEvent.click(screen.getByTestId('town-npc-akara'));
     expect(progress()).toEqual({ id: QUEST, status: 'completed', objectives: { 'obj-clear-den': true, 'obj-return': true } });
     expect(rewards()).toEqual(originalRewards);
-    expect(screen.getByRole('status')).toHaveTextContent(i18n.t('dialogue.den.readyToClaim', { ns: 'town' }));
+    expect(screen.getByTestId('town-greeting')).toHaveTextContent(i18n.t('dialogue.den.readyToClaim', { ns: 'town' }));
     const complete = useMapStore.getState();
     fireEvent.click(screen.getByTestId('town-npc-akara'));
     expect(useMapStore.getState()).toBe(complete);
@@ -109,7 +111,7 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     act(() => { expect(claimQuestReward(QUEST)).toBe('ok'); });
     const claimedRewards = rewards();
     fireEvent.click(screen.getByTestId('town-npc-akara'));
-    expect(screen.getByRole('status')).toHaveTextContent(i18n.t('dialogue.den.claimed', { ns: 'town' }));
+    expect(screen.getByTestId('town-greeting')).toHaveTextContent(i18n.t('dialogue.den.claimed', { ns: 'town' }));
     expect(rewards()).toEqual(claimedRewards);
     expect(claimQuestReward(QUEST)).toBe('already-claimed');
     expect(rewards()).toEqual(claimedRewards);
@@ -148,6 +150,8 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
   });
 
   it('opens all four Act IV conversations without paying, consuming, or starting quests, and keeps Cain act-specific', () => {
+    useMapStore.getState().markCleared('areas/act2-tomb-of-tal-rasha');
+    useMapStore.getState().markCleared('areas/act3-durance-of-hate');
     useMapStore.getState().setCurrentLocation(4, 'areas/act4-town');
     const before = rewards();
     const ledger = useInventoryStore.getState().questItems;
@@ -165,7 +169,7 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
       fireEvent.click(npc);
       expect(npc).toHaveFocus();
       expect(screen.getByRole('region', { name })).toBeVisible();
-      expect(screen.getByRole('status')).toHaveTextContent(i18n.t(`dialogue.greetings.act4.${slug}`, { ns: 'town' }));
+      expect(screen.getByTestId('town-greeting')).toHaveTextContent(i18n.t(`dialogue.greetings.act4.${slug}`, { ns: 'town' }));
       expect(useMapStore.getState().questProgress).toBe(quests);
       expect(useMapStore.getState().questReceipts).toBe(receipts);
       expect(useInventoryStore.getState().questItems).toBe(ledger);
@@ -175,8 +179,8 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     });
     expect(talk).toHaveBeenCalledTimes(4);
     fireEvent.click(screen.getByTestId('town-npc-cain'));
-    expect(screen.getByRole('status')).toHaveTextContent(locale === 'en' ? 'Both are consumed' : '两件物品都会消耗');
-    expect(screen.getByRole('status')).not.toHaveTextContent(/Jade Figurine|玉制小雕像/);
+    expect(screen.getByTestId('town-greeting')).toHaveTextContent(locale === 'en' ? 'Both are consumed' : '两件物品都会消耗');
+    expect(screen.getByTestId('town-greeting')).not.toHaveTextContent(/Jade Figurine|玉制小雕像/);
     act(() => { useMapStore.getState().setCurrentLocation(3, 'areas/act3-town'); });
     expect(screen.queryByTestId('town-conversation')).not.toBeInTheDocument();
     fireEvent.click(screen.getByTestId('town-npc-cain'));
@@ -196,8 +200,8 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     expect(talk).toHaveBeenCalledTimes(1);
     expect(talk).toHaveBeenCalledWith('npc/atma');
     expect(atma).toHaveFocus();
-    expect(screen.getByRole('status')).toHaveTextContent(locale === 'en' ? 'beneath the Far Oasis' : '遥远绿洲下方');
-    expect(screen.getByRole('status')).not.toHaveTextContent(/sewer|下水道|repair|修理/i);
+    expect(screen.getByTestId('town-greeting')).toHaveTextContent(locale === 'en' ? 'beneath the Far Oasis' : '遥远绿洲下方');
+    expect(screen.getByTestId('town-greeting')).not.toHaveTextContent(/sewer|下水道|repair|修理/i);
     expect(useMapStore.getState().questProgress).toBe(questsBefore);
     expect(rewards()).toEqual(before);
     fireEvent.click(screen.getByTestId('town-conversation-close'));

@@ -32,8 +32,7 @@ function renderMap() {
   </Suspense></I18nextProvider>);
 }
 async function openJournal() {
-  const toggle = screen.getAllByRole('button', { expanded: false })[0];
-  if (!toggle) throw new Error('Missing Act II toggle');
+  const toggle = screen.getByRole('button', { name: /Act 2 ·|第 2 章 ·/, expanded: false });
   fireEvent.click(toggle);
   const trigger = await screen.findByTestId('area-objects-a2-arcane-sanctuary');
   fireEvent.click(trigger);

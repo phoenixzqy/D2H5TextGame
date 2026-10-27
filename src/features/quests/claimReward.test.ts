@@ -117,11 +117,17 @@ describe('shared quest claim safety and actual Den contract', () => {
     expectRefusal(DEN, 'no-player');
   });
 
-  it.each([CAIN, JADE])('refuses the entire actual unsupported bundle %s', id => {
+  it.each([JADE])('refuses the entire actual unsupported bundle %s', id => {
     hire();
     complete(id);
     expect(canClaim(id)).toBe(true);
     expectRefusal(id, 'unsupported-rewards');
+  });
+
+  it('requires actual physical rescue before the Cain permanent-entitlement Claim', () => {
+    hire(); complete(CAIN);
+    expect(canClaim(CAIN)).toBe(false);
+    expectRefusal(CAIN, 'not-completed');
   });
 
   it.each(['idle', 'loading', 'error'] as const)('refuses before writes while hydration is %s', status => {

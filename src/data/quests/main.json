@@ -37,13 +37,13 @@
       "type": "main",
       "actId": "acts/act1",
       "giver": "npc/akara",
-      "description": "Find Deckard Cain, the last of the Horadrim. Travel through the Dark Wood and the Black Marsh to the ruined village of Tristram and free him from the demonic cage.",
+      "description": "Find Deckard Cain, the last of the Horadrim. Recover the Scroll of Inifuss in the Dark Wood, give it to Akara, then rescue him at the ruined-village cage in the Dark Wood.",
       "objectives": [
-        { "id": "obj-inifuss-tree", "type": "interact", "targetId": "objects/inifuss_tree", "areaId": "areas/act1_dark_wood", "description": "Retrieve the Scroll of Inifuss." },
-        { "id": "obj-decode", "type": "talk", "npcId": "npc/akara", "description": "Have Akara decipher the scroll." },
-        { "id": "obj-rescue-cain", "type": "interact", "targetId": "objects/cain_cage", "areaId": "areas/act1_tristram", "description": "Free Deckard Cain from his cage." }
+        { "id": "obj-inifuss-tree", "type": "fetch", "itemId": "quest/scroll_of_inifuss", "targetId": "objects/inifuss_tree", "areaId": "areas/act1-dark-wood", "description": "Recover the Scroll of Inifuss from the tree after clearing the Dark Wood." },
+        { "id": "obj-decode", "type": "give", "itemId": "quest/scroll_of_inifuss", "npcId": "npc/akara", "description": "Have Akara decipher the scroll." },
+        { "id": "obj-rescue-cain", "type": "interact", "targetId": "objects/cain_cage", "areaId": "areas/act1-dark-wood", "description": "Rescue Deckard Cain from his cage in the Dark Wood ruined village." }
       ],
-      "rewards": { "xp": 2500, "service": "identify_free", "npcUnlock": "npc/cain" },
+      "rewards": { "xp": 2500, "service": "identify_free" },
       "unlocks": "services/identify",
       "order": 3
     },
