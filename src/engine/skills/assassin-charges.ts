@@ -5,6 +5,7 @@ import authored from '@/data/skills/assassin.json';
 import tuning from '../../data/combat/assassin-charges.json';
 import schema from '../../data/schema/assassin-charges.schema.json';
 import type { SkillDef } from '@/engine/types/skills';
+import type { DamageType } from '@/engine/types/attributes';
 import type { DamageEffect, RegisteredSkill } from '@/engine/skills/effects';
 import { canonicalSkillIdFromData, registeredSkillFromJson } from '@/engine/skills/dataCatalog';
 import { createSkillValidator } from '@/engine/skills/skill-validator';
@@ -101,6 +102,55 @@ export interface AssassinChargeRelease {
   readonly ranks: readonly number[];
   readonly effect?: DamageEffect;
 }
+
+/** Unmodified equal-rank release examples; this preview grants no paid combat authority. */
+export interface AssassinMartialDisplay {
+  readonly kind: 'builder' | 'finisher';
+  readonly maxStacks: number;
+  readonly durationSeconds: number;
+  readonly finishers: readonly AssassinMartialFinisher[];
+  readonly payout?:
+    | { readonly kind: 'damage'; readonly percentPerStack: number; readonly damageTypes: readonly DamageType[];
+        readonly releases: readonly { readonly stacks: number; readonly min: number; readonly max: number }[] }
+    | { readonly kind: 'recovery';
+        readonly releases: readonly { readonly stacks: number; readonly lifePercent: number; readonly manaPercent: number }[] };
+}
+
+function chargeReleaseEffect(builder: AssassinChargeBuilder, ranks: readonly number[]): DamageEffect | undefined {
+  const source = sources.get(builder)?.skill.effects[0];
+  if (builder === 'assassin.cobra_strike' || source?.kind !== 'damage') return undefined;
+  const { perRank, ...effect } = structuredClone(source);
+  const base = source.base.map((value, index) => Math.floor(ranks.reduce((sum, rank) =>
+    sum + value + (perRank?.[index] ?? 0) * (rank - 1), 0) * rules.damageFractionPerStack));
+  return { ...effect, base: [base[0] ?? 0, base[1] ?? 0] };
+}
+
+/** Resolve only complete authored martial templates, using the runtime's sum-then-floor payoff. */
+export function resolveAssassinMartialDisplay(input: unknown, rank: number): AssassinMartialDisplay | undefined {
+  if (!validateSource(input) || input.trigger !== 'active') return undefined;
+  const id = canonicalSkillIdFromData(input.id), source = sources.get(id);
+  if (!source || input.maxLevel !== source.maxRank || !Number.isInteger(rank) || rank < 1 || rank > source.maxRank ||
+    !matchesAssassinMartialSkill(registeredSkillFromJson({ ...input, trigger: 'active' }))) return undefined;
+  const common = { maxStacks: rules.maxStacks, durationSeconds: rules.durationMs / 1000, finishers: rules.finishers };
+  const builder = rules.builders.find(builder => builder === id);
+  if (!builder) return freeze({ ...common, kind: 'finisher' });
+  const stacks = Array.from({ length: rules.maxStacks }, (_, index) => index + 1);
+  if (builder === 'assassin.cobra_strike') return freeze({ ...common, kind: 'builder', payout: {
+    kind: 'recovery', releases: stacks.map(stacks => ({ stacks,
+      lifePercent: Number((rules.lifeFractionPerStack * stacks * 100).toFixed(4)),
+      manaPercent: Number((rules.manaFractionPerStack * stacks * 100).toFixed(4)) }))
+  } });
+  const effect = chargeReleaseEffect(builder, [rank]);
+  if (!effect) return undefined;
+  return freeze({ ...common, kind: 'builder', payout: { kind: 'damage',
+    percentPerStack: rules.damageFractionPerStack * 100,
+    damageTypes: effect.components?.map(component => component.damageType) ?? [effect.damageType],
+    releases: stacks.map(stacks => {
+      const release = chargeReleaseEffect(builder, Array.from({ length: stacks }, () => rank));
+      return { stacks, min: release?.base[0] ?? 0, max: release?.base[1] ?? 0 };
+    })
+  } });
+}
 /** One battle owns one instance; only qualified paid positive hostile hits may call gain. */
 export class AssassinCharges {
   readonly #pools = new Map<string, Map<AssassinChargeBuilder, AssassinChargePool>>();
@@ -137,13 +187,8 @@ export class AssassinCharges {
     if (pools.length === 0) return Object.freeze([]);
     this.#pools.delete(actor);
     return freeze(pools.map(pool => {
-      const source = sources.get(pool.builder)?.skill.effects[0];
-      if (pool.builder === 'assassin.cobra_strike' || source?.kind !== 'damage')
-        return { builder: pool.builder, ranks: [...pool.ranks] };
-      const { perRank, ...effect } = structuredClone(source);
-      const base = source.base.map((value, index) => Math.floor(pool.ranks.reduce((sum, rank) =>
-        sum + value + (perRank?.[index] ?? 0) * (rank - 1), 0) * rules.damageFractionPerStack));
-      return { builder: pool.builder, ranks: [...pool.ranks], effect: { ...effect, base: [base[0] ?? 0, base[1] ?? 0] } };
+      const effect = chargeReleaseEffect(pool.builder, pool.ranks);
+      return { builder: pool.builder, ranks: [...pool.ranks], ...(effect ? { effect } : {}) };
     }));
   }
 }

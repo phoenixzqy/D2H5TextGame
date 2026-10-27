@@ -41,6 +41,7 @@ import { HYDRA_DEFINITION, hydraBodyStats } from './hydra';
 import { decoyBodyStats, decoyDuration, resolveDecoyDefinition } from './decoy';
 import { getAssassinSummonStats } from './assassin-summon-definition';
 import { ASSASSIN_SHADOW_POLICY, type AssassinShadowTemplate } from './assassin-shadow-skills';
+import { resolveAssassinMartialDisplay, type AssassinMartialDisplay } from './assassin-charges';
 
 export interface DisplaySkillSource {
   readonly decoy?: import('../types/skills').SkillDef['decoy'];
@@ -192,6 +193,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Paid charge rules and base release examples, independent of live private pools. */
+  readonly assassinMartial?: AssassinMartialDisplay;
   /** Body-owned resources and captured attack policy; preview alone grants no native authority. */
   readonly assassinShadow?: { readonly template: AssassinShadowTemplate; readonly rankCap: number;
     readonly manaMax: number; readonly independentSkills: readonly string[] };
@@ -635,6 +638,7 @@ export function computeSkillRankDisplayStats(
   global?: SummonPassiveProjection
 ): SkillRankDisplayStats {
   const safeRank = clampRank(rank, skill.maxLevel);
+  const assassinMartial = resolveAssassinMartialDisplay(skill, safeRank);
   const shadow = shadowTemplate(skill), shadowBody = shadow ? getAssassinSummonStats(shadow) : undefined;
   const decoy = decoyDisplayDefinition(skill);
   const decrepify = skill.id === 'skills-necromancer-decrepify' && isDecrepifyDefinition(skill)
@@ -777,6 +781,7 @@ export function computeSkillRankDisplayStats(
 
   return {
     rank: safeRank,
+    ...(assassinMartial ? { assassinMartial } : {}),
     ...(skill.id === 'skills-barbarian-battle-command' && skill.trigger === 'active' &&
       skill.target === 'all-allies' && skill.skillRankBuff ? { skillRankBuff: {
         bonusRanks: skill.skillRankBuff.bonusRanks,
