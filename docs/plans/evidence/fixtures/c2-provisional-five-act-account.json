@@ -1,0 +1,66 @@
+{
+  "status": "verified-checkpoint-xp-only",
+  "method": "sum floor(100*k^2.5) for k=1..level-1, plus player.experience",
+  "checkpoints": [
+    {
+      "endpoint": "Andariel",
+      "source": "c1-fresh-act1-earned.json.gz",
+      "member": null,
+      "gzipSha256": "fc98899c8bbe04a29e1b94e865afce87b27670da512d222bd4b24788e095467b",
+      "rawSha256": "e409b3129c792761f6cb480124725bf7daa8cf85ca66090786d5fbff719b0ca3",
+      "saveVersion": 11,
+      "level": 12,
+      "xpIntoLevel": 32341,
+      "cumulativeXp": 179290
+    },
+    {
+      "endpoint": "Duriel",
+      "source": "earned-duriel-attempt262/retained-final.json.gz",
+      "member": null,
+      "gzipSha256": "572c538afc745b60e49f610ee4474989463d3cae95a4cf138841710dcebba46a",
+      "rawSha256": "9219fbd9a24ffb993d987191e37b10934556d22ab201dc3110db7c6457260e69",
+      "saveVersion": 21,
+      "level": 24,
+      "xpIntoLevel": 188752,
+      "cumulativeXp": 1985060
+    },
+    {
+      "endpoint": "Mephisto",
+      "source": "earned-mephisto-and-act4-through375/evidence.tar.gz",
+      "member": "priority-preparation369/guardian-claim/guardian-claimed-continued.json.gz",
+      "gzipSha256": "49852f1e14c1ae28633fd1a95d579cf4671c8c14b5e04f0f3b44e49591bfc0b1",
+      "rawSha256": "c7cf597ed3458d3ed05d52284daf387d0f952937fb3bd116191956a0da46c1bd",
+      "saveVersion": 21,
+      "level": 30,
+      "xpIntoLevel": 279534,
+      "cumulativeXp": 4261760
+    },
+    {
+      "endpoint": "Diablo",
+      "source": "earned-diablo391/retained-final.json.gz",
+      "member": null,
+      "gzipSha256": "51e9441b4d7bd8ede94cd83dad9d30ff720e42f8deafcbb1ea8f758c5e36f528",
+      "rawSha256": "98376d8d827d2b337a2b9e3317ac937a6a59ed7ff13b0ae23596d6c649e9cd14",
+      "saveVersion": 21,
+      "level": 32,
+      "xpIntoLevel": 149192,
+      "cumulativeXp": 5159430
+    },
+    {
+      "endpoint": "Baal",
+      "source": "earned-baal427/retained-final.json.gz",
+      "member": null,
+      "gzipSha256": "45ebbfbf5b04379af05c5c1de69c18d6a71460050145f7411399700265a29442",
+      "rawSha256": "0abd575b9e591d8a8dc42653ebe496509acc77f6dd566b84bcc6dc009c23d52b",
+      "saveVersion": 22,
+      "level": 35,
+      "xpIntoLevel": 105381,
+      "cumulativeXp": 6994520
+    }
+  ],
+  "limitations": [
+    "historical ActII ordinal restarted; not one continuous0-427 launch inventory",
+    "complete actual combat/economic/human decision times absent",
+    "not pacing or full C2 acceptance"
+  ]
+}
