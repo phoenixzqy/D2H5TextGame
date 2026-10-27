@@ -1,0 +1,696 @@
+{
+  "status": "local shared preview, bilingual panels/chip and native boundaries validated; production and integrated whole gates pending",
+  "head": "acaa1cd2942a1d23fef0f01b93e96298b703f6c6",
+  "taskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj",
+  "checks": {
+    "flight-branch-preview-red": {
+      "label": "flight-branch-preview-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/displayStats.assassin-flight.test.ts"
+      ],
+      "exit": 1,
+      "seconds": 3.5746250870870426,
+      "inputsUnchanged": true,
+      "inputCount": 2545,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headAfter": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 3 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  3 failed | 1 passed (4)"
+      ]
+    },
+    "flight-preview-related": {
+      "label": "flight-preview-related",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/engine/skills/displayStats.assassin-flight.test.ts",
+        "src/engine/skills/displayStats.assassin-traps.test.ts",
+        "src/engine/skills/displayStats.assassin-charges.test.ts",
+        "src/engine/skills/assassin-flight.test.ts",
+        "src/features/skills/SkillsScreen.assassin-charges.test.tsx",
+        "src/features/skills/SkillsScreen.assassin-traps.test.tsx"
+      ],
+      "exit": 0,
+      "seconds": 21.876777117024176,
+      "inputsUnchanged": true,
+      "inputCount": 2545,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headAfter": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  6 passed (6)",
+        "Tests  238 passed (238)"
+      ]
+    },
+    "flight-preview-types": {
+      "label": "flight-preview-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/preview.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 5.152208171086386,
+      "inputsUnchanged": true,
+      "inputCount": 2545,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headAfter": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-preview-lint": {
+      "label": "flight-preview-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/skills/displayStats.ts",
+        "src/engine/skills/displayStats.assassin-flight.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 10.35681783396285,
+      "inputsUnchanged": true,
+      "inputCount": 2545,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headAfter": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-preview-engine": {
+      "label": "flight-preview-engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts"
+      ],
+      "exit": 0,
+      "seconds": 193.47932256606873,
+      "inputsUnchanged": true,
+      "inputCount": 2545,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headAfter": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  385 passed (385)",
+        "Tests  10038 passed (10038)"
+      ]
+    },
+    "flight-screen-red": {
+      "label": "flight-screen-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/screen.workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 11.43752780300565,
+      "inputsUnchanged": true,
+      "inputCount": 2545,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headAfter": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 8 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  8 failed (8)"
+      ]
+    },
+    "flight-screen-related-final": {
+      "label": "flight-screen-related-final",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/skills/SkillsScreen.assassin-flight.test.tsx",
+        "src/features/skills/SkillsScreen.assassin-charges.test.tsx",
+        "src/features/skills/SkillsScreen.assassin-traps.test.tsx",
+        "src/engine/skills/displayStats.assassin-flight.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 15.799801105982624,
+      "inputsUnchanged": true,
+      "inputCount": 2546,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "f61e9d1409737edb3b8cac58c255c26fd5718cee",
+      "headAfter": "f61e9d1409737edb3b8cac58c255c26fd5718cee",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  4 passed (4)",
+        "Tests  156 passed (156)"
+      ]
+    },
+    "flight-screen-types-final": {
+      "label": "flight-screen-types-final",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/screen.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 10.503158778999932,
+      "inputsUnchanged": true,
+      "inputCount": 2546,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "f61e9d1409737edb3b8cac58c255c26fd5718cee",
+      "headAfter": "f61e9d1409737edb3b8cac58c255c26fd5718cee",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-screen-lint-final": {
+      "label": "flight-screen-lint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/features/skills/SkillsScreen.tsx",
+        "src/features/skills/SkillsScreen.assassin-flight.test.tsx",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 11.38211706909351,
+      "inputsUnchanged": true,
+      "inputCount": 2546,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "f61e9d1409737edb3b8cac58c255c26fd5718cee",
+      "headAfter": "f61e9d1409737edb3b8cac58c255c26fd5718cee",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-combat-red": {
+      "label": "flight-combat-red",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/combat.workspace.mjs"
+      ],
+      "exit": 1,
+      "seconds": 10.05354820692446,
+      "inputsUnchanged": true,
+      "inputCount": 2545,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headAfter": "b40da6c8a66440061fcd685eb70bf63ce8bd8f9b",
+      "headUnchanged": true,
+      "totals": [
+        "\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 4 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "Test Files  1 failed (1)",
+        "Tests  4 failed (4)"
+      ]
+    },
+    "flight-combat-related": {
+      "label": "flight-combat-related",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/features/combat/CombatScreen.assassin-flight.test.tsx",
+        "src/features/combat/CombatScreen.assassin-charges.test.tsx",
+        "src/features/combat/CombatScreen.assassin-traps.test.tsx",
+        "src/stores/assassin-flight-native.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 10.939238558989018,
+      "inputsUnchanged": true,
+      "inputCount": 2547,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "98416d5fa8f0350ce63cd6eb8b197b3ecca823b7",
+      "headAfter": "98416d5fa8f0350ce63cd6eb8b197b3ecca823b7",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  4 passed (4)",
+        "Tests  93 passed (93)"
+      ]
+    },
+    "flight-combat-types": {
+      "label": "flight-combat-types",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/combat.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 9.991368761984631,
+      "inputsUnchanged": true,
+      "inputCount": 2547,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "98416d5fa8f0350ce63cd6eb8b197b3ecca823b7",
+      "headAfter": "98416d5fa8f0350ce63cd6eb8b197b3ecca823b7",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-combat-lint": {
+      "label": "flight-combat-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/features/combat/CombatScreen.tsx",
+        "src/features/combat/CombatScreen.assassin-flight.test.tsx",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 10.15852747100871,
+      "inputsUnchanged": true,
+      "inputCount": 2547,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "98416d5fa8f0350ce63cd6eb8b197b3ecca823b7",
+      "headAfter": "98416d5fa8f0350ce63cd6eb8b197b3ecca823b7",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-boundaries-expanded": {
+      "label": "flight-boundaries-expanded",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/boundaries.workspace.mjs"
+      ],
+      "exit": 0,
+      "seconds": 7.939616534044035,
+      "inputsUnchanged": true,
+      "inputCount": 2547,
+      "externalInputCount": 4,
+      "externalInputsUnchanged": true,
+      "headBefore": "460ad2993d1dc3be6086f6a9d564a0eb4299972e",
+      "headAfter": "460ad2993d1dc3be6086f6a9d564a0eb4299972e",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  1 passed (1)",
+        "Tests  11 passed (11)"
+      ]
+    },
+    "flight-lifecycle-related-final": {
+      "label": "flight-lifecycle-related-final",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--config",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/branch.config.mjs",
+        "--workspace",
+        "vitest.workspace.ts",
+        "src/stores/assassin-flight-boundaries.test.ts",
+        "src/stores/assassin-flight-lifecycle.test.ts",
+        "src/stores/assassin-flight-native.test.ts",
+        "src/stores/assassin-traps-lifecycle.test.ts",
+        "src/stores/assassin-shadow-skills-lifecycle.test.ts",
+        "src/stores/assassin-charge-lifecycle.test.ts",
+        "src/stores/assassin-charge-command.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 15.009277656092308,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "460ad2993d1dc3be6086f6a9d564a0eb4299972e",
+      "headAfter": "460ad2993d1dc3be6086f6a9d564a0eb4299972e",
+      "headUnchanged": true,
+      "totals": [
+        "Test Files  7 passed (7)",
+        "Tests  67 passed (67)"
+      ]
+    },
+    "flight-lifecycle-types-final": {
+      "label": "flight-lifecycle-types-final",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit",
+        "-p",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/lifecycle.tsconfig.json"
+      ],
+      "exit": 0,
+      "seconds": 9.624715743004344,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "460ad2993d1dc3be6086f6a9d564a0eb4299972e",
+      "headAfter": "460ad2993d1dc3be6086f6a9d564a0eb4299972e",
+      "headUnchanged": true,
+      "totals": []
+    },
+    "flight-lifecycle-lint-final": {
+      "label": "flight-lifecycle-lint-final",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/stores/assassin-flight-boundaries.test.ts",
+        "src/stores/assassin-flight-lifecycle.test.ts",
+        "--max-warnings",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 9.955357224913314,
+      "inputsUnchanged": true,
+      "inputCount": 2549,
+      "externalInputCount": 3,
+      "externalInputsUnchanged": true,
+      "headBefore": "460ad2993d1dc3be6086f6a9d564a0eb4299972e",
+      "headAfter": "460ad2993d1dc3be6086f6a9d564a0eb4299972e",
+      "headUnchanged": true,
+      "totals": []
+    }
+  },
+  "artifacts": {
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-branch-preview-red.json": {
+      "bytes": 848,
+      "sha256": "aacf26384a7a1cbad457dee1f40d89d21e080bf3388226cfd5dd3d50eacf3373"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-branch-preview-red.log": {
+      "bytes": 4797,
+      "sha256": "5be560bd4d32437b3091cfe1c07f70eda997cbb7501f0c4be84676c18bc4c0bb"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-branch-preview-red-inputs.json": {
+      "bytes": 307734,
+      "sha256": "668a3115c0c32fed33e825d28c9d59922dfce7a45f90761f76b1e83bfa34bd81"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-branch-preview-red-external-inputs.json": {
+      "bytes": 508,
+      "sha256": "c47b658dbb502197f39bb01813ee9e08203106d1cb381710df868bb54476a7ee"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-related.json": {
+      "bytes": 1033,
+      "sha256": "4ae26941ecac76c3d70f03b884bd48f0349b6080ba06be780fa9b00f2a095959"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-related.log": {
+      "bytes": 795,
+      "sha256": "9dccd032a17a6558bbe57e495aa2e930e2bd3b7ea99e9227d19bf9468654be87"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-related-inputs.json": {
+      "bytes": 307734,
+      "sha256": "67aaa662d96b2896c3a50ec64aee45f4c3c279d84af009b9aa9b213d42fbc7f7"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-related-external-inputs.json": {
+      "bytes": 508,
+      "sha256": "d762cd05ff5bdb2b6a5fc69b45d7012358f27d7cdb460c1cda122f07e1c0a1a6"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-types.json": {
+      "bytes": 558,
+      "sha256": "877a2bb0b9161e718ceb050a9e2892a5edcacdcee304b9add040d92549f333bc"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-types.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-types-inputs.json": {
+      "bytes": 307734,
+      "sha256": "67aaa662d96b2896c3a50ec64aee45f4c3c279d84af009b9aa9b213d42fbc7f7"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-types-external-inputs.json": {
+      "bytes": 508,
+      "sha256": "d762cd05ff5bdb2b6a5fc69b45d7012358f27d7cdb460c1cda122f07e1c0a1a6"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-lint.json": {
+      "bytes": 559,
+      "sha256": "fc482c43db06290a30b7c7af98338df40741e6ec66ebdd721445269442758d19"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-lint.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-lint-inputs.json": {
+      "bytes": 307734,
+      "sha256": "67aaa662d96b2896c3a50ec64aee45f4c3c279d84af009b9aa9b213d42fbc7f7"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-lint-external-inputs.json": {
+      "bytes": 508,
+      "sha256": "d762cd05ff5bdb2b6a5fc69b45d7012358f27d7cdb460c1cda122f07e1c0a1a6"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-engine.json": {
+      "bytes": 665,
+      "sha256": "29de89c54e0a5792b63d6bcda378ffb4b7d9c85addf6e61f530030d553559459"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-engine.log": {
+      "bytes": 75473,
+      "sha256": "ae2e307cc944105aaf097074f99943ae891e578a32dbc5f931861fecc75a3fa5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-engine-inputs.json": {
+      "bytes": 307734,
+      "sha256": "67aaa662d96b2896c3a50ec64aee45f4c3c279d84af009b9aa9b213d42fbc7f7"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-preview-engine-external-inputs.json": {
+      "bytes": 508,
+      "sha256": "d762cd05ff5bdb2b6a5fc69b45d7012358f27d7cdb460c1cda122f07e1c0a1a6"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-red.json": {
+      "bytes": 846,
+      "sha256": "ea9001d38ff63a307133f588035860dc48d492589aa92fdc091d28373b3b06dd"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-red.log": {
+      "bytes": 20985,
+      "sha256": "57f17da7f95bc2a9720978a40d5a52543d0846896b61498e7cb8b4a51d4889cf"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-red-inputs.json": {
+      "bytes": 307734,
+      "sha256": "67aaa662d96b2896c3a50ec64aee45f4c3c279d84af009b9aa9b213d42fbc7f7"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-red-external-inputs.json": {
+      "bytes": 689,
+      "sha256": "73d499f7f1cc3f7b4833a18c020db711e087da3e866d0df8b8f8fff08742ddf7"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-related-final.json": {
+      "bytes": 930,
+      "sha256": "4163c1b821980ad6723146a0f4ee0d171696624eb6b5b7d4330528907c87f4ed"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-related-final.log": {
+      "bytes": 635,
+      "sha256": "55de3fd4c8fd205d98761a400801c942d9ba972b01da926c7dab10c3c6f404d9"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-related-final-inputs.json": {
+      "bytes": 307865,
+      "sha256": "2ef7f583242f11727400367decbe152dc839dc553ba9b3e44876a2a42dae38c5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-related-final-external-inputs.json": {
+      "bytes": 507,
+      "sha256": "b00fc01cbb2e1fa8ad36c3416b356cf0fea7983b2a667beb8c7337a6b9e3030b"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-types-final.json": {
+      "bytes": 563,
+      "sha256": "776688f2e416641ce2a2e4847e2107fd32185b04e12fc8a428b9a01339e2847c"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-types-final.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-types-final-inputs.json": {
+      "bytes": 307865,
+      "sha256": "2ef7f583242f11727400367decbe152dc839dc553ba9b3e44876a2a42dae38c5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-types-final-external-inputs.json": {
+      "bytes": 507,
+      "sha256": "b00fc01cbb2e1fa8ad36c3416b356cf0fea7983b2a667beb8c7337a6b9e3030b"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-lint-final.json": {
+      "bytes": 570,
+      "sha256": "63ed5e64dd26cd83e8ef777fb8806814351f8e12b1fb499405ebb966fc45a7a0"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-lint-final.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-lint-final-inputs.json": {
+      "bytes": 307865,
+      "sha256": "2ef7f583242f11727400367decbe152dc839dc553ba9b3e44876a2a42dae38c5"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-screen-lint-final-external-inputs.json": {
+      "bytes": 507,
+      "sha256": "b00fc01cbb2e1fa8ad36c3416b356cf0fea7983b2a667beb8c7337a6b9e3030b"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-red.json": {
+      "bytes": 846,
+      "sha256": "b969ec8643e19e3d8d28525ffd15dc360c4c08d4c7440c6a2039d743e7849e70"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-red.log": {
+      "bytes": 24091,
+      "sha256": "8e8ba8900976d0ec2715b15d97ccd51193b7a398cc45d354cd9d2ae7a99cf9a6"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-red-inputs.json": {
+      "bytes": 307734,
+      "sha256": "67aaa662d96b2896c3a50ec64aee45f4c3c279d84af009b9aa9b213d42fbc7f7"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-red-external-inputs.json": {
+      "bytes": 689,
+      "sha256": "edad926f6789a103b8d4349ab4337a984b46cdc0493f53a3ec0846ae81bcd07c"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-related.json": {
+      "bytes": 909,
+      "sha256": "a86d11e8866804a829800e47b2b032bfa494a4bc09dfb7d547b26219f5952c5a"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-related.log": {
+      "bytes": 615,
+      "sha256": "6fdbf0faf479fa684b5cd37edaa9af9dde03e7b03353c3e6b05134bb97092fde"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-related-inputs.json": {
+      "bytes": 307996,
+      "sha256": "4ac6de2e70f8210caacd9e15e328ec181052fb6757af79045d8270be3f3f0057"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-related-external-inputs.json": {
+      "bytes": 507,
+      "sha256": "07357d07bcef567bed43ec4172edfd924eee529c22939d62a1d91df229dd2c08"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-types.json": {
+      "bytes": 556,
+      "sha256": "06a0e27770ac934eb73c72a9160245dfd1f5a2932241e7562a099b752a0cd97d"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-types.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-types-inputs.json": {
+      "bytes": 307996,
+      "sha256": "4ac6de2e70f8210caacd9e15e328ec181052fb6757af79045d8270be3f3f0057"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-types-external-inputs.json": {
+      "bytes": 507,
+      "sha256": "07357d07bcef567bed43ec4172edfd924eee529c22939d62a1d91df229dd2c08"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-lint.json": {
+      "bytes": 564,
+      "sha256": "0e935d751e47e8846a2101de31245151acb311f72aed4a96bd6288fdac08fc60"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-lint.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-lint-inputs.json": {
+      "bytes": 307996,
+      "sha256": "4ac6de2e70f8210caacd9e15e328ec181052fb6757af79045d8270be3f3f0057"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-combat-lint-external-inputs.json": {
+      "bytes": 507,
+      "sha256": "07357d07bcef567bed43ec4172edfd924eee529c22939d62a1d91df229dd2c08"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-boundaries-expanded.json": {
+      "bytes": 753,
+      "sha256": "dc8155ea04ed44d39757a901d6bd3db988f174070f60f50cf90896c9240407ed"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-boundaries-expanded.log": {
+      "bytes": 398,
+      "sha256": "b961b203bbcaf24df0dfc4f6d3e41d73536a58ff581dab6044884e9b1b4c5366"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-boundaries-expanded-inputs.json": {
+      "bytes": 307996,
+      "sha256": "4ac6de2e70f8210caacd9e15e328ec181052fb6757af79045d8270be3f3f0057"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-boundaries-expanded-external-inputs.json": {
+      "bytes": 700,
+      "sha256": "a0fc7629cb2ad26c4b1b40890a82b7296c4d022a39496e3436e3b2909d39f801"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-lifecycle-related-final.json": {
+      "bytes": 1040,
+      "sha256": "a270f776501208a418fbd6a7b78f5b4f93991f50ee2020fa48f8c33581b1de33"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-lifecycle-related-final.log": {
+      "bytes": 795,
+      "sha256": "6d72a930b3a6a6aa89173c4a658c754475cda46d15fd470c12061828d5d3b913"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-lifecycle-related-final-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-lifecycle-related-final-external-inputs.json": {
+      "bytes": 510,
+      "sha256": "bdb0a1c240d0bca4750e55e57333384c10b9454daaa929f8aaa2759ae304a71f"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-lifecycle-types-final.json": {
+      "bytes": 568,
+      "sha256": "ebcd2619cb4c5d99b1c1c50ab6c734632263bbecaf9fa61a9927a43e7d4c8867"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-lifecycle-types-final.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-lifecycle-types-final-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-lifecycle-types-final-external-inputs.json": {
+      "bytes": 510,
+      "sha256": "bdb0a1c240d0bca4750e55e57333384c10b9454daaa929f8aaa2759ae304a71f"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-lifecycle-lint-final.json": {
+      "bytes": 569,
+      "sha256": "cf200d8360572d03502c16505e9e11a04465dbdf8cd8e3856f8057cf384e62a4"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-lifecycle-lint-final.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-lifecycle-lint-final-inputs.json": {
+      "bytes": 308233,
+      "sha256": "b9fb6fdec5dea388b862c7790bfc6e75c2db12a7e9a774bd8cf46af866432777"
+    },
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-flight-z9y3pvvj/flight-lifecycle-lint-final-external-inputs.json": {
+      "bytes": 510,
+      "sha256": "bdb0a1c240d0bca4750e55e57333384c10b9454daaa929f8aaa2759ae304a71f"
+    }
+  }
+}

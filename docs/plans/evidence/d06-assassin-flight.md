@@ -41,3 +41,33 @@ Original logs, source/input hashes and diagnosis snapshots remain in the exact
 root-owned Flight task recorded in the packet, needed by ongoing implementation
 and final evidence consumers. Root owns eventual archive/readback and exact
 cleanup after consumers finish; no cleanup of this active task is claimed.
+
+
+## Shared preview, bilingual feedback and native lifecycle checkpoint
+
+f61e9d14 adds the shared immutable Flight preview. Original branch3RED/one negative
+control becomes4PASS;238related/6PASS with strict types/lint. Exact-input engine
+10038/385PASS193.479s. 98416d5f adds current/next/MAX damage, magical-dodge points,
+blink duration and truthful payment/miss/reset copy in both locales. Original
+screen8RED→8PASS;156related/4PASS and strict types/lint. 460ad299 adds actual paid
+localized positive finite combat chips:4RED→4PASS;93related/4PASS/types/lint.
+
+acaa1cd2 adds11 native boundary and three actual store lifecycle cases. Real paid
+Warrior ranks1/20 use captured skill caps and their own15MP; paid Command gives
+20→21 once, including causal magical evasion at seed2. Seed5 proves additive
+existing dodge; a paid rank21 window survives actual Command expiry inside its
+lifetime. Reflection215 is fully absorbed by240personal shield leaving25, or
+kills the unshielded1HP source and clears the observation. Target death never
+retargets. Original owner death at2000ms removes Warrior's1860–2860ms blink early.
+Actual allocation changes only the next wave, preserves MP/CD, and imports/flee/
+town respec discard paid state. Final67related/7PASS15.009s, strict types9.625s/
+lint9.955sPASS, all2549repository/three external inputs and HEAD exact.
+
+[Receipts and hashes](fixtures/assassin-flight/ui-lifecycle-checkpoint.json).
+Original test-oracle/fixture/scoped type and lint mistakes remain with diagnoses:
+existing English Attack/Chinese spacing, missing matcher declarations, authored
+Command11MP, unrelated pre-cast lethal DoT, guessed reflection roll and redundant
+union checks. No suppression, removed requirement or source workaround was used.
+Production browser/build/full unit/static checks are next; no whole Flight skill
+credit, earned balance/campaign or independent approval. The active Flight task
+remains needed, with root owning its eventual archive/readback/exact cleanup.

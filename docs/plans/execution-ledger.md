@@ -13658,3 +13658,19 @@ remain. Inventory195bounded/17unverified/one review, genuineL33/Ancientsclaimed/
 Baaluncleared/next402 unchanged. Root retains the active Flight task for ongoing
 consumers and owns eventual archive/readback/exact cleanup. No campaign/replay,
 remote action, delegation or independent self-approval. Full privatev1/worktree active.
+
+
+## 2026-10-27 — Flight preview, bilingual UI and native reset proof committed
+
+f61e9d14 shared preview3RED→4PASS,238related/6 plus strict types/lint, exact-input
+engine10038/385PASS193.479s.98416d5f screen8RED→8PASS/156related/4/types/lint;
+460ad299 actual paid positive finite combat-chip4RED→4PASS/93related/4/types/lint.
+acaa1cd2 adds11real Warrior/Command/additive/expiry/reflection/owner-death/target-
+death and three native allocation/wave/import/flee/town-respec cases. Final67/7
+PASS/types/lint; original fixture/oracle/type/lint errors and corrections retained.
+[Updated Flight evidence](evidence/d06-assassin-flight.md). Production and whole
+integration gates are next. Inventory195bounded/17unverified/one review and genuine
+L33/Ancientsclaimed/Baaluncleared/next402 unchanged; no skill credit, campaign,
+remote action, delegation or independent self-approval. Root retains the active
+Flight task for ongoing checks and owns final archive/readback/exact cleanup.
+Full privatev1 and registered worktree stay active.
