@@ -48,3 +48,20 @@ Root plan-review: ready with exact cone/cap,Strafe count,dead/caster lifecycle,
 mitigation,source-freeze and public acceptance specified. Security check: pass
 for first-party local gameplay/content/UI/tests;no remote/dependency/credential/
 CI or genuine-campaign action. This is author planning,not independent approval.
+
+## Off-repository implementation experiment
+
+After correcting three draft native-ID oracles (projection keeps data IDs,
+recorded actions use runtime IDs), the unchanged source reproduces11failures/
+13controls across24cases in9.101s. A five-file Vite load overlay implements
+the planned hit flag,cone3,cap5 and two-pass sequence without changing any
+repository file. The same24native cases pass9.339s,including real HP/payment,
+Blind,ordinary mitigation,dead targets,lethal reflection and shield depletion.
+This is an experimental GREEN,not a branch implementation or typecheck result.
+
+Root retains original drafts,all RED/GREEN receipts and
+`overlay-mapping.json`/`overlay-base-hashes.json` under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-amazon-volley-l7m0tvg6`.
+After tool77646 terminates,apply the verified mechanics in bounded increments
+with effect/public types,schema regressions and actual branch tests,then finish
+bilingual previews and public acceptance. No skill credit yet.
