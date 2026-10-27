@@ -1,7 +1,7 @@
 # BUG-282 — Implement the max-Poison Plague Epidemic
 
 - Severity: Medium — the advertised max-stack combo uses ordinary half spread.
-- Status: Runtime implemented locally in `13a6d098`; full engine, native/UI, bounded production browser and full lint checks pass. Original full unit/types interrupted without results; sequential retry active. Independent/earned acceptance pending. No skill credit.
+- Status: Runtime implemented locally in `13a6d098`; full engine/unit/types/lint, native/UI and bounded production browser checks pass at the Plague snapshot. Original interrupted attempts retained. Cleanup and independent/earned acceptance pending. No skill credit.
 - Owner: root, engine/design/QA; no delegation or independent approval.
 - Baseline: BUG281 payload/helper correction `d18e689c`; exact source hashes
   are retained with the continuing task below. Linux, Node/Vitest, seed7.
@@ -107,6 +107,9 @@ in [current evidence](../../docs/plans/evidence/d04-plague-javelin.md). The fres
 full lint checkpoint12885 passed223.626s. Original full unit37999/types78777
 returned tool exit143 without runner receipts; the audit found no surviving
 worktree Vitest/tsc process, with termination cause unestablished. All1673frozen
-inputs remain exact. Types retry97325 is active before a sequential unit retry.
-Original logs/audits remain retained. No inventory, independent or earned
-acceptance credit follows before that closeout.
+inputs were read back exact before the following Amazon source edits. Sequential
+types retry97325 passes110.404s and full unit10940 passes18528tests/858files,
+826.893s, with two existing opt-in campaign skips; inputsUnchanged:true for both.
+Original logs/audits remain retained. These full results cover the Plague
+snapshot, not later Amazon changes. No inventory credit before cleanup, and
+independent/earned acceptance remains open.

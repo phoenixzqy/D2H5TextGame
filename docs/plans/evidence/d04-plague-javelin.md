@@ -81,11 +81,15 @@ absent; the retained process audit found no surviving Vitest/tsc process with
 this worktree CWD. Termination cause is unestablished; neither is a test failure
 or a pass. Original partial logs and both interruption audits remain retained.
 
-All1673source/test/script/config inputs in `plague-functional-inputs.json`
-were read back exact after the interruptions and before the sequential retry.
-Full types retry session97325/`plague-full-types-retry1` is active; poll that
-handle before starting a new full unit retry. The older18461full pass belongs
-to Mage. No fresh full unit/type result or inventory credit is claimed here.
+The sequential retries are now terminal: full types97325 passes110.404s;
+full unit10940 passes18528tests/858files,826.893s, with the two existing opt-in
+campaign economy/continuation skips. Both report inputsUnchanged:true. All1673
+source/test/script/config inputs in `plague-functional-inputs.json` were read
+back exact after the interruptions, before retry and after all full checks,
+before the following Amazon source edits. `plague-full-final-input-audit.json`
+retains that terminal audit and all three passing receipts. These results belong
+to the Plague snapshot, not the subsequent Amazon description/test changes.
+The older18461full pass belongs to Mage. No inventory credit before cleanup.
 
 The browser fixture does not force an Epidemic trigger; its exact death effect
 is covered by real-engine and native projection cases. Earned allocation/build
@@ -96,7 +100,7 @@ compressed/raw save hashes remain unchanged. No campaign/replay/remote action.
 
 Root retains the continuing task and its disposable production build at
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s`
-through the active full checkpoint and following class integration. It contains
+through the completed full checkpoint and following class integration. It contains
 original sources/failures, terminal receipts, both browser revisions/reports,
 exact images/save pairs, and frozen inputs. Root owns retention/read-back and
 exact cleanup after all consumers finish. No cleanup is claimed; shared caches,

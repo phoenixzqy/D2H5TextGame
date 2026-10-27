@@ -1,5 +1,5 @@
 {
-  "state": "functional-checkpoint-full-lint-pass-sequential-retry-no-credit",
+  "state": "functional-checkpoint-integrated-full-pass-cleanup-pending-no-credit",
   "sourceHead": "36a8fdba6516ce8c8175f23baef4cc1547f28f04",
   "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s",
   "owner": "root",
@@ -243,13 +243,37 @@
       "seconds": 223.6255727360258,
       "inputsUnchanged": true,
       "totals": []
+    },
+    "plague-full-types-retry1": {
+      "label": "plague-full-types-retry1",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 110.40377148392145,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    "plague-full-unit-retry1": {
+      "label": "plague-full-unit-retry1",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "seconds": 826.8931693709455,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  858 passed (858)",
+        "Tests  18528 passed | 2 skipped (18530)"
+      ]
     }
   },
   "engineFrozenInputs": 1668,
   "functionalFrozenInputs": 1673,
-  "activeFull": {
-    "typesRetry1": 97325
-  },
+  "activeFull": {},
   "protectedSave": {
     "compressedSha256": "3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c",
     "rawSha256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
@@ -259,7 +283,7 @@
     "unearned native/public fixtures",
     "Epidemic native/engine proof; public fixture does not force trigger",
     "no independent acceptance",
-    "no integrated full result yet",
+    "full result belongs to Plague snapshot before Amazon source changes",
     "whole-v1 gates remain open"
   ],
   "originalFullInterruption": {
@@ -280,5 +304,7 @@
       "full-interruption-audit.json",
       "full-retry-input-audit.json"
     ]
-  }
+  },
+  "fullCheckpointHead": "7dca3402",
+  "terminalInputAudit": "plague-full-final-input-audit.json"
 }
