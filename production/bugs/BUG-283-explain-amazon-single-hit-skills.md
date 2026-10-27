@@ -1,8 +1,8 @@
 # BUG-283 — Explain Amazon single-hit targeting and effects
 
 - Severity: Medium — the generic skill panel omits rules needed to compare builds.
-- Status: Implemented in `6ac13aa2`; focused and public browser checks pass;
-  current-head integrated checks and evidence cleanup remain open.
+- Status: Fixed in `6ac13aa2`; focused/public/integrated checks and owned cleanup pass.
+  Independent and earned acceptance remain open.
 - Owner: root (frontend/native/browser); author evidence only, no independent approval.
 - Reproduction head: `7dca3402`, Linux, Vitest/jsdom, en and zh-CN.
 - Affected: Magic Arrow, Lightning Bolt, Fire Arrow and Cold Arrow skill previews.
@@ -61,14 +61,14 @@ save pairs and four actual service-worker offline Continues pass. All1677frozen
 inputs read back exact. Public types, explicit lint, production build,
 six-chunk bridge scan and756-URL precache checks pass.
 
-The preceding full18528-test Plague result predates this source change.
-Current-head integrated typecheck/lint/unit is running as session77646 against
-`121fd691`; it is not yet a passing result. See
+Full checkpoint against121fd691 passes18607tests/860files/two existing opt-in
+skips812.782s,types113.204s/lint259.846s,all1677inputs exact before later engine
+changes. All370archive members read-back verified;1897files/39directories
+cleaned,remaining[]/failures[]. Four single-hit credits plus Plague yield179/
+32/oneengine/onereview. Exact archive/sidecar paths and limits are in
 [evidence](../../docs/plans/evidence/d04-amazon-single-hit.md).
-
-The fixtures are constructed and do not establish earned builds, balance,
-independent QA or full-v1 acceptance. Root owns eventual retention/read-back/
-exact cleanup after all continuing consumers finish; no skill credit yet.
+Constructed fixtures do not establish earned builds,balance,independent QA or
+full-v1 acceptance. Root retains evidence through full-v1 consumers.
 
 Security check: pass for first-party local gameplay/UI/test work; no dependency,
 credential, permission, CI, remote or genuine-save changes.

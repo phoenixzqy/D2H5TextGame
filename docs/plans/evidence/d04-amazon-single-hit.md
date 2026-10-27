@@ -56,22 +56,30 @@ the shared Chinese damage-log “普攻” wording remain outside this correctio
 
 ## Integrated checkpoint and retention
 
-All1677explicit source/config/test inputs read back exact after browser checks.
-The earlier full18528/858/two existing opt-in skips result covers Plague before
-these Amazon changes. Current-head sequential full types/lint/unit started
-against `121fd691`, tool session77646. It is pending, not a passing receipt.
-Source is frozen until that exact process terminates; observation timeouts
-must not trigger a restart.
+Full checkpoint against `121fd691` is terminal: types113.204s,lint259.846s,
+unit18607passed/860files812.782s; two existing opt-in campaign economy/continuation
+skips. All1677explicit inputs read back exact after terminal checks before the
+following guaranteed-hit source increment. The earlier18528 result covers the
+preceding Plague snapshot. No result validates later source changes implicitly.
 
-Raw receipts, reports, original failures, twelve extracted mobile images and
-task-owned builds remain at
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s`.
-Root owns retention/read-back and exact cleanup after all Plague/Amazon consumers
-finish. No cleanup or five pending skill credits are claimed yet.
+All370raw archive members were read back and SHA256-verified;1897exact task files
+and39directories were removed. Both task-owned production builds and caches are
+absent; remaining[]/failures[]. Root retains the archive and two sidecars through
+full-v1 evidence consumers and independent review:
+
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s-retained.tar.gz`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s-retention.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s-cleanup.json`
+
+Archive SHA256: `3403426cd88314c54d3dff91a6c179dc26ef496b57fb570c6ed287be3e3b303e`.
+The archive supersedes earlier raw-task paths. Exactly five combined credits
+(Plague plus these four attacks) yield179bounded/32unverified/one engine-only/
+one review-needed. All208other raw CSV rows/header/order/IDs remain exact.
+[Packet](fixtures/amazon-single-hit/packet.json) records receipts and reconciliation.
 
 Genuine protected save remainsL33,Ancients/Rite claimed,Baal uncleared,next402;
 compressed SHA `3bbae6c0499844e7423574124326c65c616f8f3912a760aa913ea9eab410022c`,
 raw SHA `c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577`.
-Inventory remains174bounded/37unverified/one engine-only/one review-needed.
+Inventory is179bounded/32unverified/one engine-only/one review-needed.
 Constructed fixtures do not establish earned builds,balance,independent QA,
 full mobile/a11y/performance acceptance or completed privatev1.

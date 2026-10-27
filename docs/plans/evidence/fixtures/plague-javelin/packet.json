@@ -1,9 +1,21 @@
 {
-  "state": "functional-checkpoint-integrated-full-pass-cleanup-pending-no-credit",
+  "state": "bounded-functional;independent-acceptance-open",
   "sourceHead": "36a8fdba6516ce8c8175f23baef4cc1547f28f04",
   "task": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s",
   "owner": "root",
-  "cleanup": "retention/read-back/exact disposal after active full and continuing consumers; not cleaned",
+  "cleanup": {
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s-retained.tar.gz",
+    "sha256": "3403426cd88314c54d3dff91a6c179dc26ef496b57fb570c6ed287be3e3b303e",
+    "membersVerified": 370,
+    "retention": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s-retention.json",
+    "cleanup": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s-cleanup.json",
+    "rawTaskAbsent": true,
+    "removedPaths": 1936,
+    "remaining": [],
+    "failures": [],
+    "owner": "root",
+    "removeWhen": "Full-v1 evidence consumers and independent review finish; root removes retained archive and sidecars then"
+  },
   "receipts": {
     "epidemic-engine": {
       "label": "epidemic-engine",
@@ -59,7 +71,7 @@
       "seconds": 9.297765459981747,
       "inputsUnchanged": true,
       "totals": [
-        "\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 10 \u23af\u23af\u23af\u23af\u23af\u23af\u23af",
+        "⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯",
         "Test Files  1 failed (1)",
         "Tests  10 failed (10)"
       ]
@@ -306,5 +318,67 @@
     ]
   },
   "fullCheckpointHead": "7dca3402",
-  "terminalInputAudit": "plague-full-final-input-audit.json"
+  "terminalInputAudit": "plague-full-final-input-audit.json",
+  "combinedFinalCheckpoint": {
+    "amazon-full-types.json": {
+      "label": "amazon-full-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 113.20398663100787,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    "amazon-full-lint.json": {
+      "label": "amazon-full-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 259.84609155810904,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    "amazon-full-unit.json": {
+      "label": "amazon-full-unit",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "seconds": 812.7815268880222,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  860 passed (860)",
+        "Tests  18607 passed | 2 skipped (18609)"
+      ]
+    },
+    "amazon-integrated-state.json": {
+      "frozenInputs": 1677,
+      "beforeChanged": [],
+      "sourceHead": "121fd6917856ac80c22d36ed2fcfcb28bdc2b413",
+      "commands": [
+        {
+          "label": "amazon-full-types",
+          "exit": 0
+        },
+        {
+          "label": "amazon-full-lint",
+          "exit": 0
+        },
+        {
+          "label": "amazon-full-unit",
+          "exit": 0
+        }
+      ],
+      "active": null,
+      "afterChanged": []
+    }
+  },
+  "inventoryCredit": "One Plague credit among five combined;179bounded/32unverified/oneengine/onereview;208other rows exact"
 }

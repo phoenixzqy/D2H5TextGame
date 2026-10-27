@@ -98,10 +98,17 @@ and whole-app a11y/performance/PWA acceptance, C2–C4/fullG0–G7 remain open.
 Protected genuine progress staysL33,Ancients/Rite claimed,Baal uncleared,next402;
 compressed/raw save hashes remain unchanged. No campaign/replay/remote action.
 
-Root retains the continuing task and its disposable production build at
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s`
-through the completed full checkpoint and following class integration. It contains
-original sources/failures, terminal receipts, both browser revisions/reports,
-exact images/save pairs, and frozen inputs. Root owns retention/read-back and
-exact cleanup after all consumers finish. No cleanup is claimed; shared caches,
-dependencies, original checkout and registered worktree claim remain preserved.
+## Final combined retention and bounded credit
+
+The subsequent four-arrow checkpoint also covers this unchanged Plague runtime:
+full18607/860/two existing opt-in skipsPASS812.782s,types113.204s/lint259.846s;
+all1677inputs exact before further engine changes. All370raw members archived/
+read-back verified;1897exact files/39directories cleaned,remaining[]/failures[].
+The raw task and both owned builds/caches are absent. Root retains the exact
+archive/two sidecars listed in [combined evidence](d04-amazon-single-hit.md)
+through full-v1 evidence consumers; archive SHA256
+`3403426cd88314c54d3dff91a6c179dc26ef496b57fb570c6ed287be3e3b303e`.
+Earlier raw paths are now archive-member references. Exactly five combined
+credits include one Plague credit:179bounded/32unverified/one engine-only/one
+review-needed;208other raw rows/header/order/IDs exact. Independent/earned/
+whole-v1 acceptance remains open and genuine progress is unchanged.

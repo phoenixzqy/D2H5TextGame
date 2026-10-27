@@ -1,0 +1,237 @@
+{
+  "state": "bounded-functional;independent-acceptance-open",
+  "sourceCorrection": "6ac13aa2",
+  "publicTests": "121fd691",
+  "integratedSourceHead": "121fd6917856ac80c22d36ed2fcfcb28bdc2b413",
+  "checks": {
+    "amazon-full-types.json": {
+      "label": "amazon-full-types",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 113.20398663100787,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    "amazon-full-lint.json": {
+      "label": "amazon-full-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 259.84609155810904,
+      "inputsUnchanged": true,
+      "totals": []
+    },
+    "amazon-full-unit.json": {
+      "label": "amazon-full-unit",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "seconds": 812.7815268880222,
+      "inputsUnchanged": true,
+      "totals": [
+        "Test Files  860 passed (860)",
+        "Tests  18607 passed | 2 skipped (18609)"
+      ]
+    },
+    "amazon-integrated-state.json": {
+      "frozenInputs": 1677,
+      "beforeChanged": [],
+      "sourceHead": "121fd6917856ac80c22d36ed2fcfcb28bdc2b413",
+      "commands": [
+        {
+          "label": "amazon-full-types",
+          "exit": 0
+        },
+        {
+          "label": "amazon-full-lint",
+          "exit": 0
+        },
+        {
+          "label": "amazon-full-unit",
+          "exit": 0
+        }
+      ],
+      "active": null,
+      "afterChanged": []
+    }
+  },
+  "browser": {
+    "startTime": "2026-10-27T00:05:34.343Z",
+    "duration": 158865.995,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "retention": {
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s-retained.tar.gz",
+    "sha256": "3403426cd88314c54d3dff91a6c179dc26ef496b57fb570c6ed287be3e3b303e",
+    "membersVerified": 370,
+    "retention": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s-retention.json",
+    "cleanup": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-plague-payload-3qlrqw3s-cleanup.json",
+    "rawTaskAbsent": true,
+    "removedPaths": 1936,
+    "remaining": [],
+    "failures": [],
+    "owner": "root",
+    "removeWhen": "Full-v1 evidence consumers and independent review finish; root removes retained archive and sidecars then"
+  },
+  "inventory": {
+    "credits": [
+      {
+        "before": {
+          "class": "amazon",
+          "data_id": "skills-amazon-magic-arrow",
+          "runtime_id": "amazon.magic_arrow",
+          "trigger": "active",
+          "adapter_route": "damage",
+          "declared_statuses": "",
+          "source": "src/data/skills/amazon.json",
+          "risk_flags": "",
+          "behavior_verification": "unverified",
+          "contract_evidence": ""
+        },
+        "after": {
+          "class": "amazon",
+          "data_id": "skills-amazon-magic-arrow",
+          "runtime_id": "amazon.magic_arrow",
+          "trigger": "active",
+          "adapter_route": "damage",
+          "declared_statuses": "",
+          "source": "src/data/skills/amazon.json",
+          "risk_flags": "",
+          "behavior_verification": "bounded-functional;independent-acceptance-open",
+          "contract_evidence": "docs/plans/evidence/d04-amazon-single-hit.md"
+        }
+      },
+      {
+        "before": {
+          "class": "amazon",
+          "data_id": "skills-amazon-plague-javelin",
+          "runtime_id": "amazon.plague_javelin",
+          "trigger": "active",
+          "adapter_route": "damage",
+          "declared_statuses": "poison|plague",
+          "source": "src/data/skills/amazon.json",
+          "risk_flags": "additional-statuses-truncated-by-adapter",
+          "behavior_verification": "unverified",
+          "contract_evidence": ""
+        },
+        "after": {
+          "class": "amazon",
+          "data_id": "skills-amazon-plague-javelin",
+          "runtime_id": "amazon.plague_javelin",
+          "trigger": "active",
+          "adapter_route": "damage",
+          "declared_statuses": "poison|plague",
+          "source": "src/data/skills/amazon.json",
+          "risk_flags": "additional-statuses-truncated-by-adapter",
+          "behavior_verification": "bounded-functional;independent-acceptance-open",
+          "contract_evidence": "docs/plans/evidence/d04-plague-javelin.md"
+        }
+      },
+      {
+        "before": {
+          "class": "amazon",
+          "data_id": "skills-amazon-lightning-bolt",
+          "runtime_id": "amazon.lightning_bolt",
+          "trigger": "active",
+          "adapter_route": "damage",
+          "declared_statuses": "",
+          "source": "src/data/skills/amazon.json",
+          "risk_flags": "",
+          "behavior_verification": "unverified",
+          "contract_evidence": ""
+        },
+        "after": {
+          "class": "amazon",
+          "data_id": "skills-amazon-lightning-bolt",
+          "runtime_id": "amazon.lightning_bolt",
+          "trigger": "active",
+          "adapter_route": "damage",
+          "declared_statuses": "",
+          "source": "src/data/skills/amazon.json",
+          "risk_flags": "",
+          "behavior_verification": "bounded-functional;independent-acceptance-open",
+          "contract_evidence": "docs/plans/evidence/d04-amazon-single-hit.md"
+        }
+      },
+      {
+        "before": {
+          "class": "amazon",
+          "data_id": "skills-amazon-fire-arrow",
+          "runtime_id": "amazon.fire_arrow",
+          "trigger": "active",
+          "adapter_route": "damage",
+          "declared_statuses": "burn",
+          "source": "src/data/skills/amazon.json",
+          "risk_flags": "burn-ignite-vocabulary-mismatch",
+          "behavior_verification": "unverified",
+          "contract_evidence": ""
+        },
+        "after": {
+          "class": "amazon",
+          "data_id": "skills-amazon-fire-arrow",
+          "runtime_id": "amazon.fire_arrow",
+          "trigger": "active",
+          "adapter_route": "damage",
+          "declared_statuses": "burn",
+          "source": "src/data/skills/amazon.json",
+          "risk_flags": "burn-ignite-vocabulary-mismatch",
+          "behavior_verification": "bounded-functional;independent-acceptance-open",
+          "contract_evidence": "docs/plans/evidence/d04-amazon-single-hit.md"
+        }
+      },
+      {
+        "before": {
+          "class": "amazon",
+          "data_id": "skills-amazon-cold-arrow",
+          "runtime_id": "amazon.cold_arrow",
+          "trigger": "active",
+          "adapter_route": "damage",
+          "declared_statuses": "chill",
+          "source": "src/data/skills/amazon.json",
+          "risk_flags": "",
+          "behavior_verification": "unverified",
+          "contract_evidence": ""
+        },
+        "after": {
+          "class": "amazon",
+          "data_id": "skills-amazon-cold-arrow",
+          "runtime_id": "amazon.cold_arrow",
+          "trigger": "active",
+          "adapter_route": "damage",
+          "declared_statuses": "chill",
+          "source": "src/data/skills/amazon.json",
+          "risk_flags": "",
+          "behavior_verification": "bounded-functional;independent-acceptance-open",
+          "contract_evidence": "docs/plans/evidence/d04-amazon-single-hit.md"
+        }
+      }
+    ],
+    "other208RowsExact": true,
+    "otherRowsSha256": "03476393b712bfa32db505f65df530435fd889121db4194909abd34f2d282021",
+    "counts": {
+      "bounded-functional;independent-acceptance-open": 176,
+      "unverified": 32,
+      "bounded-engine-functional;independent-acceptance-open": 1,
+      "bounded-functional;earned-balance-open": 3,
+      "review-needed": 1
+    }
+  },
+  "limits": [
+    "Constructed native/public fixtures; no earned build or balance claim",
+    "No independent approval",
+    "Subsequent guaranteed-hit capability/new Amazon implementation requires its own checks",
+    "Private v1 remains unfinished; genuine L33/Ancients claimed/Baal uncleared/next402 unchanged"
+  ]
+}
