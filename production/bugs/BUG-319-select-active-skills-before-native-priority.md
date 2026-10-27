@@ -1,6 +1,6 @@
 # BUG-319 — Select the Active Skills tab before native priority preparation
 
-Status: Locally resolved by retained native-arreat408-r2.mjs; complete genuine continuation and artifact audit pass. Task harness issue; no product defect inferred.
+Status: Fixed in dc127c38 (retained native-arreat408-r2.mjs correction and complete genuine evidence). Task harness issue; product source unchanged; independent/full-v1 acceptance remains open.
 Severity: Medium — native campaign automation stops safely; manual tab selection is available.
 Build: 048be7c0, ordinary validated production assets from 8fc0ae32; product inputs unchanged.
 Environment: bundled Chromium, 360×640, en, loopback production preview. No engine seed applies: no combat was launched.

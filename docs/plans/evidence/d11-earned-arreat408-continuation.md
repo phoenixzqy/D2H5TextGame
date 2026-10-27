@@ -105,7 +105,8 @@ Root retains these exact artifacts through campaign/independent/full-v1 consumer
 then removes only these paths:
 
 - `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-arreat408-blizzard-oclab459-raw.tar.gz`
-- Adjacent `-raw-manifest.json` and `-retention.json` sidecars.
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-arreat408-blizzard-oclab459-raw-manifest.json`
+- `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-arreat408-blizzard-oclab459-retention.json`
 
 Archive SHA256 `b211d9536c114addc6745584d88691bce2ae0429cacd2dabb16916131025e7c3`.
 The versioned genuine final export is a deliverable and remains preserved.

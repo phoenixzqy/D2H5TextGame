@@ -1,5 +1,9 @@
 # D11/P15 — Current Baal screens and earned Arreat402–407
 
+Current resume superseded by [earned level35 / next427](d11-earned-arreat408-continuation.md).
+This report and its next408 fixture remain historical ancestry; resume only
+the newer next427 export.
+
 2026-10-27; runtime18ed376c. Root sole executor/author; independent acceptance
 remains open. [Exact summary](fixtures/earned-arreat402-407/summary.json).
 
