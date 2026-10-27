@@ -1,6 +1,6 @@
 # BUG-297 — Register authored Ice Shard and Frozen Orb missile skills
 
-Status: Reproduced; source correction pending.
+Status: Fixed locally in b6821075; complete 13-ID registration/compatibility regressions pass. Independent acceptance remains open.
 Severity: Medium — authored missile IDs fall through to ordinary Physical basics.
 Affected systems: engine-dev,content-designer,qa-engineer.
 
@@ -32,3 +32,7 @@ mistake, not a gameplay RED; corrected to actual ../skills/builders.
 Root cause: catalog assembly never registers these authored rows. No workaround
 for their stated Cold projectile behavior. Do not mask unknown IDs with a melee
 substitute or change existing source tuning. Independent/full-v1 acceptance open.
+
+## Current local proof
+
+See [Slow Missiles evidence](../../docs/plans/evidence/d04-amazon-slow-missiles.md) for permanent regression paths, production/public/lifecycle results and honest interrupted broad-check boundaries. No new inventory credit or independent acceptance is claimed.

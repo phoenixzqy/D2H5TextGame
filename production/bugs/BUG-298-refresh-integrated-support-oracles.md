@@ -1,6 +1,6 @@
 # BUG-298 — Refresh source-backed integrated support expectations
 
-Status: Reproduced; correction pending.
+Status: Source-backed expectation corrections implemented in 5bd46eb7 and 9ff772cc; focused regressions pass. Combined broad gate remains pending.
 Severity: Medium — stale integration expectations prevent the combined gate.
 Affected systems: qa-engineer, engine-dev, content-designer.
 
@@ -75,3 +75,7 @@ the original stub array is unmodified. All31Lightning tests PASS,4.339s, with
 repository bytes/HEAD exact. Promote this source-backed expectation; preserve
 the original failure and run the combined gate again. Do not remove flight or
 relax damage, cooldown, RNG, affix, status or ordinary Lightning expectations.
+
+## Current local proof
+
+See [Slow Missiles evidence](../../docs/plans/evidence/d04-amazon-slow-missiles.md) for permanent regression paths, production/public/lifecycle results and honest interrupted broad-check boundaries. No new inventory credit or independent acceptance is claimed.

@@ -1,6 +1,6 @@
 # BUG-296 — Implement actual finite Slow Missiles projectile slowing
 
-Status: Runtime and skill previews implemented; integrated/public acceptance pending.
+Status: Runtime, bilingual UI, native lifecycle and public production proof implemented locally; combined full-unit/lint gate, retention and independent acceptance pending.
 Severity: High — advertised utility has no functional projectile consumer.
 Affected systems: engine-dev,content-designer,frontend-dev,writer,qa-engineer.
 
@@ -67,3 +67,7 @@ setup to the external config fixes the harness without suppressions. The initial
 multi-file patch matched an outdated Chinese literal and failed atomically;
 repository status stayed clean before the corrected patch. All original outputs
 remain retained. Live combat labels and public production proof are still open.
+
+## Current local proof
+
+See [Slow Missiles evidence](../../docs/plans/evidence/d04-amazon-slow-missiles.md) for permanent regression paths, production/public/lifecycle results and honest interrupted broad-check boundaries. No new inventory credit or independent acceptance is claimed.

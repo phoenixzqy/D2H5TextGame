@@ -13435,3 +13435,12 @@ slow-missiles-final.tsconfig.json and final focused runner records. Root owns
 archive/read-back and exact cleanup after consumers finish; cleanup is not yet
 complete. Original goal/worktree remain active; no campaign/replay, remote
 action, delegation or independent self-approval.
+
+
+## 2026-10-26 — Slow Missiles public proof, current types and native shadow RED
+
+29c3b2ad retains final Slow Missiles public4/4 PASS112.445s: eight paid rank1/20 casts,40geometries,eight exact seven-domain pairs/four actual offlineContinues; all2495 inputs/HEAD exact. Built762 hashes/production-source reuse exact; six chunks/five bridge patterns/756URL precache pass. All16 PNG hashes verified/eight mobile originals individually inspected with explicit copy/nav/glyph/capture limits. Permanent presentation/lifecycle/catalog/log162/5 and extended bilingual log116 pass. [Slow Missiles evidence](evidence/d04-amazon-slow-missiles.md) records precise proof, original engine9852PASS/one stale expectation failure and source-backed correction; no engine-green misstatement.
+
+Current full types PASS221.147s at frozen29c3b2ad/all2495 inputs. Original typecheck,full-unit and lint supervisors terminated143; original children were monitored to absence, not restarted from observation timeout. Full log42completed file results has no terminal summary; no full/lint pass. All consumers terminal before this docs increment. Fresh full unit/lint will use independent task-owned completion-recording runners. Previous goal turn made progress via mobile review/check launches; this turn adds real type proof and native shadow reproduction, not a status-only wait.
+
+BUG299 external native rank1/20 Warrior/Master4REDs follow successful real allocation, one paid body spawn and positive basic damage: neither uses skills. Source traces default empty skillOrder/zero MP and hardcoded body tuning. No shadow implementation or credit yet. Active support task remains needed for combined gate/archive/read-back/exact cleanup; root owns continuing artifacts/new shadow probe/cache. Inventory190bounded/21unverified/oneengine-only/onereview-needed unchanged. GenuineL33/Ancients-Rite/next402/Baaluncleared and both protected fixture hashes exact. Whole privatev1,17Assassin,earned builds/balance/economy/endgame and independent/mobile/a11y/performance gates remain open. No campaign/replay,remote action,delegation or self-signoff; original goal/registered worktree continue.
