@@ -1,0 +1,5824 @@
+{
+  "kind": "genuine earned ordinary-browser Arreat continuation from408 with qualified free Blizzard priority; root executor/auditor, independent acceptance open",
+  "head": "048be7c0312ca10cefaca92922e7c6277ea7595c",
+  "input": {
+    "versionedAncestry": "docs/plans/evidence/fixtures/earned-arreat402-407/retained-final.json.gz",
+    "rawSHA256": "201d9651127398bb9e261aa6cddac3901859c115a85c589808789501b2c12a74",
+    "gzipSHA256": "0d7ef141e1a85ae06739a81b0d65a6622e0b990d7b36157155f31074b17f4962",
+    "ordinal": 408
+  },
+  "preparation": {
+    "priority": [
+      "skills-sorceress-static-field",
+      "skills-sorceress-blizzard",
+      "skills-sorceress-frozen-orb"
+    ],
+    "onlyComboOrderChanged": true,
+    "zeroResourceCost": true
+  },
+  "final": {
+    "fixture": "docs/plans/evidence/fixtures/earned-arreat408-continuation/retained-final.json.gz",
+    "gzipSHA256": "e5bd68160be0b6cafc23f200fe2342e056f4dddc6108ac010b22e42e66e4aa2e",
+    "rawSHA256": "62b5636d994541182c933d4a70daa8839b6c8624429582a2e0556898fde825d3",
+    "level": 35,
+    "xpIntoLevel": 37251,
+    "statPoints": 20,
+    "skillPoints": 3,
+    "ownedItems": 27238,
+    "nextNormal": 427,
+    "nextNightmare": 0,
+    "riteClaimed": true,
+    "eveNotStarted": true,
+    "baalUncleared": true
+  },
+  "diagnostics": [
+    {
+      "stage": "paired",
+      "kind": "diagnostic only; exact earned next408 input, no genuine actions or projected-save promotion, no source/balance/threshold change",
+      "sourceHead": "048be7c0312ca10cefaca92922e7c6277ea7595c",
+      "seedNamespace": "arreat408-blizzard-paired-v1-",
+      "requiredWins": 26,
+      "requiredSecondHalfWins": 12,
+      "results": [
+        {
+          "id": "unchanged-orb-control",
+          "priority": [
+            "skills-sorceress-static-field",
+            "skills-sorceress-frozen-orb"
+          ],
+          "wins": 11,
+          "secondHalfWins": 6,
+          "qualified": false,
+          "timings": {
+            "successfulRoutes": 11,
+            "victoriousRouteSecondsP50": 244.50000000000003,
+            "victoriousRouteSecondsP95": 258.1666666666667,
+            "failedRoutes": 21,
+            "failedAttemptSeconds": [
+              115.33333333333333,
+              218.66666666666666,
+              219.16666666666669,
+              229.66666666666669,
+              208.5,
+              234.82133333333334,
+              222.5,
+              144.00000000000003,
+              234.5,
+              225.33333333333334,
+              220.16666666666666,
+              212.33333333333334,
+              127.83333333333334,
+              123,
+              235.16666666666669,
+              210.5,
+              219.33333333333334,
+              118.16666666666667,
+              123.66666666666666,
+              225.83333333333334,
+              124.66666666666666
+            ]
+          }
+        },
+        {
+          "id": "blizzard-orb",
+          "priority": [
+            "skills-sorceress-static-field",
+            "skills-sorceress-blizzard",
+            "skills-sorceress-frozen-orb"
+          ],
+          "wins": 32,
+          "secondHalfWins": 16,
+          "qualified": true,
+          "timings": {
+            "successfulRoutes": 32,
+            "victoriousRouteSecondsP50": 187.66666666666666,
+            "victoriousRouteSecondsP95": 209.66666666666669,
+            "failedRoutes": 0,
+            "failedAttemptSeconds": []
+          }
+        }
+      ],
+      "sourceCount": 2693,
+      "sourceUnchanged": true,
+      "genuineSaveUnchanged": true,
+      "wallSeconds": 122.382733303
+    },
+    {
+      "stage": "disjoint-holdout",
+      "kind": "disjoint diagnostic holdout of frozen Static-Blizzard-Orb priority; no genuine action or projected-save promotion",
+      "sourceHead": "048be7c0312ca10cefaca92922e7c6277ea7595c",
+      "seedNamespace": "arreat408-blizzard-holdout-v1-",
+      "requiredWins": 26,
+      "requiredSecondHalfWins": 12,
+      "results": [
+        {
+          "id": "blizzard-orb",
+          "priority": [
+            "skills-sorceress-static-field",
+            "skills-sorceress-blizzard",
+            "skills-sorceress-frozen-orb"
+          ],
+          "wins": 32,
+          "secondHalfWins": 16,
+          "qualified": true,
+          "timings": {
+            "successfulRoutes": 32,
+            "victoriousRouteSecondsP50": 185.83333333333334,
+            "victoriousRouteSecondsP95": 202.83333333333334,
+            "failedRoutes": 0,
+            "failedAttemptSeconds": []
+          }
+        }
+      ],
+      "sourceCount": 2693,
+      "sourceUnchanged": true,
+      "genuineSaveUnchanged": true,
+      "wallSeconds": 68.428160606
+    }
+  ],
+  "native": {
+    "status": "pass",
+    "nativeStatus": "observed",
+    "nativeOutcome": "earned-arreat-farming",
+    "stopReason": "target-level-reached-after-complete-challenge",
+    "head": "048be7c0312ca10cefaca92922e7c6277ea7595c",
+    "repositoryInputsVerified": 2693,
+    "buildInputsVerified": 762,
+    "externalInputsVerified": 13,
+    "saveSnapshots": 176,
+    "exactSaveCloseContinuePairs": 20,
+    "ancestralFullItemPayloadsPreserved": 24324,
+    "originalGenuineFixtureUnchanged": true,
+    "launches": 19,
+    "victoriousWaves": 114,
+    "nonwins": 0,
+    "finalLevel": 35,
+    "finalXP": 37251,
+    "totalEarnedXP": 968190,
+    "finalNextNormal": 427,
+    "finalOwnedItems": 27238,
+    "newItems": 2914,
+    "finalRawSHA256": "62b5636d994541182c933d4a70daa8839b6c8624429582a2e0556898fde825d3",
+    "pairs": [
+      {
+        "saved": "003-precombat-saved.json.gz",
+        "continued": "004-precombat-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "011-408-won-saved.json.gz",
+        "continued": "012-408-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "019-409-won-saved.json.gz",
+        "continued": "020-409-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "027-410-won-saved.json.gz",
+        "continued": "028-410-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "035-411-won-saved.json.gz",
+        "continued": "036-411-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "043-412-won-saved.json.gz",
+        "continued": "044-412-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "051-413-won-saved.json.gz",
+        "continued": "052-413-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "059-414-won-saved.json.gz",
+        "continued": "060-414-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "067-415-won-saved.json.gz",
+        "continued": "068-415-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "075-416-won-saved.json.gz",
+        "continued": "076-416-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "083-417-won-saved.json.gz",
+        "continued": "084-417-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "091-418-won-saved.json.gz",
+        "continued": "092-418-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "099-419-won-saved.json.gz",
+        "continued": "100-419-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "107-420-won-saved.json.gz",
+        "continued": "108-420-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "115-421-won-saved.json.gz",
+        "continued": "116-421-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "123-422-won-saved.json.gz",
+        "continued": "124-422-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "131-423-won-saved.json.gz",
+        "continued": "132-423-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "139-424-won-saved.json.gz",
+        "continued": "140-424-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "147-425-won-saved.json.gz",
+        "continued": "148-425-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      },
+      {
+        "saved": "155-426-won-saved.json.gz",
+        "continued": "156-426-won-continued.json.gz",
+        "allSavedDomainsExact": true
+      }
+    ],
+    "captures": [
+      {
+        "file": "001-imported.json.gz",
+        "sha256": "0d7ef141e1a85ae06739a81b0d65a6622e0b990d7b36157155f31074b17f4962",
+        "level": 33,
+        "xp": 368701,
+        "nextNormal": 408,
+        "uniqueOwnedItems": 24324
+      },
+      {
+        "file": "002-priority-prepared.json.gz",
+        "sha256": "dc306e71b8b58eb999add0888dbb996d1d63605fd1eb957a8ec25f2bb1ac4165",
+        "level": 33,
+        "xp": 368701,
+        "nextNormal": 408,
+        "uniqueOwnedItems": 24324
+      },
+      {
+        "file": "003-precombat-saved.json.gz",
+        "sha256": "dc306e71b8b58eb999add0888dbb996d1d63605fd1eb957a8ec25f2bb1ac4165",
+        "level": 33,
+        "xp": 368701,
+        "nextNormal": 408,
+        "uniqueOwnedItems": 24324
+      },
+      {
+        "file": "004-precombat-continued.json.gz",
+        "sha256": "dc306e71b8b58eb999add0888dbb996d1d63605fd1eb957a8ec25f2bb1ac4165",
+        "level": 33,
+        "xp": 368701,
+        "nextNormal": 408,
+        "uniqueOwnedItems": 24324
+      },
+      {
+        "file": "005-408-w1-settled.json.gz",
+        "sha256": "fa7f5cc6c6e1255d516ceb78ad1816edb3c5e680bade59f600cbe56846cef70d",
+        "level": 33,
+        "xp": 376891,
+        "nextNormal": 409,
+        "uniqueOwnedItems": 24328
+      },
+      {
+        "file": "006-408-w2-settled.json.gz",
+        "sha256": "7beae43e6bf1885a7e4b2bfa117195f5af93a39fc2807dbcf210072541b9ace2",
+        "level": 33,
+        "xp": 385711,
+        "nextNormal": 409,
+        "uniqueOwnedItems": 24333
+      },
+      {
+        "file": "007-408-w3-settled.json.gz",
+        "sha256": "8c964c11a0cd4e394eec45b7c8a55293527d65276a6fe412be7e20538fb002d1",
+        "level": 33,
+        "xp": 395461,
+        "nextNormal": 409,
+        "uniqueOwnedItems": 24358
+      },
+      {
+        "file": "008-408-w4-settled.json.gz",
+        "sha256": "e1c65c6fc6d1a1f33991691bec153c0d33943eedb719765d5a6b7fbe954f772b",
+        "level": 33,
+        "xp": 406021,
+        "nextNormal": 409,
+        "uniqueOwnedItems": 24438
+      },
+      {
+        "file": "009-408-w5-settled.json.gz",
+        "sha256": "789856186208f54155131f1f8cc218cdbdca73960267c8982c463e5c0b6065f3",
+        "level": 33,
+        "xp": 417411,
+        "nextNormal": 409,
+        "uniqueOwnedItems": 24470
+      },
+      {
+        "file": "010-408-w6-settled.json.gz",
+        "sha256": "074ceca09df6e90f7187b200a89a032971cf12dce66afd59cec33147a91c52bc",
+        "level": 33,
+        "xp": 420761,
+        "nextNormal": 409,
+        "uniqueOwnedItems": 24487
+      },
+      {
+        "file": "011-408-won-saved.json.gz",
+        "sha256": "074ceca09df6e90f7187b200a89a032971cf12dce66afd59cec33147a91c52bc",
+        "level": 33,
+        "xp": 420761,
+        "nextNormal": 409,
+        "uniqueOwnedItems": 24487
+      },
+      {
+        "file": "012-408-won-continued.json.gz",
+        "sha256": "074ceca09df6e90f7187b200a89a032971cf12dce66afd59cec33147a91c52bc",
+        "level": 33,
+        "xp": 420761,
+        "nextNormal": 409,
+        "uniqueOwnedItems": 24487
+      },
+      {
+        "file": "013-409-w1-settled.json.gz",
+        "sha256": "3c0b5687dcc321e01028126a17e604dd926468263023fbf65a31d25d2583bedc",
+        "level": 33,
+        "xp": 429581,
+        "nextNormal": 410,
+        "uniqueOwnedItems": 24492
+      },
+      {
+        "file": "014-409-w2-settled.json.gz",
+        "sha256": "b3025fb0af09bd4607488551bf470f71ff38f3fe2fc70c74a2965634fb891f46",
+        "level": 33,
+        "xp": 439031,
+        "nextNormal": 410,
+        "uniqueOwnedItems": 24497
+      },
+      {
+        "file": "015-409-w3-settled.json.gz",
+        "sha256": "4ab64cd536ec93aac217de6ce13c4561b43fbbaa8eff2d1d11e1cbc784956213",
+        "level": 33,
+        "xp": 449431,
+        "nextNormal": 410,
+        "uniqueOwnedItems": 24524
+      },
+      {
+        "file": "016-409-w4-settled.json.gz",
+        "sha256": "ad115cdd18a959f3762093c5785a90323412f0588e85cbd18dcf078fac4f3296",
+        "level": 33,
+        "xp": 460651,
+        "nextNormal": 410,
+        "uniqueOwnedItems": 24609
+      },
+      {
+        "file": "017-409-w5-settled.json.gz",
+        "sha256": "df706b26b3e28b54df00ee569131f6ed560330215f960c433c7c69be613e6e08",
+        "level": 33,
+        "xp": 472711,
+        "nextNormal": 410,
+        "uniqueOwnedItems": 24642
+      },
+      {
+        "file": "018-409-w6-settled.json.gz",
+        "sha256": "65ce71a71ae1cf16920cf9f849e5c746c3cebe101ae485323b24884d74475b3a",
+        "level": 33,
+        "xp": 476061,
+        "nextNormal": 410,
+        "uniqueOwnedItems": 24659
+      },
+      {
+        "file": "019-409-won-saved.json.gz",
+        "sha256": "65ce71a71ae1cf16920cf9f849e5c746c3cebe101ae485323b24884d74475b3a",
+        "level": 33,
+        "xp": 476061,
+        "nextNormal": 410,
+        "uniqueOwnedItems": 24659
+      },
+      {
+        "file": "020-409-won-continued.json.gz",
+        "sha256": "65ce71a71ae1cf16920cf9f849e5c746c3cebe101ae485323b24884d74475b3a",
+        "level": 33,
+        "xp": 476061,
+        "nextNormal": 410,
+        "uniqueOwnedItems": 24659
+      },
+      {
+        "file": "021-410-w1-settled.json.gz",
+        "sha256": "5c5ef968d0003e559dacea753315bf39db94efd21efa8b6fcf2ae1dfef7ee4f9",
+        "level": 33,
+        "xp": 485511,
+        "nextNormal": 411,
+        "uniqueOwnedItems": 24665
+      },
+      {
+        "file": "022-410-w2-settled.json.gz",
+        "sha256": "f009e3f2a2340662470c1bd6bbdd89c230a1549e5f03e418e0644c79c4c1b411",
+        "level": 33,
+        "xp": 495591,
+        "nextNormal": 411,
+        "uniqueOwnedItems": 24670
+      },
+      {
+        "file": "023-410-w3-settled.json.gz",
+        "sha256": "8d1607cb96c414d419354f74febea3f9a00c50758f1a67276768b8d0bd52c3ae",
+        "level": 33,
+        "xp": 506641,
+        "nextNormal": 411,
+        "uniqueOwnedItems": 24699
+      },
+      {
+        "file": "024-410-w4-settled.json.gz",
+        "sha256": "dbb7ad928d9b23e49b71feb163a3a8e45148985b7bfa2531e765a06b96871f13",
+        "level": 33,
+        "xp": 518521,
+        "nextNormal": 411,
+        "uniqueOwnedItems": 24789
+      },
+      {
+        "file": "025-410-w5-settled.json.gz",
+        "sha256": "45579de497f56e5e4df3ae19108d38d45c3709fc8832eaaf6096b5140f754eaa",
+        "level": 33,
+        "xp": 531251,
+        "nextNormal": 411,
+        "uniqueOwnedItems": 24824
+      },
+      {
+        "file": "026-410-w6-settled.json.gz",
+        "sha256": "521e47bc8fd5f330834bd8e1d647e676c0de51630d0480abac05be05924d280c",
+        "level": 33,
+        "xp": 534601,
+        "nextNormal": 411,
+        "uniqueOwnedItems": 24841
+      },
+      {
+        "file": "027-410-won-saved.json.gz",
+        "sha256": "521e47bc8fd5f330834bd8e1d647e676c0de51630d0480abac05be05924d280c",
+        "level": 33,
+        "xp": 534601,
+        "nextNormal": 411,
+        "uniqueOwnedItems": 24841
+      },
+      {
+        "file": "028-410-won-continued.json.gz",
+        "sha256": "521e47bc8fd5f330834bd8e1d647e676c0de51630d0480abac05be05924d280c",
+        "level": 33,
+        "xp": 534601,
+        "nextNormal": 411,
+        "uniqueOwnedItems": 24841
+      },
+      {
+        "file": "029-411-w1-settled.json.gz",
+        "sha256": "fe4bccbafc4a7d17e527f9af0bc2282dc2f0ffd0c6d36bce83c6f82b966dd1a1",
+        "level": 33,
+        "xp": 544681,
+        "nextNormal": 412,
+        "uniqueOwnedItems": 24847
+      },
+      {
+        "file": "030-411-w2-settled.json.gz",
+        "sha256": "75bf19f452ee886075d4b6d9492366a77b63971a7b54a0f160e11adf2b47f3cc",
+        "level": 33,
+        "xp": 555391,
+        "nextNormal": 412,
+        "uniqueOwnedItems": 24852
+      },
+      {
+        "file": "031-411-w3-settled.json.gz",
+        "sha256": "95c2547e80b6a0f9219b76314c3ab77cfef5cc2b2e4b969782990aaca7550eb8",
+        "level": 33,
+        "xp": 567091,
+        "nextNormal": 412,
+        "uniqueOwnedItems": 24883
+      },
+      {
+        "file": "032-411-w4-settled.json.gz",
+        "sha256": "9bd5034f2aca31edff7f0c873eca8610abced7644bbb8f1ebbc5e2b3cb76c670",
+        "level": 33,
+        "xp": 579631,
+        "nextNormal": 412,
+        "uniqueOwnedItems": 24978
+      },
+      {
+        "file": "033-411-w5-settled.json.gz",
+        "sha256": "a8fec51c81215879f37d0bcb473660d5876f3976aecbc1d7a93dfbbe63c1d27b",
+        "level": 33,
+        "xp": 593031,
+        "nextNormal": 412,
+        "uniqueOwnedItems": 25015
+      },
+      {
+        "file": "034-411-w6-settled.json.gz",
+        "sha256": "fb8b62d23521d8cce23c696b54b32ff92762b82e48a4d48ed3365d6f7156cbcb",
+        "level": 33,
+        "xp": 596381,
+        "nextNormal": 412,
+        "uniqueOwnedItems": 25032
+      },
+      {
+        "file": "035-411-won-saved.json.gz",
+        "sha256": "fb8b62d23521d8cce23c696b54b32ff92762b82e48a4d48ed3365d6f7156cbcb",
+        "level": 33,
+        "xp": 596381,
+        "nextNormal": 412,
+        "uniqueOwnedItems": 25032
+      },
+      {
+        "file": "036-411-won-continued.json.gz",
+        "sha256": "fb8b62d23521d8cce23c696b54b32ff92762b82e48a4d48ed3365d6f7156cbcb",
+        "level": 33,
+        "xp": 596381,
+        "nextNormal": 412,
+        "uniqueOwnedItems": 25032
+      },
+      {
+        "file": "037-412-w1-settled.json.gz",
+        "sha256": "32fc42b5182d12408fc8bf3536371609eebbcc331586ff033c7b3f3541dbfab4",
+        "level": 33,
+        "xp": 607091,
+        "nextNormal": 413,
+        "uniqueOwnedItems": 25039
+      },
+      {
+        "file": "038-412-w2-settled.json.gz",
+        "sha256": "cfbf5a697aa4351fa15cc4cf5548af1a1f4bae8fc127d2110dc8c8151c60a563",
+        "level": 33,
+        "xp": 618431,
+        "nextNormal": 413,
+        "uniqueOwnedItems": 25044
+      },
+      {
+        "file": "039-412-w3-settled.json.gz",
+        "sha256": "b6bcf095d4d45627b47a58ebd0d2c0e80c29119b2081cc67bfe0c9108bf6fd49",
+        "level": 34,
+        "xp": 5199,
+        "nextNormal": 413,
+        "uniqueOwnedItems": 25077
+      },
+      {
+        "file": "040-412-w4-settled.json.gz",
+        "sha256": "91661fed8103185fcfa00b9edd4160d3ab01d3aa5dd05bfb5b5ffb45c1db27e8",
+        "level": 34,
+        "xp": 18399,
+        "nextNormal": 413,
+        "uniqueOwnedItems": 25177
+      },
+      {
+        "file": "041-412-w5-settled.json.gz",
+        "sha256": "8989b2e50449a3655dc374d6e251d99acace64beea5986b5969c55b8c2afd93f",
+        "level": 34,
+        "xp": 23759,
+        "nextNormal": 413,
+        "uniqueOwnedItems": 25193
+      },
+      {
+        "file": "042-412-w6-settled.json.gz",
+        "sha256": "7873b51989bc7154a3ebc200ed5a76b0d31680579ae6f27aad2864d5c0f543e1",
+        "level": 34,
+        "xp": 27109,
+        "nextNormal": 413,
+        "uniqueOwnedItems": 25210
+      },
+      {
+        "file": "043-412-won-saved.json.gz",
+        "sha256": "7873b51989bc7154a3ebc200ed5a76b0d31680579ae6f27aad2864d5c0f543e1",
+        "level": 34,
+        "xp": 27109,
+        "nextNormal": 413,
+        "uniqueOwnedItems": 25210
+      },
+      {
+        "file": "044-412-won-continued.json.gz",
+        "sha256": "7873b51989bc7154a3ebc200ed5a76b0d31680579ae6f27aad2864d5c0f543e1",
+        "level": 34,
+        "xp": 27109,
+        "nextNormal": 413,
+        "uniqueOwnedItems": 25210
+      },
+      {
+        "file": "045-413-w1-settled.json.gz",
+        "sha256": "7aec9869c9496018caad5dae15b9bf19add5e9554dc3f5b63fd82fb5763a4af2",
+        "level": 34,
+        "xp": 38449,
+        "nextNormal": 414,
+        "uniqueOwnedItems": 25218
+      },
+      {
+        "file": "046-413-w2-settled.json.gz",
+        "sha256": "36b29ecdb896318b0e22b6d1a9d2e0ff942610d62c41046ba1fae0b8a74bc7b7",
+        "level": 34,
+        "xp": 50419,
+        "nextNormal": 414,
+        "uniqueOwnedItems": 25223
+      },
+      {
+        "file": "047-413-w3-settled.json.gz",
+        "sha256": "bea9dc64a916ebbb8a0982525d24b1a31af5ae580a12b2b76140e2f6a1e67d91",
+        "level": 34,
+        "xp": 63419,
+        "nextNormal": 414,
+        "uniqueOwnedItems": 25258
+      },
+      {
+        "file": "048-413-w4-settled.json.gz",
+        "sha256": "712fd688b5ee5b6c67d148dbb3c208ad7d5a091326be69e5264a2429e5006d64",
+        "level": 34,
+        "xp": 68699,
+        "nextNormal": 414,
+        "uniqueOwnedItems": 25298
+      },
+      {
+        "file": "049-413-w5-settled.json.gz",
+        "sha256": "040d028d54949ef2ba89463f94b2c0c8416927305d4e53be833c4e300c024aa9",
+        "level": 34,
+        "xp": 74729,
+        "nextNormal": 414,
+        "uniqueOwnedItems": 25316
+      },
+      {
+        "file": "050-413-w6-settled.json.gz",
+        "sha256": "3f14a556ded6a55cec492925be73e6fe9889005d8c01811970d39d13f0c2d225",
+        "level": 34,
+        "xp": 78079,
+        "nextNormal": 414,
+        "uniqueOwnedItems": 25333
+      },
+      {
+        "file": "051-413-won-saved.json.gz",
+        "sha256": "3f14a556ded6a55cec492925be73e6fe9889005d8c01811970d39d13f0c2d225",
+        "level": 34,
+        "xp": 78079,
+        "nextNormal": 414,
+        "uniqueOwnedItems": 25333
+      },
+      {
+        "file": "052-413-won-continued.json.gz",
+        "sha256": "3f14a556ded6a55cec492925be73e6fe9889005d8c01811970d39d13f0c2d225",
+        "level": 34,
+        "xp": 78079,
+        "nextNormal": 414,
+        "uniqueOwnedItems": 25333
+      },
+      {
+        "file": "053-414-w1-settled.json.gz",
+        "sha256": "0eab5d53a9ea76749617f6fe3fa6555ed2b1749dcdbc4ad099b98e37d07435f0",
+        "level": 34,
+        "xp": 90049,
+        "nextNormal": 415,
+        "uniqueOwnedItems": 25342
+      },
+      {
+        "file": "054-414-w2-settled.json.gz",
+        "sha256": "4b0730ddd78b78e6adc4c73370cc6a81cff54d009338e98d398697820c451640",
+        "level": 34,
+        "xp": 102649,
+        "nextNormal": 415,
+        "uniqueOwnedItems": 25347
+      },
+      {
+        "file": "055-414-w3-settled.json.gz",
+        "sha256": "75c4c6e51495f5cd8ee171fd9133c7239a324e37e7981e32b5caf0cf98189446",
+        "level": 34,
+        "xp": 107849,
+        "nextNormal": 415,
+        "uniqueOwnedItems": 25360
+      },
+      {
+        "file": "056-414-w4-settled.json.gz",
+        "sha256": "8ed2c76405b76ca4dbb4d3b887459dfa92554dc126359e0bfe48530a69a8a59b",
+        "level": 34,
+        "xp": 113789,
+        "nextNormal": 415,
+        "uniqueOwnedItems": 25405
+      },
+      {
+        "file": "057-414-w5-settled.json.gz",
+        "sha256": "d40c3cd8957ab820b0baa4d5ac98d08ed958a359275463fae9d38865ded708f2",
+        "level": 34,
+        "xp": 120489,
+        "nextNormal": 415,
+        "uniqueOwnedItems": 25425
+      },
+      {
+        "file": "058-414-w6-settled.json.gz",
+        "sha256": "a4403484bc3c8d549db041cb6091695708882083d66f3eda25c6c838902ddb67",
+        "level": 34,
+        "xp": 123839,
+        "nextNormal": 415,
+        "uniqueOwnedItems": 25442
+      },
+      {
+        "file": "059-414-won-saved.json.gz",
+        "sha256": "a4403484bc3c8d549db041cb6091695708882083d66f3eda25c6c838902ddb67",
+        "level": 34,
+        "xp": 123839,
+        "nextNormal": 415,
+        "uniqueOwnedItems": 25442
+      },
+      {
+        "file": "060-414-won-continued.json.gz",
+        "sha256": "a4403484bc3c8d549db041cb6091695708882083d66f3eda25c6c838902ddb67",
+        "level": 34,
+        "xp": 123839,
+        "nextNormal": 415,
+        "uniqueOwnedItems": 25442
+      },
+      {
+        "file": "061-415-w1-settled.json.gz",
+        "sha256": "505f409e76e639915a32cdf600eb0fca87a4754779549feb661a1fbc4f6f6223",
+        "level": 34,
+        "xp": 136439,
+        "nextNormal": 416,
+        "uniqueOwnedItems": 25451
+      },
+      {
+        "file": "062-415-w2-settled.json.gz",
+        "sha256": "b5db8f1105859f71579532d44e58cb7a819dd8116688c40c8e1981065634a07f",
+        "level": 34,
+        "xp": 141479,
+        "nextNormal": 416,
+        "uniqueOwnedItems": 25453
+      },
+      {
+        "file": "063-415-w3-settled.json.gz",
+        "sha256": "67a1115806f493ba522fca50d05ff779d6f3bcb93e82689e931ab1d6202c573b",
+        "level": 34,
+        "xp": 147329,
+        "nextNormal": 416,
+        "uniqueOwnedItems": 25468
+      },
+      {
+        "file": "064-415-w4-settled.json.gz",
+        "sha256": "69fb00e859634cbe04f770f0217f9c7b4c8c89f5ff64ff47b5865c57f293524b",
+        "level": 34,
+        "xp": 153929,
+        "nextNormal": 416,
+        "uniqueOwnedItems": 25518
+      },
+      {
+        "file": "065-415-w5-settled.json.gz",
+        "sha256": "47f1495f7b7ffb3a921780bd743fc0f1b93502f580d03187200e0c22bc46f9c2",
+        "level": 34,
+        "xp": 161299,
+        "nextNormal": 416,
+        "uniqueOwnedItems": 25540
+      },
+      {
+        "file": "066-415-w6-settled.json.gz",
+        "sha256": "dbcf3ef2a377fc38fd8001d1c4e1a88d13641bd66fb03b39ad95a3885f963082",
+        "level": 34,
+        "xp": 164649,
+        "nextNormal": 416,
+        "uniqueOwnedItems": 25557
+      },
+      {
+        "file": "067-415-won-saved.json.gz",
+        "sha256": "dbcf3ef2a377fc38fd8001d1c4e1a88d13641bd66fb03b39ad95a3885f963082",
+        "level": 34,
+        "xp": 164649,
+        "nextNormal": 416,
+        "uniqueOwnedItems": 25557
+      },
+      {
+        "file": "068-415-won-continued.json.gz",
+        "sha256": "dbcf3ef2a377fc38fd8001d1c4e1a88d13641bd66fb03b39ad95a3885f963082",
+        "level": 34,
+        "xp": 164649,
+        "nextNormal": 416,
+        "uniqueOwnedItems": 25557
+      },
+      {
+        "file": "069-416-w1-settled.json.gz",
+        "sha256": "f2b4459b15ae105f0a6696301954f1ffe3ff88a6a6e02deabef1ede0db5ea402",
+        "level": 34,
+        "xp": 169689,
+        "nextNormal": 417,
+        "uniqueOwnedItems": 25560
+      },
+      {
+        "file": "070-416-w2-settled.json.gz",
+        "sha256": "5d72868d2cc8c1b333e314f6a1715cc95a7bee2a65763dd09fd3dbf4ca658a63",
+        "level": 34,
+        "xp": 175359,
+        "nextNormal": 417,
+        "uniqueOwnedItems": 25562
+      },
+      {
+        "file": "071-416-w3-settled.json.gz",
+        "sha256": "e917105e483dec15bd544319703a01d8ae95318185a7be45764cd3f2b2e12eb5",
+        "level": 34,
+        "xp": 181859,
+        "nextNormal": 417,
+        "uniqueOwnedItems": 25578
+      },
+      {
+        "file": "072-416-w4-settled.json.gz",
+        "sha256": "e81a8c0c8b0286656b416e58a6b2bf1098a9d866ba54bdaff16d7d4ec8dbecc0",
+        "level": 34,
+        "xp": 189119,
+        "nextNormal": 417,
+        "uniqueOwnedItems": 25633
+      },
+      {
+        "file": "073-416-w5-settled.json.gz",
+        "sha256": "8b156eb6201a9f83ea99e77550956d05bd3ad1629415a85642348437b11274fe",
+        "level": 34,
+        "xp": 197159,
+        "nextNormal": 417,
+        "uniqueOwnedItems": 25657
+      },
+      {
+        "file": "074-416-w6-settled.json.gz",
+        "sha256": "616d2cf250a34fabd728a981cc220286fce63169986de2bb145706676891b1ca",
+        "level": 34,
+        "xp": 200509,
+        "nextNormal": 417,
+        "uniqueOwnedItems": 25674
+      },
+      {
+        "file": "075-416-won-saved.json.gz",
+        "sha256": "616d2cf250a34fabd728a981cc220286fce63169986de2bb145706676891b1ca",
+        "level": 34,
+        "xp": 200509,
+        "nextNormal": 417,
+        "uniqueOwnedItems": 25674
+      },
+      {
+        "file": "076-416-won-continued.json.gz",
+        "sha256": "616d2cf250a34fabd728a981cc220286fce63169986de2bb145706676891b1ca",
+        "level": 34,
+        "xp": 200509,
+        "nextNormal": 417,
+        "uniqueOwnedItems": 25674
+      },
+      {
+        "file": "077-417-w1-settled.json.gz",
+        "sha256": "e563f6dc61648bb3a536d69c4de1879712ccacde83ec582429d1260be2caad72",
+        "level": 34,
+        "xp": 206179,
+        "nextNormal": 418,
+        "uniqueOwnedItems": 25677
+      },
+      {
+        "file": "078-417-w2-settled.json.gz",
+        "sha256": "9f59c1e2f8b6b3da1ee255799eef82117cc86a2aecdaa9404233f9b8d1397970",
+        "level": 34,
+        "xp": 212479,
+        "nextNormal": 418,
+        "uniqueOwnedItems": 25680
+      },
+      {
+        "file": "079-417-w3-settled.json.gz",
+        "sha256": "97340fbd48f58bb65a88ad2c4da0d13fa3d4dd3cbdf44f468462896bd54e00d4",
+        "level": 34,
+        "xp": 219629,
+        "nextNormal": 418,
+        "uniqueOwnedItems": 25698
+      },
+      {
+        "file": "080-417-w4-settled.json.gz",
+        "sha256": "62ba58c304228e93d6fcc7143e2ed1b5d356fcecccee6485a8af0fdf55406481",
+        "level": 34,
+        "xp": 227549,
+        "nextNormal": 418,
+        "uniqueOwnedItems": 25758
+      },
+      {
+        "file": "081-417-w5-settled.json.gz",
+        "sha256": "7bfd99ff15a6abe0d5901b3ce96c0302e53e0fd288ffe20cbf64f740e9a0def3",
+        "level": 34,
+        "xp": 236259,
+        "nextNormal": 418,
+        "uniqueOwnedItems": 25783
+      },
+      {
+        "file": "082-417-w6-settled.json.gz",
+        "sha256": "aa745ab418edfcf73a606777f6ea7fba1443602766f8ada56ff480be60288da4",
+        "level": 34,
+        "xp": 239609,
+        "nextNormal": 418,
+        "uniqueOwnedItems": 25800
+      },
+      {
+        "file": "083-417-won-saved.json.gz",
+        "sha256": "aa745ab418edfcf73a606777f6ea7fba1443602766f8ada56ff480be60288da4",
+        "level": 34,
+        "xp": 239609,
+        "nextNormal": 418,
+        "uniqueOwnedItems": 25800
+      },
+      {
+        "file": "084-417-won-continued.json.gz",
+        "sha256": "aa745ab418edfcf73a606777f6ea7fba1443602766f8ada56ff480be60288da4",
+        "level": 34,
+        "xp": 239609,
+        "nextNormal": 418,
+        "uniqueOwnedItems": 25800
+      },
+      {
+        "file": "085-418-w1-settled.json.gz",
+        "sha256": "62b8d07d10c6e9fd51152a109c9c32ed4978d1177a785397675a3da7eb2fccba",
+        "level": 34,
+        "xp": 245909,
+        "nextNormal": 419,
+        "uniqueOwnedItems": 25803
+      },
+      {
+        "file": "086-418-w2-settled.json.gz",
+        "sha256": "b522b82d0099b96efe906dfc065f7e8197b3a1fafbf0832c66e75e24778f3536",
+        "level": 34,
+        "xp": 252839,
+        "nextNormal": 419,
+        "uniqueOwnedItems": 25806
+      },
+      {
+        "file": "087-418-w3-settled.json.gz",
+        "sha256": "9f738abc0067ece694b66ed26c49ae43bc726c088159c420ec4062d9aa76102c",
+        "level": 34,
+        "xp": 260639,
+        "nextNormal": 419,
+        "uniqueOwnedItems": 25826
+      },
+      {
+        "file": "088-418-w4-settled.json.gz",
+        "sha256": "91f0fc94082487ef1b2c59b37a21e9464fe066a4800cf4a33cff9d9c14ab0e27",
+        "level": 34,
+        "xp": 269219,
+        "nextNormal": 419,
+        "uniqueOwnedItems": 25891
+      },
+      {
+        "file": "089-418-w5-settled.json.gz",
+        "sha256": "643baa6e19c842d9765a297de50c7692b52651a25ab52bb9bec10f11e2837e7e",
+        "level": 34,
+        "xp": 278599,
+        "nextNormal": 419,
+        "uniqueOwnedItems": 25917
+      },
+      {
+        "file": "090-418-w6-settled.json.gz",
+        "sha256": "c8645e2d4ff98dd6989fc27b4239c73a4c9dc1897b7ee18f35f3880d7051b1c5",
+        "level": 34,
+        "xp": 281949,
+        "nextNormal": 419,
+        "uniqueOwnedItems": 25934
+      },
+      {
+        "file": "091-418-won-saved.json.gz",
+        "sha256": "c8645e2d4ff98dd6989fc27b4239c73a4c9dc1897b7ee18f35f3880d7051b1c5",
+        "level": 34,
+        "xp": 281949,
+        "nextNormal": 419,
+        "uniqueOwnedItems": 25934
+      },
+      {
+        "file": "092-418-won-continued.json.gz",
+        "sha256": "c8645e2d4ff98dd6989fc27b4239c73a4c9dc1897b7ee18f35f3880d7051b1c5",
+        "level": 34,
+        "xp": 281949,
+        "nextNormal": 419,
+        "uniqueOwnedItems": 25934
+      },
+      {
+        "file": "093-419-w1-settled.json.gz",
+        "sha256": "cd883c58fd37cf8eab7771148b379825370ad055aec26e9be51fd363987c0003",
+        "level": 34,
+        "xp": 288879,
+        "nextNormal": 420,
+        "uniqueOwnedItems": 25937
+      },
+      {
+        "file": "094-419-w2-settled.json.gz",
+        "sha256": "478722ef03edfcaeda2c639cb6d448156218f302284b67c17bf72a07cf2fc935",
+        "level": 34,
+        "xp": 296439,
+        "nextNormal": 420,
+        "uniqueOwnedItems": 25941
+      },
+      {
+        "file": "095-419-w3-settled.json.gz",
+        "sha256": "d6dfd4f4a4ecb7dcfeb2b0a62dfaa154a64fbc7f3ef261be67e9459d53e763c8",
+        "level": 34,
+        "xp": 304889,
+        "nextNormal": 420,
+        "uniqueOwnedItems": 25962
+      },
+      {
+        "file": "096-419-w4-settled.json.gz",
+        "sha256": "65ed7410755cd74eb2ed31636aa7de6752f7c55a00631aaf9ebcb091468ae46d",
+        "level": 34,
+        "xp": 314129,
+        "nextNormal": 420,
+        "uniqueOwnedItems": 26032
+      },
+      {
+        "file": "097-419-w5-settled.json.gz",
+        "sha256": "c6ac7d2fb09562f61aaa18d3ffaad48bbdd86ce9eb0839b2190b8613acb060bf",
+        "level": 34,
+        "xp": 324179,
+        "nextNormal": 420,
+        "uniqueOwnedItems": 26060
+      },
+      {
+        "file": "098-419-w6-settled.json.gz",
+        "sha256": "306668ef019b5592b70cd13bb2871e98be3df967c464af74ca650467a38da4ee",
+        "level": 34,
+        "xp": 327529,
+        "nextNormal": 420,
+        "uniqueOwnedItems": 26077
+      },
+      {
+        "file": "099-419-won-saved.json.gz",
+        "sha256": "306668ef019b5592b70cd13bb2871e98be3df967c464af74ca650467a38da4ee",
+        "level": 34,
+        "xp": 327529,
+        "nextNormal": 420,
+        "uniqueOwnedItems": 26077
+      },
+      {
+        "file": "100-419-won-continued.json.gz",
+        "sha256": "306668ef019b5592b70cd13bb2871e98be3df967c464af74ca650467a38da4ee",
+        "level": 34,
+        "xp": 327529,
+        "nextNormal": 420,
+        "uniqueOwnedItems": 26077
+      },
+      {
+        "file": "101-420-w1-settled.json.gz",
+        "sha256": "9f10c960d58f03a2a5a43d3c2bd9e6df3b752de01ca2e54c4398d83ca58b54f8",
+        "level": 34,
+        "xp": 335089,
+        "nextNormal": 421,
+        "uniqueOwnedItems": 26080
+      },
+      {
+        "file": "102-420-w2-settled.json.gz",
+        "sha256": "542ef6c80289ae77d8fda34732d478bc911d5524e1b86a3acbf6954cfa28d834",
+        "level": 34,
+        "xp": 343279,
+        "nextNormal": 421,
+        "uniqueOwnedItems": 26084
+      },
+      {
+        "file": "103-420-w3-settled.json.gz",
+        "sha256": "83c2a0a0306ea9eef8f76a3bc93bf3a7ce4d4f186666353382ccca4117e38998",
+        "level": 34,
+        "xp": 352379,
+        "nextNormal": 421,
+        "uniqueOwnedItems": 26107
+      },
+      {
+        "file": "104-420-w4-settled.json.gz",
+        "sha256": "d6c7732a942e5da2118bfe9af2903ee6d2aac08e4b9d67dc5783da19094c074b",
+        "level": 34,
+        "xp": 362279,
+        "nextNormal": 421,
+        "uniqueOwnedItems": 26182
+      },
+      {
+        "file": "105-420-w5-settled.json.gz",
+        "sha256": "726838af8fd34b8c1517181ba191b7d35e4c4244196ea40a5bc5639831e984bb",
+        "level": 34,
+        "xp": 372999,
+        "nextNormal": 421,
+        "uniqueOwnedItems": 26212
+      },
+      {
+        "file": "106-420-w6-settled.json.gz",
+        "sha256": "8f9a26814580c49a46511a136cdf0df31364d6c24a90d6489862df37c194ca22",
+        "level": 34,
+        "xp": 376349,
+        "nextNormal": 421,
+        "uniqueOwnedItems": 26229
+      },
+      {
+        "file": "107-420-won-saved.json.gz",
+        "sha256": "8f9a26814580c49a46511a136cdf0df31364d6c24a90d6489862df37c194ca22",
+        "level": 34,
+        "xp": 376349,
+        "nextNormal": 421,
+        "uniqueOwnedItems": 26229
+      },
+      {
+        "file": "108-420-won-continued.json.gz",
+        "sha256": "8f9a26814580c49a46511a136cdf0df31364d6c24a90d6489862df37c194ca22",
+        "level": 34,
+        "xp": 376349,
+        "nextNormal": 421,
+        "uniqueOwnedItems": 26229
+      },
+      {
+        "file": "109-421-w1-settled.json.gz",
+        "sha256": "f2a2fac9de48b3f8d5a915f2bf825aa6ea0f46ed5ed87ca75c56371020bada8e",
+        "level": 34,
+        "xp": 384539,
+        "nextNormal": 422,
+        "uniqueOwnedItems": 26233
+      },
+      {
+        "file": "110-421-w2-settled.json.gz",
+        "sha256": "53713363c6d0c3c988c0225f1e5dce545a8ebebbab88e4f83d6eb186d04b4ce0",
+        "level": 34,
+        "xp": 393359,
+        "nextNormal": 422,
+        "uniqueOwnedItems": 26238
+      },
+      {
+        "file": "111-421-w3-settled.json.gz",
+        "sha256": "cec6d6fba5bbaac5b5ade145ec7439e43803ff6a83037f15bd3a2ba2e258a034",
+        "level": 34,
+        "xp": 403109,
+        "nextNormal": 422,
+        "uniqueOwnedItems": 26263
+      },
+      {
+        "file": "112-421-w4-settled.json.gz",
+        "sha256": "358e0435132edfafc868c862121a090416d54d0fbb662827e53b0a0d2ad6e43c",
+        "level": 34,
+        "xp": 413669,
+        "nextNormal": 422,
+        "uniqueOwnedItems": 26343
+      },
+      {
+        "file": "113-421-w5-settled.json.gz",
+        "sha256": "e7b6914211b142906673a2c55f876dc5fdd3daf313e22071646258db0558d06b",
+        "level": 34,
+        "xp": 425059,
+        "nextNormal": 422,
+        "uniqueOwnedItems": 26375
+      },
+      {
+        "file": "114-421-w6-settled.json.gz",
+        "sha256": "4f7b95db666aa7eca289721107eeade879b2f0ece0ba12d155469eb51879f8a9",
+        "level": 34,
+        "xp": 428409,
+        "nextNormal": 422,
+        "uniqueOwnedItems": 26392
+      },
+      {
+        "file": "115-421-won-saved.json.gz",
+        "sha256": "4f7b95db666aa7eca289721107eeade879b2f0ece0ba12d155469eb51879f8a9",
+        "level": 34,
+        "xp": 428409,
+        "nextNormal": 422,
+        "uniqueOwnedItems": 26392
+      },
+      {
+        "file": "116-421-won-continued.json.gz",
+        "sha256": "4f7b95db666aa7eca289721107eeade879b2f0ece0ba12d155469eb51879f8a9",
+        "level": 34,
+        "xp": 428409,
+        "nextNormal": 422,
+        "uniqueOwnedItems": 26392
+      },
+      {
+        "file": "117-422-w1-settled.json.gz",
+        "sha256": "57e64f382c02f75fbcc392c9bf15f54c1534bd091b69cb49bc1f1d9c6678c79c",
+        "level": 34,
+        "xp": 437229,
+        "nextNormal": 423,
+        "uniqueOwnedItems": 26397
+      },
+      {
+        "file": "118-422-w2-settled.json.gz",
+        "sha256": "9eef9c7ea23e60ecf8da3e9933768655658c77333a86f7ce436b13b0b1493607",
+        "level": 34,
+        "xp": 446679,
+        "nextNormal": 423,
+        "uniqueOwnedItems": 26402
+      },
+      {
+        "file": "119-422-w3-settled.json.gz",
+        "sha256": "748028d55fd18131fa212ea4f4141415ff1620182e6cfc9f10f778324a011fa9",
+        "level": 34,
+        "xp": 457079,
+        "nextNormal": 423,
+        "uniqueOwnedItems": 26429
+      },
+      {
+        "file": "120-422-w4-settled.json.gz",
+        "sha256": "1a9d607942c83bce614211ec6010c6972a89253a26866d0bba68dcdac172ea21",
+        "level": 34,
+        "xp": 468299,
+        "nextNormal": 423,
+        "uniqueOwnedItems": 26514
+      },
+      {
+        "file": "121-422-w5-settled.json.gz",
+        "sha256": "34ad72e9c75ad5235e1c522ea2374780d7e3e65751fed2fdeb6dca32542d5c8d",
+        "level": 34,
+        "xp": 480359,
+        "nextNormal": 423,
+        "uniqueOwnedItems": 26547
+      },
+      {
+        "file": "122-422-w6-settled.json.gz",
+        "sha256": "82069ad17d33a050e77a6108a568598a0ab4cdf6585adbf9a9f4a12616b5da34",
+        "level": 34,
+        "xp": 483709,
+        "nextNormal": 423,
+        "uniqueOwnedItems": 26564
+      },
+      {
+        "file": "123-422-won-saved.json.gz",
+        "sha256": "82069ad17d33a050e77a6108a568598a0ab4cdf6585adbf9a9f4a12616b5da34",
+        "level": 34,
+        "xp": 483709,
+        "nextNormal": 423,
+        "uniqueOwnedItems": 26564
+      },
+      {
+        "file": "124-422-won-continued.json.gz",
+        "sha256": "82069ad17d33a050e77a6108a568598a0ab4cdf6585adbf9a9f4a12616b5da34",
+        "level": 34,
+        "xp": 483709,
+        "nextNormal": 423,
+        "uniqueOwnedItems": 26564
+      },
+      {
+        "file": "125-423-w1-settled.json.gz",
+        "sha256": "da13aba7844a86f6b358059d7ca3ff9f143054228bd3ce17eafa3d8f70b383aa",
+        "level": 34,
+        "xp": 493159,
+        "nextNormal": 424,
+        "uniqueOwnedItems": 26570
+      },
+      {
+        "file": "126-423-w2-settled.json.gz",
+        "sha256": "65174f86a2dbd92e9958c444e27c409c61b420b8cf186e9dda52da27108c221d",
+        "level": 34,
+        "xp": 503239,
+        "nextNormal": 424,
+        "uniqueOwnedItems": 26575
+      },
+      {
+        "file": "127-423-w3-settled.json.gz",
+        "sha256": "f47a08db2c8397af391503d444566f2e6c8351ef6555e84932a31634885c72bc",
+        "level": 34,
+        "xp": 514289,
+        "nextNormal": 424,
+        "uniqueOwnedItems": 26604
+      },
+      {
+        "file": "128-423-w4-settled.json.gz",
+        "sha256": "1ea8b7e66157b8c22cac8069e6c76e1a10259e052bb6e6b888e4a9203a37c18a",
+        "level": 34,
+        "xp": 526169,
+        "nextNormal": 424,
+        "uniqueOwnedItems": 26694
+      },
+      {
+        "file": "129-423-w5-settled.json.gz",
+        "sha256": "1fff279263033d04d182fc42fd419249b8f1575809fdcb6be6eaa7c2f3307400",
+        "level": 34,
+        "xp": 538899,
+        "nextNormal": 424,
+        "uniqueOwnedItems": 26729
+      },
+      {
+        "file": "130-423-w6-settled.json.gz",
+        "sha256": "11b06a60d074733005c1bc7fdefa594cfc47ab81c8faa4e5a35e95b3ebd55973",
+        "level": 34,
+        "xp": 542249,
+        "nextNormal": 424,
+        "uniqueOwnedItems": 26746
+      },
+      {
+        "file": "131-423-won-saved.json.gz",
+        "sha256": "11b06a60d074733005c1bc7fdefa594cfc47ab81c8faa4e5a35e95b3ebd55973",
+        "level": 34,
+        "xp": 542249,
+        "nextNormal": 424,
+        "uniqueOwnedItems": 26746
+      },
+      {
+        "file": "132-423-won-continued.json.gz",
+        "sha256": "11b06a60d074733005c1bc7fdefa594cfc47ab81c8faa4e5a35e95b3ebd55973",
+        "level": 34,
+        "xp": 542249,
+        "nextNormal": 424,
+        "uniqueOwnedItems": 26746
+      },
+      {
+        "file": "133-424-w1-settled.json.gz",
+        "sha256": "ede021724ae0b50185aab023ecb5076c3132add2b2a41922fba5300315fcb002",
+        "level": 34,
+        "xp": 552329,
+        "nextNormal": 425,
+        "uniqueOwnedItems": 26752
+      },
+      {
+        "file": "134-424-w2-settled.json.gz",
+        "sha256": "84028d3575e70a914f47fd49c9e6e809861df5d352fe173aef39741bb335eb01",
+        "level": 34,
+        "xp": 563039,
+        "nextNormal": 425,
+        "uniqueOwnedItems": 26757
+      },
+      {
+        "file": "135-424-w3-settled.json.gz",
+        "sha256": "fab4ca6760a54eb5a76b222006f71c7efba16dcd3f2903f23c05aee80d7e6566",
+        "level": 34,
+        "xp": 574739,
+        "nextNormal": 425,
+        "uniqueOwnedItems": 26788
+      },
+      {
+        "file": "136-424-w4-settled.json.gz",
+        "sha256": "b7cfd88edd0712e07a2b4b9a9833f555b72a6386cb672da173ecf8cfdf3e690b",
+        "level": 34,
+        "xp": 587279,
+        "nextNormal": 425,
+        "uniqueOwnedItems": 26883
+      },
+      {
+        "file": "137-424-w5-settled.json.gz",
+        "sha256": "814ff4c8eaea5e0efa0f6ac285eeb1376c4107729a5b2c248d9da30aa26a0f41",
+        "level": 34,
+        "xp": 600679,
+        "nextNormal": 425,
+        "uniqueOwnedItems": 26920
+      },
+      {
+        "file": "138-424-w6-settled.json.gz",
+        "sha256": "a853d368d17bfc8feb7099165c6d34591e95d3cae86cffc6ea443c375ab3c7bf",
+        "level": 34,
+        "xp": 604029,
+        "nextNormal": 425,
+        "uniqueOwnedItems": 26937
+      },
+      {
+        "file": "139-424-won-saved.json.gz",
+        "sha256": "a853d368d17bfc8feb7099165c6d34591e95d3cae86cffc6ea443c375ab3c7bf",
+        "level": 34,
+        "xp": 604029,
+        "nextNormal": 425,
+        "uniqueOwnedItems": 26937
+      },
+      {
+        "file": "140-424-won-continued.json.gz",
+        "sha256": "a853d368d17bfc8feb7099165c6d34591e95d3cae86cffc6ea443c375ab3c7bf",
+        "level": 34,
+        "xp": 604029,
+        "nextNormal": 425,
+        "uniqueOwnedItems": 26937
+      },
+      {
+        "file": "141-425-w1-settled.json.gz",
+        "sha256": "cff9dee284284f67bccd9e7defc9b12e749eb968a9b4bfff5eee3d99dafc5c8a",
+        "level": 34,
+        "xp": 614739,
+        "nextNormal": 426,
+        "uniqueOwnedItems": 26944
+      },
+      {
+        "file": "142-425-w2-settled.json.gz",
+        "sha256": "149850dec445557bd3bfa2cf0545a2ea713ab88c4f502cbd01f7bd8184557893",
+        "level": 34,
+        "xp": 626079,
+        "nextNormal": 426,
+        "uniqueOwnedItems": 26949
+      },
+      {
+        "file": "143-425-w3-settled.json.gz",
+        "sha256": "a04fd5df691ec5186e89907ea6adbeb46b28c0ab3172479df012befd706cfd9e",
+        "level": 34,
+        "xp": 638429,
+        "nextNormal": 426,
+        "uniqueOwnedItems": 26982
+      },
+      {
+        "file": "144-425-w4-settled.json.gz",
+        "sha256": "476b3efcc9f03babc4778f25adbf96006f04c00692a6cc4e410973f33cd4fb45",
+        "level": 34,
+        "xp": 651629,
+        "nextNormal": 426,
+        "uniqueOwnedItems": 27082
+      },
+      {
+        "file": "145-425-w5-settled.json.gz",
+        "sha256": "bea3453e6ef70e3883df623e21da86ae8caacc7feace7f38cc1f79bf87af7ed1",
+        "level": 34,
+        "xp": 656989,
+        "nextNormal": 426,
+        "uniqueOwnedItems": 27098
+      },
+      {
+        "file": "146-425-w6-settled.json.gz",
+        "sha256": "ae6a53d91949a4a79b52c01c78f9c3a92491647d28a84302685ed8c01e34fd02",
+        "level": 34,
+        "xp": 660339,
+        "nextNormal": 426,
+        "uniqueOwnedItems": 27115
+      },
+      {
+        "file": "147-425-won-saved.json.gz",
+        "sha256": "ae6a53d91949a4a79b52c01c78f9c3a92491647d28a84302685ed8c01e34fd02",
+        "level": 34,
+        "xp": 660339,
+        "nextNormal": 426,
+        "uniqueOwnedItems": 27115
+      },
+      {
+        "file": "148-425-won-continued.json.gz",
+        "sha256": "ae6a53d91949a4a79b52c01c78f9c3a92491647d28a84302685ed8c01e34fd02",
+        "level": 34,
+        "xp": 660339,
+        "nextNormal": 426,
+        "uniqueOwnedItems": 27115
+      },
+      {
+        "file": "149-426-w1-settled.json.gz",
+        "sha256": "3bc6282cba6799579a9fb224c9eb8d0537008c8c89a415f767e335e2c6fcadaa",
+        "level": 34,
+        "xp": 671679,
+        "nextNormal": 427,
+        "uniqueOwnedItems": 27123
+      },
+      {
+        "file": "150-426-w2-settled.json.gz",
+        "sha256": "259995ab556aa3dfb1272b229653164a57ec43f0eec91522e10eafddca36847c",
+        "level": 35,
+        "xp": 9591,
+        "nextNormal": 427,
+        "uniqueOwnedItems": 27128
+      },
+      {
+        "file": "151-426-w3-settled.json.gz",
+        "sha256": "793d25f190cd2bb49ea3d87b656d7c80f8b2a5fa8f59b8a8291ac73c10ec2025",
+        "level": 35,
+        "xp": 22591,
+        "nextNormal": 427,
+        "uniqueOwnedItems": 27163
+      },
+      {
+        "file": "152-426-w4-settled.json.gz",
+        "sha256": "a24eff72fdc8942ed8f1ae8cc2c2c9bad6723962bc31007fb7e0e6bf7d785eee",
+        "level": 35,
+        "xp": 27871,
+        "nextNormal": 427,
+        "uniqueOwnedItems": 27203
+      },
+      {
+        "file": "153-426-w5-settled.json.gz",
+        "sha256": "b59c6d3f1884afe319f4f4b73e4425aa0319655eb3cd37805519970e68f2db09",
+        "level": 35,
+        "xp": 33901,
+        "nextNormal": 427,
+        "uniqueOwnedItems": 27221
+      },
+      {
+        "file": "154-426-w6-settled.json.gz",
+        "sha256": "e5bd68160be0b6cafc23f200fe2342e056f4dddc6108ac010b22e42e66e4aa2e",
+        "level": 35,
+        "xp": 37251,
+        "nextNormal": 427,
+        "uniqueOwnedItems": 27238
+      },
+      {
+        "file": "155-426-won-saved.json.gz",
+        "sha256": "e5bd68160be0b6cafc23f200fe2342e056f4dddc6108ac010b22e42e66e4aa2e",
+        "level": 35,
+        "xp": 37251,
+        "nextNormal": 427,
+        "uniqueOwnedItems": 27238
+      },
+      {
+        "file": "156-426-won-continued.json.gz",
+        "sha256": "e5bd68160be0b6cafc23f200fe2342e056f4dddc6108ac010b22e42e66e4aa2e",
+        "level": 35,
+        "xp": 37251,
+        "nextNormal": 427,
+        "uniqueOwnedItems": 27238
+      },
+      {
+        "file": "final.json.gz",
+        "sha256": "e5bd68160be0b6cafc23f200fe2342e056f4dddc6108ac010b22e42e66e4aa2e",
+        "level": 35,
+        "xp": 37251,
+        "nextNormal": 427,
+        "uniqueOwnedItems": 27238
+      },
+      {
+        "file": "prelaunch-408.json.gz",
+        "sha256": "dc306e71b8b58eb999add0888dbb996d1d63605fd1eb957a8ec25f2bb1ac4165",
+        "level": 33,
+        "xp": 368701,
+        "nextNormal": 408,
+        "uniqueOwnedItems": 24324
+      },
+      {
+        "file": "prelaunch-409.json.gz",
+        "sha256": "074ceca09df6e90f7187b200a89a032971cf12dce66afd59cec33147a91c52bc",
+        "level": 33,
+        "xp": 420761,
+        "nextNormal": 409,
+        "uniqueOwnedItems": 24487
+      },
+      {
+        "file": "prelaunch-410.json.gz",
+        "sha256": "65ce71a71ae1cf16920cf9f849e5c746c3cebe101ae485323b24884d74475b3a",
+        "level": 33,
+        "xp": 476061,
+        "nextNormal": 410,
+        "uniqueOwnedItems": 24659
+      },
+      {
+        "file": "prelaunch-411.json.gz",
+        "sha256": "521e47bc8fd5f330834bd8e1d647e676c0de51630d0480abac05be05924d280c",
+        "level": 33,
+        "xp": 534601,
+        "nextNormal": 411,
+        "uniqueOwnedItems": 24841
+      },
+      {
+        "file": "prelaunch-412.json.gz",
+        "sha256": "fb8b62d23521d8cce23c696b54b32ff92762b82e48a4d48ed3365d6f7156cbcb",
+        "level": 33,
+        "xp": 596381,
+        "nextNormal": 412,
+        "uniqueOwnedItems": 25032
+      },
+      {
+        "file": "prelaunch-413.json.gz",
+        "sha256": "7873b51989bc7154a3ebc200ed5a76b0d31680579ae6f27aad2864d5c0f543e1",
+        "level": 34,
+        "xp": 27109,
+        "nextNormal": 413,
+        "uniqueOwnedItems": 25210
+      },
+      {
+        "file": "prelaunch-414.json.gz",
+        "sha256": "3f14a556ded6a55cec492925be73e6fe9889005d8c01811970d39d13f0c2d225",
+        "level": 34,
+        "xp": 78079,
+        "nextNormal": 414,
+        "uniqueOwnedItems": 25333
+      },
+      {
+        "file": "prelaunch-415.json.gz",
+        "sha256": "a4403484bc3c8d549db041cb6091695708882083d66f3eda25c6c838902ddb67",
+        "level": 34,
+        "xp": 123839,
+        "nextNormal": 415,
+        "uniqueOwnedItems": 25442
+      },
+      {
+        "file": "prelaunch-416.json.gz",
+        "sha256": "dbcf3ef2a377fc38fd8001d1c4e1a88d13641bd66fb03b39ad95a3885f963082",
+        "level": 34,
+        "xp": 164649,
+        "nextNormal": 416,
+        "uniqueOwnedItems": 25557
+      },
+      {
+        "file": "prelaunch-417.json.gz",
+        "sha256": "616d2cf250a34fabd728a981cc220286fce63169986de2bb145706676891b1ca",
+        "level": 34,
+        "xp": 200509,
+        "nextNormal": 417,
+        "uniqueOwnedItems": 25674
+      },
+      {
+        "file": "prelaunch-418.json.gz",
+        "sha256": "aa745ab418edfcf73a606777f6ea7fba1443602766f8ada56ff480be60288da4",
+        "level": 34,
+        "xp": 239609,
+        "nextNormal": 418,
+        "uniqueOwnedItems": 25800
+      },
+      {
+        "file": "prelaunch-419.json.gz",
+        "sha256": "c8645e2d4ff98dd6989fc27b4239c73a4c9dc1897b7ee18f35f3880d7051b1c5",
+        "level": 34,
+        "xp": 281949,
+        "nextNormal": 419,
+        "uniqueOwnedItems": 25934
+      },
+      {
+        "file": "prelaunch-420.json.gz",
+        "sha256": "306668ef019b5592b70cd13bb2871e98be3df967c464af74ca650467a38da4ee",
+        "level": 34,
+        "xp": 327529,
+        "nextNormal": 420,
+        "uniqueOwnedItems": 26077
+      },
+      {
+        "file": "prelaunch-421.json.gz",
+        "sha256": "8f9a26814580c49a46511a136cdf0df31364d6c24a90d6489862df37c194ca22",
+        "level": 34,
+        "xp": 376349,
+        "nextNormal": 421,
+        "uniqueOwnedItems": 26229
+      },
+      {
+        "file": "prelaunch-422.json.gz",
+        "sha256": "4f7b95db666aa7eca289721107eeade879b2f0ece0ba12d155469eb51879f8a9",
+        "level": 34,
+        "xp": 428409,
+        "nextNormal": 422,
+        "uniqueOwnedItems": 26392
+      },
+      {
+        "file": "prelaunch-423.json.gz",
+        "sha256": "82069ad17d33a050e77a6108a568598a0ab4cdf6585adbf9a9f4a12616b5da34",
+        "level": 34,
+        "xp": 483709,
+        "nextNormal": 423,
+        "uniqueOwnedItems": 26564
+      },
+      {
+        "file": "prelaunch-424.json.gz",
+        "sha256": "11b06a60d074733005c1bc7fdefa594cfc47ab81c8faa4e5a35e95b3ebd55973",
+        "level": 34,
+        "xp": 542249,
+        "nextNormal": 424,
+        "uniqueOwnedItems": 26746
+      },
+      {
+        "file": "prelaunch-425.json.gz",
+        "sha256": "a853d368d17bfc8feb7099165c6d34591e95d3cae86cffc6ea443c375ab3c7bf",
+        "level": 34,
+        "xp": 604029,
+        "nextNormal": 425,
+        "uniqueOwnedItems": 26937
+      },
+      {
+        "file": "prelaunch-426.json.gz",
+        "sha256": "ae6a53d91949a4a79b52c01c78f9c3a92491647d28a84302685ed8c01e34fd02",
+        "level": 34,
+        "xp": 660339,
+        "nextNormal": 426,
+        "uniqueOwnedItems": 27115
+      }
+    ],
+    "limits": "Root-authored audit, not independent review. Genuine farming only; free priority only; no Baal, Eve, paid reset/allocation/gear, campaign pacing, fullC2-C4 or G0-G7 acceptance."
+  },
+  "areas": [
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 408,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8190,
+            "newItems": [
+              "it-4vvwq-irp",
+              "it-931xt-irq",
+              "it-6fomw-irr",
+              "it-bt3a-irs"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8820,
+            "newItems": [
+              "it-8sbty-irt",
+              "it-2ytvi-iru",
+              "it-11l0t-irv",
+              "it-2iawb-irw",
+              "it-4mrie-irx"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 9750,
+            "newItems": [
+              "it-2lqd3-iry",
+              "it-79u3u-irz",
+              "it-9x5h8-is0",
+              "it-2c2np-is1",
+              "it-6eepu-is2",
+              "it-3gakz-is3",
+              "it-18oze-is4",
+              "it-42p8m-is5",
+              "it-4orth-is6",
+              "it-5nmu9-is7",
+              "it-31zip-is8",
+              "it-2ap5o-is9",
+              "it-pbxz-isa",
+              "it-64ylr-isb",
+              "it-9bc6m-isc",
+              "it-585gn-isd",
+              "it-2hof6-ise",
+              "it-25exv-isf",
+              "it-1tf1u-isg",
+              "it-7dkx1-ish",
+              "it-2y4bw-isi",
+              "it-7x5bw-isj",
+              "it-4qoyw-isk",
+              "it-2f3a4-isl",
+              "it-6a5x7-ism"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10560,
+            "newItems": [
+              "it-7uno8-isn",
+              "it-2ywpb-iso",
+              "it-tnh3-isp",
+              "it-qpcj-isq",
+              "it-67apo-isr",
+              "it-79cyu-iss",
+              "it-53agf-ist",
+              "it-762w9-isu",
+              "it-4nlb1-isv",
+              "it-4h80o-isw",
+              "it-5g7r3-isx",
+              "it-5suux-isy",
+              "it-2vm9b-isz",
+              "it-4c3nx-it0",
+              "it-2r698-it1",
+              "it-8vuem-it2",
+              "it-6qvgp-it3",
+              "it-3azwj-it4",
+              "it-9pzl2-it5",
+              "it-4y4f8-it6",
+              "it-8a5q-it7",
+              "it-9r74d-it8",
+              "it-5a3aq-it9",
+              "it-28itr-ita",
+              "it-1sweo-itb",
+              "it-4fkgw-itc",
+              "it-14fwk-itd",
+              "it-4u2q7-ite",
+              "it-4qdra-itf",
+              "it-19lr8-itg",
+              "it-1pq98-ith",
+              "it-qs9o-iti",
+              "it-1ct6o-itj",
+              "it-56la6-itk",
+              "it-7vj41-itl",
+              "it-3dhpw-itm",
+              "it-53hjq-itn",
+              "it-9c97x-ito",
+              "it-3thy0-itp",
+              "it-89rxo-itq",
+              "it-6k7ju-itr",
+              "it-530i2-its",
+              "it-551a3-itt",
+              "it-7b7xx-itu",
+              "it-sjhv-itv",
+              "it-7dijn-itw",
+              "it-a747-itx",
+              "it-93v1b-ity",
+              "it-8fpf4-itz",
+              "it-4p0m9-iu0",
+              "it-9o0jx-iu1",
+              "it-5ikxf-iu2",
+              "it-4l7nd-iu3",
+              "it-3y1sl-iu4",
+              "it-891lo-iu5",
+              "it-62c9e-iu6",
+              "it-a46b-iu7",
+              "it-2jfsj-iu8",
+              "it-75ngk-iu9",
+              "it-2alk3-iua",
+              "it-69ptf-iub",
+              "it-627yn-iuc",
+              "it-8p4hq-iud",
+              "it-2svjy-iue",
+              "it-5z32u-iuf",
+              "it-6sv02-iug",
+              "it-oom9-iuh",
+              "it-5pgub-iui",
+              "it-7by5r-iuj",
+              "it-1nf1q-iuk",
+              "it-4zwn1-iul",
+              "it-64qd1-ium",
+              "it-3ay7r-iun",
+              "it-1kc75-iuo",
+              "it-9cfv7-iup",
+              "it-3op71-iuq",
+              "it-81er-iur",
+              "it-7xra5-ius",
+              "it-1nhyb-iut",
+              "it-22w6h-iuu"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11390,
+            "newItems": [
+              "it-3ptz2-iuv",
+              "it-668vp-iuw",
+              "it-1991e-iux",
+              "it-3lmjl-iuy",
+              "it-ic37-iuz",
+              "it-69qw1-iv0",
+              "it-3kdt8-iv1",
+              "it-y5zm-iv2",
+              "it-5l2tj-iv3",
+              "it-2orkq-iv4",
+              "it-6zn1j-iv5",
+              "it-6hfif-iv6",
+              "it-85nyp-iv7",
+              "it-mho9-iv8",
+              "it-5x9bj-iv9",
+              "it-13k8z-iva",
+              "it-5bwki-ivb",
+              "it-8zuay-ivc",
+              "it-7ytc4-ivd",
+              "it-gxhj-ive",
+              "it-1oglc-ivf",
+              "it-4iohq-ivg",
+              "it-7azk4-ivh",
+              "it-7qkoi-ivi",
+              "it-se94-ivj",
+              "it-7e988-ivk",
+              "it-76lxr-ivl",
+              "it-5lnqh-ivm",
+              "it-1gf4t-ivn",
+              "it-3t7a6-ivo",
+              "it-74uqo-ivp",
+              "it-30s7d-ivq"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-ivr",
+              "it-9wv6i-ivs",
+              "it-42f7g-ivt",
+              "it-2dv9h-ivu",
+              "it-73pgp-ivv",
+              "it-6qqhv-ivw",
+              "it-129u5-ivx",
+              "it-brds-ivy",
+              "it-5nfdi-ivz",
+              "it-po4g-iw0",
+              "it-6r1dk-iw1",
+              "it-5ohj-iw2",
+              "it-6ahxw-iw3",
+              "it-6st63-iw4",
+              "it-809gb-iw5",
+              "it-9hm31-iw6",
+              "it-7qnxy-iw7"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 409,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8820,
+            "newItems": [
+              "it-4vvwq-iw8",
+              "it-931xt-iw9",
+              "it-6fomw-iwa",
+              "it-bt3a-iwb",
+              "it-8r999-iwc"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 9450,
+            "newItems": [
+              "it-8sbty-iwd",
+              "it-2ytvi-iwe",
+              "it-11l0t-iwf",
+              "it-2iawb-iwg",
+              "it-4mrie-iwh"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10400,
+            "newItems": [
+              "it-2lqd3-iwi",
+              "it-79u3u-iwj",
+              "it-9x5h8-iwk",
+              "it-2c2np-iwl",
+              "it-6eepu-iwm",
+              "it-3gakz-iwn",
+              "it-18oze-iwo",
+              "it-42p8m-iwp",
+              "it-4orth-iwq",
+              "it-5nmu9-iwr",
+              "it-31zip-iws",
+              "it-2ap5o-iwt",
+              "it-pbxz-iwu",
+              "it-64ylr-iwv",
+              "it-9bc6m-iww",
+              "it-585gn-iwx",
+              "it-2hof6-iwy",
+              "it-25exv-iwz",
+              "it-1tf1u-ix0",
+              "it-7dkx1-ix1",
+              "it-2y4bw-ix2",
+              "it-7x5bw-ix3",
+              "it-4qoyw-ix4",
+              "it-2f3a4-ix5",
+              "it-6a5x7-ix6",
+              "it-31kcd-ix7",
+              "it-753ec-ix8"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11220,
+            "newItems": [
+              "it-7uno8-ix9",
+              "it-2ywpb-ixa",
+              "it-tnh3-ixb",
+              "it-qpcj-ixc",
+              "it-67apo-ixd",
+              "it-79cyu-ixe",
+              "it-53agf-ixf",
+              "it-762w9-ixg",
+              "it-4nlb1-ixh",
+              "it-4h80o-ixi",
+              "it-5g7r3-ixj",
+              "it-5suux-ixk",
+              "it-2vm9b-ixl",
+              "it-4c3nx-ixm",
+              "it-2r698-ixn",
+              "it-8vuem-ixo",
+              "it-6qvgp-ixp",
+              "it-3azwj-ixq",
+              "it-9pzl2-ixr",
+              "it-4y4f8-ixs",
+              "it-8a5q-ixt",
+              "it-9r74d-ixu",
+              "it-5a3aq-ixv",
+              "it-28itr-ixw",
+              "it-1sweo-ixx",
+              "it-4fkgw-ixy",
+              "it-14fwk-ixz",
+              "it-4u2q7-iy0",
+              "it-4qdra-iy1",
+              "it-19lr8-iy2",
+              "it-1pq98-iy3",
+              "it-qs9o-iy4",
+              "it-1ct6o-iy5",
+              "it-56la6-iy6",
+              "it-7vj41-iy7",
+              "it-3dhpw-iy8",
+              "it-53hjq-iy9",
+              "it-9c97x-iya",
+              "it-3thy0-iyb",
+              "it-89rxo-iyc",
+              "it-6k7ju-iyd",
+              "it-530i2-iye",
+              "it-551a3-iyf",
+              "it-7b7xx-iyg",
+              "it-sjhv-iyh",
+              "it-7dijn-iyi",
+              "it-a747-iyj",
+              "it-93v1b-iyk",
+              "it-8fpf4-iyl",
+              "it-4p0m9-iym",
+              "it-9o0jx-iyn",
+              "it-5ikxf-iyo",
+              "it-4l7nd-iyp",
+              "it-3y1sl-iyq",
+              "it-891lo-iyr",
+              "it-62c9e-iys",
+              "it-a46b-iyt",
+              "it-2jfsj-iyu",
+              "it-75ngk-iyv",
+              "it-2alk3-iyw",
+              "it-69ptf-iyx",
+              "it-627yn-iyy",
+              "it-8p4hq-iyz",
+              "it-2svjy-iz0",
+              "it-5z32u-iz1",
+              "it-6sv02-iz2",
+              "it-oom9-iz3",
+              "it-5pgub-iz4",
+              "it-7by5r-iz5",
+              "it-1nf1q-iz6",
+              "it-4zwn1-iz7",
+              "it-64qd1-iz8",
+              "it-3ay7r-iz9",
+              "it-1kc75-iza",
+              "it-9cfv7-izb",
+              "it-3op71-izc",
+              "it-81er-izd",
+              "it-7xra5-ize",
+              "it-1nhyb-izf",
+              "it-22w6h-izg",
+              "it-3vkja-izh",
+              "it-tgul-izi",
+              "it-3uh4n-izj",
+              "it-1xouj-izk",
+              "it-8x72m-izl"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 12060,
+            "newItems": [
+              "it-3ptz2-izm",
+              "it-668vp-izn",
+              "it-1991e-izo",
+              "it-3lmjl-izp",
+              "it-ic37-izq",
+              "it-69qw1-izr",
+              "it-3kdt8-izs",
+              "it-y5zm-izt",
+              "it-5l2tj-izu",
+              "it-2orkq-izv",
+              "it-6zn1j-izw",
+              "it-6hfif-izx",
+              "it-85nyp-izy",
+              "it-mho9-izz",
+              "it-5x9bj-j00",
+              "it-13k8z-j01",
+              "it-5bwki-j02",
+              "it-8zuay-j03",
+              "it-7ytc4-j04",
+              "it-gxhj-j05",
+              "it-1oglc-j06",
+              "it-4iohq-j07",
+              "it-7azk4-j08",
+              "it-7qkoi-j09",
+              "it-se94-j0a",
+              "it-7e988-j0b",
+              "it-76lxr-j0c",
+              "it-5lnqh-j0d",
+              "it-1gf4t-j0e",
+              "it-3t7a6-j0f",
+              "it-74uqo-j0g",
+              "it-30s7d-j0h",
+              "it-1wyjl-j0i"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-j0j",
+              "it-9wv6i-j0k",
+              "it-42f7g-j0l",
+              "it-2dv9h-j0m",
+              "it-73pgp-j0n",
+              "it-6qqhv-j0o",
+              "it-129u5-j0p",
+              "it-brds-j0q",
+              "it-5nfdi-j0r",
+              "it-po4g-j0s",
+              "it-6r1dk-j0t",
+              "it-5ohj-j0u",
+              "it-6ahxw-j0v",
+              "it-6st63-j0w",
+              "it-809gb-j0x",
+              "it-9hm31-j0y",
+              "it-7qnxy-j0z"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 410,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 9450,
+            "newItems": [
+              "it-4vvwq-j10",
+              "it-931xt-j11",
+              "it-6fomw-j12",
+              "it-bt3a-j13",
+              "it-8r999-j14",
+              "it-47n2u-j15"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10080,
+            "newItems": [
+              "it-8sbty-j16",
+              "it-2ytvi-j17",
+              "it-11l0t-j18",
+              "it-2iawb-j19",
+              "it-4mrie-j1a"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11050,
+            "newItems": [
+              "it-2lqd3-j1b",
+              "it-79u3u-j1c",
+              "it-9x5h8-j1d",
+              "it-2c2np-j1e",
+              "it-6eepu-j1f",
+              "it-3gakz-j1g",
+              "it-18oze-j1h",
+              "it-42p8m-j1i",
+              "it-4orth-j1j",
+              "it-5nmu9-j1k",
+              "it-31zip-j1l",
+              "it-2ap5o-j1m",
+              "it-pbxz-j1n",
+              "it-64ylr-j1o",
+              "it-9bc6m-j1p",
+              "it-585gn-j1q",
+              "it-2hof6-j1r",
+              "it-25exv-j1s",
+              "it-1tf1u-j1t",
+              "it-7dkx1-j1u",
+              "it-2y4bw-j1v",
+              "it-7x5bw-j1w",
+              "it-4qoyw-j1x",
+              "it-2f3a4-j1y",
+              "it-6a5x7-j1z",
+              "it-31kcd-j20",
+              "it-753ec-j21",
+              "it-5ek6f-j22",
+              "it-4g97d-j23"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11880,
+            "newItems": [
+              "it-7uno8-j24",
+              "it-2ywpb-j25",
+              "it-tnh3-j26",
+              "it-qpcj-j27",
+              "it-67apo-j28",
+              "it-79cyu-j29",
+              "it-53agf-j2a",
+              "it-762w9-j2b",
+              "it-4nlb1-j2c",
+              "it-4h80o-j2d",
+              "it-5g7r3-j2e",
+              "it-5suux-j2f",
+              "it-2vm9b-j2g",
+              "it-4c3nx-j2h",
+              "it-2r698-j2i",
+              "it-8vuem-j2j",
+              "it-6qvgp-j2k",
+              "it-3azwj-j2l",
+              "it-9pzl2-j2m",
+              "it-4y4f8-j2n",
+              "it-8a5q-j2o",
+              "it-9r74d-j2p",
+              "it-5a3aq-j2q",
+              "it-28itr-j2r",
+              "it-1sweo-j2s",
+              "it-4fkgw-j2t",
+              "it-14fwk-j2u",
+              "it-4u2q7-j2v",
+              "it-4qdra-j2w",
+              "it-19lr8-j2x",
+              "it-1pq98-j2y",
+              "it-qs9o-j2z",
+              "it-1ct6o-j30",
+              "it-56la6-j31",
+              "it-7vj41-j32",
+              "it-3dhpw-j33",
+              "it-53hjq-j34",
+              "it-9c97x-j35",
+              "it-3thy0-j36",
+              "it-89rxo-j37",
+              "it-6k7ju-j38",
+              "it-530i2-j39",
+              "it-551a3-j3a",
+              "it-7b7xx-j3b",
+              "it-sjhv-j3c",
+              "it-7dijn-j3d",
+              "it-a747-j3e",
+              "it-93v1b-j3f",
+              "it-8fpf4-j3g",
+              "it-4p0m9-j3h",
+              "it-9o0jx-j3i",
+              "it-5ikxf-j3j",
+              "it-4l7nd-j3k",
+              "it-3y1sl-j3l",
+              "it-891lo-j3m",
+              "it-62c9e-j3n",
+              "it-a46b-j3o",
+              "it-2jfsj-j3p",
+              "it-75ngk-j3q",
+              "it-2alk3-j3r",
+              "it-69ptf-j3s",
+              "it-627yn-j3t",
+              "it-8p4hq-j3u",
+              "it-2svjy-j3v",
+              "it-5z32u-j3w",
+              "it-6sv02-j3x",
+              "it-oom9-j3y",
+              "it-5pgub-j3z",
+              "it-7by5r-j40",
+              "it-1nf1q-j41",
+              "it-4zwn1-j42",
+              "it-64qd1-j43",
+              "it-3ay7r-j44",
+              "it-1kc75-j45",
+              "it-9cfv7-j46",
+              "it-3op71-j47",
+              "it-81er-j48",
+              "it-7xra5-j49",
+              "it-1nhyb-j4a",
+              "it-22w6h-j4b",
+              "it-3vkja-j4c",
+              "it-tgul-j4d",
+              "it-3uh4n-j4e",
+              "it-1xouj-j4f",
+              "it-8x72m-j4g",
+              "it-160bv-j4h",
+              "it-56tyz-j4i",
+              "it-1aho8-j4j",
+              "it-5t2em-j4k",
+              "it-40i16-j4l"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 12730,
+            "newItems": [
+              "it-3ptz2-j4m",
+              "it-668vp-j4n",
+              "it-1991e-j4o",
+              "it-3lmjl-j4p",
+              "it-ic37-j4q",
+              "it-69qw1-j4r",
+              "it-3kdt8-j4s",
+              "it-y5zm-j4t",
+              "it-5l2tj-j4u",
+              "it-2orkq-j4v",
+              "it-6zn1j-j4w",
+              "it-6hfif-j4x",
+              "it-85nyp-j4y",
+              "it-mho9-j4z",
+              "it-5x9bj-j50",
+              "it-13k8z-j51",
+              "it-5bwki-j52",
+              "it-8zuay-j53",
+              "it-7ytc4-j54",
+              "it-gxhj-j55",
+              "it-1oglc-j56",
+              "it-4iohq-j57",
+              "it-7azk4-j58",
+              "it-7qkoi-j59",
+              "it-se94-j5a",
+              "it-7e988-j5b",
+              "it-76lxr-j5c",
+              "it-5lnqh-j5d",
+              "it-1gf4t-j5e",
+              "it-3t7a6-j5f",
+              "it-74uqo-j5g",
+              "it-30s7d-j5h",
+              "it-1wyjl-j5i",
+              "it-4pv6n-j5j",
+              "it-efve-j5k"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-j5l",
+              "it-9wv6i-j5m",
+              "it-42f7g-j5n",
+              "it-2dv9h-j5o",
+              "it-73pgp-j5p",
+              "it-6qqhv-j5q",
+              "it-129u5-j5r",
+              "it-brds-j5s",
+              "it-5nfdi-j5t",
+              "it-po4g-j5u",
+              "it-6r1dk-j5v",
+              "it-5ohj-j5w",
+              "it-6ahxw-j5x",
+              "it-6st63-j5y",
+              "it-809gb-j5z",
+              "it-9hm31-j60",
+              "it-7qnxy-j61"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 411,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10080,
+            "newItems": [
+              "it-4vvwq-j62",
+              "it-931xt-j63",
+              "it-6fomw-j64",
+              "it-bt3a-j65",
+              "it-8r999-j66",
+              "it-47n2u-j67"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10710,
+            "newItems": [
+              "it-8sbty-j68",
+              "it-2ytvi-j69",
+              "it-11l0t-j6a",
+              "it-2iawb-j6b",
+              "it-4mrie-j6c"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11700,
+            "newItems": [
+              "it-2lqd3-j6d",
+              "it-79u3u-j6e",
+              "it-9x5h8-j6f",
+              "it-2c2np-j6g",
+              "it-6eepu-j6h",
+              "it-3gakz-j6i",
+              "it-18oze-j6j",
+              "it-42p8m-j6k",
+              "it-4orth-j6l",
+              "it-5nmu9-j6m",
+              "it-31zip-j6n",
+              "it-2ap5o-j6o",
+              "it-pbxz-j6p",
+              "it-64ylr-j6q",
+              "it-9bc6m-j6r",
+              "it-585gn-j6s",
+              "it-2hof6-j6t",
+              "it-25exv-j6u",
+              "it-1tf1u-j6v",
+              "it-7dkx1-j6w",
+              "it-2y4bw-j6x",
+              "it-7x5bw-j6y",
+              "it-4qoyw-j6z",
+              "it-2f3a4-j70",
+              "it-6a5x7-j71",
+              "it-31kcd-j72",
+              "it-753ec-j73",
+              "it-5ek6f-j74",
+              "it-4g97d-j75",
+              "it-13r80-j76",
+              "it-1xa9c-j77"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 12540,
+            "newItems": [
+              "it-7uno8-j78",
+              "it-2ywpb-j79",
+              "it-tnh3-j7a",
+              "it-qpcj-j7b",
+              "it-67apo-j7c",
+              "it-79cyu-j7d",
+              "it-53agf-j7e",
+              "it-762w9-j7f",
+              "it-4nlb1-j7g",
+              "it-4h80o-j7h",
+              "it-5g7r3-j7i",
+              "it-5suux-j7j",
+              "it-2vm9b-j7k",
+              "it-4c3nx-j7l",
+              "it-2r698-j7m",
+              "it-8vuem-j7n",
+              "it-6qvgp-j7o",
+              "it-3azwj-j7p",
+              "it-9pzl2-j7q",
+              "it-4y4f8-j7r",
+              "it-8a5q-j7s",
+              "it-9r74d-j7t",
+              "it-5a3aq-j7u",
+              "it-28itr-j7v",
+              "it-1sweo-j7w",
+              "it-4fkgw-j7x",
+              "it-14fwk-j7y",
+              "it-4u2q7-j7z",
+              "it-4qdra-j80",
+              "it-19lr8-j81",
+              "it-1pq98-j82",
+              "it-qs9o-j83",
+              "it-1ct6o-j84",
+              "it-56la6-j85",
+              "it-7vj41-j86",
+              "it-3dhpw-j87",
+              "it-53hjq-j88",
+              "it-9c97x-j89",
+              "it-3thy0-j8a",
+              "it-89rxo-j8b",
+              "it-6k7ju-j8c",
+              "it-530i2-j8d",
+              "it-551a3-j8e",
+              "it-7b7xx-j8f",
+              "it-sjhv-j8g",
+              "it-7dijn-j8h",
+              "it-a747-j8i",
+              "it-93v1b-j8j",
+              "it-8fpf4-j8k",
+              "it-4p0m9-j8l",
+              "it-9o0jx-j8m",
+              "it-5ikxf-j8n",
+              "it-4l7nd-j8o",
+              "it-3y1sl-j8p",
+              "it-891lo-j8q",
+              "it-62c9e-j8r",
+              "it-a46b-j8s",
+              "it-2jfsj-j8t",
+              "it-75ngk-j8u",
+              "it-2alk3-j8v",
+              "it-69ptf-j8w",
+              "it-627yn-j8x",
+              "it-8p4hq-j8y",
+              "it-2svjy-j8z",
+              "it-5z32u-j90",
+              "it-6sv02-j91",
+              "it-oom9-j92",
+              "it-5pgub-j93",
+              "it-7by5r-j94",
+              "it-1nf1q-j95",
+              "it-4zwn1-j96",
+              "it-64qd1-j97",
+              "it-3ay7r-j98",
+              "it-1kc75-j99",
+              "it-9cfv7-j9a",
+              "it-3op71-j9b",
+              "it-81er-j9c",
+              "it-7xra5-j9d",
+              "it-1nhyb-j9e",
+              "it-22w6h-j9f",
+              "it-3vkja-j9g",
+              "it-tgul-j9h",
+              "it-3uh4n-j9i",
+              "it-1xouj-j9j",
+              "it-8x72m-j9k",
+              "it-160bv-j9l",
+              "it-56tyz-j9m",
+              "it-1aho8-j9n",
+              "it-5t2em-j9o",
+              "it-40i16-j9p",
+              "it-8tf69-j9q",
+              "it-828q8-j9r",
+              "it-1jyfg-j9s",
+              "it-856kd-j9t",
+              "it-9yw3p-j9u"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 13400,
+            "newItems": [
+              "it-3ptz2-j9v",
+              "it-668vp-j9w",
+              "it-1991e-j9x",
+              "it-3lmjl-j9y",
+              "it-ic37-j9z",
+              "it-69qw1-ja0",
+              "it-3kdt8-ja1",
+              "it-y5zm-ja2",
+              "it-5l2tj-ja3",
+              "it-2orkq-ja4",
+              "it-6zn1j-ja5",
+              "it-6hfif-ja6",
+              "it-85nyp-ja7",
+              "it-mho9-ja8",
+              "it-5x9bj-ja9",
+              "it-13k8z-jaa",
+              "it-5bwki-jab",
+              "it-8zuay-jac",
+              "it-7ytc4-jad",
+              "it-gxhj-jae",
+              "it-1oglc-jaf",
+              "it-4iohq-jag",
+              "it-7azk4-jah",
+              "it-7qkoi-jai",
+              "it-se94-jaj",
+              "it-7e988-jak",
+              "it-76lxr-jal",
+              "it-5lnqh-jam",
+              "it-1gf4t-jan",
+              "it-3t7a6-jao",
+              "it-74uqo-jap",
+              "it-30s7d-jaq",
+              "it-1wyjl-jar",
+              "it-4pv6n-jas",
+              "it-efve-jat",
+              "it-9dpn1-jau",
+              "it-3evxb-jav"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-jaw",
+              "it-9wv6i-jax",
+              "it-42f7g-jay",
+              "it-2dv9h-jaz",
+              "it-73pgp-jb0",
+              "it-6qqhv-jb1",
+              "it-129u5-jb2",
+              "it-brds-jb3",
+              "it-5nfdi-jb4",
+              "it-po4g-jb5",
+              "it-6r1dk-jb6",
+              "it-5ohj-jb7",
+              "it-6ahxw-jb8",
+              "it-6st63-jb9",
+              "it-809gb-jba",
+              "it-9hm31-jbb",
+              "it-7qnxy-jbc"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 412,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10710,
+            "newItems": [
+              "it-4vvwq-jbd",
+              "it-931xt-jbe",
+              "it-6fomw-jbf",
+              "it-bt3a-jbg",
+              "it-8r999-jbh",
+              "it-47n2u-jbi",
+              "it-5j3pv-jbj"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11340,
+            "newItems": [
+              "it-8sbty-jbk",
+              "it-2ytvi-jbl",
+              "it-11l0t-jbm",
+              "it-2iawb-jbn",
+              "it-4mrie-jbo"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 12350,
+            "newItems": [
+              "it-2lqd3-jbp",
+              "it-79u3u-jbq",
+              "it-9x5h8-jbr",
+              "it-2c2np-jbs",
+              "it-6eepu-jbt",
+              "it-3gakz-jbu",
+              "it-18oze-jbv",
+              "it-42p8m-jbw",
+              "it-4orth-jbx",
+              "it-5nmu9-jby",
+              "it-31zip-jbz",
+              "it-2ap5o-jc0",
+              "it-pbxz-jc1",
+              "it-64ylr-jc2",
+              "it-9bc6m-jc3",
+              "it-585gn-jc4",
+              "it-2hof6-jc5",
+              "it-25exv-jc6",
+              "it-1tf1u-jc7",
+              "it-7dkx1-jc8",
+              "it-2y4bw-jc9",
+              "it-7x5bw-jca",
+              "it-4qoyw-jcb",
+              "it-2f3a4-jcc",
+              "it-6a5x7-jcd",
+              "it-31kcd-jce",
+              "it-753ec-jcf",
+              "it-5ek6f-jcg",
+              "it-4g97d-jch",
+              "it-13r80-jci",
+              "it-1xa9c-jcj",
+              "it-304zb-jck",
+              "it-3f6ib-jcl"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 13200,
+            "newItems": [
+              "it-7uno8-jcm",
+              "it-2ywpb-jcn",
+              "it-tnh3-jco",
+              "it-qpcj-jcp",
+              "it-67apo-jcq",
+              "it-79cyu-jcr",
+              "it-53agf-jcs",
+              "it-762w9-jct",
+              "it-4nlb1-jcu",
+              "it-4h80o-jcv",
+              "it-5g7r3-jcw",
+              "it-5suux-jcx",
+              "it-2vm9b-jcy",
+              "it-4c3nx-jcz",
+              "it-2r698-jd0",
+              "it-8vuem-jd1",
+              "it-6qvgp-jd2",
+              "it-3azwj-jd3",
+              "it-9pzl2-jd4",
+              "it-4y4f8-jd5",
+              "it-8a5q-jd6",
+              "it-9r74d-jd7",
+              "it-5a3aq-jd8",
+              "it-28itr-jd9",
+              "it-1sweo-jda",
+              "it-4fkgw-jdb",
+              "it-14fwk-jdc",
+              "it-4u2q7-jdd",
+              "it-4qdra-jde",
+              "it-19lr8-jdf",
+              "it-1pq98-jdg",
+              "it-qs9o-jdh",
+              "it-1ct6o-jdi",
+              "it-56la6-jdj",
+              "it-7vj41-jdk",
+              "it-3dhpw-jdl",
+              "it-53hjq-jdm",
+              "it-9c97x-jdn",
+              "it-3thy0-jdo",
+              "it-89rxo-jdp",
+              "it-6k7ju-jdq",
+              "it-530i2-jdr",
+              "it-551a3-jds",
+              "it-7b7xx-jdt",
+              "it-sjhv-jdu",
+              "it-7dijn-jdv",
+              "it-a747-jdw",
+              "it-93v1b-jdx",
+              "it-8fpf4-jdy",
+              "it-4p0m9-jdz",
+              "it-9o0jx-je0",
+              "it-5ikxf-je1",
+              "it-4l7nd-je2",
+              "it-3y1sl-je3",
+              "it-891lo-je4",
+              "it-62c9e-je5",
+              "it-a46b-je6",
+              "it-2jfsj-je7",
+              "it-75ngk-je8",
+              "it-2alk3-je9",
+              "it-69ptf-jea",
+              "it-627yn-jeb",
+              "it-8p4hq-jec",
+              "it-2svjy-jed",
+              "it-5z32u-jee",
+              "it-6sv02-jef",
+              "it-oom9-jeg",
+              "it-5pgub-jeh",
+              "it-7by5r-jei",
+              "it-1nf1q-jej",
+              "it-4zwn1-jek",
+              "it-64qd1-jel",
+              "it-3ay7r-jem",
+              "it-1kc75-jen",
+              "it-9cfv7-jeo",
+              "it-3op71-jep",
+              "it-81er-jeq",
+              "it-7xra5-jer",
+              "it-1nhyb-jes",
+              "it-22w6h-jet",
+              "it-3vkja-jeu",
+              "it-tgul-jev",
+              "it-3uh4n-jew",
+              "it-1xouj-jex",
+              "it-8x72m-jey",
+              "it-160bv-jez",
+              "it-56tyz-jf0",
+              "it-1aho8-jf1",
+              "it-5t2em-jf2",
+              "it-40i16-jf3",
+              "it-8tf69-jf4",
+              "it-828q8-jf5",
+              "it-1jyfg-jf6",
+              "it-856kd-jf7",
+              "it-9yw3p-jf8",
+              "it-7kv61-jf9",
+              "it-4xz49-jfa",
+              "it-6ze7m-jfb",
+              "it-8blsr-jfc",
+              "it-3f3hp-jfd"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5360,
+            "newItems": [
+              "it-3ptz2-jfe",
+              "it-668vp-jff",
+              "it-1991e-jfg",
+              "it-3lmjl-jfh",
+              "it-ic37-jfi",
+              "it-69qw1-jfj",
+              "it-3kdt8-jfk",
+              "it-y5zm-jfl",
+              "it-5l2tj-jfm",
+              "it-2orkq-jfn",
+              "it-6zn1j-jfo",
+              "it-6hfif-jfp",
+              "it-85nyp-jfq",
+              "it-mho9-jfr",
+              "it-5x9bj-jfs",
+              "it-13k8z-jft"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-jfu",
+              "it-9wv6i-jfv",
+              "it-42f7g-jfw",
+              "it-2dv9h-jfx",
+              "it-73pgp-jfy",
+              "it-6qqhv-jfz",
+              "it-129u5-jg0",
+              "it-brds-jg1",
+              "it-5nfdi-jg2",
+              "it-po4g-jg3",
+              "it-6r1dk-jg4",
+              "it-5ohj-jg5",
+              "it-6ahxw-jg6",
+              "it-6st63-jg7",
+              "it-809gb-jg8",
+              "it-9hm31-jg9",
+              "it-7qnxy-jga"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 413,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11340,
+            "newItems": [
+              "it-4vvwq-jgb",
+              "it-931xt-jgc",
+              "it-6fomw-jgd",
+              "it-bt3a-jge",
+              "it-8r999-jgf",
+              "it-47n2u-jgg",
+              "it-5j3pv-jgh",
+              "it-1e53o-jgi"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11970,
+            "newItems": [
+              "it-8sbty-jgj",
+              "it-2ytvi-jgk",
+              "it-11l0t-jgl",
+              "it-2iawb-jgm",
+              "it-4mrie-jgn"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 13000,
+            "newItems": [
+              "it-2lqd3-jgo",
+              "it-79u3u-jgp",
+              "it-9x5h8-jgq",
+              "it-2c2np-jgr",
+              "it-6eepu-jgs",
+              "it-3gakz-jgt",
+              "it-18oze-jgu",
+              "it-42p8m-jgv",
+              "it-4orth-jgw",
+              "it-5nmu9-jgx",
+              "it-31zip-jgy",
+              "it-2ap5o-jgz",
+              "it-pbxz-jh0",
+              "it-64ylr-jh1",
+              "it-9bc6m-jh2",
+              "it-585gn-jh3",
+              "it-2hof6-jh4",
+              "it-25exv-jh5",
+              "it-1tf1u-jh6",
+              "it-7dkx1-jh7",
+              "it-2y4bw-jh8",
+              "it-7x5bw-jh9",
+              "it-4qoyw-jha",
+              "it-2f3a4-jhb",
+              "it-6a5x7-jhc",
+              "it-31kcd-jhd",
+              "it-753ec-jhe",
+              "it-5ek6f-jhf",
+              "it-4g97d-jhg",
+              "it-13r80-jhh",
+              "it-1xa9c-jhi",
+              "it-304zb-jhj",
+              "it-3f6ib-jhk",
+              "it-60o9r-jhl",
+              "it-4j5u-jhm"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5280,
+            "newItems": [
+              "it-7uno8-jhn",
+              "it-2ywpb-jho",
+              "it-tnh3-jhp",
+              "it-qpcj-jhq",
+              "it-67apo-jhr",
+              "it-79cyu-jhs",
+              "it-53agf-jht",
+              "it-762w9-jhu",
+              "it-4nlb1-jhv",
+              "it-4h80o-jhw",
+              "it-5g7r3-jhx",
+              "it-5suux-jhy",
+              "it-2vm9b-jhz",
+              "it-4c3nx-ji0",
+              "it-2r698-ji1",
+              "it-8vuem-ji2",
+              "it-6qvgp-ji3",
+              "it-3azwj-ji4",
+              "it-9pzl2-ji5",
+              "it-4y4f8-ji6",
+              "it-8a5q-ji7",
+              "it-9r74d-ji8",
+              "it-5a3aq-ji9",
+              "it-28itr-jia",
+              "it-1sweo-jib",
+              "it-4fkgw-jic",
+              "it-14fwk-jid",
+              "it-4u2q7-jie",
+              "it-4qdra-jif",
+              "it-19lr8-jig",
+              "it-1pq98-jih",
+              "it-qs9o-jii",
+              "it-1ct6o-jij",
+              "it-56la6-jik",
+              "it-7vj41-jil",
+              "it-3dhpw-jim",
+              "it-53hjq-jin",
+              "it-9c97x-jio",
+              "it-3thy0-jip",
+              "it-89rxo-jiq"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6030,
+            "newItems": [
+              "it-3ptz2-jir",
+              "it-668vp-jis",
+              "it-1991e-jit",
+              "it-3lmjl-jiu",
+              "it-ic37-jiv",
+              "it-69qw1-jiw",
+              "it-3kdt8-jix",
+              "it-y5zm-jiy",
+              "it-5l2tj-jiz",
+              "it-2orkq-jj0",
+              "it-6zn1j-jj1",
+              "it-6hfif-jj2",
+              "it-85nyp-jj3",
+              "it-mho9-jj4",
+              "it-5x9bj-jj5",
+              "it-13k8z-jj6",
+              "it-5bwki-jj7",
+              "it-8zuay-jj8"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-jj9",
+              "it-9wv6i-jja",
+              "it-42f7g-jjb",
+              "it-2dv9h-jjc",
+              "it-73pgp-jjd",
+              "it-6qqhv-jje",
+              "it-129u5-jjf",
+              "it-brds-jjg",
+              "it-5nfdi-jjh",
+              "it-po4g-jji",
+              "it-6r1dk-jjj",
+              "it-5ohj-jjk",
+              "it-6ahxw-jjl",
+              "it-6st63-jjm",
+              "it-809gb-jjn",
+              "it-9hm31-jjo",
+              "it-7qnxy-jjp"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 414,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11970,
+            "newItems": [
+              "it-4vvwq-jjq",
+              "it-931xt-jjr",
+              "it-6fomw-jjs",
+              "it-bt3a-jjt",
+              "it-8r999-jju",
+              "it-47n2u-jjv",
+              "it-5j3pv-jjw",
+              "it-1e53o-jjx",
+              "it-85hnl-jjy"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 12600,
+            "newItems": [
+              "it-8sbty-jjz",
+              "it-2ytvi-jk0",
+              "it-11l0t-jk1",
+              "it-2iawb-jk2",
+              "it-4mrie-jk3"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5200,
+            "newItems": [
+              "it-2lqd3-jk4",
+              "it-79u3u-jk5",
+              "it-9x5h8-jk6",
+              "it-2c2np-jk7",
+              "it-6eepu-jk8",
+              "it-3gakz-jk9",
+              "it-18oze-jka",
+              "it-42p8m-jkb",
+              "it-4orth-jkc",
+              "it-5nmu9-jkd",
+              "it-31zip-jke",
+              "it-2ap5o-jkf",
+              "it-pbxz-jkg"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5940,
+            "newItems": [
+              "it-7uno8-jkh",
+              "it-2ywpb-jki",
+              "it-tnh3-jkj",
+              "it-qpcj-jkk",
+              "it-67apo-jkl",
+              "it-79cyu-jkm",
+              "it-53agf-jkn",
+              "it-762w9-jko",
+              "it-4nlb1-jkp",
+              "it-4h80o-jkq",
+              "it-5g7r3-jkr",
+              "it-5suux-jks",
+              "it-2vm9b-jkt",
+              "it-4c3nx-jku",
+              "it-2r698-jkv",
+              "it-8vuem-jkw",
+              "it-6qvgp-jkx",
+              "it-3azwj-jky",
+              "it-9pzl2-jkz",
+              "it-4y4f8-jl0",
+              "it-8a5q-jl1",
+              "it-9r74d-jl2",
+              "it-5a3aq-jl3",
+              "it-28itr-jl4",
+              "it-1sweo-jl5",
+              "it-4fkgw-jl6",
+              "it-14fwk-jl7",
+              "it-4u2q7-jl8",
+              "it-4qdra-jl9",
+              "it-19lr8-jla",
+              "it-1pq98-jlb",
+              "it-qs9o-jlc",
+              "it-1ct6o-jld",
+              "it-56la6-jle",
+              "it-7vj41-jlf",
+              "it-3dhpw-jlg",
+              "it-53hjq-jlh",
+              "it-9c97x-jli",
+              "it-3thy0-jlj",
+              "it-89rxo-jlk",
+              "it-6k7ju-jll",
+              "it-530i2-jlm",
+              "it-551a3-jln",
+              "it-7b7xx-jlo",
+              "it-sjhv-jlp"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6700,
+            "newItems": [
+              "it-3ptz2-jlq",
+              "it-668vp-jlr",
+              "it-1991e-jls",
+              "it-3lmjl-jlt",
+              "it-ic37-jlu",
+              "it-69qw1-jlv",
+              "it-3kdt8-jlw",
+              "it-y5zm-jlx",
+              "it-5l2tj-jly",
+              "it-2orkq-jlz",
+              "it-6zn1j-jm0",
+              "it-6hfif-jm1",
+              "it-85nyp-jm2",
+              "it-mho9-jm3",
+              "it-5x9bj-jm4",
+              "it-13k8z-jm5",
+              "it-5bwki-jm6",
+              "it-8zuay-jm7",
+              "it-7ytc4-jm8",
+              "it-gxhj-jm9"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-jma",
+              "it-9wv6i-jmb",
+              "it-42f7g-jmc",
+              "it-2dv9h-jmd",
+              "it-73pgp-jme",
+              "it-6qqhv-jmf",
+              "it-129u5-jmg",
+              "it-brds-jmh",
+              "it-5nfdi-jmi",
+              "it-po4g-jmj",
+              "it-6r1dk-jmk",
+              "it-5ohj-jml",
+              "it-6ahxw-jmm",
+              "it-6st63-jmn",
+              "it-809gb-jmo",
+              "it-9hm31-jmp",
+              "it-7qnxy-jmq"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 415,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 12600,
+            "newItems": [
+              "it-4vvwq-jmr",
+              "it-931xt-jms",
+              "it-6fomw-jmt",
+              "it-bt3a-jmu",
+              "it-8r999-jmv",
+              "it-47n2u-jmw",
+              "it-5j3pv-jmx",
+              "it-1e53o-jmy",
+              "it-85hnl-jmz"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5040,
+            "newItems": [
+              "it-8sbty-jn0",
+              "it-2ytvi-jn1"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5850,
+            "newItems": [
+              "it-2lqd3-jn2",
+              "it-79u3u-jn3",
+              "it-9x5h8-jn4",
+              "it-2c2np-jn5",
+              "it-6eepu-jn6",
+              "it-3gakz-jn7",
+              "it-18oze-jn8",
+              "it-42p8m-jn9",
+              "it-4orth-jna",
+              "it-5nmu9-jnb",
+              "it-31zip-jnc",
+              "it-2ap5o-jnd",
+              "it-pbxz-jne",
+              "it-64ylr-jnf",
+              "it-9bc6m-jng"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6600,
+            "newItems": [
+              "it-7uno8-jnh",
+              "it-2ywpb-jni",
+              "it-tnh3-jnj",
+              "it-qpcj-jnk",
+              "it-67apo-jnl",
+              "it-79cyu-jnm",
+              "it-53agf-jnn",
+              "it-762w9-jno",
+              "it-4nlb1-jnp",
+              "it-4h80o-jnq",
+              "it-5g7r3-jnr",
+              "it-5suux-jns",
+              "it-2vm9b-jnt",
+              "it-4c3nx-jnu",
+              "it-2r698-jnv",
+              "it-8vuem-jnw",
+              "it-6qvgp-jnx",
+              "it-3azwj-jny",
+              "it-9pzl2-jnz",
+              "it-4y4f8-jo0",
+              "it-8a5q-jo1",
+              "it-9r74d-jo2",
+              "it-5a3aq-jo3",
+              "it-28itr-jo4",
+              "it-1sweo-jo5",
+              "it-4fkgw-jo6",
+              "it-14fwk-jo7",
+              "it-4u2q7-jo8",
+              "it-4qdra-jo9",
+              "it-19lr8-joa",
+              "it-1pq98-job",
+              "it-qs9o-joc",
+              "it-1ct6o-jod",
+              "it-56la6-joe",
+              "it-7vj41-jof",
+              "it-3dhpw-jog",
+              "it-53hjq-joh",
+              "it-9c97x-joi",
+              "it-3thy0-joj",
+              "it-89rxo-jok",
+              "it-6k7ju-jol",
+              "it-530i2-jom",
+              "it-551a3-jon",
+              "it-7b7xx-joo",
+              "it-sjhv-jop",
+              "it-7dijn-joq",
+              "it-a747-jor",
+              "it-93v1b-jos",
+              "it-8fpf4-jot",
+              "it-4p0m9-jou"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7370,
+            "newItems": [
+              "it-3ptz2-jov",
+              "it-668vp-jow",
+              "it-1991e-jox",
+              "it-3lmjl-joy",
+              "it-ic37-joz",
+              "it-69qw1-jp0",
+              "it-3kdt8-jp1",
+              "it-y5zm-jp2",
+              "it-5l2tj-jp3",
+              "it-2orkq-jp4",
+              "it-6zn1j-jp5",
+              "it-6hfif-jp6",
+              "it-85nyp-jp7",
+              "it-mho9-jp8",
+              "it-5x9bj-jp9",
+              "it-13k8z-jpa",
+              "it-5bwki-jpb",
+              "it-8zuay-jpc",
+              "it-7ytc4-jpd",
+              "it-gxhj-jpe",
+              "it-1oglc-jpf",
+              "it-4iohq-jpg"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-jph",
+              "it-9wv6i-jpi",
+              "it-42f7g-jpj",
+              "it-2dv9h-jpk",
+              "it-73pgp-jpl",
+              "it-6qqhv-jpm",
+              "it-129u5-jpn",
+              "it-brds-jpo",
+              "it-5nfdi-jpp",
+              "it-po4g-jpq",
+              "it-6r1dk-jpr",
+              "it-5ohj-jps",
+              "it-6ahxw-jpt",
+              "it-6st63-jpu",
+              "it-809gb-jpv",
+              "it-9hm31-jpw",
+              "it-7qnxy-jpx"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 416,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5040,
+            "newItems": [
+              "it-4vvwq-jpy",
+              "it-931xt-jpz",
+              "it-6fomw-jq0"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5670,
+            "newItems": [
+              "it-8sbty-jq1",
+              "it-2ytvi-jq2"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6500,
+            "newItems": [
+              "it-2lqd3-jq3",
+              "it-79u3u-jq4",
+              "it-9x5h8-jq5",
+              "it-2c2np-jq6",
+              "it-6eepu-jq7",
+              "it-3gakz-jq8",
+              "it-18oze-jq9",
+              "it-42p8m-jqa",
+              "it-4orth-jqb",
+              "it-5nmu9-jqc",
+              "it-31zip-jqd",
+              "it-2ap5o-jqe",
+              "it-pbxz-jqf",
+              "it-64ylr-jqg",
+              "it-9bc6m-jqh",
+              "it-585gn-jqi"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7260,
+            "newItems": [
+              "it-7uno8-jqj",
+              "it-2ywpb-jqk",
+              "it-tnh3-jql",
+              "it-qpcj-jqm",
+              "it-67apo-jqn",
+              "it-79cyu-jqo",
+              "it-53agf-jqp",
+              "it-762w9-jqq",
+              "it-4nlb1-jqr",
+              "it-4h80o-jqs",
+              "it-5g7r3-jqt",
+              "it-5suux-jqu",
+              "it-2vm9b-jqv",
+              "it-4c3nx-jqw",
+              "it-2r698-jqx",
+              "it-8vuem-jqy",
+              "it-6qvgp-jqz",
+              "it-3azwj-jr0",
+              "it-9pzl2-jr1",
+              "it-4y4f8-jr2",
+              "it-8a5q-jr3",
+              "it-9r74d-jr4",
+              "it-5a3aq-jr5",
+              "it-28itr-jr6",
+              "it-1sweo-jr7",
+              "it-4fkgw-jr8",
+              "it-14fwk-jr9",
+              "it-4u2q7-jra",
+              "it-4qdra-jrb",
+              "it-19lr8-jrc",
+              "it-1pq98-jrd",
+              "it-qs9o-jre",
+              "it-1ct6o-jrf",
+              "it-56la6-jrg",
+              "it-7vj41-jrh",
+              "it-3dhpw-jri",
+              "it-53hjq-jrj",
+              "it-9c97x-jrk",
+              "it-3thy0-jrl",
+              "it-89rxo-jrm",
+              "it-6k7ju-jrn",
+              "it-530i2-jro",
+              "it-551a3-jrp",
+              "it-7b7xx-jrq",
+              "it-sjhv-jrr",
+              "it-7dijn-jrs",
+              "it-a747-jrt",
+              "it-93v1b-jru",
+              "it-8fpf4-jrv",
+              "it-4p0m9-jrw",
+              "it-9o0jx-jrx",
+              "it-5ikxf-jry",
+              "it-4l7nd-jrz",
+              "it-3y1sl-js0",
+              "it-891lo-js1"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8040,
+            "newItems": [
+              "it-3ptz2-js2",
+              "it-668vp-js3",
+              "it-1991e-js4",
+              "it-3lmjl-js5",
+              "it-ic37-js6",
+              "it-69qw1-js7",
+              "it-3kdt8-js8",
+              "it-y5zm-js9",
+              "it-5l2tj-jsa",
+              "it-2orkq-jsb",
+              "it-6zn1j-jsc",
+              "it-6hfif-jsd",
+              "it-85nyp-jse",
+              "it-mho9-jsf",
+              "it-5x9bj-jsg",
+              "it-13k8z-jsh",
+              "it-5bwki-jsi",
+              "it-8zuay-jsj",
+              "it-7ytc4-jsk",
+              "it-gxhj-jsl",
+              "it-1oglc-jsm",
+              "it-4iohq-jsn",
+              "it-7azk4-jso",
+              "it-7qkoi-jsp"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-jsq",
+              "it-9wv6i-jsr",
+              "it-42f7g-jss",
+              "it-2dv9h-jst",
+              "it-73pgp-jsu",
+              "it-6qqhv-jsv",
+              "it-129u5-jsw",
+              "it-brds-jsx",
+              "it-5nfdi-jsy",
+              "it-po4g-jsz",
+              "it-6r1dk-jt0",
+              "it-5ohj-jt1",
+              "it-6ahxw-jt2",
+              "it-6st63-jt3",
+              "it-809gb-jt4",
+              "it-9hm31-jt5",
+              "it-7qnxy-jt6"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 417,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5670,
+            "newItems": [
+              "it-4vvwq-jt7",
+              "it-931xt-jt8",
+              "it-6fomw-jt9"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6300,
+            "newItems": [
+              "it-8sbty-jta",
+              "it-2ytvi-jtb",
+              "it-11l0t-jtc"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7150,
+            "newItems": [
+              "it-2lqd3-jtd",
+              "it-79u3u-jte",
+              "it-9x5h8-jtf",
+              "it-2c2np-jtg",
+              "it-6eepu-jth",
+              "it-3gakz-jti",
+              "it-18oze-jtj",
+              "it-42p8m-jtk",
+              "it-4orth-jtl",
+              "it-5nmu9-jtm",
+              "it-31zip-jtn",
+              "it-2ap5o-jto",
+              "it-pbxz-jtp",
+              "it-64ylr-jtq",
+              "it-9bc6m-jtr",
+              "it-585gn-jts",
+              "it-2hof6-jtt",
+              "it-25exv-jtu"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7920,
+            "newItems": [
+              "it-7uno8-jtv",
+              "it-2ywpb-jtw",
+              "it-tnh3-jtx",
+              "it-qpcj-jty",
+              "it-67apo-jtz",
+              "it-79cyu-ju0",
+              "it-53agf-ju1",
+              "it-762w9-ju2",
+              "it-4nlb1-ju3",
+              "it-4h80o-ju4",
+              "it-5g7r3-ju5",
+              "it-5suux-ju6",
+              "it-2vm9b-ju7",
+              "it-4c3nx-ju8",
+              "it-2r698-ju9",
+              "it-8vuem-jua",
+              "it-6qvgp-jub",
+              "it-3azwj-juc",
+              "it-9pzl2-jud",
+              "it-4y4f8-jue",
+              "it-8a5q-juf",
+              "it-9r74d-jug",
+              "it-5a3aq-juh",
+              "it-28itr-jui",
+              "it-1sweo-juj",
+              "it-4fkgw-juk",
+              "it-14fwk-jul",
+              "it-4u2q7-jum",
+              "it-4qdra-jun",
+              "it-19lr8-juo",
+              "it-1pq98-jup",
+              "it-qs9o-juq",
+              "it-1ct6o-jur",
+              "it-56la6-jus",
+              "it-7vj41-jut",
+              "it-3dhpw-juu",
+              "it-53hjq-juv",
+              "it-9c97x-juw",
+              "it-3thy0-jux",
+              "it-89rxo-juy",
+              "it-6k7ju-juz",
+              "it-530i2-jv0",
+              "it-551a3-jv1",
+              "it-7b7xx-jv2",
+              "it-sjhv-jv3",
+              "it-7dijn-jv4",
+              "it-a747-jv5",
+              "it-93v1b-jv6",
+              "it-8fpf4-jv7",
+              "it-4p0m9-jv8",
+              "it-9o0jx-jv9",
+              "it-5ikxf-jva",
+              "it-4l7nd-jvb",
+              "it-3y1sl-jvc",
+              "it-891lo-jvd",
+              "it-62c9e-jve",
+              "it-a46b-jvf",
+              "it-2jfsj-jvg",
+              "it-75ngk-jvh",
+              "it-2alk3-jvi"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8710,
+            "newItems": [
+              "it-3ptz2-jvj",
+              "it-668vp-jvk",
+              "it-1991e-jvl",
+              "it-3lmjl-jvm",
+              "it-ic37-jvn",
+              "it-69qw1-jvo",
+              "it-3kdt8-jvp",
+              "it-y5zm-jvq",
+              "it-5l2tj-jvr",
+              "it-2orkq-jvs",
+              "it-6zn1j-jvt",
+              "it-6hfif-jvu",
+              "it-85nyp-jvv",
+              "it-mho9-jvw",
+              "it-5x9bj-jvx",
+              "it-13k8z-jvy",
+              "it-5bwki-jvz",
+              "it-8zuay-jw0",
+              "it-7ytc4-jw1",
+              "it-gxhj-jw2",
+              "it-1oglc-jw3",
+              "it-4iohq-jw4",
+              "it-7azk4-jw5",
+              "it-7qkoi-jw6",
+              "it-se94-jw7"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-jw8",
+              "it-9wv6i-jw9",
+              "it-42f7g-jwa",
+              "it-2dv9h-jwb",
+              "it-73pgp-jwc",
+              "it-6qqhv-jwd",
+              "it-129u5-jwe",
+              "it-brds-jwf",
+              "it-5nfdi-jwg",
+              "it-po4g-jwh",
+              "it-6r1dk-jwi",
+              "it-5ohj-jwj",
+              "it-6ahxw-jwk",
+              "it-6st63-jwl",
+              "it-809gb-jwm",
+              "it-9hm31-jwn",
+              "it-7qnxy-jwo"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 418,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6300,
+            "newItems": [
+              "it-4vvwq-jwp",
+              "it-931xt-jwq",
+              "it-6fomw-jwr"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6930,
+            "newItems": [
+              "it-8sbty-jws",
+              "it-2ytvi-jwt",
+              "it-11l0t-jwu"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7800,
+            "newItems": [
+              "it-2lqd3-jwv",
+              "it-79u3u-jww",
+              "it-9x5h8-jwx",
+              "it-2c2np-jwy",
+              "it-6eepu-jwz",
+              "it-3gakz-jx0",
+              "it-18oze-jx1",
+              "it-42p8m-jx2",
+              "it-4orth-jx3",
+              "it-5nmu9-jx4",
+              "it-31zip-jx5",
+              "it-2ap5o-jx6",
+              "it-pbxz-jx7",
+              "it-64ylr-jx8",
+              "it-9bc6m-jx9",
+              "it-585gn-jxa",
+              "it-2hof6-jxb",
+              "it-25exv-jxc",
+              "it-1tf1u-jxd",
+              "it-7dkx1-jxe"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8580,
+            "newItems": [
+              "it-7uno8-jxf",
+              "it-2ywpb-jxg",
+              "it-tnh3-jxh",
+              "it-qpcj-jxi",
+              "it-67apo-jxj",
+              "it-79cyu-jxk",
+              "it-53agf-jxl",
+              "it-762w9-jxm",
+              "it-4nlb1-jxn",
+              "it-4h80o-jxo",
+              "it-5g7r3-jxp",
+              "it-5suux-jxq",
+              "it-2vm9b-jxr",
+              "it-4c3nx-jxs",
+              "it-2r698-jxt",
+              "it-8vuem-jxu",
+              "it-6qvgp-jxv",
+              "it-3azwj-jxw",
+              "it-9pzl2-jxx",
+              "it-4y4f8-jxy",
+              "it-8a5q-jxz",
+              "it-9r74d-jy0",
+              "it-5a3aq-jy1",
+              "it-28itr-jy2",
+              "it-1sweo-jy3",
+              "it-4fkgw-jy4",
+              "it-14fwk-jy5",
+              "it-4u2q7-jy6",
+              "it-4qdra-jy7",
+              "it-19lr8-jy8",
+              "it-1pq98-jy9",
+              "it-qs9o-jya",
+              "it-1ct6o-jyb",
+              "it-56la6-jyc",
+              "it-7vj41-jyd",
+              "it-3dhpw-jye",
+              "it-53hjq-jyf",
+              "it-9c97x-jyg",
+              "it-3thy0-jyh",
+              "it-89rxo-jyi",
+              "it-6k7ju-jyj",
+              "it-530i2-jyk",
+              "it-551a3-jyl",
+              "it-7b7xx-jym",
+              "it-sjhv-jyn",
+              "it-7dijn-jyo",
+              "it-a747-jyp",
+              "it-93v1b-jyq",
+              "it-8fpf4-jyr",
+              "it-4p0m9-jys",
+              "it-9o0jx-jyt",
+              "it-5ikxf-jyu",
+              "it-4l7nd-jyv",
+              "it-3y1sl-jyw",
+              "it-891lo-jyx",
+              "it-62c9e-jyy",
+              "it-a46b-jyz",
+              "it-2jfsj-jz0",
+              "it-75ngk-jz1",
+              "it-2alk3-jz2",
+              "it-69ptf-jz3",
+              "it-627yn-jz4",
+              "it-8p4hq-jz5",
+              "it-2svjy-jz6",
+              "it-5z32u-jz7"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 9380,
+            "newItems": [
+              "it-3ptz2-jz8",
+              "it-668vp-jz9",
+              "it-1991e-jza",
+              "it-3lmjl-jzb",
+              "it-ic37-jzc",
+              "it-69qw1-jzd",
+              "it-3kdt8-jze",
+              "it-y5zm-jzf",
+              "it-5l2tj-jzg",
+              "it-2orkq-jzh",
+              "it-6zn1j-jzi",
+              "it-6hfif-jzj",
+              "it-85nyp-jzk",
+              "it-mho9-jzl",
+              "it-5x9bj-jzm",
+              "it-13k8z-jzn",
+              "it-5bwki-jzo",
+              "it-8zuay-jzp",
+              "it-7ytc4-jzq",
+              "it-gxhj-jzr",
+              "it-1oglc-jzs",
+              "it-4iohq-jzt",
+              "it-7azk4-jzu",
+              "it-7qkoi-jzv",
+              "it-se94-jzw",
+              "it-7e988-jzx"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-jzy",
+              "it-9wv6i-jzz",
+              "it-42f7g-k00",
+              "it-2dv9h-k01",
+              "it-73pgp-k02",
+              "it-6qqhv-k03",
+              "it-129u5-k04",
+              "it-brds-k05",
+              "it-5nfdi-k06",
+              "it-po4g-k07",
+              "it-6r1dk-k08",
+              "it-5ohj-k09",
+              "it-6ahxw-k0a",
+              "it-6st63-k0b",
+              "it-809gb-k0c",
+              "it-9hm31-k0d",
+              "it-7qnxy-k0e"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 419,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6930,
+            "newItems": [
+              "it-4vvwq-k0f",
+              "it-931xt-k0g",
+              "it-6fomw-k0h"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7560,
+            "newItems": [
+              "it-8sbty-k0i",
+              "it-2ytvi-k0j",
+              "it-11l0t-k0k",
+              "it-2iawb-k0l"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8450,
+            "newItems": [
+              "it-2lqd3-k0m",
+              "it-79u3u-k0n",
+              "it-9x5h8-k0o",
+              "it-2c2np-k0p",
+              "it-6eepu-k0q",
+              "it-3gakz-k0r",
+              "it-18oze-k0s",
+              "it-42p8m-k0t",
+              "it-4orth-k0u",
+              "it-5nmu9-k0v",
+              "it-31zip-k0w",
+              "it-2ap5o-k0x",
+              "it-pbxz-k0y",
+              "it-64ylr-k0z",
+              "it-9bc6m-k10",
+              "it-585gn-k11",
+              "it-2hof6-k12",
+              "it-25exv-k13",
+              "it-1tf1u-k14",
+              "it-7dkx1-k15",
+              "it-2y4bw-k16"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 9240,
+            "newItems": [
+              "it-7uno8-k17",
+              "it-2ywpb-k18",
+              "it-tnh3-k19",
+              "it-qpcj-k1a",
+              "it-67apo-k1b",
+              "it-79cyu-k1c",
+              "it-53agf-k1d",
+              "it-762w9-k1e",
+              "it-4nlb1-k1f",
+              "it-4h80o-k1g",
+              "it-5g7r3-k1h",
+              "it-5suux-k1i",
+              "it-2vm9b-k1j",
+              "it-4c3nx-k1k",
+              "it-2r698-k1l",
+              "it-8vuem-k1m",
+              "it-6qvgp-k1n",
+              "it-3azwj-k1o",
+              "it-9pzl2-k1p",
+              "it-4y4f8-k1q",
+              "it-8a5q-k1r",
+              "it-9r74d-k1s",
+              "it-5a3aq-k1t",
+              "it-28itr-k1u",
+              "it-1sweo-k1v",
+              "it-4fkgw-k1w",
+              "it-14fwk-k1x",
+              "it-4u2q7-k1y",
+              "it-4qdra-k1z",
+              "it-19lr8-k20",
+              "it-1pq98-k21",
+              "it-qs9o-k22",
+              "it-1ct6o-k23",
+              "it-56la6-k24",
+              "it-7vj41-k25",
+              "it-3dhpw-k26",
+              "it-53hjq-k27",
+              "it-9c97x-k28",
+              "it-3thy0-k29",
+              "it-89rxo-k2a",
+              "it-6k7ju-k2b",
+              "it-530i2-k2c",
+              "it-551a3-k2d",
+              "it-7b7xx-k2e",
+              "it-sjhv-k2f",
+              "it-7dijn-k2g",
+              "it-a747-k2h",
+              "it-93v1b-k2i",
+              "it-8fpf4-k2j",
+              "it-4p0m9-k2k",
+              "it-9o0jx-k2l",
+              "it-5ikxf-k2m",
+              "it-4l7nd-k2n",
+              "it-3y1sl-k2o",
+              "it-891lo-k2p",
+              "it-62c9e-k2q",
+              "it-a46b-k2r",
+              "it-2jfsj-k2s",
+              "it-75ngk-k2t",
+              "it-2alk3-k2u",
+              "it-69ptf-k2v",
+              "it-627yn-k2w",
+              "it-8p4hq-k2x",
+              "it-2svjy-k2y",
+              "it-5z32u-k2z",
+              "it-6sv02-k30",
+              "it-oom9-k31",
+              "it-5pgub-k32",
+              "it-7by5r-k33",
+              "it-1nf1q-k34"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10050,
+            "newItems": [
+              "it-3ptz2-k35",
+              "it-668vp-k36",
+              "it-1991e-k37",
+              "it-3lmjl-k38",
+              "it-ic37-k39",
+              "it-69qw1-k3a",
+              "it-3kdt8-k3b",
+              "it-y5zm-k3c",
+              "it-5l2tj-k3d",
+              "it-2orkq-k3e",
+              "it-6zn1j-k3f",
+              "it-6hfif-k3g",
+              "it-85nyp-k3h",
+              "it-mho9-k3i",
+              "it-5x9bj-k3j",
+              "it-13k8z-k3k",
+              "it-5bwki-k3l",
+              "it-8zuay-k3m",
+              "it-7ytc4-k3n",
+              "it-gxhj-k3o",
+              "it-1oglc-k3p",
+              "it-4iohq-k3q",
+              "it-7azk4-k3r",
+              "it-7qkoi-k3s",
+              "it-se94-k3t",
+              "it-7e988-k3u",
+              "it-76lxr-k3v",
+              "it-5lnqh-k3w"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-k3x",
+              "it-9wv6i-k3y",
+              "it-42f7g-k3z",
+              "it-2dv9h-k40",
+              "it-73pgp-k41",
+              "it-6qqhv-k42",
+              "it-129u5-k43",
+              "it-brds-k44",
+              "it-5nfdi-k45",
+              "it-po4g-k46",
+              "it-6r1dk-k47",
+              "it-5ohj-k48",
+              "it-6ahxw-k49",
+              "it-6st63-k4a",
+              "it-809gb-k4b",
+              "it-9hm31-k4c",
+              "it-7qnxy-k4d"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 420,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 7560,
+            "newItems": [
+              "it-4vvwq-k4e",
+              "it-931xt-k4f",
+              "it-6fomw-k4g"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8190,
+            "newItems": [
+              "it-8sbty-k4h",
+              "it-2ytvi-k4i",
+              "it-11l0t-k4j",
+              "it-2iawb-k4k"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 9100,
+            "newItems": [
+              "it-2lqd3-k4l",
+              "it-79u3u-k4m",
+              "it-9x5h8-k4n",
+              "it-2c2np-k4o",
+              "it-6eepu-k4p",
+              "it-3gakz-k4q",
+              "it-18oze-k4r",
+              "it-42p8m-k4s",
+              "it-4orth-k4t",
+              "it-5nmu9-k4u",
+              "it-31zip-k4v",
+              "it-2ap5o-k4w",
+              "it-pbxz-k4x",
+              "it-64ylr-k4y",
+              "it-9bc6m-k4z",
+              "it-585gn-k50",
+              "it-2hof6-k51",
+              "it-25exv-k52",
+              "it-1tf1u-k53",
+              "it-7dkx1-k54",
+              "it-2y4bw-k55",
+              "it-7x5bw-k56",
+              "it-4qoyw-k57"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 9900,
+            "newItems": [
+              "it-7uno8-k58",
+              "it-2ywpb-k59",
+              "it-tnh3-k5a",
+              "it-qpcj-k5b",
+              "it-67apo-k5c",
+              "it-79cyu-k5d",
+              "it-53agf-k5e",
+              "it-762w9-k5f",
+              "it-4nlb1-k5g",
+              "it-4h80o-k5h",
+              "it-5g7r3-k5i",
+              "it-5suux-k5j",
+              "it-2vm9b-k5k",
+              "it-4c3nx-k5l",
+              "it-2r698-k5m",
+              "it-8vuem-k5n",
+              "it-6qvgp-k5o",
+              "it-3azwj-k5p",
+              "it-9pzl2-k5q",
+              "it-4y4f8-k5r",
+              "it-8a5q-k5s",
+              "it-9r74d-k5t",
+              "it-5a3aq-k5u",
+              "it-28itr-k5v",
+              "it-1sweo-k5w",
+              "it-4fkgw-k5x",
+              "it-14fwk-k5y",
+              "it-4u2q7-k5z",
+              "it-4qdra-k60",
+              "it-19lr8-k61",
+              "it-1pq98-k62",
+              "it-qs9o-k63",
+              "it-1ct6o-k64",
+              "it-56la6-k65",
+              "it-7vj41-k66",
+              "it-3dhpw-k67",
+              "it-53hjq-k68",
+              "it-9c97x-k69",
+              "it-3thy0-k6a",
+              "it-89rxo-k6b",
+              "it-6k7ju-k6c",
+              "it-530i2-k6d",
+              "it-551a3-k6e",
+              "it-7b7xx-k6f",
+              "it-sjhv-k6g",
+              "it-7dijn-k6h",
+              "it-a747-k6i",
+              "it-93v1b-k6j",
+              "it-8fpf4-k6k",
+              "it-4p0m9-k6l",
+              "it-9o0jx-k6m",
+              "it-5ikxf-k6n",
+              "it-4l7nd-k6o",
+              "it-3y1sl-k6p",
+              "it-891lo-k6q",
+              "it-62c9e-k6r",
+              "it-a46b-k6s",
+              "it-2jfsj-k6t",
+              "it-75ngk-k6u",
+              "it-2alk3-k6v",
+              "it-69ptf-k6w",
+              "it-627yn-k6x",
+              "it-8p4hq-k6y",
+              "it-2svjy-k6z",
+              "it-5z32u-k70",
+              "it-6sv02-k71",
+              "it-oom9-k72",
+              "it-5pgub-k73",
+              "it-7by5r-k74",
+              "it-1nf1q-k75",
+              "it-4zwn1-k76",
+              "it-64qd1-k77",
+              "it-3ay7r-k78",
+              "it-1kc75-k79",
+              "it-9cfv7-k7a"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10720,
+            "newItems": [
+              "it-3ptz2-k7b",
+              "it-668vp-k7c",
+              "it-1991e-k7d",
+              "it-3lmjl-k7e",
+              "it-ic37-k7f",
+              "it-69qw1-k7g",
+              "it-3kdt8-k7h",
+              "it-y5zm-k7i",
+              "it-5l2tj-k7j",
+              "it-2orkq-k7k",
+              "it-6zn1j-k7l",
+              "it-6hfif-k7m",
+              "it-85nyp-k7n",
+              "it-mho9-k7o",
+              "it-5x9bj-k7p",
+              "it-13k8z-k7q",
+              "it-5bwki-k7r",
+              "it-8zuay-k7s",
+              "it-7ytc4-k7t",
+              "it-gxhj-k7u",
+              "it-1oglc-k7v",
+              "it-4iohq-k7w",
+              "it-7azk4-k7x",
+              "it-7qkoi-k7y",
+              "it-se94-k7z",
+              "it-7e988-k80",
+              "it-76lxr-k81",
+              "it-5lnqh-k82",
+              "it-1gf4t-k83",
+              "it-3t7a6-k84"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-k85",
+              "it-9wv6i-k86",
+              "it-42f7g-k87",
+              "it-2dv9h-k88",
+              "it-73pgp-k89",
+              "it-6qqhv-k8a",
+              "it-129u5-k8b",
+              "it-brds-k8c",
+              "it-5nfdi-k8d",
+              "it-po4g-k8e",
+              "it-6r1dk-k8f",
+              "it-5ohj-k8g",
+              "it-6ahxw-k8h",
+              "it-6st63-k8i",
+              "it-809gb-k8j",
+              "it-9hm31-k8k",
+              "it-7qnxy-k8l"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 421,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8190,
+            "newItems": [
+              "it-4vvwq-k8m",
+              "it-931xt-k8n",
+              "it-6fomw-k8o",
+              "it-bt3a-k8p"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8820,
+            "newItems": [
+              "it-8sbty-k8q",
+              "it-2ytvi-k8r",
+              "it-11l0t-k8s",
+              "it-2iawb-k8t",
+              "it-4mrie-k8u"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 9750,
+            "newItems": [
+              "it-2lqd3-k8v",
+              "it-79u3u-k8w",
+              "it-9x5h8-k8x",
+              "it-2c2np-k8y",
+              "it-6eepu-k8z",
+              "it-3gakz-k90",
+              "it-18oze-k91",
+              "it-42p8m-k92",
+              "it-4orth-k93",
+              "it-5nmu9-k94",
+              "it-31zip-k95",
+              "it-2ap5o-k96",
+              "it-pbxz-k97",
+              "it-64ylr-k98",
+              "it-9bc6m-k99",
+              "it-585gn-k9a",
+              "it-2hof6-k9b",
+              "it-25exv-k9c",
+              "it-1tf1u-k9d",
+              "it-7dkx1-k9e",
+              "it-2y4bw-k9f",
+              "it-7x5bw-k9g",
+              "it-4qoyw-k9h",
+              "it-2f3a4-k9i",
+              "it-6a5x7-k9j"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10560,
+            "newItems": [
+              "it-7uno8-k9k",
+              "it-2ywpb-k9l",
+              "it-tnh3-k9m",
+              "it-qpcj-k9n",
+              "it-67apo-k9o",
+              "it-79cyu-k9p",
+              "it-53agf-k9q",
+              "it-762w9-k9r",
+              "it-4nlb1-k9s",
+              "it-4h80o-k9t",
+              "it-5g7r3-k9u",
+              "it-5suux-k9v",
+              "it-2vm9b-k9w",
+              "it-4c3nx-k9x",
+              "it-2r698-k9y",
+              "it-8vuem-k9z",
+              "it-6qvgp-ka0",
+              "it-3azwj-ka1",
+              "it-9pzl2-ka2",
+              "it-4y4f8-ka3",
+              "it-8a5q-ka4",
+              "it-9r74d-ka5",
+              "it-5a3aq-ka6",
+              "it-28itr-ka7",
+              "it-1sweo-ka8",
+              "it-4fkgw-ka9",
+              "it-14fwk-kaa",
+              "it-4u2q7-kab",
+              "it-4qdra-kac",
+              "it-19lr8-kad",
+              "it-1pq98-kae",
+              "it-qs9o-kaf",
+              "it-1ct6o-kag",
+              "it-56la6-kah",
+              "it-7vj41-kai",
+              "it-3dhpw-kaj",
+              "it-53hjq-kak",
+              "it-9c97x-kal",
+              "it-3thy0-kam",
+              "it-89rxo-kan",
+              "it-6k7ju-kao",
+              "it-530i2-kap",
+              "it-551a3-kaq",
+              "it-7b7xx-kar",
+              "it-sjhv-kas",
+              "it-7dijn-kat",
+              "it-a747-kau",
+              "it-93v1b-kav",
+              "it-8fpf4-kaw",
+              "it-4p0m9-kax",
+              "it-9o0jx-kay",
+              "it-5ikxf-kaz",
+              "it-4l7nd-kb0",
+              "it-3y1sl-kb1",
+              "it-891lo-kb2",
+              "it-62c9e-kb3",
+              "it-a46b-kb4",
+              "it-2jfsj-kb5",
+              "it-75ngk-kb6",
+              "it-2alk3-kb7",
+              "it-69ptf-kb8",
+              "it-627yn-kb9",
+              "it-8p4hq-kba",
+              "it-2svjy-kbb",
+              "it-5z32u-kbc",
+              "it-6sv02-kbd",
+              "it-oom9-kbe",
+              "it-5pgub-kbf",
+              "it-7by5r-kbg",
+              "it-1nf1q-kbh",
+              "it-4zwn1-kbi",
+              "it-64qd1-kbj",
+              "it-3ay7r-kbk",
+              "it-1kc75-kbl",
+              "it-9cfv7-kbm",
+              "it-3op71-kbn",
+              "it-81er-kbo",
+              "it-7xra5-kbp",
+              "it-1nhyb-kbq",
+              "it-22w6h-kbr"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11390,
+            "newItems": [
+              "it-3ptz2-kbs",
+              "it-668vp-kbt",
+              "it-1991e-kbu",
+              "it-3lmjl-kbv",
+              "it-ic37-kbw",
+              "it-69qw1-kbx",
+              "it-3kdt8-kby",
+              "it-y5zm-kbz",
+              "it-5l2tj-kc0",
+              "it-2orkq-kc1",
+              "it-6zn1j-kc2",
+              "it-6hfif-kc3",
+              "it-85nyp-kc4",
+              "it-mho9-kc5",
+              "it-5x9bj-kc6",
+              "it-13k8z-kc7",
+              "it-5bwki-kc8",
+              "it-8zuay-kc9",
+              "it-7ytc4-kca",
+              "it-gxhj-kcb",
+              "it-1oglc-kcc",
+              "it-4iohq-kcd",
+              "it-7azk4-kce",
+              "it-7qkoi-kcf",
+              "it-se94-kcg",
+              "it-7e988-kch",
+              "it-76lxr-kci",
+              "it-5lnqh-kcj",
+              "it-1gf4t-kck",
+              "it-3t7a6-kcl",
+              "it-74uqo-kcm",
+              "it-30s7d-kcn"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-kco",
+              "it-9wv6i-kcp",
+              "it-42f7g-kcq",
+              "it-2dv9h-kcr",
+              "it-73pgp-kcs",
+              "it-6qqhv-kct",
+              "it-129u5-kcu",
+              "it-brds-kcv",
+              "it-5nfdi-kcw",
+              "it-po4g-kcx",
+              "it-6r1dk-kcy",
+              "it-5ohj-kcz",
+              "it-6ahxw-kd0",
+              "it-6st63-kd1",
+              "it-809gb-kd2",
+              "it-9hm31-kd3",
+              "it-7qnxy-kd4"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 422,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 8820,
+            "newItems": [
+              "it-4vvwq-kd5",
+              "it-931xt-kd6",
+              "it-6fomw-kd7",
+              "it-bt3a-kd8",
+              "it-8r999-kd9"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 9450,
+            "newItems": [
+              "it-8sbty-kda",
+              "it-2ytvi-kdb",
+              "it-11l0t-kdc",
+              "it-2iawb-kdd",
+              "it-4mrie-kde"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10400,
+            "newItems": [
+              "it-2lqd3-kdf",
+              "it-79u3u-kdg",
+              "it-9x5h8-kdh",
+              "it-2c2np-kdi",
+              "it-6eepu-kdj",
+              "it-3gakz-kdk",
+              "it-18oze-kdl",
+              "it-42p8m-kdm",
+              "it-4orth-kdn",
+              "it-5nmu9-kdo",
+              "it-31zip-kdp",
+              "it-2ap5o-kdq",
+              "it-pbxz-kdr",
+              "it-64ylr-kds",
+              "it-9bc6m-kdt",
+              "it-585gn-kdu",
+              "it-2hof6-kdv",
+              "it-25exv-kdw",
+              "it-1tf1u-kdx",
+              "it-7dkx1-kdy",
+              "it-2y4bw-kdz",
+              "it-7x5bw-ke0",
+              "it-4qoyw-ke1",
+              "it-2f3a4-ke2",
+              "it-6a5x7-ke3",
+              "it-31kcd-ke4",
+              "it-753ec-ke5"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11220,
+            "newItems": [
+              "it-7uno8-ke6",
+              "it-2ywpb-ke7",
+              "it-tnh3-ke8",
+              "it-qpcj-ke9",
+              "it-67apo-kea",
+              "it-79cyu-keb",
+              "it-53agf-kec",
+              "it-762w9-ked",
+              "it-4nlb1-kee",
+              "it-4h80o-kef",
+              "it-5g7r3-keg",
+              "it-5suux-keh",
+              "it-2vm9b-kei",
+              "it-4c3nx-kej",
+              "it-2r698-kek",
+              "it-8vuem-kel",
+              "it-6qvgp-kem",
+              "it-3azwj-ken",
+              "it-9pzl2-keo",
+              "it-4y4f8-kep",
+              "it-8a5q-keq",
+              "it-9r74d-ker",
+              "it-5a3aq-kes",
+              "it-28itr-ket",
+              "it-1sweo-keu",
+              "it-4fkgw-kev",
+              "it-14fwk-kew",
+              "it-4u2q7-kex",
+              "it-4qdra-key",
+              "it-19lr8-kez",
+              "it-1pq98-kf0",
+              "it-qs9o-kf1",
+              "it-1ct6o-kf2",
+              "it-56la6-kf3",
+              "it-7vj41-kf4",
+              "it-3dhpw-kf5",
+              "it-53hjq-kf6",
+              "it-9c97x-kf7",
+              "it-3thy0-kf8",
+              "it-89rxo-kf9",
+              "it-6k7ju-kfa",
+              "it-530i2-kfb",
+              "it-551a3-kfc",
+              "it-7b7xx-kfd",
+              "it-sjhv-kfe",
+              "it-7dijn-kff",
+              "it-a747-kfg",
+              "it-93v1b-kfh",
+              "it-8fpf4-kfi",
+              "it-4p0m9-kfj",
+              "it-9o0jx-kfk",
+              "it-5ikxf-kfl",
+              "it-4l7nd-kfm",
+              "it-3y1sl-kfn",
+              "it-891lo-kfo",
+              "it-62c9e-kfp",
+              "it-a46b-kfq",
+              "it-2jfsj-kfr",
+              "it-75ngk-kfs",
+              "it-2alk3-kft",
+              "it-69ptf-kfu",
+              "it-627yn-kfv",
+              "it-8p4hq-kfw",
+              "it-2svjy-kfx",
+              "it-5z32u-kfy",
+              "it-6sv02-kfz",
+              "it-oom9-kg0",
+              "it-5pgub-kg1",
+              "it-7by5r-kg2",
+              "it-1nf1q-kg3",
+              "it-4zwn1-kg4",
+              "it-64qd1-kg5",
+              "it-3ay7r-kg6",
+              "it-1kc75-kg7",
+              "it-9cfv7-kg8",
+              "it-3op71-kg9",
+              "it-81er-kga",
+              "it-7xra5-kgb",
+              "it-1nhyb-kgc",
+              "it-22w6h-kgd",
+              "it-3vkja-kge",
+              "it-tgul-kgf",
+              "it-3uh4n-kgg",
+              "it-1xouj-kgh",
+              "it-8x72m-kgi"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 12060,
+            "newItems": [
+              "it-3ptz2-kgj",
+              "it-668vp-kgk",
+              "it-1991e-kgl",
+              "it-3lmjl-kgm",
+              "it-ic37-kgn",
+              "it-69qw1-kgo",
+              "it-3kdt8-kgp",
+              "it-y5zm-kgq",
+              "it-5l2tj-kgr",
+              "it-2orkq-kgs",
+              "it-6zn1j-kgt",
+              "it-6hfif-kgu",
+              "it-85nyp-kgv",
+              "it-mho9-kgw",
+              "it-5x9bj-kgx",
+              "it-13k8z-kgy",
+              "it-5bwki-kgz",
+              "it-8zuay-kh0",
+              "it-7ytc4-kh1",
+              "it-gxhj-kh2",
+              "it-1oglc-kh3",
+              "it-4iohq-kh4",
+              "it-7azk4-kh5",
+              "it-7qkoi-kh6",
+              "it-se94-kh7",
+              "it-7e988-kh8",
+              "it-76lxr-kh9",
+              "it-5lnqh-kha",
+              "it-1gf4t-khb",
+              "it-3t7a6-khc",
+              "it-74uqo-khd",
+              "it-30s7d-khe",
+              "it-1wyjl-khf"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-khg",
+              "it-9wv6i-khh",
+              "it-42f7g-khi",
+              "it-2dv9h-khj",
+              "it-73pgp-khk",
+              "it-6qqhv-khl",
+              "it-129u5-khm",
+              "it-brds-khn",
+              "it-5nfdi-kho",
+              "it-po4g-khp",
+              "it-6r1dk-khq",
+              "it-5ohj-khr",
+              "it-6ahxw-khs",
+              "it-6st63-kht",
+              "it-809gb-khu",
+              "it-9hm31-khv",
+              "it-7qnxy-khw"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 423,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 9450,
+            "newItems": [
+              "it-4vvwq-khx",
+              "it-931xt-khy",
+              "it-6fomw-khz",
+              "it-bt3a-ki0",
+              "it-8r999-ki1",
+              "it-47n2u-ki2"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10080,
+            "newItems": [
+              "it-8sbty-ki3",
+              "it-2ytvi-ki4",
+              "it-11l0t-ki5",
+              "it-2iawb-ki6",
+              "it-4mrie-ki7"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11050,
+            "newItems": [
+              "it-2lqd3-ki8",
+              "it-79u3u-ki9",
+              "it-9x5h8-kia",
+              "it-2c2np-kib",
+              "it-6eepu-kic",
+              "it-3gakz-kid",
+              "it-18oze-kie",
+              "it-42p8m-kif",
+              "it-4orth-kig",
+              "it-5nmu9-kih",
+              "it-31zip-kii",
+              "it-2ap5o-kij",
+              "it-pbxz-kik",
+              "it-64ylr-kil",
+              "it-9bc6m-kim",
+              "it-585gn-kin",
+              "it-2hof6-kio",
+              "it-25exv-kip",
+              "it-1tf1u-kiq",
+              "it-7dkx1-kir",
+              "it-2y4bw-kis",
+              "it-7x5bw-kit",
+              "it-4qoyw-kiu",
+              "it-2f3a4-kiv",
+              "it-6a5x7-kiw",
+              "it-31kcd-kix",
+              "it-753ec-kiy",
+              "it-5ek6f-kiz",
+              "it-4g97d-kj0"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11880,
+            "newItems": [
+              "it-7uno8-kj1",
+              "it-2ywpb-kj2",
+              "it-tnh3-kj3",
+              "it-qpcj-kj4",
+              "it-67apo-kj5",
+              "it-79cyu-kj6",
+              "it-53agf-kj7",
+              "it-762w9-kj8",
+              "it-4nlb1-kj9",
+              "it-4h80o-kja",
+              "it-5g7r3-kjb",
+              "it-5suux-kjc",
+              "it-2vm9b-kjd",
+              "it-4c3nx-kje",
+              "it-2r698-kjf",
+              "it-8vuem-kjg",
+              "it-6qvgp-kjh",
+              "it-3azwj-kji",
+              "it-9pzl2-kjj",
+              "it-4y4f8-kjk",
+              "it-8a5q-kjl",
+              "it-9r74d-kjm",
+              "it-5a3aq-kjn",
+              "it-28itr-kjo",
+              "it-1sweo-kjp",
+              "it-4fkgw-kjq",
+              "it-14fwk-kjr",
+              "it-4u2q7-kjs",
+              "it-4qdra-kjt",
+              "it-19lr8-kju",
+              "it-1pq98-kjv",
+              "it-qs9o-kjw",
+              "it-1ct6o-kjx",
+              "it-56la6-kjy",
+              "it-7vj41-kjz",
+              "it-3dhpw-kk0",
+              "it-53hjq-kk1",
+              "it-9c97x-kk2",
+              "it-3thy0-kk3",
+              "it-89rxo-kk4",
+              "it-6k7ju-kk5",
+              "it-530i2-kk6",
+              "it-551a3-kk7",
+              "it-7b7xx-kk8",
+              "it-sjhv-kk9",
+              "it-7dijn-kka",
+              "it-a747-kkb",
+              "it-93v1b-kkc",
+              "it-8fpf4-kkd",
+              "it-4p0m9-kke",
+              "it-9o0jx-kkf",
+              "it-5ikxf-kkg",
+              "it-4l7nd-kkh",
+              "it-3y1sl-kki",
+              "it-891lo-kkj",
+              "it-62c9e-kkk",
+              "it-a46b-kkl",
+              "it-2jfsj-kkm",
+              "it-75ngk-kkn",
+              "it-2alk3-kko",
+              "it-69ptf-kkp",
+              "it-627yn-kkq",
+              "it-8p4hq-kkr",
+              "it-2svjy-kks",
+              "it-5z32u-kkt",
+              "it-6sv02-kku",
+              "it-oom9-kkv",
+              "it-5pgub-kkw",
+              "it-7by5r-kkx",
+              "it-1nf1q-kky",
+              "it-4zwn1-kkz",
+              "it-64qd1-kl0",
+              "it-3ay7r-kl1",
+              "it-1kc75-kl2",
+              "it-9cfv7-kl3",
+              "it-3op71-kl4",
+              "it-81er-kl5",
+              "it-7xra5-kl6",
+              "it-1nhyb-kl7",
+              "it-22w6h-kl8",
+              "it-3vkja-kl9",
+              "it-tgul-kla",
+              "it-3uh4n-klb",
+              "it-1xouj-klc",
+              "it-8x72m-kld",
+              "it-160bv-kle",
+              "it-56tyz-klf",
+              "it-1aho8-klg",
+              "it-5t2em-klh",
+              "it-40i16-kli"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 12730,
+            "newItems": [
+              "it-3ptz2-klj",
+              "it-668vp-klk",
+              "it-1991e-kll",
+              "it-3lmjl-klm",
+              "it-ic37-kln",
+              "it-69qw1-klo",
+              "it-3kdt8-klp",
+              "it-y5zm-klq",
+              "it-5l2tj-klr",
+              "it-2orkq-kls",
+              "it-6zn1j-klt",
+              "it-6hfif-klu",
+              "it-85nyp-klv",
+              "it-mho9-klw",
+              "it-5x9bj-klx",
+              "it-13k8z-kly",
+              "it-5bwki-klz",
+              "it-8zuay-km0",
+              "it-7ytc4-km1",
+              "it-gxhj-km2",
+              "it-1oglc-km3",
+              "it-4iohq-km4",
+              "it-7azk4-km5",
+              "it-7qkoi-km6",
+              "it-se94-km7",
+              "it-7e988-km8",
+              "it-76lxr-km9",
+              "it-5lnqh-kma",
+              "it-1gf4t-kmb",
+              "it-3t7a6-kmc",
+              "it-74uqo-kmd",
+              "it-30s7d-kme",
+              "it-1wyjl-kmf",
+              "it-4pv6n-kmg",
+              "it-efve-kmh"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-kmi",
+              "it-9wv6i-kmj",
+              "it-42f7g-kmk",
+              "it-2dv9h-kml",
+              "it-73pgp-kmm",
+              "it-6qqhv-kmn",
+              "it-129u5-kmo",
+              "it-brds-kmp",
+              "it-5nfdi-kmq",
+              "it-po4g-kmr",
+              "it-6r1dk-kms",
+              "it-5ohj-kmt",
+              "it-6ahxw-kmu",
+              "it-6st63-kmv",
+              "it-809gb-kmw",
+              "it-9hm31-kmx",
+              "it-7qnxy-kmy"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 424,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10080,
+            "newItems": [
+              "it-4vvwq-kmz",
+              "it-931xt-kn0",
+              "it-6fomw-kn1",
+              "it-bt3a-kn2",
+              "it-8r999-kn3",
+              "it-47n2u-kn4"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10710,
+            "newItems": [
+              "it-8sbty-kn5",
+              "it-2ytvi-kn6",
+              "it-11l0t-kn7",
+              "it-2iawb-kn8",
+              "it-4mrie-kn9"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11700,
+            "newItems": [
+              "it-2lqd3-kna",
+              "it-79u3u-knb",
+              "it-9x5h8-knc",
+              "it-2c2np-knd",
+              "it-6eepu-kne",
+              "it-3gakz-knf",
+              "it-18oze-kng",
+              "it-42p8m-knh",
+              "it-4orth-kni",
+              "it-5nmu9-knj",
+              "it-31zip-knk",
+              "it-2ap5o-knl",
+              "it-pbxz-knm",
+              "it-64ylr-knn",
+              "it-9bc6m-kno",
+              "it-585gn-knp",
+              "it-2hof6-knq",
+              "it-25exv-knr",
+              "it-1tf1u-kns",
+              "it-7dkx1-knt",
+              "it-2y4bw-knu",
+              "it-7x5bw-knv",
+              "it-4qoyw-knw",
+              "it-2f3a4-knx",
+              "it-6a5x7-kny",
+              "it-31kcd-knz",
+              "it-753ec-ko0",
+              "it-5ek6f-ko1",
+              "it-4g97d-ko2",
+              "it-13r80-ko3",
+              "it-1xa9c-ko4"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 12540,
+            "newItems": [
+              "it-7uno8-ko5",
+              "it-2ywpb-ko6",
+              "it-tnh3-ko7",
+              "it-qpcj-ko8",
+              "it-67apo-ko9",
+              "it-79cyu-koa",
+              "it-53agf-kob",
+              "it-762w9-koc",
+              "it-4nlb1-kod",
+              "it-4h80o-koe",
+              "it-5g7r3-kof",
+              "it-5suux-kog",
+              "it-2vm9b-koh",
+              "it-4c3nx-koi",
+              "it-2r698-koj",
+              "it-8vuem-kok",
+              "it-6qvgp-kol",
+              "it-3azwj-kom",
+              "it-9pzl2-kon",
+              "it-4y4f8-koo",
+              "it-8a5q-kop",
+              "it-9r74d-koq",
+              "it-5a3aq-kor",
+              "it-28itr-kos",
+              "it-1sweo-kot",
+              "it-4fkgw-kou",
+              "it-14fwk-kov",
+              "it-4u2q7-kow",
+              "it-4qdra-kox",
+              "it-19lr8-koy",
+              "it-1pq98-koz",
+              "it-qs9o-kp0",
+              "it-1ct6o-kp1",
+              "it-56la6-kp2",
+              "it-7vj41-kp3",
+              "it-3dhpw-kp4",
+              "it-53hjq-kp5",
+              "it-9c97x-kp6",
+              "it-3thy0-kp7",
+              "it-89rxo-kp8",
+              "it-6k7ju-kp9",
+              "it-530i2-kpa",
+              "it-551a3-kpb",
+              "it-7b7xx-kpc",
+              "it-sjhv-kpd",
+              "it-7dijn-kpe",
+              "it-a747-kpf",
+              "it-93v1b-kpg",
+              "it-8fpf4-kph",
+              "it-4p0m9-kpi",
+              "it-9o0jx-kpj",
+              "it-5ikxf-kpk",
+              "it-4l7nd-kpl",
+              "it-3y1sl-kpm",
+              "it-891lo-kpn",
+              "it-62c9e-kpo",
+              "it-a46b-kpp",
+              "it-2jfsj-kpq",
+              "it-75ngk-kpr",
+              "it-2alk3-kps",
+              "it-69ptf-kpt",
+              "it-627yn-kpu",
+              "it-8p4hq-kpv",
+              "it-2svjy-kpw",
+              "it-5z32u-kpx",
+              "it-6sv02-kpy",
+              "it-oom9-kpz",
+              "it-5pgub-kq0",
+              "it-7by5r-kq1",
+              "it-1nf1q-kq2",
+              "it-4zwn1-kq3",
+              "it-64qd1-kq4",
+              "it-3ay7r-kq5",
+              "it-1kc75-kq6",
+              "it-9cfv7-kq7",
+              "it-3op71-kq8",
+              "it-81er-kq9",
+              "it-7xra5-kqa",
+              "it-1nhyb-kqb",
+              "it-22w6h-kqc",
+              "it-3vkja-kqd",
+              "it-tgul-kqe",
+              "it-3uh4n-kqf",
+              "it-1xouj-kqg",
+              "it-8x72m-kqh",
+              "it-160bv-kqi",
+              "it-56tyz-kqj",
+              "it-1aho8-kqk",
+              "it-5t2em-kql",
+              "it-40i16-kqm",
+              "it-8tf69-kqn",
+              "it-828q8-kqo",
+              "it-1jyfg-kqp",
+              "it-856kd-kqq",
+              "it-9yw3p-kqr"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 13400,
+            "newItems": [
+              "it-3ptz2-kqs",
+              "it-668vp-kqt",
+              "it-1991e-kqu",
+              "it-3lmjl-kqv",
+              "it-ic37-kqw",
+              "it-69qw1-kqx",
+              "it-3kdt8-kqy",
+              "it-y5zm-kqz",
+              "it-5l2tj-kr0",
+              "it-2orkq-kr1",
+              "it-6zn1j-kr2",
+              "it-6hfif-kr3",
+              "it-85nyp-kr4",
+              "it-mho9-kr5",
+              "it-5x9bj-kr6",
+              "it-13k8z-kr7",
+              "it-5bwki-kr8",
+              "it-8zuay-kr9",
+              "it-7ytc4-kra",
+              "it-gxhj-krb",
+              "it-1oglc-krc",
+              "it-4iohq-krd",
+              "it-7azk4-kre",
+              "it-7qkoi-krf",
+              "it-se94-krg",
+              "it-7e988-krh",
+              "it-76lxr-kri",
+              "it-5lnqh-krj",
+              "it-1gf4t-krk",
+              "it-3t7a6-krl",
+              "it-74uqo-krm",
+              "it-30s7d-krn",
+              "it-1wyjl-kro",
+              "it-4pv6n-krp",
+              "it-efve-krq",
+              "it-9dpn1-krr",
+              "it-3evxb-krs"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-krt",
+              "it-9wv6i-kru",
+              "it-42f7g-krv",
+              "it-2dv9h-krw",
+              "it-73pgp-krx",
+              "it-6qqhv-kry",
+              "it-129u5-krz",
+              "it-brds-ks0",
+              "it-5nfdi-ks1",
+              "it-po4g-ks2",
+              "it-6r1dk-ks3",
+              "it-5ohj-ks4",
+              "it-6ahxw-ks5",
+              "it-6st63-ks6",
+              "it-809gb-ks7",
+              "it-9hm31-ks8",
+              "it-7qnxy-ks9"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 425,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 10710,
+            "newItems": [
+              "it-4vvwq-ksa",
+              "it-931xt-ksb",
+              "it-6fomw-ksc",
+              "it-bt3a-ksd",
+              "it-8r999-kse",
+              "it-47n2u-ksf",
+              "it-5j3pv-ksg"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11340,
+            "newItems": [
+              "it-8sbty-ksh",
+              "it-2ytvi-ksi",
+              "it-11l0t-ksj",
+              "it-2iawb-ksk",
+              "it-4mrie-ksl"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 12350,
+            "newItems": [
+              "it-2lqd3-ksm",
+              "it-79u3u-ksn",
+              "it-9x5h8-kso",
+              "it-2c2np-ksp",
+              "it-6eepu-ksq",
+              "it-3gakz-ksr",
+              "it-18oze-kss",
+              "it-42p8m-kst",
+              "it-4orth-ksu",
+              "it-5nmu9-ksv",
+              "it-31zip-ksw",
+              "it-2ap5o-ksx",
+              "it-pbxz-ksy",
+              "it-64ylr-ksz",
+              "it-9bc6m-kt0",
+              "it-585gn-kt1",
+              "it-2hof6-kt2",
+              "it-25exv-kt3",
+              "it-1tf1u-kt4",
+              "it-7dkx1-kt5",
+              "it-2y4bw-kt6",
+              "it-7x5bw-kt7",
+              "it-4qoyw-kt8",
+              "it-2f3a4-kt9",
+              "it-6a5x7-kta",
+              "it-31kcd-ktb",
+              "it-753ec-ktc",
+              "it-5ek6f-ktd",
+              "it-4g97d-kte",
+              "it-13r80-ktf",
+              "it-1xa9c-ktg",
+              "it-304zb-kth",
+              "it-3f6ib-kti"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 13200,
+            "newItems": [
+              "it-7uno8-ktj",
+              "it-2ywpb-ktk",
+              "it-tnh3-ktl",
+              "it-qpcj-ktm",
+              "it-67apo-ktn",
+              "it-79cyu-kto",
+              "it-53agf-ktp",
+              "it-762w9-ktq",
+              "it-4nlb1-ktr",
+              "it-4h80o-kts",
+              "it-5g7r3-ktt",
+              "it-5suux-ktu",
+              "it-2vm9b-ktv",
+              "it-4c3nx-ktw",
+              "it-2r698-ktx",
+              "it-8vuem-kty",
+              "it-6qvgp-ktz",
+              "it-3azwj-ku0",
+              "it-9pzl2-ku1",
+              "it-4y4f8-ku2",
+              "it-8a5q-ku3",
+              "it-9r74d-ku4",
+              "it-5a3aq-ku5",
+              "it-28itr-ku6",
+              "it-1sweo-ku7",
+              "it-4fkgw-ku8",
+              "it-14fwk-ku9",
+              "it-4u2q7-kua",
+              "it-4qdra-kub",
+              "it-19lr8-kuc",
+              "it-1pq98-kud",
+              "it-qs9o-kue",
+              "it-1ct6o-kuf",
+              "it-56la6-kug",
+              "it-7vj41-kuh",
+              "it-3dhpw-kui",
+              "it-53hjq-kuj",
+              "it-9c97x-kuk",
+              "it-3thy0-kul",
+              "it-89rxo-kum",
+              "it-6k7ju-kun",
+              "it-530i2-kuo",
+              "it-551a3-kup",
+              "it-7b7xx-kuq",
+              "it-sjhv-kur",
+              "it-7dijn-kus",
+              "it-a747-kut",
+              "it-93v1b-kuu",
+              "it-8fpf4-kuv",
+              "it-4p0m9-kuw",
+              "it-9o0jx-kux",
+              "it-5ikxf-kuy",
+              "it-4l7nd-kuz",
+              "it-3y1sl-kv0",
+              "it-891lo-kv1",
+              "it-62c9e-kv2",
+              "it-a46b-kv3",
+              "it-2jfsj-kv4",
+              "it-75ngk-kv5",
+              "it-2alk3-kv6",
+              "it-69ptf-kv7",
+              "it-627yn-kv8",
+              "it-8p4hq-kv9",
+              "it-2svjy-kva",
+              "it-5z32u-kvb",
+              "it-6sv02-kvc",
+              "it-oom9-kvd",
+              "it-5pgub-kve",
+              "it-7by5r-kvf",
+              "it-1nf1q-kvg",
+              "it-4zwn1-kvh",
+              "it-64qd1-kvi",
+              "it-3ay7r-kvj",
+              "it-1kc75-kvk",
+              "it-9cfv7-kvl",
+              "it-3op71-kvm",
+              "it-81er-kvn",
+              "it-7xra5-kvo",
+              "it-1nhyb-kvp",
+              "it-22w6h-kvq",
+              "it-3vkja-kvr",
+              "it-tgul-kvs",
+              "it-3uh4n-kvt",
+              "it-1xouj-kvu",
+              "it-8x72m-kvv",
+              "it-160bv-kvw",
+              "it-56tyz-kvx",
+              "it-1aho8-kvy",
+              "it-5t2em-kvz",
+              "it-40i16-kw0",
+              "it-8tf69-kw1",
+              "it-828q8-kw2",
+              "it-1jyfg-kw3",
+              "it-856kd-kw4",
+              "it-9yw3p-kw5",
+              "it-7kv61-kw6",
+              "it-4xz49-kw7",
+              "it-6ze7m-kw8",
+              "it-8blsr-kw9",
+              "it-3f3hp-kwa"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5360,
+            "newItems": [
+              "it-3ptz2-kwb",
+              "it-668vp-kwc",
+              "it-1991e-kwd",
+              "it-3lmjl-kwe",
+              "it-ic37-kwf",
+              "it-69qw1-kwg",
+              "it-3kdt8-kwh",
+              "it-y5zm-kwi",
+              "it-5l2tj-kwj",
+              "it-2orkq-kwk",
+              "it-6zn1j-kwl",
+              "it-6hfif-kwm",
+              "it-85nyp-kwn",
+              "it-mho9-kwo",
+              "it-5x9bj-kwp",
+              "it-13k8z-kwq"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-kwr",
+              "it-9wv6i-kws",
+              "it-42f7g-kwt",
+              "it-2dv9h-kwu",
+              "it-73pgp-kwv",
+              "it-6qqhv-kww",
+              "it-129u5-kwx",
+              "it-brds-kwy",
+              "it-5nfdi-kwz",
+              "it-po4g-kx0",
+              "it-6r1dk-kx1",
+              "it-5ohj-kx2",
+              "it-6ahxw-kx3",
+              "it-6st63-kx4",
+              "it-809gb-kx5",
+              "it-9hm31-kx6",
+              "it-7qnxy-kx7"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    },
+    {
+      "alias": "arreat-plateau",
+      "ordinal": 426,
+      "waves": [
+        {
+          "wave": 1,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11340,
+            "newItems": [
+              "it-4vvwq-kx8",
+              "it-931xt-kx9",
+              "it-6fomw-kxa",
+              "it-bt3a-kxb",
+              "it-8r999-kxc",
+              "it-47n2u-kxd",
+              "it-5j3pv-kxe",
+              "it-1e53o-kxf"
+            ]
+          }
+        },
+        {
+          "wave": 2,
+          "outcome": "victory",
+          "delta": {
+            "xp": 11970,
+            "newItems": [
+              "it-8sbty-kxg",
+              "it-2ytvi-kxh",
+              "it-11l0t-kxi",
+              "it-2iawb-kxj",
+              "it-4mrie-kxk"
+            ]
+          }
+        },
+        {
+          "wave": 3,
+          "outcome": "victory",
+          "delta": {
+            "xp": 13000,
+            "newItems": [
+              "it-2lqd3-kxl",
+              "it-79u3u-kxm",
+              "it-9x5h8-kxn",
+              "it-2c2np-kxo",
+              "it-6eepu-kxp",
+              "it-3gakz-kxq",
+              "it-18oze-kxr",
+              "it-42p8m-kxs",
+              "it-4orth-kxt",
+              "it-5nmu9-kxu",
+              "it-31zip-kxv",
+              "it-2ap5o-kxw",
+              "it-pbxz-kxx",
+              "it-64ylr-kxy",
+              "it-9bc6m-kxz",
+              "it-585gn-ky0",
+              "it-2hof6-ky1",
+              "it-25exv-ky2",
+              "it-1tf1u-ky3",
+              "it-7dkx1-ky4",
+              "it-2y4bw-ky5",
+              "it-7x5bw-ky6",
+              "it-4qoyw-ky7",
+              "it-2f3a4-ky8",
+              "it-6a5x7-ky9",
+              "it-31kcd-kya",
+              "it-753ec-kyb",
+              "it-5ek6f-kyc",
+              "it-4g97d-kyd",
+              "it-13r80-kye",
+              "it-1xa9c-kyf",
+              "it-304zb-kyg",
+              "it-3f6ib-kyh",
+              "it-60o9r-kyi",
+              "it-4j5u-kyj"
+            ]
+          }
+        },
+        {
+          "wave": 4,
+          "outcome": "victory",
+          "delta": {
+            "xp": 5280,
+            "newItems": [
+              "it-7uno8-kyk",
+              "it-2ywpb-kyl",
+              "it-tnh3-kym",
+              "it-qpcj-kyn",
+              "it-67apo-kyo",
+              "it-79cyu-kyp",
+              "it-53agf-kyq",
+              "it-762w9-kyr",
+              "it-4nlb1-kys",
+              "it-4h80o-kyt",
+              "it-5g7r3-kyu",
+              "it-5suux-kyv",
+              "it-2vm9b-kyw",
+              "it-4c3nx-kyx",
+              "it-2r698-kyy",
+              "it-8vuem-kyz",
+              "it-6qvgp-kz0",
+              "it-3azwj-kz1",
+              "it-9pzl2-kz2",
+              "it-4y4f8-kz3",
+              "it-8a5q-kz4",
+              "it-9r74d-kz5",
+              "it-5a3aq-kz6",
+              "it-28itr-kz7",
+              "it-1sweo-kz8",
+              "it-4fkgw-kz9",
+              "it-14fwk-kza",
+              "it-4u2q7-kzb",
+              "it-4qdra-kzc",
+              "it-19lr8-kzd",
+              "it-1pq98-kze",
+              "it-qs9o-kzf",
+              "it-1ct6o-kzg",
+              "it-56la6-kzh",
+              "it-7vj41-kzi",
+              "it-3dhpw-kzj",
+              "it-53hjq-kzk",
+              "it-9c97x-kzl",
+              "it-3thy0-kzm",
+              "it-89rxo-kzn"
+            ]
+          }
+        },
+        {
+          "wave": 5,
+          "outcome": "victory",
+          "delta": {
+            "xp": 6030,
+            "newItems": [
+              "it-3ptz2-kzo",
+              "it-668vp-kzp",
+              "it-1991e-kzq",
+              "it-3lmjl-kzr",
+              "it-ic37-kzs",
+              "it-69qw1-kzt",
+              "it-3kdt8-kzu",
+              "it-y5zm-kzv",
+              "it-5l2tj-kzw",
+              "it-2orkq-kzx",
+              "it-6zn1j-kzy",
+              "it-6hfif-kzz",
+              "it-85nyp-l00",
+              "it-mho9-l01",
+              "it-5x9bj-l02",
+              "it-13k8z-l03",
+              "it-5bwki-l04",
+              "it-8zuay-l05"
+            ]
+          }
+        },
+        {
+          "wave": 6,
+          "outcome": "victory",
+          "delta": {
+            "xp": 3350,
+            "newItems": [
+              "it-64b71-l06",
+              "it-9wv6i-l07",
+              "it-42f7g-l08",
+              "it-2dv9h-l09",
+              "it-73pgp-l0a",
+              "it-6qqhv-l0b",
+              "it-129u5-l0c",
+              "it-brds-l0d",
+              "it-5nfdi-l0e",
+              "it-po4g-l0f",
+              "it-6r1dk-l0g",
+              "it-5ohj-l0h",
+              "it-6ahxw-l0i",
+              "it-6st63-l0j",
+              "it-809gb-l0k",
+              "it-9hm31-l0l",
+              "it-7qnxy-l0m"
+            ]
+          }
+        }
+      ],
+      "outcome": "victory",
+      "actions": "no quest action; qualified free priority prepared once; repeat cleared Arreat only"
+    }
+  ],
+  "stopReason": "target-level-reached-after-complete-challenge",
+  "toolingPredecessor": {
+    "handle": 94646,
+    "exit": 1,
+    "stage": "mobile skills priority locator absent; no launch/no priority preparation",
+    "launches": 0,
+    "allGenuineSavedDomainsExactOriginal": true,
+    "terminalConsumed": true
+  },
+  "transport": {
+    "ordinaryPublicBrowser": true,
+    "viewport": {
+      "width": 360,
+      "height": 640
+    },
+    "locale": "en",
+    "preparation": "free combo priority only; no respec/rank/stat/equipment/crafting/quest change",
+    "requestedClockAdvanceMs": 3597100,
+    "executionWallMs": 1386493.6848870001,
+    "fixedOriginalDate": true,
+    "seedOrdinalOrStoreInjection": false,
+    "skipOrSpeedOverride": false,
+    "pacingAcceptance": false
+  },
+  "visuals": {
+    "individuallyViewed": [
+      "native-arreat408/failure.png",
+      "native-arreat408-r2/411-victory.png"
+    ],
+    "limits": "Failure screenshot establishes inactive Skill Tree tab. Victory screenshot despite fullPage option shows top mobile combat viewport/merc/MP/navigation; enemies and terminal panel remain below internal scroll. DOM and ordinary terminal assertions prove wins. Remaining victory captures retained without individual visual acceptance. No whole-app/mobile/a11y acceptance."
+  },
+  "remaining": "CobraBUG304/design decision, ColdMastery independent review, earned Baal/fullC2-C4/two builds/class/pacing/economy/endgame/fullG0-G7/performance/soak/independenthuman acceptance remain open. Local only.",
+  "retention": {
+    "status": "archive/readback/exact raw-task cleanup complete; original handles consumed terminal",
+    "formerTaskRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-arreat408-blizzard-oclab459",
+    "owner": "Root retains archive/manifest/receipt through campaign/independent/full-v1 consumers, then removes only those exact retained paths. Genuine source/history/worktree/shared caches remain preserved.",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-arreat408-blizzard-oclab459-raw.tar.gz",
+    "archiveSHA256": "b211d9536c114addc6745584d88691bce2ae0429cacd2dabb16916131025e7c3",
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-arreat408-blizzard-oclab459-raw-manifest.json",
+    "manifestSHA256": "6c9f25f58235d782130b0683903d8abae9a8dd0e3803680f06cd69b3ec6e069b",
+    "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-arreat408-blizzard-oclab459-retention.json",
+    "verifiedMembers": 1359,
+    "removedFilesOrLinks": 1359,
+    "removedDirectoriesIncludingRoot": 18,
+    "remaining": [],
+    "failures": [],
+    "formerTaskRootAbsent": true,
+    "retentionHandle": 35296,
+    "retentionExit": 0,
+    "previewPID": 3057945,
+    "previewPIDAbsent": true,
+    "previewPort": 44445,
+    "previewPortClosed": true
+  }
+}
