@@ -1,7 +1,10 @@
 # P18 — Frozen earned endgame continuation
 
-Status: Ready for execution after the current qualification/evidence retention
-finishes. No genuine dungeon action has been executed by preparing this file.
+Status: The predetermined genuine sequence, once-only Claim/title and actual
+ruby utility are verified in [earned endgame4](evidence/p18-earned-endgame4.md).
+The protocol below records the original frozen input and action order. It is not
+a replay instruction; resume only its audited successor. Deliberate actual-defeat/
+fresh-retry and partial-run-discard controls, broader P18 and full-v1 gates remain open.
 Owner: root, existing registered umbrella worktree; preserve unrelated changes.
 
 ## Input and constraints

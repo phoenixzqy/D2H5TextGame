@@ -13993,3 +13993,51 @@ tolerance to repin an8px-away reader. No independent runtime QA was performed.
 BUG322 stays open while the frontend specialist adds causal release→delayed-event
 regressions and a bounded correction. Earlier whole checks validate4d0397d8,
 not an unvalidated follow-up. No genuine endgame action has been consumed.
+
+
+## P18 four earned clears and actual achievement utility — 2026-10-27
+
+Current genuine resume is only [earned endgame4](evidence/p18-earned-endgame4.md):
+L35/XP192311/stat0/skill0/27633uniqueequipment/all29areas/Normalnext431/Nightmare0,
+endgameattempt4/clearsAshen3,Glacial1/claimed/Riftwalkerselected. All-areas431 is
+historical ancestry. Never replay0–3 entries/Claim/title/initial-cap-equip/ruby.
+Four actual public-UI clears win all16waves and earn54000XP/43equipment. Separate
+artifact audit passes46saves/nine exact Save-close-Continue pairs, preserving
+full acquired payloads and exact campaign/core/ranks/priorities/mercgear. One
+Claim adds exactly one perfectruby/oneperfectsapphire. Existing cap ruby insertion
+costs exactlyone/materialordinal+1 and actualLife585→635, final durable reload exact.
+
+Original6244stops after consumed clears/Claim/title/cap equip at a nonexistent
+character-link locator; actual HUD navigation is used for remaining-only recovery.
+28350stops before import/action with browserclose, then separate probe passes;
+cause not established. Continuation55785passes0/consumed. All failures and
+stopped successor lineage preserved; native journal proves zero consumed replay.
+A read-only settled observer11667passes0 with exact final save unchanged; original
+CSS virtual-time opacity oracle failure is retained, no product defect inferred.
+Seven specific screenshots viewed, including allyIgnite/Chill, Riftwalker and
+visible final635Life. Root separate audit is not independent runtime acceptance.
+Independent read-only artifact review approves/no findings after direct checks
+of all46snapshots/ninepairs/16victories/Claim/payloads/zeroreplay/fixturehashes/
+freezechains and two settled screenshots. Its consumers are released; no scratch,
+runtimeQA,gameplay,build or tests. Independent runtime acceptance remains open.
+
+2694source/config/test and762build inputs/HEAD exact; fulltypes/lint/guardedbuild
+pass. Originalfullunit18391terminal0/consumed:19969PASS/941files/twoexisting
+optinskips(EARNED_ECONOMY/EARNED_NATIVE_CONTINUATION),1518.59sVitest/1520.813swrapper.
+All2694frozeninputs/HEADexact; earlier19961checks belong to4d0397d8. Configured
+test-timebudget remains exceeded.
+ExactpreviewPID3646182absent/43924consumed/59319closed; browserprofiles/downloads
+absent.334archive members streamed/readback/originalhash verified before exact
+327files/sevendirs/rawrootcleanup,remaining[]/failures[]. Root retains exact
+archive/manifest/receipt in evidence through independent/fullv1consumers.
+Final combat-log browser matrix10/10PASS/bothlocales/fivesizes; original source
+reviewP2 resolved by3b226e8d and34/34causalregressions. BUG322fixed locally.
+Shared validation947members/930files/17dirs streamed/readback/originalhashverified
+and exactly cleaned,remaining[]/failures[]/rawrootabsent. Root retains its three
+sidecars through independent/fullv1consumers,archiveSHA20bfcbfa273baf88a328ef08d0067bcdd4b16c46b666d94c8c4608c766ec3134.
+All recordedPIDsabsent/59319closed; exacttwofileretainerutility/rootremoved.
+Actual-defeat/freshretry andpartialdiscard controls remainunexecuted. C2 broader
+integration/independent,C3/C4/fullG0–G7,211boundedskills/oneunverifiedCobraBUG304/
+onereviewColdMastery,14builds,30–50activehourpacing/economy,wholeappmobile/a11y/
+localization,performance/PWA,humanplaytest/soak remainopen. Fullgoal/worktree
+claimactive;localonly.

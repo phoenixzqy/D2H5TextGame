@@ -1,0 +1,458 @@
+{
+  "status": "pass",
+  "kind": "root separate saved-artifact audit, no resimulation or independent QA claim",
+  "snapshots": 46,
+  "exactDurablePairs": 9,
+  "originalOwnedItems": 27590,
+  "finalOwnedItems": 27633,
+  "newEquipment": 43,
+  "earnedXP": 54000,
+  "finalLevel": 35,
+  "finalXP": 192311,
+  "finalStatPoints": 0,
+  "finalSkillPoints": 0,
+  "finalEndgame": {
+    "attemptOrdinal": 4,
+    "clearCounts": {
+      "ashen": 3,
+      "glacial": 1
+    },
+    "achievementRewardClaimed": true
+  },
+  "campaignPreserved": true,
+  "allAcquiredFullPayloadsPreservedWithOnlyDeclaredHeadExceptions": true,
+  "claimExactPerfectRubyAndSapphirePlusOne": true,
+  "socketExactRubyMinusOne": true,
+  "utility": {
+    "targetID": "it-1owml-11",
+    "originalHeadID": "it-83uoj-3kc",
+    "material": "gems/ruby/perfect",
+    "lifeMaxBefore": 585,
+    "lifeMaxAfter": 635,
+    "increase": 50,
+    "permittedAncestralChanges": [
+      "socketContents on exact cap",
+      "equipped flag and location of exact cap and original head"
+    ]
+  },
+  "finalRawSHA256": "7fc4a5495355542b07a0cc05bb265ee0502d9e6ffd968938902203acf5da5007",
+  "finalGzipSHA256": "73c79b289f9c010ee5b75813aa14867f4cf7616e2847ac52245b7fb9e3bd70f6",
+  "zeroGameplayReplay": true,
+  "rewardAttributionBoundary": "Observed saved material deltas are exact; ordinary material amounts subtract the source-authored completion cache. This is a derived breakdown, not a separately observed cache receipt.",
+  "waveRewards": [
+    {
+      "ordinal": 0,
+      "modifier": "ashen",
+      "wave": 1,
+      "newEquipment": 3,
+      "observedTotalMaterialDelta": {},
+      "authoredCompletionCache": {},
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {}
+    },
+    {
+      "ordinal": 0,
+      "modifier": "ashen",
+      "wave": 2,
+      "newEquipment": 2,
+      "observedTotalMaterialDelta": {},
+      "authoredCompletionCache": {},
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {}
+    },
+    {
+      "ordinal": 0,
+      "modifier": "ashen",
+      "wave": 3,
+      "newEquipment": 1,
+      "observedTotalMaterialDelta": {},
+      "authoredCompletionCache": {},
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {}
+    },
+    {
+      "ordinal": 0,
+      "modifier": "ashen",
+      "wave": 4,
+      "newEquipment": 6,
+      "observedTotalMaterialDelta": {
+        "runes/tir": 1,
+        "gems/ruby/flawless": 1,
+        "gems/emerald/flawless": 1
+      },
+      "authoredCompletionCache": {
+        "gems/ruby/flawless": 1
+      },
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {
+        "runes/tir": 1,
+        "gems/emerald/flawless": 1
+      }
+    },
+    {
+      "ordinal": 1,
+      "modifier": "ashen",
+      "wave": 1,
+      "newEquipment": 1,
+      "observedTotalMaterialDelta": {},
+      "authoredCompletionCache": {},
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {}
+    },
+    {
+      "ordinal": 1,
+      "modifier": "ashen",
+      "wave": 2,
+      "newEquipment": 4,
+      "observedTotalMaterialDelta": {},
+      "authoredCompletionCache": {},
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {}
+    },
+    {
+      "ordinal": 1,
+      "modifier": "ashen",
+      "wave": 3,
+      "newEquipment": 1,
+      "observedTotalMaterialDelta": {},
+      "authoredCompletionCache": {},
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {}
+    },
+    {
+      "ordinal": 1,
+      "modifier": "ashen",
+      "wave": 4,
+      "newEquipment": 6,
+      "observedTotalMaterialDelta": {
+        "gems/topaz/flawless": 1,
+        "runes/nef": 2,
+        "gems/ruby/normal": 1,
+        "gems/ruby/flawless": 1
+      },
+      "authoredCompletionCache": {
+        "gems/ruby/flawless": 1
+      },
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {
+        "gems/topaz/flawless": 1,
+        "runes/nef": 2,
+        "gems/ruby/normal": 1
+      }
+    },
+    {
+      "ordinal": 2,
+      "modifier": "ashen",
+      "wave": 1,
+      "newEquipment": 2,
+      "observedTotalMaterialDelta": {},
+      "authoredCompletionCache": {},
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {}
+    },
+    {
+      "ordinal": 2,
+      "modifier": "ashen",
+      "wave": 2,
+      "newEquipment": 2,
+      "observedTotalMaterialDelta": {},
+      "authoredCompletionCache": {},
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {}
+    },
+    {
+      "ordinal": 2,
+      "modifier": "ashen",
+      "wave": 3,
+      "newEquipment": 1,
+      "observedTotalMaterialDelta": {},
+      "authoredCompletionCache": {},
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {}
+    },
+    {
+      "ordinal": 2,
+      "modifier": "ashen",
+      "wave": 4,
+      "newEquipment": 5,
+      "observedTotalMaterialDelta": {
+        "runes/ith": 1,
+        "gems/amethyst/chipped": 1,
+        "gems/ruby/flawless": 2
+      },
+      "authoredCompletionCache": {
+        "gems/ruby/flawless": 1
+      },
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {
+        "runes/ith": 1,
+        "gems/amethyst/chipped": 1,
+        "gems/ruby/flawless": 1
+      }
+    },
+    {
+      "ordinal": 3,
+      "modifier": "glacial",
+      "wave": 1,
+      "newEquipment": 1,
+      "observedTotalMaterialDelta": {},
+      "authoredCompletionCache": {},
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {}
+    },
+    {
+      "ordinal": 3,
+      "modifier": "glacial",
+      "wave": 2,
+      "newEquipment": 0,
+      "observedTotalMaterialDelta": {},
+      "authoredCompletionCache": {},
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {}
+    },
+    {
+      "ordinal": 3,
+      "modifier": "glacial",
+      "wave": 3,
+      "newEquipment": 1,
+      "observedTotalMaterialDelta": {
+        "gems/ruby/chipped": 1
+      },
+      "authoredCompletionCache": {},
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {
+        "gems/ruby/chipped": 1
+      }
+    },
+    {
+      "ordinal": 3,
+      "modifier": "glacial",
+      "wave": 4,
+      "newEquipment": 7,
+      "observedTotalMaterialDelta": {
+        "gems/sapphire/flawless": 1,
+        "runes/eld": 1,
+        "gems/skull/flawless": 1
+      },
+      "authoredCompletionCache": {
+        "gems/sapphire/flawless": 1
+      },
+      "ordinaryMaterialsDerivedBySubtractingAuthoredCache": {
+        "runes/eld": 1,
+        "gems/skull/flawless": 1
+      }
+    }
+  ],
+  "modifierObservations": {
+    "ashen": {
+      "observedSnapshotCount": 116,
+      "uniqueSkillText": [
+        "Blood Lord A casts Fire Breath.",
+        "Blood Lord B casts Fire Breath."
+      ],
+      "allyIDsWithStatus": [
+        "unit-card-merc-mercs/act2-holy-freeze",
+        "unit-card-player-1792497600000"
+      ],
+      "boundary": "DOM skill/actor text and ally status projections; counts are observations, not event counts; exact source attribution comes from separate qualification traces."
+    },
+    "glacial": {
+      "observedSnapshotCount": 58,
+      "uniqueSkillText": [
+        "Frozen Terror A casts Frost Aura.",
+        "Frozen Terror B casts Frost Aura."
+      ],
+      "allyIDsWithStatus": [
+        "unit-card-merc-mercs/act2-holy-freeze",
+        "unit-card-player-1792497600000"
+      ],
+      "boundary": "DOM skill/actor text and ally status projections; counts are observations, not event counts; exact source attribution comes from separate qualification traces."
+    }
+  },
+  "executionHEAD": "3b226e8d5af41a7c41b74fefcf8e74287b848a98",
+  "input": "../earned-all-areas431/retained-final.json.gz",
+  "inputRawSHA256": "f86301c7592f8915dd08780356f623dc17c6d0bf48a0c3ae75b399f9abd28126",
+  "currentGenuineSuccessor": true,
+  "normalNext": 431,
+  "nightmareNext": 0,
+  "routes": [
+    {
+      "modifier": "ashen",
+      "ordinal": 0,
+      "victories": 4
+    },
+    {
+      "modifier": "ashen",
+      "ordinal": 1,
+      "victories": 4
+    },
+    {
+      "modifier": "ashen",
+      "ordinal": 2,
+      "victories": 4
+    },
+    {
+      "modifier": "glacial",
+      "ordinal": 3,
+      "victories": 4
+    }
+  ],
+  "onceOnlyActions": [
+    "achievement-claim-once",
+    "select-riftwalker",
+    "equip-owned-cap-before",
+    "return-original-head",
+    "socket-perfect-ruby-once",
+    "equip-owned-cap-after"
+  ],
+  "selectedTitle": "titles/worldstone-adapt",
+  "claimedPerfectSapphireRemaining": 1,
+  "claimedPerfectRubyRemaining": 0,
+  "originalStops": {
+    "native6244": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('a[href=\"/character\"]').first()\u001b[22m\n\n    at nav (/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-endgame-native-7__xeujd/native-endgame.mjs:58:53)\n    at lifeMax (/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-endgame-native-7__xeujd/native-endgame.mjs:119:9)\n    at /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-endgame-native-7__xeujd/native-endgame.mjs:208:102",
+    "emptyRecovery28350": "page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:59319/\", waiting until \"load\"\u001b[22m\n\n    at open (/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-endgame-native-7__xeujd/native-utility-resume.mjs:55:11)\n    at async file:///home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-endgame-native-7__xeujd/native-utility-resume.mjs:124:42",
+    "visualOracle92847": "Virtual300ms does not establish completion of CSS fadeIn; intermediate opacity0.231903. Original retained; natural opacity1 later verified."
+  },
+  "successfulHandles": {
+    "utility": 55785,
+    "combinedAuditInitial": 43958,
+    "combinedAuditStrengthened": 71673,
+    "readOnlyFinalView": 11667
+  },
+  "visualReview": {
+    "individuallyViewed": 7,
+    "manifest": "screenshot-review.json in retained raw packet",
+    "actualLifeMaxVisible": 635,
+    "settledPreview": "existing second-cap sapphire preview only; Cancel, no costs; exact save preserved",
+    "originalRubyPreview": "intermediate animation frame; no visual acceptance inferred"
+  },
+  "runtime": {
+    "browser": "Chromium headless at360x640/en",
+    "transport": "fixed historical Date/proven100ms native timer transport",
+    "pageErrors": 0,
+    "consoleWarningsErrors": 0,
+    "scope": "functional earned state; no active-hour pacing, physical-device, independent runtime QA or full P18 acceptance"
+  },
+  "validation": {
+    "sourceInputs": 2694,
+    "productionAssets": 762,
+    "headAndSourceBuildUnchanged": true,
+    "fullUnit": {
+      "handle": 18391,
+      "exitCode": 0,
+      "consumed": true,
+      "testsPassed": 19969,
+      "testFilesPassed": 941,
+      "testsSkipped": 2,
+      "optInSkips": [
+        "EARNED_ECONOMY",
+        "EARNED_NATIVE_CONTINUATION"
+      ],
+      "vitestSeconds": 1518.59,
+      "wrapperSeconds": 1520.8125377250835,
+      "frozenInputs": 2694,
+      "sourceDrift": [],
+      "executionHEADUnchanged": true,
+      "configuredTimeBudgetExceeded": true
+    },
+    "types": "terminal0consumed181.620864s",
+    "lint": "terminal0consumed334.408029s",
+    "productionBuildGuard": "terminal0consumed23.032936s;6JS/five unchanged actual guard regexes"
+  },
+  "processCleanup": {
+    "owner": "root",
+    "originalHandle": 43924,
+    "handleConsumed": true,
+    "exactPID": 3646182,
+    "pidAbsent": true,
+    "port": 59319,
+    "connectExit": 111,
+    "portClosed": true,
+    "browserConsumersReleased": true,
+    "ownedBrowserProcessesAbsent": true,
+    "reportedProfilesDownloadsAbsent": true
+  },
+  "retention": {
+    "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-endgame-native-7__xeujd",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-endgame-native-7__xeujd-raw.tar.gz",
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-endgame-native-7__xeujd-raw-manifest.json",
+    "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-endgame-native-7__xeujd-retention.json",
+    "status": "archive/readback/originalhash verified; exact327files/7dirs/rawroot removed; remaining[]/failures[]",
+    "owner": "root",
+    "retainUntil": "earned-endgame, independent-review and full-v1 consumers released; root owns exact sidecar removal",
+    "archiveSha256": "303ae5587669b86d1e75b8f9035ccb2569855d06fc3615a66ccfb6925cd43fc6",
+    "manifestSha256": "ceb43ef9fb15a0fc8cce7909ef627160679ca3e95a07ab4485e40eff65812582",
+    "archiveBytes": 16351981,
+    "verifiedMembers": 334,
+    "verifiedFiles": 327,
+    "verifiedDirectories": 7,
+    "verifiedRawBytes": 17878160,
+    "streamReadbackVerified": true,
+    "exactRawInventoryAndHashesVerified": true,
+    "consumerReferences": [],
+    "reusedOriginalArchive": false,
+    "originalInterruption": null,
+    "cleanup": {
+      "remaining": [],
+      "failures": [],
+      "rootAbsent": true
+    },
+    "wallSeconds": 1.749510442954488
+  },
+  "unaccepted": [
+    "deliberate actual defeat/fresh retry and partial-run discard",
+    "14 viable builds",
+    "30-50 active-hour pacing/economy",
+    "whole-app mobile/a11y/localization",
+    "performance/PWA installation",
+    "human soak/playtest",
+    "C2 broader integration/independent acceptance",
+    "C3/C4/full G0-G7"
+  ],
+  "independentArtifactReview": {
+    "verdict": "approve",
+    "findings": [],
+    "reviewer": "/root/review_combat_log",
+    "scope": "Independent read-only artifact review at execution HEAD 3b226e8d; no independent runtime QA, gameplay, builds or test suites.",
+    "directChecks": {
+      "savedSnapshots": 46,
+      "exactDurablePairs": 9,
+      "victories": 16,
+      "newUniqueEquipment": 43,
+      "earnedXP": 54000,
+      "claim": "exact claimed flag plus one perfect ruby and one perfect sapphire",
+      "utility": "one ruby cost/materialActionOrdinal22->23/one socket/LifeMax585->635",
+      "lineage": "stopped prefix exact; empty recovery zero actions; combined journal once-only",
+      "hashes": "versioned final raw/gzip and archived final exact; harness/report freezes and selected critical source blobs exact"
+    },
+    "screenshotsIndividuallyInspected": [
+      "settled Life120/635",
+      "settled cancelled sapphire preview"
+    ],
+    "limitations": [
+      "original full-unit18391 pending at review",
+      "broader pacing, visual, failure-control and acceptance work open"
+    ],
+    "consumersReleased": true,
+    "scratchFilesCreated": []
+  },
+  "validationRetention": {
+    "receipt": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-log-release-validation-9chckk2b-retention.json",
+    "owner": "root",
+    "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-log-release-validation-9chckk2b",
+    "archive": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-log-release-validation-9chckk2b-raw.tar.gz",
+    "manifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-log-release-validation-9chckk2b-raw-manifest.json",
+    "archiveSha256": "20bfcbfa273baf88a328ef08d0067bcdd4b16c46b666d94c8c4608c766ec3134",
+    "manifestSha256": "206d0aa5467268e64006b28f063ba808b6a1f8b984fe928d38128b31e4be8b1e",
+    "archiveBytes": 40026017,
+    "verifiedMembers": 947,
+    "verifiedFiles": 930,
+    "verifiedDirectories": 17,
+    "verifiedRawBytes": 48333655,
+    "streamReadbackVerified": true,
+    "exactRawInventoryAndHashesVerified": true,
+    "consumerReferences": [],
+    "reusedOriginalArchive": false,
+    "originalInterruption": null,
+    "cleanup": {
+      "remaining": [],
+      "failures": [],
+      "rootAbsent": true
+    },
+    "wallSeconds": 3.3226787709863856,
+    "retainUntil": "earned-endgame, independent-review and full-v1 consumers released; root owns exact sidecar removal"
+  },
+  "retainerUtilityCleanup": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-retainer-utils-ieadedbv",
+    "exactFilesRemoved": [
+      "retain.py",
+      "ownership.json"
+    ],
+    "rootAbsent": true
+  }
+}

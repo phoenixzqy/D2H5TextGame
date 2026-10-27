@@ -8,9 +8,10 @@ the authored L90 four-wave dungeon. No new power or balance change is needed
 for this bounded route. Original ranks, core, equipment, Holy Freeze mercenary
 and Static→IceBlast→Blizzard priority remain unchanged.
 
-This is diagnostic qualification. Genuine endgame attemptOrdinal stays0, both
-clear counts stay0 and achievement Claim remains unconsumed. No diagnostic save
-is retained as the genuine successor.
+This is historical diagnostic qualification. At this checkpoint, genuine endgame
+attemptOrdinal was0, both clear counts were0 and Claim was unconsumed. The
+subsequent [earned endgame4 sequence](p18-earned-endgame4.md) is now the genuine
+successor; no diagnostic save is promoted.
 
 ## Native execution and artifact audit
 
@@ -54,10 +55,11 @@ min67.690/median76.184/max100.011. They do not measure30–50 active-hour pacing
 
 ## Next action and retention
 
-Follow the [frozen genuine protocol](../p18-earned-endgame.md): Ashen0, Ashen1,
-Ashen2, Glacial3; preserve the first nonwin/tooling prefix and every consumed
-action. Actual ordinary entry, repeated clears, Claim, reward utility and
-durability are not established by this qualification.
+The [frozen genuine protocol](../p18-earned-endgame.md) has now executed once;
+its [earned successor](p18-earned-endgame4.md) supplies ordinary entries, repeat
+clears, Claim, actual ruby utility and durable state. Those facts come from that
+separate public-UI evidence, rather than from this diagnostic qualification.
+Never replay consumed actions from the historical qualification input.
 
 Root retains archive/manifest/receipt at the exact paths in the summary through
 earned-endgame, independent and full-v1 consumers, then removes only those

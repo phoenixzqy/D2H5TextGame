@@ -4,9 +4,11 @@
 `4d0397d8`. Root executor and separate saved-artifact audit; independent
 acceptance remains open. [Exact summary](fixtures/earned-all-areas431/summary.json).
 
-## Current genuine resume
+## Historical all-areas checkpoint
 
-Resume only the [genuine next431 export](fixtures/earned-all-areas431/retained-final.json.gz):
+The [earned endgame4 successor](p18-earned-endgame4.md) now supersedes this
+checkpoint. Do not resume its pre-endgame state or replay consumed actions.
+The historical [genuine next431 export](fixtures/earned-all-areas431/retained-final.json.gz):
 L35, XP138311, zero unspent stat/skill points, 27590 unique equipment items,
 Normal next431/Nightmare0. Every authored area has a cleared row:29/29.
 Eve remains claimed, Slayer of Baal owned and Nightmare unlocked. Endgame
