@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d2h5://schema/assassin-charges",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "maxStacks",
+    "durationMs",
+    "damageFractionPerStack",
+    "lifeFractionPerStack",
+    "manaFractionPerStack",
+    "builders",
+    "finishers"
+  ],
+  "properties": {
+    "id": {
+      "const": "combat/assassin-charges"
+    },
+    "maxStacks": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8,
+      "description": "Independent stack cap per builder; a full pool suppresses further builders."
+    },
+    "durationMs": {
+      "type": "integer",
+      "minimum": 1000,
+      "maximum": 60000,
+      "description": "Lifetime refreshed on each successful paid charge hit."
+    },
+    "damageFractionPerStack": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1,
+      "description": "Fraction of each captured builder rank base added to its discharge attempt."
+    },
+    "lifeFractionPerStack": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1,
+      "description": "Cobra healing fraction of the triggering finisher actual HP removal per stack."
+    },
+    "manaFractionPerStack": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1,
+      "description": "Cobra transfer fraction, capped by actual victim MP and missing caster MP."
+    },
+    "builders": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "assassin.tiger_strike",
+          "assassin.fists_of_fire",
+          "assassin.cobra_strike",
+          "assassin.claws_of_thunder",
+          "assassin.blades_of_ice",
+          "assassin.phoenix_strike"
+        ]
+      },
+      "description": "Complete deterministic discharge ordering of the six charge builders."
+    },
+    "finishers": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "assassin.dragon_talon",
+          "assassin.dragon_claw",
+          "assassin.dragon_tail",
+          "assassin.dragon_flight"
+        ]
+      },
+      "description": "Configured native finishers; basic attacks also discharge."
+    }
+  }
+}

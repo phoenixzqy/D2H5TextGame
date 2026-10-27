@@ -1,0 +1,22 @@
+{
+  "id": "combat/assassin-charges",
+  "maxStacks": 3,
+  "durationMs": 15000,
+  "damageFractionPerStack": 0.5,
+  "lifeFractionPerStack": 0.1,
+  "manaFractionPerStack": 0.1,
+  "builders": [
+    "assassin.tiger_strike",
+    "assassin.fists_of_fire",
+    "assassin.cobra_strike",
+    "assassin.claws_of_thunder",
+    "assassin.blades_of_ice",
+    "assassin.phoenix_strike"
+  ],
+  "finishers": [
+    "assassin.dragon_talon",
+    "assassin.dragon_claw",
+    "assassin.dragon_tail",
+    "assassin.dragon_flight"
+  ]
+}
