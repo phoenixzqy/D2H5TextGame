@@ -199,7 +199,9 @@
       "attackSpeed": "Attack Speed",
       "physDodge": "Physical Dodge",
       "magicDodge": "Magic Dodge",
-      "magicResist": "Magic Resist"
+      "magicResist": "Magic Resist",
+      "manaMax": "Own Mana",
+      "shadowSkillRankCap": "Skill rank cap"
     },
     "summonName": {
       "spirit_of_barbs": "Spirit of Barbs",
@@ -521,11 +523,11 @@
     },
     "shadow-warrior": {
       "name": "Shadow Warrior",
-      "desc": "Summons a shadow copy that uses your skills."
+      "desc": "Captures your selected, learned Assassin attacks in priority order, capped by both their learned rank and rank {{rankCap}}. Personal buffs, passives and other summons are excluded. Own MP: {{bodyMana}}; own cooldowns; tries later affordable skills, then basic attacks. No automatic mana refill. Allocation and priority changes apply next wave."
     },
     "shadow-master": {
       "name": "Shadow Master",
-      "desc": "Summons an advanced shadow that uses skills independently."
+      "desc": "Independent priority: {{skills}}. Each skill captures rank {{rankCap}}, capped by its skill maximum. Own MP: {{bodyMana}}; own cooldowns; tries later affordable skills, then basic attacks. No automatic mana refill. Allocation changes apply next wave."
     },
     "charged-bolt-sentry": {
       "name": "Charged Bolt Sentry",

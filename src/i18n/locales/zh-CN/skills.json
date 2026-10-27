@@ -199,7 +199,9 @@
       "attackSpeed": "攻击速度",
       "physDodge": "物理闪避",
       "magicDodge": "魔法闪避",
-      "magicResist": "魔法防御"
+      "magicResist": "魔法防御",
+      "manaMax": "自身法力",
+      "shadowSkillRankCap": "技能等级上限"
     },
     "summonName": {
       "spirit_of_barbs": "棘灵",
@@ -521,11 +523,11 @@
     },
     "shadow-warrior": {
       "name": "影子战士",
-      "desc": "召唤使用你技能的影子分身。"
+      "desc": "按优先序复制已选择、已学习的刺客攻击技能，等级取该攻击已学等级与{{rankCap}}级中的较低值。不复制个人增益、被动和其他召唤。自身法力：{{bodyMana}}；独立冷却；按顺序尝试后续可支付的技能，否则普攻。不会自动补满法力。加点和优先序变化从下一波生效。"
     },
     "shadow-master": {
       "name": "影子大师",
-      "desc": "召唤独立使用技能的高级影子。"
+      "desc": "独立优先序：{{skills}}。各技能保留{{rankCap}}级，最高不超过该技能上限。自身法力：{{bodyMana}}；独立冷却；按顺序尝试后续可支付的技能，否则普攻。不会自动补满法力。加点变化从下一波生效。"
     },
     "charged-bolt-sentry": {
       "name": "雷光守卫",

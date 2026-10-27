@@ -2082,6 +2082,14 @@ function dynamicDescription(
       const preparation = t('details.descriptionSummonPreparation', {
         skill: skillName, count: stats.summonCap, mana: stats.manaCost
       });
+      if (stats.assassinShadow && skill.description) {
+        const shadow = stats.assassinShadow;
+        return `${t(skill.description.replace('skills.', ''), {
+          rankCap: shadow.rankCap, bodyMana: shadow.manaMax,
+          skills: shadow.independentSkills.map(id => t('assassin.' + id.slice('assassin.'.length)
+            .replaceAll('_', '-') + '.name')).join(' / ')
+        })} ${preparation}`;
+      }
       if (stats.summonUnit?.attackType && skill.description) {
         return `${t(skill.description.replace('skills.', ''), stats.summonUnit.effect ?? {})} ${t('details.descriptionDruidSummon')} ${preparation}`;
       }
