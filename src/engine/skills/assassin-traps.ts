@@ -8,6 +8,8 @@ import type { DamageEffect, RegisteredSkill } from '@/engine/skills/effects';
 import { createSkillValidator } from '@/engine/skills/skill-validator';
 import { canonicalSkillIdFromData, registeredSkillFromJson } from '@/engine/skills/dataCatalog';
 import { projectPlayerClassActives } from '@/engine/skills/player-class-actives';
+import { STATUS_DEFAULTS } from '@/engine/combat/status';
+import type { DamageType } from '@/engine/types/attributes';
 
 /** Exact authored fields, sentries and reactive blade identity. */
 export const ASSASSIN_TRAP_IDS = ['assassin.shock_web', 'assassin.charged_bolt_sentry',
@@ -79,6 +81,41 @@ function same(actual: unknown, expected: unknown): boolean {
 export function matchesAssassinTrap(skill: RegisteredSkill): boolean {
   const id = assassinTrapId(skill.id);
   return id !== undefined && same(skill, assassinTrapDefinition(id).skill);
+}
+
+interface TrapDamageDisplay { readonly type: DamageType; readonly min: number; readonly max: number }
+interface TrapDisplayClock {
+  readonly durationSeconds: number;
+  readonly intervalSeconds: number;
+  readonly damage: TrapDamageDisplay;
+}
+/** Base damage per scheduled pulse or eligible counter; never a cast total or paid authority. */
+export type AssassinTrapDisplay = TrapDisplayClock & (
+  | { readonly mode: 'pulse'; readonly pulses: number }
+  | { readonly mode: 'reactive' }
+  | { readonly mode: 'corpse'; readonly pulses: number; readonly corpseDamage: TrapDamageDisplay;
+      readonly corpseBurnPercent: number; readonly corpseBurnSeconds: number }
+);
+
+/** Resolve complete authored templates against the same immutable payload and timing as combat. */
+export function resolveAssassinTrapDisplay(input: unknown, rank: number): AssassinTrapDisplay | undefined {
+  if (!validateSource(input) || input.trigger !== 'active' || input.target !== 'all-enemies') return undefined;
+  const id = assassinTrapId(input.id);
+  if (!id) return undefined;
+  const definition = assassinTrapDefinition(id);
+  if (input.maxLevel !== definition.maxRank || !Number.isInteger(rank) || rank < 1 || rank > definition.maxRank ||
+    !matchesAssassinTrap(registeredSkillFromJson({ ...input, trigger: 'active', target: 'all-enemies' }))) return undefined;
+  const damageAtRank = (type: DamageType, base: readonly [number, number], growth?: readonly [number, number]): TrapDamageDisplay => ({
+    type, min: base[0] + (growth?.[0] ?? 0) * (rank - 1), max: base[1] + (growth?.[1] ?? 0) * (rank - 1)
+  });
+  const damage = damageAtRank(definition.pulse.damageType, definition.pulse.base, definition.pulse.perRank);
+  const clock = { durationSeconds: definition.durationMs / 1000, intervalSeconds: definition.intervalMs / 1000 };
+  if (definition.mode === 'reactive') return freeze({ ...clock, mode: 'reactive', damage });
+  const pulses = Math.ceil(definition.durationMs / definition.intervalMs);
+  return definition.mode === 'corpse' ? freeze({ ...clock, mode: 'corpse', pulses,
+    damage: damageAtRank('lightning', definition.lightning.base, definition.lightning.perRank), corpseDamage: damage,
+    corpseBurnPercent: definition.corpseBurnFraction * 100, corpseBurnSeconds: STATUS_DEFAULTS.ignite.duration
+  }) : freeze({ ...clock, mode: 'pulse', pulses, damage });
 }
 export type AssassinTrapRanks = Readonly<Partial<Record<AssassinTrapId, number>>>;
 /** Native selected learned authority uses actual class, unlock and transitive prerequisites. */

@@ -42,6 +42,7 @@ import { decoyBodyStats, decoyDuration, resolveDecoyDefinition } from './decoy';
 import { getAssassinSummonStats } from './assassin-summon-definition';
 import { ASSASSIN_SHADOW_POLICY, type AssassinShadowTemplate } from './assassin-shadow-skills';
 import { resolveAssassinMartialDisplay, type AssassinMartialDisplay } from './assassin-charges';
+import { resolveAssassinTrapDisplay, type AssassinTrapDisplay } from './assassin-traps';
 
 export interface DisplaySkillSource {
   readonly decoy?: import('../types/skills').SkillDef['decoy'];
@@ -193,6 +194,8 @@ export interface SkillUtilityDisplayRow {
 }
 
 export interface SkillRankDisplayStats {
+  /** Finite paid trap timing and separate Lightning/corpse or reactive damage branches. */
+  readonly assassinTrap?: AssassinTrapDisplay;
   /** Paid charge rules and base release examples, independent of live private pools. */
   readonly assassinMartial?: AssassinMartialDisplay;
   /** Body-owned resources and captured attack policy; preview alone grants no native authority. */
@@ -639,6 +642,7 @@ export function computeSkillRankDisplayStats(
 ): SkillRankDisplayStats {
   const safeRank = clampRank(rank, skill.maxLevel);
   const assassinMartial = resolveAssassinMartialDisplay(skill, safeRank);
+  const assassinTrap = resolveAssassinTrapDisplay(skill, safeRank);
   const shadow = shadowTemplate(skill), shadowBody = shadow ? getAssassinSummonStats(shadow) : undefined;
   const decoy = decoyDisplayDefinition(skill);
   const decrepify = skill.id === 'skills-necromancer-decrepify' && isDecrepifyDefinition(skill)
@@ -660,7 +664,7 @@ export function computeSkillRankDisplayStats(
   const damageCurse = resolveDamageCurseDefinition(skill);
   const targeting = targetCurseId(skill);
   const targetCurse = targeting === undefined ? undefined : resolveTargetCurseDefinition([skill], targeting);
-  const damage = damageRows(skill, safeRank);
+  const damage = assassinTrap ? [assassinTrap.damage] : damageRows(skill, safeRank);
   const totalDamage = skill.damage
     ? {
         min: scaleValue(skill.damage.min, skill.scaling?.damagePerLevel ?? 0, safeRank),
@@ -782,6 +786,7 @@ export function computeSkillRankDisplayStats(
   return {
     rank: safeRank,
     ...(assassinMartial ? { assassinMartial } : {}),
+    ...(assassinTrap ? { assassinTrap } : {}),
     ...(skill.id === 'skills-barbarian-battle-command' && skill.trigger === 'active' &&
       skill.target === 'all-allies' && skill.skillRankBuff ? { skillRankBuff: {
         bonusRanks: skill.skillRankBuff.bonusRanks,
