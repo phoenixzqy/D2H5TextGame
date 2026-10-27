@@ -228,7 +228,8 @@
       "teleport": "Teleport",
       "enchant": "Enchant"
     },
-    "martialCharge": "{{skill}} charges {{stacks}}/{{maxStacks}} · {{seconds}}s"
+    "martialCharge": "{{skill}} charges {{stacks}}/{{maxStacks}} · {{seconds}}s",
+    "assassinTrap": "{{skill}} · {{seconds}}s"
   },
   "log_lines": {
     "hit": "{{attacker}} hits {{target}} for {{amount}} {{type}} damage.",

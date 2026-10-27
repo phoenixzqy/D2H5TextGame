@@ -34,6 +34,7 @@ import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit, GridPosition } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
 import { ASSASSIN_CHARGE_DEFINITION } from '@/engine/skills/assassin-charges';
+import { ASSASSIN_TRAP_IDS } from '@/engine/skills/assassin-traps';
 import { endgameDefinition } from '@/data/loaders/endgame';
 import { readEndgameRequest } from '@/features/endgame/navigation';
 import { checkEndgameEntry } from '@/stores/endgameActions';
@@ -41,6 +42,10 @@ import { checkEndgameEntry } from '@/stores/endgameActions';
 const MARTIAL_CHARGE_LABELS = new Map(ASSASSIN_CHARGE_DEFINITION.builders.map(id => {
   const slug = id.slice('assassin.'.length).replaceAll('_', '-');
   return ['charge-' + slug, 'skills:assassin.' + slug + '.name'] as const;
+}));
+const ASSASSIN_TRAP_LABELS = new Map(ASSASSIN_TRAP_IDS.map(id => {
+  const slug = id.slice('assassin.'.length).replaceAll('_', '-');
+  return ['trap-' + slug, 'skills:assassin.' + slug + '.name'] as const;
 }));
 
 const MAX_LOG = 200;
@@ -748,17 +753,20 @@ function UnitCard({
     ...unit.activeBuffIds.map((id) => ({ id, label: t(`effect.buff.${id}`, { defaultValue: humanizeEffectId(id) }), kind: 'buff' as const })),
     ...unit.statuses.map((status) => {
       const chargeName = MARTIAL_CHARGE_LABELS.get(status.id);
+      const trapName = ASSASSIN_TRAP_LABELS.get(status.id);
       return {
         id: status.id,
         label: chargeName !== undefined ? t('effect.martialCharge', {
           skill: t(chargeName), stacks: status.stacks, maxStacks: ASSASSIN_CHARGE_DEFINITION.maxStacks,
           seconds: Math.max(0, Math.ceil(status.remaining))
+        }) : trapName !== undefined ? t('effect.assassinTrap', {
+          skill: t(trapName), seconds: Math.max(0, Math.ceil(status.remaining))
         }) : status.id === 'bone-wall' && status.boneWall
           ? t('effect.boneWallCapacity', { amount: status.boneWall.remaining })
           : t(`effect.status.${status.id}`, { defaultValue: humanizeEffectId(status.id),
             amount: status.boneArmor?.remaining ?? 0 }),
-        stacks: chargeName !== undefined ? 1 : status.stacks,
-        kind: chargeName !== undefined || status.id === 'battle-command' || status.id === 'grim-ward' || status.id === 'oak-sage' || status.id === 'heart-of-wolverine' || status.id === 'spirit-of-barbs' ||
+        stacks: chargeName !== undefined || trapName !== undefined ? 1 : status.stacks,
+        kind: chargeName !== undefined || trapName !== undefined || status.id === 'battle-command' || status.id === 'grim-ward' || status.id === 'oak-sage' || status.id === 'heart-of-wolverine' || status.id === 'spirit-of-barbs' ||
           ((status.id === 'werewolf' || status.id === 'werebear') && unit.druidForm?.form === status.id) ||
           (status.id === 'burst-of-speed' && status.statBuff !== undefined) ||
           (status.id === 'feral-rage' && status.feralRage === true) ||

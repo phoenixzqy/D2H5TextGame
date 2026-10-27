@@ -46,7 +46,7 @@
     "available": "敌人倒下，留下一具尸体。可用尸体：{{count}}。",
     "consumed": "尸体爆炸消耗一具尸体。剩余尸体：{{count}}。",
     "consumedPoison": "尸体剧毒爆破消耗一具尸体。剩余尸体：{{count}}。",
-    "consumedDeathSentry": "亡者守卫消耗一具尸体，引发火焰爆炸。剩余尸体：{{count}}。",
+    "consumedDeathSentry": "死亡守卫消耗一具尸体，引发火焰爆炸。剩余尸体：{{count}}。",
     "consumedRedemption": "救赎消耗一具尸体。剩余尸体：{{count}}。",
     "consumedCarrion": "食尸藤消耗一具尸体恢复主人生命。剩余尸体：{{count}}。",
     "consumedSolar": "太阳藤消耗一具尸体恢复主人法力。剩余尸体：{{count}}。"
@@ -228,7 +228,8 @@
       "teleport": "传送",
       "enchant": "附魔"
     },
-    "martialCharge": "{{skill}} 蓄气 {{stacks}}/{{maxStacks}} · {{seconds}}秒"
+    "martialCharge": "{{skill}} 蓄气 {{stacks}}/{{maxStacks}} · {{seconds}}秒",
+    "assassinTrap": "{{skill}} · {{seconds}}秒"
   },
   "log_lines": {
     "hit": "{{attacker}} 对 {{target}} 造成 {{amount}} 点{{type}}伤害。",
