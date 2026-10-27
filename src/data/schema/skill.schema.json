@@ -7,6 +7,8 @@
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
   "allOf": [
+    {"if": {"required": ["decoy"], "properties": {"decoy": {}}}, "then": {"properties": {"id": {"const": "skills-amazon-decoy"}}}},
+    {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-decoy"}}}, "then": {"required": ["decoy", "requiredLevel", "prerequisites", "cost", "scaling"], "properties": {"damage": false, "damageType": false, "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false, "hydra": false, "hitSequence": false, "onHitBolts": false, "requires": false, "aoeShape": false, "maxTargets": false, "timedBuff": false, "heal": false, "summonId": false, "trigger": {"const": "active"}, "target": {"const": "self"}, "requiredLevel": {"const": 24}, "prerequisites": {"const": ["skills-amazon-slow-missiles"]}, "maxLevel": {"const": 20}, "cooldown": {"const": 4}, "cost": {"const": {"mana": 15}}, "scaling": {"const": {"cooldownPerLevel": -0.05, "costPerLevel": -0.1}}, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}}}},
     {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-fend"}}}, "then": {"required": ["id", "requiredLevel", "prerequisites", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "scaling", "aoeShape", "maxTargets"], "properties": {"id": {"const": "skills-amazon-fend"}, "requiredLevel": {"const": 24}, "prerequisites": {"const": ["skills-amazon-impale"]}, "trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "cooldown": {"const": 2}, "minLevel": {"const": 1}, "maxLevel": {"const": 20}, "cost": {"const": {"mana": 25}}, "damage": {"const": {"min": 70, "max": 95, "breakdown": {"physical": 95}}}, "damageType": {"const": "physical"}, "scaling": {"const": {"damagePerLevel": 6}}, "aoeShape": {"const": "cross"}, "maxTargets": {"const": 5}, "onHitBolts": false, "hitSequence": false, "alwaysHits": false, "damageComposition": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "timedBuff": false, "heal": false, "onHitRecovery": false, "onHitSelfDamage": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}, "appliesStatus": false, "statusEffect": false}}},
     {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-exploding-arrow"}}}, "then": {"required": ["id", "requiredLevel", "prerequisites", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesStatus", "statusEffect", "scaling", "aoeShape", "maxTargets"], "properties": {"id": {"const": "skills-amazon-exploding-arrow"}, "requiredLevel": {"const": 12}, "prerequisites": {"const": ["skills-amazon-fire-arrow"]}, "trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "cooldown": {"const": 2}, "minLevel": {"const": 1}, "maxLevel": {"const": 20}, "cost": {"const": {"mana": 15}}, "damage": {"const": {"min": 55, "max": 80, "breakdown": {"fire": 80}}}, "damageType": {"const": "fire"}, "appliesStatus": {"const": ["burn"]}, "statusEffect": {"const": {"dotPctOfDamage": 0.1}}, "scaling": {"const": {"damagePerLevel": 5}}, "aoeShape": {"const": "box-3x3"}, "maxTargets": {"const": 9}, "onHitBolts": false, "hitSequence": false, "alwaysHits": false, "damageComposition": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "timedBuff": false, "heal": false, "onHitRecovery": false, "onHitSelfDamage": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}}}},
     {"if": {"required": ["id"], "properties": {"id": {"const": "skills-amazon-immolation-arrow"}}}, "then": {"required": ["id", "requiredLevel", "prerequisites", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesStatus", "statusEffect", "scaling", "aoeShape", "maxTargets"], "properties": {"id": {"const": "skills-amazon-immolation-arrow"}, "requiredLevel": {"const": 24}, "prerequisites": {"const": ["skills-amazon-exploding-arrow"]}, "trigger": {"const": "active"}, "target": {"const": "area-enemies"}, "cooldown": {"const": 3}, "minLevel": {"const": 1}, "maxLevel": {"const": 20}, "cost": {"const": {"mana": 30}}, "damage": {"const": {"min": 90, "max": 130, "breakdown": {"fire": 130}}}, "damageType": {"const": "fire"}, "appliesStatus": {"const": ["burn"]}, "statusEffect": {"const": {"dotPctOfDamage": 0.1}}, "scaling": {"const": {"damagePerLevel": 8}}, "aoeShape": {"const": "box-3x3"}, "maxTargets": {"const": 9}, "onHitBolts": false, "hitSequence": false, "alwaysHits": false, "damageComposition": false, "ignoresDefense": false, "ignoresMagicResist": false, "critChanceBonus": false, "timedBuff": false, "heal": false, "onHitRecovery": false, "onHitSelfDamage": false, "requires": false, "additionalStatusEffects": false, "passive": {"const": false}, "aura": {"const": false}, "summon": {"const": false}}}},
@@ -5939,6 +5941,59 @@
         "manaPctPerRank": { "type": "number", "minimum": 0, "maximum": 0.01 }
       }
     },
+    "decoy": {
+      "description": "Paid wave-start Decoy only: complete nonattacking body, rank Life growth and half-open finite lifetime.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "durationMs",
+        "durationPerRankMs",
+        "lifePerRank",
+        "maxCount",
+        "bodyStats"
+      ],
+      "properties": {
+        "durationMs": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 60000
+        },
+        "durationPerRankMs": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5000
+        },
+        "lifePerRank": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000
+        },
+        "maxCount": {
+          "const": 1
+        },
+        "bodyStats": {
+          "allOf": [
+            {
+              "$ref": "#/properties/hydra/properties/bodyStats"
+            },
+            {
+              "properties": {
+                "lifeMax": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000000
+                },
+                "attackSpeed": {
+                  "const": 0
+                }
+              }
+            }
+          ],
+          "type": "object"
+        }
+      }
+    },
+
     "hydra": {
       "description": "Paid battle-start Hydra only: body stats, independently rolled heads and finite half-open lifetime.",
       "type": "object", "additionalProperties": false,

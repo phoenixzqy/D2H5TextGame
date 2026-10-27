@@ -733,14 +733,35 @@
     "cost": {
       "mana": 15
     },
-    "appliesStatus": [
-      "decoy"
-    ],
     "scaling": {
       "cooldownPerLevel": -0.05,
-      "costPerLevel": -0.1,
-      "passiveStatsPerLevel": {
-        "physDodgePct": 0.005
+      "costPerLevel": -0.1
+    },
+    "decoy": {
+      "durationMs": 8000,
+      "durationPerRankMs": 500,
+      "lifePerRank": 20,
+      "maxCount": 1,
+      "bodyStats": {
+        "lifeMax": 200,
+        "manaMax": 0,
+        "attack": 0,
+        "defense": 20,
+        "attackSpeed": 0,
+        "critChance": 0,
+        "critDamage": 1,
+        "physDodge": 0,
+        "magicDodge": 0,
+        "magicFind": 0,
+        "goldFind": 0,
+        "resistances": {
+          "physical": 0,
+          "fire": 0,
+          "cold": 0,
+          "lightning": 0,
+          "poison": 0,
+          "arcane": 0
+        }
       }
     }
   },

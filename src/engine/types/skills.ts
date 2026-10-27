@@ -268,6 +268,10 @@ export interface ConversionTuning {
 
 /** Immutable template for a skill. */
 export interface SkillDef {
+  /** Paid start-only nonattacking duplicate; rank growth and lifetime are JSON-owned. */
+  readonly decoy?: { readonly durationMs: number; readonly durationPerRankMs: number;
+    readonly lifePerRank: number; readonly maxCount: 1;
+    readonly bodyStats: Omit<import('./attributes').DerivedStats, 'life' | 'mana' | 'magicResist'>; };
   /** JSON-owned paid personal Bone Wall duration and finite absorption capacity. */
   readonly boneWall?: { readonly durationMs: number; readonly baseCapacity: number; readonly capacityPerRank: number };
   /** Exact paid finite Battle Command party rank bonus, separate from allocation. */
