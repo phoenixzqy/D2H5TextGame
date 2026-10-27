@@ -24,6 +24,7 @@ import { fireGolemBodyStats } from './fire-golem';
 import { bloodGolemBodyStats } from './blood-golem';
 import { getNecromancerSummonStats } from './necromancer-summon-definition';
 import { getAmazonSummonStats } from './amazon-summon-definition';
+import { getAssassinSummonStats } from './assassin-summon-definition';
 
 /** @deprecated Templates are pure; battles now own their summon identity. */
 export function resetSummonCounters(): void {
@@ -128,6 +129,8 @@ function baseSummonStats(): DerivedStats {
 function baseStatsForSummon(summonId: string): DerivedStats | undefined {
   const amazon = getAmazonSummonStats(summonId);
   if (amazon) return amazon;
+  const assassin = getAssassinSummonStats(summonId);
+  if (assassin) return assassin;
   const druid = getDruidSummonStats(summonId);
   if (druid) return druid;
   const necromancer = getNecromancerSummonStats(summonId);
@@ -141,10 +144,6 @@ function baseStatsForSummon(summonId: string): DerivedStats | undefined {
       const { life, attack, defense } = SPIRIT_OF_BARBS_DEFINITION.stats;
       return { ...baseSummonStats(), life, lifeMax: life, attack, defense };
     }
-    case 'shadow_warrior':
-      return { ...baseSummonStats(), life: 150, lifeMax: 150, attack: 32, defense: 24, attackSpeed: 80, physDodge: 0.1, magicDodge: 0.1 };
-    case 'shadow_master':
-      return { ...baseSummonStats(), life: 210, lifeMax: 210, attack: 40, defense: 32, attackSpeed: 85, physDodge: 0.12, magicDodge: 0.12, resistances: { ...ZERO_RES, fire: 10, cold: 10, lightning: 10, poison: 10, arcane: 10 } };
     case 'minion':
       return { ...baseSummonStats(), life: 40, lifeMax: 40, attack: 10 };
     default:

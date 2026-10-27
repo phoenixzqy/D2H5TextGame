@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d2h5://schema/assassin-summons",
+  "description": "Complete unchanged Assassin shadow base stats. Rank growth and magical mitigation retain their existing owners; skill use is configured separately.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "templates"
+  ],
+  "properties": {
+    "id": {
+      "const": "summons/assassin"
+    },
+    "templates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "shadow_warrior",
+        "shadow_master"
+      ],
+      "properties": {
+        "shadow_warrior": {
+          "$ref": "#/$defs/bodyStats"
+        },
+        "shadow_master": {
+          "$ref": "#/$defs/bodyStats"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "bodyStats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lifeMax",
+        "manaMax",
+        "attack",
+        "defense",
+        "attackSpeed",
+        "critChance",
+        "critDamage",
+        "physDodge",
+        "magicDodge",
+        "magicFind",
+        "goldFind",
+        "resistances"
+      ],
+      "properties": {
+        "lifeMax": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "manaMax": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "attack": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "defense": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "attackSpeed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "critChance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "critDamage": {
+          "type": "number",
+          "minimum": 1
+        },
+        "physDodge": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "magicDodge": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "magicFind": {
+          "type": "number",
+          "minimum": 0
+        },
+        "goldFind": {
+          "type": "number",
+          "minimum": 0
+        },
+        "resistances": {
+          "$ref": "#/$defs/resistances"
+        }
+      }
+    },
+    "resistances": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "physical",
+        "fire",
+        "cold",
+        "lightning",
+        "poison",
+        "arcane"
+      ],
+      "properties": {
+        "physical": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "fire": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "cold": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "lightning": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "poison": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "arcane": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        }
+      }
+    }
+  }
+}

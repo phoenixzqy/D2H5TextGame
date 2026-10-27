@@ -1,0 +1,47 @@
+{
+  "id": "summons/assassin",
+  "templates": {
+    "shadow_warrior": {
+      "lifeMax": 150,
+      "manaMax": 0,
+      "attack": 32,
+      "defense": 24,
+      "attackSpeed": 80,
+      "critChance": 0.05,
+      "critDamage": 1.5,
+      "physDodge": 0.1,
+      "magicDodge": 0.1,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "physical": 0,
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 0,
+        "arcane": 0
+      }
+    },
+    "shadow_master": {
+      "lifeMax": 210,
+      "manaMax": 0,
+      "attack": 40,
+      "defense": 32,
+      "attackSpeed": 85,
+      "critChance": 0.05,
+      "critDamage": 1.5,
+      "physDodge": 0.12,
+      "magicDodge": 0.12,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "physical": 0,
+        "fire": 10,
+        "cold": 10,
+        "lightning": 10,
+        "poison": 10,
+        "arcane": 10
+      }
+    }
+  }
+}
