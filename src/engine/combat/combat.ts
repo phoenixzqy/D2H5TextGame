@@ -61,6 +61,7 @@ import { PlagueTracker } from './plague';
 import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
 import { isMercHolyFreezeSource, MERC_HOLY_FREEZE_DEFINITION } from '../skills/merc-holy-freeze';
 import { isMercMightSource, MERC_MIGHT_DEFINITION } from '../skills/merc-might';
+import { isMercFireMasterySource, MERC_FIRE_MASTERY_DEFINITION } from '../skills/merc-fire-mastery';
 import { isMercThornsSource, MERC_THORNS_DEFINITION } from '../skills/merc-thorns';
 import { isMercDefianceSource, MERC_DEFIANCE_DEFINITION } from '../skills/merc-defiance';
 import { isMercPrayerSource, MERC_PRAYER_DEFINITION } from '../skills/merc-prayer';
@@ -336,6 +337,7 @@ interface State {
   /** Factory-marked source IDs captured at registration; live eligibility is checked at use. */
   readonly holyFreezeSources: string[];
   readonly mercMightSources: string[];
+  readonly mercFireMasterySources: string[];
   readonly mercThornsSources: string[];
   readonly mercDefianceSources: string[];
   readonly mercPrayerSources: string[];
@@ -458,6 +460,13 @@ function mercThornsSourceId(state: State): string | undefined {
   return state.mercThornsSources.find(id => {
     const source = state.units.get(id);
     return source !== undefined && isMercThornsSource(source);
+  });
+}
+
+function mercFireMasterySourceId(state: State): string | undefined {
+  return state.mercFireMasterySources.find(id => {
+    const source = state.units.get(id);
+    return source !== undefined && isMercFireMasterySource(source);
   });
 }
 
@@ -732,6 +741,7 @@ function registerUnit(state: State, u: CombatUnit): void {
   state.units.set(u.id, shaped);
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
   if (u.mercMightAura === true && !state.mercMightSources.includes(u.id)) state.mercMightSources.push(u.id);
+  if (u.mercFireMastery === true && !state.mercFireMasterySources.includes(u.id)) state.mercFireMasterySources.push(u.id);
   if (u.mercThornsAura === true && !state.mercThornsSources.includes(u.id)) state.mercThornsSources.push(u.id);
   if (u.mercDefianceAura === true && !state.mercDefianceSources.includes(u.id)) state.mercDefianceSources.push(u.id);
   if (u.mercPrayerAura === true && !state.mercPrayerSources.includes(u.id)) state.mercPrayerSources.push(u.id);
@@ -834,6 +844,8 @@ function buildDamageInput(
       (effect.damageType === 'physical' ? activeMightAura(state.mightAura, attacker.id, state.units)?.physicalDamagePct ?? 0 : 0) +
       (effect.damageType === 'physical' && attacker.side === 'player' && alive(attacker) && mercMightSourceId(state) !== undefined
         ? MERC_MIGHT_DEFINITION.physicalDamagePct : 0) +
+      (effect.damageType === 'fire' && attacker.side === 'player' && alive(attacker) && mercFireMasterySourceId(state) !== undefined
+        ? MERC_FIRE_MASTERY_DEFINITION.fireDamagePct : 0) +
       (effect.damageType === 'cold' && attacker.side === 'player' && alive(attacker) && holyFreezeSourceId(state) !== undefined
         ? MERC_HOLY_FREEZE_DEFINITION.coldDamagePct : 0),
     comboMult: combo,
@@ -3351,6 +3363,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     ...(druidAllyAuras ? { druidAllyAuras } : {}),
     holyFreezeSources: [],
     mercMightSources: [],
+    mercFireMasterySources: [],
     mercThornsSources: [],
     mercDefianceSources: [],
     mercPrayerSources: [],

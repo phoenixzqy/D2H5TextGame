@@ -341,6 +341,8 @@ export interface SkillDef {
   readonly holyFreeze?: { readonly coldDamagePct: number };
   /** Native Might mercenary's party physical increase, in percentage points. */
   readonly mercMight?: { readonly physicalDamagePct: number };
+  /** Native Iron Wolf Fire Mastery party Fire increase, in percentage points. */
+  readonly mercFireMastery?: { readonly fireDamagePct: number };
   /** Native Thorns mercenary’s party physical reflection, in percentage points. */
   readonly mercThorns?: { readonly physicalReflectionPct: number };
   /** Native Defiance mercenary’s additive party Defense, in percentage points. */

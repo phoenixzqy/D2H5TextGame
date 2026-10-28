@@ -449,7 +449,8 @@
     "description": "skills.mercenary.fire-mastery.desc",
     "icon": "skills/merc/passive-fire-mastery.png",
     "trigger": "passive",
-    "target": "self",
+    "target": "all-allies",
+    "mercFireMastery": { "fireDamagePct": 25 },
     "cooldown": 0,
     "minLevel": 1,
     "maxLevel": 20

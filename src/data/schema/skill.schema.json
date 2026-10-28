@@ -3839,6 +3839,23 @@
       },
       "else": { "properties": { "holyFreeze": false } }
     }, {
+      "if": { "properties": { "id": { "const": "passive-fire-mastery" } }, "required": ["id"] },
+      "then": {
+        "required": ["mercFireMastery"],
+        "properties": {
+          "mercFireMastery": { "$ref": "#/properties/mercFireMastery" },
+          "trigger": { "const": "passive" }, "target": { "const": "all-allies" },
+          "cooldown": { "const": 0 },
+          "cost": false, "damage": false, "damageType": false, "attackDamagePct": false,
+          "statusEffect": false, "additionalStatusEffects": false, "scaling": false,
+          "heal": false, "summonId": false, "monsterSummon": false, "summonBasicAttackElements": false,
+          "aoeShape": false, "requires": false, "passive": false, "aura": false,
+          "summon": false, "synergies": false, "prerequisites": false,
+          "appliesStatus": false, "appliesTags": false
+        }
+      },
+      "else": { "properties": { "mercFireMastery": false } }
+    }, {
       "if": { "properties": { "id": { "const": "aura-might" } }, "required": ["id"] },
       "then": {
         "required": ["mercMight"],
@@ -6491,6 +6508,15 @@
           "minimum": 0,
           "exclusiveMaximum": 1
         }
+      }
+    },
+    "mercFireMastery": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Native Fire Mastery mercenary's additive increased party Fire damage in percentage points.",
+      "required": ["fireDamagePct"],
+      "properties": {
+        "fireDamagePct": { "type": "number", "minimum": 0, "description": "Increased Fire damage in percentage points while the native mercenary lives." }
       }
     },
     "mercMight": {

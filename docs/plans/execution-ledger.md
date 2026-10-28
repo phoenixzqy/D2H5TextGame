@@ -14942,3 +14942,56 @@ remain unresolved;212bounded/oneunverified player-skill inventory is unchanged.
 H3 stays terminal failed-no-app; no app/browser, new acquisition/lineage or
 replacement experiment, protected fixture/closed-policy read/replay, push/merge/
 deployment occurs. Full objective and claimed worktree stay active.
+
+
+## 2026-10-28 — Native Iron Wolf Fire Mastery / BUG-367
+
+Implement the existing gacha-spec party +25% Fire promise through closed JSON
+metadata, immutable resolution, a true passive, canonical fresh qualification
+and one additive shared Fire contribution. Living original player-party hero,
+source, other mercenaries and late summons qualify; duplicates do not stack,
+stun/freeze preserves presence and source death/removal withdraws it. Existing
+player/selected-aura increases, weighted/Enchant shares, mitigation, criticals,
+impact-time life and Burn snapshots/refreshes retain their contracts. Both locale
+skill/recruitment surfaces now state the living-party 25% bonus. No save/base-stat,
+RNG, timer, action, resource, acquisition or Fire Ball change.
+
+Real-loader/factory/projection/default-registry seed7 primary RED fails3 with
+actual100instead of125 and unchanged GREEN passes3. Original focused fixture
+failures/corrections remain retained. Frozen engine native0:11,019passes/411files;
+full native0:21,591passes/1,010files plus2unchanged skips, exactly3new files and
+63new cases. Both retain original2,049-input digest
+`d544a998614883c6057efff486e4ded6bb21da92398f940c7e8f03d0361cde63`.
+The original queue stops at typecheck2 on two new-test dot-filter TS2339 errors.
+
+Only two explicit type-predicate annotations correct that narrowing. Production,
+primary, assertions and the other2,048inputs remain exact; installed esbuild
+produces identical JavaScript. Independent review accepts retaining original
+engine/full execution evidence without claiming a rerun on corrected source.
+Intermediate focused252/12 and typecheck native0 remain tied to fa1dcf4e inputs.
+Full lint then stops native1 on array syntax/unsafe opaque spy-result return in
+that same new test only. T[] and an explicit unknown return annotation correct
+those types without casts/suppressions/assertion/runtime changes. All3versions
+produce identical esbuild JavaScript; independent correction/scope review passes.
+Final frozen digest is
+`30a6d65dd4f6f60d87c997b3e5519e93585f14301ce1147d2399a76152b8dbd7`.
+Final focused252/12, project typecheck, zero-warning full lint/engine purity and
+external production build all exit0 on that same final2,049-input map. Original
+engine/full executions remain explicitly tied to d544a998; they are not relabeled
+as final-source runs. The separate final-review/source-blob/checkpoint-binding
+receipts govern the native local checkpoint only. Disposable build762files/
+42,270,096bytes/10directories removed, absence verified; all34recordedPIDs and
+remaining task-CWD processes absent, no interventions or cleanup failures.
+Evidence/ledger drafts removed after identical repository application; native
+receipts, failed-source copies, correction reviews and cleanup manifests retained.
+
+[Fire evidence](evidence/merc-fire-mastery.md) records the exact native/review
+chain and limits. BUG367 remains Open for browser/earned/feature acceptance;
+BUG180/366 timeout causes and BUG365 acceptance remain Open. No skill-inventory
+credit or campaign/economy/build/pacing/defeat-retry/device/locale/a11y/PWA/CI/
+human/soak/full-v1 acceptance follows. H3 remains terminal failed-no-app; no app/
+browser, protected fixture/closed-policy read/replay, acquisition/lineage or
+replacement experiment, push/merge/deployment occurs. Root retains the exact
+Fire packet through unfinished consumers and owns eventual cleanup. The full
+goal and claimed worktree stay active; future critical-support execution still
+requires refreshed checkpoint readiness.

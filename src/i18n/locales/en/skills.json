@@ -1511,7 +1511,7 @@
     },
     "fire-mastery": {
       "name": "Fire Mastery",
-      "desc": "Passive: increases fire damage dealt by the caster."
+      "desc": "Passive: while this mercenary lives, living party members, including summons, gain +25% increased Fire damage."
     },
     "critical": {
       "name": "Critical Strike",
