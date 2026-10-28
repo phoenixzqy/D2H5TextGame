@@ -2,6 +2,11 @@
 
 Source checkpoint: `af71980f69561a472fdf033088ceb7f0209bb465`. **Unaccepted; BUG-365 stays Open.**
 
+Current update, 2026-10-28: the separately reviewed unchanged full-workload run
+passes the native full-unit prerequisite. Browser/earned/feature acceptance
+remains pending. Earlier failures below are preserved history; see
+[the terminal follow-up](full-workload-timeouts.md) and the update at the end.
+
 Scope: bounded F04/F07/P13 repair of recruitable `mercs/act2-prayer`.
 Base `79d58fae1e876b271c18e580449a8e62d40d6403`; root uses the existing claimed
 human-worktree-2. This evidence does not close browser or earned gates.
@@ -87,7 +92,7 @@ substitute for the failing native test or establish regression causality.
 Raw profiles and unchanged input receipts remain retained; no gameplay/app/
 browser or acquisition/lineage experiment is involved.
 
-## Validation and review
+## Validation and review at the original checkpoint
 
 Completed final-byte checks preserve all 2,045 executable inputs at
 `680a938e050fcbec4617ee865e0083ea17d0bf3a6a8dd1a7998953bc5baeacf3`.
@@ -194,7 +199,7 @@ is read/replayed. H3 remains terminal H3_PREREQUISITE_FAILED_NO_APP; no app or
 browser is launched. No publication/push/merge/deployment occurs. Goal/worktree
 stay active for the remaining plan.
 
-## Finite follow-up
+## Finite follow-up planned at the original checkpoint
 
 BUG-180 needs a separately scoped full-workload attribution plan that captures
 where the unchanged entry deadline expires, with a specific runtime budget and
@@ -203,3 +208,33 @@ only. BUG-366 needs its own phase-localization plan; no standalone material,
 gameplay, acquisition or lineage replay is authorized by this checkpoint.
 Do not repeat full runs to seek a green outcome or change limits/assertions.
 No code optimization is selected without evidence supporting the specific change.
+
+## Terminal full-workload follow-up — 2026-10-28
+
+The sole pre-reviewed unfiltered default full-workspace capture completes
+native0: **21,528 passed, zero failed, the same two skips / 1,007 files** in
+1,619.476379s. All 2,045 executable inputs remain identical to this source
+checkpoint, digest680a938e050fcbec4617ee865e0083ea17d0bf3a6a8dd1a7998953bc5baeacf3.
+Player-first/inventory-first/material/save targets pass at reported durations
+2,713/2,024/4,866/3,405ms; these are not exact timed import phases. Two raw Date
+fixture label differences are independently reconciled against their unchanged
+sources, one case each; all remaining identities/files/skips match.
+
+Producer's terminal-review.json approves the **narrow current-byte native
+full-unit prerequisite**, security-pass/findings[]/readers released, SHA256
+`aef63973046e2eced4252aad34a988a20f1b1707b98385d7b9e3da3977b0854d`.
+No extra unprofiled full invocation is required. Earlier native1 results remain
+unchanged; BUG180/366 causes remain Open. The frozen profile analyzer is
+inadequate (59 profiles, 62 negative deltas, minimum -168 microseconds); all
+1,009 profiles / 1,317,319,852 bytes remain retained. No cause, optimization or
+performance-fix claim follows. [Full evidence](full-workload-timeouts.md) records
+the invocation, reviews, reconciliation, hashes and exact retained paths.
+
+This resolves the prior failed full-unit prerequisite for assessing the next
+bounded source card. BUG365 remains Open for browser/earned/feature acceptance.
+The next Fire card needs its own refreshed readiness review before reproduction
+or implementation; this receipt does not authorize that card automatically.
+Both raw packets remain root-owned through unfinished consumers; no deletion
+is approved. Exact run/driver PIDs are absent and no worktree process remains.
+No app/browser, protected fixture, closed policy, new acquisition/lineage
+experiment, push/merge/deployment or full-v1 acceptance occurs.

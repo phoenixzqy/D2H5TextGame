@@ -14887,3 +14887,58 @@ player skills are unchanged. H3 remains terminal failed-no-app; no app/browser,
 spent/replacement experiment, closed-policy/protected-fixture read or replay,
 push/merge/deployment occurs. Goal/worktree stay active; no acceptance is inferred
 from this checkpoint.
+
+
+## 2026-10-28 — Reviewed current-byte full-unit pass; timeout causes still Open
+
+The sole pre-reviewed unfiltered default full-workspace attribution capture
+completes native0:21,528passed/0failed/2unchanged skips across1,007files in
+1,619.476379s. All2,045before/after/live inputs remain
+`680a938e050fcbec4617ee865e0083ea17d0bf3a6a8dd1a7998953bc5baeacf3`, bound to
+Prayer source `af71980f69561a472fdf033088ceb7f0209bb465` and documentation HEAD
+`d2f04645f5c349b9d1d093a660eb2f1d749c9e6d`. Direct installed Node24.21.0/
+Vitest1.6.1 adds only reviewed CPU sampling and native-result reporting. Existing
+assertions,5,000ms deadlines, discovery, workers, isolation, configs, dependencies
+and environment remain unchanged. No outer60minute/8GiBguard fired or signal sent.
+
+Actual player-first/inventory-first/material/save cases pass at reported
+2,713/2,024/4,866/3,405ms; these are not exact import/timer phases. File/skip
+inventories match. Raw assertion identity differences are exactly two Date-label
+cases from unchanged new Date() fixtures; one-per-template reconciliation is
+independently verified and raw reports remain unchanged. Same-byte passing
+focused-feature246/12files, engine10,959/409files, typecheck, zero-warning
+lint/purity and production build are retained. Historical focused-final is
+native1/246passes+1save timeout, not the passing focused-feature receipt.
+
+The original full-native1/21,525passes/3timeouts/2skips and earlier save failures
+remain unchanged. The new pass is nonreproduction, not a cause, fix or speedup.
+The frozen analyzer remains inadequate:59profiles contain62negative deltas,
+minimum-168microseconds. All1,009raw profiles/1,317,319,852bytes remain retained;
+zero disposable profiles/deletions. No clamping, analyzer weakening, stack/phase/
+deadline/timeout attribution or speculative production optimization follows.
+
+Producer independent terminal review approves the narrow current-byte full-unit
+prerequisite, security-pass/findings[]/readers released, terminal-review.json
+SHA256 `aef63973046e2eced4252aad34a988a20f1b1707b98385d7b9e3da3977b0854d`.
+No additional unprofiled full invocation is required. This supersedes only the
+prior pending/failed current full-unit prerequisite, preserving every historical
+ledger entry. BUG180/366 causes stay Open; recurrence stops source continuation.
+BUG365/browser/earned/feature and actual CI/full-v1 acceptance remain Open.
+
+[Full-workload evidence](evidence/full-workload-timeouts.md) records exact argv,
+source/discovery binding, raw reconciliation, review hashes and retention.
+Root retains `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-full-timeout-attribution-tx4w01xr`
+and the earlier Prayer packet through unresolved consumers and owns eventual
+verified cleanup. Exact coordinator2456515/driver2456501 are absent; the CWD audit
+finds no worktree processes, no intervention/cleanup failure. No disposable build
+output was created. Exact applied-doc checkpoint review follows separately.
+
+Next step: after this docs checkpoint, refresh native Fire Mastery's +25% party
+Fire plan against the current Prayer source, then obtain independent readiness
+before reproduction/implementation. No Fire code/test/bug reproduction has begun.
+Campaign/economy/build matrices, high-rune mix/affordability/pacing,14builds×fiveacts,
+defeat/retry, locales/devices/a11y, performance/PWA, actual CI/human/soak/full-v1
+remain unresolved;212bounded/oneunverified player-skill inventory is unchanged.
+H3 stays terminal failed-no-app; no app/browser, new acquisition/lineage or
+replacement experiment, protected fixture/closed-policy read/replay, push/merge/
+deployment occurs. Full objective and claimed worktree stay active.

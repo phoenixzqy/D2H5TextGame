@@ -291,3 +291,47 @@ justified production optimization and recommends ending this diagnostic loop.
 The isolated pass does not clear the failed full result, BUG180, BUG366 or Prayer.
 No rerun loop, timeout/configuration change or material-source replay follows.
 Next investigation requires a bounded full-workload phase-attribution plan.
+
+
+### Sole full-workload terminal follow-up — 2026-10-28
+
+The separately pre-reviewed unfiltered default full-workspace capture completes
+native0:21,528passed/0failed/2same skips /1,007files in1,619.476379s. Both exact
+entry cases execute and pass: player-first2,713ms, inventory-first2,024ms.
+Material-source passes4,866ms and untouched save compile-laziness passes3,405ms.
+These are native reported task durations, not exact import phases/deadline windows.
+All2,045before/after/live executable inputs match
+`680a938e050fcbec4617ee865e0083ea17d0bf3a6a8dd1a7998953bc5baeacf3`,
+source checkpoint `af71980f69561a472fdf033088ceb7f0209bb465`, documentation HEAD
+`d2f04645f5c349b9d1d093a660eb2f1d749c9e6d`. No assertions,5,000ms deadlines,
+worker/isolation/discovery/configuration/dependency settings or environment change.
+
+Producer terminal review approves only the current-byte native full-unit
+prerequisite, security-pass/findings[]/readers released; terminal-review.json
+SHA256 `aef63973046e2eced4252aad34a988a20f1b1707b98385d7b9e3da3977b0854d`.
+Same-byte focused-feature246/12files, engine10,959/409files, typecheck/lint/build
+passes remain valid. Historical focused-final instead retains246passes plus
+one save timeout/native1; earlier isolated save/full-native1 failures are not erased.
+Only two unchanged Date-fixture runtime labels differ in raw assertion inventories;
+independent review reconciles precisely those cases, with all other names/files/
+skips equal. Raw records remain unchanged.
+
+Profile attribution is inadequate:59of1,009profiles contain62negative time deltas,
+minimum-168microseconds. All1,009raw profiles/1,317,319,852bytes remain retained
+with verified hashes; no clamp, analyzer change, repeat capture or deletion.
+No stack/phase/timeout-cause conclusion, production correction or speedup is
+established. Root retains the exact new packet at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-full-timeout-attribution-tx4w01xr`
+through BUG180/366,Prayer,next-card/umbrella consumers and owns eventual cleanup.
+Original Prayer evidence remains in its previously recorded packet. Coordinator
+2456515/driver2456501 are absent; postrun audit finds no worktree processes and
+no intervention. [Full terminal evidence](../../docs/plans/evidence/full-workload-timeouts.md)
+records exact execution/reconciliation/review and the separate gate interpretation.
+
+BUG180 remains Open: this is instrumented nonreproduction and a reviewed current
+unit pass, not cause/fix or closure. No extra unprofiled full invocation is required
+or recommended. Recurrence stops source continuation for bounded diagnosis.
+BUG365/browser/earned/actual CI/full-v1 acceptance remains Open; next Fire needs
+separate refreshed readiness before reproduction/implementation. No app/browser,
+protected-fixture/closed-policy read/replay, spent/replacement acquisition/lineage
+experiment, push/merge/deployment occurs. Goal/worktree stay active.

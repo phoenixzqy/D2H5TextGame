@@ -1,6 +1,6 @@
 # BUG-365 — Apply the native Prayer mercenary’s party regeneration
 
-Status: Open — implementation checkpoint retained; required full validation failed; browser/earned acceptance pending.
+Status: Open — implementation retained; current-byte native full-unit prerequisite passed; browser/earned/feature acceptance pending.
 Severity: High — a recruitable mercenary’s signature support effect does nothing.
 Build: 79d58fae1e876b271c18e580449a8e62d40d6403.
 Environment: Node 24.21.0 / npm 11.19.0, Vitest UI/jsdom; seed 7, constructed bounded combat snapshot.
@@ -59,3 +59,21 @@ optimization and clears neither original full failure. Independent review agrees
 No automatic retry, compiler/configuration change or next Fire implementation
 follows this checkpoint. See [retained evidence](../../docs/plans/evidence/merc-prayer.md).
 BUG-365 remains Open; no bounded-fixed/source-acceptance or full-v1 closure is claimed.
+
+## Current native prerequisite — 2026-10-28
+
+A separately pre-reviewed unfiltered full-workspace capture on the identical
+2,045 inputs completes native0:21,528passed/0failed/2same skips,1,007files,
+1,619.476379s. Engine/typecheck/lint/build and passing focused-feature evidence
+remain bound to these same bytes. Producer terminal review approves only the
+current-byte full-unit prerequisite, security-pass/findings[]/readers released;
+terminal-review.json SHA256
+`aef63973046e2eced4252aad34a988a20f1b1707b98385d7b9e3da3977b0854d`.
+
+Historical full/focused/save failures remain retained. BUG180/366 causes remain
+Open; invalid profile timing prevents attribution and all raw profiles remain
+retained. [Terminal evidence](../../docs/plans/evidence/full-workload-timeouts.md)
+records exact conditions and review. No further full invocation is required
+solely because this pass was profiled. This does not close BUG365 or establish
+browser/earned/feature, actual CI or full-v1 acceptance. Next Fire readiness
+must be reviewed separately; no Fire reproduction or implementation has begun.

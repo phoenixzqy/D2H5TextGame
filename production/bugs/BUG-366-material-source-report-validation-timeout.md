@@ -1,6 +1,6 @@
 # BUG-366 — Investigate the material-source report test timeout
 
-Status: Open — one observed full-suite timeout; cause undetermined.
+Status: Open — earlier full-suite timeout did not recur in the sole reviewed full-workload capture; cause undetermined.
 Severity: Low — validation timing failure; no gameplay or report assertion defect established.
 Build: `79d58fae1e876b271c18e580449a8e62d40d6403` plus the Prayer repair, now retained as unaccepted source `af71980f69561a472fdf033088ceb7f0209bb465`.
 Environment: Node 24.21.0 / npm 11.19.0, Vitest `sim-contracts`, Node environment.
@@ -47,3 +47,23 @@ no timed phase here and does not clear this failure or the failed full run.
 No isolated gameplay/acquisition replacement experiment is authorized or run.
 Browser/earned recruitment, economy, campaign, performance/PWA, actual CI and
 full-v1 acceptance remain separate and unresolved.
+
+## Sole full-workload follow-up — 2026-10-28
+
+The separately pre-reviewed unfiltered default full-workspace capture on the
+same 2,045 executable inputs completes native0:21,528passed/0failed/2same skips
+across1,007files in1,619.476379s. This exact material-source case executes and
+passes at reported4,866ms, with no report-value assertion mismatch or exception.
+Its duration is not an exact import phase/timer window. Original native1/5,008ms
+timeout evidence is unchanged; the new pass is nonreproduction, not a cause/fix.
+
+Independent terminal review approves the narrow current-byte full-unit
+prerequisite, security-pass/findings[]/readers released; SHA256
+`aef63973046e2eced4252aad34a988a20f1b1707b98385d7b9e3da3977b0854d`.
+The frozen analyzer remains inadequate because59profiles contain62negative
+deltas; all1,009raw profiles remain retained. No phase/stack/cause conclusion or
+production optimization is justified. See
+[terminal evidence](../../docs/plans/evidence/full-workload-timeouts.md) for raw
+packet paths, unchanged discovery, two exact Date-label reconciliations and
+ownership. No isolated material replay, new experiment or extra full run follows.
+BUG366 stays Open; recurrence stops source continuation for bounded diagnosis.
