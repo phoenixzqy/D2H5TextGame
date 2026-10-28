@@ -241,3 +241,53 @@ Earlier runtime outcomes retain their executed hashes and erasure-only mapping.
 Required native H2 checks now pass; final applied docs/inventory and producer
 approval of the exact H2 packet remain pending. No bug closure, browser/H3,
 earned acquisition, CI or full-v1 acceptance is claimed.
+
+
+### Prayer final full recurrence — 2026-10-28
+
+On base `79d58fae1e876b271c18e580449a8e62d40d6403` plus the uncommitted Prayer
+repair, unfiltered full-final exits 1 after 2280.441251s. Individual assertions
+report 21,525 passed, three failed and two existing skips across 1,007 files.
+Both original module-entry cases exceed the unchanged 5000ms deadline:
+player-first 5049ms and inventory-first 5003ms; the 13-case file reports 11 passes
+and two failures (10096ms). Neither reports an initialization-cycle exception
+or equipment-stat assertion mismatch. The third failure is a material-source
+report timeout, recorded separately in BUG-366.
+
+All 2,045 executable inputs remain unchanged at
+`680a938e050fcbec4617ee865e0083ea17d0bf3a6a8dd1a7998953bc5baeacf3`.
+Engine-final passes 10,959 cases / 409 files, including the untouched save-schema
+test; its full-suite assertion also passes, with a reported duration of 5095ms.
+No timing repair or cause is inferred from those passes. Prior Prayer-stage
+save timeouts remain retained separately.
+
+Root retains exact full logs/report/maps/native receipt and test-summary-final.json
+(SHA256 `0b0c8bf51e20ec8ed21cc397b0b7e870cad9706c3840b0b5054cb60a0a670958`)
+at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-prayer-9d0e935j`.
+The read-only full-runtime-observation.json records contemporaneous CPU pressure;
+it does not establish host-load causality, an import bottleneck or a Prayer
+regression. No timeout/assertion/worker/discovery/configuration/dependency change,
+prewarm or production optimization is applied. The reviewed native module-entry
+CPU reduction is prepared only and requires a final expanded-failure review
+before execution. BUG180 and Prayer's full validation remain open.
+
+
+### Prayer CPU diagnostic checkpoint — 2026-10-28
+
+After the expanded terminal-failure review, the one permitted native UI-only
+13-case CPU diagnostic completes with exit0. All cases pass, including
+player-first2431ms and inventory-first1912ms, under unchanged5,000ms deadlines,
+setup, workers, isolation and module resets. Both valid coordinator/worker
+profiles are retained in the same packet under native-entry-profile/; exact
+2,045 input hashes remain unchanged. The source is now preserved as unaccepted
+checkpoint `af71980f69561a472fdf033088ceb7f0209bb465`.
+
+Weighted worker Ajv.compile intervals total4.853s across collection and both
+resets; shared createSkillValidator's2.758s is nested within that total. The
+existing schema-identity cache is already effective. There are no per-case phase
+markers; sample weights include scheduling gaps and do not establish host/Prayer
+causality or a removable compiler/import defect. Independent review finds no
+justified production optimization and recommends ending this diagnostic loop.
+The isolated pass does not clear the failed full result, BUG180, BUG366 or Prayer.
+No rerun loop, timeout/configuration change or material-source replay follows.
+Next investigation requires a bounded full-workload phase-attribution plan.

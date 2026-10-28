@@ -14833,3 +14833,57 @@ Next ready plan is native Prayer, authored flat5HP/s and independent timer/share
 capped-heal settlement; next-prayer-plan-review.json ready/security-pass/findings[],
 SHA256 `cb018177cf0791ded53c511bc9e4df04ab4d0043bb0a344589203dcc8f27f4a3`.
 This is a reviewed future plan; no Prayer implementation/reproduction has begun.
+
+
+## 2026-10-28 — Native Prayer implementation checkpoint; acceptance open (BUG-365)
+
+Source `af71980f69561a472fdf033088ceb7f0209bb465` implements the GDD's flat5 party HP/s:
+closed authored tuning, validated immutable resolver, fresh native mercenary
+qualification, true passive registration and an independent battle-local timer.
+Shared capped healing reaches the living party after periodic/selected ambient
+settlement. Source death withdraws presence; fresh waves reset the first full
+interval. Duplicate sources do not multiply; selected Paladin recovery remains
+independent. No action/payment/RNG/save/base-stat change; both locale surfaces
+now describe5HP each second. Removing the obsolete cast allows Jab sooner.
+
+Real loader/factory/default-registry seed7 primary RED fails3 and unchanged GREEN
+passes3, SHA25672abba52a5b855dc7ba2a329a03c3010d0c2a4cd9c8dd6386029d1b7ca9fd1a7.
+New fixture corrections and obsolete Warmth-stub migration preserve raw failures.
+Final focused246/12files, engine10,959/409files, typecheck, zero-warning lint/purity
+and external build pass. **Required full validation fails** after2280.44s:
+21,525passed,3failed,2existing skips /1,007files. BUG180's unchanged module-entry
+cases time out at5049/5003ms; the existing material-source control times out at
+5008ms, separately recorded in BUG366. No assertion mismatch or timed phase is
+reported. The untouched save test passes with reported5095ms assertion duration;
+prior native save timeouts remain retained, without a timing-fix claim.
+
+Allsix final checks preserve2,045 inputs at
+680a938e050fcbec4617ee865e0083ea17d0bf3a6a8dd1a7998953bc5baeacf3,
+bound to immutable source blobs. One reviewed UI-only13-case CPU reduction
+passes; both profiles are valid. Sampled shared compilation cost spans collection
+and two module resets, with no phase markers. Independent review finds no
+justified production optimization; it does not clear the full failures. The
+finite diagnostic loop ends without an automatic retry or configuration change.
+
+BUG365 stays Open: this is an **unaccepted source checkpoint**, not native feature
+closure. [Prayer evidence](evidence/merc-prayer.md) records exact outcomes, limits,
+source binding and finite BUG180/366 follow-ups. Plan/source/compatibility reviews
+approve their bounded scope; CPU diagnostic review is adequate/security-pass,
+readers released, SHA256231470ad33ad92ebec5676b05db842c0e524d132a2c6246ae3b28d5f1af44602.
+Final exact-byte checkpoint review is retained separately as checkpoint-review.json.
+
+Root retains the exact packet at
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-prayer-9d0e935j
+through unresolved failure/umbrella consumers and owns eventual cleanup.
+Disposable external build762files/42,267,780bytes removed, absence verified;
+all30earlier recorded PIDs and both diagnostic PIDs absent, no interventions.
+Applied draft cleanup and retention inventory accompany checkpoint review.
+
+No Fire implementation starts before Prayer's failed full gate is addressed.
+Browser/earned recruitment/builds, campaign/economy, high-rune mix/affordability,
+14builds×fiveacts, defeat/retry, locales/devices/a11y, performance/PWA, actual CI,
+human/soak and full-v1 remain unresolved. Other bugs and212bounded/oneunverified
+player skills are unchanged. H3 remains terminal failed-no-app; no app/browser,
+spent/replacement experiment, closed-policy/protected-fixture read or replay,
+push/merge/deployment occurs. Goal/worktree stay active; no acceptance is inferred
+from this checkpoint.

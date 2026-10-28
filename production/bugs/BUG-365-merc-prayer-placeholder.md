@@ -1,6 +1,6 @@
 # BUG-365 — Apply the native Prayer mercenary’s party regeneration
 
-Status: Open — bounded native repair in progress; browser/earned acceptance pending.
+Status: Open — implementation checkpoint retained; required full validation failed; browser/earned acceptance pending.
 Severity: High — a recruitable mercenary’s signature support effect does nothing.
 Build: 79d58fae1e876b271c18e580449a8e62d40d6403.
 Environment: Node 24.21.0 / npm 11.19.0, Vitest UI/jsdom; seed 7, constructed bounded combat snapshot.
@@ -42,3 +42,20 @@ security-pass, findings empty, readers released; receipt SHA256
 `cb018177cf0791ded53c511bc9e4df04ab4d0043bb0a344589203dcc8f27f4a3`.
 No app/browser, new acquisition/lineage experiment, protected fixture or closed
 policy is involved; umbrella and browser/earned acceptance remain pending.
+
+## Unaccepted source checkpoint — 2026-10-28
+
+Source `af71980f69561a472fdf033088ceb7f0209bb465` implements the bounded contract. The unchanged
+real-factory primary fails three cases before the repair and passes three after it.
+Final focused246 /12files, engine10,959 /409files, typecheck, zero-warning
+lint/purity and external production build pass with all2,045 inputs unchanged.
+The unfiltered full suite exits1:21,525passed,3failed,2existing skips /1,007files.
+Two existing module-entry cases time out (BUG-180); a separate material-source
+control times out (BUG-366). Their phases/causes remain unknown.
+
+One reviewed13-case UI CPU reduction passes without changing assertions or
+5,000ms deadlines. Its sampled compilation cost justifies no specific production
+optimization and clears neither original full failure. Independent review agrees.
+No automatic retry, compiler/configuration change or next Fire implementation
+follows this checkpoint. See [retained evidence](../../docs/plans/evidence/merc-prayer.md).
+BUG-365 remains Open; no bounded-fixed/source-acceptance or full-v1 closure is claimed.
