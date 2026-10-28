@@ -14537,3 +14537,51 @@ through unfinished consumers and owns eventual verified cleanup. No build,
 coverage or task-owned server output was created. Both applied scratch drafts were removed after reader release; absence verified,
 cleanup failures[]. Exact receipt and retained inventory stay in the packet. No publication/merge/deployment. Umbrella goal
 and claimed worktree stay active.
+
+
+## Fresh-lineage one-shot collection failure — 2026-10-28 UTC
+
+[Terminal evidence](evidence/fresh-lineage-native-prefix.md) records the sole
+reviewed fresh-public-Sorceress experiment. The opt-in entry, finite policy,
+exclusive admission and native launcher are test-only, outside ordinary discovery.
+All 20 deterministic controls pass. Unfiltered full24421 returns native0:
+21,242 passed, two exact existing skips/993files. Typecheck93674/lint22670
+also return native0. All final checks preserve the source-only 1,872-input map
+`9215f46349ac536db82d64d18250454a7006dd3a55e1899b9ceb066d0ba90f78`;
+this map excludes docs/saved fixtures/ancestors and differs from the previous
+5,346-input map. Post-invocation sources and11runtime fingerprints match.
+Failed structural RED and initial typecheck evidence are retained without
+behavioral RED or final-pass credit for those failed runs.
+
+The approved sole invocation18415 returns native1: one failed suite, zero
+registered tests. Entry line38 throws ERR_INVALID_URL_SCHEME while converting
+its module-relative URL to a Node file path, before it() registration or worker
+admission. The exact rejected URL was not captured. Parent records child code1/
+signalnull/wall1671.784203ms; footer closed=true/success=false/sourceError=null/
+unhandled=[]. No character, seed, combat run, settlement, reward or save/load
+observation exists. The permanent launcher-invoked record consumes this attempt;
+absence of the unreached worker marker does not permit retry. BUG360 is Open
+for the harness defect; no source repair or replacement experiment is performed.
+
+Independent source approval SHA256
+`184eb768c9165e166175a4adf429071cede477d3f4ec2042dc57c6ccfb12df00` precedes
+execution. Terminal review accepts the failed evidence, security pass, with
+FL-03 collection finding, SHA256
+`019fa37f1044cfeb77a637583245af9a27355c56b9d0744d4ff59c1658a76457`.
+No native or fresh-character acceptance follows. Journal flags remain
+constructed-control/highRuneEarned=false/activeHourAcceptance=false. Existing
+BUG304/180/354/355/356/357/358/359,212bounded/oneunverified skill inventory,
+earned high-rune affordability/source mix/pacing,14builds×fiveacts, defeat/fresh
+retry, whole-app locales/devices/a11y/performance/PWA, actual CI and human/soak/
+full-v1 acceptance remain unresolved. H3 remains terminal failed-no-app;
+no browser retry/new card, publication, merge, deployment or bug closure occurs.
+
+Root retains exact raw native/validation logs/maps, permanent launcher record,
+manifest and independent reviews under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-lineage-gxhxzxtj`
+through unfinished consumers and owns eventual verified cleanup. Logged exact
+contract directories and the configured native Vite cache are verified absent.
+Independent document review has no material findings/security pass; exact final
+confirmation and cleanup receipts are retained. The applied scratch draft was
+removed after reader release; absence verified, cleanup failures[]. Umbrella
+goal and claimed worktree stay active.
