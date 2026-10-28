@@ -1090,8 +1090,8 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
               combat.addLogEntry({
                 type: 'system',
                 actorId: 'system',
-                actorName: 'System',
-                message: `combat:levelUp:${String(xpResult.newLevel)}`
+                actorName: i18n.t('combat:event.system'),
+                message: i18n.t('combat:levelUpToast', { level: xpResult.newLevel })
               });
             }
           }
