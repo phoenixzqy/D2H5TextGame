@@ -1,6 +1,6 @@
 # BUG-362 — Apply the native Might mercenary's party damage aura
 
-Status: Open — bounded factory/combat regression reproduced; implementation in progress.
+Status: Fixed — bounded native factory/combat repair in `b74c8f8f6acd5afd1cb5c6c6abdb23be9a7826c6`. Browser/earned integration acceptance remains pending.
 Severity: High — a recruitable mercenary's signature support effect does nothing.
 Build: cfaa90251e4519ca3118cdef8b6ab509ccecc612.
 Environment: Node 24, Vitest UI/jsdom; seed 7, constructed bounded combat snapshot.
@@ -37,3 +37,17 @@ SHA256 `53fd1bbbf6ea4519c693aac6da2020fc3186e35f05f4630a048bf12eba6e96e3`.
 Verify bounded native factory/runtime/schema/replay controls and E/U/T/L.
 Browser and earned build/balance acceptance remain separate; no closed gameplay
 experiment, H3 retry or protected fixture is needed or authorized by this repair.
+
+## Resolution
+
+The source commit above implements the authored 30% party presence, live-source
+withdrawal, passive registration, fresh native qualification and corrected locales.
+The unchanged three-test primary regression passes. Final engine passes 10,785;
+unfiltered unit passes 21,345 with two unchanged skips. Typecheck, zero-warning
+lint/engine purity and production build all return native 0 with unchanged inputs.
+Independent final review approves/security pass, with adequate bounded evidence,
+no findings or blockers and readers released. See
+[native Might evidence](../../docs/plans/evidence/merc-might.md) for exact commands,
+failed attempts, build warnings, review receipts, cleanup and retained evidence.
+This closure covers the reported native defect; earned build/balance, browser,
+performance/PWA and full-v1 gates remain pending.

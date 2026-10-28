@@ -14709,7 +14709,8 @@ raw logs/reports/maps, failed engine evidence and reviews at
 through unfinished consumers and owns eventual verified cleanup. Final evidence
 review approves/security pass/adequate/findings[]/readersReleased, receipt SHA256
 `023b3e7afaa540d787da19fb492af989846cded0060795923f2a9e01ec1e2891`.
-Exact source-commit closure follows in the bug record.
+BUG362's bounded native defect is fixed by source commit
+`b74c8f8f6acd5afd1cb5c6c6abdb23be9a7826c6`; browser/earned integration remains pending.
 
 This is bounded native repair, not earned recruitment/build/balance/browser
 acceptance. Other open bugs,212bounded/oneunverified skill inventory, earned

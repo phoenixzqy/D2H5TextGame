@@ -2,8 +2,8 @@
 
 Date: 2026-10-28 UTC. Base: `cfaa90251e4519ca3118cdef8b6ab509ccecc612`.
 Scope: BUG-362, the recruitable `mercs/act2-might` signature aura.
-The source repair and evidence are committed together; the exact implementation
-SHA will be recorded in the follow-up bug closure.
+Implementation: `b74c8f8f6acd5afd1cb5c6c6abdb23be9a7826c6`.
+BUG-362 is fixed for the bounded native factory/combat defect.
 
 ## Repair
 
