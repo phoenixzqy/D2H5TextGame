@@ -3856,6 +3856,23 @@
       },
       "else": { "properties": { "mercMight": false } }
     }, {
+      "if": { "properties": { "id": { "const": "aura-thorns" } }, "required": ["id"] },
+      "then": {
+        "required": ["mercThorns"],
+        "properties": {
+          "mercThorns": { "$ref": "#/properties/mercThorns" },
+          "trigger": { "const": "passive" }, "target": { "const": "all-allies" },
+          "cooldown": { "const": 0 },
+          "cost": false, "damage": false, "damageType": false, "attackDamagePct": false,
+          "statusEffect": false, "additionalStatusEffects": false, "scaling": false,
+          "heal": false, "summonId": false, "monsterSummon": false, "summonBasicAttackElements": false,
+          "aoeShape": false, "requires": false, "passive": false, "aura": false,
+          "summon": false, "synergies": false, "prerequisites": false,
+          "appliesStatus": false, "appliesTags": false
+        }
+      },
+      "else": { "properties": { "mercThorns": false } }
+    }, {
       "if": {
         "properties": {
           "id": {
@@ -6449,6 +6466,15 @@
       "required": ["physicalDamagePct"],
       "properties": {
         "physicalDamagePct": { "type": "number", "minimum": 0, "description": "Increased direct physical damage in percentage points while the native mercenary lives." }
+      }
+    },
+    "mercThorns": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Native Thorns mercenary's additive party physical reflection in percentage points.",
+      "required": ["physicalReflectionPct"],
+      "properties": {
+        "physicalReflectionPct": { "type": "number", "minimum": 0, "description": "Actual physical HP lost reflected in percentage points while the native mercenary and recipient live, before attacker mitigation." }
       }
     },
     "holyFreeze": {

@@ -387,6 +387,7 @@
   },
   {
     "id": "aura-thorns",
+    "mercThorns": { "physicalReflectionPct": 100 },
     "name": "skills.mercenary.thorns.name",
     "description": "skills.mercenary.thorns.desc",
     "icon": "skills/merc/aura-thorns.png",

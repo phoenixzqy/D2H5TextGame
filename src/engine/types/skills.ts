@@ -341,6 +341,8 @@ export interface SkillDef {
   readonly holyFreeze?: { readonly coldDamagePct: number };
   /** Native Might mercenary's party physical increase, in percentage points. */
   readonly mercMight?: { readonly physicalDamagePct: number };
+  /** Native Thorns mercenary’s party physical reflection, in percentage points. */
+  readonly mercThorns?: { readonly physicalReflectionPct: number };
   /** JSON-owned enemy resistance reduction in percentage points; exact player Conviction only. */
   readonly conviction?: { readonly enemyResistReductionPct: number };
   readonly id: string;

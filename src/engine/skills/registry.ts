@@ -20,6 +20,7 @@ import { MERC_INNER_SIGHT_SKILL } from './inner-sight';
 import { MERC_ARROW_SKILLS } from './merc-arrows';
 import { MERC_HOLY_FREEZE_SKILL } from './merc-holy-freeze';
 import { MERC_MIGHT_SKILL } from './merc-might';
+import { MERC_THORNS_SKILL } from './merc-thorns';
 import { ACT1_LIGHTNING_AFFIX_SKILL } from './act1-lightning';
 import { BLOOD_RAVEN_SKILLS } from './blood-raven';
 import { ITEM_REDEMPTION_SKILL } from './item-redemption';
@@ -94,6 +95,7 @@ export function loadDefaultSkills(): void {
   registry.set(MERC_INNER_SIGHT_SKILL.id, MERC_INNER_SIGHT_SKILL);
   registry.set(MERC_HOLY_FREEZE_SKILL.id, MERC_HOLY_FREEZE_SKILL);
   registry.set(MERC_MIGHT_SKILL.id, MERC_MIGHT_SKILL);
+  registry.set(MERC_THORNS_SKILL.id, MERC_THORNS_SKILL);
   for (const skill of MERC_ARROW_SKILLS) registry.set(skill.id, skill);
   for (const s of MONSTER_STUB_SKILLS) {
     registry.set(s.id, s);

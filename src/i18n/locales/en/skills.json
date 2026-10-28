@@ -1491,7 +1491,7 @@
     },
     "thorns": {
       "name": "Thorns Aura",
-      "desc": "Reflects a portion of melee damage to attackers."
+      "desc": "While this mercenary lives, living allies reflect 100% of physical HP lost as Thorns damage, before attacker mitigation. Reflected hits do not reflect again."
     },
     "prayer": {
       "name": "Prayer Aura",

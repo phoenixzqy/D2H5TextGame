@@ -169,6 +169,8 @@ export interface CombatUnit {
   readonly holyFreezeAura?: true;
   /** Native mercenary factory-owned Might presence; wave-local, never persisted. */
   readonly mercMightAura?: true;
+  /** Native mercenary factory-owned Thorns presence; wave-local, never persisted. */
+  readonly mercThornsAura?: true;
   /** Eligible learned Static Field rank captured per wave; explicit zero disables legacy fallback. */
   readonly staticFieldRank?: number;
   /** Eligible personal Energy Shield allocation captured per wave; never persisted. */
