@@ -1,6 +1,6 @@
 # BUG-347 — Localize combat level-up log messages
 
-Severity: Low. Status: open; deferred until the current frozen integration gate ends.
+Severity: Low. Status: Fixed in `d6736f08e153be1e4c9fb7b83fa00f6a8a8df9d4`; final integration and production browser verification pass.
 Owner: frontend-dev / QA (root sole writer).
 
 ## Reproduction
@@ -36,4 +36,30 @@ them in verified retention before exact task-root cleanup.
 
 Next: trace level-up event formatting into log translation, preserve the native
 event/value, add causal en/zh rendering coverage, and fix that boundary after
-the current frozen integrated check. Root cause is not yet established.
+the current frozen integrated check. Root cause is established below.
+
+## Causal native regression and root cause
+
+After checkpoint988883ee, both en/zh regression cases fail at the missing
+localized entry, after verifying the actual native victory, reached level and
+exact XP delta. Original `level-up-red.log` and native receipt are retained
+in the owned next-task evidence root. No XP path is mocked.
+
+`src/stores/combatHelpers.ts` writes the raw `combat:levelUp:N` token into
+`CombatLogEntry.message`. `CombatScreen` correctly renders this display-text
+field verbatim. Peer event formatting already translates at the producer.
+The producer already imports the i18n singleton and both locales already
+provide `combat:levelUpToast` and `combat:event.system`. Correct those two
+producer fields using the real reached level; no renderer parser is needed.
+
+## Local correction and verification
+
+The producer now translates actorName with combat:event.system and message
+with combat:levelUpToast using the actual reached level. Both en/zh native
+regressions pass (level-up-green), and the unchanged integration remains green
+in imbue-allocation-green (92 tests across four files). The independent frontend
+source review approves the two-line correction and matches its GREEN hashes.
+Final integrated full20,656tests/977files/twoexistingoptinskips and all four actual en/zh production level-two log cases PASS. Independent frontend source/browser and combined packet reviews APPROVE. See [final evidence and exact retained paths](../../docs/plans/evidence/d11-charsi-selected-imbue.md). Regression: `src/features/combat/CombatScreen.level-up.test.tsx`; browser member `browser-level-up-v3/check.mjs` in the retained Charsi archive. Historical
+original screenshots are retained in the verified Malus evidence archive at
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-malus-h9_rzp5t.evidence.tar.gz;
+the original raw root has been cleaned.
