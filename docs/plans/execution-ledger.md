@@ -14725,3 +14725,54 @@ whose GDD already specifies100% physical reflection but whose runtime signature
 is a self-buff placeholder. Use bounded definition/factory/runtime RED/GREEN,
 existing reflection semantics, truthful locales and independent review. This is
 a future card, not acceptance or authorization for new gameplay experiments.
+
+
+## 2026-10-28 — Native mercenary Thorns (BUG-363)
+
+Implemented the next bounded F04/F07/P13 missing native mechanic in source
+`34850efd245f2488a775e5242717a40e9baea13c`: the GDD100% party physical reflection replaces
+an inert self-buff. Closed schema-first tuning, immutable resolution, fresh native
+qualification, live-source recheck, passive registration and zh-CN/en recruitment
+and skill copy use the shared ordinary-reflection settlement. Duplicate native
+sources do not multiply; item/selected Paladin/real Barbs effects remain additive.
+Actual HP lost/survival/mitigation/non-recursion/death/trap semantics stay shared.
+No saved marker/base-stat mutation or save version change is introduced.
+
+Primary native factory/default-registry seed7 RED fails3; unchanged GREEN passes3,
+regression SHA256 `9b1c6c9eedec5e487fbdaa9f265fee939e85a271979c4b2dcc0eca32710bd127`.
+Authored18 +native combat38 controls pass. First focused attempt fails3 fixture
+expectations (dead Barbs spirit, invalid enemy Bone Armor, earlier source death);
+only the new combat fixture changes and original failures stay retained.
+Corrected focused127/8files, final engine10,841/405files, unfiltered unit21,404
+passed +two unchanged existing skips /1,001files, typecheck, zero-warning
+lint/engine purity and external build all return native0 with source inputs
+unchanged. Source digest `211af575a28f1699be2fdd1dd163259769cf9df853f8e2721414ab1894e60974`
+matches committed contents via `source-commit-binding.json`. Raw assertion
+statuses/terminal output supply full counts; reporter aggregate includes skips.
+Plan ready/security-pass and source review approve/security-pass/findings[],
+readers released. Final independent review approves/security-pass, evidence
+ADEQUATE for the bounded native repair, findings/blockers empty, readers released.
+Packet `final-review.json` SHA256
+`b1c5af054725110210f540c345e5781a05a53d47cc9cf86b63e3f62765da8d10`.
+
+Root retains exact logs/reports/maps/driver/reviews at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-thorns-rfbaneja`
+through unfinished goal/review consumers and owns eventual verified cleanup.
+Disposable build762files/42,262,483bytes removed, absence verified, recorded
+owned command/driver PIDs absent; cleanup failures[]. Build warns on chunks,
+Browserslist and2.57MB art-manifest precache exclusion. No config, dependency,
+limits or timeouts changed. Actual durations and limits are in
+[evidence](evidence/merc-thorns.md); Node20 CI/performance/PWA acceptance is pending.
+
+BUG363’s native defect is fixed; browser/earned integration remains pending.
+Other open bugs,212bounded/oneunverified skill inventory, earned high-rune
+source mix/affordability/pacing,14builds×fiveacts, defeat/retry, whole-app locales/
+devices/a11y, actual CI/human/soak and full-v1 acceptance remain unresolved.
+H3 stays terminal failed-no-app; no browser/app launch, spent native experiment
+preflight/retry/replacement, closed policy/protected fixture read or replay,
+publication, merge or deployment occurs. Umbrella goal/worktree stay active.
+
+Producer recommends native mercenary Defiance next: GDD +30% party Defense,
+reachable inert signature, recruitment copy75%. Recommendation only; no next-card
+implementation/acceptance or gameplay experiment is started. Packet `next-card.json`
+SHA256 `50414c8db0929ca7bc2ea09baa58faa4dd09e8cfe18081945c13b16c85b9e83d`.

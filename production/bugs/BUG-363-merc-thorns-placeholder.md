@@ -1,6 +1,6 @@
 # BUG-363 — Apply the native Thorns mercenary’s party reflection
 
-Status: Open — bounded native repair underway.
+Status: Fixed — bounded native factory/combat repair in `34850efd245f2488a775e5242717a40e9baea13c`. Browser/earned integration acceptance remains pending.
 Severity: High — a recruitable mercenary’s signature support effect does nothing.
 Build: a66b3e9fc9617bfe4d7ad921dba5c8140c9ddda3.
 Environment: Node 24.21.0 / npm 11.19.0, Vitest UI/jsdom; seed 7, constructed bounded combat snapshot.
@@ -38,3 +38,24 @@ Producer ready/security-pass plan: packet `plan-review.json`, SHA256
 Passive presence adds no action/payment/RNG draw; removing obsolete casts allows
 Jab to act sooner. Browser/earned acceptance remains pending. No native acquisition,
 closed policy, protected fixture or terminated H3 retry is part of this repair.
+
+## Resolution
+
+The source commit implements the authored100% native presence through existing
+ordinary reflection, live-source withdrawal, passive registration, fresh native
+qualification and corrected locales. The original three-case primary regression
+passes unchanged. Final engine10,841/405files and unfiltered unit21,404 +two
+existing skips /1,001files pass. Typecheck, zero-warning lint/engine purity and
+external production build return native0 with unchanged source inputs. Independent
+source review approves/security pass/findings[], readers released.
+
+Regression paths: `src/stores/merc-thorns.test.ts`,
+`src/engine/combat/merc-thorns.test.ts`, `src/engine/skills/merc-thorns.test.ts`.
+See [native Thorns evidence](../../docs/plans/evidence/merc-thorns.md) for all
+attempts, commands, exact source binding, reviews, warnings, acceptance limits
+and verified cleanup. Final independent review approves, security passes, evidence
+is ADEQUATE for this bounded repair, findings/blockers are empty and readers released.
+Packet `final-review.json` SHA256
+`b1c5af054725110210f540c345e5781a05a53d47cc9cf86b63e3f62765da8d10`.
+This fixes the reported native defect; earned recruitment/build/balance, browser,
+performance/PWA and full-v1 gates remain pending.
