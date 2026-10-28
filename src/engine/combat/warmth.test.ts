@@ -327,9 +327,9 @@ describe('P07a01d authored passive action exclusion and active/legacy boundaries
       expect(result.result.playerTeam[0]?.stats).toEqual(stats);
     });
 
-  it('excludes passive mercenary Might from an imported hero order without granting its aura', () => {
-    expect(getSkill('aura-might')).toHaveProperty('trigger', 'passive');
-    const result = runBattleRecorded(withHero(snapshot(), { skillOrder: ['aura-might'] }));
+  it.each(['aura-might', 'aura-prayer'])('excludes passive mercenary %s from an imported hero order without granting its aura', id => {
+    expect(getSkill(id)).toHaveProperty('trigger', 'passive');
+    const result = runBattleRecorded(withHero(snapshot(), { skillOrder: [id] }));
     expect(result.events.filter(e => e.kind === 'action')).toEqual([
       expect.objectContaining({ skillId: null, simClockMs: 1700 })
     ]);
@@ -341,14 +341,14 @@ describe('P07a01d authored passive action exclusion and active/legacy boundaries
     expect(result.result.playerTeam[0]?.mana).toBe(8);
   });
 
-  it.each(['aura-prayer'])('retains the existing undefined-trigger %s stub behavior', id => {
+  it.each([{ id: 'aura-blessed-aim', buffId: 'blessed_aim' }])('retains the existing undefined-trigger $id stub behavior', ({ id, buffId }) => {
     expect(getSkill(id)).not.toHaveProperty('trigger');
     const result = runBattleRecorded(withHero(snapshot(), { skillOrder: [id] }));
     expect(result.events.filter(e => e.kind === 'action')).toEqual([
       expect.objectContaining({ skillId: id, simClockMs: 1700 })
     ]);
     expect(result.events.filter(e => e.kind === 'buff')).toHaveLength(1);
-    expect(result.result.playerTeam[0]?.activeBuffIds).toEqual([id.slice(5)]);
+    expect(result.result.playerTeam[0]?.activeBuffIds).toEqual([buffId]);
     expect(result.result.playerTeam[0]?.mana).toBe(8);
   });
 

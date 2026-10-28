@@ -1495,7 +1495,7 @@
     },
     "prayer": {
       "name": "Prayer Aura",
-      "desc": "Slowly regenerates the life of nearby allies."
+      "desc": "While this mercenary lives, living party members recover 5 HP every second, up to maximum life."
     },
     "blessed-aim": {
       "name": "Blessed Aim Aura",

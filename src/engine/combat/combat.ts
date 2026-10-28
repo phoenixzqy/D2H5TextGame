@@ -63,6 +63,7 @@ import { isMercHolyFreezeSource, MERC_HOLY_FREEZE_DEFINITION } from '../skills/m
 import { isMercMightSource, MERC_MIGHT_DEFINITION } from '../skills/merc-might';
 import { isMercThornsSource, MERC_THORNS_DEFINITION } from '../skills/merc-thorns';
 import { isMercDefianceSource, MERC_DEFIANCE_DEFINITION } from '../skills/merc-defiance';
+import { isMercPrayerSource, MERC_PRAYER_DEFINITION } from '../skills/merc-prayer';
 import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { activeMightAura, type MightAuraProjection } from '../skills/might';
 import { activeMeditationAura, type MeditationAuraProjection } from '../skills/meditation';
@@ -337,6 +338,8 @@ interface State {
   readonly mercMightSources: string[];
   readonly mercThornsSources: string[];
   readonly mercDefianceSources: string[];
+  readonly mercPrayerSources: string[];
+  nextMercPrayerAtMs?: number;
   readonly difficulty: ReplayProfileId;
   /** Valid copied player authority and FIFO primary enemy-monster death IDs; wave-local only. */
   readonly corpseExplosion: Map<string, number>;
@@ -441,6 +444,13 @@ function mercDefianceSourceId(state: State): string | undefined {
   return state.mercDefianceSources.find(id => {
     const source = state.units.get(id);
     return source !== undefined && isMercDefianceSource(source);
+  });
+}
+
+function mercPrayerSourceId(state: State): string | undefined {
+  return state.mercPrayerSources.find(id => {
+    const source = state.units.get(id);
+    return source !== undefined && isMercPrayerSource(source);
   });
 }
 
@@ -724,6 +734,7 @@ function registerUnit(state: State, u: CombatUnit): void {
   if (u.mercMightAura === true && !state.mercMightSources.includes(u.id)) state.mercMightSources.push(u.id);
   if (u.mercThornsAura === true && !state.mercThornsSources.includes(u.id)) state.mercThornsSources.push(u.id);
   if (u.mercDefianceAura === true && !state.mercDefianceSources.includes(u.id)) state.mercDefianceSources.push(u.id);
+  if (u.mercPrayerAura === true && !state.mercPrayerSources.includes(u.id)) state.mercPrayerSources.push(u.id);
   if (!state.insertionIdx.has(u.id)) {
     state.insertionIdx.set(u.id, state.insertionCounter++);
     state.tiePriority.set(u.id, state.tieRng.next());
@@ -2697,6 +2708,16 @@ function settleAuraPulse(state: State): void {
   }
 }
 
+/** Independent native cadence shares ordinary capped healing, with fresh live authority. */
+function settleMercPrayer(state: State): void {
+  if (state.nextMercPrayerAtMs !== state.simClockMs) return;
+  state.nextMercPrayerAtMs += MERC_PRAYER_DEFINITION.intervalMs;
+  if (mercPrayerSourceId(state) === undefined) return;
+  for (const target of state.units.values()) {
+    if (target.side === 'player') commitHealing(state, target, MERC_PRAYER_DEFINITION.amount);
+  }
+}
+
 /** Stage useful capped recovery before consuming one body from the shared CE/PE FIFO. */
 function settleRedemption(state: State, aura: StatAuraProjection): void {
   if (!aura.redemption || state.corpses.length === 0) return;
@@ -2761,6 +2782,9 @@ function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   if (state.nextAuraPulseAtMs !== undefined && state.statAura &&
     activeStatAura(state.statAura, state.statAura.sourceHeroId, state.units)) {
     boundary = Math.min(boundary, state.nextAuraPulseAtMs);
+  }
+  if (state.nextMercPrayerAtMs !== undefined && mercPrayerSourceId(state) !== undefined) {
+    boundary = Math.min(boundary, state.nextMercPrayerAtMs);
   }
   for (const unit of state.units.values()) {
     if (!alive(unit)) continue;
@@ -3329,6 +3353,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     mercMightSources: [],
     mercThornsSources: [],
     mercDefianceSources: [],
+    mercPrayerSources: [],
     ...(statAura ? { statAura } : {}),
     ...(auraIntervalMs !== undefined ? { nextAuraPulseAtMs: auraIntervalMs } : {}),
     ...(assassinVenom ? { assassinVenom } : {}),
@@ -3400,6 +3425,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
       id !== 'battle-command' && !isBattleCommandId(id)) });
   for (const u of withDefaultGridPositions(snapshot.playerTeam)) registerUnit(state, clearWardMarkers(u));
   for (const u of withDefaultGridPositions(snapshot.enemyTeam)) registerUnit(state, clearWardMarkers(u));
+  if (mercPrayerSourceId(state) !== undefined) state.nextMercPrayerAtMs = MERC_PRAYER_DEFINITION.intervalMs;
   for (const unit of state.units.values()) {
     const factor = activeStatAura(state.statAura, unit.id, state.units)?.cleansingDurationMultiplier;
     if (factor !== undefined) state.units.set(unit.id, shortenCleansingStatuses(unit, 0, factor));
@@ -3479,6 +3505,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     if (winnerOf(state) !== null) break;
     settleAuraPulse(state);
     if (winnerOf(state) !== null) break;
+    settleMercPrayer(state);
     settleGrimWards(state);
     settlePaidSpells(state);
     if (winnerOf(state) !== null) break;

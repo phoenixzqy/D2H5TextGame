@@ -60,7 +60,7 @@
     "act1-rogue-fire": { "name": "Rogue Scout — Fire Arrow", "lore": "Anoints arrows with sacred flame, applying burn to all hit." },
     "act1-rogue-cold": { "name": "Rogue Scout — Cold Arrow", "lore": "Blesses arrows with frost, chilling targets on hit." },
     "act2-blessed-aim": { "name": "Desert Merc — Blessed Aim", "lore": "Aura: +50% attack rating for self and allies." },
-    "act2-prayer": { "name": "Desert Merc — Prayer", "lore": "Aura: regenerates 5% party HP per turn." },
+    "act2-prayer": { "name": "Desert Merc — Prayer", "lore": "While this mercenary lives, living party members recover 5 HP every second, up to maximum life." },
     "act2-defiance": { "name": "Desert Merc — Defiance", "lore": "Passive: while this mercenary lives, living party members gain +30% Defense." },
     "act2-might": { "name": "Desert Merc — Might", "lore": "While alive: +30% increased direct physical damage for self and allies, including summons." },
     "act2-holy-freeze": { "name": "Desert Merc — Holy Freeze", "lore": "While alive: chills all enemies, reducing Attack Speed by 50%, and grants the party +20% increased cold damage." },

@@ -399,6 +399,7 @@
   },
   {
     "id": "aura-prayer",
+    "mercPrayer": { "amount": 5, "intervalMs": 1000 },
     "name": "skills.mercenary.prayer.name",
     "description": "skills.mercenary.prayer.desc",
     "icon": "skills/merc/aura-prayer.png",

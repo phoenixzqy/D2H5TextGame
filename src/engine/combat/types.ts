@@ -173,6 +173,8 @@ export interface CombatUnit {
   readonly mercThornsAura?: true;
   /** Native mercenary factory-owned Defiance presence; wave-local, never persisted. */
   readonly mercDefianceAura?: true;
+  /** Fresh native Prayer source qualification; never persisted. */
+  readonly mercPrayerAura?: true;
   /** Eligible learned Static Field rank captured per wave; explicit zero disables legacy fallback. */
   readonly staticFieldRank?: number;
   /** Eligible personal Energy Shield allocation captured per wave; never persisted. */
