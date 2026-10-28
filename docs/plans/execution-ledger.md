@@ -14499,3 +14499,41 @@ H3 remains terminal failed-no-app; no retry/new browser card. Other open bugs,
 whole-app locales/devices/a11y/performance/PWA, actual CI and human/soak/full-v1
 acceptance remain unresolved. No publication, merge or deployment. Umbrella goal
 and claimed worktree stay active.
+
+## Ordinary material-source accounting — 2026-10-28 UTC
+
+[Measurement evidence](evidence/material-source-accounting.md) adds a test-only
+ordinary-kill source observer and atomic reconciliation journal. Actual TC plus
+independent materials must match per-kill output, raw settlement and actual
+inventory change; first mismatch/nonwin/refusal stops credit. Unknown opening
+stock, signed spending/fusion, unsupported sources and duplicate payouts cannot
+become income. Original calls, result identity, allocator behavior and all RNG
+method traces are preserved.
+
+All 27 new controls and 40 related assertions pass. Unfiltered full68545 passes
+21,222 with the same two existing skips/992files; typecheck88504 and lint50285
+return native0. All five final checks preserve5,346inputs at
+`8b062eaed6309dde96fe7daeb3b80960ec68ead12d4cd140e98e093c6bb3dbe0`.
+The actual constructed playback has eight slain trash and zero material income;
+a separate constructed direct native grant gives +1Ith/+1flawed amethyst with
+source/raw/actual-inventory agreement. Neither supplies earned acquisition or
+active-hour evidence. Journal flags remain constructed-control/highRuneEarned=false/
+activeHourAcceptance=false. Native playback's second early next-wave idle advance
+is not presented as replay/publication-identity proof.
+
+Independent implementation and terminal reviews approve exact source, raw
+validation and evidence. Terminal receipt SHA256:
+`5866a62e552d44f15ed721f48e54300d775120cb352efe2f563b58e7487e5831`. No product, rates, saves, UI,
+configuration or existing tests change. BUG304/180/354/355/356/357/358/359 stay
+Open; skill inventory212bounded/oneunverified is unchanged. Earned high-rune
+source mix/affordability/pacing,14builds×fiveacts, defeat/fresh retry, whole-app
+locales/devices/a11y/performance/PWA, actual CI and human/soak/full-v1 acceptance
+remain open. H3 remains terminal failed-no-app; no retry/new browser card.
+
+Root retains exact raw native logs/results/maps, controls, executed runner and
+independent reviews under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-material-sources-aidf3vkg`
+through unfinished consumers and owns eventual verified cleanup. No build,
+coverage or task-owned server output was created. Both applied scratch drafts were removed after reader release; absence verified,
+cleanup failures[]. Exact receipt and retained inventory stay in the packet. No publication/merge/deployment. Umbrella goal
+and claimed worktree stay active.
