@@ -14626,3 +14626,46 @@ unverified skill inventory, earned economy/affordability/pacing,14builds×fiveac
 whole-app locales/devices/a11y/performance/PWA, actual CI and human/soak/full-v1
 acceptance remain unresolved. H3 remains terminal failed-no-app; no browser retry/
 new card, publication, merge or deployment. Umbrella goal/worktree stay active.
+
+
+## Independent material chance authoring — 2026-10-28 UTC
+
+[Material chance evidence](evidence/material-chance-authoring.md) closes BUG361's
+JSON-authoring gap. Source commit `f6eb6cebb13d9d8dfab5ebb9cba0a0ff05ad854e` moves the exact7 rune/gem
+probability pairs into required closed material-economy JSON/schema and a typed
+loader field. Runtime consumes that field directly, removing both hardcoded
+maps. Schema precedes data. Packaged economy version1 and save version24 stay
+unchanged; no migration, fallback, balance, quantity, pool/cap/weight/profile,
+TC source, wishstone/shard formula, RNG draw order or locale change.
+
+The isolated sim-contracts regression overrides only data, with real validator,
+sampler, RNG and reward code. Every tier covers zero/one, strict thresholds,
+normalized residuals and draw order. Actual Ajv tests cover closed required
+records, malformed/nonfinite/out-of-range values and valid inclusive endpoints.
+Genuine focused RED52899 returns native1:26failed/49passed; unchanged GREEN91343
+returns native0:75passed (41new/34existing). Identical real-loader reward-only
+probe source before/after yields byte-equal1680 complete outputs and following
+RNG, SHA256 `dc155e16e36ea3eb8647c23ff8b70475ecbf70520d90b834e73fbc57e8a053d5`.
+No gameplay, store/save, native experiment or acquisition observation is involved.
+Independent implementation review approves/security pass/no findings, receipt
+SHA256 `99e4a1d98c0b035c687ac721be70a4f73a7bf82414769dbef5eda6d4513b8bd6`.
+
+Final engine24920 passes10,736/401files; unfiltered full97382 passes21,293 with
+same2exactskips/995files. Typecheck96910 and lint68739 return native0. Allfive
+focused/E/U/T/L checks preserve1,874inputs at
+`9b8296d522e384dffd55e4b3e228fa59f1e5a6270e408c9d84ca3373b513f16b`;
+source/historical differences[] and no .once.ts discovery. All14logged fixture
+paths, exact probe and applied draft are absent; owned processes exited,
+cleanup failures[]. Root retains raw outputs/source/logs/reports/maps, reviewed
+plan/reviews and receipts under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-material-chances-9wx3ydph`
+through unfinished consumers and owns eventual verified cleanup. Shared caches
+and claimed worktree are retained; historical69files/spent launcher are unchanged.
+
+This establishes canonical authored probabilities and bounded reward parity,
+not earned high-rune source mix/affordability,30–50 active-hour pacing,14builds×
+fiveacts, fresh progression, browser/save/PWA, actual Node20 CI or human/soak/
+full-v1 acceptance. Other open bugs and212bounded/oneunverified skill inventory
+remain unchanged. H3 remains terminal failed-no-app; no browser retry/new card,
+native preflight/retry/replacement experiment, closed-policy execution, protected
+save read/replay, publication, merge or deployment. Umbrella goal/worktree active.
