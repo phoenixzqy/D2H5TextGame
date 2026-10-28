@@ -75,7 +75,7 @@
     "act4-paladin-initiate": { "name": "圣骑士见习", "lore": "扎卡兰姆的年轻信徒，以信仰之力守护同伴。" },
     "act4-paladin-holy-fire": { "name": "圣骑士 — 神圣之火", "lore": "光环：每回合灼烧所有敌人。" },
     "act5-barbarian-recruit": { "name": "野蛮人新兵", "lore": "亚瑞特山的守护者，以双手剑直面恶魔。" },
-    "act5-barbarian-battle-orders": { "name": "野蛮人 — 战斗命令", "lore": "战斗开始时为全队提升最大生命与法力。" },
+    "act5-barbarian-battle-orders": { "name": "野蛮人 — 战斗命令", "lore": "被动：此佣兵存活时，包括召唤物在内的存活队友获得+30%最大生命与最大法力。提高上限不会治疗或补充资源。" },
     "act5-barbarian-war-cry": { "name": "野蛮人 — 战吼", "lore": "震天战吼造成伤害并晕眩敌方阵线。" },
     "tavern-thief-pickpocket": { "name": "盗贼 — 扒窃", "lore": "酒馆中招募的小偷，从命中目标身上窃取金币。" },
     "tavern-acolyte-priestess": { "name": "见习女祭司", "lore": "酒馆中招募的治疗者，定期恢复友军生命。" }

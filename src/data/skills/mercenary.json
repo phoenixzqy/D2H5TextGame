@@ -434,6 +434,7 @@
   },
   {
     "id": "aura-battle-orders",
+    "mercBattleOrders": { "lifePct": 30, "manaPct": 30 },
     "name": "skills.mercenary.battle-orders.name",
     "description": "skills.mercenary.battle-orders.desc",
     "icon": "skills/merc/aura-battle-orders.png",

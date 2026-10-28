@@ -153,8 +153,7 @@ export const MERC_STUB_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   stub({ id: 'mskill-telekinesis', target: 'single-enemy', cooldown: 2, manaCost: 0, damageType: 'arcane', base: [20, 30] }),
 
   // Remaining aura placeholders; native Holy Freeze and Might register authored passives separately.
-  stub({ id: 'aura-blessed-aim', target: 'self', cooldown: 0, manaCost: 0, buffId: 'blessed_aim' }),
-  stub({ id: 'aura-battle-orders', target: 'self', cooldown: 0, manaCost: 0, buffId: 'battle_orders' })
+  stub({ id: 'aura-blessed-aim', target: 'self', cooldown: 0, manaCost: 0, buffId: 'blessed_aim' })
 ]);
 
 /**

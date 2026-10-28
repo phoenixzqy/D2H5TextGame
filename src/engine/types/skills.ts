@@ -343,6 +343,8 @@ export interface SkillDef {
   readonly mercMight?: { readonly physicalDamagePct: number };
   /** Native Rogue Pierce party critical additions, in percentage points. */
   readonly mercCritical?: { readonly critChancePct: number; readonly critDamagePct: number };
+  /** Authored native party maximum HP/MP additions in percent of personal capacity. */
+  readonly mercBattleOrders?: { readonly lifePct: number; readonly manaPct: number };
   /** Native Iron Wolf Fire Mastery party Fire increase, in percentage points. */
   readonly mercFireMastery?: { readonly fireDamagePct: number };
   /** Native Thorns mercenary’s party physical reflection, in percentage points. */

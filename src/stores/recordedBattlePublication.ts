@@ -81,7 +81,7 @@ export function stageRecordedBattle(
   for (const event of input.events) {
     if (event.kind === 'status-state' && event.initial === true ||
       event.kind === 'message' && event.messageKey === 'combat:bossIntro' && event.simClockMs === 0) continue;
-    if ((event.kind !== 'life-capacity' && event.kind !== 'stats-state') || event.simClockMs !== 0) break;
+    if ((event.kind !== 'life-capacity' && event.kind !== 'mana-capacity' && event.kind !== 'stats-state') || event.simClockMs !== 0) break;
     const teams = applyEventToTeams(playerTeam, enemyTeam, event);
     playerTeam = [...teams.playerTeam]; enemyTeam = [...teams.enemyTeam];
   }

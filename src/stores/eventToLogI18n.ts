@@ -68,6 +68,7 @@ export function eventToLocalizedLogEntry(
   switch (event.kind) {
     case 'stats-state':
     case 'life-capacity':
+    case 'mana-capacity':
     case 'mana':
       return null;
     case 'message':

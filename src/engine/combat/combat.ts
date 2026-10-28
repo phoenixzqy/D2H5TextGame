@@ -62,6 +62,8 @@ import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
 import { isMercHolyFreezeSource, MERC_HOLY_FREEZE_DEFINITION } from '../skills/merc-holy-freeze';
 import { isMercMightSource, MERC_MIGHT_DEFINITION } from '../skills/merc-might';
 import { isMercFireMasterySource, MERC_FIRE_MASTERY_DEFINITION } from '../skills/merc-fire-mastery';
+import { isMercBattleOrdersSource, MERC_BATTLE_ORDERS_DEFINITION } from '../skills/merc-battle-orders';
+import { projectManaCapacity, withoutTemporaryManaCapacity } from './mana-capacity';
 import { isMercCriticalSource, MERC_CRITICAL_DEFINITION } from '../skills/merc-critical';
 import { isMercThornsSource, MERC_THORNS_DEFINITION } from '../skills/merc-thorns';
 import { isMercDefianceSource, MERC_DEFIANCE_DEFINITION } from '../skills/merc-defiance';
@@ -211,9 +213,12 @@ export type BattleEvent =
   | { readonly kind: 'heal'; readonly target: string; readonly amount: number }
   /** Absolute passive/stat observation, including final layered capacity and unchanged resources. */
   | { readonly kind: 'stats-state'; readonly target: string;
-      readonly state: BattleCommandPassiveProfile & Pick<CombatUnit, 'stats' | 'life' | 'mana' | 'vigorLife'> }
+      readonly state: BattleCommandPassiveProfile & Pick<CombatUnit, 'stats' | 'life' | 'mana' | 'vigorLife' | 'manaCapacity' | 'manaRegenCarry' | 'manaRegenCompensation' | 'manaRegenExactCarry'> }
   | { readonly kind: 'life-capacity'; readonly target: string; readonly lifeMax: number; readonly life: number; readonly vigorBaseLifeMax?: number;
       readonly druidFormState?: Pick<CombatUnit, 'druidForm' | 'druidFormLife'> }
+  /** Silent absolute MP capacity and recovery-carry observation. */
+  | { readonly kind: 'mana-capacity'; readonly target: string; readonly manaMax: number;
+      readonly state: Pick<CombatUnit, 'mana' | 'manaCapacity' | 'manaRegenCarry' | 'manaRegenCompensation' | 'manaRegenExactCarry'> }
   | { readonly kind: 'mana'; readonly target: string; readonly mana: number;
       readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' | 'redemption' | 'energy-shield' | 'solar-creeper' | 'mana-burn' | 'find-potion' | 'cobra-strike' }
   | { readonly kind: 'death'; readonly target: string }
@@ -334,11 +339,12 @@ interface State {
   readonly spiritOfBarbs?: SpiritOfBarbsProjection;
   /** Set only when this battle commits the actual passive support summon. Never copied from input. */
   barbsSpiritId?: string;
-  readonly hasTemporaryLife: boolean;
+  readonly hasTemporaryCapacity: boolean;
   /** Factory-marked source IDs captured at registration; live eligibility is checked at use. */
   readonly holyFreezeSources: string[];
   readonly mercMightSources: string[];
   readonly mercCriticalSources: string[];
+  readonly mercBattleOrdersSources: string[];
   readonly mercFireMasterySources: string[];
   readonly mercThornsSources: string[];
   readonly mercDefianceSources: string[];
@@ -463,6 +469,14 @@ function mercThornsSourceId(state: State): string | undefined {
     const source = state.units.get(id);
     return source !== undefined && isMercThornsSource(source);
   });
+}
+
+function hasMercBattleOrders(state: State, unit: CombatUnit): boolean {
+  return unit.side === 'player' && Number.isFinite(unit.life) && alive(unit) &&
+    state.mercBattleOrdersSources.some(id => {
+      const source = state.units.get(id);
+      return source !== undefined && isMercBattleOrdersSource(source);
+    });
 }
 
 function mercCriticalSourceId(state: State): string | undefined {
@@ -751,6 +765,7 @@ function registerUnit(state: State, u: CombatUnit): void {
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
   if (u.mercMightAura === true && !state.mercMightSources.includes(u.id)) state.mercMightSources.push(u.id);
   if (u.mercCritical === true && !state.mercCriticalSources.includes(u.id)) state.mercCriticalSources.push(u.id);
+  if (isMercBattleOrdersSource(u) && !state.mercBattleOrdersSources.includes(u.id)) state.mercBattleOrdersSources.push(u.id);
   if (u.mercFireMastery === true && !state.mercFireMasterySources.includes(u.id)) state.mercFireMasterySources.push(u.id);
   if (u.mercThornsAura === true && !state.mercThornsSources.includes(u.id)) state.mercThornsSources.push(u.id);
   if (u.mercDefianceAura === true && !state.mercDefianceSources.includes(u.id)) state.mercDefianceSources.push(u.id);
@@ -1245,7 +1260,8 @@ function ambientLifeBonuses(state: State, unit: CombatUnit): readonly LifeCapaci
   const vigor = aura?.selectedAuraId === 'paladin.vigor' ? aura.bonuses.lifePct ?? 0 : 0;
   return [
     ...(oakRank ? [{ coefficient: DRUID_ALLY_AURA_DEFINITIONS.oak.lifePerRank, rank: oakRank }] : []),
-    ...(vigor ? [{ coefficient: vigor, rank: 1 }] : [])
+    ...(vigor ? [{ coefficient: vigor, rank: 1 }] : []),
+    ...(hasMercBattleOrders(state, unit) ? [{ coefficient: MERC_BATTLE_ORDERS_DEFINITION.lifePct, rank: 1 }] : [])
   ];
 }
 
@@ -1258,32 +1274,59 @@ function reconcileBattleCommandPassives(state: State): void {
     const boosted = battleCommandBonus(unit, state.simClockMs, state.battleCommands) > 0;
     if (boosted === state.boostedCommandPassives.has(unit.id)) continue;
     const profile = boosted ? profiles.boosted : profiles.baseline;
-    const base = withoutTemporaryLifeCapacity(unit);
-    const next = projectLifeCapacity({ ...base, ...profile, stats: { ...base.stats, ...profile.stats }, life: unit.life,
-      mana: Math.min(unit.mana, profile.stats.manaMax) }, druidFormLifeBonus(base), ambientLifeBonuses(state, unit));
+    const base = withoutTemporaryManaCapacity(withoutTemporaryLifeCapacity(unit));
+    const next = projectManaCapacity(projectLifeCapacity({ ...base, ...profile,
+      stats: { ...base.stats, ...profile.stats }, life: unit.life, mana: unit.mana },
+      druidFormLifeBonus(base), ambientLifeBonuses(state, unit)),
+      hasMercBattleOrders(state, unit) ? MERC_BATTLE_ORDERS_DEFINITION.manaPct : 0);
+    if (next.mana >= next.stats.manaMax) state.manaRecovery.delete(unit.id);
     if (boosted) state.boostedCommandPassives.add(unit.id);
     else state.boostedCommandPassives.delete(unit.id);
     state.units.set(unit.id, next);
     emit(state, { kind: 'stats-state', target: unit.id, state: {
-      ...captureBattleCommandPassiveProfile(next), stats: next.stats, life: next.life, mana: next.mana,
-      ...(next.vigorLife ? { vigorLife: next.vigorLife } : {}) } });
+      ...captureBattleCommandPassiveProfile(next), stats: next.stats, life: next.life,
+      ...(next.vigorLife ? { vigorLife: next.vigorLife } : {}),
+      ...manaCapacityState(next) } });
   }
 }
 
-/** Recompose temporary capacity once; removing it caps absolute HP without healing or damage. */
-function reconcileLifeCapacities(state: State, forceFormIds: readonly string[] = []): void {
-  if (!state.hasTemporaryLife) return;
+/** Copy absolute MP transport without retaining mutable caller-owned capacity metadata. */
+function manaCapacityState(unit: CombatUnit): Pick<CombatUnit,
+  'mana' | 'manaCapacity' | 'manaRegenCarry' | 'manaRegenCompensation' | 'manaRegenExactCarry'> {
+  return { mana: unit.mana,
+    ...(unit.manaCapacity ? { manaCapacity: { ...unit.manaCapacity } } : {}),
+    ...(unit.manaRegenCarry !== undefined ? { manaRegenCarry: unit.manaRegenCarry } : {}),
+    ...(unit.manaRegenCompensation !== undefined ? { manaRegenCompensation: unit.manaRegenCompensation } : {}),
+    ...(unit.manaRegenExactCarry !== undefined ? { manaRegenExactCarry: unit.manaRegenExactCarry } : {}) };
+}
+
+/** Recompose both capacities once; withdrawal clamps absolute resources without healing. */
+function reconcileResourceCapacities(state: State, forceFormIds: readonly string[] = []): void {
+  if (!state.hasTemporaryCapacity) return;
   for (const unit of state.units.values()) {
     const ambient = ambientLifeBonuses(state, unit);
     const druid = forceFormIds.includes(unit.id) || unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined;
-    if (!druid && ambient.length === 0 && unit.vigorLife === undefined) continue;
-    const next = projectLifeCapacity(unit, druidFormLifeBonus(unit), ambient);
+    const lifePending = druid || ambient.length > 0 || unit.vigorLife !== undefined;
+    const orders = hasMercBattleOrders(state, unit);
+    const manaPending = orders || unit.manaCapacity !== undefined;
+    if (!lifePending && !manaPending) continue;
+    const life = lifePending ? projectLifeCapacity(unit, druidFormLifeBonus(unit), ambient) : unit;
+    const next = manaPending ? projectManaCapacity(life, orders ? MERC_BATTLE_ORDERS_DEFINITION.manaPct : 0) : life;
+    if (manaPending && next.mana >= next.stats.manaMax) state.manaRecovery.delete(unit.id);
     state.units.set(unit.id, next);
     if (unit.stats.lifeMax !== next.stats.lifeMax || unit.life !== next.life || forceFormIds.includes(unit.id)) {
       emit(state, { kind: 'life-capacity', target: unit.id, lifeMax: next.stats.lifeMax, life: next.life,
         ...(next.vigorLife ? { vigorBaseLifeMax: next.vigorLife.baseLifeMax } : {}),
         ...(druid ? { druidFormState: { ...(next.druidForm ? { druidForm: next.druidForm } : {}),
           ...(next.druidFormLife ? { druidFormLife: next.druidFormLife } : {}) } } : {}) });
+    }
+    if (unit.stats.manaMax !== next.stats.manaMax || unit.mana !== next.mana ||
+      (unit.manaCapacity !== undefined && next.manaCapacity === undefined) ||
+      unit.manaCapacity?.baseManaMax !== next.manaCapacity?.baseManaMax ||
+      unit.manaCapacity?.appliedManaMax !== next.manaCapacity?.appliedManaMax ||
+      unit.manaRegenCarry !== next.manaRegenCarry || unit.manaRegenCompensation !== next.manaRegenCompensation ||
+      unit.manaRegenExactCarry !== next.manaRegenExactCarry) {
+      emit(state, { kind: 'mana-capacity', target: unit.id, manaMax: next.stats.manaMax, state: manaCapacityState(next) });
     }
   }
 }
@@ -1323,7 +1366,7 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
     observeStatuses(state, u.id);
     emit(state, { kind: 'death', target: u.id });
   }
-  reconcileLifeCapacities(state);
+  reconcileResourceCapacities(state);
   // Derived allied auras disappear from survivors before any death-related recovery.
   if (state.druidAllyAuras !== undefined || state.spiritOfBarbs !== undefined || hadConversions) {
     for (const u of state.units.values()) if (alive(u)) observeStatuses(state, u.id);
@@ -2013,7 +2056,7 @@ function applyEffect(
       }
       if (effect.druidForm !== undefined && matchesDruidForm(skill, effect.druidForm)) {
         state.units.set(actorId, refreshDruidFormState(actor, effect.druidForm));
-        reconcileLifeCapacities(state, [actorId]);
+        reconcileResourceCapacities(state, [actorId]);
         emit(state, { kind: 'buff', target: actorId, buffId: effect.id, statusBacked: true });
         observeStatuses(state, actorId);
         break;
@@ -2201,7 +2244,7 @@ function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: stri
   registerUnit(state, positionedSummon);
   scheduleNextAction(state, positionedSummon);
   state.cooldownExpiresAt.set(positionedSummon.id, new Map());
-  reconcileLifeCapacities(state);
+  reconcileResourceCapacities(state);
   const committed = state.units.get(positionedSummon.id) ?? positionedSummon;
   emit(state, { kind: 'summon', owner: owner.id, summonId: templateId, unit: committed });
   observeStatuses(state, positionedSummon.id);
@@ -3370,12 +3413,13 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     periodicSpellPulses: new Map(),
     conversions: new Map(),
     ...(spiritOfBarbs ? { spiritOfBarbs } : {}),
-    hasTemporaryLife: statAura?.selectedAuraId === 'paladin.vigor' || druidAllyAuras !== undefined ||
-      [...snapshot.playerTeam, ...snapshot.enemyTeam].some(unit => unit.vigorLife !== undefined || unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined),
+    hasTemporaryCapacity: statAura?.selectedAuraId === 'paladin.vigor' || druidAllyAuras !== undefined ||
+      [...snapshot.playerTeam, ...snapshot.enemyTeam].some(unit => unit.mercBattleOrders === true || unit.manaCapacity !== undefined || unit.vigorLife !== undefined || unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined),
     ...(druidAllyAuras ? { druidAllyAuras } : {}),
     holyFreezeSources: [],
     mercMightSources: [],
     mercCriticalSources: [],
+    mercBattleOrdersSources: [],
     mercFireMasterySources: [],
     mercThornsSources: [],
     mercDefianceSources: [],
@@ -3500,7 +3544,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
       .filter(([, remaining]) => Number.isFinite(remaining) && remaining > 0)));
   }
   // Rejected carried paid state still needs an explicit removal observation for playback.
-  reconcileLifeCapacities(state, [...snapshot.playerTeam, ...snapshot.enemyTeam]
+  reconcileResourceCapacities(state, [...snapshot.playerTeam, ...snapshot.enemyTeam]
     .filter(unit => unit.druidForm !== undefined || unit.druidFormLife !== undefined).map(unit => unit.id));
   emitTurnBoundaries(state);
 

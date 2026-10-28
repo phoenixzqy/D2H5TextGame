@@ -94,6 +94,8 @@ import { composeMeditationAura } from '@/engine/skills/meditation';
 import { activeStatAura, composeStatAura } from '@/engine/skills/stat-auras';
 import { activeDruidAllyAuras, composeDruidAllyAuras } from '@/engine/skills/druid-ally-auras';
 import { composeSpiritOfBarbs } from '@/engine/skills/spirit-of-barbs';
+import { isMercBattleOrdersSource } from '@/engine/skills/merc-battle-orders';
+import { withoutTemporaryManaCapacity, settleManaCapacity } from '@/engine/combat/mana-capacity';
 import { withoutTemporaryLifeCapacity } from '@/engine/combat/life-capacity';
 import { composeBarbarianPassives } from '@/engine/skills/barbarian-passives';
 import { composeBoneArmor } from '@/engine/skills/bone-armor';
@@ -1270,13 +1272,15 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const poisonExplosion = currentPlayer?.id === run.playerUnit.id
     ? composePoisonExplosion(currentPlayer) : undefined;
   const refreshedTeam = carryPlayerTeam.map(carried => {
-    const unit = withoutTemporaryLifeCapacity(carried);
+    const unit = withoutTemporaryManaCapacity(withoutTemporaryLifeCapacity(carried));
     if (freshMerc && unit.kind === 'merc' && unit.id === freshMerc.id) {
       // Equipment is authoritative at this wave boundary; current recording and
       // carried HP/MP remain untouched. Never project the bearer bonus onto summons.
-      return refreshPeriodicSpells({ ...unit, level: freshMerc.level, stats: freshMerc.stats,
+      const { mercBattleOrders: _previousOrders, ...current } = unit;
+      return refreshPeriodicSpells({ ...current, level: freshMerc.level, stats: freshMerc.stats,
+        ...(freshMerc.mercBattleOrders ? { mercBattleOrders: freshMerc.mercBattleOrders } : {}),
         life: unit.life,
-        mana: Math.min(unit.mana, freshMerc.stats.manaMax),
+        mana: unit.mana,
         manaRegenPerSecond: freshMerc.manaRegenPerSecond ?? 0,
         manaRegenBaselinePerSecond: freshMerc.manaRegenBaselinePerSecond ?? 0,
         increasedDamagePct: freshMerc.increasedDamagePct ?? {},
@@ -1286,8 +1290,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
         equippedWeapon: freshMerc.equippedWeapon ?? {} });
     }
     if (!fresh || unit.id !== fresh.id) return unit;
-    const mana = Math.min(unit.mana, fresh.stats.manaMax);
-    const capped = mana >= fresh.stats.manaMax;
+    const mana = unit.mana;
     const { battleCommandPassives: _oldCommandPassives, ...current } = unit;
     const refreshed = refreshPeriodicSpells(refreshColdArmorState(refreshHolyShieldState(refreshCycloneArmorState(refreshDruidFormState({ ...current, level: fresh.level, stats: fresh.stats,
       ...(fresh.battleCommandPassives ? { battleCommandPassives: fresh.battleCommandPassives } : {}),
@@ -1343,9 +1346,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       ...((unit.bloodGolemRank !== undefined || fresh.bloodGolemRank !== undefined)
         ? { bloodGolemRank: fresh.bloodGolemRank ?? 0 } : {}),
       physicalReflectionPct: fresh.physicalReflectionPct ?? 0,
-      manaRegenCarry: capped ? 0 : unit.manaRegenCarry ?? 0,
-      manaRegenCompensation: capped ? 0 : unit.manaRegenCompensation ?? 0,
-      ...(capped ? { manaRegenExactCarry: '0' } : {}),
+      manaRegenCarry: unit.manaRegenCarry ?? 0,
+      manaRegenCompensation: unit.manaRegenCompensation ?? 0,
       skillOrder: allowIron ? fresh.skillOrder : fresh.skillOrder.filter(id => !isIronGolemSkill({ id })),
       skillLevels: fresh.skillLevels ?? {},
       governedActiveRanks: fresh.governedActiveRanks,
@@ -1364,13 +1366,17 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   // units still clamp against fresh equipment when no temporary layer is pending.
   const party = new Map([...refreshedTeam, ...enemies].map(unit => [unit.id, unit]));
   const battleCommandCarry = nativeBattleCommandCarry(carryPlayerTeam);
+  const ordersPresent = refreshedTeam.some(isMercBattleOrdersSource);
   const playerTeam = refreshedTeam.map(unit => {
+    const orders = ordersPresent && unit.side === 'player' && Number.isFinite(unit.life) && unit.life > 0;
+    const commandPending = Boolean(unit.battleCommandPassives && hasBattleCommandCarry(battleCommandCarry, unit));
     const oakRank = activeDruidAllyAuras(druidAllyAuras, unit, party)?.oakRank ?? 0;
     const aura = activeStatAura(statAura, unit.id, party);
-    const pending = Boolean(unit.battleCommandPassives && hasBattleCommandCarry(battleCommandCarry, unit)) ||
+    const pending = orders || commandPending ||
       oakRank > 0 || aura?.selectedAuraId === 'paladin.vigor' ||
       unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined;
-    return pending ? unit : { ...unit, life: Math.min(unit.life, unit.stats.lifeMax) };
+    const life = pending ? unit : { ...unit, life: Math.min(unit.life, unit.stats.lifeMax) };
+    return orders || commandPending ? life : settleManaCapacity(life);
   });
 
   // Qualification comes from the filtered Player configuration, independently of

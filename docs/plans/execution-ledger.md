@@ -15049,3 +15049,62 @@ time. H3 remains terminal failed-no-app; no browser/app, acquisition/lineage or
 replacement experiment, protected fixture/closed-policy read/replay, push/merge/
 deployment occurs. Goal/worktree stay active; future native Battle Orders still
 requires fresh design/readiness review and HP/MP lifecycle/replay handling.
+
+
+## 2026-10-28 — Native mercenary Battle Orders capacity / BUG-369
+
+Restore the existing gacha-spec party +30% maximum HP/MP promise with closed JSON
+tuning, immutable true-passive registration and fresh canonical source authority.
+Living original player-party hero/source/other mercs/late summons qualify once;
+duplicates do not stack and source death/removal withdraws before death effects.
+HP contributions compose independently over the common fresh personal base.
+Verified transient MP layers preserve absolute resources until final composition,
+then clamp once and reset exported/internal recovery carry at the final cap.
+Paid Command, wave refresh, absolute playback and initial publication carry the
+complete capacity decision. Both locales describe capacity without refill.
+Personal player Orders, save/base stats, acquisition, Bash and replay inputs stay
+unchanged.
+
+Actual primary RED fails both independent numeric capacity assertions while
+controls pass; unchanged original GREEN passes2. Original frozen primary SHA
+1dbaf7c5 remains historical RED/GREEN evidence. Preserved fixture diagnoses cover
+Poison death spread, Lycanthropy, surviving Command opponent and observing the
+actual first paid cycle; unused maxRounds does not bound runtime. Two added
+malformed-MP playback regressions fail before the reviewed event correction and
+pass unchanged afterward. The real fractional-integral regression earns carry,
+withdraws at1004ms, spends at the same clock and first recovers at5020ms.
+
+Initial typecheck exits2 with11diagnostics on unchanged121f714a inputs. Five exact
+source copies remain retained. Reviewed correction removes duplicate same-value
+mana and fixes strict optional absence/narrowing without widening production
+types, suppressions or changed numeric oracles. The typed primary successor
+f7988097 only omits the absent signature key instead of assigning undefined;
+original artifacts are preserved and no corrected-source RED is claimed.
+
+All final checks share2062 unchanged inputs at
+`385990358c9bfe258ff7eab244c7ae25772573b2082c1c59234afe8c25b3f258`:
+primary2; focused279/16files; engine11143/416files; full21730/1020files plus the
+same2skips; typecheck; scoped and full zero-warning lint/engine purity; external
+production build. All exit0. Exactly6newfiles72cases; existing full inventory
+preserved after only two runtime Date-label substitutions in unchanged tests.
+Build retains predecessor chunk/precache warnings. No deadline/configuration/
+dependency/worker/isolation/environment change, timeout-cause fix or speedup claim.
+
+[Native evidence](evidence/merc-battle-orders.md) records the source, primary
+lineage, causal failures and results. Independent source/correction/inventory
+reviews pass. The separate final-review/source-blob/checkpoint-binding records
+govern final evidence approval and the actual local tree/all2062input blobs.
+Disposable build762files/42278432bytes/10directories removed, absence verified;
+all41recordedPIDs and remaining task-CWD processes absent. No intervention or
+cleanup failure. Root retains the exact BattleOrders packet through unfinished
+consumers and owns eventual cleanup.
+
+BUG369 remains Open for browser/earned/feature acceptance; BUG180/366 timeout
+causes and BUG365 acceptance remain Open. Player-skill inventory remains
+212bounded/oneunverified. Earned campaign/economy/build/high-rune affordability,
+pacing/defeat-retry, devices/locales/a11y, performance/PWA, actual CI/human/soak/
+full-v1 acceptance remain unresolved. The30–50hours target describes active player
+campaign length, not native test execution. H3 remains terminal failed-no-app;
+no browser/app retry or new acquisition/lineage/gameplay replacement experiment.
+Protected retained-final fixture not read/modified/replayed; closed production
+policy not imported/executed. No push/merge/deployment. Goal/worktree stay active.

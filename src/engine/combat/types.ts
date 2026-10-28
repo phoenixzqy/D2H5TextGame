@@ -163,7 +163,7 @@ export interface CombatUnit {
   readonly druidFormLife?: { readonly baseLifeMax: number; readonly appliedLifeMax: number };
   /** Factory-copied literal authored undead identity; names/IDs never grant this marker. */
   readonly undead?: true;
-  /** Transient combined ambient (Vigor/Oak) capacity wrapping paid form capacity; never persisted. */
+  /** Transient combined ambient (Vigor/Oak/Orders) capacity wrapping paid form capacity; never persisted. */
   readonly vigorLife?: { readonly baseLifeMax: number; readonly appliedLifeMax: number };
   /** Native mercenary factory-owned Holy Freeze presence; wave-local, never persisted. */
   readonly holyFreezeAura?: true;
@@ -171,6 +171,10 @@ export interface CombatUnit {
   readonly mercMightAura?: true;
   /** Fresh canonical Rogue Pierce critical support; wave-local, never persisted. */
   readonly mercCritical?: true;
+  /** Fresh canonical mercenary Battle Orders source; wave-local, never persisted. */
+  readonly mercBattleOrders?: true;
+  /** Verified transient MP baseline, removed before fresh personal stat projection. */
+  readonly manaCapacity?: { readonly baseManaMax: number; readonly appliedManaMax: number };
   /** Fresh canonical Iron Wolf Fire Mastery source; wave-local, never persisted. */
   readonly mercFireMastery?: true;
   /** Native mercenary factory-owned Thorns presence; wave-local, never persisted. */

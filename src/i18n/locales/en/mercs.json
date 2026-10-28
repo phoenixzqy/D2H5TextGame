@@ -75,7 +75,7 @@
     "act4-paladin-initiate": { "name": "Paladin Initiate", "lore": "A young Zakarum acolyte channeling faith to shield allies." },
     "act4-paladin-holy-fire": { "name": "Paladin — Holy Fire", "lore": "Aura: burns all enemies each turn." },
     "act5-barbarian-recruit": { "name": "Barbarian Recruit", "lore": "A guardian of Mount Arreat, facing demons with a two-handed sword." },
-    "act5-barbarian-battle-orders": { "name": "Barbarian — Battle Orders", "lore": "Boosts the party's max HP and mana at the start of combat." },
+    "act5-barbarian-battle-orders": { "name": "Barbarian — Battle Orders", "lore": "Passive: while this mercenary lives, living allies including summons gain +30% maximum HP and MP. Increasing capacity does not heal or refill resources." },
     "act5-barbarian-war-cry": { "name": "Barbarian — War Cry", "lore": "A thunderous shout that damages and stuns the enemy line." },
     "tavern-thief-pickpocket": { "name": "Thief — Pickpocket", "lore": "A tavern recruit who steals gold from struck targets." },
     "tavern-acolyte-priestess": { "name": "Acolyte Priestess", "lore": "A tavern healer who restores allies' HP each turn." }

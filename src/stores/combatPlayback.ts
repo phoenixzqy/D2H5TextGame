@@ -117,7 +117,8 @@ export function applyEventToTeams(
   switch (ev.kind) {
     case 'stats-state': {
       teams = patchUnit(teams, ev.target, (unit) => {
-        const { vigorLife: _previous, ...base } = unit;
+        const { vigorLife: _previous, manaCapacity: _mana, manaRegenCarry: _carry,
+          manaRegenCompensation: _compensation, manaRegenExactCarry: _exact, ...base } = unit;
         return { ...base, ...ev.state };
       });
       break;
@@ -130,6 +131,14 @@ export function applyEventToTeams(
           stats: { ...base.stats, lifeMax: ev.lifeMax }, life: ev.life,
           ...(ev.vigorBaseLifeMax !== undefined
             ? { vigorLife: { baseLifeMax: ev.vigorBaseLifeMax, appliedLifeMax: ev.lifeMax } } : {}) };
+      });
+      break;
+    }
+    case 'mana-capacity': {
+      teams = patchUnit(teams, ev.target, unit => {
+        const { manaCapacity: _mana, manaRegenCarry: _carry, manaRegenCompensation: _compensation,
+          manaRegenExactCarry: _exact, ...base } = unit;
+        return { ...base, stats: { ...base.stats, manaMax: ev.manaMax }, ...ev.state };
       });
       break;
     }

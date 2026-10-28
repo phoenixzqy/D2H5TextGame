@@ -1507,7 +1507,7 @@
     },
     "battle-orders": {
       "name": "Battle Orders",
-      "desc": "A barbarian war shout that boosts ally life and mana."
+      "desc": "Passive: while this mercenary lives, living allies including summons gain +30% maximum HP and MP. Increasing capacity does not heal or refill resources."
     },
     "fire-mastery": {
       "name": "Fire Mastery",
