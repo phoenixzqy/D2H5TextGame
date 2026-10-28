@@ -155,7 +155,6 @@ export const MERC_STUB_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   // Remaining aura placeholders; native Holy Freeze and Might register authored passives separately.
   stub({ id: 'aura-prayer', target: 'self', cooldown: 0, manaCost: 0, buffId: 'prayer' }),
   stub({ id: 'aura-blessed-aim', target: 'self', cooldown: 0, manaCost: 0, buffId: 'blessed_aim' }),
-  stub({ id: 'aura-defiance', target: 'self', cooldown: 0, manaCost: 0, buffId: 'defiance' }),
   stub({ id: 'aura-battle-orders', target: 'self', cooldown: 0, manaCost: 0, buffId: 'battle_orders' })
 ]);
 

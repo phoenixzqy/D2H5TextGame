@@ -1503,7 +1503,7 @@
     },
     "defiance": {
       "name": "Defiance Aura",
-      "desc": "Increases the defense of nearby allies."
+      "desc": "Passive: while this mercenary lives, living party members gain +30% Defense."
     },
     "battle-orders": {
       "name": "Battle Orders",

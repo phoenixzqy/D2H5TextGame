@@ -62,6 +62,7 @@ import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
 import { isMercHolyFreezeSource, MERC_HOLY_FREEZE_DEFINITION } from '../skills/merc-holy-freeze';
 import { isMercMightSource, MERC_MIGHT_DEFINITION } from '../skills/merc-might';
 import { isMercThornsSource, MERC_THORNS_DEFINITION } from '../skills/merc-thorns';
+import { isMercDefianceSource, MERC_DEFIANCE_DEFINITION } from '../skills/merc-defiance';
 import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { activeMightAura, type MightAuraProjection } from '../skills/might';
 import { activeMeditationAura, type MeditationAuraProjection } from '../skills/meditation';
@@ -335,6 +336,7 @@ interface State {
   readonly holyFreezeSources: string[];
   readonly mercMightSources: string[];
   readonly mercThornsSources: string[];
+  readonly mercDefianceSources: string[];
   readonly difficulty: ReplayProfileId;
   /** Valid copied player authority and FIFO primary enemy-monster death IDs; wave-local only. */
   readonly corpseExplosion: Map<string, number>;
@@ -432,6 +434,13 @@ function sameStatusView(previous: readonly ActiveStatus[], next: readonly Active
       }
       return Object.is(a[key], b[key]);
     });
+  });
+}
+
+function mercDefianceSourceId(state: State): string | undefined {
+  return state.mercDefianceSources.find(id => {
+    const source = state.units.get(id);
+    return source !== undefined && isMercDefianceSource(source);
   });
 }
 
@@ -714,6 +723,7 @@ function registerUnit(state: State, u: CombatUnit): void {
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
   if (u.mercMightAura === true && !state.mercMightSources.includes(u.id)) state.mercMightSources.push(u.id);
   if (u.mercThornsAura === true && !state.mercThornsSources.includes(u.id)) state.mercThornsSources.push(u.id);
+  if (u.mercDefianceAura === true && !state.mercDefianceSources.includes(u.id)) state.mercDefianceSources.push(u.id);
   if (!state.insertionIdx.has(u.id)) {
     state.insertionIdx.set(u.id, state.insertionCounter++);
     state.tiePriority.set(u.id, state.tieRng.next());
@@ -798,7 +808,9 @@ function buildDamageInput(
   const innerSightFactor = 1 - innerSightReduction / 100;
   const barbsDefense = defender.kind === 'summon'
     ? (activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, defender, state.units)?.rank ?? 0) * SPIRIT_OF_BARBS_DEFINITION.summonDefensePerRank : 0;
-  const armorBonus = (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + coldArmorBonuses(defender).defense + barbsDefense + holyShieldDefense(defender) + (defendingCloak?.defensePct ?? 0) + (activeConcentrate(defender, state.simClockMs)?.defensePct ?? 0);
+  const nativeDefiance = defender.side === 'player' && alive(defender) && mercDefianceSourceId(state) !== undefined
+    ? MERC_DEFIANCE_DEFINITION.defensePct : 0;
+  const armorBonus = nativeDefiance + (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + coldArmorBonuses(defender).defense + barbsDefense + holyShieldDefense(defender) + (defendingCloak?.defensePct ?? 0) + (activeConcentrate(defender, state.simClockMs)?.defensePct ?? 0);
   return {
     baseMin,
     baseMax,
@@ -3316,6 +3328,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     holyFreezeSources: [],
     mercMightSources: [],
     mercThornsSources: [],
+    mercDefianceSources: [],
     ...(statAura ? { statAura } : {}),
     ...(auraIntervalMs !== undefined ? { nextAuraPulseAtMs: auraIntervalMs } : {}),
     ...(assassinVenom ? { assassinVenom } : {}),

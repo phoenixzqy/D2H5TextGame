@@ -343,6 +343,8 @@ export interface SkillDef {
   readonly mercMight?: { readonly physicalDamagePct: number };
   /** Native Thorns mercenary’s party physical reflection, in percentage points. */
   readonly mercThorns?: { readonly physicalReflectionPct: number };
+  /** Native Defiance mercenary’s additive party Defense, in percentage points. */
+  readonly mercDefiance?: { readonly defensePct: number };
   /** JSON-owned enemy resistance reduction in percentage points; exact player Conviction only. */
   readonly conviction?: { readonly enemyResistReductionPct: number };
   readonly id: string;

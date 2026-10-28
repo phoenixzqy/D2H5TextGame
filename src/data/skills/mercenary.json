@@ -421,6 +421,7 @@
   },
   {
     "id": "aura-defiance",
+    "mercDefiance": { "defensePct": 30 },
     "name": "skills.mercenary.defiance.name",
     "description": "skills.mercenary.defiance.desc",
     "icon": "skills/merc/aura-defiance.png",

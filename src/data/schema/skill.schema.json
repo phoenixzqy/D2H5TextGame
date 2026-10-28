@@ -3873,6 +3873,23 @@
       },
       "else": { "properties": { "mercThorns": false } }
     }, {
+      "if": { "properties": { "id": { "const": "aura-defiance" } }, "required": ["id"] },
+      "then": {
+        "required": ["mercDefiance"],
+        "properties": {
+          "mercDefiance": { "$ref": "#/properties/mercDefiance" },
+          "trigger": { "const": "passive" }, "target": { "const": "all-allies" },
+          "cooldown": { "const": 0 },
+          "cost": false, "damage": false, "damageType": false, "attackDamagePct": false,
+          "statusEffect": false, "additionalStatusEffects": false, "scaling": false,
+          "heal": false, "summonId": false, "monsterSummon": false, "summonBasicAttackElements": false,
+          "aoeShape": false, "requires": false, "passive": false, "aura": false,
+          "summon": false, "synergies": false, "prerequisites": false,
+          "appliesStatus": false, "appliesTags": false
+        }
+      },
+      "else": { "properties": { "mercDefiance": false } }
+    }, {
       "if": {
         "properties": {
           "id": {
@@ -6475,6 +6492,15 @@
       "required": ["physicalReflectionPct"],
       "properties": {
         "physicalReflectionPct": { "type": "number", "minimum": 0, "description": "Actual physical HP lost reflected in percentage points while the native mercenary and recipient live, before attacker mitigation." }
+      }
+    },
+    "mercDefiance": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Native Defiance mercenary's additive party Defense in percentage points.",
+      "required": ["defensePct"],
+      "properties": {
+        "defensePct": { "type": "number", "minimum": 0, "description": "Additive combat Defense in percentage points while the native mercenary and recipient live." }
       }
     },
     "holyFreeze": {
