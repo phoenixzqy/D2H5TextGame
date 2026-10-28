@@ -1,6 +1,6 @@
 # BUG-364 — Apply the native Defiance mercenary’s party Defense
 
-Status: Open — bounded native repair in progress; browser/earned acceptance pending.
+Status: Fixed — bounded native factory/combat defect; browser/earned acceptance pending.
 Severity: High — a recruitable mercenary’s signature support effect does nothing.
 Build: 2877f35b83ebb1e182c6e86c7bce096ca79ecddb.
 Environment: Node 24.21.0 / npm 11.19.0, Vitest UI/jsdom; seed 7, constructed bounded combat snapshot.
@@ -39,3 +39,15 @@ Producer plan ready/security-pass/findings[], readers released. Packet
 Passive presence adds no action/payment/RNG draw; removing obsolete casts allows
 Jab sooner. Browser/earned acceptance remains pending. No acquisition experiment,
 closed policy, protected fixture or terminated H3 retry is part of this repair.
+
+## Resolution
+
+Source commit `7a0dc92ba2c493e9f69745b44caf02f30734f1ed` implements the bounded contract. The unchanged
+three-case real-factory regression passes, with18 authored/37 combat controls.
+Final focused147/8files, engine10,896/407files and full21,462passed +two existing
+skips/1,004files pass; typecheck, zero-warning lint/purity and external build pass.
+All final checks preserve the same2,041 input contents, bound to the source commit.
+Retained fixture/typecheck/lint failures and their local test-only corrections are
+explained in [Defiance evidence](../../docs/plans/evidence/merc-defiance.md).
+Final independent review: approve / security-pass / bounded evidence ADEQUATE; findings empty, readers released; receipt SHA256
+`604d8a1baf0d42578ec52c85e041b8252a4de0b388f01fe9640628eadfe28fff`. Browser/earned recruitment remains pending.

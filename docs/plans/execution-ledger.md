@@ -14776,3 +14776,60 @@ Producer recommends native mercenary Defiance next: GDD +30% party Defense,
 reachable inert signature, recruitment copy75%. Recommendation only; no next-card
 implementation/acceptance or gameplay experiment is started. Packet `next-card.json`
 SHA256 `50414c8db0929ca7bc2ea09baa58faa4dd09e8cfe18081945c13b16c85b9e83d`.
+
+
+## 2026-10-28 — Native mercenary Defiance (BUG-364)
+
+Implemented the GDD's +30% party Defense in source
+`7a0dc92ba2c493e9f69745b44caf02f30734f1ed`, replacing the native inert self-buff. Closed
+schema-first tuning, immutable resolution, fresh canonical factory marker and
+battle-local living-source checks supply one additive shared Defense contribution
+to the living player party, including source/other mercs/late summons. Duplicate
+native sources do not multiply; selected Paladin/paid armor/Exile self-equipment,
+reductions, mitigation mapping, bypass/minimum-one and periodic settlement retain
+their ordinary paths. No base-stat/save mutation. Native presence adds no action,
+payment or RNG draw; removing the obsolete cast intentionally allows Jab sooner.
+Both recruitment/skill locale surfaces now state30% instead of75%/vague text.
+
+Unchanged real-factory seed7 primary RED fails3 (100HP loss instead of70, missing
+marker, inaccurate copy); GREEN passes3, SHA256
+`a45e80927fccf082db00fab1adf062506b7e49a88b3e69c87e5d580a2d43d7eb`.
+Authored18/combat37 controls pass. The first reduction fixture omitted Rogue25%
+and Melt's physical1.25 combo; only the new fixture is corrected. Two native
+typechecks catch boolean/explicit-undefined optional-property mistakes in the new
+test helper; final helper conditionally emits literal true. First lint catches a
+newline before it.each invocation; whitespace alone fixes it. Production/primary
+and all assertions remain unchanged for helper/lint corrections. Failed raw
+attempts, test copies and diagnoses remain retained; required checks repeat.
+
+Final focused147/8files, engine10,896/407files, full21,462passed +two unchanged
+existing skips/1,004files, typecheck, zero-warning lint/purity and external build
+all return native0. Allsix preserve2,041 inputs at
+`3dd9516a99976d3f40bca602021669ca653d4e0798ff40ce821d2bd6b53a68cd`, matching
+committed contents. Counts use individual assertion statuses; no .once.ts entry
+is discovered. Plan/source/helper reviews approve/security-pass/findings[],
+readers released. Final independent review: approve / security-pass / bounded evidence ADEQUATE; findings empty, readers released; receipt
+`final-review.json` SHA256 `604d8a1baf0d42578ec52c85e041b8252a4de0b388f01fe9640628eadfe28fff`.
+
+Root retains exact logs/reports/maps/driver/reviews, source binding and next-card
+plan at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-defiance-t1ypwetq`
+through unfinished umbrella consumers and owns eventual verified cleanup.
+Disposable build762files/42,264,787bytes and applied drafts/scratch removed,
+absence verified; recorded owned command/driver/queue PIDs absent, failures[].
+Observed checks exceed documented loop budgets; no limits/config/dependencies/
+timeouts change. Build warns on chunks/Browserslist/2.57MB manifest precache;
+actual Node20 CI/performance/PWA acceptance remains pending. See
+[Defiance evidence](evidence/merc-defiance.md) for native durations and scope.
+
+BUG364's bounded native defect is fixed. Browser/earned recruitment/builds,
+high-rune mix/affordability/pacing,14builds×fiveacts, defeat/retry, whole-app
+locales/devices/a11y, performance/PWA, actual CI/human/soak and full-v1 gates remain
+unresolved. Other bugs and212bounded/oneunverified player-skill inventory are
+unchanged. H3 remains terminal failed-no-app; no app/browser, new acquisition/
+lineage or replacement experiment, closed policy/protected fixture read/replay,
+publication/push/merge/deployment occurs. Goal/worktree stay active.
+
+Next ready plan is native Prayer, authored flat5HP/s and independent timer/shared
+capped-heal settlement; next-prayer-plan-review.json ready/security-pass/findings[],
+SHA256 `cb018177cf0791ded53c511bc9e4df04ab4d0043bb0a344589203dcc8f27f4a3`.
+This is a reviewed future plan; no Prayer implementation/reproduction has begun.
