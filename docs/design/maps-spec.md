@@ -205,6 +205,13 @@ For boss wave: spawn boss + 0–2 boss minions per `monster-spec.md`.
 
 ## 11. Difficulty Tiers (post-campaign)
 
+Current implementation authority: the ratified
+[Hell contract](hell-replay-contract.md) / [ADR-013](../decisions/ADR-013-source-backed-hell-replay.md)
+uses offsets0/20/40 and actual claimed-Eve source authority. It supersedes the
+historical table's independent HP/damage/resistance/immune/TC bonuses below;
+the GDD level-only rule governs. Hero cap90 remains. Hell runtime acceptance
+is outstanding.
+
 After clearing Baal (Normal), unlock:
 
 | Difficulty | mLvl Offset | mob HP/Dmg Multiplier | Resists | Drop Bonus |

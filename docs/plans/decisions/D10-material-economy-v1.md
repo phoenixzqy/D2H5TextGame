@@ -8,6 +8,14 @@ runtime, earned affordability, balance, browser or campaign acceptance. Root
 owns implementation. Both slices preserve the whole P12b scope. ADR-009
 specifies the persistent ownership boundary.
 
+High-rune/fusion source extension, 2026-10-27: the ratified
+[Hell contract](../../design/hell-replay-contract.md) connects actual Hell
+replay to the existing selected-difficulty sampler/fusion gates without
+changing caps, quantities or rates. [ADR-013](../../decisions/ADR-013-source-backed-hell-replay.md)
+and the [D08 envelope](D08-hell-equipment-affix-envelope-v1.md) define its save/
+level boundaries. H0 review is complete; runtime implementation and full-P12b
+earned acquisition/affordability acceptance remain outstanding.
+
 ## Controlling intent and observed gaps
 
 `Diablo2TextGame.md` sections 5/8 (lines150–154 and207–213) require earned

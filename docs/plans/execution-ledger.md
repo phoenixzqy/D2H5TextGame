@@ -14227,3 +14227,36 @@ through independent/fullv1 consumers, then owns removal. ArchiveSHA
 9db888e6d9e9ac5d5637dfd79ce2f5688850bd9c370ecd0a0c63bee8615c4f61.
 No C2 idle/persistence/conservation/pacing/balance acceptance is established.
 The full objective and registered umbrella worktree claim remain active/local.
+
+## D03/D08/D10 Hell contract — 2026-10-27
+
+BUG355 was filed before repair: seven rune identities have no native source,
+and the missing live Hell profile also blocks eleven required fusion outputs.
+The ratified [Hell contract](../design/hell-replay-contract.md),
+[ADR-013](../decisions/ADR-013-source-backed-hell-replay.md),
+[D08 envelope](decisions/D08-hell-equipment-affix-envelope-v1.md) and
+[implementation cards](hell-replay-implementation.md) repair that shared cause.
+Hell derives access from actual full-graph claimed Eve, uses +40 level-only
+projection and separate native24 history, and preserves literal23 authority.
+No cache-only workaround, Nightmare-Baal gate, new reward receipt or existing
+cap/rate increase is authorized.
+
+Design-contract and producer technical/plan exact-body reviews APPROVE;
+security PASS, plan ready and readers released. Source/data analysis covers
+all 29 areas: Normal max82→Hell122, 109 top equipment-band fields across 15
+tables and 16 final affix tiers need extension; all 84 affixable bases remain
+covered. Goblin Hell49/66/93 stays within unchanged99. Runtime planner and
+causal boundary checks still belong to H2; no gameplay ran.
+
+[Review/retention evidence](evidence/hell-replay-contract-review.md) binds
+the proposed-body hashes and all 16 source/data inputs. Archive5members
+readback/byte verified; exactly5rawfiles/1directory removed, rawroot absent,
+remaining[]/failures[]. Root retains archive and three sidecars through
+implementation/independent/full-v1 consumers, then owns removal. ArchiveSHA
+2d31be150a200bd7f06b96cb3161e827b49bb153e35b9e1215fc35b6bf4c11a2.
+
+This checkpoint is documentation only; runtime/tests/schema/data/UI remain
+unchanged. H0 complete; H1 literal23 preservation is next. BUG355 stays open,
+browser prerequisites remain unresolved and Cobra policy awaits an actual
+user answer. Earned quantities/pacing/builds/economy and remaining full-v1 gates
+are still incomplete. The objective and umbrella worktree claim stay active.

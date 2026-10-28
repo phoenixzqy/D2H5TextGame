@@ -5,6 +5,13 @@ game-design, narrative and technical contract owner (`/root/design_contracts`).
 Implementation, balance certification and QA acceptance are separate. This
 document records decisions; it does not claim runtime behavior already exists.
 
+Replay boundary extension, 2026-10-27: the ratified
+[Hell contract](hell-replay-contract.md) and
+[ADR-013](../decisions/ADR-013-source-backed-hell-replay.md) add source-backed
+Hell+40 for full-v1 D03/D10. The Normal/Nightmare slice and historical reward
+records below remain preserved; its earlier two-profile scope does not cancel
+the new contract. Hell implementation/acceptance is still outstanding.
+
 ## Summary
 
 Deliver the five existing Act V main quests with actual source-bound actions,

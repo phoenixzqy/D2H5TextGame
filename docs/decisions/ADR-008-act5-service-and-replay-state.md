@@ -6,6 +6,11 @@ Accepted technical implementation contract, 2026-10-23.
 `TD-ARCH-REVIEW: APPROVE` by assigned `/root/design_contracts` owner. This is
 data-shape and source-authority sign-off, not runtime or full P18 acceptance.
 
+Current replay extension: [ADR-013](ADR-013-source-backed-hell-replay.md)
+ratifies source-backed Hell+40 and separate native24 history. Historical
+Normal/Nightmare fields and source ownership in this ADR stay frozen. The
+extension is an implementation contract, not completed runtime acceptance.
+
 ## Context
 
 The [Act V contract](../design/compact-act5-contract.md) requires usable socket,
