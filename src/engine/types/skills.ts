@@ -341,6 +341,8 @@ export interface SkillDef {
   readonly holyFreeze?: { readonly coldDamagePct: number };
   /** Native Might mercenary's party physical increase, in percentage points. */
   readonly mercMight?: { readonly physicalDamagePct: number };
+  /** Mercenary Jab-only direct physical increase, in percentage points. */
+  readonly mercJab?: { readonly physicalDamagePct: number };
   /** Native Rogue Pierce party critical additions, in percentage points. */
   readonly mercCritical?: { readonly critChancePct: number; readonly critDamagePct: number };
   /** Authored native party maximum HP/MP additions in percent of personal capacity. */

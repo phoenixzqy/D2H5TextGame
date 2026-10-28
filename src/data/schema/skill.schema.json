@@ -1647,7 +1647,7 @@
     },
     {
       "if": { "required": ["hitSequence"], "properties": { "hitSequence": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw", "skills-barbarian-double-swing", "skills-barbarian-double-throw", "skills-barbarian-frenzy", "skills-amazon-strafe"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "mskill-jab", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw", "skills-barbarian-double-swing", "skills-barbarian-double-throw", "skills-barbarian-frenzy", "skills-amazon-strafe"] } } }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-double-throw" } } },
@@ -3822,6 +3822,26 @@
       ]
     }
   }, {
+      "if": { "properties": { "id": { "const": "mskill-jab" } }, "required": ["id"] },
+      "then": {
+        "required": ["mercJab", "damage", "damageType", "attackDamagePct", "hitSequence", "cost"],
+        "properties": {
+          "mercJab": { "$ref": "#/properties/mercJab" },
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "cooldown": { "const": 1 }, "minLevel": { "const": 1 }, "maxLevel": { "const": 20 },
+          "damageType": { "const": "physical" }, "hitSequence": { "const": { "strikes": 3 } },
+          "cost": { "const": { "mana": 0 } },
+          "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false,
+          "scaling": false, "heal": false, "summonId": false, "monsterSummon": false,
+          "summonBasicAttackElements": false, "aoeShape": false, "maxTargets": false,
+          "requires": false, "passive": false, "aura": false, "summon": false,
+          "alwaysHits": false, "ignoresDefense": false, "ignoresMagicResist": false,
+          "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false,
+          "onHitBolts": false, "damageComposition": false, "timedBuff": false
+        }
+      },
+      "else": { "properties": { "mercJab": false } }
+    }, {
       "if": { "properties": { "id": { "const": "aura-holy-freeze" } }, "required": ["id"] },
       "then": {
         "required": ["holyFreeze", "appliesStatus", "appliesTags"],
@@ -4124,7 +4144,8 @@
         "id": {
           "enum": [
             "mskill-basic-arrow",
-            "mskill-pierce-arrow"
+            "mskill-pierce-arrow",
+            "mskill-jab"
           ]
         }
       },
@@ -6435,7 +6456,7 @@
     },
     "attackDamagePct": {
       "type": "number", "minimum": 0,
-      "description": "Finite nonnegative percentage of snapshot Attack added before damage multipliers and mitigation; exact Basic/Pierce mercenary and Berserk rows only."
+      "description": "Finite nonnegative percentage of snapshot Attack added before damage multipliers and mitigation; exact Basic/Pierce/Jab mercenary and Berserk rows only."
     },
     "id": {
       "type": "string",
@@ -6543,6 +6564,12 @@
           "exclusiveMaximum": 1
         }
       }
+    },
+    "mercJab": {
+      "type": "object", "additionalProperties": false,
+      "description": "Mercenary Jab-only additive increased physical damage in percentage points, normalized once by its resolver.",
+      "required": ["physicalDamagePct"],
+      "properties": { "physicalDamagePct": { "type": "number", "minimum": 0 } }
     },
     "mercBattleOrders": {
       "type": "object",

@@ -15108,3 +15108,100 @@ campaign length, not native test execution. H3 remains terminal failed-no-app;
 no browser/app retry or new acquisition/lineage/gameplay replacement experiment.
 Protected retained-final fixture not read/modified/replayed; closed production
 policy not imported/executed. No push/merge/deployment. Goal/worktree stay active.
+
+
+## 2026-10-28 — Native mercenary Jab / BUG-370 — validation in progress
+
+All six Act II mercenaries now use an authored native three-attempt Jab instead
+of the one-hit placeholder. D04 explicitly reconciles flat18–28 +100% current
+Attack and additive +50% physical increase; the Attack baseline and stacking
+rule are new decisions. Existing sequence/death/reflection and ordinary damage
+settlement apply, with one action/CD1s, zero MP and no rank growth. Closed JSON,
+immutable exact-ID resolver, default registry and both locales carry the repair.
+
+Original real-loader/factory/projection primary RED produces one19-damage event
+for both Attack100/200. Reviewed numeric successor includes legitimate Holy
+Freeze Chill×1.1 and obtains fresh RED before production edits. Later erased
+typing annotations emit byte-identical JS; no typed-source RED is claimed.
+Retained diagnoses also cover raw/presented Chill, optional playback typing,
+Vitest matcher return typing and the superseded ordinary-damage Jab fixture.
+The latter keeps original seed/stats/complete replay equality/literal18.
+
+Final corrected2067inputs at `8c756b191d283b41cba9f5a59f5121e3256b725ed82fe554c5e6a20881885010`
+pass primary2, focused237/11files, engine11198/418files, scoped zero-warning lint and project types.
+Four new files supply64cases. Independent corrected-source/design/coverage/
+security review approves with no findings. The unfiltered full-unit run was
+stopped at1026.365767s/exit-15, unchanged2067inputs, after ordinary discovery
+executed closed P15 policy and read the protected earned-endgame4 retained
+fixture. The measurement test completed four benchmark attempts. One live-wave
+draw assertion failed; its two failure markers are one test, and attribution to
+Jab is unproved. This was an intentional boundary stop, not a timeout or pass.
+No completed native full JSON exists. Verified owned processes are stopped;
+original sources/logs/receipts/diagnosis are retained. BUG371 records the unsafe
+discovery dependency; no rerun, winner-expectation patch or discovery workaround.
+Safe full zero-warning lint/engine-purity passes243.853414s; external production
+build passes14.875969s, both at the same unchanged input map. Build retains
+chunk/precache and stale Browserslist warnings. Exact disposable build removed:
+762files/42280626bytes/10directories, absence verified, all recorded task PIDs
+absent/non-running, no cleanup failures. Evidence/inventory review and checkpoint
+binding remain pending. No full pass or completed checkpoint; Bash stays queued.
+[Evidence](evidence/merc-jab.md).
+
+BUG370 remains Open for browser/earned/feature acceptance; BUG180/366 timeout
+causes remain Open. Player inventory stays212bounded/oneunverified. Campaign,
+economy/build/pacing/defeat-retry/devices/locales/a11y/performance/PWA/actualCI/
+human/soak/full-v1 acceptance remains unresolved. H3 is terminal failed-no-app;
+no browser retry, new acquisition/lineage/gameplay replacement experiment or
+remote action occurs. Correction: this section's earlier no-protected-access/
+closed-execution claim was false for the unfiltered Jab full run. The original
+draft is retained in the Jab packet; earlier unfiltered-suite boundary claims
+are also unverified, not silently revalidated. No further protected access or
+closed execution is allowed; no protected fixture modification is observed.
+Root retains the exact Jab packet for unfinished acceptance and owns eventual
+cleanup; registered worktree and umbrella goal remain active.
+
+## 2026-10-28 — Ordinary test boundary / BUG-371 — reviewed repair
+
+Producer approved the concrete structural repair under the original task scope.
+Correction: the earlier no-discovery-edit wording came from root's diagnosis,
+not an independent user/repository restriction. No permission hold is required;
+protected-fixture and closed-policy execution restrictions remain binding.
+
+Default Vitest now retains engine/UI plus constructed sim-contracts. A standalone
+explicit diagnostic workspace retains all36 original diagnostic test files
+byte-for-byte and the old diagnostic npm entrypoints select it. Codec, store
+observation and classifier bodies move unchanged into policy-free helpers with
+compatibility exports. The ordinary publication test changes only two import
+paths; three constructed classifier cases preserve the victory/dead-hero/draw
+assertion sets without saved realms or gameplay runs.
+
+A root-config source preflight audits default configuration and transitive
+runtime edges before test loading. Four regression groups reproduce review gaps
+(10pass/4fail); corrected controls pass14. Independent source review APPROVE
+permits ordinary testing; source audit989tests/1571modules and all36 diagnostic
+hashes pass. Focused280tests/13files pass19.431953s on unchanged2075inputs at
+`c28a0073249b5bc222841725e70669e8a5f161e166dfe4e8ed790e02340fda8c`.
+Ordinary units pass21037/989files/zero skipped in1205.158348s, native discovery
+exactly matching the source audit. Full lint/engine purity passes363.855911s;
+external build passes31.776340s. All2075inputs remain at the predecessor map
+above. Unit runtime exceeds the nominal budget; no timeout-cause/performance
+acceptance or speedup claim follows.
+
+Explicit no-ignore lint finds one inherited redundant codec-null condition;
+types find one new required-kind annotation permitting undefined. Both actual
+failures and exact source predecessors remain retained. Independent review
+approves only removing the unreachable null branch and narrowing the helper
+argument with NonNullable after active checks terminate. Codec correction is
+semantically equivalent; the annotation emits byte-identical JS. No fixture or
+assertion changes. Exactly those two helper paths differ in successor2075map
+`c4ea68c9147f886609c53d613e87419db9cb472b03ef603adab7227994d82cf4`.
+Successor focused43/2 passes10.840405s; explicit zero-warning lint passes13.282558s;
+final audit989tests/1571modules and all36 diagnostic identities match. Final
+project types pass127.519487s on unchanged successor inputs. Separate final
+review and commit bindings govern the local source checkpoint. The complete
+ordinary run, full lint and build remain predecessor evidence, not successor reruns.
+Disposable build762files/42280626bytes/10directories removed, absence verified,
+remaining[]/failures[]; root retains exact inventory in the Jab packet.
+Historical `full` runner remains refused; the new ordinary gate is named `unit`.
+No diagnostic run, old winner-expectation edit, assertion weakening or feature/
+gameplay/pacing acceptance follows. [Testing boundary](../qa/unit-test-boundary.md).

@@ -1403,7 +1403,7 @@
   "mercenary": {
     "jab": {
       "name": "Jab",
-      "desc": "A rapid spear thrust used by Desert Mercs."
+      "desc": "Strike one enemy three times. Each hit adds 100% Attack to its base damage and gains +50% increased physical damage."
     },
     "bash": {
       "name": "Bash",

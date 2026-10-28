@@ -9,6 +9,10 @@
     "cooldown": 1,
     "minLevel": 1,
     "maxLevel": 20,
+    "cost": { "mana": 0 },
+    "attackDamagePct": 100,
+    "hitSequence": { "strikes": 3 },
+    "mercJab": { "physicalDamagePct": 50 },
     "damage": {
       "min": 18,
       "max": 28,

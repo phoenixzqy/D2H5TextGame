@@ -77,9 +77,9 @@ describe('exact authored mercenary arrows', () => {
     expect(() => resolveMercArrowSkills([{ ...basic, ...patch }, pierce])).toThrow();
   });
 
-  it('rejects this authored field on every unrelated skill and keeps schema closed', () => {
+  it('rejects this authored field on unrelated mercenary skills, allowing native Jab, and keeps schema closed', () => {
     const validate = new Ajv2020({ strict: true }).compile(schema);
-    for (const row of rows.filter(row => !ids.includes(row.id))) {
+    for (const row of rows.filter(row => ![...ids, 'mskill-jab'].includes(row.id))) {
       expect(validate({ ...row, attackDamagePct: 100 }), row.id).toBe(false);
     }
     for (const row of rows) expect(validate(row), row.id).toBe(true);

@@ -69,6 +69,8 @@ interface DamageEffectBase {
   readonly base: readonly [number, number];
   /** Opt-in percentage of snapshot Attack added before damage multipliers and mitigation. */
   readonly attackDamagePct?: number;
+  /** Additive increased damage fraction for this direct effect only (0.5 = +50%). */
+  readonly increasedDamagePct?: number;
   /** Per-rank growth [min, max]. */
   readonly perRank?: readonly [number, number];
   /** Tags the hit applies (combo synergies). */

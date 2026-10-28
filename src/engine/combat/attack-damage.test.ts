@@ -67,13 +67,16 @@ describe('opt-in Attack contribution uses the shared damage pipeline', () => {
   });
 
   it('preserves the complete recording and RNG state when metadata is absent or zero', () => {
-    const skill = required(getSkill('mskill-jab'));
+    registerSkill({ id: 'fixture.ordinary-physical', archetype: 'fixture', target: 'single-enemy',
+      cooldown: 1, manaCost: 0, minLevel: 1,
+      effects: [{ kind: 'damage', damageType: 'physical', base: [18, 28] }] });
+    const skill = required(getSkill('fixture.ordinary-physical'));
     const snapshot = input(skill.id);
     const absent = replay(snapshot);
     registerSkill({ ...skill, effects: skill.effects.map(effect => effect.kind === 'damage'
       ? { ...effect, attackDamagePct: 0 } : effect) });
     expect(replay(snapshot)).toEqual(absent);
-    expect(first(snapshot)).toBe(18); // unchanged Jab stub, no blanket weapon bonus
+    expect(first(snapshot)).toBe(18); // Ordinary physical damage has no blanket weapon bonus.
   });
 
   it('does not add skill rank or level growth to arrow damage', () => {

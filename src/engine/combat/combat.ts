@@ -864,7 +864,7 @@ function buildDamageInput(
     baseMax,
     flatBonus: baseFlatBonus + (effect.attackDamagePct
       ? stats.attack * (1 + (attackerAura?.bonuses.attackPct ?? 0) + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.attackPerRank) * effect.attackDamagePct / 100 : 0),
-    increasedPct: (attacker.increasedDamagePct?.[effect.damageType] ?? 0) +
+    increasedPct: (effect.increasedDamagePct ?? 0) + (attacker.increasedDamagePct?.[effect.damageType] ?? 0) +
       (effect.damageType === 'cold' ? coldArmorBonuses(attacker).cold : 0) +
       (effect.damageType === 'physical' ? activeLeap(attacker, state.simClockMs)?.physicalDamagePct ?? 0 : 0) +
       statAuraDamageBonus(attackerAura, effect.damageType) +
