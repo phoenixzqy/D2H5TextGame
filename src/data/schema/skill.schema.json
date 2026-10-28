@@ -3839,6 +3839,23 @@
       },
       "else": { "properties": { "holyFreeze": false } }
     }, {
+      "if": { "properties": { "id": { "const": "aura-might" } }, "required": ["id"] },
+      "then": {
+        "required": ["mercMight"],
+        "properties": {
+          "mercMight": { "$ref": "#/properties/mercMight" },
+          "trigger": { "const": "passive" }, "target": { "const": "all-allies" },
+          "cooldown": { "const": 0 },
+          "cost": false, "damage": false, "damageType": false, "attackDamagePct": false,
+          "statusEffect": false, "additionalStatusEffects": false, "scaling": false,
+          "heal": false, "summonId": false, "monsterSummon": false, "summonBasicAttackElements": false,
+          "aoeShape": false, "requires": false, "passive": false, "aura": false,
+          "summon": false, "synergies": false, "prerequisites": false,
+          "appliesStatus": false, "appliesTags": false
+        }
+      },
+      "else": { "properties": { "mercMight": false } }
+    }, {
       "if": {
         "properties": {
           "id": {
@@ -6423,6 +6440,15 @@
           "minimum": 0,
           "exclusiveMaximum": 1
         }
+      }
+    },
+    "mercMight": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Native Might mercenary's additive increased party direct physical damage in percentage points.",
+      "required": ["physicalDamagePct"],
+      "properties": {
+        "physicalDamagePct": { "type": "number", "minimum": 0, "description": "Increased direct physical damage in percentage points while the native mercenary lives." }
       }
     },
     "holyFreeze": {

@@ -14669,3 +14669,58 @@ full-v1 acceptance. Other open bugs and212bounded/oneunverified skill inventory
 remain unchanged. H3 remains terminal failed-no-app; no browser retry/new card,
 native preflight/retry/replacement experiment, closed-policy execution, protected
 save read/replay, publication, merge or deployment. Umbrella goal/worktree active.
+
+
+## Native mercenary Might — 2026-10-28 UTC
+
+[Native Might evidence](evidence/merc-might.md) repairs BUG362's inert recruitable
+mercenary signature. Closed skill JSON/schema authors the existing GDD's30%
+party physical bonus. A validated immutable resolver, fresh native factory marker
+and battle-local living-source checks supply additive direct physical damage to
+the living player party, itself and new summons. Duplicate sources do not stack;
+selected Paladin Might remains separate and additive. Death/removal withdraws
+presence. No base-stat mutation or aura bonus to other damage types/opponents.
+The passive presence adds no action, payment or RNG draw; existing scheduling/RNG
+algorithms and save format are unchanged. Removing the fake aura cast allows
+Jab instead, so the pre-repair action/RNG sequence is not preserved. Both
+recruitment locales now describe30% instead of50%.
+
+Unchanged real-factory primary RED9708 fails3/3 (100 instead of130, missing marker,
+false locale potency); GREEN43369 passes21 with authored checks. Corrected
+focused86753 passes85/6files, including30combat/18schema/3factory new tests.
+Earlier strict-Ajv and chance-miss fixture failures remain retained and explained.
+Initial engine88441 fails3 obsolete placeholder assertions while10,781pass.
+Three scoped test corrections preserve Prayer's stub and unrelated schema
+boundaries and add the native passive contract; compatibility71645 passes326.
+Independent source and test-update reviews approve/security pass/findings[],
+receipts in the root-owned packet. The primary three-test regression is unchanged.
+
+Final engine32280 passes10,785/403files. Unfiltered full80748 passes21,345 with
+same2exactskips/998files; individual assertion statuses confirm the count despite
+the reporter aggregate including skips. Typecheck95408/lint85723/build46454 all
+return native0. Allsix final checks preserve2,033inputs at
+`020d2f99f4e56ac62cb9615f5975b609aa401a52e72b672592c763f1b44e7c9f`.
+No .once.ts entry is discovered. Build reports large chunks/stale Browserslist
+and excludes the2.57MB art manifest from precache; performance/PWA acceptance
+remains pending. Disposable external build762files/42,259,816bytes removed,
+absence verified; recorded owned processes absent, cleanup failures[]. Root keeps
+raw logs/reports/maps, failed engine evidence and reviews at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-might-3expqn1p`
+through unfinished consumers and owns eventual verified cleanup. Final evidence
+review approves/security pass/adequate/findings[]/readersReleased, receipt SHA256
+`023b3e7afaa540d787da19fb492af989846cded0060795923f2a9e01ec1e2891`.
+Exact source-commit closure follows in the bug record.
+
+This is bounded native repair, not earned recruitment/build/balance/browser
+acceptance. Other open bugs,212bounded/oneunverified skill inventory, earned
+high-rune affordability/source mix/pacing,14builds×fiveacts, whole-app locales/
+devices/a11y/performance/PWA, actual CI and human/soak/full-v1 acceptance remain
+unresolved. H3 remains terminal failed-no-app; no browser/app launch, native
+preflight/retry/replacement experiment, closed-policy execution, protected save
+read/replay, publication, merge or deployment occurs. Umbrella goal/worktree active.
+
+Next ready recommendation from producer: native mercenary Thorns (F04/F07/P13),
+whose GDD already specifies100% physical reflection but whose runtime signature
+is a self-buff placeholder. Use bounded definition/factory/runtime RED/GREEN,
+existing reflection semantics, truthful locales and independent review. This is
+a future card, not acceptance or authorization for new gameplay experiments.

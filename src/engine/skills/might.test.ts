@@ -1,6 +1,7 @@
 import Ajv2020 from 'ajv/dist/2020';
 import { describe, expect, it } from 'vitest';
 import paladinSkills from '../../data/skills/paladin.json';
+import mercenarySkills from '../../data/skills/mercenary.json';
 import skillSchema from '../../data/schema/skill.schema.json';
 
 const authored = () => {
@@ -71,8 +72,16 @@ describe('P07b02A exact player Might schema', () => {
     }
   });
 
-  it('does not impose player Might restrictions on a distinct mercenary identity', () => {
-    expect(validate({ ...authored(), id: 'aura-might', aura: false, requiredLevel: undefined,
+  it('preserves the distinct native mercenary Might contract without player rank scaling', () => {
+    const row = mercenarySkills.find(row => row.id === 'aura-might');
+    expect(validate(row)).toBe(true);
+    expect(row).toMatchObject({ id: 'aura-might', target: 'all-allies',
+      trigger: 'passive', mercMight: { physicalDamagePct: 30 } });
+    expect(row).not.toHaveProperty('scaling');
+  });
+
+  it('does not impose player Might restrictions on an unrelated skill identity', () => {
+    expect(validate({ ...authored(), id: 'fixture-unrelated-might', aura: false, requiredLevel: undefined,
       scaling: undefined, cooldown: 1, cost: { mana: 1 } })).toBe(true);
   });
 });

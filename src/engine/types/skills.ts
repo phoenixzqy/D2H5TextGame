@@ -339,6 +339,8 @@ export interface SkillDef {
   readonly armorRetaliation?: ArmorRetaliationTuning;
   /** Native mercenary aura party cold increase, in percentage points. */
   readonly holyFreeze?: { readonly coldDamagePct: number };
+  /** Native Might mercenary's party physical increase, in percentage points. */
+  readonly mercMight?: { readonly physicalDamagePct: number };
   /** JSON-owned enemy resistance reduction in percentage points; exact player Conviction only. */
   readonly conviction?: { readonly enemyResistReductionPct: number };
   readonly id: string;

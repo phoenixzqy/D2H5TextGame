@@ -167,6 +167,8 @@ export interface CombatUnit {
   readonly vigorLife?: { readonly baseLifeMax: number; readonly appliedLifeMax: number };
   /** Native mercenary factory-owned Holy Freeze presence; wave-local, never persisted. */
   readonly holyFreezeAura?: true;
+  /** Native mercenary factory-owned Might presence; wave-local, never persisted. */
+  readonly mercMightAura?: true;
   /** Eligible learned Static Field rank captured per wave; explicit zero disables legacy fallback. */
   readonly staticFieldRank?: number;
   /** Eligible personal Energy Shield allocation captured per wave; never persisted. */

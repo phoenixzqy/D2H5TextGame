@@ -26,6 +26,7 @@ import { composeRunewordCombatModifiers } from '@/engine/items/runeword-combat';
 import { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
 import { projectGovernedActives, type GovernedActiveProjection, type GovernedActiveRanks } from '@/engine/skills/runeword-actives';
 import { MERC_HOLY_FREEZE_DEFINITION } from '@/engine/skills/merc-holy-freeze';
+import { MERC_MIGHT_DEFINITION } from '@/engine/skills/merc-might';
 
 const ARCHETYPE_SKILLS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   front: ['mskill-bash'],
@@ -96,6 +97,9 @@ export function mercToCombatUnit(
     ...(merc.id.split('#')[0] === 'mercs/act2-holy-freeze' &&
       Number.isInteger(merc.level) && merc.level >= MERC_HOLY_FREEZE_DEFINITION.minLevel &&
       getMercSkillOrder(merc).includes('aura-holy-freeze') ? { holyFreezeAura: true as const } : {}),
+    ...(merc.id.split('#')[0] === 'mercs/act2-might' &&
+      Number.isInteger(merc.level) && merc.level >= MERC_MIGHT_DEFINITION.minLevel &&
+      getMercSkillOrder(merc).includes('aura-might') ? { mercMightAura: true as const } : {}),
     ...(gridPosition ? { gridPosition } : {})
   };
 }

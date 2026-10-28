@@ -60,6 +60,7 @@ import { PLAGUE_DEFINITION } from './plague-definition';
 import { PlagueTracker } from './plague';
 import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
 import { isMercHolyFreezeSource, MERC_HOLY_FREEZE_DEFINITION } from '../skills/merc-holy-freeze';
+import { isMercMightSource, MERC_MIGHT_DEFINITION } from '../skills/merc-might';
 import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { activeMightAura, type MightAuraProjection } from '../skills/might';
 import { activeMeditationAura, type MeditationAuraProjection } from '../skills/meditation';
@@ -331,6 +332,7 @@ interface State {
   readonly hasTemporaryLife: boolean;
   /** Factory-marked source IDs captured at registration; live eligibility is checked at use. */
   readonly holyFreezeSources: string[];
+  readonly mercMightSources: string[];
   readonly difficulty: ReplayProfileId;
   /** Valid copied player authority and FIFO primary enemy-monster death IDs; wave-local only. */
   readonly corpseExplosion: Map<string, number>;
@@ -428,6 +430,13 @@ function sameStatusView(previous: readonly ActiveStatus[], next: readonly Active
       }
       return Object.is(a[key], b[key]);
     });
+  });
+}
+
+function mercMightSourceId(state: State): string | undefined {
+  return state.mercMightSources.find(id => {
+    const source = state.units.get(id);
+    return source !== undefined && isMercMightSource(source);
   });
 }
 
@@ -694,6 +703,7 @@ function registerUnit(state: State, u: CombatUnit): void {
   const shaped = refreshPeriodicSpells(refreshHolyShieldState(refreshDruidFormState(copied)));
   state.units.set(u.id, shaped);
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
+  if (u.mercMightAura === true && !state.mercMightSources.includes(u.id)) state.mercMightSources.push(u.id);
   if (!state.insertionIdx.has(u.id)) {
     state.insertionIdx.set(u.id, state.insertionCounter++);
     state.tiePriority.set(u.id, state.tieRng.next());
@@ -789,6 +799,8 @@ function buildDamageInput(
       (effect.damageType === 'physical' ? activeLeap(attacker, state.simClockMs)?.physicalDamagePct ?? 0 : 0) +
       statAuraDamageBonus(attackerAura, effect.damageType) +
       (effect.damageType === 'physical' ? activeMightAura(state.mightAura, attacker.id, state.units)?.physicalDamagePct ?? 0 : 0) +
+      (effect.damageType === 'physical' && attacker.side === 'player' && alive(attacker) && mercMightSourceId(state) !== undefined
+        ? MERC_MIGHT_DEFINITION.physicalDamagePct : 0) +
       (effect.damageType === 'cold' && attacker.side === 'player' && alive(attacker) && holyFreezeSourceId(state) !== undefined
         ? MERC_HOLY_FREEZE_DEFINITION.coldDamagePct : 0),
     comboMult: combo,
@@ -3290,6 +3302,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
       [...snapshot.playerTeam, ...snapshot.enemyTeam].some(unit => unit.vigorLife !== undefined || unit.druidShapeRanks !== undefined || unit.druidForm !== undefined || unit.druidFormLife !== undefined),
     ...(druidAllyAuras ? { druidAllyAuras } : {}),
     holyFreezeSources: [],
+    mercMightSources: [],
     ...(statAura ? { statAura } : {}),
     ...(auraIntervalMs !== undefined ? { nextAuraPulseAtMs: auraIntervalMs } : {}),
     ...(assassinVenom ? { assassinVenom } : {}),

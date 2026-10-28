@@ -375,6 +375,7 @@
   },
   {
     "id": "aura-might",
+    "mercMight": { "physicalDamagePct": 30 },
     "name": "skills.mercenary.might.name",
     "description": "skills.mercenary.might.desc",
     "icon": "skills/merc/aura-might.png",

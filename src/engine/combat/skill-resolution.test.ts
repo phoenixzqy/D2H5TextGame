@@ -539,7 +539,7 @@ describe('Bug A — skill resolution at combat time', () => {
     expect(max).toBeGreaterThan(10); // bash base 25-40, basic attack would be 1
   });
 
-  it('aura-* signature ids resolve to self-buff stubs', () => {
+  it('skips passive Might while the merc continues casting its active signature', () => {
     const merc = mkUnit({
       id: 'aura-merc', side: 'player', kind: 'merc',
       skillOrder: ['aura-might', 'mskill-jab'],
@@ -552,10 +552,10 @@ describe('Bug A — skill resolution at combat time', () => {
     const result = runBattle({
       seed: 13, playerTeam: [merc], enemyTeam: [enemy]
     });
-    const buffEvent = result.events.find(
-      (e): e is Extract<BattleEvent, { kind: 'buff' }> =>
-        e.kind === 'buff' && e.target === 'aura-merc' && e.buffId === 'might'
-    );
-    expect(buffEvent).toBeDefined();
+    const actions = result.events.filter(e => e.kind === 'action' && e.actor === 'aura-merc');
+    expect(actions.length).toBeGreaterThan(0);
+    expect(actions.some(e => e.kind === 'action' && e.skillId === 'mskill-jab')).toBe(true);
+    expect(actions.some(e => e.kind === 'action' && e.skillId === 'aura-might')).toBe(false);
+    expect(result.events.filter(e => e.kind === 'buff' && e.buffId === 'might')).toEqual([]);
   });
 });
