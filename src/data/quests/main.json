@@ -67,10 +67,10 @@
       "type": "main",
       "actId": "acts/act1",
       "giver": "npc/charsi",
-      "description": "Charsi the smith left her enchanted Horadric Malus in the Monastery Barracks when she fled. Recover it so she may forge again.",
+      "description": "Recover Charsi's Horadric Malus from the Catacombs cache and give it to her in the Rogue Encampment.",
       "objectives": [
-        { "id": "obj-recover-malus", "type": "fetch", "itemId": "quest/horadric_malus", "areaId": "areas/act1_monastery_barracks", "description": "Recover the Horadric Malus." },
-        { "id": "obj-imbue-ready", "type": "talk", "npcId": "npc/charsi", "description": "Return the Malus to Charsi." }
+        { "id": "obj-recover-malus", "type": "fetch", "itemId": "quest/horadric_malus", "areaId": "areas/act1-catacombs", "targetId": "objects/horadric_malus_cache", "description": "Recover the Horadric Malus after clearing the Catacombs." },
+        { "id": "obj-imbue-ready", "type": "give", "npcId": "npc/charsi", "itemId": "quest/horadric_malus", "description": "Give the Horadric Malus to Charsi." }
       ],
       "rewards": { "xp": 3500, "service": "imbue_item" },
       "unlocks": "services/imbue",

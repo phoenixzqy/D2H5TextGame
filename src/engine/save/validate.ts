@@ -1,3 +1,4 @@
+import { MALUS_QUEST, canEarnMalusObjective, validateMalusQuestGraph } from '@/engine/map/malus-quest';
 import { CAIN_QUEST, CAIN_RECEIPTS, canEarnCainObjective, validateCainQuestGraph } from '@/engine/map/cain-quest';
 import { COUNTESS, hasCountessCompletion } from '@/engine/map/countess-admission';
 import { FROZEN_V22 } from './frozen-v22';
@@ -407,6 +408,7 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
     throw new Error('Invalid save: Council proof requires canonical tracked Khalim progress');
   }
   if (domain === undefined) validateCainQuestGraph(validated.questItems, validated.questProgress, questReceipts);
+  if (domain === undefined) validateMalusQuestGraph(validated.questItems, validated.questProgress);
   if (domain === undefined && Object.hasOwn(questReceipts, COUNTESS.receipt) &&
     !hasCountessCompletion(validated.questProgress, questReceipts)) {
     throw new Error('Invalid save: Countess victory proof requires its canonical completed objective');
@@ -445,6 +447,9 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
       if (!quest || !(domain === undefined && quest.id === CAIN_QUEST
         ? canEarnCainObjective(validated.questProgress, quest.id, definition.sourceObjectiveId, validated.questItems, questReceipts) &&
           validated.questProgress[quest.id]?.objectives[definition.sourceObjectiveId] === true
+        : domain === undefined && quest.id === MALUS_QUEST
+          ? canEarnMalusObjective(validated.questProgress, definition.sourceObjectiveId, validated.questItems) &&
+            Object.hasOwn(progress?.objectives ?? {}, definition.sourceObjectiveId) && progress?.objectives[definition.sourceObjectiveId] === true
         : validLiveObjectiveProgress(validated, quest, definition.sourceObjectiveId))) {
         throw new Error('Invalid save: quest item requires its completed objective source');
       }
@@ -463,7 +468,10 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
         !(domain === undefined && quest.id === CAIN_QUEST
           ? canEarnCainObjective(validated.questProgress, quest.id, definition.consumeObjectiveId, validated.questItems, questReceipts) &&
             validated.questProgress[quest.id]?.objectives[definition.consumeObjectiveId] === true
-          : validLiveObjectiveProgress(validated, quest, definition.consumeObjectiveId))) {
+          : domain === undefined && quest.id === MALUS_QUEST
+          ? canEarnMalusObjective(validated.questProgress, definition.consumeObjectiveId, validated.questItems) &&
+            Object.hasOwn(progress?.objectives ?? {}, definition.consumeObjectiveId) && progress?.objectives[definition.consumeObjectiveId] === true
+        : validLiveObjectiveProgress(validated, quest, definition.consumeObjectiveId))) {
         throw new Error('Invalid save: delivered item requires its exact hand-in objective');
       }
       if (definition.kind === 'delivery') {

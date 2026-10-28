@@ -82,6 +82,44 @@ export function prepareRareAffixPair(base: ItemBase, ilvl: number, affixes: read
 }
 function rollCounts(rarity: Rarity, rules: RarityAffixCount, available: { prefix: number; suffix: number }, rng: Rng): { prefix: number; suffix: number } { if (rarity === 'rare') { const totalRule = rules.total ?? { min: 4, max: 6 }; const maxTotal = Math.min(totalRule.max, available.prefix + available.suffix, rules.prefix.max + rules.suffix.max); const minTotal = Math.min(totalRule.min, maxTotal); const feasible: { total: number; minPrefix: number; maxPrefix: number }[] = []; for (let total = minTotal; total <= maxTotal; total += 1) { const minPrefix = Math.max(rules.prefix.min, total - rules.suffix.max, total - available.suffix, 0); const maxPrefix = Math.min(rules.prefix.max, available.prefix, total - rules.suffix.min); if (minPrefix <= maxPrefix) feasible.push({ total, minPrefix, maxPrefix }); } const picked = (feasible.length > 0 ? feasible[rng.nextInt(0, feasible.length - 1)] : undefined) ?? { total: 0, minPrefix: 0, maxPrefix: 0 }; const prefix = rng.nextInt(picked.minPrefix, picked.maxPrefix); return { prefix, suffix: picked.total - prefix }; } return { prefix: rng.nextInt(Math.min(rules.prefix.min, available.prefix), Math.min(rules.prefix.max, available.prefix)), suffix: rng.nextInt(Math.min(rules.suffix.min, available.suffix), Math.min(rules.suffix.max, available.suffix)) }; }
 function rollAffixes(base: ItemBase, rarity: Rarity, ilvl: number, affixes: readonly Affix[], rules: RarityAffixCount, rng: Rng): readonly AffixRoll[] { if (rarity !== 'magic' && rarity !== 'rare') return []; if (!base.canHaveAffixes) return []; const remaining = affixes.filter((affix) => appliesTo(affix, base.type) && eligibleFor(affix, rarity, ilvl)); const available = { prefix: remaining.filter((affix) => affix.kind === 'prefix').length, suffix: remaining.filter((affix) => affix.kind === 'suffix').length }; const counts = rollCounts(rarity, rules, available, rng); const rolled: AffixRoll[] = []; for (let i = 0; i < counts.prefix; i += 1) { const roll = takeAffix(remaining, 'prefix', rarity, ilvl, rng); if (roll) rolled.push(roll); } for (let i = 0; i < counts.suffix; i += 1) { const roll = takeAffix(remaining, 'suffix', rarity, ilvl, rng); if (roll) rolled.push(roll); } return rolled; }
+/**
+ * Prepare four to six distinct rare affixes without creating or changing an item.
+ * Preflight consumes no RNG and rejects pools/count rules that cannot satisfy the
+ * full contract. Ordinary sparse drops and the two-affix caster recipe retain
+ * their existing rules and random streams. Definitions are caller-owned readonly
+ * data; each use gets a fresh without-replacement selection pool.
+ */
+export function prepareRareAffixes(base: ItemBase, ilvl: number, affixes: readonly Affix[],
+  rules: RarityAffixCount): (rng: Rng) => readonly RolledAffix[] {
+  if (!Number.isSafeInteger(ilvl) || ilvl < 1 || !base.canHaveAffixes) {
+    throw new Error('Invalid rare affix source level or base');
+  }
+  const total = rules.total ?? { min: 4, max: 6 };
+  const bounded = (range: RarityAffixRange, min: number, max: number): boolean =>
+    Number.isSafeInteger(range.min) && Number.isSafeInteger(range.max) &&
+    range.min >= min && range.max <= max && range.min <= range.max;
+  if (!bounded(rules.prefix, 1, 3) || !bounded(rules.suffix, 1, 3) || !bounded(total, 4, 6)) {
+    throw new Error('Invalid rare affix count rules');
+  }
+  const legal = affixes.filter(affix => appliesTo(affix, base.type) &&
+    eligibleFor(affix, 'rare', ilvl) && Number.isFinite(affix.rarityWeights.rare));
+  if (new Set(legal.map(affix => affix.id)).size !== legal.length) {
+    throw new Error('Duplicate rare affix identity');
+  }
+  const availablePrefix = legal.filter(affix => affix.kind === 'prefix').length;
+  const availableSuffix = legal.filter(affix => affix.kind === 'suffix').length;
+  let feasible = false;
+  for (let count = total.min; count <= total.max; count++) {
+    const minPrefix = Math.max(rules.prefix.min, count - rules.suffix.max, count - availableSuffix);
+    const maxPrefix = Math.min(rules.prefix.max, availablePrefix, count - rules.suffix.min);
+    if (minPrefix <= maxPrefix) feasible = true;
+  }
+  if (!feasible) throw new Error('Insufficient distinct legal rare affixes');
+  return rng => rollAffixes(base, 'rare', ilvl, legal, rules, rng).map(roll => {
+    if ('values' in roll) throw new Error('Invalid generated rare affix');
+    return roll;
+  });
+}
 function templateWeight(template: { readonly weight?: number }): number { return Math.max(0, template.weight ?? 1); }
 function eligibleUnique(template: UniqueItemDef, baseId: string, ilvl: number): boolean { return template.baseId === baseId && ilvl >= (template.qlvl ?? template.reqLevel); }
 function eligibleSetPiece(template: SetPieceDef, baseId: string, ilvl: number): boolean { return template.baseId === baseId && ilvl >= (template.qlvl ?? template.reqLevel); }

@@ -12,6 +12,8 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| P14 Malus Recover/Give and rare-affix prerequisite / BUG328 | locally verified; full PASS; retention complete | Canonical physical flow and sparse legacy repair/current23 graph; no physical XP/charge. Expanded full20514/972/two existing skips PASS, focused1531/35, engine10295/394, types/lint/build and16browsercases/32exact persistence pairs PASS with honest native snapshot/equivalence binding. Independent source/artifact/final gate APPROVE. Protected genuine save unchanged. Malus818+Countess643retained members readback/hash verified; exact820+2192files/31+38dirs cleaned, remaining[]/failures[]; root retains archives/sidecars. [Evidence](evidence/d11-malus-physical.md). Present/Restore/two selected imbues/full rewards and BUG347 remain open; no earned/balance/full-v1 acceptance. |
+| P14 Countess original-source victory and exact cache / BUG338–346 | locally verified; expanded full PASS; retention complete | Explicit optional Normal Dark Wood source, original actors/proof, exact3000hero/2250mercXP+one authored rune, finite legacy repair. Combined20514tests/972files PASS with two existing skips; source/artifact/final review APPROVE. Both prior full failures and interrupted attempts retained; BUG180 unresolved, whole-log rollback and BUG347 disclosed. Exact archives/readback/cleanup complete; protected genuine save unchanged. [Evidence](evidence/d11-countess-source-cache.md). No earned/balance/full-v1 acceptance. |
 | P14 Cain recovery/rescue and permanent Identify / BUG330–337 | locally verified; full PASS; retention complete | Real scroll Recover→Akara Give→cage Rescue→canonical Cain/Talk→whole-bundle Claims and selected-instance free Identify. Combined focused593/30, engine10110/388, build, final typecheck/lint and production browser8/8 PASS. Independent source/integration/artifact review APPROVE. Original72370 terminal0 consumed:20211passed/955files/two existing opt-in skips1166.118s; all1841inputs and genuine save/summary exact. Both evidence archives streamed/readback/hash verified (388+242members); exact1913+1005files/44+15dirs/rawroots removed, remaining[]/failures[]; root retains archives/sidecars. [Rescue](evidence/d11-cain-recovery-rescue.md), [Identify](evidence/d11-cain-identify.md). Countess/Malus/fullv1 remain open; no earned replay or private-v1 acceptance. |
 | P15-S03 legal resource/complementary-damage screen | unchanged Fire clears all8sampled seeds; Cold stops at seed1draw; reviewed/retained | Two fixed paid48point policies from original earned-endgame4 with unchanged native enemies/resources/carry. Cold3wins→W4draw twice,4unreached waves total. Only Fire/Meteor20+Static1 qualifies and clears16attempts×6waves=96/96living-hero victories on8independent seeds. Area combat seconds min/median/max135.067/150.060/165.167. All104journal/audit pairs preserve ancestral payloads, native/actual rewards and failed-wave zero income;9repeat comparisons pass. Original pilots/screen terminal0 consumed45.639/107.620swrapper;1810inputs/fourdiagnostics/HEAD/genuineexact. Independent artifact review APPROVE. [Evidence](evidence/p15-act5-sorceress-legal.md).24members readback/hash verified; exact21files/4dirs/rawroot removed,remaining[]/failures[]; root retains archive/sidecars. Mature-gear diagnostic only; no genuine successor/matched-level/build/pacing acceptance. |
 | P15-S02 causal mana/resistance diagnostic | paired eight-seed diagnosis reviewed; no production tuning | ColdW3 baseline0/8, fullentryMP8/8, recovery1258/8; FireW1 baseline/recovery0/8, BloodLordfire75→0 and combined8/8.56clone-only variants/native/plain/recorded/A-A parity; all recovery actions afford every ordered skill. All16raw event/outcome pairs match original screen;1810inputs/genuine exact. Independent artifact review APPROVE. [Evidence](evidence/p15-act5-sorceress-causal.md).104members readback/hash verified; exact102files/three directories including rawroot removed,remaining[]/failures[]; root retains archive/sidecars. Full-area/build/pacing acceptance remains open. |
@@ -14150,3 +14152,21 @@ integration draft prepared. No Cain gameplay or Claim change lands in this
 prerequisite. Cain/Identify/Countess/Malus/imbue ordinary gameplay and explicit
 legacy recovery remain open, as do C2–C4/fullG0–G7. Full objective and umbrella
 claim remain active; local only.
+
+## D11 Cain rescue and permanent Identify — 2026-10-27
+
+Local checkpoint `b7bf3595912f7c461ad825382c989baaa91b8adc` implements
+[physical Cain recovery/rescue](evidence/d11-cain-recovery-rescue.md) and
+[permanent selected-item Identify](evidence/d11-cain-identify.md), including sparse
+claimed-history recovery without repeated income. Native source/Give/Rescue/Talk
+and Claim graphs govern actual entitlement. Town retains its remembered map area;
+selected Cain identifies only the explicit eligible backpack instance.
+
+Combined focused593/30, whole types/lint/build, production browser8/8 and final
+full unit20,211/955 PASS with two existing opt-in skips. All1,841 frozen inputs
+rehash unchanged; independent source/artifact reviews APPROVE/readersreleased.
+Browser imports are constructed; no earned gameplay/balance credit. Required
+evidence is readback/hash verified and retained at the exact archive/sidecar paths
+in both evidence documents; disposable raw roots are absent with no cleanup
+failures. Genuine earned-endgame4 stays unchanged. Countess/Malus/imbues and
+broader C2–C4/fullG0–G7 remain open; the umbrella goal/claim stay active/local.

@@ -10,6 +10,10 @@
   },
   "inventory.title": "背包",
   "questItems": {
+    "horadricMalus": {
+      "name": "赫拉迪克之锤",
+      "description": "清理地下墓穴后从藏物处取回的绑定任务物品。将其交给罗格营地的查西。"
+    },
     "scrollOfInifuss": {
       "name": "艾尼弗斯卷轴",
       "description": "清理黑暗森林后从艾尼弗斯之树取回。将其交给罗格营地的阿卡拉，再返回废村牢笼营救凯恩。"

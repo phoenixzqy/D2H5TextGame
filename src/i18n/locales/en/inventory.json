@@ -10,6 +10,10 @@
   },
   "inventory.title": "Inventory",
   "questItems": {
+    "horadricMalus": {
+      "name": "Horadric Malus",
+      "description": "Recovered from the cache after clearing the Catacombs. Give this bound quest item to Charsi in the Rogue Encampment."
+    },
     "scrollOfInifuss": {
       "name": "Scroll of Inifuss",
       "description": "Recovered at the Tree of Inifuss after clearing the Dark Wood. Give it to Akara in the Rogue Encampment; then return to the ruined-village cage to rescue Cain."

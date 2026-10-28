@@ -1,3 +1,5 @@
+import { MALUS_QUEST, canEarnMalusObjective } from '@/engine/map/malus-quest';
+import { publishMalusPhysicalChange } from './malusPublication';
 import { CAIN_QUEST, CAIN_SIDE_QUEST, canEarnCainObjective } from '@/engine/map/cain-quest';
 import { publishCainChange } from './cainPublication';
 import { beginQuestTransaction, endQuestTransaction, assertIronGolemOwnershipMutationAllowed, WaveGuardError } from '@/stores/waveTransitionGuard';
@@ -56,6 +58,10 @@ export function eligibleQuestObjective(quest: QuestDef, objectiveId: string): bo
     return map.currentAct === 1 && map.selectedDifficulty === 'normal' &&
       canEarnCainObjective(map.questProgress, quest.id, objectiveId, useInventoryStore.getState().questItems, map.questReceipts);
   }
+  if (quest.id === MALUS_QUEST) {
+    return map.currentAct === 1 && map.selectedDifficulty === 'normal' &&
+      canEarnMalusObjective(map.questProgress, objectiveId, useInventoryStore.getState().questItems);
+  }
   const ownTrue = (id: string) => Object.hasOwn(progress.objectives, id) && progress.objectives[id] === true;
   return progress.status === 'completed'
     ? quest.objectives.every(objective => ownTrue(objective.id))
@@ -93,6 +99,7 @@ export function publishQuestItemChange(questId: string, progress: Progress, ques
   questReceipts?: QuestActionReceipts):
   'ok' | 'not-eligible' | 'grant-failed' {
   if (questId === CAIN_QUEST || questId === CAIN_SIDE_QUEST) return publishCainChange(questId, progress, questItems, questReceipts);
+  if (questId === MALUS_QUEST) return publishMalusPhysicalChange(progress, questItems, questReceipts);
   const previousItems = useInventoryStore.getState().questItems;
   const map = useMapStore.getState(), previousProgress = map.questProgress[questId];
   if (!previousProgress) return 'not-eligible';

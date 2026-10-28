@@ -2,6 +2,15 @@
   "$schema": "../schema/quest-item.schema.json",
   "items": [
     {
+      "id": "quest/horadric_malus",
+      "sourceQuestId": "quests/act1-tools-of-the-trade",
+      "kind": "delivery",
+      "sourceObjectiveId": "obj-recover-malus",
+      "consumeObjectiveId": "obj-imbue-ready",
+      "nameKey": "inventory:questItems.horadricMalus.name",
+      "descKey": "inventory:questItems.horadricMalus.description"
+    },
+    {
       "id": "quest/scroll_of_inifuss",
       "sourceQuestId": "quests/act1-search-for-cain",
       "kind": "delivery",

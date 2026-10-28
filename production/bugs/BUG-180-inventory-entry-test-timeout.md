@@ -105,3 +105,50 @@ remains an unproven hypothesis; no gameplay defect or import-cycle exception is
 established. Status stays unresolved. Complete failed/isolation/exclusive receipts
 and owned-process interruption evidence live in the required Dagger retention
 linked from [its evidence](../../docs/plans/evidence/d04-poison-dagger.md).
+
+
+Countess recurrence (2026-10-27), base `b7bf3595912f7c461ad825382c989baaa91b8adc`
+plus frozen Countess inputs: corrected full original35945 reports both player-first
+and inventory-first exceeding the unchanged5000ms limit; the13-case file takes
+10755ms. The process is still running, so final counts/exit are pending. The
+preceding complete full9837 passed this unchanged entry-order file and failed
+only the separately corrected stale Sun spy expectation (BUG341).
+
+No other root test/build/type/lint/browser job overlaps corrected35945. A host
+load observation (55.48/40.37/25.46 on16logical CPUs) is context, not proof of
+contention as cause. No import-cycle exception or equipment-stat assertion
+failure is reported. Source, timeout, assertions, discovery, workers and skips
+remain unchanged. Preserve `final-full-corrected.log`, terminal receipt when
+available and `corrected-full-timeout-observation.json` in the Countess evidence
+packet. Root owns archival/exact cleanup. Final frozen input/genuine-save
+rehash, isolated reduction and one unchanged controlled full comparison remain
+pending; no Countess or full-v1 acceptance follows from interim output.
+
+
+Countess corrected35945 is now terminal/consumed, exit1 after1835.35s Vitest:
+20,422passed/two entry-order timeouts/two existing skips,966passing files/one
+failing of967. All1833frozen inputs and protected genuine fixture remain exact.
+The unchanged native13-case file passes alone (12.98s total; player-first2903ms,
+inventory-first2441ms), retaining5000ms per-case limit and all original assertions.
+The two-case scratch CPU profile completes without import-cycle exceptions. Its
+first cold import6363ms includes fresh transform/inspector overhead; second2685ms.
+AJV code generation/compile samples are substantial in both. This isolated probe
+does not identify the full-workload timeout cause or replace native acceptance.
+No product/import/config/timeout/discovery/worker/skip change was made.
+
+Producer-reviewed sequencing permits an explicit full-gate-pending local Countess
+checkpoint, then Malus integration after this terminal audit/native reduction.
+No Countess acceptance or evidence cleanup occurs before a successful expanded
+integrated full and fresh exact-snapshot checks/reviews. Both original failures,
+manifests, receipts and CPU profiles remain required evidence. BUG180 remains
+unresolved; next full workload can supply a controlled current-snapshot result,
+not an unchanged comparison to a pre-integration source tree.
+
+### Later expanded integrated workload
+
+The unchanged5000ms test bound passes within the final1840-input Countess/Malus
+full run:20,514tests/972files/two existing skips, native exit0. All inputs
+and protected genuine saves match before/after. This later pass does not
+establish the cause of the earlier intermittent import timeout or resolve
+BUG180. Both failed workloads and diagnostics remain retained; see the
+[final combined evidence](../../docs/plans/evidence/d11-countess-source-cache.md#final-combined-checkpoint--2026-10-27).

@@ -290,8 +290,9 @@
     },
     "act1-tools-of-the-trade": {
       "name": "Tools of the Trade",
-      "desc": "Return Charsi's Horadric Malus to her.",
-      "obj1": "Recover the Horadric Malus"
+      "desc": "Recover Charsi's Horadric Malus from the Catacombs cache, then give it to her in the Rogue Encampment.",
+      "obj1": "Recover the Horadric Malus after clearing the Catacombs",
+      "obj2": "Give the Horadric Malus to Charsi"
     },
     "act1-andariel": {
       "name": "Bounty: Andariel",
