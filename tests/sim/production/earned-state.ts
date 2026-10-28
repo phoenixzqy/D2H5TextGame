@@ -1,3 +1,5 @@
+import { observeStore } from '../contracts/store-observation';
+export { observeStore } from '../contracts/store-observation';
 import type { StoreApi } from 'zustand';
 import { materialDelta } from './material-delta';
 import type { Item } from '@/engine/types/items';
@@ -18,12 +20,6 @@ import { hasActiveSubAreaRun } from '@/stores/combatHelpers';
 import type { EarnedItemSelector } from './earned-fixture';
 
 type Data<S> = { [K in keyof S as S[K] extends (...args: never[]) => unknown ? never : K]: S[K] };
-
-/** Independently clone every nonfunction field, including Maps and optional fields. */
-export function observeStore<S extends object>(store: Pick<StoreApi<S>, 'getState'>): Data<S> {
-  return structuredClone(Object.fromEntries(Object.entries(store.getState())
-    .filter(([, value]) => typeof value !== 'function'))) as Data<S>;
-}
 
 /** Complete domain observations; combat recordings are captured separately. */
 export function observeEarnedState() {

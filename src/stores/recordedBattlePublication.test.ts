@@ -4,8 +4,8 @@ import { runBattleRecorded, type RecordedBattleEvent } from '@/engine/combat/com
 import { composePoisonExplosion } from '@/engine/skills/poison-explosion';
 import { resetRegistry, loadDefaultSkills } from '@/engine/skills/registry';
 import { inspectRecordedWaves, abandonRecordedWaves } from './recordedWaveReceipt';
-import { decodeObservation, encodeObservation } from '../../tests/sim/production/earned-report';
-import { observeStore } from '../../tests/sim/production/earned-state';
+import { decodeObservation, encodeObservation } from '../../tests/sim/contracts/observation-codec';
+import { observeStore } from '../../tests/sim/contracts/store-observation';
 import { useCombatStore } from './combatStore';
 import { stageRecordedBattle, type RecordedBattleInput } from './recordedBattlePublication';
 

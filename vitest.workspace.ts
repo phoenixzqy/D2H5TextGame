@@ -5,7 +5,8 @@
  *     P05a audit verdict (`docs/perf/p05a-engine-state-audit.md` §5):
  *     `isolate: false` is empirically safe for `src/engine/**`.
  *   - `ui`:     React/JSX, jsdom + RTL setup, isolated workers.
- *   - `sim-contracts`: Node self-tests for production measurement contracts.
+ *   - `sim-contracts`: policy-free constructed unit contracts.
+ *     Production diagnostics require vitest.diagnostics.workspace.ts explicitly.
  *
  * Worker bounds, coverage thresholds and `coverage.include` (rooted at
  * `src/engine/**`) stay on the root `vitest.config.ts`. All three projects
@@ -23,12 +24,12 @@ const srcAlias = { '@': path.resolve(__dirname, './src') };
 
 export default defineWorkspace([
   {
-    // Contract self-tests only; historical proxy simulations stay undiscovered.
+    // Pure unit contracts only; production diagnostic scripts are opt-in.
     resolve: { alias: srcAlias },
     test: {
       name: 'sim-contracts',
       environment: 'node',
-      include: ['tests/sim/production/**/*.test.ts'],
+      include: ['tests/sim/contracts/**/*.test.ts'],
       pool: 'threads',
       isolate: true
     }

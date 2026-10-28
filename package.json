@@ -15,9 +15,9 @@
     "test:related": "vitest related --run",
     "test:engine": "vitest run --project engine",
     "test:ui": "vitest run --project ui",
-    "test:sim:contracts": "vitest run --project sim-contracts",
-    "sim:production": "vitest run --project sim-contracts tests/sim/production/measure.test.ts",
-    "sim:earned": "vitest run --project sim-contracts tests/sim/production/earned-measure.test.ts",
+    "test:sim:contracts": "vitest run --workspace vitest.diagnostics.workspace.ts --project sim-diagnostics",
+    "sim:production": "vitest run --workspace vitest.diagnostics.workspace.ts --project sim-diagnostics tests/sim/production/measure.test.ts",
+    "sim:earned": "vitest run --workspace vitest.diagnostics.workspace.ts --project sim-diagnostics tests/sim/production/earned-measure.test.ts",
     "test:cov": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:smoke-e2e": "playwright test --grep @smoke --project=chromium-desktop",
@@ -30,7 +30,8 @@
     "bench": "node scripts/bench-tests.mjs",
     "check:test-bridge-shake": "node scripts/check-test-bridge-shaken.mjs",
     "check:offline-precache": "node scripts/check-offline-precache.mjs",
-    "sim:modes": "vitest run --project sim-contracts tests/sim/production/mode-measure.test.ts"
+    "sim:modes": "vitest run --workspace vitest.diagnostics.workspace.ts --project sim-diagnostics tests/sim/production/mode-measure.test.ts",
+    "test:boundary": "node --test scripts/check-unit-test-boundary.test.mjs"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.19",

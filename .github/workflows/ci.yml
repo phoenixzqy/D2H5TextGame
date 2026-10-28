@@ -58,7 +58,10 @@ jobs:
           path: i18n-lint-report/
           retention-days: 14
 
-      - name: Unit tests
+      - name: Unit test boundary controls
+        run: npm run test:boundary
+
+      - name: Unit tests (production diagnostics excluded)
         run: npm run test:cov
 
       - name: Build + verify test-bridge tree-shake

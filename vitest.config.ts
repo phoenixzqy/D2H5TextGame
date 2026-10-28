@@ -1,6 +1,11 @@
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import { assertUnitTestBoundary } from './scripts/check-unit-test-boundary.mjs';
+import { fileURLToPath } from 'node:url';
+
+// Every default Vitest command checks source dependencies before loading tests.
+assertUnitTestBoundary(fileURLToPath(new URL('.', import.meta.url)));
 
 /**
  * Root vitest config.
