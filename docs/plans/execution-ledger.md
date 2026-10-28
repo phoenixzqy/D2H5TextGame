@@ -14203,3 +14203,27 @@ Broader honest pacing,14attainable builds×fiveacts, economy/acquisition, endgam
 defeat/retry, whole-app locales/device/a11y/performance/PWA, actual CI and human
 acceptance remain open. No earned/balance/fullv1 claim or public deployment.
 The complete objective and registered umbrella worktree claim stay active.
+
+## C2 native browser prerequisite — 2026-10-27
+
+[Original launch](evidence/c2-idle-launch-prerequisite.md) and
+[separate browser prerequisite](evidence/c2-idle-browser-prerequisite.md) retain
+two failed observations. The first cannot find headed Chromium1217. The pinned
+installer then rejects Ubuntu26.04-x64; explicit existing Chromium1248 launches,
+but the blank-page cover-hidden assertion times out. Missing reached visibility
+and target/window records leave its cause unresolved (BUG354). BUG353 remains
+open. Neither failed card is retried; app/gameplay execution stays zero.
+
+Production build exits0 in12.988s with762exact files. All1,848runtime/test inputs
+retain snapshot0c42e4f448b55e55db4a3493c825ef24a0d843343a0316c443ba798eb54a3a94;
+prior20,656PASS/types/lint remain applicable. Producer review APPROVE/securityPASS
+checks38references and all readers release. The game drafts are unapproved and
+unexecuted; shared browser tools and protected genuine evidence are preserved.
+
+Original retainer71712terminal0/consumed verifies41archive members, removes exactly
+803files/11dirs and confirms rawroot absent,remaining[]/failures[]. Root retains
+the exact archive/manifest/retention/cleanup paths in the prerequisite evidence
+through independent/fullv1 consumers, then owns removal. ArchiveSHA
+9db888e6d9e9ac5d5637dfd79ce2f5688850bd9c370ecd0a0c63bee8615c4f61.
+No C2 idle/persistence/conservation/pacing/balance acceptance is established.
+The full objective and registered umbrella worktree claim remain active/local.

@@ -65,3 +65,14 @@ card, resolve and verify the exact compatible headed browser and record its
 identity in the reviewed harness prerequisites. Do not retry or tune this card,
 substitute synthetic visibility, or interpret the launch failure as gameplay
 failure. No game-code repair has been attempted.
+
+## Subsequent prerequisite — 2026-10-27
+
+The [separate native prerequisite](../../docs/plans/evidence/c2-idle-browser-prerequisite.md)
+preserves the original failure. The pinned installer rejects Ubuntu26.04-x64
+before download. A reviewed explicit existing Chromium1248 launch succeeds,
+but its blank-page cover-hidden assertion times out; missing reached-state
+and target/window evidence leaves the cause unresolved (BUG354). That browser
+reports156.0.8078.4 with Playwright1.59.1, so compatible default installation
+and general compatibility are not established. No app/gameplay runs or C2
+acceptance occurred. This report remains open; the original card was not retried.
