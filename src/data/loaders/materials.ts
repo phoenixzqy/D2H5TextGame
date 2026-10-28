@@ -22,6 +22,11 @@ export interface MaterialProfile {
 /** Stable version-one pool order and weights from the accepted D10 contract. */
 export interface MaterialEconomy {
   readonly version: 1;
+  /** Independent per-kill gates; identity pools are sampled only on success. */
+  readonly independentDropChances: Readonly<Record<MonsterTier, {
+    readonly rune: number;
+    readonly gem: number;
+  }>>;
   readonly runeOrder: readonly string[];
   readonly runeWeights: readonly number[];
   readonly actRuneCaps: readonly number[];

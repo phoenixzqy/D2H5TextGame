@@ -6,6 +6,7 @@
   "additionalProperties": false,
   "required": [
     "version",
+    "independentDropChances",
     "runeOrder",
     "runeWeights",
     "actRuneCaps",
@@ -22,6 +23,43 @@
   "properties": {
     "version": {
       "const": 1
+    },
+    "independentDropChances": {
+      "description": "Per-tier independent rune/gem gates, separate from treasure-class drops.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "trash",
+        "elite",
+        "rare-minion",
+        "champion",
+        "rare-elite",
+        "boss",
+        "chapter-boss"
+      ],
+      "properties": {
+        "trash": {
+          "$ref": "#/$defs/independentChance"
+        },
+        "elite": {
+          "$ref": "#/$defs/independentChance"
+        },
+        "rare-minion": {
+          "$ref": "#/$defs/independentChance"
+        },
+        "champion": {
+          "$ref": "#/$defs/independentChance"
+        },
+        "rare-elite": {
+          "$ref": "#/$defs/independentChance"
+        },
+        "boss": {
+          "$ref": "#/$defs/independentChance"
+        },
+        "chapter-boss": {
+          "$ref": "#/$defs/independentChance"
+        }
+      }
     },
     "runeOrder": {
       "type": "array",
@@ -470,6 +508,31 @@
               "const": "hell"
             }
           }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "independentChance": {
+      "description": "Independent rune and gem gate probabilities for one monster tier; successful gate residuals select identities.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rune",
+        "gem"
+      ],
+      "properties": {
+        "rune": {
+          "description": "Probability of one independent rune drop per kill, before conditional identity sampling.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "gem": {
+          "description": "Probability of one independent gem drop per kill, before conditional identity sampling.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
         }
       }
     }

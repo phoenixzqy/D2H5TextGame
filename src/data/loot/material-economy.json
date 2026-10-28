@@ -1,5 +1,35 @@
 {
   "version": 1,
+  "independentDropChances": {
+    "trash": {
+      "rune": 0.006,
+      "gem": 0.015
+    },
+    "elite": {
+      "rune": 0.05,
+      "gem": 0.08
+    },
+    "rare-minion": {
+      "rune": 0.05,
+      "gem": 0.08
+    },
+    "champion": {
+      "rune": 0.05,
+      "gem": 0.08
+    },
+    "rare-elite": {
+      "rune": 0.08,
+      "gem": 0.12
+    },
+    "boss": {
+      "rune": 1,
+      "gem": 1
+    },
+    "chapter-boss": {
+      "rune": 1,
+      "gem": 1
+    }
+  },
   "runeOrder": [
     "runes/el",
     "runes/eld",

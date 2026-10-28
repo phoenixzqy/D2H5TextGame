@@ -8,30 +8,11 @@
 
 import type { Rng } from '../rng';
 import type { MonsterTier } from '../combat/types';
+import { materialEconomy } from '../../data/loaders/materials';
 import { sampleMaterial, type MaterialLedger } from './materials';
 
 /** Difficulty enum used for drop multipliers. */
 export type Difficulty = 'normal' | 'nightmare' | 'hell';
-
-/** Per-tier base independent-drop chances (Normal). */
-const RUNE_CHANCE: Readonly<Record<MonsterTier, number>> = {
-  trash: 0.006,
-  elite: 0.05,
-  'rare-minion': 0.05,
-  champion: 0.05,
-  'rare-elite': 0.08,
-  boss: 1,
-  'chapter-boss': 1
-};
-const GEM_CHANCE: Readonly<Record<MonsterTier, number>> = {
-  trash: 0.015,
-  elite: 0.08,
-  'rare-minion': 0.08,
-  champion: 0.08,
-  'rare-elite': 0.12,
-  boss: 1,
-  'chapter-boss': 1
-};
 
 /** Wishstone awards (drop-tables §9). */
 const WISHSTONE_BY_TIER_AND_ACT: Readonly<Record<MonsterTier, number[]>> = {
@@ -105,7 +86,7 @@ export function rollCurrencyDrops(
   }
 
   const runeUnit = rng.next(), gemUnit = rng.next();
-  const runeChance = RUNE_CHANCE[tier], gemChance = GEM_CHANCE[tier];
+  const { rune: runeChance, gem: gemChance } = materialEconomy.independentDropChances[tier];
   const runes = runeUnit < runeChance ? 1 : 0;
   const gems = gemUnit < gemChance ? 1 : 0;
   const materials: Record<string, number> = {};
