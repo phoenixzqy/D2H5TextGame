@@ -62,6 +62,7 @@ import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
 import { isMercHolyFreezeSource, MERC_HOLY_FREEZE_DEFINITION } from '../skills/merc-holy-freeze';
 import { isMercMightSource, MERC_MIGHT_DEFINITION } from '../skills/merc-might';
 import { isMercFireMasterySource, MERC_FIRE_MASTERY_DEFINITION } from '../skills/merc-fire-mastery';
+import { isMercCriticalSource, MERC_CRITICAL_DEFINITION } from '../skills/merc-critical';
 import { isMercThornsSource, MERC_THORNS_DEFINITION } from '../skills/merc-thorns';
 import { isMercDefianceSource, MERC_DEFIANCE_DEFINITION } from '../skills/merc-defiance';
 import { isMercPrayerSource, MERC_PRAYER_DEFINITION } from '../skills/merc-prayer';
@@ -337,6 +338,7 @@ interface State {
   /** Factory-marked source IDs captured at registration; live eligibility is checked at use. */
   readonly holyFreezeSources: string[];
   readonly mercMightSources: string[];
+  readonly mercCriticalSources: string[];
   readonly mercFireMasterySources: string[];
   readonly mercThornsSources: string[];
   readonly mercDefianceSources: string[];
@@ -460,6 +462,13 @@ function mercThornsSourceId(state: State): string | undefined {
   return state.mercThornsSources.find(id => {
     const source = state.units.get(id);
     return source !== undefined && isMercThornsSource(source);
+  });
+}
+
+function mercCriticalSourceId(state: State): string | undefined {
+  return state.mercCriticalSources.find(id => {
+    const source = state.units.get(id);
+    return source !== undefined && isMercCriticalSource(source);
   });
 }
 
@@ -741,6 +750,7 @@ function registerUnit(state: State, u: CombatUnit): void {
   state.units.set(u.id, shaped);
   if (u.holyFreezeAura === true && !state.holyFreezeSources.includes(u.id)) state.holyFreezeSources.push(u.id);
   if (u.mercMightAura === true && !state.mercMightSources.includes(u.id)) state.mercMightSources.push(u.id);
+  if (u.mercCritical === true && !state.mercCriticalSources.includes(u.id)) state.mercCriticalSources.push(u.id);
   if (u.mercFireMastery === true && !state.mercFireMasterySources.includes(u.id)) state.mercFireMasterySources.push(u.id);
   if (u.mercThornsAura === true && !state.mercThornsSources.includes(u.id)) state.mercThornsSources.push(u.id);
   if (u.mercDefianceAura === true && !state.mercDefianceSources.includes(u.id)) state.mercDefianceSources.push(u.id);
@@ -829,6 +839,8 @@ function buildDamageInput(
   const innerSightFactor = 1 - innerSightReduction / 100;
   const barbsDefense = defender.kind === 'summon'
     ? (activeSpiritOfBarbs(state.spiritOfBarbs, state.barbsSpiritId, defender, state.units)?.rank ?? 0) * SPIRIT_OF_BARBS_DEFINITION.summonDefensePerRank : 0;
+  const nativeCritical = attacker.side === 'player' && alive(attacker) && mercCriticalSourceId(state) !== undefined
+    ? MERC_CRITICAL_DEFINITION : undefined;
   const nativeDefiance = defender.side === 'player' && alive(defender) && mercDefianceSourceId(state) !== undefined
     ? MERC_DEFIANCE_DEFINITION.defensePct : 0;
   const armorBonus = nativeDefiance + (hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0) + coldArmorBonuses(defender).defense + barbsDefense + holyShieldDefense(defender) + (defendingCloak?.defensePct ?? 0) + (activeConcentrate(defender, state.simClockMs)?.defensePct ?? 0);
@@ -857,8 +869,8 @@ function buildDamageInput(
       blindnessPenalty > 0 ? { hitChancePenalty: blindnessPenalty } : {}),
     ...(effect.alwaysHits === true ? { ignoreDodge: true } : {}),
     type: effect.damageType,
-    critChance: stats.critChance + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.critPerRank + (effect.critChanceBonus ?? 0) + (attackingCloak?.critChancePct ?? 0),
-    critMult: stats.critDamage,
+    critChance: stats.critChance + heartRank * DRUID_ALLY_AURA_DEFINITIONS.heart.critPerRank + (effect.critChanceBonus ?? 0) + (attackingCloak?.critChancePct ?? 0) + (nativeCritical?.critChancePct ?? 0),
+    critMult: stats.critDamage + (nativeCritical?.critDamagePct ?? 0),
     defenderResistances,
     defenderArmor: effect.ignoresDefense === true ? 0 : Math.max(0, defender.stats.defense * (1 + armorBonus + druidFormBonuses(defender).defensePct + (defenderAura?.bonuses.defensePct ?? 0)) * meltFactor * innerSightFactor * (1 - (defendingCry?.defenseReductionPct ?? 0) / 100)),
     defenderMagicResist: effect.ignoresMagicResist === true ? 0 : defender.stats.magicResist,
@@ -3363,6 +3375,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
     ...(druidAllyAuras ? { druidAllyAuras } : {}),
     holyFreezeSources: [],
     mercMightSources: [],
+    mercCriticalSources: [],
     mercFireMasterySources: [],
     mercThornsSources: [],
     mercDefianceSources: [],

@@ -169,6 +169,8 @@ export interface CombatUnit {
   readonly holyFreezeAura?: true;
   /** Native mercenary factory-owned Might presence; wave-local, never persisted. */
   readonly mercMightAura?: true;
+  /** Fresh canonical Rogue Pierce critical support; wave-local, never persisted. */
+  readonly mercCritical?: true;
   /** Fresh canonical Iron Wolf Fire Mastery source; wave-local, never persisted. */
   readonly mercFireMastery?: true;
   /** Native mercenary factory-owned Thorns presence; wave-local, never persisted. */

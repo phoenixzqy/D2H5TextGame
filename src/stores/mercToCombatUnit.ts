@@ -28,6 +28,7 @@ import { projectGovernedActives, type GovernedActiveProjection, type GovernedAct
 import { MERC_HOLY_FREEZE_DEFINITION } from '@/engine/skills/merc-holy-freeze';
 import { MERC_MIGHT_DEFINITION } from '@/engine/skills/merc-might';
 import { MERC_FIRE_MASTERY_DEFINITION } from '@/engine/skills/merc-fire-mastery';
+import { MERC_CRITICAL_DEFINITION } from '@/engine/skills/merc-critical';
 import { MERC_THORNS_DEFINITION } from '@/engine/skills/merc-thorns';
 import { MERC_DEFIANCE_DEFINITION } from '@/engine/skills/merc-defiance';
 import { MERC_PRAYER_DEFINITION } from '@/engine/skills/merc-prayer';
@@ -101,6 +102,9 @@ export function mercToCombatUnit(
     ...(merc.id.split('#')[0] === 'mercs/act2-holy-freeze' &&
       Number.isInteger(merc.level) && merc.level >= MERC_HOLY_FREEZE_DEFINITION.minLevel &&
       getMercSkillOrder(merc).includes('aura-holy-freeze') ? { holyFreezeAura: true as const } : {}),
+    ...(merc.id.split('#')[0] === 'mercs/act1-rogue-pierce' &&
+      Number.isInteger(merc.level) && merc.level >= MERC_CRITICAL_DEFINITION.minLevel &&
+      getMercSkillOrder(merc).includes('passive-critical') ? { mercCritical: true as const } : {}),
     ...(merc.id.split('#')[0] === 'mercs/act3-iron-wolf-fire' &&
       Number.isInteger(merc.level) && merc.level >= MERC_FIRE_MASTERY_DEFINITION.minLevel &&
       getMercSkillOrder(merc).includes('passive-fire-mastery') ? { mercFireMastery: true as const } : {}),

@@ -14995,3 +14995,57 @@ replacement experiment, push/merge/deployment occurs. Root retains the exact
 Fire packet through unfinished consumers and owns eventual cleanup. The full
 goal and claimed worktree stay active; future critical-support execution still
 requires refreshed checkpoint readiness.
+
+
+## 2026-10-28 — Native Rogue Pierce critical support / BUG-368
+
+Implement the existing gacha-spec party +5 percentage points critical chance
+and +20 points critical damage through closed JSON tuning, immutable true-passive
+registration, canonical fresh mercenary qualification and two additive shared
+damage inputs. Living original player-party hero/source/other mercs/late summons
+qualify. Duplicates do not stack; death/removal and impact-time life govern
+support. Preserve ordinary RNG, overflow, mitigation, typed/Enchant shared rolls,
+Burn snapshots and periodic/reflection eligibility. Both locale recruitment/skill
+descriptions state the promise. No save/base-stat/acquisition/Pierce Arrow change.
+
+Actual real-loader/factory/projection/default-registry primary RED fails3 and
+unchanged GREEN passes3. Seeds0/7 isolate chance, multiplier and existing overflow;
+constructed stats are not earned recruitment evidence. First focused native1 is
+424passes/1failed Oak fixture expectation. Diagnosed new-test correction preserves
+the strict generic helper, literal Oak capacity and native-disabled runtime-stat
+control. Corrected focused425/21 passes; four new files add67cases.
+
+Original frozen engine native0:11,081passes/413files; full native0:21,658passes/
+1,014files plus2unchanged skips. Exact prior inventory remains after only the same
+two unchanged runtime Date-label reconciliations. Both retain2,054-input digest
+`c4e42e53928640759bf7440df80b03aca1bec1509bc9880b938bc1c3f3562aed`.
+Original full lint native1 has two non-null warnings and one unbound-method error
+only in the new combat test; engine purity passes, build never starts. Accurate
+one-enemy tuple and receiver-free RNG types remove erased assertions without
+runtime/assertion changes. Initial `this:void` annotation fails exact lint; its
+queue stops immediately. Function-property signature repairs that declaration.
+All three versions emit identical installed-esbuild JavaScript; independent
+correction/scope review approves retaining original engine/full evidence at its
+actual map. Production/primary/configuration and other2,053inputs stay exact.
+
+Final digest `aa6d77f929fe3db605f724b25e85e82f62df85690d0ae2ff7fb3c4a8b7e3ed7d`:
+exact-file lint, focused425/21, typecheck, full zero-warning lint/engine purity and
+external production build all exit0 on the same frozen2,054inputs. No engine/full
+execution on corrected source is claimed. [Native evidence](evidence/merc-critical.md)
+retains diagnostics, review and staged/committed-blob checkpoint bindings.
+Disposable build762files/42273087bytes/
+10directories removed, absence verified; all
+29recordedPIDs and task-CWD processes absent, no
+interventions/cleanup failures. Exact evidence draft removed after identical
+application; native/raw/review/cleanup receipts remain retained by root through
+unfinished critical-support and umbrella consumers; root owns eventual cleanup.
+
+BUG368 stays Open for browser/earned/feature acceptance. BUG180/366 timeout causes
+and BUG365 acceptance remain Open;212bounded/oneunverified player-skill inventory
+unchanged. No earned campaign/economy/build/high-rune affordability/pacing/defeat-
+retry/device/locale/a11y/PWA/performance/actualCI/human/soak/full-v1 acceptance.
+30–50hours is intended active player campaign length, not native test execution
+time. H3 remains terminal failed-no-app; no browser/app, acquisition/lineage or
+replacement experiment, protected fixture/closed-policy read/replay, push/merge/
+deployment occurs. Goal/worktree stay active; future native Battle Orders still
+requires fresh design/readiness review and HP/MP lifecycle/replay handling.

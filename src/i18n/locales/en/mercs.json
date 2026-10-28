@@ -56,7 +56,7 @@
   "byId": {
     "act1-rogue-trainee": { "name": "Rogue Scout — Trainee", "lore": "A fresh recruit of the Sisters of the Sightless Eye, supporting from afar with a basic shortbow." },
     "act1-rogue-inner-sight": { "name": "Rogue Scout — Inner Sight", "lore": "Sister of Akara who reveals enemy weaknesses, lowering their defense." },
-    "act1-rogue-pierce": { "name": "Rogue Scout — Pierce", "lore": "A seasoned archer whose arrows pierce through to back-line targets." },
+    "act1-rogue-pierce": { "name": "Rogue Scout — Pierce", "lore": "A seasoned archer whose arrows pierce to back-line targets. While alive, living party members, including summons, gain +5 percentage points Critical Chance and +20 percentage points Critical Damage." },
     "act1-rogue-fire": { "name": "Rogue Scout — Fire Arrow", "lore": "Anoints arrows with sacred flame, applying burn to all hit." },
     "act1-rogue-cold": { "name": "Rogue Scout — Cold Arrow", "lore": "Blesses arrows with frost, chilling targets on hit." },
     "act2-blessed-aim": { "name": "Desert Merc — Blessed Aim", "lore": "Aura: +50% attack rating for self and allies." },

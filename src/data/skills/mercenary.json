@@ -461,7 +461,8 @@
     "description": "skills.mercenary.critical.desc",
     "icon": "skills/merc/passive-critical.png",
     "trigger": "passive",
-    "target": "self",
+    "target": "all-allies",
+    "mercCritical": { "critChancePct": 5, "critDamagePct": 20 },
     "cooldown": 0,
     "minLevel": 1,
     "maxLevel": 20

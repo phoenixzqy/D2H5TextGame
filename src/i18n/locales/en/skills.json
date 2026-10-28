@@ -1515,7 +1515,7 @@
     },
     "critical": {
       "name": "Critical Strike",
-      "desc": "Passive: chance to deal double damage on hit."
+      "desc": "Passive: while this mercenary lives, living party members, including summons, gain +5 percentage points Critical Chance and +20 percentage points Critical Damage."
     }
   },
   "auraSelection": {

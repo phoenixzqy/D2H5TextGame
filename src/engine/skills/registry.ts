@@ -21,6 +21,7 @@ import { MERC_ARROW_SKILLS } from './merc-arrows';
 import { MERC_HOLY_FREEZE_SKILL } from './merc-holy-freeze';
 import { MERC_MIGHT_SKILL } from './merc-might';
 import { MERC_FIRE_MASTERY_SKILL } from './merc-fire-mastery';
+import { MERC_CRITICAL_SKILL } from './merc-critical';
 import { MERC_THORNS_SKILL } from './merc-thorns';
 import { MERC_DEFIANCE_SKILL } from './merc-defiance';
 import { MERC_PRAYER_SKILL } from './merc-prayer';
@@ -99,6 +100,7 @@ export function loadDefaultSkills(): void {
   registry.set(MERC_HOLY_FREEZE_SKILL.id, MERC_HOLY_FREEZE_SKILL);
   registry.set(MERC_MIGHT_SKILL.id, MERC_MIGHT_SKILL);
   registry.set(MERC_FIRE_MASTERY_SKILL.id, MERC_FIRE_MASTERY_SKILL);
+  registry.set(MERC_CRITICAL_SKILL.id, MERC_CRITICAL_SKILL);
   registry.set(MERC_THORNS_SKILL.id, MERC_THORNS_SKILL);
   registry.set(MERC_DEFIANCE_SKILL.id, MERC_DEFIANCE_SKILL);
   registry.set(MERC_PRAYER_SKILL.id, MERC_PRAYER_SKILL);
