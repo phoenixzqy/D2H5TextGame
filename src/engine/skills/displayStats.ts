@@ -908,7 +908,7 @@ export function computeSkillRankDisplayStats(
     ...(manaCost !== undefined ? { manaCost } : {}),
     ...(lifeCost !== undefined ? { lifeCost } : {}),
     cooldown: scaleCooldown(skill, safeRank),
-    statuses: skill.appliesStatus ?? [],
+    statuses: assassinMartial?.payout?.kind === 'recovery' ? [] : skill.appliesStatus ?? [],
     tags: skill.appliesTags ?? []
   };
 }

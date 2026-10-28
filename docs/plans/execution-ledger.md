@@ -14354,3 +14354,46 @@ Earlier runtime outcomes retain their executed hashes and erasure-only mapping.
 Required native H2 checks now pass; final applied docs/inventory and producer
 approval of the exact H2 packet remain pending. No bug closure, browser/H3,
 earned acquisition, CI or full-v1 acceptance is claimed.
+
+## H2 committed and Cobra native recovery checkpoint — 2026-10-28 UTC
+
+H2 exact local packet received independent
+`APPROVE_COHERENT_LOCAL_H2_CHECKPOINT`, review SHA256
+`f5b2462821ba2b36c5e6ad23f1e331f95a76d47e8b1db370226f83fd2a973725`.
+The exact EOF-only addendum is SHA256
+`1dcae7df950abf4c95f6df0d16ee114749df770333dec7e50917cfae46a36106`;
+final128-path inventory SHA256
+`47e5f3a514b1d608ca9b70bb93db2c225951e18101549829c743299854f4943f`.
+All staged paths/blob hashes matched before local commit
+`a21c396ee721adf0e005938df1b29be9a1f4903a`, followed by clean Git status.
+This supersedes earlier pending-packet wording. BUG180/355/356/357 remain Open;
+no optional closure was selected. All8exact disposable H2 outputs were removed
+and verified after process/reader release; required raw evidence remains.
+
+The user's **“choose cheaper solution”** decision is implemented for Cobra:
+actual hostile HP removed generates independently floored/capped caster HP/MP;
+no monster mana pool, victim MP read/debit, tuning or save-shape change.
+[Cobra native evidence](evidence/cobra-mana-recovery.md) records native RED4701
+(fixture pass; sole policy MP assertion169:20 fails), genuine GREEN21329
+(2pass), focused2343 (282/13),
+engine92030 (10,736/401),
+full34572 (21,187 passed, 2 skipped/989, 896.543s),
+typecheck9766 and lint92886 native0. All final checks use unchanged
+5336inputs at `063597366ad3506334ba2698776e469dabcdca515b0fc2a7a55e2b05ce8f3e63`.
+Prior build2771 passes on identical production bytes; only2reviewed test typing
+fixes follow it. Mislabeled unchanged-baseline repeat35654 remains native1
+without GREEN credit; first typecheck's3test typing errors are preserved.
+Exact native/source and two-test typing approvals are retained with raw inputs.
+
+BUG304 stays Open for dedicated public recovery/playback/persistence and earned
+acceptance; inventory212bounded/oneunverified is unchanged. H3 remains terminal
+failed-no-app; no retry/new browser card or acceptance is implied. Earned
+high-rune quantities/source mix,30–50active-hour pacing,14builds×fiveacts,
+defeat/retry, whole-app locales/devices/a11y/performance/PWA, actual CI and human
+acceptance remain open. No publication, merge, deployment or full-v1 completion.
+
+Root retains exact raw diagnostics/reviews/fixtures and final checkpoint receipts
+under `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-h2-hell-b6de0n4x`
+through unfinished full-v1/independent consumers and owns eventual verified
+removal. Cobra disposable build output is removed after consumers release it;
+the exact cleanup receipt records its result. Worktree claim remains active.

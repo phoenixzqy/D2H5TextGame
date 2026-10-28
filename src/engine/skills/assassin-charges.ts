@@ -43,7 +43,8 @@ export function resolveAssassinChargeDefinition(input: unknown): ChargeDefinitio
 export const ASSASSIN_CHARGE_DEFINITION = resolveAssassinChargeDefinition(tuning);
 const rules = ASSASSIN_CHARGE_DEFINITION;
 const validateSource = createSkillValidator<SkillDef>();
-const sources = new Map<string, { readonly maxRank: number; readonly skill: RegisteredSkill }>();
+const sources = new Map<string, { readonly maxRank: number; readonly skill: RegisteredSkill;
+  readonly appliesStatus: SkillDef['appliesStatus'] }>();
 for (const input of authored) {
   if (!validateSource(input)) throw new Error('Invalid Assassin martial source catalog');
   const id = canonicalSkillIdFromData(input.id);
@@ -53,7 +54,7 @@ for (const input of authored) {
     target: source.target as 'single-enemy' | 'all-enemies' });
   if (skill.effects.length !== 1 || skill.effects[0]?.kind !== 'damage')
     throw new Error('Invalid Assassin martial damage definition');
-  sources.set(id, { maxRank: source.maxLevel, skill: freeze(skill) });
+  sources.set(id, { maxRank: source.maxLevel, skill: freeze(skill), appliesStatus: freeze(source.appliesStatus) });
 }
 if (sources.size !== rules.builders.length + rules.finishers.length) throw new Error('Incomplete Assassin martial catalog');
 function same(actual: unknown, expected: unknown): boolean {
@@ -130,6 +131,7 @@ export function resolveAssassinMartialDisplay(input: unknown, rank: number): Ass
   if (!validateSource(input) || input.trigger !== 'active') return undefined;
   const id = canonicalSkillIdFromData(input.id), source = sources.get(id);
   if (!source || input.maxLevel !== source.maxRank || !Number.isInteger(rank) || rank < 1 || rank > source.maxRank ||
+    (id === 'assassin.cobra_strike' && !same(input.appliesStatus, source.appliesStatus)) ||
     !matchesAssassinMartialSkill(registeredSkillFromJson({ ...input, trigger: 'active' }))) return undefined;
   const common = { maxStacks: rules.maxStacks, durationSeconds: rules.durationMs / 1000, finishers: rules.finishers };
   const builder = rules.builders.find(builder => builder === id);
@@ -192,11 +194,11 @@ export class AssassinCharges {
     }));
   }
 }
-/** Plan one finite Cobra transfer; runtime debits and credits exactly the returned mana. */
+/** Plan independent caster life and mana recovery from actual hostile HP removed. */
 export function cobraChargeRecovery(hpRemoved: number, stacks: number, missingLife: number,
-  missingMana: number, victimMana: number): { readonly life: number; readonly mana: number } {
-  if (![hpRemoved, missingLife, missingMana, victimMana].every(Number.isFinite) || hpRemoved <= 0 ||
+  missingMana: number): { readonly life: number; readonly mana: number } {
+  if (![hpRemoved, missingLife, missingMana].every(Number.isFinite) || hpRemoved <= 0 ||
     !Number.isInteger(stacks) || stacks < 1 || stacks > rules.maxStacks) return { life: 0, mana: 0 };
   return { life: Math.max(0, Math.min(missingLife, Math.floor(hpRemoved * rules.lifeFractionPerStack * stacks))),
-    mana: Math.max(0, Math.min(missingMana, victimMana, Math.floor(hpRemoved * rules.manaFractionPerStack * stacks))) };
+    mana: Math.max(0, Math.min(missingMana, Math.floor(hpRemoved * rules.manaFractionPerStack * stacks))) };
 }

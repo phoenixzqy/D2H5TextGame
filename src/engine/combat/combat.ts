@@ -1135,13 +1135,15 @@ function applyDamageToUnit(
         if (!source || !alive(source)) break;
         if (release.builder === 'assassin.cobra_strike') {
           const recovery = cobraChargeRecovery(hpRemoved, release.ranks.length,
-            source.stats.lifeMax - source.life, source.stats.manaMax - source.mana, victim && alive(victim) ? victim.mana : 0);
+            source.stats.lifeMax - source.life, source.stats.manaMax - source.mana);
           commitHealing(state, source, recovery.life);
           const healed = state.units.get(attackerId);
-          if (victim && healed && recovery.mana > 0) {
-            const debit = commitMana(state, victim, { ...victim, mana: victim.mana - recovery.mana }, 'cobra-strike');
-            const credit = commitMana(state, healed, { ...healed, mana: healed.mana + recovery.mana }, 'cobra-strike');
-            if (debit) emit(state, debit); if (credit) emit(state, credit);
+          if (healed && alive(healed)) {
+            const restored = Math.max(0, Math.min(healed.stats.manaMax - healed.mana, recovery.mana));
+            if (restored > 0) {
+              const credit = commitMana(state, healed, { ...healed, mana: healed.mana + restored }, 'cobra-strike');
+              if (credit) emit(state, credit);
+            }
           }
         } else if (victim && alive(victim) && release.effect) {
           applyDamageToUnit(state, attackerId, defenderId, release.effect, 1, false, false, false, false, false, undefined, 'martial-release');

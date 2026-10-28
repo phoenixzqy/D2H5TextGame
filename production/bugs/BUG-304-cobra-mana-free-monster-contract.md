@@ -1,6 +1,6 @@
 # BUG-304 — Resolve Cobra recovery against mana-free monsters
 
-Status: Open — conflicting design contracts; user decision pending. No label/status applied to any forge item.
+Status: Open — native implementation verified; dedicated public recovery/playback/persistence and earned acceptance pending. No label/status applied to any forge item.
 Severity: High — positive public Cobra MP transfer is unreachable with ordinary PvE monsters.
 Build: fc915ddd3834b0927affa5843365620ff0bcef71; source unchanged by test-only7bcaaefd.
 Environment: native actual allocation/equipment/Catacombs probes; production Chromium desktop1280×800/en Tiger control. No Cobra browser-mana acceptance yet.
@@ -12,14 +12,42 @@ Environment: native actual allocation/equipment/Catacombs probes; production Chr
 3. Inspect native enemy resources: every factory monster has mana0/manaMax0.
 4. A Cobra release can heal actual missing HP but cannot debit positive enemy MP.
 
-Expected: D05-assassin-martial-charges-v1 requires positive public actual victim MP debit and equal caster credit; no fabricated reward.
-Actual: combat-formulas.md §11 explicitly requires mana-free monsters, and monster-factory.ts sets both capacities/current MP to0. Ordinary monster JSON/type/schema have no mana pool. D04 Mind Blast supports affected0MP monsters and does not change construction.
+Expected under the original contract: D05-assassin-martial-charges-v1 requires positive public actual victim MP debit and equal caster credit; no fabricated reward.
+Original observation: combat-formulas.md §11 explicitly requires mana-free monsters, and monster-factory.ts sets both capacities/current MP to0. Ordinary monster JSON/type/schema have no mana pool. D04 Mind Blast supports affected0MP monsters and does not change construction.
 Evidence: charge-public-native-probe/cadence/waves logs and12-case final receipt in /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-assassin-charges-zt17emhc; src/engine/combat/monster-factory.ts mana fields; docs/design/combat-formulas.md resource-pool policy; docs/plans/decisions/D05-assassin-martial-charges-v1.md and D04-mind-blast-mana-burn-v1.md.
 Affected systems: game-designer/technical-director/content/engine/QA; root sole executor.
 Root cause: acceptance requires a victim resource that the explicit PvE contract omits. This is not a debit/credit primitive defect: native constructed positive/zero/partial transfer cases pass.
 
 ## Decision and next steps
+The user answered **“choose cheaper solution”**. Source comparison selected
+keeping monsters mana-free and generating bounded Cobra caster recovery. Adding
+spellcaster pools would require new monster schema/data/factory/resource policy;
+the local redesign reuses the existing0.1-perstack coefficients and actual
+triggering hostile HP-loss basis. No further preference question is pending.
 
-An asynchronous user question offers JSON-defined spellcaster mana pools (recommended) or a deliberate redesign of Cobra recovery while keeping monsters mana-free. The first changes monster data/schema/construction and potential AI/resource interactions; the second changes the reviewed transfer contract and copy. No answer is inferred, positive MP requirement is not dropped, and enemy resources are not injected into browser state.
+The appended [D05 amendment](../../docs/plans/decisions/D05-assassin-martial-charges-v1.md#cobra-recovery-amendment--2026-10-27)
+explicitly supersedes victim MP transfer. A living actual caster recovers floored
+HP/MP from the triggering actual hostile HP removed, capped by fresh missing
+capacity, for the existing1–3paid stacks. Victim death qualifies; reflected
+caster death does not. Victim MP is neither inspected nor debited. Costs,
+cooldowns, finite lifetime, once-only consumption and paid-copy ownership remain.
 
-Continue independent charge/public/trap work. After the decision, document the selected contract before implementation, reproduce the selected unmet behavior, keep zero-MP controls and exact bounded transfer arithmetic, and run native plus production browser validation. No skill/campaign/balance/private-v1 acceptance is claimed here.
+Independent design/plan review APPROVE is retained in root's H2 scratch as
+`cobra-cheaper-policy-review.json`, SHA256
+`3bb81bf508f3711787b81935f5977595062a8262fbb4607b9b3202f8240d04c1`.
+The native fix now generates caster-only recovery from actual hostile HP removed;
+no enemy pools were added. The unchanged authored-zero-MP regression reached
+its intended policy RED, then passed after implementation. Focused
+282/13files, engine
+10,736/401files, full
+21,187 passed, 2 skipped/989files, strict types and lint pass with unchanged final
+inputs. The prior production build passes on identical production bytes with
+only the two reviewed test typing fixes afterward.
+
+[Native checkpoint evidence](../../docs/plans/evidence/cobra-mana-recovery.md)
+retains exact snapshots, failures, reviews and limits. Dedicated production
+public zero-enemy-MP recovery/playback/persistence proof is still required;
+original transfer failures and zero-MP observations remain historical. Do not
+inject enemy resources. Cobra remains unverified in the functional inventory:
+212bounded plus one unverified. Earned sustain/balance/pacing, campaign and
+full-v1 acceptance remain open. No further preference question is pending.

@@ -32,3 +32,64 @@ The existing frozen shadow full suite is terminal PASS19369/907, with static/pub
 ## Author checks
 Security check: pass for local engine/JSON/presentation/tests, no credentials/network/dependencies/CI/export changes. Constrain Cobra MP transfer atomically to actual debited capacity.
 Plan review: ready after explicitly covering saturation across multiple charge pools, no recursion on release/reactions, per-stack Command rank capture, real enemyMP debit and finite lifetime. This author challenge is not independent design/technical/QA approval.
+
+
+## Cobra recovery amendment — 2026-10-27
+
+The user answered **“choose cheaper solution”** to enemy mana pools versus a
+Cobra redesign. The selected lower-cost solution keeps the existing mana-free
+monster contract and generates bounded recovery for the actual caster. The
+following conservative formula retains the existing JSON coefficients; it is
+a design choice reviewed independently, not a formula specified by the user.
+This amendment supersedes only the surviving-victim, actual-debit and MP-transfer
+requirements above and their corresponding acceptance/security clauses.
+
+Cobra releases no additional damage. On the existing first qualifying direct
+positive hostile HP loss by an authorized finisher or ordinary basic fallback,
+consume the existing paid charge pools once. For consumed Cobra stacks s, let H
+be that triggering hit's actual hostile HP removed after mitigation/absorption,
+excluding overkill. A living actual caster recovers
+`max(0, min(fresh missingLife, floor(H × lifeFractionPerStack × s)))` HP and
+`max(0, min(fresh missingMana, floor(H × manaFractionPerStack × s)))` MP.
+Both JSON coefficients remain0.1; s remains1–3. MP recovery does not inspect,
+require or debit victim MP. Victim death, including death during an earlier
+ordered release, does not cancel captured-H recovery; caster death does.
+Ordinary hit/reflection/death/orb closure precedes recovery. Re-read the caster
+and its capacities after healing before committing mana. Never revive or
+retarget. Retain finite-input refusal and nonnegative capacity clamps.
+
+Preserve paid source ownership, captured ranks, cap/lifetime/strict expiry,
+priority saturation, discharge order, all builder/finisher costs and cooldowns,
+no recursion/RNG/new action/extra hit, once-only consumption and replay/receipt
+ownership. A real paid Shadow Warrior recovers its own resources; its owner
+receives none. Do not extend the current Master attack pool. New battles/waves
+still start with empty private pools. Keep the existing absolute caster mana
+event with reason `cobra-strike`, with no victim-debit event. Positive recovery
+retains Mana Burn clearing and recovery-carry behavior through `commitMana`.
+
+Correct en/zh descriptions/rules from steal to restore/回复, state that killing
+hits qualify while the caster survives and enemy MP is unchanged, and suppress
+Cobra-only obsolete generic steal tags after complete authored recognition.
+Refresh the charge schema's obsolete transfer description without changing its
+constraints, source markers or numerical tuning.
+
+Before runtime changes, retain meaningful RED from actual authored zero-MP
+monster construction and native paid Cobra→finisher/basic discharge. Verify
+exact1/2/3-stack recovery/flooring; victim0/partial/largeMP unchanged; full/zero/
+partial caster capacity; lethal target and reflected caster; earlier-release
+target death; missing/expired/forged pools; AOE/multi-hit once-only discharge;
+no extra cost/CD/RNG; real paid Warrior ownership; fresh absolute resource
+events and Mana Burn behavior. Retain old transfer observations as superseded
+policy history. Required focused/engine/full/types/lint/build and independently
+reviewed public en/zh desktop/mobile zero-enemy-MP recovery/playback/persistence
+proof remain before Cobra gains bounded-functional credit. No earned sustain,
+balance, pacing, campaign or full-v1 acceptance follows from this amendment.
+
+Policy provenance: root-owned scratch `cobra-cheaper-policy-proposal.md`
+SHA256 `939f33e6e9003da10adb55add70ad39ab0d65837b2270f5b559c372a45bd54ea`;
+independent GD/plan approval `cobra-cheaper-policy-review.json`
+SHA256 `3bb81bf508f3711787b81935f5977595062a8262fbb4607b9b3202f8240d04c1`,
+under `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-h2-hell-b6de0n4x/`.
+The proposal author supplied technical cost/source analysis; runtime/public
+verification remains separate. [BUG304](../../../production/bugs/BUG-304-cobra-mana-free-monster-contract.md)
+tracks implementation and evidence; the original failed transfer proof remains.

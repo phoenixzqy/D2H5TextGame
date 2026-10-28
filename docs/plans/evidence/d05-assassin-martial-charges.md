@@ -144,3 +144,43 @@ one dependency symlink and27directories removed,remaining[]/failures[], shared
 dependency target intact. External retention driver removed after both Flight/
 charge consumers terminated; source retained in Flight archive. No skill credit,
 independent QA, earned builds/balance/campaign or private-v1 completion.
+
+
+## Cobra cost decision and amended policy — 2026-10-27
+
+The user answered **“choose cheaper solution”**. The
+[D05 Cobra amendment](../decisions/D05-assassin-martial-charges-v1.md#cobra-recovery-amendment--2026-10-27)
+keeps monsters mana-free and generates floored10/20/30%actual-triggering-HP-loss
+recovery for the living actual caster, clamped to fresh missing HP/MP. It
+explicitly supersedes prior surviving-victim/debit/equal-transfer requirements;
+enemy MP stays unchanged and a killing hit qualifies if the caster survives.
+Existing paid ownership, lifetime, consumption, cost/CD/RNG and event/receipt
+boundaries remain. The exact policy proposal has independent GD/plan APPROVE;
+its hash and root-owned review paths are recorded in the amendment.
+
+The earlier public/native transfer observations above remain historical evidence
+under their original policy. They do not prove the amended behavior. No runtime
+or browser verification of this amendment is claimed here. [BUG304](../../../production/bugs/BUG-304-cobra-mana-free-monster-contract.md)
+stays Open pending meaningful native RED, implementation, required checks and
+reviewed public zero-enemy-MP recovery/playback/persistence proof. Cobra remains
+unverified; inventory212bounded/oneunverified is unchanged. Earned sustain,
+balance/pacing, campaign, independent full gates and private-v1 remain open.
+
+## Native amended Cobra implementation — 2026-10-28 UTC
+
+The policy amendment is now implemented. [Cobra native checkpoint](cobra-mana-recovery.md)
+binds the actual unchanged authored-zero-MP fixture RED and amended GREEN,
+282 focused checks/13files,
+10,736 engine checks/401files,
+21,187 passed, 2 skipped/989 full-unit files, strict types, lint and the scope-bound
+production build. Focused/engine/full/types/lint preserve the same 5336-file snapshot.
+The earlier no-runtime-verification statement above describes the policy-only
+stage. Original transfer/public evidence and failed attempts remain unchanged.
+
+Recovery uses actual hostile HP removed, independently floors and clamps HP/MP,
+never touches victim MP and can follow a killing hit only for a living actual
+caster. Reviewed constructed controls cover zero/partial/full capacities,
+absorption, overkill, reflection/death/orbs, fractional boundaries, paid-copy
+ownership and deterministic native replay. These are native constructed proofs.
+BUG304 stays Open for dedicated public recovery/playback/persistence; no skill
+inventory promotion, earned balance/pacing/campaign or private-v1 acceptance.

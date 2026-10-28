@@ -7,6 +7,7 @@ import { playerToCombatUnit } from '@/stores/combatHelpers';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { useMapStore } from '@/stores/mapStore';
 import { useFormationStore } from '@/stores/formationStore';
+import { usePlayerStore } from '@/stores/playerStore';
 const TIGER = 'skills-assassin-tiger-strike', TALON = 'skills-assassin-dragon-talon';
 const hold = (appliedAtMs = 0): ActiveStatus => ({ id: 'stun', sourceId: 'constructed-hold', stacks: 1, remaining: -1, appliedAtMs });
 function fixture(rank: number, withCharge = true): CombatSnapshot {
@@ -24,7 +25,7 @@ function fixture(rank: number, withCharge = true): CombatSnapshot {
   return { seed: 7, playerTeam: [hero], enemyTeam: [target] };
 }
 beforeEach(() => { useInventoryStore.getState().reset(); useMapStore.getState().reset();
-  useFormationStore.getState().reset(); resetRegistry(); loadDefaultSkills(); });
+  useFormationStore.getState().reset(); usePlayerStore.getState().reset(); resetRegistry(); loadDefaultSkills(); });
 afterEach(() => { resetRegistry(); loadDefaultSkills(); });
 it.each([1, 20])('native rank%i builds three Tiger charges then actually casts the configured Talon finisher', rank => {
   const input = fixture(rank), before = structuredClone(input), out = runBattleRecorded(input);
@@ -66,9 +67,10 @@ for (const slug of families) for (const rank of [1,20])
     if (slug === 'cobra_strike') {
       expect(hits).toHaveLength(3);
       const transfers = out.events.filter(e => e.kind === 'mana').filter(e => e.reason === 'cobra-strike');
-      expect(transfers.length).toBeGreaterThanOrEqual(2);
-      const victim = transfers.find(e => e.target === 'target'), owner = transfers.find(e => e.target === 'hero');
-      expect(victim?.mana).toBeLessThan(500); expect(owner?.mana).toBeGreaterThan(987);
+      expect(transfers.length).toBeGreaterThanOrEqual(1);
+      expect(transfers.every(e => e.target === 'hero')).toBe(true);
+      expect(out.result.enemyTeam.find(unit => unit.id === 'target')?.mana).toBe(500);
+      expect(transfers[0]?.mana).toBeGreaterThan(987);
       expect(out.events.some(e => e.kind === 'heal' && e.target === 'hero' && e.amount > 0)).toBe(true);
     } else {
       expect(hits).toHaveLength(slug === 'phoenix_strike' ? 6 : 4);
@@ -120,4 +122,47 @@ it('actual paid Warrior owns its own native charge/finisher sequence', () => {
   expect(finisher).toBeDefined(); if (!finisher) throw new Error('Missing shadow finisher');
   expect(out.events.filter(e => e.kind === 'damage').filter(e => e.source === spawn.unit.id && e.simClockMs === finisher.simClockMs)).toHaveLength(4);
   expect(out.result.playerTeam.find(u => u.id === 'hero')?.mana).toBe(0);
+});
+
+it('a paid Warrior recovers its own Cobra mana without restoring its owner or debiting the victim', () => {
+  const base = fixture(1), first = base.playerTeam[0], target = base.enemyTeam[0];
+  if (!first || !target) throw new Error('Missing Warrior Cobra fixture');
+  usePlayerStore.getState().setPlayer({ ...createMockPlayer('Constructed paid Warrior Cobra', 'assassin'),
+    id: 'hero', level: 30, skillPoints: 29, skillLevels: {}, comboOrder: [] });
+  for (const id of ['skills-assassin-claw-mastery', 'skills-assassin-weapon-block',
+    'skills-assassin-shadow-warrior', TIGER, 'skills-assassin-cobra-strike'])
+    expect(usePlayerStore.getState().allocateSkillPoint(id)).toBe('ok');
+  usePlayerStore.getState().setComboOrder(['skills-assassin-shadow-warrior', 'skills-assassin-cobra-strike']);
+  const player = usePlayerStore.getState().player;
+  if (!player) throw new Error('Missing paid player');
+  const native = playerToCombatUnit(player);
+  expect(native.assassinShadowSkills?.shadow_warrior?.attacks).toEqual([{ id: 'assassin.cobra_strike', rank: 1 }]);
+  const input = { ...base, playerTeam: [{ ...first, ...native, life: 2000, mana: 22, stats: first.stats,
+    manaRegenPerSecond: 0, manaRegenBaselinePerSecond: 0, statuses: [hold()] }],
+    enemyTeam: [{ ...target, mana: 0, stats: { ...target.stats, mana: 0, manaMax: 0 } }] };
+  const before = structuredClone(input), out = runBattleRecorded(input);
+  expect(input).toEqual(before); expect(runBattleRecorded(input)).toEqual(out); expect(runBattle(input)).toEqual(out.result);
+  const spawn = out.events.find(event => event.kind === 'summon' && event.summonId === 'shadow_warrior');
+  if (!spawn || spawn.kind !== 'summon') throw new Error('Missing actual paid Warrior body');
+  expect(spawn.unit.skillLevels).toEqual({ 'assassin.cobra_strike': 1 });
+  expect(out.events.filter(event => event.kind === 'mana' && event.target === 'hero'))
+    .toEqual([expect.objectContaining({ reason: 'cast', mana: 0 })]);
+  const credits = out.events.filter(event => event.kind === 'mana').filter(event => event.reason === 'cobra-strike');
+  expect(credits.length).toBeGreaterThan(0);
+  expect(credits.every(event => event.target === spawn.unit.id)).toBe(true);
+  const credit = credits[0]; if (!credit) throw new Error('Missing body recovery');
+  const index = out.events.indexOf(credit), prefix = out.events.slice(0, index);
+  const paid = prefix.filter(event => event.kind === 'mana' && event.target === spawn.unit.id).at(-1);
+  const hit = prefix.filter(event => event.kind === 'damage' && event.source === spawn.unit.id &&
+    event.target === 'target' && event.simClockMs === credit.simClockMs).at(-1);
+  if (!paid || paid.kind !== 'mana' || !hit || hit.kind !== 'damage') throw new Error('Missing paid-body hit/resource witness');
+  expect(paid.reason).toBe('cast'); expect(hit.dodged).toBe(false); expect(hit.amount).toBeGreaterThanOrEqual(10);
+  const gain = prefix.filter(event => event.kind === 'status-state' && event.target === spawn.unit.id &&
+    event.statuses.some(status => status.id === 'charge-cobra-strike')).at(-1);
+  expect(gain?.kind === 'status-state' ? gain.statuses.find(status => status.id === 'charge-cobra-strike')?.stacks : 0).toBe(1);
+  expect(credit.mana - paid.mana).toBe(Math.min(spawn.unit.stats.manaMax - paid.mana, Math.floor(hit.amount * .1)));
+  expect(out.events.find(event => event.kind === 'action' && event.actor === spawn.unit.id && event.simClockMs === credit.simClockMs))
+    .toMatchObject({ skillId: null });
+  expect(out.result.playerTeam.find(unit => unit.id === 'hero')?.mana).toBe(0);
+  expect(out.result.enemyTeam.find(unit => unit.id === 'target')?.mana).toBe(0);
 });

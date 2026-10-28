@@ -45,7 +45,7 @@
       "type": "number",
       "exclusiveMinimum": 0,
       "maximum": 1,
-      "description": "Cobra transfer fraction, capped by actual victim MP and missing caster MP."
+      "description": "Cobra generated mana recovery fraction of the triggering hit's actual hostile HP removed per stack, capped by missing caster MP without requiring or removing victim MP."
     },
     "builders": {
       "type": "array",

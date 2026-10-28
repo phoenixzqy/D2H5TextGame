@@ -18,6 +18,7 @@ for (const id of rules.builders) it.each([0, 1, 2, 19, 20, 21])(
       if (!stats) continue;
       expect(stats.assassinMartial).toMatchObject({ kind: 'builder', maxStacks: 3,
         durationSeconds: 15, finishers: rules.finishers });
+      expect(stats.statuses).toEqual(id === 'assassin.cobra_strike' ? [] : row.appliesStatus ?? []);
       const payout = stats.assassinMartial?.payout;
       if (id === 'assassin.cobra_strike') {
         expect(payout).toEqual({ kind: 'recovery', releases: [
@@ -64,4 +65,20 @@ it('omits martial promises for foreign, incomplete or altered authored skills', 
   const missing = { ...tiger };
   Reflect.deleteProperty(missing, 'damage');
   expect(computeSkillRankDisplayStats(missing, 1).assassinMartial).toBeUndefined();
+});
+
+it('keeps generic statuses without recovery promises for unrecognized Cobra sources', () => {
+  const cobra = source('assassin.cobra_strike');
+  if (!cobra.appliesStatus) throw new Error('Missing authored Cobra statuses');
+  const incomplete = { ...cobra };
+  Reflect.deleteProperty(incomplete, 'damage');
+  const forged = { ...source('assassin.tiger_strike'), id: cobra.id, appliesStatus: cobra.appliesStatus };
+  for (const row of [incomplete, forged, { ...cobra, id: 'foreign.cobra_strike' },
+    { ...cobra, trigger: 'passive' }, { ...cobra, cost: { mana: 0 } },
+    { ...cobra, scaling: { damagePerLevel: 999 } }, { ...cobra, appliesStatus: ['life-steal'] }]) {
+    const before = structuredClone(row), stats = computeSkillRankDisplayStats(row, 1);
+    expect(stats.assassinMartial).toBeUndefined();
+    expect(stats.statuses).toEqual(row.appliesStatus ?? []);
+    expect(row).toEqual(before);
+  }
 });

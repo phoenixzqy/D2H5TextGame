@@ -61,12 +61,24 @@ it('refuses nonfinite clocks and illegal ranks without corrupting existing paid 
   for (const clock of [-1,NaN,Infinity]) expect(state.gain('a', tiger, 1, clock)).toBe(false);
   expect(state.peek('a', 1)[0]?.ranks).toEqual([1]);
 });
-it('computes Cobra restoration from actual HP removed and actual transferable enemy mana', () => {
-  expect(cobraChargeRecovery(101, 3, 100, 100, 100)).toEqual({ life: 30, mana: 30 });
-  expect(cobraChargeRecovery(101, 3, 5, 7, 4)).toEqual({ life: 5, mana: 4 });
-  expect(cobraChargeRecovery(101, 3, 0, 0, 100)).toEqual({ life: 0, mana: 0 });
-  expect(cobraChargeRecovery(101, 3, 100, 100, 0)).toEqual({ life: 30, mana: 0 });
-  for (const hp of [0,-1,NaN,Infinity]) expect(cobraChargeRecovery(hp,3,100,100,100)).toEqual({ life: 0, mana: 0 });
+it('computes independent Cobra life and generated mana from actual HP removed', () => {
+  for (const stacks of [1, 2, 3]) {
+    expect(cobraChargeRecovery(101, stacks, 100, 100)).toEqual({ life: stacks * 10, mana: stacks * 10 });
+  }
+  expect(cobraChargeRecovery(101, 3, 5, 7)).toEqual({ life: 5, mana: 7 });
+  expect(cobraChargeRecovery(101, 3, 0, 100)).toEqual({ life: 0, mana: 30 });
+  expect(cobraChargeRecovery(101, 3, 100, 0)).toEqual({ life: 30, mana: 0 });
+  expect(cobraChargeRecovery(9, 1, 100, 100)).toEqual({ life: 0, mana: 0 });
+  expect(cobraChargeRecovery(9, 2, 100, 100)).toEqual({ life: 1, mana: 1 });
+  expect(cobraChargeRecovery(9, 3, 100, 100)).toEqual({ life: 2, mana: 2 });
+  expect(cobraChargeRecovery(101, 3, -1, -1)).toEqual({ life: 0, mana: 0 });
+  for (const hp of [0, -1, NaN, Infinity]) expect(cobraChargeRecovery(hp, 3, 100, 100)).toEqual({ life: 0, mana: 0 });
+  for (const stacks of [0, -1, 1.5, 4, NaN, Infinity])
+    expect(cobraChargeRecovery(100, stacks, 100, 100)).toEqual({ life: 0, mana: 0 });
+  for (const invalid of [NaN, Infinity, -Infinity]) {
+    expect(cobraChargeRecovery(100, 1, invalid, 100)).toEqual({ life: 0, mana: 0 });
+    expect(cobraChargeRecovery(100, 1, 100, invalid)).toEqual({ life: 0, mana: 0 });
+  }
 });
 it('requires the complete exact registered martial definition', () => {
   const skill = getSkill(tiger); if (!skill) throw new Error('Missing actual Tiger');

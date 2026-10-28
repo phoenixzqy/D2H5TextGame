@@ -38,8 +38,10 @@ for (const locale of ['en', 'zh-CN'] as const) for (const id of [...rules.builde
       : ['付费攻击造成敌方生命损失', '施法者存活', '任一聚气池已满', '下一波', '战斗指挥只计入一次'])
       expect(panel).toHaveTextContent(text);
     if (id === 'assassin.cobra_strike') for (const text of locale === 'en'
-      ? ['actual enemy HP removed', 'surviving victim', 'actual MP removed', 'no extra damage']
-      : ['实际敌方生命损失', '存活目标', '实际扣除的法力', '没有额外伤害']) expect(panel).toHaveTextContent(text);
+      ? ['actual enemy HP removed', 'capped independently', 'No enemy MP is required or removed',
+        'Killing hits qualify if the caster survives', 'no extra damage']
+      : ['实际敌方生命损失', '分别不超过', '无需目标拥有法力，也不会扣除敌方法力',
+        '击杀命中也可回复，只要施法者存活', '没有额外伤害']) expect(panel).toHaveTextContent(text);
     const section = (title: string) => {
       const section = within(panel).getByRole('heading', { name: title, level: 3 }).closest('section');
       if (!section) throw new Error('Missing charge rank section');
@@ -53,8 +55,8 @@ for (const locale of ['en', 'zh-CN'] as const) for (const id of [...rules.builde
       const stats = section(title);
       const value = (label: string) => stats.getByText(label, { selector: 'dt' }).nextElementSibling;
       if (id === 'assassin.cobra_strike') {
-        expect(value(locale === 'en' ? 'Applies' : '附加')).toHaveTextContent(
-          locale === 'en' ? 'Life Steal, Mana Steal' : '生命偷取, 法力偷取');
+        expect(stats.queryByText(locale === 'en' ? 'Applies' : '附加', { selector: 'dt' }))
+          .not.toBeInTheDocument();
         if (locale === 'zh-CN') expect(panel).not.toHaveTextContent('Life Steal');
       }
       expect(value(locale === 'en' ? 'Charges per skill' : '每个技能聚气上限')).toHaveTextContent('3');
