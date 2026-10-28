@@ -14585,3 +14585,44 @@ Independent document review has no material findings/security pass; exact final
 confirmation and cleanup receipts are retained. The applied scratch draft was
 removed after reader release; absence verified, cleanup failures[]. Umbrella
 goal and claimed worktree stay active.
+
+
+## Fresh-lineage filesystem-root correction — 2026-10-28 UTC
+
+[Root-resolution evidence](evidence/fresh-lineage-root-resolution.md) follows
+BUG360 with a separate current-source tooling repair. Installed Vitest's jsdom
+URL transform replaces the literal module URL base with HTTP self.location.
+Converting import.meta.url directly to a file path, then using dirname/resolve,
+corrects the filesystem ancestry with a two-line entry change. The historical
+frozen source/manifest/reviews and permanently spent launcher record remain
+unchanged; no native preflight, invocation or replacement experiment occurs.
+
+The ordinary regression reads the actual entry as text and executes only an
+AST-allowlisted root expression in harmless jsdom modules. Both ordinary and
+spaces/Unicode paths reproduce ERR_INVALID_URL_SCHEME on the old expression
+and pass after the correction. Review URL-01 found unchecked generic type
+arguments in the initial extraction guard; two rejection-only cases first fail,
+then pass after rejecting typeArguments on call/new. No unsafe example is emitted
+or imported. The stale full-final run is cancelled at native130 without credit.
+Corrected source review approves/security pass/no findings, receipt SHA256
+`c34421626190a708607462d72cca72c269f3e2e6370d9068f3cd0effe8f314c7`.
+
+Final focused10473 passes10. Unfiltered full36377 passes21,252 with the same
+two exact skips/994files, native0. Typecheck19530/lint68427 also return native0.
+All four preserve1,873inputs at
+`2cc2afac6cbffdadfd26c6688895e15ebdbc5cfa8a1e34c2d59483c31922d4fc`;
+source and historical packet differences[]. No .once.ts entry is discovered.
+All84logged fixture paths and recorded full-run processes are absent; applied
+draft removed after reader release, cleanup failures[]. Raw logs/results/maps,
+reviews and exact cleanup receipt remain under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-url-collection-yqldjuhh`
+through unfinished consumers; root owns eventual verified cleanup. Shared caches
+and claimed worktree are retained.
+
+BUG360 remains Open for unverified full native-entry collection. Root-expression
+coverage does not prove admission, creation/save/load, combat, fresh progression,
+earnings or actual browser/IndexedDB behavior. Other open bugs,212bounded/one
+unverified skill inventory, earned economy/affordability/pacing,14builds×fiveacts,
+whole-app locales/devices/a11y/performance/PWA, actual CI and human/soak/full-v1
+acceptance remain unresolved. H3 remains terminal failed-no-app; no browser retry/
+new card, publication, merge or deployment. Umbrella goal/worktree stay active.

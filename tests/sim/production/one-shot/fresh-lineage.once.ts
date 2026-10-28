@@ -1,7 +1,7 @@
 /** Opt-in, permanently consumed native prefix. Never import from an ordinary test. */
 import { expect, it, vi } from 'vitest';
 import { closeSync, fsyncSync, openSync, readFileSync, writeFileSync } from 'node:fs';
-import { resolve, join } from 'node:path';
+import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { SaveRecord } from '@/stores/save-adapter';
 import type { SaveCurrent } from '@/engine/types/save';
@@ -35,7 +35,7 @@ vi.mock('dexie', () => ({
   }
 }));
 
-const root = resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
 const packet = freshRegistration.packet;
 function safe(value: unknown): unknown {
   return JSON.parse(JSON.stringify(value, (_key, item: unknown) => {
