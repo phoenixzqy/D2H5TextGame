@@ -14432,3 +14432,32 @@ this two-document checkpoint. BUG304, other open bugs, terminated H3/browser,
 earned economy/pacing/build/campaign, devices/a11y/performance/PWA, actual CI,
 human/soak and full-v1 limits remain unchanged. Root retains evidence through
 unfinished consumers and owns eventual cleanup. Umbrella goal/worktree stay active.
+
+## Cobra public-store lifecycle — 2026-10-28 UTC
+
+[Native lifecycle evidence](evidence/cobra-public-lifecycle.md) adds two complete
+rank1/20 cases using real allocation, authored zero-MP Catacombs enemies,
+recorded public playback, isolated nonterminal positive HP/MP witnesses and
+ordinary save/export/Continue/import paths. Only Dexie constructor/table I/O is
+mocked. Exact persistent-domain equality is verified; transient combat HP/MP,
+charges and runtime authority are not persisted. Restored runs earn Cobra again.
+The explicit synthetic resource/attack cap supplies no earned-balance credit.
+
+Targeted85345 passes2/2; unfiltered full7612 passes21,189 with
+2existing skips/990files; typecheck51382 and lint1303 native0. All checks preserve
+5339inputs at `cc157092139f4a749a1883b09305e88a59fda2cb70900aba8154b4d46a0e87fe`.
+Final test SHA256 `4801b5d1dfdedc943ba30b45552023eb440779c3784f7bae172545cd17e81d7f`;
+independent source/targeted review `4ded9bc64b71e7fa76e2027fe25abd2aaccc19fb35be1dd320ca600036d535f8`
+approves without findings/security concerns. Prior failed fixture, stack-oracle
+and clock attempts remain preserved without production RED credit. No definite
+dodge explanation is inferred from the incomplete diagnostic trace.
+
+BUG304 stays Open for browser durability/UX and earned acceptance; inventory
+212bounded/oneunverified is unchanged. H3 remains terminal failed-no-app, with
+no retry/new browser card. Other earned economy/pacing/build/campaign,
+locale/device/a11y/performance/PWA, CI/human/soak and full-v1 gates remain open.
+No production code, build/coverage output, publication, merge or deployment.
+Root retains exact raw evidence under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-h2-hell-b6de0n4x/cobra-public-lifecycle`
+through unfinished consumers and owns eventual verified cleanup. Worktree and
+umbrella goal stay active.

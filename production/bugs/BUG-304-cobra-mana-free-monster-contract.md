@@ -1,7 +1,7 @@
 # BUG-304 — Resolve Cobra recovery against mana-free monsters
 
-Status: Open — native implementation verified; dedicated public recovery/playback/persistence and earned acceptance pending. No label/status applied to any forge item.
-Severity: High — positive public Cobra MP transfer is unreachable with ordinary PvE monsters.
+Status: Open — native implementation and public-store recovery/playback/save lifecycle verified; browser durability/UX and earned acceptance pending. No label/status applied to any forge item.
+Severity: High — the original transfer contract prevented MP recovery against ordinary PvE monsters.
 Build: fc915ddd3834b0927affa5843365620ff0bcef71; source unchanged by test-only7bcaaefd.
 Environment: native actual allocation/equipment/Catacombs probes; production Chromium desktop1280×800/en Tiger control. No Cobra browser-mana acceptance yet.
 
@@ -45,9 +45,14 @@ inputs. The prior production build passes on identical production bytes with
 only the two reviewed test typing fixes afterward.
 
 [Native checkpoint evidence](../../docs/plans/evidence/cobra-mana-recovery.md)
-retains exact snapshots, failures, reviews and limits. Dedicated production
-public zero-enemy-MP recovery/playback/persistence proof is still required;
-original transfer failures and zero-MP observations remain historical. Do not
-inject enemy resources. Cobra remains unverified in the functional inventory:
-212bounded plus one unverified. Earned sustain/balance/pacing, campaign and
-full-v1 acceptance remain open. No further preference question is pending.
+retains exact snapshots, failures, reviews and limits. The subsequent
+[native public-store lifecycle checkpoint](../../docs/plans/evidence/cobra-public-lifecycle.md)
+proves real learned rank1/20 zero-enemy-MP recovery and nonterminal playback,
+plus full persistent-domain equality through export/flush/load/Continue/import.
+Only Dexie constructor/table I/O is mocked. Live combat HP/MP and charges remain
+transient; restored runs earn paid Cobra again. Real browser durability/UX and
+earned acceptance are still required. Original transfer failures and zero-MP
+observations remain historical. Do not inject enemy resources. Cobra remains
+unverified in the functional inventory: 212bounded plus one unverified.
+Earned sustain/balance/pacing, campaign and full-v1 acceptance remain open.
+No further preference question is pending.
