@@ -33,17 +33,17 @@ function assertLegal(rolls: readonly AffixRoll[], base: ItemBase, ilvl: number, 
   }
 }
 
-describe('BUG153 finite Nightmare affix eligibility', () => {
-  it.each(affixes)('$id covers every supported level through102 with no overlap or103 fallback', affix => {
-    for (let level = 1; level <= 102; level++) {
+describe('BUG153 and D08 finite native affix eligibility', () => {
+  it.each(affixes)('$id covers every supported level through122 with no overlap or123 fallback', affix => {
+    for (let level = 1; level <= 122; level++) {
       expect(affix.tiers.filter(tier => level >= tier.ilvlMin && level <= tier.ilvlMax),
         `${affix.id}/L${String(level)}`).toHaveLength(1);
     }
-    expect(affix.tiers.some(tier => tier.ilvlMax >= 103)).toBe(false);
+    expect(affix.tiers.some(tier => tier.ilvlMax >= 123)).toBe(false);
   });
 
   for (const rarity of ['magic', 'rare'] as const) {
-    it.each([99, 100, 101, 102])(`materializes legal ${rarity} bonuses on every affixable base at%i`, ilvl => {
+    it.each([99, 100, 101, 102, 103, 121, 122])(`materializes legal ${rarity} bonuses on every affixable base at%i`, ilvl => {
       // Preserve the 76 original bases and verify the two mastery bases plus six claw tiers.
       expect(bases.filter(base => base.weaponType !== 'claw' && !['items/base/weapon-spear', 'items/base/weapon-throwing-knife'].includes(base.id)))
         .toHaveLength(76);
@@ -65,7 +65,7 @@ describe('BUG153 finite Nightmare affix eligibility', () => {
     });
   }
 
-  it.each([99, 100, 101, 102])('crafts an actual caster amulet at%i with exact costs and once-only identity', ilvl => {
+  it.each([99, 100, 101, 102, 103, 121, 122])('crafts an actual caster amulet at%i with exact costs and once-only identity', ilvl => {
     const recipe = required([...materialRecipes.values()].find(row => row.kind === 'caster-amulet'));
     const base = required(pools.bases.get('items/base/amu-tin'));
     const item = required(rollItem({ baseId: base.id, rarity: 'magic', ilvl }, pools, createRng(seed)));
@@ -73,7 +73,7 @@ describe('BUG153 finite Nightmare affix eligibility', () => {
       materials: recipe.costs.materials, currencies: recipe.costs.currencies, materialActionOrdinal: 0 };
     const before = structuredClone(source);
     const context: MaterialActionContext = { characterId: 'affix-boundary', highestUnlockedAct: 5,
-      difficulty: 'nightmare', backpackCapacity: 100, stashCapacity: 500, bases: pools.bases,
+      difficulty: ilvl > 102 ? 'hell' : 'nightmare', backpackCapacity: 100, stashCapacity: 500, bases: pools.bases,
       affixes, reservedItemIds: new Set(), otherOwnedItemIds: new Set() };
     const request = prepareMaterialAction(source, context, { recipeId: recipe.id, itemIds: [item.id] });
     const plan = planMaterialAction(source, context, request);
@@ -95,13 +95,13 @@ describe('BUG153 finite Nightmare affix eligibility', () => {
     expect(source).toEqual(before);
   });
 
-  it('keeps103 outside the authored envelope without rewriting levels or injecting bonuses', () => {
+  it('keeps123 outside the authored envelope without rewriting levels or injecting bonuses', () => {
     const base = required(pools.bases.get('items/base/armor-archon-plate'));
     for (const rarity of ['magic', 'rare'] as const) {
-      const item = required(rollItem({ baseId: base.id, rarity, ilvl: 103 }, pools, createRng(seed)));
-      expect(item).toMatchObject({ level: 103, ilvl: 103, affixes: [] });
+      const item = required(rollItem({ baseId: base.id, rarity, ilvl: 123 }, pools, createRng(seed)));
+      expect(item).toMatchObject({ level: 123, ilvl: 123, affixes: [] });
     }
-    expect(() => prepareRareAffixPair(required(pools.bases.get('items/base/amu-tin')), 103, affixes)).toThrow('Missing legal craft');
+    expect(() => prepareRareAffixPair(required(pools.bases.get('items/base/amu-tin')), 123, affixes)).toThrow('Missing legal craft');
   });
 
   it('validates all authored prefixes and suffixes against the closed production schema', () => {

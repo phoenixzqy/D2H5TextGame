@@ -12,6 +12,7 @@ export interface StaticFieldTuning {
   readonly currentHealthFraction: number;
   readonly normalFloorFraction: number;
   readonly nightmareFloorFraction: number;
+  readonly hellFloorFraction: number;
 }
 
 /** Personal cold-resistance reduction in percentage points, with rank-one base. */

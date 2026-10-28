@@ -1,3 +1,4 @@
+import { withoutV24Fields, withV24Defaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import paladinSkills from '../../data/skills/paladin.json';
@@ -32,7 +33,7 @@ function sample() {
 
 describe('v22 complete canonical player aura save domain', () => {
   it('matches all twenty authored aura IDs and freezes the historical v21 type', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(23);
+    expect(CURRENT_SAVE_VERSION).toBe(24);
     expect(paladinSkills.filter(row => 'aura' in row && row.aura).map(row => row.id.replace('skills-paladin-', '')).sort())
       .toEqual([...ids].sort());
     expectTypeOf<SaveV21['player']['selectedAuraId']>().toEqualTypeOf<'paladin.might' | 'paladin.meditation' | undefined>();
@@ -50,21 +51,22 @@ describe('v22 complete canonical player aura save domain', () => {
   });
 
   it.each([undefined, 'paladin.might', 'paladin.meditation'])('migrates v21 selection %s by changing only version', selectedAuraId => {
-    const base = sample(), old = { ...base, version: 21, player: { ...base.player,
+    const base = withoutV24Fields(sample()), old = { ...base, version: 21, player: { ...base.player,
       ...(selectedAuraId ? { selectedAuraId } : {}) } };
     const before = structuredClone(old), expected = { ...old, version: 23 };
-    const migrated = runMigrations(old);
+    const migrated = runMigrations(old, 23);
     expect(migrated).toEqual(expected);
-    expect(migrated.player).toBe(old.player);
-    expect(migrated.inventory).toBe(old.inventory);
-    expect(migrated.player.skills[0]?.synergies).toBe(old.player.skills[0]?.synergies);
-    expect(decodeSave(old)).toEqual(expected);
+    expect(Reflect.get(migrated, 'player')).toBe(old.player);
+    expect(Reflect.get(migrated, 'inventory')).toBe(old.inventory);
+    expect(runMigrations(old).player.skills[0]?.synergies).toBe(old.player.skills[0]?.synergies);
+    expect(runMigrations(old)).toEqual(withV24Defaults(expected));
+    expect(decodeSave(old)).toEqual(withV24Defaults(expected));
     expect(runMigrations(old, 21)).toBe(old);
     expect(old).toEqual(before);
   });
 
   it.each(ids.filter(id => id !== 'might' && id !== 'meditation'))('rejects future %s in v21 before widening', id => {
-    const base = sample(), old = { ...base, version: 21, player: { ...base.player, selectedAuraId: `paladin.${id}` } };
+    const base = withoutV24Fields(sample()), old = { ...base, version: 21, player: { ...base.player, selectedAuraId: `paladin.${id}` } };
     const before = structuredClone(old);
     expect(() => runMigrations(old)).toThrow('Invalid save');
     expect(() => decodeSave(old)).toThrow('Invalid save');
@@ -82,7 +84,7 @@ describe('v22 complete canonical player aura save domain', () => {
     });
 
   it('does not launder malformed reset counters through the v21 migration', () => {
-    const base = sample();
+    const base = withoutV24Fields(sample());
     for (const respecsRemaining of [undefined, null, { stat: 4, skill: 0 }, { stat: 0, skill: -1 }]) {
       const old = { ...base, version: 21, player: { ...base.player, respecsRemaining } };
       expect(() => runMigrations(old)).toThrow('Invalid save');

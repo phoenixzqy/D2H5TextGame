@@ -68,7 +68,7 @@ it('carries the real earned Eld shield through live transactions into an immutab
   expect(input.stats).toEqual({ ...baseline?.player.derivedStats, physDodge: .26 });
   expect(input.life).toBe(120); expect(input.mana).toBe(102);
   expect(hero().skillLevels).toEqual(baseline?.player.skillLevels);
-  expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 253, nightmare: 0 });
+  expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 253, nightmare: 0, hell: 0 });
   expect(snapshotStores()?.inventory.latestMaterialAction).toEqual({ ordinal: 1, requestHash: request.requestHash,
     result: { itemId: 'it-1u1tx-10g', materials: {}, currencies: {} } });
   expect(snapshotStores()?.inventory.materials).toEqual({ 'gems/skull/chipped': 2,
@@ -85,5 +85,5 @@ it('carries the real earned Eld shield through live transactions into an immutab
   expect(runBattleRecorded(snapshot)).toEqual(recording);
   expect(snapshot).toEqual(frozen);
   expect(toJsonSafe(snapshotStores()?.inventory)).toEqual(durable);
-  expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 253, nightmare: 0 });
+  expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 253, nightmare: 0, hell: 0 });
 });

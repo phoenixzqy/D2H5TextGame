@@ -1,6 +1,6 @@
 import { MALUS_QUEST, MALUS_SIDE_QUEST, MALUS_SOURCE, hasMalusCompletion } from '@/engine/map/malus-quest';
 import { ACT1_QUEST_RECEIPTS } from '@/engine/map/act1-quest-sources';
-import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
+import { validateNative24CurrentCampaignRewards } from '@/engine/save/current-campaign';
 const MALUS_RECEIPTS = [ACT1_QUEST_RECEIPTS.presentItem];
 import { awardXp, LEVEL_CAP, xpRequired, xpTotal } from '@/engine/progression/xp';
 import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
@@ -122,7 +122,7 @@ export function publishImbueClaim(questId: string, xp: number): 'ok' | 'grant-fa
     check(false, xp > 0, xp > 0, true);
     useMapStore.getState().markQuestRewardClaimed(questId); check(true, xp > 0, xp > 0, true);
     const live = useMapStore.getState(), current = useInventoryStore.getState();
-    validateCurrentCampaignRewards(live, current.questItems, current.questServices, live.endgame);
+    validateNative24CurrentCampaignRewards(live, current.questItems, current.questServices, live.endgame);
     return 'ok';
   } catch (cause) {
     const errors: unknown[] = [];
@@ -146,7 +146,7 @@ export function publishImbueClaim(questId: string, xp: number): 'ok' | 'grant-fa
     restore(() => {
       const live = useMapStore.getState(), current = useInventoryStore.getState();
       validateQuestItemLedger(current.questItems, live.questProgress, live.questReceipts);
-      validateCurrentCampaignRewards(live, current.questItems, current.questServices, live.endgame);
+      validateNative24CurrentCampaignRewards(live, current.questItems, current.questServices, live.endgame);
     });
     if (errors.length > 0) throw new AggregateError(errors, 'Imbue Claim restoration failed', { cause });
     return 'grant-failed';

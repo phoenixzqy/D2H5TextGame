@@ -184,7 +184,7 @@ it('Save22 roundtrips allocation/priority only; fresh projections and imports ar
   usePlayerStore.getState().setComboOrder(['skills-paladin-holy-shield']);
   const expected = playerToCombatUnit(player()), save = snapshotStores();
   if (!save) throw new Error('Missing native save');
-  expect(save.version).toBe(23);
+  expect(save.version).toBe(24);
   expect(expected.holyShieldRank).toBe(1);
   expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })).toBeTruthy();
   expect(finalHero().holyShield?.rank).toBe(1);

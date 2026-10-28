@@ -384,7 +384,7 @@
     "cancel": "Cancel",
     "close": "Close",
     "completed": "Completed",
-    "progression": "Rune fusion uses your highest unlocked act and selected difficulty: Act I–V caps are rune 8 / 15 / 19 / 21 / 33, with a maximum of 22 outside Hell. Gem fusion can exceed the gem drop cap.",
+    "progression": "Rune fusion uses your highest unlocked act and selected difficulty: Act I–V caps are rune 8 / 15 / 19 / 21 / 33. Normal and Nightmare stop at Um (22). With Act V unlocked and Hell selected, all 32 upgrades through Zod (33) are available; each turns three identical runes into one of the next rune. Gem fusion can exceed the gem drop cap.",
     "kind": {
       "rune-fusion": "Fuse runes",
       "gem-fusion": "Fuse gems",

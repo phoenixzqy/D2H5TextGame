@@ -73,7 +73,7 @@ describe('native material persistence and frozen v17/v18 exports', () => {
     useInventoryStore.getState().addMaterials(materials);
     useInventoryStore.getState().addCurrency('rune-shard', 99);
     const before = snapshot();
-    expect(before.version).toBe(23);
+    expect(before.version).toBe(24);
     expect(before.inventory.materials).toEqual(materials);
     const exported = exportCurrentSave();
     if (!exported) throw new Error('Missing export');
@@ -101,7 +101,7 @@ describe('native material persistence and frozen v17/v18 exports', () => {
     useInventoryStore.getState().addMaterials({ 'runes/ral': 1 });
     await importIntoStores(JSON.stringify(old));
     expect(snapshot().inventory).toEqual(withV19Defaults(old).inventory);
-    expect((await loadSave())?.version).toBe(23);
+    expect((await loadSave())?.version).toBe(24);
   });
 
   it.each([undefined, { 'runes/ral': 0 }, { 'runes/unknown': 1 }, { 'runes/ral': Number.MAX_SAFE_INTEGER + 1 }])(

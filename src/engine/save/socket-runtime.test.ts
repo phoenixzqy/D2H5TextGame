@@ -1,4 +1,4 @@
-import { withoutV20Fields, withV20Defaults, withV21Defaults, withV23Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV20Fields, withV20Defaults, withV21Defaults, withV24Defaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { buildSave, toJsonSafe } from './serialize';
@@ -47,7 +47,7 @@ describe('connected socket runtime save boundary', () => {
     const old = oldSave(), equipped = { ...sword('blade'), equipped: true };
     const input = { ...old, inventory: { ...old.inventory, equipped: { weapon: equipped } } };
     const before = structuredClone(input), decoded = decodeSave(toJsonSafe(input));
-    expect(decoded.version).toBe(23);
+    expect(decoded.version).toBe(24);
     expect(decoded.inventory.equipped.weapon).toMatchObject({ socketContents: [{ kind: 'rune', id: 'runes/el' }] });
     expect(decoded.inventory.equipped.weapon).not.toHaveProperty('runes');
     expect(decoded.player.equipment).toEqual([decoded.inventory.equipped.weapon]);
@@ -62,8 +62,8 @@ describe('connected socket runtime save boundary', () => {
     const native = migrateSaveV19({ ...old, inventory: { ...old.inventory, backpack: [sword('bag')], stash: [incompatible],
       legacyGearQuarantine: [{ item: old16, origin: { container: 'stash', index: 0 } }] } });
     const decoded = decodeSave(toJsonSafe(native));
-    expect(decoded.version).toBe(23);
-    expect(toJsonSafe(decoded)).toEqual(toJsonSafe(withV23Defaults(withV21Defaults(withV20Defaults(native)))));
+    expect(decoded.version).toBe(24);
+    expect(toJsonSafe(decoded)).toEqual(toJsonSafe(withV24Defaults(withV21Defaults(withV20Defaults(native)))));
     for (const entry of [decoded.inventory.legacyGearQuarantine[0], decoded.inventory.socketQuarantine[0]]) {
       const affix = entry?.item.affixes?.[0];
       expect(affix && 'values' in affix && affix.values).toBeInstanceOf(Map);
@@ -74,7 +74,7 @@ describe('connected socket runtime save boundary', () => {
     const { runes: _runes, ...canonical } = item;
     const merc = { ...native.player, type: 'mercenary' as const, id: 'rogue', archetype: 'back', rarity: 'R' as const,
       equipment: [] };
-    const save = buildSave({ ...native, inventory: { ...native.inventory, equipped: { weapon: canonical } },
+    const save = buildSave({ ...withV24Defaults(native), inventory: { ...native.inventory, equipped: { weapon: canonical } },
       mercs: { ...native.mercs, ownedMercs: [merc], mercEquipment: { rogue: { weapon: { ...canonical, id: 'merc-owned' } } } } });
     expect(save.player.equipment).toEqual([canonical]);
     expect(save.mercs.ownedMercs[0]?.equipment).toEqual([{ ...canonical, id: 'merc-owned' }]);

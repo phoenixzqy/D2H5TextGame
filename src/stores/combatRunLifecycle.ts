@@ -1,3 +1,4 @@
+import type { ReplayProfileId } from '@/engine/map/replay-profile';
 import type { CountessEncounter } from '@/engine/map/countess-admission';
 import type { EndgameProgress, EndgameRunContext } from '@/engine/endgame/runtime';
 import type { WavePlan } from '@/engine/combat';
@@ -10,7 +11,7 @@ import { assertWaveRestoreOwner, assertWaveSnapshotAllowed, type WaveRestoreLeas
 import { abandonRecordedWaves, clearRecordedWavesAfterRestore } from './recordedWaveReceipt';
 
 /** Immutable source authority shared by a native run and its exact wave receipts. */
-export type RunOrigin = Readonly<{ kind: 'area'; replayProfileId: 'normal' | 'nightmare';
+export type RunOrigin = Readonly<{ kind: 'area'; replayProfileId: ReplayProfileId;
   /** Explicit optional-source identity survives replay even when proof admission is stripped. */
   questEncounter?: CountessEncounter['encounterId'] }> | EndgameRunContext;
 
@@ -18,7 +19,7 @@ export type RunOrigin = Readonly<{ kind: 'area'; replayProfileId: 'normal' | 'ni
 export interface ActiveRun {
   readonly origin: RunOrigin;
   endgameProgress?: EndgameProgress;
-  readonly replayProfileId?: 'normal' | 'nightmare';
+  readonly replayProfileId?: ReplayProfileId;
   readonly plan: WavePlan;
   readonly act: 1 | 2 | 3 | 4 | 5;
   readonly seed: number;
@@ -38,7 +39,7 @@ export interface ActiveRun {
   waveElapsedMs: number;
   /** Exact installed recording and original authored boss identity; never persisted. */
   recording?: {
-    readonly replayProfileId?: 'normal' | 'nightmare';
+    readonly replayProfileId?: ReplayProfileId;
     readonly outcome: RecordedBattleOutcome;
     readonly events: readonly RecordedBattleEvent[];
     readonly chapterBoss?: { readonly unitId: string; readonly archetypeId: string };

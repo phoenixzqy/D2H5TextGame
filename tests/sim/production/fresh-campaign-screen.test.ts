@@ -36,7 +36,7 @@ it('runs the declared fresh preparation stage once and restores its production r
     expect(report.created.player.player).toMatchObject({ name: 'Earned Act I', class: 'sorceress',
       level: 1, experience: 0, statPoints: 0, skillPoints: 1 });
     expect(report.created.inventory.backpack).toEqual([]);
-    expect(report.created.map.challengeOrdinals).toEqual({ normal: 0, nightmare: 0 });
+    expect(report.created.map.challengeOrdinals).toEqual({ normal: 0, nightmare: 0, hell: 0 });
     expect(report.waves.length).toBeGreaterThan(0);
     expect(report.waves.length).toBeLessThanOrEqual(stage === 'native17-act2' || stage === 'native17-v2-far-oasis'
       ? 492 : stage === 'accepted-preparation' ? 40 : 1);

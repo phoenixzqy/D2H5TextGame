@@ -558,7 +558,9 @@ function passiveUtilityRows(skill: DisplaySkillSource, rank: number): readonly S
       { id: 'staticFieldCurrentHealth', labelKey: 'details.staticField.currentHealth',
         value: skill.staticField.currentHealthFraction, valueKind: 'percent' },
       { id: 'staticFieldNightmareFloor', labelKey: 'details.staticField.nightmareFloor',
-        value: skill.staticField.nightmareFloorFraction, valueKind: 'percent' }
+        value: skill.staticField.nightmareFloorFraction, valueKind: 'percent' },
+      { id: 'staticFieldHellFloor', labelKey: 'details.staticField.hellFloor',
+        value: skill.staticField.hellFloorFraction, valueKind: 'percent' }
     ];
   }
   if (skill.id === 'skills-sorceress-cold-mastery' && skill.coldMastery) {

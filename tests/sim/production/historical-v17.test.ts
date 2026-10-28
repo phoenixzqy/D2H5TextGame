@@ -29,7 +29,19 @@ it.each([nativeContinuationPolicy, economyPolicy])('preserves authenticated orig
     restoreEarnedSave(save, policy.clockEpochMs);
     const live = observeEarnedState();
     const liveBefore = structuredClone(live);
-    expect(hashObservation(historicalV17EarnedState(live, witness))).toBe(policy.sourceEarnedHash);
+    const projected = historicalV17EarnedState(live, witness);
+    expect(hashObservation(projected)).toBe(policy.sourceEarnedHash);
+    const { endgame: _endgame, hellClearedSubAreas: _hellClears, challengeOrdinals, ...oldMap } = live.map;
+    const { hell: _hellOrdinal, ...oldOrdinals } = challengeOrdinals;
+    expect(projected.map).toEqual({ ...oldMap, challengeOrdinals: oldOrdinals });
+    expect(projected.map).not.toHaveProperty('hellClearedSubAreas');
+    expect(projected.map.challengeOrdinals).not.toHaveProperty('hell');
+    for (const changedMap of [
+      { ...live.map, hellClearedSubAreas: ['areas/act1-blood-moor'] },
+      { ...live.map, challengeOrdinals: { ...live.map.challengeOrdinals, hell: 1 } }
+    ]) {
+      expect(() => historicalV17EarnedState({ ...live, map: changedMap }, witness)).toThrow('complete historical forward expectation');
+    }
     expect(live).toEqual(liveBefore);
     expect(historicalV17EarnedState(live, witness).player.player?.derivedStats).toEqual(witness.player.derivedStats);
     const changed = structuredClone(live);
@@ -53,6 +65,8 @@ it('refuses meaningful new state and authoritative drift rather than erasing it 
   const witness = authenticateHistoricalV17(raw, policy.sourceSaveHash);
   const save = decodeSave(raw);
   const mutations: Record<string, (copy: SaveCurrent) => SaveCurrent> = {
+    hellClears: copy => ({ ...copy, map: { ...copy.map, hellClearedSubAreas: ['areas/act1-blood-moor'] } }),
+    hellOrdinal: copy => ({ ...copy, map: { ...copy.map, challengeOrdinals: { ...copy.map.challengeOrdinals, hell: 1 } } }),
     endgame: copy => ({ ...copy, endgame: { ...copy.endgame, attemptOrdinal: 1 } }),
     materials: copy => ({ ...copy, inventory: { ...copy.inventory, materials: { 'runes/el': 1 } } }),
     quarantine: copy => ({ ...copy, inventory: { ...copy.inventory, socketQuarantine: [{ sourceVersion: 18,

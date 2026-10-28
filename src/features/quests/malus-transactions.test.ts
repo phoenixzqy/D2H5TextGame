@@ -11,6 +11,7 @@ import { useHydrationStore,__resetPersistenceForTests,snapshotStores } from '@/s
 import { abortSubAreaRun } from '@/stores/combatHelpers';
 import { decodeSave } from '@/engine/save/validate';
 import { toJsonSafe } from '@/engine/save/serialize';
+import { withoutV24Fields, withV24Defaults } from '../../../tests/helpers/save-fixtures';
 const MAIN='quests/act1-tools-of-the-trade', SOURCE=MAIN+'#objective:obj-recover-malus', AREA='areas/act1-catacombs';
 import { recoverQuestTool } from '@/features/quests/interactObject';
 import { giveQuestItem } from '@/features/quests/questDelivery';
@@ -41,8 +42,8 @@ describe('finite Malus transactions and sparse-history durability',()=>{
   const after=snapshot();for(const kind of kinds)expect(actions[kind]()).toMatch(/already/);expect(snapshot()).toEqual(after);
  });
  it('retains a sparse literal22 journal without manufacturing any proof before explicit repair',()=>{
-  track(true,true);const current=durable();const raw={...current,version:22};const before=structuredClone(raw);
-  expect(decodeSave(toJsonSafe(raw))).toEqual({...current,version:23});expect(raw).toEqual(before);
+  track(true,true);const current=durable(),predecessor=withoutV24Fields(current);const raw={...predecessor,version:22};const before=structuredClone(raw);
+  expect(decodeSave(toJsonSafe(raw))).toEqual(withV24Defaults({...predecessor,version:23}));expect(raw).toEqual(before);
   expect(current.inventory.questItems).toEqual({});expect(current.map.questReceipts).toEqual({});
  });
  it('generic Charsi Talk never replaces the exact Malus hand-in',()=>{

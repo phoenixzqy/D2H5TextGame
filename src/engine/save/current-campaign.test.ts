@@ -1,3 +1,4 @@
+import { withoutV24Fields } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { campaignEvidence } from '../../../tests/helpers/endgame';
@@ -30,9 +31,9 @@ describe('current-only achievement title save ownership', () => {
   });
   it('keeps historical v19 closed to the new title', () => {
     const { endgame: _state, ...old } = sample();
-    expect(() => validateSocketSave({ ...old, version: 19, map: { ...old.map, selectedTitle: 'titles/worldstone-adapt' } }))
+    expect(() => validateSocketSave({ ...withoutV24Fields(old), version: 19, map: { ...withoutV24Fields(old).map, selectedTitle: 'titles/worldstone-adapt' } }))
       .toThrow('selected title');
-    expect(validateSocketSave({ ...old, version: 19 }).map.selectedTitle).toBeNull();
+    expect(validateSocketSave({ ...withoutV24Fields(old), version: 19 }).map.selectedTitle).toBeNull();
   });
   it.each(['titles/unknown', 'titles/worldstone-adapt '])('refuses unknown current title %s', selectedTitle => {
     const base = sample();

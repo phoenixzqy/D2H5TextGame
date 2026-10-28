@@ -7,7 +7,7 @@ import { createRng } from '../rng';
 import { rollKillRewards } from './award';
 import type { TreasureClass } from './drop-roller';
 
-// D08 continuous envelopes include every authored Normal level and +20 replay.
+// D08 continuous envelopes include every authored Normal level and +40 Hell replay.
 // Intermediate levels are deliberately checked even when not currently spawned.
 const domains = [
   ['trash-act1', 2, 38], ['mini-act1', 7, 32], ['act1-boss', 19, 39],
@@ -29,13 +29,13 @@ function required<T>(value: T | undefined): T {
 describe('BUG152 campaign and replay equipment eligibility', () => {
   it.each(domains)('%s has equipment throughout its finite level domain %i–%i', (id, min, max) => {
     const table = required(tables.get(`loot/${id}`));
-    for (let level = min; level <= max; level++) {
+    for (let level = min; level <= max + 20; level++) {
       expect(eligible(table, level).length, `${id}/L${String(level)}`).toBeGreaterThan(0);
     }
-    expect(eligible(table, max + 1)).toEqual([]);
+    expect(eligible(table, max + 21)).toEqual([]);
   });
 
-  it.each(['manual', 'idle'] as const)('covers actual Normal and Nightmare plans across all areas (%s)', mode => {
+  it.each(['manual', 'idle'] as const)('covers actual Normal, Nightmare and Hell plans across all areas (%s)', mode => {
     const observedTables = new Set<string>();
     expect(subAreas).toHaveLength(29);
     for (const subArea of subAreas) {
@@ -45,7 +45,7 @@ describe('BUG152 campaign and replay equipment eligibility', () => {
         for (const seed of [0, 3286157777]) for (const idleEliteMisses of [0, 100]) {
           const normal = resolveChallengeWavePlan({ subArea, fallbackArchetypeId: required(monsters[0]).id,
             fallbackLevel: subArea.areaLevel, seed, challengeOrdinal, mode, idleEliteMisses });
-          for (const profile of ['normal', 'nightmare'] as const) {
+          for (const profile of ['normal', 'nightmare', 'hell'] as const) {
             const plan = applyReplayProfileToPlan(normal, profile, monsterIndex);
             for (const wave of plan.waves) {
               const id = wave.lootTable ?? plan.defaultLootTable;

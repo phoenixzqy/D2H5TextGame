@@ -1,3 +1,4 @@
+import { withoutV24Fields, withV24Defaults } from '../../../tests/helpers/save-fixtures';
 /** D11 current-only source/Present/save contracts. Constructed fixtures; no earned credit. */
 import { describe, expect, it } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
@@ -181,15 +182,15 @@ describe('D11 exactly two current-only independently earned imbue sources', () =
     expect(save.inventory.questServices).toEqual({});
   });
   it.each([false, true])('migrates sparse literal22 rows losslessly with claimed=%s and grants nothing', claimed => {
-    const full = fixture(), old = { ...full, version: 22 as const, inventory: { ...full.inventory, questItems: {}, questServices: {} },
+    const full = withoutV24Fields(fixture()), old = { ...full, version: 22 as const, inventory: { ...full.inventory, questItems: {}, questServices: {} },
       map: { ...full.map, questReceipts: {}, questProgress: { [MAIN]: row(MAIN, claimed, {}),
         [SIDE]: row(SIDE, claimed, { 'obj-bring-item': false }) } } };
     const before = structuredClone(old), expected = { ...old, version: 23 };
     expect(validateFrozenV22Save(old)).toEqual(toJsonSafe(old)); expect(runMigrations(old, 23)).toEqual(expected);
-    expect(decodeSave(toJsonSafe(old))).toEqual(expected); expect(old).toEqual(before);
+    expect(decodeSave(toJsonSafe(old))).toEqual(withV24Defaults(expected)); expect(old).toEqual(before);
   });
   it.each(['present', SOURCES.main, SOURCES.side])('rejects current %s authority under literal22 before migration', kind => {
-    const full = fixture(), baseline = { ...full, version: 22 as const,
+    const full = withoutV24Fields(fixture()), baseline = { ...full, version: 22 as const,
       inventory: { ...full.inventory, questItems: {}, questServices: {} }, map: { ...full.map, questReceipts: {} } };
     expect(validateFrozenV22Save(baseline)).toEqual(toJsonSafe(baseline));
     const old = kind === 'present' ? { ...baseline, map: { ...baseline.map,

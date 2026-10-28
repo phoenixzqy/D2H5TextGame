@@ -1,3 +1,4 @@
+import type { ReplayProfileId } from '@/engine/map/replay-profile';
 import { MAX_SIM_MS, runBattleRecorded, type BattleCommandCarry, type CombatSnapshot, type RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { WaveSpec, WavePresentation } from '@/engine/combat';
@@ -11,7 +12,7 @@ import { rememberBattleCommandResult } from './battleCommandCarry';
 export interface RecordedWaveStagingInput {
   /** Native paid proof stays outside the serializable/cloned engine snapshot. */
   readonly battleCommandCarry?: BattleCommandCarry;
-  readonly replayProfileId?: 'normal' | 'nightmare';
+  readonly replayProfileId?: ReplayProfileId;
   readonly snapshot: CombatSnapshot;
   readonly waveIdx: number;
   readonly totalWaves: number;
@@ -54,12 +55,12 @@ function freezeOwnedInput(value: unknown): void {
  */
 export function stageRecordedWave(input: RecordedWaveStagingInput): StagedRecordedWave {
   const difficulty = input.replayProfileId ?? 'normal';
-  if ((difficulty as unknown) !== 'normal' && (difficulty as unknown) !== 'nightmare') {
+  if ((difficulty as unknown) !== 'normal' && (difficulty as unknown) !== 'nightmare' && (difficulty as unknown) !== 'hell') {
     throw new Error('Invalid recorded wave difficulty');
   }
   // The caller's immutable run profile owns gameplay difficulty, never a selected map or supplied snapshot.
   const engineInput = structuredClone({ ...input.snapshot,
-    ...(difficulty === 'nightmare' || input.snapshot.difficulty !== undefined ? { difficulty } : {}) });
+    ...(difficulty !== 'normal' || input.snapshot.difficulty !== undefined ? { difficulty } : {}) });
   freezeOwnedInput(engineInput);
   const { events, result, battleCommandCarry } = runBattleRecorded(engineInput, input.battleCommandCarry);
   // Own successful searches before naming callbacks or public playback can observe the result.

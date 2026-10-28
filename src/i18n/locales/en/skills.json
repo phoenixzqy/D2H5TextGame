@@ -239,7 +239,8 @@
     },
     "staticField": {
       "currentHealth": "Current Health Damage",
-      "nightmareFloor": "Nightmare Health Floor"
+      "nightmareFloor": "Nightmare Health Floor",
+      "hellFloor": "Hell Health Floor"
     },
     "passiveStat": {
       "summonLifePct": "Summon Life",

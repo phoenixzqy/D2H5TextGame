@@ -12,7 +12,7 @@ import {
   CURRENT_SAVE_VERSION,
   type SaveCurrent,
   type QuestActionReceipts,
-  type CurrentMapSaveData,
+  type Native24MapSaveData,
 
   type MapSaveData,
   type MetaSaveData,
@@ -23,6 +23,7 @@ import { readMaterialActionState, type MaterialActionReceipt } from '../crafting
 import { readMaterialLedger } from './material-state';
 import type { EndgameState } from '../endgame/types';
 import { readEndgameSaveField } from './endgame-state';
+import { validateNative24ReplayFields } from './act5-campaign';
 
 /** Inputs required to assemble a {@link SaveCurrent}. */
 export interface BuildSaveInput {
@@ -30,7 +31,7 @@ export interface BuildSaveInput {
   readonly player: Player;
   readonly inventory: Pick<SaveCurrent['inventory'], 'backpack' | 'stash' | 'equipped' | 'currencies'> & Partial<Omit<SaveCurrent['inventory'], 'backpack' | 'stash' | 'equipped' | 'currencies' | 'latestMaterialAction'>> & { readonly latestMaterialAction?: MaterialActionReceipt | null };
   readonly mercs: SaveCurrent['mercs'];
-  readonly map: MapSaveData & { readonly questReceipts?: QuestActionReceipts } & Partial<Pick<CurrentMapSaveData, 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'challengeOrdinals'>>;
+  readonly map: MapSaveData & { readonly questReceipts?: QuestActionReceipts } & Partial<Pick<Native24MapSaveData, 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'hellClearedSubAreas' | 'challengeOrdinals'>>;
   readonly meta: MetaSaveData;
   readonly formation: FormationPreferences;
   readonly timestamp?: number;
@@ -38,6 +39,7 @@ export interface BuildSaveInput {
 
 /** Build a {@link SaveCurrent} blob from in-memory state. Pure. */
 export function buildSave(input: BuildSaveInput): SaveCurrent {
+  validateNative24ReplayFields(input.map, true);
   // Only truly absent trusted legacy input defaults; present corruption is never erased.
   const materials = readMaterialLedger(input.inventory, true);
   const questItems = Object.hasOwn(input.inventory, 'questItems') ? input.inventory.questItems : {};
@@ -62,7 +64,7 @@ export function buildSave(input: BuildSaveInput): SaveCurrent {
     mercs: { ...input.mercs, ownedMercs: input.mercs.ownedMercs.map(merc => ({ ...merc,
       equipment: Object.values(input.mercs.mercEquipment[merc.id] ?? {}).filter((item): item is NonNullable<typeof item> => item != null) })) },
     map: { questTitles: {}, questDifficulties: {}, selectedTitle: null, selectedDifficulty: 'normal',
-      nightmareClearedSubAreas: [], challengeOrdinals: { normal: 0, nightmare: 0 }, ...input.map, questReceipts },
+      nightmareClearedSubAreas: [], hellClearedSubAreas: [], challengeOrdinals: { normal: 0, nightmare: 0, hell: 0 }, ...input.map, questReceipts },
     meta: input.meta,
     formation: input.formation
   };

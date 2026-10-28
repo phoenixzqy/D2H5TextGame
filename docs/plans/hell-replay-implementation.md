@@ -1,6 +1,6 @@
 # Hell replay implementation cards
 
-Status: approved plan, H0/H1 complete and H2 next, 2026-10-27.
+Status: H0/H1 complete; H2 source and required native checks pass, final docs/inventory/exact packet gate pending; H3 prerequisite terminal failed no app, 2026-10-27.
 [Exact-body review evidence](evidence/hell-replay-contract-review.md) records
 design/technical approval, plan ready and security PASS. Root owns integration
 and evidence; existing producer/design-contract owners review. Preserve the claimed umbrella worktree
@@ -41,10 +41,37 @@ H1 follows the approved plan. Do not return to the cache-only repair.
 
 ## H2 — Connect native Hell end to end
 
-[H1 compatibility evidence](evidence/hell-literal23-compatibility.md) records
-the independently approved source/input bindings, successful validation and
-retained failure history. Current save version remains23; native24 and Hell
-are still disabled. H2 proposals are not runtime acceptance.
+[H1 compatibility evidence](evidence/hell-literal23-compatibility.md) preserves
+the accepted literal23 boundary. [H2 integration evidence](evidence/hell-native-integration.md)
+records native24/Hell source, constructed coverage and retained failed attempts.
+Full-second failed only BUG180:21,172passed/1failed/2existing skips;986/987files.
+The subsequent instrumented full-v3 session8379 completed native0 with
+21,173passed/2existing skips/987files and unchanged5332 inputs/Git state; this
+is explicitly diagnostic evidence with no H2 acceptance credit. Independently
+reviewed count-only compile ancestry supports the narrow lazy-compilation
+change now applied after reached-precondition regression-v3 RED19068 and
+GREEN52325. Affected83753 passed1228 assertions/40files on unchanged5333 inputs.
+Pre-cleanup typecheck98175 and build76346 are consumed native0 on unchanged5333
+inputs. Required native H2 checks now pass; final docs/inventory and independent
+exact H2 packet review remain pending. The prior focused1669/66,
+types/lint and scope-limited engine/build receipts remain historical and do not
+validate the new runtime bytes. Final documentation/inventory and independent
+exact H2 packet review remain pending.
+[H3 prerequisite evidence](evidence/hell-browser-prerequisite-failure.md) records
+the independently reviewed terminal blank-launch failure before any app page.
+H3 functionality and earned acquisition remain open.
+
+Engine96409 passed10,735 assertions/401files before the exact reviewed type
+cleanup; lint73517's three redundant-annotation errors remain retained.
+After cleanup, typecheck40015, lint26336 and build2368 all passed native0.
+Uninstrumented full27446 passed21,174 assertions/988files with2existing skips
+in1280.293275s. All four final checks preserve unchanged5333 inputs on snapshot
+`b63bcdfce5e051f2d3be206cdead07881cce853a9ed63efa21f6bc34465b3dc0`.
+Earlier runtime outcomes retain their executed hashes and erasure-only mapping.
+Required native H2 checks now pass; final applied docs/inventory and producer
+approval of the exact H2 packet remain pending. No bug closure, browser/H3,
+earned acquisition, CI or full-v1 acceptance is claimed.
+
 
 - Owner: root integration; explicitly assigned existing collaborators may own
   disjoint save/UI files. All implementers preserve concurrent changes.

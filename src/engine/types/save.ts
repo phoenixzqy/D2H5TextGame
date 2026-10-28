@@ -9,6 +9,7 @@ import { migrateSaveV19 } from '../save/migrate-v19';
 import { migrateSaveV21 } from '../save/migrate-v21';
 import { migrateSaveV22 } from '../save/migrate-v22';
 import { migrateSaveV23 } from '../save/migrate-v23';
+import { migrateSaveV24 } from '../save/migrate-v24';
 import type { PlayerAuraId } from './auras';
 import type { RespecsRemaining } from '../progression/respec';
 import { migrateSaveV20 } from '../save/migrate-v20';
@@ -29,7 +30,7 @@ import type { MaterialRecoveryEntry } from '../crafting/material-actions';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 23;
+export const CURRENT_SAVE_VERSION = 24;
 
 /**
  * Save file version (most recent).
@@ -410,7 +411,19 @@ export interface SaveV23 extends Omit<SaveV22, 'version' | 'inventory'> {
   readonly version: 23;
   readonly inventory: Omit<SaveV22['inventory'], 'questServices'> & { readonly questServices: QuestServiceLedger };
 }
-export type SaveCurrent = SaveV23;
+/** Native24 profile identities are separate from the frozen two-profile aliases. */
+export type NativeReplayProfileId = ReplayProfileId | 'hell';
+export interface Native24MapSaveData extends Omit<CurrentMapSaveData, 'selectedDifficulty' | 'challengeOrdinals'> {
+  readonly selectedDifficulty: NativeReplayProfileId;
+  readonly hellClearedSubAreas: readonly string[];
+  readonly challengeOrdinals: Readonly<Record<NativeReplayProfileId, number>>;
+}
+/** Native24 adds independent Hell history without granting an entitlement receipt. */
+export interface SaveV24 extends Omit<SaveV23, 'version' | 'map'> {
+  readonly version: 24;
+  readonly map: Native24MapSaveData;
+}
+export type SaveCurrent = SaveV24;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -622,5 +635,6 @@ export const MIGRATIONS: Record<number, Migration> = {
   20: (raw: unknown): SaveV20 => migrateSaveV20(raw as SaveV19),
   21: (raw: unknown): SaveV21 => migrateSaveV21(raw as SaveV20),
   22: (raw: unknown): SaveV22 => migrateSaveV22(raw as SaveV21),
-  23: (raw: unknown): SaveV23 => migrateSaveV23(raw as SaveV22)
+  23: (raw: unknown): SaveV23 => migrateSaveV23(raw as SaveV22),
+  24: (raw: unknown): SaveV24 => migrateSaveV24(raw as SaveV23)
 };

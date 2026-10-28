@@ -1,3 +1,4 @@
+import { hasReplayProfileAuthority } from '@/engine/map/replay-profile-authority';
 import { loadAffixPool, loadItemBases } from '@/data/loaders/loot';
 import { canonicalActionValue } from '@/engine/crafting/action-state';
 import { planMaterialAction, prepareMaterialAction, type MaterialActionContext, type MaterialActionInventory,
@@ -31,6 +32,9 @@ function readContext(recoverId?: string): MaterialActionContext {
   const hero = usePlayerStore.getState().player;
   if (!hero) throw new Error('Material action requires a character');
   const inv = useInventoryStore.getState(), mercs = useMercStore.getState(), map = useMapStore.getState();
+  if (!hasReplayProfileAuthority(map.selectedDifficulty, map, inv.questItems, inv.questServices, map.endgame)) {
+    throw new Error('Material action replay profile is not earned');
+  }
   let highestUnlockedAct: MaterialProfile['act'] = 1;
   for (const act of [2, 3, 4, 5] as const) if (map.isActUnlocked(act)) highestUnlockedAct = act;
   const otherOwnedItemIds = new Set([
@@ -55,16 +59,38 @@ function publish(inventory: MaterialActionInventory): void {
     materialActionOrdinal: inventory.materialActionOrdinal, latestMaterialAction: inventory.latestMaterialAction ?? null });
 }
 
+/**
+ * Live intents retain their preparation context without changing the engine
+ * request hash/RNG or durable receipt. Weak ownership keeps discarded intents
+ * collectible. A restored save can retry the same retained intent only in the
+ * same authoritative character/act/profile context.
+ */
+const preparedContexts = new WeakMap<MaterialActionRequest,
+  Pick<MaterialActionContext, 'characterId' | 'highestUnlockedAct' | 'difficulty'>>();
+function boundContext(request: MaterialActionRequest): MaterialActionContext {
+  const prepared = preparedContexts.get(request);
+  if (!prepared) throw new Error('Material action request was not prepared in this runtime');
+  canonicalActionValue(request);
+  const context = readContext(recoveryId(request.recipeId, request.targets.map(target => target.id)));
+  if (prepared.characterId !== context.characterId || prepared.highestUnlockedAct !== context.highestUnlockedAct ||
+    prepared.difficulty !== context.difficulty) throw new Error('Material action context changed');
+  return context;
+}
+
 /** Prepare exactly once from current authoritative ownership, costs, progression and reservations. */
 export function prepareLiveMaterialAction(selection: MaterialActionSelection): MaterialActionRequest {
   preflight();
-  return prepareMaterialAction(readInventory(), readContext(recoveryId(selection.recipeId, selection.itemIds ?? [])), selection);
+  const context = readContext(recoveryId(selection.recipeId, selection.itemIds ?? []));
+  const request = prepareMaterialAction(readInventory(), context, selection);
+  preparedContexts.set(request, { characterId: context.characterId,
+    highestUnlockedAct: context.highestUnlockedAct, difficulty: context.difficulty });
+  return request;
 }
 
 /** Revalidate a retained request and return the exact deterministic preview without publication. */
 export function previewLiveMaterialAction(request: MaterialActionRequest): MaterialActionPlan {
   preflight();
-  return planMaterialAction(readInventory(), readContext(recoveryId(request.recipeId, request.targets.map(target => target.id))), request);
+  return planMaterialAction(readInventory(), boundContext(request), request);
 }
 
 /** Publish whole material/gear/result state under the shared lease; complete rollback retains the request for retry. */
@@ -72,7 +98,7 @@ export function executeLiveMaterialAction(request: MaterialActionRequest): Mater
   preflight();
   const port: MaterialActionPort = {
     hydrationReady: ready,
-    read: () => ({ inventory: readInventory(), context: readContext(recoveryId(request.recipeId, request.targets.map(target => target.id))) }),
+    read: () => ({ inventory: readInventory(), context: boundContext(request) }),
     publish: next => {
       const expected = canonicalActionValue(next);
       publish(next);

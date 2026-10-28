@@ -142,7 +142,7 @@ describe('v12 source-bound quest item ledger', () => {
     }
   );
   it('emits a required empty ledger for a trusted legacy builder input', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(23);
+    expect(CURRENT_SAVE_VERSION).toBe(24);
     expect(sampleSave().inventory).toHaveProperty('questItems', {});
   });
 
@@ -311,14 +311,16 @@ describe('v14 Staff component and consumption graph', () => {
     const input = historicalSave(staffSave('components'), 14);
     Reflect.deleteProperty(input.inventory.questItems, cube);
     Reflect.deleteProperty(input.inventory.questItems, shaft);
-    input.map.questProgress[staffQuest].objectives['obj-cube'] = false;
-    input.map.questProgress[staffQuest].objectives['obj-shaft'] = false;
+    const progress = input.map.questProgress[staffQuest];
+    if (!progress) throw new Error('Missing historical Staff progress');
+    Reflect.set(progress.objectives, 'obj-cube', false);
+    Reflect.set(progress.objectives, 'obj-shaft', false);
     try {
       Object.defineProperty(quest, 'objectiveStages', { configurable: true, enumerable: true,
         value: [['obj-cube', 'obj-shaft', 'obj-amulet'], ['obj-transmute']] });
       expect(validateQuestItemLedger(input.inventory.questItems, input.map.questProgress)).toEqual(input.inventory.questItems);
       expect(() => decodeSave(input)).toThrow('Invalid save');
-      input.map.questProgress[staffQuest].objectives['obj-amulet'] = false;
+      Reflect.set(progress.objectives, 'obj-amulet', false);
       expect(() => validateQuestItemLedger(input.inventory.questItems, input.map.questProgress)).toThrow('Invalid save');
     } finally {
       if (previousStages) Object.defineProperty(quest, 'objectiveStages', previousStages);
@@ -331,9 +333,11 @@ describe('v14 Staff component and consumption graph', () => {
     for (const key of Object.keys(input.inventory.questItems)) {
       if (key !== `${staffQuest}#objective:${objectiveId}`) Reflect.deleteProperty(input.inventory.questItems, key);
     }
-    Reflect.set(input.map.questProgress[staffQuest], 'status', 'completed');
-    Reflect.set(input.map.questProgress[staffQuest], 'rewardClaimed', true);
-    input.map.questProgress[staffQuest].objectives['obj-transmute'] = true;
+    const progress = input.map.questProgress[staffQuest];
+    if (!progress) throw new Error('Missing historical Staff progress');
+    Reflect.set(progress, 'status', 'completed');
+    Reflect.set(progress, 'rewardClaimed', true);
+    Reflect.set(progress.objectives, 'obj-transmute', true);
     const before = structuredClone(input);
     expect(decodeSave(input)).toEqual(migratedShape(input));
     expect(decodeSave(toJsonSafe(input))).toEqual(migratedShape(input));

@@ -37,6 +37,7 @@ export function expectedCurrentV20(witness: SaveV17): SaveCurrent {
   for (const item of items) assert.ok(!('runes' in item) && !('socketContents' in item) && !('runewordId' in item),
     'Historical lineage adapter supports only original unsocketed gear');
   return structuredClone({ ...witness, version: CURRENT_SAVE_VERSION, endgame: emptyEndgameState(),
+    map: { ...witness.map, hellClearedSubAreas: [], challengeOrdinals: { ...witness.map.challengeOrdinals, hell: 0 } },
     inventory: { ...witness.inventory, materials: {}, socketQuarantine: [], materialActionOrdinal: 0 },
     player: { ...witness.player, respecsRemaining: { stat: 3, skill: 3 }, equipment: Object.values(witness.inventory.equipped).filter(present) },
     mercs: { ...witness.mercs, ownedMercs: witness.mercs.ownedMercs.map(merc => ({ ...merc,
@@ -62,7 +63,10 @@ export function historicalV17EarnedState(state: EarnedState, witness: SaveV17) {
     formation: state.formation }, witness);
   const { materials: _materials, socketQuarantine: _quarantine, materialActionOrdinal: _ordinal,
     ...oldInventory } = inventory;
-  return structuredClone({ ...state, map, inventory: oldInventory,
+  // Full forward equality above proves both native24 additions are empty.
+  const { hellClearedSubAreas: _hellClears, challengeOrdinals, ...oldMap } = map;
+  const { hell: _hellOrdinal, ...oldOrdinals } = challengeOrdinals;
+  return structuredClone({ ...state, map: { ...oldMap, challengeOrdinals: oldOrdinals }, inventory: oldInventory,
     player: { ...state.player, player: historical.player },
     merc: { ...state.merc, ownedMercs: historical.mercs.ownedMercs } });
 }

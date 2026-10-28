@@ -1,3 +1,4 @@
+import { withoutV24Fields, withV24Defaults } from '../../../tests/helpers/save-fixtures';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import * as questLoader from '@/data/loaders/quests';
@@ -76,7 +77,7 @@ describe('literal22 ownership and historical journals', () => {
           : { serviceId, state, targetItemId: 'salvaged-long-ago' } } } };
       const before = structuredClone(input);
       expect(validateFrozenV22Save(input)).toEqual(toJsonSafe(input));
-      expect(decodeSave(toJsonSafe(input))).toEqual({ ...input, version: 23 });
+      expect(decodeSave(toJsonSafe(input))).toEqual(withV24Defaults({ ...input, version: 23 }));
       expect(input).toEqual(before);
     }
   });
@@ -115,7 +116,7 @@ describe('literal22 ownership and historical journals', () => {
         const save = sample(), row = { id, status: 'completed' as const, rewardClaimed: claimed, objectives };
         const input = { ...save, map: { ...save.map, questProgress: { [id]: row } } };
         const before = structuredClone(input), decoded = decodeSave(toJsonSafe(input));
-        expect(decoded).toEqual({ ...input, version: 23 });
+        expect(decoded).toEqual(withV24Defaults({ ...input, version: 23 }));
         expect(decoded.inventory.questItems).toEqual({});
         expect(decoded.inventory.questServices).toEqual({});
         expect(decoded.map.questReceipts).toEqual({});
@@ -181,7 +182,7 @@ describe('literal22 ownership and historical journals', () => {
     expect(stats.resistances).toEqual({ fire: 45, cold: 45, lightning: 15, poison: 15, physical: 15, arcane: 15 });
     expect(stats.life).toBe(19); expect(stats.mana).toBe(7);
     expect(decoded.inventory).toEqual(input.inventory);
-    expect(decoded.map).toEqual(input.map);
+    expect(decoded.map).toEqual(withV24Defaults(input).map);
     expect(decodeSave(toJsonSafe(decoded))).toEqual(decoded);
     expect(input).toEqual(before);
   });
@@ -242,7 +243,7 @@ function sample() {
       combatSpeed: 1, autoCombat: false }, idleState: { lastOnline: 1000, offlineTime: 0,
       multiplierSecondsRemaining: 0, activeMultiplier: 1 }, gachaState: { currency: 0, ownedMercIds: [], pityCounter: 0 } },
     formation: { playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] } });
-  return { ...save, version: 22 as const, inventory: { ...save.inventory, questServices: {} } };
+  return { ...withoutV24Fields(save), version: 22 as const, inventory: { ...save.inventory, questServices: {} } };
 }
 
 describe('literal22 catalogs remain independent of live authoring', () => {

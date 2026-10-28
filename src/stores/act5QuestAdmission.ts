@@ -19,7 +19,7 @@ export function prepareAct5Settlement(binding: RecordedWaveBinding): () => void 
   const run = binding.candidateRun, encounter = binding.act5ThroneWave ?? binding.act5Encounter;
   const outcome = binding.recording.outcome, map = useMapStore.getState();
   if (outcome.winner !== 'player') sequences.delete(run);
-  if (!encounter || (binding.replayProfileId ?? run.plan.replayProfileId) === 'nightmare') return () => undefined;
+  if (!encounter || (binding.replayProfileId ?? run.plan.replayProfileId ?? 'normal') !== 'normal') return () => undefined;
   const row = map.questProgress[encounter.contract.questId];
   let eligible = isAct5AdmissionEligible(encounter.contract, map.questProgress);
   if (encounter.contract.questId === PRISON_QUEST && !Object.hasOwn(map.questReceipts, `${PRISON_QUEST}#action:thaw-anya`)) eligible = false;

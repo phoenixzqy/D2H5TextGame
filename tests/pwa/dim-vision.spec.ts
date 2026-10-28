@@ -7,7 +7,7 @@ import { createCharacter, navTo } from '../e2e/_helpers';
 
 const at = new Date('2026-10-26T12:00:00Z');
 const spells = ['dim-vision'] as const;
-const EXPECTED_SAVE_VERSION: SaveCurrent['version'] = 23;
+const EXPECTED_SAVE_VERSION: SaveCurrent['version'] = 24;
 async function backup(page: Page): Promise<SaveCurrent> {
   await navTo(page, 'settings');
   const pending = page.waitForEvent('download'); await page.getByTestId('export-save-button').click();

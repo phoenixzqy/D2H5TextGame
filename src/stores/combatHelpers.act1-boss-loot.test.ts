@@ -89,8 +89,8 @@ describe('Act I manual chapter-boss equipment eligibility', () => {
     expect(enemies[0]).toMatchObject({ level: 19, tier: 'chapter-boss', kind: 'monster' });
   });
 
-  // BUG152 preserves the finite ceiling39; D05 adds one rare Wrist Blade sibling from level12.
-  it.each([[8, 0], [9, 4], [10, 5], [12, 8], [14, 8], [19, 8], [20, 8], [39, 8], [40, 0]])(
+  // D08 extends the finite equipment ceiling to59; D05 keeps one rare Wrist Blade sibling from level12.
+  it.each([[8, 0], [9, 4], [10, 5], [12, 8], [14, 8], [19, 8], [20, 8], [39, 8], [40, 8], [59, 8], [60, 0]])(
     'admits %i-level equipment with exactly %i eligible authored rows', (level, count) => {
       const tc = required(loadTreasureClasses().get('loot/act1-boss'));
       expect(tc.picks.filter(pick => pick.type === 'item' &&
@@ -101,7 +101,7 @@ describe('Act I manual chapter-boss equipment eligibility', () => {
     const tc = required(loadTreasureClasses().get('loot/act1-boss'));
     const rune = required(tc.picks.find(pick => pick.type === 'rune'));
     expect([rune.qlvlMin, rune.qlvlMax]).toEqual([9, 18]);
-    for (const level of [8, 40]) {
+    for (const level of [8, 60]) {
       expect(tc.picks.filter(pick => level >= pick.qlvlMin && level <= pick.qlvlMax)
         .map(pick => pick.type)).toEqual(['gem', 'currency', 'gold']);
     }

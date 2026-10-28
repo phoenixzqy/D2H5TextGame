@@ -31,7 +31,7 @@ describe('Obedience source-backed polearm', () => {
   it('acquires actual normal scythes with every capacity0–5 from ordinary Act IV drops', () => {
     const tc = loadTreasureClasses().get('loot/trash-act4');
     if (!tc) throw new Error('Missing ordinary Act IV table');
-    expect(tc.picks).toContainEqual({ type: 'item', baseId, rarity: 'normal', weight: 120, qlvlMin: 41, qlvlMax: 81 });
+    expect(tc.picks).toContainEqual({ type: 'item', baseId, rarity: 'normal', weight: 120, qlvlMin: 41, qlvlMax: 101 });
     const acquired: Item[] = [];
     for (let seed = 1; seed <= 2048; seed++) {
       const rng = createRng(seed);

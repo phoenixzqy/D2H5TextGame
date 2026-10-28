@@ -1,3 +1,4 @@
+import { withoutV24Fields, withV24Defaults } from '../../../tests/helpers/save-fixtures';
 /** Constructed save/Claim boundaries; no earned gameplay or historical replay. */
 import { afterEach, describe, expect, it } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
@@ -23,7 +24,7 @@ function fixture(rewardClaimed = false) {
 afterEach(() => { useMapStore.getState().reset(); });
 
 describe('Countess current proof and frozen predecessor boundaries', () => {
-  it.each([false, true])('roundtrips a coherent native23 Countess graph with claimed=%s', claimed => {
+  it.each([false, true])('roundtrips a coherent native24 Countess graph with claimed=%s', claimed => {
     const save = fixture(claimed), before = structuredClone(save);
     expect(validateSave(toJsonSafe(save))).toEqual(toJsonSafe(save));
     expect(decodeSave(toJsonSafe(save))).toEqual(save);
@@ -42,18 +43,18 @@ describe('Countess current proof and frozen predecessor boundaries', () => {
       expect(() => validateSave({ ...save, map: { ...save.map, questProgress: progress } })).toThrow('Invalid save');
     });
   it('refuses even a coherent current Countess graph when labelled literal22', () => {
-    const save = { ...fixture(), version: 22 as const }, before = structuredClone(save);
+    const save = { ...withoutV24Fields(fixture()), version: 22 as const }, before = structuredClone(save);
     expect(() => validateFrozenV22Save(save)).toThrow('Invalid save');
     expect(() => runMigrations(save, 23)).toThrow('Invalid save');
     expect(() => decodeSave(save)).toThrow('Invalid save');
     expect(save).toEqual(before);
   });
   it.each([false, true])('preserves sparse completed legacy Countess rows with claimed=%s and grants no proof', claimed => {
-    const save = fixture(claimed), row = save.map.questProgress[COUNTESS.quest];
+    const save = withoutV24Fields(fixture(claimed)), row = save.map.questProgress[COUNTESS.quest];
     if (!row) throw new Error('Missing fixture row');
     const old = { ...save, version: 22 as const, map: { ...save.map, questReceipts: {},
       questProgress: { [COUNTESS.quest]: { ...row, objectives: {} } } } }, before = structuredClone(old);
-    expect(decodeSave(old)).toEqual({ ...old, version: 23 });
+    expect(decodeSave(old)).toEqual(withV24Defaults(old));
     expect(old).toEqual(before);
   });
   it('does not complete the protected objective through a generic matching monster kill', () => {

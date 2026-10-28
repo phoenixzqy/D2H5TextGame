@@ -183,7 +183,7 @@ describe('native selected Might wave composition', () => {
     expect(latest().statAura).toEqual(original.statAura); expect(recording().events).toEqual(first.events);
     expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies, xp: player().experience }).toEqual(income);
     const saved = snapshotStores(); if (!saved) throw new Error('Missing Concentration save');
-    expect(saved.version).toBe(23); expect(saved.player.selectedAuraId).toBe('paladin.concentration');
+    expect(saved.version).toBe(24); expect(saved.player.selectedAuraId).toBe('paladin.concentration');
     expect(saved.player.derivedStats).toEqual(before);
     for (const field of ['statAura', 'concentration', 'preventStunInterruption']) expect(saved.player).not.toHaveProperty(field);
     abortSubAreaRun(); await importIntoStores(JSON.stringify(toJsonSafe(saved)));
@@ -220,7 +220,7 @@ describe('native selected Might wave composition', () => {
     expect(latest().statAura).toEqual(original.statAura); expect(recording().events).toEqual(first.events);
     expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies, xp: player().experience }).toEqual(income);
     const saved = snapshotStores(); if (!saved) throw new Error('Missing Sanctuary save');
-    expect(saved.version).toBe(23); expect(saved.player.selectedAuraId).toBe('paladin.sanctuary');
+    expect(saved.version).toBe(24); expect(saved.player.selectedAuraId).toBe('paladin.sanctuary');
     expect(saved.player.derivedStats).toEqual(before);
     for (const field of ['statAura', 'sanctuary', 'undead']) expect(saved.player).not.toHaveProperty(field);
     abortSubAreaRun(); await importIntoStores(JSON.stringify(toJsonSafe(saved)));
@@ -260,7 +260,7 @@ describe('native selected Might wave composition', () => {
     expect(recording().events).toEqual(recorded.events);
     expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies, xp: player().experience }).toEqual(income);
     const save = snapshotStores(); if (!save) throw new Error('Missing Vigor save');
-    expect(save.version).toBe(23); expect(save.player.selectedAuraId).toBe('paladin.vigor');
+    expect(save.version).toBe(24); expect(save.player.selectedAuraId).toBe('paladin.vigor');
     expect(save.player.derivedStats.lifeMax).toBe(before.lifeMax);
     expect(save.player).not.toHaveProperty('vigorLife'); expect(save.player).not.toHaveProperty('statAura');
     abortSubAreaRun(); await importIntoStores(JSON.stringify(toJsonSafe(save)));
@@ -300,7 +300,7 @@ describe('native selected Might wave composition', () => {
     expect(useCombatStore.getState().recordedEvents).toEqual(first.events);
     expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies, xp: player().experience }).toEqual(income);
     const save = snapshotStores(); if (!save) throw new Error('Missing Redemption save');
-    expect(save.version).toBe(23); expect(save.player.selectedAuraId).toBe('paladin.redemption');
+    expect(save.version).toBe(24); expect(save.player.selectedAuraId).toBe('paladin.redemption');
     expect(save.player).not.toHaveProperty('statAura'); expect(save.player).not.toHaveProperty('redemption');
     abortSubAreaRun(); await importIntoStores(JSON.stringify(toJsonSafe(save)));
     expect(player().selectedAuraId).toBe('paladin.redemption'); expect(player().derivedStats).toEqual(save.player.derivedStats);
@@ -335,7 +335,7 @@ describe('native selected Might wave composition', () => {
     expect({ items: useInventoryStore.getState().backpack, currencies: useInventoryStore.getState().currencies,
       xp: player().experience }).toEqual(income);
     const save = snapshotStores(); if (!save) throw new Error('Missing Cleansing save');
-    expect(save.version).toBe(23); expect(save.player.selectedAuraId).toBe('paladin.cleansing');
+    expect(save.version).toBe(24); expect(save.player.selectedAuraId).toBe('paladin.cleansing');
     expect(save.player).not.toHaveProperty('cleansing'); expect(save.player).not.toHaveProperty('statAura');
     expect(JSON.stringify(toJsonSafe(save))).not.toContain('cleansingShortened');
     abortSubAreaRun(); await importIntoStores(JSON.stringify(toJsonSafe(save)));

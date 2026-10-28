@@ -595,7 +595,8 @@
     "staticField": {
       "currentHealthFraction": 0.25,
       "normalFloorFraction": 0,
-      "nightmareFloorFraction": 0.33
+      "nightmareFloorFraction": 0.33,
+      "hellFloorFraction": 0.5
     }
   },
   {

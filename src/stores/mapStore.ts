@@ -1,7 +1,7 @@
 import { CAIN_QUEST } from '@/engine/map/cain-quest';
 import { COUNTESS } from '@/engine/map/countess-admission';
 import { talkToCain } from '@/features/quests/cainQuestActions';
-import type { CurrentMapSaveData } from '@/engine/types/save';
+import type { SaveCurrent } from '@/engine/types/save';
 import { emptyEndgameState } from '@/engine/endgame/state';
 import type { EndgameState } from '@/engine/endgame/types';
 import { ACT5_ENCOUNTERS, PRISON_QUEST } from '@/engine/map/act5-admission';
@@ -28,7 +28,7 @@ import { GUARDIAN_QUEST_ID } from '@/engine/map/guardian-admission';
 
 type QuestProgress = InteractionProgress;
 
-interface MapState extends Pick<CurrentMapSaveData, 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'challengeOrdinals'> {
+interface MapState extends Pick<SaveCurrent['map'], 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'hellClearedSubAreas' | 'challengeOrdinals'> {
   endgame: EndgameState;
   currentAct: number;
   currentSubAreaId: string | null;
@@ -90,7 +90,8 @@ const initialState = {
   questProgress: {} as Record<string, QuestProgress>,
   questReceipts: {} as QuestActionReceipts,
   questTitles: {}, questDifficulties: {}, selectedTitle: null, selectedDifficulty: 'normal' as const,
-  nightmareClearedSubAreas: [] as string[], challengeOrdinals: { normal: 0, nightmare: 0 }
+  nightmareClearedSubAreas: [] as string[], hellClearedSubAreas: [] as string[],
+  challengeOrdinals: { normal: 0, nightmare: 0, hell: 0 }
 };
 
 export const useMapStore = create<MapState>((set, get) => ({

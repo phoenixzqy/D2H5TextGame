@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { getSkill, loadDefaultSkills, registerSkill, resetRegistry } from '../skills/registry';
 import { runBattle, runBattleRecorded, type CombatSnapshot } from './combat';
 import type { CombatUnit } from './types';
+import { staticFieldDamage, STATIC_FIELD_DEFINITION } from '../skills/static-field';
 
 const id = 'sorceress.static_field';
 const hold = (appliedAtMs = 0) => ({ id: 'stun', stacks: 1, remaining: -1, sourceId: 'fixture', appliedAtMs });
@@ -22,6 +23,98 @@ beforeEach(() => { resetRegistry(); loadDefaultSkills(); });
 afterEach(() => { resetRegistry(); loadDefaultSkills(); });
 
 describe('actual authored Static Field', () => {
+  it.each([
+    ['normal', 2, 1000, 1], ['nightmare', 340, 1000, 10],
+    ['hell', 510, 1000, 10], ['hell', 500, 1000, 0], ['hell', 499, 1000, 0],
+    ['hell', 502, 1001, 1], ['hell', 501, 1001, 0], ['hell', 1, 1, 0], ['hell', 2, 2, 1]
+  ] as const)('uses the authored %s floor for %i/%i HP', (difficulty, life, lifeMax, damage) => {
+    const target = unit('target', 'enemy');
+    expect(staticFieldDamage({ ...target, life, stats: { ...target.stats, lifeMax } }, difficulty)).toBe(damage);
+  });
+
+  it('reads the Hell floor from the supplied authored tuning', () => {
+    const target = { ...unit('target', 'enemy'), life: 510 };
+    expect(staticFieldDamage(target, 'hell', { ...STATIC_FIELD_DEFINITION, hellFloorFraction: 0.4 })).toBe(110);
+  });
+
+  it.each(['foreign-profile', 'toString', '', null, { toString: () => 'hell' }])('refuses foreign direct-calculation difficulty %s', difficulty => {
+    expect(() => staticFieldDamage(unit('target', 'enemy'),
+      difficulty as unknown as Parameters<typeof staticFieldDamage>[1])).toThrow('Invalid Static Field difficulty');
+  });
+
+  it('retains the omitted historic snapshot Normal rule', () => {
+    const input = oneCast();
+    expect(runBattleRecorded(input)).toEqual(runBattleRecorded({ ...input, difficulty: 'normal' }));
+  });
+
+  it('clips all Hell targets independently, including odd maximum HP and 1 HP', () => {
+    const input = oneCast(), target = input.enemyTeam[0];
+    if (!target) throw new Error('Missing fixture');
+    const snapshot: CombatSnapshot = { ...input, difficulty: 'hell', enemyTeam: [
+      { ...target, id: 'full' }, { ...target, id: 'clipped', life: 510 },
+      { ...target, id: 'rounded', life: 502, stats: { ...target.stats, lifeMax: 1001 } },
+      { ...target, id: 'floor', life: 500 }, { ...target, id: 'below', life: 499 },
+      { ...target, id: 'one-hp', life: 1, stats: { ...target.stats, lifeMax: 1 } },
+      { ...target, id: 'dead', life: 0 }
+    ] };
+    const before = structuredClone(snapshot), recorded = runBattleRecorded(snapshot);
+    expect(recorded.events.filter(e => e.kind === 'damage')).toEqual([
+      expect.objectContaining({ target: 'full', amount: 250, damageType: 'lightning' }),
+      expect.objectContaining({ target: 'clipped', amount: 10, damageType: 'lightning' }),
+      expect.objectContaining({ target: 'rounded', amount: 1, damageType: 'lightning' })
+    ]);
+    expect(recorded.result.enemyTeam.map(t => t.life)).toEqual([750, 500, 501, 500, 499, 1, 0]);
+    expect(recorded.events.filter(e => e.kind === 'death' || e.kind === 'orb')).toEqual([]);
+    expect(runBattleRecorded(snapshot)).toEqual(recorded);
+    expect(snapshot).toEqual(before);
+  });
+
+  it.each([
+    { resistance: 50, mr: 10, penalty: 0, amount: 115 },
+    { resistance: -50, mr: 0, penalty: 0, amount: 375 },
+    { resistance: 150, mr: 0, penalty: 0, amount: 62 },
+    { resistance: -150, mr: 0, penalty: 0, amount: 500 },
+    { resistance: 50, mr: 10, penalty: 20, amount: 165 },
+    { resistance: 75, mr: 1000, penalty: 0, amount: 1 }
+  ])('preserves Hell lightning resistance, clamp, penalty and independent MR: %#', row => {
+    const input = oneCast(), target = input.enemyTeam[0];
+    if (!target) throw new Error('Missing fixture');
+    const recorded = runBattleRecorded({ ...input, difficulty: 'hell', enemyTeam: [{ ...target,
+      resistPenalty: row.penalty, stats: { ...target.stats, magicResist: row.mr,
+        resistances: { ...target.stats.resistances, lightning: row.resistance } } }] });
+    expect(recorded.events.filter(e => e.kind === 'damage')).toEqual([
+      expect.objectContaining({ amount: row.amount, damageType: 'lightning', crit: false, dodged: false })
+    ]);
+    expect(recorded.result.enemyTeam[0]?.life).toBe(1000 - row.amount);
+  });
+
+  it.each([500, 499, 1])('at/below the Hell floor (%i HP) has the same seeded follow-up as no Static Field', life => {
+    const input = oneCast(), hero = input.playerTeam[0], target = input.enemyTeam[0];
+    if (!hero || !target) throw new Error('Missing fixture');
+    const snapshot: CombatSnapshot = { ...input, difficulty: 'hell', enemyTeam: [{ ...target, life }] };
+    const recorded = runBattleRecorded(snapshot);
+    const without = runBattleRecorded({ ...snapshot, playerTeam: [{ ...hero, skillOrder: [] }] });
+    expect(recorded.events).toEqual(without.events);
+    expect(recorded.events.some(e => e.kind === 'action' && e.skillId === id)).toBe(false);
+    expect(recorded.result.playerTeam[0]?.mana).toBe(100);
+    expect(recorded.result.playerTeam[0]?.cooldowns[id]).toBeUndefined();
+  });
+
+  it.each([1, 7, 29, 77])('a Hell pulse does not consume downstream combat RNG (seed%s)', seed => {
+    const input = oneCast(), hero = input.playerTeam[0];
+    if (!hero) throw new Error('Missing fixture');
+    const merc = { ...unit('merc-probe', 'player'), kind: 'merc' as const,
+      attackRange: [19, 40] as const, stats: { ...hero.stats, attackSpeed: 50, critChance: 0.4 },
+      statuses: [hold(2001)] };
+    const snapshot: CombatSnapshot = { ...input, seed, difficulty: 'hell', playerTeam: [hero, merc] };
+    const recorded = runBattleRecorded(snapshot);
+    const without = runBattleRecorded({ ...snapshot, playerTeam: [{ ...hero, statuses: [hold()] }, merc] });
+    expect(recorded.events).toContainEqual(expect.objectContaining({ source: hero.id, amount: 250, damageType: 'lightning' }));
+    const probe = (value: typeof recorded) => value.events.filter(e => e.kind === 'damage' && e.source === merc.id);
+    expect(probe(recorded)).toHaveLength(1);
+    expect(probe(recorded)).toEqual(probe(without));
+  });
+
   it.each([1, 20])('rank%s changes current health through an ordinary recorded cast', rank => {
     const input = oneCast(rank), before = structuredClone(input);
     const recorded = runBattleRecorded(input);
@@ -77,7 +170,7 @@ describe('actual authored Static Field', () => {
     expect(result.result.enemyTeam.map(t => t.life)).toEqual([750, 330, 331, 330, 0]);
   });
 
-  it.each([['normal', 1], ['nightmare', 330]] as const)(
+  it.each([['normal', 1], ['nightmare', 330], ['hell', 500], ['hell', 499]] as const)(
     'at the %s floor yields to Ice Bolt without paying or cooling Static Field', (difficulty, life) => {
       const input = oneCast(), hero = input.playerTeam[0], target = input.enemyTeam[0];
       if (!hero || !target) throw new Error('Missing fixture');
@@ -149,8 +242,8 @@ describe('actual authored Static Field', () => {
     expect(probe(on)).toEqual(probe(off));
   });
 
-  it('rejects unknown difficulty rather than silently selecting a floor', () => {
-    const input = { ...oneCast(), difficulty: 'hell' } as unknown as CombatSnapshot;
+  it.each(['foreign-profile', 'toString', '', null, 0, true])('rejects supplied foreign difficulty %s rather than selecting a floor', difficulty => {
+    const input = { ...oneCast(), difficulty } as unknown as CombatSnapshot;
     expect(() => runBattleRecorded(input)).toThrow('Invalid combat difficulty');
   });
 });

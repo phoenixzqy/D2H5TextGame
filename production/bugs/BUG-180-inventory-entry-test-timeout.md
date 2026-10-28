@@ -152,3 +152,92 @@ and protected genuine saves match before/after. This later pass does not
 establish the cause of the earlier intermittent import timeout or resolve
 BUG180. Both failed workloads and diagnostics remain retained; see the
 [final combined evidence](../../docs/plans/evidence/d11-countess-source-cache.md#final-combined-checkpoint--2026-10-27).
+
+### H2 native Hell full-second recurrence — 2026-10-27
+
+On the historical5332-input H2 freeze
+`cf87793bc93d58ab73ab339393c786a9ef31db00c2774b146adf061d39a05388`,
+root consumed full-second91212 exit1 after1854.737331s:21,172passed/1failed/
+2existing skips;986/987files. All5332 before/after inputs remain unchanged. The
+sole failure is player-first exceeding the unchanged5000ms bound; the13-case
+file takes9569ms. The preceding full-first passed this entry file and failed
+eight separately reviewed stale assertions in six other files. No
+initialization-cycle exception or equipment-stat assertion failure is reported.
+Terminal receipt `h2-full-second-root-terminal.json`, SHA-256
+`a32f805d09b02a4d597e453fec46ea4e798bec3cf2b3760e82c14465cf65d9a5`,
+binds the actual failed result; [H2 evidence](../../docs/plans/evidence/hell-native-integration.md)
+links its raw artifacts and source-only investigation.
+
+The subsequent v2 full-workload profiler92197 was root-stopped after77.802787s
+(native exit-2) following116 observed UI zero-test setup failures. Neither entry
+case was reached; no native result/profile/metadata or gameplay evidence was
+produced. Its terminal receipt SHA-256 is
+`d75b9670fb6a2ffcadfccaca4f7d92e9564653d52b8f859257d825732ae96fcb`.
+Root's static setup explanation is an HTTP URL passed to `fileURLToPath` before
+the target guard after jsdom NormalizeURLPlugin rewrites `new URL` against
+`self.location`; the exact thrown stack was not retained. This explains a
+source-level diagnostic hazard, not the original timeout's timing cause.
+
+At that source-only investigation checkpoint no runtime/import source, target
+timeout, assertion, worker, discovery or skip had changed. The later measured
+compile-only change below supersedes only the runtime-source statement, not
+the retained failed attempts or the unknown cause of the earlier timeout.
+
+### Count-only diagnostic and compile-only follow-up — 2026-10-27
+
+Root consumed instrumented full-v3 session8379: native/outer0 after1250.773529s,
+21,173passed/2existing skips/987files. All13 original target cases passed and
+both profile/metadata captures completed. All5332 inputs and Git state remain
+unchanged; remaining owned group members are[], and both wrapper/native PIDs
+are absent. `h2-import-profiler-v3-root-terminal.json` binds the consumed result.
+This instrumented diagnostic grants no full/H2 acceptance. Its raw terminal
+receipt retains an inherited prepared-only limit contradicted by actual native
+terminal fields; preserve it as stale metadata, not an execution fact.
+
+Independent review narrows actual stack counts to save-module evaluation plus
+explicit Ajv compile ancestry:1307/3123 player-first and1267/2746 inventory-first.
+The broader inventory save+Ajv count is1269 and must not be relabelled entirely
+as compile ancestry. The player profile's raw-2us delta remains untouched; the
+original weighted analyzer rejected it and no weighted attribution was computed.
+Sample fractions are not CPU/wall-time fractions, saved time, per-declaration
+costs or proof that compilation solely caused the earlier uninstrumented timeout.
+
+The independently reviewed compile-only candidate was first applied to
+`src/engine/save/validate.ts`, SHA-256
+`0e79bb676a248223e7a444735cb376f229f7a30c0a6ca9015341df8b7ad0362c`.
+All20 schema expressions remain eagerly constructed in the original order;
+first use memoizes the original typed raw Ajv validator. Schemas/options,
+validation/error boundaries and migrations are unchanged. No timeout/worker/
+discovery/skip workaround was introduced.
+
+Regression-v2 session87561 failed a temporary spy result-record identity
+assertion before its resource assertion; it is a preserved test defect, not
+resource RED. Corrected v3 test SHA-256
+`762af8c33e61abfb706d67f47c07b8ea20513457cba358e68aa5479ced239107`
+reached real validator/fixture/error preconditions, then baseline19068 native1
+failed the zero structural-save-compiles-at-import resource assertion. After
+the exact runtime change,52325 native0 passed. Independent targeted evidence
+review SHA-256 `8f00a71855ddd4d246dba11ee10139f029726dc1ddd8563699abdcd3490826b8`
+confirms this narrow RED/GREEN. Rejected calls have explicit nonmutation
+snapshots; successful calls check acceptance/equality and raw error clearing,
+with broader save suites supplying additional nonmutation coverage.
+
+Affected83753 then passed1228 assertions/40files, native0, all5333 inputs
+unchanged on snapshot `48b534d3e78c3fdb5789e6c20be5e1fc0ef0e790cad94c6e6922dc67845be6f3`.
+Pre-cleanup typecheck98175 and build76346 are consumed native0 on unchanged5333
+inputs. Required native H2 checks now pass; final docs/inventory and independent
+exact H2 packet review remain pending. Final docs/inventory and exact H2 packet gate
+also remain pending. BUG180 stays unresolved: neither targeted resource GREEN
+nor affected tests establishes resolution of the earlier full-workload timeout,
+total speedup, saved time, bug closure or H2/full-v1 acceptance.
+
+Engine96409 passed10,735 assertions/401files before the exact reviewed type
+cleanup; lint73517's three redundant-annotation errors remain retained.
+After cleanup, typecheck40015, lint26336 and build2368 all passed native0.
+Uninstrumented full27446 passed21,174 assertions/988files with2existing skips
+in1280.293275s. All four final checks preserve unchanged5333 inputs on snapshot
+`b63bcdfce5e051f2d3be206cdead07881cce853a9ed63efa21f6bc34465b3dc0`.
+Earlier runtime outcomes retain their executed hashes and erasure-only mapping.
+Required native H2 checks now pass; final applied docs/inventory and producer
+approval of the exact H2 packet remain pending. No bug closure, browser/H3,
+earned acquisition, CI or full-v1 acceptance is claimed.

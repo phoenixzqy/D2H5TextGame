@@ -68,11 +68,11 @@ describe('production replay profile authority', () => {
       useMapStore.setState({ selectedDifficulty: selectedDifficulty as 'nightmare' });
       expect(() => start()).toThrow();
       expect(combatRunLifecycle.activeRun).toBeNull();
-      expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 0, nightmare: 0 });
+      expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 0, nightmare: 0, hell: 0 });
     }
   });
   it('captures level-scaled Normal and Nightmare plans with independent persisted default ordinals', () => {
-    entitlement(); useMapStore.setState({ challengeOrdinals: { normal: 8, nightmare: 21 } });
+    entitlement(); useMapStore.setState({ challengeOrdinals: { normal: 8, nightmare: 21, hell: 0 } });
     expect(start().challengeOrdinal).toBe(8);
     const normal = required(combatRunLifecycle.activeRun).plan;
     abortSubAreaRun(); useCombatStore.getState().reset(); useMapStore.setState({ selectedDifficulty: 'nightmare' });
@@ -86,9 +86,9 @@ describe('production replay profile authority', () => {
       normal.waves.map(wave => wave.spawns.map(spawn => spawn.level + 20)));
     const last = required(matched.waves.at(-1)?.spawns[0]);
     expect(last.level).toBe(102); expect(last.chapterBoss?.hp).toBeGreaterThan(7200);
-    expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 9, nightmare: 22 });
+    expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 9, nightmare: 22, hell: 0 });
     abortSubAreaRun(); useCombatStore.getState().reset();
-    expect(decodeSave(required(snapshotStores())).map.challengeOrdinals).toEqual({ normal: 9, nightmare: 22 });
+    expect(decodeSave(required(snapshotStores())).map.challengeOrdinals).toEqual({ normal: 9, nightmare: 22, hell: 0 });
   });
   it('retains the original profile in replay, recording and settlement despite later preference changes', () => {
     entitlement(); useMapStore.setState({ selectedDifficulty: 'nightmare' });
@@ -166,20 +166,20 @@ describe('production replay profile authority', () => {
     expect(useMapStore.getState().nightmareClearedSubAreas).toEqual([]);
   });
   it('persists separate ordinals across abort and native save restoration without persisting a run', async () => {
-    entitlement(); useMapStore.setState({ selectedDifficulty: 'nightmare', challengeOrdinals: { normal: 7, nightmare: 360359 } });
+    entitlement(); useMapStore.setState({ selectedDifficulty: 'nightmare', challengeOrdinals: { normal: 7, nightmare: 360359, hell: 0 } });
     expect(start().challengeOrdinal).toBe(360359);
     abortSubAreaRun(); useCombatStore.getState().reset();
-    expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 7, nightmare: 0 });
+    expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 7, nightmare: 0, hell: 0 });
     const save = required(snapshotStores());
     await importIntoStores(JSON.stringify(toJsonSafe(save)));
     expect(combatRunLifecycle.activeRun).toBeNull();
     expect(useMapStore.getState().selectedDifficulty).toBe('nightmare');
     expect(start().challengeOrdinal).toBe(0);
-    expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 7, nightmare: 1 });
+    expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 7, nightmare: 1, hell: 0 });
     expect(useMapStore.getState().nightmareClearedSubAreas).toEqual([]);
   });
   it.each(['silent', 'before', 'after'] as const)('recovers a %s ordinal publication fault using captured profile and next value', fault => {
-    entitlement(); useMapStore.setState({ selectedDifficulty: 'nightmare', challengeOrdinals: { normal: 5, nightmare: 8 } });
+    entitlement(); useMapStore.setState({ selectedDifficulty: 'nightmare', challengeOrdinals: { normal: 5, nightmare: 8, hell: 0 } });
     const original = useMapStore.setState;
     const failure = new Error('ordinal publication');
     const write = vi.spyOn(useMapStore, 'setState').mockImplementationOnce((...args) => {
@@ -194,9 +194,9 @@ describe('production replay profile authority', () => {
     useMapStore.setState({ selectedDifficulty: 'normal' });
     recoverRecordedWavePublication(pending.receipt);
     expect(inspectRecordedWaves().pending).toBeNull();
-    expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 5, nightmare: 9 });
+    expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 5, nightmare: 9, hell: 0 });
     expect(required(combatRunLifecycle.activeRun).recording?.replayProfileId).toBe('nightmare');
     expect(() => { recoverRecordedWavePublication(pending.receipt); }).toThrow('staleReceipt');
-    expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 5, nightmare: 9 });
+    expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 5, nightmare: 9, hell: 0 });
   });
 });

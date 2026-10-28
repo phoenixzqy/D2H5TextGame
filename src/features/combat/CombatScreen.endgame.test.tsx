@@ -39,7 +39,7 @@ beforeEach(async () => {
   const campaign = campaignEvidence();
   useMapStore.setState({ questProgress: campaign.questProgress, questReceipts: campaign.questReceipts,
     questDifficulties: { 'difficulty/nightmare': true }, selectedDifficulty: 'nightmare',
-    currentAct: 1, currentSubAreaId: 'areas/act1-blood-moor', challengeOrdinals: { normal: 17, nightmare: 23 } });
+    currentAct: 1, currentSubAreaId: 'areas/act1-blood-moor', challengeOrdinals: { normal: 17, nightmare: 23, hell: 0 } });
   useMetaStore.getState().setIdleTarget('areas/act1-blood-moor');
   useHydrationStore.getState().setStatus('ready'); setIdleEliteMisses(11);
   await i18n.changeLanguage('en'); vi.useFakeTimers();

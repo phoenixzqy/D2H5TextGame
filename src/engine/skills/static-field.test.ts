@@ -9,9 +9,11 @@ describe('Static Field source ownership and exact allocated ranks', () => {
     if (!row?.staticField) throw new Error('Missing definition');
     const definition = resolveStaticFieldDefinition([row]);
     expect(definition).toEqual({ requiredLevel: 6, maxRank: 20, currentHealthFraction: 0.25,
-      normalFloorFraction: 0, nightmareFloorFraction: 0.33 });
+      normalFloorFraction: 0, nightmareFloorFraction: 0.33, hellFloorFraction: 0.5 });
     row.staticField.currentHealthFraction = 0.5;
+    row.staticField.hellFloorFraction = 0.6;
     expect(definition.currentHealthFraction).toBe(0.25);
+    expect(definition.hellFloorFraction).toBe(0.5);
     expect(Object.isFrozen(definition)).toBe(true);
     expect(STATIC_FIELD_DEFINITION).toEqual(definition);
     expect(() => resolveStaticFieldDefinition([])).toThrow(/Static Field/);

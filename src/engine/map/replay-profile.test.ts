@@ -25,7 +25,7 @@ describe('level-only replay profiles', () => {
     expect(() => monsterLevelForReplay(level, 'nightmare')).toThrow();
   });
   it('refuses foreign profiles at runtime', () => {
-    expect(() => monsterLevelForReplay(82, 'hell' as 'nightmare')).toThrow();
+    expect(() => monsterLevelForReplay(82, 'foreign' as 'nightmare')).toThrow();
   });
   it('preserves exact unrounded Normal chapter anchors', () => {
     const fractional = { ...boss, hp: 7.25, atk: 5.75, def: 3.125 };

@@ -64,19 +64,20 @@ describe('owned recorded-wave staging', () => {
       expect(names).not.toHaveBeenCalled();
     });
 
-  it.each(['normal', 'nightmare'] as const)('captures immutable %s run difficulty over contradictory input', difficulty => {
+  it.each([['normal', 34, 26], ['nightmare', 34, 33], ['hell', 54, 50]] as const)(
+    'captures immutable %s run difficulty and authored floor over contradictory input', (difficulty, life, expectedLife) => {
     const source = input(), hero = required(source.snapshot.playerTeam[0]), target = required(source.snapshot.enemyTeam[0]);
     const held = (appliedAtMs: number) => ({ id: 'stun', stacks: 1, remaining: -1, sourceId: 'fixture', appliedAtMs });
     const snapshot: engine.CombatSnapshot = { ...source.snapshot,
       difficulty: difficulty === 'normal' ? 'nightmare' : 'normal',
       playerTeam: [{ ...hero, skillOrder: ['sorceress.static_field'], staticFieldRank: 1,
         statuses: [held(1701)] }],
-      enemyTeam: [{ ...target, life: 34, statuses: [held(0)] }] };
+      enemyTeam: [{ ...target, life, statuses: [held(0)] }] };
     const original = structuredClone(snapshot);
     const staged = stageRecordedWave({ ...source, replayProfileId: difficulty, snapshot });
     expect(staged.engineInput.difficulty).toBe(difficulty);
     expect(staged.recording.replayProfileId).toBe(difficulty);
-    expect(staged.recording.outcome.finalEnemyTeam[0]?.life).toBe(difficulty === 'normal' ? 26 : 33);
+    expect(staged.recording.outcome.finalEnemyTeam[0]?.life).toBe(expectedLife);
     expect(snapshot).toEqual(original);
     Object.assign(snapshot, { difficulty });
     expect(staged.engineInput.difficulty).toBe(difficulty);

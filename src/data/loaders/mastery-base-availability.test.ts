@@ -20,7 +20,7 @@ describe('Spear and Throwing Mastery ordinary weapon availability', () => {
       const tc = loadTreasureClasses().get('loot/trash-act1');
       if (!tc) throw new Error('Missing ordinary Act I table');
       expect(tc.picks).toContainEqual({ type: 'item', baseId: base.id, rarity: 'normal',
-        weight, qlvlMin: 1, qlvlMax: 38 });
+        weight, qlvlMin: 1, qlvlMax: 58 });
       const acquired = [];
       for (let seed = 1; seed <= 1024; seed++) {
         const rng = createRng(seed);

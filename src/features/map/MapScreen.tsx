@@ -71,7 +71,13 @@ export function MapScreen() {
   const questProgress = useMapStore(s => s.questProgress);
   const questReceipts = useMapStore(s => s.questReceipts);
   const selectedDifficulty = useMapStore(s => s.selectedDifficulty);
-  const clearedSubAreas = useMapStore(s => s.selectedDifficulty === 'nightmare' ? s.nightmareClearedSubAreas : s.clearedSubAreas);
+  const clearedSubAreas = useMapStore(s => {
+    switch (s.selectedDifficulty) {
+      case 'normal': return s.clearedSubAreas;
+      case 'nightmare': return s.nightmareClearedSubAreas;
+      case 'hell': return s.hellClearedSubAreas;
+    }
+  });
   const setIdleTarget = useMetaStore((s) => s.setIdleTarget);
   const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
   const currentAct = useMapStore(s => s.currentAct);

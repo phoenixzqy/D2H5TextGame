@@ -124,6 +124,7 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
       questReceipts: map.questReceipts,
       questTitles: map.questTitles, questDifficulties: map.questDifficulties, selectedTitle: map.selectedTitle,
       selectedDifficulty: map.selectedDifficulty, nightmareClearedSubAreas: map.nightmareClearedSubAreas,
+      hellClearedSubAreas: map.hellClearedSubAreas,
       challengeOrdinals: map.challengeOrdinals
     },
     meta: {
@@ -412,7 +413,8 @@ function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: Wa
     questReceipts: { ...data.map.questReceipts },
     questTitles: { ...data.map.questTitles }, questDifficulties: { ...data.map.questDifficulties },
     selectedTitle: data.map.selectedTitle, selectedDifficulty: data.map.selectedDifficulty,
-    nightmareClearedSubAreas: [...data.map.nightmareClearedSubAreas], challengeOrdinals: { ...data.map.challengeOrdinals }
+    nightmareClearedSubAreas: [...data.map.nightmareClearedSubAreas],
+    hellClearedSubAreas: [...data.map.hellClearedSubAreas], challengeOrdinals: { ...data.map.challengeOrdinals }
   });
   useMetaStore.setState({
     settings: data.meta.settings,

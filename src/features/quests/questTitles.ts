@@ -1,6 +1,6 @@
 import { BAAL_TITLE } from '@/engine/save/act5-campaign';
 import { RIFTWALKER_TITLE } from '@/engine/save/current-campaign';
-import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
+import { validateNative24CurrentCampaignRewards } from '@/engine/save/current-campaign';
 import { useMapStore } from '@/stores/mapStore';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { questActionPreflight, withQuestTransaction } from './questTransaction';
@@ -11,7 +11,7 @@ export function selectQuestTitle(title: string | null): QuestTitleResult {
   return withQuestTransaction<QuestTitleResult>(() => {
     const map = useMapStore.getState(), inventory = useInventoryStore.getState();
     if (title !== null && title !== BAAL_TITLE && title !== RIFTWALKER_TITLE) return 'not-eligible';
-    try { validateCurrentCampaignRewards({ ...map, selectedTitle: title }, inventory.questItems, inventory.questServices, map.endgame); }
+    try { validateNative24CurrentCampaignRewards({ ...map, selectedTitle: title }, inventory.questItems, inventory.questServices, map.endgame); }
     catch { return 'not-eligible'; }
     try { useMapStore.setState({ selectedTitle: title }); return 'ok'; }
     catch (cause) {

@@ -10,7 +10,7 @@ import { captureAct5SettlementRollback, prepareAct5Settlement } from './act5Ques
 import { captureAct4Encounter, hasOriginalAct4Victory, isAct4AdmissionEligible, type Act4Encounter } from '@/engine/map/act4-admission';
 import { loadQuests } from '@/data/loaders/quests';
 import { applyReplayProfileToPlan, type ReplayProfileId } from '@/engine/map/replay-profile';
-import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
+import { hasReplayProfileAuthority } from '@/engine/map/replay-profile-authority';
 /**
  * Combat integration helpers
  * Bridge between engine and stores for playability
@@ -579,9 +579,10 @@ function captureSettlementRollback(run: ActiveRun, binding: RecordedWaveBinding)
       const questReceipts = restoreSettlementKeys(current.questReceipts, map.questReceipts, proofKeys);
       if (questProgress !== current.questProgress || questReceipts !== current.questReceipts ||
         current.clearedSubAreas !== map.clearedSubAreas || current.nightmareClearedSubAreas !== map.nightmareClearedSubAreas ||
+        current.hellClearedSubAreas !== map.hellClearedSubAreas ||
         (run.origin.kind === 'endgame' && current.endgame !== map.endgame)) {
         useMapStore.setState({ questProgress, questReceipts, clearedSubAreas: map.clearedSubAreas,
-          nightmareClearedSubAreas: map.nightmareClearedSubAreas,
+          nightmareClearedSubAreas: map.nightmareClearedSubAreas, hellClearedSubAreas: map.hellClearedSubAreas,
           ...(run.origin.kind === 'endgame' ? { endgame: map.endgame } : {}) });
       }
     });
@@ -746,7 +747,9 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
     });
     const profile = endgame ? 'normal' : map.selectedDifficulty;
     validateQuestActionReceipts(map.questReceipts, map.questProgress, inventory.questItems);
-    validateCurrentCampaignRewards(map, inventory.questItems, inventory.questServices, map.endgame);
+    if (!hasReplayProfileAuthority(profile, map, inventory.questItems, inventory.questServices, map.endgame)) {
+      throw new Error('Replay profile is not owned');
+    }
     const act = endgame ? 5 : clampAct(opts.act ?? map.currentAct);
     const subAreaId = opts.subAreaId ?? map.currentSubAreaId;
     const subArea = resolveSubArea(act, subAreaId);
@@ -772,7 +775,7 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
       eve?.id === EVE_QUEST && (eve.status === 'inProgress' || eve.status === 'completed') && eve.rewardClaimed !== true &&
       !Object.hasOwn(map.questReceipts, THRONE_PROOF);
     if (opts.questSource && !projectThrone) throw new Error('Act V quest-source projection is not eligible');
-    if (profile === 'nightmare' && !subArea) throw new Error('Nightmare requires a canonical area');
+    if (profile !== 'normal' && !subArea) throw new Error('Replay requires a canonical area');
     const normalPlan = countessRun && subArea
       ? resolveQuestEncounterPlan({ subArea, encounterId: COUNTESS.encounter, seed: planSeed })
       : endgame ? endgame.progress.plan : subArea
@@ -1145,8 +1148,12 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           }
           // Only a complete sequence of won waves can clear an area or unlock idle.
           if (normalRun) useMapStore.getState().markCleared(run.plan.subAreaId);
-          else if (ordinaryAreaRun) useMapStore.setState(state => ({ nightmareClearedSubAreas: state.nightmareClearedSubAreas.includes(run.plan.subAreaId)
-            ? state.nightmareClearedSubAreas : [...state.nightmareClearedSubAreas, run.plan.subAreaId] }));
+          else if (ordinaryAreaRun) useMapStore.setState(state => {
+            const key = run.origin.kind === 'area' && run.origin.replayProfileId === 'hell'
+              ? 'hellClearedSubAreas' : 'nightmareClearedSubAreas';
+            return { [key]: state[key].includes(run.plan.subAreaId)
+              ? state[key] : [...state[key], run.plan.subAreaId] };
+          });
           countessSettlement?.prepareResult('victory');
           combat.markRunVictory();
           countessSettlement?.check();

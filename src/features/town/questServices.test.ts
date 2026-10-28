@@ -6,7 +6,7 @@ import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { ACT5_ENCOUNTERS, PRISON_QUEST } from '@/engine/map/act5-admission';
 import { INSPECT_PROOF, POTION_SOURCE, THAW_PROOF } from '@/engine/save/act5-state';
 import { decodeSave, validateQuestItemLedger } from '@/engine/save/validate';
-import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
+import { validateNative24CurrentCampaignRewards } from '@/engine/save/current-campaign';
 import { QUEST_SERVICE_SOURCES, type QuestServiceLedger } from '@/engine/services/quest-services';
 import type { Item, Rarity } from '@/engine/types/items';
 import { usePlayerStore, useInventoryStore, useMapStore, useMercStore, useCombatStore, useMetaStore, useFormationStore } from '@/stores';
@@ -113,7 +113,7 @@ beforeEach(() => {
     ? ['larzuk', 'anya'].map(id => ({ id: `npc/${id}`, portraitId: id, nameKey: `town.npc.${id}` })) : originalTownNpcs(act));
   useInventoryStore.setState({ backpack: [gear()] }); grant(SIEGE);
   validateQuestItemLedger(inventory().questItems, useMapStore.getState().questProgress, useMapStore.getState().questReceipts);
-  validateCurrentCampaignRewards(useMapStore.getState(), inventory().questItems, inventory().questServices, useMapStore.getState().endgame);
+  validateNative24CurrentCampaignRewards(useMapStore.getState(), inventory().questItems, inventory().questServices, useMapStore.getState().endgame);
 });
 afterEach(() => {
   stops.splice(0).forEach(stop => { stop(); }); vi.restoreAllMocks();

@@ -15,12 +15,12 @@ import { rejectPreV19State } from './pre-v19-state';
 import { rejectSocketSaveAccessors, validateNativeSocketState } from './native-socket-state';
 import { ACT5_RECEIPTS, validateAct5QuestGraph } from './act5-state';
 import { ACT5_ENCOUNTERS } from '../map/act5-admission';
-import { validateAct5CampaignRewards } from './act5-campaign';
-import { validateCurrentCampaignRewards } from './current-campaign';
+import { validateAct5CampaignRewards, validateNative24ReplayFields } from './act5-campaign';
+import { validateCurrentCampaignRewards, validateNative24CurrentCampaignRewards } from './current-campaign';
 import { validateNativeItemState, rejectHistoricalServiceFields, validateLegacyQuarantine } from './service-item-state';
 import frozenV16 from './frozen-v16-quests.json';
 /** Structural validation at the untrusted save boundary; never mutates input. */
-import Ajv, { type AnySchema } from 'ajv';
+import Ajv, { type AnySchema, type ValidateFunction } from 'ajv';
 import { restoreEquipment, restoreItem, restoreUnit } from './restore';
 import { repairEquipmentRateCache, repairQuestLifeCache, repairQuestResistanceCache, repairRunewordStatCache } from './equipment-rate-cache';
 import { COUNCIL_RECEIPT_SOURCE, isCouncilReceiptProgress } from '../map/council-admission';
@@ -30,7 +30,7 @@ import { ACT4_ENCOUNTERS } from '../map/act4-admission';
 import { loadQuestActions, questActionInputs } from '../../data/loaders/quest-actions';
 import { repairMercenaryGrowth } from '../progression/merc-growth';
 import { LEVEL_CAP } from '../progression/xp';
-import { type SaveCurrent, type SaveV23, type SaveV17, type SaveV18, type SaveV19, type SaveV20, type SaveV21, type SaveV22, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
+import { type SaveCurrent, type SaveV24, type SaveV23, type SaveV17, type SaveV18, type SaveV19, type SaveV20, type SaveV21, type SaveV22, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
 import { loadQuestItems, type QuestItemDef, questItemSource, questItemSourceWithActions } from '../../data/loaders/quest-items';
 import { loadQuests, type QuestDef } from '../../data/loaders/quests';
@@ -231,13 +231,19 @@ const saveSchema = (
   })
 });
 const ajv = new Ajv({ strictNumbers: true });
+
+/** Compile on first use while preserving the original schema capture and validator. */
+function lazyValidator<T = unknown>(schema: AnySchema): () => ValidateFunction<T> {
+  let check: ValidateFunction<T> | undefined;
+  return () => (check ??= ajv.compile<T>(schema));
+}
 // The shared structural shell injects the item contract at every ownership/mirror site.
 // Literal predecessor schemas never acquire live socket fields through closure capture.
 const canonicalItem: AnySchema = { ...frozenItemSchema,
   properties: { ...frozenItemSchema.properties,
     socketContents: array(object({ kind: { enum: ['rune', 'gem'] }, id: text })) },
   not: { required: ['runes'] } };
-const nativeSaveSchema = (version: 17 | 18 | 19 | 20 | 21 | 22 | 23, frozen?: FrozenV23Domain) => saveSchema({ const: version }, unitProperties, {
+const nativeSaveSchema = (version: 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24, frozen?: FrozenV23Domain) => saveSchema({ const: version }, unitProperties, {
   selectedAuraId: { enum: version >= 22 ? (frozen?.auraIds ?? PLAYER_AURA_IDS) : ['paladin.might', 'paladin.meditation'] }
 }, {
   questItems: questItemLedgerSchema, questServices: { type: 'object' }, legacyGearQuarantine: array({ type: 'object' }),
@@ -246,8 +252,9 @@ const nativeSaveSchema = (version: 17 | 18 | 19 | 20 | 21 | 22 | 23, frozen?: Fr
     socketQuarantine: array({ type: 'object' }) } : {})
 }, {
   questTitles: { type: 'object' }, questDifficulties: { type: 'object' },
-  selectedTitle: nullableText, selectedDifficulty: { enum: frozen?.selectedDifficulties ?? ['normal', 'nightmare'] },
+  selectedTitle: nullableText, selectedDifficulty: { enum: frozen?.selectedDifficulties ?? (version === 24 ? ['normal', 'nightmare', 'hell'] : ['normal', 'nightmare']) },
   nightmareClearedSubAreas: strings, challengeOrdinals: { type: 'object' },
+  ...(version === 24 ? { hellClearedSubAreas: strings } : {}),
   // The exact Council and Guardian Orb actions form the current closed domain.
   questReceipts: { type: 'object', additionalProperties: false,
     properties: { ...(frozen ? {} : { [COUNCIL_RECEIPT_SOURCE]: { const: true },
@@ -257,33 +264,34 @@ const nativeSaveSchema = (version: 17 | 18 | 19 | 20 | 21 | 22 | 23, frozen?: Fr
         ? [frozen.council.receipt, frozen.act1.cain.rescueReceipt, frozen.act1.cain.talkReceipt,
           frozen.act1.countess.receipt, frozen.act1.malus.presentReceipt, ...frozen.victories.map(row => row.proof),
           ...frozen.act5.receipts, ...frozen.actions.map(row => row.receiptSource)]
-        : version === 23
+        : version >= 23
         ? [...CAIN_RECEIPTS, COUNTESS.receipt, ACT1_QUEST_RECEIPTS.presentItem, ...ACT4_ENCOUNTERS.map(row => row.proof), ...ACT5_RECEIPTS, ...loadQuestActions().map(row => row.receiptSource)]
         : [...FROZEN_V22.victories.map(row => row.proof), ...FROZEN_V22.act5.receipts,
           ...FROZEN_V22.actions.map(row => row.receiptSource)]).map(source => [source, { const: true }])) } }
 }, version >= 19 ? canonicalItem : item);
-const validateV17 = ajv.compile<SaveV17>(nativeSaveSchema(17));
-const validateV18 = ajv.compile<SaveV18>(nativeSaveSchema(18));
-const validateV19 = ajv.compile<SaveV19>(nativeSaveSchema(19));
-const validateV20 = ajv.compile<SaveV20>(nativeSaveSchema(20));
-const validateV21 = ajv.compile<SaveV21>(nativeSaveSchema(21));
-const validateV22 = ajv.compile<SaveV22>(nativeSaveSchema(22));
-const validateV23 = ajv.compile<SaveCurrent>(nativeSaveSchema(23));
-const validateLiteralV23 = ajv.compile<SaveV23>(nativeSaveSchema(23, FROZEN_V23));
+const getValidateV17 = lazyValidator<SaveV17>(nativeSaveSchema(17));
+const getValidateV18 = lazyValidator<SaveV18>(nativeSaveSchema(18));
+const getValidateV19 = lazyValidator<SaveV19>(nativeSaveSchema(19));
+const getValidateV20 = lazyValidator<SaveV20>(nativeSaveSchema(20));
+const getValidateV21 = lazyValidator<SaveV21>(nativeSaveSchema(21));
+const getValidateV22 = lazyValidator<SaveV22>(nativeSaveSchema(22));
+const getValidateV23 = lazyValidator<SaveV23>(nativeSaveSchema(23));
+const getValidateV24 = lazyValidator<SaveV24>(nativeSaveSchema(24));
+const getValidateLiteralV23 = lazyValidator<SaveV23>(nativeSaveSchema(23, FROZEN_V23));
 interface LedgerContext {
   questItems: QuestItemLedger;
   questProgress: SaveCurrent['map']['questProgress'];
 }
-const validateLedgerContext = ajv.compile<LedgerContext>(
+const getValidateLedgerContext = lazyValidator<LedgerContext>(
   object({ questItems: questItemLedgerSchema, questProgress: questProgressSchema }));
-const validateV11 = ajv.compile<SaveV11>(saveSchema({ const: 11 }, unitProperties, {
+const getValidateV11 = lazyValidator<SaveV11>(saveSchema({ const: 11 }, unitProperties, {
   selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
 }));
-const validateV10 = ajv.compile<SaveV10>(saveSchema({ const: 10 }, unitProperties, {
+const getValidateV10 = lazyValidator<SaveV10>(saveSchema({ const: 10 }, unitProperties, {
   selectedAuraId: { const: 'paladin.might' }
 }));
-const validateV9 = ajv.compile<SaveV9>(saveSchema({ const: 9 }, unitProperties));
-const validateHistorical = ajv.compile<SaveV7 | SaveV8>(saveSchema({ enum: [7, 8] }, {
+const getValidateV9 = lazyValidator<SaveV9>(saveSchema({ const: 9 }, unitProperties));
+const getValidateHistorical = lazyValidator<SaveV7 | SaveV8>(saveSchema({ enum: [7, 8] }, {
   ...unitProperties,
   derivedStats: object(derivedStatProperties, { magicResist })
 }));
@@ -312,8 +320,9 @@ function rejectUndefinedMagicResist(value: unknown): void {
 function validateHistoricalSave(value: unknown): void {
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
-  if (!validateHistorical(normalized)) {
-    throw new Error(`Invalid save: ${ajv.errorsText(validateHistorical.errors)}`);
+  const check = getValidateHistorical();
+  if (!check(normalized)) {
+    throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
   }
 }
 
@@ -321,8 +330,9 @@ function validateHistoricalSave(value: unknown): void {
 function validateV9Save(value: unknown): void {
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
-  if (!validateV9(normalized)) {
-    throw new Error(`Invalid save: ${ajv.errorsText(validateV9.errors)}`);
+  const check = getValidateV9();
+  if (!check(normalized)) {
+    throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
   }
 }
 
@@ -339,8 +349,9 @@ function validateV10Save(value: unknown): void {
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
   rejectUndefinedSelection(normalized);
-  if (!validateV10(normalized)) {
-    throw new Error(`Invalid save: ${ajv.errorsText(validateV10.errors)}`);
+  const check = getValidateV10();
+  if (!check(normalized)) {
+    throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
   }
 }
 
@@ -349,8 +360,9 @@ function validateV11Save(value: unknown): void {
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
   rejectUndefinedSelection(normalized);
-  if (!validateV11(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validateV11.errors)}`);
-  if (Object.hasOwn((normalized as SaveV11).inventory, 'questItems')) {
+  const check = getValidateV11();
+  if (!check(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
+  if (Object.hasOwn(normalized.inventory, 'questItems')) {
     throw new Error('Invalid save: historical inventory cannot contain questItems');
   }
 }
@@ -369,10 +381,11 @@ function ledgerContext(questItems: unknown, questProgress: unknown): LedgerConte
     throw new Error('Invalid save: quest ledger and progress must be JSON records');
   }
   const context = { questItems, questProgress };
-  if (!validateLedgerContext(context)) {
-    throw new Error(`Invalid save: ${ajv.errorsText(validateLedgerContext.errors)}`);
+  const check = getValidateLedgerContext();
+  if (!check(context)) {
+    throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
   }
-  return context as LedgerContext;
+  return context;
 }
 
 /** Receipt sources require own true predecessors; completed legacy rows stay internally complete. */
@@ -567,7 +580,7 @@ export function validateQuestItemLedger(questItems: unknown, questProgress: unkn
 
 // v12 admitted only the Radament Book. Keep this closed historical domain
 // independent of future live definitions, objectives and reward additions.
-const validateV12 = ajv.compile(saveSchema({ const: 12 }, unitProperties, {
+const getValidateV12 = lazyValidator(saveSchema({ const: 12 }, unitProperties, {
   selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
 }, { questItems: questItemLedgerSchema }));
 
@@ -591,11 +604,12 @@ function validateV12Save(value: unknown): void {
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
   rejectUndefinedSelection(normalized);
-  if (!validateV12(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validateV12.errors)}`);
+  const check = getValidateV12();
+  if (!check(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
 }
 
 // v13's closed domain is exactly Book plus owned Cube, independent of live H2 definitions.
-const validateV13 = ajv.compile(saveSchema({ const: 13 }, unitProperties, {
+const getValidateV13 = lazyValidator(saveSchema({ const: 13 }, unitProperties, {
   selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
 }, { questItems: questItemLedgerSchema }));
 
@@ -613,11 +627,12 @@ function validateV13Save(value: unknown): void {
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
   rejectUndefinedSelection(normalized);
-  if (!validateV13(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validateV13.errors)}`);
+  const check = getValidateV13();
+  if (!check(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
 }
 
 // v14's graph is literal historical data. Never consult live stages or item definitions here.
-const validateV14 = ajv.compile(saveSchema({ const: 14 }, unitProperties, {
+const getValidateV14 = lazyValidator(saveSchema({ const: 14 }, unitProperties, {
   selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
 }, { questItems: questItemLedgerSchema }));
 
@@ -656,7 +671,8 @@ function validateV14Save(value: unknown): void {
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
   rejectUndefinedSelection(normalized);
-  if (!validateV14(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validateV14.errors)}`);
+  const check = getValidateV14();
+  if (!check(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
 }
 
 /** Reserved future proofs must be rejected before normalization or a migration can erase them. */
@@ -668,7 +684,7 @@ function rejectHistoricalQuestReceipts(value: unknown): void {
 }
 
 // Frozen literal v15 domain: future live definitions cannot widen historical imports.
-const validateV15 = ajv.compile(saveSchema({ const: 15 }, unitProperties, {
+const getValidateV15 = lazyValidator(saveSchema({ const: 15 }, unitProperties, {
   selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
 }, { questItems: questItemLedgerSchema }, {
   questReceipts: { type: 'object', additionalProperties: false, properties: {
@@ -682,11 +698,12 @@ function validateV15Save(value: unknown): void {
     frozenV15 as unknown as QuestStateDomain);
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized); rejectUndefinedSelection(normalized);
-  if (!validateV15(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validateV15.errors)}`);
+  const check = getValidateV15();
+  if (!check(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
 }
 
 // Frozen actual v16 source domain; new17 actions, items and reserved fields cannot enter history.
-const validateV16 = ajv.compile(saveSchema({ const: 16 }, unitProperties, {
+const getValidateV16 = lazyValidator(saveSchema({ const: 16 }, unitProperties, {
   selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
 }, { questItems: questItemLedgerSchema }, {
   questReceipts: { type: 'object', additionalProperties: false, properties: {
@@ -702,12 +719,14 @@ function validateV16Save(value: unknown): void {
     frozenV16 as unknown as QuestStateDomain);
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized); rejectUndefinedSelection(normalized);
-  if (!validateV16(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validateV16.errors)}`);
+  const check = getValidateV16();
+  if (!check(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
 }
 /** Frozen structural item validator for quarantined predecessor payloads, before normalization. */
-const validateLegacyItem = ajv.compile(item);
+const getValidateLegacyItem = lazyValidator(item);
 export function validateFrozenV16Item(value: unknown): void {
-  if (!validateLegacyItem(value)) throw new Error('Invalid save: quarantine item is not valid frozen16 data');
+  const check = getValidateLegacyItem();
+  if (!check(value)) throw new Error('Invalid save: quarantine item is not valid frozen16 data');
 }
 
 /** Closed finite proof map; validates retained history but never reconstructs a proof. */
@@ -717,9 +736,9 @@ export function validateQuestActionReceipts(receipts: unknown, questProgress: un
 }
 
 /** Preserve the v17 native graph/item validator before the v18 ownership-only migration. */
-function validateNativeSave(value: unknown, version: 17 | 18 | 19 | 20 | 21 | 22 | 23, frozen?: NativeQuestDomain): SaveV17 | SaveV18 | SaveV19 | SaveV20 | SaveV21 | SaveV22 | SaveCurrent {
+function validateNativeSave(value: unknown, version: 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24, frozen?: NativeQuestDomain): SaveV17 | SaveV18 | SaveV19 | SaveV20 | SaveV21 | SaveV22 | SaveV23 | SaveV24 {
   rejectPreV24ReplayState(value);
-  const domain = frozen ?? (version === 23 ? undefined : FROZEN_V22);
+  const domain = frozen ?? (version >= 23 ? undefined : FROZEN_V22);
   rejectHistoricalQuestReceipts(value);
   if (record(value) && record(value.inventory) && record(value.map)) {
     validateLiveQuestState(value.inventory.questItems, value.map.questProgress,
@@ -728,7 +747,9 @@ function validateNativeSave(value: unknown, version: 17 | 18 | 19 | 20 | 21 | 22
     validateLiveQuestState({}, value.map.questProgress, value.map.questReceipts, domain);
   }
   if (record(value) && value.version === version && record(value.map) && record(value.inventory)) {
-    if (version >= 20) validateCurrentCampaignRewards(value.map as unknown as SaveCurrent['map'],
+    if (version === 24) validateNative24CurrentCampaignRewards(value.map as unknown as SaveV24['map'],
+      value.inventory.questItems as QuestItemLedger, value.inventory.questServices, value.endgame);
+    else if (version >= 20) validateCurrentCampaignRewards(value.map as unknown as SaveV23['map'],
       value.inventory.questItems as QuestItemLedger, value.inventory.questServices, value.endgame, domain);
     else validateAct5CampaignRewards(value.map as unknown as SaveV19['map'], value.inventory.questItems as QuestItemLedger, value.inventory.questServices, domain);
   }
@@ -736,15 +757,18 @@ function validateNativeSave(value: unknown, version: 17 | 18 | 19 | 20 | 21 | 22
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
   rejectUndefinedSelection(normalized);
-  const check = version === 17 ? validateV17 : version === 18 ? validateV18 : version === 19 ? validateV19
-    : version === 20 ? validateV20 : version === 21 ? validateV21 : version === 22 ? validateV22 : frozen ? validateLiteralV23 : validateV23;
+  const getCheck = version === 17 ? getValidateV17 : version === 18 ? getValidateV18 : version === 19 ? getValidateV19
+    : version === 20 ? getValidateV20 : version === 21 ? getValidateV21 : version === 22 ? getValidateV22
+      : version === 24 ? getValidateV24 : frozen ? getValidateLiteralV23 : getValidateV23;
+  const check = getCheck();
   if (!check(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
   const save = normalized;
   validateLiveQuestState(save.inventory.questItems, save.map.questProgress, save.map.questReceipts, domain);
   // Own undefined, inherited values and accessors must not disappear through normalization.
   validateLegacyQuarantine(value as SaveV17 | SaveV18 | SaveV19, validateFrozenV16Item);
   if (version < 19) validateNativeItemState(value as SaveV17 | SaveV18);
-  if (save.version >= 20) validateCurrentCampaignRewards(save.map, save.inventory.questItems, save.inventory.questServices, (save as SaveV20).endgame, domain);
+  if (save.version === 24) validateNative24CurrentCampaignRewards(save.map, save.inventory.questItems, save.inventory.questServices, save.endgame);
+  else if (save.version >= 20) validateCurrentCampaignRewards((save as SaveV20 | SaveV21 | SaveV22 | SaveV23).map, save.inventory.questItems, save.inventory.questServices, (save as SaveV20).endgame, domain);
   else validateAct5CampaignRewards((save as SaveV19).map, save.inventory.questItems, save.inventory.questServices, domain);
   validateLegacyQuarantine(save, validateFrozenV16Item);
   if (version >= 19) validateNativeSocketState(save, validateFrozenV16Item);
@@ -757,14 +781,19 @@ export function validateEndgameSave(value: unknown): SaveV20 {
   rejectPreV21Respec(value);
   return validateCurrentNativeSave(value, 20) as SaveV20;
 }
-function validateCurrentNativeSave(value: unknown, version: 20 | 21 | 22 | 23, frozen?: NativeQuestDomain): SaveV20 | SaveV21 | SaveV22 | SaveCurrent {
+function validateCurrentNativeSave(value: unknown, version: 20 | 21 | 22 | 23 | 24, frozen?: NativeQuestDomain): SaveV20 | SaveV21 | SaveV22 | SaveV23 | SaveV24 {
   rejectPreV24ReplayState(value);
   rejectSocketSaveAccessors(value);
+  if (version === 24) {
+    const map = value !== null && typeof value === 'object' ? Object.getOwnPropertyDescriptor(value, 'map') : undefined;
+    if (!map || map.enumerable !== true || !Object.hasOwn(map, 'value')) throw new Error('Invalid save: own replay map required');
+    validateNative24ReplayFields(map.value);
+  }
   if (!record(value) || !record(value.map) || !record(value.inventory)) throw new Error('Invalid save: endgame structure');
   const endgame = readEndgameSaveField(value, { questProgress: value.map.questProgress as SaveCurrent['map']['questProgress'],
-    questReceipts: value.map.questReceipts as QuestActionReceipts, questItems: value.inventory.questItems as QuestItemLedger }, false, frozen?.act5 ?? (version === 23 ? undefined : FROZEN_V22.act5));
+    questReceipts: value.map.questReceipts as QuestActionReceipts, questItems: value.inventory.questItems as QuestItemLedger }, false, frozen?.act5 ?? (version >= 23 ? undefined : FROZEN_V22.act5));
   readMaterialLedger(value.inventory);
-  const save = validateNativeSave(value, version, frozen) as SaveV20 | SaveV21 | SaveV22 | SaveCurrent;
+  const save = validateNativeSave(value, version, frozen) as SaveV20 | SaveV21 | SaveV22 | SaveV23 | SaveV24;
   return { ...save, endgame };
 }
 /** Validate frozen v21 counters and selection before a version-only migration. */
@@ -774,7 +803,7 @@ export function validateRespecSave(value: unknown): SaveV21 {
 
 /** Validate strict current counters before normalization can erase a descriptor. */
 export function validateSave(value: unknown): SaveCurrent {
-  return validateRespecNativeSave(value, 23) as SaveCurrent;
+  return validateRespecNativeSave(value, 24) as SaveCurrent;
 }
 
 /** Validate literal23 without consulting future authored quest/profile identities. */
@@ -787,12 +816,12 @@ export function validateFrozenV22Save(value: unknown): SaveV22 {
   return validateRespecNativeSave(value, 22) as SaveV22;
 }
 
-function validateRespecNativeSave(value: unknown, version: 21 | 22 | 23, frozen?: NativeQuestDomain): SaveV21 | SaveV22 | SaveCurrent {
+function validateRespecNativeSave(value: unknown, version: 21 | 22 | 23 | 24, frozen?: NativeQuestDomain): SaveV21 | SaveV22 | SaveV23 | SaveV24 {
   if (!record(value)) throw new Error('Invalid save');
   const player = Object.getOwnPropertyDescriptor(value, 'player');
   if (!player || !Object.hasOwn(player, 'value') || !record(player.value)) throw new Error('Invalid save: player');
   const respecsRemaining = readRespecsRemaining(player.value);
-  const save = validateCurrentNativeSave(value, version, frozen) as SaveV21 | SaveV22 | SaveCurrent;
+  const save = validateCurrentNativeSave(value, version, frozen) as SaveV21 | SaveV22 | SaveV23 | SaveV24;
   if (save.version === 21) return { ...save, player: { ...save.player, respecsRemaining } };
   return { ...save, player: { ...save.player, respecsRemaining } };
 }

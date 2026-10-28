@@ -20,9 +20,9 @@ const stores = [usePlayerStore, useInventoryStore, useCombatStore, useMapStore,
   useMercStore, useFormationStore, useMetaStore] as const;
 const copy = {
   en: { current: 'Current', next: 'Next Level', preview: 'Learned at Lv. 1',
-    health: 'Current Health Damage', floor: 'Nightmare Health Floor', mana: 'Mana Cost', cooldown: 'Cooldown' },
+    health: 'Current Health Damage', floor: 'Nightmare Health Floor', hell: 'Hell Health Floor', mana: 'Mana Cost', cooldown: 'Cooldown' },
   'zh-CN': { current: '当前', next: '下一级', preview: '学习后 Lv.1',
-    health: '当前生命伤害', floor: '噩梦生命下限', mana: '法力消耗', cooldown: '冷却' }
+    health: '当前生命伤害', floor: '噩梦生命下限', hell: '地狱生命下限', mana: '法力消耗', cooldown: '冷却' }
 } as const;
 function section(panel: HTMLElement, title: string): HTMLElement {
   const el = within(panel).getByRole('heading', { name: title, level: 3 }).closest('section');
@@ -52,6 +52,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
       for (const area of [current, section(panel, copy[locale].next)]) {
         expect(value(area, copy[locale].health)).toHaveTextContent(/^25%$/);
         expect(value(area, copy[locale].floor)).toHaveTextContent(/^33%$/);
+        expect(value(area, copy[locale].hell)).toHaveTextContent(/^50%$/);
       }
       expect(value(current, copy[locale].mana)).toHaveTextContent(/^10$/);
       expect(value(current, copy[locale].cooldown)).toHaveTextContent(/^2/);
@@ -63,12 +64,15 @@ for (const locale of ['en', 'zh-CN'] as const) {
     it('does not hide the higher alias rank and clamps it to the actual cap', () => {
       const panel = mount({ [id]: 99, [authored]: 1 }), current = section(panel, copy[locale].current);
       expect(value(current, copy[locale].health)).toHaveTextContent(/^25%$/);
+      expect(value(current, copy[locale].hell)).toHaveTextContent(/^50%$/);
       expect(value(current, copy[locale].mana)).toHaveTextContent(/^8$/);
       expect(value(current, copy[locale].cooldown)).toHaveTextContent(/^1 /);
     });
     it('shows learned preview for invalid allocations without manufacturing a learned rank', () => {
       const panel = mount({ [id]: 1.5, [authored]: -1 });
-      expect(value(section(panel, copy[locale].preview), copy[locale].health)).toHaveTextContent(/^25%$/);
+      const preview = section(panel, copy[locale].preview);
+      expect(value(preview, copy[locale].health)).toHaveTextContent(/^25%$/);
+      expect(value(preview, copy[locale].hell)).toHaveTextContent(/^50%$/);
     });
   });
 }

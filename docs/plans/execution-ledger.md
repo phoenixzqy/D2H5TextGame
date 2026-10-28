@@ -14286,3 +14286,71 @@ H1 complete, H2 integration next; BUG355 remains open. H1 build is deferred to
 required H2 build; no browser/gameplay/earned/balance/full-v1 claim is made.
 H2 proposals are source-reviewed scratch only. Browser prerequisite and Cobra
 policy remain unresolved; the full objective/umbrella claim remain active/local.
+
+## Hell H2 checkpoint and H3 prerequisite failure — 2026-10-27
+
+[H2 evidence](evidence/hell-native-integration.md) records native24/Hell source
+and constructed coverage. Original full-first38099 terminal exit1:21,163passed/
+8failed/2skipped assertions; all eight match six reviewed test-only files.
+Those exact repairs are applied and bound by the cumulative60-file manifest.
+The frozen121-path inventory and supplemental18-path ADEQUATE/security-PASS
+source/test review retain historical scope; final documentation, refreshed
+whole inventory and exact packet review remain pending.
+
+Historical5332-input snapshot cf87793bc93d58ab73ab339393c786a9ef31db00c2774b146adf061d39a05388
+has focused1669/66, types and lint passes. Full-second91212 terminal exit1
+retains21,172passed/1failed/2existing skips and986/987files, all inputs unchanged;
+BUG180 player-first exceeded unchanged5000ms. Invalid v2 profiler92197 was
+root-stopped, native-2 after77.802787s, following observed UI setup failures;
+no native result/profile or acceptance was produced.
+
+Root consumed instrumented full-v3 diagnostic8379 native/outer0 after1250.773529s:
+21,173passed/2existing skips/987files, all13 target cases and both captures
+complete, unchanged5332 inputs/Git state, remaining owned processes[]. This is
+diagnostic evidence with no acceptance credit. Its raw receipt's inherited
+prepared-only limit is stale; actual consumed native metadata controls this
+execution account. Count-only save-module+explicit-compile ancestry is1307/3123
+and1267/2746; the broader inventory save+Ajv group is1269. The original raw-2us
+player delta is retained; no weighted CPU/wall-time, sole-timeout-cause or
+saved-time claim is made.
+
+The independently reviewed compile-only save change was first applied at runtime SHA
+`0e79bb676a248223e7a444735cb376f229f7a30c0a6ca9015341df8b7ad0362c`.
+It preserves all20 eager schema expressions/order and raw typed validator/error
+behavior. Corrected regression-v3 first reached fixture/raw-function/error
+preconditions, then baseline19068 native1 resource RED; after the exact runtime
+change52325 native0 GREEN. The earlier v2 spy record identity failure is a
+preserved test defect, not resource RED. Independent targeted RED/GREEN review
+SHA-256 `8f00a71855ddd4d246dba11ee10139f029726dc1ddd8563699abdcd3490826b8`
+keeps its precise input-snapshot and scope limits. Affected83753 passed1228
+assertions/40files, native0, with unchanged5333 inputs at
+`48b534d3e78c3fdb5789e6c20be5e1fc0ef0e790cad94c6e6922dc67845be6f3`.
+Pre-cleanup typecheck98175 native0/134.432768s and build76346 native0/18.156377s are
+consumed with unchanged5333 inputs. Required native H2 checks now pass; final docs/inventory and independent
+exact H2 packet review remain pending. Historical engine10734/400 and retained762-file build
+receipts remain historical; the final cleaned-source checks below supply
+current native validation.
+Final documentation/inventory and independent exact H2 review remain pending;
+BUG180/355/356/357 stay Open and H2 is not accepted.
+
+[H3 prerequisite evidence](evidence/hell-browser-prerequisite-failure.md) records
+one terminal failed-no-app attempt30647: root-consumed outer exit1; native
+Chromium787408 SIGTRAP/FATAL socket path too long before any page/context.
+Independent failure-classification review APPROVE is evidence adequacy only,
+with missing captures and root-attested platform terminal provenance disclosed.
+No game defect, prerequisite/app/H3 acceptance, retry/new card/tuning/app work
+or new BUG354/C2 credit follows. Cobra remains separate reviewed cheaper-policy
+work after H2; native RED is unexecuted and no skill credit is added. Root keeps
+raw H2/H3/build evidence through consumers. No cleanup, earned quantities/pacing,
+commit, actual CI, human or full-v1 acceptance is claimed.
+
+Engine96409 passed10,735 assertions/401files before the exact reviewed type
+cleanup; lint73517's three redundant-annotation errors remain retained.
+After cleanup, typecheck40015, lint26336 and build2368 all passed native0.
+Uninstrumented full27446 passed21,174 assertions/988files with2existing skips
+in1280.293275s. All four final checks preserve unchanged5333 inputs on snapshot
+`b63bcdfce5e051f2d3be206cdead07881cce853a9ed63efa21f6bc34465b3dc0`.
+Earlier runtime outcomes retain their executed hashes and erasure-only mapping.
+Required native H2 checks now pass; final applied docs/inventory and producer
+approval of the exact H2 packet remain pending. No bug closure, browser/H3,
+earned acquisition, CI or full-v1 acceptance is claimed.

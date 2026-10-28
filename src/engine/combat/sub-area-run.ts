@@ -1,3 +1,4 @@
+import type { ReplayProfileId } from '@/engine/map/replay-profile';
 /**
  * Wave-plan resolution for sub-area runs.
  *
@@ -101,7 +102,7 @@ export interface DifficultyContext {
 /** Full ordered wave plan for a sub-area run. */
 export interface WavePlan {
   readonly questSourceProjection?: 'act5-throne';
-  readonly replayProfileId?: 'normal' | 'nightmare';
+  readonly replayProfileId?: ReplayProfileId;
   readonly subAreaId: string;
   readonly waves: readonly WaveSpec[];
   /** Sub-area loot table (used when a wave doesn't override it). */

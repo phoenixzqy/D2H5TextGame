@@ -6,7 +6,7 @@ import { ACT1_IMBUE_SOURCES, ACT1_QUEST_RECEIPTS } from '../map/act1-quest-sourc
 import { buildSave, toJsonSafe } from './serialize';
 import { decodeSave, validateFrozenV22Save, validateSave } from './validate';
 import { runMigrations } from './migrate';
-import { withoutV20Fields } from '../../../tests/helpers/save-fixtures';
+import { withoutV20Fields, withoutV24Fields, withV24Defaults } from '../../../tests/helpers/save-fixtures';
 
 const reservedReceipts = [
   'quests/act1-search-for-cain#action:rescue-cain',
@@ -29,7 +29,7 @@ function predecessor() {
       combatSpeed: 1, autoCombat: false }, idleState: { lastOnline: 1000, offlineTime: 0,
       multiplierSecondsRemaining: 0, activeMultiplier: 1 }, gachaState: { currency: 0, ownedMercIds: [], pityCounter: 0 } },
     formation: { playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] } });
-  return { ...save, version: 22 as const, inventory: { ...save.inventory, questServices: {} } };
+  return { ...withoutV24Fields(save), version: 22 as const, inventory: { ...save.inventory, questServices: {} } };
 }
 
 describe('v23 current authority registration before Act I activation', () => {
@@ -44,7 +44,7 @@ describe('v23 current authority registration before Act I activation', () => {
   });
 
   it('registers the distinct current version', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(23);
+    expect(CURRENT_SAVE_VERSION).toBe(24);
     expect(MIGRATIONS[23]).toBeTypeOf('function');
     expect(runMigrations(predecessor(), 23).version).toBe(23);
   });
@@ -86,8 +86,8 @@ describe('v23 current authority registration before Act I activation', () => {
     for (const key of ['player', 'inventory', 'map', 'endgame', 'meta', 'mercs', 'formation'] as const) {
       expect(Reflect.get(migrated, key)).toBe(old[key]);
     }
-    expect(decodeSave(toJsonSafe(old))).toEqual(expected);
-    expect(validateSave(toJsonSafe(expected))).toEqual(toJsonSafe(expected));
+    expect(decodeSave(toJsonSafe(old))).toEqual(withV24Defaults(expected));
+    expect(validateSave(toJsonSafe(withV24Defaults(expected)))).toEqual(toJsonSafe(withV24Defaults(expected)));
     expect(old).toEqual(before);
   });
 
@@ -97,7 +97,7 @@ describe('v23 current authority registration before Act I activation', () => {
     expect(() => validateFrozenV22Save(old)).toThrow('Invalid save');
     expect(() => runMigrations(old, 23)).toThrow('Invalid save');
     expect(() => decodeSave(old)).toThrow('Invalid save');
-    expect(() => validateSave({ ...old, version: 23 })).toThrow('Invalid save');
+    expect(() => validateSave(withV24Defaults(old))).toThrow('Invalid save');
     expect(old).toEqual(before);
   });
 
@@ -114,7 +114,7 @@ describe('v23 current authority registration before Act I activation', () => {
       const before = structuredClone(old);
       expect(() => runMigrations(old, 23)).toThrow('Invalid');
       expect(() => decodeSave(old)).toThrow('Invalid');
-      expect(() => validateSave({ ...old, version: 23 })).toThrow('Invalid');
+      expect(() => validateSave(withV24Defaults(old))).toThrow('Invalid');
       expect(old).toEqual(before);
     }
   });
@@ -138,13 +138,13 @@ describe('v23 current authority registration before Act I activation', () => {
     } } }, inventory: { ...save.inventory, questItems: { [`${id}#reward:questItem`]:
       { itemId: 'items/book_of_skill', state: 'owned' as const } } } };
     expect(validateFrozenV22Save(old)).toEqual(toJsonSafe(old));
-    expect(decodeSave(old)).toEqual({ ...old, version: 23 });
+    expect(decodeSave(old)).toEqual(withV24Defaults(old));
     vi.spyOn(questLoader, 'loadQuests').mockReturnValue(quests.map(row => row.id === id ? {
       ...row, objectives: [...row.objectives, { id: 'future-objective', type: 'talk', description: 'Future' }]
     } : row));
     expect(validateFrozenV22Save(old)).toEqual(toJsonSafe(old));
     expect(runMigrations(old, 23)).toEqual({ ...old, version: 23 });
-    expect(() => validateSave({ ...old, version: 23 })).toThrow('Invalid save');
+    expect(() => validateSave(withV24Defaults(old))).toThrow('Invalid save');
     expect(() => decodeSave(old)).toThrow('Invalid save');
   });
 });

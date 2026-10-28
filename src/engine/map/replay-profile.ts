@@ -4,7 +4,7 @@ import type { WavePlan } from '../combat/sub-area-run';
 import type { ChapterBossDef } from '../types/maps';
 import type { MonsterDef } from '../types/monsters';
 
-export type ReplayProfileId = 'normal' | 'nightmare';
+export type ReplayProfileId = import('../types/save').NativeReplayProfileId;
 
 /** Resolve a displayed or runtime monster level after all Normal planner adjustments. */
 export function monsterLevelForReplay(normalLevel: number, profileId: ReplayProfileId): number {
@@ -37,7 +37,7 @@ export function scaleChapterBossForReplay(boss: ChapterBossDef, def: MonsterDef,
 export function applyReplayProfileToPlan(plan: WavePlan, profileId: ReplayProfileId,
   monsters: ReadonlyMap<string, MonsterDef>): WavePlan {
   monsterLevelForReplay(1, profileId);
-  if (profileId === 'nightmare' && plan.questSourceProjection !== undefined) throw new Error('Quest projection requires Normal');
+  if (profileId !== 'normal' && plan.questSourceProjection !== undefined) throw new Error('Quest projection requires Normal');
   const waves = plan.waves.map(wave => ({ ...wave, spawns: wave.spawns.map(spawn => {
     const level = monsterLevelForReplay(spawn.level, profileId);
     if (!spawn.chapterBoss) return { ...spawn, level };

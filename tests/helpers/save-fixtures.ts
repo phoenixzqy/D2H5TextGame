@@ -1,16 +1,27 @@
 import type { Item } from '../../src/engine/types/items';
 import type { HistoricalItem } from '../../src/engine/save/historical-items';
-import type { SaveCurrent, LegacyGearQuarantineEntry, HistoricalPlayer, CampaignMapSaveData } from '../../src/engine/types/save';
+import type { SaveCurrent, SaveV23, LegacyGearQuarantineEntry, HistoricalPlayer, CampaignMapSaveData } from '../../src/engine/types/save';
 import { emptyEndgameState } from '../../src/engine/endgame/state';
 import type { PlayerAuraId } from '../../src/engine/types/auras';
 import type { HistoricalQuestServiceId, HistoricalQuestServiceLedger, QuestServiceEntry } from '../../src/engine/services/quest-services';
 
+/** Construct a predecessor map only when no native Hell selection or history is lost. */
+export function withoutV24Fields<T extends { map: SaveCurrent['map'] | SaveV23['map'] }>(save: T):
+  Omit<T, 'map'> & { map: SaveV23['map'] } {
+  const { hellClearedSubAreas, selectedDifficulty, challengeOrdinals, ...map } = save.map as SaveCurrent['map'];
+  if (selectedDifficulty === 'hell' || (hellClearedSubAreas?.length ?? 0) !== 0 ||
+    (challengeOrdinals.hell ?? 0) !== 0) throw new Error('Hell state has no historical representation');
+  const { map: _map, ...rest } = save;
+  return { ...rest, map: { ...map, selectedDifficulty,
+    challengeOrdinals: { normal: challengeOrdinals.normal, nightmare: challengeOrdinals.nightmare } } };
+}
+
 /** Historical save roots never contain the new durable endgame namespace. */
-export function withoutV20Fields<T extends { endgame?: unknown; inventory: Pick<SaveCurrent['inventory'], 'questServices'>; map: SaveCurrent['map']; player: { respecsRemaining?: unknown; selectedAuraId?: PlayerAuraId } }>(save: T):
+export function withoutV20Fields<T extends { endgame?: unknown; inventory: Pick<SaveCurrent['inventory'], 'questServices'>; map: SaveCurrent['map'] | SaveV23['map']; player: { respecsRemaining?: unknown; selectedAuraId?: PlayerAuraId } }>(save: T):
   Omit<T, 'endgame' | 'player' | 'map' | 'inventory'> & {
     inventory: Omit<T['inventory'], 'questServices'> & { questServices: HistoricalQuestServiceLedger };
     player: Omit<T['player'], 'respecsRemaining' | 'selectedAuraId'> & Pick<HistoricalPlayer, 'selectedAuraId'>;
-    map: Omit<T['map'], 'selectedTitle'> & Pick<CampaignMapSaveData, 'selectedTitle'>;
+    map: CampaignMapSaveData;
   } {
   const { endgame: _endgame, player: _player, map: _map, inventory: _inventory, ...historical } = save;
   const currentInventory: T['inventory'] = save.inventory;
@@ -31,11 +42,12 @@ export function withoutV20Fields<T extends { endgame?: unknown; inventory: Pick<
   }
   return { ...historical, inventory: { ...inventory, questServices: historicalServices },
     player: { ...player, ...(selectedAuraId !== undefined ? { selectedAuraId } : {}) },
-    map: { ...(save.map as T['map']), selectedTitle } };
+    map: { ...withoutV24Fields(save).map, selectedTitle } };
 }
 
 /** Remove current-only state before constructing a genuine v18 or earlier fixture. */
-export function withoutV19Fields<T extends Omit<SaveCurrent, 'inventory'> & {
+export function withoutV19Fields<T extends Omit<SaveCurrent, 'inventory' | 'map' | 'version'> & {
+  version: number; map: SaveCurrent['map'] | SaveV23['map'];
   inventory: Omit<SaveCurrent['inventory'], 'questItems'> & { questItems?: unknown }
 }>(save: T) {
   const predecessor = withoutV20Fields(save);
@@ -62,7 +74,8 @@ export function withoutV19Fields<T extends Omit<SaveCurrent, 'inventory'> & {
 }
 
 /** Construct genuine predecessor fixtures before adding deliberate corruption. */
-export function withoutV17Fields<T extends Omit<SaveCurrent, 'inventory'> & {
+export function withoutV17Fields<T extends Omit<SaveCurrent, 'inventory' | 'map' | 'version'> & {
+  version: number; map: SaveCurrent['map'] | SaveV23['map'];
   inventory: Omit<SaveCurrent['inventory'], 'questItems'> & { questItems?: unknown }
 }>(save: T) {
   const predecessor = withoutV19Fields(save);
@@ -131,7 +144,15 @@ export function withV23Defaults<T extends { version: number }>(save: T) {
   return { ...unchanged, version: 23 as const };
 }
 
+/** v23→24 preserves historical ownership and adds only empty Hell history. */
+export function withV24Defaults<T extends { version: number; map: { challengeOrdinals: CampaignMapSaveData['challengeOrdinals'] } }>(save: T) {
+  const { version: _version, map: _map, ...unchanged } = save;
+  const map: T['map'] = save.map;
+  return { ...unchanged, version: 24 as const, map: { ...map,
+    hellClearedSubAreas: [], challengeOrdinals: { ...map.challengeOrdinals, hell: 0 } } };
+}
+
 /** Older fixture expectations explicitly compose every added empty ownership domain. */
 export function withCurrentDefaults<T extends { inventory: object; map: object; player: object }>(save: T) {
-  return withV23Defaults(withV22Defaults(withV21Defaults(withV20Defaults(withV19Defaults(save)))));
+  return withV24Defaults(withV23Defaults(withV22Defaults(withV21Defaults(withV20Defaults(withV19Defaults(save))))));
 }

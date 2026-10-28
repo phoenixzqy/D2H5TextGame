@@ -30,6 +30,7 @@ import { assassinVenomRawDps, copyAssassinVenomProjection, ASSASSIN_SHADOW_DEFIN
  * @module engine/combat/combat
  */
 
+import type { ReplayProfileId } from '../map/replay-profile';
 import type { Rng } from '../rng';
 import { createRng } from '../rng';
 import { DECOY_IDS, buildDecoy, decoyDuration, decoyRank, isDecoySkill, matchesDecoy } from '../skills/decoy';
@@ -220,7 +221,7 @@ export type BattleEvent =
 /** Initial combat snapshot. */
 export interface CombatSnapshot {
   /** Immutable run difficulty; omitted historical snapshots use Normal. */
-  readonly difficulty?: 'normal' | 'nightmare';
+  readonly difficulty?: ReplayProfileId;
   readonly seed: number;
   readonly playerTeam: readonly CombatUnit[];
   readonly enemyTeam: readonly CombatUnit[];
@@ -330,7 +331,7 @@ interface State {
   readonly hasTemporaryLife: boolean;
   /** Factory-marked source IDs captured at registration; live eligibility is checked at use. */
   readonly holyFreezeSources: string[];
-  readonly difficulty: 'normal' | 'nightmare';
+  readonly difficulty: ReplayProfileId;
   /** Valid copied player authority and FIFO primary enemy-monster death IDs; wave-local only. */
   readonly corpseExplosion: Map<string, number>;
   readonly poisonExplosion: Map<string, number>;
@@ -3254,7 +3255,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot, carry?: BattleCommand
 } {
   // Pure engine entry points can also receive untyped external snapshots.
   if ((snapshot.difficulty as unknown) !== undefined && (snapshot.difficulty as unknown) !== 'normal' &&
-    (snapshot.difficulty as unknown) !== 'nightmare') {
+    (snapshot.difficulty as unknown) !== 'nightmare' && (snapshot.difficulty as unknown) !== 'hell') {
     throw new Error('Invalid combat difficulty');
   }
   if ([snapshot.mightAura, snapshot.meditationAura, snapshot.statAura].filter(aura => aura !== undefined).length > 1) {

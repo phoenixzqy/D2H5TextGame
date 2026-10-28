@@ -40,7 +40,7 @@ function liveFixture() {
     affixes: [], generatedName: {}, socketCapacity: 1 };
   useInventoryStore.getState().addItem(item);
   useInventoryStore.getState().addCurrency('rune-shard', 17);
-  useMapStore.setState({ challengeOrdinals: { normal: 108, nightmare: 0 } });
+  useMapStore.setState({ challengeOrdinals: { normal: 108, nightmare: 0, hell: 0 } });
   useFormationStore.getState().setPlayerPosition({ row: 0, col: 2 });
   return item;
 }
@@ -56,7 +56,7 @@ it('captures live native save/export before cleanup without changing domains or 
   expect(observeEarnedState()).toEqual(before);
   expect(capture.snapshot?.inventory.backpack).toEqual([item]);
   expect(capture.snapshot?.inventory.backpack[0]).not.toBe(liveItem);
-  expect(capture.snapshot?.map.challengeOrdinals).toEqual({ normal: 108, nightmare: 0 });
+  expect(capture.snapshot?.map.challengeOrdinals).toEqual({ normal: 108, nightmare: 0, hell: 0 });
   expect(capture.snapshot?.formation.playerPosition).toEqual({ row: 0, col: 2 });
   expect(capture.snapshot?.mercs.fieldedMercId).toBe('mercs/act1-rogue-inner-sight');
   expect(capture.snapshot?.inventory.currencies['rune-shard']).toBe(17);

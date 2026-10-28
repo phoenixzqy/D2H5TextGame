@@ -2,7 +2,7 @@ import { endgameDefinition } from '@/data/loaders/endgame';
 import { hasEndgameAccess, projectEndgameAchievement, readEndgameState } from '@/engine/endgame/state';
 import type { EndgameState } from '@/engine/endgame/types';
 import { mergeMaterials } from '@/engine/loot/materials';
-import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
+import { validateNative24CurrentCampaignRewards } from '@/engine/save/current-campaign';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import { questActionPreflight } from '@/features/quests/questTransaction';
 import { useInventoryStore } from './inventoryStore';
@@ -25,7 +25,7 @@ export function readEndgamePanelModel(): EndgamePanelModel {
   const campaign = { questProgress: map.questProgress, questReceipts: map.questReceipts, questItems: inventory.questItems };
   try {
     validateQuestItemLedger(inventory.questItems, map.questProgress, map.questReceipts);
-    validateCurrentCampaignRewards(map, inventory.questItems, inventory.questServices, map.endgame);
+    validateNative24CurrentCampaignRewards(map, inventory.questItems, inventory.questServices, map.endgame);
     return { kind: hasEndgameAccess(campaign) ? 'unlocked' : 'locked',
       state: readEndgameState(map.endgame, campaign), achievement: projectEndgameAchievement(map.endgame, campaign) };
   } catch { return { kind: 'invalid' }; }
@@ -47,7 +47,7 @@ function publishClaim(): EndgameClaimResult {
   const campaign = { questProgress: map.questProgress, questReceipts: map.questReceipts, questItems: inventory.questItems };
   try {
     validateQuestItemLedger(inventory.questItems, map.questProgress, map.questReceipts);
-    validateCurrentCampaignRewards(map, inventory.questItems, inventory.questServices, map.endgame);
+    validateNative24CurrentCampaignRewards(map, inventory.questItems, inventory.questServices, map.endgame);
     const achievement = projectEndgameAchievement(map.endgame, campaign);
     if (achievement.claimed) return 'already-claimed';
     if (!achievement.available) return 'not-eligible';

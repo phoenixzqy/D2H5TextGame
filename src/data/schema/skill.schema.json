@@ -6398,7 +6398,8 @@
       "required": [
         "currentHealthFraction",
         "normalFloorFraction",
-        "nightmareFloorFraction"
+        "nightmareFloorFraction",
+        "hellFloorFraction"
       ],
       "properties": {
         "currentHealthFraction": {
@@ -6413,6 +6414,11 @@
           "exclusiveMaximum": 1
         },
         "nightmareFloorFraction": {
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "hellFloorFraction": {
           "type": "number",
           "minimum": 0,
           "exclusiveMaximum": 1

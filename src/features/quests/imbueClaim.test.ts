@@ -15,7 +15,7 @@ import { loadMercPool } from '@/data/loaders/mercs';
 import * as questLoader from '@/data/loaders/quests';
 import * as itemRoller from '@/engine/loot/rollItem';
 import { xpTotal } from '@/engine/progression/xp';
-import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
+import { validateNative24CurrentCampaignRewards } from '@/engine/save/current-campaign';
 import { MALUS_QUEST as MAIN, MALUS_SOURCE, MALUS_ITEM } from '@/engine/map/malus-quest';
 import { ACT1_IMBUE_SOURCES as SOURCES, ACT1_QUEST_RECEIPTS as RECEIPTS } from '@/engine/map/act1-quest-sources';
 import { canClaim, claimQuestReward } from '@/features/quests/claimReward';
@@ -193,7 +193,7 @@ describe('D11 Malus and side Present whole-bundle Claims', () => {
   it('reports unresolved unearned unlock damage after restoring every scoped Claim participant', () => {
     const before = snapshot(); let fired = false, caught: unknown;
     const map = useMapStore.getState(), inv = useInventoryStore.getState();
-    expect(() => { validateCurrentCampaignRewards(map, inv.questItems, inv.questServices, map.endgame); }).not.toThrow();
+    expect(() => { validateNative24CurrentCampaignRewards(map, inv.questItems, inv.questServices, map.endgame); }).not.toThrow();
     const stop = useInventoryStore.subscribe(() => {
       if (fired || !useInventoryStore.getState().questServices[SOURCES.side]) return;
       fired = true; useMapStore.setState({ questDifficulties: { 'difficulty/nightmare': true } });
@@ -205,7 +205,7 @@ describe('D11 Malus and side Present whole-bundle Claims', () => {
     Object.assign(expectedMap, { questDifficulties: { 'difficulty/nightmare': true } });
     expect(snapshot()).toEqual(before);
     const restoredMap = useMapStore.getState(), restoredInv = useInventoryStore.getState();
-    expect(() => { validateCurrentCampaignRewards(restoredMap, restoredInv.questItems, restoredInv.questServices, restoredMap.endgame); }).toThrow();
+    expect(() => { validateNative24CurrentCampaignRewards(restoredMap, restoredInv.questItems, restoredInv.questServices, restoredMap.endgame); }).toThrow();
     expect(caught).toBeInstanceOf(AggregateError);
   });
   it('holds the shared lease through XP, charge, claimed-last and all restorations', () => {

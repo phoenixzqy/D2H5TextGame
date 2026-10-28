@@ -6,7 +6,7 @@ import { prepareRareAffixes } from '@/engine/loot/rollItem';
 import { ACT1_IMBUE_SOURCES, ACT1_QUEST_RECEIPTS } from '@/engine/map/act1-quest-sources';
 import { MALUS_QUEST, MALUS_SIDE_QUEST, MALUS_SOURCE, hasMalusHandIn, hasMalusCompletion } from '@/engine/map/malus-quest';
 import { createRng, hashSeed } from '@/engine/rng';
-import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
+import { validateNative24CurrentCampaignRewards } from '@/engine/save/current-campaign';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import type { QuestServiceEntry } from '@/engine/services/quest-services';
 import type { Item } from '@/engine/types/items';
@@ -60,7 +60,7 @@ function graph(): boolean {
   const map = useMapStore.getState(), inv = useInventoryStore.getState();
   try {
     validateQuestItemLedger(inv.questItems, map.questProgress, map.questReceipts);
-    validateCurrentCampaignRewards(map, inv.questItems, inv.questServices, map.endgame);
+    validateNative24CurrentCampaignRewards(map, inv.questItems, inv.questServices, map.endgame);
     return true;
   } catch { return false; }
 }
@@ -173,7 +173,7 @@ function publish(next: { rows?: Progress; receipts?: Receipts; services?: Servic
     item: next.item ?? target });
   try {
     validateQuestItemLedger(inv.questItems, next.rows ?? map.questProgress, next.receipts ?? map.questReceipts);
-    validateCurrentCampaignRewards({ ...map, questProgress: next.rows ?? map.questProgress, questReceipts: next.receipts ?? map.questReceipts },
+    validateNative24CurrentCampaignRewards({ ...map, questProgress: next.rows ?? map.questProgress, questReceipts: next.receipts ?? map.questReceipts },
       inv.questItems, next.services ?? inv.questServices, map.endgame);
     if (next.item) {
       const base = loadItemBases().get(next.item.baseId); if (!base) return 'not-eligible';

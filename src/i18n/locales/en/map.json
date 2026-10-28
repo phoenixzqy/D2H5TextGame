@@ -63,7 +63,7 @@
   "defeatBossToUnlockAct": "Defeat {{boss}} to unlock Act {{act}}",
   "replay": {
     "title": "Replay difficulty",
-    "description": "Nightmare replays the same areas with enemies 20 levels higher. Clear records are separate; quest rewards are granted only once in Normal.",
+    "description": "Nightmare replays the same areas with enemies 20 levels higher; Hell raises them by 40. Each difficulty keeps separate clear records. Quest progress and one-time rewards belong to Normal only.",
     "normal": "Normal",
     "nightmare": "Nightmare",
     "locked": "Claim Eve of Destruction to unlock Nightmare replay.",
@@ -80,6 +80,10 @@
       "busy": "A combat or quest update is still finishing. Try again shortly.",
       "restoration-failed": "The action could not be restored. Stop here and reload your last saved game.",
       "not-owned": "Claim the required quest reward first."
-    }
+    },
+    "hell": "Hell",
+    "hellRequirement": "Complete Eve of Destruction in Normal and claim its reward to unlock Hell. Nightmare progress is not required.",
+    "levelScaling": "Enemy strength follows those levels; replay adds no separate health, damage or resistance bonus.",
+    "hellMaterials": "In Act V Hell, special enemies and bosses can drop runes up to Zod (33). Ordinary enemies still stop at Um (22)."
   }
 }

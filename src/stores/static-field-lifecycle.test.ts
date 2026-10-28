@@ -1,5 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
+import { campaignEvidence } from '../../tests/helpers/endgame';
+import { selectReplayProfile } from '@/features/map/replayProfile';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
 import type { Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
@@ -24,10 +26,11 @@ function player(): Player {
   const p = usePlayerStore.getState().player;
   if (!p) throw new Error('Missing native Static Field test hero'); return p;
 }
-function arrange(rank = 0) {
+function arrange(rank = 0, difficulty: 'normal' | 'hell' = 'normal') {
   const fresh = createMockPlayer('StaticBoundary', 'sorceress');
   usePlayerStore.getState().setPlayer({ ...fresh, level: 30, skillPoints: 2,
-    skillLevels: rank ? { [MASTERY]: rank } : {}, comboOrder: [FINISHER] });
+    skillLevels: rank ? { [MASTERY]: rank } : {},
+    comboOrder: difficulty === 'hell' ? [MASTERY, FINISHER] : [FINISHER] });
   // Declared native integration scaffolding, not legal earned gear or balance proof.
   const cap: Item = { id: 'fixture-cold-cap', baseId: 'items/base/helm-cap',
     socketCapacity: 0, rarity: 'rare', level: 1, identified: true, equipped: false,
@@ -37,6 +40,14 @@ function arrange(rank = 0) {
   usePlayerStore.setState({ player: { ...player(),
     derivedStats: { ...player().derivedStats, life: 1000000, mana: 50 } } });
   useMapStore.getState().setCurrentLocation(1, 'areas/act1-blood-moor');
+  if (difficulty === 'hell') {
+    const proof = campaignEvidence();
+    useMapStore.setState({ questProgress: proof.questProgress, questReceipts: proof.questReceipts,
+      clearedSubAreas: ['areas/act1-catacombs', 'areas/act2-tomb-of-tal-rasha',
+        'areas/act3-durance-of-hate', 'areas/act4-chaos-sanctuary'] });
+    useInventoryStore.setState({ questItems: proof.questItems });
+    expect(selectReplayProfile('hell')).toBe('ok');
+  }
   registerSkill({ id: FINISHER, archetype: 'fixture', target: 'all-enemies',
     minLevel: 1, cooldown: 1, manaCost: 8,
     effects: [{ kind: 'damage', damageType: 'physical', base: [100000, 100000] }] });
@@ -74,6 +85,33 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 describe('native Static Field wave and replay boundaries', () => {
+  it('casts learned Static Field in captured Hell through replay and the next wave after a map preference change', () => {
+    arrange(1, 'hell');
+    const captured = () => inspectRecordedWaves().currentPublished?.binding;
+    const assertHellCast = () => {
+      const binding = captured();
+      if (!binding) throw new Error('Missing native Hell Static Field binding');
+      expect(binding.engineInput.difficulty).toBe('hell');
+      expect(binding.replayProfileId).toBe('hell');
+      expect(binding.recording.events).toContainEqual(expect.objectContaining({ kind: 'action', skillId: MASTERY }));
+      expect(binding.recording.events).toContainEqual(expect.objectContaining({ kind: 'damage', damageType: 'lightning' }));
+      expect(currentHero().staticFieldRank).toBe(1);
+      return binding;
+    };
+    const initial = assertHellCast(), before = recording();
+    useMapStore.setState({ selectedDifficulty: 'normal' });
+    refreshActivePlayerCombatConfig();
+    expect(recording()).toEqual(before);
+    expect(captured()).toBe(initial);
+    refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+    assertHellCast();
+    expect(recording()).toEqual(before);
+    drain();
+    expect(advanceWaveOrFinish()).toBe('next-wave');
+    assertHellCast();
+    expect(useMapStore.getState().selectedDifficulty).toBe('normal');
+  });
+
   it('keeps Normal run origin through selected-difficulty changes, replay and the next wave', () => {
     arrange(1);
     const captured = () => inspectRecordedWaves().currentPublished?.binding.engineInput.difficulty ?? 'normal';

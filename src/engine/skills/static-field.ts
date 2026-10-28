@@ -5,6 +5,7 @@ import type { Player } from '../types/entities';
 import { inferKind, type CombatUnit } from '../combat/types';
 import { mitigateDamage } from '../combat/damage';
 import type { RegisteredSkill } from './effects';
+import type { ReplayProfileId } from '../map/replay-profile';
 
 const ID = 'sorceress.static_field', AUTHORED = 'skills-sorceress-static-field';
 
@@ -64,12 +65,15 @@ export function matchesStaticField(skill: RegisteredSkill): boolean {
 }
 
 /** Deterministic resistance/MR mitigation, clipped to a nonlethal difficulty floor; no combat RNG. */
-export function staticFieldDamage(target: CombatUnit, difficulty: 'normal' | 'nightmare',
+export function staticFieldDamage(target: CombatUnit, difficulty: ReplayProfileId,
   tuning: StaticFieldTuning = STATIC_FIELD_DEFINITION): number {
+  const floors: Readonly<Record<ReplayProfileId, number>> = {
+    normal: tuning.normalFloorFraction, nightmare: tuning.nightmareFloorFraction, hell: tuning.hellFloorFraction
+  };
+  if (typeof difficulty !== 'string' || !Object.hasOwn(floors, difficulty)) throw new Error('Invalid Static Field difficulty');
   if (!Number.isFinite(target.life) || !Number.isFinite(target.stats.lifeMax) ||
     target.life <= 0 || target.stats.lifeMax <= 0) return 0;
-  const floor = Math.max(1, Math.ceil(target.stats.lifeMax *
-    (difficulty === 'nightmare' ? tuning.nightmareFloorFraction : tuning.normalFloorFraction)));
+  const floor = Math.max(1, Math.ceil(target.stats.lifeMax * floors[difficulty]));
   const available = Math.max(0, target.life - floor);
   if (available === 0) return 0;
   return Math.min(available, mitigateDamage(target.life * tuning.currentHealthFraction, {

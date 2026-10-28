@@ -239,7 +239,8 @@
     },
     "staticField": {
       "currentHealth": "当前生命伤害",
-      "nightmareFloor": "噩梦生命下限"
+      "nightmareFloor": "噩梦生命下限",
+      "hellFloor": "地狱生命下限"
     },
     "passiveStat": {
       "summonLifePct": "召唤物生命",

@@ -40,7 +40,7 @@ function unlocked() {
   const campaign = campaignEvidence();
   useMapStore.setState({ questProgress: campaign.questProgress, questReceipts: campaign.questReceipts,
     questDifficulties: { 'difficulty/nightmare': true }, selectedDifficulty: 'nightmare',
-    challengeOrdinals: { normal: 17, nightmare: 23 } });
+    challengeOrdinals: { normal: 17, nightmare: 23, hell: 0 } });
 }
 beforeEach(() => {
   abortSubAreaRun(); for (const store of stores) store.getState().reset();

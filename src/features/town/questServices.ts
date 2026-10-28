@@ -2,7 +2,7 @@ import { loadItemBases } from '@/data/loaders/loot';
 import { loadTownNpcs } from '@/data/loaders/towns';
 import { effectiveSocketCapacity } from '@/engine/items/socket-capacity';
 import { validateCanonicalSocketItem } from '@/engine/items/socket-contents';
-import { validateCurrentCampaignRewards } from '@/engine/save/current-campaign';
+import { validateNative24CurrentCampaignRewards } from '@/engine/save/current-campaign';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import { QUEST_SERVICE_SOURCES, type QuestServiceId, type QuestServiceLedger } from '@/engine/services/quest-services';
 import type { Item } from '@/engine/types/items';
@@ -53,7 +53,7 @@ function atDestination(source: Source): boolean {
 function validateGraph(services: QuestServiceLedger): void {
   const map = useMapStore.getState(), items = useInventoryStore.getState().questItems;
   validateQuestItemLedger(items, map.questProgress, map.questReceipts);
-  validateCurrentCampaignRewards(map, items, services, map.endgame);
+  validateNative24CurrentCampaignRewards(map, items, services, map.endgame);
 }
 function ownedItems(): readonly Item[] {
   const inventory = useInventoryStore.getState();

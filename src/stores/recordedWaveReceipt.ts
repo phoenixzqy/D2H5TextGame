@@ -1,3 +1,4 @@
+import type { ReplayProfileId } from '@/engine/map/replay-profile';
 import { COUNTESS, type CountessEncounter } from '@/engine/map/countess-admission';
 import type { EndgameWaveBinding } from '@/engine/endgame/runtime';
 import type { EndgameState } from '@/engine/endgame/types';
@@ -27,7 +28,7 @@ export interface RecordedWaveBinding {
   readonly countessEncounter?: CountessEncounter;
   readonly endgameWave?: EndgameWaveBinding;
   readonly endgameState?: EndgameState;
-  readonly replayProfileId?: 'normal' | 'nightmare';
+  readonly replayProfileId?: ReplayProfileId;
   readonly candidateRun: ActiveRun;
   readonly expectedActiveRun: ActiveRun | null;
   readonly heroId: string;
@@ -228,7 +229,7 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
   }
   const profiles = [binding.replayProfileId, candidateRun.replayProfileId, candidateRun.plan.replayProfileId,
     recording.replayProfileId];
-  if ((replayProfileId !== 'normal' && replayProfileId !== 'nightmare') ||
+  if ((replayProfileId !== 'normal' && replayProfileId !== 'nightmare' && replayProfileId !== 'hell') ||
     profiles.some(profile => profile !== undefined && profile !== replayProfileId)) {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
