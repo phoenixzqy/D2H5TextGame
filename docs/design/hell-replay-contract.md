@@ -247,3 +247,14 @@ Implementation cards and evidence boundaries are in the
    builds across five acts, usable upgrade frequency, device/a11y/performance/
    PWA/CI/human acceptance stay open until their own evidence passes. This
    contract and constructed tests cannot close full P12b/P15/P18 or full v1.
+
+
+## Static Field amendment — 2026-10-27
+
+[D04's explicit native Hell extension](../plans/decisions/D04-static-field-v1.md#native-hell-amendment--2026-10-27)
+authors a50% maximum-health floor, preserving the25% current-health pulse and
+existing mitigation/eligibility/cost/cooldown rules. Capture actual Hell rather
+than falling back to another profile. This is a skill-specific gate; the
+level-only monster-stat policy remains unchanged.
+[Exact approval evidence](../plans/evidence/hell-static-field-policy-review.md)
+is design/technical ratification; runtime and H2 acceptance are still pending.

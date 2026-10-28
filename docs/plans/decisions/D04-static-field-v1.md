@@ -70,3 +70,25 @@ the above, no identified pillar/stack conflict. Root self-review only.
 Plan review: ready after including immutable difficulty and floor-aware priority;
 a damage-only change would miss both. Security check: pass; local typed pure
 mechanics/data/UI, no credentials, permissions, CI/dependency changes or publishing.
+
+
+## Native Hell amendment — 2026-10-27
+
+Accepted narrow extension after the H1 compatibility checkpoint. The original
+Normal/Nightmare decision above remains historical.
+
+Native Hell extends D04 with a JSON-owned `hellFloorFraction` of `0.5`. For each living target, choose the authored fraction explicitly by captured combat difficulty: Normal `0`, Nightmare `0.33`, Hell `0.5`. Compute `floor = max(1, ceil(maxHP * fraction))` and `damage = max(0, min(currentHP - floor, mitigatedBase))`, using D04's unchanged `currentHP * 0.25` deterministic lightning mitigation pipeline. The pulse is nonlethal, consumes no combat RNG, and retains existing learned eligibility, rank, mana and cooldown rules. If every living target is at or below its floor, yield without casting, payment, cooldown or RNG. Capture actual Hell in the immutable native run, CombatSnapshot and replay context. A later map selection cannot change an issued wave. Only an omitted historic snapshot difficulty defaults to Normal; supplied foreign difficulty values are refused. This is a narrow skill-specific extension of D04, not a monster-stat, resistance, reward or global difficulty multiplier.
+
+The official [Arreat Summit Static Field reference](https://classic.battle.net/diablo2exp/skills/sorceress-lightning.shtml#staticfield)
+states the33% Nightmare/50% Hell floors. D04's H5 lightning mitigation and
+independent flat-MR adaptation remain authoritative. For Hell,510/1000HP loses
+at most10;500/1000HP loses none; maximum1001HP has floor501; maximum1HP
+retains floor1. These examples are acceptance requirements, not measured balance.
+
+[Exact design and technical approval evidence](../evidence/hell-static-field-policy-review.md)
+records the reviewed paragraph and finite implementation boundary. Require
+closed JSON/schema metadata, actual immutable Hell combat context, truthful
+bilingual details and meaningful floor/priority/mitigation/no-RNG/capture
+regressions. Runtime integration and validation remain H2 work under the
+[Hell contract](../../design/hell-replay-contract.md) and
+[ADR-013](../../decisions/ADR-013-source-backed-hell-replay.md).

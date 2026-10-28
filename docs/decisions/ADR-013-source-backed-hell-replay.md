@@ -98,3 +98,14 @@ intervals,32 fusion outputs,35 ordered runewords and native UI/save paths.
 Keep Normal/Nightmare and Worldstone regression checks. Required full checks
 and reviewed production-browser evidence precede functional handoff; earned
 and full-v1 gates remain separately open.
+
+
+## Static Field clarification — 2026-10-27
+
+The separately ratified [D04 Hell amendment](../plans/decisions/D04-static-field-v1.md#native-hell-amendment--2026-10-27)
+adds the explicit JSON-owned50% maximum-health floor. Actual immutable native
+Hell must reach CombatSnapshot, current/next waves and replay. Only omitted
+historical difficulty defaults to Normal; supplied foreign values refuse.
+Normal/Nightmare and the global level-only monster-stat rule remain unchanged.
+[Exact design/technical evidence](../plans/evidence/hell-static-field-policy-review.md)
+records policy approval separately from pending H2 implementation/validation.
