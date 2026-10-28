@@ -14461,3 +14461,41 @@ Root retains exact raw evidence under
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-h2-hell-b6de0n4x/cobra-public-lifecycle`
 through unfinished consumers and owns eventual verified cleanup. Worktree and
 umbrella goal stay active.
+
+## Canonical quest localization — 2026-10-28 UTC
+
+[Native quest evidence](evidence/canonical-quest-localization.md) repairs 59
+missing fields per locale across 19 quests. All 46 shipped main/side quests now
+have all 164 required fields in each own resource. English additions match
+authored defaults; independently reviewed Chinese copy names the actual Seven
+Tombs staff socket. Existing values/aliases, gameplay IDs, rewards, progression,
+fallback and scanner policy are preserved.
+
+The identical final test fails all six intended cases against baseline resources
+and passes all six after repair, with zero act warnings in both final runs.
+Typecheck/lint and a fresh production build pass native0. The first unfiltered
+full run remains native 1: 21,194 passed, two skipped and one player-first initialization timeout.
+The unchanged entire 13-test diagnostic passes native 0 (entry cases 1,417/1,193ms).
+One unchanged unfiltered full rerun without competing owned checks passes
+21,195 assertions across 991 files, with exactly the two baseline
+skipped identities and no pending/todo cases. Both entry orders and all six new
+localization assertions pass. Cause of the original timeout remains unresolved;
+no timeout, worker, assertion, skip, configuration or production fix was made for
+it. BUG359 stays Open for monitoring, with no flakiness or causal claim.
+
+All final native source checks preserve 5,342 inputs at
+`c710006d202df63fc9e5007934135c3a73c6a5198d9da6263b26d10f332e4098` without in-run changes. The earlier production build has
+identical product bytes; its sole input delta is the test's two async-act wrappers.
+Its exact 762 files and 10 directories were removed and output absence verified;
+cleanup failures[]. BUG358 remains Open for browser/layout completion. This
+checkpoint establishes own-resource and jsdom quest rendering behavior only.
+
+Root retains exact raw native logs/results/maps, translation context, independent
+reviews and cleanup receipts under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-quest-locales-bu0ggpfk`
+through unfinished goal/review consumers and owns eventual verified cleanup.
+H3 remains terminal failed-no-app; no retry/new browser card. Other open bugs,
+212 bounded/one unverified skill inventory, earned economy/pacing/campaign,
+whole-app locales/devices/a11y/performance/PWA, actual CI and human/soak/full-v1
+acceptance remain unresolved. No publication, merge or deployment. Umbrella goal
+and claimed worktree stay active.

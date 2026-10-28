@@ -436,6 +436,103 @@
       "desc": "Defeat Baal’s five original minion waves in order during one uninterrupted challenge in the Throne of Destruction, then defeat Baal. Stopping, losing or reloading before the fifth wave discards partial progress. Claim 40,000 XP, five quest reward rolls, the Slayer of Baal title and Nightmare replay.",
       "obj1": "Defeat the five original minion waves in order during one run",
       "obj2": "Defeat Baal after completing the five-wave sequence"
+    },
+    "act1-sisters-burial-grounds": {
+      "name": "Sisters' Burial Grounds",
+      "desc": "Kashya, captain of the Rogues, demands you destroy Blood Raven, a former sister now twisted into a champion of evil who raises the dead in the Burial Grounds.",
+      "obj1": "Slay Blood Raven.",
+      "obj2": "Return to Kashya."
+    },
+    "act2-seven-tombs": {
+      "name": "The Seven Tombs",
+      "desc": "Within the true Tomb of Tal Rasha, Baal's prison hosts the Lord of Pain himself: Duriel. Shatter the orifice with the Horadric Staff and slay him.",
+      "obj1": "Place the Horadric Staff into the orifice in the true Tomb of Tal Rasha.",
+      "obj2": "Slay Duriel."
+    },
+    "act2-greiz-merc-roster": {
+      "name": "Greiz's Roster",
+      "desc": "Greiz, captain of the Lut Gholein guard, offers Desert Mercenaries to those who have proven themselves against the sewer dwellers.",
+      "obj1": "Hire a Desert Mercenary from Greiz."
+    },
+    "act2-fara-favored": {
+      "name": "Fara's Favor",
+      "desc": "Fara, the former Paladin, will repair your gear at a discount after you've cleansed Radament's filth from the sewers.",
+      "obj1": "Speak with Fara."
+    },
+    "act2-lost-caravan": {
+      "name": "The Lost Caravan",
+      "desc": "Elzix's caravan was ambushed in the Far Oasis. Recover his strongbox from the bandit camp.",
+      "obj1": "Recover the strongbox in the Far Oasis."
+    },
+    "act2-drognan-tome": {
+      "name": "Drognan's Tome",
+      "desc": "The sage Drognan asks you to recover a sun-cult tome from the Lost City. He will reward you with a tome of arcane learning.",
+      "obj1": "Find the Sun-Cult Tome."
+    },
+    "act2-summoners-secret": {
+      "name": "Horazon's Lockbox",
+      "desc": "Rumor speaks of a hidden lockbox left by Horazon in the Arcane Sanctuary. Find it and bring its prize back to Atma.",
+      "obj1": "Locate Horazon's lockbox."
+    },
+    "act3-asheara-merc": {
+      "name": "Asheara's Iron Wolves",
+      "desc": "Asheara, captain of the Iron Wolves, offers her elemental mages as mercenaries to those willing to brave the Kurast jungle.",
+      "obj1": "Hire an Iron Wolf from Asheara."
+    },
+    "act3-alkors-experiment": {
+      "name": "Alkor's Experiment",
+      "desc": "Alkor wants ingredients from a giant spider in the Spider Cavern for his alchemical experiments. Bring him fresh venom glands.",
+      "obj1": "Collect 3 venom glands."
+    },
+    "act3-jade-statuette": {
+      "name": "Jade Figurine Buyer",
+      "desc": "Meshif's contacts in Kurast Bazaar are buying jade trinkets at a premium. Sell three jade artifacts to him for a tidy sum.",
+      "obj1": "Deliver 3 jade trinkets to Meshif."
+    },
+    "act3-ormus-charm": {
+      "name": "Ormus's Charm",
+      "desc": "Ormus, troubled by visions, asks you to slay corrupt fetish shamans deep in the Flayer Dungeon. He grants you a small enchanted charm in return.",
+      "obj1": "Slay 10 Fetish Shamans."
+    },
+    "act4-tyraels-blessing": {
+      "name": "Tyrael's Blessing",
+      "desc": "Having freed Izual's soul, Tyrael grants you an extra skill point and reflects upon Heaven's regret for the Fallen Angel.",
+      "obj1": "Receive Tyrael's blessing."
+    },
+    "act4-jamella-trade": {
+      "name": "Jamella's Stockpile",
+      "desc": "The angelic merchant Jamella will gladly trade rare gems for crafting reagents you collect from Hephasto's forge.",
+      "obj1": "Collect 5 Forge Embers."
+    },
+    "act4-halbus-soul": {
+      "name": "Halbu's Soulwork",
+      "desc": "Halbu, the angelic armorer, offers to socket a piece of armor for those who shattered Mephisto's soulstone.",
+      "obj1": "Bring an item to Halbu."
+    },
+    "act5-larzuks-sockets": {
+      "name": "Larzuk's Hammer",
+      "desc": "Larzuk the smith will socket one of your items as thanks for breaking Shenk's siege.",
+      "obj1": "Bring an item to Larzuk to socket."
+    },
+    "act5-anyas-gift": {
+      "name": "Anya's Gift",
+      "desc": "After her rescue, Anya gifts you a personalized scroll of resistances and unlocks her unique-item stock.",
+      "obj1": "Speak with Anya in Harrogath."
+    },
+    "act5-qual-kehk-merc": {
+      "name": "Qual-Kehk's Warband",
+      "desc": "Qual-Kehk offers Barbarian warriors to fight at your side after the freed prisoners return to Harrogath.",
+      "obj1": "Hire a Barbarian Warrior."
+    },
+    "act5-malahs-elixir": {
+      "name": "Malah's Elixir",
+      "desc": "Malah brews an elixir that permanently raises your vitality. Bring her ingredients from the Glacial Trail.",
+      "obj1": "Collect 5 Frost Lichens."
+    },
+    "act5-nihlathaks-treasure": {
+      "name": "Nihlathak's Treasure",
+      "desc": "Cain suspects Nihlathak hid a relic in the Pit of Acheron deep within the Halls of Anguish. Recover it.",
+      "obj1": "Recover Nihlathak's relic."
     }
   },
   "rewardLabel": {
