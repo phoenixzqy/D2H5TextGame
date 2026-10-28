@@ -1,3 +1,4 @@
+import type { CountessQuestDomain } from '../save/quest-domain';
 import type { QuestActionReceipts, QuestProgressData } from '../types/save';
 import { ACT1_QUEST_RECEIPTS } from './act1-quest-sources';
 import type { WaveSpec } from '../combat/sub-area-run';
@@ -14,17 +15,17 @@ type Progress = Readonly<Record<string, QuestProgressData>>;
 function record(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
-function canonicalRow(progress: Progress): QuestProgressData | undefined {
-  const row: unknown = Object.hasOwn(progress, COUNTESS.quest) ? progress[COUNTESS.quest] : undefined;
+function canonicalRow(progress: Progress, domain: CountessQuestDomain = COUNTESS): QuestProgressData | undefined {
+  const row: unknown = Object.hasOwn(progress, domain.quest) ? progress[domain.quest] : undefined;
   if (!record(row) || !['id', 'status', 'objectives'].every(key => Object.hasOwn(row, key)) ||
-    row.id !== COUNTESS.quest || (row.status !== 'inProgress' && row.status !== 'completed') ||
+    row.id !== domain.quest || (row.status !== 'inProgress' && row.status !== 'completed') ||
     !record(row.objectives) ||
     (row.rewardClaimed !== undefined && typeof row.rewardClaimed !== 'boolean') ||
     (row.status === 'inProgress' && row.rewardClaimed === true)) return undefined;
   const flags = row.objectives;
-  if (Object.hasOwn(flags, COUNTESS.objective)
-    ? typeof flags[COUNTESS.objective] !== 'boolean'
-    : row.status !== 'completed' || COUNTESS.objective in flags) return undefined;
+  if (Object.hasOwn(flags, domain.objective)
+    ? typeof flags[domain.objective] !== 'boolean'
+    : row.status !== 'completed' || domain.objective in flags) return undefined;
   return row as unknown as QuestProgressData;
 }
 
@@ -34,11 +35,11 @@ export function isCountessAdmissionEligible(progress: Progress, receipts: QuestA
 }
 
 /** A first Claim requires the canonical completed row, objective and own exact victory proof. */
-export function hasCountessCompletion(progress: Progress, receipts: QuestActionReceipts): boolean {
-  const row = canonicalRow(progress);
-  return row?.status === 'completed' && Object.hasOwn(row.objectives, COUNTESS.objective) &&
-    row.objectives[COUNTESS.objective] === true && Object.hasOwn(receipts, COUNTESS.receipt) &&
-    receipts[COUNTESS.receipt] === true;
+export function hasCountessCompletion(progress: Progress, receipts: QuestActionReceipts, domain: CountessQuestDomain = COUNTESS): boolean {
+  const row = canonicalRow(progress, domain);
+  return row?.status === 'completed' && Object.hasOwn(row.objectives, domain.objective) &&
+    row.objectives[domain.objective] === true && Object.hasOwn(receipts, domain.receipt) &&
+    receipts[domain.receipt] === true;
 }
 
 /** Copied immutable identities; only the live wave binding may turn victory evidence into proof. */

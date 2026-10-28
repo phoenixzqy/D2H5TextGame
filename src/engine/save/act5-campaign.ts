@@ -26,8 +26,10 @@ function finiteMap(value: unknown, key: string): void {
  */
 export function hasQuestServiceSourceGraph(questId: string, progress: Readonly<Record<string, QuestProgressData>>,
   receipts: QuestActionReceipts, items: QuestItemLedger, domain?: CampaignValidationDomain): boolean {
-  if (domain === undefined && (questId === MALUS_QUEST || questId === MALUS_SIDE_QUEST)) {
-    return hasMalusCompletion(questId, progress, items, receipts);
+  const malus = domain?.act1?.malus;
+  if ((domain === undefined || malus !== undefined) &&
+    (questId === (malus?.quest ?? MALUS_QUEST) || questId === (malus?.sideQuest ?? MALUS_SIDE_QUEST))) {
+    return hasMalusCompletion(questId, progress, items, receipts, malus);
   }
   const sourceQuest = domain ? (Object.hasOwn(domain.servicePrerequisites, questId)
     ? domain.servicePrerequisites[questId] ?? questId : questId) : questId === 'quests/side-act5-larzuks-sockets' ? 'quests/act5-siege-on-harrogath'
@@ -56,7 +58,9 @@ export function hasAct5CampaignReward(progress: Readonly<Record<string, QuestPro
   return progress[eveQuest]?.rewardClaimed === true && hasAct5Completion(eveQuest, progress, receipts, items, domain);
 }
 /** Validate the full finite source-backed title/profile graph before any save or selection. */
-export function validateAct5CampaignRewards(map: CampaignMapSaveData, items: QuestItemLedger, services: unknown,
+export function validateAct5CampaignRewards(map: Omit<CampaignMapSaveData, 'selectedTitle'> & {
+  readonly selectedTitle: string | null
+}, items: QuestItemLedger, services: unknown,
   domain?: CampaignValidationDomain): void {
   const ledger = validateQuestServiceLedger(services, map.questProgress, domain);
   for (const source of Object.keys(ledger)) {
@@ -65,11 +69,12 @@ export function validateAct5CampaignRewards(map: CampaignMapSaveData, items: Que
       throw new Error('Invalid save: service lacks actual prerequisite source graph');
     }
   }
-  finiteMap(map.questTitles, BAAL_TITLE); finiteMap(map.questDifficulties, NIGHTMARE_UNLOCK);
-  const ownedTitle = Object.hasOwn(map.questTitles, BAAL_TITLE), unlocked = Object.hasOwn(map.questDifficulties, NIGHTMARE_UNLOCK);
+  const title = domain?.campaignTitleId ?? BAAL_TITLE, unlock = domain?.nightmareUnlockId ?? NIGHTMARE_UNLOCK;
+  finiteMap(map.questTitles, title); finiteMap(map.questDifficulties, unlock);
+  const ownedTitle = Object.hasOwn(map.questTitles, title), unlocked = Object.hasOwn(map.questDifficulties, unlock);
   if ((ownedTitle || unlocked) && !hasAct5CampaignReward(map.questProgress, map.questReceipts, items, domain?.act5)) throw new Error('Invalid save: unearned campaign reward');
   const selectedTitle: unknown = map.selectedTitle, selectedDifficulty: unknown = map.selectedDifficulty;
-  if (selectedTitle !== null && (selectedTitle !== BAAL_TITLE || !ownedTitle)) throw new Error('Invalid save: selected title is not owned');
+  if (selectedTitle !== null && (selectedTitle !== title || !ownedTitle)) throw new Error('Invalid save: selected title is not owned');
   if (selectedDifficulty !== 'normal' && (selectedDifficulty !== 'nightmare' || !unlocked)) throw new Error('Invalid save: selected difficulty is not unlocked');
   if (!Array.isArray(map.nightmareClearedSubAreas) || new Set(map.nightmareClearedSubAreas).size !== map.nightmareClearedSubAreas.length ||
     map.nightmareClearedSubAreas.some((id: unknown) => typeof id !== 'string' ||
@@ -78,7 +83,7 @@ export function validateAct5CampaignRewards(map: CampaignMapSaveData, items: Que
   if (!record(map.challengeOrdinals) || Reflect.ownKeys(map.challengeOrdinals).length !== 2 ||
     !['normal', 'nightmare'].every(profile => Object.hasOwn(map.challengeOrdinals, profile) &&
       Number.isSafeInteger(map.challengeOrdinals[profile as 'normal' | 'nightmare']) &&
-      map.challengeOrdinals[profile as 'normal' | 'nightmare'] >= 0 && map.challengeOrdinals[profile as 'normal' | 'nightmare'] < 360360)) {
+      map.challengeOrdinals[profile as 'normal' | 'nightmare'] >= 0 && map.challengeOrdinals[profile as 'normal' | 'nightmare'] < (domain?.challengeOrdinalLimit ?? 360360))) {
     throw new Error('Invalid save: challenge ordinal namespaces');
   }
   if (!unlocked && map.challengeOrdinals.nightmare !== 0) throw new Error('Invalid save: unearned Nightmare history');

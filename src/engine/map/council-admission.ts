@@ -1,3 +1,4 @@
+import type { CouncilQuestDomain } from '../save/quest-domain';
 import type { WaveSpec } from '../combat/sub-area-run';
 import type { CombatUnit } from '../combat/types';
 import type { QuestProgressData } from '../types/save';
@@ -8,6 +9,10 @@ export const COUNCIL_AREA_ID = 'areas/act3-travincal';
 const ENCOUNTER_ID = 'act3-travincal-council';
 const ARCHETYPE_ID = 'monsters/act3.infector';
 const OBJECTIVES = ['obj-heart', 'obj-brain', 'obj-eye', 'obj-flail', 'obj-transmute'] as const;
+
+export const LIVE_COUNCIL_DOMAIN: CouncilQuestDomain = Object.freeze({
+  quest: COUNCIL_QUEST_ID, receipt: COUNCIL_RECEIPT_SOURCE, objectiveIds: OBJECTIVES, transmuteObjective: 'obj-transmute'
+});
 
 /** Private copied origin and member identities, retained by the original wave binding. */
 export interface CouncilEncounter {
@@ -59,22 +64,22 @@ function record(value: unknown): value is Record<string, unknown> {
 
 /** Progress can permit an actual future encounter; it never supplies proof by itself. */
 export function isCouncilAdmissionEligible(progress: Readonly<Record<string, QuestProgressData>>,
-  historicalRecovery = false): boolean {
-  const row: unknown = Object.hasOwn(progress, COUNCIL_QUEST_ID) ? progress[COUNCIL_QUEST_ID] : undefined;
-  if (!record(row) || !Object.hasOwn(row, 'id') || row.id !== COUNCIL_QUEST_ID ||
+  historicalRecovery = false, domain: CouncilQuestDomain = LIVE_COUNCIL_DOMAIN): boolean {
+  const row: unknown = Object.hasOwn(progress, domain.quest) ? progress[domain.quest] : undefined;
+  if (!record(row) || !Object.hasOwn(row, 'id') || row.id !== domain.quest ||
     !Object.hasOwn(row, 'status') || !Object.hasOwn(row, 'objectives') || !record(row.objectives)) return false;
   const objectives = row.objectives;
-  if (!OBJECTIVES.every(id => Object.hasOwn(objectives, id) && typeof objectives[id] === 'boolean')) return false;
+  if (!domain.objectiveIds.every(id => Object.hasOwn(objectives, id) && typeof objectives[id] === 'boolean')) return false;
   if (historicalRecovery) return row.status === 'completed' && Object.hasOwn(row, 'rewardClaimed') &&
-    row.rewardClaimed === true && OBJECTIVES.every(id => Object.hasOwn(objectives, id) && objectives[id] === true);
+    row.rewardClaimed === true && domain.objectiveIds.every(id => Object.hasOwn(objectives, id) && objectives[id] === true);
   return row.status === 'inProgress' && row.rewardClaimed !== true &&
-    objectives['obj-transmute'] !== true;
+    objectives[domain.transmuteObjective] !== true;
 }
 
 /** A persisted proof may outlive assembly/Claim; historical import never creates it. */
-export function isCouncilReceiptProgress(progress: Readonly<Record<string, QuestProgressData>>): boolean {
-  if (isCouncilAdmissionEligible(progress)) return true;
-  const row = progress[COUNCIL_QUEST_ID];
-  return Object.hasOwn(progress, COUNCIL_QUEST_ID) && row?.id === COUNCIL_QUEST_ID &&
-    row.status === 'completed' && OBJECTIVES.every(id => Object.hasOwn(row.objectives, id) && row.objectives[id] === true);
+export function isCouncilReceiptProgress(progress: Readonly<Record<string, QuestProgressData>>, domain: CouncilQuestDomain = LIVE_COUNCIL_DOMAIN): boolean {
+  if (isCouncilAdmissionEligible(progress, false, domain)) return true;
+  const row = progress[domain.quest];
+  return Object.hasOwn(progress, domain.quest) && row?.id === domain.quest &&
+    row.status === 'completed' && domain.objectiveIds.every(id => Object.hasOwn(row.objectives, id) && row.objectives[id] === true);
 }

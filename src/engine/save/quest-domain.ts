@@ -10,6 +10,28 @@ export interface QuestVictorySource {
   readonly proof: string;
 }
 
+/** Save authority only: runtime encounter and presentation data stay live. */
+export interface CainQuestDomain {
+  readonly quest: string; readonly sideQuest: string; readonly source: string; readonly itemId: string;
+  readonly treeObjective: string; readonly decodeObjective: string; readonly rescueObjective: string;
+  readonly talkObjective: string; readonly rescueReceipt: string; readonly talkReceipt: string;
+}
+export interface MalusQuestDomain {
+  readonly quest: string; readonly sideQuest: string; readonly source: string; readonly itemId: string;
+  readonly recoverObjective: string; readonly handInObjective: string; readonly presentObjective: string;
+  readonly presentReceipt: string;
+}
+export interface CountessQuestDomain {
+  readonly quest: string; readonly objective: string; readonly receipt: string;
+}
+export interface CouncilQuestDomain {
+  readonly quest: string; readonly receipt: string; readonly objectiveIds: readonly string[];
+  readonly transmuteObjective: string;
+}
+export interface Act1QuestDomain {
+  readonly cain: CainQuestDomain; readonly malus: MalusQuestDomain; readonly countess: CountessQuestDomain;
+}
+
 /** All catalog-dependent identities used by the reciprocal Act V validator. */
 export interface Act5QuestDomain {
   readonly actions: readonly { readonly id: string; readonly kind: string;
@@ -42,6 +64,8 @@ export interface QuestStateDomain {
   readonly quests: readonly QuestDef[];
   readonly victories?: readonly QuestVictorySource[];
   readonly act5?: Act5QuestDomain;
+  readonly act1?: Act1QuestDomain;
+  readonly council?: CouncilQuestDomain;
 }
 
 /** Claimed rows and their exact source-to-service mapping form one contract. */
@@ -59,9 +83,21 @@ export interface CampaignValidationDomain extends QuestServiceValidationDomain {
   readonly servicePrerequisites: Readonly<Record<string, string>>;
   readonly hellforgeQuestId: string;
   readonly hephastoProof: string;
+  readonly act1?: Act1QuestDomain;
+  readonly campaignTitleId?: string;
+  readonly nightmareUnlockId?: string;
+  readonly challengeOrdinalLimit?: number;
 }
 
 export interface NativeQuestDomain extends CampaignValidationDomain {
   readonly items: readonly QuestItemDef[];
   readonly victories: readonly QuestVictorySource[];
+  readonly council?: CouncilQuestDomain;
+}
+
+export interface FrozenV23Domain extends NativeQuestDomain {
+  readonly act1: Act1QuestDomain;
+  readonly council: CouncilQuestDomain;
+  readonly auraIds: readonly string[];
+  readonly selectedDifficulties: readonly string[];
 }

@@ -14260,3 +14260,29 @@ unchanged. H0 complete; H1 literal23 preservation is next. BUG355 stays open,
 browser prerequisites remain unresolved and Cobra policy awaits an actual
 user answer. Earned quantities/pacing/builds/economy and remaining full-v1 gates
 are still incomplete. The objective and umbrella worktree claim stay active.
+
+## Hell H1 literal23 preservation — 2026-10-27
+
+[H1 compatibility evidence](evidence/hell-literal23-compatibility.md) records
+static literal23 quest/campaign authority and canonical raw Hell reservation,
+without enabling24/Hell or widening historical two-profile types. Current23
+remains functional; unrelated extras retain their prior policy. The final
+type repair is limited to the Act V selected-title validator input annotation.
+
+Focused185/3, engine10,480/396, types/lint and final full20,796/978 PASS with
+two unchanged opt-in skips. Full81831terminal0/consumed; all3,459inputs retain
+snapshotf6146e02479cc346eeafd20fb1b9122c0ae9c31f99f10df1fc96527a35402a73.
+Independent exact-source and combined packet reviews APPROVE/securityPASS,
+no unresolved findings and readers released. Causal/mixed RED and initial
+TS2322 failure remain honestly retained; final checks supersede those attempts.
+
+Archive47members readback/byte/hash verified; exactly46rawfiles/3dirs and the
+verified sibling retainer removed, both rawroots absent,remaining[]/failures[].
+Root retains the archive and three sidecars at the exact paths in evidence
+through H2/independent/full-v1 consumers, then owns removal. ArchiveSHA
+747d122d6be852aa55ae00c81db39b0fed6e57167ae9fd39db7061a7b51602ff.
+
+H1 complete, H2 integration next; BUG355 remains open. H1 build is deferred to
+required H2 build; no browser/gameplay/earned/balance/full-v1 claim is made.
+H2 proposals are source-reviewed scratch only. Browser prerequisite and Cobra
+policy remain unresolved; the full objective/umbrella claim remain active/local.

@@ -1,6 +1,6 @@
 # BUG-355 — Supply native acquisition for the remaining advertised high runes
 
-- Status: Open — common-root Hell replay contract ratified; H1 compatibility next.
+- Status: Open — Hell contract ratified and H1 compatibility complete; H2 live Hell next.
 - Severity: High — seven materials required by advertised runewords have no
   native acquisition path under the shipped replay modes.
 - Found: 2026-10-27.
@@ -51,7 +51,15 @@ derived from the existing full validated claimed-Eve source authority, with
 native24 progress and frozen23 compatibility. Ratified contract/ADR/plan:
 `docs/design/hell-replay-contract.md`,
 `docs/decisions/ADR-013-source-backed-hell-replay.md`, and
-`docs/plans/hell-replay-implementation.md`. No runtime repair exists yet.
+`docs/plans/hell-replay-implementation.md`. The live acquisition/fusion repair
+is not implemented yet.
+
+[H1 compatibility evidence](../../docs/plans/evidence/hell-literal23-compatibility.md)
+records the completed prerequisite: literal23 quest/campaign authority is
+frozen, predecessor injection of reserved Hell state is refused, and current23
+remains functional. Final full units20,796PASS/978files with two existing skips,
+types/lint and independent exact-packet review pass. Save24/Hell remain disabled;
+this does not establish native high-rune acquisition, earned quantities or pacing.
 
 Read-only source characterization, including twelve input hashes, is retained
 as `source-characterization.json` in
@@ -66,6 +74,7 @@ source availability, without measuring earned pacing or acquisition balance.
 Controlling requirements: `docs/plans/work-plan.md` P12b and
 `docs/plans/decisions/D10-material-economy-v1.md` (all33/all35, explicit TC
 exceptions, Normal/Nightmare fusion cap, no arbitrary shard-to-high-rune vendor).
-No repair has been attempted. Review the actual source/entitlement contract;
+The compatibility prerequisite is complete; the source/entitlement repair remains.
+Review the actual source/entitlement contract;
 do not simply raise existing caps, relabel a Normal reward as Hell, inject
 materials, weaken recipe requirements or remove advertised runewords.

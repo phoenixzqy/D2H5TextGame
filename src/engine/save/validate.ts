@@ -3,7 +3,8 @@ import { CAIN_QUEST, CAIN_RECEIPTS, canEarnCainObjective, validateCainQuestGraph
 import { COUNTESS, hasCountessCompletion } from '@/engine/map/countess-admission';
 import { ACT1_QUEST_RECEIPTS } from '@/engine/map/act1-quest-sources';
 import { FROZEN_V22 } from './frozen-v22';
-import type { QuestStateDomain } from './quest-domain';
+import { FROZEN_V23, rejectPreV24ReplayState } from './frozen-v23';
+import type { FrozenV23Domain, NativeQuestDomain, QuestStateDomain } from './quest-domain';
 import { readRespecsRemaining } from '../progression/respec';
 import { PLAYER_AURA_IDS } from '../types/auras';
 import { rejectPreV21Respec } from './respec-state';
@@ -29,7 +30,7 @@ import { ACT4_ENCOUNTERS } from '../map/act4-admission';
 import { loadQuestActions, questActionInputs } from '../../data/loaders/quest-actions';
 import { repairMercenaryGrowth } from '../progression/merc-growth';
 import { LEVEL_CAP } from '../progression/xp';
-import { type SaveCurrent, type SaveV17, type SaveV18, type SaveV19, type SaveV20, type SaveV21, type SaveV22, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
+import { type SaveCurrent, type SaveV23, type SaveV17, type SaveV18, type SaveV19, type SaveV20, type SaveV21, type SaveV22, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
 import { loadQuestItems, type QuestItemDef, questItemSource, questItemSourceWithActions } from '../../data/loaders/quest-items';
 import { loadQuests, type QuestDef } from '../../data/loaders/quests';
@@ -236,8 +237,8 @@ const canonicalItem: AnySchema = { ...frozenItemSchema,
   properties: { ...frozenItemSchema.properties,
     socketContents: array(object({ kind: { enum: ['rune', 'gem'] }, id: text })) },
   not: { required: ['runes'] } };
-const nativeSaveSchema = (version: 17 | 18 | 19 | 20 | 21 | 22 | 23) => saveSchema({ const: version }, unitProperties, {
-  selectedAuraId: { enum: version >= 22 ? PLAYER_AURA_IDS : ['paladin.might', 'paladin.meditation'] }
+const nativeSaveSchema = (version: 17 | 18 | 19 | 20 | 21 | 22 | 23, frozen?: FrozenV23Domain) => saveSchema({ const: version }, unitProperties, {
+  selectedAuraId: { enum: version >= 22 ? (frozen?.auraIds ?? PLAYER_AURA_IDS) : ['paladin.might', 'paladin.meditation'] }
 }, {
   questItems: questItemLedgerSchema, questServices: { type: 'object' }, legacyGearQuarantine: array({ type: 'object' }),
   ...(version >= 18 ? { materials: { type: 'object' } } : {}),
@@ -245,17 +246,21 @@ const nativeSaveSchema = (version: 17 | 18 | 19 | 20 | 21 | 22 | 23) => saveSche
     socketQuarantine: array({ type: 'object' }) } : {})
 }, {
   questTitles: { type: 'object' }, questDifficulties: { type: 'object' },
-  selectedTitle: nullableText, selectedDifficulty: { enum: ['normal', 'nightmare'] },
+  selectedTitle: nullableText, selectedDifficulty: { enum: frozen?.selectedDifficulties ?? ['normal', 'nightmare'] },
   nightmareClearedSubAreas: strings, challengeOrdinals: { type: 'object' },
   // The exact Council and Guardian Orb actions form the current closed domain.
   questReceipts: { type: 'object', additionalProperties: false,
-    properties: { [COUNCIL_RECEIPT_SOURCE]: { const: true },
+    properties: { ...(frozen ? {} : { [COUNCIL_RECEIPT_SOURCE]: { const: true },
       'quests/act3-guardian#action:break-compelling-orb': { const: true },
-      ...Object.fromEntries((version === 23
+      'quests/act4-hellforge#action:shatter-soulstone': { const: true } }),
+      ...Object.fromEntries((frozen
+        ? [frozen.council.receipt, frozen.act1.cain.rescueReceipt, frozen.act1.cain.talkReceipt,
+          frozen.act1.countess.receipt, frozen.act1.malus.presentReceipt, ...frozen.victories.map(row => row.proof),
+          ...frozen.act5.receipts, ...frozen.actions.map(row => row.receiptSource)]
+        : version === 23
         ? [...CAIN_RECEIPTS, COUNTESS.receipt, ACT1_QUEST_RECEIPTS.presentItem, ...ACT4_ENCOUNTERS.map(row => row.proof), ...ACT5_RECEIPTS, ...loadQuestActions().map(row => row.receiptSource)]
         : [...FROZEN_V22.victories.map(row => row.proof), ...FROZEN_V22.act5.receipts,
-          ...FROZEN_V22.actions.map(row => row.receiptSource)]).map(source => [source, { const: true }])),
-      'quests/act4-hellforge#action:shatter-soulstone': { const: true } } }
+          ...FROZEN_V22.actions.map(row => row.receiptSource)]).map(source => [source, { const: true }])) } }
 }, version >= 19 ? canonicalItem : item);
 const validateV17 = ajv.compile<SaveV17>(nativeSaveSchema(17));
 const validateV18 = ajv.compile<SaveV18>(nativeSaveSchema(18));
@@ -264,6 +269,7 @@ const validateV20 = ajv.compile<SaveV20>(nativeSaveSchema(20));
 const validateV21 = ajv.compile<SaveV21>(nativeSaveSchema(21));
 const validateV22 = ajv.compile<SaveV22>(nativeSaveSchema(22));
 const validateV23 = ajv.compile<SaveCurrent>(nativeSaveSchema(23));
+const validateLiteralV23 = ajv.compile<SaveV23>(nativeSaveSchema(23, FROZEN_V23));
 interface LedgerContext {
   questItems: QuestItemLedger;
   questProgress: SaveCurrent['map']['questProgress'];
@@ -396,22 +402,30 @@ function validLiveObjectiveProgress(context: LedgerContext, quest: QuestDef, obj
 function validateLiveQuestState(questItems: unknown, questProgress: unknown, receipts: unknown, domain?: QuestStateDomain):
   LedgerContext & { questReceipts: QuestActionReceipts } {
   const validated = ledgerContext(questItems, questProgress);
+  const act1 = domain?.act1;
+  const hasAct1 = domain === undefined || act1 !== undefined;
+  const cainQuest = act1?.cain.quest ?? CAIN_QUEST;
+  const malusQuest = act1?.malus.quest ?? MALUS_QUEST;
+  const countess = act1?.countess ?? COUNTESS;
+  const cainReceipts = act1 ? [act1.cain.rescueReceipt, act1.cain.talkReceipt] : CAIN_RECEIPTS;
+  const presentReceipt = act1?.malus.presentReceipt ?? ACT1_QUEST_RECEIPTS.presentItem;
+  const councilReceipt = domain?.council?.receipt ?? COUNCIL_RECEIPT_SOURCE;
   const actions = domain?.actions ?? loadQuestActions();
   const victories = domain?.victories ?? (domain ? [] : [...ACT4_ENCOUNTERS, ...ACT5_ENCOUNTERS]);
   if (!record(receipts) || (Object.getPrototypeOf(receipts) !== Object.prototype &&
     Object.getPrototypeOf(receipts) !== null) || Reflect.ownKeys(receipts).some(key =>
       typeof key !== 'string' ||
-      (key !== COUNCIL_RECEIPT_SOURCE && !(domain === undefined && (CAIN_RECEIPTS.includes(key) || key === COUNTESS.receipt || key === ACT1_QUEST_RECEIPTS.presentItem)) && !victories.some(row => row.proof === key) && !((domain?.act5?.receipts ?? (domain ? [] : ACT5_RECEIPTS)).includes(key)) && !actions.some(action => action.receiptSource === key)) || receipts[key] !== true)) {
+      (key !== councilReceipt && !(hasAct1 && (cainReceipts.includes(key) || key === countess.receipt || key === presentReceipt)) && !victories.some(row => row.proof === key) && !((domain?.act5?.receipts ?? (domain ? [] : ACT5_RECEIPTS)).includes(key)) && !actions.some(action => action.receiptSource === key)) || receipts[key] !== true)) {
     throw new Error('Invalid save: questReceipts requires a closed JSON action receipt map');
   }
   const questReceipts = receipts as QuestActionReceipts;
-  if (Object.hasOwn(questReceipts, COUNCIL_RECEIPT_SOURCE) && !isCouncilReceiptProgress(validated.questProgress)) {
+  if (Object.hasOwn(questReceipts, councilReceipt) && !isCouncilReceiptProgress(validated.questProgress, domain?.council)) {
     throw new Error('Invalid save: Council proof requires canonical tracked Khalim progress');
   }
-  if (domain === undefined) validateCainQuestGraph(validated.questItems, validated.questProgress, questReceipts);
-  if (domain === undefined) validateMalusQuestGraph(validated.questItems, validated.questProgress, questReceipts);
-  if (domain === undefined && Object.hasOwn(questReceipts, COUNTESS.receipt) &&
-    !hasCountessCompletion(validated.questProgress, questReceipts)) {
+  if (hasAct1) validateCainQuestGraph(validated.questItems, validated.questProgress, questReceipts, act1?.cain);
+  if (hasAct1) validateMalusQuestGraph(validated.questItems, validated.questProgress, questReceipts, act1?.malus);
+  if (hasAct1 && Object.hasOwn(questReceipts, countess.receipt) &&
+    !hasCountessCompletion(validated.questProgress, questReceipts, countess)) {
     throw new Error('Invalid save: Countess victory proof requires its canonical completed objective');
   }
   const entries = Object.entries(validated.questItems);
@@ -445,11 +459,11 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
     const quest = quests.find(row => row.id === definition.sourceQuestId);
     if (definition.kind === 'action') continue; // Validated as one reciprocal Act V action/potion graph above.
     if (definition.kind !== undefined && definition.kind !== 'retained') {
-      if (!quest || !(domain === undefined && quest.id === CAIN_QUEST
-        ? canEarnCainObjective(validated.questProgress, quest.id, definition.sourceObjectiveId, validated.questItems, questReceipts) &&
+      if (!quest || !(hasAct1 && quest.id === cainQuest
+        ? canEarnCainObjective(validated.questProgress, quest.id, definition.sourceObjectiveId, validated.questItems, questReceipts, act1?.cain) &&
           validated.questProgress[quest.id]?.objectives[definition.sourceObjectiveId] === true
-        : domain === undefined && quest.id === MALUS_QUEST
-          ? canEarnMalusObjective(validated.questProgress, definition.sourceObjectiveId, validated.questItems) &&
+        : hasAct1 && quest.id === malusQuest
+          ? canEarnMalusObjective(validated.questProgress, definition.sourceObjectiveId, validated.questItems, act1?.malus) &&
             Object.hasOwn(progress?.objectives ?? {}, definition.sourceObjectiveId) && progress?.objectives[definition.sourceObjectiveId] === true
         : validLiveObjectiveProgress(validated, quest, definition.sourceObjectiveId))) {
         throw new Error('Invalid save: quest item requires its completed objective source');
@@ -466,11 +480,11 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
         throw new Error('Invalid save: component requires its qualified action proof');
       }
       if (definition.kind === 'delivery' && entry.state === 'consumed' &&
-        !(domain === undefined && quest.id === CAIN_QUEST
-          ? canEarnCainObjective(validated.questProgress, quest.id, definition.consumeObjectiveId, validated.questItems, questReceipts) &&
+        !(hasAct1 && quest.id === cainQuest
+          ? canEarnCainObjective(validated.questProgress, quest.id, definition.consumeObjectiveId, validated.questItems, questReceipts, act1?.cain) &&
             validated.questProgress[quest.id]?.objectives[definition.consumeObjectiveId] === true
-          : domain === undefined && quest.id === MALUS_QUEST
-          ? canEarnMalusObjective(validated.questProgress, definition.consumeObjectiveId, validated.questItems) &&
+          : hasAct1 && quest.id === malusQuest
+          ? canEarnMalusObjective(validated.questProgress, definition.consumeObjectiveId, validated.questItems, act1?.malus) &&
             Object.hasOwn(progress?.objectives ?? {}, definition.consumeObjectiveId) && progress?.objectives[definition.consumeObjectiveId] === true
         : validLiveObjectiveProgress(validated, quest, definition.consumeObjectiveId))) {
         throw new Error('Invalid save: delivered item requires its exact hand-in objective');
@@ -703,8 +717,9 @@ export function validateQuestActionReceipts(receipts: unknown, questProgress: un
 }
 
 /** Preserve the v17 native graph/item validator before the v18 ownership-only migration. */
-function validateNativeSave(value: unknown, version: 17 | 18 | 19 | 20 | 21 | 22 | 23): SaveV17 | SaveV18 | SaveV19 | SaveV20 | SaveV21 | SaveV22 | SaveCurrent {
-  const domain = version === 23 ? undefined : FROZEN_V22;
+function validateNativeSave(value: unknown, version: 17 | 18 | 19 | 20 | 21 | 22 | 23, frozen?: NativeQuestDomain): SaveV17 | SaveV18 | SaveV19 | SaveV20 | SaveV21 | SaveV22 | SaveCurrent {
+  rejectPreV24ReplayState(value);
+  const domain = frozen ?? (version === 23 ? undefined : FROZEN_V22);
   rejectHistoricalQuestReceipts(value);
   if (record(value) && record(value.inventory) && record(value.map)) {
     validateLiveQuestState(value.inventory.questItems, value.map.questProgress,
@@ -722,7 +737,7 @@ function validateNativeSave(value: unknown, version: 17 | 18 | 19 | 20 | 21 | 22
   rejectUndefinedMagicResist(normalized);
   rejectUndefinedSelection(normalized);
   const check = version === 17 ? validateV17 : version === 18 ? validateV18 : version === 19 ? validateV19
-    : version === 20 ? validateV20 : version === 21 ? validateV21 : version === 22 ? validateV22 : validateV23;
+    : version === 20 ? validateV20 : version === 21 ? validateV21 : version === 22 ? validateV22 : frozen ? validateLiteralV23 : validateV23;
   if (!check(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
   const save = normalized;
   validateLiveQuestState(save.inventory.questItems, save.map.questProgress, save.map.questReceipts, domain);
@@ -742,13 +757,14 @@ export function validateEndgameSave(value: unknown): SaveV20 {
   rejectPreV21Respec(value);
   return validateCurrentNativeSave(value, 20) as SaveV20;
 }
-function validateCurrentNativeSave(value: unknown, version: 20 | 21 | 22 | 23): SaveV20 | SaveV21 | SaveV22 | SaveCurrent {
+function validateCurrentNativeSave(value: unknown, version: 20 | 21 | 22 | 23, frozen?: NativeQuestDomain): SaveV20 | SaveV21 | SaveV22 | SaveCurrent {
+  rejectPreV24ReplayState(value);
   rejectSocketSaveAccessors(value);
   if (!record(value) || !record(value.map) || !record(value.inventory)) throw new Error('Invalid save: endgame structure');
   const endgame = readEndgameSaveField(value, { questProgress: value.map.questProgress as SaveCurrent['map']['questProgress'],
-    questReceipts: value.map.questReceipts as QuestActionReceipts, questItems: value.inventory.questItems as QuestItemLedger }, false, version === 23 ? undefined : FROZEN_V22.act5);
+    questReceipts: value.map.questReceipts as QuestActionReceipts, questItems: value.inventory.questItems as QuestItemLedger }, false, frozen?.act5 ?? (version === 23 ? undefined : FROZEN_V22.act5));
   readMaterialLedger(value.inventory);
-  const save = validateNativeSave(value, version) as SaveV20 | SaveV21 | SaveV22 | SaveCurrent;
+  const save = validateNativeSave(value, version, frozen) as SaveV20 | SaveV21 | SaveV22 | SaveCurrent;
   return { ...save, endgame };
 }
 /** Validate frozen v21 counters and selection before a version-only migration. */
@@ -761,17 +777,22 @@ export function validateSave(value: unknown): SaveCurrent {
   return validateRespecNativeSave(value, 23) as SaveCurrent;
 }
 
+/** Validate literal23 without consulting future authored quest/profile identities. */
+export function validateFrozenV23Save(value: unknown): SaveV23 {
+  return validateRespecNativeSave(value, 23, FROZEN_V23) as SaveV23;
+}
+
 /** Validate literal22 before a future migration may admit new Act I sources. */
 export function validateFrozenV22Save(value: unknown): SaveV22 {
   return validateRespecNativeSave(value, 22) as SaveV22;
 }
 
-function validateRespecNativeSave(value: unknown, version: 21 | 22 | 23): SaveV21 | SaveV22 | SaveCurrent {
+function validateRespecNativeSave(value: unknown, version: 21 | 22 | 23, frozen?: NativeQuestDomain): SaveV21 | SaveV22 | SaveCurrent {
   if (!record(value)) throw new Error('Invalid save');
   const player = Object.getOwnPropertyDescriptor(value, 'player');
   if (!player || !Object.hasOwn(player, 'value') || !record(player.value)) throw new Error('Invalid save: player');
   const respecsRemaining = readRespecsRemaining(player.value);
-  const save = validateCurrentNativeSave(value, version) as SaveV21 | SaveV22 | SaveCurrent;
+  const save = validateCurrentNativeSave(value, version, frozen) as SaveV21 | SaveV22 | SaveCurrent;
   if (save.version === 21) return { ...save, player: { ...save.player, respecsRemaining } };
   return { ...save, player: { ...save.player, respecsRemaining } };
 }
@@ -817,6 +838,7 @@ export function decodeSave(value: unknown): SaveCurrent {
   ) {
     throw new Error('Invalid save: version must be a positive integer');
   }
+  rejectPreV24ReplayState(value);
   let input = value as VersionedSave;
   // Reject getters before even historical direct-field reads/normalization.
   if (input.version < 21) rejectPreV21Respec(input);

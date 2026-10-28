@@ -1,6 +1,6 @@
 # Hell replay implementation cards
 
-Status: approved plan, H0 complete and H1 next, 2026-10-27.
+Status: approved plan, H0/H1 complete and H2 next, 2026-10-27.
 [Exact-body review evidence](evidence/hell-replay-contract-review.md) records
 design/technical approval, plan ready and security PASS. Root owns integration
 and evidence; existing producer/design-contract owners review. Preserve the claimed umbrella worktree
@@ -40,6 +40,11 @@ H1 follows the approved plan. Do not return to the cache-only repair.
   gates; do not reuse prior full results after runtime/test inputs change.
 
 ## H2 — Connect native Hell end to end
+
+[H1 compatibility evidence](evidence/hell-literal23-compatibility.md) records
+the independently approved source/input bindings, successful validation and
+retained failure history. Current save version remains23; native24 and Hell
+are still disabled. H2 proposals are not runtime acceptance.
 
 - Owner: root integration; explicitly assigned existing collaborators may own
   disjoint save/UI files. All implementers preserve concurrent changes.

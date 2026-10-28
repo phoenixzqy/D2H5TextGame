@@ -20,7 +20,7 @@ export function validateCurrentCampaignRewards(map: CurrentMapSaveData, items: Q
     if (!state.achievementRewardClaimed) throw new Error('Invalid save: achievement title is not owned');
     validateAct5CampaignRewards({ ...map, selectedTitle: null }, items, services, domain);
   } else {
-    if (selectedTitle !== null && selectedTitle !== BAAL_TITLE) throw new Error('Invalid save: selected title is not owned');
+    if (selectedTitle !== null && selectedTitle !== (domain?.campaignTitleId ?? BAAL_TITLE)) throw new Error('Invalid save: selected title is not owned');
     validateAct5CampaignRewards({ ...map, selectedTitle }, items, services, domain);
   }
 }
