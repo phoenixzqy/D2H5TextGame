@@ -14397,3 +14397,38 @@ under `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-h2-hell-b6de0n4x`
 through unfinished full-v1/independent consumers and owns eventual verified
 removal. Cobra disposable build output is removed after consumers release it;
 the exact cleanup receipt records its result. Worktree claim remains active.
+
+## Current-head local release gates — 2026-10-28 UTC
+
+[Release-gate evidence](evidence/current-head-release-gates.md) binds checks to
+`771ad71ec6c862d272c1d11d9cd9428be699a17a` and 5337 unchanged inputs at
+`d7a3a2f9b83b3054d6b3090280ac9b8609450f9bda4714ee78156f5937fdb51a`.
+Unfiltered configured V8 coverage73350 completed outer/native0: 21,187 passed,
+two exact existing skips/989files in1668.204s. Global lines/statements98.57%,
+functions98.61%, branches95.23% exceed unchanged80% thresholds. Independent
+review matched all aggregates/uncovered locations and verified12type-only
+omissions:215emitted entries/227non-test engine TypeScript inputs. Sixteen entries
+remain below80% branches; the pass is global, not per-file or gameplay acceptance.
+
+Official production bridge guard15815 passed native0 with a fresh build and
+independent six-chunk scan. Locale scanner54135 failed native1:0parseErrors,
+432dataLiteral,0dataMissingKey,6sourceMissingKey,8sourceLiteral,18parityMissing.
+The six apparent missing keys resolve to existing flat dotted/plural forms in
+source; the18parity reports reflect six English plural pairs/Chinese base keys.
+Eight DevUI labels were historical;432data findings remain unadjudicated.
+Whole-app locale acceptance remains pending. Original truncated-pipe attempt55564
+is retained as outer1 without a durable native result or acceptance credit.
+Actual local environment is Node24.21.0/npm11.19.0; CI Node20 was not run.
+
+Coverage review SHA256
+`e34f26f0c046ba1cf668f69bdab87a07401c9544f62a17d1b9be07a74b3c2af4`;
+separate static review SHA256
+`8a0148568062f66d140aab2d410af80913a79dfda3339c8d6b8eeffffe02daf9`.
+After terminal/reader release, exact manifest-bound cleanup removed762build
+files/10directories and239coverage rendering files/16directories; failures[].
+Build output is absent; raw coverage JSON and required logs/maps/reviews remain
+under the retained root-owned packet. No redundant source checks were run for
+this two-document checkpoint. BUG304, other open bugs, terminated H3/browser,
+earned economy/pacing/build/campaign, devices/a11y/performance/PWA, actual CI,
+human/soak and full-v1 limits remain unchanged. Root retains evidence through
+unfinished consumers and owns eventual cleanup. Umbrella goal/worktree stay active.
