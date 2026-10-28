@@ -22,6 +22,7 @@ import { MapScreen } from '@/features/map/MapScreen';
 import { TownScreen } from '@/features/town/TownScreen';
 import { QuestsScreen } from '@/features/quests/QuestsScreen';
 import { claimQuestReward } from '@/features/quests/claimReward';
+import { xpTotal } from '@/engine/progression/xp';
 import { abortSubAreaRun } from '@/stores/combatHelpers';
 import { useCombatStore, useFormationStore, useInventoryStore, useMapStore,
   useMercStore, useMetaStore, usePlayerStore } from '@/stores';
@@ -200,17 +201,31 @@ describe.each(['en', 'zh-CN'] as const)('Malus actual Recover/Give UI in %s', lo
     expect(screen.getByTestId(`quest-give-${ITEM}`)).toBeDisabled();
     expect(snapshot()).toEqual(given);
 
-    // The physical prerequisite does not activate the dependent imbue reward.
+    // Hand-in grants no income; only a separate first Claim grants its once-only bundle.
     let result: ReturnType<typeof claimQuestReward> | undefined;
     const beforeClaim = snapshot();
+    const heroBefore = usePlayerStore.getState().player;
+    if (!heroBefore) throw new Error('Missing hero before Claim');
     act(() => { result = claimQuestReward(QUEST); });
-    expect(result).toBe(history === 'sparse-claimed' ? 'already-claimed' : 'unsupported-rewards');
-    expect(snapshot()).toEqual(beforeClaim); expect(protectedIncome()).toEqual(income);
+    expect(result).toBe(history === 'sparse-claimed' ? 'already-claimed' : 'ok');
+    if (history === 'sparse-claimed') {
+      expect(snapshot()).toEqual(beforeClaim); expect(protectedIncome()).toEqual(income);
+    } else {
+      const hero = usePlayerStore.getState().player;
+      if (!hero) throw new Error('Missing hero after Claim');
+      expect(xpTotal(hero.level) + hero.experience).toBe(xpTotal(heroBefore.level) + heroBefore.experience + 3500);
+      expect(useMercStore.getState().ownedMercs).not.toEqual(income.mercs.ownedMercs);
+      expect(useInventoryStore.getState().questServices).toEqual({ [`${QUEST}#reward:service`]: { serviceId: 'imbue_item', state: 'available' } });
+      expect(useMapStore.getState().questProgress[QUEST]?.rewardClaimed).toBe(true);
+    }
+    const afterClaim = snapshot();
+    act(() => { expect(claimQuestReward(QUEST)).toBe('already-claimed'); });
+    expect(snapshot()).toEqual(afterClaim);
     fireEvent.click(screen.getByRole('link', { name: i18n.t('common:nav.quests') }));
     const card = screen.getByTestId(`quest-${QUEST}`);
     expect(card).toHaveTextContent(i18n.t('quests:byId.act1-tools-of-the-trade.name'));
     if (history === 'sparse-claimed') expect(screen.getByTestId(`quest-claim-${QUEST}`)).toBeDisabled();
-    expect(snapshot()).toEqual(beforeClaim);
+    expect(snapshot()).toEqual(afterClaim);
   });
 
   it('requires a canonical Catacombs clear before explicit Recover and never grants automatically', async () => {

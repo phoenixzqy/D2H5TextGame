@@ -101,7 +101,8 @@
       "grant-failed": "The action could not finish. Nothing was spent; try again.",
       "busy": "A combat or quest update is still finishing. Try again shortly.",
       "restoration-failed": "The action could not be restored. Stop here and reload your last saved game.",
-      "not-owned": "Claim the required quest reward first."
+      "not-owned": "Claim the required quest reward first.",
+      "already-available": "This reward’s charge is already available."
     },
     "sourceMain": "Main quest reward",
     "sourceSide": "Side quest reward"
@@ -164,5 +165,22 @@
     "noCandidates": "No unidentified backpack equipment is available.",
     "use": "Identify selected item",
     "success": "Item identified."
+  },
+  "imbue": {
+    "title": "Charsi’s Imbue",
+    "description": "Each earned reward imbues one selected item into rare gear. The item keeps its base and identity. Each charge is spent once.",
+    "presentTitle": "Present an item",
+    "presentDescription": "Show Charsi an identified normal weapon or armor with no sockets. It stays in your backpack unchanged. Claim the side quest reward separately in Quests.",
+    "presentChoose": "Item to present",
+    "present": "Present selected item",
+    "presentSuccess": "Item presented unchanged. Claim Charsi’s Imbue in Quests to earn its separate charge.",
+    "noCandidates": "Bring an identified, unequipped normal weapon or armor with no sockets or affixes into your backpack.",
+    "mainReward": "Tools of the Trade · main reward",
+    "sideReward": "Charsi’s Imbue · side reward",
+    "restorable": "Previously claimed reward. Restore its missing charge here.",
+    "restore": "Restore this Imbue reward",
+    "restoreSuccess": "This reward’s charge is available. Select an item to use it.",
+    "use": "Imbue selected item",
+    "useSuccess": "Selected item imbued. This charge has been used."
   }
 }

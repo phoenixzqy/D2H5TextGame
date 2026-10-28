@@ -1,10 +1,11 @@
 import { loadQuests, type QuestDef } from '@/data/loaders/quests';
 import type { QuestProgressData } from '../types/save';
 import type { QuestServiceValidationDomain } from '../save/quest-domain';
+import { ACT1_IMBUE_SOURCES } from '../map/act1-quest-sources';
 
 /** Literal17–22 selected-item service vocabulary never widens with current authoring. */
 export type HistoricalQuestServiceId = 'socket_item' | 'socket_armor' | 'personalize_item';
-/** Imbue is reserved until its physical/action graph and selected-item operation land. */
+/** Current selected-item services include independently earned Act I imbues. */
 export type QuestServiceId = HistoricalQuestServiceId | 'imbue_item';
 
 /** One source charge or its historical selected-instance use, including after salvage. */
@@ -17,8 +18,10 @@ export type QuestServiceLedger = Readonly<Record<string, QuestServiceEntry>>;
 /** Historical save types retain their literal selected-item service entries. */
 export type HistoricalQuestServiceLedger = Readonly<Record<string, QuestServiceEntry<HistoricalQuestServiceId>>>;
 
-/** Independently usable main/side charges; only these five sources enter this ledger. */
+/** Independently usable charges; current saves admit these seven exact sources. */
 export const QUEST_SERVICE_SOURCES = Object.freeze({
+  [ACT1_IMBUE_SOURCES.main]: 'imbue_item',
+  [ACT1_IMBUE_SOURCES.side]: 'imbue_item',
   'quests/act5-siege-on-harrogath#reward:service': 'socket_item',
   'quests/side-act5-larzuks-sockets#reward:service': 'socket_item',
   'quests/side-act4-halbus-soul#reward:service': 'socket_armor',

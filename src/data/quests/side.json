@@ -7,11 +7,11 @@
       "type": "side",
       "actId": "acts/act1",
       "giver": "npc/charsi",
-      "description": "After recovering the Horadric Malus, Charsi can imbue a single magical item with rare power. Bring her a normal item of your choosing.",
+      "description": "After giving Charsi the Horadric Malus, present an eligible normal weapon or armor unchanged. Claim a separate Imbue charge, then choose which item to imbue.",
       "objectives": [
-        { "id": "obj-bring-item", "type": "deliver", "itemFilter": "normal", "npcId": "npc/charsi", "description": "Hand a normal item to Charsi." }
+        { "id": "obj-bring-item", "type": "deliver", "itemFilter": "normal", "npcId": "npc/charsi", "description": "Present an eligible normal weapon or armor to Charsi without consuming it." }
       ],
-      "rewards": { "service": "imbue_item", "itemDrop": "items/imbued_rare_random" },
+      "rewards": { "service": "imbue_item" },
       "prerequisites": ["quests/act1-tools-of-the-trade"]
     },
     {

@@ -26,6 +26,8 @@ export interface NpcQuestService {
 }
 type Source = keyof typeof QUEST_SERVICE_SOURCES;
 const destinations: Readonly<Record<Source, { readonly act: number; readonly npcId: string }>> = {
+  'quests/act1-tools-of-the-trade#reward:service': { act: 1, npcId: 'npc/charsi' },
+  'quests/side-act1-charsis-imbue#reward:service': { act: 1, npcId: 'npc/charsi' },
   'quests/act5-siege-on-harrogath#reward:service': { act: 5, npcId: 'npc/larzuk' },
   'quests/side-act5-larzuks-sockets#reward:service': { act: 5, npcId: 'npc/larzuk' },
   'quests/side-act4-halbus-soul#reward:service': { act: 4, npcId: 'npc/halbu' },

@@ -1,6 +1,7 @@
 import { MALUS_QUEST, canEarnMalusObjective, validateMalusQuestGraph } from '@/engine/map/malus-quest';
 import { CAIN_QUEST, CAIN_RECEIPTS, canEarnCainObjective, validateCainQuestGraph } from '@/engine/map/cain-quest';
 import { COUNTESS, hasCountessCompletion } from '@/engine/map/countess-admission';
+import { ACT1_QUEST_RECEIPTS } from '@/engine/map/act1-quest-sources';
 import { FROZEN_V22 } from './frozen-v22';
 import type { QuestStateDomain } from './quest-domain';
 import { readRespecsRemaining } from '../progression/respec';
@@ -251,7 +252,7 @@ const nativeSaveSchema = (version: 17 | 18 | 19 | 20 | 21 | 22 | 23) => saveSche
     properties: { [COUNCIL_RECEIPT_SOURCE]: { const: true },
       'quests/act3-guardian#action:break-compelling-orb': { const: true },
       ...Object.fromEntries((version === 23
-        ? [...CAIN_RECEIPTS, COUNTESS.receipt, ...ACT4_ENCOUNTERS.map(row => row.proof), ...ACT5_RECEIPTS, ...loadQuestActions().map(row => row.receiptSource)]
+        ? [...CAIN_RECEIPTS, COUNTESS.receipt, ACT1_QUEST_RECEIPTS.presentItem, ...ACT4_ENCOUNTERS.map(row => row.proof), ...ACT5_RECEIPTS, ...loadQuestActions().map(row => row.receiptSource)]
         : [...FROZEN_V22.victories.map(row => row.proof), ...FROZEN_V22.act5.receipts,
           ...FROZEN_V22.actions.map(row => row.receiptSource)]).map(source => [source, { const: true }])),
       'quests/act4-hellforge#action:shatter-soulstone': { const: true } } }
@@ -400,7 +401,7 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
   if (!record(receipts) || (Object.getPrototypeOf(receipts) !== Object.prototype &&
     Object.getPrototypeOf(receipts) !== null) || Reflect.ownKeys(receipts).some(key =>
       typeof key !== 'string' ||
-      (key !== COUNCIL_RECEIPT_SOURCE && !(domain === undefined && (CAIN_RECEIPTS.includes(key) || key === COUNTESS.receipt)) && !victories.some(row => row.proof === key) && !((domain?.act5?.receipts ?? (domain ? [] : ACT5_RECEIPTS)).includes(key)) && !actions.some(action => action.receiptSource === key)) || receipts[key] !== true)) {
+      (key !== COUNCIL_RECEIPT_SOURCE && !(domain === undefined && (CAIN_RECEIPTS.includes(key) || key === COUNTESS.receipt || key === ACT1_QUEST_RECEIPTS.presentItem)) && !victories.some(row => row.proof === key) && !((domain?.act5?.receipts ?? (domain ? [] : ACT5_RECEIPTS)).includes(key)) && !actions.some(action => action.receiptSource === key)) || receipts[key] !== true)) {
     throw new Error('Invalid save: questReceipts requires a closed JSON action receipt map');
   }
   const questReceipts = receipts as QuestActionReceipts;
@@ -408,7 +409,7 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
     throw new Error('Invalid save: Council proof requires canonical tracked Khalim progress');
   }
   if (domain === undefined) validateCainQuestGraph(validated.questItems, validated.questProgress, questReceipts);
-  if (domain === undefined) validateMalusQuestGraph(validated.questItems, validated.questProgress);
+  if (domain === undefined) validateMalusQuestGraph(validated.questItems, validated.questProgress, questReceipts);
   if (domain === undefined && Object.hasOwn(questReceipts, COUNTESS.receipt) &&
     !hasCountessCompletion(validated.questProgress, questReceipts)) {
     throw new Error('Invalid save: Countess victory proof requires its canonical completed objective');

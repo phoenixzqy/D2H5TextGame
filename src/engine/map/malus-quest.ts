@@ -1,10 +1,12 @@
-import type { QuestItemLedger, QuestProgressData } from '@/engine/types/save';
+import type { QuestActionReceipts, QuestItemLedger, QuestProgressData } from '@/engine/types/save';
+import { ACT1_QUEST_RECEIPTS } from './act1-quest-sources';
 
 export const MALUS_QUEST = 'quests/act1-tools-of-the-trade';
 export const MALUS_SOURCE = `${MALUS_QUEST}#objective:obj-recover-malus`;
 export const MALUS_ITEM = 'quest/horadric_malus';
 export const MALUS_AREA = 'areas/act1-catacombs';
 export const MALUS_OBJECT = 'objects/horadric_malus_cache';
+export const MALUS_SIDE_QUEST = 'quests/side-act1-charsis-imbue';
 type Progress = Readonly<Record<string, QuestProgressData>>;
 
 // The current validator also receives untrusted source entries before normalization.
@@ -40,13 +42,29 @@ export function hasMalusHandIn(progress: Progress, items: QuestItemLedger): bool
     progress[MALUS_QUEST]?.status === 'completed';
 }
 
+/** Side presentation requires the real main hand-in, independently of either Claim. */
+export function hasMalusCompletion(questId: string, progress: Progress, items: QuestItemLedger,
+  receipts: QuestActionReceipts): boolean {
+  if (questId !== MALUS_QUEST && questId !== MALUS_SIDE_QUEST) return true;
+  if (!hasMalusHandIn(progress, items)) return false;
+  if (questId === MALUS_QUEST) return true;
+  const side = Object.hasOwn(progress, MALUS_SIDE_QUEST) ? progress[MALUS_SIDE_QUEST] : undefined;
+  return side?.id === MALUS_SIDE_QUEST && side.status === 'completed' &&
+    Object.hasOwn(side.objectives, 'obj-bring-item') && side.objectives['obj-bring-item'] === true &&
+    Object.hasOwn(receipts, ACT1_QUEST_RECEIPTS.presentItem) && receipts[ACT1_QUEST_RECEIPTS.presentItem] === true;
+}
+
 /** Validate only the finite current physical graph, preserving sparse historical journals. */
-export function validateMalusQuestGraph(items: QuestItemLedger, progress: Progress): void {
-  if (!Object.hasOwn(items, MALUS_SOURCE)) return;
-  const malus = items[MALUS_SOURCE];
-  if (malus?.itemId !== MALUS_ITEM || !flag(progress, 'obj-recover-malus') ||
+export function validateMalusQuestGraph(items: QuestItemLedger, progress: Progress,
+  receipts: QuestActionReceipts = {}): void {
+  const malus = Object.hasOwn(items, MALUS_SOURCE) ? items[MALUS_SOURCE] : undefined;
+  if (Object.hasOwn(items, MALUS_SOURCE) && (malus?.itemId !== MALUS_ITEM || !flag(progress, 'obj-recover-malus') ||
     !isMalusState(malus.state) ||
-    (malus.state === 'consumed' && !hasMalusHandIn(progress, items))) {
+    (malus.state === 'consumed' && !hasMalusHandIn(progress, items)))) {
     throw new Error('Invalid save: contradictory Malus physical source graph');
+  }
+  if (Object.hasOwn(receipts, ACT1_QUEST_RECEIPTS.presentItem) &&
+    !hasMalusCompletion(MALUS_SIDE_QUEST, progress, items, receipts)) {
+    throw new Error('Invalid save: contradictory Charsi Present source graph');
   }
 }

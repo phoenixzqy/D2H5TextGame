@@ -4,6 +4,7 @@ import { loadQuests } from '@/data/loaders/quests';
 import { validateQuestServiceLedger } from '../services/quest-services';
 import { EVE_QUEST, PRISON_QUEST } from '../map/act5-admission';
 import { HEPHASTO_PROOF } from '../map/act4-admission';
+import { MALUS_QUEST, MALUS_SIDE_QUEST, hasMalusCompletion } from '../map/malus-quest';
 import type { CampaignMapSaveData, QuestActionReceipts, QuestItemLedger, QuestProgressData } from '../types/save';
 import { hasAct5Completion, validateAct5QuestGraph } from './act5-state';
 import type { Act5QuestDomain, CampaignValidationDomain } from './quest-domain';
@@ -25,6 +26,9 @@ function finiteMap(value: unknown, key: string): void {
  */
 export function hasQuestServiceSourceGraph(questId: string, progress: Readonly<Record<string, QuestProgressData>>,
   receipts: QuestActionReceipts, items: QuestItemLedger, domain?: CampaignValidationDomain): boolean {
+  if (domain === undefined && (questId === MALUS_QUEST || questId === MALUS_SIDE_QUEST)) {
+    return hasMalusCompletion(questId, progress, items, receipts);
+  }
   const sourceQuest = domain ? (Object.hasOwn(domain.servicePrerequisites, questId)
     ? domain.servicePrerequisites[questId] ?? questId : questId) : questId === 'quests/side-act5-larzuks-sockets' ? 'quests/act5-siege-on-harrogath'
     : questId === 'quests/side-act5-anyas-gift' ? PRISON_QUEST

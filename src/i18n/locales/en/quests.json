@@ -301,8 +301,8 @@
     },
     "act1-charsis-imbue": {
       "name": "Charsi's Imbue",
-      "desc": "After recovering the Horadric Malus, Charsi can imbue a single normal item with rare power.",
-      "obj1": "Hand a normal item to Charsi."
+      "desc": "After giving Charsi the Horadric Malus, present an eligible normal weapon or armor unchanged. Claim a separate Imbue charge, then choose which item to imbue.",
+      "obj1": "Present an eligible normal weapon or armor to Charsi without consuming it."
     },
     "act1-rogue-merc-unlock": {
       "name": "Kashya's Recruit",

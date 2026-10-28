@@ -34,6 +34,8 @@ import { hasTaintedSunCompletion, isQuestResistanceReward, TAINTED_SUN_QUEST_ID 
 import { CAIN_QUEST, CAIN_SIDE_QUEST } from '@/engine/map/cain-quest';
 import { hasCainClaimCompletion, publishCainClaim } from './cainClaim';
 import { COUNTESS, hasCountessCompletion } from '@/engine/map/countess-admission';
+import { MALUS_QUEST, MALUS_SIDE_QUEST } from '@/engine/map/malus-quest';
+import { hasImbueClaimCompletion, publishImbueClaim } from './imbueClaim';
 
 export type ClaimResult =
   | 'ok'
@@ -105,7 +107,7 @@ export function canClaim(questId: string): boolean {
   if (progress.status !== 'completed') return false;
   if (questId === TAINTED_SUN_QUEST_ID && !hasTaintedSunCompletion(useMapStore.getState().questProgress)) return false;
   if (progress.rewardClaimed) return false;
-  if (!hasCainClaimCompletion(questId) || !hasCountessClaimCompletion(questId)) return false;
+  if (!hasCainClaimCompletion(questId) || !hasCountessClaimCompletion(questId) || !hasImbueClaimCompletion(questId)) return false;
   const quest = findQuest(questId);
   return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0 &&
     hasQuestServiceCompletion(quest.id) &&
@@ -165,7 +167,7 @@ export function claimQuestReward(questId: string): ClaimResult {
     if (!progress || progress.status !== 'completed') return 'not-completed';
     if (questId === TAINTED_SUN_QUEST_ID && !hasTaintedSunCompletion(useMapStore.getState().questProgress)) return 'not-completed';
     if (progress.rewardClaimed) return 'already-claimed';
-    if (!hasCainClaimCompletion(questId) || !hasCountessClaimCompletion(questId)) return 'not-completed';
+    if (!hasCainClaimCompletion(questId) || !hasCountessClaimCompletion(questId) || !hasImbueClaimCompletion(questId)) return 'not-completed';
     const quest = findQuest(questId);
     if (!quest) return 'unknown-quest';
     if (!hasQuestServiceCompletion(quest.id) || !hasAct5Completion(quest.id, useMapStore.getState().questProgress, useMapStore.getState().questReceipts, useInventoryStore.getState().questItems) || !hasAct4Completion(quest) || !hasQuestDeliveryCompletion(quest) || !hasQuestAssemblyCompletion(quest) ||
@@ -268,6 +270,14 @@ export function claimQuestReward(questId: string): ClaimResult {
         || !safeCount(amount) || kind === 'gemShards' && amount <= 0) return 'unsupported-rewards';
       if (amount > 0) grants.push({ kind, amount });
     }
+    // Refuse the exact Imbue bundle before any profile lookup or item allocation.
+    if (questId === MALUS_QUEST || questId === MALUS_SIDE_QUEST) {
+      if (questServices?.[serviceSource]?.serviceId !== 'imbue_item' ||
+        grants.some(grant => grant.kind !== 'xp') ||
+        (grants.find(grant => grant.kind === 'xp')?.amount ?? 0) !== (questId === MALUS_QUEST ? 3500 : 0) ||
+        uniqueReward !== undefined || uniqueProfileReward || tableReward !== undefined || questItems !== undefined ||
+        resistanceReward || campaignReward || mercenaryUnlock || permanentIdentify) return 'unsupported-rewards';
+    }
     if (grants.length === 0 && !uniqueReward && !uniqueProfileReward && !tableReward && !questItems && !resistanceReward && !questServices && !campaignReward && !mercenaryUnlock && !permanentIdentify) return 'no-rewards';
     if (!safeGrants(player, grants)) return 'unsupported-rewards';
     if (uniqueProfileReward) {
@@ -354,6 +364,10 @@ export function claimQuestReward(questId: string): ClaimResult {
         uniqueReward !== undefined || uniqueProfileReward || tableReward !== undefined || questItems !== undefined || resistanceReward || questServices !== undefined ||
         campaignReward || mercenaryUnlock) return 'unsupported-rewards';
       return publishCainClaim(questId, grants.find(grant => grant.kind === 'xp')?.amount ?? 0);
+    }
+
+    if (questId === MALUS_QUEST || questId === MALUS_SIDE_QUEST) {
+      return publishImbueClaim(questId, grants.find(grant => grant.kind === 'xp')?.amount ?? 0);
     }
 
     const serviceEntry = questServices?.[serviceSource];
