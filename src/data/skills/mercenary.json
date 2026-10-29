@@ -56,11 +56,24 @@
     "damage": {
       "min": 22,
       "max": 35,
-      "breakdown": { "physical": 35 }
+      "breakdown": {
+        "physical": 35
+      }
     },
     "damageType": "physical",
-    "appliesStatus": ["stun"],
-    "appliesTags": ["physical"]
+    "appliesStatus": [
+      "stun"
+    ],
+    "appliesTags": [
+      "physical"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 0.25,
+      "durationMs": 1000
+    }
   },
   {
     "id": "mskill-chop",
@@ -75,10 +88,18 @@
     "damage": {
       "min": 16,
       "max": 26,
-      "breakdown": { "physical": 26 }
+      "breakdown": {
+        "physical": 26
+      }
     },
     "damageType": "physical",
-    "appliesTags": ["physical"]
+    "appliesTags": [
+      "physical"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "critChanceBonus": 0.25
   },
   {
     "id": "mskill-pierce-thrust",
@@ -86,17 +107,25 @@
     "description": "skills.mercenary.pierce-thrust.desc",
     "icon": "skills/merc/pierce-thrust.png",
     "trigger": "active",
-    "target": "single-enemy",
+    "target": "area-enemies",
     "cooldown": 2,
     "minLevel": 1,
     "maxLevel": 20,
     "damage": {
       "min": 20,
       "max": 32,
-      "breakdown": { "physical": 32 }
+      "breakdown": {
+        "physical": 32
+      }
     },
     "damageType": "physical",
-    "appliesTags": ["physical"]
+    "appliesTags": [
+      "physical"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "maxTargets": 2
   },
   {
     "id": "mskill-basic-swing",
@@ -111,10 +140,17 @@
     "damage": {
       "min": 18,
       "max": 30,
-      "breakdown": { "physical": 30 }
+      "breakdown": {
+        "physical": 30
+      }
     },
     "damageType": "physical",
-    "appliesTags": ["physical"]
+    "appliesTags": [
+      "physical"
+    ],
+    "cost": {
+      "mana": 0
+    }
   },
   {
     "id": "mskill-pilfer",
@@ -233,17 +269,32 @@
     "icon": "skills/merc/fire-ball.png",
     "trigger": "active",
     "target": "area-enemies",
-    "cooldown": 3,
+    "cooldown": 4,
     "minLevel": 1,
     "maxLevel": 20,
     "damage": {
-      "min": 32,
-      "max": 52,
-      "breakdown": { "fire": 52 }
+      "min": 50,
+      "max": 80,
+      "breakdown": {
+        "fire": 80
+      }
     },
     "damageType": "fire",
-    "appliesStatus": ["burn"],
-    "appliesTags": ["fire", "burn"]
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "maxTargets": 2,
+    "statusEffect": {
+      "dotPctOfDamage": 0.1,
+      "durationMs": 3000
+    }
   },
   {
     "id": "mskill-glacial-spike",
@@ -252,17 +303,31 @@
     "icon": "skills/merc/glacial-spike.png",
     "trigger": "active",
     "target": "single-enemy",
-    "cooldown": 3,
+    "cooldown": 5,
     "minLevel": 1,
     "maxLevel": 20,
     "damage": {
-      "min": 30,
-      "max": 48,
-      "breakdown": { "cold": 48 }
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "cold": 60
+      }
     },
     "damageType": "cold",
-    "appliesStatus": ["chill"],
-    "appliesTags": ["cold", "chill"]
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "statusEffect": {
+      "chance": 0.3,
+      "durationMs": 2000
+    }
   },
   {
     "id": "mskill-charged-bolt",
@@ -271,17 +336,33 @@
     "icon": "skills/merc/charged-bolt.png",
     "trigger": "active",
     "target": "all-enemies",
-    "cooldown": 3,
+    "cooldown": 4,
     "minLevel": 1,
     "maxLevel": 20,
     "damage": {
-      "min": 28,
-      "max": 50,
-      "breakdown": { "lightning": 50 }
+      "min": 12,
+      "max": 12,
+      "breakdown": {
+        "lightning": 12
+      }
     },
     "damageType": "lightning",
-    "appliesStatus": ["paralyze"],
-    "appliesTags": ["lightning", "shock"]
+    "appliesStatus": [
+      "paralyze"
+    ],
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "cost": {
+      "mana": 0
+    },
+    "hitSequence": {
+      "strikes": 5
+    },
+    "statusEffect": {
+      "durationMs": 1000
+    }
   },
   {
     "id": "mskill-frozen-armor",

@@ -134,15 +134,8 @@ function stub(spec: StubSpec): RegisteredSkill {
  */
 export const MERC_STUB_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   // Mercenary actives (mskill-*)
-  stub({ id: 'mskill-fire-ball', target: 'area-enemies', cooldown: 2, manaCost: 0, damageType: 'fire', base: [35, 55], status: { id: 'ignite' } }),
   stub({ id: 'mskill-fire-arrow', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'fire', base: [25, 40], status: { id: 'ignite' } }),
   stub({ id: 'mskill-cold-arrow', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'cold', base: [25, 40], status: { id: 'chill' } }),
-  stub({ id: 'mskill-glacial-spike', target: 'area-enemies', cooldown: 2, manaCost: 0, damageType: 'cold', base: [30, 50], status: { id: 'chill' } }),
-  stub({ id: 'mskill-charged-bolt', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'lightning', base: [25, 40] }),
-  stub({ id: 'mskill-pierce-thrust', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'physical', base: [25, 40] }),
-  stub({ id: 'mskill-chop', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'physical', base: [22, 35] }),
-  stub({ id: 'mskill-basic-swing', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'physical', base: [18, 28] }),
-  stub({ id: 'mskill-smite', target: 'single-enemy', cooldown: 2, manaCost: 0, damageType: 'physical', base: [25, 40], status: { id: 'stun', chance: 0.2 } }),
   stub({ id: 'mskill-war-cry', target: 'all-enemies', cooldown: 3, manaCost: 0, damageType: 'physical', base: [15, 25], status: { id: 'stun', chance: 0.3 } }),
   stub({ id: 'mskill-holy-fire', target: 'all-enemies', cooldown: 3, manaCost: 0, damageType: 'fire', base: [20, 30], status: { id: 'ignite' } }),
   stub({ id: 'mskill-pilfer', target: 'single-enemy', cooldown: 2, manaCost: 0, damageType: 'physical', base: [15, 25] }),

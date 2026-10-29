@@ -15266,3 +15266,62 @@ soak/full-v1 acceptance remains unresolved. H3 remains terminal failed-no-app;
 no app/browser retry, protected fixture access/replay, closed diagnostic/policy
 execution, new acquisition/lineage/gameplay replacement experiment, remote
 action or deployment occurs. Umbrella goal and worktree stay active.
+
+
+## 2026-10-28 — Seven native mercenary attacks / BUG-374 — native repair verified; acceptance pending
+
+Fire Ball, Glacial Spike, Charged Bolt, Smite, Chop, Pierce Thrust and Basic
+Swing now execute a validated immutable JSON catalog instead of seven stubs.
+D04 explicitly reconciles flat zero-MP/rank1–20 damage, first-two recipients,
+five independent rotating bolts, landed canonical Burn/Chill/Paralyze/Stun and
+effect-only Chop crit. Real factory secondary skills and Fire Mastery remain.
+Closed schema identities and bilingual copy match actual mechanics; shared
+combat/status/persistence/recruitment/runtime types are unchanged.
+
+Actual-loader/factory/projection/default-registry seed5 primary has seven
+causal RED failures before production; a type-only explicit event guard
+successor also fails seven before production. Frozen unchanged primary GREEN
+passes7. Four new files add99cases: resolver40/combat45/primary7/public lifecycle7.
+Native literal recipient/damage/resource/status/action clocks, ranks/Attack,
+mitigation/crit/overflow, missed payloads, target/caster death and immutable
+public playback are covered. This is constructed mechanics, not earned play.
+
+Failed schema-edit preflight (before writes), Ajv strictTypes/strictRequired
+zero-collection attempts, a saturated Burn observer, test lint and one fixture
+kind-widening TS2322 remain retained. Explicit local schema types/element keys
+preserve strict constraints; prior Burn expiry2000 makes refresh4700 observable
+without weakening cap5/rate2/old-source checks. Reviewed typed observers remove
+redundant guards/unsafe matchers. A single as-const fixture annotation emits
+byte-identical ES2022 JS under esbuild0.21.5. Primary/production stay unchanged
+through the final three test-only corrections; all failures have honest lineage.
+
+Final unchanged2085-map
+`e3495bca891687447282cda5a91ba49270b641e9f7b28684b9d3c1dd34e8e7c4`
+passes focused330/11files(20.658452s), engine11345/422(289.803955s), ordinary
+21201/997(980.312128s;zero failures/pending/todo), project types(145.985454s),
+scoped zero-warning lint(13.985767s), full lint/engine purity(330.656039s),
+ordinary dependency audit997tests/1581modules(3.169789s) and external production
+build(17.838002s). No timeout-cause, speedup or performance acceptance follows.
+Existing bundle-size/precache/Browserslist warnings remain. The unsafe historical
+full runner stays refused. The ordinary preflight audits discovery and runtime
+dependencies; its997-file inventory matches the completed run. No diagnostic
+workspace is invoked. Independent source/completed-gate approvals are
+retained; final evidence and exact staged/committed blob/tree/parent reviews
+govern the local checkpoint.
+
+Disposable external build762files/42291221bytes/10directories removed, verified
+absent; all42 recorded check PID/driver observations absent, no cleanup failures.
+Root retains exact required sources/reports/logs/maps/reviews and cleanup receipts
+at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-direct-3u9ht7ur`
+through unfinished acceptance and owns eventual exact-path cleanup.
+[Evidence](evidence/merc-direct.md). Next separate War Cry control plan is
+independently ready and preserves factory War Cry→Bash→Chop; implementation
+waits for this native checkpoint.
+
+BUG374 remains Open for browser/earned/feature acceptance; player inventory stays
+212bounded/oneunverified. Campaign/economy/build/pacing/defeat-retry/devices/
+locales/a11y/performance/PWA/actualCI/human/soak/full-v1 acceptance remains open.
+H3 is terminal failed-no-app; no app/browser/retry, protected fixture access or
+replay, diagnostic/closed-policy execution, new acquisition/lineage/gameplay
+replacement run, remote action or deployment occurs. Umbrella goal and worktree
+stay active.

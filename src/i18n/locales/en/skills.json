@@ -1411,19 +1411,19 @@
     },
     "smite": {
       "name": "Smite",
-      "desc": "Bashes the foe with the shield, briefly stunning."
+      "desc": "Deal 22–35 Physical damage to one enemy. Each landed hit has a 25% chance to Stun for 1 second (0.5 seconds against bosses). Uses ordinary accuracy and Defense. Costs 0 MP; 2-second cooldown."
     },
     "chop": {
       "name": "Chop",
-      "desc": "A militia swordsman's basic chopping strike."
+      "desc": "Deal 16–26 Physical damage to one enemy with +25 percentage points critical chance for this hit only. Costs 0 MP; 1-second cooldown."
     },
     "pierce-thrust": {
       "name": "Pierce Thrust",
-      "desc": "A long pike thrust that pierces armor."
+      "desc": "Deal 20–32 Physical damage to the first two distinct enemies. Uses ordinary accuracy and Defense. Costs 0 MP; 2-second cooldown."
     },
     "basic-swing": {
       "name": "Basic Swing",
-      "desc": "A barbarian recruit's basic two-handed swing."
+      "desc": "Deal 18–30 Physical damage to one enemy. Costs 0 MP; 1-second cooldown."
     },
     "pilfer": {
       "name": "Pilfer",
@@ -1451,15 +1451,15 @@
     },
     "fire-ball": {
       "name": "Fire Ball",
-      "desc": "An Iron Wolf's signature explosion of fire."
+      "desc": "Deal 50–80 Fire damage to the first two enemies. Each landed hit burns for 10% of its mitigated damage per second for 3 seconds, up to 5 stacks. Benefits from Fire Mastery. Costs 0 MP; 4-second cooldown."
     },
     "glacial-spike": {
       "name": "Glacial Spike",
-      "desc": "Hurls a frozen spike that freezes its target."
+      "desc": "Deal 40–60 Cold damage to one enemy. Each landed hit has a 30% chance to Chill for 2 seconds, reducing Attack Speed by 50%. Costs 0 MP; 5-second cooldown."
     },
     "charged-bolt": {
       "name": "Charged Bolt",
-      "desc": "Fires erratic lightning bolts at random enemies."
+      "desc": "Fire five independent bolts, each dealing 12 Lightning damage, rotating through the original enemies. Landed bolts apply Paralyze for 1 second, with diminishing returns on repeat applications. Costs 0 MP; 4-second cooldown."
     },
     "frozen-armor": {
       "name": "Frozen Armor",
