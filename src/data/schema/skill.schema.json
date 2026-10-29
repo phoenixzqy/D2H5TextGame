@@ -1647,7 +1647,7 @@
     },
     {
       "if": { "required": ["hitSequence"], "properties": { "hitSequence": {} } },
-      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "mskill-jab", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw", "skills-barbarian-double-swing", "skills-barbarian-double-throw", "skills-barbarian-frenzy", "skills-amazon-strafe"] } } }
+      "then": { "properties": { "id": { "enum": ["skills-druid-fury", "skills-amazon-jab", "mskill-jab", "mskill-bash", "skills-assassin-dragon-talon", "skills-assassin-dragon-claw", "skills-barbarian-double-swing", "skills-barbarian-double-throw", "skills-barbarian-frenzy", "skills-amazon-strafe"] } } }
     },
     {
       "if": { "required": ["id"], "properties": { "id": { "const": "skills-barbarian-double-throw" } } },
@@ -3822,6 +3822,26 @@
       ]
     }
   }, {
+      "if": { "properties": { "id": { "const": "mskill-bash" } }, "required": ["id"] },
+      "then": {
+        "required": ["damage", "damageType", "hitSequence", "cost", "appliesStatus", "statusEffect"],
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "cooldown": { "const": 2 }, "minLevel": { "const": 1 }, "maxLevel": { "const": 20 },
+          "damageType": { "const": "physical" }, "hitSequence": { "const": { "strikes": 2 } },
+          "cost": { "const": { "mana": 0 } }, "appliesStatus": { "const": ["stun"] },
+          "statusEffect": { "const": { "chance": 0.25, "durationMs": 1000 },
+            "description": "Bash-only per-landed-attempt chance and canonical base stun duration; ordinary boss reduction applies." },
+          "attackDamagePct": false, "additionalStatusEffects": false,
+          "scaling": false, "heal": false, "summonId": false, "monsterSummon": false,
+          "summonBasicAttackElements": false, "aoeShape": false, "maxTargets": false,
+          "requires": false, "passive": false, "aura": false, "summon": false,
+          "alwaysHits": false, "ignoresDefense": false, "ignoresMagicResist": false,
+          "critChanceBonus": false, "onHitRecovery": false, "onHitSelfDamage": false,
+          "onHitBolts": false, "damageComposition": false, "timedBuff": false
+        }
+      }
+    }, {
       "if": { "properties": { "id": { "const": "mskill-jab" } }, "required": ["id"] },
       "then": {
         "required": ["mercJab", "damage", "damageType", "attackDamagePct", "hitSequence", "cost"],

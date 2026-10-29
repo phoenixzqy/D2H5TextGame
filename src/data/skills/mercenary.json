@@ -31,6 +31,9 @@
     "cooldown": 2,
     "minLevel": 1,
     "maxLevel": 20,
+    "cost": { "mana": 0 },
+    "hitSequence": { "strikes": 2 },
+    "statusEffect": { "chance": 0.25, "durationMs": 1000 },
     "damage": {
       "min": 25,
       "max": 40,

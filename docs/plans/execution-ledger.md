@@ -15205,3 +15205,64 @@ remaining[]/failures[]; root retains exact inventory in the Jab packet.
 Historical `full` runner remains refused; the new ordinary gate is named `unit`.
 No diagnostic run, old winner-expectation edit, assertion weakening or feature/
 gameplay/pacing acceptance follows. [Testing boundary](../qa/unit-test-boundary.md).
+
+
+## 2026-10-28 — Native mercenary Bash / BUG-372 — native repair verified; acceptance pending
+
+The actual Battle Orders barbarian now uses native two-attempt Bash rather
+than its single-hit placeholder. D04 preserves flat25–40/CD2s/zeroMP/min1/cap20
+and reconciles25% stun per landed attempt with canonical1s/0.5s bosses. Ordinary
+hit/base/critical, mitigation, cooldown, death/reflection and status refresh
+remain authoritative; there is no Attack contribution or Jab bonus. Closed
+JSON/schema, one immutable resolver, exact stub replacement and both locales
+carry the repair. No shared combat/persistence/acquisition change.
+
+Frozen real-loader/factory/projection/default-registry seed7 primary retains
+Battle Orders: RED2fail(onehit) precedes bug filing/production edits; unchanged
+GREEN2pass. Four files add65cases: resolver40/combat22/primary2/public lifecycle1.
+Native literal RNG covers first/second/both/neither stun, missed attempts and
+criticals; finite ordinary/boss status state and action interruption, one CD/MP
+payment, target/caster death, public playback and immutable inputs are checked.
+
+Initial focused256/10 passes; an ES2022 observation-helper correction changes
+no fixture/oracle. Scoped lint and types then fail for the same action-event
+filter typing error. Both failures and exact sources remain retained. Explicit
+RecordedBattleEvent action predicate emits byte-identical JS under installed
+esbuild0.21.5 targetES2022; independent producer review approves the correction.
+Successor2080map `a03076fd0a18739fab895e46af5bea54ef370a642c4b9f021ab29889d30cc1a0`
+passes focused256/10(21.469175s), engine11260/420(311.804652s), project
+types(173.193773s), scoped lint(10.952822s), full zero-warning lint/engine
+purity(357.042346s), external build(19.437913s). Native ordinary units terminate
+exit1/1234.562202s:21101tests pass/one failure,992files pass/one failure; no timeout.
+BUG373 native trace proves no Blaze cast: FINISHER misses41HP at400ms, then
+native Bash22+20 ends combat400ms. Only hero Blaze fixture priority changes;
+the companion and all original assertions remain, with paid cast22MP/status
+source/rank5/400..3400/terminal lifetime checks added. Actual syntax-preflight
+and matcher-any lint failures remain retained with exact predecessors.
+Final2080map `12bc75977a677d12f79052428bef445167eb475a3df6694718a3bbc19a59b562`
+differs only in the wave test; targeted12/12 and scoped lint pass. Independent
+producer approves diagnosis, final fixture and additive ordinary runner.
+Final ordinary units pass21102tests/993files with zero failed/pending/todo in
+1584.117326s. Final project types pass280.345979s; full zero-warning lint/engine
+purity passes540.454492s. Each receipt records unchanged2080inputs at final map.
+Independent final evidence review and exact staged/committed blob binding govern
+the local checkpoint. Engine/build production inputs and frozen Bash primary
+remain unchanged; prior checks are predecessor evidence, not successor reruns.
+No elapsed threshold/config/budget change or timeout-cause/speedup claim.
+
+Exact disposable external build762files/42282854bytes/10directories removed,
+absence verified; no cleanup failures. Root retains the Bash packet, required
+native evidence/reviews/input maps and terminal handles in continuation.json at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-bash-txtr1cps`.
+Root owns eventual exact-path cleanup through unfinished acceptance.
+[Evidence](evidence/merc-bash.md). The next seven-skill native direct-damage
+catalog plan is independently ready; source/test work waits for Bash completion.
+
+BUG372 remains Open for browser/earned/feature acceptance. BUG373's paid-Blaze
+fixture is fixed and verified by final native gates. Player inventory stays
+212bounded/oneunverified. Campaign/economy/
+build/pacing/defeat-retry/devices/locales/a11y/performance/PWA/actualCI/human/
+soak/full-v1 acceptance remains unresolved. H3 remains terminal failed-no-app;
+no app/browser retry, protected fixture access/replay, closed diagnostic/policy
+execution, new acquisition/lineage/gameplay replacement experiment, remote
+action or deployment occurs. Umbrella goal and worktree stay active.

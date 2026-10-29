@@ -1407,7 +1407,7 @@
     },
     "bash": {
       "name": "Bash",
-      "desc": "A heavy weapon swing that can stun."
+      "desc": "Strike one enemy twice. Each landed hit has a 25% chance to stun for 1 second (0.5 seconds against bosses)."
     },
     "smite": {
       "name": "Smite",

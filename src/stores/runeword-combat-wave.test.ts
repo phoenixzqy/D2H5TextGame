@@ -92,7 +92,9 @@ describe('native wave-frozen runeword combat effects (constructed integration ch
       if (!hero) throw new Error('Missing hero');
       const id = owner === 'hero' ? hero.id : 'merc-original';
       if (owner === 'hero') {
-        usePlayerStore.setState({ player: { ...hero, comboOrder: [FINISHER, row.id] } });
+        // A field-removal case must pay Blaze before the synthetic wave finisher.
+        usePlayerStore.setState({ player: { ...hero, comboOrder: row.id === 'sorceress.blaze'
+          ? [row.id, FINISHER] : [FINISHER, row.id] } });
         expect(useInventoryStore.getState().equipItem(item)).toEqual({ ok: true });
       } else {
         useMercStore.setState({ ownedMercs: useMercStore.getState().ownedMercs.map(candidate =>
@@ -104,6 +106,22 @@ describe('native wave-frozen runeword combat effects (constructed integration ch
       expect(bearer(id).governedActiveRanks?.[row.id]).toBe(row.rank);
       expect(bearer(id).skillOrder).toContain(row.id);
       const original = structuredClone(latest()), installed = recording();
+      if (row.id === 'sorceress.blaze' && owner === 'hero') {
+        expect(bearer(id, original).skillOrder).toEqual([row.id, FINISHER]);
+        expect(installed.events.find(event => event.kind === 'action' && event.actor === id))
+          .toMatchObject({ skillId: row.id, simClockMs: 400 });
+        expect(installed.events.find(event => event.kind === 'mana' && event.target === id && event.reason === 'cast'))
+          .toMatchObject({ mana: bearer(id, original).mana - 22, simClockMs: 400 });
+        expect(installed.events).toContainEqual(expect.objectContaining({
+          kind: 'buff', target: id, buffId: 'blaze', statusBacked: true, simClockMs: 400
+        }));
+        const applied = installed.events.find(event => event.kind === 'status-state' && event.target === id &&
+          event.statuses.some(status => status.id === 'blaze'));
+        if (applied?.kind !== 'status-state') throw new Error('Missing native paid Blaze status');
+        expect(applied.simClockMs).toBe(400);
+        expect(applied.statuses.find(status => status.id === 'blaze')).toMatchObject({ id: 'blaze', sourceId: id,
+          periodicSpell: { rank: row.rank }, appliedAtMs: 400, expiresAtMs: 3400 });
+      }
       refreshActivePlayerCombatConfig({ replayCurrentWave: true });
       expect(latest()).toEqual(original); expect(recording()).toEqual(installed);
       if (owner === 'hero') expect(useInventoryStore.getState().unequipItem(row.slot)).toEqual({ ok: true });
@@ -112,6 +130,13 @@ describe('native wave-frozen runeword combat effects (constructed integration ch
       const final = useCombatStore.getState().outcome?.finalPlayerTeam.find(unit => unit.id === id);
       const end = useCombatStore.getState().recordedEvents.at(-1);
       if (!final || end?.kind !== 'end') throw new Error('Missing final bearer');
+      if (row.id === 'sorceress.blaze' && owner === 'hero') {
+        expect(final.statuses.find(status => status.id === 'blaze')).toMatchObject({
+          sourceId: id, periodicSpell: { rank: row.rank }, appliedAtMs: 400, expiresAtMs: 3400
+        });
+        expect(end.simClockMs).toBeGreaterThanOrEqual(400);
+        expect(end.simClockMs).toBeLessThan(3400);
+      }
       const rebased = rebaseStatusClock(final, end.simClockMs);
       advance();
       const next = bearer(id);

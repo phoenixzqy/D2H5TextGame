@@ -134,7 +134,6 @@ function stub(spec: StubSpec): RegisteredSkill {
  */
 export const MERC_STUB_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   // Mercenary actives (mskill-*)
-  stub({ id: 'mskill-bash', target: 'single-enemy', cooldown: 2, manaCost: 0, damageType: 'physical', base: [25, 40], status: { id: 'stun', chance: 0.25 } }),
   stub({ id: 'mskill-fire-ball', target: 'area-enemies', cooldown: 2, manaCost: 0, damageType: 'fire', base: [35, 55], status: { id: 'ignite' } }),
   stub({ id: 'mskill-fire-arrow', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'fire', base: [25, 40], status: { id: 'ignite' } }),
   stub({ id: 'mskill-cold-arrow', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'cold', base: [25, 40], status: { id: 'chill' } }),
