@@ -7,6 +7,20 @@
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
   "allOf": [
+    {
+      "if": { "required": ["id"], "properties": { "id": { "const": "mskill-war-cry" } } },
+      "then": {
+        "required": ["cost", "appliesStatus", "statusEffect"],
+        "propertyNames": { "enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "appliesStatus", "statusEffect"] },
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "all-enemies" },
+          "cooldown": { "const": 12 }, "minLevel": { "const": 1 }, "maxLevel": { "const": 20 },
+          "cost": { "const": { "mana": 0 } }, "appliesStatus": { "const": ["stun"] },
+          "statusEffect": { "const": { "durationMs": 6000 },
+            "description": "Guaranteed non-damaging mercenary area Stun; canonical boss halving applies, with no ignored hit chance or boss override." }
+        }
+      }
+    },
     {"if": {"required": ["maxTargets"], "properties": {"maxTargets": {"const": 2}}}, "then": {"properties": {"id": {"enum": ["mskill-fire-ball", "mskill-pierce-thrust"]}}}},
     {
       "if": {"required": ["id"], "properties": {"id": {"const": "mskill-fire-ball"}}},

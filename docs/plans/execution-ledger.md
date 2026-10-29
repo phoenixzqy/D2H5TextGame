@@ -15325,3 +15325,61 @@ H3 is terminal failed-no-app; no app/browser/retry, protected fixture access or
 replay, diagnostic/closed-policy execution, new acquisition/lineage/gameplay
 replacement run, remote action or deployment occurs. Umbrella goal and worktree
 stay active.
+
+
+## 2026-10-28 — Native mercenary War Cry / BUG-375 — native repair verified; acceptance pending
+
+The actual War Cry barbarian now uses the reconciled gacha-spec§4.2 contract:
+guaranteed non-damaging area Stun6s ordinary/3s bosses, zeroMP/CD12/flat ranks1–20.
+An immutable validated exact-row DebuffEffect replaces only its contradictory
+damage stub. Closed JSON/schema metadata and both locales match native behavior.
+Existing runtime preserves real War Cry→Bash→Chop priority, finite control after
+source death, non-stacking refresh and basic fallback. Shared combat/status,
+persistence/recruitment/runtime types, dependencies and CI remain unchanged.
+
+Original actual-loader/factory/projection/default-registry seed5 primary fails2
+before production and BUG375 filing. First repaired primary fails solely on
+unpromised recipient event order: summons are prioritized. Independently approved
+arrayContaining plus exact length4 retains every distinct recipient and literal
+value. Corrected-primary GREEN passes2; never unchanged-primary GREEN. Four new
+files add64cases: primary2/resolver41/combat18/public lifecycle3. Public literal
+actions1700 War Cry/3400 Bash/5100 Chop and seed5 damage37+34 at3400/0 at5100
+separate later skill behavior from non-damaging control. Saved/input/recording
+state remains immutable and deterministic.
+
+Native failed cadence expectation2500ms is corrected to existing2000ms clamp;
+literal ordinary/boss resume8000/6000 remain explicit. Lifecycle correction
+asserts retained engine corpse statuses and empty playback presentation, normalizing
+expected dead-body display only. Lint String(i), optional cost/duration guards and
+equivalent optional chaining preserve behavior and oracles. Independent review
+approves corrections; all failures/predecessors remain retained and final primary
+stays frozen through the final guard/lint corrections.
+
+Final unchanged2089-input map
+`8d79c2ebad1883ab04840c28eb38ce2b0644445badf5441919ac6bbc0b4c393e`
+passes focused219/8files(17.665793s), engine11404/424(358.225486s), ordinary
+21265/1001(1038.995292s;zero failures/pending/todo), project types(126.727535s),
+scoped zero-warning lint(10.088027s), full lint/engine purity(383.763173s),
+ordinary dependency audit1001tests/1586modules(3.972345s) and external production
+build(20.256407s). The ordinary file count matches its audited discovery and all
+reported file paths belong to permitted inputs. The unsafe historical full runner
+remains refused before snapshots/subprocess. No timeout-cause, speedup or
+performance-budget acceptance follows. Independent native source/test and
+completed engine/lint approvals are retained; final ordinary/evidence and exact
+staged/committed blob/tree/parent reviews govern the local checkpoint.
+
+Disposable external build762files/42292116bytes/10directories removed, verified
+absent; all44 recorded check PID/driver observations absent, no cleanup failures.
+Root retains exact required sources/reports/logs/maps/reviews and cleanup receipts
+at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-war-cry-3dekymsl`
+through unfinished acceptance and owns eventual exact-path cleanup.
+[Evidence](evidence/merc-war-cry.md). Next separate mercenary Telekinesis plan
+and non-executed actual-loadout primary/oracle draft are independently ready;
+causal freeze/RED and implementation wait for this committed native checkpoint.
+
+BUG375 remains Open for browser/earned/feature acceptance; player inventory stays
+212bounded/oneunverified. Campaign/economy/build/pacing/defeat-retry/devices/
+locales/a11y/performance/PWA/actualCI/human/soak/full-v1 acceptance remains open.
+H3 is terminal failed-no-app; no app/browser/retry, protected fixture access/replay,
+diagnostic/closed-policy execution, new acquisition/lineage/gameplay replacement
+run, remote action or deployment occurs. Umbrella goal and worktree stay active.

@@ -400,17 +400,12 @@
     "icon": "skills/merc/war-cry.png",
     "trigger": "active",
     "target": "all-enemies",
-    "cooldown": 5,
+    "cooldown": 12,
     "minLevel": 1,
     "maxLevel": 20,
-    "damage": {
-      "min": 18,
-      "max": 30,
-      "breakdown": { "physical": 30 }
-    },
-    "damageType": "physical",
+    "cost": { "mana": 0 },
     "appliesStatus": ["stun"],
-    "appliesTags": ["physical"]
+    "statusEffect": { "durationMs": 6000 }
   },
   {
     "id": "mskill-holy-fire",

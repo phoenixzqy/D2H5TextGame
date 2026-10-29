@@ -1471,7 +1471,7 @@
     },
     "war-cry": {
       "name": "War Cry",
-      "desc": "A barbarian shout that stuns foes and rallies allies."
+      "desc": "Deals no damage. Stuns all living enemies, including summons, for 6 seconds (3 seconds for bosses). Costs no mana; 12-second cooldown. Duration does not increase with rank."
     },
     "holy-fire": {
       "name": "Holy Fire Strike",
