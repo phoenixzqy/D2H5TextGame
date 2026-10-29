@@ -22,6 +22,7 @@ import { MERC_JAB_SKILL } from './merc-jab';
 import { MERC_BASH_SKILL } from './merc-bash';
 import { MERC_DIRECT_SKILLS } from './merc-direct';
 import { MERC_WAR_CRY_SKILL } from './merc-war-cry';
+import { MERC_TELEKINESIS_SKILL } from './merc-telekinesis';
 import { MERC_HOLY_FREEZE_SKILL } from './merc-holy-freeze';
 import { MERC_MIGHT_SKILL } from './merc-might';
 import { MERC_FIRE_MASTERY_SKILL } from './merc-fire-mastery';
@@ -115,6 +116,7 @@ export function loadDefaultSkills(): void {
   registry.set(MERC_BASH_SKILL.id, MERC_BASH_SKILL);
   for (const skill of MERC_DIRECT_SKILLS) registry.set(skill.id, skill);
   registry.set(MERC_WAR_CRY_SKILL.id, MERC_WAR_CRY_SKILL);
+  registry.set(MERC_TELEKINESIS_SKILL.id, MERC_TELEKINESIS_SKILL);
   for (const s of MONSTER_STUB_SKILLS) {
     registry.set(s.id, s);
   }

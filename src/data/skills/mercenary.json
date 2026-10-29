@@ -391,6 +391,9 @@
       "breakdown": { "arcane": 32 }
     },
     "damageType": "arcane",
+    "cost": { "mana": 0 },
+    "appliesStatus": ["stun"],
+    "statusEffect": { "chance": 0.5, "durationMs": 1000 },
     "appliesTags": ["arcane"]
   },
   {

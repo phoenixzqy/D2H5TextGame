@@ -8,6 +8,22 @@
   "additionalProperties": false,
   "allOf": [
     {
+      "if": { "required": ["id"], "properties": { "id": { "const": "mskill-telekinesis" } } },
+      "then": {
+        "required": ["cost", "damage", "damageType", "appliesTags", "appliesStatus", "statusEffect"],
+        "propertyNames": { "enum": ["id", "name", "description", "icon", "trigger", "target", "cooldown", "minLevel", "maxLevel", "cost", "damage", "damageType", "appliesTags", "appliesStatus", "statusEffect"] },
+        "properties": {
+          "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+          "cooldown": { "const": 2 }, "minLevel": { "const": 1 }, "maxLevel": { "const": 20 },
+          "cost": { "const": { "mana": 0 } }, "damageType": { "const": "arcane" },
+          "damage": { "const": { "min": 20, "max": 32, "breakdown": { "arcane": 32 } } },
+          "appliesTags": { "const": ["arcane"] }, "appliesStatus": { "const": ["stun"] },
+          "statusEffect": { "const": { "chance": 0.5, "durationMs": 1000 },
+            "description": "Mercenary-only landed Stun adapting Knockback without movement; canonical boss halving applies." }
+        }
+      }
+    },
+    {
       "if": { "required": ["id"], "properties": { "id": { "const": "mskill-war-cry" } } },
       "then": {
         "required": ["cost", "appliesStatus", "statusEffect"],

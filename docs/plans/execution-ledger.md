@@ -15383,3 +15383,52 @@ locales/a11y/performance/PWA/actualCI/human/soak/full-v1 acceptance remains open
 H3 is terminal failed-no-app; no app/browser/retry, protected fixture access/replay,
 diagnostic/closed-policy execution, new acquisition/lineage/gameplay replacement
 run, remote action or deployment occurs. Umbrella goal and worktree stay active.
+
+
+## 2026-10-28 — Native mercenary Telekinesis / BUG-376 — native repair verified; acceptance pending
+
+The actual signature mercenary and Fire Iron Wolf now use validated immutable
+authored Arcane20–32 damage, CD2/zeroMP/flat ranks1–20/no Attack. D04 reconciles
+advertised50% Knockback into50% landed Stun1000ms ordinary/500ms bosses under
+the no-movement rule. Closed exact-row schema, stub removal and both locales
+match the native skill; player Telekinesis stays distinct utility.
+
+Actual-loader/factory/projection/default-registry seed3/9 primary fails3 before
+production and BUG376 filing; unchanged-primary GREEN passes3. Four new files
+add80cases: resolver48/combat24/primary3/public lifecycle5. Actual Fire Iron Wolf
+Fire Ball→Telekinesis→Fire Mastery remains intact; seed3 damage63Fire at1700ms
+and26Arcane at3400ms separates secondary behavior. Finite control, death, paid
+residual/recast, native RNG/mitigation and immutable playback are covered.
+Reviewed residual fixture21→22HP corrects periodic accrual timing while retaining
+death2000/residual1700. Test-only event typing/lint corrections preserve oracles.
+
+External ownership-registration race loses one typecheck child's exit; no success
+is claimed. Reviewed same-handle read/update/flush locking repairs bookkeeping.
+Fresh receipted types pass; original evidence and wrapper remain retained.
+Final unchanged2094-input map
+`1d1860b2d0c10b98031b51d64aacc01cb27d03e34540f2a9f02265214fba57d7`
+passes focused235/8files(16.225756s), scoped zero-warning lint(9.362291s),
+engine11476/426(323.827726s), audited ordinary21345/1005(1141.879416s;zero
+failed/pending/todo), project types(123.894217s), full zero-warning lint/engine
+purity(373.375180s), boundary audit1005tests/1591modules(3.465667s) and external
+build(19.257976s). All1005 unique reported paths are permitted and match audit.
+The full runner still refuses before snapshots/subprocess. No timeout-cause,
+speedup, pacing or performance-budget acceptance follows. Independent completed
+gate reviews and exact staged/committed blob/tree/parent binding govern the
+local checkpoint; large-chunk/precache warnings remain.
+
+Disposable external build762files/42293934bytes/10directories removed, verified
+absent; all32 recorded check child/driver PID observations absent, no termination
+or cleanup failures. Root retains required evidence/reviews/predecessors/maps
+at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-telekinesis-1wffcccm`
+through unfinished acceptance and owns eventual exact-path cleanup.
+[Evidence](evidence/merc-telekinesis.md). Separate next Holy Fire plan and
+non-executed primary are independently ready; causal freeze/RED waits for this
+committed checkpoint.
+
+BUG376 stays Open for browser/earned feature acceptance; player inventory stays
+212bounded/oneunverified. Campaign/economy/build/pacing/defeat-retry/devices/
+locales/a11y/performance/PWA/actualCI/human/soak/full-v1 acceptance remains open.
+H3 remains terminal failed-no-app; no app/browser/retry, protected fixture access
+or replay, diagnostics/closed matrices, new acquisition/lineage/gameplay
+replacement run, remote action or deployment occurs. Umbrella and worktree stay active.
