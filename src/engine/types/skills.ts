@@ -355,6 +355,8 @@ export interface SkillDef {
   readonly mercDefiance?: { readonly defensePct: number };
   /** Native Prayer mercenary’s flat party HP restoration and independent cadence. */
   readonly mercPrayer?: { readonly amount: number; readonly intervalMs: number };
+  /** Native Holy Fire mercenary's flat ambient Fire damage and independent cadence. */
+  readonly mercHolyFire?: { readonly amount: number; readonly intervalMs: number };
   /** JSON-owned enemy resistance reduction in percentage points; exact player Conviction only. */
   readonly conviction?: { readonly enemyResistReductionPct: number };
   readonly id: string;

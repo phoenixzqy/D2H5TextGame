@@ -31,6 +31,7 @@ import { MERC_CRITICAL_SKILL } from './merc-critical';
 import { MERC_THORNS_SKILL } from './merc-thorns';
 import { MERC_DEFIANCE_SKILL } from './merc-defiance';
 import { MERC_PRAYER_SKILL } from './merc-prayer';
+import { MERC_HOLY_FIRE_SKILL } from './merc-holy-fire';
 import { ACT1_LIGHTNING_AFFIX_SKILL } from './act1-lightning';
 import { BLOOD_RAVEN_SKILLS } from './blood-raven';
 import { ITEM_REDEMPTION_SKILL } from './item-redemption';
@@ -111,6 +112,7 @@ export function loadDefaultSkills(): void {
   registry.set(MERC_THORNS_SKILL.id, MERC_THORNS_SKILL);
   registry.set(MERC_DEFIANCE_SKILL.id, MERC_DEFIANCE_SKILL);
   registry.set(MERC_PRAYER_SKILL.id, MERC_PRAYER_SKILL);
+  registry.set(MERC_HOLY_FIRE_SKILL.id, MERC_HOLY_FIRE_SKILL);
   for (const skill of MERC_ARROW_SKILLS) registry.set(skill.id, skill);
   registry.set(MERC_JAB_SKILL.id, MERC_JAB_SKILL);
   registry.set(MERC_BASH_SKILL.id, MERC_BASH_SKILL);

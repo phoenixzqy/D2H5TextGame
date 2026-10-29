@@ -33,6 +33,7 @@ import { MERC_CRITICAL_DEFINITION } from '@/engine/skills/merc-critical';
 import { MERC_THORNS_DEFINITION } from '@/engine/skills/merc-thorns';
 import { MERC_DEFIANCE_DEFINITION } from '@/engine/skills/merc-defiance';
 import { MERC_PRAYER_DEFINITION } from '@/engine/skills/merc-prayer';
+import { MERC_HOLY_FIRE_DEFINITION } from '@/engine/skills/merc-holy-fire';
 
 const ARCHETYPE_SKILLS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   front: ['mskill-bash'],
@@ -124,6 +125,9 @@ export function mercToCombatUnit(
     ...(merc.id.split('#')[0] === 'mercs/act2-prayer' &&
       Number.isInteger(merc.level) && merc.level >= MERC_PRAYER_DEFINITION.minLevel &&
       getMercSkillOrder(merc).includes('aura-prayer') ? { mercPrayerAura: true as const } : {}),
+    ...(merc.id.split('#')[0] === 'mercs/act4-paladin-holy-fire' &&
+      Number.isInteger(merc.level) && merc.level >= MERC_HOLY_FIRE_DEFINITION.minLevel &&
+      getMercSkillOrder(merc).includes('mskill-holy-fire') ? { mercHolyFireAura: true as const } : {}),
     ...(gridPosition ? { gridPosition } : {})
   };
 }

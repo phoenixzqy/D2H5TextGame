@@ -15432,3 +15432,54 @@ locales/a11y/performance/PWA/actualCI/human/soak/full-v1 acceptance remains open
 H3 remains terminal failed-no-app; no app/browser/retry, protected fixture access
 or replay, diagnostics/closed matrices, new acquisition/lineage/gameplay
 replacement run, remote action or deployment occurs. Umbrella and worktree stay active.
+
+
+## 2026-10-28 — Native mercenary Holy Fire / BUG-377 — native gates passed; feature acceptance open
+
+The actual signature mercenary now supplies the advertised passive 8 Fire/s to
+every living enemy, first at 1,000 ms and then each 1,000 ms, zero MP and flat
+ranks 1–20. Qualified factory authority, duplicate-source selection, next-boundary
+takeover, scheduler order and immediate winner guard preserve native lifecycle.
+Closed authored/schema tuning, stub removal and both locales match the aura.
+The shared aura damage consumer remains unchanged, including Defense-based Fire
+mitigation, Frozen Armor Chill, Life Tap and applicable shared consequences.
+No saved marker/clock, dependency, CI or recruitment change is introduced.
+
+Actual-loader/factory/projection/default-registry primary fails 2 before BUG-377
+filing and production, then passes 2 unchanged after authored repair. An
+intervening partial-edit check collects zero cases and is explicitly invalid.
+Four new files add 91 cases. Independent review approves source and test-only
+corrections for an invalid Holy Shock fixture and event-filter narrowing; failed
+predecessors and edit lineage remain retained. Frozen primary and production
+remain unchanged through those corrections.
+
+Final unchanged 2,099-input map
+`26a57ba7809af4080297f856c050eacce86ea815505ee1849a359ccd559c94ce`
+passes focused 269 / 9 files (33.246638 s), scoped zero-warning lint (23.290773 s),
+types (214.049328 s), boundary audit 1,009 test files / 1,596 modules (5.190984 s), and
+external production build (29.965205 s). Independent producer verifies completed
+focused/scoped/types/audit results and correction bytes. Build chunk/precache
+warnings remain. Engine passes 11,556 / 428 unique permitted files (454.068347 s),
+zero failed/pending/todo. Full zero-warning lint/engine purity passes
+(555.937338 s); independent producer verifies terminal engine/lint bindings.
+Audited ordinary units pass 21,436 tests / 1,009 unique permitted files
+(1,765.753169 s), zero failed/pending/todo. All before/after/current 2,099-input
+maps agree and the ordinary file count matches the audit. Final independent
+evidence and exact staged/committed parent/tree/blob reviews govern the local
+checkpoint. No timing, pacing, performance or broader acceptance is inferred.
+
+Root retains required evidence at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-holy-fire-l0hmmoq6`
+through unfinished acceptance and owns eventual exact-path cleanup. Disposable
+external build is removed after terminal independent review/readers release:
+762 files / 42,296,689 bytes / 9 descendant directories, no links or cleanup
+failures, exact root verified absent. All 26 recorded check child/driver PID
+observations are absent, with no process termination or cleanup failures. [Evidence](evidence/merc-holy-fire.md).
+
+BUG-377 remains Open for browser/earned feature acceptance. Player inventory
+stays 212 bounded / one unverified. Campaign/economy/build/pacing/defeat-retry,
+devices/locales/a11y/performance/PWA/actual CI/human/soak/full-v1 acceptance stays
+open. H3 remains terminal failed-no-app; no app/browser/retry, protected fixture
+access/replay, diagnostics/closed matrices, new acquisition/lineage/gameplay
+replacement run, remote action, deployment or worktree release occurs. Umbrella
+goal and worktree stay active.

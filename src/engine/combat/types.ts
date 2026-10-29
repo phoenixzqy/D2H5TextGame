@@ -183,6 +183,8 @@ export interface CombatUnit {
   readonly mercDefianceAura?: true;
   /** Fresh native Prayer source qualification; never persisted. */
   readonly mercPrayerAura?: true;
+  /** Fresh native Holy Fire source qualification; never persisted. */
+  readonly mercHolyFireAura?: true;
   /** Eligible learned Static Field rank captured per wave; explicit zero disables legacy fallback. */
   readonly staticFieldRank?: number;
   /** Eligible personal Energy Shield allocation captured per wave; never persisted. */

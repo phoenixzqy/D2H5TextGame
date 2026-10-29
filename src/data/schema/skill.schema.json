@@ -4167,6 +4167,23 @@
       },
       "else": { "properties": { "mercPrayer": false } }
     }, {
+      "if": { "properties": { "id": { "const": "mskill-holy-fire" } }, "required": ["id"] },
+      "then": {
+        "required": ["mercHolyFire", "cost"],
+        "properties": {
+          "mercHolyFire": { "$ref": "#/properties/mercHolyFire" },
+          "trigger": { "const": "passive" }, "target": { "const": "all-enemies" },
+          "cooldown": { "const": 1 }, "cost": { "const": { "mana": 0 } },
+          "damage": false, "damageType": false, "attackDamagePct": false,
+          "statusEffect": false, "additionalStatusEffects": false, "scaling": false,
+          "heal": false, "summonId": false, "monsterSummon": false, "summonBasicAttackElements": false,
+          "aoeShape": false, "requires": false, "passive": false, "aura": false,
+          "summon": false, "synergies": false, "prerequisites": false,
+          "appliesStatus": false, "appliesTags": false
+        }
+      },
+      "else": { "properties": { "mercHolyFire": false } }
+    }, {
       "if": {
         "properties": {
           "id": {
@@ -6805,6 +6822,16 @@
       "required": ["physicalReflectionPct"],
       "properties": {
         "physicalReflectionPct": { "type": "number", "minimum": 0, "description": "Actual physical HP lost reflected in percentage points while the native mercenary and recipient live, before attacker mitigation." }
+      }
+    },
+    "mercHolyFire": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Native Holy Fire mercenary's flat ambient Fire damage per simulation interval.",
+      "required": ["amount", "intervalMs"],
+      "properties": {
+        "amount": { "type": "number", "exclusiveMinimum": 0 },
+        "intervalMs": { "type": "integer", "minimum": 1000, "maximum": 60000 }
       }
     },
     "mercPrayer": {

@@ -1475,7 +1475,7 @@
     },
     "holy-fire": {
       "name": "Holy Fire Strike",
-      "desc": "A paladin attack imbued with holy fire damage."
+      "desc": "While this mercenary lives in combat, all living enemies take 8 Fire damage each second. Does not stack with another mercenary Holy Fire aura; works while Stunned or Frozen."
     },
     "minor-heal": {
       "name": "Minor Heal",

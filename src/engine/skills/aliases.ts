@@ -136,7 +136,6 @@ export const MERC_STUB_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   // Mercenary actives (mskill-*)
   stub({ id: 'mskill-fire-arrow', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'fire', base: [25, 40], status: { id: 'ignite' } }),
   stub({ id: 'mskill-cold-arrow', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'cold', base: [25, 40], status: { id: 'chill' } }),
-  stub({ id: 'mskill-holy-fire', target: 'all-enemies', cooldown: 3, manaCost: 0, damageType: 'fire', base: [20, 30], status: { id: 'ignite' } }),
   stub({ id: 'mskill-pilfer', target: 'single-enemy', cooldown: 2, manaCost: 0, damageType: 'physical', base: [15, 25] }),
   stub({ id: 'mskill-minor-heal', target: 'self', cooldown: 4, manaCost: 0, buffId: 'minor_heal' }),
   stub({ id: 'mskill-frozen-armor', target: 'self', cooldown: 0, manaCost: 0, buffId: 'frozen_armor' }),

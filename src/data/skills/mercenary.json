@@ -415,19 +415,18 @@
     "name": "skills.mercenary.holy-fire.name",
     "description": "skills.mercenary.holy-fire.desc",
     "icon": "skills/merc/holy-fire.png",
-    "trigger": "active",
-    "target": "single-enemy",
-    "cooldown": 2,
+    "trigger": "passive",
+    "target": "all-enemies",
+    "cooldown": 1,
     "minLevel": 1,
     "maxLevel": 20,
-    "damage": {
-      "min": 24,
-      "max": 40,
-      "breakdown": { "fire": 40 }
+    "cost": {
+      "mana": 0
     },
-    "damageType": "fire",
-    "appliesStatus": ["burn"],
-    "appliesTags": ["fire", "burn"]
+    "mercHolyFire": {
+      "amount": 8,
+      "intervalMs": 1000
+    }
   },
   {
     "id": "mskill-minor-heal",
