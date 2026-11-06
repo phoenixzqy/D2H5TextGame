@@ -45,6 +45,37 @@ Cap on **total tick speed bonus from gear: +25%**. Faster ticks = faster XP/loot
 - If browser throttles `setInterval` (most modern browsers throttle to 1 Hz on hidden tabs): the engine **catches up** on next tick using `Date.now()` deltas, capped at **5 minutes catch-up** (to prevent abuse from system clock manipulation).
 - If page is **fully closed** (no JS execution): **offline mode** — no rewards, but offline-bonus accrues per §3.
 
+### 2.3 Recorded-combat compatibility (2026-10-30)
+
+Ordinary area idle combat now uses the recorded playback schedule from
+[D04](../plans/decisions/D04-status-playback-v1.md), rather than the legacy
+six-second tick described in §2. Boss introductions cost 1200 ms, opening event
+groups 200 ms, and later timestamp groups their simulation-time gap clamped to
+50–3000 ms. Presentation speed divides these costs at 1×/2×/4×, with a 50 ms
+minimum. Wave settlement and full-run repeat each retain a separate **1500 ms**
+wait, unaffected by presentation speed.
+
+A surviving idle combat screen spends elapsed wall time on those same phases,
+including guarded wave settlement and repeat admission. Each newly observed
+interval grants at most **300000 ms total**, across all waves and repeats; excess
+is discarded. Work yields after 64 completed phases and continues using the same
+budget. It never skips playback, assumes victory, or grants rewards directly.
+Native qualified settlement still samples the actual reward time and bonus.
+
+Pause preserves the paid portion of the current countdown and discards debt.
+Speed changes restart the pending event group's delay at the new speed. Skip
+starts a fresh settlement wait; Stop, recording replacement, and unmount discard
+old credit. Hydration and recovery gates suspend work without loading-time credit;
+failed transitions retain explicit Retry. Backward clock samples grant no time
+until the previous high-water mark is reached; nonfinite samples grant no time.
+
+The runtime boundary follows [D12](../plans/decisions/D12-save-import-v1.md):
+a surviving hidden/BFCache document remains online; a new document receives no
+combat backlog and uses the existing offline bonus. This takes precedence over
+§1's older device-sleep wording for surviving documents. Elapsed time alone cannot
+identify physical device sleep, and physical sleep is not an acceptance claim.
+Manual, dungeon, and quest encounter playback keep their existing timing.
+
 ---
 
 ## 3. Offline Bonus Window

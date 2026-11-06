@@ -1,5 +1,34 @@
 # P17b01 — Production offline gameplay acceptance
 
+## Current physical-format verification — 2026-11-04
+
+All four original desktop1280×800/mobile360×640 × en/zh-CN cases pass on the
+current logical-save33 source: **4/4 in28.2s**, no retries/skips/flaky results.
+Only the test's native readonly observer changes: decode `encoding:'json-v1'`
+payloads, retain unencoded object reads, reject unsupported/invalid envelopes.
+Every whole-save, activated-worker, SW document/loaded-JS response, offline
+navigation/combat/save, locale/overflow and reconnect assertion remains intact.
+
+BUG-673's original observer demonstrably failed before any combat by comparing
+the physical JSON string with an exported object. Its failed report/trace and
+before/after source remain in
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p17-native-reader-v1`.
+`browser-green.json`, `results-summary.json` and scoped type/lint logs bind the
+passing verification. Production output/source hashes are those of the
+[integrated offline reward slice](p17-integrated-rewards.md), reused without a
+second build. Its one production change fixes passive Settings-notification
+input interception (BUG-672). All five repository bridge scans pass.
+
+All consumers are terminal and preview ports4326/4396closed. Exact task-created
+builds, unexpected `dist` (verified unchanged against its original766-file
+manifest), both temporary configs and types config were removed and verified
+absent. Packet `cleanup-closure.json` records exact paths and no failures. Root
+retains both evidence packets and the active human2 worktree through umbrella
+review, and owns eventual evidence cleanup/release. No install/CI/publication,
+game/save-format edit, broader suite or completed campaign replay occurred.
+Other old observers, worker replacement at final source, physical installation,
+idle/MF and full P17/v1 acceptance remain separate requirements.
+
 Dependency head: `6354bd8` (runtime source through `e21545c`). Four-file slice:
 dedicated production config, offline browser spec, D12 control and this report.
 No runtime, dependency, CI, save schema or gameplay data changed.

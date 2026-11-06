@@ -7,6 +7,15 @@ Solar Creeper and Grizzly. This contract does not grant functional credit.
 
 ## Existing policy preserved
 
+P15 update: [earned owner growth](P15-druid-summon-owner-growth-v1.md) supersedes
+only the no-new-growth constraint below for the seven Druid templates. All
+base/rank/cap/payment, behavior, authority and lifecycle rules remain controlling.
+
+P15 update,2026-11-04: [beast investment growth](P15-druid-beast-investment-growth-v1.md)
+supersedes only Spirit Wolf/Dire Wolf/Grizzly Attack per rank2/2/3 with14/18/25.
+All other rank coefficients and owner/base/cap/payment/behavior rules remain
+controlling. This provisional numerical tuning is not full balance acceptance.
+
 [D06 preparation](D06-summon-preparation-v1.md), wave-local identity and
 [corpse consumption](D06-corpse-consumption-v1.md) remain controlling. Keep
 existing damage/stat rank growth, MP costs and rank discounts, cooldowns,

@@ -351,3 +351,23 @@ Independent design/QA and earned class/build balance remain open.
 
 Save v22 follows [ADR-011](../../decisions/ADR-011-version-player-aura-selection.md).
 No campaign action or diagnostic-save promotion is authorized by these tests.
+
+
+## Approved follow-on: finite hostile monster resurrection
+
+The [monster resurrection contract](../../design/monster-resurrection.md),
+approved by GD/TD, explicitly extends this child's original scope. Original
+qualified hostile Shamans compete for the same finite FIFO corpse token as
+existing player consumers; they remove the oldest eligible original Fallen body
+without reordering other tokens. Each original body supplies one token and may
+revive once. Preserve all existing costs, corpse qualification and ordinary
+selection behavior. First-death effects remain once per original; second-life
+cleanup emits death without another corpse/orb/economic effect.
+
+An explicit copied `revive` event restores the existing dead actor in place,
+clears its presentation dead-ID latch, then supplies a forced noninitial status
+observation. Preserve atomic timestamps, seeded schedule identity, normal
+Pause/speed and both replay policies. No corpse, revival proof or added reward
+identity enters a save. Necromancer Revive retains its separate corpse-free
+startup-summon contract. This authorizes the specified implementation, not
+campaign balance or release acceptance.

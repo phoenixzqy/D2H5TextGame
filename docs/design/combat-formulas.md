@@ -146,6 +146,7 @@ if (critChance > 100):
 4. ×combo = ×%inc × comboMultiplier (if combo triggered; see §7)
 5. ×crit = ×combo × (critDamage/100) (if crit; else ×1)
 6. ×resist = ×crit × (1 - target.resistance_to_damageType / 100)
+   - explicit authored damage-type immunity returns zero before resistance/minimum-one
    - cap: resistance clamped to [-100%, 75%] before this step
    - negative resist = amplified damage
 7. mitigation = ×resist - (target.defense OR target.magicResist)
@@ -193,6 +194,11 @@ if (critChance > 100):
 ### 8.1 Resistance Cap
 - **Player & monsters:** 75% base cap.
 - Certain uniques/sets/runewords grant "+5% max resist" (stacks to ~90% achievable with perfect gear).
+- Explicit authored `damageImmunities` are separate from resistance: a matching
+  direct component or periodic damage rate is zero, including after penetration
+  or curses. Andariel/Mephisto author Poison immunity. Other types and nonimmune
+  targets retain the ordinary cap and minimum1. See
+  [the named boss exception](../plans/decisions/P15-boss-poison-damage-immunity-v1.md).
 
 ### 8.2 Resistance Penetration (v1 simplified)
 Monsters in Hell difficulty (Act IV+) have implicit "-X% player resist" aura:
@@ -294,7 +300,12 @@ effectiveResist = clamp(playerResist - actPenalty, -100%, 75%)
 ## 12. AOE & Targeting
 
 ### 12.1 AOE Shapes (skill-defined)
-- **Single:** 1 target (player-selected or random).
+- **Single:** 1 living eligible opponent. Automatic effective-player attacks
+  prefer non-summon opponents, then choose lowest current absolute life, with
+  original registration order breaking ties. All-summon pools also use life and
+  order; an active eligible Taunt source takes priority. Enemy attacks retain
+  seeded weighted aggro, Decoy and curse redirection. Selection adds no RNG roll.
+  See [D07 automatic targeting](../plans/decisions/D07-automatic-single-target-v1.md).
 - **Cleave:** 3 targets in front (random if >3 enemies).
 - **Cone:** 5 targets (front arc).
 - **All:** All enemies.
@@ -311,10 +322,17 @@ effectiveResist = clamp(playerResist - actPenalty, -100%, 75%)
 | Rule | Effect |
 |---|---|
 | +50% all resistances (base) | Defined per-boss in JSON |
-| −50% stun/freeze duration | Hard-coded |
+| −50% stun/freeze duration | Default; authored boss Stun coefficient overrides once (Diablo25%duration) |
 | −50% thorns damage taken | Hard-coded |
 | Immune to certain combos | JSON-defined (e.g., Andariel immune to poison) |
 | Enrage (10% HP threshold) | +100% attack speed, +50% damage |
+
+Diablo uses the specific15%HP threshold from monster-spec §7. His authored
+speed multiplier2 is applied before the existing400ms cadence floor; authored
+damagePct50 joins additive direct-damage increases before combo/crit/mitigation.
+Burn captures boosted landed potency once; existing periodic damage and thorns
+are not multiplied again. Existing speed-only Blood Raven tuning remains exact.
+See [P15 Diablo enrage](../plans/decisions/P15-diablo-low-health-enrage-v1.md).
 
 ---
 

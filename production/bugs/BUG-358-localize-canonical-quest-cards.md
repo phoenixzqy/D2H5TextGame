@@ -1,6 +1,6 @@
 # BUG-358 — Localize canonical main and side quest cards
 
-Status: Open — resource repair and native render regression verified; browser/layout completion remains pending. No forge label/status applied.
+Status: Open — resource repair, native rendering and development-browser layout verified; final production-bundle completion remains pending. No forge label/status applied.
 Severity: Medium — zh-CN quest cards fall back to English; the quest remains usable in English.
 Found: 2026-10-28.
 Build: `36d54d677c79ff3f70684d19e1d622e6a9f0bc39`.
@@ -62,3 +62,14 @@ full runs pass, but its cause remains unresolved.
 
 This completes native resource/render verification only. Keep BUG-358 Open for
 browser/layout completion; whole-app locale, device and full-v1 gates are pending.
+
+## Development browser checkpoint — 2026-11-04
+
+[Current quest readability evidence](../../docs/plans/evidence/p16-quest-readability.md)
+verifies all24 main/22 side cards, own-locale names/descriptions and ordered
+objectives in both locales across five target sizes. Larger body/status text
+under BUG689 preserves scroll reachability with no measured page overflow or
+navigation overlap. Six unchanged native localization cases pass again.
+This uses fresh characters/public UI on the current ordinary development server.
+Final production-bundle verification remains for the combined source, as required
+by the owner's scoped-verification override; keep this bug open for that check.

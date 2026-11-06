@@ -1,0 +1,49 @@
+{
+  "version": 2,
+  "source": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-far-oasis-source-checkpoint-v1.json",
+    "sha256": "eb2594cfa62686d9993e91780da76eafd35e117702df9e43f3c839486be47f81"
+  },
+  "driver": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-physical-fallback-driver-v2.ts",
+    "sha256": "2610cc2c57e6f727f8339121594b16b24777c373b3a697ab5f2439aee6a7de10"
+  },
+  "launcher": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-physical-fallback-launcher-v2.mjs",
+    "sha256": "9d43897c563664b23808112c2647bd01677ccdb60c533ac1cedd6a5eab1e0a77"
+  },
+  "authority": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-campaign-harness-source-audit-v77.json",
+    "sha256": "056717133f401d3aef666e7d7b2858e1cb3373850be53c214e88a3ece354579e"
+  },
+  "campaign": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-campaign-manifest-v1.json",
+    "sha256": "0412e9a975677d7cf6f8bb56d2283959e51fa08a5b8f663a2030dcfb0b2fe406"
+  },
+  "profile": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-frozen-profile-v1.json",
+    "sha256": "35d12120c5ca13dbdedcefd84d4e89e7c32b842cc97599bdbe9560cd90deff05"
+  },
+  "baselineReport": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-act2-v1.json",
+    "sha256": "8ae99ec87d55b31e8f54db781785bee264e2b9c941d207f0e414c5c739c9e8ea"
+  },
+  "baselineReadback": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-act2-v1-readback-v2.json",
+    "sha256": "88c73a072b615264472c4ae2e7f8c925966ffdbc4dac1be8f49f027ee9ff761c"
+  },
+  "maxAdmissions": 1,
+  "maxCombatMs": 300000,
+  "maxWallMs": 120000,
+  "change": "Remove only Teeth through native setComboOrder. Preserve original CE/Bone Armor/Bone Wall/Weaken order. Exact saved source260; no grow/equip/farm/grant/heal/reset; one admission maximum, stop first nonwin.",
+  "acceptance": "One same-source conditional area; retain any defeat/draw, stop first nonwin. Not a continuation of exhausted trial, extra accepted retry, fresh population, earned route, pacing or balance acceptance. Independent complete journal/native export/reward readback and matching first-wave baseline comparison.",
+  "planReview": "ready: version1 fails before any admission. Correct only provably wrong expected order; keep Bone Armor and all exact preparation/native economy/export/first-team comparison assertions. One source260 conditional admission, no baseline replay, frozen source retained.",
+  "securityCheck": "pass: authorized local native diagnostic, exact task-owned paths/cache; no installs/network/credentials/publication or protected-save mutation.",
+  "priorTechnicalFailure": {
+    "report": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-physical-fallback-v1.json",
+    "sha256": "455e67c9673b90575c6c450e998c6690c11ae18ac58c76c943992d57ac00dcbb",
+    "admissions": 0,
+    "waves": 0,
+    "cause": "Driver asserted an order missing existing Bone Armor before native setComboOrder. Preserve it; production native setter assigns exactly supplied order."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "status": "frozen-priority-policy;entry-power-and-populations-pending",
+  "profile": "necromancer-bone",
+  "identity": "Corpse and curses; retain historical profile ID",
+  "acts": [4, 5],
+  "roles": ["trash", "elite"],
+  "order": [
+    "necromancer.corpse_explosion",
+    "necromancer.amplify_damage",
+    "necromancer.weaken"
+  ],
+  "rationale": "Give the learned signature skill first opportunity when a real corpse exists. Without one, native eligibility skips Corpse Explosion and the two learned curses support hero/mercenary first kills. Keep three priority slots and the existing attack fallback. The same deterministic pack policy applies to both acts and roles, without seed-specific changes.",
+  "sourceRequirements": {
+    "classId": "necromancer",
+    "minimumLevel": 6,
+    "learnedPrerequisite": "necromancer.teeth",
+    "learnedOrderSkills": true,
+    "authority": "composeCorpseExplosion from the actual source player",
+    "equipment": "Canonical earned hero/merc equipment; retain every intrinsic field and paid socket",
+    "resources": "Complete native source and preceding-wave HP/MP/cooldown/summon carry; no refill or injected corpse",
+    "pointSpending": "No allocation, reset or new equipment change is part of this priority policy"
+  },
+  "corpsePolicy": "Native deaths produce the finite battle-local corpse pool. Native eligibility, cooldown, mana, targeting and consumption remain authoritative. Do not copy corpses between waves or synthesize a first corpse.",
+  "bossPolicy": "Keep each retained boss source's existing order. This pack policy neither substitutes for a boss source nor proves boss viability.",
+  "evaluation": "Apply through the existing native player priority action before area admission. Record the exact source/order delta. Pack evaluation must report actual CE casts, corpse consumption, damage and mana, along with full-area entry/carry/outcomes. An order definition or learned rank is not behavioral viability.",
+  "sourceEligibility": "Trash/elite repeat fixtures may use a same-act checkpoint after that act's boss reward. Reject future-act acquired gear or progress; verify exact source custody/acquisition and intended power before measuring. Boss first-attempt fixtures retain their separate pre-claim rules.",
+  "limits": "Closes the two missing act-specific CE pack-order definitions only. Does not close their actual matched-level sources, power policy, native behavioral screens, population/holdout acceptance or pacing. No production mechanic changes."
+}

@@ -17,9 +17,9 @@ A single gacha called **Wish of the Horadrim** (`gacha_horadrim`). Currency: **W
 - **Drop pool: 25 mercenaries** — 5 SSR / 8 SR / 12 R.
 - **Rates:** SSR 2% · SR 13% · R 85%.
 - **Pity:**
-  - Every **10 pulls without an SR+** → next pull guaranteed **SR or higher**.
-  - Every **50 pulls without an SSR** → next pull guaranteed **SSR**.
-  - Pity counters carry across sessions, **never reset by getting a higher tier** (i.e., a guaranteed-SR pull from 10-pity does not reset the 50-pity SSR counter).
+  - After **nine consecutive R results**, the **10th draw** guarantees **SR or higher**.
+  - After **49 consecutive non-SSR results**, the **50th draw** guarantees **SSR**.
+  - Pity counters carry across sessions. **SSR resets both counters; SR resets only the SR counter.** A guaranteed SR does not reset SSR pity.
 - **Duplicates** convert to **Shards** of that mercenary; 100 shards = +1 star (max +5 stars). Shard rate per dupe: SSR=15, SR=5, R=2.
 
 ---
@@ -27,6 +27,13 @@ A single gacha called **Wish of the Horadrim** (`gacha_horadrim`). Currency: **W
 ## 2. Wishstone Faucet Recap
 
 From `drop-tables.md` §9:
+
+P15 candidate (2026-11-02): kill-source quantities below are conditional on
+one 2.5% coin for the combined direct/secondary wishstones from that kill.
+Failed coins award zero wishes, including on bosses; non-kill grants and the
+10/90 recruitment prices are unchanged. This supersedes legacy guaranteed
+kill-wishstone wording. The measured L70 Hell faucet remains unaccepted; see
+[the candidate](../plans/decisions/P15-wishstone-kill-rate-v1.md).
 
 | Source | Wishstones |
 |---|---|
@@ -39,7 +46,7 @@ From `drop-tables.md` §9:
 | Quest completion (~30 quests) | 10–25 each |
 | Daily login (🟡 v1.1+) | 5 |
 
-**Target faucet rate at L70 Hell-Act-V farm: ~80 wishstones / hour** (≈ 1 ten-pull every 7–8 minutes including boss + champ + unique mobs + treasure goblin spawns).
+**Target faucet rate at L70 Hell-Act-V farm: ~80 wishstones / hour** (a ten-pull costing 90 wishstones every 67.5 minutes).
 
 A casual player reaches **50 pity (≈ 500 wishstones)** in roughly **6 hours of focused farming** at L70.
 
@@ -66,8 +73,8 @@ Each tier has uniform distribution across its members:
 state: { pullsSinceSR: 0, pullsSinceSSR: 0 }
 
 onPull():
-  isGuaranteedSR  = (pullsSinceSR  >= 10)   // 10th pull guaranteed SR+
-  isGuaranteedSSR = (pullsSinceSSR >= 50)   // 50th pull guaranteed SSR
+  isGuaranteedSR  = (pullsSinceSR  >= 9)   // 10th pull guaranteed SR+
+  isGuaranteedSSR = (pullsSinceSSR >= 49)   // 50th pull guaranteed SSR
 
   if isGuaranteedSSR:
     tier = 'SSR'
@@ -89,7 +96,14 @@ onPull():
 
 ### 3.3 Effective long-run rates with pity
 
-By Markov-chain steady state (for the 50-pity SSR floor): effective SSR rate is approximately **2.4%** (vs base 2%) — i.e. ~1 SSR every ~42 pulls on average. Effective SR rate ≈ **15%**, R ≈ **82.6%**.
+With base SSR probability .02 and a hard 50th draw, the exact mean interval is
+`(1 - .98^50) / .02 = 31.7915159956` draws. The long-run rates are
+**SSR 3.1454932823% · SR 16.2187389886% · R 80.6357677291%**.
+The SR/R values use finite enumeration of both running counters. This corrects
+the former 2.4% / 42-draw claim, which was incompatible with the locked base
+rate and guarantee; the mechanics are unchanged. See
+[D10](../plans/decisions/D10-recruitment-v1.md) for the exact calculation and
+migration contract. These rates do not establish active-hour acquisition balance.
 
 ### 3.4 10-pull behavior
 
@@ -129,8 +143,8 @@ Star bonuses (per +1 star, applies cumulatively up to +5):
 | `merc_act2_prayer` | 沙漠雇佣兵·祈祷 / Desert Merc — Prayer | Act II | front | HP 140, Atk 17, Def 28, Vit 10 | `mskill_jab` + `aura_prayer` (party regen 5 HP/s) |
 | `merc_iron_wolf_cold` | 钢狼·冰 / Iron Wolf — Cold | Act III | back | HP 90, Atk 22 (cold), Def 16, Eng 16 | `mskill_glacial_spike` — 40–60 cold + chill 30%, 5s CD |
 | `merc_iron_wolf_lightning` | 钢狼·电 / Iron Wolf — Lightning | Act III | back | HP 90, Atk 26 (ltn), Def 16, Eng 16 | `mskill_charged_bolt` — 5 bolts × 12 dmg, 4s CD |
-| `merc_rogue_fire` | 罗格·火焰之箭 / Rogue Scout — Fire Arrow | Act I | back | HP 100, Atk 24 (phys+fire), Def 14, Dex 18 | `mskill_fire_arrow` — phys + 50% fire splash |
-| `merc_rogue_cold` | 罗格·冰冻之箭 / Rogue Scout — Cold Arrow | Act I | back | HP 100, Atk 22 (phys+cold), Def 14, Dex 18 | `mskill_cold_arrow` — phys + chill 30% |
+| `merc_rogue_fire` | 罗格·火焰之箭 / Rogue Scout — Fire Arrow | Act I | back | HP 100, Atk 24 (phys+fire), Def 14, Dex 18 | `mskill_fire_arrow` — P = 22–36 + 100% Attack; physical P + Fire 0.5P; Fire 0.5P on up to 2 other cross-adjacent enemies; Burn 3s, 10% final Fire/s (min 1); 2s CD, 0 MP |
+| `merc_rogue_cold` | 罗格·冰冻之箭 / Rogue Scout — Cold Arrow | Act I | back | HP 100, Atk 22 (phys+cold), Def 14, Dex 18 | `mskill_cold_arrow` — P = 22–36 + 100% Attack; physical 0.5P + cold 0.5P; 30% Chill for 2s (−50% Attack Speed); 2s CD, 0 MP |
 | `merc_barbarian_war_cry` | 蛮族战士·战吼 / Barbarian — War Cry | Act V | front | HP 180, Atk 24, Def 30, Vit 14 | `mskill_war_cry` — 6s stun AoE, 12s CD |
 | `merc_paladin_holy_fire` | 圣骑士·圣火 / Paladin — Holy Fire | Pandemonium | front | HP 130, Atk 22, Def 26, Vit 12 | `mskill_holy_fire` — aura: enemies take 8 fire/s while in fight |
 
@@ -140,7 +154,7 @@ Star bonuses (per +1 star, applies cumulatively up to +5):
 |---|---|---|---|---|---|
 | `merc_rogue_basic` | 罗格·新兵 / Rogue Scout — Trainee | Act I | back | HP 90, Atk 16 (phys), Def 12, Dex 14 | `mskill_basic_arrow` — single phys shot |
 | `merc_rogue_inner_sight` | 罗格·内视 / Rogue Scout — Inner Sight | Act I | back | HP 90, Atk 14, Def 12, Dex 14 | `mskill_inner_sight` — -25% enemy def for 8s |
-| `merc_act2_blessed_aim` | 沙漠雇佣兵·圣礼瞄准 / Desert Merc — Blessed Aim | Act II | front | HP 130, Atk 16, Def 24, Vit 8 | `mskill_jab` + `aura_blessed_aim` (+30% AR) |
+| `merc_act2_blessed_aim` | 沙漠雇佣兵·圣礼瞄准 / Desert Merc — Blessed Aim | Act II | front | HP 130, Atk 16, Def 24, Vit 8 | `mskill_jab` + `aura_blessed_aim` (存活队友武器攻击未命中概率降低30%，如15%→10.5%；不可叠加 / living allies’ weapon miss chance reduced by30%, e.g.15%→10.5%; nonstacking) |
 | `merc_act2_defiance` | 沙漠雇佣兵·反抗 / Desert Merc — Defiance | Act II | front | HP 130, Atk 14, Def 28, Vit 10 | `mskill_jab` + `aura_defiance` (+30% party def) |
 | `merc_iron_wolf_armor` | 钢狼·盔甲 / Iron Wolf — Frozen Armor | Act III | back | HP 80, Atk 18 (cold), Def 22, Eng 14 | `mskill_frozen_armor` — self +120 def, chill on melee |
 | `merc_iron_wolf_telekinesis` | 钢狼·心灵控制 / Iron Wolf — Telekinesis | Act III | back | HP 80, Atk 16 (mag), Def 14, Eng 16 | `mskill_telekinesis` — single magic, 50% knockback |
@@ -237,7 +251,7 @@ Implementation detail: on each pull, after determining tier, sample uniformly fr
   wishstones: number,
   ownedMercs: Record<mercId, { stars: number, shards: number, level: number }>,
   bannerState: BannerState,
-  pullHistory: Array<{ ts, mercId, tier, isNew }>  // capped at 200 entries
+  pullHistory: Array<{ ordinal, ts, mercId, tier, isNew, shardCount }>  // capped at 100 entries
 }
 ```
 
@@ -256,7 +270,7 @@ Implementation detail: on each pull, after determining tier, sample uniformly fr
 
 ### To Engine Dev
 - Implement `engine/gacha/banner.ts` per §8.
-- Vitest: 10 000-pull simulation must produce **SSR rate within 2.0%–2.6%** (matches §3.3 long-run).
+- Verify the exact renewal/finite-state expectations in §3.3 and seeded draw distributions with statistical sampling bounds. Do not compare the pity-enabled SSR rate with the base 2% rate.
 - Vitest: pity hard-guarantees: every 50th pull must be SSR if no prior SSR.
 - Wire merc auras as `buff_*` in combat pipeline (auras tick with party).
 
@@ -272,7 +286,7 @@ Implementation detail: on each pull, after determining tier, sample uniformly fr
 - i18n strings for all merc names + skill descriptions in `zh-CN` and `en`.
 
 ### To QA
-- Drop-rate empirical test: 10 000 simulated pulls, assert tier rates ≤ 5% deviation from §3.3.
+- Drop-rate empirical test: compare seeded samples with §3.3 using sampling confidence bounds, and verify all tier identities are selected uniformly.
 - Pity correctness: scripted Playwright test covering 10-pity and 50-pity edge cases.
 
 🟡 **OPEN (v1.1+):**

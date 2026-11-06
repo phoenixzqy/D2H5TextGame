@@ -1,5 +1,11 @@
 # Canonical quest localization — native repair
 
+Current follow-up2026-11-04: [development-browser verification](p16-quest-readability.md)
+now covers all46 main/side cards in both languages across five target sizes,
+with current native six-case regression passing. BUG358 remains open only for
+the final production-bundle check; the historical native checkpoint below is
+preserved with its original limits and failures.
+
 Checked 2026-10-28 on base `36d54d677c79ff3f70684d19e1d622e6a9f0bc39`
 plus the reviewed locale/test changes identified below. Node 24.21.0/npm 11.19.0; CI Node 20
 was not run. BUG358 remains Open for browser/layout

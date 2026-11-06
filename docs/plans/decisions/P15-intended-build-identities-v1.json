@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "status": "identity-contract-only;power-and-role-fixtures-not-frozen",
+  "requirement": "docs/plans/playable-target.md: two mechanically distinct viable builds per class in each act",
+  "identityRule": "A build must invest more ranks in its signature skills than its same-class counterpart at the same act. Different priority order alone is insufficient. Verify actual casts, damage and summon behavior separately during role evaluation.",
+  "sourcePolicy": {
+    "canonicalHeroEquipment": "save.inventory.equipped",
+    "canonicalMercEquipment": "save.mercs.mercEquipment",
+    "startingResources": "Use complete native admission and preceding-wave carry from the exact complete source; never copy projected stats into a new full-health boss party.",
+    "act5Boundary": "For the seven fifth-wave pre-Baal exports, wholeAreaMeasurementStart supplies the area start. The fifth-wave source is an earned internal boundary, not a fresh whole-area fixture.",
+    "points": "Account for every initial learned rank and initial free skill point, level grants, claimed quest grants and consumed Book of Skill. Resets refund investment; they create no new point budget. Aggregate conservation does not prove acquisition order or reset payment history.",
+    "historicalEvidence": "Preserve historical profile IDs, all failures, actual equipment and all earned preparation. Display names below clarify identity without relabeling historical trials as newly frozen intended-power populations.",
+    "populationGate": "Before population or holdout evaluation, freeze per-role source/actual entry level, power/acquisition policy, manual/idle starting state, permitted adaptation costs and RNG stream advancement. This identity contract alone does not satisfy those conditions."
+  },
+  "builds": [
+    {
+      "profile": "sorceress-cold-nova-lineage", "classId": "sorceress", "name": "Cold control",
+      "mechanic": "Frost Nova develops into Blizzard and Cold Mastery; Static Field supplies boss support.",
+      "signatureByAct": [["frost_nova"], ["blizzard", "frost_nova"], ["blizzard", "frost_nova"], ["blizzard", "frost_nova"], ["blizzard", "frost_nova"]]
+    },
+    {
+      "profile": "sorceress-fire", "classId": "sorceress", "name": "Fire spells",
+      "mechanic": "Fire Ball, Meteor and persistent fire spells, supported by Fire Mastery.",
+      "signatureByAct": [["fire_ball", "blaze"], ["fire_ball", "meteor"], ["fire_ball", "meteor"], ["fire_ball", "meteor"], ["fire_ball", "meteor"]]
+    },
+    {
+      "profile": "amazon-bow", "classId": "amazon", "name": "Bow volleys",
+      "mechanic": "Multiple Shot weapon volleys with bow equipment and optional Inner Sight/Decoy support.",
+      "signatureByAct": [["multiple_shot"], ["multiple_shot"], ["multiple_shot"], ["multiple_shot"], ["multiple_shot"]]
+    },
+    {
+      "profile": "amazon-javelin", "classId": "amazon", "name": "Spear and lightning",
+      "mechanic": "Early Power Strike/Poison Javelin develops into Lightning Strike, with Impale as a physical alternative.",
+      "signatureByAct": [["power_strike", "poison_javelin"], ["lightning_strike", "impale"], ["lightning_strike", "impale"], ["lightning_strike", "impale"], ["lightning_strike", "impale"]]
+    },
+    {
+      "profile": "necromancer-summon", "classId": "necromancer", "name": "Undead army",
+      "mechanic": "Ranked skeletons, mages, golem and summon masteries provide the main damage; curses support the army.",
+      "signatureByAct": [["raise_skeleton", "skeleton_mastery"], ["raise_skeleton", "skeleton_mastery"], ["raise_skeleton", "skeleton_mastery"], ["raise_skeleton", "skeleton_mastery", "summon_mastery"], ["raise_skeleton", "skeleton_mastery", "summon_mastery"]]
+    },
+    {
+      "profile": "necromancer-bone", "classId": "necromancer", "name": "Corpse and curses",
+      "mechanic": "Teeth supplies early spell damage; later Corpse Explosion consumes real pack corpses. Curses, hero attacks and mercenary attacks supply first kills and boss damage.",
+      "signatureByAct": [["teeth", "corpse_explosion"], ["corpse_explosion"], ["corpse_explosion"], ["corpse_explosion"], ["corpse_explosion"]],
+      "roleConstraint": "For Acts IV/V trash and elite fixtures, freeze an explicit learned Corpse Explosion pack rotation. Their retained boss-oriented source priorities omit it. Boss rotations may use learned curses and physical attacks when no corpse is available. Pure Bone Spear is not an added release requirement."
+    },
+    {
+      "profile": "barbarian-double-swing", "classId": "barbarian", "name": "Double Swing",
+      "mechanic": "Double Swing melee weapon sequences with warcry support.",
+      "signatureByAct": [["double_swing"], ["double_swing"], ["double_swing"], ["double_swing"], ["double_swing"]]
+    },
+    {
+      "profile": "barbarian-double-throw", "classId": "barbarian", "name": "Double Throw",
+      "mechanic": "Double Throw projectile weapon sequences with warcry support.",
+      "signatureByAct": [["double_throw"], ["double_throw"], ["double_throw"], ["double_throw"], ["double_throw"]]
+    },
+    {
+      "profile": "paladin-zeal", "classId": "paladin", "name": "Zeal and auras",
+      "mechanic": "Zeal weapon hit sequences; a selected learned aura supplies offense or recovery/defense.",
+      "signatureByAct": [["zeal"], ["zeal"], ["zeal"], ["zeal"], ["zeal"]]
+    },
+    {
+      "profile": "paladin-holy-bolt", "classId": "paladin", "name": "Holy spells",
+      "mechanic": "Holy Bolt and Blessed Hammer provide spell damage, with a selected learned aura.",
+      "signatureByAct": [["holy_bolt", "blessed_hammer"], ["holy_bolt", "blessed_hammer"], ["holy_bolt", "blessed_hammer"], ["holy_bolt", "blessed_hammer"], ["holy_bolt", "blessed_hammer"]]
+    },
+    {
+      "profile": "druid-fire", "classId": "druid", "name": "Elemental fire",
+      "mechanic": "Fissure/Firestorm spell damage and Elemental Mastery; starter companions remain support.",
+      "signatureByAct": [["fissure", "firestorm"], ["fissure", "firestorm"], ["fissure", "firestorm"], ["fissure", "firestorm"], ["fissure", "firestorm"]]
+    },
+    {
+      "profile": "druid-summon", "classId": "druid", "name": "Animal companions",
+      "mechanic": "Spirit Wolves develop into Dire Wolves and Grizzly, with companion aura support.",
+      "signatureByAct": [["summon_spirit_wolf"], ["summon_spirit_wolf"], ["summon_spirit_wolf", "summon_dire_wolf"], ["summon_spirit_wolf", "summon_dire_wolf"], ["summon_spirit_wolf", "summon_dire_wolf", "summon_grizzly"]]
+    },
+    {
+      "profile": "assassin-martial", "classId": "assassin", "name": "Martial combinations",
+      "mechanic": "Fists of Fire develops into Dragon Tail/Dragon Talon, with Cobra Strike recovery.",
+      "signatureByAct": [["fists_of_fire", "dragon_talon"], ["dragon_tail", "dragon_talon"], ["dragon_tail", "dragon_talon"], ["dragon_tail", "dragon_talon"], ["dragon_tail", "dragon_talon"]]
+    },
+    {
+      "profile": "assassin-traps", "classId": "assassin", "name": "Traps and blades",
+      "mechanic": "Charged Bolt/Lightning Sentry and later Blade Sentinel provide persistent trap damage.",
+      "signatureByAct": [["charged_bolt_sentry", "shock_web"], ["lightning_sentry", "charged_bolt_sentry"], ["lightning_sentry", "charged_bolt_sentry"], ["lightning_sentry", "blade_sentinel"], ["lightning_sentry", "blade_sentinel"]]
+    }
+  ]
+}

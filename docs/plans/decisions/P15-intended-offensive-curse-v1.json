@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "source": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-far-oasis-source-checkpoint-v1.json",
+    "sha256": "eb2594cfa62686d9993e91780da76eafd35e117702df9e43f3c839486be47f81"
+  },
+  "driver": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-offensive-curse-driver-v1.ts",
+    "sha256": "de311005af0a1a790ea035cf6d532f7180e82bcdc4f5ce8d3947afd8857ce55a"
+  },
+  "launcher": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-offensive-curse-launcher-v1.mjs",
+    "sha256": "00fcae8e6cbfe2b79aadec899059fe956fe0605fa7180185c1bd7e5d6bdb33b2"
+  },
+  "authority": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-campaign-harness-source-audit-v77.json",
+    "sha256": "056717133f401d3aef666e7d7b2858e1cb3373850be53c214e88a3ece354579e"
+  },
+  "campaign": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-campaign-manifest-v1.json",
+    "sha256": "0412e9a975677d7cf6f8bb56d2283959e51fa08a5b8f663a2030dcfb0b2fe406"
+  },
+  "profile": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-frozen-profile-v1.json",
+    "sha256": "35d12120c5ca13dbdedcefd84d4e89e7c32b842cc97599bdbe9560cd90deff05"
+  },
+  "baselineReport": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-act2-v1.json",
+    "sha256": "8ae99ec87d55b31e8f54db781785bee264e2b9c941d207f0e414c5c739c9e8ea"
+  },
+  "baselineReadback": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-act2-v1-readback-v2.json",
+    "sha256": "88c73a072b615264472c4ae2e7f8c925966ffdbc4dac1be8f49f027ee9ff761c"
+  },
+  "maxAdmissions": 1,
+  "maxCombatMs": 300000,
+  "maxWallMs": 120000,
+  "change": "Native combo replaces learned Weaken with already learned Amplify Damage. Retain Teeth, CE, Bone Armor, Bone Wall and all ranks/gear/Prayer. Exact source260; no grow/equip/farm/grant/heal/reset; one admission maximum, stop first nonwin.",
+  "acceptance": "One same-source conditional area; retain any defeat/draw, stop first nonwin. Not a continuation of exhausted trial, extra accepted retry, fresh population, earned route, pacing or balance acceptance. Independent complete journal/native export/reward readback and matching first-wave baseline comparison.",
+  "planReview": "ready: one predeclared learned-curse substitution, retained first checkpoint and exact only-combo preparation; all first-wave teams except native skill order match baseline. Full independent journal/export/economy/carry audit after run. Preserve failures and frozen source; conditional diagnostic is not an extra accepted retry or population.",
+  "securityCheck": "pass: authorized local native diagnostic, exact task-owned paths/cache; no installs/network/credentials/publication or protected-save mutation.",
+  "rationale": "Completed no-Teeth comparison draws with boss3191Life, hero17direct damage: basic attack124 cannot overcome242flat armor. Survival full with Weaken. Learned Amplify reduces physical resistance50points before armor and supports declared corpse/curses/merc boss identity. Measure existing native offensive choice before numeric tuning.",
+  "rejectedFallback": {
+    "report": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-physical-fallback-v2.json",
+    "sha256": "40a7acd71ce5256f9eb20f55ad6a08e3bd0f53f53c9d97302adfbac47d6e8ede",
+    "readback": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-physical-fallback-v2-readback-v3.json",
+    "readbackSha256": "d6a621c9c945b8deb938b957870852d4396a19481544c848c073d77246bfa265"
+  }
+}

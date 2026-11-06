@@ -1,13 +1,31 @@
 # P18 — Frozen earned endgame continuation
 
-Status: The predetermined genuine sequence, once-only Claim/title and actual
-ruby utility are verified in [earned endgame4](evidence/p18-earned-endgame4.md).
-The protocol below records the original frozen input and action order. It is not
-a replay instruction; resume only its audited successor. The separate
-[failure controls](evidence/p18-failure-controls.md) verify partial-run discard
-and fresh admission. The intended loss control drew and stopped; actual defeat/
-fresh retry, broader P18 and full-v1 gates remain open.
-Owner: root, existing registered umbrella worktree; preserve unrelated changes.
+Status: [current production Glacial repeat](evidence/p18-production-glacial-repeat.md)
+wins all four native waves at ordinal 6 and closes the missing bounded production
+modifier/reward/persistence integration. Authoritative resume:
+[earned endgame7 production](evidence/fixtures/earned-endgame7-production/retained-final.json.gz),
+v33/L35/XP645101, next attempt7/Ashen4/Glacial3. The claimed achievement,
+Riftwalker selection, socketed ruby and all 27,653 ancestral item payloads persist;
+ten earned items append. Full public input equality, actual Frost Aura/allied
+Chill/cadence, UI rewards, XP and acknowledged Save/browser restart/Continue
+reconcile independently of executor assertions in the root's accounting reader.
+This is not independent QA or pacing/balance acceptance.
+
+The preceding [production Ashen repeat](evidence/p18-current-earned-repeat.md) and
+[development Glacial repeat](evidence/p18-current-glacial-repeat.md) are immutable
+ancestry. Their endgame5/endgame6 snapshots are no longer resumes. Admissions
+0–6, once-only Claim, title selection and ruby insertion stay closed. The new
+one-admission allowance is consumed; ordinal7 describes the successor and does
+not itself authorize another run. Earlier [earned Claim/title/ruby utility](evidence/p18-earned-endgame4.md),
+[failure controls](evidence/p18-failure-controls.md) and
+[development defeat/retry](evidence/p18-current-browser-defeat-retry.md) remain
+retained. Do not replay those diagnostic or economic actions.
+
+Broader endgame fairness/balance, active-time pacing, higher difficulties,
+performance/PWA and full-v1/independent gates remain open. The production build's
+large-chunk and uncached artwork-manifest warnings remain explicit. Owner: root,
+existing registered umbrella worktree; preserve unrelated changes. The protocol
+below is historical initial input/action order, not an instruction to replay.
 
 ## Input and constraints
 

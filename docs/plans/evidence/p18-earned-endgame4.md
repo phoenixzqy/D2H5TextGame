@@ -5,9 +5,15 @@ saved-artifact audit; independent read-only artifact review approves with no
 findings. Independent runtime acceptance remains open.
 [Exact summary](fixtures/earned-endgame4/summary.json).
 
-## Current genuine successor
+## Historical genuine successor
 
-Resume only [earned endgame4](fixtures/earned-endgame4/retained-final.json.gz):
+2026-11-04 continuation: [current production Ashen repeat](p18-current-earned-repeat.md)
+consumes native ordinal4 and versions the exact audited
+[endgame5 successor](fixtures/earned-endgame5-current/retained-final.json.gz).
+Resume that save, not the historical input below. The account below retains the
+original protocol, observations and validation at its historical source version.
+
+The historical [earned endgame4](fixtures/earned-endgame4/retained-final.json.gz) is:
 L35/XP192311, zero unspent stat/skill points, 27633 unique equipment items,
 all29 campaign areas preserved, Normal next431/Nightmare0. Endgame attempt4,
 Ashen3/Glacial1 clears, achievement claimed and Riftwalker selected. The existing

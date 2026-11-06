@@ -1,0 +1,476 @@
+{
+  "version": 1,
+  "status": "frozen-before-diagnostic;not-population-acceptance",
+  "subject": "amazon-bow Act II whole Tomb of Tal Rasha; declared targeted retry transport diagnostic",
+  "source": {
+    "file": "p15-build-act-boss-preparation-v1-amazon-bow-act2.json",
+    "sha256": "ef87b09b38a84da2ad28743fe4312b0fdc071d93208640acf96ed6e30b850aef",
+    "exportSha256": "8c777656fe345b8f1cbbddf6da9cf3e259ef123631de8477846120d062876fe6",
+    "level": 26,
+    "normalOrdinal": 790,
+    "timestamp": 1793304000000,
+    "skillPoints": 0
+  },
+  "act": 2,
+  "area": "areas/act2-tomb-of-tal-rasha",
+  "maximumAttempts": 3,
+  "firstAttempt": "Restore the exact complete unresolved checkpoint once. Retain all source points, priorities and equipment. Whole-area native admission owns refill; no explicit seed/ordinal override.",
+  "adaptation": {
+    "when": "After each terminal nonwin and native Return, before the next whole-area admission. Stop at the first complete living-hero victory or after attempt three.",
+    "selection": "Use the established amazon-bow growth order: currently owned points on Critical Strike to20, then Dodge to20, then Magic Arrow to20. Spend complete five-stat-point bundles as4Dexterity/1Vitality. Retain Multiple Shot / Magic Arrow priority. Native monotone owned hero upgrades preserve a bow/crossbow fallback; monotone fielded-merc upgrades use only owned compatible equipment. No purchases, new farming, respecs, crafting, grants or actor changes.",
+    "targets": [
+      {
+        "id": "amazon.critical_strike",
+        "rank": 20,
+        "level": 20
+      },
+      {
+        "id": "amazon.dodge",
+        "rank": 20,
+        "level": 20
+      },
+      {
+        "id": "amazon.magic_arrow",
+        "rank": 20,
+        "level": 20
+      }
+    ],
+    "priority": [
+      "amazon.multiple_shot",
+      "amazon.magic_arrow"
+    ],
+    "statsPerLevel": {
+      "strength": 0,
+      "dexterity": 4,
+      "vitality": 1,
+      "energy": 0
+    },
+    "equipment": "monotone",
+    "costs": "One owned point per skill rank/stat. Equip/retrieve costs follow native store rules; displaced items remain owned. No currency/material spend. Source starts with0skill/0stat points; adaptation may be a no-op unless earlier winning waves earn an upgrade.",
+    "weaponPolicy": "preserve-bow-fallback",
+    "mercEquipmentPolicy": "monotone-fielded-v1"
+  },
+  "rng": "Each admission consumes the next native Normal challenge counter modulo360360. Production derives its seed from canonical area and the logical Date.now. Advance time by ceil(actual terminal milliseconds) for EVERY played wave, including losses. Never restore between attempts.",
+  "accounting": "Retain all waves/events/outcomes, native quest settlements, actual income, complete attempt/adaptation states and exact final native save. Failed waves publish no income; earlier won waves retain theirs. All gear remains in canonical ownership. Admission owns refill and preceding waves keep native carry.",
+  "timeLimits": "Combat-only diagnostic. Menu/decision time is uncalibrated and not claimed as active or economic pacing. No measured 30\u201350-hour acceptance.",
+  "scopeLimits": "One real-source sequence to exercise retry transport and lawful owned adaptation. No claim of recommended power, 95percent retry success, populations, holdouts or balance acceptance. Existing production data/formulas unchanged.",
+  "selectionBasis": "Historical declared exploratory screens for amazon-bow Act II failed at both fixed screen seeds1and8 in p15-build-act-boss-screen-v1.json. Choose this documented difficult checkpoint before this native sequence; no fresh search or seed change to force a loss. If it wins, retain that outcome. Targeted sample, not population evidence.",
+  "transportInputs": [
+    {
+      "path": "tests/campaign/act2-actions.regression.test.ts",
+      "sha256": "6bfdc8f565c42bd932682880f4af7aa42b16817a7ed414fde4816ad4bc840f5c"
+    },
+    {
+      "path": "tests/campaign/act2-route.regression.test.ts",
+      "sha256": "57f035524b68ce81aefab65d33234ae8c03ac1c70342210d436edd267f7c58c2"
+    },
+    {
+      "path": "tests/campaign/act2-route.ts",
+      "sha256": "9b8c1d6efca9cfe011041a5bf96c6858175ff12b734e01039ee955c825e154d4"
+    },
+    {
+      "path": "tests/campaign/act3-actions.regression.test.ts",
+      "sha256": "6f86cbb3cddf9299cd15b4a9acba49dd6c8ba99bc2f79295c150a57e7a05cfc5"
+    },
+    {
+      "path": "tests/campaign/act3-audit.regression.test.ts",
+      "sha256": "7de05172226708508f06d197a2efec28955b96e1de07107de2d2932732ab5b5e"
+    },
+    {
+      "path": "tests/campaign/act3-dispatch.regression.test.ts",
+      "sha256": "bed59a70a134eea9653078f31d246113254d710e60f3142ab2bd05964c05132d"
+    },
+    {
+      "path": "tests/campaign/act3-route.regression.test.ts",
+      "sha256": "d5678b902475b79cb19de1cc1398ae1473f038bbc6db2bed7b48463caaba2668"
+    },
+    {
+      "path": "tests/campaign/act3-route.ts",
+      "sha256": "c6cc9cba61f8b69e363bb3a945e59cf2a9647746ebc0dcf0225830cc152ddf43"
+    },
+    {
+      "path": "tests/campaign/act4-actions.regression.test.ts",
+      "sha256": "8b0d1e90791c6e41c38c14bb8c85116bc2b963f89f1024e0e2929df2a1448148"
+    },
+    {
+      "path": "tests/campaign/act4-audit.regression.test.ts",
+      "sha256": "bd81586ade30847cf7f0dff3eff368797ebbfd0fb3c48244939b590611a8fb45"
+    },
+    {
+      "path": "tests/campaign/act4-dispatch.regression.test.ts",
+      "sha256": "6cc5dbb8e9eff5547e2cb0754903907ec5a795d0a749cc2ba8dd996fbfb8eca6"
+    },
+    {
+      "path": "tests/campaign/act4-fixture.ts",
+      "sha256": "bbc99c78d6176033d12c6185a867415d2cced40766c65bea5ffb4544090a7cd2"
+    },
+    {
+      "path": "tests/campaign/act4-route.regression.test.ts",
+      "sha256": "e6bb80e4ee4f332133cee392f1cc7d3d9507af13e26a12dfb3beb03d2e98d12f"
+    },
+    {
+      "path": "tests/campaign/act4-route.ts",
+      "sha256": "aee1f3dd17b77836b4e913029e627966ea494b3bf34e12c757ef1d483bde06c5"
+    },
+    {
+      "path": "tests/campaign/act5-actions.regression.test.ts",
+      "sha256": "0c04121f5aace94a637c5a515aaa482fe04ee758592679002974d4d03a6563fc"
+    },
+    {
+      "path": "tests/campaign/act5-admission.regression.test.ts",
+      "sha256": "d4d10b641172df5e18475fbd0f4c168b909e38a61d6e1c85a144350ed75894fe"
+    },
+    {
+      "path": "tests/campaign/act5-audit.regression.test.ts",
+      "sha256": "8bce823a86f4aa6f718b2700ad61f90fb4175656b2590b6603d2b576037fd3f7"
+    },
+    {
+      "path": "tests/campaign/act5-budget.regression.test.ts",
+      "sha256": "a00d33378bc1449b209cccc3805321b8a14f1fedae8515aa0b2657351ca1100b"
+    },
+    {
+      "path": "tests/campaign/act5-dispatch.regression.test.ts",
+      "sha256": "9e9ab98c65aa133f6f5db1da12441d4c017749c815d4f79427009755a97e7786"
+    },
+    {
+      "path": "tests/campaign/act5-fixture.ts",
+      "sha256": "5f27034da5e98b49f20d26fea5eb36b0eee4226d077cafbaba126df77a20f4e3"
+    },
+    {
+      "path": "tests/campaign/act5-main-audit.regression.test.ts",
+      "sha256": "52029258c056efdd854c3c84a1d09a5a7386023b1d3a4ff8c38f64462ca0a40a"
+    },
+    {
+      "path": "tests/campaign/act5-main-resume.regression.test.ts",
+      "sha256": "36aac842b5f3e68924c1216e14ecf2bc111a4592c13a03f0001115b6cfc6c7ae"
+    },
+    {
+      "path": "tests/campaign/act5-main-route.regression.test.ts",
+      "sha256": "562886aeee88a48a6002536c36ae1df372f8d9df21eb3d4dcdad865892a23bcc"
+    },
+    {
+      "path": "tests/campaign/act5-route.regression.test.ts",
+      "sha256": "f2ceb60bcff614e54848f084c7f6d89fd6938598693d374176b688831638f7dd"
+    },
+    {
+      "path": "tests/campaign/act5-route.ts",
+      "sha256": "165490582eef5e01473f8bc0999eb3f8dec2fc29db087b182dda54ee03f309a5"
+    },
+    {
+      "path": "tests/campaign/actions.regression.test.ts",
+      "sha256": "4ebe61ad88f58ff882f84c28a64f926750b72cc0e48800462b0d397b0d26cc9c"
+    },
+    {
+      "path": "tests/campaign/actions.ts",
+      "sha256": "4109c7132270bf96fe5543fce7ad30529370077d500087a0f52385cf65709688"
+    },
+    {
+      "path": "tests/campaign/admission.regression.test.ts",
+      "sha256": "2c855c7dc3ba6e77bedcfa13034f7bf571c3c897f8e1a27f0274cbcf027fd917"
+    },
+    {
+      "path": "tests/campaign/admission.ts",
+      "sha256": "8871fc86ff084512e61159321b0330d97b94a5dd93335214abfa8492acccbf40"
+    },
+    {
+      "path": "tests/campaign/budget.regression.test.ts",
+      "sha256": "cf610439d0fb81f834d47562ecb4b5b80256d736965b97ff12fe356e0b8148ab"
+    },
+    {
+      "path": "tests/campaign/campaign-state.ts",
+      "sha256": "71ea4a7f4ecd1a6e2b7cdfd744f21854bfc6ed2a657f2ac00f2599147112ee8e"
+    },
+    {
+      "path": "tests/campaign/capacity.ts",
+      "sha256": "b45295d7e60d3a1a53408e5b3acc2eca11d1dabd23082a5670f7e969370e5569"
+    },
+    {
+      "path": "tests/campaign/caster-gear-probes.json",
+      "sha256": "5ef237317d24a73a10e85218d65ff16de54bafd90c698c969a0d9bddb9a2e057"
+    },
+    {
+      "path": "tests/campaign/caster-preparation.regression.test.ts",
+      "sha256": "d02fcbb47d16e2f9c8c8b608ac5ac85a2c2b20b8cca9d788e87c8075bca03cac"
+    },
+    {
+      "path": "tests/campaign/caster-preparation.ts",
+      "sha256": "4bdfc20feecf06d1cb19be38fddb5890e8b311e2af445632f143ac81e564bff2"
+    },
+    {
+      "path": "tests/campaign/dispatch.regression.test.ts",
+      "sha256": "8d8563537306607b5f32404858c782553e0c56e8cefdc13edad1a771526f199b"
+    },
+    {
+      "path": "tests/campaign/economy-sockets.regression.test.ts",
+      "sha256": "e48e46cd17de62411bf9098cc394aff8f97571aa92029683e66ed828a0311a71"
+    },
+    {
+      "path": "tests/campaign/economy.ts",
+      "sha256": "151c9336d17218c781052dd3ec78609bcc6a07f397a3a16a4e66f466438797aa"
+    },
+    {
+      "path": "tests/campaign/execution.ts",
+      "sha256": "7784d6c88be32df71b40135f0c1f6d946be664834843e4fa9afcac858fa88ff6"
+    },
+    {
+      "path": "tests/campaign/inventory-policy.regression.test.ts",
+      "sha256": "c170e5a311643df49b8ad7699cec5e65998b350acc19534f3a5a9290d4161ad2"
+    },
+    {
+      "path": "tests/campaign/inventory-policy.ts",
+      "sha256": "82aa60ecca5eb0faa523c0290573c598dc9f2ed0396b3e030a20f659f4ac2721"
+    },
+    {
+      "path": "tests/campaign/javelin-progression.regression.test.ts",
+      "sha256": "a50decff3e3a62ef005b3d8e519f58543527c8d76912b78956f3c19a542bca41"
+    },
+    {
+      "path": "tests/campaign/javelin-progression.ts",
+      "sha256": "eb20b7ccdb2a46074b732d0e4232e0252493b1b89ccabb6aa278e111189a6522"
+    },
+    {
+      "path": "tests/campaign/javelin-training-resume.regression.test.ts",
+      "sha256": "3e0d7a7267321aad2eae9af2f742269bc326a3b5381314acf65f0e6f1e4e2d62"
+    },
+    {
+      "path": "tests/campaign/javelin-training.ts",
+      "sha256": "65c87fc80c2522b4a2768ddea0bca39a266973b7bbfbdbfbf3734bc0418d05d5"
+    },
+    {
+      "path": "tests/campaign/journal.regression.test.ts",
+      "sha256": "17115e217ab04c403181cc91cf58e504b852145b6021eb7862d870ad9138c534"
+    },
+    {
+      "path": "tests/campaign/journal.ts",
+      "sha256": "aa355cab979ee1b44c0701fd73289f4a5ae3924e55ac0f35e8171137500ffafb"
+    },
+    {
+      "path": "tests/campaign/manifest.ts",
+      "sha256": "40d262f8ae6669c0ad4ddf74d491883f811d70387d2dc0e0cfaa0460c63cc69f"
+    },
+    {
+      "path": "tests/campaign/merc-gear.regression.test.ts",
+      "sha256": "1ee37693cfff1714a1d558efce264c4041b72d5f82634af10ff130cea3bdfb15"
+    },
+    {
+      "path": "tests/campaign/merc-gear.ts",
+      "sha256": "68808ece992e1b818e6fdcf75086e16656888a38f03ba0c551236d934b0eaf04"
+    },
+    {
+      "path": "tests/campaign/native-recovery.regression.test.ts",
+      "sha256": "50e92c5645f955d35e15e34db867e33e485ba80a8cc2c2950b343b18b27336ab"
+    },
+    {
+      "path": "tests/campaign/native-runner.ts",
+      "sha256": "95dc8b07bb775a3cfc447de6cd88f299864aabfcb559fcc6979e6138c2a715e3"
+    },
+    {
+      "path": "tests/campaign/nova-act2-preparation.regression.test.ts",
+      "sha256": "de5af57092b7cc0af8b5d4aa4296f4a10ef01fd0ca171690c5f1122fe49239d3"
+    },
+    {
+      "path": "tests/campaign/nova-act2-preparation.ts",
+      "sha256": "03340b474123a25f4ee617ab01114c1f730fb9713fa6ec41a99d50b53c1febdd"
+    },
+    {
+      "path": "tests/campaign/nova-act3-preparation.regression.test.ts",
+      "sha256": "32822a3be6aba889d78c293cdb2bc157e8cadfa7305b0c42e7444a42c205eef6"
+    },
+    {
+      "path": "tests/campaign/nova-act3-preparation.ts",
+      "sha256": "1ad033572f474d105bd36259ee01096d704c152fc8a2fdf4e061fa109942122d"
+    },
+    {
+      "path": "tests/campaign/nova-act4-preparation.regression.test.ts",
+      "sha256": "96d33bcd390d8910828c4b2b48a9239c0433c9099902fd9a3e4703a42d4ec7a1"
+    },
+    {
+      "path": "tests/campaign/nova-act4-preparation.ts",
+      "sha256": "8ea5a2e0381f41582e3be7527a86ecb366b679111c2f7063168b67d2f24d5bdc"
+    },
+    {
+      "path": "tests/campaign/online-clock.regression.test.ts",
+      "sha256": "b3f6044c1ec819c4f29dbefe048f1ea64ba359f8ed9be68e18bd9f2276467e73"
+    },
+    {
+      "path": "tests/campaign/online-clock.ts",
+      "sha256": "734f5018f46e0b0a99f13465f518c7dc64b54c1441efc59a3b3e1485f0634669"
+    },
+    {
+      "path": "tests/campaign/opening-audit.regression.test.ts",
+      "sha256": "1432d809b7a348ebc63af55e7805d89b159b712d55804056de24b1035a463aad"
+    },
+    {
+      "path": "tests/campaign/opening-audit.ts",
+      "sha256": "fc6002c2748b8234d66e408d583413883ab34781531192d72d1ad8528e22d0bc"
+    },
+    {
+      "path": "tests/campaign/opening-recovery.regression.test.ts",
+      "sha256": "ff438cc367676f75f8e865afc64dbe10d2f066ccca93d5bbd40a7e7017deb286"
+    },
+    {
+      "path": "tests/campaign/opening-recovery.ts",
+      "sha256": "ec8ea43a7ce8a987607db668485b1775136b647141f949bd42de6b05cf9fa3c0"
+    },
+    {
+      "path": "tests/campaign/opening.regression.test.ts",
+      "sha256": "e363ad4757a3cde5c7ae9a9575d3e617845f8cc216c2c176b8acd339803c7855"
+    },
+    {
+      "path": "tests/campaign/owned-gear.ts",
+      "sha256": "d69a9aab615c9f0c243d32f8fa8df34cc1a0205f7b5b7964150aa8838e0046e6"
+    },
+    {
+      "path": "tests/campaign/policy.ts",
+      "sha256": "4dbf56caede986f3a6a3e8ac7398f29a68478536fcefdef29466dc2d2ff9c407"
+    },
+    {
+      "path": "tests/campaign/preparation-audit.regression.test.ts",
+      "sha256": "5baf8095644b78c8bb5a643db0e20930d185f59a1f1ba66b883e206c3ce26619"
+    },
+    {
+      "path": "tests/campaign/preparation-audit.ts",
+      "sha256": "7a457e2be6684d58876a51221c1791f6ae7e4540227ee384fb3046abf0283a5d"
+    },
+    {
+      "path": "tests/campaign/preparation.ts",
+      "sha256": "8473767a1ae478002de3af8ef716d3f915524f553e60a2e3f614a3193045a3f1"
+    },
+    {
+      "path": "tests/campaign/profile-registry.json",
+      "sha256": "009e16d91cb5abb048f9fb3060e15a3f3cd19dc8ed222dc9e7e2321f5cd612b1"
+    },
+    {
+      "path": "tests/campaign/profiles.regression.test.ts",
+      "sha256": "da21986dbb06912189a382ef20b43139700af8ed296bf2c1221df125830a4535"
+    },
+    {
+      "path": "tests/campaign/profiles.ts",
+      "sha256": "c911a32806783de515c1e77af92ea9217331ad0f4d6bd3c98bafcfe6e832651f"
+    },
+    {
+      "path": "tests/campaign/quest-actions.ts",
+      "sha256": "620d294be57dc8371ae619c7383719bcdc8618ae04fe5f062a05d32526f99d1c"
+    },
+    {
+      "path": "tests/campaign/quest-audit.regression.test.ts",
+      "sha256": "55b0a57c3d9fc4268bdb1be79681df09bf6ee1d41e3166f863974fde033da957"
+    },
+    {
+      "path": "tests/campaign/quest-audit.ts",
+      "sha256": "eede655a1ff9523bb2ffe13e98c455c7d1a20fe1b7b1ee427ccab8c76401155a"
+    },
+    {
+      "path": "tests/campaign/quest-refusal-resume.regression.test.ts",
+      "sha256": "77eb9c619117c262b5e44c937d5fbd8c9688f0ae79aa917bff358ac262455f7f"
+    },
+    {
+      "path": "tests/campaign/quest-settlement.regression.test.ts",
+      "sha256": "46fde54c5032ce4f53e3dc0527994312f6df121f0e612923766fc54befbc8df4"
+    },
+    {
+      "path": "tests/campaign/quest-settlement.ts",
+      "sha256": "d9d6f4d1d2a907f443666ffa0ded6aa58b3289a7cd7852f8f85c67dada4012bb"
+    },
+    {
+      "path": "tests/campaign/recovery-audit.regression.test.ts",
+      "sha256": "3ec851d7ffded526087701d9c2f02b52a8088dce6235ee4f7048046594aa2391"
+    },
+    {
+      "path": "tests/campaign/recovery-audit.ts",
+      "sha256": "2abc71b671a0dad6d0f4ccb0f98f130fd3053e9952b027243b0cd486c80015e8"
+    },
+    {
+      "path": "tests/campaign/recovery.regression.test.ts",
+      "sha256": "5aea7c98f622a0c7e5b416ead88eeb8c9d796e10ceee27b258e9f21fe20f28a7"
+    },
+    {
+      "path": "tests/campaign/retry-measurement.regression.test.ts",
+      "sha256": "0c902f00707b2010defcb458d90fb3bf8f0a29909d7d7dfd7bd78aaa060cc2fb"
+    },
+    {
+      "path": "tests/campaign/retry-measurement.ts",
+      "sha256": "c61b53fff853a8258cfdeca3a59ff9f59d107c0743cfe8ebd9b68386da883657"
+    },
+    {
+      "path": "tests/campaign/route.ts",
+      "sha256": "bdf129ace2a5a3e8605227c0cd2a358943c1ccc417f5a8fdf6ded4340ca1f039"
+    },
+    {
+      "path": "tests/campaign/run.mjs",
+      "sha256": "786198f3f7acda6d3b0e7064cd8479126ad64d52e15c34e1ea332847e57aa9d9"
+    },
+    {
+      "path": "tests/campaign/screen.test.ts",
+      "sha256": "817d01f19f588da27ed566fbc27402bc7b5d1478eca3c2580c78aa23034c3d1c"
+    },
+    {
+      "path": "tests/campaign/settlement.ts",
+      "sha256": "8744300778886fed558be8e241ef21f97f7e50a7582d721d3caa3d7523fa43c6"
+    },
+    {
+      "path": "tests/campaign/socket-preparation.regression.test.ts",
+      "sha256": "aabb8cea3bbf16ceb635ec69384b61178e4c5f066b9fba8e7cbeeda633921df4"
+    },
+    {
+      "path": "tests/campaign/socket-preparation.ts",
+      "sha256": "aa5bf1c3e130e0cee42053a9a0bd428e2fc943b10b19cb035439b55e91b4a2d4"
+    },
+    {
+      "path": "tests/campaign/start-timestamp.regression.test.ts",
+      "sha256": "4790f5fa5cd84bff216481678b5841bdde34be0cc73368ec10ccc15fb92e9f05"
+    },
+    {
+      "path": "tests/campaign/survival-gear.regression.test.ts",
+      "sha256": "1019bdd6edf53dc2f0a503ab0d7a8686156906bc87307e6e528cc3b7de6b3dde"
+    },
+    {
+      "path": "tests/campaign/survival-gear.ts",
+      "sha256": "6868c6a22ac357fa8d0707cdd6e9f4e73aead4144b78a78701a79df11b808f53"
+    },
+    {
+      "path": "tests/campaign/training-audit.ts",
+      "sha256": "81f5f312a4b3a1beb2232480b1d0b55dba1b76f7acd1d33482b8a86e3330d478"
+    },
+    {
+      "path": "tests/campaign/training.regression.test.ts",
+      "sha256": "35f9b46bdf8e95daf22b63f71671861b22bafaa3ca426d75d9080fd2a368a47b"
+    },
+    {
+      "path": "tests/campaign/training.ts",
+      "sha256": "52452f1197739a1f36924b8f9f546e30a3dfe095c3835fdae7fd90a9f43621d2"
+    },
+    {
+      "path": "tests/sim/contracts/earned-campaign-economy.test.ts",
+      "sha256": "ea45c25e31e60e88140f65d514f2f2bdf9eb0c9ac3dd25a1aac8e65c04fc906c"
+    },
+    {
+      "path": "tests/sim/contracts/earned-campaign-manifest.test.ts",
+      "sha256": "e41f72837f4afa4176acefe16e48b685b09a586fb9bf81be57e8330c63d894a3"
+    },
+    {
+      "path": "tests/sim/contracts/earned-campaign-policy.test.ts",
+      "sha256": "33fa9efb0280732e1ec5638ca6c65f682f703bb86150b866ce3a80a2f9dc0eef"
+    },
+    {
+      "path": "tests/sim/contracts/earned-campaign-settlement.test.ts",
+      "sha256": "b0f22d467743f939465a29cfbea2fa328e8998704f71bc84d4d0e3ff5af5af21"
+    },
+    {
+      "path": "tests/sim/contracts/observation-codec.ts",
+      "sha256": "f198a38f95e6b84b20a293f4e61b74024b33044448f398cc27730b4367d4f1c6"
+    },
+    {
+      "path": "tests/sim/contracts/p15-wave-observation.test.ts",
+      "sha256": "0250c29bef171e1657d56073f5db4d4035c26447858ccb504ba3e33a9b998718"
+    },
+    {
+      "path": "tests/sim/contracts/p15-wave-observation.ts",
+      "sha256": "9e9225ac970ff599a4dd237d9d7ebaf2de010c34f935e7f93f11b47fe3ab0375"
+    },
+    {
+      "path": "tests/sim/contracts/store-observation.ts",
+      "sha256": "65b8e0e391f63ca6603e5f0966c26418cabaef4f8beec24791462c260c2cd0a6"
+    }
+  ]
+}

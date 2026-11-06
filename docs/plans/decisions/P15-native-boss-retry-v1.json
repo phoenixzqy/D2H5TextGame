@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "status": "frozen-before-diagnostic;not-population-acceptance",
+  "subject": "necromancer-bone Act IV whole Chaos Sanctuary",
+  "source": {
+    "file": "p15-bone-act4-river-caster-continuation-v1.json",
+    "sha256": "a445ffaf3e5d3586e53a4cdea5d8c36d652aeac9b25b1800752d1397832a0a1c",
+    "exportSha256": "c9afc93df5ad42eab20f4bd28bacbeb7b6afd4ecb243c4829547b1c637ae691f",
+    "level": 50,
+    "normalOrdinal": 1287,
+    "timestamp": 1793365975498,
+    "skillPoints": 2
+  },
+  "act": 4,
+  "area": "areas/act4-chaos-sanctuary",
+  "maximumAttempts": 3,
+  "firstAttempt": "Restore the complete source once, retain original equipment, allocations and boss priority, then admit the whole area natively. No explicit seed or ordinal override.",
+  "adaptation": {
+    "when": "After each terminal nonwin and native Return, before the next whole-area admission. Stop at the first complete living-hero victory or after attempt three.",
+    "selection": "Spend currently owned skill points on Weaken to rank20, then Amplify Damage to rank20. Spend complete five-stat-point bundles on Vitality. Keep original Amplify Damage / Decrepify / Weaken order and all earned hero/merc equipment.",
+    "targets": [
+      { "id": "necromancer.weaken", "rank": 20, "level": 6 },
+      { "id": "necromancer.amplify_damage", "rank": 20, "level": 1 }
+    ],
+    "priority": ["necromancer.amplify_damage", "necromancer.decrepify", "necromancer.weaken"],
+    "statsPerLevel": { "strength": 0, "dexterity": 0, "vitality": 5, "energy": 0 },
+    "equipment": "unchanged",
+    "costs": "Native one owned skill point per rank and one owned stat point per stat; no respec, purchases, crafting, farming or grants. An exhausted point budget may produce no further adaptation."
+  },
+  "rng": "Each admission consumes the next native Normal challenge counter modulo360360. Production derives its seed from canonical area and the logical Date.now. Advance time by ceil(actual terminal milliseconds) for EVERY played wave, including losses. Never restore between attempts.",
+  "accounting": "Retain every wave event/outcome, native quest settlement, actual income, complete attempt boundary state and final native save. Failed waves publish no rewards; earlier won waves keep theirs. Native admission owns refill; preceding waves keep native carry.",
+  "timeLimits": "Combat-only diagnostic. Menu/decision time is uncalibrated and not claimed as active or economic pacing. No measured 30–50-hour acceptance.",
+  "scopeLimits": "One contiguous real-source diagnostic proves transport and owned adaptation only. Does not establish recommended power, 95percent retry success, population fairness, holdouts or balance acceptance. Existing CE pack policy and coefficients remain unchanged."
+}

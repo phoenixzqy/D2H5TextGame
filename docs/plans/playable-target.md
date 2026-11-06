@@ -1,5 +1,33 @@
 # Playable v1 acceptance contract
 
+## Owner execution update — 2026-11-05
+
+Continue implementing the full private v1 scope. At the owner's direction,
+**stop all gameplay testing from this point forward**: no combat/equipment/
+crafting execution tests, balance simulations, campaign reruns, browser
+playthroughs or soak runs. Use source review and static type, lint, schema and
+data-reference checks only. Gameplay validation, population balance and the
+30–50-hour pacing measurement are deferred to the owner's later playtest;
+unknown results remain unknown and do not block remaining implementation.
+This instruction supersedes earlier test/gate execution requirements for this
+work. CI remains excluded. Do not spend further time building certification
+harnesses or collecting gameplay evidence. Finish missing production behavior,
+content and application integration, and report implementation separately from
+deferred validation.
+
+## 2026-11-05 — Source implementation handoff
+
+The owner stopped agent-run gameplay testing. [Current implementation handoff](implementation-handoff.md)
+maps all 21 feature groups to production source and separates implementation
+from deferred owner gameplay acceptance. Latest repairs localize monster tier
+suffixes, restore ordinary armor/two-handed tiers (178 appended rows), and
+correct stale compiler fixtures. Full application/Node typecheck, scoped ESLint,
+static schema/reference/level coverage and exact predecessor checks pass.
+Source implementation is complete under the revised owner scope; earlier
+active-goal entries below are historical. No gameplay execution or simulations
+were run after the stop instruction. Owner gameplay acceptance, pacing and
+balance remain deferred and unverified.
+
 Status: owner selected full game through staged checkpoints and **30–50 active
 online hours** for a fresh first five-act clear. Canonical scope/invariants are inherited;
 new numeric bands are planning defaults to ratify in P01 before tuning.
@@ -30,6 +58,15 @@ recast active buffs. Summons/combo behavior must reconcile GDD and current data.
 Offline accrues a capped next-online XP/MF window, never direct items or XP.
 No new multiplayer, cloud saves, app shells, monetization or public deployment.
 
+## Current owner scope — 2026-10-29
+
+CI is not required for this work for now; the GitHub Actions CI workflow is
+removed at the owner's request. Use the applicable local unit, typecheck, lint,
+build and browser checks. The owner will playtest after implementation; that
+playtest remains pending without blocking implementation work. Earlier failed
+browser attempts remain historical evidence and do not prohibit a new local
+browser investigation authorized by the owner.
+
 ## Acceptance gates
 
 | Gate               | Pass condition                                                                                                                                       | Proof                                                                                                                                     |
@@ -41,7 +78,7 @@ No new multiplayer, cloud saves, app shells, monetization or public deployment.
 | G4 Loot/builds     | Every reachable reward context has legal eligible content; rarity/MF/quest/boss behavior correct; builds materially differ                           | Exhaustive spawn-level×TC validation, seeded live-engine samples, equip→combat comparison, crafting/gacha sources and sinks               |
 | G5 Experience      | First useful skill/combat/equip flow understandable; correct art and readable logs; all essential controls accessible on mobile/desktop and zh-CN/en | Browser tasks and screenshots at 360×640, 412×915, landscape, 1280×800, 1920×1080; keyboard/focus/contrast/touch checks                   |
 | G6 Persistence/PWA | Latest save survives close/reopen, imports hydrate immediately, offline bonus bounded, warmed production game reloads offline                        | Controlled-clock/restart tests; failed import/storage tests; production service-worker test with network disabled and persisted character |
-| G7 Finish          | Full v1 matrix accepted; every class has two viable distinct builds; post-campaign loop and rewards work; no open S0/S1 defects                      | Independent reviewer/QA approval, current-head required CI, full gate report, playtest acceptance and bounded soak                        |
+| G7 Finish          | Full v1 matrix accepted; every class has two viable distinct builds; post-campaign loop and rewards work; no open S0/S1 defects                      | Independent reviewer/QA approval, current-source local checks, full gate report, playtest acceptance and bounded soak                    |
 
 All gates are conjunctive. A failed/unknown required gate cannot be averaged
 away by a quality score. Optional improvements remain tracked S2/S3 with impact

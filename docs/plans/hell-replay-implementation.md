@@ -1,6 +1,6 @@
 # Hell replay implementation cards
 
-Status: H0/H1 complete; H2 native local checkpoint independently approved and committed as a21c396e; H3 prerequisite terminal failed no app, updated 2026-10-28 UTC.
+Status: H0/H1 complete; H2 local checkpoint independently approved at a21c396e. Dedicated H3 constructed browser functionality passes across four locale/device profiles on 2026-11-03; independent H3/umbrella acceptance and earned acquisition remain open.
 [Exact-body review evidence](evidence/hell-replay-contract-review.md) records
 design/technical approval, plan ready and security PASS. Root owns integration
 and evidence; existing producer/design-contract owners review. Preserve the claimed umbrella worktree
@@ -70,9 +70,12 @@ and isolated compiler outputs were removed after consumers released them;
 raw diagnostics, fixtures and approvals remain root-owned for full-v1 consumers.
 
 [H3 prerequisite evidence](evidence/hell-browser-prerequisite-failure.md) records
-the terminal Chromium socket-path/SIGTRAP failure before any app page. H3 is
-unaccepted and is not retried under that terminated card. No browser, earned
-acquisition, CI, human or full-v1 acceptance follows from the local H2 checkpoint.
+the terminal Chromium socket-path/SIGTRAP failure before any app page. That
+card remains terminal. Following the owner’s 2026-10-29 authorization, a separate
+[production-browser functionality packet](evidence/hell-browser-functionality.md)
+passes the constructed Hell flow in zh-CN/en on mobile/desktop. This is root
+self-review only; independent H3 acceptance, earned acquisition and full v1
+remain unproven. CI is excluded and owner playtest follows implementation.
 
 - Owner: root integration; explicitly assigned existing collaborators may own
   disjoint save/UI files. All implementers preserve concurrent changes.
@@ -100,6 +103,13 @@ acquisition, CI, human or full-v1 acceptance follows from the local H2 checkpoin
 
 ## H3 — Browser functionality and evidence
 
+Current execution: [constructed functionality evidence](evidence/hell-browser-functionality.md)
+records composite v2/v3 passes, v4 settled dialog checks and retained harness
+failures. Source/build bindings and cleanup pass with disclosed manifest/visual
+limits. No game runtime edits or earned-save replay. Exact independent review
+remains pending under the owner’s no-agent constraint; this does not block
+remaining implementation. Current native saves are33; H2 introduced Hell at24.
+
 - Owner: root executor; existing frontend/reviewer owner reviews prerequisites,
   harness and evidence before acceptance. No new agent or gameplay is implied.
 - Prepare a bounded separate production-browser card covering source-complete
@@ -122,7 +132,9 @@ acquisition, CI, human or full-v1 acceptance follows from the local H2 checkpoin
   hash-verified evidence retention; remove only verified disposable task paths,
   confirm remaining/failures, preserve shared tools/caches and source history.
 - Update continuation, D03/D08/D10/Act V/ADR links and execution ledger with
-  verified results and their limits. Commit with existing Codex identity.
+  verified results and their limits. The current owner excludes commits/pushes;
+  retain reviewable local changes.
 - Keep full-v1 goal/worktree claim active. Earned acquisition quantities,
   source-mix pacing,14builds×fiveacts, defeat/retry, whole-app locales/device/
-  a11y/performance/PWA, actual CI and human acceptance remain separate work.
+  a11y/performance/PWA and later human acceptance remain separate work. CI is
+  excluded by the current owner scope in playable-target.md.

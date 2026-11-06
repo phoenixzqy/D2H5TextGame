@@ -1,0 +1,9 @@
+# P15 Javelin Act IV earlier physical armor v1
+
+Frozen before new combat, 2026-11-01. Inherits the complete audited owned recipe and exact level46/ordinal1024/Rogue31 source in [owned survival v1](P15-javelin-act4-owned-survival-v1.md). That screen wins seed2/loses seed3:9waves, all11requests per preparation and whole prepared observations/exports independently read back. No population acceptance.
+
+Observed cause: seed3 reaches the previously lost Stygian Doll/Venom Lord wave but loses485netHP there, entering next wave with134HP and dying. Logged incoming includes494physical and152periodic. Champion441attack/normal294crit1.5 with Ignite's authored×1.25physical combo produce `floor(441×1.25×.84−333)=130` per landed strike, versus37without Ignite. This is native intended combo behavior, not an engine failure or mana shortage.
+
+Change only armor transition timing: after arcane-knight wave, stage paid3Sol Silks before settling wave1 (effective wave2). Keep pack LightningStrike→Impale; retain boss order transition before settling wave3 (effective Izual wave4). Physical-defense Silks has438defense and30physical resistance; those441×1.25physical strikes reach the1minimum. Keep arcane leather/MR16 for both opening caster waves. No added cost, point, reset, healing, merc/hero level, farming, source or ordinal change. Existing legal native carry is mandatory; equipping never fills pools.
+
+Exactly2 affected ActIV Plains of Despair diagnostic areas: the same retained failures2/3. First2waves must match survival v1 except newly allocated reward IDs; keep all old/new successes and failures. Reuse prepared source/projection and scoped checks; no unchanged cohorts, other builds/acts, campaigns, browser or broad-suite replay. Earlier armor must solve both diagnostics before a separately declared changed-policy study. Two selected seeds do not establish population reliability, chapter-boss/retry/manual-idle or full-v1 acceptance.

@@ -1,5 +1,32 @@
 # P17b03a — configured-version worker replacement
 
+## Fresh current-source verification — 2026-10-30
+
+The unchanged four original cases pass again on the current private-v1 local
+source (save schema32), en/zh-CN ×1280×800/360×640: **4/4 in55.6s**, one worker,
+zero retries/skips/flaky cases. Two fresh external production builds differ only
+in configured version `p17b03a-A/B`. Native engine-purity/offline-precache guards
+and the repository's exact five debug-bridge scans pass for both bundles.
+
+All original full-save, pending/debounce, acknowledged Save, native distinct
+activated controllerchange, and online/offline SW document/JS assertions pass.
+No product or test assertion changed. Both bundle manifests and all3053source
+inputs remained identical throughout. Bound SW hashes are distinct; the server
+observed exactly A,B×4 and no errors. Build binding SHA256:
+`60f1a78229400dab2dd5aa2411762ab1b2cd176891bf5ad0c72f645f9efc42d1`.
+
+Retained packet:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1`.
+`p17-update-final-verification-v1.json` binds build/source/method/server/browser
+receipts; report `p17-production-update-v1/playwright-report.json` SHA256
+`4ff15280e63bd1e62d52557ccc5546cec9dc4dc1359ec54dd02fe0b747d04fbb`.
+The exact owned server exited and port4330closed. All27captured browser/runner
+PID/startTicks identities exited. Browser/build temp roots and both verified
+763file bundle trees were removed after their consumers finished. Evidence and
+method sources remain owned by the active umbrella task. No install or CI action
+was needed. This is same-schema replacement acceptance, not arbitrary future
+migration compatibility, OS installation, campaign pacing or full-v1 completion.
+
 Date:2026-10-20. Root implementation/test review: ADEQUATE for this bounded
 integration contract; producer independent source/control/final evidence review
 APPROVE (read-only review, without rerunning root-reported checks).

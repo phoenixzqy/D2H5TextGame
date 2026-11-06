@@ -1,7 +1,13 @@
 # P18 — Partial-run discard and stopped loss control
 
-Status: partial-run discard/fresh admission verified; actual defeat/fresh retry
-remains unaccepted. These are labelled disposable copies, never successors to
+Current follow-through: [current native defeat/retry](p18-current-native-defeat-retry.md)
+and [development-source browser defeat/retry](p18-current-browser-defeat-retry.md)
+resolve the old diagnostic defeat/Return/fresh-retry and acknowledged
+save/restart/Continue gaps. Current production endgame victory/balance and
+broader P18/full-v1 acceptance remain open. All historical controls below remain unchanged.
+
+Historical status of the controls below: partial-run discard/fresh admission
+verified; their stopped loss control did not establish actual defeat/fresh retry. These are labelled disposable copies, never successors to
 the [earned endgame4 save](p18-earned-endgame4.md).
 [Compact audit and receipts](fixtures/endgame-failurecontrols/summary.json).
 

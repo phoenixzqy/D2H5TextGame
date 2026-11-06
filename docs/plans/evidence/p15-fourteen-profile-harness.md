@@ -1,0 +1,9 @@
+# P15 fourteen-profile campaign harness
+
+Cards 1–3 are accepted locally. The catalog contains two policies for each of the seven classes. Original Cold/Fire policies remain unchanged. The shared closed registry validates explicit IDs at both native request and CLI boundaries; CLI defaults remain Cold/Fire only. Amazon gear policies preserve a bow/crossbow fallback through native equip mutex rules. Paladin policies pay native points before selecting Might or Prayer at L2.
+
+Card 3 validation: 38 explicit campaign regressions and 18 simulation contracts pass. Fourteen actual fresh native characters grow consecutively from L1 through L14, with 70 independent complete milestone rank maps and point/stat conservation. Strict TypeScript, five-file TS lint, default-test boundary, final installed-Node CLI preflight and syntax pass. Forced MJS lint is not green: it retains 17 pre-existing diagnostics, reconciled against 18 before this change, with no new diagnostic or suppression. Initial RED and lint failures remain retained.
+
+Retained evidence root: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1`. Final receipt `profile-card3-acceptance-v1.json`; independently verified 3009-input pins `profile-card3-final-source-v1.json`; exact seven-path delta/patch and final review `profile-card3-independent-review-v1.md`. Root owns retention through umbrella acceptance.
+
+These are constructed allocation/CLI checks. No new earned campaign ran for these cards. The previous Cold/Fire v4 runs both drew before clearing Act I. Fourteen-build viability across five acts, defeat/retry, 30–50-hour pacing and full-v1 acceptance remain open. CI remains excluded; WSL headed browser capability is already verified. Next implementation is the ratified fresh-prefix Act II harness, using existing native APIs and fixed three-admission suffix.

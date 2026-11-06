@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "status": "frozen-before-diagnostic;not-population-acceptance",
+  "subject": "necromancer-bone Act V whole Throne of Destruction; existing unresolved earned checkpoint",
+  "source": {
+    "file": "p15-boss-journal-source-recovery-v2-necromancer-bone-act5-prepared.json",
+    "sha256": "f24715772dcd7dfe86ddf7bc20c7f293e8612d8fdeff08ff5e9f9ff9a88d6a0a",
+    "exportSha256": "0c88928022de960c2e20f906f04e269adadf92cc0a9d7a4536503522ddffb1f1",
+    "level": 50,
+    "normalOrdinal": 1296,
+    "timestamp": 1793367299160,
+    "skillPoints": 3
+  },
+  "act": 5,
+  "area": "areas/act5-throne-of-destruction",
+  "maximumAttempts": 3,
+  "firstAttempt": "Restore this complete unresolved checkpoint once. Retain its Confuse / Amplify Damage / Weaken source priority, all allocations and equipment. Admit the WHOLE throne area natively; earned throne-wave receipt stays owned but does not permit starting at Baal. No explicit seed or ordinal override.",
+  "adaptation": {
+    "when": "After each terminal nonwin and native Return, before the next whole-area admission. Stop at the first complete living-hero victory or after attempt three.",
+    "selection": "Spend currently owned skill points on Weaken to rank20, then Amplify Damage to rank20. Spend complete five-stat-point bundles on Vitality. After a nonwin switch the existing Confuse / Amplify Damage / Weaken order to the already-learned Act IV boss order Amplify Damage / Decrepify / Weaken. Keep every hero/merc item.",
+    "targets": [
+      {
+        "id": "necromancer.weaken",
+        "rank": 20,
+        "level": 6
+      },
+      {
+        "id": "necromancer.amplify_damage",
+        "rank": 20,
+        "level": 1
+      }
+    ],
+    "priority": [
+      "necromancer.amplify_damage",
+      "necromancer.decrepify",
+      "necromancer.weaken"
+    ],
+    "statsPerLevel": {
+      "strength": 0,
+      "dexterity": 0,
+      "vitality": 5,
+      "energy": 0
+    },
+    "equipment": "unchanged",
+    "costs": "Native one owned skill point per rank and one owned stat point per stat; no respec, purchases, crafting, farming or grants. An exhausted point budget may produce no further adaptation."
+  },
+  "rng": "Each admission consumes the next native Normal challenge counter modulo360360. Production derives its seed from canonical area and the logical Date.now. Advance time by ceil(actual terminal milliseconds) for EVERY played wave, including losses. Never restore between attempts.",
+  "accounting": "Retain every wave event/outcome, native quest settlement, actual income, complete attempt boundary state and final native save. Failed waves publish no rewards; earlier won waves keep theirs. Native admission owns refill; preceding waves keep native carry.",
+  "timeLimits": "Combat-only diagnostic. Menu/decision time is uncalibrated and not claimed as active or economic pacing. No measured 30\u201350-hour acceptance.",
+  "scopeLimits": "One contiguous real-source diagnostic proves transport and owned adaptation only. Does not establish recommended power, 95percent retry success, population fairness, holdouts or balance acceptance. Existing CE pack policy and coefficients remain unchanged.",
+  "selectionBasis": "Same unresolved Corpse/curses build in the immediately following act, selected before this sequence; the Act IV diagnostic already succeeded at attempt one. This is targeted failure-transport evidence, not a random population sample."
+}

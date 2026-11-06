@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "status": "selected-before-evaluation;retained-input-adaptation-only",
+  "baseline": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-retained-power-freeze-heny_j_e/freeze.json",
+    "sha256": "c9993ec563a3114104623832e89324295eac396069f585ced4cc9374b1be171e"
+  },
+  "identity": {
+    "path": "docs/plans/decisions/P15-intended-build-identities-v1.json",
+    "sha256": "9ce34857b50c69617930e67e265260e1eae7026fb750e9e4a6c5facd02808397"
+  },
+  "growth": {
+    "path": "tests/campaign/intended-growth-v1.json",
+    "sha256": "63130085f1083a245cfb4f5b7af6ef25a5d80a483249dc236c933f1067a97962"
+  },
+  "contextSelection": "All 210 exact retained contexts, including all historical failures and noncanonical sources. No selection using new outcomes.",
+  "firstAttempt": "Exact pinned input without preparation, native whole-area admission, saved full Normal ordinal and saved timestamp. Never start a whole-area trial at a pre-Baal internal wave boundary.",
+  "maximumAttempts": 3,
+  "afterNonwin": {
+    "skills": "In identity signatureByAct order, target rank20 for already learned skills. Then visit learned support targets in pinned growth order, collapsing repeats to their greatest declared rank. Include only source-level-eligible skills with every prerequisite learned in the source. Never learn a new skill, reset or change an existing rank downward. Selection remains fixed even when retries grant a new level.",
+    "stats": "Spend complete five-point bundles using the selected build statsPerLevel. Retain the remainder; do not replay statStages or refund old investment.",
+    "priority": "Preserve the exact source comboOrder. No conditional combo, area override, new aura selection or caller callback may rewrite it.",
+    "equipment": "unchanged",
+    "otherPreparation": "none: no farm, purchase, craft, socket, merc replacement, formation change, respec, resource edit, grant or reload",
+    "cost": "One owned skill point per increment and one owned stat point per stat; exhausted budgets can yield a no-op. Native earned income and once-only quest claims remain part of the contiguous sequence."
+  },
+  "execution": "Use tests/campaign/retry-measurement.ts after authenticating/hydrating the exact source once. Native entry owns refill; retain all prefix carry, failed-wave time, rewards, quest settlements and actual deltas. Native Return then adapt; never restore between attempts; stop at first victory or attempt3. Initial clock is the source timestamp and advances by ceil(terminalSimClockMs) for each played wave. Normal ordinal advances once per admission modulo360360; native seed hashes canonical area and actual admitted timestamp.",
+  "evaluationBoundary": {
+    "runsAuthorizedHere": 0,
+    "populationSeedsSelected": false,
+    "manualIdlePopulationSelected": false,
+    "recommendedPowerAccepted": false,
+    "acquisitionAccepted": false,
+    "balanceAccepted": false,
+    "pacingAccepted": false
+  },
+  "profiles": {
+    "sorceress-cold-nova-lineage": {
+      "classId": "sorceress",
+      "growthProfile": "sorceress-cold-intended-v1",
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 2,
+        "energy": 3
+      }
+    },
+    "sorceress-fire": {
+      "classId": "sorceress",
+      "growthProfile": "sorceress-fire-intended-v1",
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 2,
+        "energy": 3
+      }
+    },
+    "amazon-bow": {
+      "classId": "amazon",
+      "growthProfile": "amazon-bow-intended-v1",
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 2,
+        "vitality": 3,
+        "energy": 0
+      }
+    },
+    "amazon-javelin": {
+      "classId": "amazon",
+      "growthProfile": "amazon-javelin-intended-v1",
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 2,
+        "vitality": 2,
+        "energy": 1
+      }
+    },
+    "necromancer-summon": {
+      "classId": "necromancer",
+      "growthProfile": "necromancer-summon-intended-v1",
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 1,
+        "vitality": 3,
+        "energy": 1
+      }
+    },
+    "necromancer-bone": {
+      "classId": "necromancer",
+      "growthProfile": "necromancer-bone-intended-v1",
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 2,
+        "energy": 3
+      }
+    },
+    "barbarian-double-swing": {
+      "classId": "barbarian",
+      "growthProfile": "barbarian-double-swing-intended-v1",
+      "statsPerLevel": {
+        "strength": 1,
+        "dexterity": 1,
+        "vitality": 2,
+        "energy": 1
+      }
+    },
+    "barbarian-double-throw": {
+      "classId": "barbarian",
+      "growthProfile": "barbarian-double-throw-intended-v1",
+      "statsPerLevel": {
+        "strength": 1,
+        "dexterity": 1,
+        "vitality": 2,
+        "energy": 1
+      }
+    },
+    "paladin-zeal": {
+      "classId": "paladin",
+      "growthProfile": "paladin-zeal-intended-v1",
+      "statsPerLevel": {
+        "strength": 1,
+        "dexterity": 1,
+        "vitality": 2,
+        "energy": 1
+      }
+    },
+    "paladin-holy-bolt": {
+      "classId": "paladin",
+      "growthProfile": "paladin-holy-bolt-intended-v1",
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 2,
+        "energy": 3
+      }
+    },
+    "druid-fire": {
+      "classId": "druid",
+      "growthProfile": "druid-fire-intended-v1",
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 2,
+        "energy": 3
+      }
+    },
+    "druid-summon": {
+      "classId": "druid",
+      "growthProfile": "druid-summon-intended-v1",
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 3,
+        "energy": 2
+      }
+    },
+    "assassin-martial": {
+      "classId": "assassin",
+      "growthProfile": "assassin-martial-intended-v1",
+      "statsPerLevel": {
+        "strength": 1,
+        "dexterity": 1,
+        "vitality": 2,
+        "energy": 1
+      }
+    },
+    "assassin-traps": {
+      "classId": "assassin",
+      "growthProfile": "assassin-traps-intended-v1",
+      "statsPerLevel": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 2,
+        "energy": 3
+      }
+    }
+  }
+}

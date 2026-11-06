@@ -1,9 +1,9 @@
 # BUG-304 — Resolve Cobra recovery against mana-free monsters
 
-Status: Open — native implementation and public-store recovery/playback/save lifecycle verified; browser durability/UX and earned acceptance pending. No label/status applied to any forge item.
+Status: Resolved locally for bounded recovery functionality — combined native/DEV/production evidence independently adequate. Independent feature acceptance and earned sustain/balance/pacing remain open. No label/status applied to any forge item.
 Severity: High — the original transfer contract prevented MP recovery against ordinary PvE monsters.
 Build: fc915ddd3834b0927affa5843365620ff0bcef71; source unchanged by test-only7bcaaefd.
-Environment: native actual allocation/equipment/Catacombs probes; production Chromium desktop1280×800/en Tiger control. No Cobra browser-mana acceptance yet.
+Environment: native allocation/equipment/Catacombs probes; constructed headed WSL Chromium DEV matrix at ranks1/20, en/zh-CN, desktop1280×800/mobile360×640. Production Tiger control retains its earlier scope.
 
 ## Reproduction
 
@@ -50,9 +50,17 @@ retains exact snapshots, failures, reviews and limits. The subsequent
 proves real learned rank1/20 zero-enemy-MP recovery and nonterminal playback,
 plus full persistent-domain equality through export/flush/load/Continue/import.
 Only Dexie constructor/table I/O is mocked. Live combat HP/MP and charges remain
-transient; restored runs earn paid Cobra again. Real browser durability/UX and
-earned acceptance are still required. Original transfer failures and zero-MP
-observations remain historical. Do not inject enemy resources. Cobra remains
-unverified in the functional inventory: 212bounded plus one unverified.
+transient; restored runs earn paid Cobra again. The subsequent
+[browser checkpoint](../../docs/plans/evidence/cobra-browser-lifecycle.md)
+passes 8/8 cases and 24 recovery witnesses, with actual IndexedDB durability,
+public Save/export/reopen/Continue/import, exact persistent-domain equality and
+fresh paid recovery. Independent review accepts that narrow constructed DEV
+scope. The [production/offline supplement](../../docs/plans/evidence/cobra-production-offline.md)
+passes 8/8 cases with public allocation/priority, bilingual previews, offline
+Save/reopen/Continue/playback and inspected resource captures. Independent
+combined review finds no remaining Cobra-specific prerequisite for bounded
+functional credit. Original transfer failures and zero-MP observations remain
+historical. Do not inject enemy resources. Cobra is bounded-functional in the
+inventory: 213 bounded, zero unverified; independent acceptance remains open.
 Earned sustain/balance/pacing, campaign and full-v1 acceptance remain open.
 No further preference question is pending.

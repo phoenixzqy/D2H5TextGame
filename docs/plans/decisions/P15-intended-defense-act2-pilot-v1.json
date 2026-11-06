@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "source": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-companion-source-checkpoint-v1.json",
+    "sha256": "42815388bce8b437018895980983f9fb25c01f8ebabcfcf45b7a0a5a59535be7"
+  },
+  "driver": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-defense-driver-v1.ts",
+    "sha256": "debbc91511948edc7f26ac1cf2db22f333b656227a283147d22b8eb38a26d6e0"
+  },
+  "authority": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-campaign-harness-source-audit-v77.json",
+    "sha256": "056717133f401d3aef666e7d7b2858e1cb3373850be53c214e88a3ece354579e"
+  },
+  "campaign": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-defense-campaign-manifest-v1.json",
+    "sha256": "489e765e1f8cf79261e3c31c0cd8c8952d77480c13209123641472ac20b011ce"
+  },
+  "profile": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-defense-frozen-profile-v1.json",
+    "sha256": "e6a2a2088a3815c6ef28439639277c9f5410d53ff5c040c1b1108d33e78aeeb4"
+  },
+  "launcher": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-defense-launcher-v1.mjs",
+    "sha256": "45cdf176f7f335031a8ad4191088e30f2cb2d3112f7217e02097d1a3cd8573fa"
+  },
+  "maxAdmissions": 1800,
+  "maxCombatMs": 216000000,
+  "maxWallMs": 1500000,
+  "change": "Only shared mixed Act II owned defensive equipment and native stash-room retrieval differ from companion trial. Same authenticated earned Act I before-claim checkpoint; exact production authority77. No grants, healing, purchases, crafting, reset, paid draw or targeting-specific weights.",
+  "retry": "Declare one new defense-policy branch at the same authenticated pre-policy checkpoint; preserve exhausted CE/Prayer histories and retry budgets. Existing preparation targets18/20/22/26/28/32; at most three route attempts; training limits unchanged. No continuation of a failed terminal trial.",
+  "acceptance": "Diagnostic only. Record all outcomes, rewards, ordered item custody, intrinsic companion progress, resources, seeds and advancing clock. Not a population, pacing or balance acceptance.",
+  "planReview": "ready: source/profile/campaign frozen; existing47affected assertions and scoped types/lint passed. Reuse unchanged driver transport except policy checks. Single run; independent full-journal/native-export readback afterward. No unrelated tests or Act I replay.",
+  "securityCheck": "pass: authorized local native simulation; exclusive task-owned paths; no installs, network, credentials or publication; cleanup exact owned Vite cache.",
+  "baselineReport": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-companion-act2-v1.json",
+    "sha256": "66fb09e635e4ff518096732a34a74e28542b404d99c9e0a52f9f60b09bcdc328"
+  },
+  "baselineReadback": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-companion-act2-v1-readback-v1.json",
+    "sha256": "586da3417e54cf643ffa662a137a3eee4ce8a25fdb69eb18265d39b0c7578172"
+  }
+}

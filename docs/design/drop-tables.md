@@ -295,21 +295,36 @@ Gem types: amethyst, diamond, emerald, ruby, sapphire, skull, topaz. Equal weigh
 
 Wishstones are the only currency for the gacha (see `gacha-spec.md`). Sources:
 
+P15 kill-rate candidate (2026-11-02): the quantities below are conditional
+amounts. Each rewarded kill has one **2.5% chance** to retain its combined
+treasure-class and independent wishstones; otherwise it grants zero wishes.
+This replaces the legacy unconditional kill guarantees, including mini/act
+bosses. The separate wishstone RNG preserves equipment/material rolls. Quest
+and other non-kill grants bypass this coin. See
+[the candidate and its acceptance limits](../plans/decisions/P15-wishstone-kill-rate-v1.md).
+
 | Source | Wishstones |
 |---|---|
 | Per kill (any monster) | 0 (none on trash) |
 | Champion kill | 0–1 (40% chance for 1) |
-| Unique mob kill | 1–2 (always at least 1) |
+| Unique mob kill | 1–2 on a successful kill-wishstone roll |
 | Mini-boss | 6–10 (scales with act) |
 | Act boss | 8 / 12 / 16 / 24 / 40 (Acts I–V) |
 | Treasure goblin | 1–3 |
-| First-time area clear | 5 (one-shot) |
+| First-time area clear | 5, once per ordinary area and difficulty; optional quest encounters and endgame runs excluded |
 | Daily login (🟡 v1.1) | 5 |
-| Quest completion (~30 quests) | 10–25 each |
+| Finite quest completion (46 authored quests) | 10–25 each; repeatable regional bounties grant no direct wishes |
+
+Finite quest bonuses are paid once with their existing Claim transaction and
+are not multiplied by difficulty or offline rewards. The24 main quests total450
+wishes; the22 finite side quests total220, for670 finite quest wishes. The five repeatable
+regional bounties keep their gem-shard reward; their monster kills use the
+ordinary wishstone drop chance. See [the finite-side budget and bounty
+policy](../plans/decisions/P15-finite-side-wishes-v1.md) for implementation status.
 
 **Hell-difficulty multiplier:** ×1.5 on champion/unique/mini/boss wishstone drops. **Nightmare:** ×1.2.
 
-Target faucet rate at L70 Hell-Act-V farm: **~80 wishstones per hour** (1 ten-pull every ~8 minutes farming + boss + champions).
+Target faucet rate at L70 Hell-Act-V farm: **~80 wishstones per hour** (a ten-pull costing 90 wishstones every 67.5 minutes).
 
 ---
 

@@ -1,0 +1,307 @@
+{
+  "passed": true,
+  "scope": "Separate root retained-output accounting audit; no gameplay replay or independent QA",
+  "inputExact": true,
+  "completeSuccessorReconciled": true,
+  "sourceFilesExact": 2886,
+  "productionFilesExact": 766,
+  "waves": [
+    {
+      "wave": 1,
+      "enteredVirtualMs": 0,
+      "allEnemiesDeadVirtualMs": 11800,
+      "enemies": 4,
+      "heroLife": {
+        "label": "HP",
+        "value": 635,
+        "max": 635
+      }
+    },
+    {
+      "wave": 2,
+      "enteredVirtualMs": 13300,
+      "allEnemiesDeadVirtualMs": 35300,
+      "enemies": 4,
+      "heroLife": {
+        "label": "HP",
+        "value": 632,
+        "max": 635
+      }
+    },
+    {
+      "wave": 3,
+      "enteredVirtualMs": 36800,
+      "allEnemiesDeadVirtualMs": 49800,
+      "enemies": 4,
+      "heroLife": {
+        "label": "HP",
+        "value": 635,
+        "max": 635
+      }
+    },
+    {
+      "wave": 4,
+      "enteredVirtualMs": 51300,
+      "allEnemiesDeadVirtualMs": 72900,
+      "enemies": 3,
+      "heroLife": {
+        "label": "HP",
+        "value": 635,
+        "max": 635
+      }
+    }
+  ],
+  "cadenceSecondsObserved": [
+    0.5,
+    1.5
+  ],
+  "heroXp": 150930,
+  "heroFinalXp": 645101,
+  "mercXp": 113197,
+  "mercLevel": 24,
+  "mercRemainingXp": 215644,
+  "currenciesDelta": {
+    "rune-shard": 26746
+  },
+  "ancestralItemsExact": 27653,
+  "newItemPayloads": [
+    {
+      "id": "it-2meq3-lc6",
+      "baseId": "items/base/amu-obsidian",
+      "rarity": "magic",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {},
+      "affixes": [
+        {
+          "id": "affix.nimble.phys-dodge",
+          "tier": 2,
+          "rolledValue": 4
+        },
+        {
+          "id": "affix.wolf.life.flat",
+          "tier": 2,
+          "rolledValue": 52
+        }
+      ],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false
+    },
+    {
+      "id": "it-4vyrt-lc7",
+      "baseId": "items/base/boot-demonhide",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "defense": 37
+      },
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 2
+    },
+    {
+      "id": "it-9egvi-lc8",
+      "baseId": "items/base/boot-demonhide",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "defense": 44
+      },
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 2
+    },
+    {
+      "id": "it-2g2qm-lc9",
+      "baseId": "items/base/boot-demonhide",
+      "rarity": "set",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "defense": 48
+      },
+      "affixes": [],
+      "statRolls": {},
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "setId": "sets/cow-king-leathers",
+      "setPieceId": "sets/cow-king-leathers/boots",
+      "socketCapacity": 3
+    },
+    {
+      "id": "it-9s650-lca",
+      "baseId": "items/base/helm-giant-conch",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "defense": 108
+      },
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 2
+    },
+    {
+      "id": "it-4hgup-lcb",
+      "baseId": "items/base/wp1h-runic-talons",
+      "rarity": "rare",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "attack": 50
+      },
+      "affixes": [
+        {
+          "id": "affix.savage.crit-damage",
+          "tier": 2,
+          "rolledValue": 55
+        },
+        {
+          "id": "affix.precise.crit-chance",
+          "tier": 2,
+          "rolledValue": 7
+        },
+        {
+          "id": "affix.weapon.attack.flat",
+          "tier": 2,
+          "rolledValue": 9
+        },
+        {
+          "id": "affix.bat.mana.flat",
+          "tier": 2,
+          "rolledValue": 38
+        },
+        {
+          "id": "affix.wolf.life.flat",
+          "tier": 2,
+          "rolledValue": 47
+        }
+      ],
+      "generatedName": {},
+      "identified": false,
+      "equipped": false,
+      "socketCapacity": 2
+    },
+    {
+      "id": "it-5v4jm-lcc",
+      "baseId": "items/base/amu-zircon",
+      "rarity": "magic",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {},
+      "affixes": [
+        {
+          "id": "affix.vital.life.flat",
+          "tier": 2,
+          "rolledValue": 43
+        },
+        {
+          "id": "affix.bat.mana.flat",
+          "tier": 2,
+          "rolledValue": 31
+        }
+      ],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false
+    },
+    {
+      "id": "it-8bb9n-lcd",
+      "baseId": "items/base/armor-dusk-shroud",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "defense": 126
+      },
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 3
+    },
+    {
+      "id": "it-361jq-lce",
+      "baseId": "items/base/wp2h-colossus-blade",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "attack": 76
+      },
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 3
+    },
+    {
+      "id": "it-4oiiy-lcf",
+      "baseId": "items/base/wp2h-thunder-maul",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "attack": 111
+      },
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 4
+    }
+  ],
+  "materialsDelta": {
+    "runes/ith": 1,
+    "runes/tal": 1,
+    "gems/sapphire/chipped": 1,
+    "gems/sapphire/flawless": 2
+  },
+  "completionCache": {
+    "gems/sapphire/flawless": 1
+  },
+  "derivedOrdinaryMaterials": {
+    "runes/ith": 1,
+    "runes/tal": 1,
+    "gems/sapphire/chipped": 1,
+    "gems/sapphire/flawless": 1
+  },
+  "cacheBreakdownBasis": "Derived from total saved deltas and source-authored cache, not a separate native receipt",
+  "finalRawSha256": "d3371bd8f0e11c6d7d4684d4a3f5b84b5f44f0e7106814ea1e26e07c293f7250",
+  "finalGzipSha256": "9f10d572d20189a85d7df08f71cb8ea3ff9256cf50fa9fb95f43296c9fe68f86",
+  "executorPidAbsent": 4124981,
+  "buildPidAbsent": 4124703,
+  "portClosed": 42729,
+  "remainingRuntimeDisposables": [],
+  "cleanupFailures": [],
+  "version": 33,
+  "level": 35,
+  "experience": 645101,
+  "endgame": {
+    "attemptOrdinal": 7,
+    "clearCounts": {
+      "ashen": 4,
+      "glacial": 3
+    },
+    "achievementRewardClaimed": true
+  },
+  "uniqueEquipmentItems": 27663,
+  "normalNext": 431,
+  "nightmareNext": 0,
+  "selectedTitle": "Riftwalker",
+  "sourceTreeSha256": "0b1c8c5dc7648b2276d7394f52bf99daf4a82000f5a8dec8bdf8aac5e533b863",
+  "buildTreeSha256": "2006a5c0d51ccaf1a228c570b4e33e0a11846988848d9eb90203acb966a28345",
+  "evidencePacket": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-production-glacial-p244s4dp",
+  "nextActionPolicy": "Resume only this exact successor. Admissions0-6,Claim,title selection and ruby insertion stay closed. No remaining admission authorized by this one-admission slice.",
+  "retainedFinalSha256": "9f10d572d20189a85d7df08f71cb8ea3ff9256cf50fa9fb95f43296c9fe68f86"
+}

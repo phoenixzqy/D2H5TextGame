@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "status": "frozen-before-preparation-projection;not-balance-acceptance",
+  "sourcePolicy": "P15-amazon-act2-native-retry-exploration-v1.json",
+  "source": "p15-build-act-boss-preparation-v1-amazon-bow-act2.json",
+  "sourceSha256": "ef87b09b38a84da2ad28743fe4312b0fdc071d93208640acf96ed6e30b850aef",
+  "selection": "At the idle boundary, apply the existing monotone amazon-bow gear policy, then existing two-pass owned survival selection to hero and fielded merc. Use the already-authored Act II direct-hit probes from javelinGearThreats(2); do not sweep weights or inspect new outcomes to choose gear.",
+  "survivalFloors": "Preserve entry attack, attack speed and full mana capacity; no explicit mana reserve or shield exception. Keep bow fallback. No purchases, new farming, points, crafting, actor change or resource refill.",
+  "conservation": "All items remain owned; only native equip/retrieve calls. Preserve source timestamp, counter, XP, points, skills, currencies, materials, quests and current resources unless native equip clamps them. No combat or RNG consumption during this projection.",
+  "nextEvaluation": "Inspect the resulting lawful preparation and native save before freezing any combat sequence. This source lacks a spare bow; armor selection cannot establish adequate offensive acquisition. A new measured policy must retain all failures and remain exploration until the intended-power and first-clear provenance gates are satisfied.",
+  "limits": "Preparation projection only. Does not establish recommended power, a balance cell, first-attempt or retry rates, chronological acquisition, holdouts or calibrated active hours. Original 100-stream outcomes remain unchanged and retained."
+}

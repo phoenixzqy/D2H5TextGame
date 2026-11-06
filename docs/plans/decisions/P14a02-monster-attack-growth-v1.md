@@ -76,3 +76,35 @@ review, replay the original earned four-map→Catacombs route once at unchanged
 seed2223645302/ordinals102–106, stopping first nonwin. No farming, extra gear
 selection/points/refills or reward-funded preparation. Preserve all earlier
 failures. A W4 win alone accepts neither campaign pacing nor full balance.
+
+## Approved follow-on: Carver and Devilkin Shamans
+
+GD-DESIGN-REVIEW: APPROVE. Adopt the same `attack: [13,13]` and
+`attackGrowth: [2,2]` for Carver Shaman and Devilkin Shaman. Both retain the
+Fallen Shaman support-caster role, Fire Bolt/revive order and attack speed85.
+The rounded midpoint13 and growth2 are provisional numeric authoring; the
+melee Carver coefficient does not apply to a Shaman. Existing life, defense,
+fire resistance, experience, spawn eligibility and affixes remain authored as
+before. Both `canBeBoss:false` rows use the ordinary permitted tiers in the
+table above; its boss arithmetic does not authorize boss spawns.
+
+This completes ten authored rows out of the current111. The other101 rows
+still require role-specific review, including explicit basic attacks/special
+encounters where generic migration may be inappropriate. This slice is
+content adoption, not campaign balance or five-act/pacing acceptance. The
+resurrection placeholder remains a separate implementation gap.
+
+Validate production JSON through the existing strict Ajv loader/factory tests
+(the package has no `validate:data` script), literal L1/L12/L17 tier oracles,
+ordinary-hit damage and unchanged Fire Bolt events/RNG. Preserve every field
+outside the four added numeric arrays and every other monster row.
+
+
+### Current implementation note — 2026-10-30
+
+The historical resurrection gap above is now fixed and verified locally in
+[BUG-404](../../../production/bugs/BUG-404-monster-resurrection-placeholder.md),
+including finite native corpse/revival behavior and the complete25014-test
+ordinary pass. Remaining101numeric rows and native action-source reachability
+still require role-specific review; this update grants no campaign balance or
+five-act/pacing acceptance and changes none of the approved attack numbers.

@@ -80,3 +80,9 @@ credentials, permissions, CI, dependencies or remote action. Root plan review:
 ready after requiring Fire-component-only potency and excluding contradictory
 Death Sentry identity; charges/traps remain open. These are author self-reviews,
 not independent approvals. FullC2–C4/G0–G7/privatev1 remains incomplete.
+
+## Earned Dragon Tail growth correction — 2026-11-01
+
+BUG-548 supersedes only Tail's provisional +6 growth with +120 per additional paid rank. Rank1 stays Fire70–100; rank14 becomes1630–1660; rank20 becomes2350–2380. Preserve all-enemy targeting,13MP/2s, unlock18/cap20, prerequisites, ordinary Fire resistance/Defense/hit/crit/shields/reflection, powered Burn and one martial release per cast. No weapon contribution or save migration.
+
+The earned Frigid controls compare paid orders, full owned sets, funded crafting and discarded37/40 party projections before tuning; even cap Tail previously fell at ordinary190Defense. New native cap tests preserve positive damage at50% Fire resistance/363Defense with a high irrelevant magicResist control. Current affected checks total163, with scoped types/lint passed; unchanged results reused. Frigid then clears natively at29 with Tail-first and owned wards, without farming. Full balance/holdout/build identity acceptance remains CONCERNS. Exact source transition: p15-tail-growth-source-binding-v2.json in the retained packet. See docs/balance/2026-11-01-dragon-tail-growth.md.

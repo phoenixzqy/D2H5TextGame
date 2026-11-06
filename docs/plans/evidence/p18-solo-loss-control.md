@@ -1,5 +1,9 @@
 # P18 — Stopped solo loss control
 
+Current follow-through,2026-11-01: [numeric review and native continuation](p18-current-native-defeat-retry.md)
+establish actual defeat and one fresh retry on current source. Public browser
+defeat/Return/retry remains open. The draw below is preserved historical evidence.
+
 Status: **draw; actual defeat, failed-wave settlement and defeat-retry remain
 unverified**. This separately labelled disposable copy never replaces the
 [genuine earned-endgame4 resume](p18-earned-endgame4.md).

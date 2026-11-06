@@ -1,0 +1,7 @@
+# P15 — Native generic elemental monster actions
+
+BUG-769 is fixed locally, uncommitted. Fire Breath and Poison Spit now use the existing validated native DoT adapter; Frost Aura uses the direct adapter. The three hardcoded defaults are removed. Authored data now contains their effective free costs, DoT metadata and Fire Breath Ignite status. Existing damage, targeting, cadence, status defaults and Poison Spit flight remain exact.
+
+Root retains `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-native-monster-elemental-04crtxqy` through full-v1 acceptance and owns eventual cleanup. Scope/security, source preimages, three causal failures, 24 new passes and 11 affected existing passes are retained. Native Tainted flight/priority/endpoints and Blood Lord/Frozen Terror behavior pass; these constructed controls establish no earned balance or pacing result. Scoped strict types (451 files, zero diagnostics), final lint and strict validation of all 50 monster skill rows pass. Initial test-format lint failure is retained; the final edit changed formatting only.
+
+Three closed schema rules and precisely identified catalog metadata are the only data changes. Shared combat/status/registry, all five monster catalogs, other schema rules and other skill rows remain unchanged. All handles are terminal; no disposable build/server/browser artifacts were created. Historical 14/14 Normal completions, 210 checkpoint sources and formal balance acceptance 0/210 are unchanged. Full private v1 remains unfinished.

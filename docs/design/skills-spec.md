@@ -79,7 +79,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 | ID | Name (EN / ZH) | Element | Target | Base Dmg (L1) | CD | Mana | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
 | `necromancer.raise_skeleton` | Raise Skeleton / 召唤骷髅 | — | Self | — | — | 15 | Summon | Authored cap: ranks1–5→1,6–11→2,12–20→3. D06 v1c specifies paid battle-start preparation without corpse consumption; implementation pending. |
-| `necromancer.corpse_explosion` | Corpse Explosion / 尸体爆炸 | Fire | All | 50–80 | 2 | 20 | Ignite | Requires an actual current-wave enemy-monster corpse; one shared corpse per accepted cast, empty-pool combo skip and new-wave reset under the [accepted contract](../plans/decisions/D06-corpse-consumption-v1.md). [Bounded engine/native/Skills and bilingual production-browser acceptance](../plans/evidence/d06-corpse-explosion-ui.md) through `f0f4d99`; earned progression, affordability, balance and player feel remain open. |
+| `necromancer.corpse_explosion` | Corpse Explosion / 尸体爆炸 | Fire | All | 50–80 | 2 | 20 | Ignite | Player blast [ignores flat Defense](../plans/decisions/D06-corpse-explosion-defense-v1.md); Fire resistance, dodge and absorption still apply. [Current bounded delivery](../balance/2026-11-03-corpse-defense-bypass.md) is verified; first-kill/singleton viability remains open. Requires an actual current-wave enemy-monster corpse; one shared corpse per accepted cast, empty-pool combo skip and new-wave reset under the [accepted contract](../plans/decisions/D06-corpse-consumption-v1.md). [Bounded engine/native/Skills and bilingual production-browser acceptance](../plans/evidence/d06-corpse-explosion-ui.md) through `f0f4d99`; earned progression, affordability, balance and player feel remain open. |
 | `necromancer.poison_nova` | Poison Nova / 剧毒新星 | Poison | All | 20–30 | 3 | 25 | Poison (2 stacks) | Low base, high stack scaling |
 | `necromancer.bone_spear` | Bone Spear / 白骨之矛 | Arcane | Single | 60–90 | 1 | 20 | — | Ignores armor |
 | `necromancer.amplify_damage` | Amplify Damage / 伤害加深 | — | All | — | 3 | 15 | -50% physical resist debuff | Curse |
@@ -100,7 +100,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 #### Active Skills
 | ID | Name (EN / ZH) | Element | Target | Base Dmg (L1) | CD | Mana | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
-| `paladin.zeal` | Zeal / 狂热 | Physical | Cleave | 40–60 | 1 | 10 | — | Hits 3 targets |
+| `paladin.zeal` | Zeal / 狂热 | Physical | Cleave | 40–60 (+4/rank) | 1 | 10 | — | Hits up to3 original targets once; adds20pp snapshot Attack/rank above1 (rank20 +380% Attack), before ordinary mitigation; [P15](../plans/decisions/P15-zeal-rank-attack-growth-v1.md) |
 | `paladin.holy_bolt` | Holy Bolt / 圣光弹 | Arcane | Single | 50–70 | 1 | 15 | — | Heals self for 50% dmg |
 | `paladin.blessed_hammer` | Blessed Hammer / 祝福之锤 | Arcane | All | 60–90 | 2 | 25 | — | Ignores magic resist |
 | `paladin.vengeance` | Vengeance / 复仇 | Fire+Cold+Lightning | Single | 30–50 per element | 2 | 30 | Burn+Chill+Paralyze | Tri-element |
@@ -141,7 +141,7 @@ independent design/QA and earned class/build balance remain open.
 | ID | Name (EN / ZH) | Element | Target | Base Dmg (L1) | CD | Mana | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
 | `amazon.magic_arrow` | Magic Arrow / 魔法箭 | Arcane | Single | 35–50 | 1 | 5 | — | 0 ammo cost |
-| `amazon.multiple_shot` | Multiple Shot / 多重箭 | Physical | Cone | 40–60 | 2 | 15 | — | Hits 5 targets |
+| `amazon.multiple_shot` | Multiple Shot / 多重箭 | Physical | Cone | 40–60 | 2 | 15 | — | Hits up to5 living targets; +12 flat damage/rank, plus40pp snapshot Attack/rank above1; rank20 268–288 +760% Attack ([P15](../plans/decisions/P15-bow-rank-attack-growth-v1.md)) |
 | `amazon.freezing_arrow` | Freezing Arrow / 冰冻箭 | Cold | 3×3 | 50–70 | 2 | 20 | Chill2s + independent15% Freeze1s (boss0.5s) | Preserves existing15%; authored shape and rank-invariant lifecycle under [D04](../plans/decisions/D04-freezing-arrow-v1.md). Independent/earned balance acceptance open. |
 | `amazon.lightning_fury` | Lightning Fury / 闪电标枪 | Lightning | All | 60–90 | 3 | 30 | Paralyze | Chain lightning effect |
 | `amazon.plague_javelin` | Plague Javelin / 瘟疫标枪 | Poison | Cone | 30–50 | 2 | 25 | Poison (3 stacks) + Plague | Spreads on kill |
@@ -176,6 +176,19 @@ independent design/QA and earned class/build balance remain open.
 | `barbarian.war_cry` | War Cry / 战嗥 | — | All | 30–50 | 3 | 30 | Stun (1 turn) | Debuff AOE |
 
 Paid Howl/Taunt/Battle Cry follow the [D04 hostile-control contract](../plans/decisions/D04-barbarian-warcry-control-v1.md): no-movement fear interrupts actions, Taunt binds eligible single-target attacks to its living source, and Battle Cry snapshots finite direct-damage/ordinary-Defense reduction. Durations and provisional reduction curves are JSON-authored; independent design/QA and earned balance remain open.
+
+Double Swing adds `20% × (rank − 1)` and Double Throw adds
+`30% × (rank − 1)` of equipment/passive-derived Attack to each physical strike
+before combo, increased damage, critical, resistance and ordinary Defense.
+Rank1 adds zero; rank20 adds380% per Swing strike and570% per Throw attempt.
+The existing40–60/+4 and50–75/+5 flat curves, two-strike models, costs and
+cooldowns remain. Double Swing caps its cross at three original targets with
+two attempts each; Double Throw makes two total attempts. The original JSON
+tuning addresses BUG505's retained level12 armor failures; the
+[Throw30pp revision](../plans/decisions/P15-double-throw-rank-attack-growth-v1.md)
+addresses BUG656's retained ActIV throughput diagnostic. Both are provisional pending
+later-act/matched-level/holdout balance. Skill details show both the flat range
+and the separate additional Attack percentage.
 
 #### Passive skills and combat buffs
 | ID | Name (EN / ZH) | Effect | Notes |
@@ -223,16 +236,18 @@ Paid Werewolf/Werebear and Lycanthropy follow the [D05 form contract](../plans/d
 
 ### 3.7 Assassin (刺客 — 陷阱+武技)
 
-#### Active Skills (7)
+#### Active Skills (9)
 | ID | Name (EN / ZH) | Element | Target | Base Dmg (L1) | CD | Mana | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
 | `assassin.shock_web` | Shock Web / 电网 | Lightning | All | 30–50 | 2 | 20 | Paralyze | AOE lightning trap |
+| `assassin.lightning_sentry` | Lightning Sentry / 雷电守卫 | Lightning | All | 75–110 (+24/rank) per pulse | 2 | 22 once | — | Three autonomous pulses at cast/+1s/+2s; 3s half-open lifetime, living source required, skip recast while active. Unlock24/cap20/Charged Bolt Sentry prerequisite. Rank20=531–566; BUG549 growth correction, broader balance open. |
+| `assassin.blade_sentinel` | Blade Sentinel / 刀锋守卫 | Physical | All | 50–75 (+120/rank) per pulse | 2 | 15 once | — | Three autonomous pulses at cast/+1s/+2s; 3s half-open lifetime, living source required, skip recast while active. Unlock12/cap20/no prerequisite; rank20=2330–2355. BUG550 supplies a paid physical trap option against elemental resistance; broader balance open. |
 | `assassin.fire_blast` | Fire Blast / 火焰爆破 | Fire | Cone | 50–70 | 2 | 25 | Burn | Cone fire trap |
 | `assassin.blade_fury` | Blade Fury / 刀刃之怒 | Physical | Cone | 40–60 | 1 | 15 | — | One independent hit per enemy; provisional 1+3-cell cone (D04-blade-fury-cone-v1) |
 | `assassin.mind_blast` | Mind Blast / 心灵震爆 | Arcane | All | 50–70 | 3 | 30 | Mana Burn + Stun | Arcane AOE |
 | `assassin.dragon_claw` | Dragon Claw / 龙爪 | Physical | Single original target | 70–100 (+7/rank) per attempt | 1 | 20 once | — | Up to2 independent claw attempts, each with +10 percentage points critical chance; ordinary critical overflow/Defense/resistance/shields/reflection apply per attempt. Misses consume attempts; stop on caster/original-target death, no retarget or weapon Attack scaling. Unlock6/cap20/Talon prerequisite; preserve current v1 eligibility without an equipment gate. Provisional bonus under [D04](../plans/decisions/D04-dragon-claw-v1.md); independent/earned balance open. |
 | `assassin.phoenix_strike` | Phoenix Strike / 凤凰打击 | Fire+Cold+Lightning | Single | 40–60 per element | 3 | 40 | Burn+Chill+Paralyze | Tri-element combo |
-| `assassin.dragon_talon` | Dragon Talon / 龙爪踢 | Physical | Single original target | 40–60 (+4/rank) per attempt | 1 | 4 once | — | Up to3 independent attempts; misses consume attempts, stop on caster/original-target death, no retarget. Ordinary Defense/resistance/shields/reflection apply per attempt; no weapon Attack scaling. Unlock1/cap20/no prerequisite or equipment gate. Provisional count under [D04](../plans/decisions/D04-dragon-talon-v1.md); independent/earned balance open. |
+| `assassin.dragon_talon` | Dragon Talon / 龙爪踢 | Physical | Single original target | 40–60 (+60/rank) per attempt | 1 | 4 once | — | Up to3 independent attempts; misses consume attempts, stop on caster/original-target death, no retarget. Ordinary Defense/resistance/shields/reflection apply per attempt; no weapon Attack scaling. Unlock1/cap20/no prerequisite or equipment gate. Provisional count under [D04](../plans/decisions/D04-dragon-talon-v1.md); BUG-547 earned-growth correction; independent balance open. |
 
 #### Passive Skills (4)
 | ID | Name (EN / ZH) | Effect | Notes |
@@ -255,13 +270,15 @@ Monsters use a simplified skill set. Examples:
 | `monster.fire_breath` | Fire Breath | Fire | Cone | 40–60 | 3 | Dragon-type |
 | `monster.poison_spit` | Poison Spit | Poison | Single | 20–30 | 2 | Applies 2 poison stacks |
 | `monster.lightning_bolt` | Lightning Bolt | Lightning | Single | 50–70 | 2 | Caster mob |
-| `monster.frost_aura` | Frost Aura | Cold | All | 15–25 | 3 | Passive AOE chill |
+| `monster.frost_aura` | Frost Aura | Cold | All | 15–25 | 3 | Active AOE Chill for Frozen Terror. Duriel uses separate passive15cold/5s metadata; [contract](../plans/decisions/P15-duriel-passive-frost-aura-v1.md). |
 | `monster.charge` | Charge | Physical | Single | 60–90 | 4 | Boss ability |
 | `monster.summon_adds` | Summon Minions | — | Self | — | 5 | Boss summons 2 trash |
 | `monster.heal` | Heal | — | Self | — | 4 | Restore 30% HP |
 | `monster.teleport` | Teleport | — | Self | — | 3 | Repositions, grants 1-turn dodge +50% |
 
-**Design note:** Monsters do NOT have passives or buff management; their AI is "cast skill 1 if ready, else skill 2, else basic attack."
+**Design note:** Ordinary monster AI is "cast skill 1 if ready, else skill 2,
+else basic attack." Duriel's authored passive Frost Aura is independent of that
+action order; it is not an active skill cast or managed buff.
 
 ---
 
@@ -424,6 +441,7 @@ Full D06/P09, external inputs and earned campaign/balance remain open.
 - **External item:** [Accepted D06 v1d contract](../plans/decisions/D06-iron-golem-v1.md) defines explicit one-shot next-wave selection of an identified backpack metal instance, one-wave sacrifice, isolated life/attack/defense inheritance, exact-once item debit and locked Iron-wave replay. QA/GD/TD approved the mechanic contract; concrete transaction ADR/runtime/UI/browser acceptance remain pending. A generic template does not satisfy it.
 - **Wave resources:** preserve accepted D04 transient-summon rebuild and hero/merc resource carry. Each wave's batch pays actual carried mana; no automatic refill or campaign/balance acceptance follows.
 - **Summon stats** retain current skill-rank scaling/passives. Production uses authoritative allocated rank; standalone synthetic rank1 fallback is compatibility only, not proof of player learning eligibility.
+- **P15 beast investment (2026-11-04):** [provisional numerical correction](../plans/decisions/P15-druid-beast-investment-growth-v1.md) changes only Spirit Wolf/Dire Wolf/Grizzly Attack per skill rank from2/2/3 to14/18/25, matching each existing owner-level Attack increment. Existing additive rank/owner composition, rank1, payment/caps, auras and utility summons remain exact. Focused native-hit/stat/preview checks pass; earned campaign and independent balance acceptance are separate.
 
 ### 7.2 Summon AI
 - **Melee summons:** Target nearest enemy, basic attack.
@@ -461,3 +479,25 @@ Full D06/P09, external inputs and earned campaign/balance remain open.
 ### Druid attack status reconciliation (BUG192)
 
 [D04 Druid attack contract](../plans/decisions/D04-druid-attack-dot-v1.md) preserves the legacy Werewolf: Maul identity and authored Werebear prerequisite. Maul is a single Physical/Bleed attack usable in any current form; it never transforms or replaces a paid Werewolf/Werebear. Rabies is a single Poison hit with 5% final-hit/s per Poison stack for 5s, cap10. It spreads half the active stacks (floor, minimum1) on death to living same-side units with captured potency and a fresh 5s; later deaths can chain. Fire Claws is one Fire hit with 10% final-hit/s Burn for 3s, cap5, rather than a persistent basic-attack enchantment. Maul Bleed uses provisional 10% final-hit/s for 3s, cap1. Every incoming stack floors its captured rate with minimum1; existing damaging aggregates retain their rate. Rates remain provisional pending earned balance and independent acceptance.
+
+
+Fissure's provisional P15 rank growth is180 (rank1 remains60–90 Fire), under
+the [earned campaign tuning contract](../plans/decisions/P15-druid-fissure-growth-v1.md).
+This supersedes only the earlier5/rank coefficient. Payment, cooldown, ordinary
+mitigation, targeting and Burn remain as specified; early/later-act and
+cross-build numerical acceptance remain open.
+
+## Dragon Tail earned growth correction (2026-11-01)
+
+BUG-548 changes only Dragon Tail's data-owned Fire growth6→120 per additional rank. Rank1 remains70–100, rank14=1630–1660, rank20=2350–2380. Its all-enemy targeting,13MP/2s, ordinary mitigation and Burn, one martial release, unlock18/cap20 and prerequisites remain unchanged. Fire uses Defense after Fire resistance, not magicResist. This is provisional tuning, with full balance/holdout/build acceptance pending; see [growth evidence](../balance/2026-11-01-dragon-tail-growth.md).
+
+## Druid summon earned owner growth correction (2026-11-01)
+
+BUG552 adds JSON-owned HP/Attack/Defense growth per earned player-hero owner level
+above1 to all seven Druid templates, after existing rank growth and before current
+auras. Current/next/MAX previews include the actual character level. Owner1 base
+stats, rank growth, caps, costs, cooldowns, Blind/Poison/corpse behavior and one paid
+batch per wave keep their existing rules. Hostile/merc/monster-backed bodies receive
+no new owner growth; no persisted fields or resummons are introduced. See the
+[numeric contract](../plans/decisions/P15-druid-summon-owner-growth-v1.md). This
+supersedes only earlier no-new-growth statements; broader balance remains open.

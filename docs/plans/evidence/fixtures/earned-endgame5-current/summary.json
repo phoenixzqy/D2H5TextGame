@@ -1,0 +1,473 @@
+{
+  "date": "2026-11-04",
+  "scope": "One genuine current-production Ashen admission, ordinal4; four waves won. Separate root retained-artifact audit, no independent acceptance.",
+  "head": "b5a0898806bfba369a2d84a1b6c41d0bbb057fce",
+  "worktree": "feat/playable-foundations; inherited dirty source pinned by manifest",
+  "previousGoalTurn": "no progress: status report only",
+  "predecessor": {
+    "fixture": "../earned-endgame4/retained-final.json.gz",
+    "rawSha256": "7fc4a5495355542b07a0cc05bb265ee0502d9e6ffd968938902203acf5da5007",
+    "gzipSha256": "73c79b289f9c010ee5b75813aa14867f4cf7616e2847ac52245b7fb9e3bd70f6"
+  },
+  "fixture": {
+    "path": "retained-final.json.gz",
+    "bytes": 454691,
+    "rawSha256": "256095feea34d437db61878fd35fdce18616297468e737fb978e7449858ebb64",
+    "gzipSha256": "265aa220bd937bc00d37430d92010c698d0e6a99d5fae1b155b7fd30b8691ed5"
+  },
+  "version": 33,
+  "player": {
+    "level": 35,
+    "experience": 343241,
+    "xpDelta": 150930,
+    "transientFinalCombatHP": 484,
+    "maximumHP": 635,
+    "persistentResourcePoolsUnchanged": true
+  },
+  "endgame": {
+    "attemptOrdinal": 5,
+    "clearCounts": {
+      "ashen": 4,
+      "glacial": 1
+    },
+    "achievementRewardClaimed": true
+  },
+  "nextNativeOrdinal": 5,
+  "actionAllowance": "One admission consumed; no replay of ordinals0\u20134, Claim, title selection or ruby insertion. No next attempt authorized by this completed protocol.",
+  "migration": {
+    "from": 22,
+    "to": 33,
+    "fullEqualityExcept": [
+      "version",
+      "map.hellClearedSubAreas=[]",
+      "map.challengeOrdinals.hell=0",
+      "map.bounties={}",
+      "mercs.recruitmentProgress={}",
+      "meta.recruitmentState={srPityCounter:0,totalPulls:0,history:[]}"
+    ]
+  },
+  "equipment": {
+    "ancestorsExact": 27633,
+    "totalUnique": 27643,
+    "ancestralBackpackPrefixExact": 27603,
+    "addedPayloads": [
+      {
+        "id": "it-1puzz-lbm",
+        "baseId": "items/base/belt-mithril-coil",
+        "rarity": "normal",
+        "level": 90,
+        "ilvl": 90,
+        "baseRolls": {
+          "defense": 42
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "socketCapacity": 3
+      },
+      {
+        "id": "it-9ps57-lbn",
+        "baseId": "items/base/helm-giant-conch",
+        "rarity": "normal",
+        "level": 90,
+        "ilvl": 90,
+        "baseRolls": {
+          "defense": 89
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "socketCapacity": 3
+      },
+      {
+        "id": "it-3skmj-lbo",
+        "baseId": "items/base/wp2h-colossus-blade",
+        "rarity": "normal",
+        "level": 90,
+        "ilvl": 90,
+        "baseRolls": {
+          "attack": 72
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "socketCapacity": 3
+      },
+      {
+        "id": "it-4b6h3-lbp",
+        "baseId": "items/base/amu-zircon",
+        "rarity": "magic",
+        "level": 90,
+        "ilvl": 90,
+        "baseRolls": {},
+        "affixes": [
+          {
+            "id": "affix.nimble.phys-dodge",
+            "tier": 2,
+            "rolledValue": 4
+          },
+          {
+            "id": "affix.poison.resistance",
+            "tier": 2,
+            "rolledValue": 27
+          }
+        ],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5of6a-lbq",
+        "baseId": "items/base/weapon-ward-bow",
+        "rarity": "normal",
+        "level": 90,
+        "ilvl": 90,
+        "baseRolls": {
+          "attack": 88
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "socketCapacity": 0
+      },
+      {
+        "id": "it-6mbw9-lbr",
+        "baseId": "items/base/armor-dusk-shroud",
+        "rarity": "normal",
+        "level": 90,
+        "ilvl": 90,
+        "baseRolls": {
+          "defense": 124
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "socketCapacity": 1
+      },
+      {
+        "id": "it-6sc8f-lbs",
+        "baseId": "items/base/helm-armet",
+        "rarity": "rare",
+        "level": 90,
+        "ilvl": 90,
+        "baseRolls": {
+          "defense": 75
+        },
+        "affixes": [
+          {
+            "id": "affix.vital.life.flat",
+            "tier": 2,
+            "rolledValue": 31
+          },
+          {
+            "id": "affix.mystic.mana.flat",
+            "tier": 2,
+            "rolledValue": 67
+          },
+          {
+            "id": "affix.ethereal.magic-dodge",
+            "tier": 2,
+            "rolledValue": 7
+          },
+          {
+            "id": "affix.cold.resistance",
+            "tier": 2,
+            "rolledValue": 35
+          },
+          {
+            "id": "affix.arcane.resistance",
+            "tier": 2,
+            "rolledValue": 34
+          },
+          {
+            "id": "affix.physical.resistance",
+            "tier": 2,
+            "rolledValue": 21
+          }
+        ],
+        "generatedName": {},
+        "identified": false,
+        "equipped": false,
+        "socketCapacity": 2
+      },
+      {
+        "id": "it-2hdye-lbt",
+        "baseId": "items/base/ring-obsidian",
+        "rarity": "normal",
+        "level": 90,
+        "ilvl": 90,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1gbo7-lbu",
+        "baseId": "items/base/wp1h-feral-claws",
+        "rarity": "normal",
+        "level": 90,
+        "ilvl": 90,
+        "baseRolls": {
+          "attack": 46
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "socketCapacity": 4
+      },
+      {
+        "id": "it-4ffhj-lbv",
+        "baseId": "items/base/belt-mithril-coil",
+        "rarity": "normal",
+        "level": 90,
+        "ilvl": 90,
+        "baseRolls": {
+          "defense": 46
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "socketCapacity": 0
+      }
+    ],
+    "rubySocketAndSapphireOwnershipUnchanged": true
+  },
+  "rewards": {
+    "xpPerKill": 10062,
+    "xpDelta": 150930,
+    "mercXPShare": 0.75,
+    "mercXPDelta": 113197,
+    "mercFlooring": "Per completed wave, then sum",
+    "runeShardDelta": 34879,
+    "materialDelta": {
+      "gems/ruby/flawless": 1,
+      "gems/sapphire/flawless": 1,
+      "runes/el": 1,
+      "runes/eth": 1
+    },
+    "authoredCache": {
+      "gems/ruby/flawless": 1
+    },
+    "derivedOrdinaryMaterials": {
+      "gems/ruby/flawless": 0,
+      "gems/sapphire/flawless": 1,
+      "runes/el": 1,
+      "runes/eth": 1
+    },
+    "cacheAttribution": "Derived from native total minus authored cache; no separate native receipt"
+  },
+  "campaignMapMetaFormationTimestampUnchanged": true,
+  "successorChangedPaths": 10,
+  "wholeStateSaveRestartContinuePairs": 2,
+  "waves": [
+    {
+      "wave": 1,
+      "enteredMs": 0,
+      "settledMs": 10500,
+      "originalEnemiesDead": 4,
+      "heroHP": 635
+    },
+    {
+      "wave": 2,
+      "enteredMs": 12000,
+      "settledMs": 22500,
+      "originalEnemiesDead": 4,
+      "heroHP": 633
+    },
+    {
+      "wave": 3,
+      "enteredMs": 24000,
+      "settledMs": 35300,
+      "originalEnemiesDead": 4,
+      "heroHP": 597
+    },
+    {
+      "wave": 4,
+      "enteredMs": 36800,
+      "settledMs": 56100,
+      "originalEnemiesDead": 3,
+      "heroHP": 484
+    }
+  ],
+  "modifierEvidence": {
+    "source": "ordered native DOM logs and original Blood Lord source cards in waves2\u20134",
+    "fireAndIgniteTargets": [
+      "hero",
+      "Holy Freeze mercenary"
+    ],
+    "retainedSourceWitnesses": 12,
+    "countMeaning": "Selected witnesses from snapshots; not independent event counts"
+  },
+  "runtime": {
+    "browser": "Chromium147.0.7727.15",
+    "viewport": {
+      "width": 360,
+      "height": 640
+    },
+    "locale": "en",
+    "transport": "Fixed historical Date, 1x native playback transported using100ms virtual timer advances; not ordinary-clock pacing",
+    "started": "2026-11-04T15:03:59.981Z",
+    "ended": "2026-11-04T15:04:27.219Z",
+    "pageErrors": 0,
+    "consoleErrors": 0,
+    "httpErrors": 0,
+    "sourceInputsVerified": 2859,
+    "productionAssetsVerified": 766,
+    "guardedJSChunks": 10,
+    "actualBridgeRules": 5,
+    "sourceTreeSha256": "fdc2249acea74a03818cd260415f1a95a10e3514314ef696d6a7f4f7c3075bad"
+  },
+  "preservedFailure": "Original preflight driver had stale13500XP oracle; qualification refused with zero admissions. Current authored award150930 verified before corrected v2 continued exact native migrated export. No product defect/source patch.",
+  "visual": {
+    "individuallyInspected": [
+      "before-admission.png",
+      "wave-2-entry.png",
+      "wave-2-settled.png",
+      "terminal.png"
+    ],
+    "limitation": "Recorded prior individual inspection: wave-2-settled shows mercenary Ignite; terminal screenshot is above victory panel/hero HP. Victory is proved by DOM/save, not hidden screenshot elements."
+  },
+  "missingHistoricalArchive": "Historical predecessor archive d2h5-earned-endgame-native-7__xeujd-raw.tar.gz was absent and was not inspected; exact versioned predecessor fixture hashes verified.",
+  "review": {
+    "verdict": "pass within bounded artifact/runtime scope",
+    "reviewer": "root",
+    "independent": false,
+    "readback": {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/readback.json",
+      "bytes": 15048,
+      "sha256": "ac840822d6aa1a1a0354ff7c2709bb52dfd8ff930d734f2511150fa7ccf1d92d"
+    },
+    "script": {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/readback.py",
+      "bytes": 15273,
+      "sha256": "ea6627607a87e13ac369d53a3e55a5b5299b1beb2f70ae85ef791ccfa92b3071"
+    }
+  },
+  "cleanup": {
+    "passed": true,
+    "owner": "root",
+    "processesAbsent": [
+      3591381,
+      3592563,
+      3592953
+    ],
+    "portsClosed": [
+      39885,
+      44237
+    ],
+    "buildFilesVerifiedThenRemoved": 766,
+    "buildDirectoriesRemoved": 10,
+    "removedExactPaths": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/build"
+    ],
+    "alreadyAbsentExactPaths": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/cache"
+    ],
+    "remainingRequiredPacket": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw",
+    "retainUntil": "umbrella evidence/review consumers released; root owns eventual exact packet cleanup",
+    "worktreeRetained": "full private v1 goal remains active",
+    "remainingDisposables": [],
+    "failures": []
+  },
+  "retention": {
+    "packet": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw",
+    "owner": "root",
+    "retainUntil": "umbrella evidence/review consumers released; root removes exact packet afterward",
+    "evidencePins": [
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/plan.json",
+        "bytes": 3228,
+        "sha256": "f308e0667a63829e9a2ce1dbe07ba55f7177c8e5e70b4acadfcf90a6f8070062"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/earned.mjs",
+        "bytes": 16328,
+        "sha256": "3c0bb1225fb789f9316b34426b1226c7c425e3644250ac12621aef7d8b940859"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/report.json",
+        "bytes": 4020,
+        "sha256": "5495d030056ab309b89da4a8869c953705a213b3787f4dc39b92cbf305d0b730"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/qualification.json",
+        "bytes": 224,
+        "sha256": "bee491396cfa6f36d8d21f2463d384413aa4b0236eaf9889f99eb73c23d5ddfa"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/migration-diff.json",
+        "bytes": 585,
+        "sha256": "c549a6c2590446beb1eeb8513208c67b4994cc8ab955c0db88fba1adcac78036"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/migration-qualification-verified.json",
+        "bytes": 505,
+        "sha256": "b1aad0a4f0e37e58fbdad5b2851800942f4a69f18b88b86654677fd6c31321e0"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/source-manifest.json",
+        "bytes": 519996,
+        "sha256": "700a95b5035e0ce9b04334f5d8d616b89d95702e4aeea44ff1490abaaf75f7a5"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/build-report.json",
+        "bytes": 150264,
+        "sha256": "81afb56c1e362a17e4112bd95bd2086c43debdedb25508e099f2e9b5ca56e146"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/cleanup.json",
+        "bytes": 800,
+        "sha256": "c7b4ba500572a3b79ca8fb71ac6229ee540d713f7e58d799f998e392d7b1f871"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/execution-v2/plan.json",
+        "bytes": 3842,
+        "sha256": "8b7f054d3a48dc26820bccef871a27cf5195e3ceef1e0e2ad41f3a4c6ffc22d3"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/execution-v2/earned.mjs",
+        "bytes": 16721,
+        "sha256": "355b412bfeef2f10453645237fd7462572e08070e63a9adea4b791e02a5569e9"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/execution-v2/report.json",
+        "bytes": 1256133,
+        "sha256": "ee325c0882e37e44116db19e84d1f24f0362b35001f8f8c8c9f49a9a549d1ccf"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/execution-v2/qualification.json",
+        "bytes": 379,
+        "sha256": "c5f3715040cff7a0b7c3a5a77fb540d984b4437c908ff3a28978a7f8eedb83e1"
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-current-earned-fd45btdw/execution-v2/successor-full-diff.json",
+        "bytes": 1220,
+        "sha256": "a073b04695b0d81e93f3e4fc1d34404a2787c96e4482f1a97e732e70a0d79976"
+      }
+    ]
+  },
+  "unchangedCampaignTotals": {
+    "intendedAct1Clears": 14,
+    "intendedFiveActNormalCompletions": 4,
+    "intendedBuilds": 14,
+    "formalBalanceAccepted": 0,
+    "formalBalanceCases": 210
+  },
+  "remaining": [
+    "ten intended five-act build completions/viability",
+    "population balance, acquisition/economy and active-hour pacing",
+    "broader difficulty/endgame integration including current-production Glacial interaction",
+    "whole-app accessibility/performance/PWA installation",
+    "final integration/review and independent acceptance",
+    "human soak/playtest"
+  ],
+  "productionCodeChangedThisSlice": false
+}

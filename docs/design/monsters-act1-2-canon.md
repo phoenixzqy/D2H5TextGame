@@ -104,7 +104,7 @@ Convention:
 | `monsters/act2.undead-scavenger` | Undead Scavenger | archetype | Strong undead vulture | `monster-strong-melee`, `monster-charge`, `monster-rend` |
 | `monsters/act2.undead-flayer` | Undead Flayer | archetype | Skeleton fetish melee (carryover) | `monster-strong-melee` |
 | `monsters/act2.the-summoner` | The Summoner (Arcane Sanctuary) | super-unique | Fire ball, frost nova, lightning, teleport | `monster-fire-ball`, `monster-frost-nova`, `monster-lightning`, `monster-teleport`, `monster-summon-adds` |
-| `monsters/act2.duriel` | Duriel, Lord of Pain | act-boss | Charge, frost aura, hold-in-place | `monster-strong-melee`, `monster-charge`, `monster-frost-aura` |
+| `monsters/act2.duriel` | Duriel, Lord of Pain | act-boss | Charge; passive15cold/5s/2sChill; Freeze immune | `monster-charge`; ordinary attack; [passive metadata](../plans/decisions/P15-duriel-passive-frost-aura-v1.md) |
 
 ## Notes / skipped archetypes
 

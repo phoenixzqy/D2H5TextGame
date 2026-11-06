@@ -13,6 +13,15 @@ scaling. JSON owns a provisional6000ms window and33% normal projectile speed;
 ranks retain their existing resource/CD improvements. These are author defaults,
 not measured balance targets. Ordinary debuff refresh replaces, never stacks.
 
+Automatic-selection refinement,2026-11-02 ([BUG-602](../../../production/bugs/BUG-602-slow-missiles-redundant-automatic-refresh.md)):
+skip Slow Missiles while every current living opponent has a private paid window
+whose expiry is strictly after the action clock. Recast when any living opponent
+is uncovered or expired, including a newly spawned opponent. An allowed cast
+still replaces all target windows without stacking. Visible/imported markers
+never suppress a paid cast; this adds no projectile-capability filter. The
+original refresh rule permitted early refresh; this is an explicit behavioral
+refinement, with no change to authored values, flight or save contracts.
+
 ## Projectile identity and timing
 
 Explicit JSON flight metadata identifies monster weak-ranged, Blood Raven fire

@@ -1,0 +1,27 @@
+# P15 — Trap Assassin Act II complete, Act III frontier
+
+2026-11-01. Trap Assassin completes Acts I–II and five Act III areas. Actual25/XP50171/next300;17areas/31canonical Act II–III actions. Full private v1 remains incomplete; historical five-act roster stays12/14. Trap Assassin and Summon Druid remain.
+
+## Current authoritative state
+
+Packet: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1`, root-owned through umbrella acceptance. Current `p15-traps-act3-native-v2.json`, SHA256 `5fb70bd546d9cbe9d3722bbc80d195271fc252669e8be0a65695f225329c29e6`; independent `p15-traps-act3-readback-v2.json` passes. Original Inner Sight Rogue23 remains; stat3/skill1 resets and2skill points remain. Lightning20/CBS7/Fire1/Shock1, no stat points. All native losses, earned income, original merc and paid sockets remain retained. Canonical hero equipment authority is save.inventory.equipped.
+
+## Implemented and verified
+
+BUG549 changes only Lightning Sentry damagePerLevel6→24, preserving rank1 and finite paid trap semantics.162/162affected definition/display/native/UI cases, scoped strict types and corrected lint pass. Existing Ajv validates actual skill JSON. Full2090-input audit changes exactly five declared data/test paths. Earlier Talon60/Tail120 remain intact. Corrected RED11distinct failures/151passes precedes the source edit; the initial wrong mana-event field and omitted lint plugin resolution remain disclosed. See [growth correction](../../balance/2026-11-01-lightning-sentry-growth.md). Full balance stays CONCERNS.
+
+Initial source stops before Andariel at12. Existing investment clears Act I; funded native hero/Rogue sockets clear Rocky Waste. A free skill reset clears Dry Hills but retains Radament's draw. Owned gear/orders/complete-set availability and growth projections are compared before one bounded175-admission current-Act-II acquisition earns24:700waves/699wins/1loss/1566690XP/~1.608logical combat hours. No old-act replay. Ordinary new allocation unlocks Lightning7, clears Radament/Lost City, then retains Summoner loss. No extra reset was used for the level24 unlock.
+
+After BUG549, current Lightning7 still times out; a legal Lightning20/CBS7 free reset qualifies and natively clears Arcane, Summoner19.686s. Duriel's first60s draw with7622HP is retained. Paid-order controls alone still draw; owned Rogue Doomslinger/Coif/Bloodfist/shield and2Eld/4Nef qualify and reproduce Duriel59.4s. Act II six-area/final Claim and all21canonical actions pass independent readback-v5. No additional farming or tuning.
+
+Native Spider/Marsh/Flayer wins advance Act III. Bazaar's physical defeat is retained; owned two-socket War Hat plus3Nef head/belt insertions qualify the cheaper winning ward plan. Bazaar/Travincal clear, and Durance's five preliminary waves win. Mephisto then kills the hero at9.24s with32646/33600bossHP; native admission299 seed533373627 and all partial rewards remain. Both new Act III native readbacks pass. No broad test or completed-act replay.
+
+## Remaining defect and next action
+
+[BUG550](../../../production/bugs/BUG-550-trap-late-normal-damage-curve.md) records late Normal trap damage. Fresh exact-source Durance controls compare current investment, funded owned party wards, paid boss order and discarded party28 projection. Wards improve survival but do not qualify; projected28 reaches Mephisto and loses52.36s with29017HP left. No projected income/levels/preparation is retained. Current Lightning20 ordinary127–145pulses against Mephisto50res/MR138 are insufficient. Unchanged historical Baal75res/MR243 reduces current ordinary pulses to1 before other bonuses; that calculation is not Trap/Baal acceptance.
+
+Next diagnose paid physical/elemental trap alternatives and late-act curve boundaries, select a data-owned correction, use affected tests, then freshly qualify actual25/ordinal300 Durance before retry. Do not add more training without a winning projection. Later acts, all213advertised skills/build identities, missing areas/disjoint holdouts, balance/economy/acquisition/fairness/30–50active-hour pacing and final mobile/locales/PWA/endgame/save stability/soak/review/owner playtest remain open. Logical simulation hours do not prove active-player pacing or a browser soak. No pending question/external blocker; browser works, CI excluded, owner playtest follows implementation.
+
+Source866128d11212fd87ace8a9bc2c0df0628f3cddc2a2b0cfdd40719d319e4d4f69; data822083c67397a6de80747e3decf8549c6203a0e985e4f48818e614aade60270d. Launcher v26 validates BUG549's exact transition before inherited historical verification; runtime/provenance read current source, with no filesystem swapping. Three later-act driver successors change only the already-verified selected-trap priority-helper import; scoped types/lint pass. Spider's first forecast incorrectly declared6waves instead of5; it failed before settlement, and the corrected new report qualifies. Original failures are retained; no committed native action or reward was replayed.
+
+Six disposable helper/bug/route configs are archived in p15-traps-act3-frontier-config-archives-v1.json and verified removed; all wrapper consumers terminal, no owned descendants/caches remain. Required evidence and source changes stay retained. Closure p15-traps-act3-frontier-artifacts-v1.json; summary p15-traps-act3-frontier-summary-v1.json. Root retains human2/branch/umbrella goal; original checkout read-only. No agent, install, broad test, browser/build/CI rerun, commit, push or publication.

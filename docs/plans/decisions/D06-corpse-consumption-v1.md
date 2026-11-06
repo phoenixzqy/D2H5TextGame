@@ -202,3 +202,33 @@ Poison Explosion retains only its existing partial behavior until potency,
 duration, stacking and consumption are reviewed together. Vines, Redemption,
 Find Item/Potion, resurrection, corpse selection, all-class/campaign balance,
 earned progression, full D06/P09/P10 and private-v1 remain open.
+
+
+## Approved follow-on: finite hostile monster resurrection
+
+The [monster resurrection contract](../../design/monster-resurrection.md),
+approved by GD/TD, explicitly extends this child's original scope. Original
+qualified hostile Shamans compete for the same finite FIFO corpse token as
+existing player consumers; they remove the oldest eligible original Fallen body
+without reordering other tokens. Each original body supplies one token and may
+revive once. Preserve all existing costs, corpse qualification and ordinary
+selection behavior. First-death effects remain once per original; second-life
+cleanup emits death without another corpse/orb/economic effect.
+
+An explicit copied `revive` event restores the existing dead actor in place,
+clears its presentation dead-ID latch, then supplies a forced noninitial status
+observation. Preserve atomic timestamps, seeded schedule identity, normal
+Pause/speed and both replay policies. No corpse, revival proof or added reward
+identity enters a save. Necromancer Revive retains its separate corpse-free
+startup-summon contract. This authorizes the specified implementation, not
+campaign balance or release acceptance.
+
+
+## Follow-on: player blast ignores flat Defense, 2026-11-03
+
+The [new authored rule](D06-corpse-explosion-defense-v1.md) supersedes only
+ordinary direct-hit Defense mitigation for player CE. Fire resistance, dodge,
+criticals, absorption, Ignite, earned ranks, real shared corpse payment and
+all costs/rewards/replay rules remain. [Bounded implementation and four-context
+browser evidence](../../balance/2026-11-03-corpse-defense-bypass.md) pass; first-kill,
+singleton, campaign, population balance and full-v1 acceptance remain open.

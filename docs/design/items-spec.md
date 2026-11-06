@@ -142,6 +142,13 @@ Each slot has 6 base tiers (Normal → Exceptional → Elite, 2 per ladder). Hig
 | `wp1h_phase_blade` | 相位之刃 / Phase Blade | Elite | 50 | 32–55 | indestructible |
 | `wp1h_legend_sword` | 传奇之剑 / Legend Sword | Elite | 60 | 45–75 | +10% AS |
 
+War Sword and Legend Sword also drop from ordinary weapon-bearing sources in
+level32–49 and60–122 bands, intersected with each table's finite envelope.
+Their existing bases, rarity rules, stats, requirements and special goblin drops
+remain intact. [P15 sword tiers](../plans/decisions/P15-ordinary-sword-tiers-v1.md)
+records the exact additive availability and provisional weights; this does not
+establish earned build viability or final acquisition/pacing acceptance.
+
 ### 3.9 2H Weapons
 
 | ID | Name | Tier | rlvl | Base Damage | Implicit |
@@ -152,6 +159,23 @@ Each slot has 6 base tiers (Normal → Exceptional → Elite, 2 per ladder). Hig
 | `wp2h_giant_thresher` | 巨人铡刀 / Giant Thresher | Exceptional | 35 | 32–62 | +10% AS |
 | `wp2h_colossus_blade` | 巨像之剑 / Colossus Blade | Elite | 52 | 50–95 | — |
 | `wp2h_thunder_maul` | 雷霆战锤 / Thunder Maul | Elite | 62 | 65–120 | +1d6 lightning |
+
+Ordinary ranged progression uses the same two-handed damage curves:
+
+| Runtime base ID (`items/base/`) | Name | rlvl | Physical damage | Maximum sockets |
+|---|---|---|---|---|
+| `weapon-composite-bow` | 复合弓 / Composite Bow | 24 | 22–48 | 3 |
+| `weapon-heavy-crossbow` | 重弩 / Heavy Crossbow | 24 | 22–48 | 3 |
+| `weapon-great-bow` | 巨弓 / Great Bow | 35 | 32–62 | 4 |
+| `weapon-siege-crossbow` | 攻城弩 / Siege Crossbow | 35 | 32–62 | 4 |
+| `weapon-ward-bow` | 护卫弓 / Ward Bow | 52 | 50–95 | 5 |
+| `weapon-demon-crossbow` | 恶魔弩 / Demon Crossbow | 52 | 50–95 | 5 |
+
+Existing Bow/Crossbow bases cover levels10–23. Campaign weapon tables include
+both ranged families in level24–34,35–51,52+ bands within each table's existing
+finite eligibility envelope. Rarity follows the source table. Socket rolls may
+be below the maximum. Weight policy and provisional economy tuning are recorded
+in [P15 ranged progression](../plans/decisions/P15-ranged-weapon-progression-v1.md).
 
 ### 3.10 Shields
 

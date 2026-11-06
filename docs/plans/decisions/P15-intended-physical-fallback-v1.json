@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "source": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-far-oasis-source-checkpoint-v1.json",
+    "sha256": "eb2594cfa62686d9993e91780da76eafd35e117702df9e43f3c839486be47f81"
+  },
+  "driver": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-physical-fallback-driver-v1.ts",
+    "sha256": "56d9b50b75e7b927fddf0f24180103878623d61ce87db7fe8a0d65459a07cc8f"
+  },
+  "launcher": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-physical-fallback-launcher-v1.mjs",
+    "sha256": "3506bcf8b202c48777663dd9bfd26a0f80ce841f20b5b3862593b7e717efa504"
+  },
+  "authority": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-campaign-harness-source-audit-v77.json",
+    "sha256": "056717133f401d3aef666e7d7b2858e1cb3373850be53c214e88a3ece354579e"
+  },
+  "campaign": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-campaign-manifest-v1.json",
+    "sha256": "0412e9a975677d7cf6f8bb56d2283959e51fa08a5b8f663a2030dcfb0b2fe406"
+  },
+  "profile": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-frozen-profile-v1.json",
+    "sha256": "35d12120c5ca13dbdedcefd84d4e89e7c32b842cc97599bdbe9560cd90deff05"
+  },
+  "baselineReport": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-act2-v1.json",
+    "sha256": "8ae99ec87d55b31e8f54db781785bee264e2b9c941d207f0e414c5c739c9e8ea"
+  },
+  "baselineReadback": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-act2-v1-readback-v2.json",
+    "sha256": "88c73a072b615264472c4ae2e7f8c925966ffdbc4dac1be8f49f027ee9ff761c"
+  },
+  "maxAdmissions": 1,
+  "maxCombatMs": 300000,
+  "maxWallMs": 120000,
+  "change": "Native combo removes only Teeth; ordinary basic attack fallback becomes available. Frozen priority retains CE, Bone Wall and Weaken. Restore exact first pre-Far-Oasis260save, no grow/equip/farm/grant/heal/reset. No baseline replay or earlier Act I/II replay.",
+  "acceptance": "One same-source conditional area; retain any defeat/draw, stop first nonwin. Not a continuation of exhausted trial, extra accepted retry, fresh population, earned route, pacing or balance acceptance. Independent complete journal/native export/reward readback and matching first-wave baseline comparison.",
+  "planReview": "ready: source line and ancestry authenticated by completed full readback; corpse-and-curses identity explicitly permits hero physical attacks for bosses. One native reversible priority difference; complete prepared state equality checked before admission; at most five native waves. No numerical tuning.",
+  "securityCheck": "pass: authorized local native diagnostic, exact task-owned paths/cache; no installs/network/credentials/publication or protected-save mutation."
+}

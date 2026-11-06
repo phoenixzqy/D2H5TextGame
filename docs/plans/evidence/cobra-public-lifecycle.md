@@ -1,7 +1,9 @@
 # Cobra public-store lifecycle — native checkpoint
 
 Status: Native public recovery/playback and ordinary save/Continue/import verified.
-Browser durability/UX and earned acceptance remain pending; BUG304 stays Open.
+Subsequent browser durability/UX evidence is linked below; full D05 and earned
+acceptance remain pending. Combined native/DEV/production evidence now supports
+bounded-functional inventory credit and local resolution of BUG304 for that scope.
 Parent: `4d591dff3ecb3efa7f797c4c1edf3094bfa4094c`.
 
 ## What the regression establishes
@@ -87,8 +89,14 @@ created by this checkpoint. The repository test and documents are deliverables.
 ## Remaining acceptance
 
 [BUG304](../../../production/bugs/BUG-304-cobra-mana-free-monster-contract.md)
-stays Open for real browser IndexedDB durability/Continue/import UX and earned
-acceptance. The skill inventory remains 212 bounded plus one unverified Cobra.
+is resolved locally for bounded recovery functionality. The later
+[browser checkpoint](cobra-browser-lifecycle.md) verifies
+actual IndexedDB durability/Continue/import UX and recovery playback across
+eight constructed DEV cases; this native checkpoint's original scope is unchanged.
+The [production supplement](cobra-production-offline.md) supplies offline public
+controls/previews and resource scrolling/captures. Independent combined review
+accepts bounded-functional credit: inventory 213 bounded / zero unverified.
+Full D05 and independent feature/earned acceptance remain separate.
 No terminated H3/browser retry, earned sustain/economy/pacing, campaign,
 whole-app locales/devices/a11y/performance/PWA, actual CI, human/soak or full-v1
 acceptance is supplied. No publication, merge or deployment occurred.

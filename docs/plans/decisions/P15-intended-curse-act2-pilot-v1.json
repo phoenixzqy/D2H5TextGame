@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "source": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-companion-source-checkpoint-v1.json",
+    "sha256": "42815388bce8b437018895980983f9fb25c01f8ebabcfcf45b7a0a5a59535be7"
+  },
+  "driver": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-driver-v1.ts",
+    "sha256": "a79d68c1ffcad17bcd144cb482721cec33d42b3070eb247e81f4c97ae3d6f88d"
+  },
+  "authority": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-campaign-harness-source-audit-v77.json",
+    "sha256": "056717133f401d3aef666e7d7b2858e1cb3373850be53c214e88a3ece354579e"
+  },
+  "campaign": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-campaign-manifest-v1.json",
+    "sha256": "0412e9a975677d7cf6f8bb56d2283959e51fa08a5b8f663a2030dcfb0b2fe406"
+  },
+  "profile": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-frozen-profile-v1.json",
+    "sha256": "35d12120c5ca13dbdedcefd84d4e89e7c32b842cc97599bdbe9560cd90deff05"
+  },
+  "launcher": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-curse-launcher-v1.mjs",
+    "sha256": "a351589ba0040fc4edf41479d8c81b49edc0b553795d9d5b887b156c740842bb"
+  },
+  "maxAdmissions": 1800,
+  "maxCombatMs": 216000000,
+  "maxWallMs": 1500000,
+  "change": "Only the intended bone build learns and selects one survival curse through native combo controls. Production authority77, earned equipment, Prayer and allocation targets stay exact. No grants, healing, purchases, crafting, reset, paid draw or targeting-specific weights.",
+  "retry": "One new declared curse-policy branch at authenticated Act I before-claim checkpoint; preserve exhausted CE/Prayer/defense histories. Existing targets18/20/22/26/28/32, three route attempts maximum, training limits unchanged. No continuation of a failed terminal trial and no unchanged Act I replay.",
+  "acceptance": "Diagnostic only. Record all outcomes, rewards, ordered item custody, intrinsic companion progress, resources, seeds and advancing clock. Not a population, pacing or balance acceptance.",
+  "planReview": "ready: freeze exact production77 and 113campaign inputs; only five known campaign paths change,13other candidates exact. Eight selected regression cases and scoped strict types/lint passed. Capture complete native pre-route saves before admission. Run once; independent full-journal/native-export readback afterward. No unrelated tests.",
+  "securityCheck": "pass: authorized local native simulation; exclusive task-owned paths; no installs, network, credentials or publication; cleanup exact owned Vite cache.",
+  "baselineReport": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-defense-act2-v1.json",
+    "sha256": "2cae539f7ce5ffb766a65a1c4bd1e6a7d45923fc8a8b2d3b851ccb5a1a203cdf"
+  },
+  "baselineReadback": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-defense-act2-v1-readback-v2.json",
+    "sha256": "695ab29e5b122cde542056491ae7650b18e03c94209d32c67f4209da489ad8fa"
+  },
+  "checkpointPolicy": "After native capacity preparation, capture real native save immediately before every route admission. Record export/snapshot and SHA256 metadata in the authenticated journal/report. No synthesized pre-route state or changes to native gameplay."
+}

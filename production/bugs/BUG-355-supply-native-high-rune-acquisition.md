@@ -1,6 +1,6 @@
 # BUG-355 — Supply native acquisition for the remaining advertised high runes
 
-- Status: Open — native Hell source and required H2 native checks pass; exact H2 packet gate and H3 functionality/earned acquisition remain pending.
+- Status: Open — H2 independently accepted; constructed Hell browser functionality passes. Earned quantities/affordability and required H3/umbrella review remain open.
 - Severity: High — seven materials required by advertised runewords have no
   native acquisition path under the shipped replay modes.
 - Found: 2026-10-27.
@@ -8,6 +8,23 @@
 - Owner: `game-designer` / `content-designer` / `engine-dev`; producer coordinates.
 - Environment: source/content characterization in the current TypeScript game;
   browser, viewport, locale and combat seed are not applicable. No gameplay ran.
+
+## Current result — 2026-11-03
+
+[The implementation plan](../../docs/plans/hell-replay-implementation.md) records
+independent H2 approval and checkpoint a21c396e, superseding historical H2-pending
+prose below. [Browser evidence](../../docs/plans/evidence/hell-browser-functionality.md)
+now establishes the constructed Hell flow in zh-CN/en on desktop/mobile: locked
+and invalid-import refusal, selection/admission, exact Mal→Ist fusion, socket/
+equip +30 Magic Find and exact save persistence after actual browser restart.
+Four profiles pass; settled dialog follow-up passes with a disclosed mobile
+scroll-capture limit. No runtime edits or protected earned-save replay.
+
+These are constructed native33 scenarios, not earned acquisition. Keep Open:
+earned quantities, affordability/pacing and required H3/umbrella review remain
+unproven. Root self-review is not independent acceptance. Browser launch works;
+CI is owner-excluded and owner playtest follows implementation. Original
+source characterization and failed attempts below remain historical evidence.
 
 ## Reproduction (original source characterization)
 

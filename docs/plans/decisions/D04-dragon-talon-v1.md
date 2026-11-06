@@ -49,3 +49,29 @@ Author security check: pass for scoped local gameplay/schema/display/tests.
 Author plan review: ready; the existing runtime already supports the required
 single original target and independent stop/settlement behavior. Author review
 does not establish independent design approval or earned balance acceptance.
+
+## Earned growth correction — 2026-11-01
+
+BUG-547 supersedes the initial +4/rank tuning with +40/rank per attempt.
+Rank1 stays40–60; rank11 is440–460; rank20 is800–820. The three attempts,
+4MP/1s, original-target stop rules and ordinary mitigation remain unchanged.
+The earned level28 Durance controls reproduce failure with paid Talon11 and
+with a native reset to Talon20. Fixed growth at cap barely reaches ordinary
+Serpent Magus Defense129, before considering30% physical resistance.
+This remains provisional tuning; equal-investment balance and full identity
+acceptance are pending. See production/bugs/BUG-547-dragon-talon-rank-growth.md.
+
+## Act IV follow-up — 2026-11-01
+
+The +40 correction clears earned Act III but does not solve on-chapter Izual:
+even the discarded level48 Talon20 projection times out with27544bossHP left.
+Izual's50% physical resistance then363Defense leaves a normal minimum attempt37.
+Owned set/ward/order controls and a surviving Shadow-support control establish
+that more XP/life alone cannot address this damage floor. Update provisional
+growth40→60: rank1 remains40–60, rank11 becomes640–660, rank20 becomes1180–1200.
+All three ordinary attempts,4MP/1s, target/death/mitigation and save rules remain.
+The native maximum-rank boss-mitigation RED and updated bilingual preview checks
+give15failed/36passed before the edit and51/51passed after it; scoped types/lint
+pass. Full equal-investment balance and holdouts stay open. The previous +40
+section records its historical Act III evidence; this follow-up supersedes that
+tuning value. Exact transition: p15-talon-growth-late-source-binding-v1.json.

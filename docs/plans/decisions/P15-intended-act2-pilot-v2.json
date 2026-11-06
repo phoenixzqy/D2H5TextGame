@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "status": "exploratory-fresh-intended-build-pilot;not-population-or-holdout-acceptance",
+  "profile": "amazon-javelin-intended-v1",
+  "phase": "act2",
+  "timestamp": 1793304000000,
+  "execution": "challenge-prepared-act2-v1",
+  "recovery": "act1-training-v1",
+  "inventory": "salvage-overflow-normals-v1",
+  "frozenProfiles": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-javelin-frozen-profiles-v2.json",
+  "companion": "Initial native Act I Inner Sight Rogue for every intended candidate; no act-specific replacement, recruitment roll, reset or training grant.",
+  "equipment": "Native starter plus actually earned loot only; owned-build-v1 hero backpack/stash selector, native eligibility and monotone-fielded-v1 companion gear; preserve reserved items.",
+  "funding": "No starting currency, wish, XP, gear or socket grant. Shared native normal-item overflow salvage and stash transfers; no special crafting, gacha or socket spending in this pilot.",
+  "training": "Existing bounded Den opening/Act I recovery; before Act II reach level14 through earned Den runs. Then previously cleared safe-area training to whole-challenge native planner maxima18/20/22/26/28/32.",
+  "retry": "At most three native admissions per Act II route area, allocation/equipment only at idle boundaries; shared training limits3consecutive/10total nonwins,600total/200per-area training admissions. No reset of RNG, rewards or paid points.",
+  "bounds": {
+    "parallelProcesses": 1,
+    "maxAdmissions": 1800,
+    "maxCombatMs": 216000000,
+    "maxWallMs": 1500000,
+    "expectedWallSeconds": 300,
+    "expectedCompressedJournalMiB": 100
+  },
+  "outputs": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-javelin-act2-pilot-v2.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-javelin-act2-pilot-v2.json.journal.jsonl.gz",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-javelin-act2-pilot-check-v2.json"
+  ],
+  "interpretation": "Retain nonwins and native export, economy, source/manifests and full journal. No further admissions on exhausted histories. No full-matrix, active-player pacing, population or holdout acceptance from one pilot.",
+  "planReview": "Ready for one bounded exploratory pilot; same existing shared rules across intended identities, with no imported historical Javelin-specific prep. Later-act and formal population protocol remain open.",
+  "securityCheck": "pass; local native earned simulation only, no installation, network, CI, credentials or publication.",
+  "supersedesForNextPilot": "P15-intended-act2-pilot-v1.json; retain original nonwin report and journal",
+  "change": "Only intended Javelin final Critical Strike filler target starts at level6, preserving3points through level5 for native level6 attacks and Dodge. No other profile, engine, authored data or pilot rule changes."
+}

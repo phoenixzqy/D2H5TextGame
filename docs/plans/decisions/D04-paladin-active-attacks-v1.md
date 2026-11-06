@@ -1,5 +1,10 @@
 # D04 — Paladin Holy Bolt, Blessed Hammer and Vengeance
 
+Later tuning: the original numeric preservation below describes this decision's
+baseline. Blessed Hammer rank growth is superseded by
+[P15 earned Crystalline evaluation](P15-blessed-hammer-growth-v2.md); the bypass,
+targeting, cooldown and resource rules remain authoritative.
+
 Local implementation contract for reproduced BUG196. Root remains sole writer;
 independent design/QA and earned balance remain open. This is the first coherent
 three-skill Paladin active packet, not a reduction of the ten-active/class/v1

@@ -1,7 +1,16 @@
 # Cobra damage-based HP/MP recovery — native checkpoint
 
-Status: Native implementation and automated checks verified; dedicated public
-recovery/playback/persistence and earned acceptance pending. BUG304 stays Open.
+Checkpoint status: Native implementation and automated checks verified; public
+recovery/playback/persistence and earned acceptance were pending at this checkpoint.
+
+Current reconciliation (2026-10-29): subsequent
+[public-store lifecycle evidence](cobra-public-lifecycle.md) verifies native
+recovery/playback and ordinary save/Continue/import with in-memory Dexie I/O.
+The subsequent [browser](cobra-browser-lifecycle.md) and
+[production/offline](cobra-production-offline.md) checkpoints complete bounded
+recovery/durability/public-controls verification. Independent combined review
+accepts bounded-functional credit; BUG304 is resolved locally for that scope.
+See [remaining earned/independent gates](cobra-acceptance-gaps.md).
 Parent checkpoint: `a21c396ee721adf0e005938df1b29be9a1f4903a`.
 
 ## Decision and behavior
@@ -100,10 +109,15 @@ all consumers release it; its cleanup receipt remains with this packet.
 ## Limits
 
 [BUG304](../../../production/bugs/BUG-304-cobra-mana-free-monster-contract.md)
-remains Open for dedicated production public zero-enemy-MP recovery, playback
-and ordinary save/Continue/import/export evidence. Native replay equality and
-constructed settlement/copy/death/absorption controls do not replace that gate.
-The skill inventory remains 212 bounded plus one unverified Cobra. Earned
-sustain/balance/pacing, campaign, independent full gates, CI and private-v1
-acceptance remain pending. The separate terminated H3 blank-launch attempt is
-not retried and supplies no Cobra gameplay result.
+is resolved locally for bounded recovery functionality. The later public-store checkpoint supplies native zero-enemy-MP
+recovery, playback and ordinary save/Continue/import/export evidence. The later
+[real-browser checkpoint](cobra-browser-lifecycle.md) supplies constructed DEV
+IndexedDB durability and en/zh desktop/mobile recovery/persistence UX. The
+[production supplement](cobra-production-offline.md) supplies offline public
+controls/previews and inspected resource geometry. Combined independent review
+accepts bounded-functional credit; full D05 remains separate. The inventory is
+213 bounded / zero unverified. Earned
+sustain/balance/pacing, campaign, independent full gates and private-v1
+acceptance remain pending. CI is excluded from current work by the owner.
+The separate terminated H3 blank-launch attempt remains unchanged and supplies
+no Cobra gameplay result; fresh browser verification has its own evidence.

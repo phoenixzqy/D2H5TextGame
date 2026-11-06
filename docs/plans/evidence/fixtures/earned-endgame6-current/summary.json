@@ -1,0 +1,293 @@
+{
+  "passed": true,
+  "scope": "Separate root retained-output audit; no gameplay replay or independent QA",
+  "inputExact": true,
+  "completeSuccessorReconciled": true,
+  "sourceFilesExact": 1582,
+  "waves": [
+    {
+      "wave": 1,
+      "enteredVirtualMs": 0,
+      "allEnemiesDeadVirtualMs": 13500,
+      "enemies": 4,
+      "heroLife": {
+        "label": "HP",
+        "value": 633,
+        "max": 635
+      }
+    },
+    {
+      "wave": 2,
+      "enteredVirtualMs": 15000,
+      "allEnemiesDeadVirtualMs": 36100,
+      "enemies": 4,
+      "heroLife": {
+        "label": "HP",
+        "value": 635,
+        "max": 635
+      }
+    },
+    {
+      "wave": 3,
+      "enteredVirtualMs": 37600,
+      "allEnemiesDeadVirtualMs": 53000,
+      "enemies": 4,
+      "heroLife": {
+        "label": "HP",
+        "value": 628,
+        "max": 635
+      }
+    },
+    {
+      "wave": 4,
+      "enteredVirtualMs": 54500,
+      "allEnemiesDeadVirtualMs": 74800,
+      "enemies": 3,
+      "heroLife": {
+        "label": "HP",
+        "value": 635,
+        "max": 635
+      }
+    }
+  ],
+  "cadenceSecondsObserved": [
+    0.5,
+    1.5
+  ],
+  "heroXp": 150930,
+  "mercXp": 113197,
+  "mercLevel": [
+    23,
+    24
+  ],
+  "mercRemainingXp": 102447,
+  "runeShards": 29758,
+  "ancestralItemsExact": 27643,
+  "newItemPayloads": [
+    {
+      "id": "it-95zpk-lbw",
+      "baseId": "items/base/sh-sacred-targe",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "defense": 82
+      },
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 2
+    },
+    {
+      "id": "it-t1n4-lbx",
+      "baseId": "items/base/amu-zircon",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {},
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false
+    },
+    {
+      "id": "it-691mf-lby",
+      "baseId": "items/base/armor-archon-plate",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "defense": 199
+      },
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 1
+    },
+    {
+      "id": "it-8iue0-lbz",
+      "baseId": "items/base/helm-armet",
+      "rarity": "magic",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "defense": 72
+      },
+      "affixes": [
+        {
+          "id": "affix.mystic.mana.flat",
+          "tier": 2,
+          "rolledValue": 47
+        },
+        {
+          "id": "affix.cold.resistance",
+          "tier": 2,
+          "rolledValue": 18
+        }
+      ],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 0
+    },
+    {
+      "id": "it-611p2-lc0",
+      "baseId": "items/base/belt-mithril-coil",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "defense": 48
+      },
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 1
+    },
+    {
+      "id": "it-fny0-lc1",
+      "baseId": "items/base/wp2h-colossus-blade",
+      "rarity": "magic",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "attack": 78
+      },
+      "affixes": [
+        {
+          "id": "affix.precise.crit-chance",
+          "tier": 2,
+          "rolledValue": 8
+        },
+        {
+          "id": "affix.wolf.life.flat",
+          "tier": 2,
+          "rolledValue": 31
+        }
+      ],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 0
+    },
+    {
+      "id": "it-7eoxl-lc2",
+      "baseId": "items/base/ring-zircon",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {},
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false
+    },
+    {
+      "id": "it-1gc6-lc3",
+      "baseId": "items/base/sh-monarch",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "defense": 71
+      },
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 2
+    },
+    {
+      "id": "it-9hqto-lc4",
+      "baseId": "items/base/helm-giant-conch",
+      "rarity": "normal",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "defense": 113
+      },
+      "affixes": [],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 2
+    },
+    {
+      "id": "it-4kk1t-lc5",
+      "baseId": "items/base/helm-giant-conch",
+      "rarity": "magic",
+      "level": 90,
+      "ilvl": 90,
+      "baseRolls": {
+        "defense": 104
+      },
+      "affixes": [
+        {
+          "id": "affix.vital.life.flat",
+          "tier": 2,
+          "rolledValue": 67
+        },
+        {
+          "id": "affix.lightning.resistance",
+          "tier": 2,
+          "rolledValue": 26
+        }
+      ],
+      "generatedName": {},
+      "identified": true,
+      "equipped": false,
+      "socketCapacity": 2
+    }
+  ],
+  "materialsDelta": {
+    "gems/amethyst/flawless": 1,
+    "gems/sapphire/flawless": 1,
+    "runes/io": 1
+  },
+  "completionCache": {
+    "gems/sapphire/flawless": 1
+  },
+  "cacheBreakdownBasis": "Derived from total saved deltas and source-authored cache, not a separate native receipt",
+  "finalRawSha256": "899ce1d5be7882626e7a26abf5c74833d8062e38c57cb34eb9068e89a4325e6e",
+  "finalGzipSha256": "ee2222ba36e48d0db30436fc3ea1b362dd871dad34c9a0fa624e0e7b13706a36",
+  "executorPidAbsent": 3787350,
+  "portClosed": 5173,
+  "remainingDisposables": [],
+  "cleanupFailures": [],
+  "version": 33,
+  "endgame": {
+    "attemptOrdinal": 6,
+    "clearCounts": {
+      "ashen": 4,
+      "glacial": 2
+    },
+    "achievementRewardClaimed": true
+  },
+  "level": 35,
+  "experience": 494171,
+  "parentFixture": "../earned-endgame5-current/retained-final.json.gz",
+  "evidencePacket": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-p18-glacial-_s8af4t2",
+  "driverPid": 3787350,
+  "started": "2026-11-04T20:22:18.068Z",
+  "ended": "2026-11-04T20:23:02.723Z",
+  "virtualMs": 76300,
+  "browserVersion": "147.0.7727.15",
+  "viewport": {
+    "width": 360,
+    "height": 640
+  },
+  "locale": "en",
+  "durablePairs": [
+    {
+      "label": "terminal",
+      "exact": true,
+      "acknowledgedSave": true,
+      "browserProcessRestart": true
+    }
+  ],
+  "evidenceScope": "Current development-source native browser integration, not production bundle/PWA/fairness/pacing or independent acceptance.",
+  "retentionOwner": "Root through umbrella review; then exact external-packet cleanup and umbrella worktree release."
+}

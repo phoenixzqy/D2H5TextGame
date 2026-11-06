@@ -1,5 +1,11 @@
 # H3 — Blank-browser prerequisite failure
 
+Current update, 2026-10-29: the owner authorized a fresh WSL browser investigation.
+[New browser evidence](wsl-browser-launch.md) reproduces the long socket-path
+failure and verifies headed/headless launches plus desktop/mobile app Save,
+browser close/reopen and Continue. The original attempt below remains terminal;
+its no-retry scope is not a permanent ban on newly authorized verification.
+
 Status: **H3_PREREQUISITE_FAILED_NO_APP; classification independently reviewed**,
 2026-10-27. The single admitted H3-FG-PREREQ-01 card is terminal failed no app;
 H3 functionality remains open. No retry/new card/environment tuning/app work is

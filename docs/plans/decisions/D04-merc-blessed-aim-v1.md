@@ -1,0 +1,47 @@
+# Native mercenary Blessed Aim — bounded implementation contract
+
+Root remains sole writer in the existing claimed human-worktree-2. Existing producer supplies read-only plan/test/result review; no new agents or worktree operations. Pilfer final ordinary-unit prerequisite passed (21708/1023) and its final checkpoint is recorded. Status: Open — native repair verified; broader acceptance pending. BUG180/366 timeout recurrence stops source continuation.
+
+## Requirement and user decision
+
+Gacha spec section4.3 promises recruitable mercs/act2-blessed-aim party +30% Attack Rating, but the game has no Attack Rating system and aura-blessed-aim remains an inert generic self buff. The user explicitly chose the cheaper mechanic: reduce weapon miss chance by30%, e.g.15% becomes10.5%, instead of implementing full AR. This choice applies to the mercenary aura, not the separate selected Paladin Blessed Aim Attack bonus.
+
+## Implemented explicit defaults
+
+1. Native presence is passive: no action, mana, cooldown, buff status or selected-aura slot. While at least one living factory-qualified original Blessed Aim merc with current owned native bar and valid integer level supplies the exact native registered aura, currently living, currently player-aligned, originally player-side bodies, including subsequently registered native summons and self (not limited to initial-wave members, and excluding originally enemy-side converted bodies), receive one nonstacking30% relative reduction to weapon miss chance. The source must also currently have player allegiance; its death, conversion/removal or qualification loss withdraws immediately; every wave and replay rebuild current qualification, preserving captured bare-merc fallback. No paid or saved state/stat mutation.
+2. Weapon attempts are authenticated native direct melee/ranged strikes from existing whole-strike delivery metadata and known projected melee/ranged basics, including empty verified equipment melee. Physical damage alone, a basicHit flag, buff/status IDs or an arbitrary same-ID skill cannot qualify. Primary-melee only qualifies its original direct recipient; chain/splash recipients remain ineligible. Spell/unknown/none delivery, ambient/periodic/reflection/armor reactions, traps and auxiliary releases/bolts receive no accuracy bonus. Preserve existing player Frozen Armor, mercenary Frozen Armor contact and all unrelated strike rules.
+3. Let H be the existing ordinary hit probability after base chance, blindness penalty, applicable physical/magical dodge and its unchanged5% minimum. New H is H + max(0,1-H)*0.30. Thus ordinary15% miss becomes10.5%;35% miss becomes24.5%; a prior floor5% hit becomes33.5% hit. There is no new95% maximum. H=1 remains valid; H>1 must preserve the existing rng.chance rejection rather than being silently normalized. Reduction100% yields1 for valid H; it does not repair malformed H>1. Always-hit/ignoreDodge attacks keep skipping the hit RNG call. Weapon elements retain their existing dodge-category choice; one weighted/enchant strike shares one hit/crit/base roll. A zero/absent modifier preserves the old exact operations.
+4. Check aura presence at actual damage resolution. Freeze launch qualification from the private original native RegisteredSkill, carry that reference through the existing private flight payload, then revalidate current registry identity, unchanged semantics and delivery on impact. A custom skill at launch cannot become qualified merely because a native row is installed before impact. Replacement or mutation of the native reference between launch and impact withdraws accuracy authority. They can qualify ranged accuracy without becoming melee contact; never overload the existing impact contact-none disposition. Aura-source death before impact withdraws the bonus. A dead attacker is not a living recipient even if its paid shot still resolves. Do not copy public playback classification into authority.
+5. Author reduction30 in a closed exact-ID mercBlessedAim JSON field, finite within0..100. Unique immutable resolver copies tuning; native passive registration replaces only this stub. A narrow optional DamageInput miss reduction fraction applies after ordinary hit clamping in rollDamage, with no additional accuracy draw; ordinary draws follow the resulting hit/miss path. Converted misses necessarily add ordinary base/crit draws. Preserve exact zero/absent parity. No changes to damage amounts, Attack, attack rating stats, save version, dependencies, worker budgets or deadlines. Removing the inert cast intentionally allows ordinary Jab sooner; distinguish this from RNG parity for unrelated same-action controls.
+6. Update zh-CN/en skill and recruitment descriptions and the gacha design row to the chosen miss-reduction mechanic. Explicitly document these defaults as implementation choices, not user-approved balance tuning beyond the selected30% reduction.
+
+## Test and implementation order
+
+- After Pilfer prerequisite, independently review/freeze a small actual pool -> createMercFromDef -> mercToCombatUnit -> default registry -> recorded battle primary. Literal expected threshold/miss behavior and both1/20 ranks; use an authenticated attack on a separate allied actor whose action timing is unchanged by removal of the aura source’s inert cast, plus deterministic imported survivors, not earned play. Freeze literal threshold assertions; causal RED must fail intended missing accuracy rather than merely earlier Jab/action timing, never setup/collection. Record a bug before runtime repair; retain frozen primary, RED and exact input maps.
+- Schema/resolver tests: unique row, exact fields/types/ID, tuning0/30/100 and invalid/duplicate/missing metadata, copied immutability, repeat registry defaults. No speculative reusable aura refactor.
+- Native engine tests: exact RNG threshold arithmetic at ordinary/dodge/blindness/floor values, no extra RNG, zero/absent parity, alwaysHits, native melee/ranged/basic and weighted/elemental/enchant attempts, independent hitSequence attempts; projectiles at impact, replacement/mutation between launch and impact, aura withdrawal, dead shooter, tied periodic aura-source death, source death/conversion, nonstacking and late native summons. Explicit H=1/H>1,5% floor and100% reduction cases. Negatives for spells/Hydra, physical custom skill, unknown legacy weapon/basic, replacement same-ID, marker/bar/kind/side/summon/owner/level/source death. Selected Paladin Blessed Aim remains distinct and composes only its existing Attack effect.
+- Native store tests: fresh-wave lost/restored bar/level/source, bare fallback, new run and replay rebuilding; current recording remains immutable when later config changes; input/base/save stats unchanged. No acquisition/earned/browser experiments.
+- Historical unrelated-stub tests may need exact reviewed migration away from Blessed Aim; retain predecessor and preserve all assertions, never silently weaken checks.
+- Focused, actual engine/ordinary full unit, types/lint/boundary/external build as justified; unchanged maps and full terminal logs/receipts. No source continuation on BUG180/366 timeout recurrence. Retain failure predecessors. Before execution, register the exact next-card external packet/build as the only disposable build directory; its removal requires all build consumers to release readers and every task-owned process using it to finish. Name and register any other disposable output before creating it. Preserve primary, predecessors, RED, manifests and terminal receipts; retain required evidence through unfinished acceptance. Remove only those explicitly named, verified task-owned paths. Broader private-v1 scope stays open.
+
+## Native repair checkpoint
+
+The unchanged frozen primary passes4/4 after its intended causal RED. Final
+ordinary unit verification passes21819 tests/1029 actual files, zero failed/
+pending/todo, on unchanged2125-input map
+b6d7ad8ead29e527a96e7273fc4dabdd87465d54c2f37900a66a1d3ffb4d6073.
+Actual engine11882/441 and final lint (zero warnings, recorded8GB heap) pass.
+Types, boundary and external build pass on the documented predecessor map;
+only the reviewed Warmth test migration and explanatory lint comment follow,
+with product/import structure unchanged. Exact failed predecessors, map deltas,
+primary and independent reviews remain retained.
+
+[Native evidence](../evidence/merc-blessed-aim.md) records behavior, coverage,
+check/map/environment/process binding, warnings and limitations. The only
+external build is removed and absence verified after reader release. All
+captured task check processes are absent. BUG-380 remains Open beyond native
+verification; no earned/browser/campaign or broader acceptance is established.
+
+## Retained restrictions
+
+H3 terminal H3_PREREQUISITE_FAILED_NO_APP: no app/browser/alternate launch/retry. No protected earned-endgame4 retained-final fixture access/replay; no diagnostics discovery/read/execution; closed P15/default-earned/modes/rune/fusion/runeword matrices. No new acquisition/lineage/gameplay replacement experiment; fresh lineage invocation18415 spent. Native simulation deadline60000ms; maxRounds is not a runtime limit. No new agents, remote/deployment/worktree operations, broad process termination, shared-cache cleanup, dependency changes or watch-mode. Required evidence remains root-owned through unfinished acceptance. No campaign/economy/14-build/pacing/defeat-retry/device/locale/a11y/performance/PWA/actualCI/human/soak/full-v1 acceptance is established.

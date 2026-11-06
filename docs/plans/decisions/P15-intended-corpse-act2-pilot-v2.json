@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "status": "exploratory-fresh-intended-build-pilot;not-population-or-holdout-acceptance",
+  "profile": "necromancer-bone-intended-v1",
+  "phase": "act2",
+  "timestamp": 1793304000000,
+  "execution": "challenge-prepared-act2-v1",
+  "recovery": "act1-training-v1",
+  "inventory": "salvage-overflow-normals-v1",
+  "frozenProfiles": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-corpse-frozen-profiles-v2.json",
+  "companion": "Initial native Act I Inner Sight Rogue for every intended candidate; no act-specific replacement, recruitment roll, reset or training grant.",
+  "equipment": "Native starter plus actually earned loot only; owned-build-v1 hero backpack/stash selector, native eligibility and monotone-fielded-v1 companion gear; preserve reserved items.",
+  "funding": "No starting currency, wish, XP, gear or socket grant. Shared native normal-item overflow salvage and stash transfers; no special crafting, gacha or socket spending in this pilot.",
+  "training": "Shared cleared-level-margin-v1 Act I recovery: choose the highest-max previously cleared challenge whose full enemy-level maximum is at most hero level minus2; fixed source per cycle,40 admissions per cycle/80 total,two cycles,one earned level per cycle,level14 ceiling,stop on training nonwin. Existing bounded Den opening; before Act II reach level14 through earned Den runs. Act II uses previously cleared safe-area training to whole-challenge native planner maxima18/20/22/26/28/32.",
+  "retry": "At most three native admissions per Act II route area, allocation/equipment only at idle boundaries; shared training limits3consecutive/10total nonwins,600total/200per-area training admissions. No reset of RNG, rewards or paid points.",
+  "bounds": {
+    "parallelProcesses": 1,
+    "maxAdmissions": 1800,
+    "maxCombatMs": 216000000,
+    "maxWallMs": 1500000,
+    "expectedWallSeconds": 300,
+    "expectedCompressedJournalMiB": 100
+  },
+  "outputs": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-corpse-act2-pilot-v2.json",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-corpse-act2-pilot-v2.json.journal.jsonl.gz",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-corpse-act2-pilot-check-v2.json"
+  ],
+  "interpretation": "Retain nonwins and native export, economy, source/manifests and full journal. No further admissions on exhausted histories. No full-matrix, active-player pacing, population or holdout acceptance from one pilot.",
+  "planReview": "Ready after six selected growth/rotation/registration cases, scoped strict types and explicit lint pass. New sequential level-six assertion reproduced RED; batched native fixture alone did not catch the acquisition defect. Retain all losses and actual corpse/mana/damage evidence; no population, holdout or pacing acceptance.",
+  "securityCheck": "pass; local native earned simulation only, no installation, network, CI, credentials or publication.",
+  "change": "Fresh successor evaluation after BUG604: initial CE rank target comes before optional Weaken/Dim Vision. Only intended Necromancer allocation changes; shared preparation, native initial companion, funding, recovery, bounds and clock remain exact. Original v1 exhausted history retained.",
+  "campaignManifest": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-counted-source-z3jj3xa1/p15-intended-corpse-campaign-manifest-v2.json"
+}
