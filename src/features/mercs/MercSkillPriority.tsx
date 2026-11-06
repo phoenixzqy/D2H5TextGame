@@ -30,7 +30,7 @@ export function MercSkillPriority({ merc, equipment }: {
   };
   return (
     <section className="mt-3 border-t border-d2-border pt-3" aria-label={t('priority.title')}>
-      <h4 className="font-serif text-d2-gold">{t('priority.title')}</h4>
+      <h4 className="d2-section-title font-serif text-d2-gold">{t('priority.title')}</h4>
       <p className="mt-1 text-sm text-d2-white/75">{t('priority.help')}</p>
       <ol className="mt-2 space-y-2" aria-live="polite">
         {order.map((id, index) => {

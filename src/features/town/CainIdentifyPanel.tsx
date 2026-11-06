@@ -35,11 +35,11 @@ export function CainIdentifyPanel({ npcId }: { npcId: string }) {
   if (npcId !== 'npc/cain' || !canUseCainIdentify()) return null;
   const candidates = cainIdentifyCandidates(), selected = currentCainIdentifyItem(selection);
   return <div data-testid="cain-identify" className="w-full min-w-0 space-y-2 break-words border-t border-d2-border pt-3">
-    <h4 className="font-serif text-d2-gold">{t('identify.title')}</h4>
+    <h4 className="d2-section-title font-serif text-d2-gold">{t('identify.title')}</h4>
     <p className="text-sm text-d2-white/90">{t('identify.description')}</p>
     <label htmlFor={inputId} className="block text-sm text-d2-white">{t('services.chooseItem')}</label>
     <select id={inputId} value={selected?.id ?? ''} data-testid="cain-identify-target"
-      className="block min-h-[44px] w-full min-w-0 max-w-full rounded border border-d2-border bg-d2-bg p-2 text-base text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold"
+      className="d2-field block min-h-[44px] w-full min-w-0 max-w-full rounded border border-d2-border bg-d2-bg p-2 text-base text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold"
       onChange={event => {
         const item = candidates.find(row => row.id === event.target.value);
         setSelection(item ? selectCainIdentifyItem(item) : null); setFeedback(null);

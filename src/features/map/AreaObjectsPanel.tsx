@@ -31,8 +31,8 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
   const [failure, setFailure] = useState<RecoverToolResult | QuestCraftingResult | 'busy' | 'restoration-failed' | null>(null);
   return (
     <section id="area-objects" data-testid="area-object-panel" aria-labelledby="area-objects-title"
-      className="w-full min-w-0 rounded border border-d2-border bg-d2-bg/60 p-3 space-y-3">
-      <h2 id="area-objects-title" className="text-d2-gold font-serif">{t('areaObjects.title')}</h2>
+      className="d2-surface w-full min-w-0 rounded border border-d2-border bg-d2-bg/60 p-3 space-y-3">
+      <h2 id="area-objects-title" className="d2-section-title text-d2-gold font-serif">{t('areaObjects.title')}</h2>
       {areaObjectTargets(act, areaId).map(targetId => {
         const status = targetId === CAIN_CAGE
           ? (act === 1 && areaId === CAIN_AREA ? cainRescueStatus() : 'unavailable')
@@ -41,7 +41,7 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
         const key = `areaObjects.objects.${targetId.replace(/^objects\//, '')}`;
         return (
           <div key={targetId} className="w-full min-w-0 space-y-2 break-words">
-            <h3 className="text-d2-white font-semibold">{t(`${key}.name`)}</h3>
+            <h3 className="d2-section-title text-d2-white font-semibold">{t(`${key}.name`)}</h3>
             <p role="status" className="text-sm text-d2-white/90">
               {t(`${key}.${status}`, { defaultValue: t(`areaObjects.${status}`) })}
             </p>
@@ -66,7 +66,7 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
         const source = questItemSource(item), status = questInsertionStatus(source);
         return (
           <div key={source} className="space-y-2">
-            <h3 className="text-d2-white font-semibold">{t('areaObjects.orifice.name')}</h3>
+            <h3 className="d2-section-title text-d2-white font-semibold">{t('areaObjects.orifice.name')}</h3>
             <p role="status" className="text-sm text-d2-white/90">{t(`areaObjects.orifice.${status}`)}</p>
             <Button variant="primary" className="min-h-[44px] min-w-[44px]" disabled={status !== 'ready'} onClick={() => {
               try {
@@ -85,7 +85,7 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
         const status = questActionStatus(action.receiptSource);
         const key = `areaObjects.actions.${action.id.replace(/^actions\//, '')}`;
         return <div key={action.receiptSource} className="w-full min-w-0 space-y-2 break-words">
-          <h3 className="text-d2-white font-semibold">{t(`${key}.name`)}</h3>
+          <h3 className="d2-section-title text-d2-white font-semibold">{t(`${key}.name`)}</h3>
           <p className="text-sm text-d2-white/90">{t(`${key}.description`)}</p>
           <p role="status" aria-live="polite" className="text-sm text-d2-white/90">{t(`${key}.${status}`)}</p>
           <Button type="button" variant="primary" className="min-h-[44px] min-w-[44px] max-w-full whitespace-normal"
@@ -106,7 +106,7 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
         const key = `areaObjects.tools.${tool.id.replace(/^quest\//, '')}`;
         return (
           <div key={source} className="min-w-0 space-y-2 break-words">
-            <h3 className="text-d2-white font-semibold">{t(tool.kind === 'delivery' ? tool.nameKey : `${key}.name`)}</h3>
+            <h3 className="d2-section-title text-d2-white font-semibold">{t(tool.kind === 'delivery' ? tool.nameKey : `${key}.name`)}</h3>
             <p className="text-sm text-d2-white/90">{t(tool.descKey)}</p>
             <p role="status" className="text-sm text-d2-white/90">
               {t(tool.kind === 'delivery' ? `areaObjects.delivery.${status}` : `${key}.${status}`)}

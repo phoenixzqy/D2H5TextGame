@@ -91,7 +91,7 @@ export function TownScreen() {
                 <button
                   type="button"
                   ref={selectedNpc?.id === npc.id ? conversationTrigger : undefined}
-                  className="w-full min-h-[80px] flex flex-col items-center justify-center gap-1
+                  className="d2-plaque d2-npc-card w-full min-h-[80px] flex flex-col items-center justify-center gap-1
                              border border-d2-border rounded bg-d2-bg/40 hover:border-d2-gold/60
                              focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold p-2"
                   aria-label={t(npc.nameKey)}
@@ -141,9 +141,9 @@ export function TownScreen() {
             id="town-conversation"
             data-testid="town-conversation"
             aria-labelledby="town-conversation-title"
-            className="rounded border border-d2-border bg-d2-panel p-4 space-y-3"
+            className="d2-surface rounded border border-d2-border bg-d2-panel p-4 space-y-3"
           >
-            <h3 id="town-conversation-title" className="text-d2-gold font-semibold">
+            <h3 id="town-conversation-title" className="d2-section-title text-d2-gold font-semibold">
               {t(selectedNpc.nameKey)}
             </h3>
             <div role="status" aria-live="polite" data-testid="town-greeting" className="space-y-2 text-sm text-d2-white/90">

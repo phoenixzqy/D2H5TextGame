@@ -59,7 +59,7 @@ export function OfflineBonusChip(): JSX.Element | null {
   return (
     <span
       data-testid="offline-bonus-chip"
-      className="inline-flex flex-col justify-center gap-1 px-2 py-1 rounded
+      className="d2-tag inline-flex flex-col justify-center gap-1 px-2 py-1 rounded
                  bg-d2-gold/15 border border-d2-gold/40 text-d2-gold text-xs
                  min-h-[28px] max-w-full"
       aria-label={t('offlineBonus.chipLabel', {

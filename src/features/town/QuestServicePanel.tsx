@@ -19,14 +19,14 @@ function ServiceRow({ service }: { service: Service }) {
   const candidates = questServiceCandidates(service.source);
   const selected = candidates.find(item => item.id === selectedId);
   return <div className="min-w-0 space-y-2 break-words border-t border-d2-border pt-3" data-testid={`quest-service-${service.source}`}>
-    <h4 className="font-serif text-d2-gold">{t(`quests:rewardValue.${service.serviceId}`)}</h4>
+    <h4 className="d2-section-title font-serif text-d2-gold">{t(`quests:rewardValue.${service.serviceId}`)}</h4>
     <p className="text-xs text-d2-white/70">{t(service.source.startsWith('quests/side-') ? 'services.sourceSide' : 'services.sourceMain')}</p>
     <p className="text-sm text-d2-white/90">{t(`services.description.${service.serviceId}`)}</p>
     <p role="status" className="text-sm text-d2-white/90">{t(`services.${service.state}`)}</p>
     {service.state === 'available' && <>
       <label htmlFor={inputId} className="block text-sm text-d2-white">{t('services.chooseItem')}</label>
       <select id={inputId} value={selected?.id ?? ''} data-testid={`quest-service-target-${service.source}`}
-        className="block min-h-[44px] w-full min-w-0 max-w-full rounded border border-d2-border bg-d2-bg p-2 text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold"
+        className="d2-field block min-h-[44px] w-full min-w-0 max-w-full rounded border border-d2-border bg-d2-bg p-2 text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold"
         onChange={event => { setSelectedId(event.target.value); setFeedback(null); }}>
         <option value="">{t('services.selectItem')}</option>
         {candidates.map((item, index) => <option key={item.id} value={item.id}>

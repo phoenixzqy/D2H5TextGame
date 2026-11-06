@@ -70,7 +70,7 @@ export function SaveImportDialog({ isOpen, busy, onClose, onImport }: SaveImport
         <label htmlFor={id} className="block text-sm text-d2-white">{t('importFile')}</label>
         <input id={id} type="file" accept=".json,application/json" disabled={working}
           data-testid="import-save-file" aria-describedby={`${id}-help`}
-          className="block min-h-[44px] w-full min-w-0 text-sm text-d2-white file:mr-2 file:min-h-[44px]
+          className="d2-field block min-h-[44px] w-full min-w-0 text-sm text-d2-white file:mr-2 file:min-h-[44px]
                      file:rounded file:border file:border-d2-border file:bg-d2-panel file:px-3 file:text-d2-gold
                      focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold"
           onChange={event => {
@@ -82,7 +82,7 @@ export function SaveImportDialog({ isOpen, busy, onClose, onImport }: SaveImport
         {failed && <p ref={errorMessage} role="alert" tabIndex={-1}
           className="text-sm text-d2-white">{t('importFailed')}</p>}
         {prepared ? (
-          <div className="space-y-2 rounded border border-d2-border bg-d2-bg p-3">
+          <div className="d2-surface space-y-2 rounded border border-d2-border bg-d2-bg p-3">
             <p role="status" className="break-all text-sm text-d2-white">
               {t('importPrepared')} <span>{prepared.name}</span>
             </p>
@@ -95,7 +95,7 @@ export function SaveImportDialog({ isOpen, busy, onClose, onImport }: SaveImport
           <textarea value={text} disabled={working} onPaste={paste}
             onChange={event => { acceptText(event.target.value); }} rows={8}
             placeholder={t('importPlaceholder')} aria-label={t('importSave')}
-            className="w-full bg-d2-bg border border-d2-border rounded p-2 text-xs font-mono
+            className="d2-field w-full bg-d2-bg border border-d2-border rounded p-2 text-xs font-mono
                        focus:outline-none focus:border-d2-gold" />
         )}
         <div className="flex gap-2">

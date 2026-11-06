@@ -26,7 +26,7 @@ export function IdleTickerStrip(): JSX.Element {
   return (
     <div
       data-testid="idle-ticker"
-      className="
+      className="d2-toolbar
                  max-h-[44px] min-h-[44px]
                  px-3 flex items-center justify-between gap-2
                  text-xs text-d2-white/80
@@ -40,7 +40,7 @@ export function IdleTickerStrip(): JSX.Element {
         <button
           type="button"
           onClick={() => { setIdleTarget(undefined); }}
-          className="shrink-0 inline-flex items-center justify-center
+          className="d2-control shrink-0 inline-flex items-center justify-center
                      min-h-[44px] min-w-[44px] px-2
                      text-xs text-d2-white border border-d2-border rounded
                      bg-d2-panel hover:bg-d2-border/30

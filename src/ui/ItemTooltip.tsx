@@ -140,7 +140,7 @@ export function ItemTooltip({ item, className = '', legacyInspection = false, pr
   return (
     <div
       className={[
-        'bg-d2-bg/95 border-2 rounded-md p-3 text-sm w-56 max-w-[18rem]',
+        'd2-surface bg-d2-bg/95 border-2 rounded-md p-3 text-sm w-56 max-w-[18rem]',
         'shadow-2xl shadow-black/70',
         RARITY_BORDER[item.rarity],
         className

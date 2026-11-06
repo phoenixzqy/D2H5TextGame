@@ -135,8 +135,8 @@ export function GachaScreen() {
 
         {pullFailed && <p role="alert" className="text-sm text-d2-white">{t('pullFailed')}</p>}
 
-        <details className="border border-d2-border rounded p-3">
-          <summary className="min-h-[44px] cursor-pointer">{t('rates')}</summary>
+        <details className="d2-surface border border-d2-border rounded p-3">
+          <summary className="d2-section-title min-h-[44px] cursor-pointer">{t('rates')}</summary>
             <div className="text-sm space-y-2">
               <div>SSR: {(RATES.SSR * 100).toFixed(1)}%</div>
               <div>SR: {(RATES.SR * 100).toFixed(1)}%</div>
@@ -165,7 +165,7 @@ export function GachaScreen() {
               {[...recruitment.history].reverse().map((r) => (
                 <li
                   key={r.ordinal}
-                  className="border border-d2-border rounded px-2 py-1 break-words min-w-0"
+                  className="d2-plaque border border-d2-border rounded px-2 py-1 break-words min-w-0"
                 >
                   <RarityText rarity={RARITY_TO_TEXT[r.rarity]}>
                     {t(`mercs:byId.${mercSlug(r.mercId)}.name`)}

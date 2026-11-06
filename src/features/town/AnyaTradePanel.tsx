@@ -38,15 +38,15 @@ function TradeConfirmation({ pending, close, confirm }: {
   }, []);
   return <dialog ref={dialog} aria-labelledby={titleId} aria-describedby={descriptionId}
     onCancel={event => { event.preventDefault(); close(); }}
-    className="fixed inset-0 m-auto w-11/12 max-w-md max-h-[90dvh] overflow-y-auto rounded border-2 border-d2-gold bg-d2-panel p-4 text-d2-white backdrop:bg-black/80">
-    <h2 id={titleId} className="font-serif text-lg text-d2-gold">{t('anyaTrades.confirmTitle')}</h2>
+    className="d2-surface fixed inset-0 m-auto w-11/12 max-w-md max-h-[90dvh] overflow-y-auto rounded border-2 border-d2-gold bg-d2-panel p-4 text-d2-white backdrop:bg-black/80">
+    <h2 id={titleId} className="d2-section-title font-serif text-lg text-d2-gold">{t('anyaTrades.confirmTitle')}</h2>
     <p id={descriptionId} className="mt-3 break-words">{t('anyaTrades.confirmation', {
       name: itemName(pending.offer, t), scrap: pending.offer.costs.materials['materials/scrap'],
       shards: pending.offer.costs.currencies['rune-shard'], level: pending.offer.requiredLevel
     })}</p>
     <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
       <button ref={cancel} type="button" data-testid="anya-trade-cancel" onClick={close}
-        className="min-h-[44px] rounded border border-d2-border p-2 focus-visible:ring-2 focus-visible:ring-d2-gold">{t('anyaTrades.cancel')}</button>
+        className="d2-control min-h-[44px] rounded border border-d2-border p-2 focus-visible:ring-2 focus-visible:ring-d2-gold">{t('anyaTrades.cancel')}</button>
       <Button type="button" data-testid="anya-trade-confirm" className="min-h-[44px] whitespace-normal break-words" onClick={confirm}>
         {t('anyaTrades.confirm')}
       </Button>
@@ -86,12 +86,12 @@ export function AnyaTradePanel() {
     : message === 'restoration-failed' ? 'restorationFailed' : message === 'busy' ? 'busy' : 'failed';
   return <section data-testid="anya-trades" aria-label={t('anyaTrades.title')}
     className="w-full min-w-0 space-y-3 break-words border-t border-d2-border pt-3">
-    <h4 className="font-serif text-d2-gold">{t('anyaTrades.title')}</h4>
+    <h4 className="d2-section-title font-serif text-d2-gold">{t('anyaTrades.title')}</h4>
     <p className="text-sm text-d2-white/90">{t('anyaTrades.description')}</p>
     <ul className="space-y-3">
       {offers.map(offer => <li key={offer.entryId} data-testid={`anya-trade-${offer.entryId}`}
-        className="min-w-0 space-y-2 rounded border border-d2-border p-3 text-sm text-d2-white/90">
-        <h5 className="font-semibold text-d2-gold">{itemName(offer, t)}</h5>
+        className="d2-plaque min-w-0 space-y-2 rounded border border-d2-border p-3 text-sm text-d2-white/90">
+        <h5 className="d2-section-title font-semibold text-d2-gold">{itemName(offer, t)}</h5>
         <p>{t('anyaTrades.price', { scrap: offer.costs.materials['materials/scrap'], shards: offer.costs.currencies['rune-shard'] })}</p>
         <p>{t('anyaTrades.requiredLevel', { level: offer.requiredLevel })}</p>
         <p>{t('anyaTrades.owned', { count: offer.owned })}</p>

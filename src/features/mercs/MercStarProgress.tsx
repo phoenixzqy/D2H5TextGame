@@ -22,7 +22,7 @@ export function MercStarProgress({ mercId }: { readonly mercId: string }) {
   const capped = stars >= rules.maxStars;
   const rank = mercSignatureRank(stars);
   const signatureBonus = Number(((rank - 1) * rules.starBonuses.signatureEffectPerRank * 100).toFixed(2));
-  return <section className="space-y-2 rounded border border-d2-border bg-black/25 p-3"
+  return <section className="d2-surface space-y-2 rounded border border-d2-border bg-black/25 p-3"
     aria-label={t('stars.title')} data-testid={`merc-stars-${id}`}>
     <div className="flex flex-wrap justify-between gap-2 text-sm" aria-live="polite">
       <span className="text-d2-gold">{t('stars.count', { stars, max: rules.maxStars })}</span>

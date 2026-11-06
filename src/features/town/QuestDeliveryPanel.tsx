@@ -27,7 +27,7 @@ export function QuestDeliveryPanel({ npcId }: { npcId: string }) {
         const output = item.outputItemId ? loadQuestItems().find(row => row.id === item.outputItemId) : undefined;
         return (
           <div key={source} className="w-full min-w-0 space-y-2 break-words border-t border-d2-border pt-3">
-            <h4 className="font-serif text-d2-gold">{name}</h4>
+            <h4 className="d2-section-title font-serif text-d2-gold">{name}</h4>
             <p className="text-sm text-d2-white/90">{t(item.descKey)}</p>
             <p className="text-sm text-d2-white/90">{output
               ? t('delivery.exchange', { item: name, output: t(output.nameKey) })

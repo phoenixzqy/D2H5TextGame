@@ -393,7 +393,7 @@ export function CombatScreen() {
     <ScreenShell
       testId="combat-screen"
       title={
-        <div className="flex w-full flex-col items-stretch gap-2 lg:flex-row lg:items-center lg:justify-between">
+        <div className="d2-toolbar flex w-full flex-col items-stretch gap-2 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-col leading-tight min-w-0">
             <span aria-live="polite" data-testid="wave-counter" className="truncate">
               {t('wave', {
@@ -440,7 +440,7 @@ export function CombatScreen() {
           <div className="flex flex-wrap items-center justify-start gap-2 lg:justify-end">
             {logAutoScrollPaused && (
               <span
-                className="text-[10px] uppercase tracking-wide text-d2-gold/90 border border-d2-gold/50 rounded px-2 py-0.5 bg-black/30"
+                className="d2-tag text-[10px] uppercase tracking-wide text-d2-gold/90 border border-d2-gold/50 rounded px-2 py-0.5 bg-black/30"
                 data-testid="log-hover-paused-hint"
                 aria-live="polite"
               >
@@ -528,7 +528,7 @@ export function CombatScreen() {
         {isIdleLoop && (
           <Panel className="mb-3 !p-3" data-testid="idle-loop-panel">
             <div className="flex flex-wrap items-center gap-2 text-xs text-d2-white/80">
-              <span className="rounded border border-d2-set/60 px-2 py-1 text-d2-set">
+              <span className="d2-tag rounded border border-d2-set/60 px-2 py-1 text-d2-set">
                 {t('idleLoop.running')}
               </span>
               <span>{t('idleLoop.realBattles')}</span>
@@ -661,12 +661,12 @@ function Battlefield({
           unitFx={unitFx}
         />
         <div className="flex h-12 items-center justify-center gap-3 text-center lg:h-auto lg:min-h-[18rem] lg:flex-col">
-          <div className="flex items-center gap-2 rounded-full border border-d2-gold/50 bg-black/50 px-3 py-1 shadow-lg shadow-d2-gold/10 lg:block lg:py-2">
+          <div className="d2-surface flex items-center gap-2 rounded-full border border-d2-gold/50 bg-black/50 px-3 py-1 shadow-lg shadow-d2-gold/10 lg:block lg:py-2">
             <div className="text-[10px] uppercase tracking-[0.2em] text-d2-white/50">{t('battlefield.wave')}</div>
             <div className="font-serif text-lg text-d2-gold lg:text-xl">{currentWave}/{totalWaves}</div>
           </div>
           <div className="hidden h-24 w-px bg-gradient-to-b from-transparent via-d2-gold/60 to-transparent lg:block" aria-hidden />
-          <div className="rounded border border-red-400/40 bg-red-950/30 px-3 py-1 text-xs uppercase tracking-[0.2em] text-red-200">
+          <div className="d2-surface rounded border border-red-400/40 bg-red-950/30 px-3 py-1 text-xs uppercase tracking-[0.2em] text-red-200">
             {t('battlefield.clash')}
           </div>
         </div>
@@ -720,7 +720,7 @@ function BattleSideGrid({
           return (
             <div
               key={`${String(cell.row)}-${String(cell.col)}`}
-              className="min-h-28 rounded-lg border border-d2-border/60 bg-black/25 p-1 lg:min-h-[10.5rem]"
+              className="d2-slot d2-battle-slot min-h-28 rounded-lg border border-d2-border/60 bg-black/25 p-1 lg:min-h-[10.5rem]"
               data-testid={`${side}-grid-cell-${String(cell.row)}-${String(cell.col)}`}
             >
               {unit ? (
@@ -733,7 +733,7 @@ function BattleSideGrid({
                   stackCount={cellUnits.length}
                 />
               ) : (
-                <div className="flex h-full min-h-0 items-center justify-center rounded border border-dashed border-d2-border/40 text-[10px] text-d2-white/25 lg:min-h-[9.5rem]">
+                <div className="d2-slot flex h-full min-h-0 items-center justify-center rounded border border-dashed border-d2-border/40 text-[10px] text-d2-white/25 lg:min-h-[9.5rem]">
                   {empty}
                 </div>
               )}
@@ -942,7 +942,7 @@ function UnitCard({
             ) : null}
           </div>
           {stackCount > 1 ? (
-            <div className="absolute left-1 top-1 rounded-full border border-d2-gold/60 bg-black/80 px-1.5 text-[10px] font-bold text-d2-gold">
+            <div className="d2-tag absolute left-1 top-1 rounded-full border border-d2-gold/60 bg-black/80 px-1.5 text-[10px] font-bold text-d2-gold">
               +{stackCount - 1}
             </div>
           ) : null}
@@ -961,7 +961,7 @@ function UnitCard({
       )}
       {affixTag ? (
         <ul aria-label={t('eliteAffixLabel')} className="mt-1 flex w-full min-w-0 flex-wrap gap-1">
-          <li className="min-w-0 max-w-full break-words rounded border border-d2-gold/60 bg-black/70 px-1.5 py-0.5 text-sm leading-5 text-d2-gold [overflow-wrap:anywhere]">
+          <li className="d2-tag min-w-0 max-w-full break-words rounded border border-d2-gold/60 bg-black/70 px-1.5 py-0.5 text-sm leading-5 text-d2-gold [overflow-wrap:anywhere]">
             {affixTag}
           </li>
         </ul>
@@ -974,7 +974,7 @@ function UnitCard({
           {unit.damageImmunities.map(type => (
             <li
               key={type}
-              className="min-w-0 max-w-full break-words rounded border border-d2-gold/60 bg-black/70 px-1.5 py-0.5 text-sm leading-5 text-d2-gold [overflow-wrap:anywhere]"
+              className="d2-tag min-w-0 max-w-full break-words rounded border border-d2-gold/60 bg-black/70 px-1.5 py-0.5 text-sm leading-5 text-d2-gold [overflow-wrap:anywhere]"
             >
               {t('damageImmunity.type', { type: t(`damageType.${type}`) })}
             </li>
@@ -984,7 +984,7 @@ function UnitCard({
       {eventFx ? (
         <div
           className={[
-            'pointer-events-none absolute right-1 top-1 max-w-[calc(100%-0.5rem)] break-words rounded border px-2 py-0.5 text-[10px] font-bold shadow-lg',
+            'd2-tag pointer-events-none absolute right-1 top-1 max-w-[calc(100%-0.5rem)] break-words rounded border px-2 py-0.5 text-[10px] font-bold shadow-lg',
             'motion-safe:animate-pulse motion-reduce:animate-none',
             eventFxBadgeClass(eventFx)
           ].join(' ')}
@@ -1004,7 +1004,7 @@ function UnitCard({
             <span
               key={`${chip.kind}-${chip.id}-${String(index)}`}
               className={[
-                'min-w-0 max-w-full break-words rounded border px-1.5 py-0.5 text-[10px] leading-none [overflow-wrap:anywhere]',
+                'd2-tag min-w-0 max-w-full break-words rounded border px-1.5 py-0.5 text-[10px] leading-none [overflow-wrap:anywhere]',
                 chip.kind === 'buff'
                   ? 'border-blue-300/50 bg-blue-500/15 text-blue-200'
                   : chip.kind === 'dot'
@@ -1063,7 +1063,7 @@ function FormationEditorModal({ isOpen, onClose }: { readonly isOpen: boolean; r
               type="button"
               onClick={() => { setSelected(role); }}
               className={[
-                'min-h-[44px] rounded border px-3 py-2 text-sm',
+                'd2-control min-h-[44px] rounded border px-3 py-2 text-sm',
                 selected === role
                   ? 'border-d2-gold bg-d2-gold/20 text-d2-gold'
                   : 'border-d2-border bg-black/30 text-d2-white/80'
@@ -1090,9 +1090,9 @@ function FormationEditorModal({ isOpen, onClose }: { readonly isOpen: boolean; r
                 key={`${String(position.row)}-${String(position.col)}`}
                 type="button"
                 className={[
-                  'min-h-[64px] rounded-lg border p-2 text-center text-xs transition-colors',
+                  'd2-control min-h-[64px] rounded-lg border p-2 text-center text-xs transition-colors',
                   active
-                    ? 'border-d2-gold bg-d2-gold/20 text-d2-gold'
+                    ? 'd2-control-selected border-d2-gold bg-d2-gold/20 text-d2-gold'
                     : 'border-d2-border bg-black/40 text-d2-white/70 hover:border-d2-gold/60'
                 ].join(' ')}
                 onClick={() => { assign(position); }}

@@ -36,7 +36,7 @@ export function useInventoryPage(items: readonly Item[], capacity: number, onCha
         <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === 0} onClick={() => { change(page - 1); }}>{t('pagination.previous')}</Button>
         <input type="number" min={1} max={pages} step={1} value={page + 1}
           aria-label={t('pagination.page')} onChange={event => { change(event.target.valueAsNumber - 1); }}
-          className="min-h-[44px] w-20 rounded border border-d2-border bg-d2-bg px-2 text-d2-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold" />
+          className="d2-field min-h-[44px] w-20 rounded border border-d2-border bg-d2-bg px-2 text-d2-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold" />
         <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === pages - 1} onClick={() => { change(page + 1); }}>{t('pagination.next')}</Button>
         <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === pages - 1} onClick={() => { change(pages - 1); }}>{t('pagination.last')}</Button>
       </div>

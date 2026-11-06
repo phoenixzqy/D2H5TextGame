@@ -167,7 +167,7 @@ function EmptySlot({ index, label }: { index: number; label: string }): JSX.Elem
       role="presentation"
       aria-label={label}
       data-testid={`inv-empty-${String(index)}`}
-      className="w-full h-full rounded-md border border-dashed border-d2-border/40 bg-d2-bg/30"
+      className="d2-slot w-full h-full rounded-md border border-dashed border-d2-border/40 bg-d2-bg/30"
     />
   );
 }

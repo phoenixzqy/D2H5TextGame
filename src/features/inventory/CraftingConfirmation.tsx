@@ -40,18 +40,18 @@ export function CraftingConfirmation({ intent, onClose }: { readonly intent: Cra
     initialFocus={cancel} returnFocus={opener}>
     <div className="min-w-0 space-y-4 text-d2-white">
       {warning && <p className="border-l-4 border-d2-gold pl-3 text-sm">{t(`crafting.${warning}`)}</p>}
-      <section><h3 className="font-bold text-d2-gold">{t('crafting.costs')}</h3>
+      <section><h3 className="d2-section-title font-bold text-d2-gold">{t('crafting.costs')}</h3>
         {costs.length ? <ul>{costs.map(cost => <li key={cost.id}>{craftingBalanceName(t, cost.id)} × {cost.quantity}</li>)}</ul> : <p>{t('crafting.none')}</p>}
       </section>
-      {intent.sources.length > 0 && <section><h3 className="font-bold text-d2-gold">{t('crafting.before')}</h3>
+      {intent.sources.length > 0 && <section><h3 className="d2-section-title font-bold text-d2-gold">{t('crafting.before')}</h3>
         <ul className="space-y-2">{intent.sources.map(({ item, origin, preservedRunes }) => <li key={item.id}>
-          <details><summary className="min-h-[44px] cursor-pointer py-3 focus-visible:ring-2 focus-visible:ring-d2-gold">
+          <details><summary className="d2-section-title min-h-[44px] cursor-pointer py-3 focus-visible:ring-2 focus-visible:ring-d2-gold">
             {tItemName(t, item)} · #{item.id} · {origin}
           </summary><ItemTooltip item={item} legacyInspection={intent.request.recipeId === 'actions/recover-v18'} preservedSocketInspection={preservedRunes !== undefined} className="max-w-full" />
           <CraftingSocketState item={item} preservedRunes={preservedRunes} /></details>
         </li>)}</ul>
       </section>}
-      <section><h3 className="font-bold text-d2-gold">{t('crafting.outputs')}</h3>
+      <section><h3 className="d2-section-title font-bold text-d2-gold">{t('crafting.outputs')}</h3>
         <ul>{outputs.map(([id, quantity]) => <li key={id}>{craftingBalanceName(t, id)} × {quantity}</li>)}</ul>
         {outputItem && <div className="space-y-2" data-testid="crafting-output-item"><p>{t('crafting.after')} · #{outputItem.id}</p>
           <ItemTooltip item={outputItem} className="max-w-full" /><CraftingSocketState item={outputItem} /></div>}

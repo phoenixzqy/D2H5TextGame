@@ -140,7 +140,7 @@ function CandidateRow({
       }}
       data-testid={`equip-picker-row-${item.id}`}
       className={[
-        'w-full flex items-center gap-3 p-3 rounded border text-left cursor-pointer',
+        'd2-plaque w-full flex items-center gap-3 p-3 rounded border text-left cursor-pointer',
         'min-h-[56px] transition-colors',
         selected
           ? 'border-d2-gold bg-d2-gold/10'
@@ -243,7 +243,7 @@ function CandidateList({
         <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === 0} onClick={() => { changePage(page - 1); }}>{t('pagination.previous')}</Button>
         <input type="number" min={1} max={pages} step={1} value={page + 1}
           aria-label={t('pagination.page')} onChange={event => { changePage(event.target.valueAsNumber - 1); }}
-          className="min-h-[44px] w-20 rounded border border-d2-border bg-d2-bg px-2 text-base text-d2-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold" />
+          className="d2-field min-h-[44px] w-20 rounded border border-d2-border bg-d2-bg px-2 text-base text-d2-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold" />
         <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === pages - 1} onClick={() => { changePage(page + 1); }}>{t('pagination.next')}</Button>
         <Button variant="secondary" className="min-h-[44px] min-w-[44px]" disabled={page === pages - 1} onClick={() => { changePage(pages - 1); }}>{t('pagination.last')}</Button>
       </div>
@@ -292,7 +292,7 @@ function EquipFooter({
 }) {
   const { t } = useTranslation(['inventory', 'common']);
   return (
-    <footer className="border-t border-d2-border bg-d2-bg/40 p-4 space-y-2">
+    <footer className="d2-toolbar border-t border-d2-border bg-d2-bg/40 p-4 space-y-2">
       <div aria-live="polite" aria-atomic="true">
         {failureMessage && (
           <p className="text-sm text-d2-red text-center" data-testid="equip-picker-error">
@@ -459,15 +459,15 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
     >
       <div
         className={[
-          'bg-d2-panel border-2 border-d2-gold shadow-2xl shadow-d2-gold/20 animate-fadeIn',
+          'd2-surface bg-d2-panel border-2 border-d2-gold shadow-2xl shadow-d2-gold/20 animate-fadeIn',
           'w-full rounded-t-lg sm:rounded-lg max-h-[85vh] sm:max-h-[90vh]',
           'sm:max-w-3xl sm:w-full',
           'flex flex-col overflow-hidden'
         ].join(' ')}
         onClick={(e) => { e.stopPropagation(); }}
       >
-        <header className="flex items-center justify-between p-4 border-b border-d2-border shrink-0">
-          <h2 id="equip-picker-title" className="text-lg sm:text-xl font-serif font-bold text-d2-gold">
+        <header className="d2-toolbar flex items-center justify-between p-4 border-b border-d2-border shrink-0">
+          <h2 id="equip-picker-title" className="d2-section-title text-lg sm:text-xl font-serif font-bold text-d2-gold">
             {t('equipFlow.picker.title', { slot: slotLabel })}
           </h2>
           <Button

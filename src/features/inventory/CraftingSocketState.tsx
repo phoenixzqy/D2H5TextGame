@@ -13,7 +13,7 @@ export function CraftingSocketState({ item, preservedRunes }: { readonly item: I
     <p>{t('crafting.capacity', { count: base ? effectiveSocketCapacity(item, base) : 0 })}</p>
     <p>{t(preservedRunes ? 'crafting.preservedContents' : 'crafting.contents')}</p>
     {ids.length ? <ol aria-label={t(preservedRunes ? 'crafting.preservedContents' : 'crafting.contents')} className="list-inside list-decimal">
-      {ids.map((value, index) => <li key={index}>{craftingBalanceName(t, value)}</li>)}
+      {ids.map((value, index) => <li className="d2-slot" key={index}>{craftingBalanceName(t, value)}</li>)}
     </ol> : <p>{t('crafting.emptyContents')}</p>}
     <p>{item.runewordId ? t(preservedRunes ? 'crafting.preservedWord' : 'crafting.word', { name: t(`items:runeword.${item.runewordId.split('/').pop() ?? ''}`) }) : preservedRunes ? null : t('crafting.noWord')}</p>
   </div>;

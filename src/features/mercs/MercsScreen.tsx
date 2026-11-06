@@ -67,7 +67,7 @@ export function MercsScreen() {
               return (
                 <section key={act.id} className="space-y-2">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <h2 className="font-serif text-d2-gold">{t(act.labelKey)}</h2>
+                    <h2 className="d2-section-title font-serif text-d2-gold">{t(act.labelKey)}</h2>
                     {locked && (
                       <span className="text-sm text-d2-white/70">
                         {t('unlockReqLevel', { level: act.unlockReqLevel })}
@@ -82,7 +82,7 @@ export function MercsScreen() {
                       return (
                         <li
                           key={def.id}
-                          className="rounded border border-d2-border bg-d2-bg/40 p-3"
+                          className="d2-plaque rounded border border-d2-border bg-d2-bg/40 p-3"
                           data-testid={`hire-merc-${def.id}`}
                         >
                           <div className="-mx-3 -mt-3 mb-2 overflow-hidden rounded-t">
@@ -99,7 +99,7 @@ export function MercsScreen() {
                           <div className="text-sm text-d2-white/60">{t(`type.${def.classRef}`)} · {t('level')} {def.reqLevel}</div>
                           <div className="mt-2 flex flex-wrap gap-1">
                             {resolveMercSkillLoadout(def).slice(0, 3).map((skillId) => (
-                              <span key={skillId} className="rounded border border-d2-border/70 bg-black/30 px-2 py-0.5 text-sm text-d2-white/75">
+                              <span key={skillId} className="d2-tag rounded border border-d2-border/70 bg-black/30 px-2 py-0.5 text-sm text-d2-white/75">
                                 {tDataKey(t, `mercs.skillName.${skillId}`)}
                               </span>
                             ))}
@@ -199,7 +199,7 @@ function MercCard({
       data-testid={`merc-card-${baseId}`}
     >
       <div className="grid gap-3 md:grid-cols-[minmax(240px,0.9fr)_minmax(0,1.6fr)]">
-        <div className="relative min-h-[260px] overflow-hidden rounded-lg border-2 border-d2-gold/60 bg-black shadow-[inset_0_0_24px_rgba(0,0,0,0.75),0_0_24px_rgba(214,176,86,0.12)]">
+        <div className="d2-plaque relative min-h-[260px] overflow-hidden rounded-lg border-2 border-d2-gold/60 bg-black shadow-[inset_0_0_24px_rgba(0,0,0,0.75),0_0_24px_rgba(214,176,86,0.12)]">
           <GameImage
             src={portrait}
             alt=""
@@ -211,17 +211,17 @@ function MercCard({
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent" aria-hidden="true" />
           <div className="absolute left-3 top-3 flex items-center gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-d2-gold shadow-[0_0_10px_rgba(214,176,86,0.9)]" aria-hidden="true" />
-            <span className="rounded border border-d2-gold/50 bg-black px-2 py-0.5 text-sm uppercase tracking-[0.22em] text-d2-gold/90">
+            <span className="d2-tag rounded border border-d2-gold/50 bg-black px-2 py-0.5 text-sm uppercase tracking-[0.22em] text-d2-gold/90">
               {t(`rarity.${merc.rarity}`)}
             </span>
           </div>
           {isFielded && (
-            <span className="absolute right-3 top-3 rounded border border-d2-gold/70 bg-black px-2 py-1 text-sm uppercase tracking-wide text-d2-gold shadow-[0_0_12px_rgba(214,176,86,0.24)]">
+            <span className="d2-tag absolute right-3 top-3 rounded border border-d2-gold/70 bg-black px-2 py-1 text-sm uppercase tracking-wide text-d2-gold shadow-[0_0_12px_rgba(214,176,86,0.24)]">
               {t('fielded')}
             </span>
           )}
           <div className="absolute inset-x-0 bottom-0 space-y-1 bg-black p-3">
-            <h3 className="break-words font-serif text-2xl font-bold leading-tight text-d2-gold drop-shadow-[0_2px_2px_rgba(0,0,0,0.95)]">
+            <h3 className="d2-section-title break-words font-serif text-2xl font-bold leading-tight text-d2-gold drop-shadow-[0_2px_2px_rgba(0,0,0,0.95)]">
               {localizedName}
             </h3>
             <div className="text-sm text-d2-white/75">
@@ -231,7 +231,7 @@ function MercCard({
         </div>
 
         <div className="flex min-w-0 flex-col gap-3">
-          <div className="rounded-lg border border-d2-border/70 bg-black/25 p-3">
+          <div className="d2-surface rounded-lg border border-d2-border/70 bg-black/25 p-3">
             {def?.signatureSkillId && (
               <div className="mb-2 text-sm text-d2-gold/90" title={def.signatureSkillId}>
                 <span className="text-d2-white/70">{t('signature')}: </span>

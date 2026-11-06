@@ -53,7 +53,7 @@ function ItemChoice({ candidates, selected, onSelect, label, testId }: {
   return <>
     <label htmlFor={inputId} className="block text-sm text-d2-white">{label}</label>
     <select id={inputId} value={selected?.id ?? ''} data-testid={testId}
-      className="block min-h-[44px] w-full min-w-0 max-w-full rounded border border-d2-border bg-d2-bg p-2 text-base text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold"
+      className="d2-field block min-h-[44px] w-full min-w-0 max-w-full rounded border border-d2-border bg-d2-bg p-2 text-base text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold"
       onChange={event => { onSelect(candidates.find(item => item.id === event.target.value) ?? null); }}>
       <option value="">{t('services.selectItem')}</option>
       {candidates.map((item, index) => <option key={item.id} value={item.id}>
@@ -69,7 +69,7 @@ function ImbueSourceRow({ service, candidates }: { service: CharsiImbueSource; c
   const [feedback, setFeedback] = useState<ScopedFeedback | null>(null);
   const selected = currentCharsiImbueItem(selection);
   return <div data-testid={`charsi-source-${service.source}`} className="min-w-0 space-y-2 border-t border-d2-border pt-3">
-    <h5 className="font-serif text-d2-gold">{t(service.source === ACT1_IMBUE_SOURCES.main ? 'imbue.mainReward' : 'imbue.sideReward')}</h5>
+    <h5 className="d2-section-title font-serif text-d2-gold">{t(service.source === ACT1_IMBUE_SOURCES.main ? 'imbue.mainReward' : 'imbue.sideReward')}</h5>
     <p role="status" className="text-sm text-d2-white/90">{t(service.state === 'restorable' ? 'imbue.restorable' : `services.${service.state}`)}</p>
     {service.state === 'restorable' && <Button type="button" className={controlClass} data-testid={`charsi-restore-${service.source}`}
       onClick={() => { setFeedback(recordFeedback(() => restoreCharsiImbue(service.source))); }}>{t('imbue.restore')}</Button>}
@@ -115,10 +115,10 @@ export function CharsiImbuePanel() {
   if (!canPresent && services.length === 0 && !message) return null;
   const candidates = charsiImbueCandidates(), selected = currentCharsiPresentItem(selection);
   return <div data-testid="charsi-imbue" className="w-full min-w-0 space-y-3 break-words border-t border-d2-border pt-3">
-    <h4 className="font-serif text-d2-gold">{t('imbue.title')}</h4>
+    <h4 className="d2-section-title font-serif text-d2-gold">{t('imbue.title')}</h4>
     <p className="text-sm text-d2-white/90">{t('imbue.description')}</p>
     {canPresent && <div className="min-w-0 space-y-2">
-      <h5 className="font-serif text-d2-gold">{t('imbue.presentTitle')}</h5>
+      <h5 className="d2-section-title font-serif text-d2-gold">{t('imbue.presentTitle')}</h5>
       <p className="text-sm text-d2-white/90">{t('imbue.presentDescription')}</p>
       <ItemChoice candidates={candidates} selected={selected} label={t('imbue.presentChoose')} testId="charsi-present-target"
         onSelect={item => { setSelection(item ? selectCharsiPresentItem(item) : null); setFeedback(null); }} />

@@ -235,7 +235,7 @@ function InventoryGear({ children }: InventoryGearProps) {
       >
         {toast && (
           <div
-            className={`max-w-[calc(100vw-1.5rem)] rounded border px-4 py-3 text-sm shadow-d2 sm:max-w-sm ${
+            className={`d2-surface max-w-[calc(100vw-1.5rem)] rounded border px-4 py-3 text-sm shadow-d2 sm:max-w-sm ${
               toast.tone === 'success'
                 ? 'border-d2-green/60 bg-d2-panel/95 text-d2-green'
                 : 'border-d2-red/60 bg-d2-panel/95 text-d2-red'
@@ -593,7 +593,7 @@ function MobileBottomSheet({
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- The dialog owns Escape dismissal without making its content a control. */}
       <div
         ref={refs.setFloating}
-        className="absolute left-0 right-0 bottom-0 bg-d2-panel border-t-2 border-d2-gold rounded-t-lg p-4 max-h-[85vh] overflow-y-auto scrollbar-d2 motion-safe:animate-fadeIn"
+        className="d2-surface absolute left-0 right-0 bottom-0 bg-d2-panel border-t-2 border-d2-gold rounded-t-lg p-4 max-h-[85vh] overflow-y-auto scrollbar-d2 motion-safe:animate-fadeIn"
         role="dialog"
         aria-modal="true"
         aria-label={t('details')}

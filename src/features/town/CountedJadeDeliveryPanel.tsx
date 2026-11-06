@@ -23,7 +23,7 @@ export function CountedJadeDeliveryPanel() {
   const status = countedJadeGiveStatus();
   const counts = countedQuestCounters('jade');
   return <div className="w-full min-w-0 space-y-2 break-words border-t border-d2-border pt-3" data-testid="counted-jade-delivery">
-    <h4 className="font-serif text-d2-gold">{t('counted.jade.title')}</h4>
+    <h4 className="d2-section-title font-serif text-d2-gold">{t('counted.jade.title')}</h4>
     <p className="text-sm text-d2-white/90">{t('counted.jade.description')}</p>
     <p role="status" aria-live="polite" className="text-sm text-d2-gold">{t('counted.progress', { ...counts })}</p>
     <p role="status" className="text-sm text-d2-white/90">{t(`counted.status.${status}`)}</p>

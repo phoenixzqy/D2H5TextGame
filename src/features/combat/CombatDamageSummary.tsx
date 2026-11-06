@@ -15,7 +15,7 @@ export function CombatDamageSummary({ events, team }: {
   return (
     <section className="mb-3 min-w-0 break-words text-sm text-d2-white/90"
       aria-label={t('damageSummary.title')} data-testid="hero-damage-summary">
-      <h3 className="mb-1 font-semibold text-d2-gold">{t('damageSummary.title')}</h3>
+      <h3 className="d2-section-title mb-1 font-semibold text-d2-gold">{t('damageSummary.title')}</h3>
       {summary === null ? <p>{t('damageSummary.unavailable')}</p> : <>
         <p className="mb-2 leading-relaxed">{t('damageSummary.scope')}</p>
         {summary.byType.length === 0 ? <p>{t('damageSummary.empty')}</p> : (

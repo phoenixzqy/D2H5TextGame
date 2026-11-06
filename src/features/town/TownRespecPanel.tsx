@@ -20,14 +20,14 @@ function ResetConfirmation({ pending, close, confirm }: {
     return () => { if (trigger instanceof HTMLElement && trigger.isConnected) trigger.focus(); };
   }, []);
   return <dialog ref={dialog} aria-labelledby="town-reset-title" onCancel={event => { event.preventDefault(); close(); }}
-    className="fixed inset-0 m-auto w-11/12 max-w-md max-h-[90dvh] overflow-y-auto rounded border-2 border-d2-gold bg-d2-panel p-4 text-d2-white backdrop:bg-black/80">
-    <h2 id="town-reset-title" className="font-serif text-lg text-d2-gold">{t(`respec.confirmTitle.${pending.request.kind}`)}</h2>
+    className="d2-surface fixed inset-0 m-auto w-11/12 max-w-md max-h-[90dvh] overflow-y-auto rounded border-2 border-d2-gold bg-d2-panel p-4 text-d2-white backdrop:bg-black/80">
+    <h2 id="town-reset-title" className="d2-section-title font-serif text-lg text-d2-gold">{t(`respec.confirmTitle.${pending.request.kind}`)}</h2>
     <p className="mt-3">{t(`respec.refund.${pending.request.kind}`, { count: pending.refund })}</p>
     <p className="mt-2">{pending.cost === 0 ? t('respec.freeConfirmation') : t('respec.paidConfirmation', { count: pending.cost })}</p>
     <p className="mt-2 text-sm">{t('respec.noHealing')}</p>
     <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
       <button ref={cancel} type="button" data-testid="town-reset-cancel" onClick={close}
-        className="min-h-[44px] rounded border border-d2-border p-2 focus-visible:ring-2 focus-visible:ring-d2-gold">{t('respec.cancel')}</button>
+        className="d2-control min-h-[44px] rounded border border-d2-border p-2 focus-visible:ring-2 focus-visible:ring-d2-gold">{t('respec.cancel')}</button>
       <Button type="button" data-testid="town-reset-confirm" className="min-h-[44px] whitespace-normal" onClick={confirm}>{t('respec.confirm')}</Button>
     </div>
   </dialog>;
@@ -59,7 +59,7 @@ export function TownRespecPanel({ npcId }: { npcId: string }) {
     } catch (error) { handleError(error); }
   }
   return <div data-testid="town-respec" className="space-y-2 border-t border-d2-border pt-3">
-    <h4 className="font-serif text-d2-gold">{t('respec.title')}</h4>
+    <h4 className="d2-section-title font-serif text-d2-gold">{t('respec.title')}</h4>
     <p className="text-sm">{t('respec.policy', { free: RESPEC_POLICY.freeUses, cost: RESPEC_POLICY.paidCost })}</p>
     <p className="text-sm">{t('respec.balance', { count: currencies[RESPEC_POLICY.currency] ?? 0 })}</p>
     <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">

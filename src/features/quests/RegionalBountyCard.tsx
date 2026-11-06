@@ -49,7 +49,7 @@ export function RegionalBountyCard({ quest, definition }: {
   };
   const buttonClass = 'min-h-[44px] min-w-[44px] max-w-full whitespace-normal break-words';
   return <Panel className={`min-w-0 break-words ${done ? 'border-d2-set' : ''}`} data-testid={`quest-${quest.id}`}>
-    <h3 className="font-serif text-d2-gold text-sm sm:text-base">{t(`byId.${slug}.name`, { defaultValue: quest.name })}</h3>
+    <h3 className="d2-section-title font-serif text-d2-gold text-sm sm:text-base">{t(`byId.${slug}.name`, { defaultValue: quest.name })}</h3>
     <p className="mt-2 text-sm text-d2-white/90">{t(`byId.${slug}.desc`, { defaultValue: quest.description })}</p>
     <p className="mt-2 text-sm text-d2-white/90">{t('regionalBounty.source', {
       area: area ? tDataKey(t, area.name) : t('regionalBounty.unavailable')

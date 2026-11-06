@@ -28,7 +28,7 @@ export function Act5QuestActionsPanel(context: Context) {
       const status = act5QuestActionStatus(action.receiptSource);
       const key = `areaObjects.actions.${action.id.replace(/^actions\//, '')}`;
       return <div key={action.receiptSource} className="min-w-0 space-y-2 break-words border-t border-d2-border pt-3">
-        <h3 className="font-semibold text-d2-white">{t(`${key}.name`)}</h3>
+        <h3 className="d2-section-title font-semibold text-d2-white">{t(`${key}.name`)}</h3>
         <p className="text-sm text-d2-white/90">{t(`${key}.description`)}</p>
         <p role="status" aria-live="polite" className="text-sm text-d2-white/90">{t(`${key}.${status}`)}</p>
         <Button type="button" variant="primary" className="min-h-[44px] min-w-[44px] max-w-full whitespace-normal break-words"

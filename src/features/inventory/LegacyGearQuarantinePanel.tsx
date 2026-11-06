@@ -11,8 +11,8 @@ export function LegacyGearQuarantinePanel() {
     <p className="mb-3 text-sm text-d2-white/90">{t('quarantine.description')}</p>
     <ul className="space-y-3">
       {entries.map((entry, index) => <li key={index} className="min-w-0 break-words">
-        <details className="rounded border border-d2-border p-2">
-          <summary className="min-h-[44px] cursor-pointer py-3 text-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold">
+        <details className="d2-surface rounded border border-d2-border p-2">
+          <summary className="d2-section-title min-h-[44px] cursor-pointer py-3 text-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold">
             {tItemName(t, entry.item)} · {t(`quarantine.origin.${entry.origin.container}`, {
               position: 'index' in entry.origin ? entry.origin.index + 1 : undefined,
               slot: 'slot' in entry.origin ? t(`slots.${entry.origin.slot}`) : undefined,

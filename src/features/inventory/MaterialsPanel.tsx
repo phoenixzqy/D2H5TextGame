@@ -39,7 +39,7 @@ export function MaterialsPanel() {
               const entries = definitions.filter(material => material.kind === kind);
               if (entries.length === 0) return null;
               return <div key={kind} className="min-w-0 space-y-2">
-                <h3 className="font-serif text-lg text-d2-gold">{t(`materials.kind.${kind}`)}</h3>
+                <h3 className="d2-section-title font-serif text-lg text-d2-gold">{t(`materials.kind.${kind}`)}</h3>
                 <dl className="space-y-1 text-sm text-d2-white/80">
                   <div><dt className="inline font-semibold">{t('materials.sourceLabel')}</dt>{' '}
                     <dd className="inline">{t(`materials.source.${kind}`)}</dd></div>
@@ -48,7 +48,7 @@ export function MaterialsPanel() {
                 </dl>
                 <ul className="grid min-w-0 grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3">
                   {entries.map(material => <li key={material.id} data-testid={`material-${material.id}`}
-                    className="min-w-0 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 rounded border border-d2-border bg-black/20 px-3 py-2">
+                    className="d2-plaque min-w-0 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 rounded border border-d2-border bg-black/20 px-3 py-2">
                     <span className="min-w-0 break-words text-sm text-d2-white">{tDataKey(t, material.nameKey)}</span>
                     <span className="max-w-full break-words text-sm tabular-nums text-d2-gold">
                       {t('materials.ownedCount', { quantity: formatter.format(materials[material.id] ?? 0) })}

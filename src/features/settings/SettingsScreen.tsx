@@ -161,7 +161,7 @@ export function SettingsScreen() {
                 }}
                 aria-pressed={settings.locale === loc}
                 className={[
-                  'flex-1 min-h-[44px] px-3 py-2 rounded border',
+                  'd2-control flex-1 min-h-[44px] px-3 py-2 rounded border',
                   'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
                   settings.locale === loc
                     ? 'border-d2-gold bg-d2-gold/10 text-d2-gold'
@@ -237,7 +237,7 @@ export function SettingsScreen() {
 
         <Panel>
           <details data-testid="offline-bonus-help">
-            <summary className="min-h-[44px] cursor-pointer py-3 rounded text-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold">
+            <summary className="d2-section-title min-h-[44px] cursor-pointer py-3 rounded text-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold">
               {t('offlineBonusHelp.title')}
             </summary>
             <div className="space-y-2 text-sm text-d2-white/80">
@@ -250,7 +250,7 @@ export function SettingsScreen() {
 
         <Panel className="text-center text-xs text-d2-white/60">
           <details className="text-sm text-d2-white/80">
-            <summary className="min-h-[44px] cursor-pointer py-3 rounded focus-visible:ring-2 focus-visible:ring-d2-gold">
+            <summary className="d2-section-title min-h-[44px] cursor-pointer py-3 rounded focus-visible:ring-2 focus-visible:ring-d2-gold">
               {t('supportDev')}
             </summary>
             <a
@@ -306,7 +306,7 @@ export function SettingsScreen() {
       {toast && !importOpen && (
         <div
           role="status"
-          className="pointer-events-none fixed bottom-20 left-1/2 -translate-x-1/2 z-50
+          className="d2-surface pointer-events-none fixed bottom-20 left-1/2 -translate-x-1/2 z-50
                      bg-d2-panel border border-d2-gold text-d2-gold
                      px-4 py-2 rounded shadow-lg text-sm"
         >

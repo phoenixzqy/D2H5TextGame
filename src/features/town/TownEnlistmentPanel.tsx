@@ -51,13 +51,13 @@ export function TownEnlistmentPanel({ enlistmentKey }: { readonly enlistmentKey:
   const quest = t(`quests:byId.${contract.quest.slice('quests/side-'.length)}.name`);
   const fresh = valid && selection?.kind === 'fresh';
   return <div data-testid="town-enlistment" className="w-full min-w-0 space-y-3 break-words border-t border-d2-border pt-3">
-    <h4 className="font-serif text-d2-gold">{quest}</h4>
+    <h4 className="d2-section-title font-serif text-d2-gold">{quest}</h4>
     <p className="text-sm text-d2-white/90">{t(`enlistment.requirements.${enlistmentKey}`)}</p>
     <p className="text-sm text-d2-white/90">{t('enlistment.description')}</p>
     {canEnlist && <>
       <label htmlFor={inputId} className="block text-sm text-d2-white">{t('enlistment.chooseRecruit')}</label>
       <select id={inputId} value={fresh ? 'fresh' : selected?.id ?? ''} data-testid="town-enlistment-target"
-        className="block min-h-[44px] w-full min-w-0 max-w-full rounded border border-d2-border bg-d2-bg p-2 text-base text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold"
+        className="d2-field block min-h-[44px] w-full min-w-0 max-w-full rounded border border-d2-border bg-d2-bg p-2 text-base text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold"
         onChange={event => {
           const value = event.target.value, merc = candidates.find(row => row.id === value);
           setSelection(value === 'fresh' && candidates.length === 0 ? selectTownEnlistmentRecruit(enlistmentKey, null)

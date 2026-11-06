@@ -34,7 +34,7 @@ export function CountedQuestSourcesPanel({ act, areaId }: { act: number; areaId:
           <p role="status" aria-live="polite" className="text-sm text-d2-gold"
             data-testid={`counted-area-progress-${definition.key}`}>{t('counted.progress', { ...counts })}</p>
         </>}
-        <h3 className="font-semibold text-d2-white">{t('counted.find', { item, number: ordinal })}</h3>
+        <h3 className="d2-section-title font-semibold text-d2-white">{t('counted.find', { item, number: ordinal })}</h3>
         <p role="status" className="text-sm text-d2-white/90">{t(`counted.status.${status}`)}</p>
         <Button type="button" variant="primary" className="min-h-[44px] min-w-[44px] max-w-full whitespace-normal break-words"
           data-testid={`counted-recover-${placement.targetId}`} disabled={status !== 'available'} onClick={() => {

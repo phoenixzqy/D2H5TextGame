@@ -51,7 +51,7 @@ export function EquipmentPanel({
               role="group"
               data-testid={`${testIdPrefix}-${slot}`}
               aria-label={t(`slots.${slot}`)}
-              className="w-full min-w-0 border border-d2-border rounded p-3 bg-d2-bg/40 space-y-2"
+              className="d2-surface w-full min-w-0 border border-d2-border rounded p-3 bg-d2-bg/40 space-y-2"
             >
               <SlotContent
                 type={interactive ? 'button' : undefined}
@@ -60,7 +60,7 @@ export function EquipmentPanel({
                 aria-describedby={interactive ? itemDescriptionId : undefined}
                 data-testid={`${testIdPrefix}-${slot}-select`}
                 className={[
-                  'block w-full min-w-0 min-h-[64px] rounded p-2 text-left',
+                  'd2-slot block w-full min-w-0 min-h-[64px] rounded p-2 text-left',
                   interactive ? 'hover:bg-d2-gold/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold' : '',
                 ].join(' ')}
               >

@@ -8,7 +8,7 @@ export function AlreadyEquippedBadge(): JSX.Element {
   const { t } = useTranslation('inventory');
   return (
     <div
-      className="text-center py-3 px-4 rounded border border-d2-gold/40 bg-d2-gold/10 text-d2-gold text-sm font-serif"
+      className="d2-surface text-center py-3 px-4 rounded border border-d2-gold/40 bg-d2-gold/10 text-d2-gold text-sm font-serif"
       data-testid="already-equipped-badge"
     >
       ✓ {t('equipFlow.compare.alreadyEquipped')}
@@ -40,11 +40,11 @@ export function ItemComparePanel({
     <section
       data-testid="compare-panel"
       aria-labelledby={titleId}
-      className="min-w-0 break-words border border-d2-border rounded bg-d2-bg/40 p-3 space-y-3"
+      className="d2-surface min-w-0 break-words border border-d2-border rounded bg-d2-bg/40 p-3 space-y-3"
     >
       <h3
         id={titleId}
-        className="text-sm uppercase tracking-wide text-d2-white/60 font-serif"
+        className="d2-section-title text-sm uppercase tracking-wide text-d2-white/60 font-serif"
       >
         {t('equipFlow.compare.sectionTitle')}
       </h3>
@@ -76,7 +76,7 @@ export function ItemComparePanel({
             </div>
           )}
           {candidateDisplay.set && candidateDisplay.setBonuses.length > 0 && (
-            <div className="rounded border border-d2-set/40 bg-d2-set/5 p-2 text-sm" data-testid="equip-picker-set-bonuses">
+            <div className="d2-surface rounded border border-d2-set/40 bg-d2-set/5 p-2 text-sm" data-testid="equip-picker-set-bonuses">
               <div className="font-serif text-d2-set">{t('detail.setBonus')}</div>
               {candidateDisplay.setBonuses.map((bonus) => (
                 <div key={bonus.threshold} className={bonus.active ? 'text-d2-set' : 'text-d2-white/70'}>

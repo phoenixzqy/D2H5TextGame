@@ -92,7 +92,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
   return (
     <div
       className={[
-        'bg-d2-bg/95 border-2 border-d2-gold rounded-md p-3 text-sm',
+        'd2-surface bg-d2-bg/95 border-2 border-d2-gold rounded-md p-3 text-sm',
         'shadow-2xl shadow-black/70 w-full max-w-md',
         props.className ?? ''
       ].filter(Boolean).join(' ')}
@@ -101,7 +101,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
       data-mode={props.mode}
     >
       <table
-        className="w-full table-fixed border-collapse tabular-nums"
+        className="d2-stat-table w-full table-fixed border-collapse tabular-nums"
         data-testid="stat-compare-table"
         data-cols={colCount}
       >

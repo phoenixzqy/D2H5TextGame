@@ -142,7 +142,7 @@ function HeroIronGolemPanel({ skill, rank, player }: Props & { readonly player: 
             setAcknowledgedItem(null);
             setNotice(null);
           }}
-          className="min-h-[44px] w-full min-w-0 rounded border border-d2-border bg-d2-bg px-3 text-base focus:outline-none focus:ring-2 focus:ring-d2-gold"
+          className="d2-field min-h-[44px] w-full min-w-0 rounded border border-d2-border bg-d2-bg px-3 text-base focus:outline-none focus:ring-2 focus:ring-d2-gold"
         >
           <option value="">{t('ironGolem.empty')}</option>
           {draftId !== null && !inventory.backpack.some((item) => item.id === draftId) ? (
@@ -169,7 +169,7 @@ function HeroIronGolemPanel({ skill, rank, player }: Props & { readonly player: 
           aria-labelledby={`${id}-preview`}
           className="space-y-2 border-y border-d2-border py-3"
         >
-          <h3 id={`${id}-preview`} className="font-serif text-lg text-d2-gold">
+          <h3 id={`${id}-preview`} className="d2-section-title font-serif text-lg text-d2-gold">
             {t('ironGolem.preview')}
           </h3>
           <p>
@@ -186,7 +186,7 @@ function HeroIronGolemPanel({ skill, rank, player }: Props & { readonly player: 
           </div>
         </section>
       ) : null}
-      <label className="flex min-h-[44px] cursor-pointer items-start gap-3 rounded border border-d2-gold/60 bg-d2-bg p-3">
+      <label className="d2-plaque flex min-h-[44px] cursor-pointer items-start gap-3 rounded border border-d2-gold/60 bg-d2-bg p-3">
         <input
           type="checkbox"
           checked={acknowledged}
@@ -252,9 +252,9 @@ function PreviewRank({
   return (
     <section
       data-testid={next ? 'iron-preview-next' : 'iron-preview-current'}
-      className="rounded border border-d2-border bg-d2-bg p-3"
+      className="d2-surface rounded border border-d2-border bg-d2-bg p-3"
     >
-      <h4 className="mb-2 font-bold text-d2-gold">
+      <h4 className="d2-section-title mb-2 font-bold text-d2-gold">
         {t(next ? 'details.next' : 'details.current')}
       </h4>
       {stats?.summonUnit ? (
@@ -323,7 +323,7 @@ function RecordedAttempt({
     (attempt.kind === 'unverified' || attempt.kind === 'pendingPublication') && attempt.isReplay;
   return (
     <section className="space-y-2">
-      <h3 className="font-serif text-lg text-d2-gold">{t('ironGolem.recorded')}</h3>
+      <h3 className="d2-section-title font-serif text-lg text-d2-gold">{t('ironGolem.recorded')}</h3>
       <p>{outcome}</p>
       {pendingReplay ? <p>{t('ironGolem.replay')}</p> : null}
       {attempt.kind !== 'none' ? (

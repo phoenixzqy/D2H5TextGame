@@ -175,7 +175,7 @@ export function ItemDetailPanel({
           type="button"
           onClick={onClose}
           aria-label={t('close')}
-          className="shrink-0 min-h-[44px] min-w-[44px] -mt-1 px-2 py-1 text-d2-white/60 hover:text-d2-gold focus:outline-none focus:ring-2 focus:ring-d2-gold rounded"
+          className="d2-control shrink-0 min-h-[44px] min-w-[44px] -mt-1 px-2 py-1 text-d2-white/60 hover:text-d2-gold focus:outline-none focus:ring-2 focus:ring-d2-gold rounded"
           data-testid="inv-detail-close"
         >
           ×
@@ -185,7 +185,7 @@ export function ItemDetailPanel({
       {/* Requirements */}
       {reqRows.length > 0 && (
         <section data-testid="inv-detail-required">
-          <h3 className="text-sm uppercase tracking-wide text-d2-white/70 mb-1">
+          <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
             {t('detail.required')}
           </h3>
           <ul className="flex flex-wrap gap-x-3 gap-y-0.5 text-sm">
@@ -205,7 +205,7 @@ export function ItemDetailPanel({
       {/* Base stats */}
       {baseStatLines.length > 0 && (
         <section data-testid="inv-detail-base-stats">
-          <h3 className="text-sm uppercase tracking-wide text-d2-white/70 mb-1">
+          <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
             {t('detail.baseStats')}
           </h3>
           <ul className="space-y-0.5 text-sm text-d2-white">
@@ -219,7 +219,7 @@ export function ItemDetailPanel({
       {/* Affixes */}
       {item.affixes && item.affixes.length > 0 && (
         <section data-testid="inv-detail-affixes">
-          <h3 className="text-sm uppercase tracking-wide text-d2-white/70 mb-1">
+          <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
             {t('detail.affixes')}
           </h3>
           <ul className="space-y-0.5 text-sm">
@@ -235,7 +235,7 @@ export function ItemDetailPanel({
       {/* Sockets */}
       {socketCount > 0 && (
         <section data-testid="inv-detail-sockets">
-          <h3 className="text-sm uppercase tracking-wide text-d2-white/70 mb-1">
+          <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
             {t('detail.sockets')}
           </h3>
           <div className="flex flex-wrap gap-1 text-sm font-mono text-d2-white/85">
@@ -249,7 +249,7 @@ export function ItemDetailPanel({
       {/* Set / unique flavor */}
       {specialStatLines.length > 0 && (
         <section data-testid="inv-detail-definition-stats">
-          <h3 className="text-sm uppercase tracking-wide text-d2-white/70 mb-1">
+          <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1">
             {t('detail.specialStats')}
           </h3>
           <ul className="space-y-0.5 text-sm">
@@ -263,7 +263,7 @@ export function ItemDetailPanel({
       )}
       {item.rarity === 'set' && display.set && (
         <section data-testid="inv-detail-set" className="text-sm text-d2-set">
-          <h3 className="text-sm uppercase tracking-wide text-d2-white/70 mb-1 not-italic">
+          <h3 className="d2-section-title text-sm uppercase tracking-wide text-d2-white/70 mb-1 not-italic">
             {t('detail.setBonus')}
           </h3>
           <p className="italic">{t('detail.setName', { name: tDataKey(t, display.set.name) })}</p>

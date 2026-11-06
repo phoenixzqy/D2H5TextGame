@@ -20,7 +20,7 @@ export function OfflineReturnToast() {
       {ready && notice && (
         <div
           data-testid="offline-return-toast"
-          className="flex w-full max-w-md items-start gap-2 rounded border border-d2-gold
+          className="d2-surface flex w-full max-w-md items-start gap-2 rounded border border-d2-gold
                      bg-d2-panel p-3 text-d2-white shadow-lg"
         >
           <div className="min-w-0 flex-1 break-words">
@@ -40,7 +40,7 @@ export function OfflineReturnToast() {
             type="button"
             onClick={dismiss}
             aria-label={t('close')}
-            className="pointer-events-auto min-h-[44px] min-w-[44px] shrink-0 rounded
+            className="d2-control pointer-events-auto min-h-[44px] min-w-[44px] shrink-0 rounded
                        text-xl text-d2-gold focus-visible:outline focus-visible:outline-2
                        focus-visible:outline-d2-gold"
           >

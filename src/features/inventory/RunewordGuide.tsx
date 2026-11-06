@@ -32,14 +32,14 @@ export function RunewordGuide() {
     ...formatRunewordGrantLines(word.grants ?? [], t)
   ];
 
-  return <details className="min-w-0 rounded border border-d2-border bg-d2-bg/40 text-sm" data-testid="runeword-guide">
-    <summary className="min-h-[44px] cursor-pointer break-words px-3 py-3 text-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold">
+  return <details className="d2-surface min-w-0 rounded border border-d2-border bg-d2-bg/40 text-sm" data-testid="runeword-guide">
+    <summary className="d2-section-title min-h-[44px] cursor-pointer break-words px-3 py-3 text-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold">
       {t('crafting.runewordGuide.title')}
     </summary>
     <div className="min-w-0 space-y-3 px-3 pb-3 text-d2-white">
       <label htmlFor={id} className="block">{t('crafting.runewordGuide.select')}</label>
       <select id={id} value={selectedId} onChange={event => { setSelectedId(event.target.value); }}
-        className="min-h-[44px] w-full min-w-0 max-w-full rounded border border-d2-border bg-d2-bg px-3 text-base text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold">
+        className="d2-field min-h-[44px] w-full min-w-0 max-w-full rounded border border-d2-border bg-d2-bg px-3 text-base text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold">
         {socketRunewords.map(entry => <option key={entry.id} value={entry.id}>{tDataKey(t, entry.name)}</option>)}
       </select>
       <p>{t('crafting.runewordGuide.sockets', { count: word.sockets })}</p>

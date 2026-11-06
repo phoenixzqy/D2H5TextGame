@@ -438,13 +438,13 @@ export function SkillsScreen() {
         {combo.map((id, idx) => (
           <li
             key={idx}
-            className="flex items-center gap-2 border border-d2-border rounded p-2 bg-d2-bg/40"
+            className="d2-plaque flex items-center gap-2 border border-d2-border rounded p-2 bg-d2-bg/40"
           >
             <span className="w-6 text-center text-d2-gold font-serif">{idx + 1}</span>
             <select
               value={id}
               onChange={(e) => { setComboAt(idx, e.target.value); }}
-              className="flex-1 min-w-0 min-h-[44px] bg-d2-bg border border-d2-border rounded px-2 text-base
+              className="d2-field flex-1 min-w-0 min-h-[44px] bg-d2-bg border border-d2-border rounded px-2 text-base
                          focus:outline-none focus:border-d2-gold"
               aria-label={t('slotN', { n: idx + 1 })}
             >
@@ -459,7 +459,7 @@ export function SkillsScreen() {
               onClick={() => { moveCombo(idx, -1); }}
               disabled={idx === 0}
               aria-label={t('moveUp')}
-               className="h-11 w-11 flex items-center justify-center rounded border border-d2-border
+               className="d2-control h-11 w-11 flex items-center justify-center rounded border border-d2-border
                          disabled:opacity-30 hover:border-d2-gold/60 focus:outline-none
                          focus-visible:ring-2 focus-visible:ring-d2-gold"
             >
@@ -470,7 +470,7 @@ export function SkillsScreen() {
               onClick={() => { moveCombo(idx, 1); }}
               disabled={idx === combo.length - 1}
               aria-label={t('moveDown')}
-               className="h-11 w-11 flex items-center justify-center rounded border border-d2-border
+               className="d2-control h-11 w-11 flex items-center justify-center rounded border border-d2-border
                          disabled:opacity-30 hover:border-d2-gold/60 focus:outline-none
                          focus-visible:ring-2 focus-visible:ring-d2-gold"
             >
@@ -495,9 +495,9 @@ export function SkillsScreen() {
         {player.class === 'paladin' || player.selectedAuraId !== undefined ? (
           <Panel>
             <fieldset className="min-w-0 space-y-3" aria-describedby="aura-selection-timing">
-              <legend className="font-serif text-lg text-d2-gold">{t('auraSelection.legend')}</legend>
+              <legend className="d2-section-title font-serif text-lg text-d2-gold">{t('auraSelection.legend')}</legend>
               <div className="grid gap-2 sm:grid-cols-3">
-                <label className="flex min-h-[44px] cursor-pointer items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
+                <label className="d2-plaque flex min-h-[44px] cursor-pointer items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
                   <input type="radio" name="selected-player-aura" value="none"
                     checked={!Object.hasOwn(player, 'selectedAuraId')}
                     onChange={() => { selectAura(null); }}
@@ -505,7 +505,7 @@ export function SkillsScreen() {
                     className="h-5 w-5 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
                   <span>{t('auraSelection.none')}</span>
                 </label>
-                <label className="flex min-h-[44px] items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
+                <label className="d2-plaque flex min-h-[44px] items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
                   <input type="radio" name="selected-player-aura" value="paladin.might"
                     checked={player.selectedAuraId === 'paladin.might'}
                     disabled={eligibleMightRank === 0}
@@ -514,7 +514,7 @@ export function SkillsScreen() {
                     className="h-5 w-5 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
                   <span>{t('auraSelection.might')}</span>
                 </label>
-                <label className="flex min-h-[44px] items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
+                <label className="d2-plaque flex min-h-[44px] items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
                   <input type="radio" name="selected-player-aura" value="paladin.meditation"
                     checked={player.selectedAuraId === 'paladin.meditation'}
                     disabled={eligibleMeditationRank === 0}
@@ -525,7 +525,7 @@ export function SkillsScreen() {
                 </label>
                 {STAT_AURA_IDS.map(id => {
                   const name = tDataKey(t, `skills.${id}.name`);
-                  return <label key={id} className="flex min-h-[44px] items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
+                  return <label key={id} className="d2-plaque flex min-h-[44px] items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
                     <input type="radio" name="selected-player-aura" value={id} aria-label={name}
                       checked={player.selectedAuraId === id} disabled={resolveEligibleStatAuraRank(player, id) === 0}
                       onChange={() => { selectAura(id); }}
@@ -615,7 +615,7 @@ function SkillTreeBoard({
   });
   return (
     <div
-      className="relative mx-auto w-[320px] min-w-[320px] rounded border border-d2-border/70
+      className="d2-surface d2-skill-board relative mx-auto w-[320px] min-w-[320px] rounded border border-d2-border/70
                  bg-[radial-gradient(circle_at_50%_0%,rgba(210,176,91,0.12),transparent_48%),linear-gradient(135deg,rgba(255,255,255,0.04)_0,transparent_40%)]
                  shadow-inner"
       data-testid="skill-tree-board"
@@ -699,7 +699,7 @@ function SkillTreeBoard({
             }}
             onFocus={() => { onPreview(skill.id); }}
             onBlur={() => { onPreview(null); }}
-            className={`absolute flex h-20 w-20 items-center justify-center rounded border-2
+            className={`d2-slot d2-skill-node absolute flex h-20 w-20 items-center justify-center rounded border-2
                         bg-black/70 text-sm transition focus:outline-none focus-visible:ring-2
                         focus-visible:ring-d2-gold motion-safe:hover:-translate-y-0.5
                         ${nodeStateClass(level, locked, selected || previewed)}`}
@@ -765,7 +765,7 @@ function SkillDetailPanel({
       <div id="skill-detail-panel" aria-live="polite" className="space-y-3">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h2 className="font-serif text-2xl text-d2-gold">{name}</h2>
+            <h2 className="d2-section-title font-serif text-2xl text-d2-gold">{name}</h2>
             <p className="text-sm text-d2-white/70">
               {model.allocatedLevel > 0
                 ? t('details.level', { current: model.allocatedLevel, max: model.maxLevel })
@@ -786,7 +786,7 @@ function SkillDetailPanel({
           </Button>
         </div>
 
-        <p className="rounded border border-d2-border/70 bg-black/30 px-3 py-2 text-sm text-d2-white/80">
+        <p className="d2-surface rounded border border-d2-border/70 bg-black/30 px-3 py-2 text-sm text-d2-white/80">
           {dynamicDescription(name, skill, primaryStats, t)}
         </p>
         {primaryStats?.assassinMartial ? <MartialChargeDescription stats={primaryStats.assassinMartial} t={t} /> : null}
@@ -886,8 +886,8 @@ function StatSection({
   const summonEffect = stats?.summonUnit?.effect;
   const trap = stats?.assassinTrap;
   return (
-    <section className="rounded border border-d2-border/70 bg-black/25 p-3">
-      <h3 className="mb-2 font-serif text-sm text-d2-gold">{title}</h3>
+    <section className="d2-surface rounded border border-d2-border/70 bg-black/25 p-3">
+      <h3 className="d2-section-title mb-2 font-serif text-sm text-d2-gold">{title}</h3>
       {stats ? (
         <dl className="space-y-1 text-sm">
           {stats.damage.map((row) => (
@@ -1273,8 +1273,8 @@ function RequirementSection({
   const requiredLevel = getSkillRequiredLevel(skill);
   const prereqs = skill.prerequisites ?? [];
   return (
-    <section className="rounded border border-d2-border/70 bg-black/25 p-3">
-      <h3 className="mb-2 font-serif text-sm text-d2-gold">{t('details.requirements')}</h3>
+    <section className="d2-surface rounded border border-d2-border/70 bg-black/25 p-3">
+      <h3 className="d2-section-title mb-2 font-serif text-sm text-d2-gold">{t('details.requirements')}</h3>
       <dl className="space-y-1 text-sm">
         <StatLine
           label={t('details.requiredLevel')}

@@ -215,17 +215,17 @@ function CoreAttributesPanel({ player }: { player: Player }) {
         <p className="mb-3 text-sm text-d2-white/80">{t('character:draft.instructions')}</p>
         <ul className="grid grid-cols-1 gap-2">
           {ATTRIBUTE_KEYS.map(stat => (
-            <li key={stat} className="flex items-center gap-2 rounded border border-d2-border/60 px-3 py-2 bg-d2-bg/40">
+            <li key={stat} className="d2-plaque flex items-center gap-2 rounded border border-d2-border/60 px-3 py-2 bg-d2-bg/40">
               <div className="min-w-0 flex-1">
                 <span className="block text-sm text-d2-white/80">{t(`common:stats.${stat}`)}</span>
                 <span className="text-sm font-serif text-d2-gold" data-testid={`char-draft-${stat}`}>
                   {player.coreStats[stat]}{deltas[stat] > 0 && ` → ${String(player.coreStats[stat] + deltas[stat])}`}
                 </span>
               </div>
-              <button type="button" className={buttonClass} disabled={deltas[stat] === 0}
+              <button type="button" className={'d2-control ' + (buttonClass)} disabled={deltas[stat] === 0}
                 aria-label={t('character:draft.decrease', { attribute: t(`common:stats.${stat}`) })}
                 onClick={() => { edit(stat, -1); }}>−</button>
-              <button type="button" className={buttonClass}
+              <button type="button" className={'d2-control ' + (buttonClass)}
                 disabled={remaining < 1 || player.coreStats[stat] + deltas[stat] + 1 > CORE_STAT_HARD_CAP}
                 aria-label={t('character:draft.increase', { attribute: t(`common:stats.${stat}`) })}
                 onClick={() => { edit(stat, 1); }}>+</button>
@@ -252,9 +252,9 @@ function CoreAttributesPanel({ player }: { player: Player }) {
           <span className="font-bold text-d2-gold" data-testid="char-draft-remaining">{remaining}</span>
         </p>
         <div className="mt-3 flex flex-wrap gap-2">
-          <button type="button" className={`${buttonClass} flex-1 px-3 text-sm`} disabled={total === 0}
+          <button type="button" className={`d2-control ${buttonClass} flex-1 px-3 text-sm`} disabled={total === 0}
             onClick={commit}>{t('character:draft.apply')}</button>
-          <button type="button" className={`${buttonClass} flex-1 px-3 text-sm`} disabled={total === 0}
+          <button type="button" className={`d2-control ${buttonClass} flex-1 px-3 text-sm`} disabled={total === 0}
             onClick={() => { setDraft(null); setFeedback('cancelled'); }}>{t('character:draft.cancel')}</button>
         </div>
         <p role="status" className="mt-2 min-h-5 text-sm text-d2-white/80">
@@ -335,7 +335,7 @@ function ResistancesPanel({ player }: { player: Player }) {
           return (
             <li
               key={k}
-              className="flex items-center justify-between border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40"
+              className="d2-plaque flex items-center justify-between border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40"
             >
               <span className="text-d2-white/80">
                 {t(`damage-types:resist.${k}`)}
@@ -377,7 +377,7 @@ function EquipmentSummaryPanel({
                 onClick={() => { onSlotClick(slot); }}
                 data-testid={`char-equip-slot-${slot}`}
                 aria-label={t(`inventory:slots.${slot}`)}
-                className="w-full flex items-center justify-between gap-2 border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40 min-h-[44px] text-left hover:border-d2-gold/60 focus:outline-none focus:ring-2 focus:ring-d2-gold transition-colors"
+                className="d2-slot w-full flex items-center justify-between gap-2 border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40 min-h-[44px] text-left hover:border-d2-gold/60 focus:outline-none focus:ring-2 focus:ring-d2-gold transition-colors"
               >
                 <span className="text-xs text-d2-white/60 shrink-0">
                   {t(`inventory:slots.${slot}`)}
@@ -402,7 +402,7 @@ function EquipmentSummaryPanel({
 
 function KvRow({ label, value }: { label: string; value: number | string }) {
   return (
-    <li className="flex items-center justify-between border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40">
+    <li className="d2-plaque flex items-center justify-between border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40">
       <span className="text-d2-white/80">{label}</span>
       <span className="font-serif text-d2-gold">{typeof value === 'number' ? Math.round(value) : value}</span>
     </li>

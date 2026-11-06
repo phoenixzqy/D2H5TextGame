@@ -107,7 +107,7 @@ export function CombatLog({
         onTouchMove={() => { scrollGesture.current = true; }}
         onTouchEnd={endTouches}
         onTouchCancel={endTouches}
-        className="max-h-[40vh] md:max-h-[28rem] overflow-y-auto [overflow-anchor:none] bg-black/40 rounded p-2
+        className="d2-log max-h-[40vh] md:max-h-[28rem] overflow-y-auto [overflow-anchor:none] bg-black/40 rounded p-2
                    font-mono text-xs leading-relaxed scrollbar-d2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold"
         role="log"
         tabIndex={0}

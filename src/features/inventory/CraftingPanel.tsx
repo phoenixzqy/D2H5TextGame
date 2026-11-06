@@ -72,11 +72,11 @@ export function CraftingPanel() {
       <p className="mb-4 text-sm text-d2-white/90">{t('crafting.progression')}</p>
       <div className="space-y-4 text-d2-white">
         <div><label htmlFor={`${id}-action`} className="mb-1 block text-sm">{t('crafting.action')}</label>
-          <select id={`${id}-action`} className={controlClass} value={kind} onChange={event => { changeKind(event.target.value); }}>
+          <select id={`${id}-action`} className={'d2-field ' + (controlClass)} value={kind} onChange={event => { changeKind(event.target.value); }}>
             {kinds.map(value => <option key={value} value={value}>{t(`crafting.kind.${value}`)}</option>)}
           </select></div>
         {recipes.length > 0 && <div><label htmlFor={`${id}-recipe`} className="mb-1 block text-sm">{t('crafting.recipeLabel')}</label>
-          <select id={`${id}-recipe`} className={controlClass} value={recipeId} onChange={event => { setRecipeId(event.target.value); setError(null); }}>
+          <select id={`${id}-recipe`} className={'d2-field ' + (controlClass)} value={recipeId} onChange={event => { setRecipeId(event.target.value); setError(null); }}>
             {recipes.map(entry => <option key={entry.id} value={entry.id}>{t(entry.nameKey)}
               {'output' in entry ? ` · ${Object.keys(entry.costs.materials).map(value => craftingBalanceName(t, value)).join(', ')} → ${[...Object.keys(entry.output.materials), ...Object.keys(entry.output.currencies)].map(value => craftingBalanceName(t, value)).join(', ')}` : ''}
             </option>)}
@@ -88,7 +88,7 @@ export function CraftingPanel() {
             {craftingBalanceName(t, value)} × {count} · {t('crafting.owned', { quantity: materials[value] ?? currencies[value] ?? 0 })}
           </li>)}</ul></div>}
         {kind === 'socket-insert' && <div><label htmlFor={`${id}-material`} className="mb-1 block text-sm">{t('crafting.material')}</label>
-          <select id={`${id}-material`} className={controlClass} value={materialId} onChange={event => { setMaterialId(event.target.value); setError(null); }}>
+          <select id={`${id}-material`} className={'d2-field ' + (controlClass)} value={materialId} onChange={event => { setMaterialId(event.target.value); setError(null); }}>
             {[...materialCatalog.values()].filter(value => value.kind !== 'scrap').map(value => <option key={value.id} value={value.id}>
               {craftingBalanceName(t, value.id)} · {t('crafting.owned', { quantity: materials[value.id] ?? 0 })}
             </option>)}

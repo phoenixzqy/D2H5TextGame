@@ -90,7 +90,7 @@ export function QuestsScreen() {
           <section key={actId} aria-labelledby={`hdr-${actId}`}>
             <h2
               id={`hdr-${actId}`}
-              className="text-sm font-serif text-d2-gold/80 mb-2 border-b border-d2-border pb-1"
+              className="d2-section-title text-sm font-serif text-d2-gold/80 mb-2 border-b border-d2-border pb-1"
             >
               {t(`act.${actNumber(actId)}`)}
             </h2>
@@ -187,7 +187,7 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
       data-testid={`quest-${quest.id}`}
     >
       <div className="flex items-start justify-between gap-2 mb-2">
-        <h3 className="font-serif text-d2-gold text-sm sm:text-base">{name}</h3>
+        <h3 className="d2-section-title font-serif text-d2-gold text-sm sm:text-base">{name}</h3>
         <StatusBadge status={status} />
       </div>
       <p className="text-sm text-d2-white/70 mb-2">{desc}</p>
@@ -227,7 +227,7 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
                 .map(([k, v]) => (
                 <li
                   key={k}
-                  className="border border-d2-border rounded px-2 py-0.5 bg-d2-bg/40"
+                  className="d2-tag border border-d2-border rounded px-2 py-0.5 bg-d2-bg/40"
                 >
                   <QuestRewardIcon kind={k} />
                   {formatReward(k, v, t, quest.id)}
@@ -387,7 +387,7 @@ function StatusBadge({ status }: { status: QuestStatus }) {
   const m = map[status];
   return (
     <span
-      className={`text-sm uppercase tracking-wide border rounded px-2 py-0.5 whitespace-nowrap ${m.cls}`}
+      className={`d2-tag text-sm uppercase tracking-wide border rounded px-2 py-0.5 whitespace-nowrap ${m.cls}`}
     >
       {m.label}
     </span>

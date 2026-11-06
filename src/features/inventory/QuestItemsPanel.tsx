@@ -64,7 +64,7 @@ export function QuestItemsPanel() {
             return (
               <li key={source} data-testid={`quest-item-${item.id}`} className="min-w-0 flex flex-col gap-3 break-words sm:flex-row sm:items-center sm:justify-between">
                 <div className="min-w-0">
-                  <h3 className="font-serif text-d2-gold">{tDataKey(t, item.nameKey)}</h3>
+                  <h3 className="d2-section-title font-serif text-d2-gold">{tDataKey(t, item.nameKey)}</h3>
                   <p className="text-sm text-d2-white/80">
                     {t(item.descKey, item.kind !== undefined ? {} : item.effect)}
                   </p>
@@ -89,7 +89,7 @@ export function QuestItemsPanel() {
           })}
           {countedItems.map(({ definition, counts }) => <li key={definition.key}
             data-testid={`quest-counted-item-${definition.key}`} className="min-w-0 space-y-2 break-words">
-            <h3 className="font-serif text-d2-gold">{tDataKey(t, definition.nameKey)}</h3>
+            <h3 className="d2-section-title font-serif text-d2-gold">{tDataKey(t, definition.nameKey)}</h3>
             <p className="text-sm text-d2-white/80">{tDataKey(t, definition.descKey)}</p>
             <p className="text-sm text-d2-gold">{t('questItems.counted.counts', { ...counts })}</p>
             <p className="text-sm text-d2-white/80">{t('questItems.counted.bound')}</p>
@@ -127,7 +127,7 @@ export function QuestItemsPanel() {
         const summary = { item: name, ingredients: new Intl.ListFormat(i18n.resolvedLanguage ?? i18n.language,
           { style: 'long', type: 'conjunction' }).format(ingredientNames), tool: tool ? tDataKey(t, tool.nameKey) : '' };
         return <div key={source} className="w-full min-w-0 mt-3 space-y-2 break-words" data-testid="quest-assembly">
-          <h3 className="font-serif text-d2-gold">{name}</h3>
+          <h3 className="d2-section-title font-serif text-d2-gold">{name}</h3>
           <p className="text-sm text-d2-white/90">{t(`questItems.recipe.${feedbackStatus}`, summary)}</p>
           <p className="text-sm text-d2-white/90">{t('questItems.recipe.inputs', summary)}</p>
           <Button type="button" variant="secondary" className="min-h-[44px] min-w-[44px] max-w-full whitespace-normal"

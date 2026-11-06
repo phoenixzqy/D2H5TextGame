@@ -73,14 +73,14 @@ export function EquippedItemModal({ slot, item, derivedStats, onClose }: Props):
     >
       <div
         className={[
-          'bg-d2-panel border-2 border-d2-gold shadow-2xl shadow-d2-gold/20 animate-fadeIn',
+          'd2-surface bg-d2-panel border-2 border-d2-gold shadow-2xl shadow-d2-gold/20 animate-fadeIn',
           'w-full rounded-t-lg sm:rounded-lg max-h-[85vh] sm:max-h-[90vh]',
           'sm:max-w-md sm:w-full flex flex-col overflow-hidden'
         ].join(' ')}
         onClick={(e) => { e.stopPropagation(); }}
       >
-        <header className="flex items-center justify-between p-4 border-b border-d2-border">
-          <h2 id="equipped-item-modal-title" className="text-lg font-serif font-bold text-d2-gold">
+        <header className="d2-toolbar flex items-center justify-between p-4 border-b border-d2-border">
+          <h2 id="equipped-item-modal-title" className="d2-section-title text-lg font-serif font-bold text-d2-gold">
             {slotLabel}
           </h2>
           <Button
@@ -111,7 +111,7 @@ export function EquippedItemModal({ slot, item, derivedStats, onClose }: Props):
           )}
         </div>
 
-        <footer className="p-4 border-t border-d2-border bg-d2-bg/40">
+        <footer className="d2-toolbar p-4 border-t border-d2-border bg-d2-bg/40">
           <Button
             variant="primary"
             className="min-h-[44px] w-full"

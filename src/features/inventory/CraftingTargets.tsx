@@ -26,10 +26,10 @@ export function CraftingTargets({ entries, selected, multiple, onChange }: {
   const pages = Math.max(1, Math.ceil(matches.length / pageSize));
   const currentPage = Math.min(page, pages - 1);
   return <fieldset className="min-w-0 space-y-2">
-    <legend className="text-d2-gold">{t('crafting.targets')}</legend>
+    <legend className="d2-section-title text-d2-gold">{t('crafting.targets')}</legend>
     <label htmlFor={id} className="block text-sm">{t('crafting.search')}</label>
     <input id={id} type="search" value={search} onChange={event => { setSearch(event.target.value); setPage(0); }}
-      className="min-h-[44px] w-full min-w-0 rounded border border-d2-border bg-d2-bg px-3 text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold" />
+      className="d2-field min-h-[44px] w-full min-w-0 rounded border border-d2-border bg-d2-bg px-3 text-d2-white focus-visible:ring-2 focus-visible:ring-d2-gold" />
     <p role="status" className="text-sm">{t('crafting.selected', { count: selected.length })}</p>
     {!matches.length && <p className="text-sm">{t(entries.length ? 'crafting.noMatches' : 'crafting.emptyTargets')}</p>}
     <ul className="space-y-1">
@@ -57,7 +57,7 @@ function CraftingTargetRow({ entry: { item, origin, preservedRunes }, checked, o
   const detailsId = useId();
   const [expanded, setExpanded] = useState(false);
   return <li className="min-w-0">
-    <label className="flex min-h-[44px] cursor-pointer items-center gap-3 rounded border border-d2-border px-3 py-2 has-[:checked]:border-d2-gold">
+    <label className="d2-plaque flex min-h-[44px] cursor-pointer items-center gap-3 rounded border border-d2-border px-3 py-2 has-[:checked]:border-d2-gold">
       <input type="checkbox" checked={checked} className="h-5 w-5 shrink-0 accent-d2-gold"
         onChange={event => { onChange(event.target.checked); }} />
       <span className="min-w-0 break-words text-sm">{tItemName(t, item)} · #{item.id}{' '}<span className="block text-d2-white/80">{origin}</span></span>

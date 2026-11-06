@@ -172,7 +172,7 @@ export function MapScreen() {
         <EndgamePanel />
         {idleTarget && idleAreaName && (
           <div
-            className="sticky top-0 z-20 -mx-3 md:-mx-6 px-3 md:px-6 py-2
+            className="d2-toolbar sticky top-0 z-20 -mx-3 md:-mx-6 px-3 md:px-6 py-2
                        bg-d2-panel/95 backdrop-blur border-b border-d2-gold/40
                        text-sm text-d2-gold flex flex-wrap items-center gap-2"
             data-testid="idle-location-banner"
@@ -184,7 +184,7 @@ export function MapScreen() {
             <button
               type="button"
               onClick={() => { setIdleTarget(undefined); }}
-              className="min-h-11 min-w-11 max-w-full px-2 text-sm text-d2-white/90 hover:text-d2-gold underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold"
+              className="d2-control min-h-11 min-w-11 max-w-full px-2 text-sm text-d2-white/90 hover:text-d2-gold underline underline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold"
               data-testid="idle-stop-button"
             >
               {t('stopIdle')}
@@ -200,7 +200,7 @@ export function MapScreen() {
                 type="button"
                 onClick={() => { setOpenAct(isOpen ? -1 : act.number); }}
                 aria-expanded={isOpen}
-                className="w-full flex items-center gap-3 px-3 py-2 min-h-[56px]
+                className="d2-plaque d2-act-heading w-full flex items-center gap-3 px-3 py-2 min-h-[56px]
                            hover:bg-black/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold"
               >
                 <GameImage
@@ -248,7 +248,7 @@ export function MapScreen() {
                     return (
                       <li
                         key={sa.id}
-                        className={`px-3 py-2 flex flex-wrap items-center gap-2 ${rowCls}`}
+                        className={`d2-map-row px-3 py-2 flex flex-wrap items-center gap-2 ${rowCls}`}
                         data-testid={`sub-area-row-${sa.alias}`}
                         data-cleared={cleared || undefined}
                         data-idle-here={isIdleHere || undefined}
@@ -267,7 +267,7 @@ export function MapScreen() {
                             </span>
                             {unlocked && cleared && (
                               <span
-                                className="max-w-full break-words text-sm uppercase text-d2-set border border-d2-set/60 rounded px-1.5 py-0.5"
+                                className="d2-tag max-w-full break-words text-sm uppercase text-d2-set border border-d2-set/60 rounded px-1.5 py-0.5"
                                 data-testid={`cleared-badge-${sa.alias}`}
                               >
                                 ✓ {t('cleared')}
@@ -275,7 +275,7 @@ export function MapScreen() {
                             )}
                             {unlocked && !cleared && (
                               <span
-                                className="max-w-full break-words text-sm uppercase text-d2-gold border border-d2-gold/50 rounded px-1.5 py-0.5"
+                                className="d2-tag max-w-full break-words text-sm uppercase text-d2-gold border border-d2-gold/50 rounded px-1.5 py-0.5"
                                 data-testid={`uncleared-badge-${sa.alias}`}
                               >
                                 {t('uncleared')}
@@ -283,7 +283,7 @@ export function MapScreen() {
                             )}
                             {sa.bossArchetypeId && (
                               <span
-                                className="max-w-full break-words text-sm uppercase text-orange-300 border border-orange-400/60 rounded px-1.5 py-0.5"
+                                className="d2-tag max-w-full break-words text-sm uppercase text-orange-300 border border-orange-400/60 rounded px-1.5 py-0.5"
                                 title={bossDisplayName(sa.bossArchetypeId, areaName)}
                                 data-testid={`boss-badge-${sa.alias}`}
                               >
@@ -292,14 +292,14 @@ export function MapScreen() {
                             )}
                             {sa.difficultyBand !== 'none' && (
                               <span
-                                className="max-w-full break-words text-sm uppercase text-red-300 border border-red-400/60 rounded px-1.5 py-0.5"
+                                className="d2-tag max-w-full break-words text-sm uppercase text-red-300 border border-red-400/60 rounded px-1.5 py-0.5"
                                 data-testid={`difficulty-badge-${sa.alias}`}
                               >
                                 {t(`difficulty.${sa.difficultyBand}`)}
                               </span>
                             )}
                             {isIdleHere && (
-                              <span className="max-w-full break-words text-sm uppercase text-d2-white/90 border border-d2-white/40 rounded px-1.5 py-0.5">
+                              <span className="d2-tag max-w-full break-words text-sm uppercase text-d2-white/90 border border-d2-white/40 rounded px-1.5 py-0.5">
                                 {t('idleHereShort')}
                               </span>
                             )}
@@ -343,7 +343,7 @@ export function MapScreen() {
                                 data-testid={`area-objects-${sa.alias}`}
                                 aria-expanded={selectedObjectArea === sa.id && currentArea?.id === sa.id}
                                 aria-controls="area-objects"
-                                className="min-h-[44px] min-w-[44px] rounded border border-d2-border px-3 py-2 text-sm text-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold"
+                                className="d2-control min-h-[44px] min-w-[44px] rounded border border-d2-border px-3 py-2 text-sm text-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold"
                                 onClick={event => {
                                   objectTrigger.current = event.currentTarget;
                                   try {

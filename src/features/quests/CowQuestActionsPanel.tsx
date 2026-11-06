@@ -56,10 +56,10 @@ export function CowQuestActionsPanel({ context }: { context: Context }) {
   const buttonClass = 'min-h-[44px] min-w-[44px] max-w-full whitespace-normal break-words';
   return <section className="w-full min-w-0 space-y-3 break-words border-t border-d2-border pt-3"
     data-testid={`cow-quest-panel-${context}`} aria-label={t('cow.name')}>
-    <h3 className="font-semibold text-d2-white">{t('cow.name')}</h3>
+    <h3 className="d2-section-title font-semibold text-d2-white">{t('cow.name')}</h3>
     <p role="status" aria-live="polite" className="text-sm text-d2-gold" data-testid="cow-stage">{t(`cow.stage.${stage}`)}</p>
     {context === 'map' && <div className="space-y-2">
-      <h4 className="font-semibold text-d2-white">{t('cow.remains')}</h4>
+      <h4 className="d2-section-title font-semibold text-d2-white">{t('cow.remains')}</h4>
       <p className="text-sm text-d2-white/90">{t('cow.remainsDescription')}</p>
       <p role="status" className="text-sm text-d2-white/90">{t(`cow.source.${recovery}`)}</p>
       <Button type="button" variant="primary" className={buttonClass} data-testid="cow-recover-leg"

@@ -51,9 +51,9 @@ export function EndgamePanel() {
     {model.kind !== 'unlocked' && <p id={entry === model.kind ? entryDescription : undefined}
       data-testid="endgame-lock" className="mb-3 text-sm text-d2-gold">{t(model.kind)}</p>}
     <fieldset disabled={entry !== 'ok'} className="min-w-0 space-y-2">
-      <legend className="mb-2 font-serif text-d2-gold">{t('choose')}</legend>
+      <legend className="d2-section-title mb-2 font-serif text-d2-gold">{t('choose')}</legend>
       {endgameDefinition.modifiers.map(row => <label key={row.id}
-        className={`flex min-h-11 cursor-pointer items-start gap-3 rounded border p-3 focus-within:ring-2 focus-within:ring-d2-gold ${modifier === row.id ? 'border-d2-gold bg-black/30' : 'border-d2-border'}`}>
+        className={`d2-plaque flex min-h-11 cursor-pointer items-start gap-3 rounded border p-3 focus-within:ring-2 focus-within:ring-d2-gold ${modifier === row.id ? 'border-d2-gold bg-black/30' : 'border-d2-border'}`}>
         <input type="radio" name="endgame-modifier" value={row.id} checked={modifier === row.id}
           onChange={() => { setModifier(row.id); }} className="mt-1 accent-d2-gold" data-testid={`endgame-modifier-${row.id}`} />
         <span className="min-w-0 space-y-1 text-sm">
@@ -75,7 +75,7 @@ export function EndgamePanel() {
         else setFeedback(result);
       }); }}>{t('enter')}</Button>
     <div className="mt-4 border-t border-d2-border pt-3">
-      <h3 className="font-serif text-lg text-d2-gold">{t('achievement.title')}</h3>
+      <h3 className="d2-section-title font-serif text-lg text-d2-gold">{t('achievement.title')}</h3>
       <p className="mt-1 text-sm text-d2-white/90">{t('achievement.requirement')}</p>
       <p className="mt-1 text-sm text-d2-white/80">{t('achievement.reward', { materials: materialsText(endgameDefinition.achievement.reward.materials) })}</p>
       {model.kind !== 'invalid' && (model.achievement.claimed || model.achievement.available) &&
