@@ -1,3 +1,4 @@
+import { publicAssetUrl } from '@/ui/publicAssetUrl';
 /**
  * GameImage — D2-themed image component with graceful fallback.
  *
@@ -90,7 +91,7 @@ function ImageContent({
 
   return src && !errored ? (
     <img
-      src={src}
+      src={publicAssetUrl(src)}
       alt={alt}
       className={imageClassName ?? `w-full h-full object-cover ${posClass}`}
       loading="lazy"

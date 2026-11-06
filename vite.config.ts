@@ -11,6 +11,7 @@ import { compiledSkillValidatorId, precompileSkillValidator } from './scripts/pr
 import { compiledSaveValidatorsId, precompileSaveValidators } from './scripts/precompile-save-validators';
 
 const rootDir = __dirname;
+const base = process.env.VITE_BASE_PATH ?? '/';
 const dataRoot = path.resolve(rootDir, 'src/data');
 const engineRoot = path.resolve(rootDir, 'src/engine');
 const dataPathPattern = /^src\/data\/[a-z0-9_/.-]+\.json$/;
@@ -189,6 +190,7 @@ function sendJson(res: ServerResponse, statusCode: number, payload: unknown): vo
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base,
   plugins: [
     precompileSkillValidator(),
     precompileAuthoredValidators(),
@@ -207,8 +209,8 @@ export default defineConfig({
         display: 'standalone',
         orientation: 'portrait',
         lang: 'zh-CN',
-        start_url: '/',
-        scope: '/',
+        start_url: base,
+        scope: base,
         icons: [
           {
             src: 'icons/icon-192.png',
@@ -226,6 +228,9 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
+        globIgnores: ['assets/d2/generated/manifest.json', 'e2e-reset.html'],
+        // Public artwork has stable filenames and needs revisions on updates.
+        dontCacheBustURLsMatching: /^assets\/[^/]+-[\w-]{8}\.(?:js|css)$/,
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,

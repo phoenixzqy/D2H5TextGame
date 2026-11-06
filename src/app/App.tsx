@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Providers } from './providers';
 import { AppRoutes } from './routes';
 import { useStealthMode } from './useStealthMode';
 import { initPersistence, useMetaStore } from '@/stores';
 import { OfflineReturnToast } from '@/features/idle/OfflineReturnToast';
+
+// Project Pages serves static files without browser-history route fallback.
+const Router = import.meta.env.VITE_GITHUB_PAGES === 'true' ? HashRouter : BrowserRouter;
 
 function App() {
   useStealthMode();
@@ -16,13 +19,13 @@ function App() {
 
   return (
     <Providers>
-      <BrowserRouter
+      <Router
         future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
       >
         <AppRoutes />
         <OfflineReturnToast />
         <StealthIndicator />
-      </BrowserRouter>
+      </Router>
     </Providers>
   );
 }

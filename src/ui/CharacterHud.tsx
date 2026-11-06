@@ -1,3 +1,4 @@
+import { publicAssetUrl } from '@/ui/publicAssetUrl';
 /**
  * CharacterHud — shared header widget showing the player's
  * portrait/avatar, name, level, and HP/MP/EXP bars.
@@ -129,7 +130,7 @@ function Avatar({ player }: { player: Player }) {
     >
       {!errored ? (
         <img
-          src={src}
+          src={publicAssetUrl(src)}
           alt=""
           className="w-full h-full object-cover object-top"
           onError={onError}

@@ -11,6 +11,7 @@
  * a level-aware detail panel. Combat/math display is resolved by pure engine
  * helpers; this component only formats and wires player actions.
  */
+import { publicAssetUrl } from '@/ui/publicAssetUrl';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { flushSync } from 'react-dom';
 import { useTranslation } from 'react-i18next';
@@ -1320,7 +1321,7 @@ function SkillIcon({ skill, label }: { readonly skill: SkillTemplate; readonly l
   return (
     <span className="relative flex h-[72px] w-[72px] items-center justify-center overflow-hidden rounded bg-black shadow-inner">
       <img
-        src={iconSrc}
+        src={publicAssetUrl(iconSrc)}
         alt=""
         aria-hidden="true"
         draggable={false}
