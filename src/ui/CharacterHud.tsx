@@ -21,6 +21,7 @@
  *
  * Reads from `usePlayerStore` only. Pure UI; no business logic.
  */
+import { publicAssetUrl } from '@/ui/publicAssetUrl';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -136,7 +137,7 @@ function Avatar({ player }: { player: Player }) {
     >
       {!errored ? (
         <img
-          src={src}
+          src={publicAssetUrl(src)}
           alt=""
           className="w-full h-full object-cover object-top"
           onError={() => { setErrored(true); }}

@@ -38,6 +38,7 @@
  * target. Otherwise it's an <article>. Selected/focus states share the
  * same gold ring so keyboard ↔ mouse parity is preserved.
  */
+import { publicAssetUrl } from '@/ui/publicAssetUrl';
 import {
   memo,
   useState,
@@ -305,7 +306,7 @@ function CardArt({
     >
       {showImg ? (
         <img
-          src={image}
+          src={publicAssetUrl(image)}
           alt={name}
           loading="lazy"
           decoding="async"

@@ -6,6 +6,7 @@
  *
  * All images are `loading="lazy"` + `decoding="async"` by default.
  */
+import { publicAssetUrl } from '@/ui/publicAssetUrl';
 import { useState } from 'react';
 
 type ImageSize = 'xs' | 'sm' | 'md' | 'lg';
@@ -68,7 +69,7 @@ export function GameImage({
     >
       {showImage ? (
         <img
-          src={src}
+          src={publicAssetUrl(src)}
           alt={alt}
           className={`w-full h-full object-cover ${posClass}`}
           loading="lazy"

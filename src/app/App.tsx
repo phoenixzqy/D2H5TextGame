@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { Providers } from './providers';
 import { AppRoutes } from './routes';
 import { useStealthMode } from './useStealthMode';
 import { CharacterHud } from '@/ui';
 import { initPersistence, useMetaStore } from '@/stores';
+
+// Pages serves static files without a fallback for browser history routes.
+const Router = import.meta.env.VITE_GITHUB_PAGES === 'true' ? HashRouter : BrowserRouter;
 
 function App() {
   useStealthMode();
@@ -32,7 +35,7 @@ function App() {
 
   return (
     <Providers>
-      <BrowserRouter
+      <Router
         future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
       >
         <AppRoutes />
@@ -46,7 +49,7 @@ function App() {
             stealth
           </span>
         )}
-      </BrowserRouter>
+      </Router>
     </Providers>
   );
 }

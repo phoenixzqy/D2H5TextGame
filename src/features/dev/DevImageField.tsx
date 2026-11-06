@@ -29,6 +29,7 @@
  * @module features/dev/DevImageField
  */
 
+import { publicAssetUrl } from '@/ui/publicAssetUrl';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { loadDevJson, saveDevJson } from './devClient';
@@ -144,7 +145,7 @@ export function DevImageField({ kind, entityId, inferredPath }: DevImageFieldPro
         <div className="flex h-24 w-20 shrink-0 items-center justify-center overflow-hidden rounded border border-d2-border bg-d2-bg">
           {effectivePath ? (
             <img
-              src={effectivePath}
+              src={publicAssetUrl(effectivePath)}
               alt={previewAlt}
               className="h-full w-full object-contain"
               loading="lazy"
