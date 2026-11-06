@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * image-gen — call Pollinations.AI to generate a styled image, save it under
- * public/assets/d2/generated/<category>/<id>.png, and append a manifest entry.
+ * public/assets/d2/generated/<category>/<id>.(png|jpg), and append a manifest entry.
  *
  * Style consistency is enforced by docs/art/style-presets.json (categories,
  * model, size, seed-base, style suffix, negative prompt) and the seed registry.
@@ -46,17 +46,23 @@ function die(msg) {
 }
 
 function buildPrompt(presets, category, subject, descriptors) {
-  const parts = [
-    presets.globalPreamble,
-    category.styleSuffix,
-    `subject: ${subject}`,
-  ];
-  if (descriptors && descriptors.trim()) parts.push(descriptors.trim());
+  const preamble = category.promptPreamble || presets.globalPreamble;
+  const subjectParts = [`subject: ${subject}`];
+  if (descriptors && descriptors.trim()) subjectParts.push(descriptors.trim());
+  const parts = category.subjectFirst
+    ? [...subjectParts, preamble, category.styleSuffix]
+    : [preamble, category.styleSuffix, ...subjectParts];
   return parts.join(', ');
 }
 
 function buildNegative(presets, category) {
-  return [presets.globalNegative, category.negativeAdditions]
+  const removed = new Set(category.negativeRemove || []);
+  const globalNegative = removed.size ? presets.globalNegative
+    .split(',')
+    .map((term) => term.trim())
+    .filter((term) => !removed.has(term))
+    .join(', ') : presets.globalNegative;
+  return [globalNegative, category.negativeAdditions]
     .filter(Boolean)
     .join(', ');
 }
@@ -94,7 +100,7 @@ async function main() {
   const outDir = resolve(REPO_ROOT, cat.outputDir);
   mkdirSync(outDir, { recursive: true });
   const safeId = args.id.replace(/[^a-zA-Z0-9._-]/g, '_');
-  const outFile = join(outDir, `${safeId}${args.variant ? `.v${args.variant}` : ''}.png`);
+  let outFile = join(outDir, `${safeId}${args.variant ? `.v${args.variant}` : ''}.png`);
 
   const manifest = loadManifest(MANIFEST_PATH);
   const existing = findEntry(manifest, { id: args.id, seed, prompt });
@@ -111,11 +117,15 @@ async function main() {
     return;
   }
 
-  const res = await fetch(url, { redirect: 'follow' });
+  const res = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(180000) });
   if (!res.ok) die(`Pollinations.AI returned ${res.status} ${res.statusText}`);
   const buf = Buffer.from(await res.arrayBuffer());
   if (buf.length < 1024) die(`response too small (${buf.length} bytes), likely an error page`);
 
+  const isPng = buf.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+  const isJpeg = buf[0] === 255 && buf[1] === 216 && buf[2] === 255;
+  if (!isPng && !isJpeg) die('response is not PNG or JPEG artwork');
+  if (isJpeg) outFile = outFile.replace(/\.png$/, '.jpg');
   writeFileSync(outFile, buf);
   const hash = sha256(buf);
   console.log(`[image-gen] saved ${outFile} (${buf.length} bytes, sha256=${hash.slice(0, 12)}…)`);
@@ -129,6 +139,7 @@ async function main() {
     variant: args.variant || 0,
     seed,
     model: cat.model,
+    servedModel: res.headers.get('x-model-used') || cat.model,
     width: cat.width,
     height: cat.height,
     prompt,

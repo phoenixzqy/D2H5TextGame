@@ -14061,6 +14061,407 @@
       "bytes": 67128,
       "sha256": "839be28b5215096b9917be3492d39bb32e52b713526f04e61850d847c09be210",
       "generatedAt": "2026-05-02T19:48:05.891Z"
+    },
+    {
+      "id": "ui.remaster.stone",
+      "category": "ui-material",
+      "subject": "dark charcoal stone material surface",
+      "descriptors": "flat stone slab filling entire image, fine pitted volcanic slate, subtle hairline cracks, soot black and muted umber, empty dark central expanse, shallow chisel scars at edges, tactile dry matte brushwork, no frame, no ornament, no objects, uniform close-up stone material",
+      "subjectId": 1,
+      "variant": 0,
+      "seed": 700001,
+      "model": "flux",
+      "width": 1024,
+      "height": 512,
+      "prompt": "masterpiece dark fantasy oil painting, gothic Diablo II inspired, painterly brushwork, dramatic chiaroscuro lighting, muted earth tones with deep shadows and warm highlights, cinematic composition, high detail, weathered medieval setting, no modern elements, flat front-facing full-bleed medieval craft material study for reusable game interface surfaces, orthographic close-up, subtle tactile painterly texture, consistent warm light from upper left, restrained antique ornament at perimeter only, large dark empty central area for live text, no writing, no symbols, no logos, no perspective, no scene, no characters, subject: dark charcoal stone material surface, flat stone slab filling entire image, fine pitted volcanic slate, subtle hairline cracks, soot black and muted umber, empty dark central expanse, shallow chisel scars at edges, tactile dry matte brushwork, no frame, no ornament, no objects, uniform close-up stone material",
+      "negativePrompt": "text, watermark, signature, logo, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, multiple subjects when single requested, text, letters, numbers, glyphs, logo, symbols, game screenshot, screen mockup, perspective, landscape, people, animals, shiny plastic, glossy 3D render, modern industrial objects",
+      "sourceUrl": "https://image.pollinations.ai/prompt/masterpiece%20dark%20fantasy%20oil%20painting%2C%20gothic%20Diablo%20II%20inspired%2C%20painterly%20brushwork%2C%20dramatic%20chiaroscuro%20lighting%2C%20muted%20earth%20tones%20with%20deep%20shadows%20and%20warm%20highlights%2C%20cinematic%20composition%2C%20high%20detail%2C%20weathered%20medieval%20setting%2C%20no%20modern%20elements%2C%20flat%20front-facing%20full-bleed%20medieval%20craft%20material%20study%20for%20reusable%20game%20interface%20surfaces%2C%20orthographic%20close-up%2C%20subtle%20tactile%20painterly%20texture%2C%20consistent%20warm%20light%20from%20upper%20left%2C%20restrained%20antique%20ornament%20at%20perimeter%20only%2C%20large%20dark%20empty%20central%20area%20for%20live%20text%2C%20no%20writing%2C%20no%20symbols%2C%20no%20logos%2C%20no%20perspective%2C%20no%20scene%2C%20no%20characters%2C%20subject%3A%20dark%20charcoal%20stone%20material%20surface%2C%20flat%20stone%20slab%20filling%20entire%20image%2C%20fine%20pitted%20volcanic%20slate%2C%20subtle%20hairline%20cracks%2C%20soot%20black%20and%20muted%20umber%2C%20empty%20dark%20central%20expanse%2C%20shallow%20chisel%20scars%20at%20edges%2C%20tactile%20dry%20matte%20brushwork%2C%20no%20frame%2C%20no%20ornament%2C%20no%20objects%2C%20uniform%20close-up%20stone%20material?model=flux&width=1024&height=512&seed=700001&negative_prompt=text%2C+watermark%2C+signature%2C+logo%2C+modern+clothing%2C+modern+weapons%2C+sci-fi%2C+neon%2C+anime%2C+chibi%2C+cute%2C+cartoon%2C+low+contrast%2C+oversaturated%2C+plastic+skin%2C+smooth+skin%2C+extra+fingers%2C+extra+limbs%2C+deformed+hands%2C+deformed+face%2C+blurry%2C+low+quality%2C+jpeg+artifacts%2C+out+of+frame%2C+cropped%2C+multiple+subjects+when+single+requested%2C+text%2C+letters%2C+numbers%2C+glyphs%2C+logo%2C+symbols%2C+game+screenshot%2C+screen+mockup%2C+perspective%2C+landscape%2C+people%2C+animals%2C+shiny+plastic%2C+glossy+3D+render%2C+modern+industrial+objects&nologo=true&private=true",
+      "file": "docs/art/ui-remaster-sources/ui.remaster.stone.jpg",
+      "bytes": 75960,
+      "sha256": "47f0b325b33af65d5133e185480a19f1714f55f7f41a0ba969d037d302f6cdc5",
+      "generatedAt": "2026-11-06T08:00:14.902Z"
+    },
+    {
+      "id": "ui.remaster.stone",
+      "category": "ui-material",
+      "subject": "dark charcoal stone material texture",
+      "descriptors": "flat pitted slate, fine cracks, soot and umber, entire canvas filled with matte stone, empty center, no person, no objects, no lettering",
+      "subjectId": 1,
+      "variant": 1,
+      "seed": 710001,
+      "model": "sana",
+      "servedModel": "sana",
+      "width": 1024,
+      "height": 512,
+      "prompt": "subject: dark charcoal stone material texture, flat pitted slate, fine cracks, soot and umber, entire canvas filled with matte stone, empty center, no person, no objects, no lettering, dark medieval craft, matte painterly material, subtle warm upper-left light, front-facing flat close-up, no scene, no characters, no text, quiet dark center, original unbranded gothic craft",
+      "negativePrompt": "text, watermark, signature, logo, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, multiple subjects when single requested, text, letters, numbers, glyphs, logo, symbols, game screenshot, screen mockup, perspective, landscape, people, animals, shiny plastic, glossy 3D render, modern industrial objects",
+      "sourceUrl": "https://image.pollinations.ai/prompt/subject%3A%20dark%20charcoal%20stone%20material%20texture%2C%20flat%20pitted%20slate%2C%20fine%20cracks%2C%20soot%20and%20umber%2C%20entire%20canvas%20filled%20with%20matte%20stone%2C%20empty%20center%2C%20no%20person%2C%20no%20objects%2C%20no%20lettering%2C%20dark%20medieval%20craft%2C%20matte%20painterly%20material%2C%20subtle%20warm%20upper-left%20light%2C%20front-facing%20flat%20close-up%2C%20no%20scene%2C%20no%20characters%2C%20no%20text%2C%20quiet%20dark%20center%2C%20original%20unbranded%20gothic%20craft?model=sana&width=1024&height=512&seed=710001&negative_prompt=text%2C+watermark%2C+signature%2C+logo%2C+modern+clothing%2C+modern+weapons%2C+sci-fi%2C+neon%2C+anime%2C+chibi%2C+cute%2C+cartoon%2C+low+contrast%2C+oversaturated%2C+plastic+skin%2C+smooth+skin%2C+extra+fingers%2C+extra+limbs%2C+deformed+hands%2C+deformed+face%2C+blurry%2C+low+quality%2C+jpeg+artifacts%2C+out+of+frame%2C+cropped%2C+multiple+subjects+when+single+requested%2C+text%2C+letters%2C+numbers%2C+glyphs%2C+logo%2C+symbols%2C+game+screenshot%2C+screen+mockup%2C+perspective%2C+landscape%2C+people%2C+animals%2C+shiny+plastic%2C+glossy+3D+render%2C+modern+industrial+objects&nologo=true&private=true",
+      "file": "docs/art/ui-remaster-sources/ui.remaster.stone.v1.jpg",
+      "bytes": 72955,
+      "sha256": "3ae862d9af06e47e39c596082d3690f19bacbd1581989c3d30cea86779ca1d98",
+      "generatedAt": "2026-11-06T08:01:29.679Z"
+    },
+    {
+      "id": "ui.remaster.leather",
+      "category": "ui-material",
+      "subject": "blackened dark brown leather texture",
+      "descriptors": "flat full canvas closeup, fine worn leather grain, mottled umber, subtle hand-tooled perimeter, quiet empty dark center, no people, no lettering",
+      "subjectId": 2,
+      "variant": 0,
+      "seed": 700002,
+      "model": "sana",
+      "servedModel": "sana",
+      "width": 1024,
+      "height": 512,
+      "prompt": "subject: blackened dark brown leather texture, flat full canvas closeup, fine worn leather grain, mottled umber, subtle hand-tooled perimeter, quiet empty dark center, no people, no lettering, dark medieval craft, matte painterly material, subtle warm upper-left light, front-facing flat close-up, no scene, no characters, no text, quiet dark center, original unbranded gothic craft",
+      "negativePrompt": "text, watermark, signature, logo, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, multiple subjects when single requested, text, letters, numbers, glyphs, logo, symbols, game screenshot, screen mockup, perspective, landscape, people, animals, shiny plastic, glossy 3D render, modern industrial objects",
+      "sourceUrl": "https://image.pollinations.ai/prompt/subject%3A%20blackened%20dark%20brown%20leather%20texture%2C%20flat%20full%20canvas%20closeup%2C%20fine%20worn%20leather%20grain%2C%20mottled%20umber%2C%20subtle%20hand-tooled%20perimeter%2C%20quiet%20empty%20dark%20center%2C%20no%20people%2C%20no%20lettering%2C%20dark%20medieval%20craft%2C%20matte%20painterly%20material%2C%20subtle%20warm%20upper-left%20light%2C%20front-facing%20flat%20close-up%2C%20no%20scene%2C%20no%20characters%2C%20no%20text%2C%20quiet%20dark%20center%2C%20original%20unbranded%20gothic%20craft?model=sana&width=1024&height=512&seed=700002&negative_prompt=text%2C+watermark%2C+signature%2C+logo%2C+modern+clothing%2C+modern+weapons%2C+sci-fi%2C+neon%2C+anime%2C+chibi%2C+cute%2C+cartoon%2C+low+contrast%2C+oversaturated%2C+plastic+skin%2C+smooth+skin%2C+extra+fingers%2C+extra+limbs%2C+deformed+hands%2C+deformed+face%2C+blurry%2C+low+quality%2C+jpeg+artifacts%2C+out+of+frame%2C+cropped%2C+multiple+subjects+when+single+requested%2C+text%2C+letters%2C+numbers%2C+glyphs%2C+logo%2C+symbols%2C+game+screenshot%2C+screen+mockup%2C+perspective%2C+landscape%2C+people%2C+animals%2C+shiny+plastic%2C+glossy+3D+render%2C+modern+industrial+objects&nologo=true&private=true",
+      "file": "docs/art/ui-remaster-sources/ui.remaster.leather.jpg",
+      "bytes": 71219,
+      "sha256": "d1eaaa33df951d9b1939ba8270cc6954f96a318b86725caba12cc53855dd9328",
+      "generatedAt": "2026-11-06T08:01:35.925Z"
+    },
+    {
+      "id": "ui.remaster.iron",
+      "category": "ui-material",
+      "subject": "hammered black iron and tarnished brass texture",
+      "descriptors": "flat full canvas pitted metal, dark graphite center, warm worn bronze at perimeter, no objects, no people, no text",
+      "subjectId": 3,
+      "variant": 0,
+      "seed": 700003,
+      "model": "sana",
+      "servedModel": "sana",
+      "width": 1024,
+      "height": 512,
+      "prompt": "subject: hammered black iron and tarnished brass texture, flat full canvas pitted metal, dark graphite center, warm worn bronze at perimeter, no objects, no people, no text, dark medieval craft, matte painterly material, subtle warm upper-left light, front-facing flat close-up, no scene, no characters, no text, quiet dark center, original unbranded gothic craft",
+      "negativePrompt": "text, watermark, signature, logo, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, multiple subjects when single requested, text, letters, numbers, glyphs, logo, symbols, game screenshot, screen mockup, perspective, landscape, people, animals, shiny plastic, glossy 3D render, modern industrial objects",
+      "sourceUrl": "https://image.pollinations.ai/prompt/subject%3A%20hammered%20black%20iron%20and%20tarnished%20brass%20texture%2C%20flat%20full%20canvas%20pitted%20metal%2C%20dark%20graphite%20center%2C%20warm%20worn%20bronze%20at%20perimeter%2C%20no%20objects%2C%20no%20people%2C%20no%20text%2C%20dark%20medieval%20craft%2C%20matte%20painterly%20material%2C%20subtle%20warm%20upper-left%20light%2C%20front-facing%20flat%20close-up%2C%20no%20scene%2C%20no%20characters%2C%20no%20text%2C%20quiet%20dark%20center%2C%20original%20unbranded%20gothic%20craft?model=sana&width=1024&height=512&seed=700003&negative_prompt=text%2C+watermark%2C+signature%2C+logo%2C+modern+clothing%2C+modern+weapons%2C+sci-fi%2C+neon%2C+anime%2C+chibi%2C+cute%2C+cartoon%2C+low+contrast%2C+oversaturated%2C+plastic+skin%2C+smooth+skin%2C+extra+fingers%2C+extra+limbs%2C+deformed+hands%2C+deformed+face%2C+blurry%2C+low+quality%2C+jpeg+artifacts%2C+out+of+frame%2C+cropped%2C+multiple+subjects+when+single+requested%2C+text%2C+letters%2C+numbers%2C+glyphs%2C+logo%2C+symbols%2C+game+screenshot%2C+screen+mockup%2C+perspective%2C+landscape%2C+people%2C+animals%2C+shiny+plastic%2C+glossy+3D+render%2C+modern+industrial+objects&nologo=true&private=true",
+      "file": "docs/art/ui-remaster-sources/ui.remaster.iron.jpg",
+      "bytes": 57406,
+      "sha256": "6d6f82f53aa7a0c2e1c9c8d45fc8239211d7f50848e28681ad1d129aac2ad2ee",
+      "generatedAt": "2026-11-06T08:01:52.711Z"
+    },
+    {
+      "id": "ui.remaster.button-red",
+      "category": "ui-material",
+      "subject": "rectangular oxblood leather plate with tarnished bronze edges",
+      "descriptors": "large empty crimson leather center, embossed dark red grain, narrow hammered brass rim, small original thorn corner cuts, front facing, no writing",
+      "subjectId": 4,
+      "variant": 0,
+      "seed": 700004,
+      "model": "sana",
+      "servedModel": "sana",
+      "width": 1024,
+      "height": 512,
+      "prompt": "subject: rectangular oxblood leather plate with tarnished bronze edges, large empty crimson leather center, embossed dark red grain, narrow hammered brass rim, small original thorn corner cuts, front facing, no writing, dark medieval craft, matte painterly material, subtle warm upper-left light, front-facing flat close-up, no scene, no characters, no text, quiet dark center, original unbranded gothic craft",
+      "negativePrompt": "text, watermark, signature, logo, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, multiple subjects when single requested, text, letters, numbers, glyphs, logo, symbols, game screenshot, screen mockup, perspective, landscape, people, animals, shiny plastic, glossy 3D render, modern industrial objects",
+      "sourceUrl": "https://image.pollinations.ai/prompt/subject%3A%20rectangular%20oxblood%20leather%20plate%20with%20tarnished%20bronze%20edges%2C%20large%20empty%20crimson%20leather%20center%2C%20embossed%20dark%20red%20grain%2C%20narrow%20hammered%20brass%20rim%2C%20small%20original%20thorn%20corner%20cuts%2C%20front%20facing%2C%20no%20writing%2C%20dark%20medieval%20craft%2C%20matte%20painterly%20material%2C%20subtle%20warm%20upper-left%20light%2C%20front-facing%20flat%20close-up%2C%20no%20scene%2C%20no%20characters%2C%20no%20text%2C%20quiet%20dark%20center%2C%20original%20unbranded%20gothic%20craft?model=sana&width=1024&height=512&seed=700004&negative_prompt=text%2C+watermark%2C+signature%2C+logo%2C+modern+clothing%2C+modern+weapons%2C+sci-fi%2C+neon%2C+anime%2C+chibi%2C+cute%2C+cartoon%2C+low+contrast%2C+oversaturated%2C+plastic+skin%2C+smooth+skin%2C+extra+fingers%2C+extra+limbs%2C+deformed+hands%2C+deformed+face%2C+blurry%2C+low+quality%2C+jpeg+artifacts%2C+out+of+frame%2C+cropped%2C+multiple+subjects+when+single+requested%2C+text%2C+letters%2C+numbers%2C+glyphs%2C+logo%2C+symbols%2C+game+screenshot%2C+screen+mockup%2C+perspective%2C+landscape%2C+people%2C+animals%2C+shiny+plastic%2C+glossy+3D+render%2C+modern+industrial+objects&nologo=true&private=true",
+      "file": "docs/art/ui-remaster-sources/ui.remaster.button-red.jpg",
+      "bytes": 39388,
+      "sha256": "8ba28e0134ddc8c5e06701e82828e90d875afd5e26a4d8914ec0e14ece0264ea",
+      "generatedAt": "2026-11-06T08:02:43.345Z"
+    },
+    {
+      "id": "ui.remaster.frame",
+      "category": "ui-material",
+      "subject": "rectangular antique bronze ornamental frame on black stone",
+      "descriptors": "thin double rails, four carved thorn corners, subtle diamond rivets, huge empty black center, symmetric front view, no writing",
+      "subjectId": 5,
+      "variant": 0,
+      "seed": 700005,
+      "model": "sana",
+      "servedModel": "sana",
+      "width": 1024,
+      "height": 512,
+      "prompt": "subject: rectangular antique bronze ornamental frame on black stone, thin double rails, four carved thorn corners, subtle diamond rivets, huge empty black center, symmetric front view, no writing, dark medieval craft, matte painterly material, subtle warm upper-left light, front-facing flat close-up, no scene, no characters, no text, quiet dark center, original unbranded gothic craft",
+      "negativePrompt": "text, watermark, signature, logo, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, multiple subjects when single requested, text, letters, numbers, glyphs, logo, symbols, game screenshot, screen mockup, perspective, landscape, people, animals, shiny plastic, glossy 3D render, modern industrial objects",
+      "sourceUrl": "https://image.pollinations.ai/prompt/subject%3A%20rectangular%20antique%20bronze%20ornamental%20frame%20on%20black%20stone%2C%20thin%20double%20rails%2C%20four%20carved%20thorn%20corners%2C%20subtle%20diamond%20rivets%2C%20huge%20empty%20black%20center%2C%20symmetric%20front%20view%2C%20no%20writing%2C%20dark%20medieval%20craft%2C%20matte%20painterly%20material%2C%20subtle%20warm%20upper-left%20light%2C%20front-facing%20flat%20close-up%2C%20no%20scene%2C%20no%20characters%2C%20no%20text%2C%20quiet%20dark%20center%2C%20original%20unbranded%20gothic%20craft?model=sana&width=1024&height=512&seed=700005&negative_prompt=text%2C+watermark%2C+signature%2C+logo%2C+modern+clothing%2C+modern+weapons%2C+sci-fi%2C+neon%2C+anime%2C+chibi%2C+cute%2C+cartoon%2C+low+contrast%2C+oversaturated%2C+plastic+skin%2C+smooth+skin%2C+extra+fingers%2C+extra+limbs%2C+deformed+hands%2C+deformed+face%2C+blurry%2C+low+quality%2C+jpeg+artifacts%2C+out+of+frame%2C+cropped%2C+multiple+subjects+when+single+requested%2C+text%2C+letters%2C+numbers%2C+glyphs%2C+logo%2C+symbols%2C+game+screenshot%2C+screen+mockup%2C+perspective%2C+landscape%2C+people%2C+animals%2C+shiny+plastic%2C+glossy+3D+render%2C+modern+industrial+objects&nologo=true&private=true",
+      "file": "docs/art/ui-remaster-sources/ui.remaster.frame.jpg",
+      "bytes": 57758,
+      "sha256": "35b55081dc2a41325088b62bb19529bed9b32a7e2310160f8357a3ef28abe0ae",
+      "generatedAt": "2026-11-06T08:02:49.421Z"
+    },
+    {
+      "id": "ui.remaster.header",
+      "category": "ui-material",
+      "subject": "horizontal black iron ornamental band with aged bronze carving",
+      "descriptors": "dark wrought metal, delicate thorn and diamond edge details, quiet wide empty black center, thin brass lines, no text",
+      "subjectId": 6,
+      "variant": 0,
+      "seed": 700006,
+      "model": "sana",
+      "servedModel": "sana",
+      "width": 1024,
+      "height": 512,
+      "prompt": "subject: horizontal black iron ornamental band with aged bronze carving, dark wrought metal, delicate thorn and diamond edge details, quiet wide empty black center, thin brass lines, no text, dark medieval craft, matte painterly material, subtle warm upper-left light, front-facing flat close-up, no scene, no characters, no text, quiet dark center, original unbranded gothic craft",
+      "negativePrompt": "text, watermark, signature, logo, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, multiple subjects when single requested, text, letters, numbers, glyphs, logo, symbols, game screenshot, screen mockup, perspective, landscape, people, animals, shiny plastic, glossy 3D render, modern industrial objects",
+      "sourceUrl": "https://image.pollinations.ai/prompt/subject%3A%20horizontal%20black%20iron%20ornamental%20band%20with%20aged%20bronze%20carving%2C%20dark%20wrought%20metal%2C%20delicate%20thorn%20and%20diamond%20edge%20details%2C%20quiet%20wide%20empty%20black%20center%2C%20thin%20brass%20lines%2C%20no%20text%2C%20dark%20medieval%20craft%2C%20matte%20painterly%20material%2C%20subtle%20warm%20upper-left%20light%2C%20front-facing%20flat%20close-up%2C%20no%20scene%2C%20no%20characters%2C%20no%20text%2C%20quiet%20dark%20center%2C%20original%20unbranded%20gothic%20craft?model=sana&width=1024&height=512&seed=700006&negative_prompt=text%2C+watermark%2C+signature%2C+logo%2C+modern+clothing%2C+modern+weapons%2C+sci-fi%2C+neon%2C+anime%2C+chibi%2C+cute%2C+cartoon%2C+low+contrast%2C+oversaturated%2C+plastic+skin%2C+smooth+skin%2C+extra+fingers%2C+extra+limbs%2C+deformed+hands%2C+deformed+face%2C+blurry%2C+low+quality%2C+jpeg+artifacts%2C+out+of+frame%2C+cropped%2C+multiple+subjects+when+single+requested%2C+text%2C+letters%2C+numbers%2C+glyphs%2C+logo%2C+symbols%2C+game+screenshot%2C+screen+mockup%2C+perspective%2C+landscape%2C+people%2C+animals%2C+shiny+plastic%2C+glossy+3D+render%2C+modern+industrial+objects&nologo=true&private=true",
+      "file": "docs/art/ui-remaster-sources/ui.remaster.header.jpg",
+      "bytes": 42236,
+      "sha256": "eae51e2085c9c046509ea39cf5dbf159588a1aff600904a67e944ccd8155b8b0",
+      "generatedAt": "2026-11-06T08:02:55.612Z"
+    },
+    {
+      "id": "ui.remaster.sanctuary",
+      "category": "ui-remaster-background",
+      "subject": "vast abandoned gothic sanctuary interior",
+      "descriptors": "dark ruined stone hall, distant pointed arches, tiny candle embers at sides, faint mist, charcoal and umber, very dark empty center, no people, no symbols, no text",
+      "subjectId": 1,
+      "variant": 0,
+      "seed": 800001,
+      "model": "sana",
+      "servedModel": "sana",
+      "width": 1920,
+      "height": 1080,
+      "prompt": "subject: vast abandoned gothic sanctuary interior, dark ruined stone hall, distant pointed arches, tiny candle embers at sides, faint mist, charcoal and umber, very dark empty center, no people, no symbols, no text, original dark fantasy atmospheric oil painting, wide composition, no people, no text, empty dark center, deep charcoal shadows, warm ember accents",
+      "negativePrompt": "text, watermark, signature, logo, ui, hud, frame, border, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, multiple subjects when single requested, text, symbols, logo, characters, modern objects",
+      "sourceUrl": "https://image.pollinations.ai/prompt/subject%3A%20vast%20abandoned%20gothic%20sanctuary%20interior%2C%20dark%20ruined%20stone%20hall%2C%20distant%20pointed%20arches%2C%20tiny%20candle%20embers%20at%20sides%2C%20faint%20mist%2C%20charcoal%20and%20umber%2C%20very%20dark%20empty%20center%2C%20no%20people%2C%20no%20symbols%2C%20no%20text%2C%20original%20dark%20fantasy%20atmospheric%20oil%20painting%2C%20wide%20composition%2C%20no%20people%2C%20no%20text%2C%20empty%20dark%20center%2C%20deep%20charcoal%20shadows%2C%20warm%20ember%20accents?model=sana&width=1920&height=1080&seed=800001&negative_prompt=text%2C+watermark%2C+signature%2C+logo%2C+ui%2C+hud%2C+frame%2C+border%2C+modern+clothing%2C+modern+weapons%2C+sci-fi%2C+neon%2C+anime%2C+chibi%2C+cute%2C+cartoon%2C+low+contrast%2C+oversaturated%2C+plastic+skin%2C+smooth+skin%2C+extra+fingers%2C+extra+limbs%2C+deformed+hands%2C+deformed+face%2C+blurry%2C+low+quality%2C+jpeg+artifacts%2C+out+of+frame%2C+cropped%2C+multiple+subjects+when+single+requested%2C+text%2C+symbols%2C+logo%2C+characters%2C+modern+objects&nologo=true&private=true",
+      "file": "docs/art/ui-remaster-sources/ui.remaster.sanctuary.jpg",
+      "bytes": 51388,
+      "sha256": "5c7f03dc71232659ff42a604b319d8ace2fafa30ceecd6801525b672ced4d0d9",
+      "generatedAt": "2026-11-06T08:03:02.297Z"
+    },
+    {
+      "id": "ui.remaster.button-red",
+      "category": "ui-material",
+      "subject": "deep oxblood red leather texture",
+      "descriptors": "flat full canvas closeup, embossed fine red grain, dark crimson, worn dry leather, no objects, no scene, no lettering",
+      "subjectId": 4,
+      "variant": 1,
+      "seed": 710004,
+      "model": "sana",
+      "servedModel": "sana",
+      "width": 1024,
+      "height": 512,
+      "prompt": "subject: deep oxblood red leather texture, flat full canvas closeup, embossed fine red grain, dark crimson, worn dry leather, no objects, no scene, no lettering, dark medieval craft, matte painterly material, subtle warm upper-left light, front-facing flat close-up, no scene, no characters, no text, quiet dark center, original unbranded gothic craft",
+      "negativePrompt": "text, watermark, signature, logo, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, multiple subjects when single requested, text, letters, numbers, glyphs, logo, symbols, game screenshot, screen mockup, perspective, landscape, people, animals, shiny plastic, glossy 3D render, modern industrial objects",
+      "sourceUrl": "https://image.pollinations.ai/prompt/subject%3A%20deep%20oxblood%20red%20leather%20texture%2C%20flat%20full%20canvas%20closeup%2C%20embossed%20fine%20red%20grain%2C%20dark%20crimson%2C%20worn%20dry%20leather%2C%20no%20objects%2C%20no%20scene%2C%20no%20lettering%2C%20dark%20medieval%20craft%2C%20matte%20painterly%20material%2C%20subtle%20warm%20upper-left%20light%2C%20front-facing%20flat%20close-up%2C%20no%20scene%2C%20no%20characters%2C%20no%20text%2C%20quiet%20dark%20center%2C%20original%20unbranded%20gothic%20craft?model=sana&width=1024&height=512&seed=710004&negative_prompt=text%2C+watermark%2C+signature%2C+logo%2C+modern+clothing%2C+modern+weapons%2C+sci-fi%2C+neon%2C+anime%2C+chibi%2C+cute%2C+cartoon%2C+low+contrast%2C+oversaturated%2C+plastic+skin%2C+smooth+skin%2C+extra+fingers%2C+extra+limbs%2C+deformed+hands%2C+deformed+face%2C+blurry%2C+low+quality%2C+jpeg+artifacts%2C+out+of+frame%2C+cropped%2C+multiple+subjects+when+single+requested%2C+text%2C+letters%2C+numbers%2C+glyphs%2C+logo%2C+symbols%2C+game+screenshot%2C+screen+mockup%2C+perspective%2C+landscape%2C+people%2C+animals%2C+shiny+plastic%2C+glossy+3D+render%2C+modern+industrial+objects&nologo=true&private=true",
+      "file": "docs/art/ui-remaster-sources/ui.remaster.button-red.v1.jpg",
+      "bytes": 69873,
+      "sha256": "9d7e971f39757cc0fff6a9753cefdf797d4b0fb8d28ad3c007010d988e519314",
+      "generatedAt": "2026-11-06T08:03:20.710Z"
+    },
+    {
+      "id": "ui.remaster.header",
+      "category": "ui-material",
+      "subject": "blackened iron material texture with narrow bronze ornamental edges",
+      "descriptors": "flat full canvas closeup, empty dark center, subtle horizontal etched linework at top and bottom, no objects, no perspective, no lettering",
+      "subjectId": 6,
+      "variant": 1,
+      "seed": 710006,
+      "model": "sana",
+      "servedModel": "sana",
+      "width": 1024,
+      "height": 512,
+      "prompt": "subject: blackened iron material texture with narrow bronze ornamental edges, flat full canvas closeup, empty dark center, subtle horizontal etched linework at top and bottom, no objects, no perspective, no lettering, dark medieval craft, matte painterly material, subtle warm upper-left light, front-facing flat close-up, no scene, no characters, no text, quiet dark center, original unbranded gothic craft",
+      "negativePrompt": "text, watermark, signature, logo, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, multiple subjects when single requested, text, letters, numbers, glyphs, logo, symbols, game screenshot, screen mockup, perspective, landscape, people, animals, shiny plastic, glossy 3D render, modern industrial objects",
+      "sourceUrl": "https://image.pollinations.ai/prompt/subject%3A%20blackened%20iron%20material%20texture%20with%20narrow%20bronze%20ornamental%20edges%2C%20flat%20full%20canvas%20closeup%2C%20empty%20dark%20center%2C%20subtle%20horizontal%20etched%20linework%20at%20top%20and%20bottom%2C%20no%20objects%2C%20no%20perspective%2C%20no%20lettering%2C%20dark%20medieval%20craft%2C%20matte%20painterly%20material%2C%20subtle%20warm%20upper-left%20light%2C%20front-facing%20flat%20close-up%2C%20no%20scene%2C%20no%20characters%2C%20no%20text%2C%20quiet%20dark%20center%2C%20original%20unbranded%20gothic%20craft?model=sana&width=1024&height=512&seed=710006&negative_prompt=text%2C+watermark%2C+signature%2C+logo%2C+modern+clothing%2C+modern+weapons%2C+sci-fi%2C+neon%2C+anime%2C+chibi%2C+cute%2C+cartoon%2C+low+contrast%2C+oversaturated%2C+plastic+skin%2C+smooth+skin%2C+extra+fingers%2C+extra+limbs%2C+deformed+hands%2C+deformed+face%2C+blurry%2C+low+quality%2C+jpeg+artifacts%2C+out+of+frame%2C+cropped%2C+multiple+subjects+when+single+requested%2C+text%2C+letters%2C+numbers%2C+glyphs%2C+logo%2C+symbols%2C+game+screenshot%2C+screen+mockup%2C+perspective%2C+landscape%2C+people%2C+animals%2C+shiny+plastic%2C+glossy+3D+render%2C+modern+industrial+objects&nologo=true&private=true",
+      "file": "docs/art/ui-remaster-sources/ui.remaster.header.v1.jpg",
+      "bytes": 60799,
+      "sha256": "ce8ca77ddca4b38b45e795284b58b72055bdf1d7cc8d35928cd7d10ade5e3f78",
+      "generatedAt": "2026-11-06T08:03:26.836Z"
+    },
+    {
+      "id": "ui.remaster.stone.shipping",
+      "category": "ui-material",
+      "kind": "optimized-derivative",
+      "file": "public/assets/d2/generated/ui-materials/ui.remaster.stone.webp",
+      "sourceFile": "docs/art/ui-remaster-sources/ui.remaster.stone.v1.jpg",
+      "sourceSha256": "3ae862d9af06e47e39c596082d3690f19bacbd1581989c3d30cea86779ca1d98",
+      "sourceId": "ui.remaster.stone",
+      "sourceVariant": 1,
+      "processing": {
+        "crop": [
+          0,
+          0,
+          1024,
+          480
+        ],
+        "sourceDimensions": [
+          1024,
+          512
+        ],
+        "encoder": "Pillow WebP quality=82 method=6"
+      },
+      "width": 1024,
+      "height": 480,
+      "bytes": 40088,
+      "sha256": "b4c6c99f9765afae4552965a786b975f5820db67e830177923cdf13f8f0169a2",
+      "review": "accepted original material; no baked text or brand mark in shipping crop"
+    },
+    {
+      "id": "ui.remaster.leather.shipping",
+      "category": "ui-material",
+      "kind": "optimized-derivative",
+      "file": "public/assets/d2/generated/ui-materials/ui.remaster.leather.webp",
+      "sourceFile": "docs/art/ui-remaster-sources/ui.remaster.leather.jpg",
+      "sourceSha256": "d1eaaa33df951d9b1939ba8270cc6954f96a318b86725caba12cc53855dd9328",
+      "sourceId": "ui.remaster.leather",
+      "sourceVariant": 0,
+      "processing": {
+        "crop": [
+          0,
+          0,
+          1024,
+          480
+        ],
+        "sourceDimensions": [
+          1024,
+          512
+        ],
+        "encoder": "Pillow WebP quality=82 method=6"
+      },
+      "width": 1024,
+      "height": 480,
+      "bytes": 37964,
+      "sha256": "446910531e6ea8e7a0080a736b8a7c1445af4b3d5419256d613afb684219b8ce",
+      "review": "accepted original material; no baked text or brand mark in shipping crop"
+    },
+    {
+      "id": "ui.remaster.iron.shipping",
+      "category": "ui-material",
+      "kind": "optimized-derivative",
+      "file": "public/assets/d2/generated/ui-materials/ui.remaster.iron.webp",
+      "sourceFile": "docs/art/ui-remaster-sources/ui.remaster.iron.jpg",
+      "sourceSha256": "6d6f82f53aa7a0c2e1c9c8d45fc8239211d7f50848e28681ad1d129aac2ad2ee",
+      "sourceId": "ui.remaster.iron",
+      "sourceVariant": 0,
+      "processing": {
+        "crop": [
+          0,
+          0,
+          1024,
+          480
+        ],
+        "sourceDimensions": [
+          1024,
+          512
+        ],
+        "encoder": "Pillow WebP quality=82 method=6"
+      },
+      "width": 1024,
+      "height": 480,
+      "bytes": 21184,
+      "sha256": "275b39f10dcb7cf43daa6fb7d7cde2e477e61eaec46631f3bd876989e8f70e8f",
+      "review": "accepted original material; no baked text or brand mark in shipping crop"
+    },
+    {
+      "id": "ui.remaster.button-red.shipping",
+      "category": "ui-material",
+      "kind": "optimized-derivative",
+      "file": "public/assets/d2/generated/ui-materials/ui.remaster.button-red.webp",
+      "sourceFile": "docs/art/ui-remaster-sources/ui.remaster.button-red.v1.jpg",
+      "sourceSha256": "9d7e971f39757cc0fff6a9753cefdf797d4b0fb8d28ad3c007010d988e519314",
+      "sourceId": "ui.remaster.button-red",
+      "sourceVariant": 1,
+      "processing": {
+        "crop": [
+          0,
+          0,
+          1024,
+          480
+        ],
+        "sourceDimensions": [
+          1024,
+          512
+        ],
+        "encoder": "Pillow WebP quality=82 method=6"
+      },
+      "width": 1024,
+      "height": 480,
+      "bytes": 32074,
+      "sha256": "d974a90cc6b72abf94cac811b39ee65cd3987ef7b25bd852a8c5b62f08fd5d77",
+      "review": "accepted original material; no baked text or brand mark in shipping crop"
+    },
+    {
+      "id": "ui.remaster.frame.shipping",
+      "category": "ui-material",
+      "kind": "optimized-derivative",
+      "file": "public/assets/d2/generated/ui-materials/ui.remaster.frame.webp",
+      "sourceFile": "docs/art/ui-remaster-sources/ui.remaster.frame.jpg",
+      "sourceSha256": "35b55081dc2a41325088b62bb19529bed9b32a7e2310160f8357a3ef28abe0ae",
+      "sourceId": "ui.remaster.frame",
+      "sourceVariant": 0,
+      "processing": {
+        "crop": [
+          248,
+          108,
+          780,
+          467
+        ],
+        "sourceDimensions": [
+          1024,
+          512
+        ],
+        "encoder": "Pillow WebP quality=82 method=6",
+        "transparentCenter": [
+          40,
+          40,
+          491,
+          318
+        ]
+      },
+      "width": 532,
+      "height": 359,
+      "bytes": 4178,
+      "sha256": "c6ae99a42601c1adb5dd8f9905d6b1706856c4881f48102fd84c1e429b790ba7",
+      "review": "accepted original material; no baked text or brand mark in shipping crop"
+    },
+    {
+      "id": "ui.remaster.header.shipping",
+      "category": "ui-material",
+      "kind": "optimized-derivative",
+      "file": "public/assets/d2/generated/ui-materials/ui.remaster.header.webp",
+      "sourceFile": "docs/art/ui-remaster-sources/ui.remaster.header.v1.jpg",
+      "sourceSha256": "ce8ca77ddca4b38b45e795284b58b72055bdf1d7cc8d35928cd7d10ade5e3f78",
+      "sourceId": "ui.remaster.header",
+      "sourceVariant": 1,
+      "processing": {
+        "crop": [
+          155,
+          100,
+          885,
+          196
+        ],
+        "sourceDimensions": [
+          1024,
+          512
+        ],
+        "encoder": "Pillow WebP quality=82 method=6"
+      },
+      "width": 730,
+      "height": 96,
+      "bytes": 6356,
+      "sha256": "6df3fa75d12b7a3f2be02cc33224f725af9c2badf732931b3a644c5c116669d4",
+      "review": "accepted original material; no baked text or brand mark in shipping crop"
+    },
+    {
+      "id": "ui.remaster.sanctuary.shipping",
+      "category": "ui-remaster-background",
+      "kind": "optimized-derivative",
+      "file": "public/assets/d2/generated/ui-backgrounds/ui.remaster.sanctuary.webp",
+      "sourceFile": "docs/art/ui-remaster-sources/ui.remaster.sanctuary.jpg",
+      "sourceSha256": "5c7f03dc71232659ff42a604b319d8ace2fafa30ceecd6801525b672ced4d0d9",
+      "sourceId": "ui.remaster.sanctuary",
+      "sourceVariant": 0,
+      "processing": {
+        "crop": [
+          0,
+          0,
+          1024,
+          542
+        ],
+        "sourceDimensions": [
+          1024,
+          576
+        ],
+        "encoder": "Pillow WebP quality=82 method=6"
+      },
+      "width": 1024,
+      "height": 542,
+      "bytes": 17182,
+      "sha256": "8f7cb2c2cc3037e4a09776abeb16fbc553cf402e3ac320f136ba84fd038269d2",
+      "review": "accepted original material; no baked text or brand mark in shipping crop"
     }
   ]
 }

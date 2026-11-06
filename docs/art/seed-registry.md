@@ -757,3 +757,20 @@ Planned subjectId ranges for full production:
 | 629 | skills.sorceress.enchant | Enchant | 0 | allocated for full-production skill-icon recovery; data id `skills-sorceress-enchant`; full-production recovery blocked: no accepted production replacement file created before handoff after repeated service timeout/abort; do not expose stale pilot art; data id `skills-sorceress-enchant`; continuation accepted 2026-05-01; asset `public/assets/d2/generated/skill-icons/skills.sorceress.enchant.png`; data id `skills-sorceress-enchant` |
 | 630 | skills.sorceress.hydra | Hydra | 0 | allocated for full-production skill-icon recovery; data id `skills-sorceress-hydra`; full-production recovery blocked: no accepted production replacement file created before handoff after repeated service timeout/abort; do not expose stale pilot art; data id `skills-sorceress-hydra`; continuation accepted 2026-05-01; asset `public/assets/d2/generated/skill-icons/skills.sorceress.hydra.png`; data id `skills-sorceress-hydra` |
 
+
+## ui-material (seed-base 700000; preset v4, original remaster materials)
+
+| subjectId | id | subject | accepted variant | notes |
+|----------:|----|---------|------------------|-------|
+| 1 | ui.remaster.stone | Charcoal carved stone material | 1 | allocated 2026-11-06; v0 rejected: legacy Flux fallback to Sana produced portrait; v1 uses scoped concise Sana material prompt; accepted shipping WebP 2026-11-06; see ui-remaster-sources/SOURCE.md |
+| 2 | ui.remaster.leather | Blackened umber leather material | 0 | allocated 2026-11-06; accepted shipping WebP 2026-11-06; see ui-remaster-sources/SOURCE.md |
+| 3 | ui.remaster.iron | Tarnished iron and bronze material | 0 | allocated 2026-11-06; accepted shipping WebP 2026-11-06; see ui-remaster-sources/SOURCE.md |
+| 4 | ui.remaster.button-red | Oxblood embossed leather action plate | 1 | allocated 2026-11-06; accepted shipping WebP 2026-11-06; see ui-remaster-sources/SOURCE.md |
+| 5 | ui.remaster.frame | Thorn-carved antique bronze frame | 0 | allocated 2026-11-06; accepted shipping WebP 2026-11-06; see ui-remaster-sources/SOURCE.md |
+| 6 | ui.remaster.header | Ornamental iron header band | 1 | allocated 2026-11-06; accepted shipping WebP 2026-11-06; see ui-remaster-sources/SOURCE.md |
+
+## ui-remaster-background (seed-base 800000)
+
+| subjectId | id | subject | accepted variant | notes |
+|----------:|----|---------|------------------|-------|
+| 1 | ui.remaster.sanctuary | Original dark sanctuary shell atmosphere | 0 | allocated 2026-11-06; scoped concise Sana prompt; legacy scene categories unchanged; accepted shipping WebP 2026-11-06; see ui-remaster-sources/SOURCE.md |

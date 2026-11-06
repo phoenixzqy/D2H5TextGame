@@ -12,10 +12,11 @@ If you change anything here, update that file in the same commit.
 This is a private, non-commercial Diablo II-inspired H5 text game. We
 intentionally lean on the D2 / D2R aesthetic: dark fantasy, gothic,
 painterly, oil-on-canvas, dramatic chiaroscuro, muted earth-tone palette,
-no UI chrome inside the artwork itself, no modern items, no text in image.
+no UI chrome inside scene or portrait artwork, no modern items, no text in image.
+The approved `ui-material` category is the scoped exception for original interface materials and ornamental frames.
 
 ## 1. Global style preamble
-Prepended to **every** prompt:
+Prepended to every legacy-category prompt; scoped UI categories use their documented preset preamble:
 
 ```
 masterpiece dark fantasy oil painting, gothic Diablo II inspired,
@@ -198,3 +199,42 @@ All images are AI-generated via **Pollinations.AI**. Manifest at
 `public/assets/d2/generated/manifest.json` records prompt, seed, model,
 sha256, and timestamp for every file. The project remains private; before
 any public release, the manifest must be audited (release blocker).
+
+## 9. Original interface materials (preset v4, 2026-11-06)
+
+Producer-approved for the complete UI remaster. Existing categories retain their
+original prompts and negative lists. New category `ui-material` uses **Sana** at
+1024 × 512 with seed-base 700000 and output directory
+`public/assets/d2/generated/ui-materials`. New category
+`ui-remaster-background` uses Sana at 1920 × 1080 with seed-base 800000,
+writing to the existing `ui-backgrounds` output directory.
+
+The existing Pollinations endpoint now advertises only Sana and silently serves
+Sana for legacy Flux requests. A long Diablo scene preamble overwhelmed the
+material subject and produced a character portrait; that rejected source is
+recorded as stone variant 0. Scoped `promptPreamble` and `subjectFirst: true`
+keep the short concrete material subject ahead of general art direction. No
+historical category is changed. Each generated source records the served model.
+
+`ui-material.negativeRemove` removes only the exact global terms `ui`, `hud`,
+`frame`, and `border`; all other global negatives remain. This allows physical
+ornament without permitting lettering. The generator validates image signatures,
+preserves the actual JPEG/PNG extension, and limits each request to three minutes.
+
+Reference axis: user-supplied dark-fantasy ARPG interface references, medieval
+reliquary ironwork, hand-tooled leather, weathered stone. Borrow tactile material
+and contrast; do not reproduce franchise logos, typefaces, recognizable frame
+silhouettes, named iconography, or compositions.
+
+Medium: matte painterly material close-up, orthographic, no perspective.
+Palette: charcoal #171513, umber #30261e, oxblood #681e1c, tarnished bronze
+#8c7047, bone #d6c6a5. Key light from upper left, shadow at lower right.
+Composition: quiet dark center for live text; fine material grain; heavier
+ornament confined to perimeter. Corners use original thorn cuts, offset
+diamonds, and interrupted double rails. Never bake text into artwork.
+
+Exact style suffixes and negative additions are in `style-presets.json`.
+The service currently adds a Pollinations brand footer despite `nologo=true`.
+Unmodified source images retain it; shipping WebP derivatives crop that footer
+and retain attribution in `SOURCE.md`. Each source and derivative has its own
+append-only manifest record. No text is composited into shipping UI materials.
