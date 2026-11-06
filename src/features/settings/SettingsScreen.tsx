@@ -257,7 +257,7 @@ export function SettingsScreen() {
               href="https://www.buymeacoffee.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-d2-gold hover:underline focus:outline-none focus-visible:ring-2
+              className="d2-control px-4 py-2 hover:underline focus:outline-none focus-visible:ring-2
                          focus-visible:ring-d2-gold rounded inline-flex min-h-[44px] items-center"
             >
               ☕ {t('bmcLink')}

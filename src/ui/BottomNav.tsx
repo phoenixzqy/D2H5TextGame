@@ -69,12 +69,13 @@ export function BottomNav() {
     <nav
       aria-label={t('nav.aria')}
       className="
+        d2-nav
         order-last md:order-first
         flex-shrink-0
-        bg-d2-panel/95 backdrop-blur border-t border-d2-border
+        border-t border-d2-border
         pb-[env(safe-area-inset-bottom)]
-        md:border-t-0 md:border-r md:bg-d2-panel md:pb-0
-        md:w-20 md:h-full md:overflow-y-auto
+        md:border-t-0 md:border-r md:pb-0
+        md:w-24 md:h-full md:overflow-y-auto
       "
     >
       <ul
@@ -105,12 +106,12 @@ export function BottomNav() {
               to={item.to}
               className={({ isActive }) =>
                 [
-                  'flex flex-col items-center justify-center gap-1',
+                  'd2-nav-link flex flex-col items-center justify-center gap-1',
                   'min-h-[56px] md:min-h-[64px] py-2 text-xs',
                   'transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
                   isActive
-                    ? 'text-d2-gold bg-black/40'
-                    : 'text-d2-white/70 hover:text-d2-gold hover:bg-black/20'
+                    ? 'd2-nav-link--active text-d2-gold'
+                    : 'text-d2-white/70 hover:text-d2-gold'
                 ].join(' ')
               }
             >

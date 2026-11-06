@@ -61,7 +61,7 @@ export function CharacterHud() {
           level: player.level,
         })}
         className="
-          w-full min-w-0 flex items-center gap-2
+          d2-hud w-full min-w-0 flex items-center gap-2
           bg-d2-panel/90 backdrop-blur
           border border-d2-border rounded-lg
           shadow-lg
@@ -182,7 +182,7 @@ function MiniBar({ label, current, max, colorClass, testId }: MiniBarProps) {
         data-testid={testId}
       >
         <div
-          className={`h-full ${colorClass} transition-[width] duration-300`}
+          className={`d2-meter-fill h-full ${colorClass} transition-[width] duration-300`}
           style={{ width: `${String(pct)}%` }}
         />
       </div>

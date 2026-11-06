@@ -100,7 +100,7 @@ const ItemCell = memo(function ItemCell({
   const upgrade = useMemo(() => isUpgrade?.(item) ?? false, [isUpgrade, item]);
   return (
     <div className="relative h-full w-full">
-      <Tooltip content={<ItemTooltip item={item} />}>
+      <Tooltip content={<ItemTooltip item={item} />} referenceClassName="h-full w-full">
         <GameCard
           variant="item"
           size="md"

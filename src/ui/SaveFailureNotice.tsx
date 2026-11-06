@@ -10,20 +10,20 @@ export function SaveFailureNotice() {
   return (
     <div
       role="alert"
-      className="relative z-40 shrink-0 w-full bg-d2-panel border border-d2-gold p-3 text-d2-white text-sm"
+      className="d2-plaque relative z-40 shrink-0 w-full border border-d2-gold p-3 text-d2-white text-sm"
     >
       <p>{t('storageFailure')}</p>
-      <div className="flex gap-3">
+      <div className="flex flex-wrap gap-3 mt-2">
         <button
           type="button"
-          className="min-h-[44px] underline"
+          className="d2-control px-3 min-h-[44px]"
           onClick={() => {
             void flushSave()?.catch(() => undefined);
           }}
         >
           {t('saveNow')}
         </button>
-        <Link to="/settings" className="inline-flex items-center min-h-[44px] underline">
+        <Link to="/settings" className="d2-control px-3 inline-flex items-center min-h-[44px]">
           {t('exportSave')}
         </Link>
       </div>

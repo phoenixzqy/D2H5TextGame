@@ -20,7 +20,7 @@ function ResetConfirmation({ pending, close, confirm }: {
     return () => { if (trigger instanceof HTMLElement && trigger.isConnected) trigger.focus(); };
   }, []);
   return <dialog ref={dialog} aria-labelledby="town-reset-title" onCancel={event => { event.preventDefault(); close(); }}
-    className="d2-surface fixed inset-0 m-auto w-11/12 max-w-md max-h-[90dvh] overflow-y-auto rounded border-2 border-d2-gold bg-d2-panel p-4 text-d2-white backdrop:bg-black/80">
+    className="d2-dialog fixed inset-0 m-auto w-11/12 max-w-md max-h-[90dvh] overflow-y-auto p-4 text-d2-white backdrop:bg-black/80">
     <h2 id="town-reset-title" className="d2-section-title font-serif text-lg text-d2-gold">{t(`respec.confirmTitle.${pending.request.kind}`)}</h2>
     <p className="mt-3">{t(`respec.refund.${pending.request.kind}`, { count: pending.refund })}</p>
     <p className="mt-2">{pending.cost === 0 ? t('respec.freeConfirmation') : t('respec.paidConfirmation', { count: pending.cost })}</p>

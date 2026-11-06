@@ -450,7 +450,7 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
   return (
     /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 bg-black/80"
+      className="d2-modal-backdrop fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 bg-black/80"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -459,7 +459,7 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
     >
       <div
         className={[
-          'd2-surface bg-d2-panel border-2 border-d2-gold shadow-2xl shadow-d2-gold/20 animate-fadeIn',
+          'd2-dialog animate-fadeIn',
           'w-full rounded-t-lg sm:rounded-lg max-h-[85vh] sm:max-h-[90vh]',
           'sm:max-w-3xl sm:w-full',
           'flex flex-col overflow-hidden'

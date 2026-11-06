@@ -227,7 +227,7 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,webp}'],
         globIgnores: ['assets/d2/generated/manifest.json', 'e2e-reset.html'],
         // Public artwork has stable filenames and needs revisions on updates.
         dontCacheBustURLsMatching: /^assets\/[^/]+-[\w-]{8}\.(?:js|css)$/,

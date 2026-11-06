@@ -6,16 +6,16 @@ export default {
     extend: {
       colors: {
         d2: {
-          bg: '#0a0a0a',
-          panel: '#1a1410',
-          border: '#4a3a2a',
-          gold: '#c8a85a',
+          bg: '#0b0c0d',
+          panel: '#191b1d',
+          border: '#635643',
+          gold: '#d3b77b',
           // Item rarity colors
-          white: '#d0d0d0',
-          magic: '#6a82ff',
+          white: '#e0d9cc',
+          magic: '#9aaaff',
           rare: '#f5e26b',
-          unique: '#b8860b',
-          set: '#00b300',
+          unique: '#c8a66a',
+          set: '#62ce67',
           runeword: '#ff8c1a',
           // boss tier ring (per docs/art/card-design-spec.md §5)
           boss: '#9b2222'
@@ -38,7 +38,7 @@ export default {
         'd2-shimmer': 'd2-shimmer 4s ease-in-out infinite'
       },
       fontFamily: {
-        serif: ['Tinos', 'Georgia', 'Times New Roman', 'serif'],
+        serif: ['Palatino Linotype', 'Book Antiqua', 'Georgia', 'Songti SC', 'STSong', 'SimSun', 'serif'],
         sans: [
           'system-ui',
           '-apple-system',

@@ -273,7 +273,7 @@ function CardBanner({
       ? 'font-serif text-sm font-semibold tracking-wide truncate'
       : 'font-serif text-base font-semibold tracking-wide truncate';
   return (
-    <div className="flex items-center gap-1.5 px-1.5 py-1 border-b border-d2-border/60 bg-black/30">
+    <div className="d2-card-banner flex items-center gap-1.5 px-1.5 py-1 border-b border-d2-border/60 bg-black/30">
       <span
         className={`inline-block w-2.5 h-2.5 rounded-full shrink-0 ${RARITY_GEM[rarity]}`}
         aria-hidden
@@ -307,7 +307,7 @@ function CardArt({
   const objectPosCls = variant === 'item' ? 'object-center' : 'object-top';
   return (
     <div
-      className="relative flex-1 overflow-hidden bg-d2-bg/80 flex items-center justify-center"
+      className="d2-card-art relative flex-1 overflow-hidden bg-d2-bg/80 flex items-center justify-center"
       aria-hidden={!showImg}
     >
       {showImg ? (
@@ -344,7 +344,7 @@ function StatPlate({ stat, size }: { stat: CardStat; size: CardSize }): JSX.Elem
             ? 'text-d2-white'
             : 'text-d2-gold';
   return (
-    <div className="flex flex-col items-center justify-center bg-black/40 border border-d2-border/70 rounded px-1 py-0.5 min-w-[2rem]">
+    <div className="d2-surface flex flex-col items-center justify-center bg-black/40 border border-d2-border/70 rounded px-1 py-0.5 min-w-[2rem]">
       <span className="font-sans text-micro uppercase tracking-widest text-d2-white/60 leading-none">
         {stat.label}
       </span>
@@ -359,7 +359,7 @@ function ResourceBar({ bar }: { bar: CardBar }): JSX.Element {
   const style: CSSProperties = { width: `${pct.toFixed(2)}%` };
   return (
     <div
-      className="h-1 w-full bg-black/60 border border-d2-border/40 rounded-sm overflow-hidden"
+      className="d2-meter h-2 w-full bg-black/60 border border-d2-border/40 rounded-sm overflow-hidden"
       role="progressbar"
       aria-valuenow={Math.max(0, Math.floor(bar.current))}
       aria-valuemin={0}
@@ -367,7 +367,7 @@ function ResourceBar({ bar }: { bar: CardBar }): JSX.Element {
       aria-label={t(BAR_LABEL[bar.kind])}
     >
       <div
-        className={`${BAR_BG[bar.kind]} h-full transition-[width] duration-300`}
+        className={`d2-meter-fill d2-meter-fill--${bar.kind} ${BAR_BG[bar.kind]} h-full transition-[width] duration-300`}
         style={style}
       />
     </div>
@@ -412,7 +412,7 @@ function GameCardImpl({
     fluid
       ? 'relative flex flex-col rounded-md overflow-hidden'
       : 'relative inline-flex flex-col rounded-md overflow-hidden',
-    'bg-d2-panel text-d2-white shadow-inner shadow-black/60',
+    'd2-card text-d2-white',
     'transition-transform duration-150',
     sizeCls,
     strokeCls,

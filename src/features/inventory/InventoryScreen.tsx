@@ -582,7 +582,7 @@ function MobileBottomSheet({
 
   return (
     <FloatingFocusManager context={context} initialFocus={refs.floating} returnFocus={opener} restoreFocus>
-    <div className="md:hidden fixed inset-0 z-40" data-testid="inv-detail-sheet">
+    <div className="d2-modal-backdrop md:hidden fixed inset-0 z-40" data-testid="inv-detail-sheet">
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <div
         className="absolute inset-0 bg-black/60 motion-safe:animate-fadeIn"
@@ -593,7 +593,7 @@ function MobileBottomSheet({
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- The dialog owns Escape dismissal without making its content a control. */}
       <div
         ref={refs.setFloating}
-        className="d2-surface absolute left-0 right-0 bottom-0 bg-d2-panel border-t-2 border-d2-gold rounded-t-lg p-4 max-h-[85vh] overflow-y-auto scrollbar-d2 motion-safe:animate-fadeIn"
+        className="d2-dialog absolute left-0 right-0 bottom-0 p-4 max-h-[85vh] overflow-y-auto scrollbar-d2 motion-safe:animate-fadeIn"
         role="dialog"
         aria-modal="true"
         aria-label={t('details')}

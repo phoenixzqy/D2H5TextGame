@@ -58,17 +58,17 @@ export function CharacterCreate() {
 
   return (
     <div
-      className="min-h-[100dvh] bg-d2-bg text-d2-white px-3 py-4
+      className="d2-create min-h-[100dvh] bg-d2-bg text-d2-white px-3 py-4
                  pt-[max(1rem,env(safe-area-inset-top))]
                  pb-[max(1rem,env(safe-area-inset-bottom))] overflow-x-hidden"
       data-testid="character-create"
     >
       <div className="max-w-2xl mx-auto space-y-4">
-        <header className="flex items-center justify-between">
+        <header className="d2-create-header flex items-center justify-between">
           <button
             type="button"
             onClick={() => { navigate('/'); }}
-            className="text-d2-white/70 hover:text-d2-gold min-h-[44px] min-w-[44px]
+            className="d2-control px-3 text-d2-white/70 hover:text-d2-gold min-h-[44px] min-w-[44px]
                        focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold rounded"
             aria-label={t('common:back')}
           >
@@ -126,7 +126,7 @@ export function CharacterCreate() {
             onChange={(e) => { setName(e.target.value); }}
             placeholder={t('enterName')}
             maxLength={16}
-            className="w-full min-h-[44px] px-3 py-2 rounded
+            className="d2-field w-full min-h-[44px] px-3 py-2 rounded
                        bg-d2-bg border border-d2-border text-d2-white
                        focus:outline-none focus:border-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold"
             data-testid="character-name-input"
@@ -143,7 +143,7 @@ export function CharacterCreate() {
                 onClick={() => { setGender(g); }}
                 aria-pressed={gender === g}
                 className={[
-                  'flex-1 min-h-[44px] px-3 py-2 rounded border',
+                  'd2-control flex-1 min-h-[44px] px-3 py-2 rounded border',
                   'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
                   gender === g
                     ? 'border-d2-gold bg-d2-gold/10 text-d2-gold'

@@ -24,19 +24,19 @@ export function ScreenShell({ children, testId, title, hideNav = false, footer }
       // Bug #10: outer shell is exactly 100dvh (fallback 100vh) and never
       // scrolls. Children — the sidebar/nav and the main column — share
       // its height; only `<main>` is allowed to scroll vertically.
-      className="h-screen h-[100dvh] bg-d2-bg text-d2-white flex flex-col md:flex-row overflow-hidden"
+      className="d2-shell h-screen h-[100dvh] text-d2-white flex flex-col md:flex-row overflow-hidden"
       data-testid={testId}
     >
       {!hideNav && <BottomNav />}
       <div className="flex-1 flex flex-col min-w-0 min-h-0 overflow-hidden">
         <SaveFailureNotice />
         <header
-          className="shrink-0 z-30 bg-d2-panel/95 backdrop-blur border-b border-d2-border
+          className="d2-header shrink-0 z-30
                      flex flex-wrap items-center gap-x-3 gap-y-2 empty:hidden
                      px-4 py-3 pt-[max(0.75rem,env(safe-area-inset-top))]"
         >
           {title && (
-            <div className="flex-1 basis-40 min-w-0 break-words text-d2-gold font-serif text-lg">
+            <div className="d2-screen-title flex-1 basis-40 min-w-0 break-words text-d2-gold font-serif text-lg">
               {title}
             </div>
           )}
@@ -44,13 +44,13 @@ export function ScreenShell({ children, testId, title, hideNav = false, footer }
         </header>
         <main
           className={[
-            'flex-1 min-w-0 min-h-0 overflow-y-auto px-3 py-3 md:px-6 md:py-4',
-            hideNav ? 'pb-[env(safe-area-inset-bottom)]' : 'pb-[calc(72px+env(safe-area-inset-bottom))] md:pb-4',
+            'd2-main scrollbar-d2 relative flex-1 min-w-0 min-h-0 overflow-y-auto px-3 py-4 md:px-8 md:py-7',
+            'pb-[max(1rem,env(safe-area-inset-bottom))]',
           ].join(' ')}
         >
           {children}
         </main>
-        {footer && <div className="shrink-0">{footer}</div>}
+        {footer && <div className="d2-footer shrink-0">{footer}</div>}
       </div>
     </div>
   );

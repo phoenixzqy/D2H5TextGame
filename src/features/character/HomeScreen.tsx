@@ -14,7 +14,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, GameImage, getZoneArtUrl } from '@/ui';
+import { Button, Panel } from '@/ui';
 import { hasSave } from '@/stores';
 import { OfflineBonusBanner } from '@/features/idle/OfflineBonusBanner';
 import { SaveFailureNotice } from '@/ui/SaveFailureNotice';
@@ -45,30 +45,24 @@ export function HomeScreen() {
 
   return (
     <div
-      className="relative min-h-[100dvh] flex flex-col items-center justify-between
+      className="d2-home relative min-h-[100dvh] flex flex-col items-center justify-between
                  px-4 py-8 pt-[max(2rem,env(safe-area-inset-top))]
                  pb-[max(2rem,env(safe-area-inset-bottom))]
-                 bg-gradient-to-b from-d2-bg via-d2-panel to-d2-bg overflow-hidden"
+                 overflow-hidden"
       data-testid="home-screen"
     >
       <SaveFailureNotice />
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <GameImage
-          src={getZoneArtUrl(1)}
-          alt=""
-          fallbackIcon=""
-          size="fill"
-          className="rounded-none border-0 bg-none"
-          imageClassName="w-full h-full object-cover opacity-15"
-        />
-      </div>
       <div className="relative z-10 flex-1 flex items-center justify-center w-full">
-        <Panel className="max-w-md w-full text-center">
-          <div className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-d2-gold mb-2 drop-shadow-lg font-serif">
+        <Panel className="d2-home-menu max-w-md w-full text-center">
+          <div className="mb-8 flex flex-col items-center">
+            <svg className="d2-sigil mb-5" viewBox="0 0 48 48" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
+              <path d="M24 3 39 15v18L24 45 9 33V15L24 3Z M24 10v28M16 19l8-5 8 5-8 15-8-15ZM3 24h9m24 0h9" />
+              <path d="m18 7 6 3 6-3M18 41l6-3 6 3" />
+            </svg>
+            <h1 className="d2-home-title text-4xl md:text-5xl mb-4 font-serif">
               {t('home.title')}
             </h1>
-            <p className="text-lg text-d2-rare">{t('home.subtitle')}</p>
+            <p className="d2-home-subtitle">{t('home.subtitle')}</p>
           </div>
 
           <div className="mb-4">
@@ -111,7 +105,7 @@ export function HomeScreen() {
           href="https://www.buymeacoffee.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-d2-border hover:text-d2-gold underline-offset-2 hover:underline
+          className="d2-control inline-flex items-center px-4 py-2 text-sm underline-offset-2 hover:underline
                      focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold rounded"
         >
           ☕ {t('home.bmc')}

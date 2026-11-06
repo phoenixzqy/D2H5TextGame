@@ -9,11 +9,11 @@ interface PanelProps {
 export function Panel({ children, className = '', title, ...rest }: PanelProps) {
   return (
     <div
-      className={`bg-d2-panel border-2 border-d2-border rounded-lg p-4 shadow-2xl ${className}`}
+      className={`d2-panel p-4 ${className}`}
       data-testid={rest['data-testid']}
     >
       {title && (
-        <h2 className="text-2xl font-serif font-bold text-d2-gold mb-4 border-b border-d2-border pb-2">
+        <h2 className="d2-panel-title text-xl font-serif text-d2-gold mb-4 pb-3">
           {title}
         </h2>
       )}

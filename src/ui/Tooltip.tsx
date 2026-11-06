@@ -38,9 +38,11 @@ interface TooltipProps {
   content: ReactNode;
   children: ReactNode;
   className?: string;
+  /** Size the reference wrapper when its child fills a parent slot. */
+  referenceClassName?: string;
 }
 
-export function Tooltip({ content, children, className = '' }: TooltipProps): JSX.Element {
+export function Tooltip({ content, children, className = '', referenceClassName = '' }: TooltipProps): JSX.Element {
   const [open, setOpen] = useState(false);
 
   const { refs, floatingStyles, context } = useFloating({
@@ -72,7 +74,7 @@ export function Tooltip({ content, children, className = '' }: TooltipProps): JS
       */}
       <span
         ref={refs.setReference}
-        className="relative inline-block"
+        className={`relative inline-block ${referenceClassName}`}
         // Touch support: tap-to-show, tap-elsewhere-to-dismiss (via useDismiss).
         onTouchStart={() => { setOpen(true); }}
         {...getReferenceProps()}
@@ -87,8 +89,7 @@ export function Tooltip({ content, children, className = '' }: TooltipProps): JS
             {...getFloatingProps()}
             className={[
               'z-50 pointer-events-none',
-              'bg-d2-bg border-2 border-d2-gold rounded p-3 text-sm text-d2-white',
-              'shadow-2xl shadow-d2-gold/20 whitespace-normal',
+              'd2-tooltip p-3 text-sm text-d2-white whitespace-normal',
               'max-w-[min(18rem,calc(100vw-1rem))]',
               'motion-safe:animate-fadeIn',
               className

@@ -38,7 +38,7 @@ function TradeConfirmation({ pending, close, confirm }: {
   }, []);
   return <dialog ref={dialog} aria-labelledby={titleId} aria-describedby={descriptionId}
     onCancel={event => { event.preventDefault(); close(); }}
-    className="d2-surface fixed inset-0 m-auto w-11/12 max-w-md max-h-[90dvh] overflow-y-auto rounded border-2 border-d2-gold bg-d2-panel p-4 text-d2-white backdrop:bg-black/80">
+    className="d2-dialog fixed inset-0 m-auto w-11/12 max-w-md max-h-[90dvh] overflow-y-auto p-4 text-d2-white backdrop:bg-black/80">
     <h2 id={titleId} className="d2-section-title font-serif text-lg text-d2-gold">{t('anyaTrades.confirmTitle')}</h2>
     <p id={descriptionId} className="mt-3 break-words">{t('anyaTrades.confirmation', {
       name: itemName(pending.offer, t), scrap: pending.offer.costs.materials['materials/scrap'],

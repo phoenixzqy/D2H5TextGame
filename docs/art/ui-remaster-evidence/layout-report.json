@@ -1,0 +1,6081 @@
+{
+  "rows": [
+    {
+      "file": "character-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 491,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "character-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 491,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "combat-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 339,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "combat-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 339,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "controls-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "controls-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "crafting-dialog-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "crafting-dialog-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "create-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "create-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "endgame-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "endgame-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "equip-picker-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equip-picker-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equipment-dialog-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equipment-dialog-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "gacha-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "gacha-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "home-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 4,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "home-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 4,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "import-dialog-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "import-dialog-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "inventory-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        }
+      ],
+      "dialogs": []
+    },
+    {
+      "file": "inventory-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        },
+        {
+          "width": 75.5,
+          "height": 75.5
+        }
+      ],
+      "dialogs": []
+    },
+    {
+      "file": "item-details-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 7,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "item-details-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 7,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "map-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 371,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "map-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 371,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "mercs-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "mercs-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "notices-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 233,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "notices-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 253,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "quests-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "quests-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "save-error-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 233,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "save-error-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 253,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "settings-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "settings-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "skills-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "skills-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-services-en.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 5,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-services-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 5,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-zh-CN.html",
+      "width": 360,
+      "height": 640,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 418,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "character-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 766,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "character-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 766,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "combat-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 614,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "combat-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 614,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "controls-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "controls-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "crafting-dialog-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "crafting-dialog-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "create-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "create-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "endgame-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "endgame-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "equip-picker-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equip-picker-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equipment-dialog-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equipment-dialog-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "gacha-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "gacha-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "home-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 4,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "home-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 4,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "import-dialog-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "import-dialog-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "inventory-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        }
+      ],
+      "dialogs": []
+    },
+    {
+      "file": "inventory-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.1875,
+          "height": 69.1875
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        },
+        {
+          "width": 69.203125,
+          "height": 69.203125
+        }
+      ],
+      "dialogs": []
+    },
+    {
+      "file": "item-details-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 7,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "item-details-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 7,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "map-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 682,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "map-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 682,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "mercs-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "mercs-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "notices-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 544,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "notices-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 564,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "quests-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "quests-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "save-error-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 544,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "save-error-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 564,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "settings-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "settings-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "skills-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "skills-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-services-en.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 5,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-services-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 5,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-zh-CN.html",
+      "width": 412,
+      "height": 915,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 729,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "character-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 324,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "character-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 324,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "combat-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 259,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "combat-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 259,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "controls-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "controls-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "crafting-dialog-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "crafting-dialog-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "create-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "create-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "endgame-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "endgame-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "equip-picker-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equip-picker-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equipment-dialog-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equipment-dialog-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "gacha-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "gacha-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "home-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 4,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "home-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 4,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "import-dialog-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "import-dialog-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "inventory-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        }
+      ],
+      "dialogs": []
+    },
+    {
+      "file": "inventory-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.3125,
+          "height": 67.3125
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        },
+        {
+          "width": 67.296875,
+          "height": 67.296875
+        }
+      ],
+      "dialogs": []
+    },
+    {
+      "file": "item-details-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 7,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "item-details-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 7,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "map-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 265,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "map-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 265,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "mercs-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "mercs-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "notices-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 147,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "notices-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 167,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "quests-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "quests-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "save-error-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 147,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "save-error-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 167,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "settings-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "settings-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "skills-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "skills-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-services-en.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 5,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-services-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 5,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-zh-CN.html",
+      "width": 915,
+      "height": 412,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 312,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "character-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 712,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "character-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 712,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "combat-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 690,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "combat-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 690,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "controls-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "controls-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "crafting-dialog-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.546875,
+          "height": 66.546875
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "crafting-dialog-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.546875,
+          "height": 66.546875
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "create-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "create-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "endgame-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "endgame-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "equip-picker-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.546875,
+          "height": 66.546875
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equip-picker-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.546875,
+          "height": 66.546875
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equipment-dialog-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.546875,
+          "height": 66.546875
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equipment-dialog-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.546875,
+          "height": 66.546875
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "gacha-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "gacha-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "home-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 4,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "home-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 4,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "import-dialog-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "import-dialog-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "inventory-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.546875,
+          "height": 66.546875
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        }
+      ],
+      "dialogs": []
+    },
+    {
+      "file": "inventory-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.546875,
+          "height": 66.546875
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        },
+        {
+          "width": 66.53125,
+          "height": 66.53125
+        }
+      ],
+      "dialogs": []
+    },
+    {
+      "file": "item-details-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 7,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "item-details-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 7,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "map-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 653,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "map-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 653,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "mercs-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "mercs-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "notices-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 555,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "notices-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 555,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "quests-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "quests-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "save-error-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 555,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "save-error-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 555,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "settings-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "settings-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "skills-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "skills-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-services-en.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 5,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-services-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 5,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-zh-CN.html",
+      "width": 1280,
+      "height": 800,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 700,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "character-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 992,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "character-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 992,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "combat-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 970,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "combat-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 970,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "controls-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "controls-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "crafting-dialog-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "crafting-dialog-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "create-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "create-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "endgame-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "endgame-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "equip-picker-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equip-picker-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equipment-dialog-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "equipment-dialog-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        }
+      ],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "static",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "gacha-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "gacha-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "home-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 4,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "home-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "smallControls": [],
+      "textures": 4,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "import-dialog-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "import-dialog-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": [
+        {
+          "background": "rgb(23, 25, 27)",
+          "position": "relative",
+          "aboveChrome": true,
+          "withinViewport": true
+        }
+      ]
+    },
+    {
+      "file": "inventory-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        }
+      ],
+      "dialogs": []
+    },
+    {
+      "file": "inventory-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        },
+        {
+          "width": 64.5,
+          "height": 64.5
+        }
+      ],
+      "dialogs": []
+    },
+    {
+      "file": "item-details-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 7,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "item-details-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 7,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "map-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 933,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "map-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 933,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "mercs-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "mercs-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 10,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "notices-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 835,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "notices-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 835,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "quests-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "quests-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 8,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "save-error-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 835,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "save-error-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 835,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "settings-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "settings-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "skills-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "skills-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 13,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-services-en.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 5,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-services-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 5,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    },
+    {
+      "file": "town-zh-CN.html",
+      "width": 1920,
+      "height": 1080,
+      "bodyOverflow": 0,
+      "mainOverflow": 0,
+      "mainHeight": 980,
+      "smallControls": [],
+      "textures": 9,
+      "skillNodes": true,
+      "backpackCards": [],
+      "dialogs": []
+    }
+  ],
+  "failures": [],
+  "network": [],
+  "modes": [
+    {
+      "mode": "stealth",
+      "background": "none",
+      "borderImage": "none",
+      "animation": "0s",
+      "transition": "0s",
+      "focusOutline": null
+    },
+    {
+      "mode": "reduced-motion",
+      "background": "linear-gradient(rgba(18, 20, 21, 0.78), rgba(11, 12, 13, 0.863)), url(\"http://127.0.0.1:43407/D2H5TextGame/assets/d2/generated/ui-materials/ui.remaster.stone.webp\")",
+      "borderImage": "url(\"http://127.0.0.1:43407/D2H5TextGame/assets/d2/generated/ui-materials/ui.remaster.frame.webp\")",
+      "animation": "1e-05s",
+      "transition": "1e-05s",
+      "focusOutline": null
+    },
+    {
+      "mode": "contrast",
+      "background": "none",
+      "borderImage": "url(\"http://127.0.0.1:43407/D2H5TextGame/assets/d2/generated/ui-materials/ui.remaster.frame.webp\")",
+      "animation": "0.2s",
+      "transition": "0.14s, 0.14s, 0.14s",
+      "focusOutline": null
+    },
+    {
+      "mode": "focus",
+      "background": "linear-gradient(rgba(18, 20, 21, 0.78), rgba(11, 12, 13, 0.863)), url(\"http://127.0.0.1:43407/D2H5TextGame/assets/d2/generated/ui-materials/ui.remaster.stone.webp\")",
+      "borderImage": "url(\"http://127.0.0.1:43407/D2H5TextGame/assets/d2/generated/ui-materials/ui.remaster.frame.webp\")",
+      "animation": "0.2s",
+      "transition": "0.14s, 0.14s, 0.14s",
+      "focusOutline": "solid"
+    }
+  ],
+  "stylesheet": "index-Dqqz1UJg.css"
+}

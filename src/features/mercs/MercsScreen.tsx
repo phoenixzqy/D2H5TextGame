@@ -56,7 +56,7 @@ export function MercsScreen() {
     <ScreenShell testId="mercs-screen" title={t('mercenaries')}>
       <div className="max-w-4xl mx-auto space-y-3">
         <Link to="/gacha" data-testid="merc-gacha-link"
-          className="inline-flex min-h-[44px] items-center rounded border border-d2-border px-4 py-2 text-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold">
+          className="d2-control inline-flex min-h-[44px] items-center px-4 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-d2-gold">
           {t('gacha:openBanner')}
         </Link>
         <Panel title={t('hirePanelTitle')}>

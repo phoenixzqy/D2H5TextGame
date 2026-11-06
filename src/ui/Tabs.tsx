@@ -51,7 +51,7 @@ export function Tabs({ tabs, defaultTab, onChange, className = '' }: TabsProps) 
   return (
     <div className={`w-full ${className}`}>
       {/* Tab headers */}
-      <div className="flex border-b-2 border-d2-border overflow-x-auto scrollbar-d2" role="tablist">
+      <div className="d2-tabs flex overflow-x-auto scrollbar-d2" role="tablist">
         {tabs.map((tab, index) => (
           <button
             id={`tab-${tab.id}`}
@@ -59,10 +59,10 @@ export function Tabs({ tabs, defaultTab, onChange, className = '' }: TabsProps) 
             onClick={() => { handleTabChange(tab.id); }}
             onKeyDown={(event) => { handleTabKeyDown(event, index); }}
             className={`
-              min-h-[44px] px-4 py-2 font-serif font-bold transition-all whitespace-nowrap
+              d2-tab min-h-[44px] px-4 py-2 font-serif transition-colors whitespace-nowrap
               ${
                 activeTab === tab.id
-                  ? 'text-d2-gold border-b-2 border-d2-gold -mb-0.5'
+                  ? 'text-d2-gold'
                   : 'text-d2-white/70 hover:text-d2-white'
               }
             `}

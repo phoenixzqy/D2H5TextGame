@@ -40,9 +40,9 @@ export function StatBar({
           )}
         </div>
       )}
-      <div className="w-full h-4 bg-d2-bg border border-d2-border rounded overflow-hidden">
+      <div className="d2-meter w-full h-4 overflow-hidden">
         <div
-          className={`h-full ${colorClasses[color]} transition-all duration-300`}
+          className={`d2-meter-fill d2-meter-fill--${color} h-full ${colorClasses[color]} transition-[width] duration-300`}
           style={{ width: `${String(percentage)}%` }}
           role="progressbar"
           aria-label={label}

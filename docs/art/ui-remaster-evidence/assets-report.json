@@ -1,0 +1,58 @@
+[
+  {
+    "file": "assets/d2/generated/ui-materials/ui.remaster.leather.webp",
+    "bytes": 37964,
+    "sha256": "446910531e6ea8e7a0080a736b8a7c1445af4b3d5419256d613afb684219b8ce",
+    "basePathInCss": true,
+    "precached": true,
+    "buildMatches": true
+  },
+  {
+    "file": "assets/d2/generated/ui-materials/ui.remaster.header.webp",
+    "bytes": 6356,
+    "sha256": "6df3fa75d12b7a3f2be02cc33224f725af9c2badf732931b3a644c5c116669d4",
+    "basePathInCss": true,
+    "precached": true,
+    "buildMatches": true
+  },
+  {
+    "file": "assets/d2/generated/ui-materials/ui.remaster.iron.webp",
+    "bytes": 21184,
+    "sha256": "275b39f10dcb7cf43daa6fb7d7cde2e477e61eaec46631f3bd876989e8f70e8f",
+    "basePathInCss": true,
+    "precached": true,
+    "buildMatches": true
+  },
+  {
+    "file": "assets/d2/generated/ui-materials/ui.remaster.frame.webp",
+    "bytes": 4178,
+    "sha256": "c6ae99a42601c1adb5dd8f9905d6b1706856c4881f48102fd84c1e429b790ba7",
+    "basePathInCss": true,
+    "precached": true,
+    "buildMatches": true
+  },
+  {
+    "file": "assets/d2/generated/ui-materials/ui.remaster.stone.webp",
+    "bytes": 40088,
+    "sha256": "b4c6c99f9765afae4552965a786b975f5820db67e830177923cdf13f8f0169a2",
+    "basePathInCss": true,
+    "precached": true,
+    "buildMatches": true
+  },
+  {
+    "file": "assets/d2/generated/ui-materials/ui.remaster.button-red.webp",
+    "bytes": 32074,
+    "sha256": "d974a90cc6b72abf94cac811b39ee65cd3987ef7b25bd852a8c5b62f08fd5d77",
+    "basePathInCss": true,
+    "precached": true,
+    "buildMatches": true
+  },
+  {
+    "file": "assets/d2/generated/ui-backgrounds/ui.remaster.sanctuary.webp",
+    "bytes": 17182,
+    "sha256": "8f7cb2c2cc3037e4a09776abeb16fbc553cf402e3ac320f136ba84fd038269d2",
+    "basePathInCss": true,
+    "precached": true,
+    "buildMatches": true
+  }
+]

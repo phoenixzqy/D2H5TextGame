@@ -59,7 +59,7 @@ export function GameImage({
   return (
     <Tag
       className={[
-        'relative shrink-0 overflow-hidden',
+        'd2-image relative shrink-0 overflow-hidden',
         'rounded border border-d2-border',
         'bg-gradient-to-br from-d2-panel to-d2-bg',
         'flex items-center justify-center',
