@@ -92,6 +92,23 @@ checkout remains untouched. The local `pnpm-workspace.yaml` contains an
 unconfigured package-manager prompt and is excluded from commits; it is preserved.
 There are no new disposable task directories from this final source-only work.
 
+## Commit and push follow-up — 2026-11-05
+
+The first push was rejected because historical raw evidence contained a
+197.6 MiB archive, exceeding GitHub's 100 MiB Git-file limit. Six evidence
+archives larger than 50 MB were migrated to Git LFS in the unpushed feature
+history. `.gitattributes` lists their exact paths. Production source, fixtures,
+assets and archive contents are preserved; the migration changes only the
+archive representation and its attributes. Git LFS object integrity passes.
+
+The original history remains available locally on
+`archive/playable-foundations-pre-lfs-20261105` at `54560a77`. Only the feature
+branch is pushed; no force push is needed because it did not exist remotely.
+Install Git LFS before checking out this branch to retrieve the raw evidence.
+The checksum-verified official Git LFS executable remains installed at
+`/home/felixzhao/.local/bin/git-lfs`. Installer and migration scratch directories
+were removed, and the excluded local package-manager placeholder was restored.
+
 Historical evidence stays at the exact paths recorded in its feature reports.
 In particular, root retains
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2-shield-progression-sbyup5r_`
